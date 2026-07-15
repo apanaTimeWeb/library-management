@@ -1,0 +1,18 @@
+{
+  "info": {
+    "name": "Admin Students Collection",
+    "description": "Postman collection for all 5 Admin Students micro-endpoints",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    { "name": "Get All Students", "request": { "method": "GET", "header": [ { "key": "Authorization", "value": "Bearer {{accessToken}}" } ], "url": { "raw": "{{baseUrl}}/api/admin/students", "host": ["{{baseUrl}}"], "path": ["api", "admin", "students"] } } },
+    { "name": "Get Student By Id", "request": { "method": "GET", "header": [ { "key": "Authorization", "value": "Bearer {{accessToken}}" } ], "url": { "raw": "{{baseUrl}}/api/admin/students/:id", "host": ["{{baseUrl}}"], "path": ["api", "admin", "students", ":id"], "variable": [{"key": "id", "value": "smartid_or_uuid"}] } } },
+    { "name": "Create Student", "request": { "method": "POST", "header": [ { "key": "Authorization", "value": "Bearer {{accessToken}}"}, {"key": "Content-Type", "value": "application/json"} ], "body": {"mode": "raw", "raw": "{\n  \"name\": \"John Doe\",\n  \"phone\": \"9876543210\",\n  \"shift\": \"Morning\",\n  \"seat\": \"S1\",\n  \"plan\": \"Monthly\"\n}"}, "url": { "raw": "{{baseUrl}}/api/admin/students", "host": ["{{baseUrl}}"], "path": ["api", "admin", "students"] } } },
+    { "name": "Update Student", "request": { "method": "PATCH", "header": [ { "key": "Authorization", "value": "Bearer {{accessToken}}"}, {"key": "Content-Type", "value": "application/json"} ], "body": {"mode": "raw", "raw": "{\n  \"phone\": \"9998887770\"\n}"}, "url": { "raw": "{{baseUrl}}/api/admin/students/:id", "host": ["{{baseUrl}}"], "path": ["api", "admin", "students", ":id"], "variable": [{"key": "id", "value": "uuid"}] } } },
+    { "name": "Delete Student", "request": { "method": "DELETE", "header": [ { "key": "Authorization", "value": "Bearer {{accessToken}}" } ], "url": { "raw": "{{baseUrl}}/api/admin/students/:id", "host": ["{{baseUrl}}"], "path": ["api", "admin", "students", ":id"], "variable": [{"key": "id", "value": "uuid"}] } } }
+  ],
+  "variable": [
+    { "key": "baseUrl", "value": "http://localhost:3000", "type": "string" },
+    { "key": "accessToken", "value": "", "type": "string" }
+  ]
+}
