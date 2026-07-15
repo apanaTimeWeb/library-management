@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 
 @Injectable()
-export class GetAllEnquiriesService {
+export class DeleteEnquirieService {
   constructor() {}
 
   async execute() {

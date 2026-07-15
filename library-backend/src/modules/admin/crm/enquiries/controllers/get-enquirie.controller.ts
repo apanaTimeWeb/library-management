@@ -1,11 +1,11 @@
 import { Controller, Get } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
-import { GetAllEnquiriesService } from '../services/get-all-enquiries.service';
+import { GetEnquirieService } from '../services/get-enquirie.service';
 
 @ApiTags('Admin Enquiries')
 @Controller('api/admin/enquiries')
-export class GetAllEnquiriesController {
-  constructor(private readonly service: GetAllEnquiriesService) {}
+export class GetEnquirieController {
+  constructor(private readonly service: GetEnquirieService) {}
 
   @Get()
   async execute() {
