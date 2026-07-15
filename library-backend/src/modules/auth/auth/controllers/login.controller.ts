@@ -1,9 +1,9 @@
 import { Controller, Post, Body, HttpCode, HttpStatus, Ip, Headers } from '@nestjs/common';
 import { ApiTags, ApiOperation, ApiResponse } from '@nestjs/swagger';
 import { Throttle } from '@nestjs/throttler';
-import { LoginService } from '../services/login.service';
-import { LoginDto } from '../dto/login.dto';
-import { Public } from '../decorators/public.decorator';
+import { LoginService } from '@/modules/auth/auth/services/login.service';
+import { LoginDto } from '@/modules/auth/auth/dto/login.dto';
+import { Public } from '@/modules/auth/auth/decorators/public.decorator';
 
 @ApiTags('Auth')
 @Controller('api/auth/auth')

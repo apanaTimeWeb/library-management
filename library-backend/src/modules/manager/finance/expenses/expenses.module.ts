@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Expense, ExpenseCategory } from '../../../../core/entities/expense.entity';
-import { AuthAuthModule } from '../../../auth/auth/auth.module';
+import { Expense, ExpenseCategory } from '@/core/entities/expense.entity';
+import { AuthAuthModule } from '@/modules/auth/auth/auth.module';
 
 // Micro-Services
 import { GetAllExpensesService } from './services/get-all-expenses.service';

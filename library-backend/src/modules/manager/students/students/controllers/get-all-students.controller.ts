@@ -1,8 +1,8 @@
 import { Controller, Get, Req, UseGuards } from '@nestjs/common';
-import { GetAllStudentsService } from '../services/get-all-students.service';
-import { JwtAuthGuard } from '../../../../auth/auth/guards/jwt-auth.guard';
-import { RolesGuard } from '../../../../auth/auth/guards/roles.guard';
-import { STUDENT_CONSTANTS } from '../constants/students.constants';
+import { GetAllStudentsService } from '@/modules/manager/students/students/services/get-all-students.service';
+import { JwtAuthGuard } from '@/modules/auth/auth/guards/jwt-auth.guard';
+import { RolesGuard } from '@/modules/auth/auth/guards/roles.guard';
+import { STUDENT_CONSTANTS } from '@/modules/manager/students/students/constants/students.constants';
 
 @Controller('api/manager/students')
 @UseGuards(JwtAuthGuard, RolesGuard)

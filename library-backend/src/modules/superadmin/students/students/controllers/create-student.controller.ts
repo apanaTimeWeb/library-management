@@ -1,11 +1,11 @@
 import { Controller, Post, Body, Req, UseGuards } from '@nestjs/common';
 import { ApiTags, ApiBearerAuth, ApiOperation } from '@nestjs/swagger';
-import { CreateStudentService } from '../services/create-student.service';
-import { CreateStudentDto } from '../dto/create-student.dto';
-import { Student } from '../../../../../core/entities/student.entity';
-import { JwtAuthGuard } from '../../../../auth/auth/guards/jwt-auth.guard';
-import { RolesGuard } from '../../../../auth/auth/guards/roles.guard';
-import { Roles } from '../../../../auth/auth/decorators/roles.decorator';
+import { CreateStudentService } from '@/modules/superadmin/students/students/services/create-student.service';
+import { CreateStudentDto } from '@/modules/superadmin/students/students/dto/create-student.dto';
+import { Student } from '@/core/entities/student.entity';
+import { JwtAuthGuard } from '@/modules/auth/auth/guards/jwt-auth.guard';
+import { RolesGuard } from '@/modules/auth/auth/guards/roles.guard';
+import { Roles } from '@/modules/auth/auth/decorators/roles.decorator';
 
 @ApiTags('Superadmin Students')
 @ApiBearerAuth()

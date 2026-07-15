@@ -1,5 +1,5 @@
 import { IsString, IsOptional, IsIn } from 'class-validator';
-import { ENQUIRY_STATUSES } from '../constants/enquiries.constants';
+import { ENQUIRY_STATUSES } from '@/modules/manager/crm/enquiries/constants/enquiries.constants';
 
 export class UpdateEnquiryStatusDto {
   @IsString()

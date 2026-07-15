@@ -1,4 +1,4 @@
-import { Enquiry } from '../../../../../core/entities/enquiry.entity';
+import { Enquiry } from '@/core/entities/enquiry.entity';
 
 export interface EnquiryResponse {
   message?: string;

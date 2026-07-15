@@ -1,14 +1,14 @@
 import { Module } from '@nestjs/common';
-import { SuperadminUsersModule } from '../../superadmin/staff-users/users/users.module';
+import { SuperadminUsersModule } from '@/modules/superadmin/staff-users/users/users.module';
 import { JwtModule } from '@nestjs/jwt';
 import { PassportModule } from '@nestjs/passport';
 import { JwtStrategy } from './strategies/jwt.strategy';
 import { RefreshTokenStrategy } from './strategies/refresh-token.strategy';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { User } from '../../../core/entities/user.entity';
-import { Role } from '../../../core/entities/role.entity';
-import { Branch } from '../../../core/entities/branch.entity';
+import { User } from '@/core/entities/user.entity';
+import { Role } from '@/core/entities/role.entity';
+import { Branch } from '@/core/entities/branch.entity';
 import { JwtAuthGuard } from './guards/jwt-auth.guard';
 import { RolesGuard } from './guards/roles.guard';
 import { RefreshTokenGuard } from './guards/refresh-token.guard';

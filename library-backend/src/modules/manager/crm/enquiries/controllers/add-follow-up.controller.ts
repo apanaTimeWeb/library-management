@@ -1,10 +1,10 @@
 import { Controller, Post, Param, Body, Req, UseGuards, ValidationPipe } from '@nestjs/common';
 import { ApiTags, ApiBearerAuth, ApiOperation } from '@nestjs/swagger';
-import { AddFollowUpService } from '../services/add-follow-up.service';
-import { JwtAuthGuard } from '../../../../auth/auth/guards/jwt-auth.guard';
-import { RolesGuard } from '../../../../auth/auth/guards/roles.guard';
-import { AddFollowUpDto } from '../dto/add-follow-up.dto';
-import { ENQUIRIES_CONSTANTS } from '../constants/enquiries.constants';
+import { AddFollowUpService } from '@/modules/manager/crm/enquiries/services/add-follow-up.service';
+import { JwtAuthGuard } from '@/modules/auth/auth/guards/jwt-auth.guard';
+import { RolesGuard } from '@/modules/auth/auth/guards/roles.guard';
+import { AddFollowUpDto } from '@/modules/manager/crm/enquiries/dto/add-follow-up.dto';
+import { ENQUIRIES_CONSTANTS } from '@/modules/manager/crm/enquiries/constants/enquiries.constants';
 
 @ApiTags('CRM Enquiries')
 @ApiBearerAuth()

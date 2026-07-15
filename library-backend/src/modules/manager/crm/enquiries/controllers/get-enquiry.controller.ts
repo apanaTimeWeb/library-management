@@ -1,9 +1,9 @@
 import { Controller, Get, Param, Req, UseGuards } from '@nestjs/common';
 import { ApiTags, ApiBearerAuth, ApiOperation } from '@nestjs/swagger';
-import { GetEnquiryService } from '../services/get-enquiry.service';
-import { JwtAuthGuard } from '../../../../auth/auth/guards/jwt-auth.guard';
-import { RolesGuard } from '../../../../auth/auth/guards/roles.guard';
-import { ENQUIRIES_CONSTANTS } from '../constants/enquiries.constants';
+import { GetEnquiryService } from '@/modules/manager/crm/enquiries/services/get-enquiry.service';
+import { JwtAuthGuard } from '@/modules/auth/auth/guards/jwt-auth.guard';
+import { RolesGuard } from '@/modules/auth/auth/guards/roles.guard';
+import { ENQUIRIES_CONSTANTS } from '@/modules/manager/crm/enquiries/constants/enquiries.constants';
 
 @ApiTags('CRM Enquiries')
 @ApiBearerAuth()

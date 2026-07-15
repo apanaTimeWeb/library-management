@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { Student } from '../../../../../core/entities/student.entity';
-import { StudentListItem } from '../interfaces/students.interfaces';
+import { Student } from '@/core/entities/student.entity';
+import { StudentListItem } from '@/modules/superadmin/students/students/interfaces/students.interfaces';
 
 @Injectable()
 export class GetAllStudentsService {

@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { Branch } from '../../../../../core/entities/branch.entity';
-import { LibraryItem } from '../interfaces/superadmin.interfaces';
+import { Branch } from '@/core/entities/branch.entity';
+import { LibraryItem } from '@/modules/superadmin/dashboard/superadmin/interfaces/superadmin.interfaces';
 
 @Injectable()
 export class GetLibrariesService {

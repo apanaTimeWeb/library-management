@@ -2,12 +2,12 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import * as bcrypt from 'bcrypt';
-import { User } from '../../../../core/entities/user.entity';
-import { LoginDto } from '../dto/login.dto';
-import { JwtTokenGeneratorUtil } from '../utils/jwt-token-generator.util';
-import { AUTH_CONSTANTS } from '../constants/auth.constants';
-import { AccountLockedException, InvalidCredentialsException } from '../exceptions/auth.exceptions';
-import { LoginResponse } from '../interfaces/auth.interfaces';
+import { User } from '@/core/entities/user.entity';
+import { LoginDto } from '@/modules/auth/auth/dto/login.dto';
+import { JwtTokenGeneratorUtil } from '@/modules/auth/auth/utils/jwt-token-generator.util';
+import { AUTH_CONSTANTS } from '@/modules/auth/auth/constants/auth.constants';
+import { AccountLockedException, InvalidCredentialsException } from '@/modules/auth/auth/exceptions/auth.exceptions';
+import { LoginResponse } from '@/modules/auth/auth/interfaces/auth.interfaces';
 
 @Injectable()
 export class LoginService {

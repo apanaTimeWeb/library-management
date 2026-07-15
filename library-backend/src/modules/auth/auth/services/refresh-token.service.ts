@@ -2,10 +2,10 @@ import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import * as bcrypt from 'bcrypt';
-import { User } from '../../../../core/entities/user.entity';
-import { JwtTokenGeneratorUtil } from '../utils/jwt-token-generator.util';
-import { AUTH_CONSTANTS, AUTH_ERRORS } from '../constants/auth.constants';
-import { AuthTokens } from '../interfaces/auth.interfaces';
+import { User } from '@/core/entities/user.entity';
+import { JwtTokenGeneratorUtil } from '@/modules/auth/auth/utils/jwt-token-generator.util';
+import { AUTH_CONSTANTS, AUTH_ERRORS } from '@/modules/auth/auth/constants/auth.constants';
+import { AuthTokens } from '@/modules/auth/auth/interfaces/auth.interfaces';
 
 @Injectable()
 export class RefreshTokenService {

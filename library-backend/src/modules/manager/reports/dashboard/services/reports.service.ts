@@ -1,11 +1,11 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { Student } from '../../../../../core/entities/student.entity';
-import { Seat } from '../../../../../core/entities/seat.entity';
-import { Complaint } from '../../../../../core/entities/complaint.entity';
-import { COMPLAINT_STATUS } from '../constants/manager.constants';
-import { ReportsResponse } from '../interfaces/manager.interfaces';
+import { Student } from '@/core/entities/student.entity';
+import { Seat } from '@/core/entities/seat.entity';
+import { Complaint } from '@/core/entities/complaint.entity';
+import { COMPLAINT_STATUS } from '@/modules/manager/dashboard/manager/constants/manager.constants';
+import { ReportsResponse } from '@/modules/manager/dashboard/manager/interfaces/manager.interfaces';
 
 @Injectable()
 export class ReportsService {

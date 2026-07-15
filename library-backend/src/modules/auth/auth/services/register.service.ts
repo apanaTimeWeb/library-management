@@ -2,11 +2,11 @@ import { Injectable, ConflictException, BadRequestException } from '@nestjs/comm
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import * as bcrypt from 'bcrypt';
-import { User } from '../../../../core/entities/user.entity';
-import { Role } from '../../../../core/entities/role.entity';
-import { Branch } from '../../../../core/entities/branch.entity';
-import { RegisterDto } from '../dto/register.dto';
-import { AUTH_CONSTANTS, AUTH_ERRORS } from '../constants/auth.constants';
+import { User } from '@/core/entities/user.entity';
+import { Role } from '@/core/entities/role.entity';
+import { Branch } from '@/core/entities/branch.entity';
+import { RegisterDto } from '@/modules/auth/auth/dto/register.dto';
+import { AUTH_CONSTANTS, AUTH_ERRORS } from '@/modules/auth/auth/constants/auth.constants';
 
 @Injectable()
 export class RegisterService {

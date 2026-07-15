@@ -1,10 +1,10 @@
 import { Controller, Put, Param, Body, UseGuards } from '@nestjs/common';
 import { ApiTags, ApiBearerAuth, ApiOperation } from '@nestjs/swagger';
-import { UpdateLibraryStatusService } from '../services/update-library-status.service';
-import { UpdateLibraryStatusDto } from '../dtos/update-library-status.dto';
-import { JwtAuthGuard } from '../../../../auth/auth/guards/jwt-auth.guard';
-import { RolesGuard } from '../../../../auth/auth/guards/roles.guard';
-import { Roles } from '../../../../auth/auth/decorators/roles.decorator';
+import { UpdateLibraryStatusService } from '@/modules/superadmin/libraries/dashboard/services/update-library-status.service';
+import { UpdateLibraryStatusDto } from '@/modules/superadmin/dashboard/superadmin/dtos/update-library-status.dto';
+import { JwtAuthGuard } from '@/modules/auth/auth/guards/jwt-auth.guard';
+import { RolesGuard } from '@/modules/auth/auth/guards/roles.guard';
+import { Roles } from '@/modules/auth/auth/decorators/roles.decorator';
 
 @ApiTags('Superadmin Dashboard')
 @ApiBearerAuth()

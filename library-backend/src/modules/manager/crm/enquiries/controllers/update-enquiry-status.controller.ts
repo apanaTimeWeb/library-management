@@ -1,10 +1,10 @@
 import { Controller, Patch, Param, Body, Req, UseGuards, ValidationPipe } from '@nestjs/common';
 import { ApiTags, ApiBearerAuth, ApiOperation } from '@nestjs/swagger';
-import { UpdateEnquiryStatusService } from '../services/update-enquiry-status.service';
-import { JwtAuthGuard } from '../../../../auth/auth/guards/jwt-auth.guard';
-import { RolesGuard } from '../../../../auth/auth/guards/roles.guard';
-import { UpdateEnquiryStatusDto } from '../dto/update-enquiry-status.dto';
-import { ENQUIRIES_CONSTANTS } from '../constants/enquiries.constants';
+import { UpdateEnquiryStatusService } from '@/modules/manager/crm/enquiries/services/update-enquiry-status.service';
+import { JwtAuthGuard } from '@/modules/auth/auth/guards/jwt-auth.guard';
+import { RolesGuard } from '@/modules/auth/auth/guards/roles.guard';
+import { UpdateEnquiryStatusDto } from '@/modules/manager/crm/enquiries/dto/update-enquiry-status.dto';
+import { ENQUIRIES_CONSTANTS } from '@/modules/manager/crm/enquiries/constants/enquiries.constants';
 
 @ApiTags('CRM Enquiries')
 @ApiBearerAuth()

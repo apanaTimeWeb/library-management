@@ -1,10 +1,10 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { Tenant } from '../../../../../core/entities/tenant.entity';
-import { Branch } from '../../../../../core/entities/branch.entity';
-import { User } from '../../../../../core/entities/user.entity';
-import { SuperadminDashboardData } from '../interfaces/superadmin.interfaces';
+import { Tenant } from '@/core/entities/tenant.entity';
+import { Branch } from '@/core/entities/branch.entity';
+import { User } from '@/core/entities/user.entity';
+import { SuperadminDashboardData } from '@/modules/superadmin/dashboard/superadmin/interfaces/superadmin.interfaces';
 
 @Injectable()
 export class DashboardService {

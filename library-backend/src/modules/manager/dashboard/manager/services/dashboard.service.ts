@@ -1,13 +1,13 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository, Between } from 'typeorm';
-import { Student } from '../../../../../core/entities/student.entity';
-import { Seat } from '../../../../../core/entities/seat.entity';
-import { Subscription } from '../../../../../core/entities/subscription.entity';
-import { Enquiry } from '../../../../../core/entities/enquiry.entity';
-import { Complaint } from '../../../../../core/entities/complaint.entity';
-import { MANAGER_CONSTANTS, ENQUIRY_STATUS, COMPLAINT_STATUS } from '../constants/manager.constants';
-import { DashboardResponse } from '../interfaces/manager.interfaces';
+import { Student } from '@/core/entities/student.entity';
+import { Seat } from '@/core/entities/seat.entity';
+import { Subscription } from '@/core/entities/subscription.entity';
+import { Enquiry } from '@/core/entities/enquiry.entity';
+import { Complaint } from '@/core/entities/complaint.entity';
+import { MANAGER_CONSTANTS, ENQUIRY_STATUS, COMPLAINT_STATUS } from '@/modules/manager/dashboard/manager/constants/manager.constants';
+import { DashboardResponse } from '@/modules/manager/dashboard/manager/interfaces/manager.interfaces';
 
 @Injectable()
 export class DashboardService {

@@ -1,10 +1,10 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { Student } from '../../../../../core/entities/student.entity';
-import { StudentNotFoundException } from '../exceptions/students.exceptions';
-import { STUDENT_STATUS } from '../constants/students.constants';
-import { DeleteResponse } from '../interfaces/students.interfaces';
+import { Student } from '@/core/entities/student.entity';
+import { StudentNotFoundException } from '@/modules/manager/students/students/exceptions/students.exceptions';
+import { STUDENT_STATUS } from '@/modules/manager/students/students/constants/students.constants';
+import { DeleteResponse } from '@/modules/manager/students/students/interfaces/students.interfaces';
 
 @Injectable()
 export class DeleteStudentService {

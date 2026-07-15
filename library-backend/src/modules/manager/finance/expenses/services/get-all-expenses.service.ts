@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { Expense } from '../../../../../core/entities/expense.entity';
-import { ExpenseListItem } from '../interfaces/expenses.interfaces';
+import { Expense } from '@/core/entities/expense.entity';
+import { ExpenseListItem } from '@/modules/manager/finance/expenses/interfaces/expenses.interfaces';
 
 @Injectable()
 export class GetAllExpensesService {

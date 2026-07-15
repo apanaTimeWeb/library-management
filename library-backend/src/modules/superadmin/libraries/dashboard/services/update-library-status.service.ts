@@ -1,8 +1,8 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { Branch } from '../../../../../core/entities/branch.entity';
-import { UpdateLibraryStatusDto } from '../dtos/update-library-status.dto';
+import { Branch } from '@/core/entities/branch.entity';
+import { UpdateLibraryStatusDto } from '@/modules/superadmin/dashboard/superadmin/dtos/update-library-status.dto';
 
 @Injectable()
 export class UpdateLibraryStatusService {

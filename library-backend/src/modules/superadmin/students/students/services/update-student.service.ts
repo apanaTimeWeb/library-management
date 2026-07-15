@@ -1,9 +1,9 @@
 import { Injectable } from '@nestjs/common';
-import { StudentNotFoundException } from '../exceptions/students.exceptions';
+import { StudentNotFoundException } from '@/modules/superadmin/students/students/exceptions/students.exceptions';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { Student } from '../../../../../core/entities/student.entity';
-import { UpdateStudentDto } from '../dto/update-student.dto';
+import { Student } from '@/core/entities/student.entity';
+import { UpdateStudentDto } from '@/modules/superadmin/students/students/dto/update-student.dto';
 
 @Injectable()
 export class UpdateStudentService {

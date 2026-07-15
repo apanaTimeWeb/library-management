@@ -1,9 +1,9 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { User } from '../../../../core/entities/user.entity';
-import { AuthUserResponse } from '../interfaces/auth.interfaces';
-import { AUTH_ERRORS } from '../constants/auth.constants';
+import { User } from '@/core/entities/user.entity';
+import { AuthUserResponse } from '@/modules/auth/auth/interfaces/auth.interfaces';
+import { AUTH_ERRORS } from '@/modules/auth/auth/constants/auth.constants';
 
 @Injectable()
 export class GetMeService {

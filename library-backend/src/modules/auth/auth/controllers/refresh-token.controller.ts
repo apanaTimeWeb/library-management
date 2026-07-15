@@ -1,8 +1,8 @@
 import { Controller, Post, Req, UseGuards, HttpCode, HttpStatus } from '@nestjs/common';
 import { ApiTags, ApiOperation } from '@nestjs/swagger';
-import { RefreshTokenService } from '../services/refresh-token.service';
-import { RefreshTokenGuard } from '../guards/refresh-token.guard';
-import { Public } from '../decorators/public.decorator';
+import { RefreshTokenService } from '@/modules/auth/auth/services/refresh-token.service';
+import { RefreshTokenGuard } from '@/modules/auth/auth/guards/refresh-token.guard';
+import { Public } from '@/modules/auth/auth/decorators/public.decorator';
 
 @ApiTags('Auth')
 @Controller('api/auth/auth')

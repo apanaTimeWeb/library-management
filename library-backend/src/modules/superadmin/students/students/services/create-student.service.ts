@@ -1,16 +1,16 @@
 import { Injectable } from '@nestjs/common';
-import { BranchNotFoundException } from '../exceptions/students.exceptions';
+import { BranchNotFoundException } from '@/modules/superadmin/students/students/exceptions/students.exceptions';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { Student } from '../../../../../core/entities/student.entity';
-import { Branch } from '../../../../../core/entities/branch.entity';
-import { Shift } from '../../../../../core/entities/shift.entity';
-import { Seat } from '../../../../../core/entities/seat.entity';
-import { Plan } from '../../../../../core/entities/plan.entity';
-import { StudentSlot } from '../../../../../core/entities/student-slot.entity';
-import { Subscription } from '../../../../../core/entities/subscription.entity';
-import { Payment } from '../../../../../core/entities/payment.entity';
-import { CreateStudentDto } from '../dto/create-student.dto';
+import { Student } from '@/core/entities/student.entity';
+import { Branch } from '@/core/entities/branch.entity';
+import { Shift } from '@/core/entities/shift.entity';
+import { Seat } from '@/core/entities/seat.entity';
+import { Plan } from '@/core/entities/plan.entity';
+import { StudentSlot } from '@/core/entities/student-slot.entity';
+import { Subscription } from '@/core/entities/subscription.entity';
+import { Payment } from '@/core/entities/payment.entity';
+import { CreateStudentDto } from '@/modules/superadmin/students/students/dto/create-student.dto';
 
 @Injectable()
 export class CreateStudentService {
