@@ -9,6 +9,7 @@ import { Roles } from '@/modules/auth/auth/decorators/roles.decorator';
 export class AdminExpensesController {
   constructor(private readonly expensesService: AdminExpensesService) {}
 
+  // SLA: FAST
   @Get()
   @Roles('superadmin', 'admin', 'manager')
   async getAllExpenses(@Req() req: any): Promise<any[]> {

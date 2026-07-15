@@ -19,6 +19,7 @@ import { LoginResponse } from '@/modules/auth/auth/interfaces/auth.interfaces';
 export class LoginController {
   constructor(private readonly loginService: LoginService) {}
 
+  // SLA: FAST
   @Public()
   @Post('login')
   @HttpCode(HttpStatus.OK)

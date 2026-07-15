@@ -14,6 +14,7 @@ import { TenantGuard } from '@/modules/auth/auth/guards/tenant.guard';
 export class CouponsController {
   constructor(private readonly couponsService: CouponsService) {}
 
+  // SLA: FAST
   @Get('coupons')
   @ApiOperation({ summary: 'Get coupons' })
   async getCoupons(): Promise<any> {

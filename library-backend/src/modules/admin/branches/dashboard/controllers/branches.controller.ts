@@ -14,6 +14,7 @@ import { TenantGuard } from '@/modules/auth/auth/guards/tenant.guard';
 export class BranchesController {
   constructor(private readonly branchesService: BranchesService) {}
 
+  // SLA: FAST
   @Get('branches')
   @ApiOperation({ summary: 'Get branches' })
   async getBranches(): Promise<any[]> {

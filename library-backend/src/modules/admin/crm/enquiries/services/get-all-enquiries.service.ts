@@ -4,7 +4,7 @@ import { Injectable } from '@nestjs/common';
 export class GetAllEnquiriesService {
   constructor() {}
 
-  async execute() {
+  async execute(): Promise<any> {
     // Implementation here
   }
 }

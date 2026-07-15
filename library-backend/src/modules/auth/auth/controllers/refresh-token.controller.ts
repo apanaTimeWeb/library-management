@@ -17,6 +17,7 @@ import { AuthTokens } from '@/modules/auth/auth/interfaces/auth.interfaces';
 export class RefreshTokenController {
   constructor(private readonly refreshTokenService: RefreshTokenService) {}
 
+  // SLA: FAST
   @Public()
   @Post('refresh')
   @UseGuards(RefreshTokenGuard)

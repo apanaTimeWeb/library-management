@@ -13,6 +13,7 @@ import { User } from '@/core/entities/user.entity';
 export class CreateUserController {
   constructor(private readonly createUserService: CreateUserService) {}
 
+  // SLA: FAST
   @Post()
   @ApiOperation({ summary: 'Create a new staff user' })
   // SLA: FAST

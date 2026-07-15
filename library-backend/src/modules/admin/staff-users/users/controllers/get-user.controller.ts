@@ -11,6 +11,7 @@ import { User } from '@/core/entities/user.entity';
 export class GetUserController {
   constructor(private readonly getUserService: GetUserService) {}
 
+  // SLA: FAST
   @Get(':id')
   @ApiOperation({ summary: 'Get a single staff user by ID' })
   // SLA: FAST

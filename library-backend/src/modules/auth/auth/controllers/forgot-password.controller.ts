@@ -8,6 +8,7 @@ import { ForgotPasswordDto } from '../dto/forgot-password.dto';
 export class ForgotPasswordController {
   constructor(private readonly forgotPasswordService: ForgotPasswordService) {}
 
+  // SLA: FAST
   @Post('forgot-password')
   @ApiOperation({ summary: 'Request a password reset OTP' })
   // SLA: FAST

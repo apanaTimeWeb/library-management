@@ -26,7 +26,7 @@ export class RegisterService {
     private readonly branchRepo: Repository<Branch>,
   ) {}
 
-  async register(dto: RegisterDto) {
+  async register(dto: RegisterDto): Promise<any> {
     const existing = await this.userRepo.findOne({
       where: { phone: dto.phone },
     });

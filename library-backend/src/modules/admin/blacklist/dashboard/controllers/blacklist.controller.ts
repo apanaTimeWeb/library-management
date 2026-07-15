@@ -14,6 +14,7 @@ import { TenantGuard } from '@/modules/auth/auth/guards/tenant.guard';
 export class BlacklistController {
   constructor(private readonly blacklistService: BlacklistService) {}
 
+  // SLA: FAST
   @Get('blacklist')
   @ApiOperation({ summary: 'Get blacklist' })
   async getBlacklist(): Promise<any> {

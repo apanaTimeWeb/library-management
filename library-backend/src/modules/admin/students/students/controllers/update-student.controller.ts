@@ -13,6 +13,7 @@ import { Roles } from '@/modules/auth/auth/decorators/roles.decorator';
 export class UpdateStudentController {
   constructor(private readonly updateStudentService: UpdateStudentService) {}
 
+  // SLA: FAST
   @Patch(':id')
   @Roles('superadmin', 'admin', 'manager')
   @ApiOperation({ summary: 'Update a student' })

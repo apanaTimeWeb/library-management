@@ -14,6 +14,7 @@ import { TenantGuard } from '@/modules/auth/auth/guards/tenant.guard';
 export class AuditLogsController {
   constructor(private readonly auditLogsService: AuditLogsService) {}
 
+  // SLA: FAST
   @Get('audit-logs')
   @ApiOperation({ summary: 'Get audit logs' })
   async getAuditLogs(): Promise<any> {

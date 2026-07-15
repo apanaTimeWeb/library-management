@@ -13,7 +13,7 @@ export class ForgotPasswordService {
     private readonly userRepository: Repository<User>,
   ) {}
 
-  async processForgotPassword(forgotPasswordDto: ForgotPasswordDto) {
+  async processForgotPassword(forgotPasswordDto: ForgotPasswordDto): Promise<any> {
     const { phone } = forgotPasswordDto;
     const user = await this.userRepository.findOne({ where: { phone } });
 

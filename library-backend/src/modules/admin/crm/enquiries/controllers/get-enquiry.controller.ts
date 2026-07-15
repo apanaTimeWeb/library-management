@@ -12,6 +12,7 @@ import { Roles } from '@/modules/auth/auth/decorators/roles.decorator';
 export class GetEnquiryController {
   constructor(private readonly getEnquiryService: GetEnquiryService) {}
 
+  // SLA: FAST
   @Get(':id')
   @Roles('superadmin', 'admin')
   @ApiOperation({ summary: 'Get a single CRM enquiry by ID' })

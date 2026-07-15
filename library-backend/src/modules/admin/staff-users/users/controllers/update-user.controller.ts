@@ -12,6 +12,7 @@ import { User } from '@/core/entities/user.entity';
 export class UpdateUserController {
   constructor(private readonly updateUserService: UpdateUserService) {}
 
+  // SLA: FAST
   @Patch(':id')
   @ApiOperation({ summary: 'Update a staff user' })
   // SLA: FAST

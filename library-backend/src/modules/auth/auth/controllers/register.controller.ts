@@ -11,6 +11,7 @@ import { Roles } from '@/modules/auth/auth/decorators/roles.decorator';
 export class RegisterController {
   constructor(private readonly registerService: RegisterService) {}
 
+  // SLA: FAST
   @Post('signup')
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Roles('superadmin')

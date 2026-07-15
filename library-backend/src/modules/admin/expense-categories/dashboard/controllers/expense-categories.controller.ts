@@ -16,6 +16,7 @@ export class ExpenseCategoriesController {
     private readonly expenseCategoriesService: ExpenseCategoriesService,
   ) {}
 
+  // SLA: FAST
   @Get('expense-categories')
   @ApiOperation({ summary: 'Get expense categories' })
   async getExpenseCategories(): Promise<any> {

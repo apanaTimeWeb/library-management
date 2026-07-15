@@ -15,7 +15,7 @@ export class ResetPasswordService {
     private readonly userRepository: Repository<User>,
   ) {}
 
-  async resetPassword(resetPasswordDto: ResetPasswordDto) {
+  async resetPassword(resetPasswordDto: ResetPasswordDto): Promise<any> {
     const { token, newPassword } = resetPasswordDto;
 
     // Here you would verify the token against the database or Redis cache

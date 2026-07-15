@@ -7,8 +7,9 @@ import { UpdateEnquirieService } from '../services/update-enquirie.service';
 export class UpdateEnquirieController {
   constructor(private readonly service: UpdateEnquirieService) {}
 
+  // SLA: FAST
   @Patch()
-  async execute() {
+  async execute(): Promise<any> {
     return this.service.execute();
   }
 }

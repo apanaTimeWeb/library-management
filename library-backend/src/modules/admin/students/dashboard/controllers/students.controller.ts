@@ -14,6 +14,7 @@ import { TenantGuard } from '@/modules/auth/auth/guards/tenant.guard';
 export class StudentsController {
   constructor(private readonly studentsService: StudentsService) {}
 
+  // SLA: FAST
   @Get('students')
   @ApiOperation({ summary: 'Get students' })
   async getStudents(): Promise<any[]> {

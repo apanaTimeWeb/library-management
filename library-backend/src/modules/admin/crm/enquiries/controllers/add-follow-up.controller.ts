@@ -13,13 +13,14 @@ import { Roles } from '@/modules/auth/auth/decorators/roles.decorator';
 export class AddFollowUpController {
   constructor(private readonly addFollowUpService: AddFollowUpService) {}
 
+  // SLA: FAST
   @Post(':id/follow-ups')
   @Roles('superadmin', 'admin')
   @ApiOperation({ summary: 'Add a follow-up to an enquiry' })
   async addFollowUp(
     @Param('id') id: string,
     @Body() followUpDto: AddFollowUpDto,
-  ) {
+  ): Promise<any> {
     return this.addFollowUpService.addFollowUp(id, followUpDto);
   }
 }

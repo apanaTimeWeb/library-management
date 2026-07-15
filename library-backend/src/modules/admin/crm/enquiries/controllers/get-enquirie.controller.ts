@@ -7,8 +7,9 @@ import { GetEnquirieService } from '../services/get-enquirie.service';
 export class GetEnquirieController {
   constructor(private readonly service: GetEnquirieService) {}
 
+  // SLA: FAST
   @Get()
-  async execute() {
+  async execute(): Promise<any> {
     return this.service.execute();
   }
 }

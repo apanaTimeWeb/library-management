@@ -8,6 +8,7 @@ import { ResetPasswordDto } from '../dto/reset-password.dto';
 export class ResetPasswordController {
   constructor(private readonly resetPasswordService: ResetPasswordService) {}
 
+  // SLA: FAST
   @Post('reset-password')
   @ApiOperation({ summary: 'Reset password using OTP' })
   // SLA: FAST

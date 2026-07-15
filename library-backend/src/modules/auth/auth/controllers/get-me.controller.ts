@@ -10,6 +10,7 @@ import { AuthUserResponse } from '@/modules/auth/auth/interfaces/auth.interfaces
 export class GetMeController {
   constructor(private readonly getMeService: GetMeService) {}
 
+  // SLA: FAST
   @Get('me')
   @UseGuards(JwtAuthGuard)
   @ApiBearerAuth()

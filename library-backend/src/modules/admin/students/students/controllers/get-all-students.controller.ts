@@ -15,6 +15,7 @@ import { StudentListItem } from '@/modules/admin/students/students/interfaces/st
 export class GetAllStudentsController {
   constructor(private readonly getAllStudentsService: GetAllStudentsService) {}
 
+  // SLA: FAST
   @Get()
   @ApiOperation({ summary: 'Get all students' })
   async getAllStudents(

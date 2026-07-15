@@ -14,6 +14,7 @@ import { Student } from '@/core/entities/student.entity';
 export class CreateStudentController {
   constructor(private readonly createStudentService: CreateStudentService) {}
 
+  // SLA: FAST
   @Post()
   @Roles('superadmin', 'admin', 'manager')
   @ApiOperation({ summary: 'Create a new student' })

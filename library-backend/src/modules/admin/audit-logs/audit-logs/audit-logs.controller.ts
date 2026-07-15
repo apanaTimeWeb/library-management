@@ -25,6 +25,7 @@ import { Roles } from '@/modules/auth/auth/decorators/roles.decorator';
 export class AdminAuditLogsController {
   constructor(private readonly auditLogsService: AdminAuditLogsService) {}
 
+  // SLA: FAST
   @Get()
   @ApiOperation({ summary: 'Get paginated audit logs (superadmin only)' })
   @ApiQuery({ name: 'page', required: false, type: Number })

@@ -4,7 +4,7 @@ import { Injectable } from '@nestjs/common';
 export class DeleteEnquirieService {
   constructor() {}
 
-  async execute() {
+  async execute(): Promise<any> {
     // Implementation here
   }
 }

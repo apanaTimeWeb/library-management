@@ -14,6 +14,7 @@ import { TenantGuard } from '@/modules/auth/auth/guards/tenant.guard';
 export class PermissionsController {
   constructor(private readonly permissionsService: PermissionsService) {}
 
+  // SLA: FAST
   @Get('permissions')
   @ApiOperation({ summary: 'Get permissions' })
   async getPermissions(): Promise<any> {

@@ -10,6 +10,7 @@ import { DeleteUserService } from '../services/delete-user.service';
 export class DeleteUserController {
   constructor(private readonly deleteUserService: DeleteUserService) {}
 
+  // SLA: FAST
   @Delete(':id')
   @ApiOperation({ summary: 'Delete a staff user' })
   // SLA: FAST

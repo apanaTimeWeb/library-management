@@ -7,8 +7,9 @@ import { GetAllEnquiriesService } from '../services/get-all-enquiries.service';
 export class GetAllEnquiriesController {
   constructor(private readonly service: GetAllEnquiriesService) {}
 
+  // SLA: FAST
   @Get()
-  async execute() {
+  async execute(): Promise<any> {
     return this.service.execute();
   }
 }

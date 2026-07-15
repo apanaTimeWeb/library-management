@@ -14,6 +14,7 @@ import { TenantGuard } from '@/modules/auth/auth/guards/tenant.guard';
 export class StaffUsersController {
   constructor(private readonly staffUsersService: StaffUsersService) {}
 
+  // SLA: FAST
   @Get('staff-users')
   @ApiOperation({ summary: 'Get staff users' })
   async getStaffUsers(): Promise<any> {

@@ -15,6 +15,7 @@ import { CurrentUser } from '@/common/decorators/current-user.decorator';
 export class LogoutController {
   constructor(private readonly logoutService: LogoutService) {}
 
+  // SLA: FAST
   @Post('logout')
   @UseGuards(JwtAuthGuard)
   @ApiBearerAuth()

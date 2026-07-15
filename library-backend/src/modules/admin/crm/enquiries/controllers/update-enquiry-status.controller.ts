@@ -15,13 +15,14 @@ export class UpdateEnquiryStatusController {
     private readonly updateEnquiryStatusService: UpdateEnquiryStatusService,
   ) {}
 
+  // SLA: FAST
   @Patch(':id/status')
   @Roles('superadmin', 'admin')
   @ApiOperation({ summary: 'Update status of an enquiry' })
   async updateStatus(
     @Param('id') id: string,
     @Body() updateDto: UpdateEnquiryStatusDto,
-  ) {
+  ): Promise<any> {
     return this.updateEnquiryStatusService.updateStatus(id, updateDto);
   }
 }

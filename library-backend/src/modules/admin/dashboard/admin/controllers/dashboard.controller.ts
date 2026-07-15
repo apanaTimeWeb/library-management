@@ -14,6 +14,7 @@ import { TenantGuard } from '@/modules/auth/auth/guards/tenant.guard';
 export class DashboardController {
   constructor(private readonly dashboardService: DashboardService) {}
 
+  // SLA: FAST
   @Get('dashboard')
   @ApiOperation({ summary: 'Admin dashboard data (admin + superadmin only)' })
   async getDashboardData(): Promise<any> {

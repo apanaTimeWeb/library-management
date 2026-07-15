@@ -14,6 +14,7 @@ import { TenantGuard } from '@/modules/auth/auth/guards/tenant.guard';
 export class ReportsController {
   constructor(private readonly reportsService: ReportsService) {}
 
+  // SLA: FAST
   @Get('reports')
   @ApiOperation({ summary: 'Admin reports data (admin + superadmin only)' })
   async getReportsData(): Promise<any> {

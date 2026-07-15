@@ -7,8 +7,9 @@ import { DeleteEnquirieService } from '../services/delete-enquirie.service';
 export class DeleteEnquirieController {
   constructor(private readonly service: DeleteEnquirieService) {}
 
+  // SLA: FAST
   @Delete()
-  async execute() {
+  async execute(): Promise<any> {
     return this.service.execute();
   }
 }

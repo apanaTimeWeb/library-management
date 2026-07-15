@@ -10,6 +10,7 @@ import { Enquiry } from '@/core/entities/enquiry.entity';
 export class CreateEnquiryController {
   constructor(private readonly createEnquiryService: CreateEnquiryService) {}
 
+  // SLA: FAST
   @Post()
   @Throttle({ default: { limit: 5, ttl: 60000 } })
   @ApiOperation({ summary: 'Submit a new enquiry' })
