@@ -4,8 +4,8 @@ import {
   Ban, LucideIcon, IndianRupee, Users,
   RotateCcw, Phone, MessageSquare, Handshake, AlertCircle
 } from 'lucide-react';
-import { AdminNavItem } from '../admin_types/admin_types';
-import { ADMIN_ROUTES } from '../admin_url_config';
+import { AdminNavItem } from '@/app/admin/admin_types/admin_types';
+import { ADMIN_ROUTES } from '@/app/admin/admin_url_config';
 
 /**
  * Sidebar Navigation Configuration

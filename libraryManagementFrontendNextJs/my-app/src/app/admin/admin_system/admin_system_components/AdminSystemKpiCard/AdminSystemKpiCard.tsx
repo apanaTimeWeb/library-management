@@ -1,7 +1,7 @@
 // RESPONSIBILITY: Renders the KpiCard component for the admin_system module.
 // DATA FLOW: Parent -> AdminSystemKpiCard -> DOM
 
-import { cn } from '../AdminSystemutils/AdminSystemutils';
+import { cn } from '@/app/admin/admin_system/admin_system_components/AdminSystemutils/AdminSystemutils';
 import { TrendingUp, TrendingDown, Minus } from 'lucide-react';
 
 interface KpiCardProps {

@@ -3,11 +3,11 @@
 // DATA FLOW: Next.js Router -> Page -> Components
 
 import { useState, useEffect } from 'react';
-import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '../admin_system_components/AdminSystemCard/AdminSystemCard';
-import { Button } from '../admin_system_components/AdminSystemButton/AdminSystemButton';
-import { Input } from '../admin_system_components/AdminSystemInput/AdminSystemInput';
-import { Label } from '../admin_system_components/AdminSystemLabel/AdminSystemLabel';
-import { Switch } from '../admin_system_components/AdminSystemSwitch/AdminSystemSwitch';
+import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/app/admin/admin_system/admin_system_components/AdminSystemCard/AdminSystemCard';
+import { Button } from '@/app/admin/admin_system/admin_system_components/AdminSystemButton/AdminSystemButton';
+import { Input } from '@/app/admin/admin_system/admin_system_components/AdminSystemInput/AdminSystemInput';
+import { Label } from '@/app/admin/admin_system/admin_system_components/AdminSystemLabel/AdminSystemLabel';
+import { Switch } from '@/app/admin/admin_system/admin_system_components/AdminSystemSwitch/AdminSystemSwitch';
 import {
   Settings, Palette, AlertCircle, Zap, CreditCard, Bell, Globe,
   Upload, Eye, EyeOff, Save, ChevronRight

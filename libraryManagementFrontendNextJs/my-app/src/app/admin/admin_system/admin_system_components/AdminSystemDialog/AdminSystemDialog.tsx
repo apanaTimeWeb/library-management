@@ -4,7 +4,7 @@
 
 import * as DialogPrimitive from '@radix-ui/react-dialog';
 import { X } from 'lucide-react';
-import { cn } from '../AdminSystemutils/AdminSystemutils';
+import { cn } from '@/app/admin/admin_system/admin_system_components/AdminSystemutils/AdminSystemutils';
 
 export const Dialog        = DialogPrimitive.Root;
 export const DialogTrigger = DialogPrimitive.Trigger;

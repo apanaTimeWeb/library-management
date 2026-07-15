@@ -3,11 +3,11 @@
 // DATA FLOW: Next.js Router -> Page -> Components
 
 import { useState } from 'react';
-import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '../admin_system_components/AdminSystemCard/AdminSystemCard';
-import { Button } from '../admin_system_components/AdminSystemButton/AdminSystemButton';
-import { Badge } from '../admin_system_components/AdminSystemBadge/AdminSystemBadge';
-import { KpiCard } from '../admin_system_components/AdminSystemKpiCard/AdminSystemKpiCard';
-import { Switch } from '../admin_system_components/AdminSystemSwitch/AdminSystemSwitch';
+import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/app/admin/admin_system/admin_system_components/AdminSystemCard/AdminSystemCard';
+import { Button } from '@/app/admin/admin_system/admin_system_components/AdminSystemButton/AdminSystemButton';
+import { Badge } from '@/app/admin/admin_system/admin_system_components/AdminSystemBadge/AdminSystemBadge';
+import { KpiCard } from '@/app/admin/admin_system/admin_system_components/AdminSystemKpiCard/AdminSystemKpiCard';
+import { Switch } from '@/app/admin/admin_system/admin_system_components/AdminSystemSwitch/AdminSystemSwitch';
 import {
   Database, ChevronRight, Download, RefreshCw, CheckCircle, Clock,
   AlertTriangle, HardDrive, Shield, Cloud, Loader2

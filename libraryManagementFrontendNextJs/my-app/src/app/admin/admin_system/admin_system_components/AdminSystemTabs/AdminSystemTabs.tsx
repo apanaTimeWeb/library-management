@@ -3,7 +3,7 @@
 // DATA FLOW: Parent -> AdminSystemTabs -> DOM
 
 import * as TabsPrimitive from '@radix-ui/react-tabs';
-import { cn } from '../AdminSystemutils/AdminSystemutils';
+import { cn } from '@/app/admin/admin_system/admin_system_components/AdminSystemutils/AdminSystemutils';
 
 export const Tabs = TabsPrimitive.Root;
 

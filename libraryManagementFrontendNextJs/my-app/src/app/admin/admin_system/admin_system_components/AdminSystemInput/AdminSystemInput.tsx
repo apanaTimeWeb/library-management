@@ -3,7 +3,7 @@
 // DATA FLOW: Parent -> AdminSystemInput -> DOM
 
 import { type InputHTMLAttributes, forwardRef } from 'react';
-import { cn } from '../AdminSystemutils/AdminSystemutils';
+import { cn } from '@/app/admin/admin_system/admin_system_components/AdminSystemutils/AdminSystemutils';
 
 export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {}
 

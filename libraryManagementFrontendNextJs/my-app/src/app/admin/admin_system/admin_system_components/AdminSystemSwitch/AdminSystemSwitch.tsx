@@ -3,7 +3,7 @@
 // DATA FLOW: Parent -> AdminSystemSwitch -> DOM
 
 import * as SwitchPrimitive from '@radix-ui/react-switch';
-import { cn } from '../AdminSystemutils/AdminSystemutils';
+import { cn } from '@/app/admin/admin_system/admin_system_components/AdminSystemutils/AdminSystemutils';
 
 interface SwitchProps {
   checked?: boolean;

@@ -2,10 +2,10 @@
 // RESPONSIBILITY: Entry page for the admin_system module.
 // DATA FLOW: Next.js Router -> Page -> Components
 
-import { KpiCard } from '../admin_system_components/AdminSystemKpiCard/AdminSystemKpiCard';
-import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '../admin_system_components/AdminSystemCard/AdminSystemCard';
-import { Badge } from '../admin_system_components/AdminSystemBadge/AdminSystemBadge';
-import { Button } from '../admin_system_components/AdminSystemButton/AdminSystemButton';
+import { KpiCard } from '@/app/admin/admin_system/admin_system_components/AdminSystemKpiCard/AdminSystemKpiCard';
+import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/app/admin/admin_system/admin_system_components/AdminSystemCard/AdminSystemCard';
+import { Badge } from '@/app/admin/admin_system/admin_system_components/AdminSystemBadge/AdminSystemBadge';
+import { Button } from '@/app/admin/admin_system/admin_system_components/AdminSystemButton/AdminSystemButton';
 import { Wrench, Package, Lock, ChevronRight } from 'lucide-react';
 
 const SEATS = [

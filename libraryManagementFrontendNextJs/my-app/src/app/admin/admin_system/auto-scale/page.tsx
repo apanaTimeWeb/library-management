@@ -3,13 +3,13 @@
 // DATA FLOW: Next.js Router -> Page -> Components
 
 import { useState } from 'react';
-import { KpiCard } from '../admin_system_components/AdminSystemKpiCard/AdminSystemKpiCard';
-import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '../admin_system_components/AdminSystemCard/AdminSystemCard';
-import { Button } from '../admin_system_components/AdminSystemButton/AdminSystemButton';
-import { Input } from '../admin_system_components/AdminSystemInput/AdminSystemInput';
-import { Label } from '../admin_system_components/AdminSystemLabel/AdminSystemLabel';
-import { Switch } from '../admin_system_components/AdminSystemSwitch/AdminSystemSwitch';
-import { Badge } from '../admin_system_components/AdminSystemBadge/AdminSystemBadge';
+import { KpiCard } from '@/app/admin/admin_system/admin_system_components/AdminSystemKpiCard/AdminSystemKpiCard';
+import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/app/admin/admin_system/admin_system_components/AdminSystemCard/AdminSystemCard';
+import { Button } from '@/app/admin/admin_system/admin_system_components/AdminSystemButton/AdminSystemButton';
+import { Input } from '@/app/admin/admin_system/admin_system_components/AdminSystemInput/AdminSystemInput';
+import { Label } from '@/app/admin/admin_system/admin_system_components/AdminSystemLabel/AdminSystemLabel';
+import { Switch } from '@/app/admin/admin_system/admin_system_components/AdminSystemSwitch/AdminSystemSwitch';
+import { Badge } from '@/app/admin/admin_system/admin_system_components/AdminSystemBadge/AdminSystemBadge';
 import { BarChart3, ChevronRight, Zap, ArrowRight } from 'lucide-react';
 
 export default function AutoScalePage() {

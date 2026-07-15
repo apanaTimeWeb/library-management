@@ -3,12 +3,12 @@
 // DATA FLOW: Next.js Router -> Page -> Components
 
 import { useState } from 'react';
-import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '../admin_system_components/AdminSystemCard/AdminSystemCard';
-import { Button } from '../admin_system_components/AdminSystemButton/AdminSystemButton';
-import { Input } from '../admin_system_components/AdminSystemInput/AdminSystemInput';
-import { Label } from '../admin_system_components/AdminSystemLabel/AdminSystemLabel';
-import { Badge } from '../admin_system_components/AdminSystemBadge/AdminSystemBadge';
-import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from '../admin_system_components/AdminSystemSelect/AdminSystemSelect';
+import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/app/admin/admin_system/admin_system_components/AdminSystemCard/AdminSystemCard';
+import { Button } from '@/app/admin/admin_system/admin_system_components/AdminSystemButton/AdminSystemButton';
+import { Input } from '@/app/admin/admin_system/admin_system_components/AdminSystemInput/AdminSystemInput';
+import { Label } from '@/app/admin/admin_system/admin_system_components/AdminSystemLabel/AdminSystemLabel';
+import { Badge } from '@/app/admin/admin_system/admin_system_components/AdminSystemBadge/AdminSystemBadge';
+import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from '@/app/admin/admin_system/admin_system_components/AdminSystemSelect/AdminSystemSelect';
 import { GitBranch, ChevronRight, Zap } from 'lucide-react';
 
 const SEAT_GAPS = [

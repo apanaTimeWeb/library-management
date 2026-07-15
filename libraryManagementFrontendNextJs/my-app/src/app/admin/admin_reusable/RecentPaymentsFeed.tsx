@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { ExternalLink } from 'lucide-react';
 import { AgGridReact } from 'ag-grid-react';
 import { AllCommunityModule, ModuleRegistry, type ColDef } from 'ag-grid-community';
-import { gridTheme } from './gridTheme';
+import { gridTheme } from '@/app/admin/admin_reusable/gridTheme';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 
