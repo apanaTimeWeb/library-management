@@ -1,0 +1,63 @@
+{
+  "info": {
+    "name": "Manager Dashboard Collection",
+    "description": "Postman collection for Manager Dashboard module endpoints",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Get Dashboard Data",
+      "request": {
+        "method": "GET",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{accessToken}}" }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/api/manager/dashboard/dashboard",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "manager", "dashboard", "dashboard"]
+        }
+      }
+    },
+    {
+      "name": "Get Reports",
+      "request": {
+        "method": "GET",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{accessToken}}" }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/api/manager/dashboard/reports",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "manager", "dashboard", "reports"]
+        }
+      }
+    },
+    {
+      "name": "Get Student Reports",
+      "request": {
+        "method": "GET",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{accessToken}}" }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/api/manager/dashboard/student-reports",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "manager", "dashboard", "student-reports"]
+        }
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:3000",
+      "type": "string"
+    },
+    {
+      "key": "accessToken",
+      "value": "",
+      "type": "string"
+    }
+  ]
+}
