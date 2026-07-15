@@ -1,9 +1,9 @@
 import { Controller, Get, Query, UseGuards, ParseIntPipe, DefaultValuePipe } from '@nestjs/common';
 import { ApiTags, ApiBearerAuth, ApiOperation, ApiQuery } from '@nestjs/swagger';
 import { AdminAuditLogsService } from './audit-logs.service';
-import { JwtAuthGuard } from '../../../auth/auth/guards/jwt-auth.guard';
-import { RolesGuard } from '../../../auth/auth/guards/roles.guard';
-import { Roles } from '../../../auth/auth/decorators/roles.decorator';
+import { JwtAuthGuard } from '@/modules/auth/auth/guards/jwt-auth.guard';
+import { RolesGuard } from '@/modules/auth/auth/guards/roles.guard';
+import { Roles } from '@/modules/auth/auth/decorators/roles.decorator';
 
 @ApiTags('Audit Logs')
 @ApiBearerAuth()

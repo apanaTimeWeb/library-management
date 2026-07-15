@@ -1,7 +1,7 @@
 import { Controller, Post, Body, Req, UseGuards } from '@nestjs/common';
 import { ApiTags, ApiBearerAuth, ApiOperation } from '@nestjs/swagger';
-import { CreateStudentService } from '../services/create-student.service';
-import { CreateStudentDto } from '../dto/create-student.dto';
+import { CreateStudentService } from '@/modules/admin/students/students/services/create-student.service';
+import { CreateStudentDto } from '@/modules/admin/students/students/dto/create-student.dto';
 import { JwtAuthGuard } from '@/modules/auth/auth/guards/jwt-auth.guard';
 import { RolesGuard } from '@/modules/auth/auth/guards/roles.guard';
 import { Roles } from '@/modules/auth/auth/decorators/roles.decorator';

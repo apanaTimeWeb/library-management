@@ -1,8 +1,8 @@
-import { StudentNotFoundException } from '../exceptions/students.exceptions';
+import { StudentNotFoundException } from '@/modules/admin/students/students/exceptions/students.exceptions';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { Student } from '../../../../../core/entities/student.entity';
+import { Student } from '@/core/entities/student.entity';
 
 @Injectable()
 export class DeleteStudentService {

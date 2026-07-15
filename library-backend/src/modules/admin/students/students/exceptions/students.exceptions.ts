@@ -1,5 +1,5 @@
 import { NotFoundException } from '@nestjs/common';
-import { ADMIN_STUDENTS_CONSTANTS } from '../constants/students.constants';
+import { ADMIN_STUDENTS_CONSTANTS } from '@/modules/admin/students/students/constants/students.constants';
 
 export class StudentNotFoundException extends NotFoundException {
   constructor() {

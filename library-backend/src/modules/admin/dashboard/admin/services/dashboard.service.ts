@@ -1,10 +1,10 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { Student } from '../../../../../core/entities/student.entity';
-import { Payment } from '../../../../../core/entities/payment.entity';
-import { Seat } from '../../../../../core/entities/seat.entity';
-import { AdminDashboardData } from '../interfaces/admin.interfaces';
+import { Student } from '@/core/entities/student.entity';
+import { Payment } from '@/core/entities/payment.entity';
+import { Seat } from '@/core/entities/seat.entity';
+import { AdminDashboardData } from '@/modules/admin/dashboard/admin/interfaces/admin.interfaces';
 
 @Injectable()
 export class DashboardService {

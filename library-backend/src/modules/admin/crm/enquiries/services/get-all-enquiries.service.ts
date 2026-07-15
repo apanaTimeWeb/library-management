@@ -1,9 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { Enquiry } from '../../../../../core/entities/enquiry.entity';
-import { User } from '../../../../../core/entities/user.entity';
-import { EnquiryBase } from '../interfaces/enquiries.interfaces';
+import { Enquiry } from '@/core/entities/enquiry.entity';
+import { User } from '@/core/entities/user.entity';
+import { EnquiryBase } from '@/modules/admin/crm/enquiries/interfaces/enquiries.interfaces';
 
 @Injectable()
 export class GetAllEnquiriesService {

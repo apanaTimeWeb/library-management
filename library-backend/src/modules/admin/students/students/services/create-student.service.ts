@@ -3,7 +3,7 @@ import {
   ShiftNotFoundException,
   SeatNotFoundException,
   PlanNotFoundException,
-} from '../exceptions/students.exceptions';
+} from '@/modules/admin/students/students/exceptions/students.exceptions';
 import { Injectable } from '@nestjs/common';
 import { DataSource } from 'typeorm';
 import { Student } from '@/core/entities/student.entity';
@@ -14,8 +14,8 @@ import { Plan } from '@/core/entities/plan.entity';
 import { StudentSlot } from '@/core/entities/student-slot.entity';
 import { Subscription } from '@/core/entities/subscription.entity';
 import { Payment } from '@/core/entities/payment.entity';
-import { CreateStudentDto } from '../dto/create-student.dto';
-import { ADMIN_STUDENTS_CONSTANTS } from '../constants/students.constants';
+import { CreateStudentDto } from '@/modules/admin/students/students/dto/create-student.dto';
+import { ADMIN_STUDENTS_CONSTANTS } from '@/modules/admin/students/students/constants/students.constants';
 
 @Injectable()
 export class CreateStudentService {

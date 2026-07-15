@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Enquiry } from '../../../../core/entities/enquiry.entity';
-import { User } from '../../../../core/entities/user.entity';
+import { Enquiry } from '@/core/entities/enquiry.entity';
+import { User } from '@/core/entities/user.entity';
 
 // Micro-Services
 import { GetAllEnquiriesService } from './services/get-all-enquiries.service';

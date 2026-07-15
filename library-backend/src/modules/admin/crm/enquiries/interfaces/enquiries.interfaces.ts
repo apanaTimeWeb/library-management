@@ -1,4 +1,4 @@
-import { EnquiryStatus } from '../dto/update-enquiry-status.dto';
+import { EnquiryStatus } from '@/modules/admin/crm/enquiries/dto/update-enquiry-status.dto';
 
 export interface EnquiryFollowUp {
   date: Date;

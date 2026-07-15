@@ -1,9 +1,9 @@
-import { EnquiryNotFoundException } from '../exceptions/enquiries.exceptions';
+import { EnquiryNotFoundException } from '@/modules/admin/crm/enquiries/exceptions/enquiries.exceptions';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { Enquiry } from '../../../../../core/entities/enquiry.entity';
-import { AddFollowUpDto } from '../dto/add-follow-up.dto';
+import { Enquiry } from '@/core/entities/enquiry.entity';
+import { AddFollowUpDto } from '@/modules/admin/crm/enquiries/dto/add-follow-up.dto';
 
 @Injectable()
 export class AddFollowUpService {

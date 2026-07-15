@@ -1,9 +1,9 @@
-import { StudentNotFoundException } from '../exceptions/students.exceptions';
+import { StudentNotFoundException } from '@/modules/admin/students/students/exceptions/students.exceptions';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { Student } from '../../../../../core/entities/student.entity';
-import { StudentDetailItem } from '../interfaces/students.interfaces';
+import { Student } from '@/core/entities/student.entity';
+import { StudentDetailItem } from '@/modules/admin/students/students/interfaces/students.interfaces';
 
 @Injectable()
 export class GetStudentService {

@@ -1,5 +1,5 @@
 import { NotFoundException } from '@nestjs/common';
-import { ADMIN_ENQUIRIES_CONSTANTS } from '../constants/enquiries.constants';
+import { ADMIN_ENQUIRIES_CONSTANTS } from '@/modules/admin/crm/enquiries/constants/enquiries.constants';
 
 export class EnquiryNotFoundException extends NotFoundException {
   constructor(id?: string) {
