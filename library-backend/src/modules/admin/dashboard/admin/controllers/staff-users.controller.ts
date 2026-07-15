@@ -16,7 +16,7 @@ export class StaffUsersController {
 
   @Get('staff-users')
   @ApiOperation({ summary: 'Get staff users' })
-  async getStaffUsers() {
+  async getStaffUsers(): Promise<any> {
     return this.staffUsersService.getStaffUsers();
   }
 }

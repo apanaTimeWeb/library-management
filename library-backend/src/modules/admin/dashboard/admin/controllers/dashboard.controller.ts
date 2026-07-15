@@ -16,7 +16,7 @@ export class DashboardController {
 
   @Get('dashboard')
   @ApiOperation({ summary: 'Admin dashboard data (admin + superadmin only)' })
-  async getDashboardData() {
+  async getDashboardData(): Promise<any> {
     return this.dashboardService.getDashboardData();
   }
 }

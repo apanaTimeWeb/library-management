@@ -81,7 +81,7 @@ export class AdminAuditLogsService {
     tenantId?: string,
     entity?: string,
     action?: string,
-  ) {
+  ): Promise<{ data: AuditLog[], meta: any }> {
     const query = this.auditLogRepo.createQueryBuilder('log')
       .orderBy('log.createdAt', 'DESC')
       .skip((page - 1) * limit)

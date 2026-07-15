@@ -11,7 +11,7 @@ export class AdminExpensesController {
 
   @Get()
   @Roles('superadmin', 'admin', 'manager')
-  async getAllExpenses(@Req() req: any) {
+  async getAllExpenses(@Req() req: any): Promise<any[]> {
     // If manager is assigned to a branch, restrict to branchId
     return this.expensesService.findAll(req.user.branchId);
   }

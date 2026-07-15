@@ -1,4 +1,5 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { EnquiryNotFoundException } from '../exceptions/enquiries.exceptions';
+import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Enquiry } from '../../../../../core/entities/enquiry.entity';
@@ -17,7 +18,7 @@ export class GetEnquiryService {
     });
 
     if (!enquiry) {
-      throw new NotFoundException(`Enquiry with ID ${id} not found`);
+      throw new EnquiryNotFoundException(id);
     }
 
     return enquiry;

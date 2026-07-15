@@ -15,7 +15,7 @@ export class GetEnquiryController {
   @Get(':id')
   @Roles('superadmin', 'admin')
   @ApiOperation({ summary: 'Get a single CRM enquiry by ID' })
-  async findOne(@Param('id') id: string) {
+  async findOne(@Param('id') id: string): Promise<any> {
     return this.getEnquiryService.findOne(id);
   }
 }

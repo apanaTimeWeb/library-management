@@ -16,7 +16,7 @@ export class PlansController {
 
   @Get('plans')
   @ApiOperation({ summary: 'Get plans' })
-  async getPlans() {
+  async getPlans(): Promise<any[]> {
     return this.plansService.getPlans();
   }
 }

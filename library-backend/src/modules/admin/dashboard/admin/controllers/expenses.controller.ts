@@ -16,7 +16,7 @@ export class ExpensesController {
 
   @Get('expenses')
   @ApiOperation({ summary: 'Get expenses' })
-  async getExpenses() {
+  async getExpenses(): Promise<any> {
     return this.expensesService.getExpenses();
   }
 }

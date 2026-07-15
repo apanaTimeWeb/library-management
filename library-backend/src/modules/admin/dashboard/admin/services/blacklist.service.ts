@@ -3,7 +3,7 @@ import { ADMIN_CONSTANTS } from '../constants/admin.constants';
 
 @Injectable()
 export class BlacklistService {
-  async getBlacklist() {
+  async getBlacklist(): Promise<any> {
     return ADMIN_CONSTANTS.EMPTY_ARRAY;
   }
 }

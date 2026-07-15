@@ -16,7 +16,7 @@ export class StudentsController {
 
   @Get('students')
   @ApiOperation({ summary: 'Get students' })
-  async getStudents() {
+  async getStudents(): Promise<any[]> {
     return this.studentsService.getStudents();
   }
 }

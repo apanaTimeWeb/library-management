@@ -15,7 +15,7 @@ export class GetAllEnquiriesController {
   @Get()
   @Roles('superadmin', 'admin')
   @ApiOperation({ summary: 'Get all CRM enquiries' })
-  async findAll() {
+  async findAll(): Promise<any[]> {
     return this.getAllEnquiriesService.findAll();
   }
 }

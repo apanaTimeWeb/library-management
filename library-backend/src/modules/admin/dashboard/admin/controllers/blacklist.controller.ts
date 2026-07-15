@@ -16,7 +16,7 @@ export class BlacklistController {
 
   @Get('blacklist')
   @ApiOperation({ summary: 'Get blacklist' })
-  async getBlacklist() {
+  async getBlacklist(): Promise<any> {
     return this.blacklistService.getBlacklist();
   }
 }

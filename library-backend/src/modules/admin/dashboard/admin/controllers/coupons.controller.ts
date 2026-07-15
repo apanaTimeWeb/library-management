@@ -16,7 +16,7 @@ export class CouponsController {
 
   @Get('coupons')
   @ApiOperation({ summary: 'Get coupons' })
-  async getCoupons() {
+  async getCoupons(): Promise<any> {
     return this.couponsService.getCoupons();
   }
 }

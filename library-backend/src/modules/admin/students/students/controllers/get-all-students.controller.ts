@@ -14,7 +14,7 @@ export class GetAllStudentsController {
 
   @Get()
   @ApiOperation({ summary: 'Get all students' })
-  async getAllStudents(@Req() req: any) {
+  async getAllStudents(@Req() req: any): Promise<any[]> {
     const branchId = req.user?.branchId || ADMIN_STUDENTS_CONSTANTS.TESTING_BRANCH_ID;
     return this.getAllStudentsService.findAll(branchId);
   }

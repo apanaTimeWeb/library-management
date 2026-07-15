@@ -16,7 +16,7 @@ export class ExpenseCategoriesController {
 
   @Get('expense-categories')
   @ApiOperation({ summary: 'Get expense categories' })
-  async getExpenseCategories() {
+  async getExpenseCategories(): Promise<any> {
     return this.expenseCategoriesService.getExpenseCategories();
   }
 }

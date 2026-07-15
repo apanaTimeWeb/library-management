@@ -16,7 +16,7 @@ export class PermissionsController {
 
   @Get('permissions')
   @ApiOperation({ summary: 'Get permissions' })
-  async getPermissions() {
+  async getPermissions(): Promise<any> {
     return this.permissionsService.getPermissions();
   }
 }

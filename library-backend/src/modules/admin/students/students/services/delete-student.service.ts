@@ -1,4 +1,5 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { StudentNotFoundException } from '../exceptions/students.exceptions';
+import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Student } from '../../../../../core/entities/student.entity';
@@ -10,11 +11,11 @@ export class DeleteStudentService {
     private readonly studentRepo: Repository<Student>,
   ) {}
 
-  async remove(id: string, branchId: string | undefined) {
+  async remove(id: string, branchId: string | undefined): Promise<any> {
     const student = await this.studentRepo.findOne({
       where: { id, ...(branchId ? { branch: { id: branchId } } : {}) }
     });
-    if (!student) throw new NotFoundException('Student not found');
+    if (!student) throw new StudentNotFoundException();
     
     student.status = 'Suspended';
     student.exitDate = new Date();

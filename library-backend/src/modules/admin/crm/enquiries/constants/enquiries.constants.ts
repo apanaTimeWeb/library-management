@@ -1,3 +1,3 @@
 export const ADMIN_ENQUIRIES_CONSTANTS = {
-  // Add constants if needed
+  ENQUIRY_NOT_FOUND: 'Enquiry not found',
 };

@@ -16,7 +16,7 @@ export class BranchesController {
 
   @Get('branches')
   @ApiOperation({ summary: 'Get branches' })
-  async getBranches() {
+  async getBranches(): Promise<any[]> {
     return this.branchesService.getBranches();
   }
 }

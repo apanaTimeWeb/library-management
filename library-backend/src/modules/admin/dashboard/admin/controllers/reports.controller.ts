@@ -16,7 +16,7 @@ export class ReportsController {
 
   @Get('reports')
   @ApiOperation({ summary: 'Admin reports data (admin + superadmin only)' })
-  async getReportsData() {
+  async getReportsData(): Promise<any> {
     return this.reportsService.getReportsData();
   }
 }

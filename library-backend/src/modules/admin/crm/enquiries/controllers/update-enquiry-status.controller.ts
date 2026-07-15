@@ -1,7 +1,7 @@
 import { Controller, Patch, Param, Body, UseGuards } from '@nestjs/common';
 import { ApiTags, ApiBearerAuth, ApiOperation } from '@nestjs/swagger';
 import { UpdateEnquiryStatusService } from '../services/update-enquiry-status.service';
-import { UpdateEnquiryStatusDto } from '../dtos/update-enquiry-status.dto';
+import { UpdateEnquiryStatusDto } from '../dto/update-enquiry-status.dto';
 import { JwtAuthGuard } from '../../../../auth/auth/guards/jwt-auth.guard';
 import { RolesGuard } from '../../../../auth/auth/guards/roles.guard';
 import { Roles } from '../../../../auth/auth/decorators/roles.decorator';

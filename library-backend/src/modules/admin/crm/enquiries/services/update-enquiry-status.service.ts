@@ -1,8 +1,9 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { EnquiryNotFoundException } from '../exceptions/enquiries.exceptions';
+import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Enquiry } from '../../../../../core/entities/enquiry.entity';
-import { UpdateEnquiryStatusDto } from '../dtos/update-enquiry-status.dto';
+import { UpdateEnquiryStatusDto } from '../dto/update-enquiry-status.dto';
 
 @Injectable()
 export class UpdateEnquiryStatusService {
@@ -14,7 +15,7 @@ export class UpdateEnquiryStatusService {
   async updateStatus(id: string, updateDto: UpdateEnquiryStatusDto): Promise<Enquiry> {
     const enquiry = await this.enquiryRepo.findOne({ where: { id } });
     if (!enquiry) {
-      throw new NotFoundException(`Enquiry with ID ${id} not found`);
+      throw new EnquiryNotFoundException(id);
     }
     
     enquiry.status = updateDto.status.toLowerCase();

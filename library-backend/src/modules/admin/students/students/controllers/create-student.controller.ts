@@ -1,7 +1,7 @@
 import { Controller, Post, Body, Req, UseGuards } from '@nestjs/common';
 import { ApiTags, ApiBearerAuth, ApiOperation } from '@nestjs/swagger';
 import { CreateStudentService } from '../services/create-student.service';
-import { CreateStudentDto } from '../dtos/create-student.dto';
+import { CreateStudentDto } from '../dto/create-student.dto';
 import { JwtAuthGuard } from '../../../../auth/auth/guards/jwt-auth.guard';
 import { RolesGuard } from '../../../../auth/auth/guards/roles.guard';
 import { Roles } from '../../../../auth/auth/decorators/roles.decorator';
@@ -16,7 +16,7 @@ export class CreateStudentController {
   @Post()
   @Roles('superadmin', 'admin', 'manager')
   @ApiOperation({ summary: 'Create a new student' })
-  async createStudent(@Body() data: CreateStudentDto, @Req() req: any) {
+  async createStudent(@Body() data: CreateStudentDto, @Req() req: any): Promise<any> {
     return this.createStudentService.create(req.user?.branchId, data);
   }
 }

@@ -26,7 +26,7 @@ export class AdminAuditLogsController {
     @Query('tenantId') tenantId?: string,
     @Query('entity')   entity?: string,
     @Query('action')   action?: string,
-  ) {
+  ): Promise<any> {
     // Cap limit to 100 max to prevent large data dumps
     const safeLimit = Math.min(limit, 100);
     return this.auditLogsService.findAll(page, safeLimit, tenantId, entity, action);

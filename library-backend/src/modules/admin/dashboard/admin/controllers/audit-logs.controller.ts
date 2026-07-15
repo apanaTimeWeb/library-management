@@ -16,7 +16,7 @@ export class AuditLogsController {
 
   @Get('audit-logs')
   @ApiOperation({ summary: 'Get audit logs' })
-  async getAuditLogs() {
+  async getAuditLogs(): Promise<any> {
     return this.auditLogsService.getAuditLogs();
   }
 }
