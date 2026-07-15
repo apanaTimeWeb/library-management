@@ -2,7 +2,7 @@ import { Controller, Get, UseGuards, Query } from '@nestjs/common';
 import { ApiTags, ApiOperation, ApiBearerAuth } from '@nestjs/swagger';
 import { JwtAuthGuard } from '@/modules/auth/auth/guards/jwt-auth.guard';
 import { GetAllTenantsService } from '../services/get-all-tenants.service';
-import { PaginationDto } from '@/common/dto/pagination.dto';
+import { PaginationDto } from '../dto/pagination.dto';
 
 @ApiTags('Superadmin Tenants')
 @ApiBearerAuth()

@@ -4,7 +4,7 @@ import { GetAllExpensesService } from '@/modules/manager/finance/expenses/servic
 import { JwtAuthGuard } from '@/modules/auth/auth/guards/jwt-auth.guard';
 import { RolesGuard } from '@/modules/auth/auth/guards/roles.guard';
 import { Roles } from '@/modules/auth/auth/decorators/roles.decorator';
-import { PaginationDto } from '@/common/dto/pagination.dto';
+import { PaginationDto } from '../dto/pagination.dto';
 
 @ApiTags('Finance Expenses')
 @ApiBearerAuth()

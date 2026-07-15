@@ -8,7 +8,7 @@ import {
 import { ApiTags, ApiBearerAuth, ApiOperation } from '@nestjs/swagger';
 import { LogoutService } from '@/modules/auth/auth/services/logout.service';
 import { JwtAuthGuard } from '@/modules/auth/auth/guards/jwt-auth.guard';
-import { CurrentUser } from '@/common/decorators/current-user.decorator';
+import { CurrentUser } from '../decorators/current-user.decorator';
 
 @ApiTags('Auth')
 @Controller('api/auth/auth')

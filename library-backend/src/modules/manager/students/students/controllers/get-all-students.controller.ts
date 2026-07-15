@@ -3,8 +3,8 @@ import { GetAllStudentsService } from '@/modules/manager/students/students/servi
 import { JwtAuthGuard } from '@/modules/auth/auth/guards/jwt-auth.guard';
 import { RolesGuard } from '@/modules/auth/auth/guards/roles.guard';
 import { STUDENT_CONSTANTS } from '@/modules/manager/students/students/constants/students.constants';
-import { PaginationDto } from '@/common/dto/pagination.dto';
-import { PaginatedResponse } from '@/common/interfaces/pagination.interface';
+import { PaginationDto } from '../dto/pagination.dto';
+import { PaginatedResponse } from '../interfaces/pagination.interface';
 import { StudentListItem } from '@/modules/manager/students/students/interfaces/students.interfaces';
 
 @Controller('api/manager/students')

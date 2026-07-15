@@ -4,7 +4,7 @@ import { GetAllEnquiriesService } from '@/modules/manager/crm/enquiries/services
 import { JwtAuthGuard } from '@/modules/auth/auth/guards/jwt-auth.guard';
 import { RolesGuard } from '@/modules/auth/auth/guards/roles.guard';
 import { ENQUIRIES_CONSTANTS } from '@/modules/manager/crm/enquiries/constants/enquiries.constants';
-import { PaginationDto } from '@/common/dto/pagination.dto';
+import { PaginationDto } from '../dto/pagination.dto';
 
 @ApiTags('CRM Enquiries')
 @ApiBearerAuth()

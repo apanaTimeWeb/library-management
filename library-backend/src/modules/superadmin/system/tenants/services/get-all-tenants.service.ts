@@ -2,8 +2,8 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository, ILike } from 'typeorm';
 import { Tenant } from '@/core/entities/tenant.entity';
-import { PaginationDto } from '@/common/dto/pagination.dto';
-import { PaginatedResponse } from '@/common/interfaces/pagination.interface';
+import { PaginationDto } from '../dto/pagination.dto';
+import { PaginatedResponse } from '../interfaces/pagination.interface';
 
 @Injectable()
 export class GetAllTenantsService {

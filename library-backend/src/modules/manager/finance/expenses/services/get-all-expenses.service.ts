@@ -3,8 +3,8 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository, ILike } from 'typeorm';
 import { Expense } from '@/core/entities/expense.entity';
 import { ExpenseListItem } from '@/modules/manager/finance/expenses/interfaces/expenses.interfaces';
-import { PaginationDto } from '@/common/dto/pagination.dto';
-import { PaginatedResponse } from '@/common/interfaces/pagination.interface';
+import { PaginationDto } from '../dto/pagination.dto';
+import { PaginatedResponse } from '../interfaces/pagination.interface';
 
 @Injectable()
 export class GetAllExpensesService {

@@ -4,8 +4,8 @@ import { GetAllStudentsService } from '@/modules/admin/students/students/service
 import { JwtAuthGuard } from '@/modules/auth/auth/guards/jwt-auth.guard';
 import { RolesGuard } from '@/modules/auth/auth/guards/roles.guard';
 import { ADMIN_STUDENTS_CONSTANTS } from '@/modules/admin/students/students/constants/students.constants';
-import { PaginationDto } from '@/common/dto/pagination.dto';
-import { PaginatedResponse } from '@/common/interfaces/pagination.interface';
+import { PaginationDto } from '../dto/pagination.dto';
+import { PaginatedResponse } from '../interfaces/pagination.interface';
 import { StudentListItem } from '@/modules/admin/students/students/interfaces/students.interfaces';
 
 @ApiTags('Admin Students')

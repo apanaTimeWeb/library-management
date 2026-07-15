@@ -5,7 +5,7 @@ import { JwtAuthGuard } from '@/modules/auth/auth/guards/jwt-auth.guard';
 import { RolesGuard } from '@/modules/auth/auth/guards/roles.guard';
 import { TenantGuard } from '@/modules/auth/auth/guards/tenant.guard';
 import { Roles } from '@/modules/auth/auth/decorators/roles.decorator';
-import { CurrentUser } from '@/common/decorators/current-user.decorator';
+import { CurrentUser } from '../decorators/current-user.decorator';
 
 @ApiTags('Manager')
 @ApiBearerAuth()
