@@ -11,8 +11,9 @@ export class DeleteUserController {
   constructor(private readonly deleteUserService: DeleteUserService) {}
 
   @Delete(':id')
-  @ApiOperation({ summary: 'Soft delete a staff user' })
-  async delete(@Param('id') id: string) {
+  @ApiOperation({ summary: 'Delete a staff user' })
+  // SLA: FAST
+  async delete(@Param('id') id: string): Promise<void> {
     return this.deleteUserService.delete(id);
   }
 }

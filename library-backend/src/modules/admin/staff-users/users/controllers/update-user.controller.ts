@@ -3,6 +3,7 @@ import { ApiTags, ApiOperation, ApiBearerAuth } from '@nestjs/swagger';
 import { JwtAuthGuard } from '@/modules/auth/auth/guards/jwt-auth.guard';
 import { UpdateUserService } from '../services/update-user.service';
 import { UpdateUserDto } from '../dto/update-user.dto';
+import { User } from '@/core/entities/user.entity';
 
 @ApiTags('Admin Users')
 @ApiBearerAuth()
@@ -13,7 +14,8 @@ export class UpdateUserController {
 
   @Patch(':id')
   @ApiOperation({ summary: 'Update a staff user' })
-  async update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
+  // SLA: FAST
+  async update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto): Promise<User> {
     return this.updateUserService.update(id, updateUserDto);
   }
 }

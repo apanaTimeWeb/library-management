@@ -1,7 +1,8 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { User } from '@/core/entities/user.entity';
+import { UserNotFoundException } from '../exceptions/user-not-found.exception';
 
 @Injectable()
 export class DeleteUserService {
@@ -13,7 +14,7 @@ export class DeleteUserService {
   async delete(id: string): Promise<void> {
     const user = await this.userRepository.findOne({ where: { id } });
     if (!user) {
-      throw new NotFoundException(`User with ID ${id} not found`);
+      throw new UserNotFoundException();
     }
     await this.userRepository.softRemove(user);
   }

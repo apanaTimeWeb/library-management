@@ -4,6 +4,8 @@ import { JwtAuthGuard } from '@/modules/auth/auth/guards/jwt-auth.guard';
 import { CreateUserService } from '../services/create-user.service';
 import { CreateUserDto } from '../dto/create-user.dto';
 
+import { User } from '@/core/entities/user.entity';
+
 @ApiTags('Admin Users')
 @ApiBearerAuth()
 @UseGuards(JwtAuthGuard)
@@ -13,7 +15,8 @@ export class CreateUserController {
 
   @Post()
   @ApiOperation({ summary: 'Create a new staff user' })
-  async create(@Body() createUserDto: CreateUserDto) {
+  // SLA: FAST
+  async create(@Body() createUserDto: CreateUserDto): Promise<User> {
     return this.createUserService.create(createUserDto);
   }
 }
