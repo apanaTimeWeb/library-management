@@ -1,25 +1,27 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { Tenant } from '../../../../core/entities/tenant.entity';
-import { Branch } from '../../../../core/entities/branch.entity';
-import { User } from '../../../../core/entities/user.entity';
+import { Tenant } from '../../../../../core/entities/tenant.entity';
+import { Branch } from '../../../../../core/entities/branch.entity';
+import { User } from '../../../../../core/entities/user.entity';
+import { SuperadminDashboardData } from '../interfaces/superadmin.interfaces';
 
 @Injectable()
-export class SuperadminService {
+export class DashboardService {
   constructor(
     @InjectRepository(Tenant) private tenantRepo: Repository<Tenant>,
     @InjectRepository(Branch) private branchRepo: Repository<Branch>,
     @InjectRepository(User) private userRepo: Repository<User>,
   ) {}
 
-  async getDashboardData() {
+  async getDashboardData(): Promise<SuperadminDashboardData> {
     const totalLibraries = await this.branchRepo.count();
     const totalStudents = 14820; // Hardcoded for now until students are seeded fully
     
     // recentLibraries mapping
     const branches = await this.branchRepo.find({ relations: { tenant: true } });
     const recentLibraries = branches.map(b => ({
+      id: b.id,
       initials: b.name.substring(0, 2).toUpperCase(),
       name: b.name,
       owner: b.tenant?.ownerEmail || 'Unknown',
@@ -50,19 +52,5 @@ export class SuperadminService {
         lastBackup: "2h ago"
       }
     };
-  }
-
-  async getLibraries() {
-    const branches = await this.branchRepo.find({ relations: { tenant: true } });
-    return branches.map(b => ({
-      id: b.id,
-      initials: b.name.substring(0, 2).toUpperCase(),
-      name: b.name,
-      owner: b.tenant?.ownerEmail || 'Unknown',
-      students: Math.floor(Math.random() * 500),
-      status: b.isActive ? 'active' : 'inactive',
-      plan: 'Pro',
-      joinedAt: b.createdAt || new Date(),
-    }));
   }
 }
