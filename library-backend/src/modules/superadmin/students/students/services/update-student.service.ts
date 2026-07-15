@@ -1,8 +1,9 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
+import { StudentNotFoundException } from '../exceptions/students.exceptions';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Student } from '../../../../../core/entities/student.entity';
-import { UpdateStudentDto } from '../dtos/update-student.dto';
+import { UpdateStudentDto } from '../dto/update-student.dto';
 
 @Injectable()
 export class UpdateStudentService {
@@ -10,11 +11,11 @@ export class UpdateStudentService {
     @InjectRepository(Student) private readonly studentRepo: Repository<Student>,
   ) {}
 
-  async update(id: string, branchId: string, data: UpdateStudentDto) {
+  async update(id: string, branchId: string, data: UpdateStudentDto): Promise<Student> {
     const student = await this.studentRepo.findOne({
       where: { id, branch: { id: branchId } }
     });
-    if (!student) throw new NotFoundException('Student not found');
+    if (!student) throw new StudentNotFoundException();
     
     if (data.name) student.name = data.name;
     if (data.phone) student.phone = data.phone;

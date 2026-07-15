@@ -15,7 +15,7 @@ export class DeleteStudentController {
   @Delete(':id')
   @Roles('superadmin', 'admin', 'manager')
   @ApiOperation({ summary: 'Delete/Suspend student' })
-  async deleteStudent(@Param('id') id: string, @Req() req: any) {
+  async deleteStudent(@Param('id') id: string, @Req() req: any): Promise<{ message: string }> {
     const branchId = req.user?.branchId || '8a0c079e-1fca-476b-8390-58c5b8c29d08';
     return this.service.remove(id, branchId);
   }

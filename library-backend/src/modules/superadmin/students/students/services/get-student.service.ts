@@ -1,4 +1,5 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
+import { StudentNotFoundException } from '../exceptions/students.exceptions';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Student } from '../../../../../core/entities/student.entity';
@@ -27,7 +28,7 @@ export class GetStudentService {
     });
 
     if (!s) {
-      throw new NotFoundException('Student not found');
+      throw new StudentNotFoundException();
     }
 
     const activeSub = s.subscriptions?.find(sub => sub.status === 'active') || s.subscriptions?.[0];

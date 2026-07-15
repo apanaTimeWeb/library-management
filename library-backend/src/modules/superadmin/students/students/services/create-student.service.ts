@@ -1,4 +1,5 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
+import { BranchNotFoundException } from '../exceptions/students.exceptions';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Student } from '../../../../../core/entities/student.entity';
@@ -9,7 +10,7 @@ import { Plan } from '../../../../../core/entities/plan.entity';
 import { StudentSlot } from '../../../../../core/entities/student-slot.entity';
 import { Subscription } from '../../../../../core/entities/subscription.entity';
 import { Payment } from '../../../../../core/entities/payment.entity';
-import { CreateStudentDto } from '../dtos/create-student.dto';
+import { CreateStudentDto } from '../dto/create-student.dto';
 
 @Injectable()
 export class CreateStudentService {
@@ -24,9 +25,9 @@ export class CreateStudentService {
     @InjectRepository(Payment) private readonly paymentRepo: Repository<Payment>,
   ) {}
 
-  async create(branchId: string, data: CreateStudentDto) {
+  async create(branchId: string, data: CreateStudentDto): Promise<Student> {
     const branch = await this.branchRepo.findOne({ where: { id: branchId } });
-    if (!branch) throw new NotFoundException('Branch not found');
+    if (!branch) throw new BranchNotFoundException();
 
     const totalStudents = await this.studentRepo.count({ where: { branch: { id: branchId } } });
     const smartId = `LIB${String(totalStudents + 1).padStart(3, '0')}`;
