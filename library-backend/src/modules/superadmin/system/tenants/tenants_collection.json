@@ -1,0 +1,7 @@
+{
+  "info": {
+    "name": "Superadmin System Tenants API",
+    "description": "Endpoints for managing tenants via superadmin"
+  },
+  "item": []
+}
