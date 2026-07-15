@@ -5,6 +5,7 @@ import { Logger } from 'nestjs-pino';
 import helmet from 'helmet';
 import { AppModule } from './app.module';
 import { AllExceptionsFilter } from './common/filters/all-exceptions.filter';
+import { ResponseInterceptor } from './common/interceptors/response.interceptor';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, { bufferLogs: true });
@@ -94,6 +95,9 @@ async function bootstrap() {
 
   // ── Global Exception Filter ─────────────────────────────────────────────────
   app.useGlobalFilters(new AllExceptionsFilter());
+
+  // ── Global Response Interceptor ──────────────────────────────────────────────
+  app.useGlobalInterceptors(new ResponseInterceptor());
 
   // ── Swagger (API Docs) ──────────────────────────────────────────────────────
   if (!isProduction) {

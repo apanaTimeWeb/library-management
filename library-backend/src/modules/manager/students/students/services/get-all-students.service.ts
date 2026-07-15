@@ -1,8 +1,10 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { Repository, ILike } from 'typeorm';
 import { Student } from '@/core/entities/student.entity';
 import { StudentListItem } from '@/modules/manager/students/students/interfaces/students.interfaces';
+import { PaginationDto } from '@/common/dto/pagination.dto';
+import { PaginatedResponse } from '@/common/interfaces/pagination.interface';
 import { STUDENT_STATUS } from '@/modules/manager/students/students/constants/students.constants';
 
 @Injectable()
@@ -12,18 +14,35 @@ export class GetAllStudentsService {
     private readonly studentRepo: Repository<Student>,
   ) {}
 
-  async findAll(branchId?: string): Promise<StudentListItem[]> {
-    const students = await this.studentRepo.find({
-      where: branchId ? { branch: { id: branchId } } : {},
+  async findAll(branchId?: string, paginationDto?: PaginationDto): Promise<PaginatedResponse<StudentListItem>> {
+    const { page = 1, limit = 10, search, sortBy, sortOrder = 'DESC' } = paginationDto || {};
+    const skip = (page - 1) * limit;
+
+    const where: any = branchId ? { branch: { id: branchId } } : {};
+    if (search) {
+      where.name = ILike(`%${search}%`);
+    }
+
+    const order: any = {};
+    if (sortBy) {
+      order[sortBy] = sortOrder;
+    } else {
+      order.joinDate = 'DESC';
+    }
+
+    const [students, total] = await this.studentRepo.findAndCount({
+      where,
       relations: {
         branch: true,
         subscriptions: { plan: true },
         slots: { seat: true, shift: true }
       },
-      order: { joinDate: 'DESC' }
+      order,
+      skip,
+      take: limit,
     });
 
-    return students.map(s => {
+    const data = students.map(s => {
       const activeSub = s.subscriptions?.find(sub => sub.status === 'active') || s.subscriptions?.[0];
       const activeSlot = s.slots?.[0];
 
@@ -44,5 +63,15 @@ export class GetAllStudentsService {
         college: s.college,
       };
     });
+
+    return {
+      data,
+      meta: {
+        total,
+        page,
+        limit,
+        totalPages: Math.ceil(total / limit)
+      }
+    };
   }
 }
