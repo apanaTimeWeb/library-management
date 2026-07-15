@@ -222,7 +222,7 @@ export default function CollectFee() {
                 </button>
                 <p className="fin-receipt-wa-hint">📱 +91-{maskPhone(receiptData.phone)} · {receiptData.studentName}</p>
                 <div className="fin-divider" />
-                <button className="fin-receipt-btn-secondary" onClick={handlePrintReceipt} className="admin-w-full">
+                <button className="fin-receipt-btn-secondary admin-w-full" onClick={handlePrintReceipt}>
                   <Printer size={15} /> Print Receipt (Thermal 80mm)
                 </button>
                 <button className="fin-receipt-btn-download" onClick={() => setReceiptData(null)} style={{ width: '100%', marginTop: 0 }}>
