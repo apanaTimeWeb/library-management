@@ -15,7 +15,7 @@ import { TenantGuard } from '../../../auth/auth/guards/tenant.guard';
  */
 @ApiTags('Admin')
 @ApiBearerAuth()
-@Controller('admin')
+@Controller('api/admin/dashboard')
 @UseGuards(JwtAuthGuard, RolesGuard, TenantGuard)
 @Roles('superadmin', 'admin')
 export class AdminController {

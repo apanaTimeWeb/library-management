@@ -18,7 +18,7 @@ import { CurrentUser } from '../../../../common/decorators/current-user.decorato
  */
 @ApiTags('Manager')
 @ApiBearerAuth()
-@Controller('manager')
+@Controller('api/manager/dashboard')
 @UseGuards(JwtAuthGuard, RolesGuard, TenantGuard)
 @Roles('manager', 'admin', 'superadmin')
 export class ManagerController {

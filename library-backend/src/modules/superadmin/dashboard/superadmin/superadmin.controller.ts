@@ -14,7 +14,7 @@ import { Roles } from '../../../auth/auth/decorators/roles.decorator';
  */
 @ApiTags('Superadmin')
 @ApiBearerAuth()
-@Controller('superadmin')
+@Controller('api/superadmin/dashboard')
 @UseGuards(JwtAuthGuard, RolesGuard)
 @Roles('superadmin')
 export class SuperadminController {

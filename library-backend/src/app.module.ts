@@ -1,3 +1,14 @@
+import { AdminExpenseCategoriesModule } from './modules/admin/expense-categories/expense-categories/expense-categories.module';
+import { AdminReportsModule } from './modules/admin/reports/reports/reports.module';
+import { ManagerDocumentsModule } from './modules/manager/documents/documents/documents.module';
+import { ManagerReportsModule } from './modules/manager/reports/reports/reports.module';
+import { ManagerStudentDashboardModule } from './modules/manager/student-dashboard/student-dashboard/student-dashboard.module';
+import { ManagerStudentReportsModule } from './modules/manager/student-reports/student-reports/student-reports.module';
+import { SuperadminBillingModule } from './modules/superadmin/billing/billing/billing.module';
+import { SuperadminLibrariesModule } from './modules/superadmin/libraries/libraries/libraries.module';
+import { SuperadminReportsModule } from './modules/superadmin/reports/reports/reports.module';
+import { SuperadminSetupWizardModule } from './modules/superadmin/setup-wizard/setup-wizard/setup-wizard.module';
+import { SuperadminSystemHealthModule } from './modules/superadmin/system-health/system-health/system-health.module';
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
@@ -59,6 +70,17 @@ import { SuperadminUsersModule } from './modules/superadmin/staff-users/users/us
 
 @Module({
   imports: [
+    AdminExpenseCategoriesModule,
+    AdminReportsModule,
+    ManagerDocumentsModule,
+    ManagerReportsModule,
+    ManagerStudentDashboardModule,
+    ManagerStudentReportsModule,
+    SuperadminBillingModule,
+    SuperadminLibrariesModule,
+    SuperadminReportsModule,
+    SuperadminSetupWizardModule,
+    SuperadminSystemHealthModule,
     ConfigModule.forRoot({ isGlobal: true, envFilePath: '.env' }),
     ThrottlerModule.forRoot([{ name: 'short', ttl: 60000, limit: 60 }, { name: 'medium', ttl: 900000, limit: 300 }]),
     TypeOrmModule.forRootAsync({
