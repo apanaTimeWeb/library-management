@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import type { DashboardData, FetchState } from '../manager_dashboard_types';
+import type { DashboardData, FetchState } from '@/app/manager/manager_dashboard/manager_dashboard_types';
 
 // RESPONSIBILITY: Module-scoped Zustand store for managing Dashboard API data.
 

@@ -1,4 +1,4 @@
-import type { EnquiryStatus, KanbanColumn } from './manager_crm_types';
+import type { EnquiryStatus, KanbanColumn } from '@/app/manager/manager_crm/manager_crm_types';
 
 export const KANBAN_COLUMNS: KanbanColumn[] = [
   { id: 'New', label: 'New Leads', cardClass: 'crm-col-new' },

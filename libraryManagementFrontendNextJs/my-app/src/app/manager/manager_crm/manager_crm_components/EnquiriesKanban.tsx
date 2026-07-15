@@ -1,8 +1,8 @@
 import { useRouter } from 'next/navigation';
 import { PhoneCall, MoreHorizontal, Plus } from 'lucide-react';
-import { KANBAN_COLUMNS, DOT_CLASS } from '../manager_crm_constants';
-import type { EnquiryStatus, Enquiry } from '../manager_crm_types';
-import { KanbanCard } from './KanbanCard';
+import { KANBAN_COLUMNS, DOT_CLASS } from '@/app/manager/manager_crm/manager_crm_constants';
+import type { EnquiryStatus, Enquiry } from '@/app/manager/manager_crm/manager_crm_types';
+import { KanbanCard } from '@/app/manager/manager_crm/manager_crm_components/KanbanCard';
 
 // RESPONSIBILITY: Renders the entire Kanban board for CRM Enquiries.
 

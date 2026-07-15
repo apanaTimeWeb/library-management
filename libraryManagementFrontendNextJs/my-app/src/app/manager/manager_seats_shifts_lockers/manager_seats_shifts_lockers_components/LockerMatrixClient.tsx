@@ -29,7 +29,7 @@ const ACTIVITY: ActivityItem[] = [
   { icon: <KeyRound size={16} />, text: 'Locker B08 released by Maria V.',   sub: '15 mins ago • Session End', id: '#99198' },
 ];
 
-import { useSeatsStore } from '../manager_seats_shifts_lockers_context/manager_seats_shifts_lockers_store';
+import { useSeatsStore } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_context/manager_seats_shifts_lockers_store';
 
 // RESPONSIBILITY: Render locker matrix UI using mocked data
 export function LockerMatrixClient() {

@@ -1,9 +1,9 @@
 import Link from 'next/link';
 import { Eye, Pencil, MessageSquare } from 'lucide-react';
 import { openWhatsApp } from '@/lib/whatsappUtils';
-import { MANAGER_ROUTES } from '../../manager_url_config';
-import type { Student } from '../manager_students_types';
-import { MANAGER_BRANCH } from '../manager_students_constants';
+import { MANAGER_ROUTES } from '@/app/manager/manager_url_config';
+import type { Student } from '@/app/manager/manager_students/manager_students_types';
+import { MANAGER_BRANCH } from '@/app/manager/manager_students/manager_students_constants';
 
 // RESPONSIBILITY: Micro-components for AG Grid cells
 

@@ -2,8 +2,8 @@
 
 import { useState } from 'react';
 import { usePathname } from 'next/navigation';
-import ManagerSidebar from './ManagerSidebar';
-import ManagerHeader from './ManagerHeader';
+import ManagerSidebar from '@/app/manager/ManagerSidebar';
+import ManagerHeader from '@/app/manager/ManagerHeader';
 import './manager.css';
 
 const MANAGER_ROUTES = [

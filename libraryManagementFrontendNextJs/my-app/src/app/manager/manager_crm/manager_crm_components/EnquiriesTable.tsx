@@ -1,8 +1,8 @@
 import { useRouter } from 'next/navigation';
 import { Eye, CheckCircle, XCircle, PhoneCall, Plus } from 'lucide-react';
-import { maskPhone } from '../reusable/types';
-import { STATUS_BADGE } from '../manager_crm_constants';
-import type { Enquiry, EnquiryStatus } from '../manager_crm_types';
+import { maskPhone } from '@/app/manager/manager_crm/reusable/types';
+import { STATUS_BADGE } from '@/app/manager/manager_crm/manager_crm_constants';
+import type { Enquiry, EnquiryStatus } from '@/app/manager/manager_crm/manager_crm_types';
 
 // RESPONSIBILITY: Renders the Table view for CRM Enquiries.
 

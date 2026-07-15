@@ -1,9 +1,9 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import type { DashboardSeatData } from '../manager_dashboard_types';
-import { SEAT_CLASS } from '../manager_dashboard_constants';
-import { MANAGER_ROUTES } from '../../manager_url_config';
+import type { DashboardSeatData } from '@/app/manager/manager_dashboard/manager_dashboard_types';
+import { SEAT_CLASS } from '@/app/manager/manager_dashboard/manager_dashboard_constants';
+import { MANAGER_ROUTES } from '@/app/manager/manager_url_config';
 
 // RESPONSIBILITY: Renders the seat matrix visual grid and handles routing to student list with seat filter.
 

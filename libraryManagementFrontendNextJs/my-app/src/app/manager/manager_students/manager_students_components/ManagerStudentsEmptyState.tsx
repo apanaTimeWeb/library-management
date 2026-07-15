@@ -1,6 +1,6 @@
 import { Users } from 'lucide-react';
 import Link from 'next/link';
-import { MANAGER_ROUTES } from '../../manager_url_config';
+import { MANAGER_ROUTES } from '@/app/manager/manager_url_config';
 
 // RESPONSIBILITY: Renders the empty state for the students table.
 

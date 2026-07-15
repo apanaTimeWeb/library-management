@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useDashboardStore } from '../manager_dashboard_context/manager_dashboard_store';
+import { useDashboardStore } from '@/app/manager/manager_dashboard/manager_dashboard_context/manager_dashboard_store';
 
 /**
  * Custom hook to fetch and manage dashboard data.

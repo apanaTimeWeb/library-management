@@ -3,7 +3,7 @@
 import { useState, useMemo, useEffect } from 'react';
 import Link from 'next/link';
 import { ArrowLeft, Search, Printer, MessageSquare, IdCard, CheckCircle2 } from 'lucide-react';
-import StudentIdCard, { type IdCardData } from './StudentIdCard';
+import StudentIdCard, { type IdCardData } from '@/app/manager/manager_students/manager_students_components/StudentIdCard';
 import {
   formatIdCardMessage,
   openWhatsApp,
@@ -12,8 +12,8 @@ import {
   type StudentWhatsAppData,
 } from '@/lib/whatsappUtils';
 import { printThermal } from '@/lib/thermalPrint';
-import { fetchStudents } from '../manager_students_api/manager_students_api';
-import type { Student } from '../manager_students_types';
+import { fetchStudents } from '@/app/manager/manager_students/manager_students_api/manager_students_api';
+import type { Student } from '@/app/manager/manager_students/manager_students_types';
 
 export function IdCardClient() {
   const [students, setStudents] = useState<Student[]>([]);
