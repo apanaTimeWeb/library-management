@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { AuthAuthService } from './auth.service';
 import { AuthAuthController } from './auth.controller';
-import { SuperadminUsersModule } from '../../superadmin/users/users.module';
+import { SuperadminUsersModule } from '../../superadmin/staff-users/users/users.module';
 import { JwtModule } from '@nestjs/jwt';
 import { PassportModule } from '@nestjs/passport';
 import { JwtStrategy } from './jwt.strategy';
