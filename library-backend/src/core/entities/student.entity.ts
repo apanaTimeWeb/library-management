@@ -1,3 +1,4 @@
+import { BaseEntity } from './base.entity';
 import {
   Entity,
   PrimaryGeneratedColumn,
@@ -14,9 +15,7 @@ import { Subscription } from './/subscription.entity';
 
 @Entity()
 @Unique(['branch', 'smartId'])
-export class Student {
-  @PrimaryGeneratedColumn('uuid')
-  id: string;
+export class Student extends BaseEntity {
 
   @Column()
   smartId: string; // LIB001, LIB002
@@ -71,10 +70,4 @@ export class Student {
 
   @OneToMany(() => Subscription, (subscription) => subscription.student)
   subscriptions: Subscription[];
-
-  @CreateDateColumn()
-  joinDate: Date;
-
-  @UpdateDateColumn()
-  updatedAt: Date;
 }

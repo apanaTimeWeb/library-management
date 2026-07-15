@@ -1,3 +1,4 @@
+import { BaseEntity } from './base.entity';
 import {
   Entity,
   PrimaryGeneratedColumn,
@@ -9,9 +10,8 @@ import {
 import { Branch } from './/branch.entity';
 
 @Entity()
-export class Seat {
-  @PrimaryGeneratedColumn()
-  id: number;
+export class Seat extends BaseEntity {
+  
 
   @Column()
   seatNumber: string; // A-01, B-12, etc.
@@ -28,9 +28,7 @@ export class Seat {
   @Column({ default: true })
   isActive: boolean;
 
-  @CreateDateColumn()
-  createdAt: Date;
+  
 
-  @UpdateDateColumn()
-  updatedAt: Date;
+  
 }

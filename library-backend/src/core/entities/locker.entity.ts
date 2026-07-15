@@ -1,3 +1,4 @@
+import { BaseEntity } from './base.entity';
 import {
   Entity,
   PrimaryGeneratedColumn,
@@ -9,9 +10,8 @@ import {
 import { Branch } from './/branch.entity';
 
 @Entity()
-export class Locker {
-  @PrimaryGeneratedColumn()
-  id: number;
+export class Locker extends BaseEntity {
+  
 
   @Column()
   lockerNumber: string;
@@ -25,9 +25,7 @@ export class Locker {
   @Column({ default: true })
   isActive: boolean;
 
-  @CreateDateColumn()
-  createdAt: Date;
+  
 
-  @UpdateDateColumn()
-  updatedAt: Date;
+  
 }

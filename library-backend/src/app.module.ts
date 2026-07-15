@@ -93,6 +93,7 @@ import { SuperadminUsersModule } from './modules/superadmin/staff-users/users/us
         password: configService.get<string>('DB_PASSWORD'),
         database: configService.get<string>('DB_NAME'),
         entities: [__dirname + '/**/*.entity{.ts,.js}'],
+        subscribers: [__dirname + '/**/*.subscriber{.ts,.js}'],
         autoLoadEntities: true,
         synchronize: configService.get<string>('NODE_ENV') !== 'production',
         ssl: configService.get<string>('NODE_ENV') === 'production' ? { rejectUnauthorized: false } : false,

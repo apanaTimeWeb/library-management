@@ -1,3 +1,4 @@
+import { BaseEntity } from './base.entity';
 import {
   Entity,
   PrimaryGeneratedColumn,
@@ -10,9 +11,7 @@ import { User } from './/user.entity';
 import { Student } from './/student.entity';
 
 @Entity()
-export class Enquiry {
-  @PrimaryGeneratedColumn('uuid')
-  id: string;
+export class Enquiry extends BaseEntity {
 
   @Column()
   name: string;
@@ -34,10 +33,4 @@ export class Enquiry {
 
   @ManyToOne(() => Student, { nullable: true })
   convertedToStudent: Student;
-
-  @CreateDateColumn()
-  createdAt: Date;
-
-  @UpdateDateColumn()
-  updatedAt: Date;
 }

@@ -1,3 +1,4 @@
+import { BaseEntity } from './base.entity';
 import {
   Entity,
   PrimaryGeneratedColumn,
@@ -10,9 +11,7 @@ import { Student } from './/student.entity';
 import { User } from './/user.entity';
 
 @Entity()
-export class IDCard {
-  @PrimaryGeneratedColumn('uuid')
-  id: string;
+export class IDCard extends BaseEntity {
 
   @ManyToOne(() => Student)
   student: Student;
@@ -34,10 +33,4 @@ export class IDCard {
 
   @ManyToOne(() => User)
   generatedBy: User;
-
-  @CreateDateColumn()
-  createdAt: Date;
-
-  @UpdateDateColumn()
-  updatedAt: Date;
 }

@@ -1,3 +1,4 @@
+import { BaseEntity } from './base.entity';
 import {
   Entity,
   PrimaryGeneratedColumn,
@@ -12,9 +13,7 @@ import { Seat } from './/seat.entity';
 import { User } from './/user.entity';
 
 @Entity()
-export class ShiftMigration {
-  @PrimaryGeneratedColumn('uuid')
-  id: string;
+export class ShiftMigration extends BaseEntity {
 
   @ManyToOne(() => Student)
   student: Student;
@@ -39,7 +38,4 @@ export class ShiftMigration {
 
   @CreateDateColumn()
   migratedAt: Date;
-
-  @UpdateDateColumn()
-  updatedAt: Date;
 }

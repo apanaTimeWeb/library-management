@@ -1,3 +1,4 @@
+import { BaseEntity } from './base.entity';
 import {
   Entity,
   PrimaryGeneratedColumn,
@@ -10,9 +11,7 @@ import { Branch } from './/branch.entity';
 import { User } from './/user.entity';
 
 @Entity()
-export class DailySettlement {
-  @PrimaryGeneratedColumn('uuid')
-  id: string;
+export class DailySettlement extends BaseEntity {
 
   @ManyToOne(() => Branch)
   branch: Branch;
@@ -37,10 +36,4 @@ export class DailySettlement {
 
   @ManyToOne(() => User)
   closedBy: User;
-
-  @CreateDateColumn()
-  createdAt: Date;
-
-  @UpdateDateColumn()
-  updatedAt: Date;
 }

@@ -1,3 +1,4 @@
+import { BaseEntity } from './base.entity';
 import {
   Entity,
   PrimaryGeneratedColumn,
@@ -10,9 +11,7 @@ import { Asset } from './asset.entity';
 import { User } from './/user.entity';
 
 @Entity()
-export class AssetMaintenanceLog {
-  @PrimaryGeneratedColumn('uuid')
-  id: string;
+export class AssetMaintenanceLog extends BaseEntity {
 
   @ManyToOne(() => Asset)
   asset: Asset;
@@ -31,10 +30,4 @@ export class AssetMaintenanceLog {
 
   @ManyToOne(() => User)
   servicedBy: User;
-
-  @CreateDateColumn()
-  createdAt: Date;
-
-  @UpdateDateColumn()
-  updatedAt: Date;
 }

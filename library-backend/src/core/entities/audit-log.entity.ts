@@ -1,3 +1,4 @@
+import { BaseEntity } from './base.entity';
 import {
   Entity,
   PrimaryGeneratedColumn,
@@ -19,9 +20,7 @@ import { User } from './/user.entity';
 @Entity('audit_logs')
 @Index(['tenantId', 'createdAt']) // Fast queries per tenant
 @Index(['entity', 'entityId'])   // Fast queries per record
-export class AuditLog {
-  @PrimaryGeneratedColumn('uuid')
-  id: string;
+export class AuditLog extends BaseEntity {
 
   // What entity was affected
   @Column()
@@ -71,6 +70,4 @@ export class AuditLog {
   browser: string | null; // parsed browser name
 
   // Timestamp
-  @CreateDateColumn()
-  createdAt: Date;
 }

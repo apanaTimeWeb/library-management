@@ -1,3 +1,4 @@
+import { BaseEntity } from './base.entity';
 import {
   Entity,
   PrimaryGeneratedColumn,
@@ -9,9 +10,7 @@ import {
 import { Branch } from './/branch.entity';
 
 @Entity()
-export class Coupon {
-  @PrimaryGeneratedColumn('uuid')
-  id: string;
+export class Coupon extends BaseEntity {
 
   @ManyToOne(() => Branch)
   branch: Branch;
@@ -36,10 +35,4 @@ export class Coupon {
 
   @Column({ default: true })
   isActive: boolean;
-
-  @CreateDateColumn()
-  createdAt: Date;
-
-  @UpdateDateColumn()
-  updatedAt: Date;
 }

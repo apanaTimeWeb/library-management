@@ -1,3 +1,4 @@
+import { BaseEntity } from './base.entity';
 import {
   Entity,
   PrimaryGeneratedColumn,
@@ -10,9 +11,7 @@ import { Student } from './/student.entity';
 import { Shift } from './/shift.entity';
 
 @Entity()
-export class Waitlist {
-  @PrimaryGeneratedColumn('uuid')
-  id: string;
+export class Waitlist extends BaseEntity {
 
   @ManyToOne(() => Student)
   student: Student;
@@ -28,7 +27,4 @@ export class Waitlist {
 
   @CreateDateColumn()
   addedAt: Date;
-
-  @UpdateDateColumn()
-  updatedAt: Date;
 }

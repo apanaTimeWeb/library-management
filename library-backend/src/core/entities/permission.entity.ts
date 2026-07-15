@@ -1,3 +1,4 @@
+import { BaseEntity } from './base.entity';
 import {
   Entity,
   PrimaryGeneratedColumn,
@@ -9,9 +10,7 @@ import {
 import { Role } from './/role.entity';
 
 @Entity('permissions')
-export class Permission {
-  @PrimaryGeneratedColumn('uuid')
-  id: string;
+export class Permission extends BaseEntity {
 
   @Column({ unique: true })
   name: string; // e.g., 'CREATE_STUDENT', 'VIEW_REPORTS'
@@ -21,10 +20,4 @@ export class Permission {
 
   @ManyToMany(() => Role, (role) => role.permissions)
   roles: Role[];
-
-  @CreateDateColumn()
-  createdAt: Date;
-
-  @UpdateDateColumn()
-  updatedAt: Date;
 }

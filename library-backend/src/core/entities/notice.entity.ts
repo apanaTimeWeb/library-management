@@ -1,3 +1,4 @@
+import { BaseEntity } from './base.entity';
 import {
   Entity,
   PrimaryGeneratedColumn,
@@ -10,9 +11,7 @@ import { Branch } from './/branch.entity';
 import { User } from './/user.entity';
 
 @Entity()
-export class Notice {
-  @PrimaryGeneratedColumn('uuid')
-  id: string;
+export class Notice extends BaseEntity {
 
   @Column()
   title: string;
@@ -28,10 +27,4 @@ export class Notice {
 
   @ManyToOne(() => User)
   createdBy: User;
-
-  @CreateDateColumn()
-  createdAt: Date;
-
-  @UpdateDateColumn()
-  updatedAt: Date;
 }

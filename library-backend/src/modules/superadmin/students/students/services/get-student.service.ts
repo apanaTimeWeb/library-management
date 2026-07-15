@@ -50,7 +50,7 @@ export class GetStudentService {
       plan: activeSub?.plan?.name || 'N/A',
       status: activeSub ? activeSub.status : 'Inactive',
       due: activeSub?.dueAmount || 0,
-      joined: s.joinDate ? s.joinDate.toLocaleDateString('en-IN') : 'N/A',
+      joined: s.createdAt ? s.createdAt.toLocaleDateString('en-IN') : 'N/A',
       history: s.subscriptions?.map(sub => ({
           plan: sub.plan?.name,
           startDate: sub.startDate,

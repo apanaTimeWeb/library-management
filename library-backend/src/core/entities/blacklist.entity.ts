@@ -1,3 +1,4 @@
+import { BaseEntity } from './base.entity';
 import {
   Entity,
   PrimaryGeneratedColumn,
@@ -10,9 +11,7 @@ import { Branch } from './/branch.entity';
 import { User } from './/user.entity';
 
 @Entity()
-export class Blacklist {
-  @PrimaryGeneratedColumn('uuid')
-  id: string;
+export class Blacklist extends BaseEntity {
 
   @Column()
   phone: string;
@@ -28,10 +27,4 @@ export class Blacklist {
 
   @ManyToOne(() => User)
   addedBy: User;
-
-  @CreateDateColumn()
-  createdAt: Date;
-
-  @UpdateDateColumn()
-  updatedAt: Date;
 }

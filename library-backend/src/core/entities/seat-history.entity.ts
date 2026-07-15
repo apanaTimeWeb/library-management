@@ -1,3 +1,4 @@
+import { BaseEntity } from './base.entity';
 import {
   Entity,
   PrimaryGeneratedColumn,
@@ -11,9 +12,7 @@ import { Student } from './/student.entity';
 import { Shift } from './/shift.entity';
 
 @Entity()
-export class SeatHistory {
-  @PrimaryGeneratedColumn('uuid')
-  id: string;
+export class SeatHistory extends BaseEntity {
 
   @ManyToOne(() => Seat)
   seat: Seat;
@@ -32,10 +31,4 @@ export class SeatHistory {
 
   @Column({ nullable: true })
   reason: string; // admission, shift_change, seat_change
-
-  @CreateDateColumn()
-  createdAt: Date;
-
-  @UpdateDateColumn()
-  updatedAt: Date;
 }

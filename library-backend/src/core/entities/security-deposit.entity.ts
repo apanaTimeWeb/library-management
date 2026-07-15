@@ -1,3 +1,4 @@
+import { BaseEntity } from './base.entity';
 import {
   Entity,
   PrimaryGeneratedColumn,
@@ -10,9 +11,7 @@ import { Student } from './/student.entity';
 import { User } from './/user.entity';
 
 @Entity()
-export class SecurityDeposit {
-  @PrimaryGeneratedColumn('uuid')
-  id: string;
+export class SecurityDeposit extends BaseEntity {
 
   @ManyToOne(() => Student)
   student: Student;
@@ -37,10 +36,4 @@ export class SecurityDeposit {
 
   @ManyToOne(() => User, { nullable: true })
   refundedBy: User;
-
-  @CreateDateColumn()
-  createdAt: Date;
-
-  @UpdateDateColumn()
-  updatedAt: Date;
 }

@@ -1,3 +1,4 @@
+import { BaseEntity } from './base.entity';
 import {
   Entity,
   PrimaryGeneratedColumn,
@@ -9,9 +10,7 @@ import {
 import { Branch } from './/branch.entity';
 
 @Entity('tenants')
-export class Tenant {
-  @PrimaryGeneratedColumn('uuid')
-  id: string;
+export class Tenant extends BaseEntity {
 
   @Column({ unique: true })
   name: string; // The library brand/organization name
@@ -24,10 +23,4 @@ export class Tenant {
 
   @OneToMany(() => Branch, (branch) => branch.tenant)
   branches: Branch[];
-
-  @CreateDateColumn()
-  createdAt: Date;
-
-  @UpdateDateColumn()
-  updatedAt: Date;
 }

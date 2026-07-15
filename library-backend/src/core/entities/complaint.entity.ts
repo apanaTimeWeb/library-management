@@ -1,3 +1,4 @@
+import { BaseEntity } from './base.entity';
 import {
   Entity,
   PrimaryGeneratedColumn,
@@ -10,9 +11,7 @@ import { Student } from './/student.entity';
 import { User } from './/user.entity';
 
 @Entity()
-export class Complaint {
-  @PrimaryGeneratedColumn('uuid')
-  id: string;
+export class Complaint extends BaseEntity {
 
   @ManyToOne(() => Student, { nullable: true })
   student: Student;
@@ -28,12 +27,6 @@ export class Complaint {
 
   @Column({ default: false })
   isAnonymous: boolean;
-
-  @CreateDateColumn()
-  createdAt: Date;
-
-  @UpdateDateColumn()
-  updatedAt: Date;
 
   @Column({ nullable: true })
   resolvedAt: Date;

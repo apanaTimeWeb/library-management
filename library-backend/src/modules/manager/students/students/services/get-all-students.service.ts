@@ -27,7 +27,7 @@ export class GetAllStudentsService {
     if (sortBy) {
       order[sortBy] = sortOrder;
     } else {
-      order.joinDate = 'DESC';
+      order.createdAt = 'DESC';
     }
 
     const [students, total] = await this.studentRepo.findAndCount({
@@ -57,7 +57,7 @@ export class GetAllStudentsService {
         plan: activeSub?.plan?.name || 'N/A',
         status: activeSub ? activeSub.status : STUDENT_STATUS.INACTIVE,
         due: activeSub?.dueAmount || 0,
-        joined: s.joinDate ? s.joinDate.toLocaleDateString('en-IN') : 'N/A',
+        joined: s.createdAt ? s.createdAt.toLocaleDateString('en-IN') : 'N/A',
         email: s.email,
         parentPhone: s.parentPhone,
         college: s.college,

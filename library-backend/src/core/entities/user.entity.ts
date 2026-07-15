@@ -1,3 +1,4 @@
+import { BaseEntity } from './base.entity';
 import {
   Entity,
   PrimaryGeneratedColumn,
@@ -11,9 +12,8 @@ import { Branch } from './/branch.entity';
 import { Role } from './/role.entity';
 
 @Entity('users')
-export class User {
-  @PrimaryGeneratedColumn('uuid')
-  id: string;
+export class User extends BaseEntity {
+  
 
   @Column({ unique: true })
   phone: string;
@@ -57,16 +57,13 @@ export class User {
   lastLoginIp: string;
 
   // ── Soft Delete (never hard-delete) ──────────────────
-  @DeleteDateColumn({ type: 'timestamp' })
-  deletedAt: Date | null; // TypeORM soft delete — sets this field instead of DELETE
+   // TypeORM soft delete — sets this field instead of DELETE
 
   @Column({ nullable: true })
   deletedBy: string; // userId of who performed the delete
 
   // ── Timestamps ───────────────────────────────────────
-  @CreateDateColumn()
-  createdAt: Date;
+  
 
-  @UpdateDateColumn()
-  updatedAt: Date;
+  
 }

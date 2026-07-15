@@ -1,3 +1,4 @@
+import { BaseEntity } from './base.entity';
 import {
   Entity,
   PrimaryGeneratedColumn,
@@ -9,9 +10,7 @@ import {
 import { Student } from './/student.entity';
 
 @Entity()
-export class WhatsAppMessage {
-  @PrimaryGeneratedColumn('uuid')
-  id: string;
+export class WhatsAppMessage extends BaseEntity {
 
   @ManyToOne(() => Student, { nullable: true })
   student: Student;
@@ -36,7 +35,4 @@ export class WhatsAppMessage {
 
   @CreateDateColumn()
   sentAt: Date;
-
-  @UpdateDateColumn()
-  updatedAt: Date;
 }

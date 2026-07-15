@@ -1,3 +1,4 @@
+import { BaseEntity } from './base.entity';
 import {
   Entity,
   PrimaryGeneratedColumn,
@@ -12,9 +13,7 @@ import { Seat } from './/seat.entity';
 import { Locker } from './/locker.entity';
 
 @Entity()
-export class StudentSlot {
-  @PrimaryGeneratedColumn('uuid')
-  id: string;
+export class StudentSlot extends BaseEntity {
 
   @ManyToOne(() => Student, (student) => student.slots, { onDelete: 'CASCADE' })
   student: Student;
@@ -39,10 +38,4 @@ export class StudentSlot {
 
   @Column({ default: true })
   isActive: boolean;
-
-  @CreateDateColumn()
-  createdAt: Date;
-
-  @UpdateDateColumn()
-  updatedAt: Date;
 }

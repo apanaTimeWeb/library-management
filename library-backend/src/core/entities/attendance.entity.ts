@@ -1,3 +1,4 @@
+import { BaseEntity } from './base.entity';
 import {
   Entity,
   PrimaryGeneratedColumn,
@@ -10,9 +11,7 @@ import { Student } from './/student.entity';
 import { User } from './/user.entity';
 
 @Entity()
-export class Attendance {
-  @PrimaryGeneratedColumn('uuid')
-  id: string;
+export class Attendance extends BaseEntity {
 
   @ManyToOne(() => Student)
   student: Student;
@@ -31,10 +30,4 @@ export class Attendance {
 
   @Column({ default: 'present' })
   status: string; // present, absent, late
-
-  @CreateDateColumn()
-  createdAt: Date;
-
-  @UpdateDateColumn()
-  updatedAt: Date;
 }

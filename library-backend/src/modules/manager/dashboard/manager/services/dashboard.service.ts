@@ -80,7 +80,7 @@ export class DashboardService {
 
     const recentStudents = await this.studentRepo.find({
       where: branchId ? { branch: { id: branchId } } : {},
-      order: { joinDate: 'DESC' },
+      order: { createdAt: 'DESC' },
       take: MANAGER_CONSTANTS.RECENT_ADMISSIONS_LIMIT,
     });
     

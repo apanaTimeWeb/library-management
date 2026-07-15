@@ -1,3 +1,4 @@
+import { BaseEntity } from './base.entity';
 import {
   Entity,
   PrimaryGeneratedColumn,
@@ -12,9 +13,7 @@ import { Permission } from './/permission.entity';
 import { User } from './/user.entity';
 
 @Entity('roles')
-export class Role {
-  @PrimaryGeneratedColumn('uuid')
-  id: string;
+export class Role extends BaseEntity {
 
   @Column({ unique: true })
   name: string; // e.g., 'SUPERADMIN', 'ADMIN', 'MANAGER', 'STAFF'
@@ -28,10 +27,4 @@ export class Role {
 
   @OneToMany(() => User, (user) => user.role)
   users: User[];
-
-  @CreateDateColumn()
-  createdAt: Date;
-
-  @UpdateDateColumn()
-  updatedAt: Date;
 }

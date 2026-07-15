@@ -1,3 +1,4 @@
+import { BaseEntity } from './base.entity';
 import {
   Entity,
   PrimaryGeneratedColumn,
@@ -11,9 +12,7 @@ import { Plan } from './/plan.entity';
 import { Coupon } from './/coupon.entity';
 
 @Entity()
-export class Subscription {
-  @PrimaryGeneratedColumn('uuid')
-  id: string;
+export class Subscription extends BaseEntity {
 
   @ManyToOne(() => Student, (student) => student.subscriptions)
   student: Student;
@@ -56,10 +55,4 @@ export class Subscription {
 
   @Column({ nullable: true })
   groupAdmissionId: string;
-
-  @CreateDateColumn()
-  createdAt: Date;
-
-  @UpdateDateColumn()
-  updatedAt: Date;
 }

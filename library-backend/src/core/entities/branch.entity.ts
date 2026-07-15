@@ -1,3 +1,4 @@
+import { BaseEntity } from './base.entity';
 import {
   Entity,
   PrimaryGeneratedColumn,
@@ -11,9 +12,7 @@ import { Tenant } from './/tenant.entity';
 import { User } from './/user.entity';
 
 @Entity('branches')
-export class Branch {
-  @PrimaryGeneratedColumn('uuid')
-  id: string;
+export class Branch extends BaseEntity {
 
   @ManyToOne(() => Tenant, (tenant) => tenant.branches)
   tenant: Tenant;
@@ -32,10 +31,4 @@ export class Branch {
 
   @OneToMany(() => User, (user) => user.branch)
   users: User[];
-
-  @CreateDateColumn()
-  createdAt: Date;
-
-  @UpdateDateColumn()
-  updatedAt: Date;
 }
