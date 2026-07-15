@@ -1,7 +1,128 @@
 {
   "info": {
-    "name": "Admin Staff Users API",
-    "description": "Endpoints for managing staff users via admin"
+    "name": "Admin - Staff Users",
+    "description": "Postman collection for Admin Staff Users module",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
-  "item": []
+  "item": [
+    {
+      "name": "Get All Staff Users",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{admin_token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/api/admin/staff-users/users",
+          "host": ["{{base_url}}"],
+          "path": ["api", "admin", "staff-users", "users"]
+        }
+      }
+    },
+    {
+      "name": "Get User By ID",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{admin_token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/api/admin/staff-users/users/:id",
+          "host": ["{{base_url}}"],
+          "path": ["api", "admin", "staff-users", "users", ":id"],
+          "variable": [
+            {
+              "key": "id",
+              "value": "uuid-here"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Create Staff User",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{admin_token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"New Staff\",\n  \"email\": \"staff@example.com\",\n  \"roleId\": \"uuid\",\n  \"password\": \"securePassword123\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/api/admin/staff-users/users",
+          "host": ["{{base_url}}"],
+          "path": ["api", "admin", "staff-users", "users"]
+        }
+      }
+    },
+    {
+      "name": "Update Staff User",
+      "request": {
+        "method": "PATCH",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{admin_token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Updated Name\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/api/admin/staff-users/users/:id",
+          "host": ["{{base_url}}"],
+          "path": ["api", "admin", "staff-users", "users", ":id"],
+          "variable": [
+            {
+              "key": "id",
+              "value": "uuid-here"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Delete Staff User",
+      "request": {
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{admin_token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/api/admin/staff-users/users/:id",
+          "host": ["{{base_url}}"],
+          "path": ["api", "admin", "staff-users", "users", ":id"],
+          "variable": [
+            {
+              "key": "id",
+              "value": "uuid-here"
+            }
+          ]
+        }
+      }
+    }
+  ]
 }
