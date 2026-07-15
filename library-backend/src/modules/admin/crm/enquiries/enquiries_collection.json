@@ -1,0 +1,17 @@
+{
+  "info": {
+    "name": "Admin CRM Enquiries Collection",
+    "description": "Postman collection for all 4 Admin Enquiries micro-endpoints",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    { "name": "Get All Enquiries", "request": { "method": "GET", "header": [ { "key": "Authorization", "value": "Bearer {{accessToken}}" } ], "url": { "raw": "{{baseUrl}}/api/admin/crm/enquiries", "host": ["{{baseUrl}}"], "path": ["api", "admin", "crm", "enquiries"] } } },
+    { "name": "Get Enquiry By Id", "request": { "method": "GET", "header": [ { "key": "Authorization", "value": "Bearer {{accessToken}}" } ], "url": { "raw": "{{baseUrl}}/api/admin/crm/enquiries/:id", "host": ["{{baseUrl}}"], "path": ["api", "admin", "crm", "enquiries", ":id"], "variable": [{"key": "id", "value": "uuid"}] } } },
+    { "name": "Update Enquiry Status", "request": { "method": "PATCH", "header": [ { "key": "Authorization", "value": "Bearer {{accessToken}}"}, {"key": "Content-Type", "value": "application/json"} ], "body": {"mode": "raw", "raw": "{\n  \"status\": \"interested\",\n  \"reason\": \"Called and seemed keen\"\n}"}, "url": { "raw": "{{baseUrl}}/api/admin/crm/enquiries/:id/status", "host": ["{{baseUrl}}"], "path": ["api", "admin", "crm", "enquiries", ":id", "status"], "variable": [{"key": "id", "value": "uuid"}] } } },
+    { "name": "Add Follow-Up", "request": { "method": "POST", "header": [ { "key": "Authorization", "value": "Bearer {{accessToken}}"}, {"key": "Content-Type", "value": "application/json"} ], "body": {"mode": "raw", "raw": "{\n  \"date\": \"2025-07-20T10:00:00Z\",\n  \"remark\": \"Will visit tomorrow\",\n  \"by\": \"Admin\"\n}"}, "url": { "raw": "{{baseUrl}}/api/admin/crm/enquiries/:id/follow-ups", "host": ["{{baseUrl}}"], "path": ["api", "admin", "crm", "enquiries", ":id", "follow-ups"], "variable": [{"key": "id", "value": "uuid"}] } } }
+  ],
+  "variable": [
+    { "key": "baseUrl", "value": "http://localhost:3000", "type": "string" },
+    { "key": "accessToken", "value": "", "type": "string" }
+  ]
+}
