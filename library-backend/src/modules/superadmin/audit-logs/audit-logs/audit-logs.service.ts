@@ -1,22 +1,9 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { AuditLog } from '@/core/entities/audit-log.entity';
 
-export interface LogActionParams {
-  entity: string;
-  entityId: string;
-  action: string;
-  oldValues?: Record<string, any> | null;
-  newValues?: Record<string, any> | null;
-  performedById?: string;
-  performedByName?: string;
-  performedByRole?: string;
-  tenantId?: string;
-  branchId?: string;
-  ipAddress?: string;
-  userAgent?: string;
-}
+import { LogActionParams } from './interfaces/audit-logs.interfaces';
 
 /**
  * Audit Logs Service
@@ -30,6 +17,8 @@ export interface LogActionParams {
  */
 @Injectable()
 export class SuperadminAuditLogsService {
+  private readonly logger = new Logger(SuperadminAuditLogsService.name);
+
   constructor(
     @InjectRepository(AuditLog)
     private auditLogRepo: Repository<AuditLog>,
@@ -68,7 +57,7 @@ export class SuperadminAuditLogsService {
       await this.auditLogRepo.save(log);
     } catch (error) {
       // Audit log failure should NOT break the main operation
-      console.error('Failed to write audit log:', error?.message);
+      this.logger.error(`Failed to write audit log: ${error?.message}`);
     }
   }
 

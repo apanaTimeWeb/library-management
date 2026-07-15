@@ -2,6 +2,7 @@ import { Controller, Post, Body, Req, UseGuards } from '@nestjs/common';
 import { ApiTags, ApiBearerAuth, ApiOperation } from '@nestjs/swagger';
 import { CreateStudentService } from '@/modules/superadmin/students/students/services/create-student.service';
 import { CreateStudentDto } from '@/modules/superadmin/students/students/dto/create-student.dto';
+import { STUDENTS_CONSTANTS } from '../constants/students.constants';
 import { Student } from '@/core/entities/student.entity';
 import { JwtAuthGuard } from '@/modules/auth/auth/guards/jwt-auth.guard';
 import { RolesGuard } from '@/modules/auth/auth/guards/roles.guard';
@@ -23,7 +24,7 @@ export class CreateStudentController {
     @Req() req: any,
   ): Promise<Student> {
     const branchId =
-      req.user?.branchId || '8a0c079e-1fca-476b-8390-58c5b8c29d08';
+      req.user?.branchId || STUDENTS_CONSTANTS.DEFAULT_BRANCH_ID;
     return this.service.create(branchId, data);
   }
 }

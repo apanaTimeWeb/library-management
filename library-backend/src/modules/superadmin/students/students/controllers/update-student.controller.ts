@@ -2,6 +2,7 @@ import { Controller, Patch, Param, Body, Req, UseGuards } from '@nestjs/common';
 import { ApiTags, ApiBearerAuth, ApiOperation } from '@nestjs/swagger';
 import { UpdateStudentService } from '@/modules/superadmin/students/students/services/update-student.service';
 import { UpdateStudentDto } from '@/modules/superadmin/students/students/dto/update-student.dto';
+import { STUDENTS_CONSTANTS } from '../constants/students.constants';
 import { Student } from '@/core/entities/student.entity';
 import { JwtAuthGuard } from '@/modules/auth/auth/guards/jwt-auth.guard';
 import { RolesGuard } from '@/modules/auth/auth/guards/roles.guard';
@@ -24,7 +25,7 @@ export class UpdateStudentController {
     @Req() req: any,
   ): Promise<Student> {
     const branchId =
-      req.user?.branchId || '8a0c079e-1fca-476b-8390-58c5b8c29d08';
+      req.user?.branchId || STUDENTS_CONSTANTS.DEFAULT_BRANCH_ID;
     return this.service.update(id, branchId, data);
   }
 }

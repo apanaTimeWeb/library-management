@@ -2,6 +2,7 @@ import { Controller, Delete, Param, Req, UseGuards } from '@nestjs/common';
 import { ApiTags, ApiBearerAuth, ApiOperation } from '@nestjs/swagger';
 import { DeleteStudentService } from '@/modules/superadmin/students/students/services/delete-student.service';
 import { JwtAuthGuard } from '@/modules/auth/auth/guards/jwt-auth.guard';
+import { STUDENTS_CONSTANTS } from '../constants/students.constants';
 import { RolesGuard } from '@/modules/auth/auth/guards/roles.guard';
 import { Roles } from '@/modules/auth/auth/decorators/roles.decorator';
 
@@ -21,7 +22,7 @@ export class DeleteStudentController {
     @Req() req: any,
   ): Promise<{ message: string }> {
     const branchId =
-      req.user?.branchId || '8a0c079e-1fca-476b-8390-58c5b8c29d08';
+      req.user?.branchId || STUDENTS_CONSTANTS.DEFAULT_BRANCH_ID;
     return this.service.remove(id, branchId);
   }
 }
