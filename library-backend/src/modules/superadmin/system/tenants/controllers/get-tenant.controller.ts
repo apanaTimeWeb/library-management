@@ -10,9 +10,10 @@ import { GetTenantService } from '../services/get-tenant.service';
 export class GetTenantController {
   constructor(private readonly getTenantService: GetTenantService) {}
 
+  // SLA: FAST
   @Get(':id')
   @ApiOperation({ summary: 'Get a single tenant by id' })
-  async findOne(@Param('id') id: string) {
+  async findOne(@Param('id') id: string): Promise<any> {
     return this.getTenantService.findOne(id);
   }
 }

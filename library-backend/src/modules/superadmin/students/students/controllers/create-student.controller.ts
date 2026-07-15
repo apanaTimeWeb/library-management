@@ -14,6 +14,7 @@ import { Roles } from '@/modules/auth/auth/decorators/roles.decorator';
 export class CreateStudentController {
   constructor(private readonly service: CreateStudentService) {}
 
+  // SLA: FAST
   @Post()
   @Roles('superadmin', 'admin', 'manager')
   @ApiOperation({ summary: 'Create student' })

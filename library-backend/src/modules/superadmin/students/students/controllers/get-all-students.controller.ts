@@ -12,6 +12,7 @@ import { RolesGuard } from '@/modules/auth/auth/guards/roles.guard';
 export class GetAllStudentsController {
   constructor(private readonly service: GetAllStudentsService) {}
 
+  // SLA: FAST
   @Get()
   @ApiOperation({ summary: 'Get all students' })
   async getAllStudents(@Req() req: any): Promise<StudentListItem[]> {

@@ -11,12 +11,13 @@ import { UpdateTenantDto } from '../dto/update-tenant.dto';
 export class UpdateTenantController {
   constructor(private readonly updateTenantService: UpdateTenantService) {}
 
+  // SLA: FAST
   @Patch(':id')
   @ApiOperation({ summary: 'Update a tenant' })
   async update(
     @Param('id') id: string,
     @Body() updateTenantDto: UpdateTenantDto,
-  ) {
+  ): Promise<any> {
     return this.updateTenantService.update(id, updateTenantDto);
   }
 }

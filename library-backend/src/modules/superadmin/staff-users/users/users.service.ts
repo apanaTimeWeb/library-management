@@ -7,7 +7,7 @@ import { User } from '@/core/entities/user.entity';
 export class SuperadminUsersService {
   constructor(@InjectRepository(User) private userRepo: Repository<User>) {}
 
-  async findOne(id: string) {
+  async findOne(id: string): Promise<any> {
     return this.userRepo.findOne({ where: { id } });
   }
 }

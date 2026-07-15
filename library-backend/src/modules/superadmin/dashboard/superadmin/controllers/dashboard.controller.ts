@@ -13,9 +13,10 @@ import { Roles } from '@/modules/auth/auth/decorators/roles.decorator';
 export class DashboardController {
   constructor(private readonly dashboardService: DashboardService) {}
 
+  // SLA: FAST
   @Get('dashboard')
   @ApiOperation({ summary: 'Superadmin dashboard KPIs and system overview' })
-  async getDashboard() {
+  async getDashboard(): Promise<any> {
     return await this.dashboardService.getDashboardData();
   }
 }

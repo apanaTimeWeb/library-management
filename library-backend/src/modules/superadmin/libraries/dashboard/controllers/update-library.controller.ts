@@ -14,12 +14,13 @@ import { Roles } from '@/modules/auth/auth/decorators/roles.decorator';
 export class UpdateLibraryController {
   constructor(private readonly updateLibraryService: UpdateLibraryService) {}
 
+  // SLA: FAST
   @Put('libraries/:id')
   @ApiOperation({ summary: 'Update library details' })
   async updateLibrary(
     @Param('id') id: string,
     @Body() updateDto: UpdateLibraryDto,
-  ) {
+  ): Promise<any> {
     return await this.updateLibraryService.updateLibrary(id, updateDto);
   }
 }

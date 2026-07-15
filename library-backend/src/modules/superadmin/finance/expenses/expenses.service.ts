@@ -10,7 +10,7 @@ export class SuperadminExpensesService {
     private readonly expenseRepo: Repository<Expense>,
   ) {}
 
-  async findAll(branchId?: string) {
+  async findAll(branchId?: string): Promise<any> {
     const expenses = await this.expenseRepo.find({
       where: branchId ? { branch: { id: branchId } } : {},
       relations: {

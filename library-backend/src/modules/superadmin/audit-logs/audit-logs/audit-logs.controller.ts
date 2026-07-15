@@ -25,6 +25,7 @@ import { Roles } from '@/modules/auth/auth/decorators/roles.decorator';
 export class SuperadminAuditLogsController {
   constructor(private readonly auditLogsService: SuperadminAuditLogsService) {}
 
+  // SLA: FAST
   @Get()
   @ApiOperation({ summary: 'Get paginated audit logs (superadmin only)' })
   @ApiQuery({ name: 'page', required: false, type: Number })
@@ -38,7 +39,7 @@ export class SuperadminAuditLogsController {
     @Query('tenantId') tenantId?: string,
     @Query('entity') entity?: string,
     @Query('action') action?: string,
-  ) {
+  ): Promise<any> {
     // Cap limit to 100 max to prevent large data dumps
     const safeLimit = Math.min(limit, 100);
     return this.auditLogsService.findAll(

@@ -13,9 +13,10 @@ import { Roles } from '@/modules/auth/auth/decorators/roles.decorator';
 export class GetLibrariesController {
   constructor(private readonly getLibrariesService: GetLibrariesService) {}
 
+  // SLA: FAST
   @Get('libraries')
   @ApiOperation({ summary: 'Get all libraries/branches' })
-  async getLibraries() {
+  async getLibraries(): Promise<any> {
     return await this.getLibrariesService.getLibraries();
   }
 }

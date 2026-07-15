@@ -9,9 +9,10 @@ import { Roles } from '@/modules/auth/auth/decorators/roles.decorator';
 export class SuperadminExpensesController {
   constructor(private readonly expensesService: SuperadminExpensesService) {}
 
+  // SLA: FAST
   @Get()
   @Roles('superadmin', 'admin', 'manager')
-  async getAllExpenses(@Req() req: any) {
+  async getAllExpenses(@Req() req: any): Promise<any> {
     // If manager is assigned to a branch, restrict to branchId
     return this.expensesService.findAll(req.user.branchId);
   }

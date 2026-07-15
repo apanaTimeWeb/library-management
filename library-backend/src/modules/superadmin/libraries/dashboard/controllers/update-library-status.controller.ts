@@ -16,12 +16,13 @@ export class UpdateLibraryStatusController {
     private readonly updateLibraryStatusService: UpdateLibraryStatusService,
   ) {}
 
+  // SLA: FAST
   @Put('libraries/:id/status')
   @ApiOperation({ summary: 'Update library status' })
   async updateLibraryStatus(
     @Param('id') id: string,
     @Body() updateDto: UpdateLibraryStatusDto,
-  ) {
+  ): Promise<any> {
     return await this.updateLibraryStatusService.updateLibraryStatus(
       id,
       updateDto,

@@ -13,6 +13,7 @@ import { Roles } from '@/modules/auth/auth/decorators/roles.decorator';
 export class GetStudentController {
   constructor(private readonly service: GetStudentService) {}
 
+  // SLA: FAST
   @Get(':id')
   @Roles('superadmin', 'admin', 'manager')
   @ApiOperation({ summary: 'Get student by ID' })

@@ -81,7 +81,7 @@ export class SuperadminAuditLogsService {
     tenantId?: string,
     entity?: string,
     action?: string,
-  ) {
+  ): Promise<any> {
     const query = this.auditLogRepo
       .createQueryBuilder('log')
       .orderBy('log.createdAt', 'DESC')

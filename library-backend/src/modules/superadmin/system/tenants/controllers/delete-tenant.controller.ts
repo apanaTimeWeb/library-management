@@ -10,9 +10,10 @@ import { DeleteTenantService } from '../services/delete-tenant.service';
 export class DeleteTenantController {
   constructor(private readonly deleteTenantService: DeleteTenantService) {}
 
+  // SLA: FAST
   @Delete(':id')
   @ApiOperation({ summary: 'Soft delete a tenant' })
-  async delete(@Param('id') id: string) {
+  async delete(@Param('id') id: string): Promise<any> {
     return this.deleteTenantService.delete(id);
   }
 }

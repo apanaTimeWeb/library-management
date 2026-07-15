@@ -12,6 +12,7 @@ import { Roles } from '@/modules/auth/auth/decorators/roles.decorator';
 export class DeleteStudentController {
   constructor(private readonly service: DeleteStudentService) {}
 
+  // SLA: FAST
   @Delete(':id')
   @Roles('superadmin', 'admin', 'manager')
   @ApiOperation({ summary: 'Delete/Suspend student' })

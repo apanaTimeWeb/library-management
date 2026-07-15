@@ -10,7 +10,7 @@ export class UpdateLibraryService {
     @InjectRepository(Branch) private branchRepo: Repository<Branch>,
   ) {}
 
-  async updateLibrary(id: string, updateDto: UpdateLibraryDto) {
+  async updateLibrary(id: string, updateDto: UpdateLibraryDto): Promise<any> {
     const branch = await this.branchRepo.findOne({ where: { id } });
     if (!branch) {
       throw new NotFoundException(`Library branch with ID ${id} not found`);
