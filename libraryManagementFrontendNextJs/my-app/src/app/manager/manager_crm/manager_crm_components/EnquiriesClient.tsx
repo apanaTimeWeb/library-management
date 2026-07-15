@@ -2,9 +2,9 @@
 
 import { useRouter } from 'next/navigation';
 import { LayoutGrid, List, Plus, Search } from 'lucide-react';
-import { useEnquiries } from '../manager_crm_hooks/useEnquiries';
-import { EnquiriesKanban } from './EnquiriesKanban';
-import { EnquiriesTable } from './EnquiriesTable';
+import { useEnquiries } from '@/app/manager/manager_crm/manager_crm_hooks/useEnquiries';
+import { EnquiriesKanban } from '@/app/manager/manager_crm/manager_crm_components/EnquiriesKanban';
+import { EnquiriesTable } from '@/app/manager/manager_crm/manager_crm_components/EnquiriesTable';
 
 // RESPONSIBILITY: Main Client view for CRM Enquiries.
 

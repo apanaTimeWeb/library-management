@@ -1,6 +1,6 @@
 import { useState, useEffect, useMemo } from 'react';
-import { useCrmStore } from '../manager_crm_context/manager_crm_store';
-import type { EnquiryStatus } from '../manager_crm_types';
+import { useCrmStore } from '@/app/manager/manager_crm/manager_crm_context/manager_crm_store';
+import type { EnquiryStatus } from '@/app/manager/manager_crm/manager_crm_types';
 
 // Use debounce to prevent excessive renders during search (Rule 15)
 function useDebounce<T>(value: T, delay: number): T {

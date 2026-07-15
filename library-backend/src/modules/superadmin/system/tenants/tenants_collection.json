@@ -1,0 +1,36 @@
+{
+  "info": {
+    "name": "Superadmin - System Tenants",
+    "description": "Postman collection for Superadmin System Tenants module",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Get All Tenants",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{superadmin_token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/api/superadmin/system/tenants?page=1&limit=10",
+          "host": ["{{base_url}}"],
+          "path": ["api", "superadmin", "system", "tenants"],
+          "query": [
+            {
+              "key": "page",
+              "value": "1"
+            },
+            {
+              "key": "limit",
+              "value": "10"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

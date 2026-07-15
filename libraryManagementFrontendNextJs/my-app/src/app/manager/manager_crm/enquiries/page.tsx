@@ -1,5 +1,5 @@
-import { EnquiriesClient } from '../manager_crm_components/EnquiriesClient';
-import { ManagerCrmErrorBoundary } from '../manager_crm_components/ManagerCrmErrorBoundary';
+import { EnquiriesClient } from '@/app/manager/manager_crm/manager_crm_components/EnquiriesClient';
+import { ManagerCrmErrorBoundary } from '@/app/manager/manager_crm/manager_crm_components/ManagerCrmErrorBoundary';
 
 // RESPONSIBILITY: Strict Server Component for Manager CRM Enquiries.
 

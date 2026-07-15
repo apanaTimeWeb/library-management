@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import type { Student, FetchState } from '../manager_students_types';
+import type { Student, FetchState } from '@/app/manager/manager_students/manager_students_types';
 
 // RESPONSIBILITY: Module-scoped Zustand store for managing Students API data.
 

@@ -4,7 +4,7 @@
 // DATA FLOW: AdminRoute -> AdminProvider -> Any Admin Component
 
 import React, { createContext, useContext, useState, useMemo } from 'react';
-import { AdminContextType } from '../admin_types/admin_types';
+import { AdminContextType } from '@/app/admin/admin_types/admin_types';
 
 const AdminContext = createContext<AdminContextType>({
   selectedBranch: 'Main Branch',

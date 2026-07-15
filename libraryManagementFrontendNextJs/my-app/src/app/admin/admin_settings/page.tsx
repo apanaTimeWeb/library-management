@@ -60,7 +60,7 @@ export default function AdminSettingsPage() {
               Library Identity
             </h2>
           </div>
-          <div className="admin-card-body" style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+          <div className="admin-card-body admin-flex-col admin-gap-16">
             <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
               <label className="admin-label" htmlFor="libraryName">Library Name</label>
               <input className="admin-input" id="libraryName" name="libraryName" value={form.libraryName} onChange={handleChange} />
@@ -90,7 +90,7 @@ export default function AdminSettingsPage() {
               Billing &amp; Invoicing
             </h2>
           </div>
-          <div className="admin-card-body" style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+          <div className="admin-card-body admin-flex-col admin-gap-16">
             <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
               <label className="admin-label" htmlFor="gstin">GSTIN / Tax ID</label>
               <input className="admin-input" id="gstin" name="gstin" value={form.gstin} onChange={handleChange} />

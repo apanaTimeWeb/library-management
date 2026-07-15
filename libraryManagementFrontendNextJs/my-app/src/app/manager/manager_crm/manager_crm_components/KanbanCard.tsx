@@ -1,6 +1,6 @@
 import { Phone, CalendarDays, CheckCircle, User, Clock } from 'lucide-react';
-import { maskPhone } from '../reusable/types';
-import type { Enquiry } from '../manager_crm_types';
+import { maskPhone } from '@/app/manager/manager_crm/reusable/types';
+import type { Enquiry } from '@/app/manager/manager_crm/manager_crm_types';
 
 // RESPONSIBILITY: Renders an individual Kanban card. No API calls.
 

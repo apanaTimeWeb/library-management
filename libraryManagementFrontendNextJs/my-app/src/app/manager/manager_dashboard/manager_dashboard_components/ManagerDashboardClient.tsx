@@ -5,12 +5,12 @@ import Link from 'next/link';
 import { ChevronRight, TrendingUp } from 'lucide-react';
 import { AgGridReact } from 'ag-grid-react';
 import { AllCommunityModule, ModuleRegistry, type ColDef } from 'ag-grid-community';
-import { gridTheme } from '../../manager_reusable/gridTheme';
-import { useDashboardData } from '../manager_dashboard_hooks/useDashboardData';
-import { DashboardKpiGrid } from './DashboardKpiGrid';
-import { DashboardSeatMatrix } from './DashboardSeatMatrix';
-import { STATUS_CLASS, QUICK_LINKS } from '../manager_dashboard_constants';
-import { MANAGER_ROUTES } from '../../manager_url_config';
+import { gridTheme } from '@/app/manager/manager_reusable/gridTheme';
+import { useDashboardData } from '@/app/manager/manager_dashboard/manager_dashboard_hooks/useDashboardData';
+import { DashboardKpiGrid } from '@/app/manager/manager_dashboard/manager_dashboard_components/DashboardKpiGrid';
+import { DashboardSeatMatrix } from '@/app/manager/manager_dashboard/manager_dashboard_components/DashboardSeatMatrix';
+import { STATUS_CLASS, QUICK_LINKS } from '@/app/manager/manager_dashboard/manager_dashboard_constants';
+import { MANAGER_ROUTES } from '@/app/manager/manager_url_config';
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 

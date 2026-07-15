@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import type { Enquiry, FetchState } from '../manager_crm_types';
+import type { Enquiry, FetchState } from '@/app/manager/manager_crm/manager_crm_types';
 
 // RESPONSIBILITY: Module-scoped Zustand store for managing CRM Enquiries API data.
 

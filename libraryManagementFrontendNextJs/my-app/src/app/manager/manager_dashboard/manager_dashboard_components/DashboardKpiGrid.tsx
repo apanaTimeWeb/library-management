@@ -1,5 +1,5 @@
 import { Users, CalendarCheck, Phone, Armchair } from 'lucide-react';
-import type { DashboardKpiData } from '../manager_dashboard_types';
+import type { DashboardKpiData } from '@/app/manager/manager_dashboard/manager_dashboard_types';
 
 // RESPONSIBILITY: Renders the read-only grid of KPI cards. Receives data via props. No API calls.
 

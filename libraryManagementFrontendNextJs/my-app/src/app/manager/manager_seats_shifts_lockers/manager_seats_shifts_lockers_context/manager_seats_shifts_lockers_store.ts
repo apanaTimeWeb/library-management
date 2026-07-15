@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import type { SeatData, FetchState } from '../manager_seats_shifts_lockers_types';
+import type { SeatData, FetchState } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_types';
 
 // RESPONSIBILITY: Module-scoped Zustand store for managing Seat Matrix API data.
 

@@ -1,5 +1,5 @@
 import { fetchApi } from '@/lib/api';
-import type { Student } from '../manager_students_types';
+import type { Student } from '@/app/manager/manager_students/manager_students_types';
 
 export async function fetchStudents(): Promise<Student[]> {
   try {

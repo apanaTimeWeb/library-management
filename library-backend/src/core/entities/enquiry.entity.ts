@@ -1,0 +1,35 @@
+import { BaseEntity } from './base.entity';
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  CreateDateColumn,
+  UpdateDateColumn,
+  ManyToOne,
+} from 'typeorm';
+import { User } from './/user.entity';
+import { Student } from './/student.entity';
+
+@Entity()
+export class Enquiry extends BaseEntity {
+  @Column()
+  name: string;
+
+  @Column()
+  phone: string;
+
+  @Column({ nullable: true })
+  preferredShift: string;
+
+  @Column({ default: 'new' })
+  status: string; // new, visited, interested, converted, lost
+
+  @Column({ type: 'jsonb', default: [] })
+  followUps: { date: Date; remark: string; by: string }[];
+
+  @ManyToOne(() => User)
+  handledBy: User;
+
+  @ManyToOne(() => Student, { nullable: true })
+  convertedToStudent: Student;
+}

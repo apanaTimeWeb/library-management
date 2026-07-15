@@ -1,0 +1,19 @@
+{
+  "info": {
+    "name": "Public Enquiry API",
+    "description": "Endpoints for submitting public enquiries"
+  },
+  "item": [
+    {
+      "name": "Create Enquiry",
+      "request": {
+        "method": "POST",
+        "url": "{{baseUrl}}/api/public/enquiry",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"John Doe\",\n  \"phone\": \"+91 9876543210\",\n  \"preferredShift\": \"morning\",\n  \"message\": \"I want to join\"\n}"
+        }
+      }
+    }
+  ]
+}

@@ -3,7 +3,7 @@
 // DATA FLOW: Parent -> AdminSystemButton -> DOM
 
 import { type ButtonHTMLAttributes, forwardRef } from 'react';
-import { cn } from '../AdminSystemutils/AdminSystemutils';
+import { cn } from '@/app/admin/admin_system/admin_system_components/AdminSystemutils/AdminSystemutils';
 
 const VARIANT: Record<string, string> = {
   primary:     'sys-btn-primary',

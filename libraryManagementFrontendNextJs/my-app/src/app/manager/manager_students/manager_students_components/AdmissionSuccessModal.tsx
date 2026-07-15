@@ -2,7 +2,7 @@
 
 import { useRouter } from 'next/navigation';
 import { X, Printer, MessageSquare, Users, CheckCircle } from 'lucide-react';
-import StudentIdCard, { type IdCardData } from './StudentIdCard';
+import StudentIdCard, { type IdCardData } from '@/app/manager/manager_students/manager_students_components/StudentIdCard';
 import { formatIdCardMessage, openWhatsApp, type StudentWhatsAppData } from '@/lib/whatsappUtils';
 import { printThermal } from '@/lib/thermalPrint';
 

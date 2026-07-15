@@ -11,12 +11,12 @@ import {
   ArrowLeft, CheckCircle, User, Phone, Mail, GraduationCap,
   Armchair, Lock, FileText, IndianRupee, CreditCard,
 } from 'lucide-react';
-import AdmissionSuccessModal from './AdmissionSuccessModal';
+import AdmissionSuccessModal from '@/app/manager/manager_students/manager_students_components/AdmissionSuccessModal';
 import { calcExpiryDate, formatDateIN } from '@/lib/whatsappUtils';
-import { useStudentsStore } from '../manager_students_context/manager_students_store';
-import type { IdCardData } from './StudentIdCard';
+import { useStudentsStore } from '@/app/manager/manager_students/manager_students_context/manager_students_store';
+import type { IdCardData } from '@/app/manager/manager_students/manager_students_components/StudentIdCard';
 import { fetchApi } from '@/lib/api';
-import { createStudent } from '../manager_students_api/manager_students_api';
+import { createStudent } from '@/app/manager/manager_students/manager_students_api/manager_students_api';
 
 /* ── Zod Schema ── */
 const schema = z.object({

@@ -1,0 +1,18 @@
+{
+  "info": {
+    "name": "Superadmin Students Collection",
+    "description": "Postman collection for all 5 Superadmin Students micro-endpoints",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    { "name": "Get All Students", "request": { "method": "GET", "header": [ { "key": "Authorization", "value": "Bearer {{superadminAccessToken}}" } ], "url": { "raw": "{{baseUrl}}/api/superadmin/students", "host": ["{{baseUrl}}"], "path": ["api", "superadmin", "students"] } } },
+    { "name": "Get Student", "request": { "method": "GET", "header": [ { "key": "Authorization", "value": "Bearer {{superadminAccessToken}}" } ], "url": { "raw": "{{baseUrl}}/api/superadmin/students/:id", "host": ["{{baseUrl}}"], "path": ["api", "superadmin", "students", ":id"], "variable": [{"key": "id", "value": "uuid"}] } } },
+    { "name": "Create Student", "request": { "method": "POST", "header": [ { "key": "Authorization", "value": "Bearer {{superadminAccessToken}}"}, {"key": "Content-Type", "value": "application/json"} ], "body": {"mode": "raw", "raw": "{\n  \"fullName\": \"Jane Doe\",\n  \"phone\": \"1234567890\",\n  \"shift\": \"Morning\",\n  \"seat\": \"A1\",\n  \"plan\": \"Pro\"\n}"}, "url": { "raw": "{{baseUrl}}/api/superadmin/students", "host": ["{{baseUrl}}"], "path": ["api", "superadmin", "students"] } } },
+    { "name": "Update Student", "request": { "method": "PATCH", "header": [ { "key": "Authorization", "value": "Bearer {{superadminAccessToken}}"}, {"key": "Content-Type", "value": "application/json"} ], "body": {"mode": "raw", "raw": "{\n  \"name\": \"Jane Smith\"\n}"}, "url": { "raw": "{{baseUrl}}/api/superadmin/students/:id", "host": ["{{baseUrl}}"], "path": ["api", "superadmin", "students", ":id"], "variable": [{"key": "id", "value": "uuid"}] } } },
+    { "name": "Delete Student", "request": { "method": "DELETE", "header": [ { "key": "Authorization", "value": "Bearer {{superadminAccessToken}}" } ], "url": { "raw": "{{baseUrl}}/api/superadmin/students/:id", "host": ["{{baseUrl}}"], "path": ["api", "superadmin", "students", ":id"], "variable": [{"key": "id", "value": "uuid"}] } } }
+  ],
+  "variable": [
+    { "key": "baseUrl", "value": "http://localhost:3000", "type": "string" },
+    { "key": "superadminAccessToken", "value": "", "type": "string" }
+  ]
+}

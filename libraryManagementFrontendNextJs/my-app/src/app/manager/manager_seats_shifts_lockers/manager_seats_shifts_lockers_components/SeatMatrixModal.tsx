@@ -1,6 +1,6 @@
 import { UserPlus, User } from 'lucide-react';
-import type { SeatData } from '../manager_seats_shifts_lockers_types';
-import { SHIFT_BADGE } from '../manager_seats_shifts_lockers_constants';
+import type { SeatData } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_types';
+import { SHIFT_BADGE } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_constants';
 
 // RESPONSIBILITY: Renders the seat detail modal popover.
 

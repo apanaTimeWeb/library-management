@@ -3,7 +3,7 @@
 // DATA FLOW: Parent -> AdminSystemTextarea -> DOM
 
 import { type TextareaHTMLAttributes, forwardRef } from 'react';
-import { cn } from '../AdminSystemutils/AdminSystemutils';
+import { cn } from '@/app/admin/admin_system/admin_system_components/AdminSystemutils/AdminSystemutils';
 
 export interface TextareaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {}
 

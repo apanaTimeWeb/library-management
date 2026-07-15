@@ -47,7 +47,7 @@ function UsageCell({ data }: { data: Coupon }) {
   return (
     <div style={{ display: 'flex', alignItems: 'center', gap: 8, height: '100%', width: '100%', maxWidth: 160 }}>
       <span style={{ fontSize: 12, color: 'var(--text-secondary)', width: 42, textAlign: 'right' }}>{data.usedCount}/{data.maxUses}</span>
-      <div className="admin-progress-track" style={{ flex: 1 }}>
+      <div className="admin-progress-track admin-flex-1">
         <div className="admin-progress-fill" style={{ width: `${pct}%` }} />
       </div>
     </div>

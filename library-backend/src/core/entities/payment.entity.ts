@@ -1,0 +1,45 @@
+import { BaseEntity } from './base.entity';
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  CreateDateColumn,
+  UpdateDateColumn,
+  ManyToOne,
+} from 'typeorm';
+import { Student } from './/student.entity';
+import { Subscription } from './/subscription.entity';
+import { User } from './/user.entity';
+
+@Entity()
+export class Payment extends BaseEntity {
+  @ManyToOne(() => Student)
+  student: Student;
+
+  @ManyToOne(() => Subscription, { nullable: true })
+  subscription: Subscription;
+
+  @Column('decimal', { precision: 10, scale: 2 })
+  amount: number;
+
+  @Column({ default: 'cash' })
+  mode: string; // cash, upi, card, bank_transfer
+
+  @Column({ nullable: true })
+  transactionId: string;
+
+  @Column({ nullable: true })
+  lateFee: number;
+
+  @Column({ nullable: true })
+  remark: string;
+
+  @ManyToOne(() => User)
+  receivedBy: User;
+
+  @Column({ default: false })
+  isDeleted: boolean;
+
+  @CreateDateColumn()
+  paymentDate: Date;
+}

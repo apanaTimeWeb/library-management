@@ -4,7 +4,7 @@
 
 import * as SelectPrimitive from '@radix-ui/react-select';
 import { ChevronDown, Check } from 'lucide-react';
-import { cn } from '../AdminSystemutils/AdminSystemutils';
+import { cn } from '@/app/admin/admin_system/admin_system_components/AdminSystemutils/AdminSystemutils';
 
 export const Select      = SelectPrimitive.Root;
 export const SelectValue = SelectPrimitive.Value;

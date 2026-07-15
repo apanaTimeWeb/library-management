@@ -1,9 +1,9 @@
 'use client';
 
 import { CalendarDays } from 'lucide-react';
-import { useSeatMatrix } from '../manager_seats_shifts_lockers_hooks/useSeatMatrix';
-import { SHIFT_TABS, LEGEND_ITEMS } from '../manager_seats_shifts_lockers_constants';
-import { SeatMatrixModal } from './SeatMatrixModal';
+import { useSeatMatrix } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_hooks/useSeatMatrix';
+import { SHIFT_TABS, LEGEND_ITEMS } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_constants';
+import { SeatMatrixModal } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_components/SeatMatrixModal';
 
 // RESPONSIBILITY: Main Client view for Seat Matrix. Glues data hook to UI.
 

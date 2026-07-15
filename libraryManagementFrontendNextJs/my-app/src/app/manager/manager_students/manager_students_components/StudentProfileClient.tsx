@@ -4,7 +4,7 @@ import { useEffect, useState, use } from 'react';
 import Link from 'next/link';
 import { ArrowLeft, Phone, Armchair, Calendar, CreditCard, Shield } from 'lucide-react';
 import { calcExpiryDate, formatDateIN } from '@/lib/whatsappUtils';
-import { fetchStudentById } from '../manager_students_api/manager_students_api';
+import { fetchStudentById } from '@/app/manager/manager_students/manager_students_api/manager_students_api';
 
 export function StudentProfileClient({ id }: { id: string }) {
   const [student, setStudent] = useState<any>(null);

@@ -3,13 +3,13 @@
 // DATA FLOW: Next.js Router -> Page -> Components
 
 import { useState } from 'react';
-import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '../admin_system_components/AdminSystemCard/AdminSystemCard';
-import { Button } from '../admin_system_components/AdminSystemButton/AdminSystemButton';
-import { Badge } from '../admin_system_components/AdminSystemBadge/AdminSystemBadge';
-import { Input } from '../admin_system_components/AdminSystemInput/AdminSystemInput';
-import { Label } from '../admin_system_components/AdminSystemLabel/AdminSystemLabel';
-import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from '../admin_system_components/AdminSystemSelect/AdminSystemSelect';
-import { KpiCard } from '../admin_system_components/AdminSystemKpiCard/AdminSystemKpiCard';
+import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/app/admin/admin_system/admin_system_components/AdminSystemCard/AdminSystemCard';
+import { Button } from '@/app/admin/admin_system/admin_system_components/AdminSystemButton/AdminSystemButton';
+import { Badge } from '@/app/admin/admin_system/admin_system_components/AdminSystemBadge/AdminSystemBadge';
+import { Input } from '@/app/admin/admin_system/admin_system_components/AdminSystemInput/AdminSystemInput';
+import { Label } from '@/app/admin/admin_system/admin_system_components/AdminSystemLabel/AdminSystemLabel';
+import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from '@/app/admin/admin_system/admin_system_components/AdminSystemSelect/AdminSystemSelect';
+import { KpiCard } from '@/app/admin/admin_system/admin_system_components/AdminSystemKpiCard/AdminSystemKpiCard';
 import {
   MessageSquare, ChevronRight, Eye, EyeOff, Copy, CheckCircle,
   XCircle, Phone, Zap, BarChart3, Clock, Loader2

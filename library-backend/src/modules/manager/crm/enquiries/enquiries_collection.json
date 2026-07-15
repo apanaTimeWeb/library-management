@@ -1,0 +1,87 @@
+{
+  "info": {
+    "name": "Manager Enquiries Collection",
+    "description": "Postman collection for Manager Enquiries CRM module",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Get All Enquiries",
+      "request": {
+        "method": "GET",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{accessToken}}" }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/api/manager/crm/enquiries",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "manager", "crm", "enquiries"]
+        }
+      }
+    },
+    {
+      "name": "Get Enquiry By ID",
+      "request": {
+        "method": "GET",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{accessToken}}" }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/api/manager/crm/enquiries/123",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "manager", "crm", "enquiries", "123"]
+        }
+      }
+    },
+    {
+      "name": "Update Enquiry Status",
+      "request": {
+        "method": "PATCH",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" },
+          { "key": "Authorization", "value": "Bearer {{accessToken}}" }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/api/manager/crm/enquiries/123/status",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "manager", "crm", "enquiries", "123", "status"]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"status\": \"visited\",\n  \"reason\": \"Student visited the branch today\"\n}"
+        }
+      }
+    },
+    {
+      "name": "Add Follow Up",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" },
+          { "key": "Authorization", "value": "Bearer {{accessToken}}" }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/api/manager/crm/enquiries/123/follow-ups",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "manager", "crm", "enquiries", "123", "follow-ups"]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"date\": \"2026-07-20T10:00:00Z\",\n  \"remark\": \"Called but didn't answer\",\n  \"by\": \"Manager\"\n}"
+        }
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:3000",
+      "type": "string"
+    },
+    {
+      "key": "accessToken",
+      "value": "",
+      "type": "string"
+    }
+  ]
+}

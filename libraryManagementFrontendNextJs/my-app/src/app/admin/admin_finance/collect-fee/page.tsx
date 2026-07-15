@@ -5,7 +5,7 @@
 
 import { useState } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
-import { formatCurrency } from '../lib/format';
+import { formatCurrency } from '@/app/admin/admin_finance/lib/format';
 import { Search, CheckCircle, IndianRupee, BookOpen, MessageSquare, Printer, X } from 'lucide-react';
 import { openWhatsApp } from '@/lib/whatsappUtils';
 import { printThermal } from '@/lib/thermalPrint';
@@ -222,7 +222,7 @@ export default function CollectFee() {
                 </button>
                 <p className="fin-receipt-wa-hint">📱 +91-{maskPhone(receiptData.phone)} · {receiptData.studentName}</p>
                 <div className="fin-divider" />
-                <button className="fin-receipt-btn-secondary" onClick={handlePrintReceipt} style={{ width: '100%' }}>
+                <button className="fin-receipt-btn-secondary admin-w-full" onClick={handlePrintReceipt}>
                   <Printer size={15} /> Print Receipt (Thermal 80mm)
                 </button>
                 <button className="fin-receipt-btn-download" onClick={() => setReceiptData(null)} style={{ width: '100%', marginTop: 0 }}>

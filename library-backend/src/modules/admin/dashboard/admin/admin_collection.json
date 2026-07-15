@@ -1,0 +1,25 @@
+{
+  "info": {
+    "name": "Admin Dashboard Collection",
+    "description": "Postman collection for all 12 Admin Dashboard micro-endpoints",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    { "name": "Get Dashboard Data", "request": { "method": "GET", "header": [ { "key": "Authorization", "value": "Bearer {{accessToken}}" } ], "url": { "raw": "{{baseUrl}}/api/admin/dashboard/dashboard", "host": ["{{baseUrl}}"], "path": ["api", "admin", "dashboard", "dashboard"] } } },
+    { "name": "Get Reports Data", "request": { "method": "GET", "header": [ { "key": "Authorization", "value": "Bearer {{accessToken}}" } ], "url": { "raw": "{{baseUrl}}/api/admin/dashboard/reports", "host": ["{{baseUrl}}"], "path": ["api", "admin", "dashboard", "reports"] } } },
+    { "name": "Get Audit Logs", "request": { "method": "GET", "header": [ { "key": "Authorization", "value": "Bearer {{accessToken}}" } ], "url": { "raw": "{{baseUrl}}/api/admin/dashboard/audit-logs", "host": ["{{baseUrl}}"], "path": ["api", "admin", "dashboard", "audit-logs"] } } },
+    { "name": "Get Blacklist", "request": { "method": "GET", "header": [ { "key": "Authorization", "value": "Bearer {{accessToken}}" } ], "url": { "raw": "{{baseUrl}}/api/admin/dashboard/blacklist", "host": ["{{baseUrl}}"], "path": ["api", "admin", "dashboard", "blacklist"] } } },
+    { "name": "Get Branches", "request": { "method": "GET", "header": [ { "key": "Authorization", "value": "Bearer {{accessToken}}" } ], "url": { "raw": "{{baseUrl}}/api/admin/dashboard/branches", "host": ["{{baseUrl}}"], "path": ["api", "admin", "dashboard", "branches"] } } },
+    { "name": "Get Coupons", "request": { "method": "GET", "header": [ { "key": "Authorization", "value": "Bearer {{accessToken}}" } ], "url": { "raw": "{{baseUrl}}/api/admin/dashboard/coupons", "host": ["{{baseUrl}}"], "path": ["api", "admin", "dashboard", "coupons"] } } },
+    { "name": "Get Expense Categories", "request": { "method": "GET", "header": [ { "key": "Authorization", "value": "Bearer {{accessToken}}" } ], "url": { "raw": "{{baseUrl}}/api/admin/dashboard/expense-categories", "host": ["{{baseUrl}}"], "path": ["api", "admin", "dashboard", "expense-categories"] } } },
+    { "name": "Get Expenses", "request": { "method": "GET", "header": [ { "key": "Authorization", "value": "Bearer {{accessToken}}" } ], "url": { "raw": "{{baseUrl}}/api/admin/dashboard/expenses", "host": ["{{baseUrl}}"], "path": ["api", "admin", "dashboard", "expenses"] } } },
+    { "name": "Get Permissions", "request": { "method": "GET", "header": [ { "key": "Authorization", "value": "Bearer {{accessToken}}" } ], "url": { "raw": "{{baseUrl}}/api/admin/dashboard/permissions", "host": ["{{baseUrl}}"], "path": ["api", "admin", "dashboard", "permissions"] } } },
+    { "name": "Get Plans", "request": { "method": "GET", "header": [ { "key": "Authorization", "value": "Bearer {{accessToken}}" } ], "url": { "raw": "{{baseUrl}}/api/admin/dashboard/plans", "host": ["{{baseUrl}}"], "path": ["api", "admin", "dashboard", "plans"] } } },
+    { "name": "Get Staff Users", "request": { "method": "GET", "header": [ { "key": "Authorization", "value": "Bearer {{accessToken}}" } ], "url": { "raw": "{{baseUrl}}/api/admin/dashboard/staff-users", "host": ["{{baseUrl}}"], "path": ["api", "admin", "dashboard", "staff-users"] } } },
+    { "name": "Get Students", "request": { "method": "GET", "header": [ { "key": "Authorization", "value": "Bearer {{accessToken}}" } ], "url": { "raw": "{{baseUrl}}/api/admin/dashboard/students", "host": ["{{baseUrl}}"], "path": ["api", "admin", "dashboard", "students"] } } }
+  ],
+  "variable": [
+    { "key": "baseUrl", "value": "http://localhost:3000", "type": "string" },
+    { "key": "accessToken", "value": "", "type": "string" }
+  ]
+}

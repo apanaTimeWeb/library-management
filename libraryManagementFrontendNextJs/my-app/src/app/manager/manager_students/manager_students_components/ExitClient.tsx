@@ -3,8 +3,8 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { ArrowLeft, Search, LogOut, AlertTriangle } from 'lucide-react';
-import { fetchStudents } from '../manager_students_api/manager_students_api';
-import type { Student } from '../manager_students_types';
+import { fetchStudents } from '@/app/manager/manager_students/manager_students_api/manager_students_api';
+import type { Student } from '@/app/manager/manager_students/manager_students_types';
 
 export function ExitClient() {
   const [students, setStudents] = useState<Student[]>([]);

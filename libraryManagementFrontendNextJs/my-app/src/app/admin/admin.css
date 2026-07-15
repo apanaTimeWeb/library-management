@@ -1,7 +1,7 @@
 /* ─────────────────────────────────────────────
    SECTION 1 — Font Import
 ───────────────────────────────────────────── */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
 
 
 /* ─────────────────────────────────────────────
@@ -1654,3 +1654,15 @@
     padding-top: 74px;
   }
 }
+
+/* Auto-generated Utility Classes */
+.admin-flex { display: flex; }
+.admin-flex-col { display: flex; flex-direction: column; }
+.admin-gap-16 { gap: 16px; }
+.admin-gap-8 { gap: 8px; }
+.admin-w-full { width: 100%; }
+.admin-h-full { height: 100%; }
+.admin-flex-1 { flex: 1; }
+.admin-text-danger { color: var(--danger); }
+.admin-text-primary { color: var(--primary); }
+.admin-text-secondary { color: var(--text-secondary); }

@@ -3,7 +3,7 @@
 // DATA FLOW: Next.js Router -> Page -> Components
 
 import { useRouter } from 'next/navigation';
-import { formatCurrency, formatDate } from '../../lib/format';
+import { formatCurrency, formatDate } from '@/app/admin/admin_finance/lib/format';
 import { Printer, ArrowLeft, Send } from 'lucide-react';
 import { openWhatsApp } from '@/lib/whatsappUtils';
 import { printThermal } from '@/lib/thermalPrint';

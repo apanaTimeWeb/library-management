@@ -1,0 +1,17 @@
+{
+  "info": {
+    "name": "Superadmin Dashboard Collection",
+    "description": "Postman collection for all 4 Superadmin Dashboard micro-endpoints",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    { "name": "Get Dashboard", "request": { "method": "GET", "header": [ { "key": "Authorization", "value": "Bearer {{superadminAccessToken}}" } ], "url": { "raw": "{{baseUrl}}/api/superadmin/dashboard/dashboard", "host": ["{{baseUrl}}"], "path": ["api", "superadmin", "dashboard", "dashboard"] } } },
+    { "name": "Get Libraries", "request": { "method": "GET", "header": [ { "key": "Authorization", "value": "Bearer {{superadminAccessToken}}" } ], "url": { "raw": "{{baseUrl}}/api/superadmin/dashboard/libraries", "host": ["{{baseUrl}}"], "path": ["api", "superadmin", "dashboard", "libraries"] } } },
+    { "name": "Update Library", "request": { "method": "PUT", "header": [ { "key": "Authorization", "value": "Bearer {{superadminAccessToken}}"}, {"key": "Content-Type", "value": "application/json"} ], "body": {"mode": "raw", "raw": "{\n  \"name\": \"Updated Branch Name\",\n  \"address\": \"New Location\"\n}"}, "url": { "raw": "{{baseUrl}}/api/superadmin/dashboard/libraries/:id", "host": ["{{baseUrl}}"], "path": ["api", "superadmin", "dashboard", "libraries", ":id"], "variable": [{"key": "id", "value": "uuid"}] } } },
+    { "name": "Update Library Status", "request": { "method": "PUT", "header": [ { "key": "Authorization", "value": "Bearer {{superadminAccessToken}}"}, {"key": "Content-Type", "value": "application/json"} ], "body": {"mode": "raw", "raw": "{\n  \"isActive\": false\n}"}, "url": { "raw": "{{baseUrl}}/api/superadmin/dashboard/libraries/:id/status", "host": ["{{baseUrl}}"], "path": ["api", "superadmin", "dashboard", "libraries", ":id", "status"], "variable": [{"key": "id", "value": "uuid"}] } } }
+  ],
+  "variable": [
+    { "key": "baseUrl", "value": "http://localhost:3000", "type": "string" },
+    { "key": "superadminAccessToken", "value": "", "type": "string" }
+  ]
+}

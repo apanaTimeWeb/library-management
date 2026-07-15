@@ -4,7 +4,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { formatCurrency, formatDate } from '../lib/format';
+import { formatCurrency, formatDate } from '@/app/admin/admin_finance/lib/format';
 import { Search, FileText, Printer, Download, Eye, Send } from 'lucide-react';
 import { openWhatsApp } from '@/lib/whatsappUtils';
 import { printThermal } from '@/lib/thermalPrint';

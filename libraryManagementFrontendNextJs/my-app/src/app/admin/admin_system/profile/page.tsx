@@ -3,11 +3,11 @@
 // DATA FLOW: Next.js Router -> Page -> Components
 
 import { useState } from 'react';
-import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '../admin_system_components/AdminSystemCard/AdminSystemCard';
-import { Button } from '../admin_system_components/AdminSystemButton/AdminSystemButton';
-import { Input } from '../admin_system_components/AdminSystemInput/AdminSystemInput';
-import { Label } from '../admin_system_components/AdminSystemLabel/AdminSystemLabel';
-import { Progress } from '../admin_system_components/AdminSystemProgress/AdminSystemProgress';
+import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/app/admin/admin_system/admin_system_components/AdminSystemCard/AdminSystemCard';
+import { Button } from '@/app/admin/admin_system/admin_system_components/AdminSystemButton/AdminSystemButton';
+import { Input } from '@/app/admin/admin_system/admin_system_components/AdminSystemInput/AdminSystemInput';
+import { Label } from '@/app/admin/admin_system/admin_system_components/AdminSystemLabel/AdminSystemLabel';
+import { Progress } from '@/app/admin/admin_system/admin_system_components/AdminSystemProgress/AdminSystemProgress';
 import { User, Lock, Camera, Eye, EyeOff, ChevronRight } from 'lucide-react';
 
 function getStrength(pw: string): { score: number; label: string; color: string } {

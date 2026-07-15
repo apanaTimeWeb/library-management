@@ -1,5 +1,5 @@
 import { fetchApi } from '@/lib/api';
-import { ADMIN_API_ROUTES } from '../admin_url_config';
+import { ADMIN_API_ROUTES } from '@/app/admin/admin_url_config';
 
 /**
  * Fetches dashboard data.

@@ -5,12 +5,12 @@ import Link from 'next/link';
 import { UserPlus, Users2, Download } from 'lucide-react';
 import { AgGridReact } from 'ag-grid-react';
 import { AllCommunityModule, ModuleRegistry, type ColDef } from 'ag-grid-community';
-import { gridTheme } from '../../manager_reusable/gridTheme';
-import { useStudentsList } from '../manager_students_hooks/useStudentsList';
-import { STUDENT_STATUS_OPTIONS, STUDENT_SHIFT_OPTIONS } from '../manager_students_constants';
-import { MANAGER_ROUTES } from '../../manager_url_config';
-import { NameCell, ShiftCell, StatusCell, DueCell, ActionsCell } from './StudentsTableCells';
-import { ManagerStudentsEmptyState } from './ManagerStudentsEmptyState';
+import { gridTheme } from '@/app/manager/manager_reusable/gridTheme';
+import { useStudentsList } from '@/app/manager/manager_students/manager_students_hooks/useStudentsList';
+import { STUDENT_STATUS_OPTIONS, STUDENT_SHIFT_OPTIONS } from '@/app/manager/manager_students/manager_students_constants';
+import { MANAGER_ROUTES } from '@/app/manager/manager_url_config';
+import { NameCell, ShiftCell, StatusCell, DueCell, ActionsCell } from '@/app/manager/manager_students/manager_students_components/StudentsTableCells';
+import { ManagerStudentsEmptyState } from '@/app/manager/manager_students/manager_students_components/ManagerStudentsEmptyState';
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
