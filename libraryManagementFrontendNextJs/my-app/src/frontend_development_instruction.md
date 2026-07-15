@@ -210,8 +210,9 @@ Run with `strict: true`. No `@ts-ignore` or `@ts-nocheck`. (Mechanically enforce
 61. **No Direct `localStorage` in Components**:
 Never call `window.localStorage` directly inside a React component. Use a `useLocalStorage` hook.
 
-62. **Standardized `ApiResponse<T>` Generic**:
-Every API call must be typed using a global `ApiResponse<T>` generic interface.
+62. **Standardized `ApiResponse<T>` Generic (The API Contract)**:
+Every API call must be typed using a global `ApiResponse<T>` generic interface that perfectly matches the backend response envelope (Backend Rule 28). Both Success and Error responses must share this exact canonical shape:
+`{ success: boolean, message: string, data: T | null, meta?: PaginationMeta, error?: string, statusCode?: number }`
 
 63. **No Direct `router.push('/login')` in Components**:
 Handle unauthenticated redirects centrally in `middleware.ts` or an API interceptor.
