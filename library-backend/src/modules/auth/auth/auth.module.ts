@@ -19,6 +19,8 @@ import { RegisterService } from './services/register.service';
 import { RefreshTokenService } from './services/refresh-token.service';
 import { LogoutService } from './services/logout.service';
 import { GetMeService } from './services/get-me.service';
+import { ForgotPasswordService } from './services/forgot-password.service';
+import { ResetPasswordService } from './services/reset-password.service';
 import { JwtTokenGeneratorUtil } from './utils/jwt-token-generator.util';
 
 // Micro-Controllers
@@ -27,6 +29,8 @@ import { RegisterController } from './controllers/register.controller';
 import { RefreshTokenController } from './controllers/refresh-token.controller';
 import { LogoutController } from './controllers/logout.controller';
 import { GetMeController } from './controllers/get-me.controller';
+import { ForgotPasswordController } from './controllers/forgot-password.controller';
+import { ResetPasswordController } from './controllers/reset-password.controller';
 
 @Module({
   imports: [
@@ -53,6 +57,8 @@ import { GetMeController } from './controllers/get-me.controller';
     RefreshTokenService,
     LogoutService,
     GetMeService,
+    ForgotPasswordService,
+    ResetPasswordService,
     JwtTokenGeneratorUtil,
     JwtStrategy,
     RefreshTokenStrategy,
@@ -66,6 +72,8 @@ import { GetMeController } from './controllers/get-me.controller';
     RefreshTokenController,
     LogoutController,
     GetMeController,
+    ForgotPasswordController,
+    ResetPasswordController,
   ],
   exports: [JwtAuthGuard, RolesGuard, RefreshTokenGuard],
 })

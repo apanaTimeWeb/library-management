@@ -11,7 +11,7 @@ import { Roles } from '@/modules/auth/auth/decorators/roles.decorator';
 export class RegisterController {
   constructor(private readonly registerService: RegisterService) {}
 
-  @Post('register')
+  @Post('signup')
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Roles('superadmin')
   @ApiBearerAuth()
