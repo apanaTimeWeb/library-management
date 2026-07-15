@@ -21,13 +21,21 @@ import { ADMIN_STUDENTS_CONSTANTS } from '@/modules/admin/students/students/cons
 export class CreateStudentService {
   constructor(private readonly dataSource: DataSource) {}
 
-  async create(branchId: string | undefined, data: CreateStudentDto): Promise<Student> {
+  async create(
+    branchId: string | undefined,
+    data: CreateStudentDto,
+  ): Promise<Student> {
     return this.dataSource.transaction(async (manager) => {
-      const targetBranchId = branchId || ADMIN_STUDENTS_CONSTANTS.TESTING_BRANCH_ID;
-      const branch = await manager.findOne(Branch, { where: { id: targetBranchId } });
+      const targetBranchId =
+        branchId || ADMIN_STUDENTS_CONSTANTS.TESTING_BRANCH_ID;
+      const branch = await manager.findOne(Branch, {
+        where: { id: targetBranchId },
+      });
       if (!branch) throw new BranchNotFoundException();
 
-      const totalStudents = await manager.count(Student, { where: { branch: { id: targetBranchId } } });
+      const totalStudents = await manager.count(Student, {
+        where: { branch: { id: targetBranchId } },
+      });
       const smartId = `LIB${String(totalStudents + 1).padStart(3, '0')}`;
 
       const student = manager.create(Student, {
@@ -44,26 +52,32 @@ export class CreateStudentService {
       let shift: Shift | null = null;
       if (data.shift) {
         const shiftStr = data.shift.split(' ')[0];
-        shift = await manager.findOne(Shift, { where: { name: shiftStr, branch: { id: targetBranchId } } });
+        shift = await manager.findOne(Shift, {
+          where: { name: shiftStr, branch: { id: targetBranchId } },
+        });
         if (!shift) throw new ShiftNotFoundException();
       }
 
       let seat: Seat | null = null;
       if (data.seat) {
-        seat = await manager.findOne(Seat, { where: { seatNumber: data.seat, branch: { id: targetBranchId } } });
+        seat = await manager.findOne(Seat, {
+          where: { seatNumber: data.seat, branch: { id: targetBranchId } },
+        });
         if (!seat) throw new SeatNotFoundException();
       }
 
       let plan: Plan | null = null;
       if (data.plan) {
-        plan = await manager.findOne(Plan, { where: { name: data.plan, branch: { id: targetBranchId } } });
+        plan = await manager.findOne(Plan, {
+          where: { name: data.plan, branch: { id: targetBranchId } },
+        });
         if (!plan) throw new PlanNotFoundException();
       }
 
       if (shift && seat && plan) {
         const durationDays = plan.durationDays || 30;
         const validTill = new Date();
-        validTill.setMonth(validTill.getMonth() + (durationDays / 30));
+        validTill.setMonth(validTill.getMonth() + durationDays / 30);
 
         const slot = manager.create(StudentSlot, {
           student,
@@ -78,7 +92,7 @@ export class CreateStudentService {
       if (plan) {
         const durationDays = plan.durationDays || 30;
         const endDate = new Date();
-        endDate.setMonth(endDate.getMonth() + (durationDays / 30));
+        endDate.setMonth(endDate.getMonth() + durationDays / 30);
 
         const manualDiscount = Number(data.manualDiscount) || 0;
         const amountPaid = Number(data.amountPaid) || 0;

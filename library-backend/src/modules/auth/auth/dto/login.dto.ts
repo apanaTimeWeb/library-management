@@ -7,7 +7,10 @@ export class LoginDto {
   @IsNotEmpty()
   phone: string;
 
-  @ApiProperty({ example: 'MyP@ssw0rd!', description: 'User password (min 8 chars)' })
+  @ApiProperty({
+    example: 'MyP@ssw0rd!',
+    description: 'User password (min 8 chars)',
+  })
   @IsString()
   @IsNotEmpty()
   @MinLength(8)

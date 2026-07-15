@@ -38,13 +38,19 @@ export class AuditSubscriber implements EntitySubscriberInterface {
     }
   }
 
-  private async logAction(event: any, action: string, oldValues: any, newValues: any) {
+  private async logAction(
+    event: any,
+    action: string,
+    oldValues: any,
+    newValues: any,
+  ) {
     try {
       const manager = event.manager;
       if (!manager) return;
 
       const entityName = event.metadata.name;
-      const entityId = (newValues && newValues.id) || (oldValues && oldValues.id) || 'UNKNOWN';
+      const entityId =
+        (newValues && newValues.id) || (oldValues && oldValues.id) || 'UNKNOWN';
 
       const log = new AuditLog();
       log.entity = entityName;
@@ -52,7 +58,7 @@ export class AuditSubscriber implements EntitySubscriberInterface {
       log.action = action;
       log.oldValues = oldValues ? this.sanitize(oldValues) : null;
       log.newValues = newValues ? this.sanitize(newValues) : null;
-      
+
       // In a real subscriber, capturing performedBy requires CLS (AsyncLocalStorage)
       // or passing user data to the repo.save() method via `{ data: { user } }`.
       const queryRunnerData = event.queryRunner?.data;
@@ -71,7 +77,12 @@ export class AuditSubscriber implements EntitySubscriberInterface {
 
   private sanitize(obj: any): any {
     const copy = { ...obj };
-    const sensitiveFields = ['password', 'refreshTokenHash', 'token', 'refreshToken'];
+    const sensitiveFields = [
+      'password',
+      'refreshTokenHash',
+      'token',
+      'refreshToken',
+    ];
     for (const field of sensitiveFields) {
       if (field in copy) {
         copy[field] = '***';

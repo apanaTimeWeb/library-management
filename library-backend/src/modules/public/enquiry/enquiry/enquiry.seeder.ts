@@ -14,8 +14,10 @@ export class EnquirySeeder {
 
   async seed() {
     this.logger.log('Seeding Public Enquiry...');
-    const existingEnquiry = await this.enquiryRepository.findOne({ where: { phone: '0000000000' } });
-    
+    const existingEnquiry = await this.enquiryRepository.findOne({
+      where: { phone: '0000000000' },
+    });
+
     if (!existingEnquiry) {
       const newEnquiry = this.enquiryRepository.create({
         name: 'Seed Enquiry User',

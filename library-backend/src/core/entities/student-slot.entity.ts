@@ -14,7 +14,6 @@ import { Locker } from './/locker.entity';
 
 @Entity()
 export class StudentSlot extends BaseEntity {
-
   @ManyToOne(() => Student, (student) => student.slots, { onDelete: 'CASCADE' })
   student: Student;
 

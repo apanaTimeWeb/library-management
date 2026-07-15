@@ -13,7 +13,6 @@ import { User } from './/user.entity';
 
 @Entity()
 export class Payment extends BaseEntity {
-
   @ManyToOne(() => Student)
   student: Student;
 

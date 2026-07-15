@@ -9,11 +9,13 @@ describe('GetAllEnquiriesController', () => {
     const module: TestingModule = await Test.createTestingModule({
       controllers: [GetAllEnquiriesController],
       providers: [
-        { provide: GetAllEnquiriesService, useValue: { execute: jest.fn() } }
-      ]
+        { provide: GetAllEnquiriesService, useValue: { execute: jest.fn() } },
+      ],
     }).compile();
 
-    controller = module.get<GetAllEnquiriesController>(GetAllEnquiriesController);
+    controller = module.get<GetAllEnquiriesController>(
+      GetAllEnquiriesController,
+    );
   });
 
   it('should be defined', () => {

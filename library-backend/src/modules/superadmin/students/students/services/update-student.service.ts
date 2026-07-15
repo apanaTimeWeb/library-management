@@ -8,15 +8,20 @@ import { UpdateStudentDto } from '@/modules/superadmin/students/students/dto/upd
 @Injectable()
 export class UpdateStudentService {
   constructor(
-    @InjectRepository(Student) private readonly studentRepo: Repository<Student>,
+    @InjectRepository(Student)
+    private readonly studentRepo: Repository<Student>,
   ) {}
 
-  async update(id: string, branchId: string, data: UpdateStudentDto): Promise<Student> {
+  async update(
+    id: string,
+    branchId: string,
+    data: UpdateStudentDto,
+  ): Promise<Student> {
     const student = await this.studentRepo.findOne({
-      where: { id, branch: { id: branchId } }
+      where: { id, branch: { id: branchId } },
     });
     if (!student) throw new StudentNotFoundException();
-    
+
     if (data.name) student.name = data.name;
     if (data.phone) student.phone = data.phone;
     if (data.parentPhone !== undefined) student.parentPhone = data.parentPhone;

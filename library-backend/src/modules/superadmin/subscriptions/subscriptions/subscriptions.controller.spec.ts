@@ -9,7 +9,9 @@ describe('SuperadminSubscriptionsController', () => {
       controllers: [SuperadminSubscriptionsController],
     }).compile();
 
-    controller = module.get<SuperadminSubscriptionsController>(SuperadminSubscriptionsController);
+    controller = module.get<SuperadminSubscriptionsController>(
+      SuperadminSubscriptionsController,
+    );
   });
 
   it('should be defined', () => {

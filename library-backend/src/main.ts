@@ -21,21 +21,21 @@ async function bootstrap() {
         ? {
             directives: {
               defaultSrc: ["'self'"],
-              scriptSrc:  ["'self'"],
-              styleSrc:   ["'self'", "'unsafe-inline'"],
-              imgSrc:     ["'self'", 'data:', 'https:'],
+              scriptSrc: ["'self'"],
+              styleSrc: ["'self'", "'unsafe-inline'"],
+              imgSrc: ["'self'", 'data:', 'https:'],
               // ✅ In production: only allow your own domain + frontend domain
               connectSrc: ["'self'", 'https://admin.smartlibrary.com'],
-              frameSrc:   ["'none'"],
-              objectSrc:  ["'none'"],
+              frameSrc: ["'none'"],
+              objectSrc: ["'none'"],
             },
           }
         : false, // ✅ Disable CSP in development — it was blocking all cross-origin fetches!
       hsts: isProduction
         ? { maxAge: 31536000, includeSubDomains: true, preload: true }
         : false,
-      frameguard:     { action: 'deny' },
-      noSniff:        true,
+      frameguard: { action: 'deny' },
+      noSniff: true,
       referrerPolicy: { policy: 'strict-origin-when-cross-origin' },
     }),
   );
@@ -43,7 +43,10 @@ async function bootstrap() {
   // ── Cache-Control for Protected API Routes ──────────────────────────────────
   app.use((req: any, res: any, next: any) => {
     if (req.path.startsWith('/api')) {
-      res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
+      res.setHeader(
+        'Cache-Control',
+        'no-store, no-cache, must-revalidate, proxy-revalidate',
+      );
       res.setHeader('Pragma', 'no-cache');
       res.setHeader('Expires', '0');
       res.setHeader('Surrogate-Control', 'no-store');
@@ -63,9 +66,9 @@ async function bootstrap() {
     : true;
 
   app.enableCors({
-    origin:     allowedOrigins,
+    origin: allowedOrigins,
     credentials: true,
-    methods:     ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+    methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
     // ✅ Added 'Cache-Control' and 'Pragma' — required for CORS preflight to pass
     allowedHeaders: [
       'Content-Type',
@@ -86,10 +89,10 @@ async function bootstrap() {
   // ── Global Validation Pipe ──────────────────────────────────────────────────
   app.useGlobalPipes(
     new ValidationPipe({
-      whitelist:            true,
-      transform:            true,
+      whitelist: true,
+      transform: true,
       forbidNonWhitelisted: true,
-      transformOptions:     { enableImplicitConversion: true },
+      transformOptions: { enableImplicitConversion: true },
     }),
   );
 

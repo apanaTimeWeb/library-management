@@ -7,7 +7,8 @@ import { StudentListItem } from '@/modules/superadmin/students/students/interfac
 @Injectable()
 export class GetAllStudentsService {
   constructor(
-    @InjectRepository(Student) private readonly studentRepo: Repository<Student>,
+    @InjectRepository(Student)
+    private readonly studentRepo: Repository<Student>,
   ) {}
 
   async findAll(branchId?: string): Promise<StudentListItem[]> {
@@ -16,13 +17,15 @@ export class GetAllStudentsService {
       relations: {
         branch: true,
         subscriptions: { plan: true },
-        slots: { seat: true, shift: true }
+        slots: { seat: true, shift: true },
       },
-      order: { createdAt: 'DESC' }
+      order: { createdAt: 'DESC' },
     });
 
-    return students.map(s => {
-      const activeSub = s.subscriptions?.find(sub => sub.status === 'active') || s.subscriptions?.[0];
+    return students.map((s) => {
+      const activeSub =
+        s.subscriptions?.find((sub) => sub.status === 'active') ||
+        s.subscriptions?.[0];
       const activeSlot = s.slots?.[0];
 
       return {

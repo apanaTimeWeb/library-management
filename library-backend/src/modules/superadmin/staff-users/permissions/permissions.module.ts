@@ -4,6 +4,6 @@ import { SuperadminPermissionsController } from './permissions.controller';
 
 @Module({
   providers: [SuperadminPermissionsService],
-  controllers: [SuperadminPermissionsController]
+  controllers: [SuperadminPermissionsController],
 })
 export class SuperadminPermissionsModule {}

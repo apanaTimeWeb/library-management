@@ -17,8 +17,13 @@ export class UpdateStudentController {
   @Patch(':id')
   @Roles('superadmin', 'admin', 'manager')
   @ApiOperation({ summary: 'Update student' })
-  async updateStudent(@Param('id') id: string, @Body() data: UpdateStudentDto, @Req() req: any): Promise<Student> {
-    const branchId = req.user?.branchId || '8a0c079e-1fca-476b-8390-58c5b8c29d08';
+  async updateStudent(
+    @Param('id') id: string,
+    @Body() data: UpdateStudentDto,
+    @Req() req: any,
+  ): Promise<Student> {
+    const branchId =
+      req.user?.branchId || '8a0c079e-1fca-476b-8390-58c5b8c29d08';
     return this.service.update(id, branchId, data);
   }
 }

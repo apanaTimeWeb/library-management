@@ -16,7 +16,6 @@ import { Subscription } from './/subscription.entity';
 @Entity()
 @Unique(['branch', 'smartId'])
 export class Student extends BaseEntity {
-
   @Column()
   smartId: string; // LIB001, LIB002
 

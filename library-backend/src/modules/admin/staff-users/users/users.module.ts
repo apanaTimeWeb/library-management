@@ -17,9 +17,7 @@ import { GetUserController } from './controllers/get-user.controller';
 import { GetAllUsersController } from './controllers/get-all-users.controller';
 
 @Module({
-  imports: [
-    TypeOrmModule.forFeature([User]),
-  ],
+  imports: [TypeOrmModule.forFeature([User])],
   providers: [
     CreateUserService,
     UpdateUserService,

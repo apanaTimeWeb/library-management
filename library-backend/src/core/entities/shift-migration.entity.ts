@@ -14,7 +14,6 @@ import { User } from './/user.entity';
 
 @Entity()
 export class ShiftMigration extends BaseEntity {
-
   @ManyToOne(() => Student)
   student: Student;
 

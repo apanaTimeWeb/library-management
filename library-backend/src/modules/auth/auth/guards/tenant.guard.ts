@@ -41,7 +41,11 @@ export class TenantGuard implements CanActivate {
       request.params?.tenantId;
 
     // If a tenantId is specified in request, it must match the user's tenantId from JWT
-    if (requestedTenantId && user.tenantId && requestedTenantId !== user.tenantId) {
+    if (
+      requestedTenantId &&
+      user.tenantId &&
+      requestedTenantId !== user.tenantId
+    ) {
       throw new ForbiddenException(
         'Cross-tenant access denied. You can only access your own library data.',
       );

@@ -17,28 +17,83 @@ export class StudentReportsService {
 
   async getStudentReportsData(): Promise<StudentReportsResponse> {
     const totalStudents = await this.studentRepo.count();
-    const activeStudents = await this.studentRepo.count({ where: { status: 'Active' } });
-    
-    let totalComplaints = await this.complaintRepo.count();
+    const activeStudents = await this.studentRepo.count({
+      where: { status: 'Active' },
+    });
+
+    const totalComplaints = await this.complaintRepo.count();
     if (totalComplaints === 0) {
       await this.complaintRepo.save([
-        this.complaintRepo.create({ title: 'Internet slow', description: 'Wi-Fi is very slow in Hall A', status: COMPLAINT_STATUS.OPEN, isAnonymous: false }),
-        this.complaintRepo.create({ title: 'AC not working', description: 'AC unit 2 is broken', status: COMPLAINT_STATUS.OPEN, isAnonymous: true }),
-        this.complaintRepo.create({ title: 'Cleanliness', description: 'Restrooms need cleaning', status: COMPLAINT_STATUS.RESOLVED, isAnonymous: false }),
-        this.complaintRepo.create({ title: 'Noise issue', description: 'People talking in quiet zone', status: COMPLAINT_STATUS.RESOLVED, isAnonymous: true }),
-        this.complaintRepo.create({ title: 'Chair broken', description: 'Chair 45 is broken', status: COMPLAINT_STATUS.RESOLVED, isAnonymous: false })
+        this.complaintRepo.create({
+          title: 'Internet slow',
+          description: 'Wi-Fi is very slow in Hall A',
+          status: COMPLAINT_STATUS.OPEN,
+          isAnonymous: false,
+        }),
+        this.complaintRepo.create({
+          title: 'AC not working',
+          description: 'AC unit 2 is broken',
+          status: COMPLAINT_STATUS.OPEN,
+          isAnonymous: true,
+        }),
+        this.complaintRepo.create({
+          title: 'Cleanliness',
+          description: 'Restrooms need cleaning',
+          status: COMPLAINT_STATUS.RESOLVED,
+          isAnonymous: false,
+        }),
+        this.complaintRepo.create({
+          title: 'Noise issue',
+          description: 'People talking in quiet zone',
+          status: COMPLAINT_STATUS.RESOLVED,
+          isAnonymous: true,
+        }),
+        this.complaintRepo.create({
+          title: 'Chair broken',
+          description: 'Chair 45 is broken',
+          status: COMPLAINT_STATUS.RESOLVED,
+          isAnonymous: false,
+        }),
       ]);
     }
 
-    const openComplaints = await this.complaintRepo.count({ where: { status: COMPLAINT_STATUS.OPEN } });
-    const resolvedComplaints = await this.complaintRepo.count({ where: { status: COMPLAINT_STATUS.RESOLVED } });
+    const openComplaints = await this.complaintRepo.count({
+      where: { status: COMPLAINT_STATUS.OPEN },
+    });
+    const resolvedComplaints = await this.complaintRepo.count({
+      where: { status: COMPLAINT_STATUS.RESOLVED },
+    });
 
     return {
       kpiCards: [
-        { title: 'Total Students', value: totalStudents.toString(), icon: 'Users', color: '#6366f1', trend: '+12% from last month' },
-        { title: 'Active Students', value: activeStudents.toString(), icon: 'Users', color: '#10b981', trend: '+5% from last month' },
-        { title: 'New Admissions', value: '24', icon: 'UserPlus', color: '#f59e0b', trend: 'This month' },
-        { title: 'Open Complaints', value: openComplaints.toString(), icon: 'Phone', color: '#ef4444', trend: 'Needs attention' },
+        {
+          title: 'Total Students',
+          value: totalStudents.toString(),
+          icon: 'Users',
+          color: '#6366f1',
+          trend: '+12% from last month',
+        },
+        {
+          title: 'Active Students',
+          value: activeStudents.toString(),
+          icon: 'Users',
+          color: '#10b981',
+          trend: '+5% from last month',
+        },
+        {
+          title: 'New Admissions',
+          value: '24',
+          icon: 'UserPlus',
+          color: '#f59e0b',
+          trend: 'This month',
+        },
+        {
+          title: 'Open Complaints',
+          value: openComplaints.toString(),
+          icon: 'Phone',
+          color: '#ef4444',
+          trend: 'Needs attention',
+        },
       ],
       shiftOccupancyData: [
         { name: 'Morning', occupancy: 85 },
@@ -68,8 +123,22 @@ export class StudentReportsService {
         { name: 'Resolved', value: resolvedComplaints },
       ],
       absenteeReportData: [
-        { id: 1, name: 'Rahul K.', smartId: 'ST-001', daysAbsent: 4, lastPresent: '2026-07-10', shift: 'Morning' },
-        { id: 2, name: 'Amit M.', smartId: 'ST-002', daysAbsent: 3, lastPresent: '2026-07-11', shift: 'Evening' },
+        {
+          id: 1,
+          name: 'Rahul K.',
+          smartId: 'ST-001',
+          daysAbsent: 4,
+          lastPresent: '2026-07-10',
+          shift: 'Morning',
+        },
+        {
+          id: 2,
+          name: 'Amit M.',
+          smartId: 'ST-002',
+          daysAbsent: 3,
+          lastPresent: '2026-07-11',
+          shift: 'Evening',
+        },
       ],
       enquiryConversionData: [
         { id: 1, month: 'January', new: 150, converted: 45 },
@@ -84,9 +153,21 @@ export class StudentReportsService {
         { id: 2, type: 'Large', occupied: 18, total: 20, pct: '90%' },
       ],
       maintenanceData: [
-        { id: 1, item: 'AC Unit 1', location: 'Hall A', reported: '2026-07-12', priority: 'High' },
-        { id: 2, item: 'Chair #45', location: 'Hall B', reported: '2026-07-10', priority: 'Medium' },
-      ]
+        {
+          id: 1,
+          item: 'AC Unit 1',
+          location: 'Hall A',
+          reported: '2026-07-12',
+          priority: 'High',
+        },
+        {
+          id: 2,
+          item: 'Chair #45',
+          location: 'Hall B',
+          reported: '2026-07-10',
+          priority: 'Medium',
+        },
+      ],
     };
   }
 }

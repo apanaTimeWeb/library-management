@@ -4,6 +4,6 @@ import { Locker } from '@/core/entities/locker.entity';
 
 @Module({
   imports: [TypeOrmModule.forFeature([Locker])],
-  providers: []
+  providers: [],
 })
 export class AdminLockersModule {}

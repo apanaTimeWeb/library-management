@@ -1,4 +1,8 @@
-import { Injectable, ConflictException, BadRequestException } from '@nestjs/common';
+import {
+  Injectable,
+  ConflictException,
+  BadRequestException,
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import * as bcrypt from 'bcrypt';
@@ -6,7 +10,10 @@ import { User } from '@/core/entities/user.entity';
 import { Role } from '@/core/entities/role.entity';
 import { Branch } from '@/core/entities/branch.entity';
 import { RegisterDto } from '@/modules/auth/auth/dto/register.dto';
-import { AUTH_CONSTANTS, AUTH_ERRORS } from '@/modules/auth/auth/constants/auth.constants';
+import {
+  AUTH_CONSTANTS,
+  AUTH_ERRORS,
+} from '@/modules/auth/auth/constants/auth.constants';
 
 @Injectable()
 export class RegisterService {
@@ -20,7 +27,9 @@ export class RegisterService {
   ) {}
 
   async register(dto: RegisterDto) {
-    const existing = await this.userRepo.findOne({ where: { phone: dto.phone } });
+    const existing = await this.userRepo.findOne({
+      where: { phone: dto.phone },
+    });
     if (existing) {
       throw new ConflictException(AUTH_ERRORS.USER_ALREADY_EXISTS);
     }
@@ -38,7 +47,10 @@ export class RegisterService {
       }
     }
 
-    const passwordHash = await bcrypt.hash(dto.password, AUTH_CONSTANTS.BCRYPT_COST);
+    const passwordHash = await bcrypt.hash(
+      dto.password,
+      AUTH_CONSTANTS.BCRYPT_COST,
+    );
 
     const user = this.userRepo.create({
       phone: dto.phone,

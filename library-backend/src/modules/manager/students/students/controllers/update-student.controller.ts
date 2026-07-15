@@ -1,4 +1,12 @@
-import { Controller, Patch, Param, Body, Req, UseGuards, ValidationPipe } from '@nestjs/common';
+import {
+  Controller,
+  Patch,
+  Param,
+  Body,
+  Req,
+  UseGuards,
+  ValidationPipe,
+} from '@nestjs/common';
 import { UpdateStudentService } from '@/modules/manager/students/students/services/update-student.service';
 import { JwtAuthGuard } from '@/modules/auth/auth/guards/jwt-auth.guard';
 import { RolesGuard } from '@/modules/auth/auth/guards/roles.guard';
@@ -10,13 +18,14 @@ import { UpdateStudentDto } from '@/modules/manager/students/students/dto/update
 export class UpdateStudentController {
   constructor(private readonly updateStudentService: UpdateStudentService) {}
 
+  // SLA: FAST
   @Patch(':id')
   @Roles('superadmin', 'admin', 'manager')
   async updateStudent(
-    @Param('id') id: string, 
-    @Body(new ValidationPipe({ whitelist: true })) data: UpdateStudentDto, 
-    @Req() req: any
-  ) {
+    @Param('id') id: string,
+    @Body(new ValidationPipe({ whitelist: true })) data: UpdateStudentDto,
+    @Req() req: any,
+  ): Promise<any> {
     return this.updateStudentService.update(id, req.user?.branchId, data);
   }
 }

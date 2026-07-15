@@ -12,7 +12,6 @@ import { Student } from './/student.entity';
 
 @Entity()
 export class Enquiry extends BaseEntity {
-
   @Column()
   name: string;
 

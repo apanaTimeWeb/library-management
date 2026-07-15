@@ -4,6 +4,6 @@ import { SuperadminPlansController } from './plans.controller';
 
 @Module({
   providers: [SuperadminPlansService],
-  controllers: [SuperadminPlansController]
+  controllers: [SuperadminPlansController],
 })
 export class SuperadminPlansModule {}

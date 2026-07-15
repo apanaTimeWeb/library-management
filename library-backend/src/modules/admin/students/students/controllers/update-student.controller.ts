@@ -16,7 +16,11 @@ export class UpdateStudentController {
   @Patch(':id')
   @Roles('superadmin', 'admin', 'manager')
   @ApiOperation({ summary: 'Update a student' })
-  async updateStudent(@Param('id') id: string, @Body() data: UpdateStudentDto, @Req() req: any): Promise<any> {
+  async updateStudent(
+    @Param('id') id: string,
+    @Body() data: UpdateStudentDto,
+    @Req() req: any,
+  ): Promise<any> {
     return this.updateStudentService.update(id, req.user?.branchId, data);
   }
 }

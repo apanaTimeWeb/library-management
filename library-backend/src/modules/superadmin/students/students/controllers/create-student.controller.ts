@@ -17,8 +17,12 @@ export class CreateStudentController {
   @Post()
   @Roles('superadmin', 'admin', 'manager')
   @ApiOperation({ summary: 'Create student' })
-  async createStudent(@Body() data: CreateStudentDto, @Req() req: any): Promise<Student> {
-    const branchId = req.user?.branchId || '8a0c079e-1fca-476b-8390-58c5b8c29d08';
+  async createStudent(
+    @Body() data: CreateStudentDto,
+    @Req() req: any,
+  ): Promise<Student> {
+    const branchId =
+      req.user?.branchId || '8a0c079e-1fca-476b-8390-58c5b8c29d08';
     return this.service.create(branchId, data);
   }
 }

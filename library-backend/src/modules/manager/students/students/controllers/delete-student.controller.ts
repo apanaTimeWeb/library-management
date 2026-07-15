@@ -9,9 +9,10 @@ import { Roles } from '@/modules/auth/auth/decorators/roles.decorator';
 export class DeleteStudentController {
   constructor(private readonly deleteStudentService: DeleteStudentService) {}
 
+  // SLA: FAST
   @Delete(':id')
   @Roles('superadmin', 'admin', 'manager')
-  async deleteStudent(@Param('id') id: string, @Req() req: any) {
+  async deleteStudent(@Param('id') id: string, @Req() req: any): Promise<any> {
     return this.deleteStudentService.remove(id, req.user?.branchId);
   }
 }

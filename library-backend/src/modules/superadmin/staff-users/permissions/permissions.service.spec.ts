@@ -9,7 +9,9 @@ describe('SuperadminPermissionsService', () => {
       providers: [SuperadminPermissionsService],
     }).compile();
 
-    service = module.get<SuperadminPermissionsService>(SuperadminPermissionsService);
+    service = module.get<SuperadminPermissionsService>(
+      SuperadminPermissionsService,
+    );
   });
 
   it('should be defined', () => {

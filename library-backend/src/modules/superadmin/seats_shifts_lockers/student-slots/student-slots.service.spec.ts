@@ -9,7 +9,9 @@ describe('SuperadminStudentSlotsService', () => {
       providers: [SuperadminStudentSlotsService],
     }).compile();
 
-    service = module.get<SuperadminStudentSlotsService>(SuperadminStudentSlotsService);
+    service = module.get<SuperadminStudentSlotsService>(
+      SuperadminStudentSlotsService,
+    );
   });
 
   it('should be defined', () => {

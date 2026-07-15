@@ -13,15 +13,14 @@ import { User } from './/user.entity';
  * Audit Log Entity
  * Stores every critical action in the system.
  * Never log: passwords, JWTs, refresh tokens, OTPs.
- * 
+ *
  * Tracks: Login, Logout, Payment, Student Delete/Update, Seat Change,
  *         Expense, Role Change, Permission Change, etc.
  */
 @Entity('audit_logs')
 @Index(['tenantId', 'createdAt']) // Fast queries per tenant
-@Index(['entity', 'entityId'])   // Fast queries per record
+@Index(['entity', 'entityId']) // Fast queries per record
 export class AuditLog extends BaseEntity {
-
   // What entity was affected
   @Column()
   entity: string; // e.g., 'Student', 'Payment', 'Seat', 'User', 'Role'

@@ -21,8 +21,10 @@ export class UpdateUserService {
     Object.assign(user, {
       ...updateUserDto,
       role: updateUserDto.roleId ? { id: updateUserDto.roleId } : user.role,
-      branch: updateUserDto.branchId ? { id: updateUserDto.branchId } : user.branch,
-      tenant: updateUserDto.tenantId ? { id: updateUserDto.tenantId } : user.tenant,
+      branch: updateUserDto.branchId
+        ? { id: updateUserDto.branchId }
+        : user.branch,
+      tenantId: updateUserDto.tenantId ? updateUserDto.tenantId : user.tenantId,
     });
 
     return this.userRepository.save(user);

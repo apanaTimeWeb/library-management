@@ -16,7 +16,10 @@ export class GetStudentController {
   @Get(':id')
   @Roles('superadmin', 'admin', 'manager')
   @ApiOperation({ summary: 'Get student by ID or SmartID' })
-  async getStudentById(@Param('id') id: string, @Req() req: any): Promise<StudentDetailItem> {
+  async getStudentById(
+    @Param('id') id: string,
+    @Req() req: any,
+  ): Promise<StudentDetailItem> {
     return this.getStudentService.findOne(id, req.user?.branchId);
   }
 }

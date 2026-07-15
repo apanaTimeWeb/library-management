@@ -4,6 +4,6 @@ import { AdminShiftsController } from './shifts.controller';
 
 @Module({
   providers: [AdminShiftsService],
-  controllers: [AdminShiftsController]
+  controllers: [AdminShiftsController],
 })
 export class AdminShiftsModule {}

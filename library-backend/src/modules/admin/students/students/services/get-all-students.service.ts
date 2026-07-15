@@ -13,8 +13,17 @@ export class GetAllStudentsService {
     private readonly studentRepo: Repository<Student>,
   ) {}
 
-  async findAll(branchId?: string, paginationDto?: PaginationDto): Promise<PaginatedResponse<StudentListItem>> {
-    const { page = 1, limit = 10, search, sortBy, sortOrder = 'DESC' } = paginationDto || {};
+  async findAll(
+    branchId?: string,
+    paginationDto?: PaginationDto,
+  ): Promise<PaginatedResponse<StudentListItem>> {
+    const {
+      page = 1,
+      limit = 10,
+      search,
+      sortBy,
+      sortOrder = 'DESC',
+    } = paginationDto || {};
     const skip = (page - 1) * limit;
 
     const where: any = branchId ? { branch: { id: branchId } } : {};
@@ -34,15 +43,17 @@ export class GetAllStudentsService {
       relations: {
         branch: true,
         subscriptions: { plan: true },
-        slots: { seat: true, shift: true }
+        slots: { seat: true, shift: true },
       },
       order,
       skip,
       take: limit,
     });
 
-    const data = students.map(s => {
-      const activeSub = s.subscriptions?.find(sub => sub.status === 'active') || s.subscriptions?.[0];
+    const data = students.map((s) => {
+      const activeSub =
+        s.subscriptions?.find((sub) => sub.status === 'active') ||
+        s.subscriptions?.[0];
       const activeSlot = s.slots?.[0];
 
       return {
@@ -69,8 +80,8 @@ export class GetAllStudentsService {
         total,
         page,
         limit,
-        totalPages: Math.ceil(total / limit)
-      }
+        totalPages: Math.ceil(total / limit),
+      },
     };
   }
 }

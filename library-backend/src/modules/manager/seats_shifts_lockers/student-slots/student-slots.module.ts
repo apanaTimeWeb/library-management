@@ -7,6 +7,6 @@ import { StudentSlot } from '@/core/entities/student-slot.entity';
 @Module({
   imports: [TypeOrmModule.forFeature([StudentSlot])],
   providers: [ManagerStudentSlotsService],
-  controllers: [ManagerStudentSlotsController]
+  controllers: [ManagerStudentSlotsController],
 })
 export class ManagerStudentSlotsModule {}

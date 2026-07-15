@@ -14,9 +14,10 @@ import { Roles } from '@/modules/auth/auth/decorators/roles.decorator';
 export class StudentReportsController {
   constructor(private readonly studentReportsService: StudentReportsService) {}
 
+  // SLA: FAST
   @Get('student-reports')
   @ApiOperation({ summary: 'Student reports' })
-  async getStudentReports() {
+  async getStudentReports(): Promise<any> {
     return this.studentReportsService.getStudentReportsData();
   }
 }

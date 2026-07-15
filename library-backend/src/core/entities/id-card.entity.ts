@@ -12,7 +12,6 @@ import { User } from './/user.entity';
 
 @Entity()
 export class IDCard extends BaseEntity {
-
   @ManyToOne(() => Student)
   student: Student;
 

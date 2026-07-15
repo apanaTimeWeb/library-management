@@ -10,7 +10,10 @@ import { Request } from 'express';
  * Passes the raw token + payload to validate() for DB hash comparison.
  */
 @Injectable()
-export class RefreshTokenStrategy extends PassportStrategy(Strategy, 'jwt-refresh') {
+export class RefreshTokenStrategy extends PassportStrategy(
+  Strategy,
+  'jwt-refresh',
+) {
   constructor(private configService: ConfigService) {
     const secret = configService.get<string>('JWT_REFRESH_SECRET');
     if (!secret) {
@@ -25,7 +28,8 @@ export class RefreshTokenStrategy extends PassportStrategy(Strategy, 'jwt-refres
 
   async validate(req: Request, payload: any) {
     const authHeader = req.get('Authorization');
-    if (!authHeader) throw new UnauthorizedException('No refresh token provided');
+    if (!authHeader)
+      throw new UnauthorizedException('No refresh token provided');
     const refreshToken = authHeader.replace('Bearer', '').trim();
     return { ...payload, refreshToken };
   }

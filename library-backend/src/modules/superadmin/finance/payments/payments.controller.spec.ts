@@ -9,7 +9,9 @@ describe('SuperadminPaymentsController', () => {
       controllers: [SuperadminPaymentsController],
     }).compile();
 
-    controller = module.get<SuperadminPaymentsController>(SuperadminPaymentsController);
+    controller = module.get<SuperadminPaymentsController>(
+      SuperadminPaymentsController,
+    );
   });
 
   it('should be defined', () => {

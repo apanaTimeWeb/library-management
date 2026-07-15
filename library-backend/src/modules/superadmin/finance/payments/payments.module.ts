@@ -4,6 +4,6 @@ import { SuperadminPaymentsController } from './payments.controller';
 
 @Module({
   providers: [SuperadminPaymentsService],
-  controllers: [SuperadminPaymentsController]
+  controllers: [SuperadminPaymentsController],
 })
 export class SuperadminPaymentsModule {}

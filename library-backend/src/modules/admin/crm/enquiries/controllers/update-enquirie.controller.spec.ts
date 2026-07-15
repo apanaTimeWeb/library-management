@@ -9,8 +9,8 @@ describe('UpdateEnquirieController', () => {
     const module: TestingModule = await Test.createTestingModule({
       controllers: [UpdateEnquirieController],
       providers: [
-        { provide: UpdateEnquirieService, useValue: { execute: jest.fn() } }
-      ]
+        { provide: UpdateEnquirieService, useValue: { execute: jest.fn() } },
+      ],
     }).compile();
 
     controller = module.get<UpdateEnquirieController>(UpdateEnquirieController);

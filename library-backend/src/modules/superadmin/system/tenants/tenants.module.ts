@@ -17,9 +17,7 @@ import { GetTenantController } from './controllers/get-tenant.controller';
 import { GetAllTenantsController } from './controllers/get-all-tenants.controller';
 
 @Module({
-  imports: [
-    TypeOrmModule.forFeature([Tenant]),
-  ],
+  imports: [TypeOrmModule.forFeature([Tenant])],
   providers: [
     CreateTenantService,
     UpdateTenantService,

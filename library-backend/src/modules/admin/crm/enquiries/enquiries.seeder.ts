@@ -1,7 +1,7 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { Enquirie } from '@/core/entities/enquirie.entity';
+import { Enquiry } from '@/core/entities/enquiry.entity';
 
 @Injectable()
 export class EnquiriesSeeder {

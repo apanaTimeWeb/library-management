@@ -83,7 +83,10 @@ import { SuperadminUsersModule } from './modules/superadmin/staff-users/users/us
     SuperadminSetupWizardModule,
     SuperadminSystemHealthModule,
     ConfigModule.forRoot({ isGlobal: true, envFilePath: '.env' }),
-    ThrottlerModule.forRoot([{ name: 'short', ttl: 60000, limit: 60 }, { name: 'medium', ttl: 900000, limit: 300 }]),
+    ThrottlerModule.forRoot([
+      { name: 'short', ttl: 60000, limit: 60 },
+      { name: 'medium', ttl: 900000, limit: 300 },
+    ]),
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
       useFactory: (configService: ConfigService) => ({
@@ -97,12 +100,27 @@ import { SuperadminUsersModule } from './modules/superadmin/staff-users/users/us
         subscribers: [__dirname + '/**/*.subscriber{.ts,.js}'],
         autoLoadEntities: true,
         synchronize: configService.get<string>('NODE_ENV') !== 'production',
-        ssl: configService.get<string>('NODE_ENV') === 'production' ? { rejectUnauthorized: false } : false,
+        ssl:
+          configService.get<string>('NODE_ENV') === 'production'
+            ? { rejectUnauthorized: false }
+            : false,
         logging: configService.get<string>('NODE_ENV') === 'development',
       }),
       inject: [ConfigService],
     }),
-    LoggerModule.forRoot({ pinoHttp: { redact: ['req.headers.authorization', 'req.body.password', 'req.body.token'], transport: process.env.NODE_ENV !== 'production' ? { target: 'pino-pretty', options: { singleLine: true } } : undefined } }),
+    LoggerModule.forRoot({
+      pinoHttp: {
+        redact: [
+          'req.headers.authorization',
+          'req.body.password',
+          'req.body.token',
+        ],
+        transport:
+          process.env.NODE_ENV !== 'production'
+            ? { target: 'pino-pretty', options: { singleLine: true } }
+            : undefined,
+      },
+    }),
     PublicEnquiryModule,
     AdminModule,
     AdminAttendanceModule,
@@ -152,12 +170,9 @@ import { SuperadminUsersModule } from './modules/superadmin/staff-users/users/us
     SuperadminSubscriptionsModule,
     SuperadminModule,
     SuperadminTenantsModule,
-    SuperadminUsersModule
+    SuperadminUsersModule,
   ],
   controllers: [AppController],
-  providers: [
-    AppService,
-    { provide: APP_GUARD, useClass: ThrottlerGuard },
-  ],
+  providers: [AppService, { provide: APP_GUARD, useClass: ThrottlerGuard }],
 })
 export class AppModule {}

@@ -11,7 +11,6 @@ import { Student } from './/student.entity';
 
 @Entity()
 export class WhatsAppMessage extends BaseEntity {
-
   @ManyToOne(() => Student, { nullable: true })
   student: Student;
 

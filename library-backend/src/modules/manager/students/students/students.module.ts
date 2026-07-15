@@ -28,7 +28,15 @@ import { DeleteStudentController } from './controllers/delete-student.controller
 @Module({
   imports: [
     TypeOrmModule.forFeature([
-      Student, Branch, Shift, Seat, Locker, Plan, StudentSlot, Subscription, Payment
+      Student,
+      Branch,
+      Shift,
+      Seat,
+      Locker,
+      Plan,
+      StudentSlot,
+      Subscription,
+      Payment,
     ]),
     AuthAuthModule,
   ],

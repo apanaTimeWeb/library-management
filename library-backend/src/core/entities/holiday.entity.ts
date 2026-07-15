@@ -14,7 +14,6 @@ import { User } from './/user.entity';
 @Entity()
 @Unique(['branch', 'date'])
 export class Holiday extends BaseEntity {
-
   @ManyToOne(() => Branch)
   branch: Branch;
 

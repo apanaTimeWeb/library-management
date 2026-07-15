@@ -17,11 +17,11 @@ export class GetMeService {
       where: { id: userId },
       relations: { role: true, branch: true },
     });
-    
+
     if (!user) {
       throw new UnauthorizedException(AUTH_ERRORS.USER_NOT_FOUND);
     }
-    
+
     return {
       id: user.id,
       name: user.name,

@@ -10,7 +10,7 @@ export class JwtStrategy extends PassportStrategy(Strategy, 'jwt') {
     if (!secret) {
       throw new Error('JWT_SECRET is not defined');
     }
-    
+
     super({
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
       ignoreExpiration: false,
@@ -22,12 +22,12 @@ export class JwtStrategy extends PassportStrategy(Strategy, 'jwt') {
     if (!payload || !payload.sub) {
       throw new UnauthorizedException();
     }
-    return { 
+    return {
       userId: payload.sub,
       phone: payload.phone,
       role: payload.role,
       tenantId: payload.tenantId,
-      branchId: payload.branchId
+      branchId: payload.branchId,
     };
   }
 }

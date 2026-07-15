@@ -20,7 +20,7 @@ export interface LogActionParams {
 
 /**
  * Audit Logs Service
- * 
+ *
  * IMPORTANT: Never log sensitive data:
  * - Passwords (plaintext or hashed)
  * - JWT access tokens
@@ -81,15 +81,16 @@ export class AdminAuditLogsService {
     tenantId?: string,
     entity?: string,
     action?: string,
-  ): Promise<{ data: AuditLog[], meta: any }> {
-    const query = this.auditLogRepo.createQueryBuilder('log')
+  ): Promise<{ data: AuditLog[]; meta: any }> {
+    const query = this.auditLogRepo
+      .createQueryBuilder('log')
       .orderBy('log.createdAt', 'DESC')
       .skip((page - 1) * limit)
       .take(limit);
 
     if (tenantId) query.andWhere('log.tenantId = :tenantId', { tenantId });
-    if (entity)   query.andWhere('log.entity = :entity', { entity });
-    if (action)   query.andWhere('log.action = :action', { action });
+    if (entity) query.andWhere('log.entity = :entity', { entity });
+    if (action) query.andWhere('log.action = :action', { action });
 
     const [logs, total] = await query.getManyAndCount();
 
@@ -102,11 +103,23 @@ export class AdminAuditLogsService {
   // ── Helpers ─────────────────────────────────────────────────────────────────
 
   /** Remove sensitive fields from stored data */
-  private sanitize(obj: Record<string, any> | null | undefined): Record<string, any> | null {
+  private sanitize(
+    obj: Record<string, any> | null | undefined,
+  ): Record<string, any> | null {
     if (!obj) return null;
     const SENSITIVE_KEYS = [
-      'password', 'passwordHash', 'refreshToken', 'refreshTokenHash',
-      'accessToken', 'token', 'otp', 'pin', 'secret', 'cvv', 'aadhaar', 'pan',
+      'password',
+      'passwordHash',
+      'refreshToken',
+      'refreshTokenHash',
+      'accessToken',
+      'token',
+      'otp',
+      'pin',
+      'secret',
+      'cvv',
+      'aadhaar',
+      'pan',
     ];
     const sanitized = { ...obj };
     for (const key of SENSITIVE_KEYS) {
@@ -120,11 +133,11 @@ export class AdminAuditLogsService {
   /** Parse browser name from user agent string */
   private parseBrowser(userAgent?: string): string {
     if (!userAgent) return 'Unknown';
-    if (userAgent.includes('Chrome'))  return 'Chrome';
+    if (userAgent.includes('Chrome')) return 'Chrome';
     if (userAgent.includes('Firefox')) return 'Firefox';
-    if (userAgent.includes('Safari'))  return 'Safari';
-    if (userAgent.includes('Edge'))    return 'Edge';
-    if (userAgent.includes('Opera'))   return 'Opera';
+    if (userAgent.includes('Safari')) return 'Safari';
+    if (userAgent.includes('Edge')) return 'Edge';
+    if (userAgent.includes('Opera')) return 'Opera';
     return 'Other';
   }
 }

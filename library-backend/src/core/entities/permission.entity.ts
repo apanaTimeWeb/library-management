@@ -11,7 +11,6 @@ import { Role } from './/role.entity';
 
 @Entity('permissions')
 export class Permission extends BaseEntity {
-
   @Column({ unique: true })
   name: string; // e.g., 'CREATE_STUDENT', 'VIEW_REPORTS'
 

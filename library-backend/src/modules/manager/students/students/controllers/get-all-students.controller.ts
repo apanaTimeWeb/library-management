@@ -12,10 +12,11 @@ import { StudentListItem } from '@/modules/manager/students/students/interfaces/
 export class GetAllStudentsController {
   constructor(private readonly getAllStudentsService: GetAllStudentsService) {}
 
+  // SLA: FAST
   @Get()
   async getAllStudents(
     @Req() req: any,
-    @Query() paginationDto: PaginationDto
+    @Query() paginationDto: PaginationDto,
   ): Promise<PaginatedResponse<StudentListItem>> {
     const branchId = req.user?.branchId || STUDENT_CONSTANTS.DEFAULT_BRANCH_ID;
     return this.getAllStudentsService.findAll(branchId, paginationDto);

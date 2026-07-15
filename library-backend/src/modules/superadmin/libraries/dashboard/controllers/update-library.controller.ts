@@ -18,7 +18,7 @@ export class UpdateLibraryController {
   @ApiOperation({ summary: 'Update library details' })
   async updateLibrary(
     @Param('id') id: string,
-    @Body() updateDto: UpdateLibraryDto
+    @Body() updateDto: UpdateLibraryDto,
   ) {
     return await this.updateLibraryService.updateLibrary(id, updateDto);
   }

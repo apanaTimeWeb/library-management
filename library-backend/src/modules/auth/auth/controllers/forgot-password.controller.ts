@@ -11,7 +11,9 @@ export class ForgotPasswordController {
   @Post('forgot-password')
   @ApiOperation({ summary: 'Request a password reset OTP' })
   // SLA: FAST
-  async forgotPassword(@Body() forgotPasswordDto: ForgotPasswordDto): Promise<{ success: boolean; message: string }> {
+  async forgotPassword(
+    @Body() forgotPasswordDto: ForgotPasswordDto,
+  ): Promise<{ success: boolean; message: string }> {
     return this.forgotPasswordService.processForgotPassword(forgotPasswordDto);
   }
 }

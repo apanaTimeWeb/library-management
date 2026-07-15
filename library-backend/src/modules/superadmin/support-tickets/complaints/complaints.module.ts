@@ -4,6 +4,6 @@ import { SuperadminComplaintsController } from './complaints.controller';
 
 @Module({
   providers: [SuperadminComplaintsService],
-  controllers: [SuperadminComplaintsController]
+  controllers: [SuperadminComplaintsController],
 })
 export class SuperadminComplaintsModule {}

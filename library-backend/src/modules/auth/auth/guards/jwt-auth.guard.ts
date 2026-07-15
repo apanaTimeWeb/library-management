@@ -1,11 +1,16 @@
-import { Injectable, CanActivate, ExecutionContext, UnauthorizedException } from '@nestjs/common';
+import {
+  Injectable,
+  CanActivate,
+  ExecutionContext,
+  UnauthorizedException,
+} from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
 import { AuthGuard } from '@nestjs/passport';
 import { IS_PUBLIC_KEY } from '@/modules/auth/auth/decorators/public.decorator';
 
 /**
  * Real JWT Auth Guard — replaces the previous hardcoded stub.
- * 
+ *
  * 1. Checks if route is marked @Public() → skips auth
  * 2. Delegates to Passport JWT strategy (validates Bearer token)
  * 3. Attaches verified user payload to request.user
@@ -30,7 +35,12 @@ export class JwtAuthGuard extends AuthGuard('jwt') {
 
   handleRequest(err: any, user: any, info: any) {
     if (err || !user) {
-      throw err || new UnauthorizedException('Invalid or expired token. Please login again.');
+      throw (
+        err ||
+        new UnauthorizedException(
+          'Invalid or expired token. Please login again.',
+        )
+      );
     }
     return user;
   }

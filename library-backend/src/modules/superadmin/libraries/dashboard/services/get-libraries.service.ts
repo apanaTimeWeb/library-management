@@ -11,8 +11,10 @@ export class GetLibrariesService {
   ) {}
 
   async getLibraries(): Promise<LibraryItem[]> {
-    const branches = await this.branchRepo.find({ relations: { tenant: true } });
-    return branches.map(b => ({
+    const branches = await this.branchRepo.find({
+      relations: { tenant: true },
+    });
+    return branches.map((b) => ({
       id: b.id,
       initials: b.name.substring(0, 2).toUpperCase(),
       name: b.name,

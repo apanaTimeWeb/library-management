@@ -2,7 +2,10 @@ import { Injectable, InternalServerErrorException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { ConfigService } from '@nestjs/config';
 import { User } from '@/core/entities/user.entity';
-import { JwtPayload, AuthTokens } from '@/modules/auth/auth/interfaces/auth.interfaces';
+import {
+  JwtPayload,
+  AuthTokens,
+} from '@/modules/auth/auth/interfaces/auth.interfaces';
 import { AUTH_ERRORS } from '@/modules/auth/auth/constants/auth.constants';
 
 @Injectable()
@@ -12,7 +15,9 @@ export class JwtTokenGeneratorUtil {
     private readonly configService: ConfigService,
   ) {}
 
-  async generateTokens(user: User & { role?: any; branch?: any }): Promise<AuthTokens> {
+  async generateTokens(
+    user: User & { role?: any; branch?: any },
+  ): Promise<AuthTokens> {
     const payload: JwtPayload = {
       sub: user.id,
       phone: user.phone,

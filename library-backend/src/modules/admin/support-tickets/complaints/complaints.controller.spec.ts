@@ -9,7 +9,9 @@ describe('AdminComplaintsController', () => {
       controllers: [AdminComplaintsController],
     }).compile();
 
-    controller = module.get<AdminComplaintsController>(AdminComplaintsController);
+    controller = module.get<AdminComplaintsController>(
+      AdminComplaintsController,
+    );
   });
 
   it('should be defined', () => {

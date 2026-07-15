@@ -14,7 +14,6 @@ import { User } from './/user.entity';
 
 @Entity('roles')
 export class Role extends BaseEntity {
-
   @Column({ unique: true })
   name: string; // e.g., 'SUPERADMIN', 'ADMIN', 'MANAGER', 'STAFF'
 

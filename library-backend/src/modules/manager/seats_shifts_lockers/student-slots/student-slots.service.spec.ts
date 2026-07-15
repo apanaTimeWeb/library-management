@@ -9,7 +9,9 @@ describe('ManagerStudentSlotsService', () => {
       providers: [ManagerStudentSlotsService],
     }).compile();
 
-    service = module.get<ManagerStudentSlotsService>(ManagerStudentSlotsService);
+    service = module.get<ManagerStudentSlotsService>(
+      ManagerStudentSlotsService,
+    );
   });
 
   it('should be defined', () => {

@@ -18,12 +18,14 @@ export class SuperadminExpensesService {
         category: true,
         addedBy: true,
       },
-      order: { createdAt: 'DESC' }
+      order: { createdAt: 'DESC' },
     });
 
-    return expenses.map(e => ({
+    return expenses.map((e) => ({
       id: e.id,
-      date: e.expenseDate ? new Date(e.expenseDate).toLocaleDateString('en-IN') : e.createdAt.toLocaleDateString('en-IN'),
+      date: e.expenseDate
+        ? new Date(e.expenseDate).toLocaleDateString('en-IN')
+        : e.createdAt.toLocaleDateString('en-IN'),
       category: e.category?.name || 'Uncategorized',
       amount: e.amount,
       description: e.description,

@@ -13,8 +13,6 @@ import { Role } from './/role.entity';
 
 @Entity('users')
 export class User extends BaseEntity {
-  
-
   @Column({ unique: true })
   phone: string;
 
@@ -57,13 +55,10 @@ export class User extends BaseEntity {
   lastLoginIp: string;
 
   // ── Soft Delete (never hard-delete) ──────────────────
-   // TypeORM soft delete — sets this field instead of DELETE
+  // TypeORM soft delete — sets this field instead of DELETE
 
   @Column({ nullable: true })
   deletedBy: string; // userId of who performed the delete
 
   // ── Timestamps ───────────────────────────────────────
-  
-
-  
 }

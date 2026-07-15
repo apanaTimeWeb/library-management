@@ -14,13 +14,14 @@ export class TenantsSeeder {
 
   async seed() {
     this.logger.log('Seeding Superadmin System Tenants...');
-    const existing = await this.tenantRepository.findOne({ where: { domain: 'demo.library.com' } });
+    const existing = await this.tenantRepository.findOne({
+      where: { name: 'Demo Library' },
+    });
     if (!existing) {
       const tenant = this.tenantRepository.create({
         name: 'Demo Library',
-        domain: 'demo.library.com',
-        adminEmail: 'admin@demo.library.com',
-        status: 'active',
+        ownerEmail: 'admin@demo.library.com',
+        isActive: true,
       });
       await this.tenantRepository.save(tenant);
       this.logger.log('Demo Tenant seeded successfully.');

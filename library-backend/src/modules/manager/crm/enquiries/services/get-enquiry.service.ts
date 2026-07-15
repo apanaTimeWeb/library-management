@@ -11,7 +11,7 @@ export class GetEnquiryService {
     private readonly enquiryRepo: Repository<Enquiry>,
   ) {}
 
-  async findOne(id: string, branchId: string) {
+  async findOne(id: string, branchId: string): Promise<any> {
     const enquiry = await this.enquiryRepo.findOne({
       where: { id },
       relations: { handledBy: true, convertedToStudent: true },

@@ -9,7 +9,9 @@ describe('ManagerPaymentsController', () => {
       controllers: [ManagerPaymentsController],
     }).compile();
 
-    controller = module.get<ManagerPaymentsController>(ManagerPaymentsController);
+    controller = module.get<ManagerPaymentsController>(
+      ManagerPaymentsController,
+    );
   });
 
   it('should be defined', () => {

@@ -1,4 +1,11 @@
-import { Controller, Post, Body, Req, UseGuards, ValidationPipe } from '@nestjs/common';
+import {
+  Controller,
+  Post,
+  Body,
+  Req,
+  UseGuards,
+  ValidationPipe,
+} from '@nestjs/common';
 import { CreateStudentService } from '@/modules/manager/students/students/services/create-student.service';
 import { JwtAuthGuard } from '@/modules/auth/auth/guards/jwt-auth.guard';
 import { RolesGuard } from '@/modules/auth/auth/guards/roles.guard';
@@ -10,12 +17,13 @@ import { CreateStudentDto } from '@/modules/manager/students/students/dto/create
 export class CreateStudentController {
   constructor(private readonly createStudentService: CreateStudentService) {}
 
+  // SLA: FAST
   @Post()
   @Roles('superadmin', 'admin', 'manager')
   async createStudent(
-    @Body(new ValidationPipe({ whitelist: true })) data: CreateStudentDto, 
-    @Req() req: any
-  ) {
+    @Body(new ValidationPipe({ whitelist: true })) data: CreateStudentDto,
+    @Req() req: any,
+  ): Promise<any> {
     return this.createStudentService.create(req.user?.branchId, data);
   }
 }

@@ -11,7 +11,6 @@ import { Branch } from './/branch.entity';
 
 @Entity('tenants')
 export class Tenant extends BaseEntity {
-
   @Column({ unique: true })
   name: string; // The library brand/organization name
 

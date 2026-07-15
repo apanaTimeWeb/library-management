@@ -9,7 +9,9 @@ describe('SuperadminPlansController', () => {
       controllers: [SuperadminPlansController],
     }).compile();
 
-    controller = module.get<SuperadminPlansController>(SuperadminPlansController);
+    controller = module.get<SuperadminPlansController>(
+      SuperadminPlansController,
+    );
   });
 
   it('should be defined', () => {

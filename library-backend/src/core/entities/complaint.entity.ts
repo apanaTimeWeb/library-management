@@ -12,7 +12,6 @@ import { User } from './/user.entity';
 
 @Entity()
 export class Complaint extends BaseEntity {
-
   @ManyToOne(() => Student, { nullable: true })
   student: Student;
 

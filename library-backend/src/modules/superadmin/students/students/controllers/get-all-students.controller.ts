@@ -15,7 +15,8 @@ export class GetAllStudentsController {
   @Get()
   @ApiOperation({ summary: 'Get all students' })
   async getAllStudents(@Req() req: any): Promise<StudentListItem[]> {
-    const branchId = req.user?.branchId || '8a0c079e-1fca-476b-8390-58c5b8c29d08';
+    const branchId =
+      req.user?.branchId || '8a0c079e-1fca-476b-8390-58c5b8c29d08';
     return this.service.findAll(branchId);
   }
 }

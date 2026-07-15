@@ -14,9 +14,10 @@ import { Roles } from '@/modules/auth/auth/decorators/roles.decorator';
 export class ReportsController {
   constructor(private readonly reportsService: ReportsService) {}
 
+  // SLA: FAST
   @Get('reports')
   @ApiOperation({ summary: 'Manager reports' })
-  async getReports() {
+  async getReports(): Promise<any> {
     return this.reportsService.getReportsData();
   }
 }

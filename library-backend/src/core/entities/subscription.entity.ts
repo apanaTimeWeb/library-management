@@ -13,7 +13,6 @@ import { Coupon } from './/coupon.entity';
 
 @Entity()
 export class Subscription extends BaseEntity {
-
   @ManyToOne(() => Student, (student) => student.subscriptions)
   student: Student;
 

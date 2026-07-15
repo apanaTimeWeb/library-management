@@ -15,7 +15,9 @@ export class GetAllUsersController {
   @Get()
   @ApiOperation({ summary: 'Get all staff users' })
   // SLA: FAST
-  async findAll(@Query() queryDto: GetUsersQueryDto): Promise<{ items: User[]; total: number }> {
+  async findAll(
+    @Query() queryDto: GetUsersQueryDto,
+  ): Promise<{ items: User[]; total: number }> {
     return this.getAllUsersService.findAll(queryDto);
   }
 }

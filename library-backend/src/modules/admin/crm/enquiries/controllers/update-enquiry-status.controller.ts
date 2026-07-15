@@ -11,7 +11,9 @@ import { Roles } from '@/modules/auth/auth/decorators/roles.decorator';
 @Controller('api/admin/crm/enquiries')
 @UseGuards(JwtAuthGuard, RolesGuard)
 export class UpdateEnquiryStatusController {
-  constructor(private readonly updateEnquiryStatusService: UpdateEnquiryStatusService) {}
+  constructor(
+    private readonly updateEnquiryStatusService: UpdateEnquiryStatusService,
+  ) {}
 
   @Patch(':id/status')
   @Roles('superadmin', 'admin')

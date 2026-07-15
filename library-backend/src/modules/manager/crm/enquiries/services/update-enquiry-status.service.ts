@@ -12,15 +12,19 @@ export class UpdateEnquiryStatusService {
     private readonly enquiryRepo: Repository<Enquiry>,
   ) {}
 
-  async updateStatus(id: string, branchId: string, data: UpdateEnquiryStatusDto) {
+  async updateStatus(
+    id: string,
+    branchId: string,
+    data: UpdateEnquiryStatusDto,
+  ): Promise<any> {
     const enquiry = await this.enquiryRepo.findOne({ where: { id } });
-    
+
     if (!enquiry) {
       throw new EnquiryNotFoundException();
     }
-    
+
     enquiry.status = data.status.toLowerCase();
-    
+
     if (data.reason) {
       enquiry.followUps = [
         {
@@ -31,7 +35,7 @@ export class UpdateEnquiryStatusService {
         ...enquiry.followUps,
       ];
     }
-    
+
     return this.enquiryRepo.save(enquiry);
   }
 }

@@ -12,7 +12,6 @@ import { Shift } from './/shift.entity';
 
 @Entity()
 export class Waitlist extends BaseEntity {
-
   @ManyToOne(() => Student)
   student: Student;
 

@@ -4,6 +4,6 @@ import { SuperadminShiftsController } from './shifts.controller';
 
 @Module({
   providers: [SuperadminShiftsService],
-  controllers: [SuperadminShiftsController]
+  controllers: [SuperadminShiftsController],
 })
 export class SuperadminShiftsModule {}

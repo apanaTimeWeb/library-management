@@ -19,9 +19,10 @@ export class GetAllStudentsController {
   @ApiOperation({ summary: 'Get all students' })
   async getAllStudents(
     @Req() req: any,
-    @Query() paginationDto: PaginationDto
+    @Query() paginationDto: PaginationDto,
   ): Promise<PaginatedResponse<StudentListItem>> {
-    const branchId = req.user?.branchId || ADMIN_STUDENTS_CONSTANTS.TESTING_BRANCH_ID;
+    const branchId =
+      req.user?.branchId || ADMIN_STUDENTS_CONSTANTS.TESTING_BRANCH_ID;
     return this.getAllStudentsService.findAll(branchId, paginationDto);
   }
 }

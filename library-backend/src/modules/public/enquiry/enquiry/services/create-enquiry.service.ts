@@ -15,10 +15,16 @@ export class CreateEnquiryService {
 
   async create(createEnquiryDto: CreateEnquiryDto): Promise<Enquiry> {
     const { message, ...enquiryData } = createEnquiryDto;
-    
+
     // Store message in followUps array if it exists
     const followUps = message
-      ? [{ date: new Date(), remark: `Initial Message: ${message}`, by: 'Student (Self)' }]
+      ? [
+          {
+            date: new Date(),
+            remark: `Initial Message: ${message}`,
+            by: 'Student (Self)',
+          },
+        ]
       : [];
 
     const enquiry = this.enquiryRepository.create({

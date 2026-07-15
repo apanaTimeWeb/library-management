@@ -11,7 +11,6 @@ import { Branch } from './/branch.entity';
 
 @Entity()
 export class Asset extends BaseEntity {
-
   @ManyToOne(() => Branch)
   branch: Branch;
 

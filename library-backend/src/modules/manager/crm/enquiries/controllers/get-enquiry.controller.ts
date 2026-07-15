@@ -12,10 +12,12 @@ import { ENQUIRIES_CONSTANTS } from '@/modules/manager/crm/enquiries/constants/e
 export class GetEnquiryController {
   constructor(private readonly getEnquiryService: GetEnquiryService) {}
 
+  // SLA: FAST
   @Get(':id')
   @ApiOperation({ summary: 'Get a single CRM enquiry by ID' })
-  async findOne(@Param('id') id: string, @Req() req: any) {
-    const branchId = req.user?.branchId || ENQUIRIES_CONSTANTS.DEFAULT_BRANCH_ID;
+  async findOne(@Param('id') id: string, @Req() req: any): Promise<any> {
+    const branchId =
+      req.user?.branchId || ENQUIRIES_CONSTANTS.DEFAULT_BRANCH_ID;
     return this.getEnquiryService.findOne(id, branchId);
   }
 }

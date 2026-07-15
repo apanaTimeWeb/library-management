@@ -11,9 +11,10 @@ export class AccountLockedException extends HttpException {
 
 export class InvalidCredentialsException extends HttpException {
   constructor(attemptsLeft?: number) {
-    const message = attemptsLeft !== undefined && attemptsLeft > 0
-      ? `Invalid phone or password. ${attemptsLeft} attempt(s) remaining.`
-      : 'Invalid phone or password';
+    const message =
+      attemptsLeft !== undefined && attemptsLeft > 0
+        ? `Invalid phone or password. ${attemptsLeft} attempt(s) remaining.`
+        : 'Invalid phone or password';
     super(message, HttpStatus.UNAUTHORIZED);
   }
 }

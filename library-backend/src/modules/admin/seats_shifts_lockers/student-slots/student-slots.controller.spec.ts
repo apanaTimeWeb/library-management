@@ -9,7 +9,9 @@ describe('AdminStudentSlotsController', () => {
       controllers: [AdminStudentSlotsController],
     }).compile();
 
-    controller = module.get<AdminStudentSlotsController>(AdminStudentSlotsController);
+    controller = module.get<AdminStudentSlotsController>(
+      AdminStudentSlotsController,
+    );
   });
 
   it('should be defined', () => {

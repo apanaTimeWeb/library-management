@@ -12,7 +12,9 @@ import { TenantGuard } from '@/modules/auth/auth/guards/tenant.guard';
 @UseGuards(JwtAuthGuard, RolesGuard, TenantGuard)
 @Roles('superadmin', 'admin')
 export class ExpenseCategoriesController {
-  constructor(private readonly expenseCategoriesService: ExpenseCategoriesService) {}
+  constructor(
+    private readonly expenseCategoriesService: ExpenseCategoriesService,
+  ) {}
 
   @Get('expense-categories')
   @ApiOperation({ summary: 'Get expense categories' })

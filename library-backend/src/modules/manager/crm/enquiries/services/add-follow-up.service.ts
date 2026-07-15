@@ -12,9 +12,13 @@ export class AddFollowUpService {
     private readonly enquiryRepo: Repository<Enquiry>,
   ) {}
 
-  async addFollowUp(id: string, branchId: string, followUp: AddFollowUpDto) {
+  async addFollowUp(
+    id: string,
+    branchId: string,
+    followUp: AddFollowUpDto,
+  ): Promise<any> {
     const enquiry = await this.enquiryRepo.findOne({ where: { id } });
-    
+
     if (!enquiry) {
       throw new EnquiryNotFoundException();
     }

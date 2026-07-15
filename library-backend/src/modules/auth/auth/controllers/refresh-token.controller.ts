@@ -1,4 +1,11 @@
-import { Controller, Post, Req, UseGuards, HttpCode, HttpStatus } from '@nestjs/common';
+import {
+  Controller,
+  Post,
+  Req,
+  UseGuards,
+  HttpCode,
+  HttpStatus,
+} from '@nestjs/common';
 import { ApiTags, ApiOperation } from '@nestjs/swagger';
 import { RefreshTokenService } from '@/modules/auth/auth/services/refresh-token.service';
 import { RefreshTokenGuard } from '@/modules/auth/auth/guards/refresh-token.guard';

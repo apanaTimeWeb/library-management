@@ -15,7 +15,10 @@ export class UpdateUserController {
   @Patch(':id')
   @ApiOperation({ summary: 'Update a staff user' })
   // SLA: FAST
-  async update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto): Promise<User> {
+  async update(
+    @Param('id') id: string,
+    @Body() updateUserDto: UpdateUserDto,
+  ): Promise<User> {
     return this.updateUserService.update(id, updateUserDto);
   }
 }

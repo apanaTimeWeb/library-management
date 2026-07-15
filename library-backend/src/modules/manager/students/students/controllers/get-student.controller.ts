@@ -9,9 +9,10 @@ import { Roles } from '@/modules/auth/auth/decorators/roles.decorator';
 export class GetStudentController {
   constructor(private readonly getStudentService: GetStudentService) {}
 
+  // SLA: FAST
   @Get(':id')
   @Roles('superadmin', 'admin', 'manager')
-  async getStudentById(@Param('id') id: string, @Req() req: any) {
+  async getStudentById(@Param('id') id: string, @Req() req: any): Promise<any> {
     return this.getStudentService.findOne(id, req.user?.branchId);
   }
 }

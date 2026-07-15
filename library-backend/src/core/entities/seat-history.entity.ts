@@ -13,7 +13,6 @@ import { Shift } from './/shift.entity';
 
 @Entity()
 export class SeatHistory extends BaseEntity {
-
   @ManyToOne(() => Seat)
   seat: Seat;
 

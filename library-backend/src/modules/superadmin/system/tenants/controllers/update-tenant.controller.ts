@@ -13,7 +13,10 @@ export class UpdateTenantController {
 
   @Patch(':id')
   @ApiOperation({ summary: 'Update a tenant' })
-  async update(@Param('id') id: string, @Body() updateTenantDto: UpdateTenantDto) {
+  async update(
+    @Param('id') id: string,
+    @Body() updateTenantDto: UpdateTenantDto,
+  ) {
     return this.updateTenantService.update(id, updateTenantDto);
   }
 }

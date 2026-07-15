@@ -11,8 +11,6 @@ import { Branch } from './/branch.entity';
 
 @Entity()
 export class Seat extends BaseEntity {
-  
-
   @Column()
   seatNumber: string; // A-01, B-12, etc.
 
@@ -27,8 +25,4 @@ export class Seat extends BaseEntity {
 
   @Column({ default: true })
   isActive: boolean;
-
-  
-
-  
 }

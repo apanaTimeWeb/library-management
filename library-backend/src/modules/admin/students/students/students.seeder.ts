@@ -15,8 +15,10 @@ export class StudentsSeeder {
   async seed() {
     this.logger.log('Seeding Students...');
     // Seeder should be deterministic and idempotent (Rule 55)
-    const existingStudent = await this.studentRepository.findOne({ where: { email: 'admin-seed-student@example.com' } });
-    
+    const existingStudent = await this.studentRepository.findOne({
+      where: { email: 'admin-seed-student@example.com' },
+    });
+
     if (!existingStudent) {
       const newStudent = this.studentRepository.create({
         name: 'Seed Student',

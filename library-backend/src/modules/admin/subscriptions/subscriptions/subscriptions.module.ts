@@ -4,6 +4,6 @@ import { AdminSubscriptionsController } from './subscriptions.controller';
 
 @Module({
   providers: [AdminSubscriptionsService],
-  controllers: [AdminSubscriptionsController]
+  controllers: [AdminSubscriptionsController],
 })
 export class AdminSubscriptionsModule {}

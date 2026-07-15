@@ -9,14 +9,8 @@ import { CreateEnquiryService } from './services/create-enquiry.service';
 import { CreateEnquiryController } from './controllers/create-enquiry.controller';
 
 @Module({
-  imports: [
-    TypeOrmModule.forFeature([Enquiry]),
-  ],
-  providers: [
-    CreateEnquiryService,
-  ],
-  controllers: [
-    CreateEnquiryController,
-  ],
+  imports: [TypeOrmModule.forFeature([Enquiry])],
+  providers: [CreateEnquiryService],
+  controllers: [CreateEnquiryController],
 })
 export class PublicEnquiryModule {}

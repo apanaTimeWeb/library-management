@@ -12,7 +12,6 @@ import { User } from './/user.entity';
 
 @Entity()
 export class AssetMaintenanceLog extends BaseEntity {
-
   @ManyToOne(() => Asset)
   asset: Asset;
 

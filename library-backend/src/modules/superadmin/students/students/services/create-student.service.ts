@@ -15,21 +15,27 @@ import { CreateStudentDto } from '@/modules/superadmin/students/students/dto/cre
 @Injectable()
 export class CreateStudentService {
   constructor(
-    @InjectRepository(Student) private readonly studentRepo: Repository<Student>,
+    @InjectRepository(Student)
+    private readonly studentRepo: Repository<Student>,
     @InjectRepository(Branch) private readonly branchRepo: Repository<Branch>,
     @InjectRepository(Shift) private readonly shiftRepo: Repository<Shift>,
     @InjectRepository(Seat) private readonly seatRepo: Repository<Seat>,
     @InjectRepository(Plan) private readonly planRepo: Repository<Plan>,
-    @InjectRepository(StudentSlot) private readonly slotRepo: Repository<StudentSlot>,
-    @InjectRepository(Subscription) private readonly subRepo: Repository<Subscription>,
-    @InjectRepository(Payment) private readonly paymentRepo: Repository<Payment>,
+    @InjectRepository(StudentSlot)
+    private readonly slotRepo: Repository<StudentSlot>,
+    @InjectRepository(Subscription)
+    private readonly subRepo: Repository<Subscription>,
+    @InjectRepository(Payment)
+    private readonly paymentRepo: Repository<Payment>,
   ) {}
 
   async create(branchId: string, data: CreateStudentDto): Promise<Student> {
     const branch = await this.branchRepo.findOne({ where: { id: branchId } });
     if (!branch) throw new BranchNotFoundException();
 
-    const totalStudents = await this.studentRepo.count({ where: { branch: { id: branchId } } });
+    const totalStudents = await this.studentRepo.count({
+      where: { branch: { id: branchId } },
+    });
     const smartId = `LIB${String(totalStudents + 1).padStart(3, '0')}`;
 
     const student = this.studentRepo.create({
@@ -45,10 +51,16 @@ export class CreateStudentService {
 
     // Resolve relationships
     const shiftStr = data.shift?.split(' ')[0]; // e.g. "Morning (8 AM-2 PM)" -> "Morning"
-    const shift = await this.shiftRepo.findOne({ where: { name: shiftStr, branch: { id: branchId } } });
-    const seat = await this.seatRepo.findOne({ where: { seatNumber: data.seat, branch: { id: branchId } } });
-    const plan = await this.planRepo.findOne({ where: { name: data.plan, branch: { id: branchId } } });
-    
+    const shift = await this.shiftRepo.findOne({
+      where: { name: shiftStr, branch: { id: branchId } },
+    });
+    const seat = await this.seatRepo.findOne({
+      where: { seatNumber: data.seat, branch: { id: branchId } },
+    });
+    const plan = await this.planRepo.findOne({
+      where: { name: data.plan, branch: { id: branchId } },
+    });
+
     // Create slot
     if (shift && seat) {
       const slot = this.slotRepo.create({
@@ -56,7 +68,12 @@ export class CreateStudentService {
         shift,
         seat,
         validFrom: new Date(),
-        validTill: new Date(new Date().setMonth(new Date().getMonth() + (plan?.durationDays ? plan.durationDays / 30 : 1))),
+        validTill: new Date(
+          new Date().setMonth(
+            new Date().getMonth() +
+              (plan?.durationDays ? plan.durationDays / 30 : 1),
+          ),
+        ),
       });
       await this.slotRepo.save(slot);
     }
@@ -67,12 +84,17 @@ export class CreateStudentService {
         student,
         plan,
         startDate: new Date(),
-        endDate: new Date(new Date().setMonth(new Date().getMonth() + (plan.durationDays / 30))),
+        endDate: new Date(
+          new Date().setMonth(new Date().getMonth() + plan.durationDays / 30),
+        ),
         baseAmount: plan.price,
         discountApplied: Number(data.manualDiscount) || 0,
         totalAmount: plan.price - (Number(data.manualDiscount) || 0),
         paidAmount: Number(data.amountPaid) || 0,
-        dueAmount: (plan.price - (Number(data.manualDiscount) || 0)) - (Number(data.amountPaid) || 0),
+        dueAmount:
+          plan.price -
+          (Number(data.manualDiscount) || 0) -
+          (Number(data.amountPaid) || 0),
       });
       await this.subRepo.save(sub);
 

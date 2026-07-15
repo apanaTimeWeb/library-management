@@ -12,7 +12,6 @@ import { User } from './/user.entity';
 
 @Entity()
 export class DailySettlement extends BaseEntity {
-
   @ManyToOne(() => Branch)
   branch: Branch;
 

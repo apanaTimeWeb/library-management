@@ -6,7 +6,10 @@ import { User } from '@/core/entities/user.entity';
 import { LoginDto } from '@/modules/auth/auth/dto/login.dto';
 import { JwtTokenGeneratorUtil } from '@/modules/auth/auth/utils/jwt-token-generator.util';
 import { AUTH_CONSTANTS } from '@/modules/auth/auth/constants/auth.constants';
-import { AccountLockedException, InvalidCredentialsException } from '@/modules/auth/auth/exceptions/auth.exceptions';
+import {
+  AccountLockedException,
+  InvalidCredentialsException,
+} from '@/modules/auth/auth/exceptions/auth.exceptions';
 import { LoginResponse } from '@/modules/auth/auth/interfaces/auth.interfaces';
 
 @Injectable()
@@ -17,7 +20,11 @@ export class LoginService {
     private readonly jwtTokenGenerator: JwtTokenGeneratorUtil,
   ) {}
 
-  async login(dto: LoginDto, ip: string, userAgent: string): Promise<LoginResponse> {
+  async login(
+    dto: LoginDto,
+    ip: string,
+    userAgent: string,
+  ): Promise<LoginResponse> {
     const user = await this.userRepo
       .createQueryBuilder('user')
       .addSelect('user.password')
@@ -32,14 +39,19 @@ export class LoginService {
     }
 
     if (user.lockUntil && user.lockUntil > new Date()) {
-      const remaining = Math.ceil((user.lockUntil.getTime() - Date.now()) / 60000);
+      const remaining = Math.ceil(
+        (user.lockUntil.getTime() - Date.now()) / 60000,
+      );
       throw new AccountLockedException(remaining);
     }
 
     const isPasswordValid = await bcrypt.compare(dto.password, user.password);
     if (!isPasswordValid) {
       await this.handleFailedLogin(user);
-      const attemptsLeft = AUTH_CONSTANTS.MAX_FAILED_ATTEMPTS - (user.failedLoginAttempts || 0) - 1;
+      const attemptsLeft =
+        AUTH_CONSTANTS.MAX_FAILED_ATTEMPTS -
+        (user.failedLoginAttempts || 0) -
+        1;
       throw new InvalidCredentialsException(attemptsLeft);
     }
 
@@ -52,7 +64,10 @@ export class LoginService {
 
     const tokens = await this.jwtTokenGenerator.generateTokens(user);
 
-    const hashedRt = await bcrypt.hash(tokens.refreshToken, AUTH_CONSTANTS.BCRYPT_COST);
+    const hashedRt = await bcrypt.hash(
+      tokens.refreshToken,
+      AUTH_CONSTANTS.BCRYPT_COST,
+    );
     await this.userRepo.update(user.id, { refreshTokenHash: hashedRt });
 
     return {
@@ -76,7 +91,9 @@ export class LoginService {
 
     if (newCount >= AUTH_CONSTANTS.MAX_FAILED_ATTEMPTS) {
       const lockUntil = new Date();
-      lockUntil.setMinutes(lockUntil.getMinutes() + AUTH_CONSTANTS.LOCK_DURATION_MINUTES);
+      lockUntil.setMinutes(
+        lockUntil.getMinutes() + AUTH_CONSTANTS.LOCK_DURATION_MINUTES,
+      );
       update.lockUntil = lockUntil;
     }
 

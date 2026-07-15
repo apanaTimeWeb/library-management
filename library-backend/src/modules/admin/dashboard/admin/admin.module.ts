@@ -33,18 +33,34 @@ import { StaffUsersController } from '@/modules/admin/staff-users/dashboard/cont
 import { StudentsController } from '@/modules/admin/students/dashboard/controllers/students.controller';
 
 @Module({
-  imports: [
-    TypeOrmModule.forFeature([Student, Payment, Seat]),
-  ],
+  imports: [TypeOrmModule.forFeature([Student, Payment, Seat])],
   providers: [
-    DashboardService, ReportsService, AuditLogsService, BlacklistService, BranchesService,
-    CouponsService, ExpenseCategoriesService, ExpensesService, PermissionsService, PlansService,
-    StaffUsersService, StudentsService
+    DashboardService,
+    ReportsService,
+    AuditLogsService,
+    BlacklistService,
+    BranchesService,
+    CouponsService,
+    ExpenseCategoriesService,
+    ExpensesService,
+    PermissionsService,
+    PlansService,
+    StaffUsersService,
+    StudentsService,
   ],
   controllers: [
-    DashboardController, ReportsController, AuditLogsController, BlacklistController, BranchesController,
-    CouponsController, ExpenseCategoriesController, ExpensesController, PermissionsController, PlansController,
-    StaffUsersController, StudentsController
+    DashboardController,
+    ReportsController,
+    AuditLogsController,
+    BlacklistController,
+    BranchesController,
+    CouponsController,
+    ExpenseCategoriesController,
+    ExpensesController,
+    PermissionsController,
+    PlansController,
+    StaffUsersController,
+    StudentsController,
   ],
 })
 export class AdminModule {}

@@ -9,7 +9,9 @@ describe('AdminPermissionsController', () => {
       controllers: [AdminPermissionsController],
     }).compile();
 
-    controller = module.get<AdminPermissionsController>(AdminPermissionsController);
+    controller = module.get<AdminPermissionsController>(
+      AdminPermissionsController,
+    );
   });
 
   it('should be defined', () => {

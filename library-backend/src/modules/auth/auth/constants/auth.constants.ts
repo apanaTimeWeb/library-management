@@ -11,7 +11,8 @@ export const AUTH_ERRORS = {
   INVALID_CREDENTIALS: 'Invalid phone or password',
   ACCOUNT_LOCKED: 'Account is locked due to too many failed attempts.',
   ACCESS_DENIED: 'Access denied. Please login again.',
-  INVALID_REFRESH_TOKEN: 'Refresh token is invalid or was already used. Please login again.',
+  INVALID_REFRESH_TOKEN:
+    'Refresh token is invalid or was already used. Please login again.',
   USER_NOT_FOUND: 'User not found',
   JWT_SECRETS_MISSING: 'JWT secrets are not configured!',
 };

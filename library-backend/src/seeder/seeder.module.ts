@@ -17,7 +17,23 @@ import { Expense } from '../core/entities/expense.entity';
 import { StudentSlot } from '../core/entities/student-slot.entity';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Role, Permission, Tenant, Branch, User, Shift, Seat, Plan, Student, Subscription, Payment, Expense, StudentSlot])],
+  imports: [
+    TypeOrmModule.forFeature([
+      Role,
+      Permission,
+      Tenant,
+      Branch,
+      User,
+      Shift,
+      Seat,
+      Plan,
+      Student,
+      Subscription,
+      Payment,
+      Expense,
+      StudentSlot,
+    ]),
+  ],
   controllers: [SeederController],
   providers: [SeederService],
 })

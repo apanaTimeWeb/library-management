@@ -14,8 +14,10 @@ export class StudentsSeeder {
 
   async seed() {
     this.logger.log('Seeding Manager Students...');
-    const existingStudent = await this.studentRepository.findOne({ where: { email: 'manager-seed-student@example.com' } });
-    
+    const existingStudent = await this.studentRepository.findOne({
+      where: { email: 'manager-seed-student@example.com' },
+    });
+
     if (!existingStudent) {
       const newStudent = this.studentRepository.create({
         name: 'Manager Seed Student',

@@ -22,11 +22,7 @@ import { StudentReportsController } from '@/modules/manager/student-reports/dash
     TypeOrmModule.forFeature([Student, Seat, Subscription, Enquiry, Complaint]),
     AuthAuthModule,
   ],
-  providers: [
-    DashboardService,
-    ReportsService,
-    StudentReportsService,
-  ],
+  providers: [DashboardService, ReportsService, StudentReportsService],
   controllers: [
     DashboardController,
     ReportsController,

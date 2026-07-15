@@ -3,6 +3,10 @@ import { ADMIN_ENQUIRIES_CONSTANTS } from '@/modules/admin/crm/enquiries/constan
 
 export class EnquiryNotFoundException extends NotFoundException {
   constructor(id?: string) {
-    super(id ? `Enquiry with ID ${id} not found` : ADMIN_ENQUIRIES_CONSTANTS.ENQUIRY_NOT_FOUND);
+    super(
+      id
+        ? `Enquiry with ID ${id} not found`
+        : ADMIN_ENQUIRIES_CONSTANTS.ENQUIRY_NOT_FOUND,
+    );
   }
 }

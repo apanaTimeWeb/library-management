@@ -12,7 +12,6 @@ import { User } from './/user.entity';
 
 @Entity()
 export class ExpenseCategory extends BaseEntity {
-
   @Column()
   name: string;
 
@@ -22,7 +21,6 @@ export class ExpenseCategory extends BaseEntity {
 
 @Entity()
 export class Expense extends BaseEntity {
-
   @ManyToOne(() => Branch)
   branch: Branch;
 

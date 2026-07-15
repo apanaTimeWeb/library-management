@@ -9,8 +9,8 @@ describe('DeleteEnquirieController', () => {
     const module: TestingModule = await Test.createTestingModule({
       controllers: [DeleteEnquirieController],
       providers: [
-        { provide: DeleteEnquirieService, useValue: { execute: jest.fn() } }
-      ]
+        { provide: DeleteEnquirieService, useValue: { execute: jest.fn() } },
+      ],
     }).compile();
 
     controller = module.get<DeleteEnquirieController>(DeleteEnquirieController);

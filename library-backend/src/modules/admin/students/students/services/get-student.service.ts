@@ -13,9 +13,12 @@ export class GetStudentService {
   ) {}
 
   async findOne(id: string, branchId?: string): Promise<StudentDetailItem> {
-    const isUuid = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(id);
-    
-    const whereClause = isUuid 
+    const isUuid =
+      /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(
+        id,
+      );
+
+    const whereClause = isUuid
       ? { id, ...(branchId ? { branch: { id: branchId } } : {}) }
       : { smartId: id, ...(branchId ? { branch: { id: branchId } } : {}) };
 
@@ -24,15 +27,17 @@ export class GetStudentService {
       relations: {
         branch: true,
         subscriptions: { plan: true },
-        slots: { seat: true, shift: true }
-      }
+        slots: { seat: true, shift: true },
+      },
     });
 
     if (!s) {
       throw new StudentNotFoundException();
     }
 
-    const activeSub = s.subscriptions?.find(sub => sub.status === 'active') || s.subscriptions?.[0];
+    const activeSub =
+      s.subscriptions?.find((sub) => sub.status === 'active') ||
+      s.subscriptions?.[0];
     const activeSlot = s.slots?.[0];
 
     return {
@@ -52,13 +57,14 @@ export class GetStudentService {
       status: activeSub ? activeSub.status : 'Inactive',
       due: activeSub?.dueAmount || 0,
       joined: s.createdAt ? s.createdAt.toLocaleDateString('en-IN') : 'N/A',
-      history: s.subscriptions?.map(sub => ({
+      history:
+        s.subscriptions?.map((sub) => ({
           plan: sub.plan?.name || 'N/A',
           startDate: sub.startDate,
           endDate: sub.endDate,
           amount: sub.totalAmount,
-          status: sub.status
-      })) || [],
+          status: sub.status,
+        })) || [],
     };
   }
 }

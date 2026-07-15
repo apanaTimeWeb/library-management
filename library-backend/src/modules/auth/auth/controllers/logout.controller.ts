@@ -1,4 +1,10 @@
-import { Controller, Post, UseGuards, HttpCode, HttpStatus } from '@nestjs/common';
+import {
+  Controller,
+  Post,
+  UseGuards,
+  HttpCode,
+  HttpStatus,
+} from '@nestjs/common';
 import { ApiTags, ApiBearerAuth, ApiOperation } from '@nestjs/swagger';
 import { LogoutService } from '@/modules/auth/auth/services/logout.service';
 import { JwtAuthGuard } from '@/modules/auth/auth/guards/jwt-auth.guard';

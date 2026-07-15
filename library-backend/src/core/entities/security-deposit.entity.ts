@@ -12,7 +12,6 @@ import { User } from './/user.entity';
 
 @Entity()
 export class SecurityDeposit extends BaseEntity {
-
   @ManyToOne(() => Student)
   student: Student;
 

@@ -11,8 +11,6 @@ import { Branch } from './/branch.entity';
 
 @Entity()
 export class Locker extends BaseEntity {
-  
-
   @Column()
   lockerNumber: string;
 
@@ -24,8 +22,4 @@ export class Locker extends BaseEntity {
 
   @Column({ default: true })
   isActive: boolean;
-
-  
-
-  
 }

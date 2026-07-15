@@ -16,10 +16,15 @@ export class AuthSeeder {
 
   async seed() {
     this.logger.log('Seeding Default Superadmin...');
-    const existingUser = await this.userRepository.findOne({ where: { phone: '1234567890' } });
-    
+    const existingUser = await this.userRepository.findOne({
+      where: { phone: '1234567890' },
+    });
+
     if (!existingUser) {
-      const hashedPassword = await bcrypt.hash('superadmin123', AUTH_CONSTANTS.BCRYPT_COST || 10);
+      const hashedPassword = await bcrypt.hash(
+        'superadmin123',
+        AUTH_CONSTANTS.BCRYPT_COST || 10,
+      );
       const newUser = this.userRepository.create({
         name: 'Super Admin',
         phone: '1234567890',

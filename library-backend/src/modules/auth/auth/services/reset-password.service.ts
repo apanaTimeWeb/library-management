@@ -33,9 +33,12 @@ export class ResetPasswordService {
       throw new BadRequestException('Invalid user');
     }
 
-    const hashedPassword = await bcrypt.hash(newPassword, AUTH_CONSTANTS.BCRYPT_COST || 10);
+    const hashedPassword = await bcrypt.hash(
+      newPassword,
+      AUTH_CONSTANTS.BCRYPT_COST || 10,
+    );
     user.password = hashedPassword;
-    
+
     await this.userRepository.save(user);
     this.logger.log(`Password reset successfully for user ${user.id}`);
 

@@ -49,7 +49,8 @@ export class SeederService {
 
   constructor(
     @InjectRepository(Role) private roleRepo: Repository<Role>,
-    @InjectRepository(Permission) private permissionRepo: Repository<Permission>,
+    @InjectRepository(Permission)
+    private permissionRepo: Repository<Permission>,
     @InjectRepository(Tenant) private tenantRepo: Repository<Tenant>,
     @InjectRepository(Branch) private branchRepo: Repository<Branch>,
     @InjectRepository(User) private userRepo: Repository<User>,
@@ -57,7 +58,8 @@ export class SeederService {
     @InjectRepository(Seat) private seatRepo: Repository<Seat>,
     @InjectRepository(Plan) private planRepo: Repository<Plan>,
     @InjectRepository(Student) private studentRepo: Repository<Student>,
-    @InjectRepository(Subscription) private subscriptionRepo: Repository<Subscription>,
+    @InjectRepository(Subscription)
+    private subscriptionRepo: Repository<Subscription>,
     @InjectRepository(StudentSlot) private slotRepo: Repository<StudentSlot>,
     @InjectRepository(Payment) private paymentRepo: Repository<Payment>,
     @InjectRepository(Expense) private expenseRepo: Repository<Expense>,
@@ -80,7 +82,9 @@ export class SeederService {
     this.logger.log('✅ Roles seeded');
 
     // ── 2. Tenant ────────────────────────────────────────────────────────────
-    let tenant = await this.tenantRepo.findOne({ where: { name: 'SmartLibrary Demo' } });
+    let tenant = await this.tenantRepo.findOne({
+      where: { name: 'SmartLibrary Demo' },
+    });
     if (!tenant) {
       tenant = this.tenantRepo.create({
         name: 'SmartLibrary Demo',
@@ -93,9 +97,9 @@ export class SeederService {
 
     // ── 3. Branches ──────────────────────────────────────────────────────────
     const branchDefs = [
-      { name: 'StudyNest Patna',    isActive: true },
-      { name: 'BrainKraft Jaipur',  isActive: true },
-      { name: 'ReadHive Lucknow',   isActive: false },
+      { name: 'StudyNest Patna', isActive: true },
+      { name: 'BrainKraft Jaipur', isActive: true },
+      { name: 'ReadHive Lucknow', isActive: false },
     ];
     const createdBranches: Record<string, Branch> = {};
     for (const b of branchDefs) {
@@ -104,7 +108,11 @@ export class SeederService {
         relations: { tenant: true },
       });
       if (!branch) {
-        branch = this.branchRepo.create({ name: b.name, isActive: b.isActive, tenant });
+        branch = this.branchRepo.create({
+          name: b.name,
+          isActive: b.isActive,
+          tenant,
+        });
         await this.branchRepo.save(branch);
       }
       createdBranches[b.name] = branch;
@@ -189,9 +197,21 @@ export class SeederService {
       message: 'Core seeding completed successfully',
       credentials: {
         note: 'All users share the same password for demo purposes',
-        superadmin: { phone: '9000000001', password: 'Library@2025', email: 'superadmin@smartlibrary.com' },
-        admin:      { phone: '9000000002', password: 'Library@2025', email: 'admin@smartlibrary.com' },
-        manager:    { phone: '9000000003', password: 'Library@2025', email: 'manager@smartlibrary.com' },
+        superadmin: {
+          phone: '9000000001',
+          password: 'Library@2025',
+          email: 'superadmin@smartlibrary.com',
+        },
+        admin: {
+          phone: '9000000002',
+          password: 'Library@2025',
+          email: 'admin@smartlibrary.com',
+        },
+        manager: {
+          phone: '9000000003',
+          password: 'Library@2025',
+          email: 'manager@smartlibrary.com',
+        },
       },
     };
   }
@@ -203,18 +223,21 @@ export class SeederService {
       relations: { tenant: true },
     });
 
-    if (!branch) throw new Error('Branch not found. Run POST /api/v1/seed/core first.');
+    if (!branch)
+      throw new Error('Branch not found. Run POST /api/v1/seed/core first.');
     const bId = branch.id;
 
     // ── Shifts ──────────────────────────────────────────────────────────────
     const shiftDefs = [
-      { name: 'Morning',  startTime: '06:00', endTime: '12:00' },
-      { name: 'Evening',  startTime: '12:00', endTime: '18:00' },
-      { name: 'Night',    startTime: '18:00', endTime: '23:00' },
+      { name: 'Morning', startTime: '06:00', endTime: '12:00' },
+      { name: 'Evening', startTime: '12:00', endTime: '18:00' },
+      { name: 'Night', startTime: '18:00', endTime: '23:00' },
       { name: 'Full Day', startTime: '06:00', endTime: '23:00' },
     ];
     for (const s of shiftDefs) {
-      let shift = await this.shiftRepo.findOne({ where: { name: s.name, branch: { id: bId } } });
+      let shift = await this.shiftRepo.findOne({
+        where: { name: s.name, branch: { id: bId } },
+      });
       if (!shift) {
         shift = this.shiftRepo.create();
         shift.name = s.name;
@@ -228,7 +251,9 @@ export class SeederService {
 
     // ── Seats ────────────────────────────────────────────────────────────────
     for (let i = 1; i <= 30; i++) {
-      let seat = await this.seatRepo.findOne({ where: { seatNumber: `S${i}`, branch: { id: bId } } });
+      let seat = await this.seatRepo.findOne({
+        where: { seatNumber: `S${i}`, branch: { id: bId } },
+      });
       if (!seat) {
         seat = this.seatRepo.create();
         seat.seatNumber = `S${i}`;
@@ -240,13 +265,15 @@ export class SeederService {
 
     // ── Plans ────────────────────────────────────────────────────────────────
     const planDefs = [
-      { name: 'Monthly',    price: 1000, durationDays: 30  },
-      { name: 'Quarterly',  price: 2800, durationDays: 90  },
-      { name: 'Half-Yearly',price: 5000, durationDays: 180 },
-      { name: 'Yearly',     price: 9000, durationDays: 365 },
+      { name: 'Monthly', price: 1000, durationDays: 30 },
+      { name: 'Quarterly', price: 2800, durationDays: 90 },
+      { name: 'Half-Yearly', price: 5000, durationDays: 180 },
+      { name: 'Yearly', price: 9000, durationDays: 365 },
     ];
     for (const p of planDefs) {
-      let plan = await this.planRepo.findOne({ where: { name: p.name, branch: { id: bId } } });
+      let plan = await this.planRepo.findOne({
+        where: { name: p.name, branch: { id: bId } },
+      });
       if (!plan) {
         plan = this.planRepo.create();
         plan.name = p.name;
@@ -260,15 +287,62 @@ export class SeederService {
 
     // ── Students, Slots, Subscriptions & Payments ────────────────────────────
     const studentDefs = [
-      { name: 'Rohan Sharma',  smartId: 'ST-002', phone: '9111000001', status: 'active',    due: 0,   planName: 'Monthly',   shiftName: 'Morning', seatNum: 'S1' },
-      { name: 'Priya Mehta',   smartId: 'ST-003', phone: '9111000002', status: 'active',    due: 0,   planName: 'Quarterly', shiftName: 'Evening', seatNum: 'S2' },
-      { name: 'Amit Verma',    smartId: 'ST-004', phone: '9111000003', status: 'active',    due: 500, planName: 'Monthly',   shiftName: 'Morning', seatNum: 'S3' },
-      { name: 'Sneha Rao',     smartId: 'ST-006', phone: '9111000004', status: 'active',    due: 0,   planName: 'Yearly',    shiftName: 'Full Day', seatNum: 'S4' },
-      { name: 'Karan Singh',   smartId: 'ST-010', phone: '9111000005', status: 'suspended', due: 1500,planName: 'Monthly',   shiftName: 'Night',    seatNum: 'S5' },
+      {
+        name: 'Rohan Sharma',
+        smartId: 'ST-002',
+        phone: '9111000001',
+        status: 'active',
+        due: 0,
+        planName: 'Monthly',
+        shiftName: 'Morning',
+        seatNum: 'S1',
+      },
+      {
+        name: 'Priya Mehta',
+        smartId: 'ST-003',
+        phone: '9111000002',
+        status: 'active',
+        due: 0,
+        planName: 'Quarterly',
+        shiftName: 'Evening',
+        seatNum: 'S2',
+      },
+      {
+        name: 'Amit Verma',
+        smartId: 'ST-004',
+        phone: '9111000003',
+        status: 'active',
+        due: 500,
+        planName: 'Monthly',
+        shiftName: 'Morning',
+        seatNum: 'S3',
+      },
+      {
+        name: 'Sneha Rao',
+        smartId: 'ST-006',
+        phone: '9111000004',
+        status: 'active',
+        due: 0,
+        planName: 'Yearly',
+        shiftName: 'Full Day',
+        seatNum: 'S4',
+      },
+      {
+        name: 'Karan Singh',
+        smartId: 'ST-010',
+        phone: '9111000005',
+        status: 'suspended',
+        due: 1500,
+        planName: 'Monthly',
+        shiftName: 'Night',
+        seatNum: 'S5',
+      },
     ];
 
     for (const s of studentDefs) {
-      let student = await this.studentRepo.findOne({ where: { smartId: s.smartId, branch: { id: bId } } });
+      let student = await this.studentRepo.findOne({
+        where: { smartId: s.smartId, branch: { id: bId } },
+      });
       if (!student) {
         student = this.studentRepo.create();
         student.name = s.name;
@@ -279,7 +353,9 @@ export class SeederService {
         await this.studentRepo.save(student);
 
         // Assign Plan (Subscription)
-        const plan = await this.planRepo.findOne({ where: { name: s.planName, branch: { id: bId } } });
+        const plan = await this.planRepo.findOne({
+          where: { name: s.planName, branch: { id: bId } },
+        });
         if (plan) {
           const sub = this.subscriptionRepo.create();
           sub.student = student;
@@ -291,12 +367,18 @@ export class SeederService {
           sub.dueAmount = s.due;
           sub.status = s.status;
           sub.startDate = new Date();
-          sub.endDate = new Date(new Date().setMonth(new Date().getMonth() + (plan.durationDays / 30)));
+          sub.endDate = new Date(
+            new Date().setMonth(new Date().getMonth() + plan.durationDays / 30),
+          );
           await this.subscriptionRepo.save(sub);
 
           // Assign Slot (Shift & Seat)
-          const shift = await this.shiftRepo.findOne({ where: { name: s.shiftName, branch: { id: bId } } });
-          const seat = await this.seatRepo.findOne({ where: { seatNumber: s.seatNum, branch: { id: bId } } });
+          const shift = await this.shiftRepo.findOne({
+            where: { name: s.shiftName, branch: { id: bId } },
+          });
+          const seat = await this.seatRepo.findOne({
+            where: { seatNumber: s.seatNum, branch: { id: bId } },
+          });
           if (shift && seat) {
             const slot = this.slotRepo.create();
             slot.student = student;

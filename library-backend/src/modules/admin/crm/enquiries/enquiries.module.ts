@@ -16,9 +16,7 @@ import { UpdateEnquiryStatusController } from './controllers/update-enquiry-stat
 import { AddFollowUpController } from './controllers/add-follow-up.controller';
 
 @Module({
-  imports: [
-    TypeOrmModule.forFeature([Enquiry, User])
-  ],
+  imports: [TypeOrmModule.forFeature([Enquiry, User])],
   providers: [
     GetAllEnquiriesService,
     GetEnquiryService,

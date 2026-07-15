@@ -15,9 +15,10 @@ import { CurrentUser } from '@/common/decorators/current-user.decorator';
 export class DashboardController {
   constructor(private readonly dashboardService: DashboardService) {}
 
+  // SLA: FAST
   @Get('dashboard')
   @ApiOperation({ summary: 'Manager dashboard (branch-scoped data only)' })
-  async getDashboard(@CurrentUser() user: any) {
+  async getDashboard(@CurrentUser() user: any): Promise<any> {
     return this.dashboardService.getDashboardData(user.branchId);
   }
 }

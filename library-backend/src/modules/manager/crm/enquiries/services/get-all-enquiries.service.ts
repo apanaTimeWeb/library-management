@@ -1,7 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { Repository, ILike } from 'typeorm';
 import { Enquiry } from '@/core/entities/enquiry.entity';
+import { PaginationDto } from '@/common/dto/pagination.dto';
+import { PaginatedResponse } from '@/common/interfaces/pagination.interface';
 
 @Injectable()
 export class GetAllEnquiriesService {
@@ -10,11 +12,47 @@ export class GetAllEnquiriesService {
     private readonly enquiryRepo: Repository<Enquiry>,
   ) {}
 
-  async findAll(branchId: string) {
-    const enquiries = await this.enquiryRepo.find({
+  async findAll(
+    branchId: string,
+    paginationDto?: PaginationDto,
+  ): Promise<PaginatedResponse<Enquiry>> {
+    const {
+      page = 1,
+      limit = 10,
+      search,
+      sortBy,
+      sortOrder = 'DESC',
+    } = paginationDto || {};
+    const skip = (page - 1) * limit;
+
+    const where: any = branchId ? { branch: { id: branchId } } : {};
+    if (search) {
+      where.name = ILike(`%${search}%`); // Assuming Enquiry has a name property
+    }
+
+    const order: any = {};
+    if (sortBy) {
+      order[sortBy] = sortOrder;
+    } else {
+      order.createdAt = 'DESC';
+    }
+
+    const [data, total] = await this.enquiryRepo.findAndCount({
+      where,
       relations: { handledBy: true, convertedToStudent: true },
-      order: { createdAt: 'DESC' },
+      order,
+      skip,
+      take: limit,
     });
-    return enquiries;
+
+    return {
+      data,
+      meta: {
+        total,
+        page,
+        limit,
+        totalPages: Math.ceil(total / limit),
+      },
+    };
   }
 }

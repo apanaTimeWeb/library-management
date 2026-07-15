@@ -4,6 +4,6 @@ import { SuperadminSeatsController } from './seats.controller';
 
 @Module({
   providers: [SuperadminSeatsService],
-  controllers: [SuperadminSeatsController]
+  controllers: [SuperadminSeatsController],
 })
 export class SuperadminSeatsModule {}

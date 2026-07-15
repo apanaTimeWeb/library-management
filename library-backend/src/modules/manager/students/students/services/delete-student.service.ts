@@ -15,17 +15,17 @@ export class DeleteStudentService {
 
   async remove(id: string, branchId: string): Promise<DeleteResponse> {
     const student = await this.studentRepo.findOne({
-      where: { id, branch: { id: branchId } }
+      where: { id, branch: { id: branchId } },
     });
-    
+
     if (!student) {
       throw new StudentNotFoundException();
     }
-    
+
     student.status = STUDENT_STATUS.SUSPENDED;
     student.exitDate = new Date();
     await this.studentRepo.save(student);
-    
+
     return { message: 'Student suspended successfully' };
   }
 }

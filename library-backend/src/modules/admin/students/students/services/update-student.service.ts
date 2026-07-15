@@ -12,12 +12,16 @@ export class UpdateStudentService {
     private readonly studentRepo: Repository<Student>,
   ) {}
 
-  async update(id: string, branchId: string | undefined, data: UpdateStudentDto): Promise<any> {
+  async update(
+    id: string,
+    branchId: string | undefined,
+    data: UpdateStudentDto,
+  ): Promise<any> {
     const student = await this.studentRepo.findOne({
-      where: { id, ...(branchId ? { branch: { id: branchId } } : {}) }
+      where: { id, ...(branchId ? { branch: { id: branchId } } : {}) },
     });
     if (!student) throw new StudentNotFoundException();
-    
+
     if (data.name) student.name = data.name;
     if (data.phone) student.phone = data.phone;
     if (data.parentPhone !== undefined) student.parentPhone = data.parentPhone;

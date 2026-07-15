@@ -12,14 +12,19 @@ import { Roles } from '@/modules/auth/auth/decorators/roles.decorator';
 @UseGuards(JwtAuthGuard, RolesGuard)
 @Roles('superadmin')
 export class UpdateLibraryStatusController {
-  constructor(private readonly updateLibraryStatusService: UpdateLibraryStatusService) {}
+  constructor(
+    private readonly updateLibraryStatusService: UpdateLibraryStatusService,
+  ) {}
 
   @Put('libraries/:id/status')
   @ApiOperation({ summary: 'Update library status' })
   async updateLibraryStatus(
     @Param('id') id: string,
-    @Body() updateDto: UpdateLibraryStatusDto
+    @Body() updateDto: UpdateLibraryStatusDto,
   ) {
-    return await this.updateLibraryStatusService.updateLibraryStatus(id, updateDto);
+    return await this.updateLibraryStatusService.updateLibraryStatus(
+      id,
+      updateDto,
+    );
   }
 }

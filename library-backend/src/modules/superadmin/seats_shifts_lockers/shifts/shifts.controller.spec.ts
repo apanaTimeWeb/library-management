@@ -9,7 +9,9 @@ describe('SuperadminShiftsController', () => {
       controllers: [SuperadminShiftsController],
     }).compile();
 
-    controller = module.get<SuperadminShiftsController>(SuperadminShiftsController);
+    controller = module.get<SuperadminShiftsController>(
+      SuperadminShiftsController,
+    );
   });
 
   it('should be defined', () => {

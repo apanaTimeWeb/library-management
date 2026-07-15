@@ -14,9 +14,11 @@ export class CreateUserService {
   async create(createUserDto: CreateUserDto): Promise<User> {
     const user = this.userRepository.create({
       ...createUserDto,
-      role: createUserDto.roleId ? { id: createUserDto.roleId } as any : undefined,
-      branch: createUserDto.branchId ? { id: createUserDto.branchId } as any : undefined,
-      tenant: createUserDto.tenantId ? { id: createUserDto.tenantId } as any : undefined,
+      role: createUserDto.roleId ? { id: createUserDto.roleId } : undefined,
+      branch: createUserDto.branchId
+        ? { id: createUserDto.branchId }
+        : undefined,
+      tenantId: createUserDto.tenantId,
     });
     return this.userRepository.save(user);
   }
