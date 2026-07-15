@@ -1,16 +1,17 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { Expense } from '../../../../core/entities/expense.entity';
+import { Expense } from '../../../../../core/entities/expense.entity';
+import { ExpenseListItem } from '../interfaces/expenses.interfaces';
 
 @Injectable()
-export class ManagerExpensesService {
+export class GetAllExpensesService {
   constructor(
     @InjectRepository(Expense)
     private readonly expenseRepo: Repository<Expense>,
   ) {}
 
-  async findAll(branchId?: string) {
+  async findAll(branchId?: string): Promise<ExpenseListItem[]> {
     const expenses = await this.expenseRepo.find({
       where: branchId ? { branch: { id: branchId } } : {},
       relations: {

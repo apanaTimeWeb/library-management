@@ -1,12 +1,20 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { ManagerExpensesService } from './expenses.service';
-import { ManagerExpensesController } from './expenses.controller';
 import { Expense, ExpenseCategory } from '../../../../core/entities/expense.entity';
+import { AuthAuthModule } from '../../../auth/auth/auth.module';
+
+// Micro-Services
+import { GetAllExpensesService } from './services/get-all-expenses.service';
+
+// Micro-Controllers
+import { GetAllExpensesController } from './controllers/get-all-expenses.controller';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Expense, ExpenseCategory])],
-  providers: [ManagerExpensesService],
-  controllers: [ManagerExpensesController]
+  imports: [
+    TypeOrmModule.forFeature([Expense, ExpenseCategory]),
+    AuthAuthModule,
+  ],
+  providers: [GetAllExpensesService],
+  controllers: [GetAllExpensesController],
 })
 export class ManagerExpensesModule {}
