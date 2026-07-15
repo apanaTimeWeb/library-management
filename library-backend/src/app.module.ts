@@ -18,6 +18,7 @@ import { APP_GUARD } from '@nestjs/core';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 
+import { PublicEnquiryModule } from './modules/public/enquiry/enquiry/enquiry.module';
 import { AdminModule } from './modules/admin/dashboard/admin/admin.module';
 import { AdminAttendanceModule } from './modules/admin/students/attendance/attendance.module';
 import { AdminAuditLogsModule } from './modules/admin/audit-logs/audit-logs/audit-logs.module';
@@ -102,6 +103,7 @@ import { SuperadminUsersModule } from './modules/superadmin/staff-users/users/us
       inject: [ConfigService],
     }),
     LoggerModule.forRoot({ pinoHttp: { redact: ['req.headers.authorization', 'req.body.password', 'req.body.token'], transport: process.env.NODE_ENV !== 'production' ? { target: 'pino-pretty', options: { singleLine: true } } : undefined } }),
+    PublicEnquiryModule,
     AdminModule,
     AdminAttendanceModule,
     AdminAuditLogsModule,
