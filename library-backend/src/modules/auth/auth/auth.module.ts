@@ -1,10 +1,8 @@
 import { Module } from '@nestjs/common';
-import { AuthAuthService } from './auth.service';
-import { AuthAuthController } from './auth.controller';
 import { SuperadminUsersModule } from '../../superadmin/staff-users/users/users.module';
 import { JwtModule } from '@nestjs/jwt';
 import { PassportModule } from '@nestjs/passport';
-import { JwtStrategy } from './jwt.strategy';
+import { JwtStrategy } from './strategies/jwt.strategy';
 import { RefreshTokenStrategy } from './strategies/refresh-token.strategy';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
@@ -15,13 +13,27 @@ import { JwtAuthGuard } from './guards/jwt-auth.guard';
 import { RolesGuard } from './guards/roles.guard';
 import { RefreshTokenGuard } from './guards/refresh-token.guard';
 
+// Micro-Services
+import { LoginService } from './services/login.service';
+import { RegisterService } from './services/register.service';
+import { RefreshTokenService } from './services/refresh-token.service';
+import { LogoutService } from './services/logout.service';
+import { GetMeService } from './services/get-me.service';
+import { JwtTokenGeneratorUtil } from './utils/jwt-token-generator.util';
+
+// Micro-Controllers
+import { LoginController } from './controllers/login.controller';
+import { RegisterController } from './controllers/register.controller';
+import { RefreshTokenController } from './controllers/refresh-token.controller';
+import { LogoutController } from './controllers/logout.controller';
+import { GetMeController } from './controllers/get-me.controller';
+
 @Module({
   imports: [
     SuperadminUsersModule,
     PassportModule,
     ConfigModule,
     TypeOrmModule.forFeature([User, Role, Branch]),
-    // Access Token JWT — 15 minute expiry
     JwtModule.registerAsync({
       imports: [ConfigModule],
       useFactory: async (configService: ConfigService) => {
@@ -36,14 +48,25 @@ import { RefreshTokenGuard } from './guards/refresh-token.guard';
     }),
   ],
   providers: [
-    AuthAuthService,
+    LoginService,
+    RegisterService,
+    RefreshTokenService,
+    LogoutService,
+    GetMeService,
+    JwtTokenGeneratorUtil,
     JwtStrategy,
     RefreshTokenStrategy,
     JwtAuthGuard,
     RolesGuard,
     RefreshTokenGuard,
   ],
-  controllers: [AuthAuthController],
-  exports: [AuthAuthService, JwtAuthGuard, RolesGuard, RefreshTokenGuard],
+  controllers: [
+    LoginController,
+    RegisterController,
+    RefreshTokenController,
+    LogoutController,
+    GetMeController,
+  ],
+  exports: [JwtAuthGuard, RolesGuard, RefreshTokenGuard],
 })
 export class AuthAuthModule {}
