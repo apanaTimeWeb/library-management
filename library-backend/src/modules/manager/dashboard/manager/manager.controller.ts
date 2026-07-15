@@ -1,11 +1,11 @@
 import { Controller, Get, UseGuards } from '@nestjs/common';
 import { ApiTags, ApiBearerAuth, ApiOperation } from '@nestjs/swagger';
 import { ManagerService } from './manager.service';
-import { JwtAuthGuard } from '../../auth/auth/guards/jwt-auth.guard';
-import { RolesGuard } from '../../auth/auth/guards/roles.guard';
-import { TenantGuard } from '../../auth/auth/guards/tenant.guard';
-import { Roles } from '../../auth/auth/decorators/roles.decorator';
-import { CurrentUser } from '../../../common/decorators/current-user.decorator';
+import { JwtAuthGuard } from '../../../auth/auth/guards/jwt-auth.guard';
+import { RolesGuard } from '../../../auth/auth/guards/roles.guard';
+import { TenantGuard } from '../../../auth/auth/guards/tenant.guard';
+import { Roles } from '../../../auth/auth/decorators/roles.decorator';
+import { CurrentUser } from '../../../../common/decorators/current-user.decorator';
 
 /**
  * Manager Controller

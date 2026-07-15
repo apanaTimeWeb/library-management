@@ -7,18 +7,18 @@ import { APP_GUARD } from '@nestjs/core';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 
-import { AdminModule } from './modules/admin/admin/admin.module';
+import { AdminModule } from './modules/admin/dashboard/admin/admin.module';
 import { AdminAttendanceModule } from './modules/admin/students/attendance/attendance.module';
-import { AdminAuditLogsModule } from './modules/admin/system/audit-logs/audit-logs.module';
+import { AdminAuditLogsModule } from './modules/admin/audit-logs/audit-logs/audit-logs.module';
 import { AdminBranchesModule } from './modules/admin/branches/branches/branches.module';
 import { AdminComplaintsModule } from './modules/admin/support-tickets/complaints/complaints.module';
 import { AdminCouponsModule } from './modules/admin/coupons/coupons.module';
 import { AdminEnquiriesModule } from './modules/admin/crm/enquiries/enquiries.module';
-import { AdminExpensesModule } from './modules/admin/finance/expenses/expenses.module';
+import { AdminExpensesModule } from './modules/admin/expenses/expenses/expenses.module';
 import { AdminLockersModule } from './modules/admin/seats_shifts_lockers/lockers/lockers.module';
 import { AdminPaymentsModule } from './modules/admin/finance/payments/payments.module';
-import { AdminPermissionsModule } from './modules/admin/staff-users/permissions/permissions.module';
-import { AdminPlansModule } from './modules/admin/subscriptions/plans/plans.module';
+import { AdminPermissionsModule } from './modules/admin/permissions/permissions/permissions.module';
+import { AdminPlansModule } from './modules/admin/plans/plans/plans.module';
 import { AdminRolesModule } from './modules/admin/staff-users/roles/roles.module';
 import { AdminSeatsModule } from './modules/admin/seats_shifts_lockers/seats/seats.module';
 import { AdminShiftsModule } from './modules/admin/seats_shifts_lockers/shifts/shifts.module';
@@ -32,13 +32,13 @@ import { ManagerComplaintsModule } from './modules/manager/support-tickets/compl
 import { ManagerEnquiriesModule } from './modules/manager/crm/enquiries/enquiries.module';
 import { ManagerExpensesModule } from './modules/manager/finance/expenses/expenses.module';
 import { ManagerLockersModule } from './modules/manager/seats_shifts_lockers/lockers/lockers.module';
-import { ManagerModule } from './modules/manager/manager/manager.module';
+import { ManagerModule } from './modules/manager/dashboard/manager/manager.module';
 import { ManagerPaymentsModule } from './modules/manager/finance/payments/payments.module';
 import { ManagerSeatsModule } from './modules/manager/seats_shifts_lockers/seats/seats.module';
 import { ManagerShiftsModule } from './modules/manager/seats_shifts_lockers/shifts/shifts.module';
 import { ManagerStudentSlotsModule } from './modules/manager/seats_shifts_lockers/student-slots/student-slots.module';
 import { ManagerStudentsModule } from './modules/manager/students/students/students.module';
-import { SuperadminAuditLogsModule } from './modules/superadmin/system/audit-logs/audit-logs.module';
+import { SuperadminAuditLogsModule } from './modules/superadmin/audit-logs/audit-logs/audit-logs.module';
 import { SuperadminBranchesModule } from './modules/superadmin/branches/branches/branches.module';
 import { SuperadminComplaintsModule } from './modules/superadmin/support-tickets/complaints/complaints.module';
 import { SuperadminCouponsModule } from './modules/superadmin/coupons/coupons.module';
@@ -53,7 +53,7 @@ import { SuperadminShiftsModule } from './modules/superadmin/seats_shifts_locker
 import { SuperadminStudentSlotsModule } from './modules/superadmin/seats_shifts_lockers/student-slots/student-slots.module';
 import { SuperadminStudentsModule } from './modules/superadmin/students/students/students.module';
 import { SuperadminSubscriptionsModule } from './modules/superadmin/subscriptions/subscriptions/subscriptions.module';
-import { SuperadminModule } from './modules/superadmin/superadmin/superadmin.module';
+import { SuperadminModule } from './modules/superadmin/dashboard/superadmin/superadmin.module';
 import { SuperadminTenantsModule } from './modules/superadmin/system/tenants/tenants.module';
 import { SuperadminUsersModule } from './modules/superadmin/staff-users/users/users.module';
 

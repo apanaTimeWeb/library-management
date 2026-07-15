@@ -1,11 +1,11 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository, Between } from 'typeorm';
-import { Student } from '../../../core/entities/student.entity';
-import { Seat } from '../../../core/entities/seat.entity';
-import { Subscription } from '../../../core/entities/subscription.entity';
-import { Enquiry } from '../../../core/entities/enquiry.entity';
-import { Complaint } from '../../../core/entities/complaint.entity';
+import { Student } from '../../../../core/entities/student.entity';
+import { Seat } from '../../../../core/entities/seat.entity';
+import { Subscription } from '../../../../core/entities/subscription.entity';
+import { Enquiry } from '../../../../core/entities/enquiry.entity';
+import { Complaint } from '../../../../core/entities/complaint.entity';
 
 @Injectable()
 export class ManagerService {

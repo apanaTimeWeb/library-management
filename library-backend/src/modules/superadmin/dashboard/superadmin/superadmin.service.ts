@@ -1,9 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { Tenant } from '../../../core/entities/tenant.entity';
-import { Branch } from '../../../core/entities/branch.entity';
-import { User } from '../../../core/entities/user.entity';
+import { Tenant } from '../../../../core/entities/tenant.entity';
+import { Branch } from '../../../../core/entities/branch.entity';
+import { User } from '../../../../core/entities/user.entity';
 
 @Injectable()
 export class SuperadminService {
