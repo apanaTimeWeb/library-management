@@ -10,7 +10,8 @@ export class ResetPasswordController {
 
   @Post('reset-password')
   @ApiOperation({ summary: 'Reset password using OTP' })
-  async resetPassword(@Body() resetPasswordDto: ResetPasswordDto) {
+  // SLA: FAST
+  async resetPassword(@Body() resetPasswordDto: ResetPasswordDto): Promise<{ success: boolean; message: string }> {
     return this.resetPasswordService.resetPassword(resetPasswordDto);
   }
 }

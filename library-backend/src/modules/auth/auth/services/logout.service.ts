@@ -10,7 +10,7 @@ export class LogoutService {
     private readonly userRepo: Repository<User>,
   ) {}
 
-  async logout(userId: string) {
+  async logout(userId: string): Promise<{ message: string }> {
     await this.userRepo.update(userId, { refreshTokenHash: null });
     return { message: 'Logged out successfully' };
   }

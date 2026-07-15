@@ -16,7 +16,8 @@ export class RegisterController {
   @Roles('superadmin')
   @ApiBearerAuth()
   @ApiOperation({ summary: 'Register a new user (superadmin only)' })
-  async register(@Body() registerDto: RegisterDto) {
+  // SLA: STANDARD
+  async register(@Body() registerDto: RegisterDto): Promise<any> {
     return this.registerService.register(registerDto);
   }
 }

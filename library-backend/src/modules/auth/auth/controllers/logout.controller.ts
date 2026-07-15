@@ -14,7 +14,8 @@ export class LogoutController {
   @ApiBearerAuth()
   @HttpCode(HttpStatus.OK)
   @ApiOperation({ summary: 'Logout — revokes refresh token' })
-  async logout(@CurrentUser() user: any) {
+  // SLA: FAST
+  async logout(@CurrentUser() user: any): Promise<{ message: string }> {
     return this.logoutService.logout(user.userId);
   }
 }
