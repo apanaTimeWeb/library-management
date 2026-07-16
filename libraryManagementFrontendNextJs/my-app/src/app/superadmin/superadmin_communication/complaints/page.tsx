@@ -35,17 +35,17 @@ export default function ComplaintsPage() {
   useEffect(() => {
     fetchApi('/communication/complaints').then(( data: unknown ) => {
       if (!Array.isArray(data)) return;
-      const mapped: Complaint[] = data.map(( c: Record<string, unknown> ) => ({
-        id: String(c.id || ''),
-        title: String(c.subject || 'Complaint'),
+      const mapped: Complaint[] = data.map(( c: Record<string, any> ) => ({
+        id: String(c.id || Math.random()),
+        title: String(c.subject || c.title || 'Complaint'),
+        student: String(c.student || c.studentName || 'Mock Student'),
+        isAnonymous: Boolean(c.isAnonymous),
         description: String(c.description || ''),
-        date: c.createdAt ? new Date(String(c.createdAt)).toLocaleDateString() : '',
-        status: (c.status === 'open' ? 'Open' : (c.status === 'resolved' ? 'Resolved' : 'In-Progress')) as CStatus,
-        student: 'Mock Student (S-001)',
-        isAnonymous: false,
-        resolvedBy: '—',
-        resolvedDate: '—',
-        resolvedNote: '',
+        status: c.status === 'open' ? 'Open' : (c.status === 'resolved' ? 'Resolved' : 'In-Progress'),
+        date: c.createdAt ? new Date(String(c.createdAt)).toLocaleDateString() : (c.date || new Date().toLocaleDateString()),
+        resolvedBy: String(c.resolvedBy || '—'),
+        resolvedDate: String(c.resolvedDate || '—'),
+        resolvedNote: String(c.resolvedNote || ''),
       }));
       setComplaints(mapped);
     }).catch(err => logger.error('Failed to load complaints data', err));

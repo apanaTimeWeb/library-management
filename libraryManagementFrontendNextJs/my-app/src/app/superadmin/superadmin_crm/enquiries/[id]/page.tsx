@@ -185,15 +185,15 @@ export default function EnquiryDetailPage({
             setLoading(false);
             return;
           }
-          const dataObj = e as Record<string, unknown>;
+          const dataObj = e as Record<string, any>;
           const mapped: Enquiry = {
-            id: String(dataObj.id || ''),
-            name: String(dataObj.name || ''),
-            phone: String(dataObj.phone || ''),
-            shift: String(dataObj.preferredShift || ''),
-            status: (typeof dataObj.status === 'string' ? dataObj.status.charAt(0).toUpperCase() + dataObj.status.slice(1) : 'New') as EnquiryStatus,
-            handledBy: typeof dataObj.handledBy === 'object' && dataObj.handledBy ? String((dataObj.handledBy as Record<string, unknown>).name || 'Unassigned') : 'Unassigned',
-            addedDate: dataObj.createdAt ? new Date(String(dataObj.createdAt)).toLocaleDateString() : '',
+            id: String(dataObj.id || Math.random()),
+            name: String(dataObj.name || 'Unknown'),
+            phone: String(dataObj.phone || 'NA'),
+            shift: String(dataObj.preferredShift || dataObj.shift || 'Morning'),
+            status: (dataObj.status ? (String(dataObj.status).charAt(0).toUpperCase() + String(dataObj.status).slice(1)) : 'New') as EnquiryStatus,
+            handledBy: (dataObj.handledBy && typeof dataObj.handledBy === 'object' && 'name' in dataObj.handledBy) ? String(dataObj.handledBy.name) : (typeof dataObj.handledBy === 'string' ? dataObj.handledBy : 'Unassigned'),
+            addedDate: dataObj.createdAt ? new Date(String(dataObj.createdAt)).toLocaleDateString() : (dataObj.date ? new Date(String(dataObj.date)).toLocaleDateString() : new Date().toLocaleDateString()),
             avatar: String(dataObj.name || 'U').substring(0, 2).toUpperCase(),
             source: String(dataObj.source || 'Walk-in'),
             preferredBranch: String(dataObj.preferredBranch || 'Main Branch'),

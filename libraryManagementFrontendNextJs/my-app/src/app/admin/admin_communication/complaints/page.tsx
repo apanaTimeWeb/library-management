@@ -36,12 +36,12 @@ export default function ComplaintsPage() {
   useEffect(() => {
     fetchApi('/communication/complaints').then(data => {
       const mapped = data.map(( c: any ) => ({
-        id: c.id,
-        title: c.subject,
-        desc: c.description,
-        date: new Date(c.createdAt).toLocaleDateString(),
+        id: String(c.id || Math.random()),
+        title: String(c.subject || c.title || 'Complaint'),
+        desc: String(c.description || ''),
+        date: c.createdAt ? new Date(c.createdAt).toLocaleDateString() : (c.date || new Date().toLocaleDateString()),
         status: c.status === 'open' ? 'Open' : (c.status === 'resolved' ? 'Resolved' : 'In-Progress'),
-        student: 'Mock Student (S-001)',
+        student: String(c.student || c.studentName || 'Mock Student (S-001)'),
       }));
       setComplaints(mapped);
     }).catch(e => logger.error('Complaints fetch failed:', e));
