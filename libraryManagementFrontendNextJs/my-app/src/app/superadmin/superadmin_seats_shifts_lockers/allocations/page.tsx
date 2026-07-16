@@ -140,7 +140,7 @@ export default function AllocationsPage() {
           </div>
         ) : (
           <div className="ss-table-wrapper ss-grid-h-400">
-            <AgGridReact theme={superadmin_gridTheme} rowData={filtered} columnDefs={colDefs as any} rowHeight={52} headerHeight={40} suppressMovableColumns suppressCellFocus defaultColDef={{ resizable: false, sortable: true }} />
+            <AgGridReact theme={superadmin_gridTheme} rowData={filtered} columnDefs={colDefs as unknown} rowHeight={52} headerHeight={40} suppressMovableColumns suppressCellFocus defaultColDef={{ resizable: false, sortable: true }} />
           </div>
         )}
       </div>

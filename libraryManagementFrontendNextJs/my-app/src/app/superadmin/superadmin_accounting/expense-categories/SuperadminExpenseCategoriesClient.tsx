@@ -1,6 +1,6 @@
 'use client';
 import React, { useState } from 'react';
-import { useSuperadminExpenseCategories } from '@/app/superadmin/superadmin_accounting/expense-categories/superadmin_expense_categories_hooks/superadmin_useSuperadminExpenseCategories';
+import { superadmin_useSuperadminExpenseCategories as useSuperadminExpenseCategories } from '@/app/superadmin/superadmin_accounting/expense-categories/superadmin_expense_categories_hooks/superadmin_useSuperadminExpenseCategories';
 import { SuperadminExpenseCategoriesHeader } from '@/app/superadmin/superadmin_accounting/expense-categories/superadmin_expense_categories_components/SuperadminExpenseCategoriesHeader';
 import { SuperadminExpenseCategoriesCard } from '@/app/superadmin/superadmin_accounting/expense-categories/superadmin_expense_categories_components/SuperadminExpenseCategoriesCard';
 import { SuperadminExpenseCategoriesAddDialog } from '@/app/superadmin/superadmin_accounting/expense-categories/superadmin_expense_categories_components/SuperadminExpenseCategoriesAddDialog';
@@ -12,7 +12,7 @@ export function SuperadminExpenseCategoriesClient() {
 
   const showToast = (msg: string) => { setToast(msg); setTimeout(() => setToast(''), 2500); };
 
-  const onAddCategory = async (cat: any) => {
+  const onAddCategory = async (cat: unknown) => {
     await handleAdd(cat);
     showToast('✅ Category added successfully');
   };

@@ -146,7 +146,7 @@ export default function SeatMaintenancePage() {
           </div>
         ) : (
           <div className="ss-table-wrapper ss-grid-h-320">
-            <AgGridReact theme={gridTheme} rowData={currentLogs} columnDefs={colDefs as any} rowHeight={52} headerHeight={40} suppressMovableColumns suppressCellFocus defaultColDef={{ resizable: false, sortable: true }} />
+            <AgGridReact theme={gridTheme} rowData={currentLogs} columnDefs={colDefs as unknown} rowHeight={52} headerHeight={40} suppressMovableColumns suppressCellFocus defaultColDef={{ resizable: false, sortable: true }} />
           </div>
         )}
 

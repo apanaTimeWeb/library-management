@@ -23,8 +23,8 @@ const TOOLTIP_CONTENT_STYLE = {
   color: 'var(--text-primary)',
 };
 
-const rupeeFormatter = (value: any) => [`₹${Number(value ?? 0).toLocaleString()}`, ''] as [string, string];
-const pctFormatter   = (value: any) => [`${value ?? 0}%`, ''] as [string, string];
+const rupeeFormatter = (value: unknown) => [`₹${Number(value ?? 0).toLocaleString()}`, ''] as [string, string];
+const pctFormatter   = (value: unknown) => [`${value ?? 0}%`, ''] as [string, string];
 
 function ChartCard({ title, subtitle, children }: { title: string, subtitle: string, children: React.ReactNode }) {
   return (

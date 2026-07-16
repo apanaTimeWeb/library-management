@@ -49,8 +49,8 @@ export default function Refunds() {
   const [deductReason, setDeductReason] = useState('');
 
   useEffect(() => {
-    fetchApi('/finance/refunds').then((data: any) => {
-      const mapped = data.map((r: any) => ({
+    fetchApi('/finance/refunds').then((data: unknown) => {
+      const mapped = data.map((r: unknown) => ({
         id: parseInt(r.id),
         studentName: r.name,
         smartId: 'S-001',
@@ -74,7 +74,7 @@ export default function Refunds() {
     setIsSubmitting(true);
     setTimeout(() => {
       setAllRefunds((prev) =>
-        prev.map((r: any) =>
+        prev.map((r: unknown) =>
           r.id === processDialog.id
             ? { ...r, status: 'processed', processedDate: new Date().toISOString().split('T')[0], paymentMethod: paymentMethod.toUpperCase() }
             : r
@@ -90,7 +90,7 @@ export default function Refunds() {
     setIsSubmitting(true);
     setTimeout(() => {
       setAllRefunds((prev) =>
-        prev.map((r: any) =>
+        prev.map((r: unknown) =>
           r.id === deductDialog.id
             ? { ...r, deductionAmount: parseFloat(deductAmt), netRefund: r.depositHeld - parseFloat(deductAmt) }
             : r
@@ -129,7 +129,7 @@ export default function Refunds() {
       </div>
 
       <div className="fin-filter-bar">
-        <select className="fin-select w-40" value={statusFilter} onChange={(e: any) => setStatusFilter(e.target.value)}>
+        <select className="fin-select w-40" value={statusFilter} onChange={(e: unknown) => setStatusFilter(e.target.value)}>
           <option value="all">All Status</option>
           <option value="pending">Pending</option>
           <option value="approved">Approved</option>
@@ -172,7 +172,7 @@ export default function Refunds() {
                 </td>
               </tr>
             ) : (
-              filtered.map((r: any) => (
+              filtered.map((r: unknown) => (
                 <tr key={r.id} className="fin-table-hover-row fin-table-row">
                   <td className="py-3 px-4">
                     <div className="fin-cell-name">{r.studentName}</div>
@@ -236,7 +236,7 @@ export default function Refunds() {
             <p className="fin-dialog-helper">Processing refund of <span className="font-semibold fin-text-success">{formatCurrency(processDialog.amount)}</span></p>
             <div>
               <label className="fin-label">Payment Method</label>
-              <select className="fin-select mt-1" value={paymentMethod} onChange={(e: any) => setPaymentMethod(e.target.value)}>
+              <select className="fin-select mt-1" value={paymentMethod} onChange={(e: unknown) => setPaymentMethod(e.target.value)}>
                 <option value="upi">UPI</option>
                 <option value="bank">Bank Transfer</option>
                 <option value="cash">Cash</option>
@@ -261,11 +261,11 @@ export default function Refunds() {
             <div className="space-y-4">
               <div>
                 <label className="fin-label">Deduction Amount <span className="fin-text-danger">*</span></label>
-                <input type="number" className="fin-input" value={deductAmt} onChange={(e: any) => setDeductAmt(e.target.value)} />
+                <input type="number" className="fin-input" value={deductAmt} onChange={(e: unknown) => setDeductAmt(e.target.value)} />
               </div>
               <div>
                 <label className="fin-label">Reason <span className="fin-text-danger">*</span></label>
-                <input className="fin-input" value={deductReason} onChange={(e: any) => setDeductReason(e.target.value)} placeholder="Reason for deduction" />
+                <input className="fin-input" value={deductReason} onChange={(e: unknown) => setDeductReason(e.target.value)} placeholder="Reason for deduction" />
               </div>
             </div>
             <div className="fin-dialog__footer">

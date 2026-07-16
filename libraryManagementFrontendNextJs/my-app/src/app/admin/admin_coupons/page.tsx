@@ -110,7 +110,7 @@ export default function AdminCouponsPage() {
   }
 
   const f = (k: keyof FormState) => (e: React.ChangeEvent<HTMLInputElement>) => {
-    setForm(p => ({ ...p, [k]: e.target.value as any }));
+    setForm(p => ({ ...p, [k]: e.target.value as unknown }));
     setErrors(p => ({ ...p, [k]: undefined }));
   };
 
@@ -177,7 +177,7 @@ export default function AdminCouponsPage() {
         <AgGridReact
           theme={gridTheme}
           rowData={coupons}
-          columnDefs={colDefs as any}
+          columnDefs={colDefs as unknown}
           rowHeight={48}
           headerHeight={38}
           suppressMovableColumns
@@ -200,7 +200,7 @@ export default function AdminCouponsPage() {
               </div>
               <div className="admin-form-field">
                 <label className="admin-label">Discount Type</label>
-                <select className="admin-select" style={{ width: '100%', padding: '10px 14px' }} value={form.type} onChange={e => setForm(p => ({ ...p, type: e.target.value as any }))}>
+                <select className="admin-select" style={{ width: '100%', padding: '10px 14px' }} value={form.type} onChange={e => setForm(p => ({ ...p, type: e.target.value as unknown }))}>
                   <option value="Flat">Flat (₹)</option>
                   <option value="Percent">Percent (%)</option>
                 </select>

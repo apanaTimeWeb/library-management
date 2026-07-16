@@ -29,8 +29,8 @@ export default function ComplaintsPage() {
   const [resolveNote, setResolveNote]   = useState('');
 
   useEffect(() => {
-    fetchApi('/communication/complaints').then((data: any) => {
-      const mapped = data.map((c: any) => ({
+    fetchApi('/communication/complaints').then((data: unknown) => {
+      const mapped = data.map((c: unknown) => ({
         id: c.id,
         title: c.subject,
         desc: c.description,
@@ -68,13 +68,13 @@ export default function ComplaintsPage() {
   };
 
   const markInProgress = (id: string) => {
-    setComplaints(prev => prev.map((c: any) => c.id === id ? { ...c, status: 'In-Progress' } : c));
+    setComplaints(prev => prev.map((c: unknown) => c.id === id ? { ...c, status: 'In-Progress' } : c));
     showToast('🔄 Marked In-Progress');
   };
 
   const handleResolve = () => {
     if (!resolveItem || !resolveNote) return;
-    setComplaints(prev => prev.map((c: any) => c.id === resolveItem.id
+    setComplaints(prev => prev.map((c: unknown) => c.id === resolveItem.id
       ? { ...c, status: 'Resolved', resolvedBy: 'Admin', resolvedDate: new Date().toISOString().split('T')[0], resolvedNote: resolveNote }
       : c));
     setResolveItem(null); setResolveNote('');
@@ -200,7 +200,7 @@ export default function ComplaintsPage() {
 
       {/* Filter Tabs */}
       <div className="eng-tabs eng-tabs-inline mb-6">
-        {TABS.map((t: any) => (
+        {TABS.map((t: unknown) => (
           <button key={t} onClick={() => setTab(t)} className={`eng-tab${tab === t ? ' eng-tab--active' : ''}`}>
             {t}
           </button>

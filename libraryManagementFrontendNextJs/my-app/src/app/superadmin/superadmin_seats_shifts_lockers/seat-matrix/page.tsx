@@ -36,8 +36,8 @@ export default function SeatMatrixPage() {
   const [seatsData, setSeatsData]       = useState<SeatData[]>([]);
 
   useEffect(() => {
-    fetchApi('/seats_shifts_lockers/seat-matrix').then((data: any) => {
-      const mapped = data.map((s: any) => ({
+    fetchApi('/seats_shifts_lockers/seat-matrix').then((data: unknown) => {
+      const mapped = data.map((s: unknown) => ({
         uuid: s.id,
         id: s.seatNumber.replace('S-', ''),
         status: s.isActive ? 'free' : 'maintenance',
@@ -56,7 +56,7 @@ export default function SeatMatrixPage() {
       {/* Filter bar */}
       <div className="ss-matrix-filter-bar">
         <div className="ss-tab-group">
-          {SHIFT_TABS.map((tab: any) => (
+          {SHIFT_TABS.map((tab: unknown) => (
             <button
               key={tab}
               onClick={() => setActiveTab(tab)}

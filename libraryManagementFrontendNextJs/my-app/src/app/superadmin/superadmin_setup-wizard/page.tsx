@@ -452,7 +452,7 @@ export default function SetupWizardPage() {
                 <div className="sa-wizard-shifts-preview">
                   <p className="sa-wizard-preview-section-label">Shifts</p>
                   <div className="flex flex-wrap gap-2">
-                    {shifts.shifts.map((s: any) => (
+                    {shifts.shifts.map((s: unknown) => (
                       <span key={s.name} className="sa-wizard-preview-chip">
                         {s.name}: {s.start} – {s.end}
                       </span>
@@ -463,7 +463,7 @@ export default function SetupWizardPage() {
                 <div className="sa-wizard-plans-preview">
                   <p className="sa-wizard-preview-section-label">Fee Plans</p>
                   <div className="flex flex-wrap gap-2">
-                    {plans.plans.map((pl: any) => (
+                    {plans.plans.map((pl: unknown) => (
                       <span key={pl.name} className="sa-wizard-preview-chip">
                         {pl.name} · {pl.days}d · ₹{pl.price}
                       </span>

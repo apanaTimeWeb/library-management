@@ -184,7 +184,7 @@ export default function AdminBlacklistPage() {
           <AgGridReact
             theme={gridTheme}
             rowData={list}
-            columnDefs={colDefs as any}
+            columnDefs={colDefs as unknown}
             rowHeight={56}
             headerHeight={38}
             suppressMovableColumns

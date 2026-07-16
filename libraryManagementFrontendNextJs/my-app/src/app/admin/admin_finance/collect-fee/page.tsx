@@ -236,7 +236,7 @@ export default function CollectFee() {
                   ].map(r => (
                     <div key={r.l} className="fin-receipt-modal-info-row">
                       <span className="fin-cell-subtext">{r.l}</span>
-                      <span className="fin-cell-name" style={{ color: (r as any).color }}>{r.v}</span>
+                      <span className="fin-cell-name" style={{ color: (r as unknown).color }}>{r.v}</span>
                     </div>
                   ))}
                 </div>

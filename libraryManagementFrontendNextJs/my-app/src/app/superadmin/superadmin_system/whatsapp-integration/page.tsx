@@ -156,7 +156,7 @@ export default function WhatsAppIntegrationPage() {
             <div className="space-y-2">
               <SuperadminLabel>API Provider</SuperadminLabel>
               <div className="grid grid-cols-2 gap-2">
-                {PROVIDERS.map((p: any) => (
+                {PROVIDERS.map((p: unknown) => (
                   <button
                     key={p.id}
                     id={`provider-${p.id}`}
@@ -290,7 +290,7 @@ export default function WhatsAppIntegrationPage() {
                 { id: 'trigger-suspend',  label: 'Auto-Suspend Notice',   desc: 'When seat is auto-suspended',                enabled: false },
                 { id: 'trigger-waitlist', label: 'Waitlist Notification', desc: 'When seat becomes available for waitlisted', enabled: true  },
                 { id: 'trigger-absentee', label: 'Absentee Alert',        desc: 'When student absent for 3+ days',            enabled: false },
-              ].map((event: any) => (
+              ].map((event: unknown) => (
                 <div key={event.id} className="flex items-center justify-between p-3 rounded-xl bg-surface-container-high border border-outline-variant/50">
                   <div>
                     <p className="text-sm font-medium text-on-surface">{event.label}</p>

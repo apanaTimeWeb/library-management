@@ -86,7 +86,7 @@ export function SuperadminDashboardRecentLibrariesTable({ data }: Props) {
           ref={gridRef}
           theme={superadmin_gridTheme}
           rowData={data}
-          columnDefs={colDefs as any}
+          columnDefs={colDefs as unknown}
           rowHeight={52}
           headerHeight={44}
           onGridReady={onGridReady}

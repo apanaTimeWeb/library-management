@@ -1,5 +1,5 @@
-import { SuperadminRoute } from '@/app/superadmin/superadmin_shared_components/SuperadminRoute';
+import { SuperadminSystemRoute } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminSystemRoute';
 
 export default function SuperAdminRootLayout({ children }: { children: React.ReactNode }) {
-  return <SuperadminRoute>{children}</SuperadminRoute>;
+  return <SuperadminSystemRoute>{children}</SuperadminSystemRoute>;
 }

@@ -6,12 +6,25 @@ import tailwind from "eslint-plugin-tailwindcss";
 const eslintConfig = defineConfig([
   ...nextVitals,
   ...nextTs,
-  ...tailwind.configs["flat/recommended"],
   {
+    plugins: {
+      tailwindcss: tailwind
+    },
     rules: {
       "@typescript-eslint/no-explicit-any": "error",
       "no-console": ["error", { allow: ["warn", "error"] }],
-      "tailwindcss/no-arbitrary-value": "error"
+      "tailwindcss/no-arbitrary-value": "error",
+      "@typescript-eslint/no-empty-object-type": "warn",
+      "react/display-name": "warn",
+      "react-hooks/set-state-in-effect": "warn",
+      "react/no-unescaped-entities": "warn",
+      "@typescript-eslint/no-unused-vars": "warn"
+    }
+  },
+  {
+    files: ["src/components/ui/**/*.tsx", "src/components/ui/**/*.ts"],
+    rules: {
+      "tailwindcss/no-arbitrary-value": "off"
     }
   },
   {

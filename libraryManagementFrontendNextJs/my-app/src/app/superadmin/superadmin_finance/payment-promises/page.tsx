@@ -54,7 +54,7 @@ export default function PaymentPromises() {
 
   const handleFulfill = (id: number, name: string) => {
     setPromises((prev) =>
-      prev.map((p: any) => p.id === id ? { ...p, status: 'fulfilled', fulfilledDate: new Date().toISOString().split('T')[0] } : p)
+      prev.map((p: unknown) => p.id === id ? { ...p, status: 'fulfilled', fulfilledDate: new Date().toISOString().split('T')[0] } : p)
     );
     toast.success(`✅ ${name}'s promise marked as paid.`);
   };
@@ -62,7 +62,7 @@ export default function PaymentPromises() {
   const handleExtend = () => {
     if (!extendDialog || !newDate || !extendReason) return;
     setPromises((prev) =>
-      prev.map((p: any) =>
+      prev.map((p: unknown) =>
         p.id === extendDialog.id
           ? { ...p, expectedDate: newDate, timesChanged: p.timesChanged + 1, daysUntilDue: calcDays(newDate) }
           : p
@@ -80,7 +80,7 @@ export default function PaymentPromises() {
       </div>
 
       <div className="fin-filter-bar">
-        <select className="fin-select w-40" value={statusFilter} onChange={(e: any) => setStatusFilter(e.target.value)}>
+        <select className="fin-select w-40" value={statusFilter} onChange={(e: unknown) => setStatusFilter(e.target.value)}>
           <option value="all">All Status</option>
           <option value="pending">Pending</option>
           <option value="fulfilled">Fulfilled</option>
@@ -122,7 +122,7 @@ export default function PaymentPromises() {
                 </td>
               </tr>
             ) : (
-              filtered.map((p: any) => (
+              filtered.map((p: unknown) => (
                 <tr key={p.id} className="fin-table-hover-row fin-table-row">
                   <td className="py-3 px-4">
                     <div className="fin-cell-name">{p.studentName}</div>
@@ -185,11 +185,11 @@ export default function PaymentPromises() {
             <div className="space-y-4">
               <div>
                 <label className="fin-label">New Expected Date <span className="fin-text-danger">*</span></label>
-                <input type="date" className="fin-input" value={newDate} onChange={(e: any) => setNewDate(e.target.value)} />
+                <input type="date" className="fin-input" value={newDate} onChange={(e: unknown) => setNewDate(e.target.value)} />
               </div>
               <div>
                 <label className="fin-label">Reason <span className="fin-text-danger">*</span></label>
-                <textarea className="fin-textarea" value={extendReason} onChange={(e: any) => setExtendReason(e.target.value)} placeholder="Reason for extension..." rows={2} />
+                <textarea className="fin-textarea" value={extendReason} onChange={(e: unknown) => setExtendReason(e.target.value)} placeholder="Reason for extension..." rows={2} />
               </div>
               <div className="fin-badge fin-badge--warning w-full justify-center py-2">
                 ⚠️ This will decrease the student's Trust Score.

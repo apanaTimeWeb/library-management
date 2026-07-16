@@ -211,7 +211,7 @@ export default function SettingsPage() {
                 <div className="space-y-2">
                   <SuperadminLabel htmlFor="days-before-suspend">Days Before Suspend</SuperadminLabel>
                   <div className="flex items-center gap-2">
-                    <SuperadminInput id="days-before-suspend" type="number" value={form.daysBefore} onChange={e => setForm(f => ({ ...f, daysBefore: +e.target.value }))} className="max-w-[120px]" />
+                    <SuperadminInput id="days-before-suspend" type="number" value={form.daysBefore} onChange={e => setForm(f => ({ ...f, daysBefore: +e.target.value }))} className="max-w-32" />
                     <span className="text-sm text-on-surface-variant">days after due date</span>
                   </div>
                 </div>

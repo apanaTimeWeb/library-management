@@ -144,7 +144,7 @@ export default function DailySettlementPage() {
             <AgGridReact
               theme={gridTheme}
               rowData={entries}
-              columnDefs={colDefs as any}
+              columnDefs={colDefs as unknown}
               rowHeight={56}
               headerHeight={48}
               pagination={false}

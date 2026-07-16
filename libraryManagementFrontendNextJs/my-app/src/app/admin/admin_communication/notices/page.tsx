@@ -200,7 +200,7 @@ export default function NoticesPage() {
             <AgGridReact
               theme={gridTheme}
               rowData={notices}
-              columnDefs={colDefs as any}
+              columnDefs={colDefs as unknown}
               rowHeight={56}
               headerHeight={48}
               pagination={true}

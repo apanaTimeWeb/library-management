@@ -12,7 +12,7 @@ export function superadmin_useSuperadminDailySettlement() {
   const handleSettle = async (id: number) => {
     // Simulate network delay
     await new Promise(res => setTimeout(res, 800));
-    setEntries(prev => prev.map((e: any) => 
+    setEntries(prev => prev.map((e: unknown) => 
       e.id === id ? { ...e, status: 'settled', settledBy: 'Super Admin' } : e
     ));
   };

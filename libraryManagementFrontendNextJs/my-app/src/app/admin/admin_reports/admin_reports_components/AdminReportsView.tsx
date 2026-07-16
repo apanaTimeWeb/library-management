@@ -162,7 +162,7 @@ export function AdminReportsView({ initialData }: AdminReportsViewProps) {
                 />
                 <Tooltip
                   {...TOOLTIP_STYLE}
-                  formatter={((v: unknown, name: string) => [`₹${Number(v).toLocaleString('en-IN')}`, name]) as any}
+                  formatter={((v: unknown, name: string) => [`₹${Number(v).toLocaleString('en-IN')}`, name]) as unknown}
                 />
                 <Bar dataKey="income"  fill="var(--chart-indigo)" radius={[5,5,0,0]} name="Income"  maxBarSize={28} />
                 <Bar dataKey="expense" fill="var(--chart-red)"    radius={[5,5,0,0]} name="Expense" maxBarSize={28} />
@@ -195,7 +195,7 @@ export function AdminReportsView({ initialData }: AdminReportsViewProps) {
                 </Pie>
                 <Tooltip
                   {...TOOLTIP_STYLE}
-                  formatter={((v: unknown, name: string) => [`${v}%`, name]) as any}
+                  formatter={((v: unknown, name: string) => [`${v}%`, name]) as unknown}
                 />
                 <Legend
                   iconType="circle"
@@ -279,7 +279,7 @@ export function AdminReportsView({ initialData }: AdminReportsViewProps) {
                 <YAxis tick={AXIS_TICK} axisLine={false} tickLine={false} />
                 <Tooltip
                   {...TOOLTIP_STYLE}
-                  formatter={((v: unknown, name: string) => [v, name]) as any}
+                  formatter={((v: unknown, name: string) => [v, name]) as unknown}
                 />
                 <Bar dataKey="joined" fill="var(--chart-indigo)" radius={[5,5,0,0]} name="Joined" maxBarSize={28} />
                 <Bar dataKey="exited" fill="var(--chart-red)"    radius={[5,5,0,0]} name="Exited" maxBarSize={28} />

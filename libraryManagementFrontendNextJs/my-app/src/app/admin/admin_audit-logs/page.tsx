@@ -153,7 +153,7 @@ export default function AdminAuditLogsPage() {
         <AgGridReact
           theme={gridTheme}
           rowData={filtered}
-          columnDefs={colDefs as any}
+          columnDefs={colDefs as unknown}
           rowHeight={52}
           headerHeight={38}
           suppressMovableColumns

@@ -1,6 +1,6 @@
 'use client';
 import React, { useState } from 'react';
-import { useSuperadminAssetMaintenance } from '@/app/superadmin/superadmin_accounting/asset-maintenance/superadmin_asset_maintenance_hooks/superadmin_useSuperadminAssetMaintenance';
+import { superadmin_useSuperadminAssetMaintenance as useSuperadminAssetMaintenance } from '@/app/superadmin/superadmin_accounting/asset-maintenance/superadmin_asset_maintenance_hooks/superadmin_useSuperadminAssetMaintenance';
 import { SuperadminAssetMaintenanceHeader } from '@/app/superadmin/superadmin_accounting/asset-maintenance/superadmin_asset_maintenance_components/SuperadminAssetMaintenanceHeader';
 import { SuperadminAssetMaintenanceKpiGrid } from '@/app/superadmin/superadmin_accounting/asset-maintenance/superadmin_asset_maintenance_components/SuperadminAssetMaintenanceKpiGrid';
 import { SuperadminAssetMaintenanceFilterBar } from '@/app/superadmin/superadmin_accounting/asset-maintenance/superadmin_asset_maintenance_components/SuperadminAssetMaintenanceFilterBar';
@@ -25,7 +25,7 @@ export function SuperadminAssetMaintenanceClient() {
 
   const showToast = (msg: string) => { setToast(msg); setTimeout(() => setToast(''), 2500); };
 
-  const onSaveLog = async (logData: any) => {
+  const onSaveLog = async (logData: unknown) => {
     await handleAddLog(logData);
     showToast('✅ Maintenance request logged successfully');
   };

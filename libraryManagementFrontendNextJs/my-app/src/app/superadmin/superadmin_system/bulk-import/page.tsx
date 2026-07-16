@@ -283,7 +283,7 @@ export default function BulkImportPage() {
                 </div>
                 {/* Filter buttons */}
                 <div className="flex gap-2">
-                  {(['all', 'ok', 'warning', 'error'] as const).map((f: any) => (
+                  {(['all', 'ok', 'warning', 'error'] as const).map((f: unknown) => (
                     <button
                       key={f}
                       onClick={() => setFilter(f)}
@@ -318,7 +318,7 @@ export default function BulkImportPage() {
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-outline-variant/30">
-                    {filteredRows.map((row: any) => {
+                    {filteredRows.map((row: unknown) => {
                       const cfg = STATUS_CONFIG[row.status as keyof typeof STATUS_CONFIG];
                       const Icon = cfg.icon;
                       return (

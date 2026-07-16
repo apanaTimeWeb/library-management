@@ -55,8 +55,8 @@ export default function Payments() {
   const [allPayments, setAllPayments] = useState<Payment[]>([]);
 
   useEffect(() => {
-    fetchApi('/finance/payments').then((data: any) => {
-      const mapped = data.map((p: any) => ({
+    fetchApi('/finance/payments').then((data: unknown) => {
+      const mapped = data.map((p: unknown) => ({
         id: p.id,
         receiptNumber: 'REC-' + p.id.substring(0, 8),
         date: new Date(p.date).toISOString().split('T')[0],
@@ -83,7 +83,7 @@ export default function Payments() {
     setIsDeleting(true);
     setTimeout(() => {
       setAllPayments((prev) =>
-        prev.map((p: any) =>
+        prev.map((p: unknown) =>
           p.id === deleteDialog.id ? { ...p, status: 'deleted', deletionReason: deleteReason } : p
         )
       );
@@ -214,7 +214,7 @@ export default function Payments() {
       </div>
 
       <div className="fin-filter-bar">
-        <select className="fin-select w-40" value={modeFilter} onChange={(e: any) => setModeFilter(e.target.value)}>
+        <select className="fin-select w-40" value={modeFilter} onChange={(e: unknown) => setModeFilter(e.target.value)}>
           <option value="all">All Modes</option>
           <option value="cash">Cash</option>
           <option value="upi">UPI</option>
@@ -224,7 +224,7 @@ export default function Payments() {
         <div className="flex items-center gap-2">
           <button
             className={`fin-switch ${showDeleted ? 'fin-switch--on' : 'fin-switch--off'}`}
-            onClick={() => setShowDeleted((v: any) => !v)}
+            onClick={() => setShowDeleted((v: unknown) => !v)}
             type="button"
           >
             <span className="fin-switch__thumb" />
@@ -239,7 +239,7 @@ export default function Payments() {
           <AgGridReact
             theme={superadmin_gridTheme}
             rowData={visible}
-            columnDefs={colDefs as any}
+            columnDefs={colDefs as unknown}
             rowHeight={56}
             headerHeight={48}
             pagination={true}
@@ -264,7 +264,7 @@ export default function Payments() {
               <textarea
                 className="fin-textarea"
                 value={deleteReason}
-                onChange={(e: any) => setDeleteReason(e.target.value)}
+                onChange={(e: unknown) => setDeleteReason(e.target.value)}
                 placeholder="Enter reason for deletion..."
                 rows={2}
               />

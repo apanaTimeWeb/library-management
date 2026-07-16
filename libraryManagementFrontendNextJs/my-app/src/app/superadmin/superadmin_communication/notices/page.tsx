@@ -27,8 +27,8 @@ export default function NoticesPage() {
   const [form, setForm]                   = useState({ title: '', message: '', validTill: '' });
 
   useEffect(() => {
-    fetchApi('/communication/notices').then((data: any) => {
-      const mapped = data.map((n: any) => ({
+    fetchApi('/communication/notices').then((data: unknown) => {
+      const mapped = data.map((n: unknown) => ({
         id: n.id,
         title: n.title,
         message: n.message,
@@ -50,7 +50,7 @@ export default function NoticesPage() {
     if (!form.title || !form.message || !form.validTill) return;
     const status: 'Active' | 'Expired' = form.validTill >= today ? 'Active' : 'Expired';
     if (editItem) {
-      setNotices(prev => prev.map((n: any) => n.id === editItem.id ? { ...n, ...form, status } : n));
+      setNotices(prev => prev.map((n: unknown) => n.id === editItem.id ? { ...n, ...form, status } : n));
       showToast('✅ Notice updated');
     } else {
       setNotices(prev => [{ id: Date.now().toString(), ...form, postedBy: 'Admin', postedDate: today, status }, ...prev]);
@@ -198,7 +198,7 @@ export default function NoticesPage() {
             <AgGridReact
               theme={superadmin_gridTheme}
               rowData={notices}
-              columnDefs={colDefs as any}
+              columnDefs={colDefs as unknown}
               rowHeight={56}
               headerHeight={48}
               pagination={true}

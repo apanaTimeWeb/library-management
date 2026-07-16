@@ -1,6 +1,6 @@
 'use client';
 import React from 'react';
-import { useSuperadminFinancialReports } from '@/app/superadmin/superadmin_accounting/financial-reports/superadmin_financial_reports_hooks/superadmin_useSuperadminFinancialReports';
+import { superadmin_useSuperadminFinancialReports as useSuperadminFinancialReports } from '@/app/superadmin/superadmin_accounting/financial-reports/superadmin_financial_reports_hooks/superadmin_useSuperadminFinancialReports';
 import { SuperadminFinancialReportsHeader } from '@/app/superadmin/superadmin_accounting/financial-reports/superadmin_financial_reports_components/SuperadminFinancialReportsHeader';
 import { SuperadminFinancialReportsKpiCards } from '@/app/superadmin/superadmin_accounting/financial-reports/superadmin_financial_reports_components/SuperadminFinancialReportsKpiCards';
 import { SuperadminFinancialReportsBarChart } from '@/app/superadmin/superadmin_accounting/financial-reports/superadmin_financial_reports_components/SuperadminFinancialReportsBarChart';

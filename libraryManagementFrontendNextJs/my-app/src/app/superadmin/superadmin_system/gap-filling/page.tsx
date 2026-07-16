@@ -75,7 +75,7 @@ export default function GapFillingPage() {
             <h2 className="text-lg font-semibold text-on-surface">Gap Analysis Results</h2>
             <SuperadminBadge variant="primary">{SEAT_GAPS.length} seats analyzed</SuperadminBadge>
           </div>
-          {SEAT_GAPS.map((seat: any) => (
+          {SEAT_GAPS.map((seat: unknown) => (
             <SuperadminCard key={seat.seat}>
               <CardContent>
                 <div className="flex items-center gap-4">
@@ -84,7 +84,7 @@ export default function GapFillingPage() {
                   </div>
                   {/* Time bar — left/width are computed values, style is correct here */}
                   <div className="flex-1 relative h-8 rounded-lg overflow-hidden bg-surface-container-highest">
-                    {seat.booked.map((b: any, i: number) => (
+                    {seat.booked.map((b: unknown, i: number) => (
                       <div key={i} className="absolute top-0 h-full bg-primary/70 flex items-center justify-center"
                         style={{ left: `${b.start}%`, width: `${b.end - b.start}%` }}>
                         <span className="text-xs text-on-primary font-medium truncate px-1">Booked</span>

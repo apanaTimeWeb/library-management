@@ -8,9 +8,9 @@ export const SelectValue = SelectPrimitive.Value;
 
 export function SelectTrigger({ className, children, ...props }: React.ComponentPropsWithoutRef<typeof SelectPrimitive.Trigger>) {
   return (
-    <SuperadminSelectPrimitive.Trigger className={cn('sys-select-trigger', className)} {...props}>
+    <SelectPrimitive.Trigger className={cn('sys-select-trigger', className)} {...props}>
       {children}
-      <SuperadminSelectPrimitive.Icon>
+      <SelectPrimitive.Icon>
         <ChevronDown size={16} className="text-secondary" />
       </SelectPrimitive.Icon>
     </SelectPrimitive.Trigger>
@@ -19,14 +19,14 @@ export function SelectTrigger({ className, children, ...props }: React.Component
 
 export function SelectContent({ className, children, ...props }: React.ComponentPropsWithoutRef<typeof SelectPrimitive.Content>) {
   return (
-    <SuperadminSelectPrimitive.Portal>
-      <SuperadminSelectPrimitive.Content
+    <SelectPrimitive.Portal>
+      <SelectPrimitive.Content
         className={cn('sys-select-content', className)}
         position="popper"
         sideOffset={4}
         {...props}
       >
-        <SuperadminSelectPrimitive.Viewport className="sys-select-viewport">
+        <SelectPrimitive.Viewport className="sys-select-viewport">
           {children}
         </SelectPrimitive.Viewport>
       </SelectPrimitive.Content>
@@ -36,13 +36,13 @@ export function SelectContent({ className, children, ...props }: React.Component
 
 export function SelectItem({ className, children, ...props }: React.ComponentPropsWithoutRef<typeof SelectPrimitive.Item>) {
   return (
-    <SuperadminSelectPrimitive.Item className={cn('sys-select-item', className)} {...props}>
+    <SelectPrimitive.Item className={cn('sys-select-item', className)} {...props}>
       <span className="absolute left-2 flex h-3.5 w-3.5 items-center justify-center">
-        <SuperadminSelectPrimitive.ItemIndicator>
+        <SelectPrimitive.ItemIndicator>
           <Check size={14} className="text-primary" />
         </SelectPrimitive.ItemIndicator>
       </span>
-      <SuperadminSelectPrimitive.ItemText>{children}</SelectPrimitive.ItemText>
+      <SelectPrimitive.ItemText>{children}</SelectPrimitive.ItemText>
     </SelectPrimitive.Item>
   );
 }

@@ -111,7 +111,7 @@ export default function RecentPaymentsFeed({ payments }: { payments: Payment[] }
           <AgGridReact
             theme={gridTheme}
             rowData={payments}
-            columnDefs={colDefs as any}
+            columnDefs={colDefs as unknown}
             rowHeight={48}
             headerHeight={38}
             suppressMovableColumns

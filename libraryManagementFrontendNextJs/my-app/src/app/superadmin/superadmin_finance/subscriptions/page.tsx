@@ -63,19 +63,19 @@ export default function Subscriptions() {
       </div>
 
       <div className="fin-filter-bar">
-        <select className="fin-select w-40" value={statusFilter} onChange={(e: any) => setStatusFilter(e.target.value)}>
+        <select className="fin-select w-40" value={statusFilter} onChange={(e: unknown) => setStatusFilter(e.target.value)}>
           <option value="all">All Status</option>
           <option value="active">Active</option>
           <option value="expired">Expired</option>
           <option value="suspended">Suspended</option>
           <option value="cancelled">Cancelled</option>
         </select>
-        <select className="fin-select w-40" value={planFilter} onChange={(e: any) => setPlanFilter(e.target.value)}>
+        <select className="fin-select w-40" value={planFilter} onChange={(e: unknown) => setPlanFilter(e.target.value)}>
           <option value="all">All Plans</option>
           <option value="Basic Plan">Basic Plan</option>
           <option value="Premium Plan">Premium Plan</option>
         </select>
-        <select className="fin-select w-40" value={shiftFilter} onChange={(e: any) => setShiftFilter(e.target.value)}>
+        <select className="fin-select w-40" value={shiftFilter} onChange={(e: unknown) => setShiftFilter(e.target.value)}>
           <option value="all">All Shifts</option>
           <option value="Morning">Morning</option>
           <option value="Evening">Evening</option>
@@ -123,7 +123,7 @@ export default function Subscriptions() {
                 </td>
               </tr>
             ) : (
-              rows.map((s: any) => (
+              rows.map((s: unknown) => (
                 <tr key={s.id} className="fin-table-hover-row fin-table-row">
                   <td className="py-3 px-4 fin-cell-name">{s.studentName}</td>
                   <td className="py-3 px-4 fin-mono">{s.smartId}</td>

@@ -1,6 +1,6 @@
 'use client';
 import React, { useState } from 'react';
-import { useSuperadminAssets } from '@/app/superadmin/superadmin_accounting/assets/superadmin_assets_hooks/superadmin_useSuperadminAssets';
+import { superadmin_useSuperadminAssets as useSuperadminAssets } from '@/app/superadmin/superadmin_accounting/assets/superadmin_assets_hooks/superadmin_useSuperadminAssets';
 import { SuperadminAssetsHeader } from '@/app/superadmin/superadmin_accounting/assets/superadmin_assets_components/SuperadminAssetsHeader';
 import { SuperadminAssetsKpiGrid } from '@/app/superadmin/superadmin_accounting/assets/superadmin_assets_components/SuperadminAssetsKpiGrid';
 import { SuperadminAssetsFilterBar } from '@/app/superadmin/superadmin_accounting/assets/superadmin_assets_components/SuperadminAssetsFilterBar';
@@ -25,7 +25,7 @@ export function SuperadminAssetsClient() {
 
   const showToast = (msg: string) => { setToast(msg); setTimeout(() => setToast(''), 2500); };
 
-  const onSaveAsset = async (assetData: any) => {
+  const onSaveAsset = async (assetData: unknown) => {
     await handleAddAsset(assetData);
     showToast('✅ Asset added successfully');
   };

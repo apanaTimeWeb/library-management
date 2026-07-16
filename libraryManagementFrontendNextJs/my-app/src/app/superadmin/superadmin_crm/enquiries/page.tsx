@@ -88,7 +88,7 @@ function KanbanCard({
       onClick={onClick}
       role="button"
       tabIndex={0}
-      onKeyDown={(e: any) => e.key === 'Enter' && onClick()}
+      onKeyDown={(e: unknown) => e.key === 'Enter' && onClick()}
     >
       {/* Name + phone */}
       <div className="crm-card-name-block">
@@ -139,9 +139,9 @@ export default function EnquiriesPage() {
   const [statusFilter, setStatusFilter] = useState<string>('All');
 
   useEffect(() => {
-    fetchApi('/crm/enquiries').then((data: any) => {
+    fetchApi('/crm/enquiries').then((data: unknown) => {
       // Map DB schema to frontend Enquiry schema
-      const mapped = data.map((e: any) => ({
+      const mapped = data.map((e: unknown) => ({
         id: e.id,
         name: e.name,
         phone: e.phone,
@@ -156,7 +156,7 @@ export default function EnquiriesPage() {
   }, []);
 
   /* ── Filter logic ── */
-  const filtered = enquiries.filter((e: any) => {
+  const filtered = enquiries.filter((e: unknown) => {
     const matchSearch =
       e.name.toLowerCase().includes(search.toLowerCase()) ||
       e.phone.includes(search.replace(/\D/g, ''));
@@ -165,7 +165,7 @@ export default function EnquiriesPage() {
   });
 
   const colEnquiries = (status: EnquiryStatus) =>
-    filtered.filter((e: any) => e.status === status);
+    filtered.filter((e: unknown) => e.status === status);
 
   /* ── Quick actions (table view inline) ── */
   const handleQuickConvert = (e: React.MouseEvent, id: string) => {
@@ -180,7 +180,7 @@ export default function EnquiriesPage() {
   const handleQuickLost = (e: React.MouseEvent, id: string) => {
     e.stopPropagation();
     setEnquiries((prev) =>
-      prev.map((x: any) => (x.id === id ? { ...x, status: 'Lost' as EnquiryStatus } : x))
+      prev.map((x: unknown) => (x.id === id ? { ...x, status: 'Lost' as EnquiryStatus } : x))
     );
   };
 
@@ -240,7 +240,7 @@ export default function EnquiriesPage() {
             className="crm-search-input"
             placeholder="Search by name or phone…"
             value={search}
-            onChange={(e: any) => setSearch(e.target.value)}
+            onChange={(e: unknown) => setSearch(e.target.value)}
           />
         </div>
 
@@ -248,7 +248,7 @@ export default function EnquiriesPage() {
         <select
           className="crm-select crm-status-filter"
           value={statusFilter}
-          onChange={(e: any) => setStatusFilter(e.target.value)}
+          onChange={(e: unknown) => setStatusFilter(e.target.value)}
         >
           <option value="All">All Statuses</option>
           <option value="New">New</option>
@@ -306,7 +306,7 @@ export default function EnquiriesPage() {
                           </p>
                         </div>
                       ) : (
-                        cards.map((enq: any) => (
+                        cards.map((enq: unknown) => (
                           <KanbanCard
                             key={enq.id}
                             enq={enq}
@@ -393,7 +393,7 @@ export default function EnquiriesPage() {
                             className="crm-btn-icon"
                             title="View details"
                             aria-label="View details"
-                            onClick={(e: any) => {
+                            onClick={(e: unknown) => {
                               e.stopPropagation();
                               router.push(`/superadmin/superadmin_crm/enquiries/${enq.id}`);
                             }}
@@ -404,7 +404,7 @@ export default function EnquiriesPage() {
                             className="crm-btn-icon crm-btn-icon-success"
                             title="Convert to Admission"
                             aria-label="Convert to admission"
-                            onClick={(e: any) => handleQuickConvert(e, enq.id)}
+                            onClick={(e: unknown) => handleQuickConvert(e, enq.id)}
                           >
                             <CheckCircle size={14} />
                           </button>
@@ -412,7 +412,7 @@ export default function EnquiriesPage() {
                             className="crm-btn-icon crm-btn-icon-danger"
                             title="Mark as Lost"
                             aria-label="Mark as lost"
-                            onClick={(e: any) => handleQuickLost(e, enq.id)}
+                            onClick={(e: unknown) => handleQuickLost(e, enq.id)}
                           >
                             <XCircle size={14} />
                           </button>

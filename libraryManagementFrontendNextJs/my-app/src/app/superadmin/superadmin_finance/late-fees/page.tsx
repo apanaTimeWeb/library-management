@@ -111,12 +111,12 @@ export default function LateFees() {
           <div className="space-y-4">
             <div>
               <label className="fin-label">Grace Period (days)</label>
-              <input type="number" className="fin-input" value={graceDays} onChange={(e: any) => setGraceDays(e.target.value)} />
+              <input type="number" className="fin-input" value={graceDays} onChange={(e: unknown) => setGraceDays(e.target.value)} />
               <p className="fin-input-hint">Days after due date before penalties apply</p>
             </div>
             <div>
               <label className="fin-label">Penalty Per Day (₹)</label>
-              <input type="number" className="fin-input" value={penaltyRate} onChange={(e: any) => setPenaltyRate(e.target.value)} />
+              <input type="number" className="fin-input" value={penaltyRate} onChange={(e: unknown) => setPenaltyRate(e.target.value)} />
               <p className="fin-input-hint">Daily late fee amount after grace period</p>
             </div>
             <div className="flex gap-2">
@@ -178,7 +178,7 @@ export default function LateFees() {
                 </td>
               </tr>
             ) : (
-              overdue.map((s: any) => (
+              overdue.map((s: unknown) => (
                 <tr key={s.studentId} className="fin-table-hover-row fin-table-row">
                   <td className="py-3 px-4">
                     <div className="fin-cell-name">{s.studentName}</div>

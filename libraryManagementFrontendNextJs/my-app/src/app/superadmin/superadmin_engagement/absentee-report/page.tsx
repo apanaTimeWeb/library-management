@@ -44,14 +44,14 @@ export default function AbsenteeReportPage() {
   const moderate  = filtered.filter(r => r.daysAbsent >= 3 && r.daysAbsent < 7);
 
   const notify = (id: string) => {
-    setRows(p => p.map((r: any) => r.id === id ? { ...r, notified: true } : r));
+    setRows(p => p.map((r: unknown) => r.id === id ? { ...r, notified: true } : r));
     showToast('✅ Alert sent to parent successfully');
   };
 
   const notifyAll = () => {
     const targets = filtered.filter(r => !r.notified);
     if (!targets.length) return showToast('All parents already notified', 'info');
-    setRows(p => p.map((r: any) => filtered.find(f=>f.id===r.id) ? { ...r, notified:true } : r));
+    setRows(p => p.map((r: unknown) => filtered.find(f=>f.id===r.id) ? { ...r, notified:true } : r));
     showToast(`✅ Bulk alerts sent to ${targets.length} parents`);
   };
 
@@ -219,7 +219,7 @@ export default function AbsenteeReportPage() {
             <AgGridReact
               theme={superadmin_gridTheme}
               rowData={filtered}
-              columnDefs={colDefs as any}
+              columnDefs={colDefs as unknown}
               rowHeight={64}
               headerHeight={48}
               pagination={true}
@@ -230,8 +230,8 @@ export default function AbsenteeReportPage() {
                 resizable: true
               }}
               rowClassRules={{
-                'bg-[color-mix(in_srgb,var(--mgr-danger)_5%,transparent)]': (params: any) => params.data.daysAbsent >= 7,
-                'bg-[color-mix(in_srgb,var(--mgr-warning)_5%,transparent)]': (params: any) => params.data.daysAbsent >= 3 && params.data.daysAbsent < 7
+                'bg-[color-mix(in_srgb,var(--mgr-danger)_5%,transparent)]': (params: unknown) => params.data.daysAbsent >= 7,
+                'bg-[color-mix(in_srgb,var(--mgr-warning)_5%,transparent)]': (params: unknown) => params.data.daysAbsent >= 3 && params.data.daysAbsent < 7
               }}
             />
           </div>

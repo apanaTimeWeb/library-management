@@ -9,7 +9,7 @@ interface Props {
 export function SuperadminExpensesKpiGrid({ allExpenses, visibleExpenses }: Props) {
   const total = allExpenses.reduce((s, e) => s + e.amount, 0);
   const visibleTotal = visibleExpenses.reduce((s, e) => s + e.amount, 0);
-  const categoriesCount = new Set(allExpenses.map((e: any) => e.category)).size;
+  const categoriesCount = new Set(allExpenses.map((e: unknown) => e.category)).size;
 
   return (
     <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">

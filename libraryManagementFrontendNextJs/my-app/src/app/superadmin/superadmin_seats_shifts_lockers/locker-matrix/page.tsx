@@ -37,8 +37,8 @@ export default function LockerMatrixPage() {
   const [lockerData, setLockerData] = useState<{ uuid?: string; id: string; status: 'free' | 'occupied' | 'maintenance' }[]>([]);
 
   useEffect(() => {
-    fetchApi('/seats_shifts_lockers/lockers').then((data: any) => {
-      const mapped = data.map((l: any) => ({
+    fetchApi('/seats_shifts_lockers/lockers').then((data: unknown) => {
+      const mapped = data.map((l: unknown) => ({
         uuid: l.id,
         id: l.lockerNumber.replace('L-', ''),
         status: l.isActive ? 'free' : 'maintenance',

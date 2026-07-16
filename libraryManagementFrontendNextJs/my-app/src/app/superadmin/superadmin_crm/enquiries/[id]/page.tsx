@@ -69,7 +69,7 @@ function MarkLostModal({ onConfirm, onCancel, isSubmitting }: MarkLostModalProps
         role="dialog"
         aria-label="Mark enquiry as lost"
         aria-modal="true"
-        onClick={(e: any) => e.stopPropagation()}
+        onClick={(e: unknown) => e.stopPropagation()}
       >
         {/* Icon + title */}
         <div className="crm-modal-header">
@@ -166,7 +166,7 @@ export default function EnquiryDetailPage({
   const router = useRouter();
 
   // ── Local state ──
-  const [enquiry, setEnquiry] = useState<any>(null);
+  const [enquiry, setEnquiry] = useState<unknown>(null);
   const [loading, setLoading] = useState(true);
   const [currentStatus, setCurrentStatus] = useState<EnquiryStatus>('New');
   const [showLostModal, setShowLostModal] = useState(false);
@@ -176,7 +176,7 @@ export default function EnquiryDetailPage({
   useEffect(() => {
     import('@/lib/api').then(({ fetchApi }) => {
       fetchApi(`/crm/enquiries/${id}`)
-        .then((e: any) => {
+        .then((e: unknown) => {
           if (!e) {
             setLoading(false);
             return;
@@ -253,7 +253,7 @@ export default function EnquiryDetailPage({
         method: 'PATCH',
         body: JSON.stringify({ status: currentStatus })
       });
-      setEnquiry((prev: any) => (prev ? { ...prev, status: currentStatus } : prev));
+      setEnquiry((prev: unknown) => (prev ? { ...prev, status: currentStatus } : prev));
       toast.success(`Status updated to "${currentStatus}"`, {
         className: 'crm-toast crm-toast--success',
       });
@@ -289,7 +289,7 @@ export default function EnquiryDetailPage({
         by: 'Admin',
         remark: formData.remark,
       };
-      setEnquiry((prev: any) =>
+      setEnquiry((prev: unknown) =>
         prev ? { ...prev, followUps: [newEntry, ...prev.followUps] } : prev
       );
       resetFU();
@@ -328,7 +328,7 @@ export default function EnquiryDetailPage({
         by: 'Admin',
         remark: reason ? `Marked as Lost — ${reason}` : 'Marked as Lost.',
       };
-      setEnquiry((prev: any) =>
+      setEnquiry((prev: unknown) =>
         prev
           ? { ...prev, status: 'Lost', followUps: [lostEntry, ...prev.followUps] }
           : prev
@@ -443,7 +443,7 @@ export default function EnquiryDetailPage({
                 </div>
               ) : (
                 <div className="crm-timeline">
-                  {enquiry.followUps.map((fu: any) => (
+                  {enquiry.followUps.map((fu: unknown) => (
                     <div className="crm-timeline-entry" key={fu.id}>
                       <div className={`crm-timeline-dot ${timelineDotClass(fu.by)}`} />
                       <div className="crm-timeline-card">
@@ -477,9 +477,9 @@ export default function EnquiryDetailPage({
                   <select
                     className="crm-select"
                     value={currentStatus}
-                    onChange={(e: any) => setCurrentStatus(e.target.value as EnquiryStatus)}
+                    onChange={(e: unknown) => setCurrentStatus(e.target.value as EnquiryStatus)}
                   >
-                    {STATUS_OPTIONS.map((s: any) => (
+                    {STATUS_OPTIONS.map((s: unknown) => (
                       <option key={s} value={s}>{s}</option>
                     ))}
                   </select>

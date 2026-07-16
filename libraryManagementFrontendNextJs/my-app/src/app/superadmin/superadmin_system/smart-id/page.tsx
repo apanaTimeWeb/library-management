@@ -86,7 +86,7 @@ export default function SmartIdPage() {
         </CardHeader>
         <CardContent>
           <div className="flex flex-wrap gap-2 mb-4">
-            {ALL_IDS.map((id: any) => {
+            {ALL_IDS.map((id: unknown) => {
               const isGap = GAP_IDS.includes(id);
               return (
                 <span
@@ -129,15 +129,15 @@ export default function SmartIdPage() {
           <SuperadminDialog>
             <SuperadminDialogTrigger asChild>
               <SuperadminButton id="force-regenerate-btn" variant="destructive">🔢 Force Regenerate Sequence</SuperadminButton>
-            </DialogTrigger>
+            </SuperadminDialogTrigger>
             <SuperadminDialogContent>
               <SuperadminDialogHeader>
-                <SuperadminDialogTitle>Confirm Force Regenerate</DialogTitle>
+                <SuperadminDialogTitle>Confirm Force Regenerate</SuperadminDialogTitle>
                 <SuperadminDialogDescription>
                   This will compact all IDs and reassign gap numbers. This action cannot be undone easily.
                   Are you sure?
-                </DialogDescription>
-              </DialogHeader>
+                </SuperadminDialogDescription>
+              </SuperadminDialogHeader>
               <div className="p-4 rounded-xl bg-error-container/20 border border-error/20 text-sm text-error mt-2">
                 ⚠️ Warning: All student ID references will be updated. Ensure backups are taken first.
               </div>

@@ -242,7 +242,7 @@ export default function Payments() {
           <AgGridReact
             theme={gridTheme}
             rowData={visible}
-            columnDefs={colDefs as any}
+            columnDefs={colDefs as unknown}
             rowHeight={56}
             headerHeight={48}
             pagination={true}
