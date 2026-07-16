@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
-import { ManagerReportsData, FetchState } from '../manager_reports_types/ManagerReportsTypes';
-import { MOCK_MANAGER_REPORTS_DATA } from '../manager_reports_constants/ManagerReportsMockData';
+import { ManagerReportsData, FetchState } from '@/app/manager/manager_reports/manager_reports_types/ManagerReportsTypes';
+import { MOCK_MANAGER_REPORTS_DATA } from '@/app/manager/manager_reports/manager_reports_constants/ManagerReportsMockData';
 
 // RESPONSIBILITY: Manages state and simulates data fetching for the Manager Reports module.
 // DATA FLOW: Mock Data -> useManagerReports -> ManagerReportsClient -> Subcomponents

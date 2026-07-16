@@ -19,7 +19,7 @@ import {
   Edit2,
   AlertTriangle,
 } from 'lucide-react';
-import data from '@/app/manager/manager_crm/reusable/hardcoded.json';
+import data from '@/app/manager/manager_crm/manager_crm_shared_components/hardcoded.json';
 import {
   type Enquiry,
   type EnquiryStatus,
@@ -27,13 +27,13 @@ import {
   STATUS_BADGE,
   maskPhone,
   getInitials,
-} from '@/app/manager/manager_crm/reusable/types';
+} from '@/app/manager/manager_crm/manager_crm_shared_components/types';
 import {
   followUpSchema,
   type FollowUpFormData,
   markLostSchema,
   type MarkLostFormData,
-} from '@/app/manager/manager_crm/reusable/schema';
+} from '@/app/manager/manager_crm/manager_crm_shared_components/schema';
 
 /* ── Status Select options ─────────────────────────────── */
 const STATUS_OPTIONS: EnquiryStatus[] = ['New', 'Visited', 'Interested', 'Converted', 'Lost'];

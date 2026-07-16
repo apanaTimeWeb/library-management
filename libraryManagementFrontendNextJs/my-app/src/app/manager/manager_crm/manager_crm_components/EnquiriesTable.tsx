@@ -1,6 +1,6 @@
 import { useRouter } from 'next/navigation';
 import { Eye, CheckCircle, XCircle, PhoneCall, Plus } from 'lucide-react';
-import { maskPhone } from '@/app/manager/manager_crm/reusable/types';
+import { maskPhone } from '@/app/manager/manager_crm/manager_crm_shared_components/types';
 import { STATUS_BADGE } from '@/app/manager/manager_crm/manager_crm_constants';
 import type { Enquiry, EnquiryStatus } from '@/app/manager/manager_crm/manager_crm_types';
 

@@ -1,12 +1,12 @@
 'use client';
 
 import React from 'react';
-import { useManagerReports } from './manager_reports_hooks/useManagerReports';
-import { ManagerReportsHeader } from './manager_reports_components/ManagerReportsHeader';
-import { ManagerReportsFilterBar } from './manager_reports_components/ManagerReportsFilterBar';
-import { ManagerReportsKpiGrid } from './manager_reports_components/ManagerReportsKpiGrid';
-import { ManagerReportsChartsGrid } from './manager_reports_components/ManagerReportsChartsGrid';
-import { ManagerReportsTablesGrid } from './manager_reports_components/ManagerReportsTablesGrid';
+import { useManagerReports } from '@/app/manager/manager_reports/manager_reports_hooks/useManagerReports';
+import { ManagerReportsHeader } from '@/app/manager/manager_reports/manager_reports_components/ManagerReportsHeader';
+import { ManagerReportsFilterBar } from '@/app/manager/manager_reports/manager_reports_components/ManagerReportsFilterBar';
+import { ManagerReportsKpiGrid } from '@/app/manager/manager_reports/manager_reports_components/ManagerReportsKpiGrid';
+import { ManagerReportsChartsGrid } from '@/app/manager/manager_reports/manager_reports_components/ManagerReportsChartsGrid';
+import { ManagerReportsTablesGrid } from '@/app/manager/manager_reports/manager_reports_components/ManagerReportsTablesGrid';
 
 // RESPONSIBILITY: Orchestrates the client-side layout and data for manager reports.
 // DATA FLOW: useManagerReports -> ManagerReportsClient -> Layout Components

@@ -3,7 +3,7 @@ import { useMemo, useState, useEffect } from 'react';
 import { ChevronDown, Download, Eye } from 'lucide-react';
 import { AgGridReact } from 'ag-grid-react';
 import { AllCommunityModule, ModuleRegistry, type ColDef } from 'ag-grid-community';
-import { gridTheme } from '@/app/manager/manager_seats_shifts_lockers/reusable/gridTheme';
+import { gridTheme } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shared_components/gridTheme';
 import toast from 'react-hot-toast';
 import { useSeatsStore } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_context/manager_seats_shifts_lockers_store';
 

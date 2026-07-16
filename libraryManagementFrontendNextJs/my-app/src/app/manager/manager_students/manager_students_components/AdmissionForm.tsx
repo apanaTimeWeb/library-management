@@ -27,13 +27,11 @@ const schema = z.object({
   college:       z.string().optional(),
   shift:         z.string().min(1, 'Select a shift'),
   seat:          z.string().min(1, 'Select a seat'),
-  locker:        z.string(),
   plan:          z.string().min(1, 'Select a plan'),
-  manualDiscount:z.string(),
-  amountPaid:    z.string().min(1, 'Amount paid is required'),
-  paymentMode:   z.enum(['Cash', 'UPI', 'Card', 'Bank']),
+  manualDiscount:z.coerce.number().optional(),
+  amountPaid:    z.coerce.number().optional(),
+  paymentMode:   z.enum(['Cash', 'UPI', 'Card', 'Bank Transfer']),
   transactionId: z.string().optional(),
-  remark:        z.string().optional(),
 });
 
 type FormValues = z.infer<typeof schema>;
@@ -47,7 +45,6 @@ const PLANS = [
 
 const SHIFTS = ['Morning (8 AM–2 PM)', 'Evening (2 PM–8 PM)', 'Full Day (8 AM–8 PM)', 'Night (10 PM–6 AM)'];
 const SEATS  = ['A-12', 'A-15', 'B-03', 'B-04', 'C-01', 'C-05'];
-const LOCKERS = ['None', 'L-001 (+₹200)', 'L-005 (+₹200)', 'L-012 (+₹200)'];
 
 const SMART_ID = 'LIB003'; // simulated auto-generated
 
@@ -82,11 +79,10 @@ export default function AdmissionForm() {
       phone:         defaultPhone,
       shift:         SHIFTS[0],
       seat:          SEATS[0],
-      locker:        'None',
       plan:          'Monthly',
       paymentMode:   'UPI',
-      manualDiscount:'0',
-      amountPaid:    '1500',
+      manualDiscount:0,
+      amountPaid:    1500,
     },
   });
 
@@ -96,7 +92,6 @@ export default function AdmissionForm() {
   const watchedMode      = watch('paymentMode');
   const watchedShift     = watch('shift');
   const watchedSeat      = watch('seat');
-  const watchedLocker    = watch('locker');
 
   const planMeta  = PLANS.find(p => p.value === watchedPlan);
   const baseAmt   = planMeta?.amount ?? 1500;
@@ -121,13 +116,12 @@ export default function AdmissionForm() {
         parentPhone:   data.parentPhone,
         shift:         data.shift,
         seat:          data.seat,
-        locker:        data.locker,
         plan:          data.plan,
         joinDate:      formatDateIN(joinDate),
         expiryDate:    formatDateIN(expiryDate),
         branch:        'Main Branch',
         college:       data.college,
-        amountPaid:    Number(data.amountPaid),
+        amountPaid:    data.amountPaid || 0,
         totalPayable,
         discount,
         paymentMode:   data.paymentMode,
@@ -301,15 +295,7 @@ export default function AdmissionForm() {
                       {errors.seat && <p className="mgr-error">{errors.seat.message}</p>}
                     </div>
 
-                    <div className="mgr-form-field">
-                      <label className="mgr-label">Locker (Optional)</label>
-                      <div className="mgr-input-icon-wrap">
-                        <Lock size={14} className="mgr-input-icon" />
-                        <select {...register('locker')} className="mgr-select mgr-input-with-icon">
-                          {LOCKERS.map(l => <option key={l} value={l}>{l}</option>)}
-                        </select>
-                      </div>
-                    </div>
+
 
                   </div>
                 </div>
@@ -380,7 +366,7 @@ export default function AdmissionForm() {
                     <div className="mgr-form-field mgr-form-field-full">
                       <label className="mgr-label mgr-label-required">Payment Mode</label>
                       <div className="mgr-payment-mode-group">
-                        {(['Cash', 'UPI', 'Card', 'Bank'] as const).map(mode => (
+                        {(['Cash', 'UPI', 'Card', 'Bank Transfer'] as const).map(mode => (
                           <button
                             key={mode}
                             type="button"
@@ -403,15 +389,7 @@ export default function AdmissionForm() {
                       />
                     </div>
 
-                    <div className="mgr-form-field">
-                      <label className="mgr-label">Remark</label>
-                      <textarea
-                        {...register('remark')}
-                        className="mgr-textarea"
-                        rows={2}
-                        placeholder="Optional note"
-                      />
-                    </div>
+
 
                   </div>
                 </div>
@@ -443,10 +421,7 @@ export default function AdmissionForm() {
                       <span className="mgr-summary-label">Seat</span>
                       <span className="mgr-summary-value">{watchedSeat}</span>
                     </div>
-                    <div className="mgr-summary-row">
-                      <span className="mgr-summary-label">Locker</span>
-                      <span className="mgr-summary-value">{watchedLocker}</span>
-                    </div>
+
                     <div className="mgr-summary-divider" />
                     <div className="mgr-summary-row">
                       <span className="mgr-summary-label">Base Amount</span>

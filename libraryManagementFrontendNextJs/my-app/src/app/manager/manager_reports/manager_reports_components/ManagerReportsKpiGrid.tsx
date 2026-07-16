@@ -1,6 +1,6 @@
 import React from 'react';
 import { Users, CalendarCheck, UserPlus, Phone } from 'lucide-react';
-import { ManagerReportsKpiCard } from '../manager_reports_types/ManagerReportsTypes';
+import { ManagerReportsKpiCard } from '@/app/manager/manager_reports/manager_reports_types/ManagerReportsTypes';
 
 // RESPONSIBILITY: Renders the row of KPI stat cards for the manager reports.
 

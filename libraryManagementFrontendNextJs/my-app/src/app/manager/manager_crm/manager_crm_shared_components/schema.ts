@@ -5,14 +5,6 @@ export const addEnquirySchema = z.object({
   name: z
     .string()
     .min(2, 'Full name must be at least 2 characters'),
-  phone: z
-    .string()
-    .min(10, 'Phone number is required')
-    .regex(/^\d{10}$/, 'Enter a valid 10-digit mobile number'),
-  preferredShift: z.string().optional(),
-  source: z.string().optional(),
-  handledBy: z.string().optional(),
-  notes: z.string().optional(),
 });
 export type AddEnquiryFormData = z.infer<typeof addEnquirySchema>;
 
@@ -29,7 +21,7 @@ export type FollowUpFormData = z.infer<typeof followUpSchema>;
 
 // ─── Update Status ────────────────────────────────────────────────────────────
 export const updateStatusSchema = z.object({
-  status: z.enum(['New', 'Visited', 'Interested', 'Converted', 'Lost'], {
+  status: z.enum(['new', 'visited', 'interested', 'converted', 'lost'], {
     error: 'Please select a valid status',
   }),
 });

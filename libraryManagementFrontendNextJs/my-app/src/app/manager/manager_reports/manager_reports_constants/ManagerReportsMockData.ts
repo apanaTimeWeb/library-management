@@ -1,4 +1,4 @@
-import { ManagerReportsData } from '../manager_reports_types/ManagerReportsTypes';
+import { ManagerReportsData } from '@/app/manager/manager_reports/manager_reports_types/ManagerReportsTypes';
 
 export const MOCK_MANAGER_REPORTS_DATA: ManagerReportsData = {
   kpiCards: [
