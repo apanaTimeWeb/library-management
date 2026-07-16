@@ -21,6 +21,16 @@ export const ADMIN_ROUTES = {
   // CRM
   CRM_ENQUIRIES: '/admin/admin_crm/enquiries',
   CRM_ENQUIRY_ADD: '/admin/admin_crm/enquiries/add',
+  // ACCOUNTING
+  ACCOUNTING_ASSETS: '/admin/admin_accounting/assets',
+  ACCOUNTING_DAILY_SETTLEMENT: '/admin/admin_accounting/daily-settlement',
+  ACCOUNTING_EXPENSES: '/admin/admin_accounting/expenses',
+  ACCOUNTING_EXPENSES_ADD: '/admin/admin_accounting/expenses/add',
+  ACCOUNTING_FINANCIAL_REPORTS: '/admin/admin_accounting/financial-reports',
+  ACCOUNTING_ASSET_MAINTENANCE: '/admin/admin_accounting/asset-maintenance',
+  ACCOUNTING_EXPENSE_CATEGORIES: '/admin/admin_accounting/expense-categories',
+  ACCOUNTING_SEAT_GAP_REPORT: '/admin/admin_accounting/seat-gap-report',
+  ACCOUNTING_SHIFT_GAP_ANALYZER: '/admin/admin_accounting/shift-gap-analyzer',
 } as const;
 
 export const ADMIN_API_ROUTES = {
@@ -31,6 +41,17 @@ export const ADMIN_API_ROUTES = {
   STAFF_USERS: '/admin/staff-users/users',
   PERMISSIONS: '/admin/permissions',
   SETTINGS: '/admin/settings',
+  AUDIT_LOGS: '/admin/admin_audit-logs',
+  BLACKLIST: '/admin/admin_blacklist',
+  COUPONS: '/admin/admin_coupons',
+  PLANS: '/admin/admin_plans',
+  EXPENSES: '/admin/admin_expenses',
+  EXPENSE_CATEGORIES: '/admin/admin_expense-categories',
+  ACCOUNTING_ASSETS: '/admin/admin_accounting/assets',
+  ACCOUNTING_DAILY_SETTLEMENT: '/admin/admin_accounting/daily-settlement',
+  ACCOUNTING_EXPENSES: '/admin/admin_accounting/expenses',
+  ACCOUNTING_FINANCIAL_REPORTS: '/admin/admin_accounting/financial-reports',
+  ACCOUNTING_ASSET_MAINTENANCE: '/admin/admin_accounting/asset-maintenance',
   // CRM
   CRM_ENQUIRIES: '/crm/enquiries',
   CRM_ENQUIRY_BY_ID: (id: string) => `/crm/enquiries/${id}`,

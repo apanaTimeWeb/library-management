@@ -4,9 +4,13 @@
 // DATA FLOW: Next.js Router -> error.tsx
 
 import { useEffect } from 'react';
+import { logger } from '@/lib/logger';
 
 export default function ErrorBoundary({ error, reset }: { error: Error & { digest?: string }; reset: () => void }) {
-  useEffect(() => { console.error(error); }, [error]);
+  // Dependency array contains error so logger runs whenever a new error instance is caught
+  useEffect(() => {
+    logger.error('Error boundary caught error:', error);
+  }, [error]);
   return (
     <div className="flex flex-col items-center justify-center h-full p-8 text-center space-y-4">
       <h2 className="text-xl font-semibold text-destructive">Something went wrong in admin_expense-categories!</h2>
