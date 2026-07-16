@@ -94,6 +94,41 @@ export async function fetchApi<T = any>(endpoint: string, options: RequestInit =
       safeData = {}; // Dashboards usually expect objects
     } else if (opts.method && opts.method !== 'GET') {
       safeData = { id: 'mock-id-123', message: 'Action simulated successfully' };
+    } else {
+      // Universal Generic Mock Generator for GET list endpoints
+      safeData = Array.from({ length: 5 }).map((_, i) => ({
+        id: `MOCK-${i+100}`,
+        name: `Mock Record ${i+1}`,
+        fullName: `Test User ${i+1}`,
+        title: `Mock Title ${i+1}`,
+        status: i % 2 === 0 ? 'Active' : 'Inactive',
+        isActive: i % 2 === 0,
+        amount: (i+1) * 1500,
+        price: (i+1) * 500,
+        date: new Date().toLocaleDateString(),
+        expenseDate: new Date().toLocaleDateString(),
+        category: 'General',
+        role: i % 2 === 0 ? 'Manager' : 'Staff',
+        email: `mock${i+1}@smartlibrary.com`,
+        phone: `987654321${i}`,
+        branch: 'Main Branch',
+        branchId: 'B1',
+        branchName: 'Main Branch',
+        manager: 'System Admin',
+        contact: '9876543210',
+        address: '123 Smart St, City',
+        recordedBy: 'Admin',
+        performedBy: 'System',
+        action: 'System Event',
+        module: 'Core',
+        severity: 'info',
+        details: 'Auto-generated mock row for UI testing.',
+        joinedDate: '2026-01-01',
+        type: 'Standard',
+        users: 15,
+        subscribers: 10 * (i+1),
+        duration: '1 Month',
+      }));
     }
 
     return {
