@@ -1,23 +1,23 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { getRepositoryToken } from '@nestjs/typeorm';
-import { GetAllAuditLogsService } from './get-all-audit-logs.service';
+import { AuditLogsCreateService } from './audit-logs-create.service';
 import { AuditLog } from '@/core/entities/audit-log.entity';
 
-describe('GetAllAuditLogsService', () => {
-  let service: GetAllAuditLogsService;
+describe('AuditLogsCreateService', () => {
+  let service: AuditLogsCreateService;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       providers: [
-        GetAllAuditLogsService,
+        AuditLogsCreateService,
         {
           provide: getRepositoryToken(AuditLog),
-          useValue: { findAndCount: jest.fn() },
+          useValue: { create: jest.fn(), save: jest.fn() },
         }
       ],
     }).compile();
 
-    service = module.get<GetAllAuditLogsService>(GetAllAuditLogsService);
+    service = module.get<AuditLogsCreateService>(AuditLogsCreateService);
   });
 
   it('should be defined', () => {

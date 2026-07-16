@@ -5,7 +5,7 @@ import { AuditLog } from '@/core/entities/audit-log.entity';
 import { AuditLogsLogActionParams } from '../interfaces/audit-logs.interfaces';
 
 @Injectable()
-export class CreateAuditLogService {
+export class AuditLogsCreateService {
   constructor(
     @InjectRepository(AuditLog)
     private auditLogRepo: Repository<AuditLog>,

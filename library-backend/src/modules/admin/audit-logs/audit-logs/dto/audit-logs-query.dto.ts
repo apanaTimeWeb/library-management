@@ -2,7 +2,7 @@ import { IsOptional, IsInt, Min, IsString } from 'class-validator';
 import { Type } from 'class-transformer';
 import { AUDIT_LOGS_CONSTANTS } from '../constants/audit-logs.constants';
 
-export class GetAuditLogsQueryDto {
+export class AuditLogsQueryDto {
   @IsOptional()
   @IsInt()
   @Min(1)
