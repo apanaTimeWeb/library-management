@@ -42,78 +42,7 @@ export function PublicEnquiryForm({ formMethods, onSubmit }: PublicEnquiryFormPr
           {errors.name && <p className="text-[12px] text-[var(--danger)] mt-1">{errors.name.message}</p>}
         </div>
 
-        {/* Phone */}
-        <div>
-          <label htmlFor="enq-phone" className="block text-xs font-semibold text-[var(--text-secondary)] mb-1 uppercase tracking-wider">
-            Phone Number <span className="text-[var(--danger)]">*</span>
-          </label>
-          <div className="relative">
-            <Phone size={15} className="absolute left-3 top-1/2 -translate-y-1/2 text-[var(--text-secondary)] pointer-events-none" />
-            <input
-              id="enq-phone"
-              type="tel"
-              placeholder="+91 9800000000"
-              {...register('phone')}
-              className={`w-full bg-[var(--bg-input)] border ${errors.phone ? 'border-[var(--danger)]' : 'border-[var(--border)]'} rounded-[var(--radius-md)] py-2 pl-9 pr-3 text-[var(--text-primary)] text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--primary)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--bg-page)] transition-all duration-200`}
-            />
-          </div>
-          {errors.phone && <p className="text-[12px] text-[var(--danger)] mt-1">{errors.phone.message}</p>}
-        </div>
 
-        {/* Preferred Shift */}
-        <div>
-          <label className="block text-xs font-semibold text-[var(--text-secondary)] mb-2 uppercase tracking-wider">
-            Preferred Shift <span className="text-[var(--danger)]">*</span>
-          </label>
-          <div className="space-y-2 mt-1">
-            {PUBLIC_ENQUIRY_SHIFTS.map(shift => (
-              <label
-                key={shift.id}
-                htmlFor={`shift-${shift.id}`}
-                className={`flex items-center gap-3 p-3 rounded-[var(--radius-md)] border border-[var(--border)] bg-[var(--bg-input)] transition-all duration-200 ${
-                  !shift.available ? 'opacity-50 cursor-not-allowed bg-[var(--bg-page)]' : 'cursor-pointer hover:border-[var(--primary)] hover:bg-[var(--primary-subtle)]'
-                }`}
-              >
-                <input
-                  id={`shift-${shift.id}`}
-                  type="radio"
-                  value={shift.id}
-                  disabled={!shift.available}
-                  {...register('shift')}
-                  className="accent-[var(--primary)] w-4 h-4 shrink-0 cursor-pointer"
-                />
-                <Clock size={16} className="text-[var(--text-secondary)] shrink-0" />
-                <div className="flex-1 min-w-0">
-                  <p className="text-sm font-semibold text-[var(--text-primary)]">{shift.label}</p>
-                  <p className="text-xs text-[var(--text-secondary)]">{shift.time}</p>
-                </div>
-                {!shift.available && (
-                  <span className="text-[11px] font-semibold uppercase tracking-wider px-2 py-1 rounded-full bg-[var(--danger-bg,rgba(248,113,113,0.1))] text-[var(--danger)]">
-                    Full
-                  </span>
-                )}
-              </label>
-            ))}
-          </div>
-          {errors.shift && <p className="text-[12px] text-[var(--danger)] mt-1">{errors.shift.message}</p>}
-        </div>
-
-        {/* Message */}
-        <div>
-          <label htmlFor="enq-message" className="block text-xs font-semibold text-[var(--text-secondary)] mb-1 uppercase tracking-wider">
-            Message <span className="text-[var(--text-disabled)] font-normal normal-case tracking-normal">(optional)</span>
-          </label>
-          <div className="relative">
-            <MessageSquare size={15} className="absolute left-3 top-3 text-[var(--text-secondary)] pointer-events-none" />
-            <textarea
-              id="enq-message"
-              rows={2}
-              placeholder="Any questions or special requirements?"
-              {...register('message')}
-              className="w-full bg-[var(--bg-input)] border border-[var(--border)] rounded-[var(--radius-md)] py-2 pl-9 pr-3 text-[var(--text-primary)] text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--primary)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--bg-page)] transition-all duration-200 resize-none"
-            />
-          </div>
-        </div>
 
         <button
           id="submit-enquiry-btn"

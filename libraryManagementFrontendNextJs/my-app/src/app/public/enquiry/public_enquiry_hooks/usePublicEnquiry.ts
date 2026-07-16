@@ -9,18 +9,16 @@ import { publicEnquirySchema, type PublicEnquiryFormData } from '@/app/public/en
 export function usePublicEnquiry() {
   const [submitted, setSubmitted] = useState(false);
   const [submittedName, setSubmittedName] = useState('');
-  const [submittedPhone, setSubmittedPhone] = useState('');
 
   const formMethods = useForm<PublicEnquiryFormData>({
     resolver: zodResolver(publicEnquirySchema),
-    defaultValues: { name: '', phone: '+91 ', shift: '', message: '' },
+    defaultValues: { name: '' },
   });
 
   const onSubmit = async (data: PublicEnquiryFormData) => {
     // Simulate API call for now
     await new Promise(res => setTimeout(res, 1200));
     setSubmittedName(data.name);
-    setSubmittedPhone(data.phone);
     setSubmitted(true);
   };
 
@@ -28,13 +26,11 @@ export function usePublicEnquiry() {
     formMethods.reset();
     setSubmitted(false);
     setSubmittedName('');
-    setSubmittedPhone('');
   };
 
   return {
     submitted,
     submittedName,
-    submittedPhone,
     formMethods,
     onSubmit: formMethods.handleSubmit(onSubmit),
     resetForm,

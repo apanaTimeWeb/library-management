@@ -14,7 +14,6 @@ export function PublicEnquiryClient() {
   const {
     submitted,
     submittedName,
-    submittedPhone,
     formMethods,
     onSubmit,
     resetForm,
@@ -35,7 +34,6 @@ export function PublicEnquiryClient() {
           ) : (
             <PublicEnquirySuccessState 
               submittedName={submittedName} 
-              submittedPhone={submittedPhone} 
               onReset={resetForm} 
             />
           )}

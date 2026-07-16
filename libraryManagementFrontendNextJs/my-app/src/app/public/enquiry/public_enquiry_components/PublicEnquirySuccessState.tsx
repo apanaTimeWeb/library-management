@@ -5,11 +5,11 @@ import { CheckCircle } from 'lucide-react';
 
 interface PublicEnquirySuccessStateProps {
   submittedName: string;
-  submittedPhone: string;
+
   onReset: () => void;
 }
 
-export function PublicEnquirySuccessState({ submittedName, submittedPhone, onReset }: PublicEnquirySuccessStateProps) {
+export function PublicEnquirySuccessState({ submittedName, onReset }: PublicEnquirySuccessStateProps) {
   return (
     <div className="py-6 text-center animate-in fade-in slide-in-from-bottom-4 duration-500">
       <div className="flex justify-center mb-6">
@@ -22,9 +22,7 @@ export function PublicEnquirySuccessState({ submittedName, submittedPhone, onRes
         Thank you, {submittedName}!
       </h2>
       <p className="text-sm text-[var(--text-secondary)] leading-relaxed max-w-xs mx-auto mb-8">
-        We&apos;ll contact you on{' '}
-        <strong className="text-[var(--text-primary)] font-medium">{submittedPhone}</strong>{' '}
-        shortly to confirm your seat. 🎉
+        We&apos;ll contact you shortly to confirm your seat. 🎉
       </p>
 
       <div className="text-left bg-[var(--bg-input)] border border-[var(--border)] rounded-[var(--radius-lg)] p-5 space-y-3 shadow-inner">
