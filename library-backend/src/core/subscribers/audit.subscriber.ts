@@ -10,9 +10,7 @@ import { AuditLog } from '../entities/audit-log.entity';
 
 @EventSubscriber()
 export class AuditSubscriber implements EntitySubscriberInterface {
-  constructor(dataSource: DataSource) {
-    dataSource.subscribers.push(this);
-  }
+
 
   afterInsert(event: InsertEvent<any>) {
     if (event.entity && event.metadata.name !== 'AuditLog') {
