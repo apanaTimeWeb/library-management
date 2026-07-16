@@ -14,10 +14,10 @@ const ICON_MAP: Record<string, React.ElementType> = {
 };
 
 const STYLE_MAP = {
-  primary: { bg: 'bg-[var(--primary-subtle,rgba(99,102,241,0.1))]', text: 'text-[var(--primary)]' },
-  success: { bg: 'bg-[var(--success-bg,rgba(52,211,153,0.1))]', text: 'text-[var(--success)]' },
-  warning: { bg: 'bg-[var(--warning-bg,rgba(251,191,36,0.1))]', text: 'text-[var(--warning)]' },
-  danger:  { bg: 'bg-[var(--danger-bg,rgba(248,113,113,0.1))]', text: 'text-[var(--danger)]' },
+  primary: { bg: 'bg-[var(--primary-subtle,rgba(99,102,241,0.1))]', text: 'text-primary' },
+  success: { bg: 'bg-[var(--success-bg,rgba(52,211,153,0.1))]', text: 'text-success' },
+  warning: { bg: 'bg-[var(--warning-bg,rgba(251,191,36,0.1))]', text: 'text-warning' },
+  danger:  { bg: 'bg-[var(--danger-bg,rgba(248,113,113,0.1))]', text: 'text-danger' },
 };
 
 export function SuperadminReportsKpiGrid({ kpiCards }: Props) {
@@ -27,16 +27,16 @@ export function SuperadminReportsKpiGrid({ kpiCards }: Props) {
         const Icon = ICON_MAP[k.icon] || TrendingUp;
         const TrendIcon = k.trendType === 'up' ? TrendingUp : TrendingDown;
         const style = STYLE_MAP[k.iconType] || STYLE_MAP.primary;
-        const trendColor = k.trendType === 'up' ? 'text-[var(--success)] bg-[var(--success-bg,rgba(52,211,153,0.1))]' : 'text-[var(--danger)] bg-[var(--danger-bg,rgba(248,113,113,0.1))]';
+        const trendColor = k.trendType === 'up' ? 'text-success bg-[var(--success-bg,rgba(52,211,153,0.1))]' : 'text-danger bg-[var(--danger-bg,rgba(248,113,113,0.1))]';
 
         return (
-          <div key={i} className="flex items-center gap-4 bg-[var(--bg-card)] border border-[var(--border)] rounded-[var(--radius-lg)] p-5 shadow-sm hover:shadow-md transition-shadow">
+          <div key={i} className="flex items-center gap-4 bg-bg-card border border-border rounded-[var(--radius-lg)] p-5 shadow-sm hover:shadow-md transition-shadow">
             <div className={`w-12 h-12 rounded-full flex items-center justify-center shrink-0 ${style.bg} ${style.text}`}>
               <Icon size={20} />
             </div>
             <div className="flex-1 min-w-0">
-              <p className="text-[11px] font-bold text-[var(--text-secondary)] uppercase tracking-wider mb-1 truncate">{k.label}</p>
-              <p className="text-2xl font-extrabold text-[var(--text-primary)] tracking-tight mb-2 truncate">{k.value}</p>
+              <p className="text-[11px] font-bold text-text-secondary uppercase tracking-wider mb-1 truncate">{k.label}</p>
+              <p className="text-2xl font-extrabold text-text-primary tracking-tight mb-2 truncate">{k.value}</p>
               <span className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-bold ${trendColor} whitespace-nowrap`}>
                 <TrendIcon size={12} /> {k.trend}
               </span>

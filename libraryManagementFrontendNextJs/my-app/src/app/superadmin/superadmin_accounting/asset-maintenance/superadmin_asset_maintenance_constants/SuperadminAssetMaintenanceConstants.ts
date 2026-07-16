@@ -9,7 +9,7 @@ export const SUPERADMIN_ASSET_MAINTENANCE_MOCK_DATA: SuperadminMaintenanceLog[] 
 ];
 
 export const SUPERADMIN_ASSET_MAINTENANCE_STATUS_STYLES: Record<string, string> = {
-  pending:     'bg-[var(--warning-bg,rgba(251,191,36,0.1))] text-[var(--warning)] border border-[var(--warning)]/20',
-  'in-progress': 'bg-[var(--info-bg,rgba(59,130,246,0.1))] text-[var(--info,#3B82F6)] border border-[var(--info,#3B82F6)]/20',
-  completed:   'bg-[var(--success-bg,rgba(52,211,153,0.1))] text-[var(--success)] border border-[var(--success)]/20',
+  pending:     'bg-[var(--warning-bg,rgba(251,191,36,0.1))] text-warning border border-warning/20',
+  'in-progress': 'bg-[var(--info-bg,rgba(59,130,246,0.1))] text-info,#3B82F6 border border-info,#3B82F6/20',
+  completed:   'bg-[var(--success-bg,rgba(52,211,153,0.1))] text-success border border-success/20',
 };

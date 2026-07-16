@@ -23,17 +23,17 @@ export class SuperadminErrorBoundary extends React.Component<
   render() {
     if (this.state.hasError) {
       return (
-        <div className="min-h-screen flex flex-col items-center justify-center p-6 bg-[var(--bg-page)] text-[var(--text-primary)]">
+        <div className="min-h-screen flex flex-col items-center justify-center p-6 bg-bg-page text-text-primary">
           <div className="flex justify-center mb-4">
-            <AlertCircle size={64} className="text-[var(--danger)]" />
+            <AlertCircle size={64} className="text-danger" />
           </div>
           <h2 className="text-2xl font-bold mb-2">Superadmin Module Error</h2>
-          <p className="text-md text-[var(--text-secondary)] mb-6 max-w-md text-center">
+          <p className="text-md text-text-secondary mb-6 max-w-md text-center">
             A critical error occurred while loading this administrative interface. 
             Check the console logs for details.
           </p>
           <button
-            className="px-6 py-2 bg-[var(--primary)] text-white rounded-md hover:bg-opacity-90 font-medium transition-colors"
+            className="px-6 py-2 bg-primary text-white rounded-md hover:bg-opacity-90 font-medium transition-colors"
             onClick={() => this.setState({ hasError: false, error: null })}
           >
             Retry

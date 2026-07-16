@@ -33,24 +33,24 @@ export function SuperadminLibrariesPanel({ lib, mode, onClose, onSave, onSuspend
 
   return (
     <div className="fixed inset-0 z-50 flex items-stretch justify-end" onClick={onClose}>
-      <div className="absolute inset-0 bg-[var(--bg-page)]/80 backdrop-blur-sm transition-opacity" />
+      <div className="absolute inset-0 bg-bg-page/80 backdrop-blur-sm transition-opacity" />
       <div 
-        className="relative w-full max-w-md bg-[var(--bg-card)] shadow-[-10px_0_30px_rgba(0,0,0,0.1)] border-l border-[var(--border)] overflow-y-auto animate-in slide-in-from-right duration-300"
+        className="relative w-full max-w-md bg-bg-card shadow-[-10px_0_30px_rgba(0,0,0,0.1)] border-l border-border overflow-y-auto animate-in slide-in-from-right duration-300"
         onClick={e => e.stopPropagation()}
       >
         <div className="p-6 space-y-6">
           <div className="flex items-start justify-between">
             <div>
-              <h2 className="text-xl font-bold text-[var(--text-primary)]">{lib.name}</h2>
-              <p className="text-sm text-[var(--text-secondary)] flex items-center gap-1.5 mt-1.5"><MapPin size={14} />{lib.location}</p>
+              <h2 className="text-xl font-bold text-text-primary">{lib.name}</h2>
+              <p className="text-sm text-text-secondary flex items-center gap-1.5 mt-1.5"><MapPin size={14} />{lib.location}</p>
             </div>
             <div className="flex items-center gap-2">
               {!editing && (
-                <button className="w-8 h-8 flex items-center justify-center rounded-[var(--radius-md)] text-[var(--text-secondary)] hover:text-[var(--primary)] hover:bg-[var(--primary-subtle,rgba(99,102,241,0.1))] transition-colors" onClick={() => setEditing(true)}>
+                <button className="w-8 h-8 flex items-center justify-center rounded-[var(--radius-md)] text-text-secondary hover:text-primary hover:bg-[var(--primary-subtle,rgba(99,102,241,0.1))] transition-colors" onClick={() => setEditing(true)}>
                   <Edit2 size={16} />
                 </button>
               )}
-              <button className="w-8 h-8 flex items-center justify-center rounded-[var(--radius-md)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-input)] transition-colors" onClick={onClose}>
+              <button className="w-8 h-8 flex items-center justify-center rounded-[var(--radius-md)] text-text-secondary hover:text-text-primary hover:bg-bg-input transition-colors" onClick={onClose}>
                 <X size={18} />
               </button>
             </div>
@@ -60,18 +60,18 @@ export function SuperadminLibrariesPanel({ lib, mode, onClose, onSave, onSuspend
             <div className="space-y-4">
               {([['Library Name','name'],['Owner','owner'],['Phone','phone'],['Location','location']] as const).map(([label, key]) => (
                 <div key={key}>
-                  <label className="block text-xs font-semibold text-[var(--text-secondary)] uppercase tracking-wider mb-1.5">{label}</label>
+                  <label className="block text-xs font-semibold text-text-secondary uppercase tracking-wider mb-1.5">{label}</label>
                   <input 
-                    className="w-full bg-[var(--bg-input)] border border-[var(--border)] rounded-[var(--radius-md)] py-2 px-3 text-sm text-[var(--text-primary)] focus:outline-none focus:border-[var(--primary)] transition-colors"
+                    className="w-full bg-bg-input border border-border rounded-[var(--radius-md)] py-2 px-3 text-sm text-text-primary focus:outline-none focus:border-primary transition-colors"
                     value={(form as Record<string, string>)[key]}
                     onChange={e => setForm(f => ({ ...f, [key]: e.target.value }))} 
                   />
                 </div>
               ))}
               <div>
-                <label className="block text-xs font-semibold text-[var(--text-secondary)] uppercase tracking-wider mb-1.5">Plan</label>
+                <label className="block text-xs font-semibold text-text-secondary uppercase tracking-wider mb-1.5">Plan</label>
                 <select 
-                  className="w-full bg-[var(--bg-input)] border border-[var(--border)] rounded-[var(--radius-md)] py-2 px-3 text-sm text-[var(--text-primary)] focus:outline-none focus:border-[var(--primary)] transition-colors"
+                  className="w-full bg-bg-input border border-border rounded-[var(--radius-md)] py-2 px-3 text-sm text-text-primary focus:outline-none focus:border-primary transition-colors"
                   value={form.plan}
                   onChange={e => setForm(f => ({ ...f, plan: e.target.value }))}>
                   {['Basic','Pro','Enterprise'].map((p: string) => <option key={p} value={p}>{p}</option>)}
@@ -79,38 +79,38 @@ export function SuperadminLibrariesPanel({ lib, mode, onClose, onSave, onSuspend
               </div>
             </div>
           ) : (
-            <div className="grid grid-cols-2 gap-4 bg-[var(--bg-page)] rounded-[var(--radius-md)] p-4 border border-[var(--border)]">
+            <div className="grid grid-cols-2 gap-4 bg-bg-page rounded-[var(--radius-md)] p-4 border border-border">
               {([['Owner',lib.owner],['Phone',lib.phone],['Plan',lib.plan],['Joined',lib.joined]] as const).map(([label,val]) => (
                 <div key={label} className="flex flex-col gap-1">
-                  <p className="text-[11px] font-semibold text-[var(--text-disabled)] uppercase tracking-wider">{label}</p>
-                  <p className="text-sm font-medium text-[var(--text-primary)]">{val}</p>
+                  <p className="text-[11px] font-semibold text-text-disabled uppercase tracking-wider">{label}</p>
+                  <p className="text-sm font-medium text-text-primary">{val}</p>
                 </div>
               ))}
             </div>
           )}
 
-          <div className="bg-[var(--bg-page)] rounded-[var(--radius-md)] p-5 border border-[var(--border)]">
+          <div className="bg-bg-page rounded-[var(--radius-md)] p-5 border border-border">
             <div className="flex items-center justify-between mb-3">
-              <p className="text-sm font-bold text-[var(--text-primary)] flex items-center gap-2"><Users size={16} className="text-[var(--primary)]" /> Seat Occupancy</p>
-              <span className={`text-sm font-bold ${pct > 90 ? 'text-[var(--danger)]' : 'text-[var(--success)]'}`}>{pct}%</span>
+              <p className="text-sm font-bold text-text-primary flex items-center gap-2"><Users size={16} className="text-primary" /> Seat Occupancy</p>
+              <span className={`text-sm font-bold ${pct > 90 ? 'text-danger' : 'text-success'}`}>{pct}%</span>
             </div>
-            <div className="h-2 w-full bg-[var(--bg-input)] rounded-full overflow-hidden">
-              <div className={`h-full rounded-full ${pct > 90 ? 'bg-[var(--danger)]' : 'bg-[var(--success)]'}`} style={{ width: `${pct}%` }} />
+            <div className="h-2 w-full bg-bg-input rounded-full overflow-hidden">
+              <div className={`h-full rounded-full ${pct > 90 ? 'bg-danger' : 'bg-success'}`} style={{ width: `${pct}%` }} />
             </div>
-            <p className="text-xs font-medium text-[var(--text-secondary)] mt-2">{lib.occupied} occupied / {lib.seats} total seats</p>
+            <p className="text-xs font-medium text-text-secondary mt-2">{lib.occupied} occupied / {lib.seats} total seats</p>
           </div>
 
           <div>
             {lib.status === 'Active'
-              ? <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider bg-[var(--success-bg,rgba(52,211,153,0.1))] text-[var(--success)]"><CheckCircle size={14} /> Active</span>
-              : <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider bg-[var(--warning-bg,rgba(251,191,36,0.1))] text-[var(--warning)]"><AlertTriangle size={14} /> Maintenance</span>}
+              ? <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider bg-[var(--success-bg,rgba(52,211,153,0.1))] text-success"><CheckCircle size={14} /> Active</span>
+              : <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider bg-[var(--warning-bg,rgba(251,191,36,0.1))] text-warning"><AlertTriangle size={14} /> Maintenance</span>}
           </div>
 
-          <div className="flex gap-3 pt-4 border-t border-[var(--border)]">
+          <div className="flex gap-3 pt-4 border-t border-border">
             {editing ? (
               <>
                 <button 
-                  className="flex-1 flex items-center justify-center gap-2 bg-[var(--primary)] hover:bg-[var(--primary-hover)] text-white text-sm font-bold py-2.5 px-4 rounded-[var(--radius-md)] transition-all disabled:opacity-70 disabled:cursor-not-allowed" 
+                  className="flex-1 flex items-center justify-center gap-2 bg-primary hover:bg-primary-hover text-white text-sm font-bold py-2.5 px-4 rounded-[var(--radius-md)] transition-all disabled:opacity-70 disabled:cursor-not-allowed" 
                   onClick={handleSave} 
                   disabled={saving}
                 >
@@ -119,7 +119,7 @@ export function SuperadminLibrariesPanel({ lib, mode, onClose, onSave, onSuspend
                     : <><Save size={16} /> Save Changes</>}
                 </button>
                 <button 
-                  className="flex-1 flex items-center justify-center gap-2 bg-transparent border border-[var(--border)] hover:bg-[var(--bg-input)] text-[var(--text-primary)] text-sm font-bold py-2.5 px-4 rounded-[var(--radius-md)] transition-all" 
+                  className="flex-1 flex items-center justify-center gap-2 bg-transparent border border-border hover:bg-bg-input text-text-primary text-sm font-bold py-2.5 px-4 rounded-[var(--radius-md)] transition-all" 
                   onClick={() => setEditing(false)}
                 >
                   Cancel
@@ -128,13 +128,13 @@ export function SuperadminLibrariesPanel({ lib, mode, onClose, onSave, onSuspend
             ) : (
               <>
                 <button 
-                  className="flex-1 flex items-center justify-center gap-2 bg-[var(--primary)] hover:bg-[var(--primary-hover)] text-white text-sm font-bold py-2.5 px-4 rounded-[var(--radius-md)] transition-all" 
+                  className="flex-1 flex items-center justify-center gap-2 bg-primary hover:bg-primary-hover text-white text-sm font-bold py-2.5 px-4 rounded-[var(--radius-md)] transition-all" 
                   onClick={() => setEditing(true)}
                 >
                   <Edit2 size={16} /> Edit Library
                 </button>
                 <button 
-                  className="flex-1 flex items-center justify-center gap-2 bg-[var(--danger-bg,rgba(248,113,113,0.1))] text-[var(--danger)] hover:bg-[var(--danger)] hover:text-white text-sm font-bold py-2.5 px-4 rounded-[var(--radius-md)] transition-colors" 
+                  className="flex-1 flex items-center justify-center gap-2 bg-[var(--danger-bg,rgba(248,113,113,0.1))] text-danger hover:bg-danger hover:text-white text-sm font-bold py-2.5 px-4 rounded-[var(--radius-md)] transition-colors" 
                   onClick={() => { onSuspend(lib.id); onClose(); }}
                 >
                   <ShieldAlert size={16} /> {lib.status === 'Active' ? 'Suspend' : 'Reactivate'}

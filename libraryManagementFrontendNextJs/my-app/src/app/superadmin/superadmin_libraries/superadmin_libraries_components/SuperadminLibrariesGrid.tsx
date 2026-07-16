@@ -23,14 +23,14 @@ export function SuperadminLibrariesGrid({ libraries, onRowClick, onSuspend }: Pr
       headerName: 'Library Name', field: 'name', flex: 2, minWidth: 180,
       cellRenderer: (p: ICellRendererParams<Library>) => (
         <div className="h-full flex flex-col justify-center">
-          <p className="font-medium text-[var(--text-primary)] leading-tight">{p.data?.name}</p>
-          <p className="text-[11px] font-semibold text-[var(--text-disabled)] uppercase tracking-wide mt-0.5">{p.data?.plan} Plan</p>
+          <p className="font-medium text-text-primary leading-tight">{p.data?.name}</p>
+          <p className="text-[11px] font-semibold text-text-disabled uppercase tracking-wide mt-0.5">{p.data?.plan} Plan</p>
         </div>
       ),
     },
     { headerName: 'Location', field: 'location', flex: 1.5, minWidth: 160, 
       cellRenderer: (p: ICellRendererParams<Library>) => (
-        <span className="text-sm text-[var(--text-secondary)]">{p.data?.location}</span>
+        <span className="text-sm text-text-secondary">{p.data?.location}</span>
       )
     },
     {
@@ -40,11 +40,11 @@ export function SuperadminLibrariesGrid({ libraries, onRowClick, onSuspend }: Pr
         const pct = Math.round((p.data.occupied / p.data.seats) * 100);
         return (
           <div className="flex flex-col gap-1.5 justify-center h-full">
-            <span className="text-sm font-medium text-[var(--text-primary)]">
-              {p.data.occupied}<span className="text-[var(--text-disabled)]">/{p.data.seats}</span>
+            <span className="text-sm font-medium text-text-primary">
+              {p.data.occupied}<span className="text-text-disabled">/{p.data.seats}</span>
             </span>
-            <div className="h-1.5 w-20 bg-[var(--bg-input)] rounded-full overflow-hidden">
-              <div className={`h-full rounded-full ${pct > 90 ? 'bg-[var(--danger)]' : 'bg-[var(--success)]'}`} style={{ width: `${pct}%` }} />
+            <div className="h-1.5 w-20 bg-bg-input rounded-full overflow-hidden">
+              <div className={`h-full rounded-full ${pct > 90 ? 'bg-danger' : 'bg-success'}`} style={{ width: `${pct}%` }} />
             </div>
           </div>
         );
@@ -54,17 +54,17 @@ export function SuperadminLibrariesGrid({ libraries, onRowClick, onSuspend }: Pr
       headerName: 'Status', field: 'status', flex: 1, minWidth: 120,
       cellRenderer: (p: ICellRendererParams<Library>) => (
         p.data?.status === 'Active'
-          ? <span className="inline-flex items-center px-2 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-[var(--success-bg,rgba(52,211,153,0.1))] text-[var(--success)]">✅ Active</span>
-          : <span className="inline-flex items-center px-2 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-[var(--warning-bg,rgba(251,191,36,0.1))] text-[var(--warning)]">⚠️ Maintenance</span>
+          ? <span className="inline-flex items-center px-2 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-[var(--success-bg,rgba(52,211,153,0.1))] text-success">✅ Active</span>
+          : <span className="inline-flex items-center px-2 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-[var(--warning-bg,rgba(251,191,36,0.1))] text-warning">⚠️ Maintenance</span>
       ),
     },
     {
       headerName: 'Actions', field: 'id', flex: 1, minWidth: 120, sortable: false, filter: false,
       cellRenderer: (p: ICellRendererParams<Library>) => (
         <div className="flex items-center gap-2 h-full">
-          <button className="w-8 h-8 flex items-center justify-center rounded-[var(--radius-md)] text-[var(--text-secondary)] hover:text-[var(--primary)] hover:bg-[var(--primary-subtle,rgba(99,102,241,0.1))] transition-colors" onClick={e => { e.stopPropagation(); onRowClick(p.data!, 'view'); }}><Eye size={15} /></button>
-          <button className="w-8 h-8 flex items-center justify-center rounded-[var(--radius-md)] text-[var(--text-secondary)] hover:text-[var(--success)] hover:bg-[var(--success-bg,rgba(52,211,153,0.1))] transition-colors" onClick={e => { e.stopPropagation(); onRowClick(p.data!, 'edit'); }}><Edit2 size={15} /></button>
-          <button className="w-8 h-8 flex items-center justify-center rounded-[var(--radius-md)] text-[var(--text-secondary)] hover:text-[var(--danger)] hover:bg-[var(--danger-bg,rgba(248,113,113,0.1))] transition-colors" onClick={e => { e.stopPropagation(); onSuspend(p.data!.id); }}><ShieldAlert size={15} /></button>
+          <button className="w-8 h-8 flex items-center justify-center rounded-[var(--radius-md)] text-text-secondary hover:text-primary hover:bg-[var(--primary-subtle,rgba(99,102,241,0.1))] transition-colors" onClick={e => { e.stopPropagation(); onRowClick(p.data!, 'view'); }}><Eye size={15} /></button>
+          <button className="w-8 h-8 flex items-center justify-center rounded-[var(--radius-md)] text-text-secondary hover:text-success hover:bg-[var(--success-bg,rgba(52,211,153,0.1))] transition-colors" onClick={e => { e.stopPropagation(); onRowClick(p.data!, 'edit'); }}><Edit2 size={15} /></button>
+          <button className="w-8 h-8 flex items-center justify-center rounded-[var(--radius-md)] text-text-secondary hover:text-danger hover:bg-[var(--danger-bg,rgba(248,113,113,0.1))] transition-colors" onClick={e => { e.stopPropagation(); onSuspend(p.data!.id); }}><ShieldAlert size={15} /></button>
         </div>
       ),
     },
@@ -73,15 +73,15 @@ export function SuperadminLibrariesGrid({ libraries, onRowClick, onSuspend }: Pr
   const onGridReady = useCallback((e: GridReadyEvent) => { e.api.sizeColumnsToFit(); }, []);
 
   return (
-    <div className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[var(--radius-lg)] overflow-hidden shadow-sm">
-      <div className="p-4 border-b border-[var(--border)] bg-[var(--bg-page)]/30 flex items-center justify-between">
+    <div className="bg-bg-card border border-border rounded-[var(--radius-lg)] overflow-hidden shadow-sm">
+      <div className="p-4 border-b border-border bg-bg-page/30 flex items-center justify-between">
         <input 
           type="text" 
           placeholder="Search by name or location..." 
-          className="w-72 bg-[var(--bg-input)] border border-[var(--border)] rounded-[var(--radius-md)] py-2 px-3 text-sm text-[var(--text-primary)] focus:outline-none focus:border-[var(--primary)] transition-colors"
+          className="w-72 bg-bg-input border border-border rounded-[var(--radius-md)] py-2 px-3 text-sm text-text-primary focus:outline-none focus:border-primary transition-colors"
           onChange={e => gridRef.current?.api.setGridOption('quickFilterText', e.target.value)} 
         />
-        <span className="text-xs font-semibold text-[var(--text-disabled)] uppercase tracking-wider">{libraries.length} libraries</span>
+        <span className="text-xs font-semibold text-text-disabled uppercase tracking-wider">{libraries.length} libraries</span>
       </div>
       <div style={{ height: 420 }}>
         <AgGridReact

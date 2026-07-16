@@ -10,28 +10,28 @@ interface Props {
 export function SuperadminFinancialReportsKpiCards({ totalIncome, totalExpense, netProfit }: Props) {
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-      <div className="bg-[var(--success-bg,rgba(52,211,153,0.1))] border border-[var(--success)]/20 rounded-[var(--radius-lg)] p-5 shadow-sm">
+      <div className="bg-[var(--success-bg,rgba(52,211,153,0.1))] border border-success/20 rounded-[var(--radius-lg)] p-5 shadow-sm">
         <div className="flex items-center justify-between mb-2">
-          <p className="text-[11px] font-bold text-[var(--success)] uppercase tracking-wider">Total Income</p>
-          <TrendingUp size={16} className="text-[var(--success)]" />
+          <p className="text-[11px] font-bold text-success uppercase tracking-wider">Total Income</p>
+          <TrendingUp size={16} className="text-success" />
         </div>
-        <p className="text-2xl font-extrabold text-[var(--success)] tracking-tight">₹{totalIncome.toLocaleString()}</p>
+        <p className="text-2xl font-extrabold text-success tracking-tight">₹{totalIncome.toLocaleString()}</p>
       </div>
       
-      <div className="bg-[var(--danger-bg,rgba(248,113,113,0.1))] border border-[var(--danger)]/20 rounded-[var(--radius-lg)] p-5 shadow-sm">
+      <div className="bg-[var(--danger-bg,rgba(248,113,113,0.1))] border border-danger/20 rounded-[var(--radius-lg)] p-5 shadow-sm">
         <div className="flex items-center justify-between mb-2">
-          <p className="text-[11px] font-bold text-[var(--danger)] uppercase tracking-wider">Total Expenses</p>
-          <TrendingDown size={16} className="text-[var(--danger)]" />
+          <p className="text-[11px] font-bold text-danger uppercase tracking-wider">Total Expenses</p>
+          <TrendingDown size={16} className="text-danger" />
         </div>
-        <p className="text-2xl font-extrabold text-[var(--danger)] tracking-tight">₹{totalExpense.toLocaleString()}</p>
+        <p className="text-2xl font-extrabold text-danger tracking-tight">₹{totalExpense.toLocaleString()}</p>
       </div>
 
-      <div className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[var(--radius-lg)] p-5 shadow-sm">
+      <div className="bg-bg-card border border-border rounded-[var(--radius-lg)] p-5 shadow-sm">
         <div className="flex items-center justify-between mb-2">
-          <p className="text-[11px] font-bold text-[var(--text-disabled)] uppercase tracking-wider">Net Profit</p>
-          <BarChart2 size={16} className="text-[var(--text-disabled)]" />
+          <p className="text-[11px] font-bold text-text-disabled uppercase tracking-wider">Net Profit</p>
+          <BarChart2 size={16} className="text-text-disabled" />
         </div>
-        <p className={`text-2xl font-extrabold tracking-tight ${netProfit >= 0 ? 'text-[var(--success)]' : 'text-[var(--danger)]'}`}>
+        <p className={`text-2xl font-extrabold tracking-tight ${netProfit >= 0 ? 'text-success' : 'text-danger'}`}>
           ₹{netProfit.toLocaleString()}
         </p>
       </div>

@@ -10,6 +10,6 @@ export const SUPERADMIN_SEAT_GAP_REPORT_MOCK_DATA: SuperadminGapRow[] = [
 ];
 
 export const SUPERADMIN_SEAT_GAP_REPORT_STATUS_STYLES: Record<string, string> = {
-  vacant:      'bg-[var(--warning-bg,rgba(251,191,36,0.1))] text-[var(--warning)] border border-[var(--warning)]/20',
-  maintenance: 'bg-[var(--danger-bg,rgba(248,113,113,0.1))] text-[var(--danger)] border border-[var(--danger)]/20',
+  vacant:      'bg-[var(--warning-bg,rgba(251,191,36,0.1))] text-warning border border-warning/20',
+  maintenance: 'bg-[var(--danger-bg,rgba(248,113,113,0.1))] text-danger border border-danger/20',
 };

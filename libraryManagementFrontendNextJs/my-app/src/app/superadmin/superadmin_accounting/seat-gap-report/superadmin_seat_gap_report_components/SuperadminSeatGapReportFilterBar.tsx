@@ -19,10 +19,10 @@ export function SuperadminSeatGapReportFilterBar({ shiftFilter, setShiftFilter, 
   };
 
   return (
-    <div className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[var(--radius-lg)] p-4 shadow-sm mb-6 flex flex-wrap items-center gap-3">
-      <label className="text-xs font-bold text-[var(--text-secondary)] uppercase tracking-wider mr-1">Filters:</label>
+    <div className="bg-bg-card border border-border rounded-[var(--radius-lg)] p-4 shadow-sm mb-6 flex flex-wrap items-center gap-3">
+      <label className="text-xs font-bold text-text-secondary uppercase tracking-wider mr-1">Filters:</label>
       <select 
-        className="bg-[var(--bg-input)] border border-[var(--border)] rounded-[var(--radius-md)] py-1.5 px-3 text-sm font-medium text-[var(--text-primary)] focus:outline-none focus:border-[var(--primary)] transition-colors shadow-inner min-w-[140px]" 
+        className="bg-bg-input border border-border rounded-[var(--radius-md)] py-1.5 px-3 text-sm font-medium text-text-primary focus:outline-none focus:border-primary transition-colors shadow-inner min-w-[140px]" 
         value={shiftFilter} 
         onChange={e => setShiftFilter(e.target.value)}
       >
@@ -33,7 +33,7 @@ export function SuperadminSeatGapReportFilterBar({ shiftFilter, setShiftFilter, 
       </select>
       
       <select 
-        className="bg-[var(--bg-input)] border border-[var(--border)] rounded-[var(--radius-md)] py-1.5 px-3 text-sm font-medium text-[var(--text-primary)] focus:outline-none focus:border-[var(--primary)] transition-colors shadow-inner min-w-[140px]" 
+        className="bg-bg-input border border-border rounded-[var(--radius-md)] py-1.5 px-3 text-sm font-medium text-text-primary focus:outline-none focus:border-primary transition-colors shadow-inner min-w-[140px]" 
         value={statusFilter} 
         onChange={e => setStatusFilter(e.target.value)}
       >
@@ -43,7 +43,7 @@ export function SuperadminSeatGapReportFilterBar({ shiftFilter, setShiftFilter, 
       </select>
 
       <button 
-        className="ml-auto flex items-center gap-2 bg-[var(--bg-input)] hover:bg-[var(--border)] border border-[var(--border)] text-[var(--text-primary)] text-xs font-bold py-1.5 px-3 rounded-[var(--radius-sm)] transition-colors shadow-sm disabled:opacity-50"
+        className="ml-auto flex items-center gap-2 bg-bg-input hover:bg-border border border-border text-text-primary text-xs font-bold py-1.5 px-3 rounded-[var(--radius-sm)] transition-colors shadow-sm disabled:opacity-50"
         onClick={handleExportClick}
         disabled={exporting}
       >

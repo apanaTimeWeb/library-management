@@ -21,9 +21,9 @@ const ACTION_LINKS: Record<string, string> = {
 
 export function SuperadminDashboardActionItemsPanel({ data }: Props) {
   return (
-    <div className="col-span-12 lg:col-span-5 bg-[var(--bg-card)] border border-[var(--border)] rounded-[var(--radius-lg)] flex flex-col overflow-hidden shadow-sm">
-      <div className="p-6 border-b border-[var(--border)] bg-[var(--bg-page)]/30">
-        <h2 className="text-base font-bold text-[var(--text-primary)]">Action Items</h2>
+    <div className="col-span-12 lg:col-span-5 bg-bg-card border border-border rounded-[var(--radius-lg)] flex flex-col overflow-hidden shadow-sm">
+      <div className="p-6 border-b border-border bg-bg-page/30">
+        <h2 className="text-base font-bold text-text-primary">Action Items</h2>
       </div>
 
       <div className="p-6 space-y-3 flex-1">
@@ -35,29 +35,29 @@ export function SuperadminDashboardActionItemsPanel({ data }: Props) {
             <Link key={i} href={href}
               className={`flex items-center justify-between p-4 rounded-[var(--radius-md)] border hover:-translate-y-0.5 transition-all duration-200 ${
                 isError 
-                  ? 'bg-[var(--danger-bg,rgba(248,113,113,0.05))] border-[var(--danger)]/20 hover:border-[var(--danger)]/50' 
-                  : 'bg-[rgba(59,130,246,0.05)] border-[var(--info,#3B82F6)]/20 hover:border-[var(--info,#3B82F6)]/50'
+                  ? 'bg-[var(--danger-bg,rgba(248,113,113,0.05))] border-danger/20 hover:border-danger/50' 
+                  : 'bg-[rgba(59,130,246,0.05)] border-info,#3B82F6/20 hover:border-info,#3B82F6/50'
               }`}>
               <div className="flex items-center gap-3">
-                <Icon size={16} className={isError ? 'text-[var(--danger)]' : 'text-[var(--info,#3B82F6)]'} />
-                <span className="text-sm font-semibold text-[var(--text-primary)]">{item.text}</span>
+                <Icon size={16} className={isError ? 'text-danger' : 'text-info,#3B82F6'} />
+                <span className="text-sm font-semibold text-text-primary">{item.text}</span>
               </div>
-              <ChevronRight size={15} className="text-[var(--text-disabled)]" />
+              <ChevronRight size={15} className="text-text-disabled" />
             </Link>
           );
         })}
       </div>
 
-      <div className="mt-auto p-6 border-t border-[var(--border)] bg-[var(--bg-page)]/30">
-        <div className="flex items-start gap-3 mb-4 p-3 rounded-[var(--radius-md)] bg-[var(--primary-subtle,rgba(99,102,241,0.1))] border border-[var(--primary)]/20">
-          <div className="bg-[var(--primary)] text-white p-1 rounded-full shrink-0 mt-0.5">
+      <div className="mt-auto p-6 border-t border-border bg-bg-page/30">
+        <div className="flex items-start gap-3 mb-4 p-3 rounded-[var(--radius-md)] bg-[var(--primary-subtle,rgba(99,102,241,0.1))] border border-primary/20">
+          <div className="bg-primary text-white p-1 rounded-full shrink-0 mt-0.5">
             <Lightbulb size={12} />
           </div>
-          <p className="text-xs text-[var(--text-secondary)] leading-relaxed font-medium">
+          <p className="text-xs text-text-secondary leading-relaxed font-medium">
             5 newly registered libraries are yet to complete their initial setup wizard.
           </p>
         </div>
-        <Link href="/superadmin/superadmin_libraries" className="flex items-center justify-center gap-1.5 text-xs font-semibold text-[var(--primary)] hover:text-[var(--primary-hover)] transition-colors">
+        <Link href="/superadmin/superadmin_libraries" className="flex items-center justify-center gap-1.5 text-xs font-semibold text-primary hover:text-primary-hover transition-colors">
           <ExternalLink size={13} /> View All Activities
         </Link>
       </div>

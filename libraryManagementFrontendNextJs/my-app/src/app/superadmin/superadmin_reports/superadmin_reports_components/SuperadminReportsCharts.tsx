@@ -28,10 +28,10 @@ const pctFormatter   = (value: any) => [`${value ?? 0}%`, ''] as [string, string
 
 function ChartCard({ title, subtitle, children }: { title: string, subtitle: string, children: React.ReactNode }) {
   return (
-    <div className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[var(--radius-lg)] flex flex-col overflow-hidden shadow-sm">
-      <div className="p-5 border-b border-[var(--border)] bg-[var(--bg-page)]/30">
-        <p className="text-sm font-bold text-[var(--text-primary)]">{title}</p>
-        <p className="text-[11px] font-medium text-[var(--text-disabled)] mt-0.5">{subtitle}</p>
+    <div className="bg-bg-card border border-border rounded-[var(--radius-lg)] flex flex-col overflow-hidden shadow-sm">
+      <div className="p-5 border-b border-border bg-bg-page/30">
+        <p className="text-sm font-bold text-text-primary">{title}</p>
+        <p className="text-[11px] font-medium text-text-disabled mt-0.5">{subtitle}</p>
       </div>
       <div className="p-5 h-[280px]">
         {children}

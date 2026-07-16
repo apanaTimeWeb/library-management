@@ -8,10 +8,10 @@ interface Props {
 
 export function SuperadminAssetsFilterBar({ categories, catFilter, setCatFilter }: Props) {
   return (
-    <div className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[var(--radius-lg)] p-4 shadow-sm mb-6 flex items-center gap-3">
-      <label className="text-xs font-bold text-[var(--text-secondary)] uppercase tracking-wider">Filter Category:</label>
+    <div className="bg-bg-card border border-border rounded-[var(--radius-lg)] p-4 shadow-sm mb-6 flex items-center gap-3">
+      <label className="text-xs font-bold text-text-secondary uppercase tracking-wider">Filter Category:</label>
       <select 
-        className="bg-[var(--bg-input)] border border-[var(--border)] rounded-[var(--radius-md)] py-1.5 px-3 text-sm font-medium text-[var(--text-primary)] focus:outline-none focus:border-[var(--primary)] transition-colors shadow-inner" 
+        className="bg-bg-input border border-border rounded-[var(--radius-md)] py-1.5 px-3 text-sm font-medium text-text-primary focus:outline-none focus:border-primary transition-colors shadow-inner" 
         value={catFilter} 
         onChange={e => setCatFilter(e.target.value)}
       >

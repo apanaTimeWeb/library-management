@@ -4,6 +4,7 @@ import { SUPERADMIN_DAILY_SETTLEMENT_MOCK_DATA } from '@/app/superadmin/superadm
 
 const TODAY = new Date().toISOString().split('T')[0];
 
+// DATA FLOW: API → useSuperadminDailySettlement.ts → SuperadminDailySettlementComponent
 export function useSuperadminDailySettlement() {
   const [date, setDate] = useState(TODAY);
   const [entries, setEntries] = useState<SuperadminDailySettlementEntry[]>(SUPERADMIN_DAILY_SETTLEMENT_MOCK_DATA);

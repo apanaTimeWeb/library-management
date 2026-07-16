@@ -2,6 +2,7 @@ import { useState, useCallback } from 'react';
 import type { SuperadminSubscription } from '@/app/superadmin/superadmin_subscriptions/superadmin_subscriptions_types/SuperadminSubscriptionsTypes';
 import { SUPERADMIN_SUBSCRIPTIONS_MOCK_DATA } from '@/app/superadmin/superadmin_subscriptions/superadmin_subscriptions_constants/SuperadminSubscriptionsConstants';
 
+// DATA FLOW: API → useSuperadminSubscriptions.ts → SuperadminSubscriptionsComponent
 export function useSuperadminSubscriptions() {
   const [subs, setSubs] = useState<SuperadminSubscription[]>(SUPERADMIN_SUBSCRIPTIONS_MOCK_DATA);
   const [filter, setFilter] = useState('All');

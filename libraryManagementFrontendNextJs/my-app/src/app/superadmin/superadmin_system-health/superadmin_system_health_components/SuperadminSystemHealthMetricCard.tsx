@@ -9,17 +9,17 @@ interface Props {
 }
 
 const COLOR_TEXT_CLS: Record<string, string> = {
-  success: 'text-[var(--success)]',
-  info:    'text-[var(--info,#3B82F6)]',
-  warning: 'text-[var(--warning)]',
-  danger:  'text-[var(--danger)]',
+  success: 'text-success',
+  info:    'text-info,#3B82F6',
+  warning: 'text-warning',
+  danger:  'text-danger',
 };
 
 const COLOR_FILL_CLS: Record<string, string> = {
-  success: 'bg-[var(--success)]',
-  info:    'bg-[var(--info,#3B82F6)]',
-  warning: 'bg-[var(--warning)]',
-  danger:  'bg-[var(--danger)]',
+  success: 'bg-success',
+  info:    'bg-info,#3B82F6',
+  warning: 'bg-warning',
+  danger:  'bg-danger',
 };
 
 function MetricRow({ label, sub, val, pct, colorKey }: SuperadminSystemHealthMetric) {
@@ -27,12 +27,12 @@ function MetricRow({ label, sub, val, pct, colorKey }: SuperadminSystemHealthMet
     <div>
       <div className="flex justify-between items-end mb-2">
         <div>
-          <p className="text-sm font-bold text-[var(--text-primary)]">{label}</p>
-          <p className="text-xs font-semibold text-[var(--text-disabled)] uppercase tracking-wider">{sub}</p>
+          <p className="text-sm font-bold text-text-primary">{label}</p>
+          <p className="text-xs font-semibold text-text-disabled uppercase tracking-wider">{sub}</p>
         </div>
         <span className={`text-sm font-extrabold ${COLOR_TEXT_CLS[colorKey]}`}>{val}</span>
       </div>
-      <div className="h-2 w-full bg-[var(--bg-input)] rounded-full overflow-hidden border border-[var(--border)]">
+      <div className="h-2 w-full bg-bg-input rounded-full overflow-hidden border border-border">
         <div 
           className={`h-full rounded-full transition-all duration-1000 ease-out ${COLOR_FILL_CLS[colorKey]}`} 
           style={{ width: `${pct}%` }} 
@@ -44,8 +44,8 @@ function MetricRow({ label, sub, val, pct, colorKey }: SuperadminSystemHealthMet
 
 export function SuperadminSystemHealthMetricCard({ title, icon: Icon, iconColor, metrics }: Props) {
   return (
-    <div className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[var(--radius-lg)] p-6 shadow-sm hover:shadow-md transition-shadow">
-      <h2 className="text-sm font-bold text-[var(--text-primary)] mb-6 flex items-center gap-2 uppercase tracking-wider">
+    <div className="bg-bg-card border border-border rounded-[var(--radius-lg)] p-6 shadow-sm hover:shadow-md transition-shadow">
+      <h2 className="text-sm font-bold text-text-primary mb-6 flex items-center gap-2 uppercase tracking-wider">
         <Icon size={18} className={iconColor} /> {title}
       </h2>
       <div className="space-y-6">

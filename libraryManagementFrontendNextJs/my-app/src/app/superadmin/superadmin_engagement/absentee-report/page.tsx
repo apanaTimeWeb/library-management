@@ -109,7 +109,7 @@ export default function AbsenteeReportPage() {
           {params.data.notified ? (
             <span className="eng-badge eng-badge--success">✅ Notified</span>
           ) : (
-            <button onClick={() => notify(params.data.id)} className="eng-btn eng-btn--ghost eng-btn--sm hover:bg-[var(--mgr-primary)] hover:text-white transition-colors duration-200">
+            <button onClick={() => notify(params.data.id)} className="eng-btn eng-btn--ghost eng-btn--sm hover:bg-mgr-primary hover:text-white transition-colors duration-200">
               <Send size={12} className="mr-1"/> Alert
             </button>
           )}
@@ -174,11 +174,11 @@ export default function AbsenteeReportPage() {
       </div>
 
       {/* ── Filters ── */}
-      <div className="eng-card eng-card--flush eng-mb-6 p-4 border-b border-[var(--mgr-border)]">
+      <div className="eng-card eng-card--flush eng-mb-6 p-4 border-b border-mgr-border">
         <div className="eng-filter-bar flex items-center justify-between">
           <div className="flex gap-6 items-center">
             <div className="eng-filter-field flex flex-col">
-              <span className="eng-label mb-1 text-xs font-semibold text-[var(--mgr-text-secondary)]">Days Threshold</span>
+              <span className="eng-label mb-1 text-xs font-semibold text-mgr-text-secondary">Days Threshold</span>
               <select className="eng-select eng-filter-select py-1 px-2 border rounded" value={threshold}
                 onChange={e => setThreshold(e.target.value)}>
                 <option value="3">3+ Days</option>
@@ -188,7 +188,7 @@ export default function AbsenteeReportPage() {
               </select>
             </div>
             <div className="eng-filter-field flex flex-col">
-              <span className="eng-label mb-1 text-xs font-semibold text-[var(--mgr-text-secondary)]">Shift</span>
+              <span className="eng-label mb-1 text-xs font-semibold text-mgr-text-secondary">Shift</span>
               <select className="eng-select eng-filter-select py-1 px-2 border rounded" value={shift}
                 onChange={e => setShift(e.target.value)}>
                 <option>All</option>
@@ -211,8 +211,8 @@ export default function AbsenteeReportPage() {
         {filtered.length === 0 ? (
           <div className="eng-empty py-12 flex flex-col items-center justify-center text-center">
             <div className="eng-empty-icon text-4xl mb-4">🎉</div>
-            <p className="eng-empty-title text-lg font-semibold text-[var(--mgr-text-primary)] mb-1">No absentees above threshold!</p>
-            <p className="eng-empty-sub text-sm text-[var(--mgr-text-secondary)]">All students have great attendance above the selected threshold.</p>
+            <p className="eng-empty-title text-lg font-semibold text-mgr-text-primary mb-1">No absentees above threshold!</p>
+            <p className="eng-empty-sub text-sm text-mgr-text-secondary">All students have great attendance above the selected threshold.</p>
           </div>
         ) : (
           <div className="mgr-table-wrapper h-[450px]">

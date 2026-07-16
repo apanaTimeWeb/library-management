@@ -15,10 +15,10 @@ interface Props {
 }
 
 const MODE_BADGE: Record<string, string> = {
-  cash: 'bg-[var(--success-bg,rgba(52,211,153,0.1))] text-[var(--success)]',
-  upi:  'bg-[var(--info-bg,rgba(59,130,246,0.1))] text-[var(--info,#3B82F6)]',
-  card: 'bg-[var(--warning-bg,rgba(251,191,36,0.1))] text-[var(--warning)]',
-  bank: 'bg-[var(--primary)] text-white',
+  cash: 'bg-[var(--success-bg,rgba(52,211,153,0.1))] text-success',
+  upi:  'bg-[var(--info-bg,rgba(59,130,246,0.1))] text-info,#3B82F6',
+  card: 'bg-[var(--warning-bg,rgba(251,191,36,0.1))] text-warning',
+  bank: 'bg-primary text-white',
 };
 
 export function SuperadminExpensesGrid({ expenses, onDelete }: Props) {
@@ -28,7 +28,7 @@ export function SuperadminExpensesGrid({ expenses, onDelete }: Props) {
       headerName: 'Date', 
       width: 130, 
       cellRenderer: (p: ICellRendererParams<SuperadminExpense>) => (
-        <span className="font-mono text-xs text-[var(--text-disabled)] tracking-tight">{p.data?.date}</span>
+        <span className="font-mono text-xs text-text-disabled tracking-tight">{p.data?.date}</span>
       )
     },
     { 
@@ -36,7 +36,7 @@ export function SuperadminExpensesGrid({ expenses, onDelete }: Props) {
       headerName: 'Category', 
       width: 150,
       cellRenderer: (p: ICellRendererParams<SuperadminExpense>) => (
-        <span className="inline-flex items-center px-2 py-1 rounded-[var(--radius-sm)] text-[10px] font-bold uppercase tracking-wider bg-[var(--bg-input)] text-[var(--text-secondary)] border border-[var(--border)] mt-2">
+        <span className="inline-flex items-center px-2 py-1 rounded-[var(--radius-sm)] text-[10px] font-bold uppercase tracking-wider bg-bg-input text-text-secondary border border-border mt-2">
           {p.data?.category}
         </span>
       )
@@ -47,7 +47,7 @@ export function SuperadminExpensesGrid({ expenses, onDelete }: Props) {
       flex: 1, 
       minWidth: 200, 
       cellRenderer: (p: ICellRendererParams<SuperadminExpense>) => (
-        <span className="text-sm font-medium text-[var(--text-primary)]">{p.data?.description}</span>
+        <span className="text-sm font-medium text-text-primary">{p.data?.description}</span>
       )
     },
     { 
@@ -56,7 +56,7 @@ export function SuperadminExpensesGrid({ expenses, onDelete }: Props) {
       width: 140,
       cellStyle: { textAlign: 'right' },
       cellRenderer: (p: ICellRendererParams<SuperadminExpense>) => (
-        <span className="text-[15px] font-extrabold text-[var(--danger)] tracking-tight">
+        <span className="text-[15px] font-extrabold text-danger tracking-tight">
           ₹{p.data?.amount.toLocaleString()}
         </span>
       )
@@ -76,7 +76,7 @@ export function SuperadminExpensesGrid({ expenses, onDelete }: Props) {
       headerName: 'Paid By', 
       width: 140, 
       cellRenderer: (p: ICellRendererParams<SuperadminExpense>) => (
-        <span className="text-[13px] font-bold text-[var(--text-secondary)]">{p.data?.paidBy}</span>
+        <span className="text-[13px] font-bold text-text-secondary">{p.data?.paidBy}</span>
       )
     },
     {
@@ -88,7 +88,7 @@ export function SuperadminExpensesGrid({ expenses, onDelete }: Props) {
       cellRenderer: (p: ICellRendererParams<SuperadminExpense>) => (
         <div className="h-full flex justify-end items-center pr-2">
           <button 
-            className="w-8 h-8 flex items-center justify-center rounded-[var(--radius-md)] bg-[var(--danger-bg,rgba(248,113,113,0.1))] text-[var(--danger)] hover:bg-[var(--danger)] hover:text-white transition-colors duration-200" 
+            className="w-8 h-8 flex items-center justify-center rounded-[var(--radius-md)] bg-[var(--danger-bg,rgba(248,113,113,0.1))] text-danger hover:bg-danger hover:text-white transition-colors duration-200" 
             onClick={() => p.data && onDelete(p.data.id)}
             title="Delete Expense"
           >
@@ -100,12 +100,12 @@ export function SuperadminExpensesGrid({ expenses, onDelete }: Props) {
   ], [onDelete]);
 
   return (
-    <div className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[var(--radius-lg)] overflow-hidden shadow-sm">
+    <div className="bg-bg-card border border-border rounded-[var(--radius-lg)] overflow-hidden shadow-sm">
       {expenses.length === 0 ? (
         <div className="flex flex-col items-center justify-center py-20 text-center">
-          <FileWarning size={48} className="text-[var(--text-disabled)] mb-4 opacity-50" />
-          <p className="text-lg font-bold text-[var(--text-primary)] mb-1">No expenses found.</p>
-          <p className="text-sm font-medium text-[var(--text-disabled)]">Try adjusting your category filter or add a new expense.</p>
+          <FileWarning size={48} className="text-text-disabled mb-4 opacity-50" />
+          <p className="text-lg font-bold text-text-primary mb-1">No expenses found.</p>
+          <p className="text-sm font-medium text-text-disabled">Try adjusting your category filter or add a new expense.</p>
         </div>
       ) : (
         <div style={{ height: 450 }}>

@@ -4,6 +4,7 @@ import { SUPERADMIN_BILLING_MOCK_INVOICES } from '@/app/superadmin/superadmin_bi
 
 import { markInvoicePaidApi } from '@/app/superadmin/superadmin_billing/superadmin_billing_api/SuperadminBillingApi';
 
+// DATA FLOW: API → useSuperadminBilling.ts → SuperadminBillingComponent
 export function useSuperadminBilling() {
   const [invoices, setInvoices] = useState<SuperadminBillingInvoice[]>(SUPERADMIN_BILLING_MOCK_INVOICES);
 

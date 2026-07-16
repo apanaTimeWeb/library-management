@@ -13,15 +13,15 @@ ModuleRegistry.registerModules([AllCommunityModule]);
 interface Props { data: Library[]; }
 
 const STATUS_CONFIG: Record<string, { label: string; bg: string; text: string }> = {
-  active:   { label: 'Active',    bg: 'bg-[var(--success-bg,rgba(52,211,153,0.1))]', text: 'text-[var(--success)]' },
-  setup:    { label: 'Setup Due', bg: 'bg-[var(--warning-bg,rgba(251,191,36,0.1))]', text: 'text-[var(--warning)]' },
-  inactive: { label: 'Inactive',  bg: 'bg-[var(--danger-bg,rgba(248,113,113,0.1))]', text: 'text-[var(--danger)]' },
+  active:   { label: 'Active',    bg: 'bg-[var(--success-bg,rgba(52,211,153,0.1))]', text: 'text-success' },
+  setup:    { label: 'Setup Due', bg: 'bg-[var(--warning-bg,rgba(251,191,36,0.1))]', text: 'text-warning' },
+  inactive: { label: 'Inactive',  bg: 'bg-[var(--danger-bg,rgba(248,113,113,0.1))]', text: 'text-danger' },
 };
 
 const PLAN_CLS: Record<string, { bg: string; text: string }> = {
-  Basic:      { bg: 'bg-[rgba(59,130,246,0.1)]', text: 'text-[var(--info,#3B82F6)]' },
-  Pro:        { bg: 'bg-[var(--primary-subtle,rgba(99,102,241,0.1))]', text: 'text-[var(--primary)]' },
-  Enterprise: { bg: 'bg-[var(--bg-input)]', text: 'text-[var(--text-primary)]' },
+  Basic:      { bg: 'bg-[rgba(59,130,246,0.1)]', text: 'text-info,#3B82F6' },
+  Pro:        { bg: 'bg-[var(--primary-subtle,rgba(99,102,241,0.1))]', text: 'text-primary' },
+  Enterprise: { bg: 'bg-bg-input', text: 'text-text-primary' },
 };
 
 export function SuperadminDashboardRecentLibrariesTable({ data }: Props) {
@@ -32,22 +32,22 @@ export function SuperadminDashboardRecentLibrariesTable({ data }: Props) {
       headerName: 'Library', field: 'name', flex: 2, minWidth: 180,
       cellRenderer: (p: ICellRendererParams<Library>) => (
         <div className="flex items-center gap-3 h-full">
-          <div className="w-8 h-8 rounded-full bg-[var(--primary)] text-white flex items-center justify-center text-xs font-bold uppercase tracking-wider shrink-0 shadow-[0_0_10px_rgba(99,102,241,0.3)]">
+          <div className="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center text-xs font-bold uppercase tracking-wider shrink-0 shadow-[0_0_10px_rgba(99,102,241,0.3)]">
             {p.data?.initials}
           </div>
-          <span className="font-medium text-[var(--text-primary)] text-sm">{p.data?.name}</span>
+          <span className="font-medium text-text-primary text-sm">{p.data?.name}</span>
         </div>
       ),
     },
     { headerName: 'Owner', field: 'owner', flex: 1.5, minWidth: 130,
       cellRenderer: (p: ICellRendererParams<Library>) => (
-        <span className="text-[var(--text-secondary)] text-sm">{p.data?.owner}</span>
+        <span className="text-text-secondary text-sm">{p.data?.owner}</span>
       )
     },
     {
       headerName: 'Students', field: 'students', flex: 0.8, minWidth: 90,
       cellRenderer: (p: ICellRendererParams<Library>) => (
-        <span className="font-bold text-[var(--text-primary)] text-sm">{p.data?.students}</span>
+        <span className="font-bold text-text-primary text-sm">{p.data?.students}</span>
       ),
     },
     {
@@ -66,7 +66,7 @@ export function SuperadminDashboardRecentLibrariesTable({ data }: Props) {
     },
     { headerName: 'Joined', field: 'joinedAt', flex: 0.9, minWidth: 100,
       cellRenderer: (p: ICellRendererParams<Library>) => (
-        <span className="text-[var(--text-disabled)] text-xs">{p.data?.joinedAt}</span>
+        <span className="text-text-disabled text-xs">{p.data?.joinedAt}</span>
       )
     },
   ], []);
@@ -74,10 +74,10 @@ export function SuperadminDashboardRecentLibrariesTable({ data }: Props) {
   const onGridReady = useCallback((e: GridReadyEvent) => { e.api.sizeColumnsToFit(); }, []);
 
   return (
-    <div className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[var(--radius-lg)] overflow-hidden shadow-sm">
-      <div className="p-6 flex items-center justify-between border-b border-[var(--border)] bg-[var(--bg-page)]/30">
-        <h2 className="text-base font-bold text-[var(--text-primary)]">Recently Registered Libraries</h2>
-        <Link href="/superadmin/superadmin_libraries" className="text-[var(--primary)] text-xs font-bold flex items-center gap-1 hover:text-[var(--primary-hover)] transition-colors">
+    <div className="bg-bg-card border border-border rounded-[var(--radius-lg)] overflow-hidden shadow-sm">
+      <div className="p-6 flex items-center justify-between border-b border-border bg-bg-page/30">
+        <h2 className="text-base font-bold text-text-primary">Recently Registered Libraries</h2>
+        <Link href="/superadmin/superadmin_libraries" className="text-primary text-xs font-bold flex items-center gap-1 hover:text-primary-hover transition-colors">
           View All <ExternalLink size={12} />
         </Link>
       </div>

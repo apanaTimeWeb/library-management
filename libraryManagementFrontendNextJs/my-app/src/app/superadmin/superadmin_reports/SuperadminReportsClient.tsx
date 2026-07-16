@@ -39,9 +39,9 @@ export function SuperadminReportsClient({ initialData }: Props) {
       <SuperadminReportsHeader range={range} setRange={setRange} />
       
       {loading && (
-        <div className="absolute inset-0 z-10 bg-[var(--bg-page)]/50 backdrop-blur-[2px] flex items-center justify-center rounded-[var(--radius-lg)]">
-          <div className="bg-[var(--bg-card)] p-4 rounded-full shadow-lg flex items-center gap-2 text-sm font-bold text-[var(--primary)] animate-pulse border border-[var(--border)]">
-            <div className="w-4 h-4 border-2 border-[var(--primary)] border-t-transparent rounded-full animate-spin" />
+        <div className="absolute inset-0 z-10 bg-bg-page/50 backdrop-blur-[2px] flex items-center justify-center rounded-[var(--radius-lg)]">
+          <div className="bg-bg-card p-4 rounded-full shadow-lg flex items-center gap-2 text-sm font-bold text-primary animate-pulse border border-border">
+            <div className="w-4 h-4 border-2 border-primary border-t-transparent rounded-full animate-spin" />
             Loading Reports...
           </div>
         </div>

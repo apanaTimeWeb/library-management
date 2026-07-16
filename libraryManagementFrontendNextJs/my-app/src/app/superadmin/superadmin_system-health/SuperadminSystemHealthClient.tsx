@@ -41,14 +41,14 @@ export function SuperadminSystemHealthClient({ initialData }: Props) {
         <SuperadminSystemHealthMetricCard 
           title="Main Infrastructure" 
           icon={Server} 
-          iconColor="text-[var(--primary)]" 
+          iconColor="text-primary" 
           metrics={data.infrastructure} 
         />
         
         <SuperadminSystemHealthMetricCard 
           title="Databases & Cache" 
           icon={Database} 
-          iconColor="text-[var(--warning)]" 
+          iconColor="text-warning" 
           metrics={data.databases} 
         />
 

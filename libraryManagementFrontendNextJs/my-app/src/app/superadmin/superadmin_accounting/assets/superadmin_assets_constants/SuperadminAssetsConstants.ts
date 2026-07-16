@@ -10,7 +10,7 @@ export const SUPERADMIN_ASSETS_MOCK_DATA: SuperadminAsset[] = [
 ];
 
 export const SUPERADMIN_ASSETS_STATUS_STYLES: Record<string, string> = {
-  active:      'bg-[var(--success-bg,rgba(52,211,153,0.1))] text-[var(--success)]',
-  maintenance: 'bg-[var(--warning-bg,rgba(251,191,36,0.1))] text-[var(--warning)]',
-  disposed:    'bg-[var(--bg-input)] text-[var(--text-secondary)]',
+  active:      'bg-[var(--success-bg,rgba(52,211,153,0.1))] text-success',
+  maintenance: 'bg-[var(--warning-bg,rgba(251,191,36,0.1))] text-warning',
+  disposed:    'bg-bg-input text-text-secondary',
 };
