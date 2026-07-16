@@ -1,4 +1,4 @@
-export interface Library {
+export interface SuperadminLibrary {
   id: string;
   name: string;
   location: string;
@@ -11,4 +11,4 @@ export interface Library {
   joined: string;
 }
 
-export type LibraryPanelMode = 'view' | 'edit';
+export type SuperadminLibraryPanelMode = 'view' | 'edit';

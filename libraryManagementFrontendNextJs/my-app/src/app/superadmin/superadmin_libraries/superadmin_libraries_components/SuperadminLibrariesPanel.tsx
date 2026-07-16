@@ -1,0 +1,149 @@
+'use client';
+import React, { useState } from 'react';
+import { MapPin, Edit2, X, Users, CheckCircle, AlertTriangle, Save, Loader, ShieldAlert } from 'lucide-react';
+import type { SuperadminLibrary, SuperadminLibraryPanelMode } from '../superadmin_libraries_types/SuperadminLibrariesTypes';
+
+interface Props {
+  lib: SuperadminLibrary;
+  mode: SuperadminLibraryPanelMode;
+  onClose: () => void;
+  onSave: (updated: SuperadminLibrary) => Promise<void>;
+  onSuspend: (id: string) => Promise<void>;
+}
+
+export function SuperadminLibrariesPanel({ lib, mode, onClose, onSave, onSuspend }: Props) {
+  const [editing, setEditing] = useState(mode === 'edit');
+  const [form, setForm] = useState({ name: lib.name, owner: lib.owner, phone: lib.phone, location: lib.location, plan: lib.plan });
+  const [saving, setSaving] = useState(false);
+  const [saved, setSaved] = useState(false);
+  const pct = Math.round((lib.occupied / lib.seats) * 100);
+
+  const handleSave = async () => {
+    setSaving(true);
+    try {
+      await onSave({ ...lib, ...form });
+      setSaved(true);
+      setTimeout(() => { setSaved(false); setEditing(false); }, 1200);
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setSaving(false);
+    }
+  };
+
+  return (
+    <div className="fixed inset-0 z-50 flex items-stretch justify-end" onClick={onClose}>
+      <div className="absolute inset-0 bg-[var(--bg-page)]/80 backdrop-blur-sm transition-opacity" />
+      <div 
+        className="relative w-full max-w-md bg-[var(--bg-card)] shadow-[-10px_0_30px_rgba(0,0,0,0.1)] border-l border-[var(--border)] overflow-y-auto animate-in slide-in-from-right duration-300"
+        onClick={e => e.stopPropagation()}
+      >
+        <div className="p-6 space-y-6">
+          <div className="flex items-start justify-between">
+            <div>
+              <h2 className="text-xl font-bold text-[var(--text-primary)]">{lib.name}</h2>
+              <p className="text-sm text-[var(--text-secondary)] flex items-center gap-1.5 mt-1.5"><MapPin size={14} />{lib.location}</p>
+            </div>
+            <div className="flex items-center gap-2">
+              {!editing && (
+                <button className="w-8 h-8 flex items-center justify-center rounded-[var(--radius-md)] text-[var(--text-secondary)] hover:text-[var(--primary)] hover:bg-[var(--primary-subtle,rgba(99,102,241,0.1))] transition-colors" onClick={() => setEditing(true)}>
+                  <Edit2 size={16} />
+                </button>
+              )}
+              <button className="w-8 h-8 flex items-center justify-center rounded-[var(--radius-md)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-input)] transition-colors" onClick={onClose}>
+                <X size={18} />
+              </button>
+            </div>
+          </div>
+
+          {editing ? (
+            <div className="space-y-4">
+              {([['Library Name','name'],['Owner','owner'],['Phone','phone'],['Location','location']] as const).map(([label, key]) => (
+                <div key={key}>
+                  <label className="block text-xs font-semibold text-[var(--text-secondary)] uppercase tracking-wider mb-1.5">{label}</label>
+                  <input 
+                    className="w-full bg-[var(--bg-input)] border border-[var(--border)] rounded-[var(--radius-md)] py-2 px-3 text-sm text-[var(--text-primary)] focus:outline-none focus:border-[var(--primary)] transition-colors"
+                    value={(form as Record<string, string>)[key]}
+                    onChange={e => setForm(f => ({ ...f, [key]: e.target.value }))} 
+                  />
+                </div>
+              ))}
+              <div>
+                <label className="block text-xs font-semibold text-[var(--text-secondary)] uppercase tracking-wider mb-1.5">Plan</label>
+                <select 
+                  className="w-full bg-[var(--bg-input)] border border-[var(--border)] rounded-[var(--radius-md)] py-2 px-3 text-sm text-[var(--text-primary)] focus:outline-none focus:border-[var(--primary)] transition-colors"
+                  value={form.plan}
+                  onChange={e => setForm(f => ({ ...f, plan: e.target.value }))}>
+                  {['Basic','Pro','Enterprise'].map((p: string) => <option key={p} value={p}>{p}</option>)}
+                </select>
+              </div>
+            </div>
+          ) : (
+            <div className="grid grid-cols-2 gap-4 bg-[var(--bg-page)] rounded-[var(--radius-md)] p-4 border border-[var(--border)]">
+              {([['Owner',lib.owner],['Phone',lib.phone],['Plan',lib.plan],['Joined',lib.joined]] as const).map(([label,val]) => (
+                <div key={label} className="flex flex-col gap-1">
+                  <p className="text-[11px] font-semibold text-[var(--text-disabled)] uppercase tracking-wider">{label}</p>
+                  <p className="text-sm font-medium text-[var(--text-primary)]">{val}</p>
+                </div>
+              ))}
+            </div>
+          )}
+
+          <div className="bg-[var(--bg-page)] rounded-[var(--radius-md)] p-5 border border-[var(--border)]">
+            <div className="flex items-center justify-between mb-3">
+              <p className="text-sm font-bold text-[var(--text-primary)] flex items-center gap-2"><Users size={16} className="text-[var(--primary)]" /> Seat Occupancy</p>
+              <span className={`text-sm font-bold ${pct > 90 ? 'text-[var(--danger)]' : 'text-[var(--success)]'}`}>{pct}%</span>
+            </div>
+            <div className="h-2 w-full bg-[var(--bg-input)] rounded-full overflow-hidden">
+              <div className={`h-full rounded-full ${pct > 90 ? 'bg-[var(--danger)]' : 'bg-[var(--success)]'}`} style={{ width: `${pct}%` }} />
+            </div>
+            <p className="text-xs font-medium text-[var(--text-secondary)] mt-2">{lib.occupied} occupied / {lib.seats} total seats</p>
+          </div>
+
+          <div>
+            {lib.status === 'Active'
+              ? <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider bg-[var(--success-bg,rgba(52,211,153,0.1))] text-[var(--success)]"><CheckCircle size={14} /> Active</span>
+              : <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider bg-[var(--warning-bg,rgba(251,191,36,0.1))] text-[var(--warning)]"><AlertTriangle size={14} /> Maintenance</span>}
+          </div>
+
+          <div className="flex gap-3 pt-4 border-t border-[var(--border)]">
+            {editing ? (
+              <>
+                <button 
+                  className="flex-1 flex items-center justify-center gap-2 bg-[var(--primary)] hover:bg-[var(--primary-hover)] text-white text-sm font-bold py-2.5 px-4 rounded-[var(--radius-md)] transition-all disabled:opacity-70 disabled:cursor-not-allowed" 
+                  onClick={handleSave} 
+                  disabled={saving}
+                >
+                  {saving ? <><Loader size={16} className="animate-spin" /> Saving...</>
+                    : saved ? <><CheckCircle size={16} /> Saved!</>
+                    : <><Save size={16} /> Save Changes</>}
+                </button>
+                <button 
+                  className="flex-1 flex items-center justify-center gap-2 bg-transparent border border-[var(--border)] hover:bg-[var(--bg-input)] text-[var(--text-primary)] text-sm font-bold py-2.5 px-4 rounded-[var(--radius-md)] transition-all" 
+                  onClick={() => setEditing(false)}
+                >
+                  Cancel
+                </button>
+              </>
+            ) : (
+              <>
+                <button 
+                  className="flex-1 flex items-center justify-center gap-2 bg-[var(--primary)] hover:bg-[var(--primary-hover)] text-white text-sm font-bold py-2.5 px-4 rounded-[var(--radius-md)] transition-all" 
+                  onClick={() => setEditing(true)}
+                >
+                  <Edit2 size={16} /> Edit Library
+                </button>
+                <button 
+                  className="flex-1 flex items-center justify-center gap-2 bg-[var(--danger-bg,rgba(248,113,113,0.1))] text-[var(--danger)] hover:bg-[var(--danger)] hover:text-white text-sm font-bold py-2.5 px-4 rounded-[var(--radius-md)] transition-colors" 
+                  onClick={() => { onSuspend(lib.id); onClose(); }}
+                >
+                  <ShieldAlert size={16} /> {lib.status === 'Active' ? 'Suspend' : 'Reactivate'}
+                </button>
+              </>
+            )}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
