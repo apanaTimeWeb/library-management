@@ -7,7 +7,7 @@ import { Seat } from '@/core/entities/seat.entity';
 // Micro-Services
 import { AdminDashboardService } from './services/dashboard.service';
 import { AdminReportsService } from '@/modules/admin/reports/dashboard/services/reports.service';
-import { AdminAuditLogsService } from '@/modules/admin/audit-logs/dashboard/services/audit-logs.service';
+import { DashboardAuditLogsService } from '@/modules/admin/audit-logs/dashboard/services/dashboard-audit-logs.service';
 import { AdminBlacklistService } from '@/modules/admin/blacklist/dashboard/services/blacklist.service';
 import { AdminBranchesService } from '@/modules/admin/branches/dashboard/services/branches.service';
 import { AdminCouponsService } from '@/modules/admin/coupons/dashboard/services/coupons.service';
@@ -21,7 +21,7 @@ import { AdminStudentsService } from '@/modules/admin/students/dashboard/service
 // Micro-Controllers
 import { AdminDashboardController } from './controllers/dashboard.controller';
 import { AdminReportsController } from '@/modules/admin/reports/dashboard/controllers/reports.controller';
-import { AdminAuditLogsController } from '@/modules/admin/audit-logs/dashboard/controllers/audit-logs.controller';
+import { DashboardAuditLogsController } from '@/modules/admin/audit-logs/dashboard/controllers/dashboard-audit-logs.controller';
 import { AdminBlacklistController } from '@/modules/admin/blacklist/dashboard/controllers/blacklist.controller';
 import { AdminBranchesController } from '@/modules/admin/branches/dashboard/controllers/branches.controller';
 import { AdminCouponsController } from '@/modules/admin/coupons/dashboard/controllers/coupons.controller';
@@ -34,7 +34,7 @@ import { AdminStudentsController } from '@/modules/admin/students/dashboard/cont
 
 @Module({
   imports: [TypeOrmModule.forFeature([Student, Payment, Seat])],
-  providers: [AdminDashboardService, AdminReportsService, AdminAuditLogsService, AdminBlacklistService, AdminBranchesService, AdminCouponsService, AdminExpenseCategoriesService, AdminExpensesService, AdminPermissionsService, AdminPlansService, AdminStaffUsersService, AdminStudentsService, ],
-  controllers: [AdminDashboardController, AdminReportsController, AdminAuditLogsController, AdminBlacklistController, AdminBranchesController, AdminCouponsController, AdminExpenseCategoriesController, AdminExpensesController, AdminPermissionsController, AdminPlansController, AdminStaffUsersController, AdminStudentsController, ],
+  providers: [AdminDashboardService, AdminReportsService, DashboardAuditLogsService, AdminBlacklistService, AdminBranchesService, AdminCouponsService, AdminExpenseCategoriesService, AdminExpensesService, AdminPermissionsService, AdminPlansService, AdminStaffUsersService, AdminStudentsService, ],
+  controllers: [AdminDashboardController, AdminReportsController, DashboardAuditLogsController, AdminBlacklistController, AdminBranchesController, AdminCouponsController, AdminExpenseCategoriesController, AdminExpensesController, AdminPermissionsController, AdminPlansController, AdminStaffUsersController, AdminStudentsController, ],
 })
 export class Module {}
