@@ -1,8 +1,8 @@
 import { Controller, Get, Req, UseGuards, Query } from '@nestjs/common';
 import { ApiTags, ApiBearerAuth, ApiOperation } from '@nestjs/swagger';
 import { GetAllStudentsService } from '@/modules/admin/students/students/services/get-all-students.service';
-import { JwtAuthGuard } from '@/modules/auth/auth/guards/jwt-auth.guard';
-import { RolesGuard } from '@/modules/auth/auth/guards/roles.guard';
+import { AuthJwtAuthGuard } from '@/modules/auth/guards/auth-jwt-auth.guard';
+import { AuthRolesGuard } from '@/modules/auth/guards/auth-roles.guard';
 import { ADMIN_STUDENTS_CONSTANTS } from '@/modules/admin/students/students/constants/students.constants';
 import { PaginationDto } from '../dto/pagination.dto';
 import { PaginatedResponse } from '../interfaces/pagination.interface';
@@ -11,7 +11,7 @@ import { StudentListItem } from '@/modules/admin/students/students/interfaces/st
 @ApiTags('Admin Students')
 @ApiBearerAuth()
 @Controller('api/admin/students')
-@UseGuards(JwtAuthGuard, RolesGuard)
+@UseGuards(AuthJwtAuthGuard, AuthRolesGuard)
 export class GetAllStudentsController {
   constructor(private readonly getAllStudentsService: GetAllStudentsService) {}
 

@@ -1,0 +1,17 @@
+import { Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import { User } from '@/core/entities/user.entity';
+
+@Injectable()
+export class AuthLogoutService {
+  constructor(
+    @InjectRepository(User)
+    private readonly userRepo: Repository<User>,
+  ) {}
+
+  async logout(userId: string): Promise<{ message: string }> {
+    await this.userRepo.update(userId, { refreshTokenHash: null });
+    return { message: 'Logged out successfully' };
+  }
+}

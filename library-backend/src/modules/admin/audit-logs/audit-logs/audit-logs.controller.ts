@@ -13,15 +13,15 @@ import {
   ApiQuery,
 } from '@nestjs/swagger';
 import { AdminAuditLogsService } from './audit-logs.service';
-import { JwtAuthGuard } from '@/modules/auth/auth/guards/jwt-auth.guard';
-import { RolesGuard } from '@/modules/auth/auth/guards/roles.guard';
-import { Roles } from '@/modules/auth/auth/decorators/roles.decorator';
+import { AuthJwtAuthGuard } from '@/modules/auth/guards/auth-jwt-auth.guard';
+import { AuthRolesGuard } from '@/modules/auth/guards/auth-roles.guard';
+import { AuthRoles } from '@/modules/auth/decorators/auth-roles.decorator';
 
 @ApiTags('Audit Logs')
 @ApiBearerAuth()
 @Controller('api/admin/audit-logs')
-@UseGuards(JwtAuthGuard, RolesGuard)
-@Roles('superadmin')
+@UseGuards(AuthJwtAuthGuard, AuthRolesGuard)
+@AuthRoles('superadmin')
 export class AdminAuditLogsController {
   constructor(private readonly auditLogsService: AdminAuditLogsService) {}
 

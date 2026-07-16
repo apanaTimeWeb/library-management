@@ -9,7 +9,7 @@ import { Plan } from '@/core/entities/plan.entity';
 import { StudentSlot } from '@/core/entities/student-slot.entity';
 import { Subscription } from '@/core/entities/subscription.entity';
 import { Payment } from '@/core/entities/payment.entity';
-import { AuthAuthModule } from '@/modules/auth/auth/auth.module';
+import { AuthModule } from '@/modules/auth/auth.module';
 
 // Micro-Services
 import { GetAllStudentsService } from './services/get-all-students.service';
@@ -38,7 +38,7 @@ import { DeleteStudentController } from './controllers/delete-student.controller
       Subscription,
       Payment,
     ]),
-    AuthAuthModule,
+    AuthModule,
   ],
   providers: [
     GetAllStudentsService,

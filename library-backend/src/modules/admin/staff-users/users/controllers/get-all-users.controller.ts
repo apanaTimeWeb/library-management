@@ -1,13 +1,13 @@
 import { Controller, Get, Query, UseGuards } from '@nestjs/common';
 import { ApiTags, ApiOperation, ApiBearerAuth } from '@nestjs/swagger';
-import { JwtAuthGuard } from '@/modules/auth/auth/guards/jwt-auth.guard';
+import { AuthJwtAuthGuard } from '@/modules/auth/guards/auth-jwt-auth.guard';
 import { GetAllUsersService } from '../services/get-all-users.service';
 import { GetUsersQueryDto } from '../dto/get-users-query.dto';
 import { User } from '@/core/entities/user.entity';
 
 @ApiTags('Admin Users')
 @ApiBearerAuth()
-@UseGuards(JwtAuthGuard)
+@UseGuards(AuthJwtAuthGuard)
 @Controller('api/admin/staff-users/users')
 export class GetAllUsersController {
   constructor(private readonly getAllUsersService: GetAllUsersService) {}

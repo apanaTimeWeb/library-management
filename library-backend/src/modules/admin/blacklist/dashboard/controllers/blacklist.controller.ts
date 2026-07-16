@@ -1,16 +1,16 @@
 import { Controller, Get, UseGuards } from '@nestjs/common';
 import { ApiTags, ApiBearerAuth, ApiOperation } from '@nestjs/swagger';
 import { BlacklistService } from '@/modules/admin/blacklist/dashboard/services/blacklist.service';
-import { Roles } from '@/modules/auth/auth/decorators/roles.decorator';
-import { JwtAuthGuard } from '@/modules/auth/auth/guards/jwt-auth.guard';
-import { RolesGuard } from '@/modules/auth/auth/guards/roles.guard';
-import { TenantGuard } from '@/modules/auth/auth/guards/tenant.guard';
+import { AuthRoles } from '@/modules/auth/decorators/auth-roles.decorator';
+import { AuthJwtAuthGuard } from '@/modules/auth/guards/auth-jwt-auth.guard';
+import { AuthRolesGuard } from '@/modules/auth/guards/auth-roles.guard';
+import { AuthTenantGuard } from '@/modules/auth/guards/auth-tenant.guard';
 
 @ApiTags('Admin')
 @ApiBearerAuth()
 @Controller('api/admin/dashboard')
-@UseGuards(JwtAuthGuard, RolesGuard, TenantGuard)
-@Roles('superadmin', 'admin')
+@UseGuards(AuthJwtAuthGuard, AuthRolesGuard, AuthTenantGuard)
+@AuthRoles('superadmin', 'admin')
 export class BlacklistController {
   constructor(private readonly blacklistService: BlacklistService) {}
 

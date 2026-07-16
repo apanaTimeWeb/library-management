@@ -2,15 +2,15 @@ import { Controller, Put, Param, Body, UseGuards } from '@nestjs/common';
 import { ApiTags, ApiBearerAuth, ApiOperation } from '@nestjs/swagger';
 import { UpdateLibraryStatusService } from '@/modules/superadmin/libraries/dashboard/services/update-library-status.service';
 import { UpdateLibraryStatusDto } from '@/modules/superadmin/dashboard/superadmin/dtos/update-library-status.dto';
-import { JwtAuthGuard } from '@/modules/auth/auth/guards/jwt-auth.guard';
-import { RolesGuard } from '@/modules/auth/auth/guards/roles.guard';
-import { Roles } from '@/modules/auth/auth/decorators/roles.decorator';
+import { AuthJwtAuthGuard } from '@/modules/auth/guards/auth-jwt-auth.guard';
+import { AuthRolesGuard } from '@/modules/auth/guards/auth-roles.guard';
+import { AuthRoles } from '@/modules/auth/decorators/auth-roles.decorator';
 
 @ApiTags('Superadmin Dashboard')
 @ApiBearerAuth()
 @Controller('api/superadmin/dashboard')
-@UseGuards(JwtAuthGuard, RolesGuard)
-@Roles('superadmin')
+@UseGuards(AuthJwtAuthGuard, AuthRolesGuard)
+@AuthRoles('superadmin')
 export class UpdateLibraryStatusController {
   constructor(
     private readonly updateLibraryStatusService: UpdateLibraryStatusService,

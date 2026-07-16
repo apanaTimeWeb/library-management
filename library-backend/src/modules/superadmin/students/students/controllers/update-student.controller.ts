@@ -4,20 +4,20 @@ import { UpdateStudentService } from '@/modules/superadmin/students/students/ser
 import { UpdateStudentDto } from '@/modules/superadmin/students/students/dto/update-student.dto';
 import { STUDENTS_CONSTANTS } from '../constants/students.constants';
 import { Student } from '@/core/entities/student.entity';
-import { JwtAuthGuard } from '@/modules/auth/auth/guards/jwt-auth.guard';
-import { RolesGuard } from '@/modules/auth/auth/guards/roles.guard';
-import { Roles } from '@/modules/auth/auth/decorators/roles.decorator';
+import { AuthJwtAuthGuard } from '@/modules/auth/guards/auth-jwt-auth.guard';
+import { AuthRolesGuard } from '@/modules/auth/guards/auth-roles.guard';
+import { AuthRoles } from '@/modules/auth/decorators/auth-roles.decorator';
 
 @ApiTags('Superadmin Students')
 @ApiBearerAuth()
 @Controller('api/superadmin/students')
-@UseGuards(JwtAuthGuard, RolesGuard)
+@UseGuards(AuthJwtAuthGuard, AuthRolesGuard)
 export class UpdateStudentController {
   constructor(private readonly service: UpdateStudentService) {}
 
   // SLA: FAST
   @Patch(':id')
-  @Roles('superadmin', 'admin', 'manager')
+  @AuthRoles('superadmin', 'admin', 'manager')
   @ApiOperation({ summary: 'Update student' })
   async updateStudent(
     @Param('id') id: string,

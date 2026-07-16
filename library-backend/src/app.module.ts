@@ -38,7 +38,7 @@ import { AdminStudentSlotsModule } from './modules/admin/seats_shifts_lockers/st
 import { AdminStudentsModule } from './modules/admin/students/students/students.module';
 import { AdminSubscriptionsModule } from './modules/admin/subscriptions/subscriptions/subscriptions.module';
 import { AdminUsersModule } from './modules/admin/staff-users/users/users.module';
-import { AuthAuthModule } from './modules/auth/auth/auth.module';
+import { AuthModule } from './modules/auth/auth.module';
 import { ManagerAttendanceModule } from './modules/manager/students/attendance/attendance.module';
 import { ManagerComplaintsModule } from './modules/manager/support-tickets/complaints/complaints.module';
 import { ManagerEnquiriesModule } from './modules/manager/crm/enquiries/enquiries.module';
@@ -141,7 +141,7 @@ import { SuperadminUsersModule } from './modules/superadmin/staff-users/users/us
     AdminStudentsModule,
     AdminSubscriptionsModule,
     AdminUsersModule,
-    AuthAuthModule,
+    AuthModule,
     ManagerAttendanceModule,
     ManagerComplaintsModule,
     ManagerEnquiriesModule,

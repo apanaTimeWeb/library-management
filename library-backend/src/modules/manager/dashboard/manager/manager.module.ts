@@ -5,7 +5,7 @@ import { Seat } from '@/core/entities/seat.entity';
 import { Subscription } from '@/core/entities/subscription.entity';
 import { Enquiry } from '@/core/entities/enquiry.entity';
 import { Complaint } from '@/core/entities/complaint.entity';
-import { AuthAuthModule } from '@/modules/auth/auth/auth.module';
+import { AuthModule } from '@/modules/auth/auth.module';
 
 // Micro-Services
 import { DashboardService } from './services/dashboard.service';
@@ -20,7 +20,7 @@ import { StudentReportsController } from '@/modules/manager/student-reports/dash
 @Module({
   imports: [
     TypeOrmModule.forFeature([Student, Seat, Subscription, Enquiry, Complaint]),
-    AuthAuthModule,
+    AuthModule,
   ],
   providers: [DashboardService, ReportsService, StudentReportsService],
   controllers: [
