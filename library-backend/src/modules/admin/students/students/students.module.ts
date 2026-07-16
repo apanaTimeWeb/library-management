@@ -54,5 +54,6 @@ import { DeleteStudentController } from './controllers/delete-student.controller
     UpdateStudentController,
     DeleteStudentController,
   ],
+  exports: [GetStudentService],
 })
 export class AdminStudentsModule {}

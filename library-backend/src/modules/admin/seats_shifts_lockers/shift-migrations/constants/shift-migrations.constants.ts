@@ -1,0 +1,8 @@
+export const SHIFT_MIGRATIONS_CONSTANTS = {
+  MODULE_NAME: 'ADMIN_SHIFT_MIGRATIONS',
+  ERRORS: {
+    SHIFT_MIGRATION_NOT_FOUND: 'ShiftMigration not found.',
+  },
+  DEFAULT_PAGE: 1,
+  DEFAULT_LIMIT: 20,
+};

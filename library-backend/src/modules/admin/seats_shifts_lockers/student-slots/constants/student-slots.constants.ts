@@ -1,0 +1,8 @@
+export const STUDENT_SLOTS_CONSTANTS = {
+  MODULE_NAME: 'ADMIN_STUDENT_SLOTS',
+  ERRORS: {
+    STUDENT_SLOT_NOT_FOUND: 'StudentSlot not found.',
+  },
+  DEFAULT_PAGE: 1,
+  DEFAULT_LIMIT: 20,
+};
