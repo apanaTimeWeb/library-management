@@ -13,7 +13,7 @@ import { Public } from '@/modules/auth/auth/decorators/public.decorator';
 import { AuthTokens } from '@/modules/auth/auth/interfaces/auth.interfaces';
 
 @ApiTags('Auth')
-@Controller('api/auth/auth')
+@Controller('auth')
 export class RefreshTokenController {
   constructor(private readonly refreshTokenService: RefreshTokenService) {}
 

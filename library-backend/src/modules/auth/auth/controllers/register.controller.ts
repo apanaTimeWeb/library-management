@@ -7,7 +7,7 @@ import { RolesGuard } from '@/modules/auth/auth/guards/roles.guard';
 import { Roles } from '@/modules/auth/auth/decorators/roles.decorator';
 
 @ApiTags('Auth')
-@Controller('api/auth/auth')
+@Controller('auth')
 export class RegisterController {
   constructor(private readonly registerService: RegisterService) {}
 

@@ -13,9 +13,9 @@
           { "key": "Content-Type", "value": "application/json" }
         ],
         "url": {
-          "raw": "{{baseUrl}}/api/auth/auth/login",
+          "raw": "{{baseUrl}}/api/v1/auth/login",
           "host": ["{{baseUrl}}"],
-          "path": ["api", "auth", "auth", "login"]
+          "path": ["api", "v1", "auth", "login"]
         },
         "body": {
           "mode": "raw",
@@ -32,9 +32,9 @@
           { "key": "Authorization", "value": "Bearer {{accessToken}}" }
         ],
         "url": {
-          "raw": "{{baseUrl}}/api/auth/auth/register",
+          "raw": "{{baseUrl}}/api/v1/auth/register",
           "host": ["{{baseUrl}}"],
-          "path": ["api", "auth", "auth", "register"]
+          "path": ["api", "v1", "auth", "register"]
         },
         "body": {
           "mode": "raw",
@@ -50,9 +50,9 @@
           { "key": "Authorization", "value": "Bearer {{refreshToken}}" }
         ],
         "url": {
-          "raw": "{{baseUrl}}/api/auth/auth/refresh",
+          "raw": "{{baseUrl}}/api/v1/auth/refresh",
           "host": ["{{baseUrl}}"],
-          "path": ["api", "auth", "auth", "refresh"]
+          "path": ["api", "v1", "auth", "refresh"]
         }
       }
     },
@@ -64,9 +64,9 @@
           { "key": "Authorization", "value": "Bearer {{accessToken}}" }
         ],
         "url": {
-          "raw": "{{baseUrl}}/api/auth/auth/logout",
+          "raw": "{{baseUrl}}/api/v1/auth/logout",
           "host": ["{{baseUrl}}"],
-          "path": ["api", "auth", "auth", "logout"]
+          "path": ["api", "v1", "auth", "logout"]
         }
       }
     },
@@ -78,9 +78,9 @@
           { "key": "Authorization", "value": "Bearer {{accessToken}}" }
         ],
         "url": {
-          "raw": "{{baseUrl}}/api/auth/auth/me",
+          "raw": "{{baseUrl}}/api/v1/auth/me",
           "host": ["{{baseUrl}}"],
-          "path": ["api", "auth", "auth", "me"]
+          "path": ["api", "v1", "auth", "me"]
         }
       }
     }

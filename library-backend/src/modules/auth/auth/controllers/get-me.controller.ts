@@ -6,7 +6,7 @@ import { CurrentUser } from '../decorators/current-user.decorator';
 import { AuthUserResponse } from '@/modules/auth/auth/interfaces/auth.interfaces';
 
 @ApiTags('Auth')
-@Controller('api/auth/auth')
+@Controller('auth')
 export class GetMeController {
   constructor(private readonly getMeService: GetMeService) {}
 

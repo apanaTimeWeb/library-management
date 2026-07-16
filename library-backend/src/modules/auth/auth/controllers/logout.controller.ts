@@ -11,7 +11,7 @@ import { JwtAuthGuard } from '@/modules/auth/auth/guards/jwt-auth.guard';
 import { CurrentUser } from '../decorators/current-user.decorator';
 
 @ApiTags('Auth')
-@Controller('api/auth/auth')
+@Controller('auth')
 export class LogoutController {
   constructor(private readonly logoutService: LogoutService) {}
 

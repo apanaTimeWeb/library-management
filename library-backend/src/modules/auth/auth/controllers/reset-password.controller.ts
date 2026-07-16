@@ -4,7 +4,7 @@ import { ResetPasswordService } from '../services/reset-password.service';
 import { ResetPasswordDto } from '../dto/reset-password.dto';
 
 @ApiTags('Auth')
-@Controller('api/auth/auth')
+@Controller('auth')
 export class ResetPasswordController {
   constructor(private readonly resetPasswordService: ResetPasswordService) {}
 

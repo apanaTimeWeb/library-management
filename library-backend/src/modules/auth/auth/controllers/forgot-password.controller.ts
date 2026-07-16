@@ -4,7 +4,7 @@ import { ForgotPasswordService } from '../services/forgot-password.service';
 import { ForgotPasswordDto } from '../dto/forgot-password.dto';
 
 @ApiTags('Auth')
-@Controller('api/auth/auth')
+@Controller('auth')
 export class ForgotPasswordController {
   constructor(private readonly forgotPasswordService: ForgotPasswordService) {}
 

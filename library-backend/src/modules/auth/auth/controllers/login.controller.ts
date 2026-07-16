@@ -15,7 +15,7 @@ import { Public } from '@/modules/auth/auth/decorators/public.decorator';
 import { LoginResponse } from '@/modules/auth/auth/interfaces/auth.interfaces';
 
 @ApiTags('Auth')
-@Controller('api/auth/auth')
+@Controller('auth')
 export class LoginController {
   constructor(private readonly loginService: LoginService) {}
 
