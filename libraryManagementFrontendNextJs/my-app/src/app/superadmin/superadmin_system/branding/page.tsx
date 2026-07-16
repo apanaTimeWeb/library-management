@@ -1,9 +1,9 @@
 'use client';
 import { useState, useEffect, useRef } from 'react';
-import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/Card';
-import { Button } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/Button';
-import { Input } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/Input';
-import { Label } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/Label';
+import { SuperadminCard, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminCard';
+import { SuperadminButton } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminButton';
+import { SuperadminInput } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminInput';
+import { SuperadminLabel } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminLabel';
 import { Palette, ChevronRight, Upload, RotateCcw, Save } from 'lucide-react';
 
 function readToken(token: string) {
@@ -62,14 +62,14 @@ export default function BrandingPage() {
 
         {/* Left — Settings Form */}
         <div className="lg:col-span-2 space-y-4">
-          <Card>
+          <SuperadminCard>
             <CardHeader>
               <CardTitle>Branding Settings</CardTitle>
               <CardDescription>Configure logo, name, colors, and tagline.</CardDescription>
             </CardHeader>
             <CardContent className="space-y-5">
               <div className="space-y-2">
-                <Label>Library Logo</Label>
+                <SuperadminLabel>Library Logo</SuperadminLabel>
                 <div
                   id="branding-logo-upload"
                   className="flex flex-col items-center justify-center border-2 border-dashed border-outline-variant rounded-xl p-6 cursor-pointer hover:bg-surface-container-high transition-colors"
@@ -84,28 +84,28 @@ export default function BrandingPage() {
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="branding-name">Library Name</Label>
-                <Input id="branding-name" value={form.libraryName}
+                <SuperadminLabel htmlFor="branding-name">Library Name</SuperadminLabel>
+                <SuperadminInput id="branding-name" value={form.libraryName}
                   onChange={e => setForm(f => ({ ...f, libraryName: e.target.value }))} />
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="branding-tagline">
+                <SuperadminLabel htmlFor="branding-tagline">
                   App Tagline <span className="text-on-surface-variant/50 text-xs">(optional)</span>
-                </Label>
-                <Input id="branding-tagline" placeholder="Your tagline here..."
+                </SuperadminLabel>
+                <SuperadminInput id="branding-tagline" placeholder="Your tagline here..."
                   value={form.tagline}
                   onChange={e => setForm(f => ({ ...f, tagline: e.target.value }))} />
               </div>
 
               {/* Color pickers — native <input type="color"> requires value binding, swatch uses CSS class */}
               <div className="space-y-2">
-                <Label htmlFor="branding-primary-color">Primary Color</Label>
+                <SuperadminLabel htmlFor="branding-primary-color">Primary Color</SuperadminLabel>
                 <div className="flex items-center gap-2">
                   <input type="color" id="branding-primary-color" value={form.primaryColor}
                     onChange={e => setForm(f => ({ ...f, primaryColor: e.target.value }))}
                     className="h-10 w-12 rounded-lg border border-outline-variant bg-transparent cursor-pointer" />
-                  <Input value={form.primaryColor}
+                  <SuperadminInput value={form.primaryColor}
                     onChange={e => setForm(f => ({ ...f, primaryColor: e.target.value }))}
                     className="font-mono text-xs" />
                   {/* swatch reads --preview-primary from container ref */}
@@ -114,12 +114,12 @@ export default function BrandingPage() {
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="branding-accent-color">Secondary Accent Color</Label>
+                <SuperadminLabel htmlFor="branding-accent-color">Secondary Accent Color</SuperadminLabel>
                 <div className="flex items-center gap-2">
                   <input type="color" id="branding-accent-color" value={form.accentColor}
                     onChange={e => setForm(f => ({ ...f, accentColor: e.target.value }))}
                     className="h-10 w-12 rounded-lg border border-outline-variant bg-transparent cursor-pointer" />
-                  <Input value={form.accentColor}
+                  <SuperadminInput value={form.accentColor}
                     onChange={e => setForm(f => ({ ...f, accentColor: e.target.value }))}
                     className="font-mono text-xs" />
                   <div className="h-10 w-10 rounded-lg shrink-0 sys-preview-swatch-accent" />
@@ -127,15 +127,15 @@ export default function BrandingPage() {
               </div>
             </CardContent>
             <CardFooter>
-              <Button id="save-branding-page-btn" variant="primary"><Save size={16} /> Save Branding</Button>
-              <Button id="reset-branding-btn" variant="ghost" onClick={handleReset}><RotateCcw size={16} /> Reset to Default</Button>
+              <SuperadminButton id="save-branding-page-btn" variant="primary"><Save size={16} /> Save Branding</SuperadminButton>
+              <SuperadminButton id="reset-branding-btn" variant="ghost" onClick={handleReset}><RotateCcw size={16} /> Reset to Default</SuperadminButton>
             </CardFooter>
-          </Card>
+          </SuperadminCard>
         </div>
 
         {/* Right — Live Preview: CSS vars set via ref.style.setProperty, children use classes only */}
         <div ref={containerRef} className="lg:col-span-3 space-y-4">
-          <Card>
+          <SuperadminCard>
             <CardHeader>
               <CardTitle>Live Preview</CardTitle>
               <CardDescription>See how your branding looks across different parts of the app.</CardDescription>
@@ -206,7 +206,7 @@ export default function BrandingPage() {
               </div>
 
             </CardContent>
-          </Card>
+          </SuperadminCard>
         </div>
       </div>
     </div>

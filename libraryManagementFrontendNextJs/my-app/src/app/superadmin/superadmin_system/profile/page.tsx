@@ -1,10 +1,10 @@
 'use client';
 import { useState } from 'react';
-import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/Card';
-import { Button } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/Button';
-import { Input } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/Input';
-import { Label } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/Label';
-import { Progress } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/Progress';
+import { SuperadminCard, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminCard';
+import { SuperadminButton } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminButton';
+import { SuperadminInput } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminInput';
+import { SuperadminLabel } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminLabel';
+import { SuperadminProgress } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminProgress';
 import { User, Lock, Camera, Eye, EyeOff, ChevronRight } from 'lucide-react';
 
 function getStrength(pw: string): { score: number; label: string; color: string } {
@@ -47,7 +47,7 @@ export default function ProfilePage() {
 
       <div className="max-w-[560px] mx-auto space-y-6">
         {/* Personal Info */}
-        <Card>
+        <SuperadminCard>
           <CardHeader>
             <CardTitle>Personal Information</CardTitle>
             <CardDescription>Update your display name, email and phone.</CardDescription>
@@ -69,25 +69,25 @@ export default function ProfilePage() {
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="profile-name">Full Name <span className="text-error">*</span></Label>
-              <Input id="profile-name" defaultValue="Admin User" />
+              <SuperadminLabel htmlFor="profile-name">Full Name <span className="text-error">*</span></SuperadminLabel>
+              <SuperadminInput id="profile-name" defaultValue="Admin User" />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="profile-email">Email</Label>
-              <Input id="profile-email" type="email" defaultValue="admin@smartlibrary.in" />
+              <SuperadminLabel htmlFor="profile-email">Email</SuperadminLabel>
+              <SuperadminInput id="profile-email" type="email" defaultValue="admin@smartlibrary.in" />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="profile-phone">Phone <span className="text-error">*</span></Label>
-              <Input id="profile-phone" type="tel" defaultValue="+91 98765 43210" />
+              <SuperadminLabel htmlFor="profile-phone">Phone <span className="text-error">*</span></SuperadminLabel>
+              <SuperadminInput id="profile-phone" type="tel" defaultValue="+91 98765 43210" />
             </div>
           </CardContent>
           <CardFooter>
-            <Button id="update-profile-btn" variant="primary">💾 Update Profile</Button>
+            <SuperadminButton id="update-profile-btn" variant="primary">💾 Update Profile</SuperadminButton>
           </CardFooter>
-        </Card>
+        </SuperadminCard>
 
         {/* Change Password */}
-        <Card>
+        <SuperadminCard>
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Lock size={18} className="text-primary" />
@@ -97,25 +97,25 @@ export default function ProfilePage() {
           </CardHeader>
           <CardContent className="space-y-5">
             <div className="space-y-2">
-              <Label htmlFor="current-password">Current Password</Label>
+              <SuperadminLabel htmlFor="current-password">Current Password</SuperadminLabel>
               <div className="relative">
-                <Input id="current-password" type={showCurrent ? 'text' : 'password'} placeholder="Enter current password" className="pr-12" />
+                <SuperadminInput id="current-password" type={showCurrent ? 'text' : 'password'} placeholder="Enter current password" className="pr-12" />
                 <button type="button" onClick={() => setShowCurrent(s => !s)} className="absolute right-3 top-1/2 -translate-y-1/2 text-on-surface-variant hover:text-on-surface">
                   {showCurrent ? <EyeOff size={16} /> : <Eye size={16} />}
                 </button>
               </div>
             </div>
             <div className="space-y-2">
-              <Label htmlFor="new-password">New Password</Label>
+              <SuperadminLabel htmlFor="new-password">New Password</SuperadminLabel>
               <div className="relative">
-                <Input id="new-password" type={showNew ? 'text' : 'password'} placeholder="Min. 8 characters" value={newPw} onChange={e => setNewPw(e.target.value)} className="pr-12" />
+                <SuperadminInput id="new-password" type={showNew ? 'text' : 'password'} placeholder="Min. 8 characters" value={newPw} onChange={e => setNewPw(e.target.value)} className="pr-12" />
                 <button type="button" onClick={() => setShowNew(s => !s)} className="absolute right-3 top-1/2 -translate-y-1/2 text-on-surface-variant hover:text-on-surface">
                   {showNew ? <EyeOff size={16} /> : <Eye size={16} />}
                 </button>
               </div>
               {newPw && (
                 <div className="space-y-1.5 mt-2">
-                  <Progress value={strength.score} max={4} barClassName={strength.color} />
+                  <SuperadminProgress value={strength.score} max={4} barClassName={strength.color} />
                   <p className={`text-xs font-medium ${strength.score >= 3 ? 'text-green-400' : strength.score === 2 ? 'text-tertiary' : 'text-error'}`}>
                     Password strength: {strength.label}
                   </p>
@@ -123,9 +123,9 @@ export default function ProfilePage() {
               )}
             </div>
             <div className="space-y-2">
-              <Label htmlFor="confirm-password">Confirm New Password</Label>
+              <SuperadminLabel htmlFor="confirm-password">Confirm New Password</SuperadminLabel>
               <div className="relative">
-                <Input id="confirm-password" type={showConfirm ? 'text' : 'password'} placeholder="Repeat new password" className="pr-12" />
+                <SuperadminInput id="confirm-password" type={showConfirm ? 'text' : 'password'} placeholder="Repeat new password" className="pr-12" />
                 <button type="button" onClick={() => setShowConfirm(s => !s)} className="absolute right-3 top-1/2 -translate-y-1/2 text-on-surface-variant hover:text-on-surface">
                   {showConfirm ? <EyeOff size={16} /> : <Eye size={16} />}
                 </button>
@@ -133,9 +133,9 @@ export default function ProfilePage() {
             </div>
           </CardContent>
           <CardFooter>
-            <Button id="change-password-btn" variant="primary">🔐 Change Password</Button>
+            <SuperadminButton id="change-password-btn" variant="primary">🔐 Change Password</SuperadminButton>
           </CardFooter>
-        </Card>
+        </SuperadminCard>
       </div>
     </div>
   );

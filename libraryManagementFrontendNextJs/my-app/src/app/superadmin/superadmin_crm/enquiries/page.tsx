@@ -25,7 +25,7 @@ import {
   KANBAN_COLUMNS,
   STATUS_BADGE,
   maskPhone,
-} from '@/app/superadmin/superadmin_crm/superadmin_crm_shared_components/types';
+} from '@/app/superadmin/superadmin_crm/superadmin_crm_shared_components/superadmin_types';
 
 /* ── Helpers ─────────────────────────────────────────────── */
 function StatusBadge({ status }: { status: EnquiryStatus }) {
@@ -88,7 +88,7 @@ function KanbanCard({
       onClick={onClick}
       role="button"
       tabIndex={0}
-      onKeyDown={(e) => e.key === 'Enter' && onClick()}
+      onKeyDown={(e: any) => e.key === 'Enter' && onClick()}
     >
       {/* Name + phone */}
       <div className="crm-card-name-block">
@@ -156,7 +156,7 @@ export default function EnquiriesPage() {
   }, []);
 
   /* ── Filter logic ── */
-  const filtered = enquiries.filter((e) => {
+  const filtered = enquiries.filter((e: any) => {
     const matchSearch =
       e.name.toLowerCase().includes(search.toLowerCase()) ||
       e.phone.includes(search.replace(/\D/g, ''));
@@ -165,7 +165,7 @@ export default function EnquiriesPage() {
   });
 
   const colEnquiries = (status: EnquiryStatus) =>
-    filtered.filter((e) => e.status === status);
+    filtered.filter((e: any) => e.status === status);
 
   /* ── Quick actions (table view inline) ── */
   const handleQuickConvert = (e: React.MouseEvent, id: string) => {
@@ -240,7 +240,7 @@ export default function EnquiriesPage() {
             className="crm-search-input"
             placeholder="Search by name or phone…"
             value={search}
-            onChange={(e) => setSearch(e.target.value)}
+            onChange={(e: any) => setSearch(e.target.value)}
           />
         </div>
 
@@ -248,7 +248,7 @@ export default function EnquiriesPage() {
         <select
           className="crm-select crm-status-filter"
           value={statusFilter}
-          onChange={(e) => setStatusFilter(e.target.value)}
+          onChange={(e: any) => setStatusFilter(e.target.value)}
         >
           <option value="All">All Statuses</option>
           <option value="New">New</option>
@@ -393,7 +393,7 @@ export default function EnquiriesPage() {
                             className="crm-btn-icon"
                             title="View details"
                             aria-label="View details"
-                            onClick={(e) => {
+                            onClick={(e: any) => {
                               e.stopPropagation();
                               router.push(`/superadmin/superadmin_crm/enquiries/${enq.id}`);
                             }}
@@ -404,7 +404,7 @@ export default function EnquiriesPage() {
                             className="crm-btn-icon crm-btn-icon-success"
                             title="Convert to Admission"
                             aria-label="Convert to admission"
-                            onClick={(e) => handleQuickConvert(e, enq.id)}
+                            onClick={(e: any) => handleQuickConvert(e, enq.id)}
                           >
                             <CheckCircle size={14} />
                           </button>
@@ -412,7 +412,7 @@ export default function EnquiriesPage() {
                             className="crm-btn-icon crm-btn-icon-danger"
                             title="Mark as Lost"
                             aria-label="Mark as lost"
-                            onClick={(e) => handleQuickLost(e, enq.id)}
+                            onClick={(e: any) => handleQuickLost(e, enq.id)}
                           >
                             <XCircle size={14} />
                           </button>

@@ -1,12 +1,12 @@
 'use client';
 import { useState } from 'react';
-import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/Card';
-import { Button } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/Button';
-import { Input } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/Input';
-import { Label } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/Label';
-import { Switch } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/Switch';
-import { Textarea } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/Textarea';
-import { Badge } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/Badge';
+import { SuperadminCard, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminCard';
+import { SuperadminButton } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminButton';
+import { SuperadminInput } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminInput';
+import { SuperadminLabel } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminLabel';
+import { SuperadminSwitch } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminSwitch';
+import { SuperadminTextarea } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminTextarea';
+import { SuperadminBadge } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminBadge';
 import { ListOrdered, ChevronRight } from 'lucide-react';
 
 const QUEUE = [
@@ -40,7 +40,7 @@ export default function WaitlistAutomationPage() {
       </div>
 
       {/* Status Toggle Card */}
-      <Card className="mb-6">
+      <SuperadminCard className="mb-6">
         <CardContent>
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4">
@@ -57,23 +57,23 @@ export default function WaitlistAutomationPage() {
               </div>
             </div>
             <div className="flex items-center gap-3">
-              <Badge variant={enabled ? 'success' : 'outline'}>{enabled ? 'Active' : 'Inactive'}</Badge>
-              <Switch id="waitlist-auto-toggle" checked={enabled} onCheckedChange={setEnabled} />
+              <SuperadminBadge variant={enabled ? 'success' : 'outline'}>{enabled ? 'Active' : 'Inactive'}</SuperadminBadge>
+              <SuperadminSwitch id="waitlist-auto-toggle" checked={enabled} onCheckedChange={setEnabled} />
             </div>
           </div>
         </CardContent>
-      </Card>
+      </SuperadminCard>
 
       {/* Config */}
-      <Card className="mb-6">
+      <SuperadminCard className="mb-6">
         <CardHeader>
           <CardTitle>Notification Configuration</CardTitle>
           <CardDescription>Customize message template and notification timing.</CardDescription>
         </CardHeader>
         <CardContent className="space-y-5">
           <div className="space-y-2">
-            <Label htmlFor="waitlist-template">Notification Message Template</Label>
-            <Textarea
+            <SuperadminLabel htmlFor="waitlist-template">Notification Message Template</SuperadminLabel>
+            <SuperadminTextarea
               id="waitlist-template"
               rows={4}
               value={template}
@@ -82,9 +82,9 @@ export default function WaitlistAutomationPage() {
             <p className="text-xs text-on-surface-variant">Available variables: <code className="text-primary">{'{name}'}</code>, <code className="text-primary">{'{shift}'}</code>, <code className="text-primary">{'{seat}'}</code></p>
           </div>
           <div className="space-y-2">
-            <Label htmlFor="waitlist-delay">Notification Delay</Label>
+            <SuperadminLabel htmlFor="waitlist-delay">Notification Delay</SuperadminLabel>
             <div className="flex items-center gap-3">
-              <Input
+              <SuperadminInput
                 id="waitlist-delay"
                 type="number"
                 value={delay}
@@ -97,12 +97,12 @@ export default function WaitlistAutomationPage() {
           </div>
         </CardContent>
         <CardFooter>
-          <Button id="save-waitlist-config-btn" variant="primary">💾 Save Config</Button>
+          <SuperadminButton id="save-waitlist-config-btn" variant="primary">💾 Save Config</SuperadminButton>
         </CardFooter>
-      </Card>
+      </SuperadminCard>
 
       {/* Queue Preview */}
-      <Card>
+      <SuperadminCard>
         <CardHeader>
           <CardTitle>Current Waitlist Queue</CardTitle>
           <CardDescription>First 5 students awaiting seat assignment.</CardDescription>
@@ -127,12 +127,12 @@ export default function WaitlistAutomationPage() {
                   <p className="text-sm font-medium text-on-surface">{student.name}</p>
                   <p className="text-xs text-on-surface-variant">Joined waitlist: {student.joined}</p>
                 </div>
-                <Badge variant="outline">{student.shift}</Badge>
+                <SuperadminBadge variant="outline">{student.shift}</SuperadminBadge>
               </div>
             ))}
           </div>
         </CardContent>
-      </Card>
+      </SuperadminCard>
     </div>
   );
 }

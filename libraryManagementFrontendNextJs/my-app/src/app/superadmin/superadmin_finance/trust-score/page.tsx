@@ -101,13 +101,13 @@ export default function TrustScores() {
       </div>
 
       <div className="fin-filter-bar">
-        <select className="fin-select w-40" value={levelFilter} onChange={(e) => setLevelFilter(e.target.value)}>
+        <select className="fin-select w-40" value={levelFilter} onChange={(e: any) => setLevelFilter(e.target.value)}>
           <option value="all">All Levels</option>
           <option value="reliable">Reliable</option>
           <option value="moderate">Moderate</option>
           <option value="low">Low Trust</option>
         </select>
-        <select className="fin-select w-40" value={shiftFilter} onChange={(e) => setShiftFilter(e.target.value)}>
+        <select className="fin-select w-40" value={shiftFilter} onChange={(e: any) => setShiftFilter(e.target.value)}>
           <option value="all">All Shifts</option>
           <option value="Morning">Morning</option>
           <option value="Evening">Evening</option>

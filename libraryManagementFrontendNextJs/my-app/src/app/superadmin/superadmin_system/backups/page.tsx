@@ -1,10 +1,10 @@
 'use client';
 import { useState } from 'react';
-import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/Card';
-import { Button } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/Button';
-import { Badge } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/Badge';
-import { KpiCard } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/KpiCard';
-import { Switch } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/Switch';
+import { SuperadminCard, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminCard';
+import { SuperadminButton } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminButton';
+import { SuperadminBadge } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminBadge';
+import { SuperadminKpiCard } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminKpiCard';
+import { SuperadminSwitch } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminSwitch';
 import {
   Database, ChevronRight, Download, RefreshCw, CheckCircle, Clock,
   AlertTriangle, HardDrive, Shield, Cloud, Loader2
@@ -108,7 +108,7 @@ export default function BackupsPage() {
               Automated nightly backups with cloud sync. Your data is always safe.
             </p>
           </div>
-          <Button
+          <SuperadminButton
             id="create-backup-btn"
             variant="primary"
             onClick={handleCreateBackup}
@@ -117,22 +117,22 @@ export default function BackupsPage() {
             {creating
               ? <><Loader2 size={16} className="animate-spin" /> Creating Backup...</>
               : <><Database size={16} /> 📥 Create Manual Backup</>}
-          </Button>
+          </SuperadminButton>
         </div>
       </div>
 
       {/* KPI Cards */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-5 mb-8">
-        <KpiCard title="Total Backups" value={backups.length}       icon="🗄️"  subtitle="All time"              />
-        <KpiCard title="Successful"    value={successCount}         icon="✅"   trend="up" trendLabel="Reliable" />
-        <KpiCard title="Failed"        value={failedCount}          icon="❌"   trend={failedCount > 0 ? 'down' : 'neutral'} trendLabel={failedCount > 0 ? 'Needs attention' : 'All good'} />
-        <KpiCard title="Last Backup"   value={lastSuccess ? 'Today' : 'Never'} icon="🕐" subtitle={lastSuccess?.createdAt ?? '—'} />
+        <SuperadminKpiCard title="Total Backups" value={backups.length}       icon="🗄️"  subtitle="All time"              />
+        <SuperadminKpiCard title="Successful"    value={successCount}         icon="✅"   trend="up" trendLabel="Reliable" />
+        <SuperadminKpiCard title="Failed"        value={failedCount}          icon="❌"   trend={failedCount > 0 ? 'down' : 'neutral'} trendLabel={failedCount > 0 ? 'Needs attention' : 'All good'} />
+        <SuperadminKpiCard title="Last Backup"   value={lastSuccess ? 'Today' : 'Never'} icon="🕐" subtitle={lastSuccess?.createdAt ?? '—'} />
       </div>
 
       {/* Backup Configuration */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
         {/* Auto Backup Settings */}
-        <Card>
+        <SuperadminCard>
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Clock size={18} className="text-primary" /> Automatic Backup Schedule
@@ -145,7 +145,7 @@ export default function BackupsPage() {
                 <p className="text-sm font-semibold text-on-surface">Enable Nightly Backups</p>
                 <p className="text-xs text-on-surface-variant">Automatically backs up all data every night</p>
               </div>
-              <Switch id="auto-backup-toggle" checked={autoBackup} onCheckedChange={setAutoBackup} />
+              <SuperadminSwitch id="auto-backup-toggle" checked={autoBackup} onCheckedChange={setAutoBackup} />
             </div>
 
             <div className="space-y-2">
@@ -180,12 +180,12 @@ export default function BackupsPage() {
             </div>
           </CardContent>
           <CardFooter>
-            <Button id="save-backup-schedule-btn" variant="primary">💾 Save Schedule</Button>
+            <SuperadminButton id="save-backup-schedule-btn" variant="primary">💾 Save Schedule</SuperadminButton>
           </CardFooter>
-        </Card>
+        </SuperadminCard>
 
         {/* Cloud Sync */}
-        <Card>
+        <SuperadminCard>
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Cloud size={18} className="text-primary" /> Cloud Sync
@@ -198,7 +198,7 @@ export default function BackupsPage() {
                 <p className="text-sm font-semibold text-on-surface">Enable Cloud Sync</p>
                 <p className="text-xs text-on-surface-variant">Automatically upload backups to cloud after creation</p>
               </div>
-              <Switch id="cloud-sync-toggle" checked={cloudSync} onCheckedChange={setCloudSync} />
+              <SuperadminSwitch id="cloud-sync-toggle" checked={cloudSync} onCheckedChange={setCloudSync} />
             </div>
 
             {cloudSync && (
@@ -237,23 +237,23 @@ export default function BackupsPage() {
             </div>
           </CardContent>
           <CardFooter>
-            <Button id="save-cloud-config-btn" variant="primary">💾 Save Cloud Config</Button>
-            <Button id="test-cloud-connection-btn" variant="ghost">🔌 Test Connection</Button>
+            <SuperadminButton id="save-cloud-config-btn" variant="primary">💾 Save Cloud Config</SuperadminButton>
+            <SuperadminButton id="test-cloud-connection-btn" variant="ghost">🔌 Test Connection</SuperadminButton>
           </CardFooter>
-        </Card>
+        </SuperadminCard>
       </div>
 
       {/* Backup History */}
-      <Card>
+      <SuperadminCard>
         <CardHeader>
           <div className="flex items-center justify-between">
             <div>
               <CardTitle>Backup History</CardTitle>
               <CardDescription>All backup records — download or restore from any checkpoint.</CardDescription>
             </div>
-            <Button id="refresh-backups-btn" variant="ghost" size="sm">
+            <SuperadminButton id="refresh-backups-btn" variant="ghost" size="sm">
               <RefreshCw size={14} /> Refresh
-            </Button>
+            </SuperadminButton>
           </div>
         </CardHeader>
         <CardContent>
@@ -283,17 +283,17 @@ export default function BackupsPage() {
                         </div>
                       </td>
                       <td className="py-3 pr-4">
-                        <Badge variant={backup.type === 'auto' ? 'primary' : 'outline'}>
+                        <SuperadminBadge variant={backup.type === 'auto' ? 'primary' : 'outline'}>
                           {backup.type === 'auto' ? '🔄 Auto' : '👤 Manual'}
-                        </Badge>
+                        </SuperadminBadge>
                       </td>
                       <td className="py-3 pr-4 font-mono text-xs text-on-surface-variant">{backup.size}</td>
                       <td className="py-3 pr-4 text-on-surface-variant text-xs">{backup.createdAt}</td>
                       <td className="py-3 pr-4">
-                        <Badge variant={cfg.variant}>
+                        <SuperadminBadge variant={cfg.variant}>
                           <Icon size={10} className={backup.status === 'in-progress' ? 'animate-spin' : ''} />
                           {cfg.label}
-                        </Badge>
+                        </SuperadminBadge>
                       </td>
                       <td className="py-3 pr-4">
                         <div className="flex flex-wrap gap-1">
@@ -308,7 +308,7 @@ export default function BackupsPage() {
                       <td className="py-3">
                         <div className="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
                           {backup.status === 'success' && (
-                            <Button
+                            <SuperadminButton
                               id={`download-backup-${backup.id}`}
                               variant="ghost"
                               size="sm"
@@ -318,9 +318,9 @@ export default function BackupsPage() {
                               {downloading === backup.id
                                 ? <Loader2 size={12} className="animate-spin" />
                                 : <Download size={12} />}
-                            </Button>
+                            </SuperadminButton>
                           )}
-                          <Button
+                          <SuperadminButton
                             id={`delete-backup-${backup.id}`}
                             variant="ghost"
                             size="sm"
@@ -328,7 +328,7 @@ export default function BackupsPage() {
                             className="text-error hover:bg-error-container/20"
                           >
                             🗑️
-                          </Button>
+                          </SuperadminButton>
                         </div>
                       </td>
                     </tr>
@@ -338,7 +338,7 @@ export default function BackupsPage() {
             </table>
           </div>
         </CardContent>
-      </Card>
+      </SuperadminCard>
     </div>
   );
 }

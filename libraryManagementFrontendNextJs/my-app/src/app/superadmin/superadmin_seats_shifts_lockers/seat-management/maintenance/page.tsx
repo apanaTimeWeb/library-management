@@ -3,7 +3,7 @@ import { useState, useMemo } from 'react';
 import { ChevronDown, AlertTriangle, Plus } from 'lucide-react';
 import { AgGridReact } from 'ag-grid-react';
 import { AllCommunityModule, ModuleRegistry, type ColDef } from 'ag-grid-community';
-import { gridTheme } from '@/app/superadmin/superadmin_seats_shifts_lockers/superadmin_seats_shared_components/gridTheme';
+import { gridTheme } from '@/app/superadmin/superadmin_seats_shifts_lockers/superadmin_seats_shared_components/superadmin_gridTheme';
 import toast from 'react-hot-toast';
 
 ModuleRegistry.registerModules([AllCommunityModule]);
@@ -73,8 +73,8 @@ export default function SeatMaintenancePage() {
     if (!form.date) e.date = 'Date is required';
     if (!form.remark.trim()) e.remark = 'Remark is required';
     if (!form.newStatus) e.newStatus = 'Status is required';
-    setErrors(e);
-    return Object.keys(e).length === 0;
+    setErrors(e: any);
+    return Object.keys(e: any).length === 0;
   }
 
   function handleAddEntry() {

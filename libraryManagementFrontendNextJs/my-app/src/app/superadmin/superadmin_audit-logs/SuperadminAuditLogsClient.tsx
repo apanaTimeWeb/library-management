@@ -1,6 +1,6 @@
 'use client';
 import React, { useState } from 'react';
-import { useSuperadminAuditLogs } from '@/app/superadmin/superadmin_audit-logs/superadmin_audit_logs_hooks/useSuperadminAuditLogs';
+import { useSuperadminAuditLogs } from '@/app/superadmin/superadmin_audit-logs/superadmin_audit_logs_hooks/superadmin_useSuperadminAuditLogs';
 import { SuperadminAuditLogsHeader } from '@/app/superadmin/superadmin_audit-logs/superadmin_audit_logs_components/SuperadminAuditLogsHeader';
 import { SuperadminAuditLogsGrid } from '@/app/superadmin/superadmin_audit-logs/superadmin_audit_logs_components/SuperadminAuditLogsGrid';
 import { SuperadminAuditLogsPanel } from '@/app/superadmin/superadmin_audit-logs/superadmin_audit_logs_components/SuperadminAuditLogsPanel';

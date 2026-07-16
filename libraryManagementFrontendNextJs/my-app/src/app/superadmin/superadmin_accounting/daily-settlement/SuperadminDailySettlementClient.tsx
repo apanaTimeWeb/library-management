@@ -1,6 +1,6 @@
 'use client';
 import React, { useState } from 'react';
-import { useSuperadminDailySettlement } from '@/app/superadmin/superadmin_accounting/daily-settlement/superadmin_daily_settlement_hooks/useSuperadminDailySettlement';
+import { useSuperadminDailySettlement } from '@/app/superadmin/superadmin_accounting/daily-settlement/superadmin_daily_settlement_hooks/superadmin_useSuperadminDailySettlement';
 import { SuperadminDailySettlementHeader } from '@/app/superadmin/superadmin_accounting/daily-settlement/superadmin_daily_settlement_components/SuperadminDailySettlementHeader';
 import { SuperadminDailySettlementKpiGrid } from '@/app/superadmin/superadmin_accounting/daily-settlement/superadmin_daily_settlement_components/SuperadminDailySettlementKpiGrid';
 import { SuperadminDailySettlementGrid } from '@/app/superadmin/superadmin_accounting/daily-settlement/superadmin_daily_settlement_components/SuperadminDailySettlementGrid';

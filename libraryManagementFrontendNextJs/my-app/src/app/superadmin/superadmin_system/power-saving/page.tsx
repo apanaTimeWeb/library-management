@@ -1,12 +1,12 @@
 'use client';
 import { useState } from 'react';
-import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/Card';
-import { Button } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/Button';
-import { Input } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/Input';
-import { Label } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/Label';
-import { Switch } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/Switch';
-import { Badge } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/Badge';
-import { Progress } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/Progress';
+import { SuperadminCard, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminCard';
+import { SuperadminButton } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminButton';
+import { SuperadminInput } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminInput';
+import { SuperadminLabel } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminLabel';
+import { SuperadminSwitch } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminSwitch';
+import { SuperadminBadge } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminBadge';
+import { SuperadminProgress } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminProgress';
 import { Zap, ChevronRight } from 'lucide-react';
 
 const ZONES = [
@@ -47,16 +47,16 @@ export default function PowerSavingPage() {
       </div>
 
       {/* Config Card */}
-      <Card className="mb-6">
+      <SuperadminCard className="mb-6">
         <CardHeader>
           <CardTitle>Configuration</CardTitle>
           <CardDescription>Set the occupancy threshold below which consolidation is suggested.</CardDescription>
         </CardHeader>
         <CardContent className="space-y-5">
           <div className="space-y-2">
-            <Label htmlFor="power-threshold">Occupancy Threshold (%)</Label>
+            <SuperadminLabel htmlFor="power-threshold">Occupancy Threshold (%)</SuperadminLabel>
             <div className="flex items-center gap-3">
-              <Input
+              <SuperadminInput
                 id="power-threshold"
                 type="number"
                 value={threshold}
@@ -75,13 +75,13 @@ export default function PowerSavingPage() {
               <p className="text-sm font-medium text-on-surface">Enable Power Saving Alerts</p>
               <p className="text-xs text-on-surface-variant">Send alerts when zones fall below threshold</p>
             </div>
-            <Switch id="power-saving-toggle" checked={alertsEnabled} onCheckedChange={setAlertsEnabled} />
+            <SuperadminSwitch id="power-saving-toggle" checked={alertsEnabled} onCheckedChange={setAlertsEnabled} />
           </div>
         </CardContent>
         <CardFooter>
-          <Button id="save-power-config-btn" variant="primary">💾 Save Configuration</Button>
+          <SuperadminButton id="save-power-config-btn" variant="primary">💾 Save Configuration</SuperadminButton>
         </CardFooter>
-      </Card>
+      </SuperadminCard>
 
       {/* Zone Status Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
@@ -89,21 +89,21 @@ export default function PowerSavingPage() {
           const status = getZoneStatus(zone.occupancy);
           const isLow = zone.occupancy < threshold;
           return (
-            <Card key={zone.name} className={isLow ? 'border-tertiary/30' : ''}>
+            <SuperadminCard key={zone.name} className={isLow ? 'border-tertiary/30' : ''}>
               <CardContent>
                 <div className="flex items-start justify-between mb-3">
                   <div>
                     <p className="text-sm font-semibold text-on-surface">{zone.name}</p>
                     <p className="text-xs text-on-surface-variant">{zone.current} / {zone.capacity} seats occupied</p>
                   </div>
-                  <Badge variant={status.variant}>{status.label}</Badge>
+                  <SuperadminBadge variant={status.variant}>{status.label}</SuperadminBadge>
                 </div>
                 <div className="space-y-1.5">
                   <div className="flex justify-between text-xs text-on-surface-variant">
                     <span>Occupancy</span>
                     <span className={isLow ? 'text-tertiary font-semibold' : 'text-green-400 font-semibold'}>{zone.occupancy}%</span>
                   </div>
-                  <Progress value={zone.occupancy} barClassName={isLow ? 'bg-tertiary' : 'bg-green-500'} />
+                  <SuperadminProgress value={zone.occupancy} barClassName={isLow ? 'bg-tertiary' : 'bg-green-500'} />
                 </div>
                 {isLow && (
                   <div className="mt-3 p-2.5 rounded-lg bg-tertiary/10 border border-tertiary/20 text-xs text-tertiary">
@@ -111,13 +111,13 @@ export default function PowerSavingPage() {
                   </div>
                 )}
               </CardContent>
-            </Card>
+            </SuperadminCard>
           );
         })}
       </div>
 
       {/* Alert Log */}
-      <Card>
+      <SuperadminCard>
         <CardHeader>
           <CardTitle>Alert Log</CardTitle>
           <CardDescription>History of power saving threshold breaches and actions taken.</CardDescription>
@@ -140,7 +140,7 @@ export default function PowerSavingPage() {
                     <td className="py-3 pr-4 text-on-surface-variant">{log.date}</td>
                     <td className="py-3 pr-4 text-on-surface">{log.shift}</td>
                     <td className="py-3 pr-4 text-on-surface">{log.zone}</td>
-                    <td className="py-3 pr-4"><Badge variant="warning">&lt; {log.threshold}</Badge></td>
+                    <td className="py-3 pr-4"><SuperadminBadge variant="warning">&lt; {log.threshold}</SuperadminBadge></td>
                     <td className="py-3 text-on-surface-variant">{log.action}</td>
                   </tr>
                 ))}
@@ -148,7 +148,7 @@ export default function PowerSavingPage() {
             </table>
           </div>
         </CardContent>
-      </Card>
+      </SuperadminCard>
     </div>
   );
 }

@@ -1,12 +1,12 @@
 'use client';
 import { useState } from 'react';
-import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/Card';
-import { Button } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/Button';
-import { Badge } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/Badge';
+import { SuperadminCard, CardHeader, CardTitle, CardDescription, CardContent } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminCard';
+import { SuperadminButton } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminButton';
+import { SuperadminBadge } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminBadge';
 import {
-  Dialog, DialogTrigger, DialogContent, DialogHeader,
+  SuperadminDialog, DialogTrigger, DialogContent, DialogHeader,
   DialogTitle, DialogDescription, DialogClose
-} from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/Dialog';
+} from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminDialog';
 import { Hash, ChevronRight, ArrowRight, AlertTriangle } from 'lucide-react';
 
 const ACTIVE_IDS = [1, 2, 4, 5, 6, 9, 10, 11, 12, 15, 16, 17, 18, 19, 20];
@@ -44,7 +44,7 @@ export default function SmartIdPage() {
       </div>
 
       {/* Algorithm Explanation */}
-      <Card className="mb-6">
+      <SuperadminCard className="mb-6">
         <CardHeader>
           <CardTitle>How Smart ID Gap-Fill Works</CardTitle>
           <CardDescription>When a student exits, their ID is reclaimed for the next admission — keeping IDs compact.</CardDescription>
@@ -70,14 +70,14 @@ export default function SmartIdPage() {
             ))}
           </div>
         </CardContent>
-      </Card>
+      </SuperadminCard>
 
       {/* ID Sequence Viewer */}
-      <Card className="mb-6">
+      <SuperadminCard className="mb-6">
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             🔢 Current ID Sequence
-            {regenerated && <Badge variant="success">✅ Regenerated</Badge>}
+            {regenerated && <SuperadminBadge variant="success">✅ Regenerated</SuperadminBadge>}
           </CardTitle>
           <CardDescription>
             Active IDs shown in <span className="text-primary font-medium">indigo</span>. 
@@ -114,10 +114,10 @@ export default function SmartIdPage() {
             </div>
           </div>
         </CardContent>
-      </Card>
+      </SuperadminCard>
 
       {/* Manual Override */}
-      <Card>
+      <SuperadminCard>
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <AlertTriangle size={18} className="text-tertiary" />
@@ -126,9 +126,9 @@ export default function SmartIdPage() {
           <CardDescription>Admin-only action. Force regenerate the entire ID sequence. Use with caution.</CardDescription>
         </CardHeader>
         <CardContent>
-          <Dialog>
+          <SuperadminDialog>
             <DialogTrigger asChild>
-              <Button id="force-regenerate-btn" variant="destructive">🔢 Force Regenerate Sequence</Button>
+              <SuperadminButton id="force-regenerate-btn" variant="destructive">🔢 Force Regenerate Sequence</SuperadminButton>
             </DialogTrigger>
             <DialogContent>
               <DialogHeader>
@@ -143,18 +143,18 @@ export default function SmartIdPage() {
               </div>
               <div className="flex justify-end gap-3 mt-4">
                 <DialogClose asChild>
-                  <Button variant="ghost" size="sm">Cancel</Button>
+                  <SuperadminButton variant="ghost" size="sm">Cancel</SuperadminButton>
                 </DialogClose>
                 <DialogClose asChild>
-                  <Button id="confirm-regenerate-btn" variant="destructive" size="sm" onClick={handleRegenerate}>
+                  <SuperadminButton id="confirm-regenerate-btn" variant="destructive" size="sm" onClick={handleRegenerate}>
                     Yes, Regenerate
-                  </Button>
+                  </SuperadminButton>
                 </DialogClose>
               </div>
             </DialogContent>
-          </Dialog>
+          </SuperadminDialog>
         </CardContent>
-      </Card>
+      </SuperadminCard>
     </div>
   );
 }

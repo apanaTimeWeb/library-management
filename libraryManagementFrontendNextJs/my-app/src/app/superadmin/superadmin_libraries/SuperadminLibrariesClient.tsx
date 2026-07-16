@@ -1,6 +1,6 @@
 'use client';
 import React, { useState } from 'react';
-import { useSuperadminLibraries } from '@/app/superadmin/superadmin_libraries/superadmin_libraries_hooks/useSuperadminLibraries';
+import { useSuperadminLibraries } from '@/app/superadmin/superadmin_libraries/superadmin_libraries_hooks/superadmin_useSuperadminLibraries';
 import { SuperadminLibrariesHeader } from '@/app/superadmin/superadmin_libraries/superadmin_libraries_components/SuperadminLibrariesHeader';
 import { SuperadminLibrariesGrid } from '@/app/superadmin/superadmin_libraries/superadmin_libraries_components/SuperadminLibrariesGrid';
 import { SuperadminLibrariesPanel } from '@/app/superadmin/superadmin_libraries/superadmin_libraries_components/SuperadminLibrariesPanel';

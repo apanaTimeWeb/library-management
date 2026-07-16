@@ -6,9 +6,9 @@ import { AgGridReact } from 'ag-grid-react';
 import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community';
 
 import toast from 'react-hot-toast';
-import { formatCurrency } from '@/app/superadmin/superadmin_finance/superadmin_finance_utils/format';
+import { formatCurrency } from '@/app/superadmin/superadmin_finance/superadmin_finance_utils/superadmin_format';
 import { RefreshCw, Send } from 'lucide-react';
-import { gridTheme } from '@/app/superadmin/superadmin_finance/superadmin_finance_shared_components/gridTheme';
+import { gridTheme } from '@/app/superadmin/superadmin_finance/superadmin_finance_shared_components/superadmin_gridTheme';
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
@@ -202,7 +202,7 @@ export default function Renewals() {
                 <select
                   className="fin-select"
                   value={renewPlanId}
-                  onChange={(e) => {
+                  onChange={(e: any) => {
                     const id = e.target.value;
                     setRenewPlanId(id);
                     const selectedPlan = PLANS.find((p) => String(p.id) === id);
@@ -218,11 +218,11 @@ export default function Renewals() {
               </div>
               <div>
                 <label className="fin-label">Amount</label>
-                <input type="number" className="fin-input" value={renewAmount} onChange={(e) => setRenewAmount(e.target.value)} />
+                <input type="number" className="fin-input" value={renewAmount} onChange={(e: any) => setRenewAmount(e.target.value)} />
               </div>
               <div>
                 <label className="fin-label">Payment Mode</label>
-                <select className="fin-select" value={renewMode} onChange={(e) => setRenewMode(e.target.value)}>
+                <select className="fin-select" value={renewMode} onChange={(e: any) => setRenewMode(e.target.value)}>
                   <option value="cash">Cash</option>
                   <option value="upi">UPI</option>
                   <option value="card">Card</option>
@@ -232,7 +232,7 @@ export default function Renewals() {
               {renewMode !== 'cash' && (
                 <div>
                   <label className="fin-label">Transaction ID</label>
-                  <input className="fin-input" value={renewTxnId} onChange={(e) => setRenewTxnId(e.target.value)} placeholder="Enter transaction reference" />
+                  <input className="fin-input" value={renewTxnId} onChange={(e: any) => setRenewTxnId(e.target.value)} placeholder="Enter transaction reference" />
                 </div>
               )}
             </div>

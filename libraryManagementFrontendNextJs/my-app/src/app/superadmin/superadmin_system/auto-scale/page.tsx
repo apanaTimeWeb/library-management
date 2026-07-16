@@ -1,12 +1,12 @@
 'use client';
 import { useState } from 'react';
-import { KpiCard } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/KpiCard';
-import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/Card';
-import { Button } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/Button';
-import { Input } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/Input';
-import { Label } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/Label';
-import { Switch } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/Switch';
-import { Badge } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/Badge';
+import { SuperadminKpiCard } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminKpiCard';
+import { SuperadminCard, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminCard';
+import { SuperadminButton } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminButton';
+import { SuperadminInput } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminInput';
+import { SuperadminLabel } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminLabel';
+import { SuperadminSwitch } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminSwitch';
+import { SuperadminBadge } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminBadge';
 import { BarChart3, ChevronRight, Zap, ArrowRight } from 'lucide-react';
 
 export default function AutoScalePage() {
@@ -53,14 +53,14 @@ export default function AutoScalePage() {
 
       {/* Overview KPI Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 mb-8">
-        <KpiCard title="Total Seats" value={120} icon="🪑" subtitle="Across all zones" />
-        <KpiCard title="Total Lockers" value={60} icon="🔒" subtitle="All branches" />
-        <KpiCard title="Avg Occupancy (30d)" value="68%" icon="📈" trend="up" trendLabel="+4% vs last month" />
-        <KpiCard title="Peak Day" value="Apr 8" icon="🏆" subtitle="94% occupancy" />
+        <SuperadminKpiCard title="Total Seats" value={120} icon="🪑" subtitle="Across all zones" />
+        <SuperadminKpiCard title="Total Lockers" value={60} icon="🔒" subtitle="All branches" />
+        <SuperadminKpiCard title="Avg Occupancy (30d)" value="68%" icon="📈" trend="up" trendLabel="+4% vs last month" />
+        <SuperadminKpiCard title="Peak Day" value="Apr 8" icon="🏆" subtitle="94% occupancy" />
       </div>
 
       {/* Threshold Config */}
-      <Card className="mb-6">
+      <SuperadminCard className="mb-6">
         <CardHeader>
           <CardTitle>Alert Thresholds</CardTitle>
           <CardDescription>Configure occupancy levels that trigger scaling recommendations.</CardDescription>
@@ -68,9 +68,9 @@ export default function AutoScalePage() {
         <CardContent className="space-y-5">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             <div className="space-y-2">
-              <Label htmlFor="seat-alert-threshold">Seat Alert Threshold (%)</Label>
+              <SuperadminLabel htmlFor="seat-alert-threshold">Seat Alert Threshold (%)</SuperadminLabel>
               <div className="flex items-center gap-2">
-                <Input
+                <SuperadminInput
                   id="seat-alert-threshold"
                   type="number"
                   value={seatThreshold}
@@ -83,9 +83,9 @@ export default function AutoScalePage() {
               </div>
             </div>
             <div className="space-y-2">
-              <Label htmlFor="locker-alert-threshold">Locker Alert Threshold (%)</Label>
+              <SuperadminLabel htmlFor="locker-alert-threshold">Locker Alert Threshold (%)</SuperadminLabel>
               <div className="flex items-center gap-2">
-                <Input
+                <SuperadminInput
                   id="locker-alert-threshold"
                   type="number"
                   value={lockerThreshold}
@@ -103,16 +103,16 @@ export default function AutoScalePage() {
               <p className="text-sm font-medium text-on-surface">Alert me when occupancy exceeds threshold</p>
               <p className="text-xs text-on-surface-variant">Receive in-app notifications and dashboard badges</p>
             </div>
-            <Switch id="auto-scale-alert-toggle" checked={alertEnabled} onCheckedChange={setAlertEnabled} />
+            <SuperadminSwitch id="auto-scale-alert-toggle" checked={alertEnabled} onCheckedChange={setAlertEnabled} />
           </div>
         </CardContent>
         <CardFooter>
-          <Button id="save-autoscale-thresholds-btn" variant="primary">💾 Save Thresholds</Button>
+          <SuperadminButton id="save-autoscale-thresholds-btn" variant="primary">💾 Save Thresholds</SuperadminButton>
         </CardFooter>
-      </Card>
+      </SuperadminCard>
 
       {/* Recommendations */}
-      <Card>
+      <SuperadminCard>
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Zap size={18} className="text-primary" />
@@ -129,15 +129,15 @@ export default function AutoScalePage() {
           }`}>
             <div className="flex items-center justify-between">
               <div className="flex items-start gap-3">
-                <Badge variant={seatRec.color === 'danger' ? 'danger' : seatRec.color === 'warning' ? 'warning' : 'success'}>
+                <SuperadminBadge variant={seatRec.color === 'danger' ? 'danger' : seatRec.color === 'warning' ? 'warning' : 'success'}>
                   Seats
-                </Badge>
+                </SuperadminBadge>
                 <p className="text-sm text-on-surface">{seatRec.msg}</p>
               </div>
               {seatRec.action && (
-                <Button id="seat-rec-action-btn" variant="secondary" size="sm">
+                <SuperadminButton id="seat-rec-action-btn" variant="secondary" size="sm">
                   {seatRec.action} <ArrowRight size={14} />
-                </Button>
+                </SuperadminButton>
               )}
             </div>
           </div>
@@ -150,20 +150,20 @@ export default function AutoScalePage() {
           }`}>
             <div className="flex items-center justify-between">
               <div className="flex items-start gap-3">
-                <Badge variant={lockerRec.color === 'danger' ? 'danger' : lockerRec.color === 'warning' ? 'warning' : 'success'}>
+                <SuperadminBadge variant={lockerRec.color === 'danger' ? 'danger' : lockerRec.color === 'warning' ? 'warning' : 'success'}>
                   Lockers
-                </Badge>
+                </SuperadminBadge>
                 <p className="text-sm text-on-surface">{lockerRec.msg}</p>
               </div>
               {lockerRec.action && (
-                <Button id="locker-rec-action-btn" variant="secondary" size="sm">
+                <SuperadminButton id="locker-rec-action-btn" variant="secondary" size="sm">
                   {lockerRec.action} <ArrowRight size={14} />
-                </Button>
+                </SuperadminButton>
               )}
             </div>
           </div>
         </CardContent>
-      </Card>
+      </SuperadminCard>
     </div>
   );
 }

@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 
 import toast from 'react-hot-toast';
-import { formatCurrency } from '@/app/superadmin/superadmin_finance/superadmin_finance_utils/format';
+import { formatCurrency } from '@/app/superadmin/superadmin_finance/superadmin_finance_utils/superadmin_format';
 import { Undo2, Minus } from 'lucide-react';
 
 const STATUS_BADGE: Record<string, string> = {
@@ -84,7 +84,7 @@ export default function SecurityDeposits() {
       </div>
 
       <div className="fin-filter-bar">
-        <select className="fin-select w-40" value={statusFilter} onChange={(e) => setStatusFilter(e.target.value)}>
+        <select className="fin-select w-40" value={statusFilter} onChange={(e: any) => setStatusFilter(e.target.value)}>
           <option value="all">All Status</option>
           <option value="held">Held</option>
           <option value="refunded">Refunded</option>
@@ -181,15 +181,15 @@ export default function SecurityDeposits() {
             <div className="space-y-4">
               <div>
                 <label className="fin-label">Refund Amount</label>
-                <input type="number" className="fin-input" value={refundAmount} onChange={(e) => setRefundAmount(e.target.value)} />
+                <input type="number" className="fin-input" value={refundAmount} onChange={(e: any) => setRefundAmount(e.target.value)} />
               </div>
               <div>
                 <label className="fin-label">Deduction Amount</label>
-                <input type="number" className="fin-input" value={deductionAmount} onChange={(e) => setDeductionAmount(e.target.value)} placeholder="0" />
+                <input type="number" className="fin-input" value={deductionAmount} onChange={(e: any) => setDeductionAmount(e.target.value)} placeholder="0" />
               </div>
               <div>
                 <label className="fin-label">Deduction Reason {parseFloat(deductionAmount) > 0 && <span className="fin-text-danger">*</span>}</label>
-                <input className="fin-input" value={deductionReason} onChange={(e) => setDeductionReason(e.target.value)} placeholder="Reason..." />
+                <input className="fin-input" value={deductionReason} onChange={(e: any) => setDeductionReason(e.target.value)} placeholder="Reason..." />
               </div>
             </div>
             <div className="fin-dialog__footer">
@@ -208,11 +208,11 @@ export default function SecurityDeposits() {
             <div className="space-y-4">
               <div>
                 <label className="fin-label">Amount <span className="fin-text-danger">*</span></label>
-                <input type="number" className="fin-input" value={deductAmt} onChange={(e) => setDeductAmt(e.target.value)} />
+                <input type="number" className="fin-input" value={deductAmt} onChange={(e: any) => setDeductAmt(e.target.value)} />
               </div>
               <div>
                 <label className="fin-label">Reason <span className="fin-text-danger">*</span></label>
-                <input className="fin-input" value={deductReason} onChange={(e) => setDeductReason(e.target.value)} placeholder="Reason for deduction" />
+                <input className="fin-input" value={deductReason} onChange={(e: any) => setDeductReason(e.target.value)} placeholder="Reason for deduction" />
               </div>
             </div>
             <div className="fin-dialog__footer">

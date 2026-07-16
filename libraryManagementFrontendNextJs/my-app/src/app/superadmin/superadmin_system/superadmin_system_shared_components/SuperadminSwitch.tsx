@@ -1,0 +1,25 @@
+'use client';
+import * as SwitchPrimitive from '@radix-ui/react-switch';
+import { cn } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/superadmin_utils';
+
+interface SwitchProps {
+  checked?: boolean;
+  onCheckedChange?: (checked: boolean) => void;
+  disabled?: boolean;
+  id?: string;
+  className?: string;
+}
+
+export function SuperadminSwitch({ checked, onCheckedChange, disabled, id, className }: SwitchProps) {
+  return (
+    <SwitchPrimitive.Root
+      id={id}
+      checked={checked}
+      onCheckedChange={onCheckedChange}
+      disabled={disabled}
+      className={cn('sys-switch', className)}
+    >
+      <SwitchPrimitive.Thumb className="sys-switch-thumb" />
+    </SwitchPrimitive.Root>
+  );
+}

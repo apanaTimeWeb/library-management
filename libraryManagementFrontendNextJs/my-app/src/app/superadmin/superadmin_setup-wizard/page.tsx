@@ -11,8 +11,8 @@ import {
   shiftsSchema,       type ShiftsData,
   seatsSchema,        type SeatsData,
   plansSchema,        type PlansData,
-} from '@/app/superadmin/superadmin_shared_components/schema';
-import { SETUP_WIZARD_DATA as d } from '@/app/superadmin/superadmin_setup-wizard/setupWizard_constants';
+} from '@/app/superadmin/superadmin_shared_components/superadmin_schema';
+import { SETUP_WIZARD_DATA as d } from '@/app/superadmin/superadmin_setup-wizard/superadmin_setupWizard_constants';
 
 const STEPS = [
   { num: 1, title: 'Branch Details', desc: 'Library info & address' },

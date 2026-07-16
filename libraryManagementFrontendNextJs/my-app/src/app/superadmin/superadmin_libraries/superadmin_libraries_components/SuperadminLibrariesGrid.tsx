@@ -3,7 +3,7 @@ import React, { useRef, useCallback, useMemo } from 'react';
 import { AgGridReact } from 'ag-grid-react';
 import type { ICellRendererParams, GridReadyEvent } from 'ag-grid-community';
 import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community';
-import { gridTheme } from '@/app/superadmin/superadmin_shared_components/gridTheme';
+import { gridTheme } from '@/app/superadmin/superadmin_shared_components/superadmin_gridTheme';
 import { Eye, Edit2, ShieldAlert } from 'lucide-react';
 import type { SuperadminLibrary as Library } from '@/app/superadmin/superadmin_libraries/superadmin_libraries_types/SuperadminLibrariesTypes';
 

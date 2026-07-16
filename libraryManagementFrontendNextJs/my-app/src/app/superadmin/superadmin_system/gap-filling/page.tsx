@@ -1,11 +1,11 @@
 'use client';
 import { useState } from 'react';
-import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/Card';
-import { Button } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/Button';
-import { Input } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/Input';
-import { Label } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/Label';
-import { Badge } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/Badge';
-import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/Select';
+import { SuperadminCard, CardHeader, CardTitle, CardDescription, CardContent } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminCard';
+import { SuperadminButton } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminButton';
+import { SuperadminInput } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminInput';
+import { SuperadminLabel } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminLabel';
+import { SuperadminBadge } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminBadge';
+import { SuperadminSelect, SelectTrigger, SelectValue, SelectContent, SelectItem } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminSelect';
 import { GitBranch, ChevronRight, Zap } from 'lucide-react';
 
 const SEAT_GAPS = [
@@ -35,7 +35,7 @@ export default function GapFillingPage() {
         <p className="text-on-surface-variant mt-1 text-sm">Visualize empty time slots and monetize unused seat capacity.</p>
       </div>
 
-      <Card className="mb-6">
+      <SuperadminCard className="mb-6">
         <CardHeader>
           <CardTitle>Analysis Controls</CardTitle>
           <CardDescription>Select a date range and shift to identify available seat gaps.</CardDescription>
@@ -43,16 +43,16 @@ export default function GapFillingPage() {
         <CardContent>
           <div className="flex flex-wrap items-end gap-4">
             <div className="space-y-2">
-              <Label htmlFor="gap-from-date">From Date</Label>
-              <Input id="gap-from-date" type="date" value={fromDate} onChange={e => setFromDate(e.target.value)} className="w-44" />
+              <SuperadminLabel htmlFor="gap-from-date">From Date</SuperadminLabel>
+              <SuperadminInput id="gap-from-date" type="date" value={fromDate} onChange={e => setFromDate(e.target.value)} className="w-44" />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="gap-to-date">To Date</Label>
-              <Input id="gap-to-date" type="date" value={toDate} onChange={e => setToDate(e.target.value)} className="w-44" />
+              <SuperadminLabel htmlFor="gap-to-date">To Date</SuperadminLabel>
+              <SuperadminInput id="gap-to-date" type="date" value={toDate} onChange={e => setToDate(e.target.value)} className="w-44" />
             </div>
             <div className="space-y-2 w-44">
-              <Label htmlFor="gap-shift-select">Shift</Label>
-              <Select value={shift} onValueChange={setShift}>
+              <SuperadminLabel htmlFor="gap-shift-select">Shift</SuperadminLabel>
+              <SuperadminSelect value={shift} onValueChange={setShift}>
                 <SelectTrigger id="gap-shift-select"><SelectValue placeholder="All shifts" /></SelectTrigger>
                 <SelectContent>
                   <SelectItem value="all">All Shifts</SelectItem>
@@ -60,23 +60,23 @@ export default function GapFillingPage() {
                   <SelectItem value="afternoon">Afternoon (12PM–6PM)</SelectItem>
                   <SelectItem value="evening">Evening (6PM–10PM)</SelectItem>
                 </SelectContent>
-              </Select>
+              </SuperadminSelect>
             </div>
-            <Button id="run-gap-analysis-btn" onClick={() => setAnalyzed(true)} variant="primary" size="md">
+            <SuperadminButton id="run-gap-analysis-btn" onClick={() => setAnalyzed(true)} variant="primary" size="md">
               🔍 Run Gap Analysis
-            </Button>
+            </SuperadminButton>
           </div>
         </CardContent>
-      </Card>
+      </SuperadminCard>
 
       {analyzed ? (
         <div className="space-y-4">
           <div className="flex items-center justify-between mb-2">
             <h2 className="text-lg font-semibold text-on-surface">Gap Analysis Results</h2>
-            <Badge variant="primary">{SEAT_GAPS.length} seats analyzed</Badge>
+            <SuperadminBadge variant="primary">{SEAT_GAPS.length} seats analyzed</SuperadminBadge>
           </div>
           {SEAT_GAPS.map((seat: any) => (
-            <Card key={seat.seat}>
+            <SuperadminCard key={seat.seat}>
               <CardContent>
                 <div className="flex items-center gap-4">
                   <div className="w-14 shrink-0">
@@ -101,27 +101,27 @@ export default function GapFillingPage() {
                       <p className="text-xs text-on-surface-variant">💡 {seat.gap.hours}hrs available</p>
                     </div>
                     {assigned.includes(seat.seat) ? (
-                      <Badge variant="success">✅ Assigned</Badge>
+                      <SuperadminBadge variant="success">✅ Assigned</SuperadminBadge>
                     ) : (
-                      <Button id={`quick-assign-${seat.seat}`} variant="secondary" size="sm"
+                      <SuperadminButton id={`quick-assign-${seat.seat}`} variant="secondary" size="sm"
                         onClick={() => setAssigned(p => [...p, seat.seat])}>
                         <Zap size={14} /> Quick Assign
-                      </Button>
+                      </SuperadminButton>
                     )}
                   </div>
                 </div>
               </CardContent>
-            </Card>
+            </SuperadminCard>
           ))}
         </div>
       ) : (
-        <Card>
+        <SuperadminCard>
           <CardContent className="py-16 flex flex-col items-center justify-center gap-3 text-center">
             <div className="text-5xl">🔍</div>
             <p className="text-on-surface font-medium">Run an analysis to see seat gaps</p>
             <p className="text-sm text-on-surface-variant">Select a date range and click "Run Gap Analysis" to visualize available slots.</p>
           </CardContent>
-        </Card>
+        </SuperadminCard>
       )}
     </div>
   );

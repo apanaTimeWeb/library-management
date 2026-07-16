@@ -1,10 +1,10 @@
 'use client';
 import { useState, useEffect } from 'react';
-import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/Card';
-import { Button } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/Button';
-import { Input } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/Input';
-import { Label } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/Label';
-import { Switch } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/Switch';
+import { SuperadminCard, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminCard';
+import { SuperadminButton } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminButton';
+import { SuperadminInput } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminInput';
+import { SuperadminLabel } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminLabel';
+import { SuperadminSwitch } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminSwitch';
 import {
   Settings, Palette, AlertCircle, Zap, CreditCard, Bell, Globe,
   Upload, Eye, EyeOff, Save, ChevronRight
@@ -102,14 +102,14 @@ export default function SettingsPage() {
         {/* Right panel */}
         <div className="flex-1">
           {active === 'branding' && (
-            <Card>
+            <SuperadminCard>
               <CardHeader>
                 <CardTitle>Branding</CardTitle>
                 <CardDescription>Customize how your library appears to users.</CardDescription>
               </CardHeader>
               <CardContent className="space-y-5">
                 <div className="space-y-2">
-                  <Label htmlFor="logo-upload">Logo</Label>
+                  <SuperadminLabel htmlFor="logo-upload">Logo</SuperadminLabel>
                   <div
                     id="logo-upload"
                     className="flex flex-col items-center justify-center border-2 border-dashed border-outline-variant rounded-xl p-8 cursor-pointer hover:bg-surface-container-high transition-colors group"
@@ -120,36 +120,36 @@ export default function SettingsPage() {
                   </div>
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="app-name">App Name</Label>
-                  <Input id="app-name" value={form.appName} onChange={e => setForm(f => ({ ...f, appName: e.target.value }))} />
+                  <SuperadminLabel htmlFor="app-name">App Name</SuperadminLabel>
+                  <SuperadminInput id="app-name" value={form.appName} onChange={e => setForm(f => ({ ...f, appName: e.target.value }))} />
                 </div>
                 <div className="grid grid-cols-2 gap-4">
                   <div className="space-y-2">
-                    <Label htmlFor="primary-color">Primary Color</Label>
+                    <SuperadminLabel htmlFor="primary-color">Primary Color</SuperadminLabel>
                     <div className="flex items-center gap-2">
                       <input type="color" id="primary-color" value={form.primaryColor} onChange={e => setForm(f => ({ ...f, primaryColor: e.target.value }))} className="h-10 w-12 rounded-lg border border-outline-variant bg-transparent cursor-pointer" />
-                      <Input value={form.primaryColor} onChange={e => setForm(f => ({ ...f, primaryColor: e.target.value }))} className="font-mono text-xs" />
+                      <SuperadminInput value={form.primaryColor} onChange={e => setForm(f => ({ ...f, primaryColor: e.target.value }))} className="font-mono text-xs" />
                     </div>
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="secondary-color">Secondary Color</Label>
+                    <SuperadminLabel htmlFor="secondary-color">Secondary Color</SuperadminLabel>
                     <div className="flex items-center gap-2">
                       <input type="color" id="secondary-color" value={form.secondaryColor} onChange={e => setForm(f => ({ ...f, secondaryColor: e.target.value }))} className="h-10 w-12 rounded-lg border border-outline-variant bg-transparent cursor-pointer" />
-                      <Input value={form.secondaryColor} onChange={e => setForm(f => ({ ...f, secondaryColor: e.target.value }))} className="font-mono text-xs" />
+                      <SuperadminInput value={form.secondaryColor} onChange={e => setForm(f => ({ ...f, secondaryColor: e.target.value }))} className="font-mono text-xs" />
                     </div>
                   </div>
                 </div>
               </CardContent>
               <CardFooter>
-                <Button id="save-branding-btn" onClick={handleSave} variant="primary">
+                <SuperadminButton id="save-branding-btn" onClick={handleSave} variant="primary">
                   <Save size={16} /> {saved ? '✓ Saved!' : '💾 Save Settings'}
-                </Button>
+                </SuperadminButton>
               </CardFooter>
-            </Card>
+            </SuperadminCard>
           )}
 
           {active === 'late-fee' && (
-            <Card>
+            <SuperadminCard>
               <CardHeader>
                 <CardTitle>Late Fee Rules</CardTitle>
                 <CardDescription>Define penalty rules for overdue payments.</CardDescription>
@@ -160,35 +160,35 @@ export default function SettingsPage() {
                     <p className="text-sm font-medium text-on-surface">Enable Late Fees</p>
                     <p className="text-xs text-on-surface-variant">Automatically apply penalties after due date</p>
                   </div>
-                  <Switch id="enable-late-fees" checked={form.enableLateFees} onCheckedChange={v => setForm(f => ({ ...f, enableLateFees: v }))} />
+                  <SuperadminSwitch id="enable-late-fees" checked={form.enableLateFees} onCheckedChange={v => setForm(f => ({ ...f, enableLateFees: v }))} />
                 </div>
                 <div className="grid grid-cols-2 gap-4">
                   <div className="space-y-2">
-                    <Label htmlFor="grace-period">Grace Period</Label>
+                    <SuperadminLabel htmlFor="grace-period">Grace Period</SuperadminLabel>
                     <div className="flex items-center gap-2">
-                      <Input id="grace-period" type="number" value={form.gracePeriod} onChange={e => setForm(f => ({ ...f, gracePeriod: +e.target.value }))} />
+                      <SuperadminInput id="grace-period" type="number" value={form.gracePeriod} onChange={e => setForm(f => ({ ...f, gracePeriod: +e.target.value }))} />
                       <span className="text-sm text-on-surface-variant whitespace-nowrap">days</span>
                     </div>
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="penalty-per-day">Penalty Per Day</Label>
+                    <SuperadminLabel htmlFor="penalty-per-day">Penalty Per Day</SuperadminLabel>
                     <div className="flex items-center gap-2">
                       <span className="text-sm text-on-surface-variant">₹</span>
-                      <Input id="penalty-per-day" type="number" value={form.penaltyPerDay} onChange={e => setForm(f => ({ ...f, penaltyPerDay: +e.target.value }))} />
+                      <SuperadminInput id="penalty-per-day" type="number" value={form.penaltyPerDay} onChange={e => setForm(f => ({ ...f, penaltyPerDay: +e.target.value }))} />
                     </div>
                   </div>
                 </div>
               </CardContent>
               <CardFooter>
-                <Button id="save-latefee-btn" onClick={handleSave} variant="primary">
+                <SuperadminButton id="save-latefee-btn" onClick={handleSave} variant="primary">
                   <Save size={16} /> {saved ? '✓ Saved!' : '💾 Save Settings'}
-                </Button>
+                </SuperadminButton>
               </CardFooter>
-            </Card>
+            </SuperadminCard>
           )}
 
           {active === 'auto-suspend' && (
-            <Card>
+            <SuperadminCard>
               <CardHeader>
                 <CardTitle>Auto-Suspend Rules</CardTitle>
                 <CardDescription>Configure automatic seat suspension for defaulters.</CardDescription>
@@ -199,51 +199,51 @@ export default function SettingsPage() {
                     <p className="text-sm font-medium text-on-surface">Enable Auto-Suspend</p>
                     <p className="text-xs text-on-surface-variant">Suspend seats after payment overdue</p>
                   </div>
-                  <Switch id="enable-auto-suspend" checked={form.enableAutoSuspend} onCheckedChange={v => setForm(f => ({ ...f, enableAutoSuspend: v }))} />
+                  <SuperadminSwitch id="enable-auto-suspend" checked={form.enableAutoSuspend} onCheckedChange={v => setForm(f => ({ ...f, enableAutoSuspend: v }))} />
                 </div>
                 <div className="flex items-center justify-between p-4 rounded-xl bg-surface-container-high border border-outline-variant">
                   <div>
                     <p className="text-sm font-medium text-on-surface">Auto-Restore on Payment</p>
                     <p className="text-xs text-on-surface-variant">Automatically restore when payment is received</p>
                   </div>
-                  <Switch id="enable-auto-restore" checked={form.enableAutoRestore} onCheckedChange={v => setForm(f => ({ ...f, enableAutoRestore: v }))} />
+                  <SuperadminSwitch id="enable-auto-restore" checked={form.enableAutoRestore} onCheckedChange={v => setForm(f => ({ ...f, enableAutoRestore: v }))} />
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="days-before-suspend">Days Before Suspend</Label>
+                  <SuperadminLabel htmlFor="days-before-suspend">Days Before Suspend</SuperadminLabel>
                   <div className="flex items-center gap-2">
-                    <Input id="days-before-suspend" type="number" value={form.daysBefore} onChange={e => setForm(f => ({ ...f, daysBefore: +e.target.value }))} className="max-w-[120px]" />
+                    <SuperadminInput id="days-before-suspend" type="number" value={form.daysBefore} onChange={e => setForm(f => ({ ...f, daysBefore: +e.target.value }))} className="max-w-[120px]" />
                     <span className="text-sm text-on-surface-variant">days after due date</span>
                   </div>
                 </div>
               </CardContent>
               <CardFooter>
-                <Button id="save-autosuspend-btn" onClick={handleSave} variant="primary">
+                <SuperadminButton id="save-autosuspend-btn" onClick={handleSave} variant="primary">
                   <Save size={16} /> {saved ? '✓ Saved!' : '💾 Save Settings'}
-                </Button>
+                </SuperadminButton>
               </CardFooter>
-            </Card>
+            </SuperadminCard>
           )}
 
           {active === 'upi' && (
-            <Card>
+            <SuperadminCard>
               <CardHeader>
                 <CardTitle>UPI / Payment</CardTitle>
                 <CardDescription>Configure payment methods accepted at your library.</CardDescription>
               </CardHeader>
               <CardContent className="space-y-5">
                 <div className="space-y-2">
-                  <Label htmlFor="upi-qr">UPI QR Code</Label>
+                  <SuperadminLabel htmlFor="upi-qr">UPI QR Code</SuperadminLabel>
                   <div id="upi-qr" className="flex flex-col items-center justify-center border-2 border-dashed border-outline-variant rounded-xl p-8 cursor-pointer hover:bg-surface-container-high transition-colors">
                     <Upload size={24} className="text-on-surface-variant mb-2" />
                     <span className="text-sm text-on-surface-variant">Upload QR Code image</span>
                   </div>
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="upi-id">UPI ID</Label>
-                  <Input id="upi-id" placeholder="owner@upi" value={form.upiId} onChange={e => setForm(f => ({ ...f, upiId: e.target.value }))} />
+                  <SuperadminLabel htmlFor="upi-id">UPI ID</SuperadminLabel>
+                  <SuperadminInput id="upi-id" placeholder="owner@upi" value={form.upiId} onChange={e => setForm(f => ({ ...f, upiId: e.target.value }))} />
                 </div>
                 <div className="space-y-3">
-                  <Label>Accepted Payment Modes</Label>
+                  <SuperadminLabel>Accepted Payment Modes</SuperadminLabel>
                   {[
                     { key: 'acceptCash', label: '💵 Cash' },
                     { key: 'acceptUpi', label: '📱 UPI' },
@@ -264,24 +264,24 @@ export default function SettingsPage() {
                 </div>
               </CardContent>
               <CardFooter>
-                <Button id="save-upi-btn" onClick={handleSave} variant="primary">
+                <SuperadminButton id="save-upi-btn" onClick={handleSave} variant="primary">
                   <Save size={16} /> {saved ? '✓ Saved!' : '💾 Save Settings'}
-                </Button>
+                </SuperadminButton>
               </CardFooter>
-            </Card>
+            </SuperadminCard>
           )}
 
           {active === 'notifications' && (
-            <Card>
+            <SuperadminCard>
               <CardHeader>
                 <CardTitle>Notifications</CardTitle>
                 <CardDescription>Configure SMS / WhatsApp API for automated alerts.</CardDescription>
               </CardHeader>
               <CardContent className="space-y-5">
                 <div className="space-y-2">
-                  <Label htmlFor="api-key">SMS / WhatsApp API Key</Label>
+                  <SuperadminLabel htmlFor="api-key">SMS / WhatsApp API Key</SuperadminLabel>
                   <div className="relative">
-                    <Input
+                    <SuperadminInput
                       id="api-key"
                       type={showApiKey ? 'text' : 'password'}
                       value={form.apiKey}
@@ -297,42 +297,42 @@ export default function SettingsPage() {
                     </button>
                   </div>
                 </div>
-                <Button id="test-connection-btn" variant="ghost">🔌 Test Connection</Button>
+                <SuperadminButton id="test-connection-btn" variant="ghost">🔌 Test Connection</SuperadminButton>
               </CardContent>
               <CardFooter>
-                <Button id="save-notifications-btn" onClick={handleSave} variant="primary">
+                <SuperadminButton id="save-notifications-btn" onClick={handleSave} variant="primary">
                   <Save size={16} /> {saved ? '✓ Saved!' : '💾 Save Settings'}
-                </Button>
+                </SuperadminButton>
               </CardFooter>
-            </Card>
+            </SuperadminCard>
           )}
 
           {active === 'general' && (
-            <Card>
+            <SuperadminCard>
               <CardHeader>
                 <CardTitle>General</CardTitle>
                 <CardDescription>Basic library configuration.</CardDescription>
               </CardHeader>
               <CardContent className="space-y-5">
                 <div className="space-y-2">
-                  <Label htmlFor="library-name">Library Name</Label>
-                  <Input id="library-name" defaultValue="Smart Library 360" />
+                  <SuperadminLabel htmlFor="library-name">Library Name</SuperadminLabel>
+                  <SuperadminInput id="library-name" defaultValue="Smart Library 360" />
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="library-timezone">Timezone</Label>
-                  <Input id="library-timezone" defaultValue="Asia/Kolkata (IST)" />
+                  <SuperadminLabel htmlFor="library-timezone">Timezone</SuperadminLabel>
+                  <SuperadminInput id="library-timezone" defaultValue="Asia/Kolkata (IST)" />
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="library-currency">Currency</Label>
-                  <Input id="library-currency" defaultValue="INR (₹)" />
+                  <SuperadminLabel htmlFor="library-currency">Currency</SuperadminLabel>
+                  <SuperadminInput id="library-currency" defaultValue="INR (₹)" />
                 </div>
               </CardContent>
               <CardFooter>
-                <Button id="save-general-btn" onClick={handleSave} variant="primary">
+                <SuperadminButton id="save-general-btn" onClick={handleSave} variant="primary">
                   <Save size={16} /> {saved ? '✓ Saved!' : '💾 Save Settings'}
-                </Button>
+                </SuperadminButton>
               </CardFooter>
-            </Card>
+            </SuperadminCard>
           )}
         </div>
       </div>

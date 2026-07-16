@@ -19,7 +19,7 @@ import {
   Edit2,
   AlertTriangle,
 } from 'lucide-react';
-import { CRM_CONSTANTS as data } from '@/app/superadmin/superadmin_crm/crm_constants';
+import { CRM_CONSTANTS as data } from '@/app/superadmin/superadmin_crm/superadmin_crm_constants';
 import {
   type Enquiry,
   type EnquiryStatus,
@@ -27,13 +27,13 @@ import {
   STATUS_BADGE,
   maskPhone,
   getInitials,
-} from '@/app/superadmin/superadmin_crm/superadmin_crm_shared_components/types';
+} from '@/app/superadmin/superadmin_crm/superadmin_crm_shared_components/superadmin_types';
 import {
   followUpSchema,
   type FollowUpFormData,
   markLostSchema,
   type MarkLostFormData,
-} from '@/app/superadmin/superadmin_crm/superadmin_crm_shared_components/schema';
+} from '@/app/superadmin/superadmin_crm/superadmin_crm_shared_components/superadmin_schema';
 
 /* ── Status Select options ─────────────────────────────── */
 const STATUS_OPTIONS: EnquiryStatus[] = ['New', 'Visited', 'Interested', 'Converted', 'Lost'];
@@ -69,7 +69,7 @@ function MarkLostModal({ onConfirm, onCancel, isSubmitting }: MarkLostModalProps
         role="dialog"
         aria-label="Mark enquiry as lost"
         aria-modal="true"
-        onClick={(e) => e.stopPropagation()}
+        onClick={(e: any) => e.stopPropagation()}
       >
         {/* Icon + title */}
         <div className="crm-modal-header">
@@ -477,7 +477,7 @@ export default function EnquiryDetailPage({
                   <select
                     className="crm-select"
                     value={currentStatus}
-                    onChange={(e) => setCurrentStatus(e.target.value as EnquiryStatus)}
+                    onChange={(e: any) => setCurrentStatus(e.target.value as EnquiryStatus)}
                   >
                     {STATUS_OPTIONS.map((s: any) => (
                       <option key={s} value={s}>{s}</option>

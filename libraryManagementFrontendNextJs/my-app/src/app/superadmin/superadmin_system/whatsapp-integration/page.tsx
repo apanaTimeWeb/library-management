@@ -1,12 +1,12 @@
 'use client';
 import { useState } from 'react';
-import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/Card';
-import { Button } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/Button';
-import { Badge } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/Badge';
-import { Input } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/Input';
-import { Label } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/Label';
-import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/Select';
-import { KpiCard } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/KpiCard';
+import { SuperadminCard, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminCard';
+import { SuperadminButton } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminButton';
+import { SuperadminBadge } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminBadge';
+import { SuperadminInput } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminInput';
+import { SuperadminLabel } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminLabel';
+import { SuperadminSelect, SelectTrigger, SelectValue, SelectContent, SelectItem } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminSelect';
+import { SuperadminKpiCard } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminKpiCard';
 import {
   MessageSquare, ChevronRight, Eye, EyeOff, Copy, CheckCircle,
   XCircle, Phone, Zap, BarChart3, Clock, Loader2
@@ -115,9 +115,9 @@ export default function WhatsAppIntegrationPage() {
                testStatus === 'testing'? 'Testing connection...' :
                'WhatsApp Not Tested'}
             </p>
-            <Badge variant={testStatus === 'success' ? 'success' : testStatus === 'error' ? 'danger' : 'outline'}>
+            <SuperadminBadge variant={testStatus === 'success' ? 'success' : testStatus === 'error' ? 'danger' : 'outline'}>
               {testStatus === 'success' ? 'Connected' : testStatus === 'error' ? 'Disconnected' : 'Unknown'}
-            </Badge>
+            </SuperadminBadge>
           </div>
           <p className="text-xs text-on-surface-variant mt-0.5">
             {testStatus === 'success'
@@ -136,15 +136,15 @@ export default function WhatsAppIntegrationPage() {
 
       {/* Usage Stats */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-5 mb-8">
-        <KpiCard title="Sent This Month"  value={MESSAGE_LOGS.length} icon="📤"  subtitle="All messages"      />
-        <KpiCard title="Delivered"        value={deliveredCount}      icon="✅"  trend="up" trendLabel={`${deliveryRate}% rate`} />
-        <KpiCard title="Failed"           value={failedCount}         icon="❌"  trend={failedCount > 0 ? 'down' : 'neutral'} trendLabel="Failed deliveries" />
-        <KpiCard title="Est. Cost"        value="₹18.50"              icon="💸"  subtitle="~₹0.18 per msg"   />
+        <SuperadminKpiCard title="Sent This Month"  value={MESSAGE_LOGS.length} icon="📤"  subtitle="All messages"      />
+        <SuperadminKpiCard title="Delivered"        value={deliveredCount}      icon="✅"  trend="up" trendLabel={`${deliveryRate}% rate`} />
+        <SuperadminKpiCard title="Failed"           value={failedCount}         icon="❌"  trend={failedCount > 0 ? 'down' : 'neutral'} trendLabel="Failed deliveries" />
+        <SuperadminKpiCard title="Est. Cost"        value="₹18.50"              icon="💸"  subtitle="~₹0.18 per msg"   />
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
         {/* Integration Config Card */}
-        <Card>
+        <SuperadminCard>
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Zap size={18} className="text-primary" /> API Configuration
@@ -154,7 +154,7 @@ export default function WhatsAppIntegrationPage() {
           <CardContent className="space-y-5">
             {/* Provider selector */}
             <div className="space-y-2">
-              <Label>API Provider</Label>
+              <SuperadminLabel>API Provider</SuperadminLabel>
               <div className="grid grid-cols-2 gap-2">
                 {PROVIDERS.map((p: any) => (
                   <button
@@ -177,9 +177,9 @@ export default function WhatsAppIntegrationPage() {
 
             {/* API Key */}
             <div className="space-y-2">
-              <Label htmlFor="whatsapp-api-key">API Key</Label>
+              <SuperadminLabel htmlFor="whatsapp-api-key">API Key</SuperadminLabel>
               <div className="relative">
-                <Input
+                <SuperadminInput
                   id="whatsapp-api-key"
                   type={showApiKey ? 'text' : 'password'}
                   value={apiKey}
@@ -200,9 +200,9 @@ export default function WhatsAppIntegrationPage() {
             {/* API Secret (conditional) */}
             {selectedProvider.requiresSecret && (
               <div className="space-y-2">
-                <Label htmlFor="whatsapp-api-secret">API Secret</Label>
+                <SuperadminLabel htmlFor="whatsapp-api-secret">API Secret</SuperadminLabel>
                 <div className="relative">
-                  <Input
+                  <SuperadminInput
                     id="whatsapp-api-secret"
                     type={showSecret ? 'text' : 'password'}
                     value={apiSecret}
@@ -223,10 +223,10 @@ export default function WhatsAppIntegrationPage() {
 
             {/* Sender Phone */}
             <div className="space-y-2">
-              <Label htmlFor="sender-phone">Sender WhatsApp Number</Label>
+              <SuperadminLabel htmlFor="sender-phone">Sender WhatsApp Number</SuperadminLabel>
               <div className="relative">
                 <Phone size={15} className="absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant" />
-                <Input
+                <SuperadminInput
                   id="sender-phone"
                   type="tel"
                   value={senderPhone}
@@ -240,25 +240,25 @@ export default function WhatsAppIntegrationPage() {
 
             {/* Webhook URL (read-only) */}
             <div className="space-y-2">
-              <Label>Inbound Webhook URL</Label>
+              <SuperadminLabel>Inbound Webhook URL</SuperadminLabel>
               <div className="flex items-center gap-2">
                 <div className="flex-1 px-3 py-2 rounded-lg bg-surface-container-highest border border-outline-variant text-xs font-mono text-on-surface-variant truncate">
                   {webhookUrl}
                 </div>
-                <Button
+                <SuperadminButton
                   id="copy-webhook-btn"
                   variant="ghost"
                   size="sm"
                   onClick={handleCopyWebhook}
                 >
                   {copiedUrl ? <CheckCircle size={14} className="text-green-400" /> : <Copy size={14} />}
-                </Button>
+                </SuperadminButton>
               </div>
               <p className="text-xs text-on-surface-variant">Paste this URL in your provider's webhook settings to receive inbound messages.</p>
             </div>
           </CardContent>
           <CardFooter>
-            <Button
+            <SuperadminButton
               id="test-whatsapp-connection-btn"
               variant="ghost"
               onClick={handleTestConnection}
@@ -267,15 +267,15 @@ export default function WhatsAppIntegrationPage() {
               {testStatus === 'testing'
                 ? <><Loader2 size={16} className="animate-spin" /> Testing...</>
                 : '🔌 Test Connection'}
-            </Button>
-            <Button id="save-whatsapp-config-btn" variant="primary">
+            </SuperadminButton>
+            <SuperadminButton id="save-whatsapp-config-btn" variant="primary">
               💾 Save Configuration
-            </Button>
+            </SuperadminButton>
           </CardFooter>
-        </Card>
+        </SuperadminCard>
 
         {/* Trigger Events */}
-        <Card>
+        <SuperadminCard>
           <CardHeader>
             <CardTitle>Auto-Trigger Events</CardTitle>
             <CardDescription>Messages sent automatically when these events occur.</CardDescription>
@@ -297,19 +297,19 @@ export default function WhatsAppIntegrationPage() {
                     <p className="text-xs text-on-surface-variant">{event.desc}</p>
                   </div>
                   <div className="flex items-center gap-2 shrink-0">
-                    <Badge variant={event.enabled ? 'success' : 'outline'}>
+                    <SuperadminBadge variant={event.enabled ? 'success' : 'outline'}>
                       {event.enabled ? 'ON' : 'OFF'}
-                    </Badge>
+                    </SuperadminBadge>
                   </div>
                 </div>
               ))}
             </div>
           </CardContent>
-        </Card>
+        </SuperadminCard>
       </div>
 
       {/* Message Logs */}
-      <Card>
+      <SuperadminCard>
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <BarChart3 size={18} className="text-primary" /> Recent Message Logs
@@ -342,9 +342,9 @@ export default function WhatsAppIntegrationPage() {
                         </code>
                       </td>
                       <td className="py-3 pr-4">
-                        <Badge variant={cfg.variant}>
+                        <SuperadminBadge variant={cfg.variant}>
                           <Icon size={10} /> {log.status}
-                        </Badge>
+                        </SuperadminBadge>
                       </td>
                       <td className="py-3 text-xs text-on-surface-variant">{log.sentAt}</td>
                     </tr>
@@ -354,7 +354,7 @@ export default function WhatsAppIntegrationPage() {
             </table>
           </div>
         </CardContent>
-      </Card>
+      </SuperadminCard>
     </div>
   );
 }

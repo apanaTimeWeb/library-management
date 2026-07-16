@@ -1,6 +1,6 @@
 'use client';
 import React, { useState } from 'react';
-import { useSuperadminSubscriptions } from '@/app/superadmin/superadmin_subscriptions/superadmin_subscriptions_hooks/useSuperadminSubscriptions';
+import { useSuperadminSubscriptions } from '@/app/superadmin/superadmin_subscriptions/superadmin_subscriptions_hooks/superadmin_useSuperadminSubscriptions';
 import { SuperadminSubscriptionsHeader } from '@/app/superadmin/superadmin_subscriptions/superadmin_subscriptions_components/SuperadminSubscriptionsHeader';
 import { SuperadminSubscriptionsKpiGrid } from '@/app/superadmin/superadmin_subscriptions/superadmin_subscriptions_components/SuperadminSubscriptionsKpiGrid';
 import { SuperadminSubscriptionsGrid } from '@/app/superadmin/superadmin_subscriptions/superadmin_subscriptions_components/SuperadminSubscriptionsGrid';

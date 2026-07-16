@@ -1,8 +1,8 @@
 'use client';
 import { useState } from 'react';
-import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/Card';
-import { Button } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/Button';
-import { Badge } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/Badge';
+import { SuperadminCard, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminCard';
+import { SuperadminButton } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminButton';
+import { SuperadminBadge } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminBadge';
 import { Download, FileSpreadsheet, Database, Users, CreditCard, CalendarDays, ChevronRight, CheckCircle, Loader2 } from 'lucide-react';
 
 interface ExportModule {
@@ -90,7 +90,7 @@ export default function DataExportPage() {
         <h2 className="text-base font-semibold text-on-surface mb-3">⚡ Quick Exports</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {QUICK_EXPORTS.map((qe: any) => (
-            <Card key={qe.id} className="hover:border-primary/40 transition-colors cursor-pointer group">
+            <SuperadminCard key={qe.id} className="hover:border-primary/40 transition-colors cursor-pointer group">
               <CardContent className="flex items-start gap-3 py-4">
                 <div className="h-10 w-10 rounded-xl bg-primary/10 text-primary flex items-center justify-center shrink-0 group-hover:bg-primary/20 transition-colors">
                   {qe.icon}
@@ -99,7 +99,7 @@ export default function DataExportPage() {
                   <p className="text-sm font-semibold text-on-surface">{qe.label}</p>
                   <p className="text-xs text-on-surface-variant mt-0.5 leading-snug">{qe.description}</p>
                   <div className="flex items-center gap-2 mt-2">
-                    <Badge variant="outline">{qe.format}</Badge>
+                    <SuperadminBadge variant="outline">{qe.format}</SuperadminBadge>
                     <button
                       id={`quick-export-${qe.id}`}
                       onClick={() => handleExport(qe.id)}
@@ -115,13 +115,13 @@ export default function DataExportPage() {
                   </div>
                 </div>
               </CardContent>
-            </Card>
+            </SuperadminCard>
           ))}
         </div>
       </div>
 
       {/* Custom Export Builder */}
-      <Card>
+      <SuperadminCard>
         <CardHeader>
           <div className="flex items-center justify-between">
             <div>
@@ -166,7 +166,7 @@ export default function DataExportPage() {
                     </div>
                     <p className="text-xs text-on-surface-variant mt-0.5 leading-snug">{mod.description}</p>
                     <div className="flex gap-1 mt-1.5">
-                      {mod.formats.map((f: any) => <Badge key={f} variant="outline">{f}</Badge>)}
+                      {mod.formats.map((f: any) => <SuperadminBadge key={f} variant="outline">{f}</SuperadminBadge>)}
                     </div>
                   </div>
                 </div>
@@ -227,7 +227,7 @@ export default function DataExportPage() {
                 </p>
               )}
             </div>
-            <Button
+            <SuperadminButton
               id="export-data-btn"
               variant="primary"
               disabled={selected.size === 0 || exporting === 'bulk'}
@@ -238,10 +238,10 @@ export default function DataExportPage() {
                 : exported.has('bulk')
                 ? <><CheckCircle size={16} /> Downloaded!</>
                 : <><Download size={16} /> Export {selected.size > 0 ? `${selected.size} Module${selected.size > 1 ? 's' : ''}` : 'Data'}</>}
-            </Button>
+            </SuperadminButton>
           </div>
         </CardFooter>
-      </Card>
+      </SuperadminCard>
     </div>
   );
 }

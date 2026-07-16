@@ -1,7 +1,7 @@
 'use client';
 import { useState, useEffect } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
-import Sidebar from '@/app/superadmin/superadmin_dashboard/Sidebar';
+import Sidebar from '@/app/superadmin/superadmin_dashboard/SuperadminSidebar';
 import { SuperadminDashboardHeader as Header } from '@/app/superadmin/superadmin_dashboard/superadmin_dashboard_components/SuperadminDashboardHeader';
 import '@/app/superadmin/superadmin.css';
 import '@/app/superadmin/sa-components.css';

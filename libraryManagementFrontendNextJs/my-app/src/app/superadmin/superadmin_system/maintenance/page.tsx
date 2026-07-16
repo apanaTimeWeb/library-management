@@ -1,8 +1,8 @@
 'use client';
-import { KpiCard } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/KpiCard';
-import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/Card';
-import { Badge } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/Badge';
-import { Button } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/Button';
+import { SuperadminKpiCard } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminKpiCard';
+import { SuperadminCard, CardHeader, CardTitle, CardDescription, CardContent } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminCard';
+import { SuperadminBadge } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminBadge';
+import { SuperadminButton } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminButton';
 import { Wrench, Package, Lock, ChevronRight } from 'lucide-react';
 
 const SEATS = [
@@ -46,13 +46,13 @@ export default function MaintenancePage() {
 
       {/* Summary KPI Cards */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-        <KpiCard title="Seats Needing Attention" value={seatsNeedingAttention} icon="🪑" trend="down" trendLabel="Action required" />
-        <KpiCard title="Assets Overdue" value={assetsOverdue} icon="⚙️" trend="down" trendLabel="Service overdue" />
-        <KpiCard title="Locker Issues" value={lockerIssues} icon="🔒" trend="down" trendLabel="Reported issues" />
+        <SuperadminKpiCard title="Seats Needing Attention" value={seatsNeedingAttention} icon="🪑" trend="down" trendLabel="Action required" />
+        <SuperadminKpiCard title="Assets Overdue" value={assetsOverdue} icon="⚙️" trend="down" trendLabel="Service overdue" />
+        <SuperadminKpiCard title="Locker Issues" value={lockerIssues} icon="🔒" trend="down" trendLabel="Reported issues" />
       </div>
 
       {/* Section 1 — Seats */}
-      <Card className="mb-6">
+      <SuperadminCard className="mb-6">
         <CardHeader>
           <CardTitle className="flex items-center gap-2"><Wrench size={18} className="text-primary" /> Seats</CardTitle>
           <CardDescription>Seat maintenance status and last service log.</CardDescription>
@@ -74,7 +74,7 @@ export default function MaintenancePage() {
                   <tr key={seat.id} className="hover:bg-surface-container-high transition-colors">
                     <td className="py-3 pr-4 font-mono font-medium text-on-surface">{seat.id}</td>
                     <td className="py-3 pr-4">
-                      <Badge variant={seat.status === 'OK' ? 'success' : 'danger'}>{seat.status}</Badge>
+                      <SuperadminBadge variant={seat.status === 'OK' ? 'success' : 'danger'}>{seat.status}</SuperadminBadge>
                     </td>
                     <td className="py-3 pr-4 text-on-surface-variant">{seat.lastMaint}</td>
                     <td className="py-3 pr-4">
@@ -83,7 +83,7 @@ export default function MaintenancePage() {
                       </span>
                     </td>
                     <td className="py-3">
-                      <Button id={`log-seat-maint-${seat.id}`} variant="ghost" size="sm">🔧 Log Maintenance</Button>
+                      <SuperadminButton id={`log-seat-maint-${seat.id}`} variant="ghost" size="sm">🔧 Log Maintenance</SuperadminButton>
                     </td>
                   </tr>
                 ))}
@@ -91,10 +91,10 @@ export default function MaintenancePage() {
             </table>
           </div>
         </CardContent>
-      </Card>
+      </SuperadminCard>
 
       {/* Section 2 — Assets */}
-      <Card className="mb-6">
+      <SuperadminCard className="mb-6">
         <CardHeader>
           <CardTitle className="flex items-center gap-2"><Package size={18} className="text-primary" /> Assets</CardTitle>
           <CardDescription>Equipment and inventory maintenance tracking.</CardDescription>
@@ -119,21 +119,21 @@ export default function MaintenancePage() {
                     <td className="py-3 pr-4 font-medium text-on-surface">{asset.name}</td>
                     <td className="py-3 pr-4 text-center text-on-surface-variant">{asset.qty}</td>
                     <td className="py-3 pr-4">
-                      <Badge variant={asset.status === 'OK' ? 'success' : asset.status === 'Due Soon' ? 'warning' : 'danger'}>
+                      <SuperadminBadge variant={asset.status === 'OK' ? 'success' : asset.status === 'Due Soon' ? 'warning' : 'danger'}>
                         {asset.status}
-                      </Badge>
+                      </SuperadminBadge>
                     </td>
                     <td className="py-3 pr-4 text-on-surface-variant">{asset.lastServiced}</td>
                     <td className="py-3 pr-4 text-on-surface-variant">{asset.nextDue}</td>
                     <td className="py-3 pr-4">
                       {asset.daysOverdue > 0 ? (
-                        <Badge variant="danger">+{asset.daysOverdue}d overdue</Badge>
+                        <SuperadminBadge variant="danger">+{asset.daysOverdue}d overdue</SuperadminBadge>
                       ) : (
                         <span className="text-on-surface-variant text-xs">{Math.abs(asset.daysOverdue)}d left</span>
                       )}
                     </td>
                     <td className="py-3">
-                      <Button id={`log-asset-service-${asset.name}`} variant="ghost" size="sm">📝 Log Service</Button>
+                      <SuperadminButton id={`log-asset-service-${asset.name}`} variant="ghost" size="sm">📝 Log Service</SuperadminButton>
                     </td>
                   </tr>
                 ))}
@@ -141,10 +141,10 @@ export default function MaintenancePage() {
             </table>
           </div>
         </CardContent>
-      </Card>
+      </SuperadminCard>
 
       {/* Section 3 — Lockers */}
-      <Card>
+      <SuperadminCard>
         <CardHeader>
           <CardTitle className="flex items-center gap-2"><Lock size={18} className="text-primary" /> Lockers</CardTitle>
           <CardDescription>Locker issue reports and status updates.</CardDescription>
@@ -165,11 +165,11 @@ export default function MaintenancePage() {
                   <tr key={locker.id} className="hover:bg-surface-container-high transition-colors">
                     <td className="py-3 pr-4 font-mono font-medium text-on-surface">{locker.id}</td>
                     <td className="py-3 pr-4">
-                      <Badge variant={locker.status === 'OK' ? 'success' : 'danger'}>{locker.status}</Badge>
+                      <SuperadminBadge variant={locker.status === 'OK' ? 'success' : 'danger'}>{locker.status}</SuperadminBadge>
                     </td>
                     <td className="py-3 pr-4 text-on-surface-variant">{locker.lastIssue}</td>
                     <td className="py-3">
-                      <Button id={`update-locker-${locker.id}`} variant="ghost" size="sm">✏️ Update Status</Button>
+                      <SuperadminButton id={`update-locker-${locker.id}`} variant="ghost" size="sm">✏️ Update Status</SuperadminButton>
                     </td>
                   </tr>
                 ))}
@@ -177,7 +177,7 @@ export default function MaintenancePage() {
             </table>
           </div>
         </CardContent>
-      </Card>
+      </SuperadminCard>
     </div>
   );
 }

@@ -138,7 +138,7 @@ export default function WhatsappTemplatesPage() {
             <label className="eng-label">Insert Variable</label>
             <div className="eng-tpl-var-row">
               {VARS.map((v: any) => (
-                <button key={v} onClick={() => insertVar(v)} className="eng-var-chip">{v}</button>
+                <button key={v} onClick={() => insertVar(v: any)} className="eng-var-chip">{v}</button>
               ))}
             </div>
           </div>

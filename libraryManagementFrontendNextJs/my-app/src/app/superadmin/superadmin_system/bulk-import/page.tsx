@@ -1,8 +1,8 @@
 'use client';
 import { useState, useRef } from 'react';
-import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/Card';
-import { Button } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/Button';
-import { Badge } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/Badge';
+import { SuperadminCard, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminCard';
+import { SuperadminButton } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminButton';
+import { SuperadminBadge } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminBadge';
 import { Upload, FileSpreadsheet, ChevronRight, CheckCircle, XCircle, AlertTriangle, Download, RefreshCw } from 'lucide-react';
 
 type RowStatus = 'ok' | 'error' | 'warning';
@@ -107,9 +107,9 @@ export default function BulkImportPage() {
               Upload an Excel or CSV file to import up to 500 students at once. System validates every row before import.
             </p>
           </div>
-          <Button id="download-template-btn" variant="ghost" onClick={downloadTemplate}>
+          <SuperadminButton id="download-template-btn" variant="ghost" onClick={downloadTemplate}>
             <Download size={16} /> Download Template
-          </Button>
+          </SuperadminButton>
         </div>
       </div>
 
@@ -150,7 +150,7 @@ export default function BulkImportPage() {
       {/* ── STEP 1: UPLOAD ── */}
       {step === 'upload' && (
         <div className="space-y-5">
-          <Card>
+          <SuperadminCard>
             <CardHeader>
               <CardTitle>Upload Your File</CardTitle>
               <CardDescription>Accepted formats: .xlsx, .xls, .csv — Maximum 500 rows, 5MB</CardDescription>
@@ -193,10 +193,10 @@ export default function BulkImportPage() {
                 onChange={e => { if (e.target.files?.[0]) handleFileSelect(e.target.files[0].name); }}
               />
             </CardContent>
-          </Card>
+          </SuperadminCard>
 
           {/* Instructions */}
-          <Card>
+          <SuperadminCard>
             <CardHeader>
               <CardTitle>File Format Instructions</CardTitle>
               <CardDescription>Make sure your file follows this column structure.</CardDescription>
@@ -226,8 +226,8 @@ export default function BulkImportPage() {
                         <td className="py-2.5 pr-4 font-medium text-on-surface">{col as string}</td>
                         <td className="py-2.5 pr-4">
                           {req
-                            ? <Badge variant="danger">Required</Badge>
-                            : <Badge variant="outline">Optional</Badge>}
+                            ? <SuperadminBadge variant="danger">Required</SuperadminBadge>
+                            : <SuperadminBadge variant="outline">Optional</SuperadminBadge>}
                         </td>
                         <td className="py-2.5 text-on-surface-variant text-xs">{ex as string}</td>
                       </tr>
@@ -236,7 +236,7 @@ export default function BulkImportPage() {
                 </table>
               </div>
             </CardContent>
-          </Card>
+          </SuperadminCard>
         </div>
       )}
 
@@ -274,7 +274,7 @@ export default function BulkImportPage() {
           )}
 
           {/* Preview Table */}
-          <Card>
+          <SuperadminCard>
             <CardHeader>
               <div className="flex items-center justify-between">
                 <div>
@@ -333,9 +333,9 @@ export default function BulkImportPage() {
                           <td className="py-3 pr-3 text-on-surface">{row.shift}</td>
                           <td className="py-3 pr-3 font-mono text-xs text-on-surface">{row.seat || <span className="text-on-surface-variant/40 text-xs">auto</span>}</td>
                           <td className="py-3 pr-3">
-                            <Badge variant={cfg.variant}>
+                            <SuperadminBadge variant={cfg.variant}>
                               <Icon size={10} /> {cfg.label}
-                            </Badge>
+                            </SuperadminBadge>
                           </td>
                           <td className="py-3 text-xs text-on-surface-variant">{row.issue || '—'}</td>
                         </tr>
@@ -346,20 +346,20 @@ export default function BulkImportPage() {
               </div>
             </CardContent>
             <CardFooter>
-              <Button id="start-import-btn" variant="primary" onClick={handleImport}>
+              <SuperadminButton id="start-import-btn" variant="primary" onClick={handleImport}>
                 <Upload size={16} /> Import {okCount} Valid Rows
-              </Button>
-              <Button id="reupload-btn" variant="ghost" onClick={handleReset}>
+              </SuperadminButton>
+              <SuperadminButton id="reupload-btn" variant="ghost" onClick={handleReset}>
                 <RefreshCw size={16} /> Re-upload File
-              </Button>
+              </SuperadminButton>
             </CardFooter>
-          </Card>
+          </SuperadminCard>
         </div>
       )}
 
       {/* ── STEP 3: IMPORTING ── */}
       {step === 'importing' && (
-        <Card>
+        <SuperadminCard>
           <CardContent className="py-16 flex flex-col items-center gap-6 text-center">
             <div className="text-5xl animate-bounce">⏳</div>
             <div>
@@ -382,12 +382,12 @@ export default function BulkImportPage() {
               </p>
             </div>
           </CardContent>
-        </Card>
+        </SuperadminCard>
       )}
 
       {/* ── STEP 4: DONE ── */}
       {step === 'done' && (
-        <Card>
+        <SuperadminCard>
           <CardContent className="py-16 flex flex-col items-center gap-6 text-center">
             <div className="h-24 w-24 rounded-full bg-green-500/15 flex items-center justify-center text-5xl">
               🎉
@@ -404,15 +404,15 @@ export default function BulkImportPage() {
               )}
             </div>
             <div className="flex gap-3">
-              <Button id="view-students-btn" variant="primary">
+              <SuperadminButton id="view-students-btn" variant="primary">
                 👥 View All Students
-              </Button>
-              <Button id="import-again-btn" variant="ghost" onClick={handleReset}>
+              </SuperadminButton>
+              <SuperadminButton id="import-again-btn" variant="ghost" onClick={handleReset}>
                 <Upload size={16} /> Import Another File
-              </Button>
+              </SuperadminButton>
             </div>
           </CardContent>
-        </Card>
+        </SuperadminCard>
       )}
     </div>
   );

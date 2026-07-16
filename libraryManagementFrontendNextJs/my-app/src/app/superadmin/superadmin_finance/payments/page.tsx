@@ -7,7 +7,7 @@ import { AgGridReact } from 'ag-grid-react';
 import { AllCommunityModule, ModuleRegistry, themeQuartz } from 'ag-grid-community';
 
 import toast from 'react-hot-toast';
-import { formatCurrency, formatDate } from '@/app/superadmin/superadmin_finance/superadmin_finance_utils/format';
+import { formatCurrency, formatDate } from '@/app/superadmin/superadmin_finance/superadmin_finance_utils/superadmin_format';
 import { Receipt, Trash2, FileText } from 'lucide-react';
 
 ModuleRegistry.registerModules([AllCommunityModule]);
@@ -44,7 +44,7 @@ const MODE_BADGE: Record<string, string> = {
   bank: 'fin-badge fin-badge--bank',
 };
 
-import { gridTheme } from '@/app/superadmin/superadmin_finance/superadmin_finance_shared_components/gridTheme';
+import { gridTheme } from '@/app/superadmin/superadmin_finance/superadmin_finance_shared_components/superadmin_gridTheme';
 export default function Payments() {
   const router = useRouter();
   const [modeFilter, setModeFilter] = useState('all');
@@ -214,7 +214,7 @@ export default function Payments() {
       </div>
 
       <div className="fin-filter-bar">
-        <select className="fin-select w-40" value={modeFilter} onChange={(e) => setModeFilter(e.target.value)}>
+        <select className="fin-select w-40" value={modeFilter} onChange={(e: any) => setModeFilter(e.target.value)}>
           <option value="all">All Modes</option>
           <option value="cash">Cash</option>
           <option value="upi">UPI</option>
@@ -224,7 +224,7 @@ export default function Payments() {
         <div className="flex items-center gap-2">
           <button
             className={`fin-switch ${showDeleted ? 'fin-switch--on' : 'fin-switch--off'}`}
-            onClick={() => setShowDeleted((v) => !v)}
+            onClick={() => setShowDeleted((v: any) => !v)}
             type="button"
           >
             <span className="fin-switch__thumb" />
@@ -264,7 +264,7 @@ export default function Payments() {
               <textarea
                 className="fin-textarea"
                 value={deleteReason}
-                onChange={(e) => setDeleteReason(e.target.value)}
+                onChange={(e: any) => setDeleteReason(e.target.value)}
                 placeholder="Enter reason for deletion..."
                 rows={2}
               />

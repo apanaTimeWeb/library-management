@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 
 import toast from 'react-hot-toast';
-import { formatCurrency } from '@/app/superadmin/superadmin_finance/superadmin_finance_utils/format';
+import { formatCurrency } from '@/app/superadmin/superadmin_finance/superadmin_finance_utils/superadmin_format';
 import { CheckCircle, CalendarPlus, Eye } from 'lucide-react';
 
 const STATUS_BADGE: Record<string, string> = {
@@ -80,7 +80,7 @@ export default function PaymentPromises() {
       </div>
 
       <div className="fin-filter-bar">
-        <select className="fin-select w-40" value={statusFilter} onChange={(e) => setStatusFilter(e.target.value)}>
+        <select className="fin-select w-40" value={statusFilter} onChange={(e: any) => setStatusFilter(e.target.value)}>
           <option value="all">All Status</option>
           <option value="pending">Pending</option>
           <option value="fulfilled">Fulfilled</option>
@@ -185,11 +185,11 @@ export default function PaymentPromises() {
             <div className="space-y-4">
               <div>
                 <label className="fin-label">New Expected Date <span className="fin-text-danger">*</span></label>
-                <input type="date" className="fin-input" value={newDate} onChange={(e) => setNewDate(e.target.value)} />
+                <input type="date" className="fin-input" value={newDate} onChange={(e: any) => setNewDate(e.target.value)} />
               </div>
               <div>
                 <label className="fin-label">Reason <span className="fin-text-danger">*</span></label>
-                <textarea className="fin-textarea" value={extendReason} onChange={(e) => setExtendReason(e.target.value)} placeholder="Reason for extension..." rows={2} />
+                <textarea className="fin-textarea" value={extendReason} onChange={(e: any) => setExtendReason(e.target.value)} placeholder="Reason for extension..." rows={2} />
               </div>
               <div className="fin-badge fin-badge--warning w-full justify-center py-2">
                 ⚠️ This will decrease the student's Trust Score.

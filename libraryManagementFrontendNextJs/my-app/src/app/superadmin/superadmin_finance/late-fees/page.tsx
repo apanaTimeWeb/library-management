@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 
 import toast from 'react-hot-toast';
-import { formatCurrency } from '@/app/superadmin/superadmin_finance/superadmin_finance_utils/format';
+import { formatCurrency } from '@/app/superadmin/superadmin_finance/superadmin_finance_utils/superadmin_format';
 import { Settings, AlertTriangle, Save, MessageSquare } from 'lucide-react';
 import { openWhatsApp } from '@/lib/whatsappUtils';
 
@@ -111,12 +111,12 @@ export default function LateFees() {
           <div className="space-y-4">
             <div>
               <label className="fin-label">Grace Period (days)</label>
-              <input type="number" className="fin-input" value={graceDays} onChange={(e) => setGraceDays(e.target.value)} />
+              <input type="number" className="fin-input" value={graceDays} onChange={(e: any) => setGraceDays(e.target.value)} />
               <p className="fin-input-hint">Days after due date before penalties apply</p>
             </div>
             <div>
               <label className="fin-label">Penalty Per Day (₹)</label>
-              <input type="number" className="fin-input" value={penaltyRate} onChange={(e) => setPenaltyRate(e.target.value)} />
+              <input type="number" className="fin-input" value={penaltyRate} onChange={(e: any) => setPenaltyRate(e.target.value)} />
               <p className="fin-input-hint">Daily late fee amount after grace period</p>
             </div>
             <div className="flex gap-2">
