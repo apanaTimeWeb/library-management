@@ -8,21 +8,18 @@ import { SuperadminExpensesGrid } from '@/app/superadmin/superadmin_accounting/e
 import { SuperadminExpensesAddDialog } from '@/app/superadmin/superadmin_accounting/expenses/superadmin_expenses_components/SuperadminExpensesAddDialog';
 
 export function SuperadminExpensesClient() {
-  const { expenses, visibleExpenses, catFilter, setCatFilter, categories, handleAdd, handleDelete } = useSuperadminExpenses();
-  const [showAdd, setShowAdd] = useState(false);
-  const [toast, setToast] = useState('');
-
-  const showToast = (msg: string) => { setToast(msg); setTimeout(() => setToast(''), 2500); };
-
-  const onAddExpense = async (exp: any) => {
-    await handleAdd(exp);
-    showToast('✅ Expense recorded successfully');
-  };
-
-  const onDeleteExpense = async (id: number) => {
-    await handleDelete(id);
-    showToast('✅ Expense deleted');
-  };
+  const { 
+    expenses, 
+    visibleExpenses, 
+    catFilter, 
+    setCatFilter, 
+    categories, 
+    handleAdd, 
+    handleDelete,
+    showAdd,
+    setShowAdd,
+    toast
+  } = useSuperadminExpenses();
 
   return (
     <div className="relative p-2 sm:p-4">
@@ -36,14 +33,14 @@ export function SuperadminExpensesClient() {
         <SuperadminExpensesAddDialog 
           categories={categories} 
           onClose={() => setShowAdd(false)} 
-          onSave={onAddExpense} 
+          onSave={handleAdd} 
         />
       )}
 
       <SuperadminExpensesHeader onAddClick={() => setShowAdd(true)} />
       <SuperadminExpensesKpiGrid allExpenses={expenses} visibleExpenses={visibleExpenses} />
       <SuperadminExpensesFilterBar categories={categories} catFilter={catFilter} setCatFilter={setCatFilter} />
-      <SuperadminExpensesGrid expenses={visibleExpenses} onDelete={onDeleteExpense} />
+      <SuperadminExpensesGrid expenses={visibleExpenses} onDelete={handleDelete} />
     </div>
   );
 }

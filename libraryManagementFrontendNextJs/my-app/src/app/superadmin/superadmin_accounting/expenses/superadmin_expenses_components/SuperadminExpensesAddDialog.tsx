@@ -49,7 +49,7 @@ export function SuperadminExpensesAddDialog({ categories, onClose, onSave }: Pro
         <div className="p-5 border-b border-border bg-bg-page/50 flex items-center justify-between">
           <h2 className="text-lg font-bold text-text-primary">➕ Add Expense</h2>
           <button 
-            className="w-8 h-8 flex items-center justify-center rounded-[var(--radius-md)] text-text-secondary hover:text-danger hover:bg-[var(--danger-bg,rgba(248,113,113,0.1))] transition-colors"
+            className="w-8 h-8 flex items-center justify-center rounded-[var(--radius-md)] text-text-secondary hover:text-danger hover:bg-danger/10 transition-colors"
             onClick={onClose}
           >
             <X size={18} />
@@ -96,7 +96,7 @@ export function SuperadminExpensesAddDialog({ categories, onClose, onSave }: Pro
             Cancel
           </button>
           <button 
-            className="flex items-center gap-2 px-4 py-2 bg-success text-white text-sm font-bold rounded-[var(--radius-md)] hover:bg-[var(--success-hover,rgba(16,185,129,0.9))] transition-colors disabled:opacity-50 shadow-sm" 
+            className="flex items-center gap-2 px-4 py-2 bg-success text-white text-sm font-bold rounded-[var(--radius-md)] hover:bg-success/90 transition-colors disabled:opacity-50 shadow-sm" 
             onClick={handleSave}
             disabled={!isFormValid || saving}
           >

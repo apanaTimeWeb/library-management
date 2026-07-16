@@ -7,6 +7,14 @@ export function useSuperadminExpenses() {
   const [expenses, setExpenses] = useState<SuperadminExpense[]>(SUPERADMIN_EXPENSES_MOCK_DATA);
   const [catFilter, setCatFilter] = useState('all');
 
+  const [showAdd, setShowAdd] = useState(false);
+  const [toast, setToast] = useState('');
+
+  const showToast = (msg: string) => { 
+    setToast(msg); 
+    setTimeout(() => setToast(''), 2500); 
+  };
+
   const visibleExpenses = useMemo(() => {
     if (catFilter === 'all') return expenses;
     return expenses.filter(e => e.category === catFilter);
@@ -17,12 +25,14 @@ export function useSuperadminExpenses() {
     await new Promise(res => setTimeout(res, 800));
     const expWithId = { ...newExp, id: Date.now() };
     setExpenses(prev => [expWithId, ...prev]);
+    showToast('✅ Expense recorded successfully');
   };
 
   const handleDelete = async (id: number) => {
     // Simulate network delay
     await new Promise(res => setTimeout(res, 800));
     setExpenses(prev => prev.filter(e => e.id !== id));
+    showToast('✅ Expense deleted');
   };
 
   return {
@@ -33,5 +43,8 @@ export function useSuperadminExpenses() {
     categories: SUPERADMIN_EXPENSES_CATEGORIES,
     handleAdd,
     handleDelete,
+    showAdd,
+    setShowAdd,
+    toast,
   };
 }
