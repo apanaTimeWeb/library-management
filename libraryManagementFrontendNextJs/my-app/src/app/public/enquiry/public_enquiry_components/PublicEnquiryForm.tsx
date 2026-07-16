@@ -17,8 +17,8 @@ export function PublicEnquiryForm({ formMethods, onSubmit }: PublicEnquiryFormPr
   return (
     <>
       <div className="mb-6 text-center">
-        <h2 className="text-lg font-bold text-[var(--text-primary)]">Submit Your Enquiry</h2>
-        <p className="text-sm text-[var(--text-secondary)] mt-1">
+        <h2 className="text-lg font-bold text-text-primary">Submit Your Enquiry</h2>
+        <p className="text-sm text-text-secondary mt-1">
           Fill in your details and we&apos;ll contact you shortly to confirm your seat.
         </p>
       </div>
@@ -26,20 +26,20 @@ export function PublicEnquiryForm({ formMethods, onSubmit }: PublicEnquiryFormPr
       <form onSubmit={onSubmit} noValidate className="space-y-4">
         {/* Full Name */}
         <div>
-          <label htmlFor="enq-name" className="block text-xs font-semibold text-[var(--text-secondary)] mb-1 uppercase tracking-wider">
-            Your Full Name <span className="text-[var(--danger)]">*</span>
+          <label htmlFor="enq-name" className="block text-xs font-semibold text-text-secondary mb-1 uppercase tracking-wider">
+            Your Full Name <span className="text-danger">*</span>
           </label>
           <div className="relative">
-            <User size={15} className="absolute left-3 top-1/2 -translate-y-1/2 text-[var(--text-secondary)] pointer-events-none" />
+            <User size={15} className="absolute left-3 top-1/2 -translate-y-1/2 text-text-secondary pointer-events-none" />
             <input
               id="enq-name"
               type="text"
               placeholder="Your Full Name"
               {...register('name')}
-              className={`w-full bg-[var(--bg-input)] border ${errors.name ? 'border-[var(--danger)]' : 'border-[var(--border)]'} rounded-[var(--radius-md)] py-2 pl-9 pr-3 text-[var(--text-primary)] text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--primary)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--bg-page)] transition-all duration-200`}
+              className={`w-full bg-bg-input border ${errors.name ? 'border-danger' : 'border-border'} rounded-[var(--radius-md)] py-2 pl-9 pr-3 text-text-primary text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--primary)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--bg-page)] transition-all duration-200`}
             />
           </div>
-          {errors.name && <p className="text-[12px] text-[var(--danger)] mt-1">{errors.name.message}</p>}
+          {errors.name && <p className="text-[12px] text-danger mt-1">{errors.name.message}</p>}
         </div>
 
 
@@ -48,7 +48,7 @@ export function PublicEnquiryForm({ formMethods, onSubmit }: PublicEnquiryFormPr
           id="submit-enquiry-btn"
           type="submit"
           disabled={isSubmitting}
-          className="w-full mt-4 flex items-center justify-center gap-2 bg-[var(--primary)] hover:bg-[var(--primary-hover)] text-white text-sm font-medium py-3 px-4 rounded-[var(--radius-md)] transition-all duration-200 disabled:opacity-70 disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--primary)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--bg-page)] active:scale-95"
+          className="w-full mt-4 flex items-center justify-center gap-2 bg-primary hover:bg-primary-hover text-white text-sm font-medium py-3 px-4 rounded-[var(--radius-md)] transition-all duration-200 disabled:opacity-70 disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--primary)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--bg-page)] active:scale-95"
         >
           {isSubmitting ? (
             <>
