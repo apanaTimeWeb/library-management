@@ -103,7 +103,7 @@ export default function AbsenteeReportPage() {
       headerName: 'Actions',
       width: 140,
       sortable: false,
-      cellRenderer: (params: any) => (
+      cellRenderer: (params: unknown) => (
         <div className="eng-row-actions h-full flex items-center">
           {params.data.notified ? (
             <span className="eng-badge eng-badge--success">✅ Notified</span>
@@ -229,8 +229,8 @@ export default function AbsenteeReportPage() {
                 resizable: true
               }}
               rowClassRules={{
-                'bg-[color-mix(in_srgb,var(--mgr-danger)_5%,transparent)]': (params: any) => params.data.daysAbsent >= 7,
-                'bg-[color-mix(in_srgb,var(--mgr-warning)_5%,transparent)]': (params: any) => params.data.daysAbsent >= 3 && params.data.daysAbsent < 7
+                'bg-[color-mix(in_srgb,var(--mgr-danger)_5%,transparent)]': (params: unknown) => params.data.daysAbsent >= 7,
+                'bg-[color-mix(in_srgb,var(--mgr-warning)_5%,transparent)]': (params: unknown) => params.data.daysAbsent >= 3 && params.data.daysAbsent < 7
               }}
             />
           </div>

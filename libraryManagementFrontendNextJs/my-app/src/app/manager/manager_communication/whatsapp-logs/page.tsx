@@ -79,7 +79,7 @@ export default function WhatsappLogsPage() {
       headerName: 'Actions',
       width: 100,
       sortable: false,
-      cellRenderer: (params: any) => (
+      cellRenderer: (params: unknown) => (
         <div className="h-full flex items-center">
           <button onClick={() => setViewLog(params.data)} className="eng-btn-icon hover:bg-mgr-primary hover:text-white transition-colors duration-200" title="View Message">
             <Eye size={16} />

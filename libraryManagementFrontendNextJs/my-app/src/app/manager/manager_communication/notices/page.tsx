@@ -27,7 +27,7 @@ export default function NoticesPage() {
 
   useEffect(() => {
     fetchApi('/communication/notices').then(data => {
-      const mapped = data.map((n: any) => ({
+      const mapped = data.map((n: unknown) => ({
         id: n.id,
         title: n.title,
         message: n.message,
@@ -90,7 +90,7 @@ export default function NoticesPage() {
       headerName: 'Actions',
       width: 140,
       sortable: false,
-      cellRenderer: (params: any) => (
+      cellRenderer: (params: unknown) => (
         <div className="h-full flex items-center gap-2">
           <button onClick={() => openEdit(params.data)} className="eng-btn-icon hover:bg-mgr-primary hover:text-white transition-colors duration-200" title="Edit"><Edit2 size={14} /></button>
           <button onClick={() => setBroadcastItem(params.data)} className="eng-btn-icon hover:bg-mgr-primary hover:text-white transition-colors duration-200" title="Broadcast"><Send size={14} /></button>

@@ -29,7 +29,7 @@ export default function DocumentVaultPage() {
       field: 'name', 
       headerName: 'File Name', 
       flex: 1,
-      cellRenderer: (params: any) => (
+      cellRenderer: (params: unknown) => (
         <div className="flex items-center gap-3 h-full">
           {getFileIcon(params.data.type)}
           <span className="mgr-cell-name font-medium">{params.value}</span>
