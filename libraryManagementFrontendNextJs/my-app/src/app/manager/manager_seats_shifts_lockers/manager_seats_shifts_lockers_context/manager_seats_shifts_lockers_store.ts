@@ -6,8 +6,8 @@ import type { SeatData, FetchState } from '@/app/manager/manager_seats_shifts_lo
 interface SeatsState {
   seatsData: SeatData[];
   lockerData: { uuid?: string; id: string; status: 'free' | 'occupied' | 'maintenance' }[];
-  allocationsData: any[];
-  seatHistoryData: any[];
+  allocationsData: unknown[];
+  seatHistoryData: unknown[];
   status: FetchState;
   error: string | null;
   fetchData: () => Promise<void>;
@@ -29,8 +29,7 @@ export const useSeatsStore = create<SeatsState>((set, get) => ({
     try {
       const { fetchSeatMatrix } = await import('../manager_seats_shifts_lockers_api/manager_seats_shifts_lockers_api');
       const data = await fetchSeatMatrix();
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const mapped = data.map((s: any) => ({
+      const mapped = (data as { id: string; seatNumber: string; isActive: boolean }[]).map((s) => ({
         uuid: s.id,
         id: s.seatNumber.replace('S-', ''),
         status: (s.isActive ? 'free' : 'maintenance') as 'free' | 'maintenance',
@@ -46,8 +45,7 @@ export const useSeatsStore = create<SeatsState>((set, get) => ({
     try {
       const { fetchLockerMatrix } = await import('../manager_seats_shifts_lockers_api/manager_seats_shifts_lockers_api');
       const data = await fetchLockerMatrix();
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const mapped = data.map((l: any) => ({
+      const mapped = (data as { id: string; lockerNumber: string; isActive: boolean }[]).map((l) => ({
         uuid: l.id,
         id: l.lockerNumber.replace('L-', ''),
         status: (l.isActive ? 'free' : 'maintenance') as 'free' | 'maintenance',

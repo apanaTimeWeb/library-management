@@ -72,7 +72,7 @@ export function AllocationsClient() {
     }
   }, [status, allocationsData.length, fetchAllocationsData]);
 
-  const filtered = allocationsData.filter((a: any) => {
+  const filtered = (allocationsData as Allocation[]).filter((a) => {
     const matchShift = shiftFilter === 'All Shifts' || a.shift === shiftFilter;
     const matchStatus = statusFilter === 'All Statuses' || a.status === statusFilter;
     const matchFrom = !dateFrom || a.validFrom >= dateFrom;

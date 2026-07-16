@@ -71,21 +71,21 @@ export default function NoticesPage() {
   };
 
   const colDefs = [
-    { field: 'title', headerName: 'Title', width: 220, cellRenderer: (p: any) => <span className="eng-td-bold text-[var(--mgr-text-primary)]">{p.value}</span> },
-    { field: 'message', headerName: 'Message', flex: 1, minWidth: 250, cellRenderer: (p: any) => <span className="eng-td-muted text-sm truncate block w-full pt-1" title={p.value}>{p.value}</span> },
+    { field: 'title', headerName: 'Title', width: 220, cellRenderer: (p: { value: string; data?: Record<string, unknown> }) => <span className="eng-td-bold text-[var(--mgr-text-primary)]">{p.value}</span> },
+    { field: 'message', headerName: 'Message', flex: 1, minWidth: 250, cellRenderer: (p: { value: string; data?: Record<string, unknown> }) => <span className="eng-td-muted text-sm truncate block w-full pt-1" title={p.value}>{p.value}</span> },
     { 
       field: 'status', 
       headerName: 'Status', 
       width: 120,
-      cellRenderer: (p: any) => (
+      cellRenderer: (p: { value: string; data?: Record<string, unknown> }) => (
         <span className={`eng-badge ${p.value === 'Active' ? 'eng-badge--success' : 'eng-badge--outline'} mt-2 inline-block`}>
           {p.value === 'Active' ? '✅ Active' : 'Expired'}
         </span>
       )
     },
-    { field: 'validTill', headerName: 'Valid Till', width: 130, cellRenderer: (p: any) => <span className="eng-td-mono text-sm">{p.value}</span> },
-    { field: 'postedBy', headerName: 'Posted By', width: 130, cellRenderer: (p: any) => <span className="eng-td-muted text-sm">{p.value}</span> },
-    { field: 'postedDate', headerName: 'Posted Date', width: 130, cellRenderer: (p: any) => <span className="eng-td-mono text-sm">{p.value}</span> },
+    { field: 'validTill', headerName: 'Valid Till', width: 130, cellRenderer: (p: { value: string; data?: Record<string, unknown> }) => <span className="eng-td-mono text-sm">{p.value}</span> },
+    { field: 'postedBy', headerName: 'Posted By', width: 130, cellRenderer: (p: { value: string; data?: Record<string, unknown> }) => <span className="eng-td-muted text-sm">{p.value}</span> },
+    { field: 'postedDate', headerName: 'Posted Date', width: 130, cellRenderer: (p: { value: string; data?: Record<string, unknown> }) => <span className="eng-td-mono text-sm">{p.value}</span> },
     {
       headerName: 'Actions',
       width: 140,

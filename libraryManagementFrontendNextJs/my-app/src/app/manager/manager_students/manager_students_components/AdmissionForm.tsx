@@ -112,7 +112,7 @@ export default function AdmissionForm() {
         ...data,
       };
 
-      const res = await createStudent(payload);
+      const res = await createStudent(payload) as { smartId?: string };
 
       const admitted: AdmittedData = {
         name:          data.fullName,
@@ -136,8 +136,8 @@ export default function AdmissionForm() {
 
       setAdmittedData(admitted);
       toast.success('🎉 Admission confirmed! ID Card ready.', { duration: 3000 });
-    } catch (err: any) {
-      toast.error(err.message || 'Failed to submit admission');
+    } catch (err: unknown) {
+      toast.error(err instanceof Error ? err.message : 'Failed to submit admission');
     }
   }
 

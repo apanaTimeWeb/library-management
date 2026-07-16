@@ -5,15 +5,16 @@ import Link from 'next/link';
 import { ArrowLeft, Phone, Armchair, Calendar, CreditCard, Shield } from 'lucide-react';
 import { calcExpiryDate, formatDateIN } from '@/lib/whatsappUtils';
 import { fetchStudentById } from '@/app/manager/manager_students/manager_students_api/manager_students_api';
+import type { Student } from '@/app/manager/manager_students/manager_students_types';
 
 export function StudentProfileClient({ id }: { id: string }) {
-  const [student, setStudent] = useState<any>(null);
+  const [student, setStudent] = useState<Student | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     fetchStudentById(id)
       .then(data => {
-        setStudent(data);
+        setStudent(data as Student);
         setLoading(false);
       })
       .catch(err => {

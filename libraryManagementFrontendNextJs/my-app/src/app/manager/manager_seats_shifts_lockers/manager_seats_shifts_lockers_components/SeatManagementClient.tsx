@@ -122,7 +122,7 @@ export function SeatManagementClient() {
     { field: 'lastMaintenance', headerName: 'LAST MAINTENANCE', flex: 1.5, cellClass: 'ss-cell-secondary' },
     {
       headerName: 'ACTIONS', flex: 1.5, sortable: false,
-      cellRenderer: (props: any) => {
+      cellRenderer: (props: { value: string; data?: unknown }) => {
         const data = props.data as Seat;
         return (
           <div className="ss-cell-actions">

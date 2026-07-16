@@ -156,6 +156,12 @@ function InfoItem({
   );
 }
 
+interface EnquiryDetail {
+  id: string; name: string; phone: string; email?: string; date?: string; status: string;
+  enquiryDate: string; preferredBranch: string; shift: string; handledBy: string; source: string; notes?: string; score?: number;
+  followUps: Record<string, unknown>[]; timeline?: Record<string, unknown>[]; isToday?: boolean; isUpcoming?: boolean; isOverdue?: boolean; avatar?: string;
+}
+
 /* ── Main Page ─────────────────────────────────────────── */
 export default function EnquiryDetailPage({
   params,
@@ -166,7 +172,7 @@ export default function EnquiryDetailPage({
   const router = useRouter();
 
   // ── Local state ──
-  const [enquiry, setEnquiry] = useState<any>(null);
+  const [enquiry, setEnquiry] = useState<EnquiryDetail | null>(null);
   const [loading, setLoading] = useState(true);
   const [currentStatus, setCurrentStatus] = useState<EnquiryStatus>('New');
   const [showLostModal, setShowLostModal] = useState(false);

@@ -120,10 +120,10 @@ export default function AdmissionSuccessModal({ data, onClose }: Props) {
                 { label: 'Valid Until', value: data.expiryDate },
                 { label: 'Paid',        value: `₹${data.amountPaid.toLocaleString('en-IN')}`, color: 'var(--success)' },
                 ...(balance > 0 ? [{ label: 'Balance Due', value: `₹${balance.toLocaleString('en-IN')}`, color: 'var(--danger)' }] : []),
-              ].map(r => (
-                <div key={r.label} className="mgr-success-info-row">
+              ].map((r, i) => (
+                <div key={i} className="mgr-success-info-row">
                   <span className="mgr-success-info-label">{r.label}</span>
-                  <span className="mgr-success-info-value" style={{ fontFamily: (r as any).mono ? 'monospace' : undefined, color: (r as any).color }}>
+                  <span className="mgr-success-info-value" style={{ fontFamily: (r as unknown as Record<string, string | boolean>).mono ? 'monospace' : undefined, color: (r as unknown as Record<string, string | boolean>).color as string }}>
                     {r.value}
                   </span>
                 </div>

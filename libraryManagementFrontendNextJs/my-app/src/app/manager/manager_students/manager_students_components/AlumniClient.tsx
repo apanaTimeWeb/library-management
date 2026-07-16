@@ -21,7 +21,7 @@ export function AlumniClient() {
     { field: 'id',   headerName: 'ID', width: 100 },
     {
       field: 'name', headerName: 'Alumni Name', flex: 1,
-      cellRenderer: (p: any) => (
+      cellRenderer: (p: { value: string; data?: { phone: string } }) => (
         <div className="flex items-center gap-3 py-2">
           <div className="mgr-avatar-sm">{p.value?.charAt(0)}</div>
           <div>
@@ -35,7 +35,7 @@ export function AlumniClient() {
     { field: 'exam',          headerName: 'Target Exam',    width: 140 },
     {
       field: 'currentStatus', headerName: 'Current Status', width: 200,
-      cellRenderer: (p: any) => {
+      cellRenderer: (p: { value: string; data?: unknown }) => {
         const isSelected = p.value?.includes('Selected');
         return (
           <span className={isSelected ? 'mgr-text-success' : 'mgr-text-secondary'} style={{ fontWeight: isSelected ? 600 : 400 }}>

@@ -47,7 +47,7 @@ export function SeatHistoryClient() {
     }
   }, [status, seatHistoryData.length, fetchSeatHistoryData]);
 
-  const filtered = seatHistoryData.filter((h: any) => {
+  const filtered = (seatHistoryData as SeatHistoryEntry[]).filter((h) => {
     const matchSeat = seatFilter === 'All Seats' || h.seatNo === seatFilter;
     const matchSearch = !search ||
       h.studentName.toLowerCase().includes(search.toLowerCase()) ||

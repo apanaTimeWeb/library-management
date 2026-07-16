@@ -8,6 +8,7 @@ import {
   LineChart, Line,
 } from 'recharts';
 import { AgGridReact } from 'ag-grid-react';
+import { type ColDef } from 'ag-grid-community';
 import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community';
 import { gridTheme } from '@/app/manager/manager_reusable/gridTheme';
 import { fetchApi } from '@/lib/api';
@@ -60,8 +61,22 @@ function PriorityCell({ value }: { value: string }) {
   return <span className={`mgr-badge ${cls}`}>{value}</span>;
 }
 
+interface ManagerReportsData {
+  kpiCards?: { title: string; value: string | number; icon: string; iconClass: string; trend?: string }[];
+  occupancyData?: { name: string; value: number }[];
+  growthData?: { date: string; joined: number; exited: number }[];
+  attendanceData?: { day: string; avg: number }[];
+  absenteesChartData?: { name: string; absences: number }[];
+  complaintsData?: { name: string; value: number }[];
+  absenteeRows?: Record<string, unknown>[];
+  conversionRows?: Record<string, unknown>[];
+  seatRows?: Record<string, unknown>[];
+  lockerRows?: Record<string, unknown>[];
+  maintenanceRows?: Record<string, unknown>[];
+}
+
 export default function ManagerReportsPage() {
-  const [data, setData] = useState<any>(null);
+  const [data, setData] = useState<ManagerReportsData | null>(null);
   const [loading, setLoading] = useState(true);
   const [dateRange, setDateRange] = useState('This Month');
 
@@ -71,7 +86,7 @@ export default function ManagerReportsPage() {
       .catch(err => { console.error(err); setLoading(false); });
   }, [dateRange]);
 
-  const absenteeCols = useMemo<any[]>(() => [
+  const absenteeCols = useMemo<ColDef[]>(() => [
     { field: 'name',        headerName: 'NAME',         flex: 2, sortable: true },
     { field: 'smartId',     headerName: 'SMART ID',     flex: 1, cellRenderer: SmartIdCell },
     { field: 'shift',       headerName: 'SHIFT',        flex: 1, sortable: true, cellRenderer: ShiftBadgeCell },
@@ -79,27 +94,27 @@ export default function ManagerReportsPage() {
     { field: 'lastPresent', headerName: 'LAST PRESENT', flex: 1, cellRenderer: LastPresentCell },
   ], []);
 
-  const conversionCols = useMemo<any[]>(() => [
+  const conversionCols = useMemo<ColDef[]>(() => [
     { field: 'month',     headerName: 'MONTH',         flex: 1, sortable: true },
     { field: 'newEnq',    headerName: 'NEW ENQUIRIES', flex: 1, sortable: true },
     { field: 'converted', headerName: 'CONVERTED',     flex: 1, sortable: true },
     { field: 'rate',      headerName: 'RATE',          flex: 1, cellRenderer: RateCell },
   ], []);
 
-  const seatCols = useMemo<any[]>(() => [
+  const seatCols = useMemo<ColDef[]>(() => [
     { field: 'shift',       headerName: 'SHIFT',        flex: 1, sortable: true, cellRenderer: ShiftPrimaryCell },
     { field: 'occupancy',   headerName: 'OCCUPANCY',    flex: 1, sortable: true },
     { field: 'avgDuration', headerName: 'AVG DURATION', flex: 1, cellRenderer: SecondaryCell },
   ], []);
 
-  const lockerCols = useMemo<any[]>(() => [
+  const lockerCols = useMemo<ColDef[]>(() => [
     { field: 'type',     headerName: 'TYPE',     flex: 1, sortable: true },
     { field: 'occupied', headerName: 'OCCUPIED', flex: 1, sortable: true },
     { field: 'total',    headerName: 'TOTAL',    flex: 1 },
     { field: 'pct',      headerName: '%',        flex: 1, cellRenderer: PctCell },
   ], []);
 
-  const maintenanceCols = useMemo<any[]>(() => [
+  const maintenanceCols = useMemo<ColDef[]>(() => [
     { field: 'item',     headerName: 'ITEM',     flex: 2, sortable: true },
     { field: 'location', headerName: 'LOCATION', flex: 2, cellRenderer: SecondaryCell },
     { field: 'reported', headerName: 'REPORTED', flex: 1, cellRenderer: SecondaryCell },
@@ -132,20 +147,6 @@ export default function ManagerReportsPage() {
         <div className="mgr-filter-item">
           <label className="mgr-label">Branch</label>
           <select className="mgr-select" disabled>
-            <option>Main Branch (read-only)</option>
-          </select>
-        </div>
-      </div>
-
-      {/* KPI Cards */}
-      <div className="mgr-kpi-grid mgr-section-gap">
-        {data.kpiCards?.map((kpi: any) => {
-          const Icon = iconMap[kpi.icon];
-          return (
-            <div key={kpi.title} className="mgr-kpi-card">
-              <div className="mgr-kpi-top-row">
-                <div className={`mgr-kpi-icon ${kpi.iconClass}`}>{Icon && <Icon size={18} />}</div>
-                {kpi.trend && <span className="mgr-trend-up">{kpi.trend}</span>}
               </div>
               <div>
                 <p className="mgr-kpi-label">{kpi.title}</p>
@@ -165,7 +166,7 @@ export default function ManagerReportsPage() {
             <PieChart>
               <Pie data={data.occupancyData} cx="50%" cy="50%" outerRadius={90} dataKey="value"
                 labelLine={false} label={({ name, percent }) => `${name}: ${((percent ?? 0) * 100).toFixed(0)}%`}>
-                {data.occupancyData?.map((_: any, i: number) => <Cell key={i} fill={PIE_OCCUPANCY[i % PIE_OCCUPANCY.length]} />)}
+                {data.occupancyData?.map((_: unknown, i: number) => <Cell key={i} fill={PIE_OCCUPANCY[i % PIE_OCCUPANCY.length]} />)}
               </Pie>
               <Tooltip {...TOOLTIP_STYLE} />
             </PieChart>
@@ -220,7 +221,7 @@ export default function ManagerReportsPage() {
               <Pie data={data.complaintsData} cx="50%" cy="50%" innerRadius={60} outerRadius={90}
                 dataKey="value" labelLine={false}
                 label={({ name, percent }) => `${name}: ${((percent ?? 0) * 100).toFixed(0)}%`}>
-                {data.complaintsData?.map((_: any, i: number) => <Cell key={i} fill={PIE_COMPLAINTS[i % PIE_COMPLAINTS.length]} />)}
+                {data.complaintsData?.map((_: unknown, i: number) => <Cell key={i} fill={PIE_COMPLAINTS[i % PIE_COMPLAINTS.length]} />)}
               </Pie>
               <Tooltip {...TOOLTIP_STYLE} />
             </PieChart>

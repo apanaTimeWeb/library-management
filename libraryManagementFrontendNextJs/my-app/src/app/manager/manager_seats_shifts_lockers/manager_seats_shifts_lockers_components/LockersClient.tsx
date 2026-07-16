@@ -114,7 +114,7 @@ export function LockersClient() {
     { field: 'assignedSince', headerName: 'SINCE', flex: 1.3, cellClass: 'ss-cell-secondary' },
     {
       headerName: 'ACTIONS', flex: 1.2, sortable: false,
-      cellRenderer: (props: any) => {
+      cellRenderer: (props: { value: string; data?: unknown }) => {
         const data = props.data as Locker;
         return (
           <div className="ss-cell-actions">

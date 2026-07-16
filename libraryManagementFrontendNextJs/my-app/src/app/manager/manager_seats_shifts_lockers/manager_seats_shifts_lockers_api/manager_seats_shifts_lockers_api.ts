@@ -1,7 +1,7 @@
 import { fetchApi } from '@/lib/api';
 
 // MOCK APIs for seats and lockers to prevent 500 errors
-export async function fetchSeatMatrix(): Promise<any[]> {
+export async function fetchSeatMatrix(): Promise<unknown[]> {
   return new Promise(resolve => setTimeout(() => resolve([
     { id: '1', seatNumber: 'S-01', isActive: true, shift: 'Morning' },
     { id: '2', seatNumber: 'S-02', isActive: false, shift: 'Evening' },
@@ -9,7 +9,7 @@ export async function fetchSeatMatrix(): Promise<any[]> {
   ]), 500));
 }
 
-export async function fetchLockerMatrix(): Promise<any[]> {
+export async function fetchLockerMatrix(): Promise<unknown[]> {
   return new Promise(resolve => setTimeout(() => resolve([
     { id: '1', lockerNumber: 'L-01', isActive: true },
     { id: '2', lockerNumber: 'L-02', isActive: false },
@@ -17,7 +17,7 @@ export async function fetchLockerMatrix(): Promise<any[]> {
   ]), 500));
 }
 
-export async function fetchAllocations(): Promise<any[]> {
+export async function fetchAllocations(): Promise<unknown[]> {
   return new Promise(resolve => setTimeout(() => resolve([
     { studentName: 'Alex Rivera', smartId: 'LIB-001', seatNo: 'S-02', shift: 'Morning', customSlots: '8AM–10AM, 5PM–8PM', lockerNo: 'A01', validFrom: '01 Oct 2024', validTill: '31 Oct 2024', daysLeft: 7, status: 'Active' },
     { studentName: 'Priya Sharma', smartId: 'LIB-002', seatNo: 'S-11', shift: 'Evening', customSlots: '—', lockerNo: '—', validFrom: '15 Sep 2024', validTill: '14 Oct 2024', daysLeft: 3, status: 'Active' },
@@ -28,7 +28,7 @@ export async function fetchAllocations(): Promise<any[]> {
   ]), 500));
 }
 
-export async function fetchSeatHistory(): Promise<any[]> {
+export async function fetchSeatHistory(): Promise<unknown[]> {
   return new Promise(resolve => setTimeout(() => resolve([
     { seatNo: 'S-12', studentName: 'Rahul Verma', smartId: 'LIB-088', shift: 'Morning', occupiedFrom: '01 Jan 2024', occupiedTill: '31 Mar 2024', duration: '90 days', reason: 'Admission' },
     { seatNo: 'S-12', studentName: 'Pooja Nair', smartId: 'LIB-045', shift: 'Morning', occupiedFrom: '01 Apr 2024', occupiedTill: '15 Jun 2024', duration: '75 days', reason: 'Seat Change' },

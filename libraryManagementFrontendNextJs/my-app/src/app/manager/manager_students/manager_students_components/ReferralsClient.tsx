@@ -20,20 +20,20 @@ export function ReferralsClient() {
   const colDefs: ColDef[] = [
     { field: 'id',       headerName: 'Ref ID',                    width: 110 },
     { field: 'referrer', headerName: 'Referrer (Existing)',        flex: 1,
-      cellRenderer: (p: any) => <span className="mgr-table-id">{p.value}</span> },
+      cellRenderer: (p: { value: string; data?: Record<string, unknown> }) => <span className="mgr-table-id">{p.value}</span> },
     { field: 'referred', headerName: 'Referred Student',           flex: 1,
-      cellRenderer: (p: any) => <span className="mgr-cell-name">{p.value}</span> },
+      cellRenderer: (p: { value: string; data?: Record<string, unknown> }) => <span className="mgr-cell-name">{p.value}</span> },
     { field: 'date',     headerName: 'Date',                       width: 130 },
     { field: 'bonus',    headerName: 'Bonus',                      width: 110, cellStyle: { fontWeight: 600 } },
     { field: 'method',   headerName: 'Payout Method',              width: 150 },
     { field: 'status',   headerName: 'Status',                     width: 130,
-      cellRenderer: (p: any) => {
+      cellRenderer: (p: { value: string; data?: Record<string, unknown> }) => {
         const cls = p.value === 'Claimed' ? 'mgr-badge--success' : p.value === 'Approved' ? 'mgr-badge--info' : 'mgr-badge--warning';
         return <span className={`mgr-badge ${cls}`}>{p.value}</span>;
       }
     },
     { headerName: 'Actions', width: 120, sortable: false,
-      cellRenderer: (p: any) => p.data?.status !== 'Claimed'
+      cellRenderer: (p: { value: string; data?: Record<string, unknown> }) => p.data?.status !== 'Claimed'
         ? <div className="flex gap-2 items-center h-full"><button className="mgr-btn-ghost mgr-btn-sm">Process</button></div>
         : null
     },

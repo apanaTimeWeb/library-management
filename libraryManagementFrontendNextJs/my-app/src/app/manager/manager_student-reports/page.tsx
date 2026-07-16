@@ -21,8 +21,22 @@ const TOOLTIP_STYLE = {
   },
 };
 
+interface ReportsData {
+  kpiCards?: { icon: string; color: string; title: string; value: string; trend?: string }[];
+  shiftOccupancyData?: { name: string; occupancy: number }[];
+  studentGrowthData?: { date: string; joined: number; exited: number }[];
+  attendanceTrendData?: { date: string; attendance: number }[];
+  topAbsenteesData?: { name: string; absent: number }[];
+  complaintStatusData?: { name: string; value: number }[];
+  absenteeReportData?: { id: string; name: string; absentDays: number; lastPresent: string }[];
+  enquiryConversionData?: { id: string; month: string; new: number; converted: number }[];
+  seatUtilizationData?: { id: string; shift: string; utilization: number; occupancy: number; total: number }[];
+  lockerUtilizationData?: { id: string; type: string; utilization: number; available: number }[];
+  maintenanceData?: { id: string; item: string; issue: string; reported: string; status: string }[];
+}
+
 export default function StudentReportsPage() {
-  const [data, setData] = useState<any>(null);
+  const [data, setData] = useState<ReportsData | null>(null);
   const [loading, setLoading] = useState(true);
   const [dateRange, setDateRange] = useState('This Month');
 
@@ -59,7 +73,7 @@ export default function StudentReportsPage() {
 
       {/* KPI Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-        {data.kpiCards?.map((kpi: any) => {
+        {data.kpiCards?.map((kpi) => {
           const Icon = iconMap[kpi.icon];
           return (
             <div key={kpi.title} className="mgr-kpi-card">
@@ -86,7 +100,7 @@ export default function StudentReportsPage() {
               <Pie data={data.shiftOccupancyData} cx="50%" cy="50%" labelLine={false}
                 outerRadius={80} dataKey="occupancy" nameKey="name"
                 label={({ name, percent }) => `${name}: ${((percent ?? 0) * 100).toFixed(0)}%`}>
-                {data.shiftOccupancyData?.map((_: any, i: number) => (
+                {data.shiftOccupancyData?.map((_, i: number) => (
                   <Cell key={i} fill={COLORS[i % COLORS.length]} />
                 ))}
               </Pie>
@@ -144,7 +158,7 @@ export default function StudentReportsPage() {
               <Pie data={data.complaintStatusData} cx="50%" cy="50%"
                 innerRadius={60} outerRadius={80} paddingAngle={5} dataKey="value" nameKey="name"
                 label={({ name, percent }) => `${name}: ${((percent ?? 0) * 100).toFixed(0)}%`}>
-                {data.complaintStatusData?.map((_: any, i: number) => (
+                {data.complaintStatusData?.map((_, i: number) => (
                   <Cell key={i} fill={i === 0 ? 'var(--danger)' : 'var(--success)'} />
                 ))}
               </Pie>
@@ -167,7 +181,7 @@ export default function StudentReportsPage() {
               <th className="mgr-table-th">Last Present</th>
             </tr></thead>
             <tbody>
-              {data.absenteeReportData?.map((r: any) => (
+              {data.absenteeReportData?.map((r) => (
                 <tr key={r.id} className="mgr-table-row">
                   <td className="mgr-table-td">{r.name}</td>
                   <td className="mgr-table-td">{r.absentDays}</td>
@@ -188,7 +202,7 @@ export default function StudentReportsPage() {
               <th className="mgr-table-th">Rate</th>
             </tr></thead>
             <tbody>
-              {data.enquiryConversionData?.map((r: any) => (
+              {data.enquiryConversionData?.map((r) => (
                 <tr key={r.id} className="mgr-table-row">
                   <td className="mgr-table-td">{r.month}</td>
                   <td className="mgr-table-td">{r.new}</td>
@@ -209,7 +223,7 @@ export default function StudentReportsPage() {
               <th className="mgr-table-th">Occupancy</th>
             </tr></thead>
             <tbody>
-              {data.seatUtilizationData?.map((r: any) => (
+              {data.seatUtilizationData?.map((r) => (
                 <tr key={r.id} className="mgr-table-row">
                   <td className="mgr-table-td">{r.shift}</td>
                   <td className="mgr-table-td">{r.utilization}%</td>
@@ -229,7 +243,7 @@ export default function StudentReportsPage() {
               <th className="mgr-table-th">Available</th>
             </tr></thead>
             <tbody>
-              {data.lockerUtilizationData?.map((r: any) => (
+              {data.lockerUtilizationData?.map((r) => (
                 <tr key={r.id} className="mgr-table-row">
                   <td className="mgr-table-td">{r.type}</td>
                   <td className="mgr-table-td">{r.utilization}%</td>
@@ -250,7 +264,7 @@ export default function StudentReportsPage() {
               <th className="mgr-table-th">Status</th>
             </tr></thead>
             <tbody>
-              {data.maintenanceData?.map((r: any) => (
+              {data.maintenanceData?.map((r) => (
                 <tr key={r.id} className="mgr-table-row">
                   <td className="mgr-table-td">{r.item}</td>
                   <td className="mgr-table-td">{r.issue}</td>

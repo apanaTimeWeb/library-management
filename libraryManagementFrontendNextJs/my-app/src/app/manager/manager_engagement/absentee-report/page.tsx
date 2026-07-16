@@ -62,7 +62,7 @@ export default function AbsenteeReportPage() {
       headerName: 'Student', 
       flex: 1, 
       minWidth: 200,
-      cellRenderer: (p: any) => (
+      cellRenderer: (p: { value: string; data: AbsenteeRow }) => (
         <div className="eng-td-cell py-2">
           <div className="eng-att-avatar eng-avatar--sm mr-3">
             {p.data.initials}
@@ -71,24 +71,24 @@ export default function AbsenteeReportPage() {
         </div>
       )
     },
-    { field: 'smartId', headerName: 'Smart ID', width: 120, cellRenderer: (p: any) => <span className="eng-td-mono">{p.value}</span> },
-    { field: 'shift', headerName: 'Shift', width: 120, cellRenderer: (p: any) => <span className="eng-badge eng-badge--ghost mt-2 inline-block">{p.value}</span> },
+    { field: 'smartId', headerName: 'Smart ID', width: 120, cellRenderer: (p: { value: string }) => <span className="eng-td-mono">{p.value}</span> },
+    { field: 'shift', headerName: 'Shift', width: 120, cellRenderer: (p: { value: string }) => <span className="eng-badge eng-badge--ghost mt-2 inline-block">{p.value}</span> },
     { 
       field: 'daysAbsent', 
       headerName: 'Days Absent', 
       width: 140,
-      cellRenderer: (p: any) => (
+      cellRenderer: (p: { value: number }) => (
         <span className={`eng-badge ${badgeClass(p.value)} eng-badge--lg mt-2 inline-block`}>
           {p.value} days
         </span>
       )
     },
-    { field: 'lastSeen', headerName: 'Last Seen', width: 130, cellRenderer: (p: any) => <span className="eng-td-muted">{p.value}</span> },
+    { field: 'lastSeen', headerName: 'Last Seen', width: 130, cellRenderer: (p: { value: string }) => <span className="eng-td-muted">{p.value}</span> },
     { 
       field: 'parentPhone', 
       headerName: 'Parent Contact', 
       width: 220,
-      cellRenderer: (p: any) => (
+      cellRenderer: (p: { value: string; data: AbsenteeRow }) => (
         <div className="eng-td-contact flex flex-col justify-center h-full space-y-1">
           <span className="eng-td-mono flex items-center text-xs">
             <Phone size={10} className="mr-1"/> {p.value}
