@@ -24,4 +24,8 @@ export const ADMIN_API_ROUTES = {
   DASHBOARD: '/admin/dashboard',
   STUDENTS: '/admin/admin_students',
   REPORTS: '/admin/admin_reports',
+  BRANCHES: '/admin/admin_branches',
+  STAFF_USERS: '/admin/admin_staff-users',
+  PERMISSIONS: '/admin/admin_permissions',
+  SETTINGS: '/admin/admin_settings',
 } as const;

@@ -86,3 +86,35 @@ export async function fetchAdminReports(serverToken?: string): Promise<ApiRespon
   return fetchWithEnvelope<any>(ADMIN_API_ROUTES.REPORTS, options);
 }
 
+/**
+ * Fetches the branches data.
+ */
+export async function fetchAdminBranches(serverToken?: string): Promise<ApiResponse<any>> {
+  const options = serverToken ? { headers: { Authorization: `Bearer ${serverToken}` } } : {};
+  return fetchWithEnvelope<any>(ADMIN_API_ROUTES.BRANCHES, options);
+}
+
+/**
+ * Fetches the staff users data.
+ */
+export async function fetchAdminStaffUsers(serverToken?: string): Promise<ApiResponse<any>> {
+  const options = serverToken ? { headers: { Authorization: `Bearer ${serverToken}` } } : {};
+  return fetchWithEnvelope<any>(ADMIN_API_ROUTES.STAFF_USERS, options);
+}
+
+/**
+ * Fetches the permissions data.
+ */
+export async function fetchAdminPermissions(serverToken?: string): Promise<ApiResponse<any>> {
+  const options = serverToken ? { headers: { Authorization: `Bearer ${serverToken}` } } : {};
+  return fetchWithEnvelope<any>(ADMIN_API_ROUTES.PERMISSIONS, options);
+}
+
+/**
+ * Fetches the settings data.
+ */
+export async function fetchAdminSettings(serverToken?: string): Promise<ApiResponse<any>> {
+  const options = serverToken ? { headers: { Authorization: `Bearer ${serverToken}` } } : {};
+  return fetchWithEnvelope<any>(ADMIN_API_ROUTES.SETTINGS, options);
+}
+
