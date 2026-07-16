@@ -2,7 +2,7 @@ import { Controller, Post, Body } from '@nestjs/common';
 import { SubscriptionsCreateSubscriptionService } from '../services/create-subscription.service';
 import { SubscriptionsCreateSubscriptionDto } from '../dto/create-subscription.dto';
 
-@Controller('api/v1/admin/subscriptions')
+@Controller('v1/admin/subscriptions')
 export class SubscriptionsCreateSubscriptionController {
   constructor(private readonly service: SubscriptionsCreateSubscriptionService) {}
 

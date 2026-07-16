@@ -10,7 +10,7 @@ import { StudentListItem } from '@/modules/admin/students/students/interfaces/st
 
 @ApiTags('Admin Students')
 @ApiBearerAuth()
-@Controller('api/admin/students')
+@Controller('admin/students')
 @UseGuards(AuthJwtAuthGuard, AuthRolesGuard)
 export class StudentsGetAllController {
   constructor(private readonly getAllService: StudentsGetAllService) {}

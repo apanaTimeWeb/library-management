@@ -2,7 +2,7 @@ import { Controller, Get, Query } from '@nestjs/common';
 import { StudentSlotsGetAllService } from '../services/get-all-student-slots.service';
 import { StudentSlotsGetStudentSlotsQueryDto } from '../dto/get-student-slots-query.dto';
 
-@Controller('api/v1/admin/student-slots')
+@Controller('v1/admin/student-slots')
 export class StudentSlotsGetAllController {
   constructor(private readonly service: StudentSlotsGetAllService) {}
 

@@ -3,7 +3,7 @@ import { ApiTags } from '@nestjs/swagger';
 import { EnquiriesDeleteEnquirieService } from '../services/delete-enquirie.service';
 
 @ApiTags('Admin Enquiries')
-@Controller('api/admin/enquiries')
+@Controller('admin/enquiries')
 export class EnquiriesDeleteEnquirieController {
   constructor(private readonly service: EnquiriesDeleteEnquirieService) {}
 

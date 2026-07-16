@@ -2,7 +2,7 @@ import { Controller, Patch, Param, Body } from '@nestjs/common';
 import { ShiftsUpdateShiftService } from '../services/update-shift.service';
 import { ShiftsUpdateShiftDto } from '../dto/update-shift.dto';
 
-@Controller('api/v1/admin/shifts')
+@Controller('v1/admin/shifts')
 export class ShiftsUpdateShiftController {
   constructor(private readonly service: ShiftsUpdateShiftService) {}
 

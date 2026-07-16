@@ -2,7 +2,7 @@ import { Controller, Post, Body } from '@nestjs/common';
 import { ExpenseCategoriesCreateExpenseCategoryService } from '../services/create-expense-category.service';
 import { ExpenseCategoriesCreateExpenseCategoryDto } from '../dto/create-expense-category.dto';
 
-@Controller('api/v1/admin/expense-categories')
+@Controller('v1/admin/expense-categories')
 export class ExpenseCategoriesCreateExpenseCategoryController {
   constructor(private readonly service: ExpenseCategoriesCreateExpenseCategoryService) {}
 

@@ -2,7 +2,7 @@ import { Controller, Get, Query } from '@nestjs/common';
 import { ShiftsGetAllService } from '../services/get-all-shifts.service';
 import { ShiftsGetShiftsQueryDto } from '../dto/get-shifts-query.dto';
 
-@Controller('api/v1/admin/shifts')
+@Controller('v1/admin/shifts')
 export class ShiftsGetAllController {
   constructor(private readonly service: ShiftsGetAllService) {}
 

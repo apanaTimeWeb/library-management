@@ -2,7 +2,7 @@ import { Controller, Post, Body } from '@nestjs/common';
 import { ShiftsCreateShiftService } from '../services/create-shift.service';
 import { ShiftsCreateShiftDto } from '../dto/create-shift.dto';
 
-@Controller('api/v1/admin/shifts')
+@Controller('v1/admin/shifts')
 export class ShiftsCreateShiftController {
   constructor(private readonly service: ShiftsCreateShiftService) {}
 

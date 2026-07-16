@@ -2,7 +2,7 @@ import { Controller, Post, Body } from '@nestjs/common';
 import { LockersCreateLockerService } from '../services/create-locker.service';
 import { LockersCreateLockerDto } from '../dto/create-locker.dto';
 
-@Controller('api/v1/admin/lockers')
+@Controller('v1/admin/lockers')
 export class LockersCreateLockerController {
   constructor(private readonly service: LockersCreateLockerService) {}
 

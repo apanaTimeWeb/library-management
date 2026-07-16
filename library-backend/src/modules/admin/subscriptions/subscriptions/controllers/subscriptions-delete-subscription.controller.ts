@@ -1,7 +1,7 @@
 import { Controller, Delete, Param } from '@nestjs/common';
 import { SubscriptionsDeleteSubscriptionService } from '../services/delete-subscription.service';
 
-@Controller('api/v1/admin/subscriptions')
+@Controller('v1/admin/subscriptions')
 export class SubscriptionsDeleteSubscriptionController {
   constructor(private readonly service: SubscriptionsDeleteSubscriptionService) {}
 

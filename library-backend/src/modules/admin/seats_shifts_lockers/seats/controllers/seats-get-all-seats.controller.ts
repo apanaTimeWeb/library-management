@@ -2,7 +2,7 @@ import { Controller, Get, Query } from '@nestjs/common';
 import { SeatsGetAllService } from '../services/get-all-seats.service';
 import { SeatsGetSeatsQueryDto } from '../dto/get-seats-query.dto';
 
-@Controller('api/v1/admin/seats')
+@Controller('v1/admin/seats')
 export class SeatsGetAllController {
   constructor(private readonly service: SeatsGetAllService) {}
 

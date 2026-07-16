@@ -2,7 +2,7 @@ import { Controller, Get, Query } from '@nestjs/common';
 import { ExpensesGetAllService } from '../services/get-all-expenses.service';
 import { ExpensesGetExpensesQueryDto } from '../dto/get-expenses-query.dto';
 
-@Controller('api/v1/admin/expenses')
+@Controller('v1/admin/expenses')
 export class ExpensesGetAllController {
   constructor(private readonly service: ExpensesGetAllService) {}
 

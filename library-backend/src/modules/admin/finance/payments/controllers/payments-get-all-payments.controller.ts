@@ -2,7 +2,7 @@ import { Controller, Get, Query } from '@nestjs/common';
 import { PaymentsGetAllService } from '../services/get-all-payments.service';
 import { PaymentsGetPaymentsQueryDto } from '../dto/get-payments-query.dto';
 
-@Controller('api/v1/admin/payments')
+@Controller('v1/admin/payments')
 export class PaymentsGetAllController {
   constructor(private readonly service: PaymentsGetAllService) {}
 

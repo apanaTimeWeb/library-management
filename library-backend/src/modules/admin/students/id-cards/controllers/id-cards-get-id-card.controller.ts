@@ -1,7 +1,7 @@
 import { Controller, Get, Param } from '@nestjs/common';
 import { IdCardsGetIDCardService } from '../services/get-id-card.service';
 
-@Controller('api/v1/admin/id-cards')
+@Controller('v1/admin/id-cards')
 export class IdCardsGetIDCardController {
   constructor(private readonly service: IdCardsGetIDCardService) {}
 

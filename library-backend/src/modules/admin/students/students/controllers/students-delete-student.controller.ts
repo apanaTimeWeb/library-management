@@ -7,7 +7,7 @@ import { AuthRoles } from '@/modules/auth/decorators/auth-roles.decorator';
 
 @ApiTags('Admin Students')
 @ApiBearerAuth()
-@Controller('api/admin/students')
+@Controller('admin/students')
 @UseGuards(AuthJwtAuthGuard, AuthRolesGuard)
 export class StudentsDeleteStudentController {
   constructor(private readonly deleteStudentService: StudentsDeleteStudentService) {}

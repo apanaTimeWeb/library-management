@@ -2,7 +2,7 @@ import { Controller, Patch, Param, Body } from '@nestjs/common';
 import { IdCardsUpdateIDCardService } from '../services/update-id-card.service';
 import { IdCardsUpdateIDCardDto } from '../dto/update-id-card.dto';
 
-@Controller('api/v1/admin/id-cards')
+@Controller('v1/admin/id-cards')
 export class IdCardsUpdateIDCardController {
   constructor(private readonly service: IdCardsUpdateIDCardService) {}
 

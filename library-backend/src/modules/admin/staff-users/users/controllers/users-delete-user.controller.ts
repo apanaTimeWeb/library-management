@@ -6,7 +6,7 @@ import { UsersDeleteUserService } from '../services/delete-user.service';
 @ApiTags('Admin Users')
 @ApiBearerAuth()
 @UseGuards(AuthJwtAuthGuard)
-@Controller('api/admin/staff-users/users')
+@Controller('admin/staff-users/users')
 export class UsersDeleteUserController {
   constructor(private readonly deleteUserService: UsersDeleteUserService) {}
 

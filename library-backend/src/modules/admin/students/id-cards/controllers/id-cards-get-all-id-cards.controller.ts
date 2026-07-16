@@ -2,7 +2,7 @@ import { Controller, Get, Query } from '@nestjs/common';
 import { IdCardsGetAllIDCardsService } from '../services/get-all-id-cards.service';
 import { IdCardsGetIDCardsQueryDto } from '../dto/get-id-cards-query.dto';
 
-@Controller('api/v1/admin/id-cards')
+@Controller('v1/admin/id-cards')
 export class IdCardsGetAllIDCardsController {
   constructor(private readonly service: IdCardsGetAllIDCardsService) {}
 

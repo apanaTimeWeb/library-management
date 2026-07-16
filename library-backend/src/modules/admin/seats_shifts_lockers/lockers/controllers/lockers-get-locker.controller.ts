@@ -1,7 +1,7 @@
 import { Controller, Get, Param } from '@nestjs/common';
 import { LockersGetLockerService } from '../services/get-locker.service';
 
-@Controller('api/v1/admin/lockers')
+@Controller('v1/admin/lockers')
 export class LockersGetLockerController {
   constructor(private readonly service: LockersGetLockerService) {}
 

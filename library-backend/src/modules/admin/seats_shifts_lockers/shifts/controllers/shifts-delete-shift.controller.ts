@@ -1,7 +1,7 @@
 import { Controller, Delete, Param } from '@nestjs/common';
 import { ShiftsDeleteShiftService } from '../services/delete-shift.service';
 
-@Controller('api/v1/admin/shifts')
+@Controller('v1/admin/shifts')
 export class ShiftsDeleteShiftController {
   constructor(private readonly service: ShiftsDeleteShiftService) {}
 

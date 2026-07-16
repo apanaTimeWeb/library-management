@@ -9,7 +9,7 @@ import { Student } from '@/core/entities/student.entity';
 
 @ApiTags('Admin Students')
 @ApiBearerAuth()
-@Controller('api/admin/students')
+@Controller('admin/students')
 @UseGuards(AuthJwtAuthGuard, AuthRolesGuard)
 export class StudentsCreateStudentController {
   constructor(private readonly createStudentService: StudentsCreateStudentService) {}

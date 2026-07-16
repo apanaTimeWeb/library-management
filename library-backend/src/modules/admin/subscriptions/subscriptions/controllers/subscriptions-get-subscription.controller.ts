@@ -1,7 +1,7 @@
 import { Controller, Get, Param } from '@nestjs/common';
 import { SubscriptionsGetSubscriptionService } from '../services/get-subscription.service';
 
-@Controller('api/v1/admin/subscriptions')
+@Controller('v1/admin/subscriptions')
 export class SubscriptionsGetSubscriptionController {
   constructor(private readonly service: SubscriptionsGetSubscriptionService) {}
 

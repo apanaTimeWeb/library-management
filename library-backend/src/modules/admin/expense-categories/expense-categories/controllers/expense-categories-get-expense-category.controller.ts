@@ -1,7 +1,7 @@
 import { Controller, Get, Param } from '@nestjs/common';
 import { ExpenseCategoriesGetExpenseCategoryService } from '../services/get-expense-category.service';
 
-@Controller('api/v1/admin/expense-categories')
+@Controller('v1/admin/expense-categories')
 export class ExpenseCategoriesGetExpenseCategoryController {
   constructor(private readonly service: ExpenseCategoriesGetExpenseCategoryService) {}
 

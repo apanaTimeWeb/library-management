@@ -8,7 +8,7 @@ import { AuthRoles } from '@/modules/auth/decorators/auth-roles.decorator';
 
 @ApiTags('Admin Students')
 @ApiBearerAuth()
-@Controller('api/admin/students')
+@Controller('admin/students')
 @UseGuards(AuthJwtAuthGuard, AuthRolesGuard)
 export class StudentsUpdateStudentController {
   constructor(private readonly updateStudentService: StudentsUpdateStudentService) {}

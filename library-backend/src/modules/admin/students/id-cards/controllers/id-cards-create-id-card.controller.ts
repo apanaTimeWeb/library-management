@@ -2,7 +2,7 @@ import { Controller, Post, Body } from '@nestjs/common';
 import { IdCardsCreateIDCardService } from '../services/create-id-card.service';
 import { IdCardsCreateIDCardDto } from '../dto/create-id-card.dto';
 
-@Controller('api/v1/admin/id-cards')
+@Controller('v1/admin/id-cards')
 export class IdCardsCreateIDCardController {
   constructor(private readonly service: IdCardsCreateIDCardService) {}
 

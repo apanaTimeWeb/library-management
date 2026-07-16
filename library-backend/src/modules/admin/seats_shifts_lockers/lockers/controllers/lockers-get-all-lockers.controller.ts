@@ -2,7 +2,7 @@ import { Controller, Get, Query } from '@nestjs/common';
 import { LockersGetAllService } from '../services/get-all-lockers.service';
 import { LockersGetLockersQueryDto } from '../dto/get-lockers-query.dto';
 
-@Controller('api/v1/admin/lockers')
+@Controller('v1/admin/lockers')
 export class LockersGetAllController {
   constructor(private readonly service: LockersGetAllService) {}
 

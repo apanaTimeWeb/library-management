@@ -8,7 +8,7 @@ import { AuthTenantGuard } from '@/modules/auth/guards/auth-tenant.guard';
 
 @ApiTags('Admin')
 @ApiBearerAuth()
-@Controller('api/admin/dashboard')
+@Controller('admin/dashboard')
 @UseGuards(AuthJwtAuthGuard, AuthRolesGuard, AuthTenantGuard)
 @AuthRoles('superadmin', 'admin')
 export class DashboardStudentsController {

@@ -2,7 +2,7 @@ import { Controller, Post, Body } from '@nestjs/common';
 import { AttendanceCreateService } from '../services/create-attendance.service';
 import { AttendanceCreateDto } from '../dto/create-attendance.dto';
 
-@Controller('api/v1/admin/attendance')
+@Controller('v1/admin/attendance')
 export class AttendanceCreateController {
   constructor(private readonly service: AttendanceCreateService) {}
 

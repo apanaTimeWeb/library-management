@@ -7,7 +7,7 @@ import { AuthRoles } from '@/modules/auth/decorators/auth-roles.decorator';
 
 @ApiTags('Admin CRM Enquiries')
 @ApiBearerAuth()
-@Controller('api/admin/crm/enquiries')
+@Controller('admin/crm/enquiries')
 @UseGuards(AuthJwtAuthGuard, AuthRolesGuard)
 export class EnquiriesGetEnquiryController {
   constructor(private readonly getEnquiryService: EnquiriesGetEnquiryService) {}

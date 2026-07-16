@@ -2,7 +2,7 @@ import { Controller, Get, Query } from '@nestjs/common';
 import { AttendanceGetAllAttendancesService } from '../services/get-all-attendance.service';
 import { AttendanceGetAttendancesQueryDto } from '../dto/get-attendance-query.dto';
 
-@Controller('api/v1/admin/attendance')
+@Controller('v1/admin/attendance')
 export class AttendanceGetAllAttendancesController {
   constructor(private readonly service: AttendanceGetAllAttendancesService) {}
 

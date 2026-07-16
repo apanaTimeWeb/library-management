@@ -2,7 +2,7 @@ import { Controller, Get, Query } from '@nestjs/common';
 import { ShiftMigrationsGetAllService } from '../services/get-all-shift-migrations.service';
 import { ShiftMigrationsGetShiftMigrationsQueryDto } from '../dto/get-shift-migrations-query.dto';
 
-@Controller('api/v1/admin/shift-migrations')
+@Controller('v1/admin/shift-migrations')
 export class ShiftMigrationsGetAllController {
   constructor(private readonly service: ShiftMigrationsGetAllService) {}
 

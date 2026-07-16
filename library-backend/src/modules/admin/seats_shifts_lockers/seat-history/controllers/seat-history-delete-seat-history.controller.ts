@@ -1,7 +1,7 @@
 import { Controller, Delete, Param } from '@nestjs/common';
 import { SeatHistoryDeleteService } from '../services/delete-seat-history.service';
 
-@Controller('api/v1/admin/seat-history')
+@Controller('v1/admin/seat-history')
 export class SeatHistoryDeleteController {
   constructor(private readonly service: SeatHistoryDeleteService) {}
 

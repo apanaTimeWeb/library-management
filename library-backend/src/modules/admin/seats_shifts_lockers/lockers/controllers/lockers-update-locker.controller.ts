@@ -2,7 +2,7 @@ import { Controller, Patch, Param, Body } from '@nestjs/common';
 import { LockersUpdateLockerService } from '../services/update-locker.service';
 import { LockersUpdateLockerDto } from '../dto/update-locker.dto';
 
-@Controller('api/v1/admin/lockers')
+@Controller('v1/admin/lockers')
 export class LockersUpdateLockerController {
   constructor(private readonly service: LockersUpdateLockerService) {}
 

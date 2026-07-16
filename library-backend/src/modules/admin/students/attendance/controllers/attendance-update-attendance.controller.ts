@@ -2,7 +2,7 @@ import { Controller, Patch, Param, Body } from '@nestjs/common';
 import { AttendanceUpdateService } from '../services/update-attendance.service';
 import { AttendanceUpdateDto } from '../dto/update-attendance.dto';
 
-@Controller('api/v1/admin/attendance')
+@Controller('v1/admin/attendance')
 export class AttendanceUpdateController {
   constructor(private readonly service: AttendanceUpdateService) {}
 

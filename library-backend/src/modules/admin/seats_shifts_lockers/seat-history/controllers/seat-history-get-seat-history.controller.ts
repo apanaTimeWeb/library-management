@@ -1,7 +1,7 @@
 import { Controller, Get, Param } from '@nestjs/common';
 import { SeatHistoryGetService } from '../services/get-seat-history.service';
 
-@Controller('api/v1/admin/seat-history')
+@Controller('v1/admin/seat-history')
 export class SeatHistoryGetController {
   constructor(private readonly service: SeatHistoryGetService) {}
 

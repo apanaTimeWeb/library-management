@@ -7,7 +7,7 @@ import { User } from '@/core/entities/user.entity';
 @ApiTags('Admin Users')
 @ApiBearerAuth()
 @UseGuards(AuthJwtAuthGuard)
-@Controller('api/admin/staff-users/users')
+@Controller('admin/staff-users/users')
 export class UsersGetUserController {
   constructor(private readonly getUserService: UsersGetUserService) {}
 

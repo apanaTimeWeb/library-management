@@ -2,7 +2,7 @@ import { Controller, Get, Query } from '@nestjs/common';
 import { ComplaintsGetAllService } from '../services/get-all-complaints.service';
 import { ComplaintsGetComplaintsQueryDto } from '../dto/get-complaints-query.dto';
 
-@Controller('api/v1/admin/complaints')
+@Controller('v1/admin/complaints')
 export class ComplaintsGetAllController {
   constructor(private readonly service: ComplaintsGetAllService) {}
 

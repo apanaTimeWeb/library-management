@@ -1,7 +1,7 @@
 import { Controller, Get, Param } from '@nestjs/common';
 import { AttendanceGetService } from '../services/get-attendance.service';
 
-@Controller('api/v1/admin/attendance')
+@Controller('v1/admin/attendance')
 export class AttendanceGetController {
   constructor(private readonly service: AttendanceGetService) {}
 

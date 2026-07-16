@@ -2,7 +2,7 @@ import { Controller, Post, Body } from '@nestjs/common';
 import { StudentSlotsCreateStudentSlotService } from '../services/create-student-slot.service';
 import { StudentSlotsCreateStudentSlotDto } from '../dto/create-student-slot.dto';
 
-@Controller('api/v1/admin/student-slots')
+@Controller('v1/admin/student-slots')
 export class StudentSlotsCreateStudentSlotController {
   constructor(private readonly service: StudentSlotsCreateStudentSlotService) {}
 

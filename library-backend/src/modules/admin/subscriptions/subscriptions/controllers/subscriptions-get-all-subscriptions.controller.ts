@@ -2,7 +2,7 @@ import { Controller, Get, Query } from '@nestjs/common';
 import { SubscriptionsGetAllService } from '../services/get-all-subscriptions.service';
 import { SubscriptionsGetSubscriptionsQueryDto } from '../dto/get-subscriptions-query.dto';
 
-@Controller('api/v1/admin/subscriptions')
+@Controller('v1/admin/subscriptions')
 export class SubscriptionsGetAllController {
   constructor(private readonly service: SubscriptionsGetAllService) {}
 

@@ -22,6 +22,11 @@ import { PublicEnquiryModule } from './modules/public/enquiry/enquiry/enquiry.mo
 import { AdminModule } from './modules/admin/dashboard/admin/admin.module';
 import { AdminAttendanceModule } from './modules/admin/students/attendance/attendance.module';
 import { AdminAuditLogsModule } from './modules/admin/audit-logs/audit-logs/audit-logs.module';
+import { AdminAccountingExpensesModule } from './modules/admin/accounting/expenses/expenses.module';
+import { AdminAccountingFinancialReportsModule } from './modules/admin/accounting/financial-reports/financial-reports.module';
+import { AdminAccountingAssetMaintenanceModule } from './modules/admin/accounting/asset-maintenance/asset-maintenance.module';
+import { AdminAccountingAssetsModule } from './modules/admin/accounting/assets/assets.module';
+import { AdminAccountingDailySettlementsModule } from './modules/admin/accounting/daily-settlements/daily-settlements.module';
 import { AdminBranchesModule } from './modules/admin/branches/branches/branches.module';
 import { AdminComplaintsModule } from './modules/admin/support-tickets/complaints/complaints.module';
 import { AdminCouponsModule } from './modules/admin/coupons/coupons.module';
@@ -125,6 +130,11 @@ import { SuperadminUsersModule } from './modules/superadmin/staff-users/users/us
     AdminModule,
     AdminAttendanceModule,
     AdminAuditLogsModule,
+    AdminAccountingExpensesModule,
+    AdminAccountingFinancialReportsModule,
+    AdminAccountingAssetMaintenanceModule,
+    AdminAccountingAssetsModule,
+    AdminAccountingDailySettlementsModule,
     AdminBranchesModule,
     AdminComplaintsModule,
     AdminCouponsModule,

@@ -1,7 +1,7 @@
 import { Controller, Delete, Param } from '@nestjs/common';
 import { ExpenseCategoriesDeleteExpenseCategoryService } from '../services/delete-expense-category.service';
 
-@Controller('api/v1/admin/expense-categories')
+@Controller('v1/admin/expense-categories')
 export class ExpenseCategoriesDeleteExpenseCategoryController {
   constructor(private readonly service: ExpenseCategoriesDeleteExpenseCategoryService) {}
 

@@ -1,7 +1,7 @@
 import { Controller, Get, Param } from '@nestjs/common';
 import { ShiftsGetShiftService } from '../services/get-shift.service';
 
-@Controller('api/v1/admin/shifts')
+@Controller('v1/admin/shifts')
 export class ShiftsGetShiftController {
   constructor(private readonly service: ShiftsGetShiftService) {}
 
