@@ -1,0 +1,2 @@
+# whatsapp-templates Dependencies
+None.

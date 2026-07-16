@@ -1,7 +1,9 @@
 import { Module } from '@nestjs/common';
-import { BranchesAdminService } from './branches.service';
+import { branchesController } from './controllers/branches.controller';
+import { branchesService } from './services/branches.service';
 
 @Module({
-  providers: [BranchesAdminService],
+  controllers: [branchesController],
+  providers: [branchesService],
 })
-export class BranchesAdminModule {}
+export class branchesModule {}
