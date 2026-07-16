@@ -1,0 +1,36 @@
+import { useState, useMemo } from 'react';
+import type { SuperadminDailySettlementEntry } from '../superadmin_daily_settlement_types/SuperadminDailySettlementTypes';
+import { SUPERADMIN_DAILY_SETTLEMENT_MOCK_DATA } from '../superadmin_daily_settlement_constants/SuperadminDailySettlementConstants';
+
+const TODAY = new Date().toISOString().split('T')[0];
+
+export function useSuperadminDailySettlement() {
+  const [date, setDate] = useState(TODAY);
+  const [entries, setEntries] = useState<SuperadminDailySettlementEntry[]>(SUPERADMIN_DAILY_SETTLEMENT_MOCK_DATA);
+
+  const handleSettle = async (id: number) => {
+    // Simulate network delay
+    await new Promise(res => setTimeout(res, 800));
+    setEntries(prev => prev.map(e => 
+      e.id === id ? { ...e, status: 'settled', settledBy: 'Super Admin' } : e
+    ));
+  };
+
+  const { totalCash, totalUpi, totalExp } = useMemo(() => {
+    return {
+      totalCash: entries.reduce((s, e) => s + e.cashCollected, 0),
+      totalUpi: entries.reduce((s, e) => s + e.upiCollected, 0),
+      totalExp: entries.reduce((s, e) => s + e.expenses, 0)
+    };
+  }, [entries]);
+
+  return {
+    date,
+    setDate,
+    entries,
+    handleSettle,
+    totalCash,
+    totalUpi,
+    totalExp
+  };
+}
