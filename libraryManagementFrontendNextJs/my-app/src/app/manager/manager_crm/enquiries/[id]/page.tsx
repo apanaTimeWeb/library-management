@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import toast, { Toaster } from 'react-hot-toast';
+import { logger } from '@/lib/logger';
 import {
   ArrowLeft,
   Phone,
@@ -209,11 +210,7 @@ export default function EnquiryDetailPage({
           setLoading(false);
         })
         .catch((err) => {
-          console.error(err);
-          setLoading(false);
-        });
-    });
-  }, [id]);
+          logger.error('Failed to load enquiry detail', { id, message: err instanceof Error ? err.message : String(err) });
 
   // ── Follow-up form ──
   const {
@@ -264,7 +261,7 @@ export default function EnquiryDetailPage({
         className: 'crm-toast crm-toast--success',
       });
     } catch (err) {
-      console.error(err);
+      logger.error('Failed to update enquiry status', { id, message: err instanceof Error ? err.message : String(err) });
       toast.error('Failed to update status');
     } finally {
       setStatusUpdating(false);
@@ -303,7 +300,7 @@ export default function EnquiryDetailPage({
         className: 'crm-toast crm-toast--success',
       });
     } catch (err) {
-      console.error(err);
+      logger.error('Failed to add follow-up', { id, message: err instanceof Error ? err.message : String(err) });
       toast.error('Failed to add follow-up');
     }
   };
@@ -346,7 +343,7 @@ export default function EnquiryDetailPage({
         className: 'crm-toast crm-toast--danger',
       });
     } catch (err) {
-      console.error(err);
+      logger.error('Failed to mark enquiry as lost', { id, message: err instanceof Error ? err.message : String(err) });
       toast.error('Failed to mark as lost');
     } finally {
       setLostSubmitting(false);

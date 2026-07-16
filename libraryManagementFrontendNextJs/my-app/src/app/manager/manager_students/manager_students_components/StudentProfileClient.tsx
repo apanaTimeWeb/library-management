@@ -1,8 +1,9 @@
 'use client';
 
-import { useEffect, useState, use } from 'react';
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { ArrowLeft, Phone, Armchair, Calendar, CreditCard, Shield } from 'lucide-react';
+import { logger } from '@/lib/logger';
 import { calcExpiryDate, formatDateIN } from '@/lib/whatsappUtils';
 import { fetchStudentById } from '@/app/manager/manager_students/manager_students_api/manager_students_api';
 import type { Student } from '@/app/manager/manager_students/manager_students_types';
@@ -18,7 +19,7 @@ export function StudentProfileClient({ id }: { id: string }) {
         setLoading(false);
       })
       .catch(err => {
-        console.error(err);
+        logger.error('Failed to load student profile', { id, message: err instanceof Error ? err.message : String(err) });
         setLoading(false);
       });
   }, [id]);

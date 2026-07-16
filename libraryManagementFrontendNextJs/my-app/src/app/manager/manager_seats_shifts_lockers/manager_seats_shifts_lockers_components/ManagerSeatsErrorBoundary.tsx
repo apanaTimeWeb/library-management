@@ -1,6 +1,7 @@
 'use client';
 
 import { Component, ErrorInfo, ReactNode } from 'react';
+import { logger } from '@/lib/logger';
 
 // RESPONSIBILITY: Catches errors exclusively within the Manager Seats/Shifts module.
 
@@ -23,7 +24,7 @@ export class ManagerSeatsErrorBoundary extends Component<Props, State> {
   }
 
   public componentDidCatch(error: Error, errorInfo: ErrorInfo) {
-    console.error('Uncaught error in Manager Seats module:', error, errorInfo);
+    logger.error('Uncaught error in Manager Seats module', { message: error.message, componentStack: errorInfo.componentStack });
   }
 
   public render() {

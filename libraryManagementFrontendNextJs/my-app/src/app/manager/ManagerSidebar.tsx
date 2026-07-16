@@ -1,5 +1,7 @@
 'use client';
 
+// RESPONSIBILITY: Collapsible sidebar navigation for the Manager shell. Manages active route highlighting and mobile overlay.
+
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { useState } from 'react';
@@ -11,7 +13,7 @@ import {
   Ban, Receipt, DollarSign, CalendarCheck, ClipboardCheck,
   QrCode, Calendar, TrendingUp, BarChart, Wallet, BookOpen,
   MessageSquare, Bell, BellRing, Smartphone,
-  LogOut, Menu, X, type LucideIcon,
+  BookOpen, LogOut, Menu, X, type LucideIcon,
 } from 'lucide-react';
 
 type NavItem = { group: string } | { href: string; icon: LucideIcon; label: string };
@@ -74,7 +76,7 @@ const NAV: NavItem[] = [
 // All nav hrefs for specificity check
 const ALL_HREFS = NAV.filter((n): n is { href: string; icon: LucideIcon; label: string } => 'href' in n).map(n => n.href);
 
-const ICON_COLORS = ['#4F46E5', '#059669', '#D97706', '#2563EB', '#7C3AED', '#E11D48', '#0D9488'];
+const ICON_COLORS = ['var(--primary)', 'var(--success)', 'var(--warning)', 'var(--info)', 'var(--purple)', 'var(--danger)', 'var(--primary)'];
 
 interface Props {
   collapsed: boolean;
@@ -120,7 +122,7 @@ export default function ManagerSidebar({ collapsed, onToggle, mobileOpen, onMobi
             {mobileOpen ? <X size={18} /> : <Menu size={18} />}
           </button>
           {(!collapsed || mobileOpen) && (
-            <span className="mgr-sidebar-logo-text">📚 Smart Library 360</span>
+            <span className="mgr-sidebar-logo-text"><BookOpen size={14} style={{ display: 'inline', marginRight: 6 }} />Smart Library 360</span>
           )}
         </div>
 

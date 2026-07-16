@@ -40,7 +40,7 @@ export default function ComplaintsPage() {
         student: 'Mock Student (S-001)',
       }));
       setComplaints(mapped);
-    }).catch(e => logger.error('Complaints fetch failed:', e));
+    }).catch(e => logger.error('Complaints fetch failed', { message: e instanceof Error ? e.message : String(e) }));
   }, []);
   const [toast, setToast]               = useState('');
   const [addForm, setAddForm]           = useState({ student: '', anonymous: false, title: '', description: '' });

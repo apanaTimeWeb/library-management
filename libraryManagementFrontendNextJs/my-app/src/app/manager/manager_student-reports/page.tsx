@@ -7,6 +7,7 @@ import {
   ResponsiveContainer, PieChart, Pie, Cell, LineChart, Line,
 } from 'recharts';
 import { fetchApi } from '@/lib/api';
+import { logger } from '@/lib/logger';
 
 const COLORS = ['var(--chart-indigo)', 'var(--chart-green)', 'var(--chart-amber)', 'var(--chart-red)', 'var(--chart-blue)'];
 const iconMap: Record<string, React.ElementType> = { Users, CalendarCheck, UserPlus, Phone };
@@ -43,7 +44,7 @@ export default function StudentReportsPage() {
   useEffect(() => {
     fetchApi(`/manager/manager_student-reports?range=${encodeURIComponent(dateRange)}`)
       .then(res => { setData(res); setLoading(false); })
-      .catch(err => { console.error(err); setLoading(false); });
+      .catch(err => { logger.error('Failed to load student reports', { message: err instanceof Error ? err.message : String(err) }); setLoading(false); });
   }, [dateRange]);
 
   if (loading) return <div className="mgr-page"><div style={{ padding: 20 }}>Loading...</div></div>;
