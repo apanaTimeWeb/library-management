@@ -54,7 +54,7 @@ export default function AdminPlansPage() {
 
   useEffect(() => {
     fetchApi('/admin/admin_plans').then(data => {
-      const mapped = data.map((p: any) => ({
+      const mapped = data.map((p: unknown) => ({
         id: p.id,
         name: p.name,
         price: p.price,

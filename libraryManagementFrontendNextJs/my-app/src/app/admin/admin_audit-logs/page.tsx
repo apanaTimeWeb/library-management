@@ -82,7 +82,7 @@ export default function AdminAuditLogsPage() {
 
   useEffect(() => {
     fetchApi('/admin/admin_audit-logs').then(data => {
-      const mapped = data.map((l: any) => ({
+      const mapped = data.map((l: unknown) => ({
         id: l.id,
         action: l.action,
         module: l.entity,

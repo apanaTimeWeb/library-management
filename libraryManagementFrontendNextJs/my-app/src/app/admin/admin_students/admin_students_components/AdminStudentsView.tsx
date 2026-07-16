@@ -10,7 +10,7 @@ import { useAdminStudents } from '@/app/admin/admin_students/admin_students_hook
 ModuleRegistry.registerModules([AllCommunityModule]);
 
 interface AdminStudentsViewProps {
-  initialStudents: any[];
+  initialStudents: unknown[];
 }
 
 export function AdminStudentsView({ initialStudents }: AdminStudentsViewProps) {
@@ -27,7 +27,7 @@ export function AdminStudentsView({ initialStudents }: AdminStudentsViewProps) {
       headerName: 'Status', 
       flex: 1, 
       minWidth: 120, 
-      cellRenderer: (params: any) => (
+      cellRenderer: (params: unknown) => (
         <span className={`admin-badge ${params.value === 'Active' ? 'admin-badge-success' : 'admin-badge-danger'}`}>
             {params.value}
         </span>

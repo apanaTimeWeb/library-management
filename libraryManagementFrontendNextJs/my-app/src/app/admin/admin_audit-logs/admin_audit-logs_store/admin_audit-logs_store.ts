@@ -4,11 +4,11 @@
 import { create } from 'zustand';
 
 interface AdminAuditLogsState {
-  data: any[];
-  setData: (data: any[]) => void;
+  data: unknown[];
+  setData: (data: unknown[]) => void;
 }
 
-export const useAdminAuditLogsStore = create<AdminAuditLogsState>((set: any) => ({
+export const useAdminAuditLogsStore = create<AdminAuditLogsState>((set: unknown) => ({
   data: [],
-  setData: (data: any[]) => set({ data }),
+  setData: (data: unknown[]) => set({ data }),
 }));

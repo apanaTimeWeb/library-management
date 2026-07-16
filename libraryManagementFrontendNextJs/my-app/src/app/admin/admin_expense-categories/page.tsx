@@ -29,7 +29,7 @@ export default function ExpenseCategoriesPage() {
 
   useEffect(() => {
     fetchApi('/admin/admin_expense-categories').then(data => {
-      const mapped = data.map((c: any) => ({
+      const mapped = data.map((c: unknown) => ({
         id: c.id,
         name: c.name,
         description: c.description,

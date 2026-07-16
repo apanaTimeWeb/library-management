@@ -84,7 +84,7 @@ export default function RecentPaymentsFeed({ payments }: { payments: Payment[] }
     },
   ], []);
 
-  const onRowClicked = useCallback((e: any) => {
+  const onRowClicked = useCallback((e: unknown) => {
     const studentId = e.data?.studentId;
     if (studentId) router.push(`/manager/manager_students/${studentId}`);
   }, [router]);

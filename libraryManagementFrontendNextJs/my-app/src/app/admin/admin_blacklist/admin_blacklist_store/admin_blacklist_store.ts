@@ -4,11 +4,11 @@
 import { create } from 'zustand';
 
 interface AdminBlacklistState {
-  data: any[];
-  setData: (data: any[]) => void;
+  data: unknown[];
+  setData: (data: unknown[]) => void;
 }
 
-export const useAdminBlacklistStore = create<AdminBlacklistState>((set: any) => ({
+export const useAdminBlacklistStore = create<AdminBlacklistState>((set: unknown) => ({
   data: [],
-  setData: (data: any[]) => set({ data }),
+  setData: (data: unknown[]) => set({ data }),
 }));

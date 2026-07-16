@@ -65,7 +65,7 @@ export default function AdminCouponsPage() {
 
   useEffect(() => {
     fetchApi('/admin/admin_coupons').then(data => {
-      const mapped = data.map((c: any) => ({
+      const mapped = data.map((c: unknown) => ({
         id: c.id,
         code: c.code,
         discount: c.discountValue,

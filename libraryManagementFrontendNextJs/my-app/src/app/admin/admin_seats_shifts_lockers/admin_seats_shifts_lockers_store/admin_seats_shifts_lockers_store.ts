@@ -4,11 +4,11 @@
 import { create } from 'zustand';
 
 interface AdminSeatsShiftsLockersState {
-  data: any[];
-  setData: (data: any[]) => void;
+  data: unknown[];
+  setData: (data: unknown[]) => void;
 }
 
-export const useAdminSeatsShiftsLockersStore = create<AdminSeatsShiftsLockersState>((set: any) => ({
+export const useAdminSeatsShiftsLockersStore = create<AdminSeatsShiftsLockersState>((set: unknown) => ({
   data: [],
-  setData: (data: any[]) => set({ data }),
+  setData: (data: unknown[]) => set({ data }),
 }));

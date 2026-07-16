@@ -4,11 +4,11 @@
 import { create } from 'zustand';
 
 interface AdminExpenseCategoriesState {
-  data: any[];
-  setData: (data: any[]) => void;
+  data: unknown[];
+  setData: (data: unknown[]) => void;
 }
 
-export const useAdminExpenseCategoriesStore = create<AdminExpenseCategoriesState>((set: any) => ({
+export const useAdminExpenseCategoriesStore = create<AdminExpenseCategoriesState>((set: unknown) => ({
   data: [],
-  setData: (data: any[]) => set({ data }),
+  setData: (data: unknown[]) => set({ data }),
 }));

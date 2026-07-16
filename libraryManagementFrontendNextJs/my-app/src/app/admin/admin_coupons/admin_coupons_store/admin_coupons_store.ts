@@ -4,11 +4,11 @@
 import { create } from 'zustand';
 
 interface AdminCouponsState {
-  data: any[];
-  setData: (data: any[]) => void;
+  data: unknown[];
+  setData: (data: unknown[]) => void;
 }
 
-export const useAdminCouponsStore = create<AdminCouponsState>((set: any) => ({
+export const useAdminCouponsStore = create<AdminCouponsState>((set: unknown) => ({
   data: [],
-  setData: (data: any[]) => set({ data }),
+  setData: (data: unknown[]) => set({ data }),
 }));

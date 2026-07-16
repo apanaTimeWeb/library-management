@@ -43,7 +43,7 @@ export function AdminBranchesView({ initialBranches }: AdminBranchesViewProps) {
       headerName: 'Capacity',
       flex: 1,
       minWidth: 120,
-      cellRenderer: (params: any) => (
+      cellRenderer: (params: unknown) => (
         <span style={{ fontSize: 13, fontWeight: 500 }}>{params.data.students} / {params.value} Seats</span>
       )
     },
@@ -52,7 +52,7 @@ export function AdminBranchesView({ initialBranches }: AdminBranchesViewProps) {
       headerName: 'Status',
       flex: 1,
       minWidth: 120,
-      cellRenderer: (params: any) => (
+      cellRenderer: (params: unknown) => (
         <span className={`admin-badge ${params.value === 'Active' ? 'admin-badge-success' : 'admin-badge-danger'}`}>
           {params.value === 'Active' ? '✅ Active' : '🔴 Inactive'}
         </span>
@@ -63,7 +63,7 @@ export function AdminBranchesView({ initialBranches }: AdminBranchesViewProps) {
       flex: 1,
       minWidth: 100,
       sortable: false,
-      cellRenderer: (params: any) => (
+      cellRenderer: (params: unknown) => (
         <div style={{ display: 'flex', gap: 6, height: '100%', alignItems: 'center' }}>
           <button className="admin-btn-icon" onClick={() => openEdit(params.data)} title="Edit">
             <Pencil size={14} />

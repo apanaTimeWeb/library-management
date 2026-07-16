@@ -34,7 +34,7 @@ const TOOLTIP_STYLE = {
 } as const;
 
 interface AdminReportsViewProps {
-  initialData: any;
+  initialData: unknown;
 }
 
 export function AdminReportsView({ initialData }: AdminReportsViewProps) {
@@ -113,7 +113,7 @@ export function AdminReportsView({ initialData }: AdminReportsViewProps) {
 
         {/* KPI Cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          {kpiCards.map((card: any, i: number) => (
+          {kpiCards.map((card: unknown, i: number) => (
             <KpiCard
               key={i}
               label={card.label}
@@ -162,7 +162,7 @@ export function AdminReportsView({ initialData }: AdminReportsViewProps) {
                 />
                 <Tooltip
                   {...TOOLTIP_STYLE}
-                  formatter={((v: any, name: string) => [`₹${Number(v).toLocaleString('en-IN')}`, name]) as any}
+                  formatter={((v: unknown, name: string) => [`₹${Number(v).toLocaleString('en-IN')}`, name]) as any}
                 />
                 <Bar dataKey="income"  fill="var(--chart-indigo)" radius={[5,5,0,0]} name="Income"  maxBarSize={28} />
                 <Bar dataKey="expense" fill="var(--chart-red)"    radius={[5,5,0,0]} name="Expense" maxBarSize={28} />
@@ -191,11 +191,11 @@ export function AdminReportsView({ initialData }: AdminReportsViewProps) {
                   nameKey="name"
                   strokeWidth={0}
                 >
-                  {shiftOccupancy.map((e: any, i: number) => <Cell key={i} fill={e.color} />)}
+                  {shiftOccupancy.map((e: unknown, i: number) => <Cell key={i} fill={e.color} />)}
                 </Pie>
                 <Tooltip
                   {...TOOLTIP_STYLE}
-                  formatter={((v: any, name: string) => [`${v}%`, name]) as any}
+                  formatter={((v: unknown, name: string) => [`${v}%`, name]) as any}
                 />
                 <Legend
                   iconType="circle"
@@ -237,7 +237,7 @@ export function AdminReportsView({ initialData }: AdminReportsViewProps) {
                 />
                 <Tooltip
                   {...TOOLTIP_STYLE}
-                  formatter={(v: any) => [`₹${Number(v).toLocaleString('en-IN')}`, 'Revenue']}
+                  formatter={(v: unknown) => [`₹${Number(v).toLocaleString('en-IN')}`, 'Revenue']}
                 />
                 <Area
                   type="monotone"
@@ -279,7 +279,7 @@ export function AdminReportsView({ initialData }: AdminReportsViewProps) {
                 <YAxis tick={AXIS_TICK} axisLine={false} tickLine={false} />
                 <Tooltip
                   {...TOOLTIP_STYLE}
-                  formatter={((v: any, name: string) => [v, name]) as any}
+                  formatter={((v: unknown, name: string) => [v, name]) as any}
                 />
                 <Bar dataKey="joined" fill="var(--chart-indigo)" radius={[5,5,0,0]} name="Joined" maxBarSize={28} />
                 <Bar dataKey="exited" fill="var(--chart-red)"    radius={[5,5,0,0]} name="Exited" maxBarSize={28} />

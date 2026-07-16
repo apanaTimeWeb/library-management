@@ -4,11 +4,11 @@
 import { create } from 'zustand';
 
 interface AdminStaffUsersState {
-  data: any[];
-  setData: (data: any[]) => void;
+  data: unknown[];
+  setData: (data: unknown[]) => void;
 }
 
-export const useAdminStaffUsersStore = create<AdminStaffUsersState>((set: any) => ({
+export const useAdminStaffUsersStore = create<AdminStaffUsersState>((set: unknown) => ({
   data: [],
-  setData: (data: any[]) => set({ data }),
+  setData: (data: unknown[]) => set({ data }),
 }));

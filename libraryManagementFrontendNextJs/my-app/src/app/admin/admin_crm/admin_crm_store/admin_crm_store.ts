@@ -4,11 +4,11 @@
 import { create } from 'zustand';
 
 interface AdminCrmState {
-  data: any[];
-  setData: (data: any[]) => void;
+  data: unknown[];
+  setData: (data: unknown[]) => void;
 }
 
-export const useAdminCrmStore = create<AdminCrmState>((set: any) => ({
+export const useAdminCrmStore = create<AdminCrmState>((set: unknown) => ({
   data: [],
-  setData: (data: any[]) => set({ data }),
+  setData: (data: unknown[]) => set({ data }),
 }));

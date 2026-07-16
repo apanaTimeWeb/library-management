@@ -20,7 +20,7 @@ export default function AdminExpensesPage() {
 
   useEffect(() => {
     fetchApi('/admin/admin_expenses').then(data => {
-      const mapped = data.map((e: any) => ({
+      const mapped = data.map((e: unknown) => ({
         id: e.id,
         date: new Date(e.expenseDate).toLocaleDateString(),
         category: 'Monthly Expense',
@@ -48,14 +48,14 @@ export default function AdminExpensesPage() {
       headerName: 'Amount', 
       flex: 1, 
       minWidth: 120,
-      cellRenderer: (params: any) => <span style={{ fontWeight: 600 }}>₹{params.value}</span>
+      cellRenderer: (params: unknown) => <span style={{ fontWeight: 600 }}>₹{params.value}</span>
     },
     { 
       field: 'status', 
       headerName: 'Status', 
       flex: 1, 
       minWidth: 120, 
-      cellRenderer: (params: any) => (
+      cellRenderer: (params: unknown) => (
         <span className={`admin-badge ${params.value === 'Approved' ? 'admin-badge-success' : 'admin-badge-info'}`}>
             {params.value}
         </span>

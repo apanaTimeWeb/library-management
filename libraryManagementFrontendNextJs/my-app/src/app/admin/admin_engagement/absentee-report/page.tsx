@@ -65,7 +65,7 @@ export default function AbsenteeReportPage() {
       headerName: 'Student', 
       flex: 1, 
       minWidth: 200,
-      cellRenderer: (p: any) => (
+      cellRenderer: (p: unknown) => (
         <div className="eng-td-cell py-2">
           <div className="eng-att-avatar eng-avatar--sm mr-3">
             {p.data.initials}
@@ -74,24 +74,24 @@ export default function AbsenteeReportPage() {
         </div>
       )
     },
-    { field: 'smartId', headerName: 'Smart ID', width: 120, cellRenderer: (p: any) => <span className="eng-td-mono">{p.value}</span> },
-    { field: 'shift', headerName: 'Shift', width: 120, cellRenderer: (p: any) => <span className="eng-badge eng-badge--ghost mt-2 inline-block">{p.value}</span> },
+    { field: 'smartId', headerName: 'Smart ID', width: 120, cellRenderer: (p: unknown) => <span className="eng-td-mono">{p.value}</span> },
+    { field: 'shift', headerName: 'Shift', width: 120, cellRenderer: (p: unknown) => <span className="eng-badge eng-badge--ghost mt-2 inline-block">{p.value}</span> },
     { 
       field: 'daysAbsent', 
       headerName: 'Days Absent', 
       width: 140,
-      cellRenderer: (p: any) => (
+      cellRenderer: (p: unknown) => (
         <span className={`eng-badge ${badgeClass(p.value)} eng-badge--lg mt-2 inline-block`}>
           {p.value} days
         </span>
       )
     },
-    { field: 'lastSeen', headerName: 'Last Seen', width: 130, cellRenderer: (p: any) => <span className="eng-td-muted">{p.value}</span> },
+    { field: 'lastSeen', headerName: 'Last Seen', width: 130, cellRenderer: (p: unknown) => <span className="eng-td-muted">{p.value}</span> },
     { 
       field: 'parentPhone', 
       headerName: 'Parent Contact', 
       width: 220,
-      cellRenderer: (p: any) => (
+      cellRenderer: (p: unknown) => (
         <div className="eng-td-contact flex flex-col justify-center h-full space-y-1">
           <span className="eng-td-mono flex items-center text-xs">
             <Phone size={10} className="mr-1"/> {p.value}
@@ -106,7 +106,7 @@ export default function AbsenteeReportPage() {
       headerName: 'Actions',
       width: 140,
       sortable: false,
-      cellRenderer: (params: any) => (
+      cellRenderer: (params: unknown) => (
         <div className="eng-row-actions h-full flex items-center">
           {params.data.notified ? (
             <span className="eng-badge eng-badge--success">✅ Notified</span>
@@ -232,8 +232,8 @@ export default function AbsenteeReportPage() {
                 resizable: true
               }}
               rowClassRules={{
-                'bg-[color-mix(in_srgb,var(--mgr-danger)_5%,transparent)]': (params: any) => params.data.daysAbsent >= 7,
-                'bg-[color-mix(in_srgb,var(--mgr-warning)_5%,transparent)]': (params: any) => params.data.daysAbsent >= 3 && params.data.daysAbsent < 7
+                'bg-[color-mix(in_srgb,var(--mgr-danger)_5%,transparent)]': (params: unknown) => params.data.daysAbsent >= 7,
+                'bg-[color-mix(in_srgb,var(--mgr-warning)_5%,transparent)]': (params: unknown) => params.data.daysAbsent >= 3 && params.data.daysAbsent < 7
               }}
             />
           </div>

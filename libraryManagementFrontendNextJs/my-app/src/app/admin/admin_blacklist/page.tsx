@@ -55,7 +55,7 @@ export default function AdminBlacklistPage() {
 
   useEffect(() => {
     fetchApi('/admin/admin_blacklist').then(data => {
-      const mapped = data.map((b: any) => ({
+      const mapped = data.map((b: unknown) => ({
         id: b.id,
         name: 'Blacklisted Student', // mock
         phone: '9999999999',
