@@ -9,18 +9,18 @@ export class blacklistService {
   }
 
   findAll() {
-    return \This action returns all blacklist\;
+    return 'This action returns all blacklist';
   }
 
   findOne(id: string) {
-    return \This action returns a #\ blacklist\;
+    return 'This action returns a blacklist';
   }
 
   update(id: string, updateDto: UpdateblacklistDto) {
-    return \This action updates a #\ blacklist\;
+    return 'This action updates a blacklist';
   }
 
   remove(id: string) {
-    return \This action removes a #\ blacklist\;
+    return 'This action removes a blacklist';
   }
 }

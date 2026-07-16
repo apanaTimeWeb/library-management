@@ -9,18 +9,18 @@ export class holidaysService {
   }
 
   findAll() {
-    return \This action returns all holidays\;
+    return 'This action returns all holidays';
   }
 
   findOne(id: string) {
-    return \This action returns a #\ holidays\;
+    return 'This action returns a holidays';
   }
 
   update(id: string, updateDto: UpdateholidaysDto) {
-    return \This action updates a #\ holidays\;
+    return 'This action updates a holidays';
   }
 
   remove(id: string) {
-    return \This action removes a #\ holidays\;
+    return 'This action removes a holidays';
   }
 }

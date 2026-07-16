@@ -9,18 +9,18 @@ export class couponsService {
   }
 
   findAll() {
-    return \This action returns all coupons\;
+    return 'This action returns all coupons';
   }
 
   findOne(id: string) {
-    return \This action returns a #\ coupons\;
+    return 'This action returns a coupons';
   }
 
   update(id: string, updateDto: UpdatecouponsDto) {
-    return \This action updates a #\ coupons\;
+    return 'This action updates a coupons';
   }
 
   remove(id: string) {
-    return \This action removes a #\ coupons\;
+    return 'This action removes a coupons';
   }
 }

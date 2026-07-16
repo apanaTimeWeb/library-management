@@ -9,18 +9,18 @@ export class branchesService {
   }
 
   findAll() {
-    return \This action returns all branches\;
+    return 'This action returns all branches';
   }
 
   findOne(id: string) {
-    return \This action returns a #\ branches\;
+    return 'This action returns a branches';
   }
 
   update(id: string, updateDto: UpdatebranchesDto) {
-    return \This action updates a #\ branches\;
+    return 'This action updates a branches';
   }
 
   remove(id: string) {
-    return \This action removes a #\ branches\;
+    return 'This action removes a branches';
   }
 }

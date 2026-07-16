@@ -9,18 +9,18 @@ export class whatsappmessagesService {
   }
 
   findAll() {
-    return \This action returns all whatsapp-messages\;
+    return 'This action returns all whatsapp-messages';
   }
 
   findOne(id: string) {
-    return \This action returns a #\ whatsapp-messages\;
+    return 'This action returns a whatsapp-messages';
   }
 
   update(id: string, updateDto: UpdatewhatsappmessagesDto) {
-    return \This action updates a #\ whatsapp-messages\;
+    return 'This action updates a whatsapp-messages';
   }
 
   remove(id: string) {
-    return \This action removes a #\ whatsapp-messages\;
+    return 'This action removes a whatsapp-messages';
   }
 }

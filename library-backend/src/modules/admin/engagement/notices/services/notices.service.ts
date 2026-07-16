@@ -9,18 +9,18 @@ export class noticesService {
   }
 
   findAll() {
-    return \This action returns all notices\;
+    return 'This action returns all notices';
   }
 
   findOne(id: string) {
-    return \This action returns a #\ notices\;
+    return 'This action returns a notices';
   }
 
   update(id: string, updateDto: UpdatenoticesDto) {
-    return \This action updates a #\ notices\;
+    return 'This action updates a notices';
   }
 
   remove(id: string) {
-    return \This action removes a #\ notices\;
+    return 'This action removes a notices';
   }
 }

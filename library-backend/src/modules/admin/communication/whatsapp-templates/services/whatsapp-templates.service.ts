@@ -9,18 +9,18 @@ export class whatsapptemplatesService {
   }
 
   findAll() {
-    return \This action returns all whatsapp-templates\;
+    return 'This action returns all whatsapp-templates';
   }
 
   findOne(id: string) {
-    return \This action returns a #\ whatsapp-templates\;
+    return 'This action returns a whatsapp-templates';
   }
 
   update(id: string, updateDto: UpdatewhatsapptemplatesDto) {
-    return \This action updates a #\ whatsapp-templates\;
+    return 'This action updates a whatsapp-templates';
   }
 
   remove(id: string) {
-    return \This action removes a #\ whatsapp-templates\;
+    return 'This action removes a whatsapp-templates';
   }
 }
