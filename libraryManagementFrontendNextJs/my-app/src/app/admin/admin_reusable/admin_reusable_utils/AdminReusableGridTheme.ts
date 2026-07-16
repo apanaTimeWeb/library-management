@@ -1,5 +1,6 @@
-// admin/admin_reusable_components/gridTheme.ts
-// ⚠️ NO hardcoded values here — all values come from admin.css
+// RESPONSIBILITY: Provides the AG Grid theme parameters derived from CSS tokens and standard grid interfaces.
+// DATA FLOW: CSS variables -> AdminReusableGridTheme -> AG Grid components
+
 import { themeQuartz } from 'ag-grid-community';
 
 const v = (name: string) =>
@@ -22,13 +23,9 @@ export const gridTheme = themeQuartz.withParams({
   wrapperBorderRadius:   0,
 });
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export interface AdminGridCell {
-  value: any;
-  data?: any;
+export interface AdminGridCell<TValue = unknown, TData = unknown> {
+  value: TValue;
+  data?: TData;
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export interface AdminRecord {
-  [key: string]: any;
-}
+export type AdminRecord = Record<string, unknown>;

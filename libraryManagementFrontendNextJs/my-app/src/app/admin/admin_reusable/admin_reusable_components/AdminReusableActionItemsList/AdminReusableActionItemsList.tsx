@@ -1,7 +1,10 @@
+// RESPONSIBILITY: Renders the action items attention list with dynamic alert counts and link navigation.
+// DATA FLOW: AdminDashboardPage -> AdminReusableActionItemsList
+
 import Link from 'next/link';
 import { ChevronRight, type LucideIcon } from 'lucide-react';
 
-export interface ActionItem {
+export interface AdminReusableActionItem {
   icon: LucideIcon;
   label: string;
   count: number;
@@ -9,7 +12,7 @@ export interface ActionItem {
   href: string;
 }
 
-export default function ActionItemsList({ items }: { items: ActionItem[] }) {
+export default function AdminReusableActionItemsList({ items }: { items: AdminReusableActionItem[] }) {
   return (
     <div className="flex flex-col gap-3">
       {items.map((item, i) => {
@@ -21,17 +24,17 @@ export default function ActionItemsList({ items }: { items: ActionItem[] }) {
             href={item.href}
             className={`flex items-center justify-between p-3 rounded-lg border transition-colors ${
               isDanger 
-                ? 'bg-red-50/50 border-red-100 hover:bg-red-50 dark:bg-red-950/20 dark:border-red-900/30 dark:hover:bg-red-950/40' 
-                : 'bg-orange-50/50 border-orange-100 hover:bg-orange-50 dark:bg-orange-950/20 dark:border-orange-900/30 dark:hover:bg-orange-950/40'
+                ? 'bg-danger/10 border-danger/20 hover:bg-danger/15' 
+                : 'bg-warning/10 border-warning/20 hover:bg-warning/15'
             }`}
           >
             <div className="flex items-center gap-3">
               <Icon
                 size={16}
-                className={isDanger ? 'text-red-500 dark:text-red-400' : 'text-orange-500 dark:text-orange-400'}
+                className={isDanger ? 'text-danger' : 'text-warning'}
               />
               <span className="text-sm font-medium text-text-primary">
-                <span className={`font-bold mr-1 ${isDanger ? 'text-red-600 dark:text-red-400' : 'text-orange-600 dark:text-orange-400'}`}>
+                <span className={`font-bold mr-1 ${isDanger ? 'text-danger' : 'text-warning'}`}>
                   {item.count}
                 </span>{' '}
                 {item.label}

@@ -4,7 +4,7 @@
 // DATA FLOW: AdminRoute -> AdminSidebar
 
 import Link from 'next/link';
-import { usePathname, useRouter } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 import { useState } from 'react';
 import { LogOut, Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -17,6 +17,7 @@ import {
   DialogFooter,
 } from '@/components/ui/dialog';
 import { ADMIN_SIDEBAR_NAV } from '@/app/admin/admin_constants/admin_constants';
+import { logout } from '@/lib/auth';
 
 interface Props {
   collapsed: boolean;
@@ -27,7 +28,6 @@ interface Props {
 
 export default function AdminSidebar({ collapsed, onToggle, mobileOpen, onMobileClose }: Props) {
   const pathname = usePathname();
-  const router = useRouter();
   const [showLogout, setShowLogout] = useState(false);
 
   return (
@@ -100,7 +100,7 @@ export default function AdminSidebar({ collapsed, onToggle, mobileOpen, onMobile
             <Button
               variant="ghost"
               size="icon"
-              className="h-8 w-8 text-muted-foreground hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-950/50 ml-auto"
+              className="h-8 w-8 text-muted-foreground hover:text-danger hover:bg-danger/10 ml-auto"
               aria-label="Log out"
               onClick={() => setShowLogout(true)}
             >
@@ -120,7 +120,7 @@ export default function AdminSidebar({ collapsed, onToggle, mobileOpen, onMobile
           </DialogHeader>
           <DialogFooter className="mt-4 sm:justify-end gap-2">
             <Button variant="outline" onClick={() => setShowLogout(false)}>Cancel</Button>
-            <Button variant="destructive" onClick={() => router.push('/auth/login')}>Log out</Button>
+            <Button variant="destructive" onClick={logout}>Log out</Button>
           </DialogFooter>
         </DialogContent>
       </Dialog>

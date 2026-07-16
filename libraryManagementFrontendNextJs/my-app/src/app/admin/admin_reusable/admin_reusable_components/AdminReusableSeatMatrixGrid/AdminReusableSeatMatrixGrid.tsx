@@ -1,14 +1,18 @@
+// RESPONSIBILITY: Renders the seat occupancy grid matrix with shift/fee filters and assignment navigation.
+// DATA FLOW: AdminDashboardPage / Seat Management -> AdminReusableSeatMatrixGrid -> AdminReusableSeatCell
+
 'use client';
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import SeatCell from '@/app/admin/admin_reusable/SeatCell';
+import AdminReusableSeatCell from '@/app/admin/admin_reusable/admin_reusable_components/AdminReusableSeatCell/AdminReusableSeatCell';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { ADMIN_ROUTES } from '@/app/admin/admin_url_config';
 
-export interface SeatData {
+export interface AdminReusableSeatData {
   id: string;
   shift: string;
   status: 'free' | 'occupied' | 'expiring' | 'maintenance';
@@ -19,18 +23,18 @@ export interface SeatData {
 }
 
 interface Props {
-  seats: SeatData[];
+  seats: AdminReusableSeatData[];
   shifts: string[];
 }
 
 const LEGEND = [
-  { label: 'Free',          cls: 'bg-green-100 text-green-700 dark:bg-green-900/50 dark:text-green-300 hover:bg-green-200' },
-  { label: 'Occupied',      cls: 'bg-blue-100 text-blue-700 dark:bg-blue-900/50 dark:text-blue-300 hover:bg-blue-200' },
-  { label: 'Expiring ≤7d',  cls: 'bg-orange-100 text-orange-700 dark:bg-orange-900/50 dark:text-orange-300 hover:bg-orange-200' },
-  { label: 'Maintenance',   cls: 'bg-gray-200 text-gray-700 dark:bg-gray-800 dark:text-gray-300 hover:bg-gray-300' },
+  { label: 'Free',          cls: 'bg-success/10 text-success hover:bg-success/20' },
+  { label: 'Occupied',      cls: 'bg-info/10 text-info hover:bg-info/20' },
+  { label: 'Expiring ≤7d',  cls: 'bg-warning/10 text-warning hover:bg-warning/20' },
+  { label: 'Maintenance',   cls: 'bg-muted text-muted-foreground hover:bg-muted/80' },
 ];
 
-export default function SeatMatrixGrid({ seats, shifts }: Props) {
+export default function AdminReusableSeatMatrixGrid({ seats, shifts }: Props) {
   const router = useRouter();
   const [activeShift, setActiveShift]   = useState('All');
   const [feeFilter, setFeeFilter]       = useState('All');
@@ -53,11 +57,11 @@ export default function SeatMatrixGrid({ seats, shifts }: Props) {
     maintenance: filtered.filter(s => s.status === 'maintenance').length,
   };
 
-  function handleCellClick(seat: SeatData) {
+  function handleCellClick(seat: AdminReusableSeatData) {
     if (seat.status === 'occupied' || seat.status === 'expiring') {
-      router.push(seat.studentId ? `/manager/manager_students/${seat.studentId}` : '/manager/manager_students');
+      router.push(seat.studentId ? `${ADMIN_ROUTES.STUDENTS}/${seat.studentId}` : ADMIN_ROUTES.STUDENTS);
     } else if (seat.status === 'free') {
-      router.push('/manager/manager_students/new');
+      router.push(`${ADMIN_ROUTES.STUDENTS}/new`);
     }
   }
 
@@ -116,7 +120,7 @@ export default function SeatMatrixGrid({ seats, shifts }: Props) {
         ) : (
           <div className="grid gap-3" style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(64px, 1fr))' }}>
             {filtered.map(seat => (
-              <SeatCell
+              <AdminReusableSeatCell
                 key={seat.id}
                 id={seat.id}
                 status={seat.status}

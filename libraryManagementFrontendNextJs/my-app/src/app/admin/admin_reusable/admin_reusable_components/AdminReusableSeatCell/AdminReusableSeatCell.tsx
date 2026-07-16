@@ -1,6 +1,9 @@
+// RESPONSIBILITY: Renders an individual seat cell block with status coloring and hover tooltip details.
+// DATA FLOW: AdminReusableSeatMatrixGrid -> AdminReusableSeatCell
+
 'use client';
 
-interface SeatCellProps {
+export interface AdminReusableSeatCellProps {
   id: string;
   status: 'free' | 'occupied' | 'expiring' | 'maintenance';
   occupant?: string;
@@ -19,7 +22,7 @@ function getShiftClass(shift: string): string {
   return map[shift] ?? 'admin-shift-default';
 }
 
-export default function SeatCell({ id, status, occupant, shift, expiry, onClick }: SeatCellProps) {
+export default function AdminReusableSeatCell({ id, status, occupant, shift, expiry, onClick }: AdminReusableSeatCellProps) {
   return (
     <div
       className={`seat-${status} group relative w-16 h-16 rounded-xl flex items-center justify-center cursor-pointer transition-transform hover:scale-105`}

@@ -1,13 +1,13 @@
 // RESPONSIBILITY: Renders the Admin Dashboard, fetching data server-side and displaying KPI metrics, seating, and actions.
-// DATA FLOW: Server Fetch -> AdminDashboardPage -> (KpiCard, SeatMatrixGrid, ActionItemsList, RecentPaymentsFeed)
+// DATA FLOW: Server Fetch -> AdminDashboardPage -> (AdminReusableKpiCard, AdminReusableSeatMatrixGrid, AdminReusableActionItemsList, AdminReusableRecentPaymentsFeed)
 
 import { cookies } from 'next/headers';
 import { ChevronRight, AlertCircle } from 'lucide-react';
 import Link from 'next/link';
-import KpiCard from '@/app/admin/admin_reusable/KpiCard';
-import SeatMatrixGrid from '@/app/admin/admin_reusable/SeatMatrixGrid';
-import ActionItemsList, { type ActionItem } from '@/app/admin/admin_reusable/ActionItemsList';
-import RecentPaymentsFeed from '@/app/admin/admin_reusable/RecentPaymentsFeed';
+import AdminReusableKpiCard from '@/app/admin/admin_reusable/admin_reusable_components/AdminReusableKpiCard/AdminReusableKpiCard';
+import AdminReusableSeatMatrixGrid, { type AdminReusableSeatData } from '@/app/admin/admin_reusable/admin_reusable_components/AdminReusableSeatMatrixGrid/AdminReusableSeatMatrixGrid';
+import AdminReusableActionItemsList, { type AdminReusableActionItem } from '@/app/admin/admin_reusable/admin_reusable_components/AdminReusableActionItemsList/AdminReusableActionItemsList';
+import AdminReusableRecentPaymentsFeed, { type AdminReusablePayment } from '@/app/admin/admin_reusable/admin_reusable_components/AdminReusableRecentPaymentsFeed/AdminReusableRecentPaymentsFeed';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from '@/components/ui/card';
 import { ADMIN_KPI_META, ADMIN_ACTION_ICONS } from '@/app/admin/admin_constants/admin_constants';
@@ -27,9 +27,9 @@ async function getDashboardData() {
 interface DashboardData {
   actionItems: { label: string; count: number; type: string; href?: string }[];
   kpiCards: { label: string; value: string; trend: { value: string; up: boolean }; sub: string }[];
-  seats: { id: string; status: 'free' | 'occupied' | 'expiring' | 'maintenance'; label: string; assignee?: string; shift: string; fee: 'Paid' | 'Due' }[];
+  seats: AdminReusableSeatData[];
   shifts: string[];
-  recentPayments: { id: string; name: string; amount: string; date: string; status: string; initials: string; mode: 'UPI' | 'Cash' | 'Card' | 'Bank Transfer'; timeAgo: string }[];
+  recentPayments: AdminReusablePayment[];
 }
 
 export default async function AdminDashboardPage() {
@@ -37,7 +37,7 @@ export default async function AdminDashboardPage() {
   if (!rawData) return <div className="p-8">Failed to load dashboard data. Check backend connection.</div>;
   const data = rawData as never as DashboardData;
 
-  const actionItems: ActionItem[] = data.actionItems?.map((a) => ({
+  const actionItems: AdminReusableActionItem[] = data.actionItems?.map((a) => ({
     ...a,
     icon: ADMIN_ACTION_ICONS[a.label] ?? AlertCircle,
     type: a.type as 'danger' | 'warning',
@@ -64,7 +64,7 @@ export default async function AdminDashboardPage() {
       {/* Row 1: 4 KPI Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         {data.kpiCards.map((card, i: number) => (
-          <KpiCard
+          <AdminReusableKpiCard
             key={i}
             label={card.label}
             value={card.value}
@@ -80,7 +80,7 @@ export default async function AdminDashboardPage() {
       {/* Row 2: Seat Matrix (60%) + Action Items (40%) */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
         <div className="lg:col-span-7 xl:col-span-8 flex flex-col h-full">
-          <SeatMatrixGrid seats={data.seats} shifts={data.shifts} />
+          <AdminReusableSeatMatrixGrid seats={data.seats || []} shifts={data.shifts || []} />
         </div>
 
         <div className="lg:col-span-5 xl:col-span-4 flex flex-col h-full">
@@ -88,18 +88,18 @@ export default async function AdminDashboardPage() {
             <CardHeader className="pb-3 border-b">
               <CardTitle className="text-base">Action Items</CardTitle>
               <CardDescription className="text-xs">
-                {data.actionItems.reduce((s: number, a) => s + a.count, 0)} items need your attention
+                {data.actionItems?.reduce((s: number, a) => s + a.count, 0) || 0} items need your attention
               </CardDescription>
             </CardHeader>
 
             <CardContent className="p-4 flex-1">
-              <ActionItemsList items={actionItems} />
+              <AdminReusableActionItemsList items={actionItems} />
             </CardContent>
 
             <div className="px-4 pb-3">
-              <div className="flex items-start gap-2 bg-blue-50/50 dark:bg-blue-950/20 border border-blue-100 dark:border-blue-900/30 p-3 rounded-md">
+              <div className="flex items-start gap-2 bg-info/10 border border-info/20 p-3 rounded-md">
                 <span className="text-sm">💡</span>
-                <p className="text-xs text-blue-700 dark:text-blue-400 font-medium leading-relaxed">
+                <p className="text-xs text-info font-medium leading-relaxed">
                   5 students expire within 7 days. Consider sending renewal reminders via WhatsApp.
                 </p>
               </div>
@@ -117,7 +117,7 @@ export default async function AdminDashboardPage() {
       </div>
 
       {/* Row 3: Recent Payments AG Grid */}
-      <RecentPaymentsFeed payments={data.recentPayments} />
+      <AdminReusableRecentPaymentsFeed payments={data.recentPayments || []} />
     </div>
   );
 }

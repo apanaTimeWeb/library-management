@@ -1,5 +1,5 @@
 'use client';
-import { AdminRecord } from '@/app/admin/admin_reusable/gridTheme';
+import { type AdminRecord } from '@/app/admin/admin_reusable/admin_reusable_utils/AdminReusableGridTheme';
 
 import { Download, FileText, IndianRupee, Users, Wallet, TrendingUp, BarChart2, PieChart as PieIcon, Activity } from 'lucide-react';
 import toast, { Toaster } from 'react-hot-toast';
@@ -8,9 +8,9 @@ import {
   PieChart, Pie, Cell, Legend,
   AreaChart, Area,
 } from 'recharts';
-import KpiCard from '@/app/admin/admin_reusable/KpiCard';
+import AdminReusableKpiCard from '@/app/admin/admin_reusable/admin_reusable_components/AdminReusableKpiCard/AdminReusableKpiCard';
 import { useAdminReports } from '@/app/admin/admin_reports/admin_reports_hooks/useAdminReports';
-import { AdminGridCell } from '@/app/admin/admin_reusable/gridTheme';
+import { type AdminGridCell } from '@/app/admin/admin_reusable/admin_reusable_utils/AdminReusableGridTheme';
 
 const KPI_META = [
   { icon: IndianRupee, iconColor: 'var(--primary)', iconBg: 'var(--icon-bg-primary)' },
@@ -115,18 +115,21 @@ export function AdminReportsView({ initialData }: AdminReportsViewProps) {
 
         {/* KPI Cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          {kpiCards.map((card: AdminRecord, i: number) => (
-            <KpiCard
-              key={i}
-              label={card.label}
-              value={card.value}
-              icon={KPI_META[i].icon}
-              iconColor={KPI_META[i].iconColor}
-              iconBg={KPI_META[i].iconBg}
-              trend={card.trend as { value: string; up: boolean }}
-              sub={card.sub}
-            />
-          ))}
+          {kpiCards.map((card: unknown, i: number) => {
+            const c = card as Record<string, unknown>;
+            return (
+              <AdminReusableKpiCard
+                key={i}
+                label={String(c.label || '')}
+                value={String(c.value || '')}
+                icon={KPI_META[i].icon}
+                iconColor={KPI_META[i].iconColor}
+                iconBg={KPI_META[i].iconBg}
+                trend={c.trend as { value: string; up: boolean }}
+                sub={String(c.sub || '')}
+              />
+            );
+          })}
         </div>
 
         {/* Charts 2×2 Grid */}

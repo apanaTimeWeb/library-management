@@ -1,6 +1,10 @@
-import { Card } from '@/components/ui/card';
+// RESPONSIBILITY: Renders a container card for charts with legend and status badge support.
+// DATA FLOW: Any Admin Page/Report Component -> AdminReusableChartCard
 
-interface ChartCardProps {
+import { Card } from '@/components/ui/card';
+import React from 'react';
+
+export interface AdminReusableChartCardProps {
   title: string;
   badge?: string;
   /** Dynamic color value — must be a CSS token string like 'var(--success)' */
@@ -9,7 +13,7 @@ interface ChartCardProps {
   children: React.ReactNode;
 }
 
-export default function ChartCard({ title, badge, badgeColor, legend, children }: ChartCardProps) {
+export default function AdminReusableChartCard({ title, badge, badgeColor, legend, children }: AdminReusableChartCardProps) {
   return (
     <Card className="border-border bg-bg-card shadow-none p-5 flex flex-col h-full">
       <div className="flex items-center justify-between mb-5">
@@ -17,13 +21,11 @@ export default function ChartCard({ title, badge, badgeColor, legend, children }
         <div className="flex items-center gap-4">
           {legend?.map(l => (
             <div key={l.label} className="flex items-center gap-1.5">
-              {/* l.color is dynamic (from data array, should be CSS var string) → style={{}} allowed */}
               <span className="w-2.5 h-2.5 rounded-full" style={{ background: l.color }} />
               <span className="text-xs font-medium text-muted-foreground">{l.label}</span>
             </div>
           ))}
           {badge && (
-            /* badgeColor is dynamic prop → style={{}} allowed */
             <span className="text-xs font-bold px-2 py-0.5 rounded bg-muted" style={{ color: badgeColor }}>
               {badge}
             </span>

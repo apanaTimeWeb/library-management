@@ -34,7 +34,7 @@ export default function AdminHeader({ sidebarWidth, onMobileOpen }: HeaderProps)
         <div className="flex items-center gap-2">
           <Building2 size={15} className="text-muted-foreground hidden sm:block" />
           <Select value={selectedBranch} onValueChange={setSelectedBranch}>
-            <SelectTrigger className="w-[160px] h-8 text-sm font-medium border-none shadow-none bg-transparent hover:bg-muted/50 focus:ring-0">
+            <SelectTrigger className="w-40 h-8 text-sm font-medium border-none shadow-none bg-transparent hover:bg-muted/50 focus:ring-0">
               <SelectValue placeholder="Select Branch" />
             </SelectTrigger>
             <SelectContent>
@@ -51,7 +51,7 @@ export default function AdminHeader({ sidebarWidth, onMobileOpen }: HeaderProps)
         <ThemeToggle />
         <Button variant="ghost" size="icon" className="relative rounded-full" aria-label="Notifications">
           <Bell size={17} />
-          <span className="absolute top-2 right-2 h-2 w-2 rounded-full bg-red-500" />
+          <span className="absolute top-2 right-2 h-2 w-2 rounded-full bg-danger" />
         </Button>
         <div className="flex h-8 w-8 items-center justify-center rounded-full bg-primary text-white text-[10px] font-bold">
           LA

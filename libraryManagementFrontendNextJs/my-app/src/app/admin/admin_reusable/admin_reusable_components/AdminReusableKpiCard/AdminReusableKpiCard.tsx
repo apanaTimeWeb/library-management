@@ -1,7 +1,10 @@
-import { TrendingUp, TrendingDown, type LucideIcon } from 'lucide-react';
-import { Card, CardContent } from '@/components/ui/card';
+// RESPONSIBILITY: Renders a KPI metrics summary card with icon, value, and trend indicators.
+// DATA FLOW: AdminDashboardPage / Reports -> AdminReusableKpiCard
 
-interface KpiCardProps {
+import { TrendingUp, TrendingDown, type LucideIcon } from 'lucide-react';
+import { Card } from '@/components/ui/card';
+
+export interface AdminReusableKpiCardProps {
   label: string;
   value: string;
   icon: LucideIcon;
@@ -11,7 +14,7 @@ interface KpiCardProps {
   sub?: string;
 }
 
-export default function KpiCard({ label, value, icon: Icon, iconColor, iconBg, trend, sub }: KpiCardProps) {
+export default function AdminReusableKpiCard({ label, value, icon: Icon, iconColor, iconBg, trend, sub }: AdminReusableKpiCardProps) {
   return (
     <Card className="border-border bg-bg-card shadow-none flex flex-col justify-between p-5 h-full">
       <div className="flex items-start justify-between mb-4">
@@ -19,7 +22,7 @@ export default function KpiCard({ label, value, icon: Icon, iconColor, iconBg, t
           <Icon size={18} style={{ color: iconColor }} />
         </div>
         {trend && (
-          <span className={`flex items-center gap-1 text-[11px] font-bold px-2 py-0.5 rounded-full ${trend.up ? 'bg-green-100 text-green-700 dark:bg-green-950/50 dark:text-green-400' : 'bg-red-100 text-red-700 dark:bg-red-950/50 dark:text-red-400'}`}>
+          <span className={`flex items-center gap-1 text-[11px] font-bold px-2 py-0.5 rounded-full ${trend.up ? 'bg-success/10 text-success' : 'bg-danger/10 text-danger'}`}>
             {trend.up ? <TrendingUp size={10} /> : <TrendingDown size={10} />}
             {trend.value}
           </span>
