@@ -9,33 +9,33 @@ import { ManagerReportsData } from '@/app/manager/manager_reports/manager_report
 ModuleRegistry.registerModules([AllCommunityModule]);
 
 function SmartIdCell(props: any) {
-  return <span className="font-mono text-xs text-[var(--primary)]">{props.value}</span>;
+  return <span className="font-mono text-xs text-primary">{props.value}</span>;
 }
 function ShiftBadgeCell(props: any) {
-  return <span className="px-2 py-0.5 rounded-full text-[11px] font-semibold bg-[var(--info-bg,rgba(96,165,250,0.1))] text-[var(--info)] border border-[var(--info)]/20">{props.value}</span>;
+  return <span className="px-2 py-0.5 rounded-full text-[11px] font-semibold bg-[var(--info-bg,rgba(96,165,250,0.1))] text-info border border-info/20">{props.value}</span>;
 }
 function ShiftPrimaryCell(props: any) {
-  return <span className="px-2 py-0.5 rounded-full text-[11px] font-semibold bg-[var(--primary-subtle)] text-[var(--primary)] border border-[var(--primary)]/20">{props.value}</span>;
+  return <span className="px-2 py-0.5 rounded-full text-[11px] font-semibold bg-primary-subtle text-primary border border-primary/20">{props.value}</span>;
 }
 function DaysAbsentCell(props: any) {
-  return <span className="text-[var(--danger)] font-bold">{props.value}</span>;
+  return <span className="text-danger font-bold">{props.value}</span>;
 }
 function LastPresentCell(props: any) {
-  return <span className="text-[var(--text-secondary)]">{props.value}</span>;
+  return <span className="text-text-secondary">{props.value}</span>;
 }
 function RateCell(props: any) {
-  return <span className="text-[var(--success)] font-semibold">{props.value}</span>;
+  return <span className="text-success font-semibold">{props.value}</span>;
 }
 function PctCell(props: any) {
-  return <span className="text-[var(--success)] font-semibold">{props.value}</span>;
+  return <span className="text-success font-semibold">{props.value}</span>;
 }
 function SecondaryCell(props: any) {
-  return <span className="text-[var(--text-secondary)]">{props.value}</span>;
+  return <span className="text-text-secondary">{props.value}</span>;
 }
 function PriorityCell(props: any) {
-  const cls = props.value === 'High' ? 'bg-[var(--danger-bg,rgba(248,113,113,0.1))] text-[var(--danger)] border-[var(--danger)]/20' 
-            : props.value === 'Medium' ? 'bg-[var(--warning-bg,rgba(251,191,36,0.1))] text-[var(--warning)] border-[var(--warning)]/20' 
-            : 'bg-[var(--info-bg,rgba(96,165,250,0.1))] text-[var(--info)] border-[var(--info)]/20';
+  const cls = props.value === 'High' ? 'bg-[var(--danger-bg,rgba(248,113,113,0.1))] text-danger border-danger/20' 
+            : props.value === 'Medium' ? 'bg-[var(--warning-bg,rgba(251,191,36,0.1))] text-warning border-warning/20' 
+            : 'bg-[var(--info-bg,rgba(96,165,250,0.1))] text-info border-info/20';
   return <span className={`px-2 py-0.5 rounded-full text-[11px] font-semibold border ${cls}`}>{props.value}</span>;
 }
 
@@ -81,36 +81,36 @@ export function ManagerReportsTablesGrid({ data }: ManagerReportsTablesGridProps
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-      <div className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[var(--radius-lg)] p-5 hover:shadow-lg transition-all duration-200">
-        <h3 className="text-sm font-semibold text-[var(--text-primary)] mb-4">Absentee Report</h3>
+      <div className="bg-bg-card border border-border rounded-[var(--radius-lg)] p-5 hover:shadow-lg transition-all duration-200">
+        <h3 className="text-sm font-semibold text-text-primary mb-4">Absentee Report</h3>
         <div style={{ height: 280 }}>
           <AgGridReact theme={gridTheme} rowData={data.absenteeRows} columnDefs={absenteeCols} rowHeight={48} headerHeight={38} suppressMovableColumns suppressCellFocus defaultColDef={{ resizable: false }} />
         </div>
       </div>
 
-      <div className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[var(--radius-lg)] p-5 hover:shadow-lg transition-all duration-200">
-        <h3 className="text-sm font-semibold text-[var(--text-primary)] mb-4">Enquiry Conversion Rate</h3>
+      <div className="bg-bg-card border border-border rounded-[var(--radius-lg)] p-5 hover:shadow-lg transition-all duration-200">
+        <h3 className="text-sm font-semibold text-text-primary mb-4">Enquiry Conversion Rate</h3>
         <div style={{ height: 280 }}>
           <AgGridReact theme={gridTheme} rowData={data.conversionRows} columnDefs={conversionCols} rowHeight={48} headerHeight={38} suppressMovableColumns suppressCellFocus defaultColDef={{ resizable: false }} />
         </div>
       </div>
 
-      <div className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[var(--radius-lg)] p-5 hover:shadow-lg transition-all duration-200">
-        <h3 className="text-sm font-semibold text-[var(--text-primary)] mb-4">Seat Utilization Report</h3>
+      <div className="bg-bg-card border border-border rounded-[var(--radius-lg)] p-5 hover:shadow-lg transition-all duration-200">
+        <h3 className="text-sm font-semibold text-text-primary mb-4">Seat Utilization Report</h3>
         <div style={{ height: 260 }}>
           <AgGridReact theme={gridTheme} rowData={data.seatRows} columnDefs={seatCols} rowHeight={48} headerHeight={38} suppressMovableColumns suppressCellFocus defaultColDef={{ resizable: false }} />
         </div>
       </div>
 
-      <div className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[var(--radius-lg)] p-5 hover:shadow-lg transition-all duration-200">
-        <h3 className="text-sm font-semibold text-[var(--text-primary)] mb-4">Locker Utilization Report</h3>
+      <div className="bg-bg-card border border-border rounded-[var(--radius-lg)] p-5 hover:shadow-lg transition-all duration-200">
+        <h3 className="text-sm font-semibold text-text-primary mb-4">Locker Utilization Report</h3>
         <div style={{ height: 228 }}>
           <AgGridReact theme={gridTheme} rowData={data.lockerRows} columnDefs={lockerCols} rowHeight={48} headerHeight={38} suppressMovableColumns suppressCellFocus defaultColDef={{ resizable: false }} />
         </div>
       </div>
 
-      <div className="lg:col-span-2 bg-[var(--bg-card)] border border-[var(--border)] rounded-[var(--radius-lg)] p-5 hover:shadow-lg transition-all duration-200">
-        <h3 className="text-sm font-semibold text-[var(--text-primary)] mb-4">Pending Maintenance</h3>
+      <div className="lg:col-span-2 bg-bg-card border border-border rounded-[var(--radius-lg)] p-5 hover:shadow-lg transition-all duration-200">
+        <h3 className="text-sm font-semibold text-text-primary mb-4">Pending Maintenance</h3>
         <div style={{ height: 260 }}>
           <AgGridReact theme={gridTheme} rowData={data.maintenanceRows} columnDefs={maintenanceCols} rowHeight={48} headerHeight={38} suppressMovableColumns suppressCellFocus defaultColDef={{ resizable: false }} />
         </div>

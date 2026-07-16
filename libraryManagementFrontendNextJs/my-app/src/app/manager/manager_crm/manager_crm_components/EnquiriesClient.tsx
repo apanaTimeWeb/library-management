@@ -18,7 +18,7 @@ export function EnquiriesClient() {
     getCardsByStatus, updateEnquiryStatus
   } = useEnquiries();
 
-  if (status === 'error') return <div className="p-8 text-[var(--danger)]">Failed to load: {error}</div>;
+  if (status === 'error') return <div className="p-8 text-danger">Failed to load: {error}</div>;
 
   return (
     <div className="crm-page">
@@ -34,15 +34,15 @@ export function EnquiriesClient() {
           </div>
           <div className="crm-page-header-actions">
             {/* View toggle */}
-            <div className="flex bg-[var(--bg-elevated)] p-1 rounded-md border border-[var(--border)]">
+            <div className="flex bg-bg-elevated p-1 rounded-md border border-border">
               <button
-                className={`p-1.5 rounded text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors ${view === 'kanban' ? 'bg-[var(--bg-card)] shadow-sm text-[var(--text-primary)]' : ''}`}
+                className={`p-1.5 rounded text-text-secondary hover:text-text-primary transition-colors ${view === 'kanban' ? 'bg-bg-card shadow-sm text-text-primary' : ''}`}
                 onClick={() => setView('kanban')} title="Kanban view"
               >
                 <LayoutGrid size={16} />
               </button>
               <button
-                className={`p-1.5 rounded text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors ${view === 'table' ? 'bg-[var(--bg-card)] shadow-sm text-[var(--text-primary)]' : ''}`}
+                className={`p-1.5 rounded text-text-secondary hover:text-text-primary transition-colors ${view === 'table' ? 'bg-bg-card shadow-sm text-text-primary' : ''}`}
                 onClick={() => setView('table')} title="Table view"
               >
                 <List size={16} />
@@ -58,17 +58,17 @@ export function EnquiriesClient() {
       {/* ── Toolbar ── */}
       <div className="flex flex-wrap gap-3 mb-6 items-center">
         <div className="relative flex-grow max-w-md">
-          <Search size={15} className="absolute left-3 top-1/2 -translate-y-1/2 text-[var(--text-secondary)]" />
+          <Search size={15} className="absolute left-3 top-1/2 -translate-y-1/2 text-text-secondary" />
           <input
             type="text"
-            className="w-full pl-9 pr-3 py-2 bg-[var(--bg-card)] border border-[var(--border)] rounded-md text-sm text-[var(--text-primary)] outline-none focus:border-[var(--mgr-primary)] transition-colors"
+            className="w-full pl-9 pr-3 py-2 bg-bg-card border border-border rounded-md text-sm text-text-primary outline-none focus:border-mgr-primary transition-colors"
             placeholder="Search by name or phone…"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
           />
         </div>
         <select
-          className="py-2 px-3 bg-[var(--bg-card)] border border-[var(--border)] rounded-md text-sm text-[var(--text-primary)] outline-none focus:border-[var(--mgr-primary)] transition-colors"
+          className="py-2 px-3 bg-bg-card border border-border rounded-md text-sm text-text-primary outline-none focus:border-mgr-primary transition-colors"
           value={statusFilter}
           onChange={(e) => setStatusFilter(e.target.value)}
         >
@@ -83,7 +83,7 @@ export function EnquiriesClient() {
 
       {/* ── Views ── */}
       {status === 'loading' ? (
-        <div className="flex items-center justify-center p-24 text-[var(--text-secondary)]">Loading pipeline...</div>
+        <div className="flex items-center justify-center p-24 text-text-secondary">Loading pipeline...</div>
       ) : view === 'kanban' ? (
         <EnquiriesKanban isEmpty={filtered.length === 0} getCardsByStatus={getCardsByStatus} />
       ) : (

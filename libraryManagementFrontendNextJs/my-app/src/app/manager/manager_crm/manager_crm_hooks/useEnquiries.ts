@@ -16,6 +16,7 @@ function useDebounce<T>(value: T, delay: number): T {
  * Custom hook to manage Enquiries data, searching, and filtering.
  * DATA FLOW: API → useEnquiries → EnquiriesClient
  */
+// DATA FLOW: API → useEnquiries.ts → EnquiriesComponent
 export function useEnquiries() {
   const { enquiries, status, error, fetchData, updateEnquiryStatus } = useCrmStore();
   

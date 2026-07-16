@@ -6,6 +6,7 @@ import { useStudentsStore } from '@/app/manager/manager_students/manager_student
  * Custom hook to fetch and filter students.
  * DATA FLOW: API → useStudentsList → ManagerStudentsClient
  */
+// DATA FLOW: API → useStudentsList.ts → StudentsListComponent
 export function useStudentsList() {
   const { students, status, error, fetchData } = useStudentsStore();
 

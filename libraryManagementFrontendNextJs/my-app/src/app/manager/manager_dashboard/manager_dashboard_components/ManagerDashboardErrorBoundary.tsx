@@ -29,9 +29,9 @@ export class ManagerDashboardErrorBoundary extends Component<Props, State> {
   public render() {
     if (this.state.hasError) {
       return (
-        <div className="p-8 text-center bg-[var(--bg-card)] rounded-lg border border-[var(--border)]">
-          <h2 className="text-[var(--danger)] text-xl font-bold mb-2">Dashboard Error</h2>
-          <p className="text-[var(--text-secondary)] mb-4">{this.state.error?.message || 'An unexpected error occurred loading the dashboard.'}</p>
+        <div className="p-8 text-center bg-bg-card rounded-lg border border-border">
+          <h2 className="text-danger text-xl font-bold mb-2">Dashboard Error</h2>
+          <p className="text-text-secondary mb-4">{this.state.error?.message || 'An unexpected error occurred loading the dashboard.'}</p>
           <button
             className="mgr-btn-primary"
             onClick={() => this.setState({ hasError: false, error: undefined })}

@@ -17,22 +17,22 @@ export function ManagerReportsKpiGrid({ cards }: ManagerReportsKpiGridProps) {
         const IconComponent = iconMap[kpi.icon];
         const isPositive = kpi.trend?.includes('↑');
         const isNegative = kpi.trend?.includes('↓');
-        const trendClass = isPositive ? 'text-[var(--success)]' : isNegative ? 'text-[var(--danger)]' : 'text-[var(--text-secondary)]';
+        const trendClass = isPositive ? 'text-success' : isNegative ? 'text-danger' : 'text-text-secondary';
 
         return (
           <div
             key={index}
-            className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[var(--radius-lg)] p-5 flex flex-col justify-between hover:-translate-y-1 hover:shadow-lg transition-all duration-200 ease-in-out"
+            className="bg-bg-card border border-border rounded-[var(--radius-lg)] p-5 flex flex-col justify-between hover:-translate-y-1 hover:shadow-lg transition-all duration-200 ease-in-out"
           >
             <div className="flex items-start gap-4">
               <div className={`w-10 h-10 rounded-[var(--radius-md)] flex items-center justify-center shrink-0 ${kpi.iconClass}`}>
                 {IconComponent && <IconComponent size={20} />}
               </div>
               <div className="flex-1 overflow-hidden">
-                <p className="text-[11px] font-medium text-[var(--text-secondary)] uppercase tracking-wider truncate" title={kpi.title}>
+                <p className="text-[11px] font-medium text-text-secondary uppercase tracking-wider truncate" title={kpi.title}>
                   {kpi.title}
                 </p>
-                <p className="text-2xl font-bold text-[var(--text-primary)] mt-1">
+                <p className="text-2xl font-bold text-text-primary mt-1">
                   {kpi.value}
                 </p>
               </div>

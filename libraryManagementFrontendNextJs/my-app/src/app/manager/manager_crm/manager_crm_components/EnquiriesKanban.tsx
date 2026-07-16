@@ -16,10 +16,10 @@ export function EnquiriesKanban({ isEmpty, getCardsByStatus }: EnquiriesKanbanPr
 
   if (isEmpty) {
     return (
-      <div className="crm-empty-state crm-mt-48 bg-[var(--bg-card)] border border-[var(--border)] rounded-lg p-12 text-center">
-        <PhoneCall size={48} className="text-[var(--text-secondary)] mx-auto mb-4" />
-        <p className="text-[var(--text-primary)] font-semibold text-lg mb-2">No enquiries yet</p>
-        <p className="text-[var(--text-secondary)] text-sm mb-6">Add your first lead to start the pipeline</p>
+      <div className="crm-empty-state crm-mt-48 bg-bg-card border border-border rounded-lg p-12 text-center">
+        <PhoneCall size={48} className="text-text-secondary mx-auto mb-4" />
+        <p className="text-text-primary font-semibold text-lg mb-2">No enquiries yet</p>
+        <p className="text-text-secondary text-sm mb-6">Add your first lead to start the pipeline</p>
         <button
           className="mgr-btn-primary"
           onClick={() => router.push('/manager/manager_crm/enquiries/add')}

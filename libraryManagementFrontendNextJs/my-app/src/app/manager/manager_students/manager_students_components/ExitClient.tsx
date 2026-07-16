@@ -77,7 +77,7 @@ export function ExitClient() {
                 onChange={e => setSearch(e.target.value)}
               />
             </div>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+            <div className="admin-flex-col admin-gap-8">
               {filtered.map(s => (
                 <button
                   key={s.smartId}
@@ -98,7 +98,7 @@ export function ExitClient() {
           </div>
         </div>
 
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+        <div className="admin-flex-col admin-gap-16">
           {student && (
             <div className="mgr-card">
               <div className="mgr-card-header">

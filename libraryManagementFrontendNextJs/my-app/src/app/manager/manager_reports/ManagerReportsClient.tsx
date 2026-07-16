@@ -19,9 +19,9 @@ export function ManagerReportsClient() {
       <div className="p-6">
         <ManagerReportsHeader />
         <div className="animate-pulse space-y-8">
-          <div className="h-20 bg-[var(--skeleton-base)] rounded-[var(--radius-lg)] w-full"></div>
-          <div className="h-32 bg-[var(--skeleton-base)] rounded-[var(--radius-lg)] w-full"></div>
-          <div className="h-64 bg-[var(--skeleton-base)] rounded-[var(--radius-lg)] w-full"></div>
+          <div className="h-20 bg-skeleton-base rounded-[var(--radius-lg)] w-full"></div>
+          <div className="h-32 bg-skeleton-base rounded-[var(--radius-lg)] w-full"></div>
+          <div className="h-64 bg-skeleton-base rounded-[var(--radius-lg)] w-full"></div>
         </div>
       </div>
     );
@@ -31,7 +31,7 @@ export function ManagerReportsClient() {
     return (
       <div className="p-6">
         <ManagerReportsHeader />
-        <div className="p-8 text-center text-[var(--danger)] bg-[var(--danger-bg,rgba(248,113,113,0.1))] rounded-[var(--radius-lg)]">
+        <div className="p-8 text-center text-danger bg-[var(--danger-bg,rgba(248,113,113,0.1))] rounded-[var(--radius-lg)]">
           Failed to load reports. Please try again.
         </div>
       </div>

@@ -19,9 +19,9 @@ export default function DocumentVaultPage() {
   const [rowData] = useState(DOCUMENTS_DATA);
 
   const getFileIcon = (type: string) => {
-    if (type === 'PDF') return <FileText size={18} className="text-[var(--danger)]" />;
-    if (type === 'Image') return <ImageIcon size={18} className="text-[var(--primary)]" />;
-    return <File size={18} className="text-[var(--info)]" />;
+    if (type === 'PDF') return <FileText size={18} className="text-danger" />;
+    if (type === 'Image') return <ImageIcon size={18} className="text-primary" />;
+    return <File size={18} className="text-info" />;
   };
 
   const colDefs = [
@@ -49,7 +49,7 @@ export default function DocumentVaultPage() {
           <button className="mgr-btn-ghost mgr-btn-sm" title="Download">
             <Download size={16} />
           </button>
-          <button className="mgr-btn-ghost mgr-btn-sm text-[var(--danger)]" title="Delete">
+          <button className="mgr-btn-ghost mgr-btn-sm text-danger" title="Delete">
             <Trash2 size={16} />
           </button>
         </div>
@@ -73,25 +73,25 @@ export default function DocumentVaultPage() {
       </div>
 
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
-        <div className="mgr-card p-4 flex flex-col items-center justify-center cursor-pointer hover:border-[var(--primary)] transition-colors border-2 border-transparent">
-          <FolderOpen size={32} className="text-[var(--primary)] mb-2" />
-          <p className="font-medium text-[var(--text-primary)]">ID Proofs</p>
-          <p className="text-xs text-[var(--text-secondary)]">124 Files</p>
+        <div className="mgr-card p-4 flex flex-col items-center justify-center cursor-pointer hover:border-primary transition-colors border-2 border-transparent">
+          <FolderOpen size={32} className="text-primary mb-2" />
+          <p className="font-medium text-text-primary">ID Proofs</p>
+          <p className="text-xs text-text-secondary">124 Files</p>
         </div>
-        <div className="mgr-card p-4 flex flex-col items-center justify-center cursor-pointer hover:border-[var(--primary)] transition-colors border-2 border-transparent">
-          <FolderOpen size={32} className="text-[var(--success)] mb-2" />
-          <p className="font-medium text-[var(--text-primary)]">Finance</p>
-          <p className="text-xs text-[var(--text-secondary)]">845 Files</p>
+        <div className="mgr-card p-4 flex flex-col items-center justify-center cursor-pointer hover:border-primary transition-colors border-2 border-transparent">
+          <FolderOpen size={32} className="text-success mb-2" />
+          <p className="font-medium text-text-primary">Finance</p>
+          <p className="text-xs text-text-secondary">845 Files</p>
         </div>
-        <div className="mgr-card p-4 flex flex-col items-center justify-center cursor-pointer hover:border-[var(--primary)] transition-colors border-2 border-transparent">
-          <FolderOpen size={32} className="text-[var(--warning)] mb-2" />
-          <p className="font-medium text-[var(--text-primary)]">Study Material</p>
-          <p className="text-xs text-[var(--text-secondary)]">42 Files</p>
+        <div className="mgr-card p-4 flex flex-col items-center justify-center cursor-pointer hover:border-primary transition-colors border-2 border-transparent">
+          <FolderOpen size={32} className="text-warning mb-2" />
+          <p className="font-medium text-text-primary">Study Material</p>
+          <p className="text-xs text-text-secondary">42 Files</p>
         </div>
-        <div className="mgr-card p-4 flex flex-col items-center justify-center cursor-pointer hover:border-[var(--primary)] transition-colors border-2 border-transparent">
-          <FolderOpen size={32} className="text-[var(--info)] mb-2" />
-          <p className="font-medium text-[var(--text-primary)]">Other</p>
-          <p className="text-xs text-[var(--text-secondary)]">19 Files</p>
+        <div className="mgr-card p-4 flex flex-col items-center justify-center cursor-pointer hover:border-primary transition-colors border-2 border-transparent">
+          <FolderOpen size={32} className="text-info mb-2" />
+          <p className="font-medium text-text-primary">Other</p>
+          <p className="text-xs text-text-secondary">19 Files</p>
         </div>
       </div>
 

@@ -46,7 +46,7 @@ export function ManagerDashboardClient() {
   ], []);
 
   if (status === 'loading') return <div className="p-8 animate-pulse">Loading dashboard...</div>;
-  if (status === 'error') return <div className="p-8 text-[var(--danger)]">Failed to load: {error}</div>;
+  if (status === 'error') return <div className="p-8 text-danger">Failed to load: {error}</div>;
   if (!data) return null;
 
   return (

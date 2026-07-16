@@ -48,7 +48,7 @@ export function ManagerStudentsClient() {
     },
   ], []);
 
-  if (status === 'error') return <div className="p-8 text-[var(--danger)]">Failed to load: {error}</div>;
+  if (status === 'error') return <div className="p-8 text-danger">Failed to load: {error}</div>;
 
   return (
     <div className="mgr-page">
@@ -110,7 +110,7 @@ export function ManagerStudentsClient() {
           {status === 'loading' ? (
              <div className="flex items-center justify-center h-full">Loading table...</div>
           ) : filtered.length === 0 ? (
-             <div className="flex items-center justify-center h-full bg-[var(--bg-card)]">
+             <div className="flex items-center justify-center h-full bg-bg-card">
                <ManagerStudentsEmptyState />
              </div>
           ) : (

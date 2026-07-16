@@ -81,7 +81,7 @@ export default function WhatsappLogsPage() {
       sortable: false,
       cellRenderer: (params: any) => (
         <div className="h-full flex items-center">
-          <button onClick={() => setViewLog(params.data)} className="eng-btn-icon hover:bg-[var(--mgr-primary)] hover:text-white transition-colors duration-200" title="View Message">
+          <button onClick={() => setViewLog(params.data)} className="eng-btn-icon hover:bg-mgr-primary hover:text-white transition-colors duration-200" title="View Message">
             <Eye size={16} />
           </button>
         </div>
@@ -94,30 +94,30 @@ export default function WhatsappLogsPage() {
       {/* View Message Modal */}
       {viewLog && (
         <div className="eng-overlay">
-          <div className="eng-modal eng-modal--lg bg-[var(--mgr-bg-card)]">
+          <div className="eng-modal eng-modal--lg bg-mgr-bg-card">
             <button onClick={() => setViewLog(null)} className="eng-modal-close hover:text-red-500"><X size={16} /></button>
-            <p className="eng-modal-title mb-4 font-bold text-[var(--mgr-text-primary)]">📱 Message Details</p>
+            <p className="eng-modal-title mb-4 font-bold text-mgr-text-primary">📱 Message Details</p>
             <div className="eng-modal-badge-row mb-6 flex gap-2">
               <span className={`eng-badge ${TYPE_BADGE[viewLog.type]}`}>{TYPE_LABEL[viewLog.type]}</span>
               <span className={`eng-badge ${STATUS_BADGE[viewLog.status]}`}>{viewLog.status}</span>
             </div>
-            <div className="eng-msg-detail-grid grid grid-cols-2 gap-4 mb-6 bg-[var(--mgr-bg)] p-4 rounded-lg">
+            <div className="eng-msg-detail-grid grid grid-cols-2 gap-4 mb-6 bg-mgr-bg p-4 rounded-lg">
               {([['To', viewLog.phone], ['Student', viewLog.student], ['Sent At', viewLog.dateTime]] as [string, string][]).map(([k, v]) => (
                 <div key={k} className="eng-msg-detail-item">
-                  <p className="eng-msg-detail-key text-xs font-semibold text-[var(--mgr-text-secondary)] uppercase tracking-wider">{k}</p>
-                  <p className="eng-msg-detail-val text-[var(--mgr-text-primary)] font-medium mt-1">{v}</p>
+                  <p className="eng-msg-detail-key text-xs font-semibold text-mgr-text-secondary uppercase tracking-wider">{k}</p>
+                  <p className="eng-msg-detail-val text-mgr-text-primary font-medium mt-1">{v}</p>
                 </div>
               ))}
             </div>
             <div>
               <label className="eng-label text-sm font-semibold mb-2 block">Message Content</label>
-              <div className="eng-msg-body-box bg-[var(--mgr-bg)] p-4 rounded-lg border border-[var(--mgr-border)] text-sm leading-relaxed text-[var(--mgr-text-primary)] whitespace-pre-wrap">{viewLog.message}</div>
+              <div className="eng-msg-body-box bg-mgr-bg p-4 rounded-lg border border-mgr-border text-sm leading-relaxed text-mgr-text-primary whitespace-pre-wrap">{viewLog.message}</div>
             </div>
             {viewLog.error && (
               <div className="eng-warn-box mt-4 p-3 bg-red-50 text-red-600 rounded-lg border border-red-200 text-sm font-medium">⚠️ Error: {viewLog.error}</div>
             )}
             <div className="eng-modal-footer mt-6 flex justify-end">
-              <button onClick={() => setViewLog(null)} className="px-4 py-2 bg-[var(--mgr-bg)] border border-[var(--mgr-border)] text-[var(--mgr-text-primary)] rounded hover:bg-[var(--mgr-border)] transition-colors">Close</button>
+              <button onClick={() => setViewLog(null)} className="px-4 py-2 bg-mgr-bg border border-mgr-border text-mgr-text-primary rounded hover:bg-mgr-border transition-colors">Close</button>
             </div>
           </div>
         </div>
@@ -132,10 +132,10 @@ export default function WhatsappLogsPage() {
       </div>
 
       {/* Filter Bar */}
-      <div className="eng-card mb-6 p-4 border border-[var(--mgr-border)] rounded-lg">
+      <div className="eng-card mb-6 p-4 border border-mgr-border rounded-lg">
         <div className="eng-filter-row flex flex-wrap gap-4 items-end">
           <div className="flex flex-col">
-            <label className="eng-label text-xs mb-1 font-semibold text-[var(--mgr-text-secondary)]">Message Type</label>
+            <label className="eng-label text-xs mb-1 font-semibold text-mgr-text-secondary">Message Type</label>
             <select value={typeFilter} onChange={e => setTypeFilter(e.target.value)} className="eng-select py-2 px-3 border rounded">
               <option value="All">All Types</option>
               <option value="welcome">Welcome</option>
@@ -146,7 +146,7 @@ export default function WhatsappLogsPage() {
             </select>
           </div>
           <div className="flex flex-col">
-            <label className="eng-label text-xs mb-1 font-semibold text-[var(--mgr-text-secondary)]">Status</label>
+            <label className="eng-label text-xs mb-1 font-semibold text-mgr-text-secondary">Status</label>
             <select value={statusFilter} onChange={e => setStatusFilter(e.target.value)} className="eng-select py-2 px-3 border rounded">
               <option value="All">All</option>
               <option>Pending</option><option>Sent</option>
@@ -154,15 +154,15 @@ export default function WhatsappLogsPage() {
             </select>
           </div>
           <div className="flex flex-col">
-            <label className="eng-label text-xs mb-1 font-semibold text-[var(--mgr-text-secondary)]">From</label>
+            <label className="eng-label text-xs mb-1 font-semibold text-mgr-text-secondary">From</label>
             <input type="date" className="eng-input py-2 px-3 border rounded" value={dateFrom} onChange={e => setDateFrom(e.target.value)} />
           </div>
           <div className="flex flex-col">
-            <label className="eng-label text-xs mb-1 font-semibold text-[var(--mgr-text-secondary)]">To</label>
+            <label className="eng-label text-xs mb-1 font-semibold text-mgr-text-secondary">To</label>
             <input type="date" className="eng-input py-2 px-3 border rounded" value={dateTo} onChange={e => setDateTo(e.target.value)} />
           </div>
           <div className="eng-flex-1 flex flex-col flex-grow min-w-[200px]">
-            <label className="eng-label text-xs mb-1 font-semibold text-[var(--mgr-text-secondary)]">Search</label>
+            <label className="eng-label text-xs mb-1 font-semibold text-mgr-text-secondary">Search</label>
             <input className="eng-input py-2 px-3 border rounded w-full" placeholder="Student name or phone..." value={search} onChange={e => setSearch(e.target.value)} />
           </div>
         </div>
@@ -173,7 +173,7 @@ export default function WhatsappLogsPage() {
         {filtered.length === 0 ? (
           <div className="eng-empty py-12 flex flex-col items-center justify-center text-center">
             <div className="eng-empty__icon text-4xl mb-4">📱</div>
-            <p className="eng-empty__title text-lg font-semibold text-[var(--mgr-text-primary)]">No WhatsApp messages found.</p>
+            <p className="eng-empty__title text-lg font-semibold text-mgr-text-primary">No WhatsApp messages found.</p>
           </div>
         ) : (
           <div className="mgr-table-wrapper h-[450px]">

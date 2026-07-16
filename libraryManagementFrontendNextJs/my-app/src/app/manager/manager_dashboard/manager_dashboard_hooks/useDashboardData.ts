@@ -5,6 +5,7 @@ import { useDashboardStore } from '@/app/manager/manager_dashboard/manager_dashb
  * Custom hook to fetch and manage dashboard data.
  * DATA FLOW: API → useDashboardData → ManagerDashboardClient
  */
+// DATA FLOW: API → useDashboardData.ts → DashboardDataComponent
 export function useDashboardData() {
   const { data, status, error, fetchData } = useDashboardStore();
 

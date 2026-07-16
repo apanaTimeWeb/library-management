@@ -123,7 +123,7 @@ export function StudentProfileClient({ id }: { id: string }) {
           </div>
         </div>
 
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+        <div className="admin-flex-col admin-gap-16">
           <div className="mgr-card">
             <div className="mgr-card-header">
               <h2 className="mgr-section-title">Validity</h2>
@@ -150,7 +150,7 @@ export function StudentProfileClient({ id }: { id: string }) {
             <div className="mgr-card-header">
               <h2 className="mgr-section-title">Quick Actions</h2>
             </div>
-            <div className="mgr-card-body" style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+            <div className="mgr-card-body admin-flex-col admin-gap-8">
               <Link href={`/manager/manager_finance/collect-fee?id=${student.smartId}`} className="mgr-btn-primary mgr-btn-full">
                 Collect Fee
               </Link>
