@@ -26,7 +26,6 @@ import {
   type Enquiry,
   type EnquiryStatus,
   type FollowUp,
-  type FollowUp,
 } from '@/app/manager/manager_crm/manager_crm_types';
 import { STATUS_BADGE } from '@/app/manager/manager_crm/manager_crm_constants';
 import { maskPhone, getInitials } from '@/app/manager/manager_crm/manager_crm_utils';
