@@ -1,6 +1,6 @@
 import { Controller, Get, Query } from '@nestjs/common';
-import { SubscriptionsGetAllService } from '../services/get-all-subscriptions.service';
-import { SubscriptionsGetSubscriptionsQueryDto } from '../dto/get-subscriptions-query.dto';
+import { SubscriptionsGetAllService } from '../services/subscriptions-get-all-subscriptions.service';
+import { SubscriptionsGetSubscriptionsQueryDto } from '../dto/subscriptions-get-subscriptions-query.dto';
 
 @Controller('v1/admin/subscriptions')
 export class SubscriptionsGetAllController {

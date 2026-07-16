@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { IDCard } from '@/core/entities/id-card.entity';
-import { IdCardsUpdateIDCardDto } from '../dto/update-id-card.dto';
+import { IdCardsUpdateIDCardDto } from '../dto/id-cards-update-id-card.dto';
 import { IDCardNotFoundException } from '../exceptions/id-cards.exceptions';
 
 @Injectable()

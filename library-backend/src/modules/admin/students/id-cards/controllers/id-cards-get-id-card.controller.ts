@@ -1,5 +1,5 @@
 import { Controller, Get, Param } from '@nestjs/common';
-import { IdCardsGetIDCardService } from '../services/get-id-card.service';
+import { IdCardsGetIDCardService } from '../services/id-cards-get-id-card.service';
 
 @Controller('v1/admin/id-cards')
 export class IdCardsGetIDCardController {

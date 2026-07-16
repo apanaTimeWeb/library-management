@@ -1,5 +1,5 @@
 import { Controller, Get, Param } from '@nestjs/common';
-import { AttendanceGetService } from '../services/get-attendance.service';
+import { AttendanceGetService } from '../services/attendance-get-attendance.service';
 
 @Controller('v1/admin/attendance')
 export class AttendanceGetController {

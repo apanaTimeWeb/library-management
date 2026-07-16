@@ -1,5 +1,5 @@
 import { Controller, Get, Param } from '@nestjs/common';
-import { SubscriptionsGetSubscriptionService } from '../services/get-subscription.service';
+import { SubscriptionsGetSubscriptionService } from '../services/subscriptions-get-subscription.service';
 
 @Controller('v1/admin/subscriptions')
 export class SubscriptionsGetSubscriptionController {

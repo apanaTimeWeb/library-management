@@ -15,7 +15,7 @@ export interface StudentsStudentListItem {
   college?: string;
 }
 
-export interface StudentsStudentDetailItem extends StudentListItem {
+export interface StudentsStudentDetailItem extends StudentsStudentListItem {
   firstName: string;
   lastName: string;
   history: Array<{

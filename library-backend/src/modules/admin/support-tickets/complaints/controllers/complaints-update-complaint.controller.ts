@@ -1,6 +1,6 @@
 import { Controller, Patch, Param, Body } from '@nestjs/common';
-import { ComplaintsUpdateComplaintService } from '../services/update-complaint.service';
-import { ComplaintsUpdateComplaintDto } from '../dto/update-complaint.dto';
+import { ComplaintsUpdateComplaintService } from '../services/complaints-update-complaint.service';
+import { ComplaintsUpdateComplaintDto } from '../dto/complaints-update-complaint.dto';
 
 @Controller('v1/admin/complaints')
 export class ComplaintsUpdateComplaintController {

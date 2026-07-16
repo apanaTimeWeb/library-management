@@ -1,5 +1,5 @@
 import { Controller, Get, Param } from '@nestjs/common';
-import { ComplaintsGetComplaintService } from '../services/get-complaint.service';
+import { ComplaintsGetComplaintService } from '../services/complaints-get-complaint.service';
 
 @Controller('v1/admin/complaints')
 export class ComplaintsGetComplaintController {

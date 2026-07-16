@@ -1,6 +1,6 @@
 import { Controller, Get, Query } from '@nestjs/common';
-import { ComplaintsGetAllService } from '../services/get-all-complaints.service';
-import { ComplaintsGetComplaintsQueryDto } from '../dto/get-complaints-query.dto';
+import { ComplaintsGetAllService } from '../services/complaints-get-all-complaints.service';
+import { ComplaintsGetComplaintsQueryDto } from '../dto/complaints-get-complaints-query.dto';
 
 @Controller('v1/admin/complaints')
 export class ComplaintsGetAllController {

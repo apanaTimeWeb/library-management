@@ -1,6 +1,6 @@
 import { Controller, Post, Body } from '@nestjs/common';
-import { ComplaintsCreateComplaintService } from '../services/create-complaint.service';
-import { ComplaintsCreateComplaintDto } from '../dto/create-complaint.dto';
+import { ComplaintsCreateComplaintService } from '../services/complaints-create-complaint.service';
+import { ComplaintsCreateComplaintDto } from '../dto/complaints-create-complaint.dto';
 
 @Controller('v1/admin/complaints')
 export class ComplaintsCreateComplaintController {

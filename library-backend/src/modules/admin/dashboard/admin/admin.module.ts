@@ -37,4 +37,4 @@ import { AdminStudentsController } from '@/modules/admin/students/dashboard/cont
   providers: [AdminDashboardService, AdminReportsService, DashboardAuditLogsService, AdminBlacklistService, AdminBranchesService, AdminCouponsService, AdminExpenseCategoriesService, AdminExpensesService, AdminPermissionsService, AdminPlansService, AdminStaffUsersService, AdminStudentsService, ],
   controllers: [AdminDashboardController, AdminReportsController, DashboardAuditLogsController, AdminBlacklistController, AdminBranchesController, AdminCouponsController, AdminExpenseCategoriesController, AdminExpensesController, AdminPermissionsController, AdminPlansController, AdminStaffUsersController, AdminStudentsController, ],
 })
-export class Module {}
+export class AdminModule {}

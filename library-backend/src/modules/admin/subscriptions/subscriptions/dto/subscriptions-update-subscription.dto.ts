@@ -1,4 +1,4 @@
 import { PartialType } from '@nestjs/mapped-types';
-import { SubscriptionsCreateSubscriptionDto } from './create-subscription.dto';
+import { SubscriptionsCreateSubscriptionDto } from './subscriptions-create-subscription.dto';
 
-export class SubscriptionsUpdateSubscriptionDto extends PartialType(CreateSubscriptionDto) {}
+export class SubscriptionsUpdateSubscriptionDto extends PartialType(SubscriptionsCreateSubscriptionDto) {}

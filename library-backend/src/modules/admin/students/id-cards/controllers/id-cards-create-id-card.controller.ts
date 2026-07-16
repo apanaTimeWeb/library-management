@@ -1,6 +1,6 @@
 import { Controller, Post, Body } from '@nestjs/common';
-import { IdCardsCreateIDCardService } from '../services/create-id-card.service';
-import { IdCardsCreateIDCardDto } from '../dto/create-id-card.dto';
+import { IdCardsCreateIDCardService } from '../services/id-cards-create-id-card.service';
+import { IdCardsCreateIDCardDto } from '../dto/id-cards-create-id-card.dto';
 
 @Controller('v1/admin/id-cards')
 export class IdCardsCreateIDCardController {

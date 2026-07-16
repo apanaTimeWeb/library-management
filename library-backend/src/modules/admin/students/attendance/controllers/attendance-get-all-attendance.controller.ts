@@ -1,6 +1,6 @@
 import { Controller, Get, Query } from '@nestjs/common';
-import { AttendanceGetAllAttendancesService } from '../services/get-all-attendance.service';
-import { AttendanceGetAttendancesQueryDto } from '../dto/get-attendance-query.dto';
+import { AttendanceGetAllAttendancesService } from '../services/attendance-get-all-attendance.service';
+import { AttendanceGetAttendancesQueryDto } from '../dto/attendance-get-attendance-query.dto';
 
 @Controller('v1/admin/attendance')
 export class AttendanceGetAllAttendancesController {

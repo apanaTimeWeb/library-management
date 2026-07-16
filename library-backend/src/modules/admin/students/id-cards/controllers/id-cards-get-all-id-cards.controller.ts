@@ -1,6 +1,6 @@
 import { Controller, Get, Query } from '@nestjs/common';
-import { IdCardsGetAllIDCardsService } from '../services/get-all-id-cards.service';
-import { IdCardsGetIDCardsQueryDto } from '../dto/get-id-cards-query.dto';
+import { IdCardsGetAllIDCardsService } from '../services/id-cards-get-all-id-cards.service';
+import { IdCardsGetIDCardsQueryDto } from '../dto/id-cards-get-id-cards-query.dto';
 
 @Controller('v1/admin/id-cards')
 export class IdCardsGetAllIDCardsController {

@@ -1,6 +1,6 @@
 import { Controller, Patch, Param, Body } from '@nestjs/common';
-import { SubscriptionsUpdateSubscriptionService } from '../services/update-subscription.service';
-import { SubscriptionsUpdateSubscriptionDto } from '../dto/update-subscription.dto';
+import { SubscriptionsUpdateSubscriptionService } from '../services/subscriptions-update-subscription.service';
+import { SubscriptionsUpdateSubscriptionDto } from '../dto/subscriptions-update-subscription.dto';
 
 @Controller('v1/admin/subscriptions')
 export class SubscriptionsUpdateSubscriptionController {

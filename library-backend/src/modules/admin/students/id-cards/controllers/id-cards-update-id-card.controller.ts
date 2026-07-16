@@ -1,6 +1,6 @@
 import { Controller, Patch, Param, Body } from '@nestjs/common';
-import { IdCardsUpdateIDCardService } from '../services/update-id-card.service';
-import { IdCardsUpdateIDCardDto } from '../dto/update-id-card.dto';
+import { IdCardsUpdateIDCardService } from '../services/id-cards-update-id-card.service';
+import { IdCardsUpdateIDCardDto } from '../dto/id-cards-update-id-card.dto';
 
 @Controller('v1/admin/id-cards')
 export class IdCardsUpdateIDCardController {

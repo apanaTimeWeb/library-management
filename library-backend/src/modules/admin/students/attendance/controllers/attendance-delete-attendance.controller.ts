@@ -1,5 +1,5 @@
 import { Controller, Delete, Param } from '@nestjs/common';
-import { AttendanceDeleteService } from '../services/delete-attendance.service';
+import { AttendanceDeleteService } from '../services/attendance-delete-attendance.service';
 
 @Controller('v1/admin/attendance')
 export class AttendanceDeleteController {

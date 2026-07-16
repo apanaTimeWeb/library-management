@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Complaint } from '@/core/entities/complaint.entity';
-import { ComplaintsCreateComplaintDto } from '../dto/create-complaint.dto';
+import { ComplaintsCreateComplaintDto } from '../dto/complaints-create-complaint.dto';
 
 @Injectable()
 export class ComplaintsCreateComplaintService {

@@ -1,6 +1,6 @@
 import { Controller, Patch, Param, Body } from '@nestjs/common';
-import { AttendanceUpdateService } from '../services/update-attendance.service';
-import { AttendanceUpdateDto } from '../dto/update-attendance.dto';
+import { AttendanceUpdateService } from '../services/attendance-update-attendance.service';
+import { AttendanceUpdateDto } from '../dto/attendance-update-attendance.dto';
 
 @Controller('v1/admin/attendance')
 export class AttendanceUpdateController {

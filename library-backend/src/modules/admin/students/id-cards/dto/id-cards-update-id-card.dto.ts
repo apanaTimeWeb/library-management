@@ -1,4 +1,4 @@
 import { PartialType } from '@nestjs/mapped-types';
-import { IdCardsCreateIDCardDto } from './create-id-card.dto';
+import { IdCardsCreateIDCardDto } from './id-cards-create-id-card.dto';
 
-export class IdCardsUpdateIDCardDto extends PartialType(CreateIDCardDto) {}
+export class IdCardsUpdateIDCardDto extends PartialType(IdCardsCreateIDCardDto) {}

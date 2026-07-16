@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository, FindOptionsWhere, ILike } from 'typeorm';
 import { IDCard } from '@/core/entities/id-card.entity';
-import { IdCardsGetIDCardsQueryDto } from '../dto/get-id-cards-query.dto';
+import { IdCardsGetIDCardsQueryDto } from '../dto/id-cards-get-id-cards-query.dto';
 
 @Injectable()
 export class IdCardsGetAllIDCardsService {
