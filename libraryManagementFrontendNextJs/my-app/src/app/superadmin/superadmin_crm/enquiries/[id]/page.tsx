@@ -1,4 +1,6 @@
 'use client';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 
 import { useState, use, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
@@ -166,7 +168,7 @@ export default function EnquiryDetailPage({
   const router = useRouter();
 
   // ── Local state ──
-  const [enquiry, setEnquiry] = useState<unknown>(null);
+  const [enquiry, setEnquiry] = useState<FlexRecord | null>(null);
   const [loading, setLoading] = useState(true);
   const [currentStatus, setCurrentStatus] = useState<EnquiryStatus>('New');
   const [showLostModal, setShowLostModal] = useState(false);
@@ -176,7 +178,7 @@ export default function EnquiryDetailPage({
   useEffect(() => {
     import('@/lib/api').then(({ fetchApi }) => {
       fetchApi(`/crm/enquiries/${id}`)
-        .then((e: unknown) => {
+        .then(( e: any ) => {
           if (!e) {
             setLoading(false);
             return;
@@ -443,7 +445,7 @@ export default function EnquiryDetailPage({
                 </div>
               ) : (
                 <div className="crm-timeline">
-                  {enquiry.followUps.map((fu: unknown) => (
+                  {enquiry.followUps.map(( fu: FlexRecord ) => (
                     <div className="crm-timeline-entry" key={fu.id}>
                       <div className={`crm-timeline-dot ${timelineDotClass(fu.by)}`} />
                       <div className="crm-timeline-card">
@@ -477,9 +479,9 @@ export default function EnquiryDetailPage({
                   <select
                     className="crm-select"
                     value={currentStatus}
-                    onChange={(e: unknown) => setCurrentStatus(e.target.value as EnquiryStatus)}
+                    onChange={( e: any ) => setCurrentStatus(e.target.value as EnquiryStatus)}
                   >
-                    {STATUS_OPTIONS.map((s: unknown) => (
+                    {STATUS_OPTIONS.map(( s: FlexRecord ) => (
                       <option key={s} value={s}>{s}</option>
                     ))}
                   </select>

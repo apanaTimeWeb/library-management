@@ -147,7 +147,7 @@ export default function SuperadminSidebar({ isOpen, onClose }: SidebarProps) {
         <div key={gi}>
           {group.group && <p className="crm-nav-group-label">{group.group}</p>}
 
-          {group.items.map((item: unknown) => {
+          {group.items.map(( item: FlexRecord ) => {
             const active =
               item.href === '/crm/enquiries'
                 ? pathname.startsWith('/crm/enquiries')

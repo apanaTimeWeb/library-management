@@ -45,7 +45,7 @@ export default function NotificationCenterPage() {
   });
 
   const unread = notifs.filter(n => !n.read).length;
-  const markAllRead = () => setNotifs(prev => prev.map((n: unknown) => ({ ...n, read: true })));
+  const markAllRead = () => setNotifs(prev => prev.map(( n: FlexRecord ) => ({ ...n, read: true })));
 
   return (
     <div className="eng-page">
@@ -67,7 +67,7 @@ export default function NotificationCenterPage() {
       <div className="flex flex-col gap-6">
         {/* Top Filter Bar */}
         <div className="eng-notif-topbar flex flex-wrap gap-3">
-          {CATS.map((c: unknown) => (
+          {CATS.map(( c: FlexRecord ) => (
             <button key={c.id} onClick={() => setCat(c.id)}
               className={`eng-notif-cat${cat === c.id ? ' eng-notif-cat--active' : ''}`}
               style={{ width: 'auto', padding: '8px 16px', borderRadius: '30px' }}>
@@ -84,7 +84,7 @@ export default function NotificationCenterPage() {
               <p className="eng-empty__title">All caught up! No pending notifications.</p>
             </div>
           ) : (
-            filtered.map((n: unknown) => (
+            filtered.map(( n: FlexRecord ) => (
               <div key={n.id} className={`eng-notif-item${n.read ? ' eng-notif-read' : ''}`}>
                 <div className={`eng-notif-icon ${ICON_CLS[n.category]}`}>{n.icon}</div>
                 <div className="eng-flex-1">

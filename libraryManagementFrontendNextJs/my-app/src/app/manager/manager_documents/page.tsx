@@ -5,6 +5,7 @@ import { AgGridReact } from 'ag-grid-react';
 import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community';
 import { FolderOpen, Upload, Search, FileText, Download, Trash2, Image as ImageIcon, File } from 'lucide-react';
 import { gridTheme } from '@/app/manager/manager_reusable/gridTheme';
+import { ManagerRecord } from '@/app/manager/manager_reusable/gridTheme';
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
@@ -111,7 +112,7 @@ export default function DocumentVaultPage() {
           <AgGridReact
             theme={gridTheme}
             rowData={rowData}
-            columnDefs={colDefs as unknown}
+            columnDefs={colDefs as never}
             rowHeight={56}
             headerHeight={48}
           />

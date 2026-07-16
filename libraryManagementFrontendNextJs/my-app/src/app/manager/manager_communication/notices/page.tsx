@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { ChevronRight, Plus, X, Edit2, Trash2, Send } from 'lucide-react';
 import { AgGridReact } from 'ag-grid-react';
 import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community';
-import { gridTheme } from '@/app/manager/manager_reusable/gridTheme';
+import { gridTheme , ManagerRecord } from '@/app/manager/manager_reusable/gridTheme';
 import { fetchApi } from '@/lib/api';
 
 ModuleRegistry.registerModules([AllCommunityModule]);
@@ -27,7 +27,7 @@ export default function NoticesPage() {
 
   useEffect(() => {
     fetchApi('/communication/notices').then(data => {
-      const mapped = data.map((n: unknown) => ({
+      const mapped = data.map(( n: ManagerRecord ) => ({
         id: n.id,
         title: n.title,
         message: n.message,
@@ -197,7 +197,7 @@ export default function NoticesPage() {
             <AgGridReact
               theme={gridTheme}
               rowData={notices}
-              columnDefs={colDefs as unknown}
+              columnDefs={colDefs as never}
               rowHeight={56}
               headerHeight={48}
               pagination={true}

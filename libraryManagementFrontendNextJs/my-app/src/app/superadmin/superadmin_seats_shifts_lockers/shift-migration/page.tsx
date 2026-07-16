@@ -84,7 +84,7 @@ export default function ShiftMigrationPage() {
           {/* dynamic computed width — allowed inline style */}
           <div className="ss-stepper__progress" style={{ width: `${((step - 1) / 2) * 100}%` }} />
           <div className="ss-stepper__steps">
-            {STEPS.map((s: unknown) => (
+            {STEPS.map(( s: FlexRecord ) => (
               <div key={s.n} className="ss-stepper__step">
                 <div className={`ss-stepper__circle ${step >= s.n ? 'ss-stepper__circle--active' : 'ss-stepper__circle--inactive'}`}>
                   {step > s.n ? <CheckCircle size={18} /> : s.n}
@@ -120,7 +120,7 @@ export default function ShiftMigrationPage() {
                   <div className="ss-search-results">
                     {filteredStudents.length === 0 ? (
                       <p className="ss-text-secondary ss-text-caption">No students found.</p>
-                    ) : filteredStudents.map((s: unknown) => (
+                    ) : filteredStudents.map(( s: FlexRecord ) => (
                       <button
                         key={s.id}
                         className={`ss-search-result-item${selectedStudent?.id === s.id ? ' ss-search-result-item--active' : ''}`}
@@ -162,7 +162,7 @@ export default function ShiftMigrationPage() {
                     <div className="ss-select-wrap">
                       <select className="ss-select" value={newShift} onChange={e => { setNewShift(e.target.value); setNewSeat(''); }}>
                         <option value="">Select shift...</option>
-                        {SHIFTS.map((s: unknown) => (
+                        {SHIFTS.map(( s: FlexRecord ) => (
                           <option key={s.name} value={s.name}>{s.name} ({s.seats} seats free)</option>
                         ))}
                       </select>
@@ -174,7 +174,7 @@ export default function ShiftMigrationPage() {
                     <div className="ss-select-wrap">
                       <select className="ss-select" value={newSeat} onChange={e => setNewSeat(e.target.value)} disabled={!newShift}>
                         <option value="">Select seat...</option>
-                        {newShift && ['B-01', 'B-02', 'B-03', 'B-04'].map((seat: unknown) => (
+                        {newShift && ['B-01', 'B-02', 'B-03', 'B-04'].map(( seat: FlexRecord ) => (
                           <option key={seat}>{seat}</option>
                         ))}
                       </select>
@@ -268,7 +268,7 @@ export default function ShiftMigrationPage() {
                   <div className="ss-card">
                     <h3 className="ss-card-section-heading">Payment</h3>
                     <div className="ss-payment-grid">
-                      {(['Cash', 'UPI', 'Card'] as PayMode[]).map((m: unknown) => (
+                      {(['Cash', 'UPI', 'Card'] as PayMode[]).map(( m: FlexRecord ) => (
                         <button
                           key={m}
                           onClick={() => setPayMode(m)}

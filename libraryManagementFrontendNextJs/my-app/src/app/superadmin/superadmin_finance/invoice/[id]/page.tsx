@@ -48,7 +48,7 @@ export default function InvoiceDetail() {
       r('Date    :', formatDate(INV.invoiceDate)), ln,
       r('Name    :', INV.studentName),
       r('Smart ID:', INV.studentSmartId), ln,
-      ...INV.items.map((i: unknown) => r(i.description.slice(0, 9) + ':', `Rs.${i.amount.toLocaleString('en-IN')}`)),
+      ...INV.items.map(( i: FlexRecord ) => r(i.description.slice(0, 9) + ':', `Rs.${i.amount.toLocaleString('en-IN')}`)),
       r('GST     :', `Rs.${INV.totalGst.toLocaleString('en-IN')}`),
       dln,
       r('TOTAL   :', `Rs.${INV.grandTotal.toLocaleString('en-IN')}`),
@@ -170,7 +170,7 @@ export default function InvoiceDetail() {
           {[
             { l: 'Subtotal:', v: formatCurrency(INV.subtotal) },
             { l: 'GST:',      v: formatCurrency(INV.totalGst) },
-          ].map((r: unknown) => (
+          ].map(( r: FlexRecord ) => (
             <div key={r.l} className="flex justify-between w-52">
               <span className="fin-text-muted">{r.l}</span>
               <span className="fin-text-body">{r.v}</span>

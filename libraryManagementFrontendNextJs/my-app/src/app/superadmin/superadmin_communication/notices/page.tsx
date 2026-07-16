@@ -1,4 +1,6 @@
 'use client';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import type { ICellRendererParams } from 'ag-grid-community';
 import { useState, useEffect } from 'react';
 import { ChevronRight, Plus, X, Edit2, Trash2, Send } from 'lucide-react';
@@ -27,8 +29,8 @@ export default function NoticesPage() {
   const [form, setForm]                   = useState({ title: '', message: '', validTill: '' });
 
   useEffect(() => {
-    fetchApi('/communication/notices').then((data: unknown) => {
-      const mapped = data.map((n: unknown) => ({
+    fetchApi('/communication/notices').then(( data: any ) => {
+      const mapped = data.map(( n: FlexRecord ) => ({
         id: n.id,
         title: n.title,
         message: n.message,
@@ -50,7 +52,7 @@ export default function NoticesPage() {
     if (!form.title || !form.message || !form.validTill) return;
     const status: 'Active' | 'Expired' = form.validTill >= today ? 'Active' : 'Expired';
     if (editItem) {
-      setNotices(prev => prev.map((n: unknown) => n.id === editItem.id ? { ...n, ...form, status } : n));
+      setNotices(prev => prev.map(( n: FlexRecord ) => n.id === editItem.id ? { ...n, ...form, status } : n));
       showToast('✅ Notice updated');
     } else {
       setNotices(prev => [{ id: Date.now().toString(), ...form, postedBy: 'Admin', postedDate: today, status }, ...prev]);

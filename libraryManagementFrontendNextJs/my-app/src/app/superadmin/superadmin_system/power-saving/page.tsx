@@ -85,7 +85,7 @@ export default function PowerSavingPage() {
 
       {/* Zone Status Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-        {ZONES.map((zone: unknown) => {
+        {ZONES.map(( zone: FlexRecord ) => {
           const status = getZoneStatus(zone.occupancy);
           const isLow = zone.occupancy < threshold;
           return (
@@ -135,7 +135,7 @@ export default function PowerSavingPage() {
                 </tr>
               </thead>
               <tbody className="divide-y divide-outline-variant/30">
-                {ALERT_LOG.map((log: unknown) => (
+                {ALERT_LOG.map(( log: FlexRecord ) => (
                   <tr key={log.date + log.zone} className="hover:bg-surface-container-high transition-colors">
                     <td className="py-3 pr-4 text-on-surface-variant">{log.date}</td>
                     <td className="py-3 pr-4 text-on-surface">{log.shift}</td>

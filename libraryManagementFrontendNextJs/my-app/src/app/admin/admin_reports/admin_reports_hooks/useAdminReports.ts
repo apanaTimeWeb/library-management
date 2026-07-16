@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { AdminRecord } from '@/app/admin/admin_reusable/gridTheme';
 import toast from 'react-hot-toast';
 
 export type Range = 'thisMonth' | 'last3Months' | 'thisYear';
@@ -10,7 +11,7 @@ export const RANGE_OPTIONS: { label: string; key: Range }[] = [
 ];
 
 // DATA FLOW: API → useAdminReports.ts → AdminReportsComponent
-export function useAdminReports(initialData: unknown) {
+export function useAdminReports(initialData: AdminRecord) {
   const [range, setRange] = useState<Range>('last3Months');
   const [branch, setBranch] = useState('All Branches');
 

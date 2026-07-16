@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { AgGridReact } from 'ag-grid-react';
 import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community';
 import { ChevronRight, Send, Mail, Phone } from 'lucide-react';
-import { gridTheme } from '@/app/manager/manager_reusable/gridTheme';
+import { gridTheme , ManagerRecord } from '@/app/manager/manager_reusable/gridTheme';
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
@@ -103,7 +103,7 @@ export default function AbsenteeReportPage() {
       headerName: 'Actions',
       width: 140,
       sortable: false,
-      cellRenderer: (params: unknown) => (
+      cellRenderer: (params: ManagerRecord) => (
         <div className="eng-row-actions h-full flex items-center">
           {params.data.notified ? (
             <span className="eng-badge eng-badge--success">✅ Notified</span>
@@ -218,7 +218,7 @@ export default function AbsenteeReportPage() {
             <AgGridReact
               theme={gridTheme}
               rowData={filtered}
-              columnDefs={colDefs as unknown[]}
+              columnDefs={colDefs as never[]}
               rowHeight={64}
               headerHeight={48}
               pagination={true}
@@ -229,8 +229,8 @@ export default function AbsenteeReportPage() {
                 resizable: true
               }}
               rowClassRules={{
-                'bg-mgr-danger/5': (params: unknown) => params.data.daysAbsent >= 7,
-                'bg-mgr-warning/5': (params: unknown) => params.data.daysAbsent >= 3 && params.data.daysAbsent < 7
+                'bg-mgr-danger/5': (params: ManagerRecord) => params.data.daysAbsent >= 7,
+                'bg-mgr-warning/5': (params: ManagerRecord) => params.data.daysAbsent >= 3 && params.data.daysAbsent < 7
               }}
             />
           </div>

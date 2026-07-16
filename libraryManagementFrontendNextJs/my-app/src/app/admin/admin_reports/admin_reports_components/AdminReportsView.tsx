@@ -1,4 +1,5 @@
 'use client';
+import { AdminRecord } from '@/app/admin/admin_reusable/gridTheme';
 
 import { Download, FileText, IndianRupee, Users, Wallet, TrendingUp, BarChart2, PieChart as PieIcon, Activity } from 'lucide-react';
 import toast, { Toaster } from 'react-hot-toast';
@@ -35,7 +36,7 @@ const TOOLTIP_STYLE = {
 } as const;
 
 interface AdminReportsViewProps {
-  initialData: unknown;
+  initialData: AdminRecord;
 }
 
 export function AdminReportsView({ initialData }: AdminReportsViewProps) {
@@ -114,7 +115,7 @@ export function AdminReportsView({ initialData }: AdminReportsViewProps) {
 
         {/* KPI Cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          {kpiCards.map((card: unknown, i: number) => (
+          {kpiCards.map((card: AdminRecord, i: number) => (
             <KpiCard
               key={i}
               label={card.label}
@@ -192,7 +193,7 @@ export function AdminReportsView({ initialData }: AdminReportsViewProps) {
                   nameKey="name"
                   strokeWidth={0}
                 >
-                  {shiftOccupancy.map((e: unknown, i: number) => <Cell key={i} fill={e.color} />)}
+                  {shiftOccupancy.map((e: AdminRecord, i: number) => <Cell key={i} fill={e.color} />)}
                 </Pie>
                 <Tooltip
                   {...TOOLTIP_STYLE}
@@ -238,7 +239,7 @@ export function AdminReportsView({ initialData }: AdminReportsViewProps) {
                 />
                 <Tooltip
                   {...TOOLTIP_STYLE}
-                  formatter={(v: number) => [`₹${Number(v).toLocaleString('en-IN')}`, 'Revenue']}
+                  formatter={((v: unknown) => [`₹${Number(v as number).toLocaleString('en-IN')}`, 'Revenue']) as never}
                 />
                 <Area
                   type="monotone"

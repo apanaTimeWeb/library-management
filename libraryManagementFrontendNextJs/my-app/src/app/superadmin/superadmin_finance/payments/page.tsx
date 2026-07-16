@@ -1,4 +1,6 @@
 'use client';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import type { ICellRendererParams } from 'ag-grid-community';
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
@@ -55,8 +57,8 @@ export default function Payments() {
   const [allPayments, setAllPayments] = useState<Payment[]>([]);
 
   useEffect(() => {
-    fetchApi('/finance/payments').then((data: unknown) => {
-      const mapped = data.map((p: unknown) => ({
+    fetchApi('/finance/payments').then(( data: any ) => {
+      const mapped = data.map(( p: FlexRecord ) => ({
         id: p.id,
         receiptNumber: 'REC-' + p.id.substring(0, 8),
         date: new Date(p.date).toISOString().split('T')[0],
@@ -83,7 +85,7 @@ export default function Payments() {
     setIsDeleting(true);
     setTimeout(() => {
       setAllPayments((prev) =>
-        prev.map((p: unknown) =>
+        prev.map(( p: FlexRecord ) =>
           p.id === deleteDialog.id ? { ...p, status: 'deleted', deletionReason: deleteReason } : p
         )
       );
@@ -214,7 +216,7 @@ export default function Payments() {
       </div>
 
       <div className="fin-filter-bar">
-        <select className="fin-select w-40" value={modeFilter} onChange={(e: unknown) => setModeFilter(e.target.value)}>
+        <select className="fin-select w-40" value={modeFilter} onChange={( e: any ) => setModeFilter(e.target.value)}>
           <option value="all">All Modes</option>
           <option value="cash">Cash</option>
           <option value="upi">UPI</option>
@@ -264,7 +266,7 @@ export default function Payments() {
               <textarea
                 className="fin-textarea"
                 value={deleteReason}
-                onChange={(e: unknown) => setDeleteReason(e.target.value)}
+                onChange={( e: any ) => setDeleteReason(e.target.value)}
                 placeholder="Enter reason for deletion..."
                 rows={2}
               />

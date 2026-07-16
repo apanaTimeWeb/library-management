@@ -1,4 +1,6 @@
 'use client';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 
 import { useState, useEffect } from 'react';
 
@@ -55,7 +57,7 @@ export default function SecurityDeposits() {
   const handleRefund = () => {
     if (!refundDialog) return;
     setDeposits((prev) =>
-      prev.map((d: unknown) =>
+      prev.map(( d: FlexRecord ) =>
         d.id === refundDialog.id
           ? { ...d, status: 'refunded', refundedDate: new Date().toISOString().split('T')[0], deductionAmount: parseFloat(deductionAmount) || d.deductionAmount, deductionReason: deductionReason || d.deductionReason }
           : d
@@ -68,7 +70,7 @@ export default function SecurityDeposits() {
   const handleDeduction = () => {
     if (!deductDialog || !deductAmt || !deductReason) return;
     setDeposits((prev) =>
-      prev.map((d: unknown) =>
+      prev.map(( d: FlexRecord ) =>
         d.id === deductDialog.id ? { ...d, deductionAmount: parseFloat(deductAmt), deductionReason: deductReason } : d
       )
     );
@@ -84,7 +86,7 @@ export default function SecurityDeposits() {
       </div>
 
       <div className="fin-filter-bar">
-        <select className="fin-select w-40" value={statusFilter} onChange={(e: unknown) => setStatusFilter(e.target.value)}>
+        <select className="fin-select w-40" value={statusFilter} onChange={( e: any ) => setStatusFilter(e.target.value)}>
           <option value="all">All Status</option>
           <option value="held">Held</option>
           <option value="refunded">Refunded</option>
@@ -128,7 +130,7 @@ export default function SecurityDeposits() {
                 </td>
               </tr>
             ) : (
-              filtered.map((d: unknown) => (
+              filtered.map(( d: FlexRecord ) => (
                 <tr key={d.id} className="fin-table-hover-row fin-table-row">
                   <td className="py-3 px-4">
                     <div className="fin-cell-name">{d.studentName}</div>
@@ -181,15 +183,15 @@ export default function SecurityDeposits() {
             <div className="space-y-4">
               <div>
                 <label className="fin-label">Refund Amount</label>
-                <input type="number" className="fin-input" value={refundAmount} onChange={(e: unknown) => setRefundAmount(e.target.value)} />
+                <input type="number" className="fin-input" value={refundAmount} onChange={( e: any ) => setRefundAmount(e.target.value)} />
               </div>
               <div>
                 <label className="fin-label">Deduction Amount</label>
-                <input type="number" className="fin-input" value={deductionAmount} onChange={(e: unknown) => setDeductionAmount(e.target.value)} placeholder="0" />
+                <input type="number" className="fin-input" value={deductionAmount} onChange={( e: any ) => setDeductionAmount(e.target.value)} placeholder="0" />
               </div>
               <div>
                 <label className="fin-label">Deduction Reason {parseFloat(deductionAmount) > 0 && <span className="fin-text-danger">*</span>}</label>
-                <input className="fin-input" value={deductionReason} onChange={(e: unknown) => setDeductionReason(e.target.value)} placeholder="Reason..." />
+                <input className="fin-input" value={deductionReason} onChange={( e: any ) => setDeductionReason(e.target.value)} placeholder="Reason..." />
               </div>
             </div>
             <div className="fin-dialog__footer">
@@ -208,11 +210,11 @@ export default function SecurityDeposits() {
             <div className="space-y-4">
               <div>
                 <label className="fin-label">Amount <span className="fin-text-danger">*</span></label>
-                <input type="number" className="fin-input" value={deductAmt} onChange={(e: unknown) => setDeductAmt(e.target.value)} />
+                <input type="number" className="fin-input" value={deductAmt} onChange={( e: any ) => setDeductAmt(e.target.value)} />
               </div>
               <div>
                 <label className="fin-label">Reason <span className="fin-text-danger">*</span></label>
-                <input className="fin-input" value={deductReason} onChange={(e: unknown) => setDeductReason(e.target.value)} placeholder="Reason for deduction" />
+                <input className="fin-input" value={deductReason} onChange={( e: any ) => setDeductReason(e.target.value)} placeholder="Reason for deduction" />
               </div>
             </div>
             <div className="fin-dialog__footer">

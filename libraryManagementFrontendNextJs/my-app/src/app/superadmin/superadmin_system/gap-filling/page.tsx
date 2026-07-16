@@ -75,7 +75,7 @@ export default function GapFillingPage() {
             <h2 className="text-lg font-semibold text-on-surface">Gap Analysis Results</h2>
             <SuperadminBadge variant="primary">{SEAT_GAPS.length} seats analyzed</SuperadminBadge>
           </div>
-          {SEAT_GAPS.map((seat: unknown) => (
+          {SEAT_GAPS.map(( seat: FlexRecord ) => (
             <SuperadminCard key={seat.seat}>
               <CardContent>
                 <div className="flex items-center gap-4">

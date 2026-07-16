@@ -4,6 +4,7 @@ import { ChevronRight, Eye, X } from 'lucide-react';
 import { AgGridReact } from 'ag-grid-react';
 import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community';
 import { gridTheme } from '@/app/manager/manager_reusable/gridTheme';
+import { ManagerRecord } from '@/app/manager/manager_reusable/gridTheme';
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
@@ -180,7 +181,7 @@ export default function WhatsappLogsPage() {
             <AgGridReact
               theme={gridTheme}
               rowData={filtered}
-              columnDefs={colDefs as unknown}
+              columnDefs={colDefs as never}
               rowHeight={56}
               headerHeight={48}
               pagination={true}

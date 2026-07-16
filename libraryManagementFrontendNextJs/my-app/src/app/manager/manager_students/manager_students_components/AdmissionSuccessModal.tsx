@@ -5,6 +5,7 @@ import { X, Printer, MessageSquare, Users, CheckCircle } from 'lucide-react';
 import StudentIdCard, { type IdCardData } from '@/app/manager/manager_students/manager_students_components/StudentIdCard';
 import { formatIdCardMessage, openWhatsApp, type StudentWhatsAppData } from '@/lib/whatsappUtils';
 import { printThermal } from '@/lib/thermalPrint';
+import { ManagerRecord } from '@/app/manager/manager_reusable/gridTheme';
 
 interface Props {
   data: IdCardData & {
@@ -123,7 +124,7 @@ export default function AdmissionSuccessModal({ data, onClose }: Props) {
               ].map((r, i) => (
                 <div key={i} className="mgr-success-info-row">
                   <span className="mgr-success-info-label">{r.label}</span>
-                  <span className="mgr-success-info-value" style={{ fontFamily: (r as unknown as Record<string, string | boolean>).mono ? 'monospace' : undefined, color: (r as unknown as Record<string, string | boolean>).color as string }}>
+                  <span className="mgr-success-info-value" style={{ fontFamily: (r as never as Record<string, string | boolean>).mono ? 'monospace' : undefined, color: (r as never as Record<string, string | boolean>).color as string }}>
                     {r.value}
                   </span>
                 </div>

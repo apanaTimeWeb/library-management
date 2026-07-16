@@ -4,13 +4,13 @@ import { useMemo } from 'react';
 import { Download, Search } from 'lucide-react';
 import { AgGridReact } from 'ag-grid-react';
 import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community';
-import { gridTheme , AdminGridCell } from '@/app/admin/admin_reusable/gridTheme';
+import { gridTheme , AdminGridCell, AdminRecord } from '@/app/admin/admin_reusable/gridTheme';
 import { useAdminStudents } from '@/app/admin/admin_students/admin_students_hooks/useAdminStudents';
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
 interface AdminStudentsViewProps {
-  initialStudents: unknown[];
+  initialStudents: AdminRecord[];
 }
 
 export function AdminStudentsView({ initialStudents }: AdminStudentsViewProps) {

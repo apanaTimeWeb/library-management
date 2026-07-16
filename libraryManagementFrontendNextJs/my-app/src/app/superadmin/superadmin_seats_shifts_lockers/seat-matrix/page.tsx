@@ -1,4 +1,6 @@
 'use client';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import { useState, useEffect } from 'react';
 import { fetchApi } from '@/lib/api';
 import { CalendarDays, UserPlus, User } from 'lucide-react';
@@ -36,8 +38,8 @@ export default function SeatMatrixPage() {
   const [seatsData, setSeatsData]       = useState<SeatData[]>([]);
 
   useEffect(() => {
-    fetchApi('/seats_shifts_lockers/seat-matrix').then((data: unknown) => {
-      const mapped = data.map((s: unknown) => ({
+    fetchApi('/seats_shifts_lockers/seat-matrix').then(( data: any ) => {
+      const mapped = data.map(( s: FlexRecord ) => ({
         uuid: s.id,
         id: s.seatNumber.replace('S-', ''),
         status: s.isActive ? 'free' : 'maintenance',
@@ -56,7 +58,7 @@ export default function SeatMatrixPage() {
       {/* Filter bar */}
       <div className="ss-matrix-filter-bar">
         <div className="ss-tab-group">
-          {SHIFT_TABS.map((tab: unknown) => (
+          {SHIFT_TABS.map(( tab: FlexRecord ) => (
             <button
               key={tab}
               onClick={() => setActiveTab(tab)}

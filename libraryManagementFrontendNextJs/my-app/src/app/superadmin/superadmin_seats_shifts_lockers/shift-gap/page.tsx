@@ -69,19 +69,19 @@ export default function ShiftGapAnalyzerPage() {
           <div className="ss-filter-bar__select-wrap">
             <select className="ss-select" value={shiftFilter} onChange={e => setShiftFilter(e.target.value)}>
               <option value="All">All Shifts</option>
-              {SHIFTS.map((s: unknown) => <option key={s.id}>{s.name}</option>)}
+              {SHIFTS.map(( s: FlexRecord ) => <option key={s.id}>{s.name}</option>)}
             </select>
             <ChevronDown size={14} className="ss-select-icon" />
           </div>
           <div className="ss-filter-bar__select-wrap">
             <select className="ss-select" value={period} onChange={e => setPeriod(e.target.value)}>
-              {VIEW_PERIODS.map((p: unknown) => <option key={p}>{p}</option>)}
+              {VIEW_PERIODS.map(( p: FlexRecord ) => <option key={p}>{p}</option>)}
             </select>
             <ChevronDown size={14} className="ss-select-icon" />
           </div>
         </div>
 
-        {visible.map((shift: unknown) => {
+        {visible.map(( shift: FlexRecord ) => {
           const utilPct = Math.round((shift.occupied / shift.capacity) * 100);
           return (
             <div key={shift.id} className="ss-gap-card">

@@ -111,7 +111,7 @@ export default function DashboardPage() {
                   </div>
                 </div>
               ))
-            : recentPayments.map((p: unknown) => (
+            : recentPayments.map(( p: FlexRecord ) => (
                 <div key={p.id} className="fin-payment-row">
                   <div>
                     <div className="fin-cell-name">{p.studentName}</div>

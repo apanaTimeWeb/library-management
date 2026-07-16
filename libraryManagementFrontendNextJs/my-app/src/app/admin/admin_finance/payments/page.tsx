@@ -48,7 +48,7 @@ const MODE_BADGE: Record<string, string> = {
 };
 
 import { gridTheme } from '@/app/admin/admin_finance/admin_finance_components/AdminFinancegridTheme/AdminFinancegridTheme';
-import { AdminGridCell } from '@/app/admin/admin_reusable/gridTheme';
+import { AdminGridCell , AdminRecord } from '@/app/admin/admin_reusable/gridTheme';
 export default function Payments() {
   const router = useRouter();
   const [modeFilter, setModeFilter] = useState('all');
@@ -60,7 +60,7 @@ export default function Payments() {
 
   useEffect(() => {
     fetchApi('/finance/payments').then(data => {
-      const mapped = data.map((p: AdminGridCell) => ({
+      const mapped = data.map(( p: AdminRecord ) => ({
         id: p.id,
         receiptNumber: 'REC-' + p.id.substring(0, 8),
         date: new Date(p.date).toISOString().split('T')[0],

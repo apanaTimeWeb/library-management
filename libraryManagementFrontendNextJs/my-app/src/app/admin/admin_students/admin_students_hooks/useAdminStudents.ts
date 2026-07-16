@@ -3,7 +3,7 @@ import { useAdmin } from '@/app/admin/admin_context/AdminContext';
 import { AdminRecord } from '@/app/admin/admin_reusable/gridTheme';
 
 // DATA FLOW: API → useAdminStudents.ts → AdminStudentsComponent
-export function useAdminStudents(initialStudents: unknown[]) {
+export function useAdminStudents(initialStudents: AdminRecord[]) {
   const [search, setSearch] = useState('');
   const { selectedBranch } = useAdmin();
 

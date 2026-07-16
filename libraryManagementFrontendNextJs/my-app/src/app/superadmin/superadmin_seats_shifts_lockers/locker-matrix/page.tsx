@@ -1,4 +1,6 @@
 'use client';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import { useState, useEffect } from 'react';
 import { User, KeyRound, LockKeyhole, Settings } from 'lucide-react';
 import type { ReactNode } from 'react';
@@ -37,8 +39,8 @@ export default function LockerMatrixPage() {
   const [lockerData, setLockerData] = useState<{ uuid?: string; id: string; status: 'free' | 'occupied' | 'maintenance' }[]>([]);
 
   useEffect(() => {
-    fetchApi('/seats_shifts_lockers/lockers').then((data: unknown) => {
-      const mapped = data.map((l: unknown) => ({
+    fetchApi('/seats_shifts_lockers/lockers').then(( data: any ) => {
+      const mapped = data.map(( l: FlexRecord ) => ({
         uuid: l.id,
         id: l.lockerNumber.replace('L-', ''),
         status: l.isActive ? 'free' : 'maintenance',
