@@ -56,14 +56,14 @@ export default function Refunds() {
   useEffect(() => {
     fetchApi('/finance/refunds').then(data => {
       const mapped = data.map(( r: any ) => ({
-        id: parseInt(r.id),
-        studentName: r.name,
-        smartId: 'S-001',
-        depositHeld: 1000,
-        deductionAmount: 0,
-        netRefund: r.amount,
-        status: r.status,
-        requestedDate: new Date(r.date).toISOString().split('T')[0],
+        id: typeof r.id === 'number' ? r.id : (parseInt(String(r.id).replace(/\D/g, '')) || Math.floor(Math.random() * 10000)),
+        studentName: r.name || r.studentName || 'Unknown Student',
+        smartId: r.smartId || 'S-001',
+        depositHeld: Number(r.depositHeld || 1000),
+        deductionAmount: Number(r.deductionAmount || 0),
+        netRefund: Number(r.amount || r.netRefund || 0),
+        status: r.status || 'pending',
+        requestedDate: (r.date || r.requestedDate) ? new Date(r.date || r.requestedDate).toISOString().split('T')[0] : new Date().toISOString().split('T')[0],
       }));
       setAllRefunds(mapped);
       setIsLoading(false);

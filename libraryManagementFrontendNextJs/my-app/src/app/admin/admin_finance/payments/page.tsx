@@ -62,16 +62,16 @@ export default function Payments() {
   useEffect(() => {
     fetchApi('/finance/payments').then(data => {
       const mapped = data.map(( p: any ) => ({
-        id: p.id,
-        receiptNumber: 'REC-' + p.id.substring(0, 8),
-        date: new Date(p.date).toISOString().split('T')[0],
-        studentName: p.studentName,
-        smartId: 'S-001',
-        amount: p.amount,
-        mode: 'cash',
-        lateFee: 0,
-        receivedBy: 'Admin',
-        status: p.status === 'completed' ? 'valid' : 'deleted',
+        id: p.id || Math.random(),
+        receiptNumber: 'REC-' + String(p.id || '').substring(0, 8),
+        date: p.date ? new Date(p.date).toISOString().split('T')[0] : new Date().toISOString().split('T')[0],
+        studentName: p.studentName || p.name || 'Unknown Student',
+        smartId: p.smartId || 'S-001',
+        amount: Number(p.amount || 0),
+        mode: p.mode || 'cash',
+        lateFee: Number(p.lateFee || 0),
+        receivedBy: p.receivedBy || 'Admin',
+        status: p.status === 'completed' ? 'valid' : (p.status || 'valid'),
       }));
       setAllPayments(mapped);
     }).catch(e => logger.error('Payments fetch failed:', e));

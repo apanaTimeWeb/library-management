@@ -32,13 +32,13 @@ export default function NoticesPage() {
   useEffect(() => {
     fetchApi('/communication/notices').then(data => {
       const mapped = data.map(( n: any ) => ({
-        id: n.id,
-        title: n.title,
-        message: n.message,
-        postedBy: 'Admin',
-        postedDate: new Date(n.createdAt).toISOString().split('T')[0],
-        validTill: new Date(n.validTill).toISOString().split('T')[0],
-        status: new Date(n.validTill) >= new Date() ? 'Active' : 'Expired',
+        id: String(n.id || Math.random()),
+        title: String(n.title || n.name || 'Notice'),
+        message: String(n.message || n.details || ''),
+        postedBy: String(n.postedBy || 'Admin'),
+        postedDate: n.createdAt ? new Date(n.createdAt).toISOString().split('T')[0] : (n.date ? new Date(n.date).toISOString().split('T')[0] : new Date().toISOString().split('T')[0]),
+        validTill: n.validTill ? new Date(n.validTill).toISOString().split('T')[0] : new Date(Date.now() + 7 * 86400000).toISOString().split('T')[0],
+        status: (n.validTill && new Date(n.validTill) < new Date()) ? 'Expired' : 'Active',
       }));
       setNotices(mapped);
     }).catch(e => logger.error('Notices fetch failed:', e));
