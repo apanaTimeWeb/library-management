@@ -32,5 +32,5 @@ const SuperadminButton = forwardRef<HTMLButtonElement, ButtonProps>(
   )
 );
 
-Button.displayName = 'Button';
+SuperadminButton.displayName = 'SuperadminButton';
 export { SuperadminButton };

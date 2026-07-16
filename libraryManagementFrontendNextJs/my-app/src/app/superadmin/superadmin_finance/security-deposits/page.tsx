@@ -57,7 +57,7 @@ export default function SecurityDeposits() {
   const handleRefund = () => {
     if (!refundDialog) return;
     setDeposits((prev) =>
-      prev.map(( d: FlexRecord ) =>
+      prev.map(( d ) =>
         d.id === refundDialog.id
           ? { ...d, status: 'refunded', refundedDate: new Date().toISOString().split('T')[0], deductionAmount: parseFloat(deductionAmount) || d.deductionAmount, deductionReason: deductionReason || d.deductionReason }
           : d
@@ -70,7 +70,7 @@ export default function SecurityDeposits() {
   const handleDeduction = () => {
     if (!deductDialog || !deductAmt || !deductReason) return;
     setDeposits((prev) =>
-      prev.map(( d: FlexRecord ) =>
+      prev.map(( d ) =>
         d.id === deductDialog.id ? { ...d, deductionAmount: parseFloat(deductAmt), deductionReason: deductReason } : d
       )
     );
@@ -130,7 +130,7 @@ export default function SecurityDeposits() {
                 </td>
               </tr>
             ) : (
-              filtered.map(( d: FlexRecord ) => (
+              filtered.map(( d ) => (
                 <tr key={d.id} className="fin-table-hover-row fin-table-row">
                   <td className="py-3 px-4">
                     <div className="fin-cell-name">{d.studentName}</div>

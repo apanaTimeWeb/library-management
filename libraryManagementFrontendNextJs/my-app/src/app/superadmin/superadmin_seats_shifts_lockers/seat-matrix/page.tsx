@@ -58,7 +58,7 @@ export default function SeatMatrixPage() {
       {/* Filter bar */}
       <div className="ss-matrix-filter-bar">
         <div className="ss-tab-group">
-          {SHIFT_TABS.map(( tab: FlexRecord ) => (
+          {SHIFT_TABS.map(( tab ) => (
             <button
               key={tab}
               onClick={() => setActiveTab(tab)}

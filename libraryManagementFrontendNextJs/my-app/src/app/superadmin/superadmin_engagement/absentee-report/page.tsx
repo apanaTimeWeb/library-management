@@ -44,14 +44,14 @@ export default function AbsenteeReportPage() {
   const moderate  = filtered.filter(r => r.daysAbsent >= 3 && r.daysAbsent < 7);
 
   const notify = (id: string) => {
-    setRows(p => p.map(( r: FlexRecord ) => r.id === id ? { ...r, notified: true } : r));
+    setRows(p => p.map(( r ) => r.id === id ? { ...r, notified: true } : r));
     showToast('✅ Alert sent to parent successfully');
   };
 
   const notifyAll = () => {
     const targets = filtered.filter(r => !r.notified);
     if (!targets.length) return showToast('All parents already notified', 'info');
-    setRows(p => p.map(( r: FlexRecord ) => filtered.find(f=>f.id===r.id) ? { ...r, notified:true } : r));
+    setRows(p => p.map(( r ) => filtered.find(f=>f.id===r.id) ? { ...r, notified:true } : r));
     showToast(`✅ Bulk alerts sent to ${targets.length} parents`);
   };
 
@@ -219,7 +219,7 @@ export default function AbsenteeReportPage() {
             <AgGridReact
               theme={superadmin_gridTheme}
               rowData={filtered}
-              columnDefs={colDefs as unknown}
+              columnDefs={colDefs as any}
               rowHeight={64}
               headerHeight={48}
               pagination={true}

@@ -5,10 +5,18 @@ import { SuperadminButton } from '@/app/superadmin/superadmin_system/superadmin_
 import { SuperadminInput } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminInput';
 import { SuperadminLabel } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminLabel';
 import { SuperadminBadge } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminBadge';
-import { SuperadminSelect, SelectTrigger, SelectValue, SelectContent, SelectItem } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminSelect';
+import { SuperadminSelect, SuperadminSelectTrigger, SuperadminSelectValue, SuperadminSelectContent, SuperadminSelectItem } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminSelect';
 import { GitBranch, ChevronRight, Zap } from 'lucide-react';
 
-const SEAT_GAPS = [
+interface GapInterval { start: number; end: number; }
+interface GapDetail extends GapInterval { label: string; hours: number; }
+interface SeatGapRecord {
+  seat: string;
+  booked: GapInterval[];
+  gap: GapDetail;
+}
+
+const SEAT_GAPS: SeatGapRecord[] = [
   { seat: 'S-03', booked: [{ start: 0, end: 25 }, { start: 70, end: 100 }], gap: { start: 25, end: 70,  label: '10AM – 2PM', hours: 4  } },
   { seat: 'S-07', booked: [{ start: 0, end: 45 }],                          gap: { start: 45, end: 100, label: '12PM – 6PM', hours: 6  } },
   { seat: 'S-12', booked: [{ start: 30, end: 60 }, { start: 80, end: 100 }],gap: { start: 60, end: 80,  label: '2PM – 4PM',  hours: 2  } },
@@ -75,7 +83,7 @@ export default function GapFillingPage() {
             <h2 className="text-lg font-semibold text-on-surface">Gap Analysis Results</h2>
             <SuperadminBadge variant="primary">{SEAT_GAPS.length} seats analyzed</SuperadminBadge>
           </div>
-          {SEAT_GAPS.map(( seat: FlexRecord ) => (
+          {SEAT_GAPS.map(( seat ) => (
             <SuperadminCard key={seat.seat}>
               <CardContent>
                 <div className="flex items-center gap-4">
@@ -84,7 +92,7 @@ export default function GapFillingPage() {
                   </div>
                   {/* Time bar — left/width are computed values, style is correct here */}
                   <div className="flex-1 relative h-8 rounded-lg overflow-hidden bg-surface-container-highest">
-                    {seat.booked.map((b: unknown, i: number) => (
+                    {seat.booked.map((b, i) => (
                       <div key={i} className="absolute top-0 h-full bg-primary/70 flex items-center justify-center"
                         style={{ left: `${b.start}%`, width: `${b.end - b.start}%` }}>
                         <span className="text-xs text-on-primary font-medium truncate px-1">Booked</span>

@@ -5,7 +5,7 @@ import { SuperadminButton } from '@/app/superadmin/superadmin_system/superadmin_
 import { SuperadminBadge } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminBadge';
 import { SuperadminInput } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminInput';
 import { SuperadminLabel } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminLabel';
-import { SuperadminSelect, SelectTrigger, SelectValue, SelectContent, SelectItem } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminSelect';
+import { SuperadminSelect, SuperadminSelectTrigger, SuperadminSelectValue, SuperadminSelectContent, SuperadminSelectItem } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminSelect';
 import { SuperadminKpiCard } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminKpiCard';
 import {
   MessageSquare, ChevronRight, Eye, EyeOff, Copy, CheckCircle,
@@ -156,7 +156,7 @@ export default function WhatsAppIntegrationPage() {
             <div className="space-y-2">
               <SuperadminLabel>API Provider</SuperadminLabel>
               <div className="grid grid-cols-2 gap-2">
-                {PROVIDERS.map(( p: FlexRecord ) => (
+                {PROVIDERS.map(( p ) => (
                   <button
                     key={p.id}
                     id={`provider-${p.id}`}
@@ -290,7 +290,7 @@ export default function WhatsAppIntegrationPage() {
                 { id: 'trigger-suspend',  label: 'Auto-Suspend Notice',   desc: 'When seat is auto-suspended',                enabled: false },
                 { id: 'trigger-waitlist', label: 'Waitlist Notification', desc: 'When seat becomes available for waitlisted', enabled: true  },
                 { id: 'trigger-absentee', label: 'Absentee Alert',        desc: 'When student absent for 3+ days',            enabled: false },
-              ].map(( event: FlexRecord ) => (
+              ].map(( event ) => (
                 <div key={event.id} className="flex items-center justify-between p-3 rounded-xl bg-surface-container-high border border-outline-variant/50">
                   <div>
                     <p className="text-sm font-medium text-on-surface">{event.label}</p>

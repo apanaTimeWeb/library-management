@@ -10,5 +10,5 @@ const SuperadminLabel = forwardRef<HTMLLabelElement, LabelProps>(
   )
 );
 
-Label.displayName = 'Label';
+SuperadminLabel.displayName = 'SuperadminLabel';
 export { SuperadminLabel };

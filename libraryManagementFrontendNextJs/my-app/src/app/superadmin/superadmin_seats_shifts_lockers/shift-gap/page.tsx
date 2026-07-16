@@ -69,19 +69,19 @@ export default function ShiftGapAnalyzerPage() {
           <div className="ss-filter-bar__select-wrap">
             <select className="ss-select" value={shiftFilter} onChange={e => setShiftFilter(e.target.value)}>
               <option value="All">All Shifts</option>
-              {SHIFTS.map(( s: FlexRecord ) => <option key={s.id}>{s.name}</option>)}
+              {SHIFTS.map(( s ) => <option key={s.id}>{s.name}</option>)}
             </select>
             <ChevronDown size={14} className="ss-select-icon" />
           </div>
           <div className="ss-filter-bar__select-wrap">
             <select className="ss-select" value={period} onChange={e => setPeriod(e.target.value)}>
-              {VIEW_PERIODS.map(( p: FlexRecord ) => <option key={p}>{p}</option>)}
+              {VIEW_PERIODS.map(( p ) => <option key={p}>{p}</option>)}
             </select>
             <ChevronDown size={14} className="ss-select-icon" />
           </div>
         </div>
 
-        {visible.map(( shift: FlexRecord ) => {
+        {visible.map(( shift ) => {
           const utilPct = Math.round((shift.occupied / shift.capacity) * 100);
           return (
             <div key={shift.id} className="ss-gap-card">
@@ -105,7 +105,7 @@ export default function ShiftGapAnalyzerPage() {
 
                 {/* Time-slot bar — left/width are runtime-computed positions */}
                 <div className="ss-timebar">
-                  {shift.booked.map((b: unknown, i: number) => (
+                  {shift.booked.map((b: BookedBlock, i: number) => (
                     <div
                       key={i}
                       className="ss-timebar__block ss-timebar__block--booked"
@@ -115,7 +115,7 @@ export default function ShiftGapAnalyzerPage() {
                       {b.label}
                     </div>
                   ))}
-                  {shift.gaps.map((g: unknown, i: number) => (
+                  {shift.gaps.map((g: GapBlock, i: number) => (
                     <div
                       key={i}
                       className="ss-timebar__block ss-timebar__block--gap"
@@ -138,7 +138,7 @@ export default function ShiftGapAnalyzerPage() {
                   <p className="ss-text-secondary ss-text-caption">No gaps detected — fully utilized.</p>
                 ) : (
                   <div className="ss-gap-list">
-                    {shift.gaps.map((g: unknown, i: number) => (
+                    {shift.gaps.map((g: GapBlock, i: number) => (
                       <div key={i} className="ss-gap-row">
                         <div className="ss-gap-row__left">
                           <span className="ss-badge ss-badge--warning">🕳️ Gap</span>

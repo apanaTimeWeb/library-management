@@ -56,7 +56,7 @@ export default function PaymentPromises() {
 
   const handleFulfill = (id: number, name: string) => {
     setPromises((prev) =>
-      prev.map(( p: FlexRecord ) => p.id === id ? { ...p, status: 'fulfilled', fulfilledDate: new Date().toISOString().split('T')[0] } : p)
+      prev.map(( p ) => p.id === id ? { ...p, status: 'fulfilled', fulfilledDate: new Date().toISOString().split('T')[0] } : p)
     );
     toast.success(`✅ ${name}'s promise marked as paid.`);
   };
@@ -64,7 +64,7 @@ export default function PaymentPromises() {
   const handleExtend = () => {
     if (!extendDialog || !newDate || !extendReason) return;
     setPromises((prev) =>
-      prev.map(( p: FlexRecord ) =>
+      prev.map(( p ) =>
         p.id === extendDialog.id
           ? { ...p, expectedDate: newDate, timesChanged: p.timesChanged + 1, daysUntilDue: calcDays(newDate) }
           : p
@@ -124,7 +124,7 @@ export default function PaymentPromises() {
                 </td>
               </tr>
             ) : (
-              filtered.map(( p: FlexRecord ) => (
+              filtered.map(( p ) => (
                 <tr key={p.id} className="fin-table-hover-row fin-table-row">
                   <td className="py-3 px-4">
                     <div className="fin-cell-name">{p.studentName}</div>

@@ -179,7 +179,7 @@ export default function Renewals() {
           <AgGridReact
             theme={superadmin_gridTheme}
             rowData={visible}
-            columnDefs={colDefs as unknown}
+            columnDefs={colDefs as any}
             rowHeight={60}
             headerHeight={48}
             pagination={true}

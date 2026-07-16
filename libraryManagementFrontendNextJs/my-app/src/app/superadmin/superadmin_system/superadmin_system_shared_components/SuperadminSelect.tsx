@@ -4,9 +4,9 @@ import { ChevronDown, Check } from 'lucide-react';
 import { cn } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/superadmin_utils';
 
 export const SuperadminSelect      = SelectPrimitive.Root;
-export const SelectValue = SelectPrimitive.Value;
+export const SuperadminSelectValue = SelectPrimitive.Value;
 
-export function SelectTrigger({ className, children, ...props }: React.ComponentPropsWithoutRef<typeof SelectPrimitive.Trigger>) {
+export function SuperadminSelectTrigger({ className, children, ...props }: React.ComponentPropsWithoutRef<typeof SelectPrimitive.Trigger>) {
   return (
     <SelectPrimitive.Trigger className={cn('sys-select-trigger', className)} {...props}>
       {children}
@@ -17,7 +17,7 @@ export function SelectTrigger({ className, children, ...props }: React.Component
   );
 }
 
-export function SelectContent({ className, children, ...props }: React.ComponentPropsWithoutRef<typeof SelectPrimitive.Content>) {
+export function SuperadminSelectContent({ className, children, ...props }: React.ComponentPropsWithoutRef<typeof SelectPrimitive.Content>) {
   return (
     <SelectPrimitive.Portal>
       <SelectPrimitive.Content
@@ -34,7 +34,7 @@ export function SelectContent({ className, children, ...props }: React.Component
   );
 }
 
-export function SelectItem({ className, children, ...props }: React.ComponentPropsWithoutRef<typeof SelectPrimitive.Item>) {
+export function SuperadminSelectItem({ className, children, ...props }: React.ComponentPropsWithoutRef<typeof SelectPrimitive.Item>) {
   return (
     <SelectPrimitive.Item className={cn('sys-select-item', className)} {...props}>
       <span className="absolute left-2 flex h-3.5 w-3.5 items-center justify-center">

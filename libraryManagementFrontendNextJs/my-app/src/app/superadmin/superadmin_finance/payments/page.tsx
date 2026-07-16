@@ -58,7 +58,7 @@ export default function Payments() {
 
   useEffect(() => {
     fetchApi('/finance/payments').then(( data: any ) => {
-      const mapped = data.map(( p: FlexRecord ) => ({
+      const mapped = data.map(( p: any ) => ({
         id: p.id,
         receiptNumber: 'REC-' + p.id.substring(0, 8),
         date: new Date(p.date).toISOString().split('T')[0],
@@ -85,7 +85,7 @@ export default function Payments() {
     setIsDeleting(true);
     setTimeout(() => {
       setAllPayments((prev) =>
-        prev.map(( p: FlexRecord ) =>
+        prev.map(( p ) =>
           p.id === deleteDialog.id ? { ...p, status: 'deleted', deletionReason: deleteReason } : p
         )
       );
@@ -241,7 +241,7 @@ export default function Payments() {
           <AgGridReact
             theme={superadmin_gridTheme}
             rowData={visible}
-            columnDefs={colDefs as unknown}
+            columnDefs={colDefs as any}
             rowHeight={56}
             headerHeight={48}
             pagination={true}

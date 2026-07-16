@@ -120,7 +120,7 @@ export default function SeatMaintenancePage() {
         <div className="ss-filter-bar">
           <div className="ss-filter-bar__select-wrap">
             <select className="ss-select" value={selectedSeat} onChange={e => setSelectedSeat(e.target.value)}>
-              {SEATS.map(( s: FlexRecord ) => <option key={s}>{s}</option>)}
+              {SEATS.map(( s ) => <option key={s}>{s}</option>)}
             </select>
             <ChevronDown size={14} className="ss-select-icon" />
           </div>
@@ -143,7 +143,7 @@ export default function SeatMaintenancePage() {
           </div>
         ) : (
           <div className="ss-table-wrapper ss-grid-h-320">
-            <AgGridReact theme={superadmin_gridTheme} rowData={currentLogs} columnDefs={colDefs as unknown} rowHeight={52} headerHeight={40} suppressMovableColumns suppressCellFocus defaultColDef={{ resizable: false, sortable: true }} />
+            <AgGridReact theme={superadmin_gridTheme} rowData={currentLogs} columnDefs={colDefs as any} rowHeight={52} headerHeight={40} suppressMovableColumns suppressCellFocus defaultColDef={{ resizable: false, sortable: true }} />
           </div>
         )}
 

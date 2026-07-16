@@ -70,7 +70,7 @@ export default function LockersPage() {
 
   function handleAssign() {
     if (!showAssign || !assignSearch.trim()) return;
-    setLockers(prev => prev.map(( l: FlexRecord ) => l.id === showAssign.id
+    setLockers(prev => prev.map(( l ) => l.id === showAssign.id
       ? { ...l, status: 'Occupied', assignedTo: assignSearch, studentId: 'LIB-NEW', assignedSince: 'Today' }
       : l
     ));
@@ -81,7 +81,7 @@ export default function LockersPage() {
 
   function handleFreeLocker() {
     if (!freeTarget) return;
-    setLockers(prev => prev.map(( l: FlexRecord ) => l.id === freeTarget.id
+    setLockers(prev => prev.map(( l ) => l.id === freeTarget.id
       ? { ...l, status: 'Free', assignedTo: '—', studentId: '—', assignedSince: '—' }
       : l
     ));
@@ -90,7 +90,7 @@ export default function LockersPage() {
   }
 
   function handleMarkMaintenance(locker: Locker) {
-    setLockers(prev => prev.map(( l: FlexRecord ) => l.id === locker.id ? { ...l, status: 'Maintenance' } : l));
+    setLockers(prev => prev.map(( l ) => l.id === locker.id ? { ...l, status: 'Maintenance' } : l));
     toast.success(`Locker ${locker.lockerId} marked as Maintenance.`);
   }
 
@@ -173,7 +173,7 @@ export default function LockersPage() {
           </div>
         ) : (
           <div className="ss-table-wrapper ss-grid-h-400">
-            <AgGridReact theme={superadmin_gridTheme} rowData={filtered} columnDefs={colDefs as unknown} rowHeight={52} headerHeight={40} suppressMovableColumns suppressCellFocus defaultColDef={{ resizable: false, sortable: true }} />
+            <AgGridReact theme={superadmin_gridTheme} rowData={filtered} columnDefs={colDefs as any} rowHeight={52} headerHeight={40} suppressMovableColumns suppressCellFocus defaultColDef={{ resizable: false, sortable: true }} />
           </div>
         )}
       </div>

@@ -76,7 +76,7 @@ export default function Refunds() {
     setIsSubmitting(true);
     setTimeout(() => {
       setAllRefunds((prev) =>
-        prev.map(( r: FlexRecord ) =>
+        prev.map(( r ) =>
           r.id === processDialog.id
             ? { ...r, status: 'processed', processedDate: new Date().toISOString().split('T')[0], paymentMethod: paymentMethod.toUpperCase() }
             : r
@@ -92,7 +92,7 @@ export default function Refunds() {
     setIsSubmitting(true);
     setTimeout(() => {
       setAllRefunds((prev) =>
-        prev.map(( r: FlexRecord ) =>
+        prev.map(( r ) =>
           r.id === deductDialog.id
             ? { ...r, deductionAmount: parseFloat(deductAmt), netRefund: r.depositHeld - parseFloat(deductAmt) }
             : r
@@ -174,7 +174,7 @@ export default function Refunds() {
                 </td>
               </tr>
             ) : (
-              filtered.map(( r: FlexRecord ) => (
+              filtered.map(( r ) => (
                 <tr key={r.id} className="fin-table-hover-row fin-table-row">
                   <td className="py-3 px-4">
                     <div className="fin-cell-name">{r.studentName}</div>

@@ -4,10 +4,10 @@ import { X } from 'lucide-react';
 import { cn } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/superadmin_utils';
 
 export const SuperadminDialog        = DialogPrimitive.Root;
-export const DialogTrigger = DialogPrimitive.Trigger;
-export const DialogClose   = DialogPrimitive.Close;
+export const SuperadminDialogTrigger = DialogPrimitive.Trigger;
+export const SuperadminDialogClose   = DialogPrimitive.Close;
 
-export function DialogOverlay({ className, ...props }: React.ComponentPropsWithoutRef<typeof DialogPrimitive.Overlay>) {
+export function SuperadminDialogOverlay({ className, ...props }: React.ComponentPropsWithoutRef<typeof DialogPrimitive.Overlay>) {
   return (
     <DialogPrimitive.Overlay
       className={cn('sys-dialog-overlay', className)}
@@ -16,10 +16,10 @@ export function DialogOverlay({ className, ...props }: React.ComponentPropsWitho
   );
 }
 
-export function DialogContent({ className, children, ...props }: React.ComponentPropsWithoutRef<typeof DialogPrimitive.Content>) {
+export function SuperadminDialogContent({ className, children, ...props }: React.ComponentPropsWithoutRef<typeof DialogPrimitive.Content>) {
   return (
     <DialogPrimitive.Portal>
-      <DialogOverlay />
+      <SuperadminDialogOverlay />
       <DialogPrimitive.Content className={cn('sys-dialog-content', className)} {...props}>
         {children}
         <DialogPrimitive.Close className="sys-dialog-close">
@@ -30,14 +30,14 @@ export function DialogContent({ className, children, ...props }: React.Component
   );
 }
 
-export function DialogHeader({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) {
+export function SuperadminDialogHeader({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) {
   return <div className={cn('sys-dialog-header', className)} {...props} />;
 }
 
-export function DialogTitle({ className, ...props }: React.ComponentPropsWithoutRef<typeof DialogPrimitive.Title>) {
+export function SuperadminDialogTitle({ className, ...props }: React.ComponentPropsWithoutRef<typeof DialogPrimitive.Title>) {
   return <DialogPrimitive.Title className={cn('sys-dialog-title', className)} {...props} />;
 }
 
-export function DialogDescription({ className, ...props }: React.ComponentPropsWithoutRef<typeof DialogPrimitive.Description>) {
+export function SuperadminDialogDescription({ className, ...props }: React.ComponentPropsWithoutRef<typeof DialogPrimitive.Description>) {
   return <DialogPrimitive.Description className={cn('sys-dialog-desc', className)} {...props} />;
 }

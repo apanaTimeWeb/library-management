@@ -10,5 +10,5 @@ const SuperadminTextarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
   )
 );
 
-Textarea.displayName = 'Textarea';
+SuperadminTextarea.displayName = 'SuperadminTextarea';
 export { SuperadminTextarea };

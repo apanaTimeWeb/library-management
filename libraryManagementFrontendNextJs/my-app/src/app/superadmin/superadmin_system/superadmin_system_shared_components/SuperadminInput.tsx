@@ -15,5 +15,5 @@ const SuperadminInput = forwardRef<HTMLInputElement, InputProps>(
   )
 );
 
-Input.displayName = 'Input';
+SuperadminInput.displayName = 'SuperadminInput';
 export { SuperadminInput };

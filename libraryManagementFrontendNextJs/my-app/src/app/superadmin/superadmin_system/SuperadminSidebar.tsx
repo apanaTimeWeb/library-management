@@ -8,15 +8,14 @@ import {
   FileText, User, Building2, Key, Tag,
   Ban, LogOut, Menu, X, type LucideIcon, IndianRupee, Users
 } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { SuperadminButton } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminButton';
 import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogFooter,
-} from '@/components/ui/dialog';
+  SuperadminDialog,
+  SuperadminDialogContent,
+  SuperadminDialogDescription,
+  SuperadminDialogHeader,
+  SuperadminDialogTitle,
+} from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminDialog';
 
 type NavItem =
   | { group: string }
@@ -134,20 +133,20 @@ export default function SuperadminSidebar({ collapsed, onToggle, mobileOpen, onM
         )}
       </aside>
 
-      <Dialog open={showLogout} onOpenChange={setShowLogout}>
-        <DialogContent className="max-w-[360px]">
-          <DialogHeader>
-            <DialogTitle>Log out?</DialogTitle>
-            <DialogDescription>
+      <SuperadminDialog open={showLogout} onOpenChange={setShowLogout}>
+        <SuperadminDialogContent className="max-w-[360px]">
+          <SuperadminDialogHeader>
+            <SuperadminDialogTitle>Log out?</SuperadminDialogTitle>
+            <SuperadminDialogDescription>
               Are you sure you want to log out of your session?
-            </DialogDescription>
-          </DialogHeader>
-          <DialogFooter className="mt-4 sm:justify-end gap-2">
-            <Button variant="outline" onClick={() => setShowLogout(false)}>Cancel</Button>
-            <Button variant="destructive" onClick={() => router.push('/auth/login')}>Log out</Button>
-          </DialogFooter>
-        </DialogContent>
-      </Dialog>
+            </SuperadminDialogDescription>
+          </SuperadminDialogHeader>
+          <div className="flex justify-end gap-2 mt-4">
+            <SuperadminButton variant="ghost" onClick={() => setShowLogout(false)}>Cancel</SuperadminButton>
+            <SuperadminButton variant="destructive" onClick={() => router.push('/auth/login')}>Log out</SuperadminButton>
+          </div>
+        </SuperadminDialogContent>
+      </SuperadminDialog>
     </>
   );
 }

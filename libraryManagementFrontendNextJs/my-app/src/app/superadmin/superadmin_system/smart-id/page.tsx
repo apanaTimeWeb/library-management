@@ -4,8 +4,8 @@ import { SuperadminCard, CardHeader, CardTitle, CardDescription, CardContent } f
 import { SuperadminButton } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminButton';
 import { SuperadminBadge } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminBadge';
 import {
-  SuperadminDialog, DialogTrigger, DialogContent, DialogHeader,
-  DialogTitle, DialogDescription, DialogClose
+  SuperadminDialog, SuperadminDialogTrigger, SuperadminDialogContent, SuperadminDialogHeader,
+  SuperadminDialogTitle, SuperadminDialogDescription, SuperadminDialogClose
 } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminDialog';
 import { Hash, ChevronRight, ArrowRight, AlertTriangle } from 'lucide-react';
 
@@ -86,7 +86,7 @@ export default function SmartIdPage() {
         </CardHeader>
         <CardContent>
           <div className="flex flex-wrap gap-2 mb-4">
-            {ALL_IDS.map(( id: FlexRecord ) => {
+            {ALL_IDS.map(( id ) => {
               const isGap = GAP_IDS.includes(id);
               return (
                 <span
