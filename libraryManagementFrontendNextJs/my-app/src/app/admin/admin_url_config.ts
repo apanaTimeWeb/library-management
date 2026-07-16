@@ -22,10 +22,10 @@ export const ADMIN_ROUTES = {
 
 export const ADMIN_API_ROUTES = {
   DASHBOARD: '/admin/dashboard',
-  STUDENTS: '/admin/admin_students',
-  REPORTS: '/admin/admin_reports',
-  BRANCHES: '/admin/admin_branches',
-  STAFF_USERS: '/admin/admin_staff-users',
-  PERMISSIONS: '/admin/admin_permissions',
-  SETTINGS: '/admin/admin_settings',
+  STUDENTS: '/admin/students',
+  REPORTS: '/admin/reports',
+  BRANCHES: '/admin/branches',
+  STAFF_USERS: '/admin/staff-users/users',
+  PERMISSIONS: '/admin/permissions',
+  SETTINGS: '/admin/settings',
 } as const;

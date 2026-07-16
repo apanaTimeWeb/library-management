@@ -11,7 +11,7 @@ import RecentPaymentsFeed from '@/app/admin/admin_reusable/RecentPaymentsFeed';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from '@/components/ui/card';
 import { ADMIN_KPI_META, ADMIN_ACTION_ICONS } from '@/app/admin/admin_constants/admin_constants';
-import { fetchAdminDashboard } from '@/app/admin/admin_api/admin_api';
+import { fetchAdminDashboard } from '@/app/admin/admin_dashboard/admin_dashboard_api/admin_dashboard_api';
 
 async function getDashboardData() {
   const cookieStore = await cookies();

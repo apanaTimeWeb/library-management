@@ -1,26 +1,24 @@
 import { cookies } from 'next/headers';
 import { AdminStudentsView } from '@/app/admin/admin_students/admin_students_components/AdminStudentsView';
-import { fetchAdminStudents } from '@/app/admin/admin_api/admin_api';
+import { fetchAdminStudents } from '@/app/admin/admin_students/admin_students_api/admin_students_api';
 
 async function getStudentsData() {
   const cookieStore = await cookies();
   const token = cookieStore.get('access_token')?.value || '';
   
   const response = await fetchAdminStudents(token);
-  if (!response.success) {
+  if (!response.success || !response.data) {
     return [];
   }
   
-  // Mapping logic as per the original fetch
-  const data = (response.data as Record<string, unknown>[]) || [];
-  return data.map((s) => ({
-    id: 'STU-' + (s.id ? (s.id as string).substring(0, 4).toUpperCase() : '0000'),
-    name: (s.fullName as string) || 'Unknown',
-    shift: 'Morning',
-    seat: 'A-10',
-    plan: 'Monthly',
-    status: 'Active',
-    branch: (s.branch as string) || 'Main Branch'
+  return response.data.map((s) => ({
+    id: s.id,
+    name: s.fullName,
+    shift: 'Morning', // Placeholder until shift logic is handled
+    seat: s.seatId || 'N/A',
+    plan: s.currentPlanId || 'Monthly',
+    status: s.status === 'ACTIVE' ? 'Active' : 'Inactive',
+    branch: s.branchId || 'Main Branch'
   }));
 }
 
