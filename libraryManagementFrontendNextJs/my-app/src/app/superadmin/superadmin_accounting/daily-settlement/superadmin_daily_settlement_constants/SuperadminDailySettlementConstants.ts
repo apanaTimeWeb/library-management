@@ -1,4 +1,4 @@
-import type { SuperadminDailySettlementEntry } from '../superadmin_daily_settlement_types/SuperadminDailySettlementTypes';
+import type { SuperadminDailySettlementEntry } from '@/app/superadmin/superadmin_accounting/daily-settlement/superadmin_daily_settlement_types/SuperadminDailySettlementTypes';
 
 export const SUPERADMIN_DAILY_SETTLEMENT_MOCK_DATA: SuperadminDailySettlementEntry[] = [
   { id: 1, shift: 'Morning (6AM–2PM)',   openingBalance: 2000, cashCollected: 4500, upiCollected: 3200, expenses: 800,  closingBalance: 5700, settledBy: 'Ravi Kumar',  status: 'settled' },

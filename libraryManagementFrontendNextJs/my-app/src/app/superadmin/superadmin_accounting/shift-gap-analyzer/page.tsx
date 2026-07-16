@@ -1,5 +1,5 @@
 import React from 'react';
-import { SuperadminShiftGapAnalyzerClient } from './SuperadminShiftGapAnalyzerClient';
+import { SuperadminShiftGapAnalyzerClient } from '@/app/superadmin/superadmin_accounting/shift-gap-analyzer/SuperadminShiftGapAnalyzerClient';
 
 export default function SuperadminShiftGapAnalyzerPage() {
   return <SuperadminShiftGapAnalyzerClient />;

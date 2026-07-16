@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { X, Loader } from 'lucide-react';
-import type { SuperadminMaintenanceLog } from '../superadmin_asset_maintenance_types/SuperadminAssetMaintenanceTypes';
+import type { SuperadminMaintenanceLog } from '@/app/superadmin/superadmin_accounting/asset-maintenance/superadmin_asset_maintenance_types/SuperadminAssetMaintenanceTypes';
 
 interface Props {
   onClose: () => void;

@@ -1,11 +1,11 @@
 'use client';
 import React, { useState } from 'react';
-import { useSuperadminAssetMaintenance } from './superadmin_asset_maintenance_hooks/useSuperadminAssetMaintenance';
-import { SuperadminAssetMaintenanceHeader } from './superadmin_asset_maintenance_components/SuperadminAssetMaintenanceHeader';
-import { SuperadminAssetMaintenanceKpiGrid } from './superadmin_asset_maintenance_components/SuperadminAssetMaintenanceKpiGrid';
-import { SuperadminAssetMaintenanceFilterBar } from './superadmin_asset_maintenance_components/SuperadminAssetMaintenanceFilterBar';
-import { SuperadminAssetMaintenanceTable } from './superadmin_asset_maintenance_components/SuperadminAssetMaintenanceTable';
-import { SuperadminAssetMaintenanceAddDialog } from './superadmin_asset_maintenance_components/SuperadminAssetMaintenanceAddDialog';
+import { useSuperadminAssetMaintenance } from '@/app/superadmin/superadmin_accounting/asset-maintenance/superadmin_asset_maintenance_hooks/useSuperadminAssetMaintenance';
+import { SuperadminAssetMaintenanceHeader } from '@/app/superadmin/superadmin_accounting/asset-maintenance/superadmin_asset_maintenance_components/SuperadminAssetMaintenanceHeader';
+import { SuperadminAssetMaintenanceKpiGrid } from '@/app/superadmin/superadmin_accounting/asset-maintenance/superadmin_asset_maintenance_components/SuperadminAssetMaintenanceKpiGrid';
+import { SuperadminAssetMaintenanceFilterBar } from '@/app/superadmin/superadmin_accounting/asset-maintenance/superadmin_asset_maintenance_components/SuperadminAssetMaintenanceFilterBar';
+import { SuperadminAssetMaintenanceTable } from '@/app/superadmin/superadmin_accounting/asset-maintenance/superadmin_asset_maintenance_components/SuperadminAssetMaintenanceTable';
+import { SuperadminAssetMaintenanceAddDialog } from '@/app/superadmin/superadmin_accounting/asset-maintenance/superadmin_asset_maintenance_components/SuperadminAssetMaintenanceAddDialog';
 
 export function SuperadminAssetMaintenanceClient() {
   const { 

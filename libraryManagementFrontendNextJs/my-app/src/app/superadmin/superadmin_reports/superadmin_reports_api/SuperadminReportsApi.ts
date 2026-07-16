@@ -1,5 +1,5 @@
-import type { SuperadminReportsDataResponse } from '../superadmin_reports_types/SuperadminReportsTypes';
-import { SUPERADMIN_REPORTS_MOCK_DATA } from '../superadmin_reports_constants/SuperadminReportsConstants';
+import type { SuperadminReportsDataResponse } from '@/app/superadmin/superadmin_reports/superadmin_reports_types/SuperadminReportsTypes';
+import { SUPERADMIN_REPORTS_MOCK_DATA } from '@/app/superadmin/superadmin_reports/superadmin_reports_constants/SuperadminReportsConstants';
 
 export async function fetchSuperadminReportsData(dateRange: string = 'Last 6 Months'): Promise<SuperadminReportsDataResponse> {
   // Simulate network delay

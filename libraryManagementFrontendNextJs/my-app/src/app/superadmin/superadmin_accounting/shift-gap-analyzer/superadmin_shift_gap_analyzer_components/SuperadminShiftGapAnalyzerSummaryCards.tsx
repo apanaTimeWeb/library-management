@@ -1,5 +1,5 @@
 import React from 'react';
-import type { SuperadminShiftGap } from '../superadmin_shift_gap_analyzer_types/SuperadminShiftGapAnalyzerTypes';
+import type { SuperadminShiftGap } from '@/app/superadmin/superadmin_accounting/shift-gap-analyzer/superadmin_shift_gap_analyzer_types/SuperadminShiftGapAnalyzerTypes';
 
 interface Props {
   shifts: SuperadminShiftGap[];

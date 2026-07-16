@@ -1,11 +1,11 @@
 'use client';
 import React, { useState } from 'react';
-import { useSuperadminExpenses } from './superadmin_expenses_hooks/useSuperadminExpenses';
-import { SuperadminExpensesHeader } from './superadmin_expenses_components/SuperadminExpensesHeader';
-import { SuperadminExpensesKpiGrid } from './superadmin_expenses_components/SuperadminExpensesKpiGrid';
-import { SuperadminExpensesFilterBar } from './superadmin_expenses_components/SuperadminExpensesFilterBar';
-import { SuperadminExpensesGrid } from './superadmin_expenses_components/SuperadminExpensesGrid';
-import { SuperadminExpensesAddDialog } from './superadmin_expenses_components/SuperadminExpensesAddDialog';
+import { useSuperadminExpenses } from '@/app/superadmin/superadmin_accounting/expenses/superadmin_expenses_hooks/useSuperadminExpenses';
+import { SuperadminExpensesHeader } from '@/app/superadmin/superadmin_accounting/expenses/superadmin_expenses_components/SuperadminExpensesHeader';
+import { SuperadminExpensesKpiGrid } from '@/app/superadmin/superadmin_accounting/expenses/superadmin_expenses_components/SuperadminExpensesKpiGrid';
+import { SuperadminExpensesFilterBar } from '@/app/superadmin/superadmin_accounting/expenses/superadmin_expenses_components/SuperadminExpensesFilterBar';
+import { SuperadminExpensesGrid } from '@/app/superadmin/superadmin_accounting/expenses/superadmin_expenses_components/SuperadminExpensesGrid';
+import { SuperadminExpensesAddDialog } from '@/app/superadmin/superadmin_accounting/expenses/superadmin_expenses_components/SuperadminExpensesAddDialog';
 
 export function SuperadminExpensesClient() {
   const { expenses, visibleExpenses, catFilter, setCatFilter, categories, handleAdd, handleDelete } = useSuperadminExpenses();

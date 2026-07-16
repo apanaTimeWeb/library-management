@@ -1,4 +1,4 @@
-import type { SuperadminSubscription, SuperadminSubscriptionKpi } from '../superadmin_subscriptions_types/SuperadminSubscriptionsTypes';
+import type { SuperadminSubscription, SuperadminSubscriptionKpi } from '@/app/superadmin/superadmin_subscriptions/superadmin_subscriptions_types/SuperadminSubscriptionsTypes';
 
 export const SUPERADMIN_SUBSCRIPTIONS_PLANS = ['Basic (Monthly)', 'Pro (Monthly)', 'Enterprise (Annual)'];
 

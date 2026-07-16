@@ -1,7 +1,7 @@
 import React from 'react';
 import { X, Shield } from 'lucide-react';
-import type { SuperadminAuditLog } from '../superadmin_audit_logs_types/SuperadminAuditLogsTypes';
-import { ActionBadge } from './SuperadminAuditLogsGrid';
+import type { SuperadminAuditLog } from '@/app/superadmin/superadmin_audit-logs/superadmin_audit_logs_types/SuperadminAuditLogsTypes';
+import { ActionBadge } from '@/app/superadmin/superadmin_audit-logs/superadmin_audit_logs_components/SuperadminAuditLogsGrid';
 
 interface Props {
   log: SuperadminAuditLog;

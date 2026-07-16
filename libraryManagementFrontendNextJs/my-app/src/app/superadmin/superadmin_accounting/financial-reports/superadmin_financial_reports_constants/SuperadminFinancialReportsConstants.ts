@@ -1,4 +1,4 @@
-import type { SuperadminMonthlyReport, SuperadminCategoryBreakdown } from '../superadmin_financial_reports_types/SuperadminFinancialReportsTypes';
+import type { SuperadminMonthlyReport, SuperadminCategoryBreakdown } from '@/app/superadmin/superadmin_accounting/financial-reports/superadmin_financial_reports_types/SuperadminFinancialReportsTypes';
 
 export const SUPERADMIN_MONTHLY_REPORTS_MOCK: SuperadminMonthlyReport[] = [
   { month: 'Oct', income: 42000, expense: 18000 },

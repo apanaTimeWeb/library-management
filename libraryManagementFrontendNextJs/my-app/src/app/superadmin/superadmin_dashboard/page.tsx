@@ -1,6 +1,6 @@
 import React from 'react';
-import { SuperadminDashboardClient } from './SuperadminDashboardClient';
-import { fetchSuperadminDashboardData } from './superadmin_dashboard_api/SuperadminDashboardApi';
+import { SuperadminDashboardClient } from '@/app/superadmin/superadmin_dashboard/SuperadminDashboardClient';
+import { fetchSuperadminDashboardData } from '@/app/superadmin/superadmin_dashboard/superadmin_dashboard_api/SuperadminDashboardApi';
 
 export default async function SuperAdminDashboardPage() {
   const initialData = await fetchSuperadminDashboardData();

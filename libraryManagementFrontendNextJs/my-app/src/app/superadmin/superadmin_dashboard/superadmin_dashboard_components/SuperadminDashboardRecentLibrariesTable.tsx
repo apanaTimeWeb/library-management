@@ -4,9 +4,9 @@ import Link from 'next/link';
 import { AgGridReact } from 'ag-grid-react';
 import type { ICellRendererParams, GridReadyEvent } from 'ag-grid-community';
 import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community';
-import { gridTheme } from '../../superadmin_reusable/gridTheme';
+import { gridTheme } from '@/app/superadmin/superadmin_shared_components/gridTheme';
 import { ExternalLink } from 'lucide-react';
-import type { SuperadminDashboardRecentLibrary as Library } from '../superadmin_dashboard_types/SuperadminDashboardTypes';
+import type { SuperadminDashboardRecentLibrary as Library } from '@/app/superadmin/superadmin_dashboard/superadmin_dashboard_types/SuperadminDashboardTypes';
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 

@@ -1,7 +1,7 @@
 'use client';
 import React, { useState } from 'react';
 import { X, FileText, Download, CheckCircle, AlertCircle, Send, Loader } from 'lucide-react';
-import type { SuperadminBillingInvoice } from '../superadmin_billing_types/SuperadminBillingTypes';
+import type { SuperadminBillingInvoice } from '@/app/superadmin/superadmin_billing/superadmin_billing_types/SuperadminBillingTypes';
 
 interface Props {
   inv: SuperadminBillingInvoice;

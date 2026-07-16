@@ -1,5 +1,5 @@
 import React from 'react';
-import { SuperadminDailySettlementClient } from './SuperadminDailySettlementClient';
+import { SuperadminDailySettlementClient } from '@/app/superadmin/superadmin_accounting/daily-settlement/SuperadminDailySettlementClient';
 
 export default function SuperadminDailySettlementPage() {
   return <SuperadminDailySettlementClient />;

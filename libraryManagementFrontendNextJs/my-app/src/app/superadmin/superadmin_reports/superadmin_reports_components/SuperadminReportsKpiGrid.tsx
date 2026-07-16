@@ -1,6 +1,6 @@
 import React from 'react';
 import { IndianRupee, TrendingUp, TrendingDown, Users } from 'lucide-react';
-import type { SuperadminReportsKpiCard } from '../superadmin_reports_types/SuperadminReportsTypes';
+import type { SuperadminReportsKpiCard } from '@/app/superadmin/superadmin_reports/superadmin_reports_types/SuperadminReportsTypes';
 
 interface Props {
   kpiCards: SuperadminReportsKpiCard[];

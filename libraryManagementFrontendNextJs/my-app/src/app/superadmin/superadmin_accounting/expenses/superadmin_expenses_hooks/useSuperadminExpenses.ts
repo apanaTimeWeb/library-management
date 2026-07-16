@@ -1,6 +1,6 @@
 import { useState, useMemo } from 'react';
-import type { SuperadminExpense } from '../superadmin_expenses_types/SuperadminExpensesTypes';
-import { SUPERADMIN_EXPENSES_MOCK_DATA, SUPERADMIN_EXPENSES_CATEGORIES } from '../superadmin_expenses_constants/SuperadminExpensesConstants';
+import type { SuperadminExpense } from '@/app/superadmin/superadmin_accounting/expenses/superadmin_expenses_types/SuperadminExpensesTypes';
+import { SUPERADMIN_EXPENSES_MOCK_DATA, SUPERADMIN_EXPENSES_CATEGORIES } from '@/app/superadmin/superadmin_accounting/expenses/superadmin_expenses_constants/SuperadminExpensesConstants';
 
 export function useSuperadminExpenses() {
   const [expenses, setExpenses] = useState<SuperadminExpense[]>(SUPERADMIN_EXPENSES_MOCK_DATA);

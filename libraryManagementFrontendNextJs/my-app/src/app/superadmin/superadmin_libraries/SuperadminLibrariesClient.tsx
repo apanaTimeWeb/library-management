@@ -1,11 +1,11 @@
 'use client';
 import React, { useState } from 'react';
-import { useSuperadminLibraries } from './superadmin_libraries_hooks/useSuperadminLibraries';
-import { SuperadminLibrariesHeader } from './superadmin_libraries_components/SuperadminLibrariesHeader';
-import { SuperadminLibrariesGrid } from './superadmin_libraries_components/SuperadminLibrariesGrid';
-import { SuperadminLibrariesPanel } from './superadmin_libraries_components/SuperadminLibrariesPanel';
-import type { SuperadminLibrary, SuperadminLibraryPanelMode } from './superadmin_libraries_types/SuperadminLibrariesTypes';
-import { SUPERADMIN_LIBRARIES_TOASTS } from './superadmin_libraries_constants/SuperadminLibrariesConstants';
+import { useSuperadminLibraries } from '@/app/superadmin/superadmin_libraries/superadmin_libraries_hooks/useSuperadminLibraries';
+import { SuperadminLibrariesHeader } from '@/app/superadmin/superadmin_libraries/superadmin_libraries_components/SuperadminLibrariesHeader';
+import { SuperadminLibrariesGrid } from '@/app/superadmin/superadmin_libraries/superadmin_libraries_components/SuperadminLibrariesGrid';
+import { SuperadminLibrariesPanel } from '@/app/superadmin/superadmin_libraries/superadmin_libraries_components/SuperadminLibrariesPanel';
+import type { SuperadminLibrary, SuperadminLibraryPanelMode } from '@/app/superadmin/superadmin_libraries/superadmin_libraries_types/SuperadminLibrariesTypes';
+import { SUPERADMIN_LIBRARIES_TOASTS } from '@/app/superadmin/superadmin_libraries/superadmin_libraries_constants/SuperadminLibrariesConstants';
 
 export function SuperadminLibrariesClient() {
   const { libraries, loading, updateLibrary, toggleStatus } = useSuperadminLibraries();

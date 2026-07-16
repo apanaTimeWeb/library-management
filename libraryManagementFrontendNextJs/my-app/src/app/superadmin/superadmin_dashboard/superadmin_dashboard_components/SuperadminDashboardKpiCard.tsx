@@ -1,6 +1,6 @@
 import React from 'react';
 import { TrendingUp, AlertTriangle } from 'lucide-react';
-import type { SuperadminDashboardKpiCard as KpiCardProps } from '../superadmin_dashboard_types/SuperadminDashboardTypes';
+import type { SuperadminDashboardKpiCard as KpiCardProps } from '@/app/superadmin/superadmin_dashboard/superadmin_dashboard_types/SuperadminDashboardTypes';
 
 const ICON_MAP: Record<string, string> = {
   store:           '🏛️',

@@ -1,4 +1,4 @@
-import type { SuperadminSystemHealthDataResponse } from '../superadmin_system_health_types/SuperadminSystemHealthTypes';
+import type { SuperadminSystemHealthDataResponse } from '@/app/superadmin/superadmin_system-health/superadmin_system_health_types/SuperadminSystemHealthTypes';
 
 export const SUPERADMIN_SYSTEM_HEALTH_MOCK_DATA: SuperadminSystemHealthDataResponse = {
   infrastructure: [

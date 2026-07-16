@@ -1,4 +1,4 @@
-import type { SuperadminExpenseCategory } from '../superadmin_expense_categories_types/SuperadminExpenseCategoriesTypes';
+import type { SuperadminExpenseCategory } from '@/app/superadmin/superadmin_accounting/expense-categories/superadmin_expense_categories_types/SuperadminExpenseCategoriesTypes';
 
 export const SUPERADMIN_EXPENSE_CATEGORIES_COLORS = [
   'var(--primary)', 

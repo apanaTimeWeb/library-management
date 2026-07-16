@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { X, Loader } from 'lucide-react';
-import type { SuperadminExpenseCategory } from '../superadmin_expense_categories_types/SuperadminExpenseCategoriesTypes';
+import type { SuperadminExpenseCategory } from '@/app/superadmin/superadmin_accounting/expense-categories/superadmin_expense_categories_types/SuperadminExpenseCategoriesTypes';
 
 interface Props {
   availableColors: string[];

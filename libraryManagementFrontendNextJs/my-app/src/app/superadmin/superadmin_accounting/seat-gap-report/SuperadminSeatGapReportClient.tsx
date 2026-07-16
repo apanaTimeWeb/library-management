@@ -1,10 +1,10 @@
 'use client';
 import React, { useState } from 'react';
-import { useSuperadminSeatGapReport } from './superadmin_seat_gap_report_hooks/useSuperadminSeatGapReport';
-import { SuperadminSeatGapReportHeader } from './superadmin_seat_gap_report_components/SuperadminSeatGapReportHeader';
-import { SuperadminSeatGapReportKpiGrid } from './superadmin_seat_gap_report_components/SuperadminSeatGapReportKpiGrid';
-import { SuperadminSeatGapReportFilterBar } from './superadmin_seat_gap_report_components/SuperadminSeatGapReportFilterBar';
-import { SuperadminSeatGapReportTable } from './superadmin_seat_gap_report_components/SuperadminSeatGapReportTable';
+import { useSuperadminSeatGapReport } from '@/app/superadmin/superadmin_accounting/seat-gap-report/superadmin_seat_gap_report_hooks/useSuperadminSeatGapReport';
+import { SuperadminSeatGapReportHeader } from '@/app/superadmin/superadmin_accounting/seat-gap-report/superadmin_seat_gap_report_components/SuperadminSeatGapReportHeader';
+import { SuperadminSeatGapReportKpiGrid } from '@/app/superadmin/superadmin_accounting/seat-gap-report/superadmin_seat_gap_report_components/SuperadminSeatGapReportKpiGrid';
+import { SuperadminSeatGapReportFilterBar } from '@/app/superadmin/superadmin_accounting/seat-gap-report/superadmin_seat_gap_report_components/SuperadminSeatGapReportFilterBar';
+import { SuperadminSeatGapReportTable } from '@/app/superadmin/superadmin_accounting/seat-gap-report/superadmin_seat_gap_report_components/SuperadminSeatGapReportTable';
 
 export function SuperadminSeatGapReportClient() {
   const { 

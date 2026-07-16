@@ -1,6 +1,6 @@
 import { useState, useMemo } from 'react';
-import type { SuperadminAsset } from '../superadmin_assets_types/SuperadminAssetsTypes';
-import { SUPERADMIN_ASSETS_MOCK_DATA, SUPERADMIN_ASSETS_STATUS_STYLES } from '../superadmin_assets_constants/SuperadminAssetsConstants';
+import type { SuperadminAsset } from '@/app/superadmin/superadmin_accounting/assets/superadmin_assets_types/SuperadminAssetsTypes';
+import { SUPERADMIN_ASSETS_MOCK_DATA, SUPERADMIN_ASSETS_STATUS_STYLES } from '@/app/superadmin/superadmin_accounting/assets/superadmin_assets_constants/SuperadminAssetsConstants';
 
 export function useSuperadminAssets() {
   const [assets, setAssets] = useState<SuperadminAsset[]>(SUPERADMIN_ASSETS_MOCK_DATA);

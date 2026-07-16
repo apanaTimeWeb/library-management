@@ -1,4 +1,4 @@
-import type { SuperadminGapRow } from '../superadmin_seat_gap_report_types/SuperadminSeatGapReportTypes';
+import type { SuperadminGapRow } from '@/app/superadmin/superadmin_accounting/seat-gap-report/superadmin_seat_gap_report_types/SuperadminSeatGapReportTypes';
 
 export const SUPERADMIN_SEAT_GAP_REPORT_MOCK_DATA: SuperadminGapRow[] = [
   { seatNo: 'A-04', shift: 'Morning',   floor: 'Ground', lastOccupied: '2026-03-28', gapDays: 14, revenueLoss: 700,  status: 'vacant'      },

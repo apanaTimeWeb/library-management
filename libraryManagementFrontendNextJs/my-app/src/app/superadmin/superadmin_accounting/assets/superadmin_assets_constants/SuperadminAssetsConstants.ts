@@ -1,4 +1,4 @@
-import type { SuperadminAsset } from '../superadmin_assets_types/SuperadminAssetsTypes';
+import type { SuperadminAsset } from '@/app/superadmin/superadmin_accounting/assets/superadmin_assets_types/SuperadminAssetsTypes';
 
 export const SUPERADMIN_ASSETS_MOCK_DATA: SuperadminAsset[] = [
   { id: 1, name: 'AC Unit — Hall A',       category: 'Appliance',  purchaseDate: '2023-06-01', purchaseValue: 45000, currentValue: 32000, location: 'Ground Floor', status: 'active'      },

@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { CheckCircle, Users, Zap, HardDrive, ExternalLink } from 'lucide-react';
-import type { SuperadminDashboardSystemHealth as SystemHealth } from '../superadmin_dashboard_types/SuperadminDashboardTypes';
+import type { SuperadminDashboardSystemHealth as SystemHealth } from '@/app/superadmin/superadmin_dashboard/superadmin_dashboard_types/SuperadminDashboardTypes';
 
 interface Props { data: SystemHealth; }
 

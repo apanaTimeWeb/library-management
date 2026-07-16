@@ -1,5 +1,5 @@
 import React from 'react';
-import { SuperadminExpenseCategoriesClient } from './SuperadminExpenseCategoriesClient';
+import { SuperadminExpenseCategoriesClient } from '@/app/superadmin/superadmin_accounting/expense-categories/SuperadminExpenseCategoriesClient';
 
 export default function SuperAdminExpenseCategoriesPage() {
   return <SuperadminExpenseCategoriesClient />;

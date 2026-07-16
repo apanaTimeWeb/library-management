@@ -3,9 +3,9 @@ import React, { useRef, useCallback, useMemo, useState } from 'react';
 import { AgGridReact } from 'ag-grid-react';
 import type { ICellRendererParams, GridReadyEvent } from 'ag-grid-community';
 import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community';
-import { gridTheme } from '../../superadmin_reusable/gridTheme';
+import { gridTheme } from '@/app/superadmin/superadmin_shared_components/gridTheme';
 import { Download, FileText, CheckCircle } from 'lucide-react';
-import type { SuperadminBillingInvoice } from '../superadmin_billing_types/SuperadminBillingTypes';
+import type { SuperadminBillingInvoice } from '@/app/superadmin/superadmin_billing/superadmin_billing_types/SuperadminBillingTypes';
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 

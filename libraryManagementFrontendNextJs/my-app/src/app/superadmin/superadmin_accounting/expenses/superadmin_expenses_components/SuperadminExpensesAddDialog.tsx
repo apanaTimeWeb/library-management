@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { X, Loader } from 'lucide-react';
-import type { SuperadminExpense, SuperadminExpenseMode } from '../superadmin_expenses_types/SuperadminExpensesTypes';
+import type { SuperadminExpense, SuperadminExpenseMode } from '@/app/superadmin/superadmin_accounting/expenses/superadmin_expenses_types/SuperadminExpensesTypes';
 
 interface Props {
   categories: string[];

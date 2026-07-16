@@ -1,6 +1,6 @@
 import { useState, useCallback } from 'react';
-import type { SuperadminSubscription } from '../superadmin_subscriptions_types/SuperadminSubscriptionsTypes';
-import { SUPERADMIN_SUBSCRIPTIONS_MOCK_DATA } from '../superadmin_subscriptions_constants/SuperadminSubscriptionsConstants';
+import type { SuperadminSubscription } from '@/app/superadmin/superadmin_subscriptions/superadmin_subscriptions_types/SuperadminSubscriptionsTypes';
+import { SUPERADMIN_SUBSCRIPTIONS_MOCK_DATA } from '@/app/superadmin/superadmin_subscriptions/superadmin_subscriptions_constants/SuperadminSubscriptionsConstants';
 
 export function useSuperadminSubscriptions() {
   const [subs, setSubs] = useState<SuperadminSubscription[]>(SUPERADMIN_SUBSCRIPTIONS_MOCK_DATA);

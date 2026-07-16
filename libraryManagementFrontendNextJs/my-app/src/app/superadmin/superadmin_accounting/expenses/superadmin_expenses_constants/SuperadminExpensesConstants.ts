@@ -1,4 +1,4 @@
-import type { SuperadminExpense } from '../superadmin_expenses_types/SuperadminExpensesTypes';
+import type { SuperadminExpense } from '@/app/superadmin/superadmin_accounting/expenses/superadmin_expenses_types/SuperadminExpensesTypes';
 
 export const SUPERADMIN_EXPENSES_CATEGORIES = [
   'Electricity', 

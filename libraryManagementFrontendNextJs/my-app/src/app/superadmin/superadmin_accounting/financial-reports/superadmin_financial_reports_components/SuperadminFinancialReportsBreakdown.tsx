@@ -1,5 +1,5 @@
 import React from 'react';
-import type { SuperadminCategoryBreakdown } from '../superadmin_financial_reports_types/SuperadminFinancialReportsTypes';
+import type { SuperadminCategoryBreakdown } from '@/app/superadmin/superadmin_accounting/financial-reports/superadmin_financial_reports_types/SuperadminFinancialReportsTypes';
 
 interface Props {
   categoryBreakdown: SuperadminCategoryBreakdown[];

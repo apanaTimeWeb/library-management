@@ -1,6 +1,6 @@
 import React from 'react';
 import { Users, ReceiptText, TrendingDown } from 'lucide-react';
-import type { SuperadminSubscriptionKpi } from '../superadmin_subscriptions_types/SuperadminSubscriptionsTypes';
+import type { SuperadminSubscriptionKpi } from '@/app/superadmin/superadmin_subscriptions/superadmin_subscriptions_types/SuperadminSubscriptionsTypes';
 
 interface Props {
   kpis: SuperadminSubscriptionKpi[];

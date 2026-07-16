@@ -1,4 +1,4 @@
-import type { SuperadminLibrary } from '../superadmin_libraries_types/SuperadminLibrariesTypes';
+import type { SuperadminLibrary } from '@/app/superadmin/superadmin_libraries/superadmin_libraries_types/SuperadminLibrariesTypes';
 
 export const SUPERADMIN_LIBRARIES_TOASTS = {
   UPDATE_SUCCESS: (name: string) => `✅ ${name} updated successfully`,

@@ -1,5 +1,5 @@
 import { useState, useMemo } from 'react';
-import { SUPERADMIN_MONTHLY_REPORTS_MOCK, SUPERADMIN_CATEGORY_BREAKDOWN_MOCK } from '../superadmin_financial_reports_constants/SuperadminFinancialReportsConstants';
+import { SUPERADMIN_MONTHLY_REPORTS_MOCK, SUPERADMIN_CATEGORY_BREAKDOWN_MOCK } from '@/app/superadmin/superadmin_accounting/financial-reports/superadmin_financial_reports_constants/SuperadminFinancialReportsConstants';
 
 export function useSuperadminFinancialReports() {
   const [period, setPeriod] = useState<'monthly' | 'quarterly' | 'yearly'>('monthly');

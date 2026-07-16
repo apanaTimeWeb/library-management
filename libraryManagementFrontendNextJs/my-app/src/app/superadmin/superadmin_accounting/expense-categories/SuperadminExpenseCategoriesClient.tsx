@@ -1,9 +1,9 @@
 'use client';
 import React, { useState } from 'react';
-import { useSuperadminExpenseCategories } from './superadmin_expense_categories_hooks/useSuperadminExpenseCategories';
-import { SuperadminExpenseCategoriesHeader } from './superadmin_expense_categories_components/SuperadminExpenseCategoriesHeader';
-import { SuperadminExpenseCategoriesCard } from './superadmin_expense_categories_components/SuperadminExpenseCategoriesCard';
-import { SuperadminExpenseCategoriesAddDialog } from './superadmin_expense_categories_components/SuperadminExpenseCategoriesAddDialog';
+import { useSuperadminExpenseCategories } from '@/app/superadmin/superadmin_accounting/expense-categories/superadmin_expense_categories_hooks/useSuperadminExpenseCategories';
+import { SuperadminExpenseCategoriesHeader } from '@/app/superadmin/superadmin_accounting/expense-categories/superadmin_expense_categories_components/SuperadminExpenseCategoriesHeader';
+import { SuperadminExpenseCategoriesCard } from '@/app/superadmin/superadmin_accounting/expense-categories/superadmin_expense_categories_components/SuperadminExpenseCategoriesCard';
+import { SuperadminExpenseCategoriesAddDialog } from '@/app/superadmin/superadmin_accounting/expense-categories/superadmin_expense_categories_components/SuperadminExpenseCategoriesAddDialog';
 
 export function SuperadminExpenseCategoriesClient() {
   const { categories, availableColors, handleAdd, handleDelete } = useSuperadminExpenseCategories();

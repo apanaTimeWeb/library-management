@@ -1,6 +1,6 @@
 import { useState, useMemo } from 'react';
-import type { SuperadminAuditLog } from '../superadmin_audit_logs_types/SuperadminAuditLogsTypes';
-import { SUPERADMIN_AUDIT_LOGS_MOCK_DATA } from '../superadmin_audit_logs_constants/SuperadminAuditLogsConstants';
+import type { SuperadminAuditLog } from '@/app/superadmin/superadmin_audit-logs/superadmin_audit_logs_types/SuperadminAuditLogsTypes';
+import { SUPERADMIN_AUDIT_LOGS_MOCK_DATA } from '@/app/superadmin/superadmin_audit-logs/superadmin_audit_logs_constants/SuperadminAuditLogsConstants';
 
 export function useSuperadminAuditLogs() {
   const [actionFilter, setActionFilter] = useState('All Actions');

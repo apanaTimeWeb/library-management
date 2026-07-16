@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { X, Loader } from 'lucide-react';
-import type { SuperadminAsset } from '../superadmin_assets_types/SuperadminAssetsTypes';
+import type { SuperadminAsset } from '@/app/superadmin/superadmin_accounting/assets/superadmin_assets_types/SuperadminAssetsTypes';
 
 interface Props {
   categories: string[];

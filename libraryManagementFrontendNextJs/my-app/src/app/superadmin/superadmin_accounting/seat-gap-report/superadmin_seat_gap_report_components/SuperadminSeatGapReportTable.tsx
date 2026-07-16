@@ -1,7 +1,7 @@
 import React from 'react';
 import { Armchair } from 'lucide-react';
-import type { SuperadminGapRow } from '../superadmin_seat_gap_report_types/SuperadminSeatGapReportTypes';
-import { SUPERADMIN_SEAT_GAP_REPORT_STATUS_STYLES } from '../superadmin_seat_gap_report_constants/SuperadminSeatGapReportConstants';
+import type { SuperadminGapRow } from '@/app/superadmin/superadmin_accounting/seat-gap-report/superadmin_seat_gap_report_types/SuperadminSeatGapReportTypes';
+import { SUPERADMIN_SEAT_GAP_REPORT_STATUS_STYLES } from '@/app/superadmin/superadmin_accounting/seat-gap-report/superadmin_seat_gap_report_constants/SuperadminSeatGapReportConstants';
 
 interface Props {
   rows: SuperadminGapRow[];

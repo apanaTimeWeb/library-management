@@ -3,9 +3,9 @@ import React, { useMemo } from 'react';
 import { AgGridReact } from 'ag-grid-react';
 import type { ICellRendererParams } from 'ag-grid-community';
 import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community';
-import { gridTheme } from '../../../../superadmin_reusable/gridTheme';
+import { gridTheme } from '@/app/superadmin_shared_components/gridTheme';
 import { CheckCircle, ClipboardList } from 'lucide-react';
-import type { SuperadminDailySettlementEntry } from '../superadmin_daily_settlement_types/SuperadminDailySettlementTypes';
+import type { SuperadminDailySettlementEntry } from '@/app/superadmin/superadmin_accounting/daily-settlement/superadmin_daily_settlement_types/SuperadminDailySettlementTypes';
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 

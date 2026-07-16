@@ -1,8 +1,8 @@
 'use client';
 import React, { useState } from 'react';
 import { X, Calendar, IndianRupee, CheckCircle, Edit2, Save, Loader } from 'lucide-react';
-import type { SuperadminSubscription } from '../superadmin_subscriptions_types/SuperadminSubscriptionsTypes';
-import { SUPERADMIN_SUBSCRIPTIONS_PLANS } from '../superadmin_subscriptions_constants/SuperadminSubscriptionsConstants';
+import type { SuperadminSubscription } from '@/app/superadmin/superadmin_subscriptions/superadmin_subscriptions_types/SuperadminSubscriptionsTypes';
+import { SUPERADMIN_SUBSCRIPTIONS_PLANS } from '@/app/superadmin/superadmin_subscriptions/superadmin_subscriptions_constants/SuperadminSubscriptionsConstants';
 
 interface Props {
   sub: SuperadminSubscription;

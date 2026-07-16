@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
-import type { SuperadminLibrary } from '../superadmin_libraries_types/SuperadminLibrariesTypes';
-import { SUPERADMIN_LIBRARIES_MOCK_DATA } from '../superadmin_libraries_constants/SuperadminLibrariesConstants';
+import type { SuperadminLibrary } from '@/app/superadmin/superadmin_libraries/superadmin_libraries_types/SuperadminLibrariesTypes';
+import { SUPERADMIN_LIBRARIES_MOCK_DATA } from '@/app/superadmin/superadmin_libraries/superadmin_libraries_constants/SuperadminLibrariesConstants';
 
 export function useSuperadminLibraries() {
   const [libraries, setLibraries] = useState<SuperadminLibrary[]>([]);

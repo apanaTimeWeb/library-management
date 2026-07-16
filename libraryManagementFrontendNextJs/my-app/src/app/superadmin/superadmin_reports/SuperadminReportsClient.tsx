@@ -1,10 +1,10 @@
 'use client';
 import React, { useState, useEffect } from 'react';
-import type { SuperadminReportsDataResponse } from './superadmin_reports_types/SuperadminReportsTypes';
-import { SuperadminReportsHeader } from './superadmin_reports_components/SuperadminReportsHeader';
-import { SuperadminReportsKpiGrid } from './superadmin_reports_components/SuperadminReportsKpiGrid';
-import { SuperadminReportsCharts } from './superadmin_reports_components/SuperadminReportsCharts';
-import { fetchSuperadminReportsData } from './superadmin_reports_api/SuperadminReportsApi';
+import type { SuperadminReportsDataResponse } from '@/app/superadmin/superadmin_reports/superadmin_reports_types/SuperadminReportsTypes';
+import { SuperadminReportsHeader } from '@/app/superadmin/superadmin_reports/superadmin_reports_components/SuperadminReportsHeader';
+import { SuperadminReportsKpiGrid } from '@/app/superadmin/superadmin_reports/superadmin_reports_components/SuperadminReportsKpiGrid';
+import { SuperadminReportsCharts } from '@/app/superadmin/superadmin_reports/superadmin_reports_components/SuperadminReportsCharts';
+import { fetchSuperadminReportsData } from '@/app/superadmin/superadmin_reports/superadmin_reports_api/SuperadminReportsApi';
 
 interface Props {
   initialData: SuperadminReportsDataResponse;

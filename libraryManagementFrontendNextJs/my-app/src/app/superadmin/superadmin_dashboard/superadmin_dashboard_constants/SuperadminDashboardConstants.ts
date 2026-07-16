@@ -50,11 +50,11 @@ export const SUPERADMIN_DASHBOARD_MOCK_DATA = {
     lastBackup: '2 hours ago',
   },
   actionItems: [
-    { id: '1', type: 'error', icon: 'credit_card_off', title: '12 Subscriptions Failed Renewal', description: '', actionLabel: '', actionUrl: '' },
-    { id: '2', type: 'warning', icon: 'cloud_upload', title: 'High Storage Usage (89%)', description: '', actionLabel: '', actionUrl: '' },
+    { type: 'error', icon: 'credit_card_off', text: '12 Subscriptions Failed Renewal' },
+    { type: 'warning', icon: 'cloud_upload', text: 'High Storage Usage (89%)' },
   ],
   recentLibraries: [
-    { initials: 'SN', name: 'StudyNest', owner: 'Rahul K', students: 120, plan: 'Pro', status: 'active', joinedAt: 'Today' },
-    { initials: 'SS', name: 'Scholar Space', owner: 'Amit S', students: 45, plan: 'Basic', status: 'setup', joinedAt: 'Yesterday' },
+    { id: '1', initials: 'SN', name: 'StudyNest', owner: 'Rahul K', students: 120, plan: 'Pro', status: 'active', joinedAt: 'Today' },
+    { id: '2', initials: 'SS', name: 'Scholar Space', owner: 'Amit S', students: 45, plan: 'Basic', status: 'setup', joinedAt: 'Yesterday' },
   ],
 };

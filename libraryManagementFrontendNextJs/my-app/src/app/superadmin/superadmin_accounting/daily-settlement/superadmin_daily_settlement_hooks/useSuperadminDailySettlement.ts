@@ -1,6 +1,6 @@
 import { useState, useMemo } from 'react';
-import type { SuperadminDailySettlementEntry } from '../superadmin_daily_settlement_types/SuperadminDailySettlementTypes';
-import { SUPERADMIN_DAILY_SETTLEMENT_MOCK_DATA } from '../superadmin_daily_settlement_constants/SuperadminDailySettlementConstants';
+import type { SuperadminDailySettlementEntry } from '@/app/superadmin/superadmin_accounting/daily-settlement/superadmin_daily_settlement_types/SuperadminDailySettlementTypes';
+import { SUPERADMIN_DAILY_SETTLEMENT_MOCK_DATA } from '@/app/superadmin/superadmin_accounting/daily-settlement/superadmin_daily_settlement_constants/SuperadminDailySettlementConstants';
 
 const TODAY = new Date().toISOString().split('T')[0];
 

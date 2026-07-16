@@ -1,11 +1,11 @@
 'use client';
 import React, { useState } from 'react';
-import { useSuperadminAssets } from './superadmin_assets_hooks/useSuperadminAssets';
-import { SuperadminAssetsHeader } from './superadmin_assets_components/SuperadminAssetsHeader';
-import { SuperadminAssetsKpiGrid } from './superadmin_assets_components/SuperadminAssetsKpiGrid';
-import { SuperadminAssetsFilterBar } from './superadmin_assets_components/SuperadminAssetsFilterBar';
-import { SuperadminAssetsTable } from './superadmin_assets_components/SuperadminAssetsTable';
-import { SuperadminAssetsAddDialog } from './superadmin_assets_components/SuperadminAssetsAddDialog';
+import { useSuperadminAssets } from '@/app/superadmin/superadmin_accounting/assets/superadmin_assets_hooks/useSuperadminAssets';
+import { SuperadminAssetsHeader } from '@/app/superadmin/superadmin_accounting/assets/superadmin_assets_components/SuperadminAssetsHeader';
+import { SuperadminAssetsKpiGrid } from '@/app/superadmin/superadmin_accounting/assets/superadmin_assets_components/SuperadminAssetsKpiGrid';
+import { SuperadminAssetsFilterBar } from '@/app/superadmin/superadmin_accounting/assets/superadmin_assets_components/SuperadminAssetsFilterBar';
+import { SuperadminAssetsTable } from '@/app/superadmin/superadmin_accounting/assets/superadmin_assets_components/SuperadminAssetsTable';
+import { SuperadminAssetsAddDialog } from '@/app/superadmin/superadmin_accounting/assets/superadmin_assets_components/SuperadminAssetsAddDialog';
 
 export function SuperadminAssetsClient() {
   const { 

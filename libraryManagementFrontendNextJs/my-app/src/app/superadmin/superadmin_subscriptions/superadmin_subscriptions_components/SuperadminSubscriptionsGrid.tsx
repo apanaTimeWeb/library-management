@@ -3,8 +3,8 @@ import React, { useRef, useCallback, useMemo } from 'react';
 import { AgGridReact } from 'ag-grid-react';
 import type { ICellRendererParams, GridReadyEvent } from 'ag-grid-community';
 import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community';
-import { gridTheme } from '../../superadmin_reusable/gridTheme';
-import type { SuperadminSubscription } from '../superadmin_subscriptions_types/SuperadminSubscriptionsTypes';
+import { gridTheme } from '@/app/superadmin/superadmin_shared_components/gridTheme';
+import type { SuperadminSubscription } from '@/app/superadmin/superadmin_subscriptions/superadmin_subscriptions_types/SuperadminSubscriptionsTypes';
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 

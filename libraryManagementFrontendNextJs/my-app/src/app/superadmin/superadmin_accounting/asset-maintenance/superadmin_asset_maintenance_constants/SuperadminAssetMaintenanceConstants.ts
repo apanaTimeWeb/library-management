@@ -1,4 +1,4 @@
-import type { SuperadminMaintenanceLog } from '../superadmin_asset_maintenance_types/SuperadminAssetMaintenanceTypes';
+import type { SuperadminMaintenanceLog } from '@/app/superadmin/superadmin_accounting/asset-maintenance/superadmin_asset_maintenance_types/SuperadminAssetMaintenanceTypes';
 
 export const SUPERADMIN_ASSET_MAINTENANCE_MOCK_DATA: SuperadminMaintenanceLog[] = [
   { id: 1, assetName: 'AC Unit — Hall A',   issue: 'Gas refill & filter cleaning',  reportedDate: '2026-04-02', scheduledDate: '2026-04-08', vendor: 'CoolTech Services', cost: 1800, status: 'completed'   },

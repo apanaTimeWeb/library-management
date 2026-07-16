@@ -1,4 +1,4 @@
-import type { SuperadminBillingInvoice } from '../superadmin_billing_types/SuperadminBillingTypes';
+import type { SuperadminBillingInvoice } from '@/app/superadmin/superadmin_billing/superadmin_billing_types/SuperadminBillingTypes';
 
 export const SUPERADMIN_BILLING_MOCK_INVOICES: SuperadminBillingInvoice[] = [
   { id: 'REC-2026-0410', tenant: 'City Reading Hub',      date: '10 Apr, 2026', amount: 2999,  status: 'Paid',    method: 'UPI',           gst: '29AABCT1332L1ZD' },

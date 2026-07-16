@@ -1,6 +1,6 @@
 import React from 'react';
 import { Globe } from 'lucide-react';
-import type { SuperadminSystemHealthGateway } from '../superadmin_system_health_types/SuperadminSystemHealthTypes';
+import type { SuperadminSystemHealthGateway } from '@/app/superadmin/superadmin_system-health/superadmin_system_health_types/SuperadminSystemHealthTypes';
 
 interface Props {
   gateways: SuperadminSystemHealthGateway[];

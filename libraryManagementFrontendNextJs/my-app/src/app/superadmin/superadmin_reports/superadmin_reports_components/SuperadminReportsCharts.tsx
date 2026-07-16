@@ -6,7 +6,7 @@ import {
 } from 'recharts';
 import type { 
   SuperadminReportsDataResponse
-} from '../superadmin_reports_types/SuperadminReportsTypes';
+} from '@/app/superadmin/superadmin_reports/superadmin_reports_types/SuperadminReportsTypes';
 
 interface Props {
   data: SuperadminReportsDataResponse;

@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { Clock } from 'lucide-react';
-import { SUPERADMIN_DASHBOARD_RECENT_ACTIVITY } from '../superadmin_dashboard_constants/SuperadminDashboardConstants';
+import { SUPERADMIN_DASHBOARD_RECENT_ACTIVITY } from '@/app/superadmin/superadmin_dashboard/superadmin_dashboard_constants/SuperadminDashboardConstants';
 
 export function SuperadminDashboardRecentActivity() {
   return (

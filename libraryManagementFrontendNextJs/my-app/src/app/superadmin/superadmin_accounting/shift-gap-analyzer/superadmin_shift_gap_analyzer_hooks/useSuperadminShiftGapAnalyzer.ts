@@ -1,5 +1,5 @@
 import { useState, useMemo } from 'react';
-import { SUPERADMIN_SHIFT_GAPS_MOCK, SUPERADMIN_DAY_GAPS_MOCK } from '../superadmin_shift_gap_analyzer_constants/SuperadminShiftGapAnalyzerConstants';
+import { SUPERADMIN_SHIFT_GAPS_MOCK, SUPERADMIN_DAY_GAPS_MOCK } from '@/app/superadmin/superadmin_accounting/shift-gap-analyzer/superadmin_shift_gap_analyzer_constants/SuperadminShiftGapAnalyzerConstants';
 
 export function useSuperadminShiftGapAnalyzer() {
   const [shiftFilter, setShiftFilter] = useState('all');

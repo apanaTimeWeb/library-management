@@ -1,11 +1,11 @@
 'use client';
 import React, { useState } from 'react';
 import { Server, Database } from 'lucide-react';
-import type { SuperadminSystemHealthDataResponse } from './superadmin_system_health_types/SuperadminSystemHealthTypes';
-import { SuperadminSystemHealthHeader } from './superadmin_system_health_components/SuperadminSystemHealthHeader';
-import { SuperadminSystemHealthMetricCard } from './superadmin_system_health_components/SuperadminSystemHealthMetricCard';
-import { SuperadminSystemHealthGatewaysCard } from './superadmin_system_health_components/SuperadminSystemHealthGatewaysCard';
-import { fetchSuperadminSystemHealthData } from './superadmin_system_health_api/SuperadminSystemHealthApi';
+import type { SuperadminSystemHealthDataResponse } from '@/app/superadmin/superadmin_system-health/superadmin_system_health_types/SuperadminSystemHealthTypes';
+import { SuperadminSystemHealthHeader } from '@/app/superadmin/superadmin_system-health/superadmin_system_health_components/SuperadminSystemHealthHeader';
+import { SuperadminSystemHealthMetricCard } from '@/app/superadmin/superadmin_system-health/superadmin_system_health_components/SuperadminSystemHealthMetricCard';
+import { SuperadminSystemHealthGatewaysCard } from '@/app/superadmin/superadmin_system-health/superadmin_system_health_components/SuperadminSystemHealthGatewaysCard';
+import { fetchSuperadminSystemHealthData } from '@/app/superadmin/superadmin_system-health/superadmin_system_health_api/SuperadminSystemHealthApi';
 
 interface Props {
   initialData: SuperadminSystemHealthDataResponse;

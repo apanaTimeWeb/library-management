@@ -1,7 +1,7 @@
 'use client';
 import React, { useState } from 'react';
 import { MapPin, Edit2, X, Users, CheckCircle, AlertTriangle, Save, Loader, ShieldAlert } from 'lucide-react';
-import type { SuperadminLibrary, SuperadminLibraryPanelMode } from '../superadmin_libraries_types/SuperadminLibrariesTypes';
+import type { SuperadminLibrary, SuperadminLibraryPanelMode } from '@/app/superadmin/superadmin_libraries/superadmin_libraries_types/SuperadminLibrariesTypes';
 
 interface Props {
   lib: SuperadminLibrary;

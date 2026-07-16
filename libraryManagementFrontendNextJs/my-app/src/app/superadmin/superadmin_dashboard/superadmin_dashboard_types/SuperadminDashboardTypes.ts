@@ -16,21 +16,18 @@ export interface SuperadminDashboardSystemHealth {
 }
 
 export interface SuperadminDashboardActionItem {
-  id: string;
-  title: string;
-  description: string;
-  type: 'warning' | 'error' | 'info';
   icon: string;
-  actionLabel: string;
-  actionUrl: string;
+  text: string;
+  type: string;
 }
 
 export interface SuperadminDashboardRecentLibrary {
+  id?: string;
   initials: string;
   name: string;
   owner: string;
   students: number;
-  status: 'active' | 'setup' | 'inactive';
+  status: string;
   plan: string;
   joinedAt: string;
 }

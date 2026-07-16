@@ -1,5 +1,5 @@
 import React from 'react';
-import type { SuperadminExpense } from '../superadmin_expenses_types/SuperadminExpensesTypes';
+import type { SuperadminExpense } from '@/app/superadmin/superadmin_accounting/expenses/superadmin_expenses_types/SuperadminExpensesTypes';
 
 interface Props {
   allExpenses: SuperadminExpense[];

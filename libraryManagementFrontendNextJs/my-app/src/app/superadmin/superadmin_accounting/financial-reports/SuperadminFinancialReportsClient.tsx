@@ -1,10 +1,10 @@
 'use client';
 import React from 'react';
-import { useSuperadminFinancialReports } from './superadmin_financial_reports_hooks/useSuperadminFinancialReports';
-import { SuperadminFinancialReportsHeader } from './superadmin_financial_reports_components/SuperadminFinancialReportsHeader';
-import { SuperadminFinancialReportsKpiCards } from './superadmin_financial_reports_components/SuperadminFinancialReportsKpiCards';
-import { SuperadminFinancialReportsBarChart } from './superadmin_financial_reports_components/SuperadminFinancialReportsBarChart';
-import { SuperadminFinancialReportsBreakdown } from './superadmin_financial_reports_components/SuperadminFinancialReportsBreakdown';
+import { useSuperadminFinancialReports } from '@/app/superadmin/superadmin_accounting/financial-reports/superadmin_financial_reports_hooks/useSuperadminFinancialReports';
+import { SuperadminFinancialReportsHeader } from '@/app/superadmin/superadmin_accounting/financial-reports/superadmin_financial_reports_components/SuperadminFinancialReportsHeader';
+import { SuperadminFinancialReportsKpiCards } from '@/app/superadmin/superadmin_accounting/financial-reports/superadmin_financial_reports_components/SuperadminFinancialReportsKpiCards';
+import { SuperadminFinancialReportsBarChart } from '@/app/superadmin/superadmin_accounting/financial-reports/superadmin_financial_reports_components/SuperadminFinancialReportsBarChart';
+import { SuperadminFinancialReportsBreakdown } from '@/app/superadmin/superadmin_accounting/financial-reports/superadmin_financial_reports_components/SuperadminFinancialReportsBreakdown';
 
 export function SuperadminFinancialReportsClient() {
   const { 

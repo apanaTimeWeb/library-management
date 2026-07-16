@@ -1,9 +1,9 @@
 'use client';
 import React, { useState } from 'react';
-import { useSuperadminDailySettlement } from './superadmin_daily_settlement_hooks/useSuperadminDailySettlement';
-import { SuperadminDailySettlementHeader } from './superadmin_daily_settlement_components/SuperadminDailySettlementHeader';
-import { SuperadminDailySettlementKpiGrid } from './superadmin_daily_settlement_components/SuperadminDailySettlementKpiGrid';
-import { SuperadminDailySettlementGrid } from './superadmin_daily_settlement_components/SuperadminDailySettlementGrid';
+import { useSuperadminDailySettlement } from '@/app/superadmin/superadmin_accounting/daily-settlement/superadmin_daily_settlement_hooks/useSuperadminDailySettlement';
+import { SuperadminDailySettlementHeader } from '@/app/superadmin/superadmin_accounting/daily-settlement/superadmin_daily_settlement_components/SuperadminDailySettlementHeader';
+import { SuperadminDailySettlementKpiGrid } from '@/app/superadmin/superadmin_accounting/daily-settlement/superadmin_daily_settlement_components/SuperadminDailySettlementKpiGrid';
+import { SuperadminDailySettlementGrid } from '@/app/superadmin/superadmin_accounting/daily-settlement/superadmin_daily_settlement_components/SuperadminDailySettlementGrid';
 
 export function SuperadminDailySettlementClient() {
   const { 

@@ -1,4 +1,4 @@
-import type { SuperadminShiftGap, SuperadminDayGap } from '../superadmin_shift_gap_analyzer_types/SuperadminShiftGapAnalyzerTypes';
+import type { SuperadminShiftGap, SuperadminDayGap } from '@/app/superadmin/superadmin_accounting/shift-gap-analyzer/superadmin_shift_gap_analyzer_types/SuperadminShiftGapAnalyzerTypes';
 
 export const SUPERADMIN_SHIFT_GAPS_MOCK: SuperadminShiftGap[] = [
   { shift: 'Morning (6AM–2PM)',   totalSeats: 40, occupied: 34, vacant: 6,  occupancyPct: 85, avgGapDays: 12, revenueLoss: 3600  },

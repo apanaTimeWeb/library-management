@@ -1,4 +1,4 @@
-import type { SuperadminAuditLog } from '../superadmin_audit_logs_types/SuperadminAuditLogsTypes';
+import type { SuperadminAuditLog } from '@/app/superadmin/superadmin_audit-logs/superadmin_audit_logs_types/SuperadminAuditLogsTypes';
 
 export const SUPERADMIN_AUDIT_LOGS_MOCK_DATA: SuperadminAuditLog[] = [
   { id: 'log_99123', time: '11 Apr 2026, 14:30', user: 'Super Admin',  entity: 'Subscription',   target: 'City Reading Hub',    action: 'Created',       ip: '192.168.1.42', detail: 'New Enterprise (Annual) subscription created for City Reading Hub. Amount: ₹15,000.' },

@@ -1,5 +1,5 @@
 import React from 'react';
-import type { SuperadminMonthlyReport } from '../superadmin_financial_reports_types/SuperadminFinancialReportsTypes';
+import type { SuperadminMonthlyReport } from '@/app/superadmin/superadmin_accounting/financial-reports/superadmin_financial_reports_types/SuperadminFinancialReportsTypes';
 
 interface Props {
   monthlyData: SuperadminMonthlyReport[];

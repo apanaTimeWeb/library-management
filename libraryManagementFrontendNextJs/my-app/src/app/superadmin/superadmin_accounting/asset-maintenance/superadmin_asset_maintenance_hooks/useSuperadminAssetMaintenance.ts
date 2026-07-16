@@ -1,6 +1,6 @@
 import { useState, useMemo } from 'react';
-import type { SuperadminMaintenanceLog } from '../superadmin_asset_maintenance_types/SuperadminAssetMaintenanceTypes';
-import { SUPERADMIN_ASSET_MAINTENANCE_MOCK_DATA, SUPERADMIN_ASSET_MAINTENANCE_STATUS_STYLES } from '../superadmin_asset_maintenance_constants/SuperadminAssetMaintenanceConstants';
+import type { SuperadminMaintenanceLog } from '@/app/superadmin/superadmin_accounting/asset-maintenance/superadmin_asset_maintenance_types/SuperadminAssetMaintenanceTypes';
+import { SUPERADMIN_ASSET_MAINTENANCE_MOCK_DATA, SUPERADMIN_ASSET_MAINTENANCE_STATUS_STYLES } from '@/app/superadmin/superadmin_accounting/asset-maintenance/superadmin_asset_maintenance_constants/SuperadminAssetMaintenanceConstants';
 
 export function useSuperadminAssetMaintenance() {
   const [logs, setLogs] = useState<SuperadminMaintenanceLog[]>(SUPERADMIN_ASSET_MAINTENANCE_MOCK_DATA);

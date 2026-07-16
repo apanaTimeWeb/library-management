@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { AlertTriangle, CreditCard, Headphones, CloudUpload, ChevronRight, Lightbulb, ExternalLink } from 'lucide-react';
-import type { SuperadminDashboardActionItem } from '../superadmin_dashboard_types/SuperadminDashboardTypes';
+import type { SuperadminDashboardActionItem } from '@/app/superadmin/superadmin_dashboard/superadmin_dashboard_types/SuperadminDashboardTypes';
 
 interface Props { data: SuperadminDashboardActionItem[]; }
 
@@ -40,7 +40,7 @@ export function SuperadminDashboardActionItemsPanel({ data }: Props) {
               }`}>
               <div className="flex items-center gap-3">
                 <Icon size={16} className={isError ? 'text-[var(--danger)]' : 'text-[var(--info,#3B82F6)]'} />
-                <span className="text-sm font-semibold text-[var(--text-primary)]">{item.title}</span>
+                <span className="text-sm font-semibold text-[var(--text-primary)]">{item.text}</span>
               </div>
               <ChevronRight size={15} className="text-[var(--text-disabled)]" />
             </Link>

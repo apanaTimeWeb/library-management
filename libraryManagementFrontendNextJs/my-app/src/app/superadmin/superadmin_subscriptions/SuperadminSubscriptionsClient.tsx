@@ -1,12 +1,12 @@
 'use client';
 import React, { useState } from 'react';
-import { useSuperadminSubscriptions } from './superadmin_subscriptions_hooks/useSuperadminSubscriptions';
-import { SuperadminSubscriptionsHeader } from './superadmin_subscriptions_components/SuperadminSubscriptionsHeader';
-import { SuperadminSubscriptionsKpiGrid } from './superadmin_subscriptions_components/SuperadminSubscriptionsKpiGrid';
-import { SuperadminSubscriptionsGrid } from './superadmin_subscriptions_components/SuperadminSubscriptionsGrid';
-import { SuperadminSubscriptionsPanel } from './superadmin_subscriptions_components/SuperadminSubscriptionsPanel';
-import type { SuperadminSubscription } from './superadmin_subscriptions_types/SuperadminSubscriptionsTypes';
-import { SUPERADMIN_SUBSCRIPTIONS_KPI } from './superadmin_subscriptions_constants/SuperadminSubscriptionsConstants';
+import { useSuperadminSubscriptions } from '@/app/superadmin/superadmin_subscriptions/superadmin_subscriptions_hooks/useSuperadminSubscriptions';
+import { SuperadminSubscriptionsHeader } from '@/app/superadmin/superadmin_subscriptions/superadmin_subscriptions_components/SuperadminSubscriptionsHeader';
+import { SuperadminSubscriptionsKpiGrid } from '@/app/superadmin/superadmin_subscriptions/superadmin_subscriptions_components/SuperadminSubscriptionsKpiGrid';
+import { SuperadminSubscriptionsGrid } from '@/app/superadmin/superadmin_subscriptions/superadmin_subscriptions_components/SuperadminSubscriptionsGrid';
+import { SuperadminSubscriptionsPanel } from '@/app/superadmin/superadmin_subscriptions/superadmin_subscriptions_components/SuperadminSubscriptionsPanel';
+import type { SuperadminSubscription } from '@/app/superadmin/superadmin_subscriptions/superadmin_subscriptions_types/SuperadminSubscriptionsTypes';
+import { SUPERADMIN_SUBSCRIPTIONS_KPI } from '@/app/superadmin/superadmin_subscriptions/superadmin_subscriptions_constants/SuperadminSubscriptionsConstants';
 
 export function SuperadminSubscriptionsClient() {
   const { subs, filteredSubs, filter, setFilter, updateSubscription, renewSubscription } = useSuperadminSubscriptions();

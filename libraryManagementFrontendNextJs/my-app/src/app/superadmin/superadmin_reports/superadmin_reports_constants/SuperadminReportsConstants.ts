@@ -1,4 +1,4 @@
-import type { SuperadminReportsDataResponse } from '../superadmin_reports_types/SuperadminReportsTypes';
+import type { SuperadminReportsDataResponse } from '@/app/superadmin/superadmin_reports/superadmin_reports_types/SuperadminReportsTypes';
 
 export const SUPERADMIN_REPORTS_DATE_RANGES = ['This Month', 'Last 3 Months', 'Last 6 Months', 'This Year'];
 

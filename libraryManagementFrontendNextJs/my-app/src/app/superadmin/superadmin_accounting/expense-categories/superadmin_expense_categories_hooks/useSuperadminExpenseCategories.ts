@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import type { SuperadminExpenseCategory } from '../superadmin_expense_categories_types/SuperadminExpenseCategoriesTypes';
-import { SUPERADMIN_EXPENSE_CATEGORIES_MOCK_DATA, SUPERADMIN_EXPENSE_CATEGORIES_COLORS } from '../superadmin_expense_categories_constants/SuperadminExpenseCategoriesConstants';
+import type { SuperadminExpenseCategory } from '@/app/superadmin/superadmin_accounting/expense-categories/superadmin_expense_categories_types/SuperadminExpenseCategoriesTypes';
+import { SUPERADMIN_EXPENSE_CATEGORIES_MOCK_DATA, SUPERADMIN_EXPENSE_CATEGORIES_COLORS } from '@/app/superadmin/superadmin_accounting/expense-categories/superadmin_expense_categories_constants/SuperadminExpenseCategoriesConstants';
 
 export function useSuperadminExpenseCategories() {
   const [categories, setCategories] = useState<SuperadminExpenseCategory[]>(SUPERADMIN_EXPENSE_CATEGORIES_MOCK_DATA);
