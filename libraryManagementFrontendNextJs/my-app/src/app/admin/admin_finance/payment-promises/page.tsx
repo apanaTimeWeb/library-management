@@ -6,7 +6,7 @@
 import { useState, useEffect } from 'react';
 
 import toast from 'react-hot-toast';
-import { formatCurrency } from '@/app/admin/admin_finance/lib/format';
+import { formatCurrency } from '@/app/admin/admin_finance/admin_finance_utils/format';
 import { CheckCircle, CalendarPlus, Eye } from 'lucide-react';
 
 const STATUS_BADGE: Record<string, string> = {

@@ -7,7 +7,7 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 
 import toast from 'react-hot-toast';
-import { formatCurrency } from '@/app/admin/admin_finance/lib/format';
+import { formatCurrency } from '@/app/admin/admin_finance/admin_finance_utils/format';
 import { Settings, AlertTriangle, Save, MessageSquare } from 'lucide-react';
 import { openWhatsApp } from '@/lib/whatsappUtils';
 

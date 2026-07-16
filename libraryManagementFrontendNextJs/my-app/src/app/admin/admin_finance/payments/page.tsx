@@ -10,7 +10,7 @@ import { AgGridReact } from 'ag-grid-react';
 import { AllCommunityModule, ModuleRegistry, themeQuartz } from 'ag-grid-community';
 
 import toast from 'react-hot-toast';
-import { formatCurrency, formatDate } from '@/app/admin/admin_finance/lib/format';
+import { formatCurrency, formatDate } from '@/app/admin/admin_finance/admin_finance_utils/format';
 import { Receipt, Trash2, FileText } from 'lucide-react';
 
 ModuleRegistry.registerModules([AllCommunityModule]);

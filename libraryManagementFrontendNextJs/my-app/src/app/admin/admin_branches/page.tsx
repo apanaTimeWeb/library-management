@@ -1,7 +1,7 @@
 import { cookies } from 'next/headers';
-import { AdminBranchesView } from './admin_branches_components/AdminBranchesView';
-import { fetchAdminBranches } from '../admin_api/admin_api';
-import { Branch } from './admin_branches_hooks/useAdminBranches';
+import { AdminBranchesView } from '@/app/admin/admin_branches/admin_branches_components/AdminBranchesView';
+import { fetchAdminBranches } from '@/app/admin/admin_api/admin_api';
+import { Branch } from '@/app/admin/admin_branches/admin_branches_hooks/useAdminBranches';
 
 async function getBranchesData(): Promise<Branch[]> {
   const cookieStore = await cookies();

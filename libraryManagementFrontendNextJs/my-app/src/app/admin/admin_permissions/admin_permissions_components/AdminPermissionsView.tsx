@@ -4,7 +4,7 @@
 import React from 'react';
 import { Shield, CheckCircle } from 'lucide-react';
 import { Toaster } from 'react-hot-toast';
-import { useAdminPermissions, type Permission } from '../admin_permissions_hooks/useAdminPermissions';
+import { useAdminPermissions, type Permission } from '@/app/admin/admin_permissions/admin_permissions_hooks/useAdminPermissions';
 
 interface AdminPermissionsViewProps {
   initialPermissions: Permission[];

@@ -3,7 +3,7 @@ import React, { useMemo } from 'react';
 import { AgGridReact } from 'ag-grid-react';
 import type { ICellRendererParams } from 'ag-grid-community';
 import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community';
-import { gridTheme } from '@/app/superadmin_shared_components/gridTheme';
+import { gridTheme } from '@/app/superadmin/superadmin_shared_components/gridTheme';
 import { Trash2, FileWarning } from 'lucide-react';
 import type { SuperadminExpense } from '@/app/superadmin/superadmin_accounting/expenses/superadmin_expenses_types/SuperadminExpensesTypes';
 

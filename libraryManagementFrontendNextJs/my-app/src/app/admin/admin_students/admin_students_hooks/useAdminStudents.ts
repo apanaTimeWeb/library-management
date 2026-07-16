@@ -1,5 +1,5 @@
 import { useState, useMemo } from 'react';
-import { useAdmin } from '../../admin_context/AdminContext';
+import { useAdmin } from '@/app/admin/admin_context/AdminContext';
 
 export function useAdminStudents(initialStudents: any[]) {
   const [search, setSearch] = useState('');

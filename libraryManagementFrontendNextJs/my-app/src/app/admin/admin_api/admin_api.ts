@@ -1,6 +1,6 @@
 import { StatusCodes } from 'http-status-codes';
-import { ADMIN_API_ROUTES } from '../admin_url_config';
-import type { ApiResponse } from '../admin_types/admin_types';
+import { ADMIN_API_ROUTES } from '@/app/admin/admin_url_config';
+import type { ApiResponse } from '@/app/admin/admin_types/admin_types';
 import { fetchApi } from '@/lib/api';
 
 /**

@@ -1,6 +1,6 @@
 import { cookies } from 'next/headers';
-import { AdminReportsView } from './admin_reports_components/AdminReportsView';
-import { fetchAdminReports } from '../admin_api/admin_api';
+import { AdminReportsView } from '@/app/admin/admin_reports/admin_reports_components/AdminReportsView';
+import { fetchAdminReports } from '@/app/admin/admin_api/admin_api';
 
 async function getReportsData() {
   const cookieStore = await cookies();

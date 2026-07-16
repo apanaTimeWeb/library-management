@@ -1,6 +1,6 @@
 import { cookies } from 'next/headers';
-import { AdminStudentsView } from './admin_students_components/AdminStudentsView';
-import { fetchAdminStudents } from '../admin_api/admin_api';
+import { AdminStudentsView } from '@/app/admin/admin_students/admin_students_components/AdminStudentsView';
+import { fetchAdminStudents } from '@/app/admin/admin_api/admin_api';
 
 async function getStudentsData() {
   const cookieStore = await cookies();

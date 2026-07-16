@@ -4,8 +4,8 @@ import { useMemo } from 'react';
 import { UserPlus, Pencil, Trash2, CheckCircle, Search, Users } from 'lucide-react';
 import { AgGridReact } from 'ag-grid-react';
 import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community';
-import { gridTheme } from '../../admin_reusable/gridTheme';
-import { useAdminStaff, type StaffMember } from '../admin_staff-users_hooks/useAdminStaff';
+import { gridTheme } from '@/app/admin/admin_reusable/gridTheme';
+import { useAdminStaff, type StaffMember } from '@/app/admin/admin_staff-users/admin_staff-users_hooks/useAdminStaff';
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
@@ -139,10 +139,17 @@ export function AdminStaffView({ initialStaff }: AdminStaffViewProps) {
           <div className="admin-modal" onClick={e => e.stopPropagation()}>
             <h2 className="admin-modal-title">{editId ? 'Edit Staff Member' : 'Add Staff Member'}</h2>
             <div className="admin-form-grid">
-              <div className="admin-form-field admin-form-field-full">
-                <label className="admin-label admin-label-required">Full Name</label>
-                <input className={`admin-input${errors.name ? ' admin-input-error' : ''}`} value={form.name} onChange={handleFieldChange('name')} placeholder="Full name" />
-                {errors.name && <p className="admin-error">{errors.name}</p>}
+              <div className="admin-form-field admin-form-field-full" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
+                <div>
+                  <label className="admin-label admin-label-required">First Name</label>
+                  <input className={`admin-input${errors.firstName ? ' admin-input-error' : ''}`} value={form.firstName} onChange={handleFieldChange('firstName')} placeholder="First name" />
+                  {errors.firstName && <p className="admin-error">{errors.firstName}</p>}
+                </div>
+                <div>
+                  <label className="admin-label admin-label-required">Last Name</label>
+                  <input className={`admin-input${errors.lastName ? ' admin-input-error' : ''}`} value={form.lastName} onChange={handleFieldChange('lastName')} placeholder="Last name" />
+                  {errors.lastName && <p className="admin-error">{errors.lastName}</p>}
+                </div>
               </div>
               <div className="admin-form-field admin-form-field-full">
                 <label className="admin-label admin-label-required">Email</label>
@@ -156,19 +163,19 @@ export function AdminStaffView({ initialStaff }: AdminStaffViewProps) {
               </div>
               <div className="admin-form-field">
                 <label className="admin-label">Role</label>
-                <select className="admin-select" style={{ width: '100%', padding: '10px 14px' }} value={form.role} onChange={handleFieldChange('role')}>
-                  <option value="Admin">Admin</option>
-                  <option value="Manager">Manager</option>
-                  <option value="Staff">Staff</option>
+                <select className="admin-select" style={{ width: '100%', padding: '10px 14px' }} value={form.roleId} onChange={handleFieldChange('roleId')}>
+                  <option value="role-admin-id">Admin</option>
+                  <option value="role-manager-id">Manager</option>
+                  <option value="role-staff-id">Staff</option>
                 </select>
               </div>
               <div className="admin-form-field admin-form-field-full">
                 <label className="admin-label">Branch</label>
-                <select className="admin-select" style={{ width: '100%', padding: '10px 14px' }} value={form.branch} onChange={handleFieldChange('branch')}>
-                  <option value="Main Branch">Main Branch</option>
-                  <option value="Branch 2">Branch 2</option>
-                  <option value="Kothrud Center">Kothrud Center</option>
-                  <option value="Nashik Branch">Nashik Branch</option>
+                <select className="admin-select" style={{ width: '100%', padding: '10px 14px' }} value={form.branchId} onChange={handleFieldChange('branchId')}>
+                  <option value="main-branch-id">Main Branch</option>
+                  <option value="branch-2-id">Branch 2</option>
+                  <option value="kothrud-center-id">Kothrud Center</option>
+                  <option value="nashik-branch-id">Nashik Branch</option>
                 </select>
               </div>
             </div>

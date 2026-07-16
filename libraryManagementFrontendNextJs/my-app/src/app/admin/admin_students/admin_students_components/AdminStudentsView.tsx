@@ -4,8 +4,8 @@ import { useMemo } from 'react';
 import { Download, Search } from 'lucide-react';
 import { AgGridReact } from 'ag-grid-react';
 import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community';
-import { gridTheme } from '../../admin_reusable/gridTheme';
-import { useAdminStudents } from '../admin_students_hooks/useAdminStudents';
+import { gridTheme } from '@/app/admin/admin_reusable/gridTheme';
+import { useAdminStudents } from '@/app/admin/admin_students/admin_students_hooks/useAdminStudents';
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 

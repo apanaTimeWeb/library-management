@@ -2,7 +2,7 @@
 
 import { Save, CheckCircle, Settings } from 'lucide-react';
 import { Toaster } from 'react-hot-toast';
-import { useAdminSettings, type SettingsState } from '../admin_settings_hooks/useAdminSettings';
+import { useAdminSettings, type SettingsState } from '@/app/admin/admin_settings/admin_settings_hooks/useAdminSettings';
 
 interface AdminSettingsViewProps {
   initialSettings: SettingsState;

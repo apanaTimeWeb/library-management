@@ -8,7 +8,7 @@ import {
   PiggyBank, Users, Clock, Ban, UsersRound, ShieldAlert,
   TrendingUp, TrendingDown, IndianRupee, Receipt, AlertTriangle, RefreshCw,
 } from 'lucide-react';
-import { formatCurrency } from '@/app/admin/admin_finance/lib/format';
+import { formatCurrency } from '@/app/admin/admin_finance/admin_finance_utils/format';
 
 interface DashboardStats {
   totalCollections: number; collectionsGrowth: number; activeStudents: number;

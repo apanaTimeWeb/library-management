@@ -1,7 +1,7 @@
 import { cookies } from 'next/headers';
-import { AdminStaffView } from './admin_staff-users_components/AdminStaffView';
-import { fetchAdminStaffUsers } from '../admin_api/admin_api';
-import { StaffMember } from './admin_staff-users_hooks/useAdminStaff';
+import { AdminStaffView } from '@/app/admin/admin_staff-users/admin_staff-users_components/AdminStaffView';
+import { fetchAdminStaffUsers } from '@/app/admin/admin_api/admin_api';
+import { StaffMember } from '@/app/admin/admin_staff-users/admin_staff-users_hooks/useAdminStaff';
 
 async function getStaffData(): Promise<StaffMember[]> {
   const cookieStore = await cookies();

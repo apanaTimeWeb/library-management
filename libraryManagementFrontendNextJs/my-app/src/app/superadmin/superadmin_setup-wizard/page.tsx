@@ -11,7 +11,7 @@ import {
   shiftsSchema,       type ShiftsData,
   seatsSchema,        type SeatsData,
   plansSchema,        type PlansData,
-} from '@/app/superadmin/superadmin_reusable/schema';
+} from '@/app/superadmin/superadmin_shared_components/schema';
 import { SETUP_WIZARD_DATA as d } from '@/app/superadmin/superadmin_setup-wizard/setupWizard_constants';
 
 const STEPS = [

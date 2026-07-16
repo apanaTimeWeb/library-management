@@ -16,14 +16,15 @@ export interface StaffMember {
 }
 
 export interface FormState {
-  name: string;
+  firstName: string;
+  lastName: string;
   email: string;
   phone: string;
-  role: 'Admin' | 'Manager' | 'Staff';
-  branch: string;
+  roleId: string;
+  branchId: string;
 }
 
-const EMPTY: FormState = { name: '', email: '', phone: '', role: 'Staff', branch: 'Main Branch' };
+const EMPTY: FormState = { firstName: '', lastName: '', email: '', phone: '', roleId: 'role-staff-id', branchId: 'main-branch-id' };
 
 export function useAdminStaff(initialStaff: StaffMember[]) {
   const [staff, setStaff] = useState<StaffMember[]>(initialStaff);
@@ -51,7 +52,8 @@ export function useAdminStaff(initialStaff: StaffMember[]) {
 
   function validate(): boolean {
     const e: Partial<FormState> = {};
-    if (!form.name.trim())  e.name  = 'Name is required';
+    if (!form.firstName.trim()) e.firstName = 'First name is required';
+    if (!form.lastName.trim()) e.lastName = 'Last name is required';
     if (!form.email.trim()) e.email = 'Email is required';
     if (!form.phone.trim()) e.phone = 'Phone is required';
     setErrors(e);
@@ -67,7 +69,15 @@ export function useAdminStaff(initialStaff: StaffMember[]) {
 
   function openEdit(s: StaffMember) {
     setEditId(s.id);
-    setForm({ name: s.name, email: s.email, phone: s.phone, role: s.role, branch: s.branch });
+    const parts = s.name.split(' ');
+    setForm({ 
+      firstName: parts[0] || '', 
+      lastName: parts.slice(1).join(' ') || '', 
+      email: s.email, 
+      phone: s.phone, 
+      roleId: s.role === 'Admin' ? 'role-admin-id' : s.role === 'Manager' ? 'role-manager-id' : 'role-staff-id', 
+      branchId: 'main-branch-id' 
+    });
     setErrors({}); 
     setShowForm(true);
   }
@@ -75,10 +85,16 @@ export function useAdminStaff(initialStaff: StaffMember[]) {
   function handleSave() {
     if (!validate()) return;
     if (editId) {
-      setStaff(prev => prev.map(s => s.id === editId ? { ...s, ...form } : s));
+      setStaff(prev => prev.map(s => s.id === editId ? { ...s, name: `${form.firstName} ${form.lastName}`, email: form.email, phone: form.phone } : s));
     } else {
       setStaff(prev => [...prev, {
-        id: `S${Date.now()}`, ...form, status: 'Active',
+        id: `S${Date.now()}`, 
+        name: `${form.firstName} ${form.lastName}`,
+        email: form.email,
+        phone: form.phone,
+        role: 'Staff',
+        branch: 'Main Branch',
+        status: 'Active',
         joinedDate: new Date().toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: '2-digit' }),
       }]);
     }

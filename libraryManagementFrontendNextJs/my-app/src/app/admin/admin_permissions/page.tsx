@@ -1,7 +1,7 @@
 import { cookies } from 'next/headers';
-import { AdminPermissionsView } from './admin_permissions_components/AdminPermissionsView';
-import { fetchAdminPermissions } from '../admin_api/admin_api';
-import { Permission } from './admin_permissions_hooks/useAdminPermissions';
+import { AdminPermissionsView } from '@/app/admin/admin_permissions/admin_permissions_components/AdminPermissionsView';
+import { fetchAdminPermissions } from '@/app/admin/admin_api/admin_api';
+import { Permission } from '@/app/admin/admin_permissions/admin_permissions_hooks/useAdminPermissions';
 import React from 'react';
 
 // Hardcoded initial fallback if API fails

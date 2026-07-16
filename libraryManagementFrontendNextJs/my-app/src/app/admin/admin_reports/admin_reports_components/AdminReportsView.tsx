@@ -7,8 +7,8 @@ import {
   PieChart, Pie, Cell, Legend,
   AreaChart, Area,
 } from 'recharts';
-import KpiCard from '../../admin_reusable/KpiCard';
-import { useAdminReports } from '../admin_reports_hooks/useAdminReports';
+import KpiCard from '@/app/admin/admin_reusable/KpiCard';
+import { useAdminReports } from '@/app/admin/admin_reports/admin_reports_hooks/useAdminReports';
 
 const KPI_META = [
   { icon: IndianRupee, iconColor: 'var(--primary)', iconBg: 'var(--icon-bg-primary)' },

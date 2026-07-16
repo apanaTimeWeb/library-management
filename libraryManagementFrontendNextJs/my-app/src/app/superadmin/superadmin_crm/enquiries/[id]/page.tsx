@@ -27,13 +27,13 @@ import {
   STATUS_BADGE,
   maskPhone,
   getInitials,
-} from '@/app/superadmin/superadmin_crm/reusable/types';
+} from '@/app/superadmin/superadmin_crm/superadmin_crm_shared_components/types';
 import {
   followUpSchema,
   type FollowUpFormData,
   markLostSchema,
   type MarkLostFormData,
-} from '@/app/superadmin/superadmin_crm/reusable/schema';
+} from '@/app/superadmin/superadmin_crm/superadmin_crm_shared_components/schema';
 
 /* ── Status Select options ─────────────────────────────── */
 const STATUS_OPTIONS: EnquiryStatus[] = ['New', 'Visited', 'Interested', 'Converted', 'Lost'];

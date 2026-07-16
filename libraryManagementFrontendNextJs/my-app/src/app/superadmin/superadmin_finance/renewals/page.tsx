@@ -8,7 +8,7 @@ import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community';
 import toast from 'react-hot-toast';
 import { formatCurrency } from '@/app/superadmin/superadmin_finance/superadmin_finance_utils/format';
 import { RefreshCw, Send } from 'lucide-react';
-import { gridTheme } from '@/app/superadmin/superadmin_reusable/gridTheme';
+import { gridTheme } from '@/app/superadmin/superadmin_finance/superadmin_finance_shared_components/gridTheme';
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 

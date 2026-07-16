@@ -25,7 +25,7 @@ import {
   KANBAN_COLUMNS,
   STATUS_BADGE,
   maskPhone,
-} from '@/app/superadmin/superadmin_crm/reusable/types';
+} from '@/app/superadmin/superadmin_crm/superadmin_crm_shared_components/types';
 
 /* ── Helpers ─────────────────────────────────────────────── */
 function StatusBadge({ status }: { status: EnquiryStatus }) {

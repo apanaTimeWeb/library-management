@@ -5,7 +5,7 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { X, Save, PhoneCall } from 'lucide-react';
 import toast, { Toaster } from 'react-hot-toast';
-import { addEnquirySchema, type AddEnquiryFormData } from '@/app/superadmin/superadmin_crm/reusable/schema';
+import { addEnquirySchema, type AddEnquiryFormData } from '@/app/superadmin/superadmin_crm/superadmin_crm_shared_components/schema';
 import { CRM_CONSTANTS as data } from '@/app/superadmin/superadmin_crm/crm_constants';
 
 export default function AddEnquiryPage() {
