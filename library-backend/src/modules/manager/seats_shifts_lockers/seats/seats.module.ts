@@ -2,34 +2,34 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Seat } from '@/core/entities/seat.entity';
 
-import { CreateSeatController } from './controllers/create-seat.controller';
-import { UpdateSeatController } from './controllers/update-seat.controller';
-import { DeleteSeatController } from './controllers/delete-seat.controller';
-import { GetAllSeatsController } from './controllers/get-all-seats.controller';
-import { GetSeatController } from './controllers/get-seat.controller';
+import { SeatsCreateController } from '@/modules/manager/seats_shifts_lockers/seats/controllers/seats-create.controller';
+import { SeatsUpdateController } from '@/modules/manager/seats_shifts_lockers/seats/controllers/seats-update.controller';
+import { SeatsDeleteController } from '@/modules/manager/seats_shifts_lockers/seats/controllers/seats-delete.controller';
+import { SeatsGetAllController } from '@/modules/manager/seats_shifts_lockers/seats/controllers/seats-get-all.controller';
+import { SeatsGetController } from '@/modules/manager/seats_shifts_lockers/seats/controllers/seats-get.controller';
 
-import { CreateSeatService } from './services/create-seat.service';
-import { UpdateSeatService } from './services/update-seat.service';
-import { DeleteSeatService } from './services/delete-seat.service';
-import { GetAllSeatsService } from './services/get-all-seats.service';
-import { GetSeatService } from './services/get-seat.service';
+import { SeatsCreateService } from '@/modules/manager/seats_shifts_lockers/seats/services/seats-create.service';
+import { SeatsUpdateService } from '@/modules/manager/seats_shifts_lockers/seats/services/seats-update.service';
+import { SeatsDeleteService } from '@/modules/manager/seats_shifts_lockers/seats/services/seats-delete.service';
+import { SeatsGetAllService } from '@/modules/manager/seats_shifts_lockers/seats/services/seats-get-all.service';
+import { SeatsGetService } from '@/modules/manager/seats_shifts_lockers/seats/services/seats-get.service';
 
 @Module({
   imports: [TypeOrmModule.forFeature([Seat])],
   controllers: [
-    CreateSeatController,
-    UpdateSeatController,
-    DeleteSeatController,
-    GetAllSeatsController,
-    GetSeatController,
+    SeatsCreateController,
+    SeatsUpdateController,
+    SeatsDeleteController,
+    SeatsGetAllController,
+    SeatsGetController,
   ],
   providers: [
-    CreateSeatService,
-    UpdateSeatService,
-    DeleteSeatService,
-    GetAllSeatsService,
-    GetSeatService,
+    SeatsCreateService,
+    SeatsUpdateService,
+    SeatsDeleteService,
+    SeatsGetAllService,
+    SeatsGetService,
   ],
-  exports: [GetSeatService],
+  exports: [SeatsGetService],
 })
 export class ManagerSeatsModule {}

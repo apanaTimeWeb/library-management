@@ -2,34 +2,34 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Expense } from '@/core/entities/expense.entity';
 
-import { CreateExpenseController } from './controllers/create-expense.controller';
-import { UpdateExpenseController } from './controllers/update-expense.controller';
-import { DeleteExpenseController } from './controllers/delete-expense.controller';
-import { GetAllExpensesController } from './controllers/get-all-expenses.controller';
-import { GetExpenseController } from './controllers/get-expense.controller';
+import { ExpensesCreateController } from '@/modules/manager/finance/expenses/controllers/expenses-create.controller';
+import { ExpensesUpdateController } from '@/modules/manager/finance/expenses/controllers/expenses-update.controller';
+import { ExpensesDeleteController } from '@/modules/manager/finance/expenses/controllers/expenses-delete.controller';
+import { ExpensesGetAllController } from '@/modules/manager/finance/expenses/controllers/expenses-get-all.controller';
+import { ExpensesGetController } from '@/modules/manager/finance/expenses/controllers/expenses-get.controller';
 
-import { CreateExpenseService } from './services/create-expense.service';
-import { UpdateExpenseService } from './services/update-expense.service';
-import { DeleteExpenseService } from './services/delete-expense.service';
-import { GetAllExpensesService } from './services/get-all-expenses.service';
-import { GetExpenseService } from './services/get-expense.service';
+import { ExpensesCreateService } from '@/modules/manager/finance/expenses/services/expenses-create.service';
+import { ExpensesUpdateService } from '@/modules/manager/finance/expenses/services/expenses-update.service';
+import { ExpensesDeleteService } from '@/modules/manager/finance/expenses/services/expenses-delete.service';
+import { ExpensesGetAllService } from '@/modules/manager/finance/expenses/services/expenses-get-all.service';
+import { ExpensesGetService } from '@/modules/manager/finance/expenses/services/expenses-get.service';
 
 @Module({
   imports: [TypeOrmModule.forFeature([Expense])],
   controllers: [
-    CreateExpenseController,
-    UpdateExpenseController,
-    DeleteExpenseController,
-    GetAllExpensesController,
-    GetExpenseController,
+    ExpensesCreateController,
+    ExpensesUpdateController,
+    ExpensesDeleteController,
+    ExpensesGetAllController,
+    ExpensesGetController,
   ],
   providers: [
-    CreateExpenseService,
-    UpdateExpenseService,
-    DeleteExpenseService,
-    GetAllExpensesService,
-    GetExpenseService,
+    ExpensesCreateService,
+    ExpensesUpdateService,
+    ExpensesDeleteService,
+    ExpensesGetAllService,
+    ExpensesGetService,
   ],
-  exports: [GetExpenseService],
+  exports: [ExpensesGetService],
 })
 export class ManagerExpensesModule {}

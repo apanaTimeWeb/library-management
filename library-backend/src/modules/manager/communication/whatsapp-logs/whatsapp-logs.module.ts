@@ -2,34 +2,34 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { WhatsAppMessage } from '@/core/entities/whatsapp-message.entity';
 
-import { CreateWhatsAppMessageController } from './controllers/create-whatsapp-log.controller';
-import { UpdateWhatsAppMessageController } from './controllers/update-whatsapp-log.controller';
-import { DeleteWhatsAppMessageController } from './controllers/delete-whatsapp-log.controller';
-import { GetAllWhatsAppMessagesController } from './controllers/get-all-whatsapp-logs.controller';
-import { GetWhatsAppMessageController } from './controllers/get-whatsapp-log.controller';
+import { WhatsappLogsCreateController } from '@/modules/manager/communication/whatsapp-logs/controllers/whatsapp-logs-create.controller';
+import { WhatsappLogsUpdateController } from '@/modules/manager/communication/whatsapp-logs/controllers/whatsapp-logs-update.controller';
+import { WhatsappLogsDeleteController } from '@/modules/manager/communication/whatsapp-logs/controllers/whatsapp-logs-delete.controller';
+import { WhatsappLogsGetAllController } from '@/modules/manager/communication/whatsapp-logs/controllers/whatsapp-logs-get-all.controller';
+import { WhatsappLogsGetController } from '@/modules/manager/communication/whatsapp-logs/controllers/whatsapp-logs-get.controller';
 
-import { CreateWhatsAppMessageService } from './services/create-whatsapp-log.service';
-import { UpdateWhatsAppMessageService } from './services/update-whatsapp-log.service';
-import { DeleteWhatsAppMessageService } from './services/delete-whatsapp-log.service';
-import { GetAllWhatsAppMessagesService } from './services/get-all-whatsapp-logs.service';
-import { GetWhatsAppMessageService } from './services/get-whatsapp-log.service';
+import { WhatsappLogsCreateService } from '@/modules/manager/communication/whatsapp-logs/services/whatsapp-logs-create.service';
+import { WhatsappLogsUpdateService } from '@/modules/manager/communication/whatsapp-logs/services/whatsapp-logs-update.service';
+import { WhatsappLogsDeleteService } from '@/modules/manager/communication/whatsapp-logs/services/whatsapp-logs-delete.service';
+import { WhatsappLogsGetAllService } from '@/modules/manager/communication/whatsapp-logs/services/whatsapp-logs-get-all.service';
+import { WhatsappLogsGetService } from '@/modules/manager/communication/whatsapp-logs/services/whatsapp-logs-get.service';
 
 @Module({
   imports: [TypeOrmModule.forFeature([WhatsAppMessage])],
   controllers: [
-    CreateWhatsAppMessageController,
-    UpdateWhatsAppMessageController,
-    DeleteWhatsAppMessageController,
-    GetAllWhatsAppMessagesController,
-    GetWhatsAppMessageController,
+    WhatsappLogsCreateController,
+    WhatsappLogsUpdateController,
+    WhatsappLogsDeleteController,
+    WhatsappLogsGetAllController,
+    WhatsappLogsGetController,
   ],
   providers: [
-    CreateWhatsAppMessageService,
-    UpdateWhatsAppMessageService,
-    DeleteWhatsAppMessageService,
-    GetAllWhatsAppMessagesService,
-    GetWhatsAppMessageService,
+    WhatsappLogsCreateService,
+    WhatsappLogsUpdateService,
+    WhatsappLogsDeleteService,
+    WhatsappLogsGetAllService,
+    WhatsappLogsGetService,
   ],
-  exports: [GetWhatsAppMessageService],
+  exports: [WhatsappLogsGetService],
 })
 export class ManagerWhatsAppMessagesModule {}

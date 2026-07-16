@@ -2,34 +2,34 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { StudentSlot } from '@/core/entities/student-slot.entity';
 
-import { CreateStudentSlotController } from './controllers/create-student-slot.controller';
-import { UpdateStudentSlotController } from './controllers/update-student-slot.controller';
-import { DeleteStudentSlotController } from './controllers/delete-student-slot.controller';
-import { GetAllStudentSlotsController } from './controllers/get-all-student-slots.controller';
-import { GetStudentSlotController } from './controllers/get-student-slot.controller';
+import { StudentSlotsCreateController } from '@/modules/manager/seats_shifts_lockers/student-slots/controllers/student-slots-create.controller';
+import { StudentSlotsUpdateController } from '@/modules/manager/seats_shifts_lockers/student-slots/controllers/student-slots-update.controller';
+import { StudentSlotsDeleteController } from '@/modules/manager/seats_shifts_lockers/student-slots/controllers/student-slots-delete.controller';
+import { StudentSlotsGetAllController } from '@/modules/manager/seats_shifts_lockers/student-slots/controllers/student-slots-get-all.controller';
+import { StudentSlotsGetController } from '@/modules/manager/seats_shifts_lockers/student-slots/controllers/student-slots-get.controller';
 
-import { CreateStudentSlotService } from './services/create-student-slot.service';
-import { UpdateStudentSlotService } from './services/update-student-slot.service';
-import { DeleteStudentSlotService } from './services/delete-student-slot.service';
-import { GetAllStudentSlotsService } from './services/get-all-student-slots.service';
-import { GetStudentSlotService } from './services/get-student-slot.service';
+import { StudentSlotsCreateService } from '@/modules/manager/seats_shifts_lockers/student-slots/services/student-slots-create.service';
+import { StudentSlotsUpdateService } from '@/modules/manager/seats_shifts_lockers/student-slots/services/student-slots-update.service';
+import { StudentSlotsDeleteService } from '@/modules/manager/seats_shifts_lockers/student-slots/services/student-slots-delete.service';
+import { StudentSlotsGetAllService } from '@/modules/manager/seats_shifts_lockers/student-slots/services/student-slots-get-all.service';
+import { StudentSlotsGetService } from '@/modules/manager/seats_shifts_lockers/student-slots/services/student-slots-get.service';
 
 @Module({
   imports: [TypeOrmModule.forFeature([StudentSlot])],
   controllers: [
-    CreateStudentSlotController,
-    UpdateStudentSlotController,
-    DeleteStudentSlotController,
-    GetAllStudentSlotsController,
-    GetStudentSlotController,
+    StudentSlotsCreateController,
+    StudentSlotsUpdateController,
+    StudentSlotsDeleteController,
+    StudentSlotsGetAllController,
+    StudentSlotsGetController,
   ],
   providers: [
-    CreateStudentSlotService,
-    UpdateStudentSlotService,
-    DeleteStudentSlotService,
-    GetAllStudentSlotsService,
-    GetStudentSlotService,
+    StudentSlotsCreateService,
+    StudentSlotsUpdateService,
+    StudentSlotsDeleteService,
+    StudentSlotsGetAllService,
+    StudentSlotsGetService,
   ],
-  exports: [GetStudentSlotService],
+  exports: [StudentSlotsGetService],
 })
 export class ManagerStudentSlotsModule {}

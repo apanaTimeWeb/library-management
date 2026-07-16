@@ -1,6 +1,6 @@
 import { IsOptional, IsInt, Min, IsString } from 'class-validator';
 import { Type } from 'class-transformer';
-import { HOLIDAYS_CONSTANTS } from '../constants/holidays.constants';
+import { HOLIDAYS_CONSTANTS } from '@/modules/manager/settings/holidays/constants/holidays.constants';
 
 export class GetHolidaiesQueryDto {
   @IsOptional()

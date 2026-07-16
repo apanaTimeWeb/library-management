@@ -2,34 +2,34 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Document } from '@/core/entities/document.entity';
 
-import { CreateDocumentController } from './controllers/create-document.controller';
-import { UpdateDocumentController } from './controllers/update-document.controller';
-import { DeleteDocumentController } from './controllers/delete-document.controller';
-import { GetAllDocumentsController } from './controllers/get-all-documents.controller';
-import { GetDocumentController } from './controllers/get-document.controller';
+import { DocumentsCreateController } from '@/modules/manager/documents/documents/controllers/documents-create.controller';
+import { DocumentsUpdateController } from '@/modules/manager/documents/documents/controllers/documents-update.controller';
+import { DocumentsDeleteController } from '@/modules/manager/documents/documents/controllers/documents-delete.controller';
+import { DocumentsGetAllController } from '@/modules/manager/documents/documents/controllers/documents-get-all.controller';
+import { DocumentsGetController } from '@/modules/manager/documents/documents/controllers/documents-get.controller';
 
-import { CreateDocumentService } from './services/create-document.service';
-import { UpdateDocumentService } from './services/update-document.service';
-import { DeleteDocumentService } from './services/delete-document.service';
-import { GetAllDocumentsService } from './services/get-all-documents.service';
-import { GetDocumentService } from './services/get-document.service';
+import { DocumentsCreateService } from '@/modules/manager/documents/documents/services/documents-create.service';
+import { DocumentsUpdateService } from '@/modules/manager/documents/documents/services/documents-update.service';
+import { DocumentsDeleteService } from '@/modules/manager/documents/documents/services/documents-delete.service';
+import { DocumentsGetAllService } from '@/modules/manager/documents/documents/services/documents-get-all.service';
+import { DocumentsGetService } from '@/modules/manager/documents/documents/services/documents-get.service';
 
 @Module({
   imports: [TypeOrmModule.forFeature([Document])],
   controllers: [
-    CreateDocumentController,
-    UpdateDocumentController,
-    DeleteDocumentController,
-    GetAllDocumentsController,
-    GetDocumentController,
+    DocumentsCreateController,
+    DocumentsUpdateController,
+    DocumentsDeleteController,
+    DocumentsGetAllController,
+    DocumentsGetController,
   ],
   providers: [
-    CreateDocumentService,
-    UpdateDocumentService,
-    DeleteDocumentService,
-    GetAllDocumentsService,
-    GetDocumentService,
+    DocumentsCreateService,
+    DocumentsUpdateService,
+    DocumentsDeleteService,
+    DocumentsGetAllService,
+    DocumentsGetService,
   ],
-  exports: [GetDocumentService],
+  exports: [DocumentsGetService],
 })
 export class ManagerDocumentsModule {}

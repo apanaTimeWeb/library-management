@@ -1,6 +1,6 @@
 import { IsOptional, IsInt, Min, IsString } from 'class-validator';
 import { Type } from 'class-transformer';
-import { SEATS_CONSTANTS } from '../constants/seats.constants';
+import { SEATS_CONSTANTS } from '@/modules/manager/seats_shifts_lockers/seats/constants/seats.constants';
 
 export class GetSeatsQueryDto {
   @IsOptional()

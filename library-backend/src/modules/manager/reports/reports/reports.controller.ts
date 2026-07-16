@@ -1,7 +1,7 @@
 import { Controller } from '@nestjs/common';
-import { ManagerReportsService } from './reports.service';
+import { ReportsService } from './reports.service';
 
 @Controller('api/manager/reports')
-export class ManagerReportsController {
-  constructor(private readonly service: ManagerReportsService) {}
+export class ReportsController {
+  constructor(private readonly service: ReportsService) {}
 }

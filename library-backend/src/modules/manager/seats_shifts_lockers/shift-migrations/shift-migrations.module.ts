@@ -2,34 +2,34 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ShiftMigration } from '@/core/entities/shift-migration.entity';
 
-import { CreateShiftMigrationController } from './controllers/create-shift-migration.controller';
-import { UpdateShiftMigrationController } from './controllers/update-shift-migration.controller';
-import { DeleteShiftMigrationController } from './controllers/delete-shift-migration.controller';
-import { GetAllShiftMigrationsController } from './controllers/get-all-shift-migrations.controller';
-import { GetShiftMigrationController } from './controllers/get-shift-migration.controller';
+import { ShiftMigrationsCreateController } from '@/modules/manager/seats_shifts_lockers/shift-migrations/controllers/shift-migrations-create.controller';
+import { ShiftMigrationsUpdateController } from '@/modules/manager/seats_shifts_lockers/shift-migrations/controllers/shift-migrations-update.controller';
+import { ShiftMigrationsDeleteController } from '@/modules/manager/seats_shifts_lockers/shift-migrations/controllers/shift-migrations-delete.controller';
+import { ShiftMigrationsGetAllController } from '@/modules/manager/seats_shifts_lockers/shift-migrations/controllers/shift-migrations-get-all.controller';
+import { ShiftMigrationsGetController } from '@/modules/manager/seats_shifts_lockers/shift-migrations/controllers/shift-migrations-get.controller';
 
-import { CreateShiftMigrationService } from './services/create-shift-migration.service';
-import { UpdateShiftMigrationService } from './services/update-shift-migration.service';
-import { DeleteShiftMigrationService } from './services/delete-shift-migration.service';
-import { GetAllShiftMigrationsService } from './services/get-all-shift-migrations.service';
-import { GetShiftMigrationService } from './services/get-shift-migration.service';
+import { ShiftMigrationsCreateService } from '@/modules/manager/seats_shifts_lockers/shift-migrations/services/shift-migrations-create.service';
+import { ShiftMigrationsUpdateService } from '@/modules/manager/seats_shifts_lockers/shift-migrations/services/shift-migrations-update.service';
+import { ShiftMigrationsDeleteService } from '@/modules/manager/seats_shifts_lockers/shift-migrations/services/shift-migrations-delete.service';
+import { ShiftMigrationsGetAllService } from '@/modules/manager/seats_shifts_lockers/shift-migrations/services/shift-migrations-get-all.service';
+import { ShiftMigrationsGetService } from '@/modules/manager/seats_shifts_lockers/shift-migrations/services/shift-migrations-get.service';
 
 @Module({
   imports: [TypeOrmModule.forFeature([ShiftMigration])],
   controllers: [
-    CreateShiftMigrationController,
-    UpdateShiftMigrationController,
-    DeleteShiftMigrationController,
-    GetAllShiftMigrationsController,
-    GetShiftMigrationController,
+    ShiftMigrationsCreateController,
+    ShiftMigrationsUpdateController,
+    ShiftMigrationsDeleteController,
+    ShiftMigrationsGetAllController,
+    ShiftMigrationsGetController,
   ],
   providers: [
-    CreateShiftMigrationService,
-    UpdateShiftMigrationService,
-    DeleteShiftMigrationService,
-    GetAllShiftMigrationsService,
-    GetShiftMigrationService,
+    ShiftMigrationsCreateService,
+    ShiftMigrationsUpdateService,
+    ShiftMigrationsDeleteService,
+    ShiftMigrationsGetAllService,
+    ShiftMigrationsGetService,
   ],
-  exports: [GetShiftMigrationService],
+  exports: [ShiftMigrationsGetService],
 })
 export class ManagerShiftMigrationsModule {}

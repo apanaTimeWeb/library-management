@@ -1,6 +1,6 @@
 import { IsOptional, IsInt, Min, IsString } from 'class-validator';
 import { Type } from 'class-transformer';
-import { ASSETS_CONSTANTS } from '../constants/assets.constants';
+import { ASSETS_CONSTANTS } from '@/modules/manager/accounting/assets/constants/assets.constants';
 
 export class GetAssetsQueryDto {
   @IsOptional()

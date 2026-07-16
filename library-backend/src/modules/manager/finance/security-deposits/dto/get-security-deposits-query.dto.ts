@@ -1,6 +1,6 @@
 import { IsOptional, IsInt, Min, IsString } from 'class-validator';
 import { Type } from 'class-transformer';
-import { SECURITY_DEPOSITS_CONSTANTS } from '../constants/security-deposits.constants';
+import { SECURITY_DEPOSITS_CONSTANTS } from '@/modules/manager/finance/security-deposits/constants/security-deposits.constants';
 
 export class GetSecurityDepositsQueryDto {
   @IsOptional()

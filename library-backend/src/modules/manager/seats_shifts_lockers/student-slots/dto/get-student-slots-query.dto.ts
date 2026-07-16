@@ -1,6 +1,6 @@
 import { IsOptional, IsInt, Min, IsString } from 'class-validator';
 import { Type } from 'class-transformer';
-import { STUDENT_SLOTS_CONSTANTS } from '../constants/student-slots.constants';
+import { STUDENT_SLOTS_CONSTANTS } from '@/modules/manager/seats_shifts_lockers/student-slots/constants/student-slots.constants';
 
 export class GetStudentSlotsQueryDto {
   @IsOptional()

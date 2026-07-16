@@ -2,34 +2,34 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Waitlist } from '@/core/entities/waitlist.entity';
 
-import { CreateWaitlistController } from './controllers/create-waitlist.controller';
-import { UpdateWaitlistController } from './controllers/update-waitlist.controller';
-import { DeleteWaitlistController } from './controllers/delete-waitlist.controller';
-import { GetAllWaitlistsController } from './controllers/get-all-waitlists.controller';
-import { GetWaitlistController } from './controllers/get-waitlist.controller';
+import { WaitlistsCreateController } from '@/modules/manager/crm/waitlists/controllers/waitlists-create.controller';
+import { WaitlistsUpdateController } from '@/modules/manager/crm/waitlists/controllers/waitlists-update.controller';
+import { WaitlistsDeleteController } from '@/modules/manager/crm/waitlists/controllers/waitlists-delete.controller';
+import { WaitlistsGetAllController } from '@/modules/manager/crm/waitlists/controllers/waitlists-get-all.controller';
+import { WaitlistsGetController } from '@/modules/manager/crm/waitlists/controllers/waitlists-get.controller';
 
-import { CreateWaitlistService } from './services/create-waitlist.service';
-import { UpdateWaitlistService } from './services/update-waitlist.service';
-import { DeleteWaitlistService } from './services/delete-waitlist.service';
-import { GetAllWaitlistsService } from './services/get-all-waitlists.service';
-import { GetWaitlistService } from './services/get-waitlist.service';
+import { WaitlistsCreateService } from '@/modules/manager/crm/waitlists/services/waitlists-create.service';
+import { WaitlistsUpdateService } from '@/modules/manager/crm/waitlists/services/waitlists-update.service';
+import { WaitlistsDeleteService } from '@/modules/manager/crm/waitlists/services/waitlists-delete.service';
+import { WaitlistsGetAllService } from '@/modules/manager/crm/waitlists/services/waitlists-get-all.service';
+import { WaitlistsGetService } from '@/modules/manager/crm/waitlists/services/waitlists-get.service';
 
 @Module({
   imports: [TypeOrmModule.forFeature([Waitlist])],
   controllers: [
-    CreateWaitlistController,
-    UpdateWaitlistController,
-    DeleteWaitlistController,
-    GetAllWaitlistsController,
-    GetWaitlistController,
+    WaitlistsCreateController,
+    WaitlistsUpdateController,
+    WaitlistsDeleteController,
+    WaitlistsGetAllController,
+    WaitlistsGetController,
   ],
   providers: [
-    CreateWaitlistService,
-    UpdateWaitlistService,
-    DeleteWaitlistService,
-    GetAllWaitlistsService,
-    GetWaitlistService,
+    WaitlistsCreateService,
+    WaitlistsUpdateService,
+    WaitlistsDeleteService,
+    WaitlistsGetAllService,
+    WaitlistsGetService,
   ],
-  exports: [GetWaitlistService],
+  exports: [WaitlistsGetService],
 })
 export class ManagerWaitlistsModule {}

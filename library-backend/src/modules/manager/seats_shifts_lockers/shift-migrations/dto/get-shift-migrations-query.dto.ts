@@ -1,6 +1,6 @@
 import { IsOptional, IsInt, Min, IsString } from 'class-validator';
 import { Type } from 'class-transformer';
-import { SHIFT_MIGRATIONS_CONSTANTS } from '../constants/shift-migrations.constants';
+import { SHIFT_MIGRATIONS_CONSTANTS } from '@/modules/manager/seats_shifts_lockers/shift-migrations/constants/shift-migrations.constants';
 
 export class GetShiftMigrationsQueryDto {
   @IsOptional()

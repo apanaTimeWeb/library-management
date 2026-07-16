@@ -1,6 +1,6 @@
 import { IsOptional, IsInt, Min, IsString } from 'class-validator';
 import { Type } from 'class-transformer';
-import { COMPLAINTS_CONSTANTS } from '../constants/complaints.constants';
+import { COMPLAINTS_CONSTANTS } from '@/modules/manager/support-tickets/complaints/constants/complaints.constants';
 
 export class GetComplaintsQueryDto {
   @IsOptional()

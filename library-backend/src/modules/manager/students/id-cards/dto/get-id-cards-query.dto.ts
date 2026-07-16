@@ -1,6 +1,6 @@
 import { IsOptional, IsInt, Min, IsString } from 'class-validator';
 import { Type } from 'class-transformer';
-import { ID_CARDS_CONSTANTS } from '../constants/id-cards.constants';
+import { ID_CARDS_CONSTANTS } from '@/modules/manager/students/id-cards/constants/id-cards.constants';
 
 export class GetIDCardsQueryDto {
   @IsOptional()

@@ -1,6 +1,6 @@
 import { IsOptional, IsInt, Min, IsString } from 'class-validator';
 import { Type } from 'class-transformer';
-import { DOCUMENTS_CONSTANTS } from '../constants/documents.constants';
+import { DOCUMENTS_CONSTANTS } from '@/modules/manager/documents/documents/constants/documents.constants';
 
 export class GetDocumentsQueryDto {
   @IsOptional()

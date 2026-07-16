@@ -1,6 +1,6 @@
 import { IsOptional, IsInt, Min, IsString } from 'class-validator';
 import { Type } from 'class-transformer';
-import { EXPENSES_CONSTANTS } from '../constants/expenses.constants';
+import { EXPENSES_CONSTANTS } from '@/modules/manager/finance/expenses/constants/expenses.constants';
 
 export class GetExpensesQueryDto {
   @IsOptional()

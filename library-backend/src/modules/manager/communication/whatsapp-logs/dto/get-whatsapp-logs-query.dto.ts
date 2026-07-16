@@ -1,6 +1,6 @@
 import { IsOptional, IsInt, Min, IsString } from 'class-validator';
 import { Type } from 'class-transformer';
-import { WHATSAPP_LOGS_CONSTANTS } from '../constants/whatsapp-logs.constants';
+import { WHATSAPP_LOGS_CONSTANTS } from '@/modules/manager/communication/whatsapp-logs/constants/whatsapp-logs.constants';
 
 export class GetWhatsAppMessagesQueryDto {
   @IsOptional()

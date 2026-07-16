@@ -2,34 +2,34 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Locker } from '@/core/entities/locker.entity';
 
-import { CreateLockerController } from './controllers/create-locker.controller';
-import { UpdateLockerController } from './controllers/update-locker.controller';
-import { DeleteLockerController } from './controllers/delete-locker.controller';
-import { GetAllLockersController } from './controllers/get-all-lockers.controller';
-import { GetLockerController } from './controllers/get-locker.controller';
+import { LockersCreateController } from '@/modules/manager/seats_shifts_lockers/lockers/controllers/lockers-create.controller';
+import { LockersUpdateController } from '@/modules/manager/seats_shifts_lockers/lockers/controllers/lockers-update.controller';
+import { LockersDeleteController } from '@/modules/manager/seats_shifts_lockers/lockers/controllers/lockers-delete.controller';
+import { LockersGetAllController } from '@/modules/manager/seats_shifts_lockers/lockers/controllers/lockers-get-all.controller';
+import { LockersGetController } from '@/modules/manager/seats_shifts_lockers/lockers/controllers/lockers-get.controller';
 
-import { CreateLockerService } from './services/create-locker.service';
-import { UpdateLockerService } from './services/update-locker.service';
-import { DeleteLockerService } from './services/delete-locker.service';
-import { GetAllLockersService } from './services/get-all-lockers.service';
-import { GetLockerService } from './services/get-locker.service';
+import { LockersCreateService } from '@/modules/manager/seats_shifts_lockers/lockers/services/lockers-create.service';
+import { LockersUpdateService } from '@/modules/manager/seats_shifts_lockers/lockers/services/lockers-update.service';
+import { LockersDeleteService } from '@/modules/manager/seats_shifts_lockers/lockers/services/lockers-delete.service';
+import { LockersGetAllService } from '@/modules/manager/seats_shifts_lockers/lockers/services/lockers-get-all.service';
+import { LockersGetService } from '@/modules/manager/seats_shifts_lockers/lockers/services/lockers-get.service';
 
 @Module({
   imports: [TypeOrmModule.forFeature([Locker])],
   controllers: [
-    CreateLockerController,
-    UpdateLockerController,
-    DeleteLockerController,
-    GetAllLockersController,
-    GetLockerController,
+    LockersCreateController,
+    LockersUpdateController,
+    LockersDeleteController,
+    LockersGetAllController,
+    LockersGetController,
   ],
   providers: [
-    CreateLockerService,
-    UpdateLockerService,
-    DeleteLockerService,
-    GetAllLockersService,
-    GetLockerService,
+    LockersCreateService,
+    LockersUpdateService,
+    LockersDeleteService,
+    LockersGetAllService,
+    LockersGetService,
   ],
-  exports: [GetLockerService],
+  exports: [LockersGetService],
 })
 export class ManagerLockersModule {}

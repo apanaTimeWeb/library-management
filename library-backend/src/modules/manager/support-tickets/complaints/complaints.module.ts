@@ -2,34 +2,34 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Complaint } from '@/core/entities/complaint.entity';
 
-import { CreateComplaintController } from './controllers/create-complaint.controller';
-import { UpdateComplaintController } from './controllers/update-complaint.controller';
-import { DeleteComplaintController } from './controllers/delete-complaint.controller';
-import { GetAllComplaintsController } from './controllers/get-all-complaints.controller';
-import { GetComplaintController } from './controllers/get-complaint.controller';
+import { ComplaintsCreateController } from '@/modules/manager/support-tickets/complaints/controllers/complaints-create.controller';
+import { ComplaintsUpdateController } from '@/modules/manager/support-tickets/complaints/controllers/complaints-update.controller';
+import { ComplaintsDeleteController } from '@/modules/manager/support-tickets/complaints/controllers/complaints-delete.controller';
+import { ComplaintsGetAllController } from '@/modules/manager/support-tickets/complaints/controllers/complaints-get-all.controller';
+import { ComplaintsGetController } from '@/modules/manager/support-tickets/complaints/controllers/complaints-get.controller';
 
-import { CreateComplaintService } from './services/create-complaint.service';
-import { UpdateComplaintService } from './services/update-complaint.service';
-import { DeleteComplaintService } from './services/delete-complaint.service';
-import { GetAllComplaintsService } from './services/get-all-complaints.service';
-import { GetComplaintService } from './services/get-complaint.service';
+import { ComplaintsCreateService } from '@/modules/manager/support-tickets/complaints/services/complaints-create.service';
+import { ComplaintsUpdateService } from '@/modules/manager/support-tickets/complaints/services/complaints-update.service';
+import { ComplaintsDeleteService } from '@/modules/manager/support-tickets/complaints/services/complaints-delete.service';
+import { ComplaintsGetAllService } from '@/modules/manager/support-tickets/complaints/services/complaints-get-all.service';
+import { ComplaintsGetService } from '@/modules/manager/support-tickets/complaints/services/complaints-get.service';
 
 @Module({
   imports: [TypeOrmModule.forFeature([Complaint])],
   controllers: [
-    CreateComplaintController,
-    UpdateComplaintController,
-    DeleteComplaintController,
-    GetAllComplaintsController,
-    GetComplaintController,
+    ComplaintsCreateController,
+    ComplaintsUpdateController,
+    ComplaintsDeleteController,
+    ComplaintsGetAllController,
+    ComplaintsGetController,
   ],
   providers: [
-    CreateComplaintService,
-    UpdateComplaintService,
-    DeleteComplaintService,
-    GetAllComplaintsService,
-    GetComplaintService,
+    ComplaintsCreateService,
+    ComplaintsUpdateService,
+    ComplaintsDeleteService,
+    ComplaintsGetAllService,
+    ComplaintsGetService,
   ],
-  exports: [GetComplaintService],
+  exports: [ComplaintsGetService],
 })
 export class ManagerComplaintsModule {}

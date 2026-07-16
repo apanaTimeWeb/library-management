@@ -1,6 +1,6 @@
 import { IsOptional, IsInt, Min, IsString } from 'class-validator';
 import { Type } from 'class-transformer';
-import { WAITLISTS_CONSTANTS } from '../constants/waitlists.constants';
+import { WAITLISTS_CONSTANTS } from '@/modules/manager/crm/waitlists/constants/waitlists.constants';
 
 export class GetWaitlistsQueryDto {
   @IsOptional()

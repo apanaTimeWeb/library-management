@@ -2,34 +2,34 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { SeatHistory } from '@/core/entities/seat-history.entity';
 
-import { CreateSeatHistoryController } from './controllers/create-seat-history.controller';
-import { UpdateSeatHistoryController } from './controllers/update-seat-history.controller';
-import { DeleteSeatHistoryController } from './controllers/delete-seat-history.controller';
-import { GetAllSeatHistoriesController } from './controllers/get-all-seat-history.controller';
-import { GetSeatHistoryController } from './controllers/get-seat-history.controller';
+import { SeatHistoryCreateController } from '@/modules/manager/seats_shifts_lockers/seat-history/controllers/seat-history-create.controller';
+import { SeatHistoryUpdateController } from '@/modules/manager/seats_shifts_lockers/seat-history/controllers/seat-history-update.controller';
+import { SeatHistoryDeleteController } from '@/modules/manager/seats_shifts_lockers/seat-history/controllers/seat-history-delete.controller';
+import { SeatHistoryGetAllController } from '@/modules/manager/seats_shifts_lockers/seat-history/controllers/seat-history-get-all.controller';
+import { SeatHistoryGetController } from '@/modules/manager/seats_shifts_lockers/seat-history/controllers/seat-history-get.controller';
 
-import { CreateSeatHistoryService } from './services/create-seat-history.service';
-import { UpdateSeatHistoryService } from './services/update-seat-history.service';
-import { DeleteSeatHistoryService } from './services/delete-seat-history.service';
-import { GetAllSeatHistoriesService } from './services/get-all-seat-history.service';
-import { GetSeatHistoryService } from './services/get-seat-history.service';
+import { SeatHistoryCreateService } from '@/modules/manager/seats_shifts_lockers/seat-history/services/seat-history-create.service';
+import { SeatHistoryUpdateService } from '@/modules/manager/seats_shifts_lockers/seat-history/services/seat-history-update.service';
+import { SeatHistoryDeleteService } from '@/modules/manager/seats_shifts_lockers/seat-history/services/seat-history-delete.service';
+import { SeatHistoryGetAllService } from '@/modules/manager/seats_shifts_lockers/seat-history/services/seat-history-get-all.service';
+import { SeatHistoryGetService } from '@/modules/manager/seats_shifts_lockers/seat-history/services/seat-history-get.service';
 
 @Module({
   imports: [TypeOrmModule.forFeature([SeatHistory])],
   controllers: [
-    CreateSeatHistoryController,
-    UpdateSeatHistoryController,
-    DeleteSeatHistoryController,
-    GetAllSeatHistoriesController,
-    GetSeatHistoryController,
+    SeatHistoryCreateController,
+    SeatHistoryUpdateController,
+    SeatHistoryDeleteController,
+    SeatHistoryGetAllController,
+    SeatHistoryGetController,
   ],
   providers: [
-    CreateSeatHistoryService,
-    UpdateSeatHistoryService,
-    DeleteSeatHistoryService,
-    GetAllSeatHistoriesService,
-    GetSeatHistoryService,
+    SeatHistoryCreateService,
+    SeatHistoryUpdateService,
+    SeatHistoryDeleteService,
+    SeatHistoryGetAllService,
+    SeatHistoryGetService,
   ],
-  exports: [GetSeatHistoryService],
+  exports: [SeatHistoryGetService],
 })
 export class ManagerSeatHistoryModule {}

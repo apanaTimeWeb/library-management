@@ -2,34 +2,34 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { IDCard } from '@/core/entities/id-card.entity';
 
-import { CreateIDCardController } from './controllers/create-idcard.controller';
-import { UpdateIDCardController } from './controllers/update-idcard.controller';
-import { DeleteIDCardController } from './controllers/delete-idcard.controller';
-import { GetAllIDCardsController } from './controllers/get-all-id-cards.controller';
-import { GetIDCardController } from './controllers/get-idcard.controller';
+import { IdCardsCreateIdcardController } from '@/modules/manager/students/id-cards/controllers/id-cards-create-idcard.controller';
+import { IdCardsUpdateIdcardController } from '@/modules/manager/students/id-cards/controllers/id-cards-update-idcard.controller';
+import { IdCardsDeleteIdcardController } from '@/modules/manager/students/id-cards/controllers/id-cards-delete-idcard.controller';
+import { IdCardsGetAllController } from '@/modules/manager/students/id-cards/controllers/id-cards-get-all.controller';
+import { IdCardsGetIdcardController } from '@/modules/manager/students/id-cards/controllers/id-cards-get-idcard.controller';
 
-import { CreateIDCardService } from './services/create-idcard.service';
-import { UpdateIDCardService } from './services/update-idcard.service';
-import { DeleteIDCardService } from './services/delete-idcard.service';
-import { GetAllIDCardsService } from './services/get-all-id-cards.service';
-import { GetIDCardService } from './services/get-idcard.service';
+import { IdCardsCreateIdcardService } from '@/modules/manager/students/id-cards/services/id-cards-create-idcard.service';
+import { IdCardsUpdateIdcardService } from '@/modules/manager/students/id-cards/services/id-cards-update-idcard.service';
+import { IdCardsDeleteIdcardService } from '@/modules/manager/students/id-cards/services/id-cards-delete-idcard.service';
+import { IdCardsGetAllService } from '@/modules/manager/students/id-cards/services/id-cards-get-all.service';
+import { IdCardsGetIdcardService } from '@/modules/manager/students/id-cards/services/id-cards-get-idcard.service';
 
 @Module({
   imports: [TypeOrmModule.forFeature([IDCard])],
   controllers: [
-    CreateIDCardController,
-    UpdateIDCardController,
-    DeleteIDCardController,
-    GetAllIDCardsController,
-    GetIDCardController,
+    IdCardsCreateIdcardController,
+    IdCardsUpdateIdcardController,
+    IdCardsDeleteIdcardController,
+    IdCardsGetAllController,
+    IdCardsGetIdcardController,
   ],
   providers: [
-    CreateIDCardService,
-    UpdateIDCardService,
-    DeleteIDCardService,
-    GetAllIDCardsService,
-    GetIDCardService,
+    IdCardsCreateIdcardService,
+    IdCardsUpdateIdcardService,
+    IdCardsDeleteIdcardService,
+    IdCardsGetAllService,
+    IdCardsGetIdcardService,
   ],
-  exports: [GetIDCardService],
+  exports: [IdCardsGetIdcardService],
 })
 export class ManagerIdCardsModule {}

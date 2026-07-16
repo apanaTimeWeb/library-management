@@ -1,6 +1,6 @@
 import { IsOptional, IsInt, Min, IsString } from 'class-validator';
 import { Type } from 'class-transformer';
-import { NOTICES_CONSTANTS } from '../constants/notices.constants';
+import { NOTICES_CONSTANTS } from '@/modules/manager/engagement/notices/constants/notices.constants';
 
 export class GetNoticesQueryDto {
   @IsOptional()

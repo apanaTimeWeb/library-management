@@ -1,6 +1,6 @@
 import { IsOptional, IsInt, Min, IsString } from 'class-validator';
 import { Type } from 'class-transformer';
-import { ATTENDANCE_CONSTANTS } from '../constants/attendance.constants';
+import { ATTENDANCE_CONSTANTS } from '@/modules/manager/students/attendance/constants/attendance.constants';
 
 export class GetAttendancesQueryDto {
   @IsOptional()

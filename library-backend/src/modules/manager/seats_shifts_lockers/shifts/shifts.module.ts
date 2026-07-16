@@ -2,34 +2,34 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Shift } from '@/core/entities/shift.entity';
 
-import { CreateShiftController } from './controllers/create-shift.controller';
-import { UpdateShiftController } from './controllers/update-shift.controller';
-import { DeleteShiftController } from './controllers/delete-shift.controller';
-import { GetAllShiftsController } from './controllers/get-all-shifts.controller';
-import { GetShiftController } from './controllers/get-shift.controller';
+import { ShiftsCreateController } from '@/modules/manager/seats_shifts_lockers/shifts/controllers/shifts-create.controller';
+import { ShiftsUpdateController } from '@/modules/manager/seats_shifts_lockers/shifts/controllers/shifts-update.controller';
+import { ShiftsDeleteController } from '@/modules/manager/seats_shifts_lockers/shifts/controllers/shifts-delete.controller';
+import { ShiftsGetAllController } from '@/modules/manager/seats_shifts_lockers/shifts/controllers/shifts-get-all.controller';
+import { ShiftsGetController } from '@/modules/manager/seats_shifts_lockers/shifts/controllers/shifts-get.controller';
 
-import { CreateShiftService } from './services/create-shift.service';
-import { UpdateShiftService } from './services/update-shift.service';
-import { DeleteShiftService } from './services/delete-shift.service';
-import { GetAllShiftsService } from './services/get-all-shifts.service';
-import { GetShiftService } from './services/get-shift.service';
+import { ShiftsCreateService } from '@/modules/manager/seats_shifts_lockers/shifts/services/shifts-create.service';
+import { ShiftsUpdateService } from '@/modules/manager/seats_shifts_lockers/shifts/services/shifts-update.service';
+import { ShiftsDeleteService } from '@/modules/manager/seats_shifts_lockers/shifts/services/shifts-delete.service';
+import { ShiftsGetAllService } from '@/modules/manager/seats_shifts_lockers/shifts/services/shifts-get-all.service';
+import { ShiftsGetService } from '@/modules/manager/seats_shifts_lockers/shifts/services/shifts-get.service';
 
 @Module({
   imports: [TypeOrmModule.forFeature([Shift])],
   controllers: [
-    CreateShiftController,
-    UpdateShiftController,
-    DeleteShiftController,
-    GetAllShiftsController,
-    GetShiftController,
+    ShiftsCreateController,
+    ShiftsUpdateController,
+    ShiftsDeleteController,
+    ShiftsGetAllController,
+    ShiftsGetController,
   ],
   providers: [
-    CreateShiftService,
-    UpdateShiftService,
-    DeleteShiftService,
-    GetAllShiftsService,
-    GetShiftService,
+    ShiftsCreateService,
+    ShiftsUpdateService,
+    ShiftsDeleteService,
+    ShiftsGetAllService,
+    ShiftsGetService,
   ],
-  exports: [GetShiftService],
+  exports: [ShiftsGetService],
 })
 export class ManagerShiftsModule {}

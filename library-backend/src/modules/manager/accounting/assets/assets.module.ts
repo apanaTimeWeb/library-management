@@ -2,34 +2,34 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Asset } from '@/core/entities/asset.entity';
 
-import { CreateAssetController } from './controllers/create-asset.controller';
-import { UpdateAssetController } from './controllers/update-asset.controller';
-import { DeleteAssetController } from './controllers/delete-asset.controller';
-import { GetAllAssetsController } from './controllers/get-all-assets.controller';
-import { GetAssetController } from './controllers/get-asset.controller';
+import { AssetsCreateController } from '@/modules/manager/accounting/assets/controllers/assets-create.controller';
+import { AssetsUpdateController } from '@/modules/manager/accounting/assets/controllers/assets-update.controller';
+import { AssetsDeleteController } from '@/modules/manager/accounting/assets/controllers/assets-delete.controller';
+import { AssetsGetAllController } from '@/modules/manager/accounting/assets/controllers/assets-get-all.controller';
+import { AssetsGetController } from '@/modules/manager/accounting/assets/controllers/assets-get.controller';
 
-import { CreateAssetService } from './services/create-asset.service';
-import { UpdateAssetService } from './services/update-asset.service';
-import { DeleteAssetService } from './services/delete-asset.service';
-import { GetAllAssetsService } from './services/get-all-assets.service';
-import { GetAssetService } from './services/get-asset.service';
+import { AssetsCreateService } from '@/modules/manager/accounting/assets/services/assets-create.service';
+import { AssetsUpdateService } from '@/modules/manager/accounting/assets/services/assets-update.service';
+import { AssetsDeleteService } from '@/modules/manager/accounting/assets/services/assets-delete.service';
+import { AssetsGetAllService } from '@/modules/manager/accounting/assets/services/assets-get-all.service';
+import { AssetsGetService } from '@/modules/manager/accounting/assets/services/assets-get.service';
 
 @Module({
   imports: [TypeOrmModule.forFeature([Asset])],
   controllers: [
-    CreateAssetController,
-    UpdateAssetController,
-    DeleteAssetController,
-    GetAllAssetsController,
-    GetAssetController,
+    AssetsCreateController,
+    AssetsUpdateController,
+    AssetsDeleteController,
+    AssetsGetAllController,
+    AssetsGetController,
   ],
   providers: [
-    CreateAssetService,
-    UpdateAssetService,
-    DeleteAssetService,
-    GetAllAssetsService,
-    GetAssetService,
+    AssetsCreateService,
+    AssetsUpdateService,
+    AssetsDeleteService,
+    AssetsGetAllService,
+    AssetsGetService,
   ],
-  exports: [GetAssetService],
+  exports: [AssetsGetService],
 })
 export class ManagerAssetsModule {}

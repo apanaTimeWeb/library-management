@@ -1,5 +1,5 @@
 import { HttpException, HttpStatus } from '@nestjs/common';
-import { ASSETS_CONSTANTS } from '../constants/assets.constants';
+import { ASSETS_CONSTANTS } from '@/modules/manager/accounting/assets/constants/assets.constants';
 
 export class AssetNotFoundException extends HttpException {
   constructor(message: string = ASSETS_CONSTANTS.ERRORS.ASSET_NOT_FOUND) {
