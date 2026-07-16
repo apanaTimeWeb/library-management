@@ -5,6 +5,7 @@
 import { useState, useMemo, useEffect } from 'react';
 import { fetchApi } from '@/lib/api';
 import { ChevronRight, Plus, X, Eye, RefreshCw, CheckCircle } from 'lucide-react';
+import { AdminRecord } from '@/app/admin/admin_reusable/gridTheme';
 
 type CStatus = 'Open' | 'In-Progress' | 'Resolved';
 

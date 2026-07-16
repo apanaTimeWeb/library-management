@@ -9,6 +9,7 @@ import { fetchApi } from '@/lib/api';
 import toast from 'react-hot-toast';
 import { formatCurrency } from '@/app/admin/admin_finance/admin_finance_utils/format';
 import { CheckCircle, XCircle, Undo2 } from 'lucide-react';
+import { AdminRecord } from '@/app/admin/admin_reusable/gridTheme';
 
 const STATUS_BADGE: Record<string, string> = {
   pending:   'fin-badge fin-badge--warning',

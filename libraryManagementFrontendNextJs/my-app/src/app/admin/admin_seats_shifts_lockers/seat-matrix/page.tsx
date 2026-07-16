@@ -5,6 +5,7 @@
 import { useState, useEffect } from 'react';
 import { fetchApi } from '@/lib/api';
 import { CalendarDays, UserPlus, User } from 'lucide-react';
+import { AdminRecord } from '@/app/admin/admin_reusable/gridTheme';
 
 interface SeatData {
   uuid?: string;

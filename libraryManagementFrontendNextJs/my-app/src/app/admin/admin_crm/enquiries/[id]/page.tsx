@@ -23,6 +23,7 @@ import {
   AlertTriangle,
 } from 'lucide-react';
 import data from '@/app/admin/admin_crm/admin_crm_components/hardcoded.json';
+import { AdminRecord } from '@/app/admin/admin_reusable/gridTheme';
 import {
   type Enquiry,
   type EnquiryStatus,

@@ -1,5 +1,6 @@
 import { useState, useMemo } from 'react';
 import { useAdmin } from '@/app/admin/admin_context/AdminContext';
+import { AdminRecord } from '@/app/admin/admin_reusable/gridTheme';
 
 // DATA FLOW: API → useAdminStudents.ts → AdminStudentsComponent
 export function useAdminStudents(initialStudents: unknown[]) {

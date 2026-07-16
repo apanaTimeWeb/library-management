@@ -22,6 +22,7 @@ import {
 } from 'lucide-react';
 import { useEffect } from 'react';
 import { fetchApi } from '@/lib/api';
+import { AdminRecord } from '@/app/admin/admin_reusable/gridTheme';
 import {
   type Enquiry,
   type EnquiryStatus,
