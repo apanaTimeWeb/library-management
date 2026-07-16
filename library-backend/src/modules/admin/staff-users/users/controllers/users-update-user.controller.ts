@@ -1,8 +1,8 @@
 import { Controller, Patch, Param, Body, UseGuards } from '@nestjs/common';
 import { ApiTags, ApiOperation, ApiBearerAuth } from '@nestjs/swagger';
 import { AuthJwtAuthGuard } from '@/modules/auth/session/guards/auth-jwt-auth.guard';
-import { UsersUpdateUserService } from '../services/update-user.service';
-import { UsersUpdateUserDto } from '../dto/update-user.dto';
+import { UsersUpdateUserService } from '../services/users-update-user.service';
+import { UsersUpdateUserDto } from '../dto/users-update-user.dto';
 import { User } from '@/core/entities/user.entity';
 
 @ApiTags('Admin Users')

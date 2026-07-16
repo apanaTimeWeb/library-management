@@ -1,5 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { UsersDeleteUserService } from './delete-user.service';
+import { UsersDeleteUserService } from './users-delete-user.service';
 import { getRepositoryToken } from '@nestjs/typeorm';
 import { User } from '@/core/entities/user.entity';
 
