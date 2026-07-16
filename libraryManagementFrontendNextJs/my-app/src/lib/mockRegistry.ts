@@ -46,9 +46,47 @@ const GENERIC_DASHBOARD_MOCK = {
     { title: 'Total Registered Students', value: '45,892', icon: 'groups', trend: '+8% this month' }
   ],
   systemHealth: { uptime: '99.98%' },
-  revenueChart: []
+  revenueChart: [],
+  shifts: ['Morning', 'Afternoon', 'Evening'],
+  seats: Array.from({ length: 40 }).map((_, i) => ({
+    id: `S${i+1}`,
+    shift: ['Morning', 'Afternoon', 'Evening'][i % 3],
+    status: ['free', 'occupied', 'expiring', 'maintenance'][Math.floor(Math.random() * 4)],
+    fee: Math.random() > 0.5 ? 'Paid' : 'Due',
+    occupant: `Student ${i+1}`,
+    studentId: `STU-${i+1}`
+  }))
 };
 
+
+const ADMIN_DASHBOARD_MOCK = {
+  kpiCards: [
+    { label: 'Total Branches', value: '12', trend: { value: '+2', up: true }, sub: 'from last month' },
+    { label: 'Active Students', value: '1,250', trend: { value: '+150', up: true }, sub: 'from last month' },
+    { label: 'Total Revenue', value: '₹4.5L', trend: { value: '₹50K', up: true }, sub: 'from last month' },
+    { label: 'Pending Approvals', value: '24', trend: { value: '-5', up: false }, sub: 'from last week' },
+  ],
+  actionItems: [
+    { label: 'Pending fee approvals', count: 12, type: 'warning', href: '/admin/admin_expenses' },
+    { label: 'Expiring seats', count: 5, type: 'danger', href: '/admin/admin_students' },
+  ],
+  shifts: ['Morning', 'Afternoon', 'Evening'],
+  seats: Array.from({ length: 48 }).map((_, i) => ({
+    id: `S${i+1}`,
+    shift: ['Morning', 'Afternoon', 'Evening'][i % 3],
+    status: ['free', 'occupied', 'expiring', 'maintenance'][Math.floor(Math.random() * 4)],
+    fee: Math.random() > 0.5 ? 'Paid' : 'Due',
+    occupant: `Student ${i+1}`,
+    studentId: `STU-${i+1}`
+  })),
+  recentPayments: [
+    { name: 'Rahul Kumar', initials: 'RK', amount: '₹1,500', mode: 'UPI', timeAgo: 'Just now', studentId: 'STU-1' },
+    { name: 'Amit Singh', initials: 'AS', amount: '₹2,000', mode: 'Cash', timeAgo: '2 hours ago', studentId: 'STU-2' },
+    { name: 'Priya Sharma', initials: 'PS', amount: '₹1,000', mode: 'Card', timeAgo: '5 hours ago', studentId: 'STU-3' },
+    { name: 'Neha Gupta', initials: 'NG', amount: '₹3,000', mode: 'Bank Transfer', timeAgo: '1 day ago', studentId: 'STU-4' },
+    { name: 'Vikram Singh', initials: 'VS', amount: '₹1,200', mode: 'UPI', timeAgo: '1 day ago', studentId: 'STU-5' },
+  ]
+};
 
 /**
  * MOCK REGISTRY
@@ -60,7 +98,7 @@ export const mockRegistry: Record<string, any> = {
   '/students': managerStudentsMock.students,
   '/admin/students': managerStudentsMock.students,
   '/manager/manager_dashboard': GENERIC_DASHBOARD_MOCK,
-  '/admin/dashboard': GENERIC_DASHBOARD_MOCK,
+  '/admin/dashboard': ADMIN_DASHBOARD_MOCK,
   '/admin/audit-logs': MOCK_AUDIT_LOGS,
   '/admin/blacklist': MOCK_BLACKLIST,
   '/admin/coupons': MOCK_COUPONS,
