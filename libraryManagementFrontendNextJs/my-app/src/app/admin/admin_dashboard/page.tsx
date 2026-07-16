@@ -35,7 +35,7 @@ interface DashboardData {
 export default async function AdminDashboardPage() {
   const rawData = await getDashboardData();
   if (!rawData) return <div className="p-8">Failed to load dashboard data. Check backend connection.</div>;
-  const data = rawData as unknown as DashboardData;
+  const data = rawData as never as DashboardData;
 
   const actionItems: ActionItem[] = data.actionItems?.map((a) => ({
     ...a,

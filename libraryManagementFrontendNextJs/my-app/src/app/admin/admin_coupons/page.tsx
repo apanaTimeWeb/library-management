@@ -110,7 +110,7 @@ export default function AdminCouponsPage() {
   }
 
   const f = (k: keyof FormState) => (e: React.ChangeEvent<HTMLInputElement>) => {
-    setForm(p => ({ ...p, [k]: e.target.value as unknown }));
+    setForm(p => ({ ...p, [k]: e.target.value as never }));
     setErrors(p => ({ ...p, [k]: undefined }));
   };
 
@@ -200,7 +200,7 @@ export default function AdminCouponsPage() {
               </div>
               <div className="admin-form-field">
                 <label className="admin-label">Discount Type</label>
-                <select className="admin-select" style={{ width: '100%', padding: '10px 14px' }} value={form.type} onChange={e => setForm(p => ({ ...p, type: e.target.value as unknown }))}>
+                <select className="admin-select" style={{ width: '100%', padding: '10px 14px' }} value={form.type} onChange={e => setForm(p => ({ ...p, type: e.target.value as never }))}>
                   <option value="Flat">Flat (₹)</option>
                   <option value="Percent">Percent (%)</option>
                 </select>
