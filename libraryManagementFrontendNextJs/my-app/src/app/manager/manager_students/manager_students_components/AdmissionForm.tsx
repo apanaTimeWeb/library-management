@@ -17,6 +17,7 @@ import { useStudentsStore } from '@/app/manager/manager_students/manager_student
 import type { IdCardData } from '@/app/manager/manager_students/manager_students_components/StudentIdCard';
 import { fetchApi } from '@/lib/api';
 import { createStudent } from '@/app/manager/manager_students/manager_students_api/manager_students_api';
+import { PLANS, SHIFTS, SEATS } from '@/app/manager/manager_students/manager_students_constants';
 
 /* ── Zod Schema ── */
 const schema = z.object({
@@ -35,16 +36,6 @@ const schema = z.object({
 });
 
 type FormValues = z.infer<typeof schema>;
-
-const PLANS = [
-  { label: 'Monthly — ₹1,500',    value: 'Monthly',    amount: 1500 },
-  { label: 'Quarterly — ₹4,200',  value: 'Quarterly',  amount: 4200 },
-  { label: 'Half-Yearly — ₹7,800',value: 'Half-Yearly',amount: 7800 },
-  { label: 'Annual — ₹14,000',    value: 'Annual',     amount: 14000 },
-];
-
-const SHIFTS = ['Morning (8 AM–2 PM)', 'Evening (2 PM–8 PM)', 'Full Day (8 AM–8 PM)', 'Night (10 PM–6 AM)'];
-const SEATS  = ['A-12', 'A-15', 'B-03', 'B-04', 'C-01', 'C-05'];
 
 const SMART_ID = 'LIB003'; // simulated auto-generated
 

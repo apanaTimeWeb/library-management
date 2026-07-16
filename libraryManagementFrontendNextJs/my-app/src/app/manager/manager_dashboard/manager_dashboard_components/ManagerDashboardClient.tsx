@@ -59,7 +59,7 @@ export function ManagerDashboardClient() {
           <p className="mgr-page-subtitle">Good morning, Manager — aaj ka quick overview</p>
         </div>
         <div className="mgr-page-actions">
-          <Link href={MANAGER_ROUTES.REPORTS} className="mgr-btn-ghost mgr-btn-sm">
+          <Link href={MANAGER_ROUTES.STUDENT_REPORTS} className="mgr-btn-primary mgr-btn-sm">
             <TrendingUp size={14} /> View Reports
           </Link>
         </div>

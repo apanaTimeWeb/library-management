@@ -1,7 +1,6 @@
 export const MANAGER_ROUTES = {
-  // Navigation Routes
+  // Dashboard
   DASHBOARD: '/manager/manager_dashboard',
-  REPORTS: '/manager/manager_reports',
   
   // CRM
   CRM_ENQUIRIES: '/manager/manager_crm/enquiries',
@@ -17,15 +16,32 @@ export const MANAGER_ROUTES = {
   // Documents
   DOCUMENTS: '/manager/manager_documents',
 
-  // Finance
+  // Finance (Blocked)
   FINANCE_COLLECT_FEE: '/manager/manager_finance/collect-fee',
 
   // Communication
+  COMMUNICATION_NOTICES: '/manager/manager_communication/notices',
   COMMUNICATION_COMPLAINTS: '/manager/manager_communication/complaints',
+  COMMUNICATION_WHATSAPP_TEMPLATES: '/manager/manager_communication/whatsapp-templates',
+  COMMUNICATION_WHATSAPP_LOGS: '/manager/manager_communication/whatsapp-logs',
+  COMMUNICATION_NOTIFICATION_CENTER: '/manager/manager_communication/notification-center',
 
   // Engagement
   ENGAGEMENT_ATTENDANCE: '/manager/manager_engagement/attendance',
   ENGAGEMENT_QR_SCANNER: '/manager/manager_engagement/qr-scanner',
+  ENGAGEMENT_ABSENTEE_REPORT: '/manager/manager_engagement/absentee-report',
+  ENGAGEMENT_ANALYTICS: '/manager/manager_engagement/analytics',
+  ENGAGEMENT_FEEDBACK: '/manager/manager_engagement/feedback',
+
+  // Reports
+  STUDENT_REPORTS: '/manager/manager_student-reports',
+
+  // Seats & Assets
+  SEATS_SHIFTS_LOCKERS: '/manager/manager_seats_shifts_lockers',
+
+  // Plans & Settings
+  PLANS: '/manager/manager_plans',
+  SETTINGS: '/manager/manager_settings',
 };
 
 export const MANAGER_API_ROUTES = {

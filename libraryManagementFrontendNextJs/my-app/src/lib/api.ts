@@ -14,7 +14,7 @@ import { getAccessToken, refreshAccessToken, clearAuthState } from './auth';
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001/api/v1';
 
-export async function fetchApi(endpoint: string, options: RequestInit = {}) {
+export async function fetchApi<T = any>(endpoint: string, options: RequestInit = {}): Promise<T> {
   const url = `${API_BASE_URL}${endpoint.startsWith('/') ? endpoint : `/${endpoint}`}`;
 
   const token = getAccessToken();

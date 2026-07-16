@@ -6,7 +6,6 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { X, Save, PhoneCall } from 'lucide-react';
 import toast, { Toaster } from 'react-hot-toast';
 import { addEnquirySchema, type AddEnquiryFormData } from '@/app/manager/manager_crm/manager_crm_shared_components/manager_crm_schema';
-import data from '@/app/manager/manager_crm/manager_crm_shared_components/hardcoded.json';
 import { MANAGER_CRM_URLS } from '@/app/manager/manager_crm/manager_crm_url_config';
 
 // RESPONSIBILITY: Renders the Add Enquiry drawer.
