@@ -1,0 +1,8 @@
+export const HOLIDAYS_CONSTANTS = {
+  MODULE_NAME: 'MANAGER_HOLIDAYS',
+  ERRORS: {
+    HOLIDAY_NOT_FOUND: 'Holiday not found.',
+  },
+  DEFAULT_PAGE: 1,
+  DEFAULT_LIMIT: 20,
+};

@@ -1,18 +1,13 @@
-import { Controller, Get, Param, Req, UseGuards } from '@nestjs/common';
-import { GetStudentService } from '@/modules/manager/students/students/services/get-student.service';
-import { JwtAuthGuard } from '@/modules/auth/auth/guards/jwt-auth.guard';
-import { RolesGuard } from '@/modules/auth/auth/guards/roles.guard';
-import { Roles } from '@/modules/auth/auth/decorators/roles.decorator';
+import { Controller, Get, Param } from '@nestjs/common';
+import { GetStudentService } from '../services/get-student.service';
 
-@Controller('api/manager/students')
-@UseGuards(JwtAuthGuard, RolesGuard)
+@Controller('api/v1/manager/students')
 export class GetStudentController {
-  constructor(private readonly getStudentService: GetStudentService) {}
+  constructor(private readonly service: GetStudentService) {}
 
-  // SLA: FAST
   @Get(':id')
-  @Roles('superadmin', 'admin', 'manager')
-  async getStudentById(@Param('id') id: string, @Req() req: any): Promise<any> {
-    return this.getStudentService.findOne(id, req.user?.branchId);
+  async handle(@Param('id') id: string) {
+    const data = await this.service.execute(id);
+    return { success: true, message: 'Student retrieved successfully', data };
   }
 }

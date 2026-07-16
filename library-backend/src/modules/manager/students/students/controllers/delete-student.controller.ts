@@ -1,18 +1,13 @@
-import { Controller, Delete, Param, Req, UseGuards } from '@nestjs/common';
-import { DeleteStudentService } from '@/modules/manager/students/students/services/delete-student.service';
-import { JwtAuthGuard } from '@/modules/auth/auth/guards/jwt-auth.guard';
-import { RolesGuard } from '@/modules/auth/auth/guards/roles.guard';
-import { Roles } from '@/modules/auth/auth/decorators/roles.decorator';
+import { Controller, Delete, Param } from '@nestjs/common';
+import { DeleteStudentService } from '../services/delete-student.service';
 
-@Controller('api/manager/students')
-@UseGuards(JwtAuthGuard, RolesGuard)
+@Controller('api/v1/manager/students')
 export class DeleteStudentController {
-  constructor(private readonly deleteStudentService: DeleteStudentService) {}
+  constructor(private readonly service: DeleteStudentService) {}
 
-  // SLA: FAST
   @Delete(':id')
-  @Roles('superadmin', 'admin', 'manager')
-  async deleteStudent(@Param('id') id: string, @Req() req: any): Promise<any> {
-    return this.deleteStudentService.remove(id, req.user?.branchId);
+  async handle(@Param('id') id: string) {
+    await this.service.execute(id);
+    return { success: true, message: 'Student deleted successfully', data: null };
   }
 }

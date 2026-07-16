@@ -1,26 +1,19 @@
-import { Controller, Get, Req, UseGuards, Query } from '@nestjs/common';
-import { ApiTags, ApiBearerAuth, ApiOperation } from '@nestjs/swagger';
-import { GetAllExpensesService } from '@/modules/manager/finance/expenses/services/get-all-expenses.service';
-import { JwtAuthGuard } from '@/modules/auth/auth/guards/jwt-auth.guard';
-import { RolesGuard } from '@/modules/auth/auth/guards/roles.guard';
-import { Roles } from '@/modules/auth/auth/decorators/roles.decorator';
-import { PaginationDto } from '../dto/pagination.dto';
+import { Controller, Get, Query } from '@nestjs/common';
+import { GetAllExpensesService } from '../services/get-all-expenses.service';
+import { GetExpensesQueryDto } from '../dto/get-expenses-query.dto';
 
-@ApiTags('Finance Expenses')
-@ApiBearerAuth()
-@Controller('api/manager/expenses')
-@UseGuards(JwtAuthGuard, RolesGuard)
+@Controller('api/v1/manager/expenses')
 export class GetAllExpensesController {
-  constructor(private readonly getAllExpensesService: GetAllExpensesService) {}
+  constructor(private readonly service: GetAllExpensesService) {}
 
-  // SLA: FAST
   @Get()
-  @Roles('superadmin', 'admin', 'manager')
-  @ApiOperation({ summary: 'Get all finance expenses (branch-scoped)' })
-  async getAllExpenses(
-    @Req() req: any,
-    @Query() query: PaginationDto,
-  ): Promise<any> {
-    return this.getAllExpensesService.findAll(req.user?.branchId, query);
+  async handle(@Query() query: GetExpensesQueryDto) {
+    const { items, total } = await this.service.execute(query);
+    return {
+      success: true,
+      message: 'Expenses retrieved successfully',
+      data: items,
+      meta: { total, page: query.page, limit: query.limit },
+    };
   }
 }

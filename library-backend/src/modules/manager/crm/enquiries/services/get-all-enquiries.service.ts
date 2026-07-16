@@ -1,58 +1,26 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository, ILike } from 'typeorm';
+import { Repository, FindOptionsWhere, ILike } from 'typeorm';
 import { Enquiry } from '@/core/entities/enquiry.entity';
-import { PaginationDto } from '../dto/pagination.dto';
-import { PaginatedResponse } from '../interfaces/pagination.interface';
+import { GetEnquiriesQueryDto } from '../dto/get-enquiries-query.dto';
 
 @Injectable()
 export class GetAllEnquiriesService {
   constructor(
     @InjectRepository(Enquiry)
-    private readonly enquiryRepo: Repository<Enquiry>,
+    private readonly repository: Repository<Enquiry>,
   ) {}
 
-  async findAll(
-    branchId: string,
-    paginationDto?: PaginationDto,
-  ): Promise<PaginatedResponse<Enquiry>> {
-    const {
-      page = 1,
-      limit = 10,
-      search,
-      sortBy,
-      sortOrder = 'DESC',
-    } = paginationDto || {};
-    const skip = (page - 1) * limit;
-
-    const where: any = branchId ? { branch: { id: branchId } } : {};
-    if (search) {
-      where.name = ILike(`%${search}%`); // Assuming Enquiry has a name property
-    }
-
-    const order: any = {};
-    if (sortBy) {
-      order[sortBy] = sortOrder;
-    } else {
-      order.createdAt = 'DESC';
-    }
-
-    const [data, total] = await this.enquiryRepo.findAndCount({
+  async execute(queryDto: GetEnquiriesQueryDto): Promise<{ items: Enquiry[]; total: number }> {
+    const { page = 1, limit = 20, search } = queryDto;
+    const where: FindOptionsWhere<Enquiry> = {};
+    
+    const [items, total] = await this.repository.findAndCount({
       where,
-      relations: { handledBy: true, convertedToStudent: true },
-      order,
-      skip,
+      order: { createdAt: 'DESC' } as any,
+      skip: (page - 1) * limit,
       take: limit,
     });
-
-    return {
-      data,
-      meta: {
-        total,
-        page,
-        limit,
-        totalPages: Math.ceil(total / limit),
-      },
-    };
+    return { items, total };
   }
 }

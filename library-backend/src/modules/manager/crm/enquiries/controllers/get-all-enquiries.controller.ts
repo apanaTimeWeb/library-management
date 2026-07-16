@@ -1,26 +1,19 @@
-import { Controller, Get, Req, UseGuards, Query } from '@nestjs/common';
-import { ApiTags, ApiBearerAuth, ApiOperation } from '@nestjs/swagger';
-import { GetAllEnquiriesService } from '@/modules/manager/crm/enquiries/services/get-all-enquiries.service';
-import { JwtAuthGuard } from '@/modules/auth/auth/guards/jwt-auth.guard';
-import { RolesGuard } from '@/modules/auth/auth/guards/roles.guard';
-import { ENQUIRIES_CONSTANTS } from '@/modules/manager/crm/enquiries/constants/enquiries.constants';
-import { PaginationDto } from '../dto/pagination.dto';
+import { Controller, Get, Query } from '@nestjs/common';
+import { GetAllEnquiriesService } from '../services/get-all-enquiries.service';
+import { GetEnquiriesQueryDto } from '../dto/get-enquiries-query.dto';
 
-@ApiTags('CRM Enquiries')
-@ApiBearerAuth()
-@Controller('api/manager/crm/enquiries')
-@UseGuards(JwtAuthGuard, RolesGuard)
+@Controller('api/v1/manager/enquiries')
 export class GetAllEnquiriesController {
-  constructor(
-    private readonly getAllEnquiriesService: GetAllEnquiriesService,
-  ) {}
+  constructor(private readonly service: GetAllEnquiriesService) {}
 
-  // SLA: FAST
   @Get()
-  @ApiOperation({ summary: 'Get all CRM enquiries (branch-scoped)' })
-  async findAll(@Req() req: any, @Query() query: PaginationDto): Promise<any> {
-    const branchId =
-      req.user?.branchId || ENQUIRIES_CONSTANTS.DEFAULT_BRANCH_ID;
-    return this.getAllEnquiriesService.findAll(branchId, query);
+  async handle(@Query() query: GetEnquiriesQueryDto) {
+    const { items, total } = await this.service.execute(query);
+    return {
+      success: true,
+      message: 'Enquiries retrieved successfully',
+      data: items,
+      meta: { total, page: query.page, limit: query.limit },
+    };
   }
 }

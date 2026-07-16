@@ -1,0 +1,8 @@
+export const NOTICES_CONSTANTS = {
+  MODULE_NAME: 'MANAGER_NOTICES',
+  ERRORS: {
+    NOTICE_NOT_FOUND: 'Notice not found.',
+  },
+  DEFAULT_PAGE: 1,
+  DEFAULT_LIMIT: 20,
+};

@@ -1,31 +1,14 @@
-import {
-  Controller,
-  Patch,
-  Param,
-  Body,
-  Req,
-  UseGuards,
-  ValidationPipe,
-} from '@nestjs/common';
-import { UpdateStudentService } from '@/modules/manager/students/students/services/update-student.service';
-import { JwtAuthGuard } from '@/modules/auth/auth/guards/jwt-auth.guard';
-import { RolesGuard } from '@/modules/auth/auth/guards/roles.guard';
-import { Roles } from '@/modules/auth/auth/decorators/roles.decorator';
-import { UpdateStudentDto } from '@/modules/manager/students/students/dto/update-student.dto';
+import { Controller, Patch, Param, Body } from '@nestjs/common';
+import { UpdateStudentService } from '../services/update-student.service';
+import { UpdateStudentDto } from '../dto/update-student.dto';
 
-@Controller('api/manager/students')
-@UseGuards(JwtAuthGuard, RolesGuard)
+@Controller('api/v1/manager/students')
 export class UpdateStudentController {
-  constructor(private readonly updateStudentService: UpdateStudentService) {}
+  constructor(private readonly service: UpdateStudentService) {}
 
-  // SLA: FAST
   @Patch(':id')
-  @Roles('superadmin', 'admin', 'manager')
-  async updateStudent(
-    @Param('id') id: string,
-    @Body(new ValidationPipe({ whitelist: true })) data: UpdateStudentDto,
-    @Req() req: any,
-  ): Promise<any> {
-    return this.updateStudentService.update(id, req.user?.branchId, data);
+  async handle(@Param('id') id: string, @Body() dto: UpdateStudentDto) {
+    const data = await this.service.execute(id, dto);
+    return { success: true, message: 'Student updated successfully', data };
   }
 }

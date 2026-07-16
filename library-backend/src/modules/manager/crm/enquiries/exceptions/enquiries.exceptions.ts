@@ -1,7 +1,8 @@
 import { HttpException, HttpStatus } from '@nestjs/common';
+import { ENQUIRIES_CONSTANTS } from '../constants/enquiries.constants';
 
 export class EnquiryNotFoundException extends HttpException {
-  constructor() {
-    super('Enquiry not found', HttpStatus.NOT_FOUND);
+  constructor(message: string = ENQUIRIES_CONSTANTS.ERRORS.ENQUIRY_NOT_FOUND) {
+    super(message, HttpStatus.NOT_FOUND);
   }
 }

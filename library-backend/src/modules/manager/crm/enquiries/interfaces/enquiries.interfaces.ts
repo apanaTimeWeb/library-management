@@ -1,12 +1,10 @@
-import { Enquiry } from '@/core/entities/enquiry.entity';
-
-export interface EnquiryResponse {
-  message?: string;
-  enquiry?: Enquiry;
+export interface IEnquiryRecord {
+  id: string;
 }
 
-export interface FollowUpItem {
-  date: Date;
-  remark: string;
-  by: string;
+export interface IEnquiriesPaginationMeta {
+  page: number;
+  limit: number;
+  total: number;
+  totalPages: number;
 }
