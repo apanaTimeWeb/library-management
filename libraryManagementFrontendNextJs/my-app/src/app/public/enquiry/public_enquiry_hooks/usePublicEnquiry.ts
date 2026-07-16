@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { publicEnquirySchema, type PublicEnquiryFormData } from '../public_enquiry_types/PublicEnquiryValidation';
+import { publicEnquirySchema, type PublicEnquiryFormData } from '@/app/public/enquiry/public_enquiry_types/PublicEnquiryValidation';
 
 // RESPONSIBILITY: Handles form state and submission logic for public enquiry.
 // DATA FLOW: UI Input -> usePublicEnquiry -> Simulate API -> Success State

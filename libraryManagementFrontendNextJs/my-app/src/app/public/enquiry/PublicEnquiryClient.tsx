@@ -1,11 +1,11 @@
 'use client';
 
 import React from 'react';
-import { usePublicEnquiry } from './public_enquiry_hooks/usePublicEnquiry';
-import { PublicEnquiryHeader } from './public_enquiry_components/PublicEnquiryHeader';
-import { PublicEnquiryForm } from './public_enquiry_components/PublicEnquiryForm';
-import { PublicEnquirySuccessState } from './public_enquiry_components/PublicEnquirySuccessState';
-import { PublicEnquiryFooter } from './public_enquiry_components/PublicEnquiryFooter';
+import { usePublicEnquiry } from '@/app/public/enquiry/public_enquiry_hooks/usePublicEnquiry';
+import { PublicEnquiryHeader } from '@/app/public/enquiry/public_enquiry_components/PublicEnquiryHeader';
+import { PublicEnquiryForm } from '@/app/public/enquiry/public_enquiry_components/PublicEnquiryForm';
+import { PublicEnquirySuccessState } from '@/app/public/enquiry/public_enquiry_components/PublicEnquirySuccessState';
+import { PublicEnquiryFooter } from '@/app/public/enquiry/public_enquiry_components/PublicEnquiryFooter';
 
 // RESPONSIBILITY: Orchestrates the client-side layout for the public enquiry page.
 // DATA FLOW: usePublicEnquiry -> PublicEnquiryClient -> Components

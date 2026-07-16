@@ -19,11 +19,6 @@ export default function AddEnquiryPage() {
     resolver: zodResolver(addEnquirySchema),
     defaultValues: {
       name: '',
-      phone: '',
-      preferredShift: '',
-      source: '',
-      handledBy: '',
-      notes: '',
     },
   });
 
@@ -90,102 +85,6 @@ export default function AddEnquiryPage() {
                   {...register('name')}
                 />
                 {errors.name && <p className="crm-error">{errors.name.message}</p>}
-              </div>
-
-              {/* ── Phone ── */}
-              <div className="crm-field">
-                <label htmlFor="enq-phone" className="crm-label crm-label--required">
-                  Mobile Number
-                </label>
-                <div className="crm-phone-wrap">
-                  <span className="crm-phone-prefix">+91</span>
-                  <input
-                    id="enq-phone"
-                    type="tel"
-                    maxLength={10}
-                    placeholder="98765 43210"
-                    className={`crm-input crm-input-phone${errors.phone ? ' crm-input--error' : ''}`}
-                    {...register('phone')}
-                  />
-                </div>
-                {errors.phone && <p className="crm-error">{errors.phone.message}</p>}
-              </div>
-
-              {/* ── Preferred Shift ── */}
-              <div className="crm-field">
-                <label htmlFor="enq-shift" className="crm-label">
-                  Preferred Shift{' '}
-                  <span className="crm-label-optional">(optional)</span>
-                </label>
-                <select
-                  id="enq-shift"
-                  className="crm-select"
-                  {...register('preferredShift')}
-                >
-                  <option value="">Select a shift</option>
-                  {data.shifts.map((s: any) => (
-                    <option key={s.id} value={s.name}>
-                      {s.name} ({s.time})
-                    </option>
-                  ))}
-                </select>
-              </div>
-
-              {/* ── Source ── */}
-              <div className="crm-field">
-                <label htmlFor="enq-source" className="crm-label">
-                  Source{' '}
-                  <span className="crm-label-optional">(optional)</span>
-                </label>
-                <select
-                  id="enq-source"
-                  className="crm-select"
-                  {...register('source')}
-                >
-                  <option value="">How did they find us?</option>
-                  <option value="Walk-in">Walk-in</option>
-                  <option value="WhatsApp">WhatsApp</option>
-                  <option value="Referral">Referral</option>
-                  <option value="Social Media">Social Media</option>
-                  <option value="Phone Call">Phone Call</option>
-                  <option value="Google Ads">Google Ads</option>
-                  <option value="Instagram">Instagram</option>
-                  <option value="Other">Other</option>
-                </select>
-              </div>
-
-              {/* ── Handled By ── */}
-              <div className="crm-field">
-                <label htmlFor="enq-handled-by" className="crm-label">
-                  Handled By{' '}
-                  <span className="crm-label-optional">(optional)</span>
-                </label>
-                <select
-                  id="enq-handled-by"
-                  className="crm-select"
-                  {...register('handledBy')}
-                >
-                  <option value="">Assign a staff member</option>
-                  {data.staff.map((s: any) => (
-                    <option key={s.id} value={s.name}>
-                      {s.name}
-                    </option>
-                  ))}
-                </select>
-              </div>
-
-              {/* ── Notes ── */}
-              <div className="crm-field">
-                <label htmlFor="enq-notes" className="crm-label">
-                  Notes <span className="crm-label-optional">(optional)</span>
-                </label>
-                <textarea
-                  id="enq-notes"
-                  rows={3}
-                  placeholder="Initial remarks, special requirements, seat preference…"
-                  className="crm-textarea"
-                  {...register('notes')}
-                />
               </div>
 
             </div>

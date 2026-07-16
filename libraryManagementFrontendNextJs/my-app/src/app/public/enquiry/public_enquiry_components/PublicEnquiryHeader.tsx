@@ -1,6 +1,6 @@
 import React from 'react';
 import { BookOpen } from 'lucide-react';
-import { PUBLIC_ENQUIRY_LIBRARY } from '../public_enquiry_constants/PublicEnquiryConstants';
+import { PUBLIC_ENQUIRY_LIBRARY } from '@/app/public/enquiry/public_enquiry_constants/PublicEnquiryConstants';
 
 // RESPONSIBILITY: Renders the branding and availability badge for the library.
 

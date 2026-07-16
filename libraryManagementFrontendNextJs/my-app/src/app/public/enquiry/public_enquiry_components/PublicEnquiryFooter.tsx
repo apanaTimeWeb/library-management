@@ -1,5 +1,5 @@
 import React from 'react';
-import { PUBLIC_ENQUIRY_LIBRARY } from '../public_enquiry_constants/PublicEnquiryConstants';
+import { PUBLIC_ENQUIRY_LIBRARY } from '@/app/public/enquiry/public_enquiry_constants/PublicEnquiryConstants';
 
 // RESPONSIBILITY: Renders the library contact info and copyright footer.
 
