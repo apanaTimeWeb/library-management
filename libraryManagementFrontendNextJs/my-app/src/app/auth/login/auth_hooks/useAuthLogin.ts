@@ -20,13 +20,13 @@ export function useAuthLogin() {
     formState: { errors },
   } = useForm<AuthLoginPayload>({
     resolver: zodResolver(authLoginSchema),
-    defaultValues: { phone: '', password: '' },
+    defaultValues: { phone: '9876543210', password: 'password123' },
   });
 
   const handleRoleSelect = (role: typeof AUTH_ROLES[0]) => {
     setSelectedRole(role);
-    setValue('phone', '', { shouldValidate: false });
-    setValue('password', '', { shouldValidate: false });
+    setValue('phone', '9876543210', { shouldValidate: false });
+    setValue('password', 'password123', { shouldValidate: false });
     clearError();
   };
 
