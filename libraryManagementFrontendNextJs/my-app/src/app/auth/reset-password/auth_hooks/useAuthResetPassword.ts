@@ -3,7 +3,8 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { authResetPasswordSchema } from '../../auth_utils/auth_validation';
 import { AUTH_RESET_PASSWORD_PRESETS } from '../../auth_constants';
-import type { AuthResetPasswordPayload } from '../../auth_types/auth_types';
+import type { AuthResetPasswordPayload, FetchState } from '../../auth_types/auth_types';
+import { authApi } from '../../auth_api/auth_api';
 
 const CORRECT_OTP = AUTH_RESET_PASSWORD_PRESETS.otp.join('');
 const RESEND_SECS = 45;
@@ -17,8 +18,8 @@ export function useAuthResetPassword() {
   const [canResend, setCanResend] = useState(false);
   const inputRefs = useRef<(HTMLInputElement | null)[]>([]);
 
-  // Note: Replace this with actual api call later
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [fetchState, setFetchState] = useState<FetchState>('idle');
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   const {
     register,
@@ -81,15 +82,19 @@ export function useAuthResetPassword() {
   };
 
   const onSubmit = async (data: AuthResetPasswordPayload) => {
-    if (data.otp !== CORRECT_OTP) {
-      setError('otp', { message: 'Invalid OTP. Hint: use the hardcoded value.' });
+    setFetchState('loading');
+    setErrorMessage(null);
+    
+    const response = await authApi.resetPassword({ otp: data.otp, newPassword: data.newPassword });
+    
+    if (!response.success) {
+      setFetchState('error');
+      setErrorMessage(response.message);
       return;
     }
-    setIsSubmitting(true);
-    // Stub api call
-    await new Promise(res => setTimeout(res, 1200));
+
     setDone(true);
-    setIsSubmitting(false);
+    setFetchState('success');
   };
 
   return {
@@ -102,7 +107,8 @@ export function useAuthResetPassword() {
     countdown,
     canResend,
     inputRefs,
-    isSubmitting,
+    fetchState,
+    errorMessage,
     register,
     handleSubmit: handleSubmit(onSubmit),
     control,

@@ -19,7 +19,8 @@ export function AuthResetPasswordForm() {
     countdown,
     canResend,
     inputRefs,
-    isSubmitting,
+    fetchState,
+    errorMessage,
     register,
     handleSubmit,
     control,
@@ -139,15 +140,16 @@ export function AuthResetPasswordForm() {
                   {errors.confirmPassword && <p className="auth-error">{errors.confirmPassword.message}</p>}
                 </div>
 
+                {errorMessage && <div className="auth-error-banner">❌ {errorMessage}</div>}
                 {errors.root && <div className="auth-error-banner">❌ {errors.root.message}</div>}
 
                 <button
                   id="update-password-btn"
                   type="submit"
-                  disabled={isSubmitting}
+                  disabled={fetchState === 'loading'}
                   className="auth-btn-primary"
                 >
-                  {isSubmitting
+                  {fetchState === 'loading'
                     ? <><span className="auth-spinner" /> Updating...</>
                     : '🔐 Update Password'}
                 </button>

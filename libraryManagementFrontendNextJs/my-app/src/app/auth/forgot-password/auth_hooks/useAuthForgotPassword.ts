@@ -2,14 +2,15 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { authForgotPasswordSchema } from '../../auth_utils/auth_validation';
-import type { AuthForgotPasswordPayload } from '../../auth_types/auth_types';
+import type { AuthForgotPasswordPayload, FetchState } from '../../auth_types/auth_types';
+import { authApi } from '../../auth_api/auth_api';
 
 export function useAuthForgotPassword() {
   const [sent, setSent] = useState(false);
   const [sentTo, setSentTo] = useState('');
   
-  // Note: Replace this with actual authApi.forgotPassword later when implemented
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [fetchState, setFetchState] = useState<FetchState>('idle');
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   const {
     register,
@@ -21,18 +22,27 @@ export function useAuthForgotPassword() {
   });
 
   const onSubmit = async (data: AuthForgotPasswordPayload) => {
-    setIsSubmitting(true);
-    // Stub api call
-    await new Promise(res => setTimeout(res, 1100));
+    setFetchState('loading');
+    setErrorMessage(null);
+    
+    const response = await authApi.forgotPassword({ identity: data.identity });
+    
+    if (!response.success) {
+      setFetchState('error');
+      setErrorMessage(response.message);
+      return;
+    }
+
     setSentTo(data.identity);
     setSent(true);
-    setIsSubmitting(false);
+    setFetchState('success');
   };
 
   return {
     sent,
     sentTo,
-    isSubmitting,
+    fetchState,
+    errorMessage,
     register,
     handleSubmit: handleSubmit(onSubmit),
     errors,

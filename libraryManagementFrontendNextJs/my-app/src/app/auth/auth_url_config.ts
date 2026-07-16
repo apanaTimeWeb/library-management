@@ -10,4 +10,7 @@ export const AUTH_API_ROUTES = {
   LOGOUT: '/auth/logout',
   REFRESH: '/auth/refresh',
   SIGNUP: '/auth/signup',
+  ME: '/auth/me',
+  FORGOT_PASSWORD: '/auth/forgot-password',
+  RESET_PASSWORD: '/auth/reset-password',
 };

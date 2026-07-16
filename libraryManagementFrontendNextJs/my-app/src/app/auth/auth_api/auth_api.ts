@@ -68,17 +68,98 @@ export const authApi = {
   },
 
   signup: async (payload: any): Promise<ApiResponse<null>> => {
-    // Stub implementation as per original code that used timeout. 
-    // It should eventually POST to a tenant registration endpoint once available.
-    return new Promise(res => {
-      setTimeout(() => {
-        res({
-          success: true,
-          message: 'Account created successfully',
-          data: null,
-          statusCode: StatusCodes.CREATED
-        });
-      }, 1200);
-    });
+    try {
+      const backendPayload = {
+        phone: payload.phone,
+        name: payload.ownerName,
+        email: payload.email,
+        password: payload.password,
+        roleName: 'owner', // Default role for signup as per payload assumptions
+      };
+
+      await fetchApi(AUTH_API_ROUTES.SIGNUP, {
+        method: 'POST',
+        body: JSON.stringify(backendPayload),
+      });
+
+      return {
+        success: true,
+        message: 'Account created successfully',
+        data: null,
+        statusCode: StatusCodes.CREATED,
+      };
+    } catch (err: any) {
+      return {
+        success: false,
+        message: err.message || 'Error during signup',
+        data: null,
+        statusCode: StatusCodes.INTERNAL_SERVER_ERROR,
+      };
+    }
+  },
+
+  forgotPassword: async (payload: { identity: string }): Promise<ApiResponse<null>> => {
+    try {
+      await fetchApi(AUTH_API_ROUTES.FORGOT_PASSWORD, {
+        method: 'POST',
+        body: JSON.stringify({ phone: payload.identity }),
+      });
+      return {
+        success: true,
+        message: 'OTP sent successfully',
+        data: null,
+        statusCode: StatusCodes.OK,
+      };
+    } catch (err: any) {
+      return {
+        success: false,
+        message: err.message || 'Error sending OTP',
+        data: null,
+        statusCode: StatusCodes.INTERNAL_SERVER_ERROR,
+      };
+    }
+  },
+
+  resetPassword: async (payload: { otp: string; newPassword: string }): Promise<ApiResponse<null>> => {
+    try {
+      await fetchApi(AUTH_API_ROUTES.RESET_PASSWORD, {
+        method: 'POST',
+        body: JSON.stringify({ token: payload.otp, newPassword: payload.newPassword }),
+      });
+      return {
+        success: true,
+        message: 'Password reset successfully',
+        data: null,
+        statusCode: StatusCodes.OK,
+      };
+    } catch (err: any) {
+      return {
+        success: false,
+        message: err.message || 'Error resetting password',
+        data: null,
+        statusCode: StatusCodes.INTERNAL_SERVER_ERROR,
+      };
+    }
+  },
+
+  getMe: async (): Promise<ApiResponse<any>> => {
+    try {
+      const response = await fetchApi(AUTH_API_ROUTES.ME, {
+        method: 'GET',
+      });
+      return {
+        success: true,
+        message: 'User fetched successfully',
+        data: response.data ?? response,
+        statusCode: StatusCodes.OK,
+      };
+    } catch (err: any) {
+      return {
+        success: false,
+        message: err.message || 'Error fetching user',
+        data: null,
+        statusCode: StatusCodes.INTERNAL_SERVER_ERROR,
+      };
+    }
   },
 };

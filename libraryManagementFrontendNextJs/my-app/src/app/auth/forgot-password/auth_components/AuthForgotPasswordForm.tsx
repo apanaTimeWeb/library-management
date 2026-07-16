@@ -10,7 +10,8 @@ export function AuthForgotPasswordForm() {
   const {
     sent,
     sentTo,
-    isSubmitting,
+    fetchState,
+    errorMessage,
     register,
     handleSubmit,
     errors,
@@ -41,6 +42,9 @@ export function AuthForgotPasswordForm() {
                 <p className="text-sm text-[var(--text-secondary)] mt-2 leading-relaxed">
                   Enter your registered phone or email. We&apos;ll send an OTP to reset your password.
                 </p>
+                {errorMessage && (
+                  <div className="auth-error-banner mt-3">❌ {errorMessage}</div>
+                )}
               </div>
 
               <form onSubmit={handleSubmit} noValidate className="space-y-4">
@@ -62,10 +66,10 @@ export function AuthForgotPasswordForm() {
                 <button
                   id="send-otp-btn"
                   type="submit"
-                  disabled={isSubmitting}
+                  disabled={fetchState === 'loading'}
                   className="auth-btn-primary"
                 >
-                  {isSubmitting
+                  {fetchState === 'loading'
                     ? <><span className="auth-spinner" /> Sending OTP...</>
                     : <><Send size={15} /> Send OTP</>}
                 </button>
