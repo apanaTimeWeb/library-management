@@ -34,10 +34,10 @@ export function SuperadminSystemRoute({ children }: { children: React.ReactNode 
   const [mobileOpen, setMobileOpen] = useState(false);
   const [isVerified, setIsVerified] = useState(false);
 
-  const isSystemRoute = SYSTEM_ROUTES.some(r => pathname.startsWith(r));
+  const isSuperadminRoute = pathname.startsWith('/superadmin');
 
   useEffect(() => {
-    if (!isSystemRoute) {
+    if (!isSuperadminRoute) {
       setIsVerified(true);
       return;
     }
@@ -53,9 +53,9 @@ export function SuperadminSystemRoute({ children }: { children: React.ReactNode 
       return;
     }
     setIsVerified(true);
-  }, [pathname, isSystemRoute, router]);
+  }, [pathname, isSuperadminRoute, router]);
 
-  if (!isSystemRoute) return <>{children}</>;
+  if (!isSuperadminRoute) return <>{children}</>;
   if (!isVerified) return null;
 
   const sidebarWidth = collapsed ? 60 : 240;

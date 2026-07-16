@@ -32,6 +32,31 @@ export async function fetchApi<T = any>(endpoint: string, options: RequestInit =
   // ── MOCK FALLBACK HELPER ──────────────────────────────────────────────────
   const getMockFallback = (ep: string, opts: RequestInit) => {
     const normalizedEndpoint = ep.startsWith('/') ? ep : `/${ep}`;
+    
+    // Dynamic Mock Login based on phone number
+    if (normalizedEndpoint === '/auth/login') {
+      let role = 'superadmin';
+      try {
+        if (opts.body) {
+          const payload = typeof opts.body === 'string' ? JSON.parse(opts.body) : opts.body;
+          if (payload.phone === '1111111111') role = 'admin';
+          else if (payload.phone === '2222222222') role = 'manager';
+          else if (payload.phone === '3333333333') role = 'superadmin';
+        }
+      } catch (e) {
+        console.error("Error parsing mock login body", e);
+      }
+      return {
+        success: true,
+        message: 'Mock login successful',
+        data: {
+          token: 'mock-jwt-token-12345',
+          user: { id: 'mock-user-1', name: `Test ${role}`, email: `${role}@example.com`, role, permissions: ['ALL'] }
+        },
+        statusCode: 200
+      } as any;
+    }
+
     if (mockRegistry[normalizedEndpoint]) {
       console.warn(`[Mock Mode] Returning mock data for ${normalizedEndpoint}`);
       return { 
