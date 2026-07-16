@@ -124,9 +124,9 @@ export default function AdmissionForm() {
         expiryDate:    formatDateIN(expiryDate),
         branch:        'Main Branch',
         college:       data.college,
-        amountPaid:    data.amountPaid || 0,
+        amountPaid:    Number(data.amountPaid || 0),
         totalPayable,
-        discount,
+        discount:      Number(discount),
         paymentMode:   data.paymentMode,
         transactionId: data.transactionId,
       };
@@ -323,7 +323,7 @@ export default function AdmissionForm() {
                           onChange={e => {
                             setValue('plan', e.target.value);
                             const p = PLANS.find(p => p.value === e.target.value);
-                            if (p) setValue('amountPaid', p.amount - discount);
+                            if (p) setValue('amountPaid', String(p.amount - discount));
                           }}
                         >
                           {PLANS.map(p => <option key={p.value} value={p.value}>{p.label}</option>)}
