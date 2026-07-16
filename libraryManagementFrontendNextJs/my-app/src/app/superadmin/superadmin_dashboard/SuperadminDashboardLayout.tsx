@@ -1,6 +1,6 @@
 // src/app/superadmin/dashboard/Layout.tsx
 // Note: This wrapper is imported by pages inside superadmin/dashboard/
-import Sidebar from '@/app/superadmin/superadmin_dashboard/Sidebar';
+import Sidebar from '@/app/superadmin/superadmin_dashboard/SuperadminDashboardSidebar';
 import { SuperadminDashboardHeader as Header } from '@/app/superadmin/superadmin_dashboard/superadmin_dashboard_components/SuperadminDashboardHeader';
 
 export default function SuperAdminDashboardLayout({
