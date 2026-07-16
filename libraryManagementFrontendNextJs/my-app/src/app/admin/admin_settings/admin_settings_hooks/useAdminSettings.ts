@@ -12,6 +12,7 @@ export interface SettingsState {
   termsAndConditions: string;
 }
 
+// DATA FLOW: API → useAdminSettings.ts → AdminSettingsComponent
 export function useAdminSettings(initialSettings: SettingsState) {
   const [loading, setLoading] = useState(false);
   const [form, setForm] = useState<SettingsState>(initialSettings);

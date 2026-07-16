@@ -30,7 +30,7 @@ export default function ActionItemsList({ items }: { items: ActionItem[] }) {
                 size={16}
                 className={isDanger ? 'text-red-500 dark:text-red-400' : 'text-orange-500 dark:text-orange-400'}
               />
-              <span className="text-sm font-medium text-[var(--text-primary)]">
+              <span className="text-sm font-medium text-text-primary">
                 <span className={`font-bold mr-1 ${isDanger ? 'text-red-600 dark:text-red-400' : 'text-orange-600 dark:text-orange-400'}`}>
                   {item.count}
                 </span>{' '}

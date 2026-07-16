@@ -23,6 +23,7 @@ export interface FormState {
 
 const EMPTY_FORM: FormState = { name: '', address: '', city: '', phone: '', manager: '', seats: '' };
 
+// DATA FLOW: API → useAdminBranches.ts → AdminBranchesComponent
 export function useAdminBranches(initialBranches: Branch[]) {
   const [branches, setBranches] = useState<Branch[]>(initialBranches);
   const [showForm, setShowForm] = useState(false);

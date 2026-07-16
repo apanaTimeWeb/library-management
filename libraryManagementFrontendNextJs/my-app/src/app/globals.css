@@ -53,6 +53,28 @@ body {
   --color-outline-variant: #464554;
   --color-inverse-surface: #e3e0f1;
   --color-inverse-on-surface: #302f3b;
+
+  /* Theme mappings for custom tokens */
+  --color-page: var(--bg-page);
+  --color-card: var(--bg-card);
+  --color-sidebar: var(--bg-sidebar);
+  --color-header: var(--bg-header);
+  --color-input: var(--bg-input);
+  --color-border: var(--border);
+  --color-border-focus: var(--border-focus);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-disabled: var(--text-disabled);
+  --color-success: var(--success);
+  --color-success-bg: var(--success-bg);
+  --color-warning: var(--warning);
+  --color-warning-bg: var(--warning-bg);
+  --color-danger: var(--danger);
+  --color-danger-bg: var(--danger-bg);
+  --color-info: var(--info);
+  --color-info-bg: var(--info-bg);
+  --color-purple: var(--purple);
+  --color-purple-bg: var(--purple-bg);
 }
 
 .glass-panel {

@@ -11,9 +11,9 @@ interface ChartCardProps {
 
 export default function ChartCard({ title, badge, badgeColor, legend, children }: ChartCardProps) {
   return (
-    <Card className="border-[var(--border)] bg-[var(--bg-card)] shadow-none p-5 flex flex-col h-full">
+    <Card className="border-border bg-bg-card shadow-none p-5 flex flex-col h-full">
       <div className="flex items-center justify-between mb-5">
-        <h3 className="font-semibold text-base text-[var(--text-primary)]">{title}</h3>
+        <h3 className="font-semibold text-base text-text-primary">{title}</h3>
         <div className="flex items-center gap-4">
           {legend?.map(l => (
             <div key={l.label} className="flex items-center gap-1.5">

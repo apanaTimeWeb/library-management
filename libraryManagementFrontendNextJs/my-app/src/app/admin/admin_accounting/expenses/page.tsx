@@ -124,7 +124,7 @@ export default function ExpensesPage() {
           <h1 className="fin-page-title">Expense Ledger</h1>
           <p className="fin-page-subtitle">Track all library operational expenses.</p>
         </div>
-        <button className="fin-badge fin-badge--info cursor-pointer flex items-center gap-1 hover:border-[var(--mgr-primary)]" onClick={() => setShowAdd(true)}>
+        <button className="fin-badge fin-badge--info cursor-pointer flex items-center gap-1 hover:border-mgr-primary" onClick={() => setShowAdd(true)}>
           <Plus size={14} /> Add Expense
         </button>
       </div>
@@ -148,7 +148,7 @@ export default function ExpensesPage() {
         </div>
       </div>
 
-      <div className="fin-filter-bar flex items-center justify-between p-4 bg-[var(--mgr-bg-card)] border border-[var(--mgr-border)] rounded-lg">
+      <div className="fin-filter-bar flex items-center justify-between p-4 bg-mgr-bg-card border border-mgr-border rounded-lg">
         <div className="flex flex-col">
           <label className="fin-label text-xs mb-1">Filter by Category</label>
           <select className="fin-select w-48" value={catFilter} onChange={e => setCatFilter(e.target.value)}>
@@ -156,7 +156,7 @@ export default function ExpensesPage() {
             {CATEGORIES.map(c => <option key={c} value={c}>{c}</option>)}
           </select>
         </div>
-        <button className="fin-badge fin-badge--neutral cursor-pointer hover:border-[var(--mgr-primary)] flex items-center gap-1" onClick={() => router.push('/admin/admin_accounting/expenses/add')}>
+        <button className="fin-badge fin-badge--neutral cursor-pointer hover:border-mgr-primary flex items-center gap-1" onClick={() => router.push('/admin/admin_accounting/expenses/add')}>
           <TrendingUp size={14} /> View Categories
         </button>
       </div>
@@ -189,8 +189,8 @@ export default function ExpensesPage() {
 
       {showAdd && (
         <div className="fin-dialog-overlay">
-          <div className="fin-dialog bg-[var(--mgr-bg-card)]">
-            <h2 className="fin-dialog__title mb-4 font-bold text-[var(--mgr-text-primary)]">➕ Add Expense</h2>
+          <div className="fin-dialog bg-mgr-bg-card">
+            <h2 className="fin-dialog__title mb-4 font-bold text-mgr-text-primary">➕ Add Expense</h2>
             <button className="fin-dialog__close hover:text-red-500" onClick={() => setShowAdd(false)}>✕</button>
             <div className="space-y-4">
               <div><label className="fin-label text-sm font-semibold mb-1 block">Date <span className="fin-text-danger">*</span></label><input type="date" className="fin-input w-full" value={form.date} onChange={e => setForm(p=>({...p,date:e.target.value}))} /></div>
@@ -203,7 +203,7 @@ export default function ExpensesPage() {
               </select></div>
             </div>
             <div className="fin-dialog__footer mt-6 flex justify-end gap-3">
-              <button className="px-4 py-2 border border-[var(--mgr-border)] text-[var(--mgr-text-primary)] rounded hover:bg-[var(--mgr-border)] transition-colors" onClick={() => setShowAdd(false)}>Cancel</button>
+              <button className="px-4 py-2 border border-mgr-border text-mgr-text-primary rounded hover:bg-mgr-border transition-colors" onClick={() => setShowAdd(false)}>Cancel</button>
               <button className="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 transition-colors" onClick={handleAdd}>Save Expense</button>
             </div>
           </div>

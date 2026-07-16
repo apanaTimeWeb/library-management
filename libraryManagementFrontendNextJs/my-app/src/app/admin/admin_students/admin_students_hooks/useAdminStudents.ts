@@ -1,6 +1,7 @@
 import { useState, useMemo } from 'react';
 import { useAdmin } from '@/app/admin/admin_context/AdminContext';
 
+// DATA FLOW: API → useAdminStudents.ts → AdminStudentsComponent
 export function useAdminStudents(initialStudents: any[]) {
   const [search, setSearch] = useState('');
   const { selectedBranch } = useAdmin();

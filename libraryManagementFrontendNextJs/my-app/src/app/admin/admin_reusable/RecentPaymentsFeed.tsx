@@ -24,16 +24,16 @@ export interface Payment {
 function NameCell({ value, data }: { value: string; data: Payment }) {
   return (
     <div className="flex items-center gap-3 h-full">
-      <div className="flex items-center justify-center h-7 w-7 rounded-full bg-[var(--primary)] text-white text-[10px] font-bold">
+      <div className="flex items-center justify-center h-7 w-7 rounded-full bg-primary text-white text-[10px] font-bold">
         {data.initials}
       </div>
-      <span className="font-semibold text-sm text-[var(--text-primary)]">{value}</span>
+      <span className="font-semibold text-sm text-text-primary">{value}</span>
     </div>
   );
 }
 
 function AmountCell({ value }: { value: string }) {
-  return <span className="font-bold text-sm text-[var(--text-primary)]">{value}</span>;
+  return <span className="font-bold text-sm text-text-primary">{value}</span>;
 }
 
 function ModeCell({ value }: { value: string }) {
@@ -90,7 +90,7 @@ export default function RecentPaymentsFeed({ payments }: { payments: Payment[] }
   }, [router]);
 
   return (
-    <Card className="overflow-hidden border-[var(--border)] bg-[var(--bg-card)] shadow-none flex flex-col h-full">
+    <Card className="overflow-hidden border-border bg-bg-card shadow-none flex flex-col h-full">
       <CardHeader className="pb-4 flex flex-row items-center justify-between space-y-0">
         <div>
           <CardTitle className="text-base">Recent Payments</CardTitle>
@@ -100,7 +100,7 @@ export default function RecentPaymentsFeed({ payments }: { payments: Payment[] }
         </div>
         <Link
           href="/admin/admin_reports"
-          className="flex items-center gap-1 text-xs font-medium text-[var(--primary)] hover:underline"
+          className="flex items-center gap-1 text-xs font-medium text-primary hover:underline"
         >
           View Report <ExternalLink size={12} />
         </Link>

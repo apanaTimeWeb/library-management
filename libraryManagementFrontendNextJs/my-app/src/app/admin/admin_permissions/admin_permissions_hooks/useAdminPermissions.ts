@@ -14,6 +14,7 @@ export interface Permission {
 
 export const ROLES: Role[] = ['Manager'];
 
+// DATA FLOW: API → useAdminPermissions.ts → AdminPermissionsComponent
 export function useAdminPermissions(initialPermissions: Permission[]) {
   const [perms, setPerms] = useState<Permission[]>(initialPermissions);
 

@@ -68,11 +68,11 @@ export function AdminReportsView({ initialData }: AdminReportsViewProps) {
 
       <div className="space-y-6 pb-10">
         {/* Header */}
-        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-4 border-b border-[var(--border)] pb-5">
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-4 border-b border-border pb-5">
           <div>
-            <p className="text-xs text-[var(--text-secondary)] mb-1 tracking-widest uppercase font-medium">Smart Library 360 › Admin › Reports</p>
-            <h1 className="text-2xl font-bold tracking-tight text-[var(--text-primary)]">Analytics & Reports</h1>
-            <p className="text-sm text-[var(--text-secondary)] mt-1">Financial health and operational overview across branches</p>
+            <p className="text-xs text-text-secondary mb-1 tracking-widest uppercase font-medium">Smart Library 360 › Admin › Reports</p>
+            <h1 className="text-2xl font-bold tracking-tight text-text-primary">Analytics & Reports</h1>
+            <p className="text-sm text-text-secondary mt-1">Financial health and operational overview across branches</p>
           </div>
 
           <div className="flex flex-wrap items-center gap-3">
@@ -137,16 +137,16 @@ export function AdminReportsView({ initialData }: AdminReportsViewProps) {
                 <div className="w-7 h-7 rounded-lg flex items-center justify-center" style={{ background: 'var(--icon-bg-primary)' }}>
                   <BarChart2 size={14} style={{ color: 'var(--primary)' }} />
                 </div>
-                <h3 className="font-semibold text-sm text-[var(--text-primary)]">Income vs Expenses</h3>
+                <h3 className="font-semibold text-sm text-text-primary">Income vs Expenses</h3>
               </div>
               <div className="flex items-center gap-4">
                 <div className="flex items-center gap-1.5">
                   <span className="w-2.5 h-2.5 rounded-full" style={{ background: 'var(--chart-indigo)' }} />
-                  <span className="text-xs text-[var(--text-secondary)]">Income</span>
+                  <span className="text-xs text-text-secondary">Income</span>
                 </div>
                 <div className="flex items-center gap-1.5">
                   <span className="w-2.5 h-2.5 rounded-full" style={{ background: 'var(--chart-red)' }} />
-                  <span className="text-xs text-[var(--text-secondary)]">Expense</span>
+                  <span className="text-xs text-text-secondary">Expense</span>
                 </div>
               </div>
             </div>
@@ -176,7 +176,7 @@ export function AdminReportsView({ initialData }: AdminReportsViewProps) {
               <div className="w-7 h-7 rounded-lg flex items-center justify-center" style={{ background: 'var(--icon-bg-warning)' }}>
                 <PieIcon size={14} style={{ color: 'var(--warning)' }} />
               </div>
-              <h3 className="font-semibold text-sm text-[var(--text-primary)]">Shift-wise Occupancy %</h3>
+              <h3 className="font-semibold text-sm text-text-primary">Shift-wise Occupancy %</h3>
             </div>
             <ResponsiveContainer width="100%" height={240}>
               <PieChart>
@@ -213,7 +213,7 @@ export function AdminReportsView({ initialData }: AdminReportsViewProps) {
                 <div className="w-7 h-7 rounded-lg flex items-center justify-center" style={{ background: 'var(--icon-bg-success)' }}>
                   <Activity size={14} style={{ color: 'var(--success)' }} />
                 </div>
-                <h3 className="font-semibold text-sm text-[var(--text-primary)]">Monthly Revenue Trend</h3>
+                <h3 className="font-semibold text-sm text-text-primary">Monthly Revenue Trend</h3>
               </div>
               <span className="text-xs font-bold px-2.5 py-0.5 rounded-full" style={{ background: 'var(--success-bg)', color: 'var(--success)' }}>
                 {rangeOptions.find(o => o.key === range)?.label}
@@ -259,16 +259,16 @@ export function AdminReportsView({ initialData }: AdminReportsViewProps) {
                 <div className="w-7 h-7 rounded-lg flex items-center justify-center" style={{ background: 'var(--icon-bg-purple)' }}>
                   <Users size={14} style={{ color: 'var(--purple)' }} />
                 </div>
-                <h3 className="font-semibold text-sm text-[var(--text-primary)]">Student Growth</h3>
+                <h3 className="font-semibold text-sm text-text-primary">Student Growth</h3>
               </div>
               <div className="flex items-center gap-4">
                 <div className="flex items-center gap-1.5">
                   <span className="w-2.5 h-2.5 rounded-full" style={{ background: 'var(--chart-indigo)' }} />
-                  <span className="text-xs text-[var(--text-secondary)]">Joined</span>
+                  <span className="text-xs text-text-secondary">Joined</span>
                 </div>
                 <div className="flex items-center gap-1.5">
                   <span className="w-2.5 h-2.5 rounded-full" style={{ background: 'var(--chart-red)' }} />
-                  <span className="text-xs text-[var(--text-secondary)]">Exited</span>
+                  <span className="text-xs text-text-secondary">Exited</span>
                 </div>
               </div>
             </div>

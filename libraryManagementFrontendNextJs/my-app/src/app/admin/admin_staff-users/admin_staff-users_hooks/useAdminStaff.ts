@@ -26,6 +26,7 @@ export interface FormState {
 
 const EMPTY: FormState = { firstName: '', lastName: '', email: '', phone: '', roleId: 'role-staff-id', branchId: 'main-branch-id' };
 
+// DATA FLOW: API → useAdminStaff.ts → AdminStaffComponent
 export function useAdminStaff(initialStaff: StaffMember[]) {
   const [staff, setStaff] = useState<StaffMember[]>(initialStaff);
   const [showForm, setShowForm] = useState(false);

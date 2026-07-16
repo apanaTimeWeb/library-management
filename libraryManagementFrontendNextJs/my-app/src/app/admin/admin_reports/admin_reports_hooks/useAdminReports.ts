@@ -9,6 +9,7 @@ export const RANGE_OPTIONS: { label: string; key: Range }[] = [
   { label: 'This Year',     key: 'thisYear'     },
 ];
 
+// DATA FLOW: API → useAdminReports.ts → AdminReportsComponent
 export function useAdminReports(initialData: any) {
   const [range, setRange] = useState<Range>('last3Months');
   const [branch, setBranch] = useState('All Branches');

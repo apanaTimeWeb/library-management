@@ -84,7 +84,7 @@ export default async function AdminDashboardPage() {
         </div>
 
         <div className="lg:col-span-5 xl:col-span-4 flex flex-col h-full">
-          <Card className="flex flex-col h-full border-[var(--border)] bg-[var(--bg-card)] shadow-none">
+          <Card className="flex flex-col h-full border-border bg-bg-card shadow-none">
             <CardHeader className="pb-3 border-b">
               <CardTitle className="text-base">Action Items</CardTitle>
               <CardDescription className="text-xs">
@@ -106,7 +106,7 @@ export default async function AdminDashboardPage() {
             </div>
 
             <CardFooter className="pt-2 pb-4 border-t px-4">
-              <Button asChild variant="ghost" className="w-full text-xs text-muted-foreground hover:text-[var(--text-primary)]">
+              <Button asChild variant="ghost" className="w-full text-xs text-muted-foreground hover:text-text-primary">
                 <Link href="/admin/admin_audit-logs">
                   View All Activities <ChevronRight size={13} className="ml-1" />
                 </Link>
