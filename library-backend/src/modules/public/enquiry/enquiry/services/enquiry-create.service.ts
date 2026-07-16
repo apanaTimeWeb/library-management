@@ -2,19 +2,19 @@ import { Injectable, Logger } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Enquiry } from '@/core/entities/enquiry.entity';
-import { CreateEnquiryDto } from '../dto/create-enquiry.dto';
+import { EnquiryCreateDto } from '../dto/enquiry-create.dto';
 
 @Injectable()
-export class CreateEnquiryService {
-  private readonly logger = new Logger(CreateEnquiryService.name);
+export class EnquiryCreateService {
+  private readonly logger = new Logger(EnquiryCreateService.name);
 
   constructor(
     @InjectRepository(Enquiry)
     private readonly enquiryRepository: Repository<Enquiry>,
   ) {}
 
-  async create(createEnquiryDto: CreateEnquiryDto): Promise<Enquiry> {
-    const { message, ...enquiryData } = createEnquiryDto;
+  async create(enquiryCreateDto: EnquiryCreateDto): Promise<Enquiry> {
+    const { message, ...enquiryData } = enquiryCreateDto;
 
     // Store message in followUps array if it exists
     const followUps = message

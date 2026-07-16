@@ -1,26 +1,23 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { CreateEnquiryService } from './create-enquiry.service';
 import { getRepositoryToken } from '@nestjs/typeorm';
+import { EnquiryCreateService } from './enquiry-create.service';
 import { Enquiry } from '@/core/entities/enquiry.entity';
 
-describe('CreateEnquiryService', () => {
-  let service: CreateEnquiryService;
+describe('EnquiryCreateService', () => {
+  let service: EnquiryCreateService;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       providers: [
-        CreateEnquiryService,
+        EnquiryCreateService,
         {
           provide: getRepositoryToken(Enquiry),
-          useValue: {
-            create: jest.fn(),
-            save: jest.fn(),
-          },
-        },
+          useValue: { create: jest.fn(), save: jest.fn() },
+        }
       ],
     }).compile();
 
-    service = module.get<CreateEnquiryService>(CreateEnquiryService);
+    service = module.get<EnquiryCreateService>(EnquiryCreateService);
   });
 
   it('should be defined', () => {
