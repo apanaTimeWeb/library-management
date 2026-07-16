@@ -1,4 +1,5 @@
 'use client';
+import { AdminRecord } from '@/app/admin/admin_reusable/gridTheme';
 
 // RESPONSIBILITY: Entry page for the admin_finance module.
 // DATA FLOW: Next.js Router -> Page -> Components
