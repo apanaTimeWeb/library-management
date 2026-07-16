@@ -3,7 +3,7 @@ import React, { useMemo } from 'react';
 import { AgGridReact } from 'ag-grid-react';
 import type { ICellRendererParams } from 'ag-grid-community';
 import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community';
-import { gridTheme } from '@/app/superadmin/superadmin_shared_components/superadmin_gridTheme';
+import { superadmin_gridTheme } from '@/app/superadmin/superadmin_shared_components/superadmin_gridTheme';
 import { CheckCircle, ClipboardList } from 'lucide-react';
 import type { SuperadminDailySettlementEntry } from '@/app/superadmin/superadmin_accounting/daily-settlement/superadmin_daily_settlement_types/SuperadminDailySettlementTypes';
 
@@ -122,7 +122,7 @@ export function SuperadminDailySettlementGrid({ entries, onSettle }: Props) {
       ) : (
         <div style={{ height: 350 }}>
           <AgGridReact
-            theme={gridTheme}
+            theme={superadmin_gridTheme}
             rowData={entries}
             columnDefs={colDefs}
             rowHeight={56}

@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { ChevronRight, Eye, X } from 'lucide-react';
 import { AgGridReact } from 'ag-grid-react';
 import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community';
-import { gridTheme } from '@/app/superadmin/superadmin_shared_components/superadmin_gridTheme';
+import { superadmin_gridTheme } from '@/app/superadmin/superadmin_shared_components/superadmin_gridTheme';
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
@@ -179,7 +179,7 @@ export default function WhatsappLogsPage() {
         ) : (
           <div className="mgr-table-wrapper h-[450px]">
             <AgGridReact
-              theme={gridTheme}
+              theme={superadmin_gridTheme}
               rowData={filtered}
               columnDefs={colDefs as any}
               rowHeight={56}

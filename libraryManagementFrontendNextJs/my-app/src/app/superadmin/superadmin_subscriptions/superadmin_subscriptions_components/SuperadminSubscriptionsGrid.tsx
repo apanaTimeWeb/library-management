@@ -3,7 +3,7 @@ import React, { useRef, useCallback, useMemo } from 'react';
 import { AgGridReact } from 'ag-grid-react';
 import type { ICellRendererParams, GridReadyEvent } from 'ag-grid-community';
 import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community';
-import { gridTheme } from '@/app/superadmin/superadmin_shared_components/superadmin_gridTheme';
+import { superadmin_gridTheme } from '@/app/superadmin/superadmin_shared_components/superadmin_gridTheme';
 import type { SuperadminSubscription } from '@/app/superadmin/superadmin_subscriptions/superadmin_subscriptions_types/SuperadminSubscriptionsTypes';
 
 ModuleRegistry.registerModules([AllCommunityModule]);
@@ -81,7 +81,7 @@ export function SuperadminSubscriptionsGrid({ subs, filteredSubs, filter, setFil
       <div style={{ height: 380 }}>
         <AgGridReact
           ref={gridRef}
-          theme={gridTheme}
+          theme={superadmin_gridTheme}
           rowData={filteredSubs}
           columnDefs={colDefs}
           rowHeight={56}

@@ -53,12 +53,12 @@ export default function GapFillingPage() {
             <div className="space-y-2 w-44">
               <SuperadminLabel htmlFor="gap-shift-select">Shift</SuperadminLabel>
               <SuperadminSelect value={shift} onValueChange={setShift}>
-                <SelectTrigger id="gap-shift-select"><SelectValue placeholder="All shifts" /></SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="all">All Shifts</SelectItem>
-                  <SelectItem value="morning">Morning (6AM–12PM)</SelectItem>
-                  <SelectItem value="afternoon">Afternoon (12PM–6PM)</SelectItem>
-                  <SelectItem value="evening">Evening (6PM–10PM)</SelectItem>
+                <SuperadminSelectTrigger id="gap-shift-select"><SuperadminSelectValue placeholder="All shifts" /></SelectTrigger>
+                <SuperadminSelectContent>
+                  <SuperadminSelectItem value="all">All Shifts</SelectItem>
+                  <SuperadminSelectItem value="morning">Morning (6AM–12PM)</SelectItem>
+                  <SuperadminSelectItem value="afternoon">Afternoon (12PM–6PM)</SelectItem>
+                  <SuperadminSelectItem value="evening">Evening (6PM–10PM)</SelectItem>
                 </SelectContent>
               </SuperadminSelect>
             </div>

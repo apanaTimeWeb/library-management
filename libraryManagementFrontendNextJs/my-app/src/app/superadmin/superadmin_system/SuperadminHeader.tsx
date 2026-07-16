@@ -31,14 +31,14 @@ export default function SuperadminHeader({ sidebarWidth, onMobileOpen }: HeaderP
         <div className="flex items-center gap-2">
           <Building2 size={15} className="text-muted-foreground hidden sm:block" />
           <SuperadminSelect value={selectedBranch} onValueChange={setSelectedBranch}>
-            <SelectTrigger className="w-[160px] h-8 text-sm font-medium border-none shadow-none bg-transparent hover:bg-muted/50 focus:ring-0">
-              <SelectValue placeholder="Select Branch" />
+            <SuperadminSelectTrigger className="w-[160px] h-8 text-sm font-medium border-none shadow-none bg-transparent hover:bg-muted/50 focus:ring-0">
+              <SuperadminSelectValue placeholder="Select Branch" />
             </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="Main Branch">Main Branch</SelectItem>
-              <SelectItem value="Branch 2">Branch 2</SelectItem>
-              <SelectItem value="Kothrud Center">Kothrud Center</SelectItem>
-              <SelectItem value="Nashik Branch">Nashik Branch</SelectItem>
+            <SuperadminSelectContent>
+              <SuperadminSelectItem value="Main Branch">Main Branch</SelectItem>
+              <SuperadminSelectItem value="Branch 2">Branch 2</SelectItem>
+              <SuperadminSelectItem value="Kothrud Center">Kothrud Center</SelectItem>
+              <SuperadminSelectItem value="Nashik Branch">Nashik Branch</SelectItem>
             </SelectContent>
           </SuperadminSelect>
         </div>

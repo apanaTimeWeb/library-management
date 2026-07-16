@@ -50,7 +50,7 @@ export function SuperadminReportsCharts({ data }: Props) {
           <BarChart data={data.revenueExpense} barCategoryGap="30%">
             <CartesianGrid vertical={false} stroke={GRID_COLOR} strokeOpacity={0.4} />
             <XAxis dataKey="month" tick={AXIS_TICK} axisLine={false} tickLine={false} />
-            <YAxis tick={AXIS_TICK} axisLine={false} tickLine={false} tickFormatter={v => `₹${(Number(v: any) / 1000).toFixed(0)}k`} />
+            <YAxis tick={AXIS_TICK} axisLine={false} tickLine={false} tickFormatter={v => `₹${(Number(v) / 1000).toFixed(0)}k`} />
             <Tooltip contentStyle={TOOLTIP_CONTENT_STYLE} formatter={rupeeFormatter} />
             <Legend wrapperStyle={{ fontSize: 12, color: 'var(--text-secondary)' }} />
             <Bar dataKey="Revenue"  fill="var(--primary)" radius={[4,4,0,0]} />
@@ -80,7 +80,7 @@ export function SuperadminReportsCharts({ data }: Props) {
           <LineChart data={data.revenueTrend}>
             <CartesianGrid vertical={false} stroke={GRID_COLOR} strokeOpacity={0.4} />
             <XAxis dataKey="month" tick={AXIS_TICK} axisLine={false} tickLine={false} />
-            <YAxis tick={AXIS_TICK} axisLine={false} tickLine={false} tickFormatter={v => `₹${(Number(v: any) / 1000).toFixed(0)}k`} />
+            <YAxis tick={AXIS_TICK} axisLine={false} tickLine={false} tickFormatter={v => `₹${(Number(v) / 1000).toFixed(0)}k`} />
             <Tooltip contentStyle={TOOLTIP_CONTENT_STYLE} formatter={rupeeFormatter} />
             <Line type="monotone" dataKey="Revenue" stroke="var(--success)" strokeWidth={2} dot={{ fill: 'var(--success)', r: 4 }} activeDot={{ r: 7 }} />
           </LineChart>

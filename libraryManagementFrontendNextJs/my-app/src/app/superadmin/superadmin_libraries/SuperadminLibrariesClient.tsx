@@ -1,6 +1,6 @@
 'use client';
 import React, { useState } from 'react';
-import { useSuperadminLibraries } from '@/app/superadmin/superadmin_libraries/superadmin_libraries_hooks/superadmin_useSuperadminLibraries';
+import { superadmin_useSuperadminLibraries } from '@/app/superadmin/superadmin_libraries/superadmin_libraries_hooks/superadmin_useSuperadminLibraries';
 import { SuperadminLibrariesHeader } from '@/app/superadmin/superadmin_libraries/superadmin_libraries_components/SuperadminLibrariesHeader';
 import { SuperadminLibrariesGrid } from '@/app/superadmin/superadmin_libraries/superadmin_libraries_components/SuperadminLibrariesGrid';
 import { SuperadminLibrariesPanel } from '@/app/superadmin/superadmin_libraries/superadmin_libraries_components/SuperadminLibrariesPanel';
@@ -8,7 +8,7 @@ import type { SuperadminLibrary, SuperadminLibraryPanelMode } from '@/app/supera
 import { SUPERADMIN_LIBRARIES_TOASTS } from '@/app/superadmin/superadmin_libraries/superadmin_libraries_constants/SuperadminLibrariesConstants';
 
 export function SuperadminLibrariesClient() {
-  const { libraries, loading, updateLibrary, toggleStatus } = useSuperadminLibraries();
+  const { libraries, loading, updateLibrary, toggleStatus } = superadmin_useSuperadminLibraries();
   const [selected, setSelected] = useState<SuperadminLibrary | null>(null);
   const [panelMode, setPanelMode] = useState<SuperadminLibraryPanelMode>('view');
   const [toast, setToast] = useState('');

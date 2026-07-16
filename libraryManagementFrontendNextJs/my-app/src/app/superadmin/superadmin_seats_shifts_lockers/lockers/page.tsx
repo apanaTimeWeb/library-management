@@ -3,7 +3,7 @@ import { useState, useMemo } from 'react';
 import { Plus, ChevronDown, Search, UserPlus, Unlock, Wrench } from 'lucide-react';
 import { AgGridReact } from 'ag-grid-react';
 import { AllCommunityModule, ModuleRegistry, type ColDef } from 'ag-grid-community';
-import { gridTheme } from '@/app/superadmin/superadmin_seats_shifts_lockers/superadmin_seats_shared_components/superadmin_gridTheme';
+import { superadmin_gridTheme } from '@/app/superadmin/superadmin_seats_shifts_lockers/superadmin_seats_shared_components/superadmin_gridTheme';
 import toast from 'react-hot-toast';
 
 ModuleRegistry.registerModules([AllCommunityModule]);
@@ -173,7 +173,7 @@ export default function LockersPage() {
           </div>
         ) : (
           <div className="ss-table-wrapper ss-grid-h-400">
-            <AgGridReact theme={gridTheme} rowData={filtered} columnDefs={colDefs as any} rowHeight={52} headerHeight={40} suppressMovableColumns suppressCellFocus defaultColDef={{ resizable: false, sortable: true }} />
+            <AgGridReact theme={superadmin_gridTheme} rowData={filtered} columnDefs={colDefs as any} rowHeight={52} headerHeight={40} suppressMovableColumns suppressCellFocus defaultColDef={{ resizable: false, sortable: true }} />
           </div>
         )}
       </div>

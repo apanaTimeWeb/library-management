@@ -48,8 +48,8 @@ export default function ShiftManagementPage() {
     if (!form.name.trim())      e.name      = 'Shift name is required';
     if (!form.startTime)        e.startTime = 'Start time is required';
     if (!form.endTime)          e.endTime   = 'End time is required';
-    setErrors(e: any);
-    return Object.keys(e: any).length === 0;
+    setErrors(e);
+    return Object.keys(e).length === 0;
   }
 
   function handleSave() {

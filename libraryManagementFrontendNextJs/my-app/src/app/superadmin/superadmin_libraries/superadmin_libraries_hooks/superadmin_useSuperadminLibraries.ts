@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback } from 'react';
 import type { SuperadminLibrary } from '@/app/superadmin/superadmin_libraries/superadmin_libraries_types/SuperadminLibrariesTypes';
 import { SUPERADMIN_LIBRARIES_MOCK_DATA } from '@/app/superadmin/superadmin_libraries/superadmin_libraries_constants/SuperadminLibrariesConstants';
 
-// DATA FLOW: API → useSuperadminLibraries.ts → SuperadminLibrariesComponent
+// DATA FLOW: API → superadmin_useSuperadminLibraries.ts → SuperadminLibrariesComponent
 export function superadmin_useSuperadminLibraries() {
   const [libraries, setLibraries] = useState<SuperadminLibrary[]>([]);
   const [loading, setLoading] = useState(true);

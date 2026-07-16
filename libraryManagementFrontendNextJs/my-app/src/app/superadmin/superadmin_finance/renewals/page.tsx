@@ -8,7 +8,7 @@ import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community';
 import toast from 'react-hot-toast';
 import { formatCurrency } from '@/app/superadmin/superadmin_finance/superadmin_finance_utils/superadmin_format';
 import { RefreshCw, Send } from 'lucide-react';
-import { gridTheme } from '@/app/superadmin/superadmin_finance/superadmin_finance_shared_components/superadmin_gridTheme';
+import { superadmin_gridTheme } from '@/app/superadmin/superadmin_finance/superadmin_finance_shared_components/superadmin_gridTheme';
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
@@ -175,7 +175,7 @@ export default function Renewals() {
       <div className="fin-card p-4">
         <div className="mgr-table-wrapper h-[450px]">
           <AgGridReact
-            theme={gridTheme}
+            theme={superadmin_gridTheme}
             rowData={visible}
             columnDefs={colDefs as any}
             rowHeight={60}

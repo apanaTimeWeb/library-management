@@ -44,7 +44,7 @@ const MODE_BADGE: Record<string, string> = {
   bank: 'fin-badge fin-badge--bank',
 };
 
-import { gridTheme } from '@/app/superadmin/superadmin_finance/superadmin_finance_shared_components/superadmin_gridTheme';
+import { superadmin_gridTheme } from '@/app/superadmin/superadmin_finance/superadmin_finance_shared_components/superadmin_gridTheme';
 export default function Payments() {
   const router = useRouter();
   const [modeFilter, setModeFilter] = useState('all');
@@ -237,7 +237,7 @@ export default function Payments() {
       <div className="fin-card p-4">
         <div className="mgr-table-wrapper h-[500px]">
           <AgGridReact
-            theme={gridTheme}
+            theme={superadmin_gridTheme}
             rowData={visible}
             columnDefs={colDefs as any}
             rowHeight={56}

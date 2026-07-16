@@ -127,13 +127,13 @@ export default function SmartIdPage() {
         </CardHeader>
         <CardContent>
           <SuperadminDialog>
-            <DialogTrigger asChild>
+            <SuperadminDialogTrigger asChild>
               <SuperadminButton id="force-regenerate-btn" variant="destructive">🔢 Force Regenerate Sequence</SuperadminButton>
             </DialogTrigger>
-            <DialogContent>
-              <DialogHeader>
-                <DialogTitle>Confirm Force Regenerate</DialogTitle>
-                <DialogDescription>
+            <SuperadminDialogContent>
+              <SuperadminDialogHeader>
+                <SuperadminDialogTitle>Confirm Force Regenerate</DialogTitle>
+                <SuperadminDialogDescription>
                   This will compact all IDs and reassign gap numbers. This action cannot be undone easily.
                   Are you sure?
                 </DialogDescription>
@@ -142,10 +142,10 @@ export default function SmartIdPage() {
                 ⚠️ Warning: All student ID references will be updated. Ensure backups are taken first.
               </div>
               <div className="flex justify-end gap-3 mt-4">
-                <DialogClose asChild>
+                <SuperadminDialogClose asChild>
                   <SuperadminButton variant="ghost" size="sm">Cancel</SuperadminButton>
                 </DialogClose>
-                <DialogClose asChild>
+                <SuperadminDialogClose asChild>
                   <SuperadminButton id="confirm-regenerate-btn" variant="destructive" size="sm" onClick={handleRegenerate}>
                     Yes, Regenerate
                   </SuperadminButton>

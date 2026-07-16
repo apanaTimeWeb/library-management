@@ -17,7 +17,7 @@ export function superadmin_useSuperadminExpenses() {
 
   const visibleExpenses = useMemo(() => {
     if (catFilter === 'all') return expenses;
-    return expenses.filter(e: any) => e.category === catFilter);
+    return expenses.filter((e: any) => e.category === catFilter);
   }, [expenses, catFilter]);
 
   const handleAdd = async (newExp: Omit<SuperadminExpense, 'id'>) => {
@@ -31,7 +31,7 @@ export function superadmin_useSuperadminExpenses() {
   const handleDelete = async (id: number) => {
     // Simulate network delay
     await new Promise(res => setTimeout(res, 800));
-    setExpenses(prev => prev.filter(e: any) => e.id !== id));
+    setExpenses(prev => prev.filter((e: any) => e.id !== id));
     showToast('✅ Expense deleted');
   };
 

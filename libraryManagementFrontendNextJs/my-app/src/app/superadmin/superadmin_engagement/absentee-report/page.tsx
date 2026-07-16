@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { AgGridReact } from 'ag-grid-react';
 import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community';
 import { ChevronRight, Send, Mail, Phone } from 'lucide-react';
-import { gridTheme } from '@/app/superadmin/superadmin_shared_components/superadmin_gridTheme';
+import { superadmin_gridTheme } from '@/app/superadmin/superadmin_shared_components/superadmin_gridTheme';
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
@@ -217,7 +217,7 @@ export default function AbsenteeReportPage() {
         ) : (
           <div className="mgr-table-wrapper h-[450px]">
             <AgGridReact
-              theme={gridTheme}
+              theme={superadmin_gridTheme}
               rowData={filtered}
               columnDefs={colDefs as any}
               rowHeight={64}

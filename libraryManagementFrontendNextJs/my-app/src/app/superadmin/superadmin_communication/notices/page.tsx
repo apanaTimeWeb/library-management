@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { ChevronRight, Plus, X, Edit2, Trash2, Send } from 'lucide-react';
 import { AgGridReact } from 'ag-grid-react';
 import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community';
-import { gridTheme } from '@/app/superadmin/superadmin_shared_components/superadmin_gridTheme';
+import { superadmin_gridTheme } from '@/app/superadmin/superadmin_shared_components/superadmin_gridTheme';
 import { fetchApi } from '@/lib/api';
 
 ModuleRegistry.registerModules([AllCommunityModule]);
@@ -196,7 +196,7 @@ export default function NoticesPage() {
         ) : (
           <div className="mgr-table-wrapper h-[500px]">
             <AgGridReact
-              theme={gridTheme}
+              theme={superadmin_gridTheme}
               rowData={notices}
               columnDefs={colDefs as any}
               rowHeight={56}

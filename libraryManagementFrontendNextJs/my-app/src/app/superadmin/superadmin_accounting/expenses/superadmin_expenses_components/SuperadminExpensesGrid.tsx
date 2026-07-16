@@ -3,7 +3,7 @@ import React, { useMemo } from 'react';
 import { AgGridReact } from 'ag-grid-react';
 import type { ICellRendererParams } from 'ag-grid-community';
 import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community';
-import { gridTheme } from '@/app/superadmin/superadmin_shared_components/superadmin_gridTheme';
+import { superadmin_gridTheme } from '@/app/superadmin/superadmin_shared_components/superadmin_gridTheme';
 import { Trash2, FileWarning } from 'lucide-react';
 import type { SuperadminExpense } from '@/app/superadmin/superadmin_accounting/expenses/superadmin_expenses_types/SuperadminExpensesTypes';
 
@@ -110,7 +110,7 @@ export function SuperadminExpensesGrid({ expenses, onDelete }: Props) {
       ) : (
         <div style={{ height: 450 }}>
           <AgGridReact
-            theme={gridTheme}
+            theme={superadmin_gridTheme}
             rowData={expenses}
             columnDefs={colDefs}
             rowHeight={56}

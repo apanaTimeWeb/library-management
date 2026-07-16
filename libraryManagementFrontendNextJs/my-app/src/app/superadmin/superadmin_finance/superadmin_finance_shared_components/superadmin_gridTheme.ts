@@ -1,4 +1,4 @@
-// (finance)/reusable/gridTheme.ts
+// (finance)/reusable/superadmin_gridTheme.ts
 // ⚠️ NO hardcoded values here — all values come from finance.css via CSS custom properties
 // Per features.md: "Zero JS files need to be touched" when changing AG Grid colors
 import { themeQuartz } from 'ag-grid-community';

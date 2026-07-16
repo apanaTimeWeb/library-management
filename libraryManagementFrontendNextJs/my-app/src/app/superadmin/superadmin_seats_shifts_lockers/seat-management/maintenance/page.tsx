@@ -3,7 +3,7 @@ import { useState, useMemo } from 'react';
 import { ChevronDown, AlertTriangle, Plus } from 'lucide-react';
 import { AgGridReact } from 'ag-grid-react';
 import { AllCommunityModule, ModuleRegistry, type ColDef } from 'ag-grid-community';
-import { gridTheme } from '@/app/superadmin/superadmin_seats_shifts_lockers/superadmin_seats_shared_components/superadmin_gridTheme';
+import { superadmin_gridTheme } from '@/app/superadmin/superadmin_seats_shifts_lockers/superadmin_seats_shared_components/superadmin_gridTheme';
 import toast from 'react-hot-toast';
 
 ModuleRegistry.registerModules([AllCommunityModule]);
@@ -73,8 +73,8 @@ export default function SeatMaintenancePage() {
     if (!form.date) e.date = 'Date is required';
     if (!form.remark.trim()) e.remark = 'Remark is required';
     if (!form.newStatus) e.newStatus = 'Status is required';
-    setErrors(e: any);
-    return Object.keys(e: any).length === 0;
+    setErrors(e);
+    return Object.keys(e).length === 0;
   }
 
   function handleAddEntry() {
@@ -143,7 +143,7 @@ export default function SeatMaintenancePage() {
           </div>
         ) : (
           <div className="ss-table-wrapper ss-grid-h-320">
-            <AgGridReact theme={gridTheme} rowData={currentLogs} columnDefs={colDefs as any} rowHeight={52} headerHeight={40} suppressMovableColumns suppressCellFocus defaultColDef={{ resizable: false, sortable: true }} />
+            <AgGridReact theme={superadmin_gridTheme} rowData={currentLogs} columnDefs={colDefs as any} rowHeight={52} headerHeight={40} suppressMovableColumns suppressCellFocus defaultColDef={{ resizable: false, sortable: true }} />
           </div>
         )}
 

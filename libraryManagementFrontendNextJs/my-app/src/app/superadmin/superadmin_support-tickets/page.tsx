@@ -3,7 +3,7 @@ import { useState, useRef, useCallback, useMemo } from 'react';
 import { AgGridReact } from 'ag-grid-react';
 import type { ColDef, ICellRendererParams, GridReadyEvent } from 'ag-grid-community';
 import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community';
-import { gridTheme } from '@/app/superadmin/superadmin_shared_components/superadmin_gridTheme';
+import { superadmin_gridTheme } from '@/app/superadmin/superadmin_shared_components/superadmin_gridTheme';
 import { Eye, Clock, MessageSquare, AlertTriangle, X, CheckCircle, Loader, Send } from 'lucide-react';
 
 ModuleRegistry.registerModules([AllCommunityModule]);
@@ -180,7 +180,7 @@ export default function SupportTicketsPage() {
         <div style={{ height: 360 }}>
           <AgGridReact
             ref={gridRef}
-            theme={gridTheme}
+            theme={superadmin_gridTheme}
             rowData={filtered}
             columnDefs={colDefs as any}
             rowHeight={60}

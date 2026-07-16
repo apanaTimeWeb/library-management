@@ -1,4 +1,4 @@
-// (Seats & Shifts)/reusable/gridTheme.ts
+// (Seats & Shifts)/reusable/superadmin_gridTheme.ts
 // ⚠️ NO hardcoded values here — all values come from seat_shift.css via CSS custom properties
 import { themeQuartz } from 'ag-grid-community';
 
