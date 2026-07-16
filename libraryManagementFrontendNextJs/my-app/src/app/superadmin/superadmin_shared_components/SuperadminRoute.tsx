@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 import Sidebar from '@/app/superadmin/superadmin_dashboard/Sidebar';
-import SuperadminHeader from '@/app/superadmin/superadmin_dashboard/superadmin_dashboard_components/SuperadminDashboardHeader';
+import { SuperadminDashboardHeader as Header } from '@/app/superadmin/superadmin_dashboard/superadmin_dashboard_components/SuperadminDashboardHeader';
 import '@/app/superadmin/superadmin.css';
 import '@/app/superadmin/sa-components.css';
 import { getCurrentUser, clearAuthState } from '@/lib/auth';
@@ -56,7 +56,7 @@ export function SuperadminRoute({ children }: { children: React.ReactNode }) {
         />
         <Sidebar open={sidebarOpen} />
         <div className="sa-shell-content">
-          <Header onMenuClick={() => setSidebarOpen(o => !o)} />
+          <Header />
           <main className="sa-shell-main">
             {children}
           </main>
