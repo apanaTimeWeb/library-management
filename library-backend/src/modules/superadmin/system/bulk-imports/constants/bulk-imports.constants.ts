@@ -1,0 +1,8 @@
+export const BULK_IMPORTS_CONSTANTS = {
+  MODULE_NAME: 'SUPERADMIN_BULK_IMPORTS',
+  ERRORS: {
+    BULK_IMPORT_NOT_FOUND: 'BulkImport not found.',
+  },
+  DEFAULT_PAGE: 1,
+  DEFAULT_LIMIT: 20,
+};

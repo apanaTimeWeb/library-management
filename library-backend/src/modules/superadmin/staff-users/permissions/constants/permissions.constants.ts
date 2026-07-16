@@ -1,0 +1,8 @@
+export const PERMISSIONS_CONSTANTS = {
+  MODULE_NAME: 'SUPERADMIN_PERMISSIONS',
+  ERRORS: {
+    PERMISSION_NOT_FOUND: 'Permission not found.',
+  },
+  DEFAULT_PAGE: 1,
+  DEFAULT_LIMIT: 20,
+};

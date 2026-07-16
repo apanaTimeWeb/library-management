@@ -1,20 +1,14 @@
-import { Controller, Post, Body, UseGuards } from '@nestjs/common';
-import { ApiTags, ApiOperation, ApiBearerAuth } from '@nestjs/swagger';
-import { JwtAuthGuard } from '@/modules/auth/auth/guards/jwt-auth.guard';
+import { Controller, Post, Body } from '@nestjs/common';
 import { CreateTenantService } from '../services/create-tenant.service';
 import { CreateTenantDto } from '../dto/create-tenant.dto';
 
-@ApiTags('Superadmin Tenants')
-@ApiBearerAuth()
-@UseGuards(JwtAuthGuard)
-@Controller('api/superadmin/system/tenants')
+@Controller('api/v1/superadmin/tenants')
 export class CreateTenantController {
-  constructor(private readonly createTenantService: CreateTenantService) {}
+  constructor(private readonly service: CreateTenantService) {}
 
-  // SLA: FAST
   @Post()
-  @ApiOperation({ summary: 'Create a new tenant' })
-  async create(@Body() createTenantDto: CreateTenantDto): Promise<any> {
-    return this.createTenantService.create(createTenantDto);
+  async handle(@Body() dto: CreateTenantDto) {
+    const data = await this.service.execute(dto);
+    return { success: true, message: 'Tenant created successfully', data };
   }
 }

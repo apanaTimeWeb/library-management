@@ -1,0 +1,8 @@
+export const AUDIT_LOGS_CONSTANTS = {
+  MODULE_NAME: 'SUPERADMIN_AUDIT_LOGS',
+  ERRORS: {
+    AUDIT_LOG_NOT_FOUND: 'AuditLog not found.',
+  },
+  DEFAULT_PAGE: 1,
+  DEFAULT_LIMIT: 20,
+};

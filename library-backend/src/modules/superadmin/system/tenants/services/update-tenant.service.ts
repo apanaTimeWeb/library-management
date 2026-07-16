@@ -1,22 +1,21 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Tenant } from '@/core/entities/tenant.entity';
 import { UpdateTenantDto } from '../dto/update-tenant.dto';
+import { TenantNotFoundException } from '../exceptions/tenants.exceptions';
 
 @Injectable()
 export class UpdateTenantService {
   constructor(
     @InjectRepository(Tenant)
-    private readonly tenantRepository: Repository<Tenant>,
+    private readonly repository: Repository<Tenant>,
   ) {}
 
-  async update(id: string, updateTenantDto: UpdateTenantDto): Promise<Tenant> {
-    const tenant = await this.tenantRepository.findOne({ where: { id } });
-    if (!tenant) {
-      throw new NotFoundException(`Tenant with ID ${id} not found`);
-    }
-    Object.assign(tenant, updateTenantDto);
-    return this.tenantRepository.save(tenant);
+  async execute(id: string, dto: UpdateTenantDto): Promise<Tenant> {
+    const existing = await this.repository.findOne({ where: { id } as any });
+    if (!existing) throw new TenantNotFoundException();
+    Object.assign(existing, dto);
+    return await this.repository.save(existing);
   }
 }

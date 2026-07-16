@@ -1,0 +1,8 @@
+export const WHATSAPP_LOGS_CONSTANTS = {
+  MODULE_NAME: 'SUPERADMIN_WHATSAPP_LOGS',
+  ERRORS: {
+    WHATS_APP_MESSAGE_NOT_FOUND: 'WhatsAppMessage not found.',
+  },
+  DEFAULT_PAGE: 1,
+  DEFAULT_LIMIT: 20,
+};

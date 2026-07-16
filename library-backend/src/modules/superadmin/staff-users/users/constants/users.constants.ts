@@ -1,0 +1,8 @@
+export const USERS_CONSTANTS = {
+  MODULE_NAME: 'SUPERADMIN_USERS',
+  ERRORS: {
+    USER_NOT_FOUND: 'User not found.',
+  },
+  DEFAULT_PAGE: 1,
+  DEFAULT_LIMIT: 20,
+};

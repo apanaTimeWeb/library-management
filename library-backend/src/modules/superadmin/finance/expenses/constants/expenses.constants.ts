@@ -1,0 +1,8 @@
+export const EXPENSES_CONSTANTS = {
+  MODULE_NAME: 'SUPERADMIN_EXPENSES',
+  ERRORS: {
+    EXPENSE_NOT_FOUND: 'Expense not found.',
+  },
+  DEFAULT_PAGE: 1,
+  DEFAULT_LIMIT: 20,
+};

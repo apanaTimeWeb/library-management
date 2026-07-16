@@ -1,20 +1,19 @@
-import { Controller, Get, UseGuards, Query } from '@nestjs/common';
-import { ApiTags, ApiOperation, ApiBearerAuth } from '@nestjs/swagger';
-import { JwtAuthGuard } from '@/modules/auth/auth/guards/jwt-auth.guard';
+import { Controller, Get, Query } from '@nestjs/common';
 import { GetAllTenantsService } from '../services/get-all-tenants.service';
-import { PaginationDto } from '../dto/pagination.dto';
+import { GetTenantsQueryDto } from '../dto/get-tenants-query.dto';
 
-@ApiTags('Superadmin Tenants')
-@ApiBearerAuth()
-@UseGuards(JwtAuthGuard)
-@Controller('api/superadmin/system/tenants')
+@Controller('api/v1/superadmin/tenants')
 export class GetAllTenantsController {
-  constructor(private readonly getAllTenantsService: GetAllTenantsService) {}
+  constructor(private readonly service: GetAllTenantsService) {}
 
-  // SLA: FAST
   @Get()
-  @ApiOperation({ summary: 'Get all tenants' })
-  async findAll(@Query() query: PaginationDto): Promise<any> {
-    return this.getAllTenantsService.findAll(query);
+  async handle(@Query() query: GetTenantsQueryDto) {
+    const { items, total } = await this.service.execute(query);
+    return {
+      success: true,
+      message: 'Tenants retrieved successfully',
+      data: items,
+      meta: { total, page: query.page, limit: query.limit },
+    };
   }
 }

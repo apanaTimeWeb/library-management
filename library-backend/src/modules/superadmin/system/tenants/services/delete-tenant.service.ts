@@ -1,20 +1,19 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Tenant } from '@/core/entities/tenant.entity';
+import { TenantNotFoundException } from '../exceptions/tenants.exceptions';
 
 @Injectable()
 export class DeleteTenantService {
   constructor(
     @InjectRepository(Tenant)
-    private readonly tenantRepository: Repository<Tenant>,
+    private readonly repository: Repository<Tenant>,
   ) {}
 
-  async delete(id: string): Promise<void> {
-    const tenant = await this.tenantRepository.findOne({ where: { id } });
-    if (!tenant) {
-      throw new NotFoundException(`Tenant with ID ${id} not found`);
-    }
-    await this.tenantRepository.softRemove(tenant);
+  async execute(id: string): Promise<void> {
+    const existing = await this.repository.findOne({ where: { id } as any });
+    if (!existing) throw new TenantNotFoundException();
+    await this.repository.remove(existing);
   }
 }

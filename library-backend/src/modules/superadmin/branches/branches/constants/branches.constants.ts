@@ -1,0 +1,8 @@
+export const BRANCHES_CONSTANTS = {
+  MODULE_NAME: 'SUPERADMIN_BRANCHES',
+  ERRORS: {
+    BRANCH_NOT_FOUND: 'Branch not found.',
+  },
+  DEFAULT_PAGE: 1,
+  DEFAULT_LIMIT: 20,
+};

@@ -1,0 +1,8 @@
+export const COMPLAINTS_CONSTANTS = {
+  MODULE_NAME: 'SUPERADMIN_COMPLAINTS',
+  ERRORS: {
+    COMPLAINT_NOT_FOUND: 'Complaint not found.',
+  },
+  DEFAULT_PAGE: 1,
+  DEFAULT_LIMIT: 20,
+};

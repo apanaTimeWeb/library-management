@@ -1,0 +1,8 @@
+export const SEAT_HISTORY_CONSTANTS = {
+  MODULE_NAME: 'SUPERADMIN_SEAT_HISTORY',
+  ERRORS: {
+    SEAT_HISTORY_NOT_FOUND: 'SeatHistory not found.',
+  },
+  DEFAULT_PAGE: 1,
+  DEFAULT_LIMIT: 20,
+};
