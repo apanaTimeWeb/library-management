@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useState } from 'react';
 import { BookOpen, Send, CheckCircle, Phone, User, MessageSquare, Clock } from 'lucide-react';
-import { enquirySchema, type EnquiryFormData } from '@/app/auth/reusable/schema';
+import { enquirySchema, type EnquiryFormData } from './public_utils/public_validation';
 
 // ─── Hardcoded Data ───────────────────────────────────────────────────────────
 const LIBRARY = {
