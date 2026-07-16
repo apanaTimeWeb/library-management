@@ -8,7 +8,7 @@ interface AdminCouponsState {
   setData: (data: unknown[]) => void;
 }
 
-export const useAdminCouponsStore = create<AdminCouponsState>((set: unknown) => ({
+export const useAdminCouponsStore = create<AdminCouponsState>((set) => ({
   data: [],
   setData: (data: unknown[]) => set({ data }),
 }));

@@ -53,13 +53,13 @@ export default function GapFillingPage() {
             <div className="space-y-2 w-44">
               <SuperadminLabel htmlFor="gap-shift-select">Shift</SuperadminLabel>
               <SuperadminSelect value={shift} onValueChange={setShift}>
-                <SuperadminSelectTrigger id="gap-shift-select"><SuperadminSelectValue placeholder="All shifts" /></SelectTrigger>
+                <SuperadminSelectTrigger id="gap-shift-select"><SuperadminSelectValue placeholder="All shifts" /></SuperadminSelectTrigger>
                 <SuperadminSelectContent>
-                  <SuperadminSelectItem value="all">All Shifts</SelectItem>
-                  <SuperadminSelectItem value="morning">Morning (6AM–12PM)</SelectItem>
-                  <SuperadminSelectItem value="afternoon">Afternoon (12PM–6PM)</SelectItem>
-                  <SuperadminSelectItem value="evening">Evening (6PM–10PM)</SelectItem>
-                </SelectContent>
+                  <SuperadminSelectItem value="all">All Shifts</SuperadminSelectItem>
+                  <SuperadminSelectItem value="morning">Morning (6AM–12PM)</SuperadminSelectItem>
+                  <SuperadminSelectItem value="afternoon">Afternoon (12PM–6PM)</SuperadminSelectItem>
+                  <SuperadminSelectItem value="evening">Evening (6PM–10PM)</SuperadminSelectItem>
+                </SuperadminSelectContent>
               </SuperadminSelect>
             </div>
             <SuperadminButton id="run-gap-analysis-btn" onClick={() => setAnalyzed(true)} variant="primary" size="md">

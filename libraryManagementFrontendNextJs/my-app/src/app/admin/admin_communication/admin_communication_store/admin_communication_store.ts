@@ -8,7 +8,7 @@ interface AdminCommunicationState {
   setData: (data: unknown[]) => void;
 }
 
-export const useAdminCommunicationStore = create<AdminCommunicationState>((set: unknown) => ({
+export const useAdminCommunicationStore = create<AdminCommunicationState>((set) => ({
   data: [],
   setData: (data: unknown[]) => set({ data }),
 }));

@@ -9,6 +9,7 @@ import {
 } from 'recharts';
 import KpiCard from '@/app/admin/admin_reusable/KpiCard';
 import { useAdminReports } from '@/app/admin/admin_reports/admin_reports_hooks/useAdminReports';
+import { AdminGridCell } from '@/app/admin/admin_reusable/gridTheme';
 
 const KPI_META = [
   { icon: IndianRupee, iconColor: 'var(--primary)', iconBg: 'var(--icon-bg-primary)' },

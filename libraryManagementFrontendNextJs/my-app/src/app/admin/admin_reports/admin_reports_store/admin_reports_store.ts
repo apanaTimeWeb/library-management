@@ -8,7 +8,7 @@ interface AdminReportsState {
   setData: (data: unknown[]) => void;
 }
 
-export const useAdminReportsStore = create<AdminReportsState>((set: unknown) => ({
+export const useAdminReportsStore = create<AdminReportsState>((set) => ({
   data: [],
   setData: (data: unknown[]) => set({ data }),
 }));

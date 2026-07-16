@@ -8,7 +8,7 @@ interface AdminSettingsState {
   setData: (data: unknown[]) => void;
 }
 
-export const useAdminSettingsStore = create<AdminSettingsState>((set: unknown) => ({
+export const useAdminSettingsStore = create<AdminSettingsState>((set) => ({
   data: [],
   setData: (data: unknown[]) => set({ data }),
 }));

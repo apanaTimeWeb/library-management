@@ -7,6 +7,7 @@ import { ChevronDown, Search } from 'lucide-react';
 import { AgGridReact } from 'ag-grid-react';
 import { AllCommunityModule, ModuleRegistry, type ColDef } from 'ag-grid-community';
 import { gridTheme } from '@/app/admin/admin_seats_shifts_lockers/admin_seats_shifts_lockers_components/AdminSeatsShiftsLockersgridTheme/AdminSeatsShiftsLockersgridTheme';
+import { AdminGridCell } from '@/app/admin/admin_reusable/gridTheme';
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
@@ -109,7 +110,7 @@ export default function SeatHistoryPage() {
         </div>
       ) : (
         <div className="ss-table-wrapper ss-grid-h-400">
-          <AgGridReact theme={gridTheme} rowData={filtered} columnDefs={colDefs as unknown} rowHeight={52} headerHeight={40} suppressMovableColumns suppressCellFocus defaultColDef={{ resizable: false, sortable: true }} />
+          <AgGridReact theme={gridTheme} rowData={filtered} columnDefs={colDefs as never} rowHeight={52} headerHeight={40} suppressMovableColumns suppressCellFocus defaultColDef={{ resizable: false, sortable: true }} />
         </div>
       )}
 

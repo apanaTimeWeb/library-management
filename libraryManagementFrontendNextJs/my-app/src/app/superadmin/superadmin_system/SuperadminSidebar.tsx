@@ -134,20 +134,20 @@ export default function SuperadminSidebar({ collapsed, onToggle, mobileOpen, onM
         )}
       </aside>
 
-      <SuperadminDialog open={showLogout} onOpenChange={setShowLogout}>
-        <SuperadminDialogContent className="max-w-[360px]">
-          <SuperadminDialogHeader>
-            <SuperadminDialogTitle>Log out?</DialogTitle>
-            <SuperadminDialogDescription>
+      <Dialog open={showLogout} onOpenChange={setShowLogout}>
+        <DialogContent className="max-w-[360px]">
+          <DialogHeader>
+            <DialogTitle>Log out?</DialogTitle>
+            <DialogDescription>
               Are you sure you want to log out of your session?
             </DialogDescription>
           </DialogHeader>
-          <SuperadminDialogFooter className="mt-4 sm:justify-end gap-2">
-            <SuperadminButton variant="outline" onClick={() => setShowLogout(false)}>Cancel</SuperadminButton>
-            <SuperadminButton variant="destructive" onClick={() => router.push('/auth/login')}>Log out</SuperadminButton>
+          <DialogFooter className="mt-4 sm:justify-end gap-2">
+            <Button variant="outline" onClick={() => setShowLogout(false)}>Cancel</Button>
+            <Button variant="destructive" onClick={() => router.push('/auth/login')}>Log out</Button>
           </DialogFooter>
         </DialogContent>
-      </SuperadminDialog>
+      </Dialog>
     </>
   );
 }

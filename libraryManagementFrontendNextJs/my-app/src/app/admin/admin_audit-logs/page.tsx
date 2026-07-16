@@ -8,7 +8,7 @@ import { fetchApi } from '@/lib/api';
 import { Search, ShieldAlert, ShieldCheck, Shield, AlertTriangle, Info } from 'lucide-react';
 import { AgGridReact } from 'ag-grid-react';
 import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community';
-import { gridTheme } from '@/app/admin/admin_reusable/gridTheme';
+import { gridTheme , AdminGridCell } from '@/app/admin/admin_reusable/gridTheme';
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
@@ -153,7 +153,7 @@ export default function AdminAuditLogsPage() {
         <AgGridReact
           theme={gridTheme}
           rowData={filtered}
-          columnDefs={colDefs as unknown}
+          columnDefs={colDefs as never}
           rowHeight={52}
           headerHeight={38}
           suppressMovableColumns

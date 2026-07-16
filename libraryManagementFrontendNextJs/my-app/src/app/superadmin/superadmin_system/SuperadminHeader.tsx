@@ -33,13 +33,13 @@ export default function SuperadminHeader({ sidebarWidth, onMobileOpen }: HeaderP
           <SuperadminSelect value={selectedBranch} onValueChange={setSelectedBranch}>
             <SuperadminSelectTrigger className="w-[160px] h-8 text-sm font-medium border-none shadow-none bg-transparent hover:bg-muted/50 focus:ring-0">
               <SuperadminSelectValue placeholder="Select Branch" />
-            </SelectTrigger>
+            </SuperadminSelectTrigger>
             <SuperadminSelectContent>
-              <SuperadminSelectItem value="Main Branch">Main Branch</SelectItem>
-              <SuperadminSelectItem value="Branch 2">Branch 2</SelectItem>
-              <SuperadminSelectItem value="Kothrud Center">Kothrud Center</SelectItem>
-              <SuperadminSelectItem value="Nashik Branch">Nashik Branch</SelectItem>
-            </SelectContent>
+              <SuperadminSelectItem value="Main Branch">Main Branch</SuperadminSelectItem>
+              <SuperadminSelectItem value="Branch 2">Branch 2</SuperadminSelectItem>
+              <SuperadminSelectItem value="Kothrud Center">Kothrud Center</SuperadminSelectItem>
+              <SuperadminSelectItem value="Nashik Branch">Nashik Branch</SuperadminSelectItem>
+            </SuperadminSelectContent>
           </SuperadminSelect>
         </div>
       </div>

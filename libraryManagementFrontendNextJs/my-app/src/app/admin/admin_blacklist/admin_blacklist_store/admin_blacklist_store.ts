@@ -8,7 +8,7 @@ interface AdminBlacklistState {
   setData: (data: unknown[]) => void;
 }
 
-export const useAdminBlacklistStore = create<AdminBlacklistState>((set: unknown) => ({
+export const useAdminBlacklistStore = create<AdminBlacklistState>((set) => ({
   data: [],
   setData: (data: unknown[]) => set({ data }),
 }));

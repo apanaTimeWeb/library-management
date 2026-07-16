@@ -4,7 +4,7 @@ import { useMemo } from 'react';
 import { UserPlus, Pencil, Trash2, CheckCircle, Search, Users } from 'lucide-react';
 import { AgGridReact } from 'ag-grid-react';
 import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community';
-import { gridTheme } from '@/app/admin/admin_reusable/gridTheme';
+import { gridTheme , AdminGridCell } from '@/app/admin/admin_reusable/gridTheme';
 import { useAdminStaff, type StaffMember } from '@/app/admin/admin_staff-users/admin_staff-users_hooks/useAdminStaff';
 
 ModuleRegistry.registerModules([AllCommunityModule]);
@@ -46,7 +46,7 @@ export function AdminStaffView({ initialStaff }: AdminStaffViewProps) {
     { field: 'phone', headerName: 'Phone', flex: 1, minWidth: 120 },
     {
       field: 'role', headerName: 'Role', flex: 1, minWidth: 120,
-      cellRenderer: (params: unknown) => (
+      cellRenderer: (params: AdminGridCell) => (
         <span className={roleBadgeClass(params.value)}>{params.value}</span>
       )
     },
@@ -54,7 +54,7 @@ export function AdminStaffView({ initialStaff }: AdminStaffViewProps) {
     { field: 'joinedDate', headerName: 'Joined', flex: 1, minWidth: 120 },
     {
       field: 'status', headerName: 'Status', flex: 1, minWidth: 120,
-      cellRenderer: (params: unknown) => (
+      cellRenderer: (params: AdminGridCell) => (
         <span className={`admin-badge ${params.value === 'Active' ? 'admin-badge-success' : 'admin-badge-danger'}`}>
           {params.value}
         </span>
@@ -65,7 +65,7 @@ export function AdminStaffView({ initialStaff }: AdminStaffViewProps) {
       flex: 1,
       minWidth: 120,
       sortable: false,
-      cellRenderer: (params: unknown) => (
+      cellRenderer: (params: AdminGridCell) => (
         <div style={{ display: 'flex', gap: 6, height: '100%', alignItems: 'center' }}>
           <button className="admin-btn-icon" onClick={() => openEdit(params.data)} title="Edit">
             <Pencil size={14} />

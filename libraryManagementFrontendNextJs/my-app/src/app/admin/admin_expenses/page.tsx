@@ -7,7 +7,7 @@ import { useState, useMemo, useEffect } from 'react';
 import { IndianRupee, Download, Search } from 'lucide-react';
 import { AgGridReact } from 'ag-grid-react';
 import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community';
-import { gridTheme } from '@/app/admin/admin_reusable/gridTheme';
+import { gridTheme , AdminGridCell } from '@/app/admin/admin_reusable/gridTheme';
 import { useAdmin } from '@/app/admin/admin_context/AdminContext';
 import { fetchApi } from '@/lib/api';
 
@@ -48,14 +48,14 @@ export default function AdminExpensesPage() {
       headerName: 'Amount', 
       flex: 1, 
       minWidth: 120,
-      cellRenderer: (params: unknown) => <span style={{ fontWeight: 600 }}>₹{params.value}</span>
+      cellRenderer: (params: AdminGridCell) => <span style={{ fontWeight: 600 }}>₹{params.value}</span>
     },
     { 
       field: 'status', 
       headerName: 'Status', 
       flex: 1, 
       minWidth: 120, 
-      cellRenderer: (params: unknown) => (
+      cellRenderer: (params: AdminGridCell) => (
         <span className={`admin-badge ${params.value === 'Approved' ? 'admin-badge-success' : 'admin-badge-info'}`}>
             {params.value}
         </span>

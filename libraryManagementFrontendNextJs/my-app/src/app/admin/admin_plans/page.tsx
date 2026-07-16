@@ -6,6 +6,7 @@
 import { useState, useEffect } from 'react';
 import { fetchApi } from '@/lib/api';
 import { Plus, Pencil, Trash2, CheckCircle, IndianRupee } from 'lucide-react';
+import { AdminGridCell } from '@/app/admin/admin_reusable/gridTheme';
 
 interface Plan {
   id: string;
@@ -54,7 +55,7 @@ export default function AdminPlansPage() {
 
   useEffect(() => {
     fetchApi('/admin/admin_plans').then(data => {
-      const mapped = data.map((p: unknown) => ({
+      const mapped = data.map((p: AdminGridCell) => ({
         id: p.id,
         name: p.name,
         price: p.price,

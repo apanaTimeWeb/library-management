@@ -8,7 +8,7 @@ interface AdminCrmState {
   setData: (data: unknown[]) => void;
 }
 
-export const useAdminCrmStore = create<AdminCrmState>((set: unknown) => ({
+export const useAdminCrmStore = create<AdminCrmState>((set) => ({
   data: [],
   setData: (data: unknown[]) => set({ data }),
 }));

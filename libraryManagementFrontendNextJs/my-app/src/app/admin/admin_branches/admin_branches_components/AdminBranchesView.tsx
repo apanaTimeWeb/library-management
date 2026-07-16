@@ -4,7 +4,7 @@ import { useMemo } from 'react';
 import { Plus, Pencil, Trash2, CheckCircle, Search } from 'lucide-react';
 import { AgGridReact } from 'ag-grid-react';
 import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community';
-import { gridTheme } from '@/app/admin/admin_reusable/gridTheme';
+import { gridTheme , AdminGridCell } from '@/app/admin/admin_reusable/gridTheme';
 import { useAdminBranches, type Branch } from '@/app/admin/admin_branches/admin_branches_hooks/useAdminBranches';
 
 ModuleRegistry.registerModules([AllCommunityModule]);
@@ -43,7 +43,7 @@ export function AdminBranchesView({ initialBranches }: AdminBranchesViewProps) {
       headerName: 'Capacity',
       flex: 1,
       minWidth: 120,
-      cellRenderer: (params: unknown) => (
+      cellRenderer: (params: AdminGridCell) => (
         <span style={{ fontSize: 13, fontWeight: 500 }}>{params.data.students} / {params.value} Seats</span>
       )
     },
@@ -52,7 +52,7 @@ export function AdminBranchesView({ initialBranches }: AdminBranchesViewProps) {
       headerName: 'Status',
       flex: 1,
       minWidth: 120,
-      cellRenderer: (params: unknown) => (
+      cellRenderer: (params: AdminGridCell) => (
         <span className={`admin-badge ${params.value === 'Active' ? 'admin-badge-success' : 'admin-badge-danger'}`}>
           {params.value === 'Active' ? '✅ Active' : '🔴 Inactive'}
         </span>
@@ -63,7 +63,7 @@ export function AdminBranchesView({ initialBranches }: AdminBranchesViewProps) {
       flex: 1,
       minWidth: 100,
       sortable: false,
-      cellRenderer: (params: unknown) => (
+      cellRenderer: (params: AdminGridCell) => (
         <div style={{ display: 'flex', gap: 6, height: '100%', alignItems: 'center' }}>
           <button className="admin-btn-icon" onClick={() => openEdit(params.data)} title="Edit">
             <Pencil size={14} />

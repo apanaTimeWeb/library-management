@@ -8,7 +8,7 @@ interface AdminPlansState {
   setData: (data: unknown[]) => void;
 }
 
-export const useAdminPlansStore = create<AdminPlansState>((set: unknown) => ({
+export const useAdminPlansStore = create<AdminPlansState>((set) => ({
   data: [],
   setData: (data: unknown[]) => set({ data }),
 }));

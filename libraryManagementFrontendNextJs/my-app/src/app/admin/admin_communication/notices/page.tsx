@@ -6,7 +6,7 @@ import { useState, useEffect } from 'react';
 import { ChevronRight, Plus, X, Edit2, Trash2, Send } from 'lucide-react';
 import { AgGridReact } from 'ag-grid-react';
 import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community';
-import { gridTheme } from '@/app/admin/admin_reusable/gridTheme';
+import { gridTheme , AdminGridCell } from '@/app/admin/admin_reusable/gridTheme';
 import { fetchApi } from '@/lib/api';
 
 ModuleRegistry.registerModules([AllCommunityModule]);
@@ -74,26 +74,26 @@ export default function NoticesPage() {
   };
 
   const colDefs = [
-    { field: 'title', headerName: 'Title', width: 220, cellRenderer: (p: unknown) => <span className="eng-td-bold text-mgr-text-primary">{p.value}</span> },
-    { field: 'message', headerName: 'Message', flex: 1, minWidth: 250, cellRenderer: (p: unknown) => <span className="eng-td-muted text-sm truncate block w-full pt-1" title={p.value}>{p.value}</span> },
+    { field: 'title', headerName: 'Title', width: 220, cellRenderer: (p: AdminGridCell) => <span className="eng-td-bold text-mgr-text-primary">{p.value}</span> },
+    { field: 'message', headerName: 'Message', flex: 1, minWidth: 250, cellRenderer: (p: AdminGridCell) => <span className="eng-td-muted text-sm truncate block w-full pt-1" title={p.value}>{p.value}</span> },
     { 
       field: 'status', 
       headerName: 'Status', 
       width: 120,
-      cellRenderer: (p: unknown) => (
+      cellRenderer: (p: AdminGridCell) => (
         <span className={`eng-badge ${p.value === 'Active' ? 'eng-badge--success' : 'eng-badge--outline'} mt-2 inline-block`}>
           {p.value === 'Active' ? '✅ Active' : 'Expired'}
         </span>
       )
     },
-    { field: 'validTill', headerName: 'Valid Till', width: 130, cellRenderer: (p: unknown) => <span className="eng-td-mono text-sm">{p.value}</span> },
-    { field: 'postedBy', headerName: 'Posted By', width: 130, cellRenderer: (p: unknown) => <span className="eng-td-muted text-sm">{p.value}</span> },
-    { field: 'postedDate', headerName: 'Posted Date', width: 130, cellRenderer: (p: unknown) => <span className="eng-td-mono text-sm">{p.value}</span> },
+    { field: 'validTill', headerName: 'Valid Till', width: 130, cellRenderer: (p: AdminGridCell) => <span className="eng-td-mono text-sm">{p.value}</span> },
+    { field: 'postedBy', headerName: 'Posted By', width: 130, cellRenderer: (p: AdminGridCell) => <span className="eng-td-muted text-sm">{p.value}</span> },
+    { field: 'postedDate', headerName: 'Posted Date', width: 130, cellRenderer: (p: AdminGridCell) => <span className="eng-td-mono text-sm">{p.value}</span> },
     {
       headerName: 'Actions',
       width: 140,
       sortable: false,
-      cellRenderer: (params: unknown) => (
+      cellRenderer: (params: AdminGridCell) => (
         <div className="h-full flex items-center gap-2">
           <button onClick={() => openEdit(params.data)} className="eng-btn-icon hover:bg-mgr-primary hover:text-white transition-colors duration-200" title="Edit"><Edit2 size={14} /></button>
           <button onClick={() => setBroadcastItem(params.data)} className="eng-btn-icon hover:bg-mgr-primary hover:text-white transition-colors duration-200" title="Broadcast"><Send size={14} /></button>
@@ -200,7 +200,7 @@ export default function NoticesPage() {
             <AgGridReact
               theme={gridTheme}
               rowData={notices}
-              columnDefs={colDefs as unknown}
+              columnDefs={colDefs as never}
               rowHeight={56}
               headerHeight={48}
               pagination={true}

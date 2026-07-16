@@ -8,7 +8,7 @@ interface AdminBranchesState {
   setData: (data: unknown[]) => void;
 }
 
-export const useAdminBranchesStore = create<AdminBranchesState>((set: unknown) => ({
+export const useAdminBranchesStore = create<AdminBranchesState>((set) => ({
   data: [],
   setData: (data: unknown[]) => set({ data }),
 }));

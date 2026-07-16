@@ -12,6 +12,7 @@ import toast from 'react-hot-toast';
 import { formatCurrency } from '@/app/admin/admin_finance/admin_finance_utils/format';
 import { RefreshCw, Send } from 'lucide-react';
 import { gridTheme } from '@/app/admin/admin_finance/admin_finance_components/AdminFinancegridTheme/AdminFinancegridTheme';
+import { AdminGridCell } from '@/app/admin/admin_reusable/gridTheme';
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
@@ -98,28 +99,28 @@ export default function Renewals() {
   };
 
   const colDefs = [
-    { field: 'studentName', headerName: 'Student', flex: 1, minWidth: 150, cellRenderer: (p: unknown) => <span className="fin-cell-name font-medium">{p.value}</span> },
-    { field: 'smartId', headerName: 'Smart ID', width: 120, cellRenderer: (p: unknown) => <span className="fin-mono text-sm">{p.value}</span> },
-    { field: 'shift', headerName: 'Shift', width: 110, cellRenderer: (p: unknown) => <div className="h-full flex items-center"><span className="fin-badge fin-badge--neutral">{p.value}</span></div> },
-    { field: 'plan', headerName: 'Plan', width: 110, cellRenderer: (p: unknown) => <span className="fin-text-body">{p.value}</span> },
-    { field: 'expiryDate', headerName: 'Expiry Date', width: 120, cellRenderer: (p: unknown) => <span className="fin-cell-subtext">{p.value}</span> },
+    { field: 'studentName', headerName: 'Student', flex: 1, minWidth: 150, cellRenderer: (p: AdminGridCell) => <span className="fin-cell-name font-medium">{p.value}</span> },
+    { field: 'smartId', headerName: 'Smart ID', width: 120, cellRenderer: (p: AdminGridCell) => <span className="fin-mono text-sm">{p.value}</span> },
+    { field: 'shift', headerName: 'Shift', width: 110, cellRenderer: (p: AdminGridCell) => <div className="h-full flex items-center"><span className="fin-badge fin-badge--neutral">{p.value}</span></div> },
+    { field: 'plan', headerName: 'Plan', width: 110, cellRenderer: (p: AdminGridCell) => <span className="fin-text-body">{p.value}</span> },
+    { field: 'expiryDate', headerName: 'Expiry Date', width: 120, cellRenderer: (p: AdminGridCell) => <span className="fin-cell-subtext">{p.value}</span> },
     { 
       field: 'daysLeft', 
       headerName: 'Days Left', 
       width: 120,
-      cellRenderer: (p: unknown) => (
+      cellRenderer: (p: AdminGridCell) => (
         <span className={p.value < 0 ? 'fin-text-danger font-semibold' : p.value <= 7 ? 'fin-text-warning font-semibold' : 'fin-text-body'}>
           {p.value < 0 ? `${Math.abs(p.value)} days ago` : `${p.value} days`}
         </span>
       )
     },
-    { field: 'lastPaymentDate', headerName: 'Last Payment', width: 130, cellRenderer: (p: unknown) => <span className="fin-cell-subtext">{p.value}</span> },
+    { field: 'lastPaymentDate', headerName: 'Last Payment', width: 130, cellRenderer: (p: AdminGridCell) => <span className="fin-cell-subtext">{p.value}</span> },
     { 
       field: 'due', 
       headerName: 'Due ₹', 
       width: 110,
       cellStyle: { textAlign: 'right', fontWeight: 600 },
-      cellRenderer: (p: unknown) => (
+      cellRenderer: (p: AdminGridCell) => (
         <span className={p.value > 0 ? 'fin-text-danger' : 'fin-text-body'}>
           {formatCurrency(p.value)}
         </span>
@@ -129,7 +130,7 @@ export default function Renewals() {
       headerName: 'Actions',
       width: 180,
       sortable: false,
-      cellRenderer: (params: unknown) => (
+      cellRenderer: (params: AdminGridCell) => (
         <div className="flex items-center gap-2 h-full">
           <button
             className="fin-badge fin-badge--info cursor-pointer hover:border-mgr-primary"
@@ -180,7 +181,7 @@ export default function Renewals() {
           <AgGridReact
             theme={gridTheme}
             rowData={visible}
-            columnDefs={colDefs as unknown}
+            columnDefs={colDefs as never}
             rowHeight={60}
             headerHeight={48}
             pagination={true}

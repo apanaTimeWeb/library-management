@@ -8,7 +8,7 @@ interface AdminExpenseCategoriesState {
   setData: (data: unknown[]) => void;
 }
 
-export const useAdminExpenseCategoriesStore = create<AdminExpenseCategoriesState>((set: unknown) => ({
+export const useAdminExpenseCategoriesStore = create<AdminExpenseCategoriesState>((set) => ({
   data: [],
   setData: (data: unknown[]) => set({ data }),
 }));

@@ -144,14 +144,14 @@ export default function SmartIdPage() {
               <div className="flex justify-end gap-3 mt-4">
                 <SuperadminDialogClose asChild>
                   <SuperadminButton variant="ghost" size="sm">Cancel</SuperadminButton>
-                </DialogClose>
+                </SuperadminDialogClose>
                 <SuperadminDialogClose asChild>
                   <SuperadminButton id="confirm-regenerate-btn" variant="destructive" size="sm" onClick={handleRegenerate}>
                     Yes, Regenerate
                   </SuperadminButton>
-                </DialogClose>
+                </SuperadminDialogClose>
               </div>
-            </DialogContent>
+            </SuperadminDialogContent>
           </SuperadminDialog>
         </CardContent>
       </SuperadminCard>

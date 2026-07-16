@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { ExternalLink } from 'lucide-react';
 import { AgGridReact } from 'ag-grid-react';
 import { AllCommunityModule, ModuleRegistry, type ColDef } from 'ag-grid-community';
-import { gridTheme } from '@/app/admin/admin_reusable/gridTheme';
+import { gridTheme , AdminGridCell } from '@/app/admin/admin_reusable/gridTheme';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 
@@ -111,7 +111,7 @@ export default function RecentPaymentsFeed({ payments }: { payments: Payment[] }
           <AgGridReact
             theme={gridTheme}
             rowData={payments}
-            columnDefs={colDefs as unknown}
+            columnDefs={colDefs as never}
             rowHeight={48}
             headerHeight={38}
             suppressMovableColumns

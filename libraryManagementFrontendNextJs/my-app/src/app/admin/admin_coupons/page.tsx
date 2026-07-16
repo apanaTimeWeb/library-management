@@ -8,7 +8,7 @@ import { fetchApi } from '@/lib/api';
 import { Plus, Trash2, CheckCircle, Tag } from 'lucide-react';
 import { AgGridReact } from 'ag-grid-react';
 import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community';
-import { gridTheme } from '@/app/admin/admin_reusable/gridTheme';
+import { gridTheme , AdminGridCell } from '@/app/admin/admin_reusable/gridTheme';
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
@@ -177,7 +177,7 @@ export default function AdminCouponsPage() {
         <AgGridReact
           theme={gridTheme}
           rowData={coupons}
-          columnDefs={colDefs as unknown}
+          columnDefs={colDefs as never}
           rowHeight={48}
           headerHeight={38}
           suppressMovableColumns

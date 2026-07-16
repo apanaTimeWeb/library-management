@@ -8,7 +8,7 @@ interface AdminAuditLogsState {
   setData: (data: unknown[]) => void;
 }
 
-export const useAdminAuditLogsStore = create<AdminAuditLogsState>((set: unknown) => ({
+export const useAdminAuditLogsStore = create<AdminAuditLogsState>((set) => ({
   data: [],
   setData: (data: unknown[]) => set({ data }),
 }));

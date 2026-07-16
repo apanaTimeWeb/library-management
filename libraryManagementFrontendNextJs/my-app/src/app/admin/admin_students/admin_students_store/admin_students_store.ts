@@ -8,7 +8,7 @@ interface AdminStudentsState {
   setData: (data: unknown[]) => void;
 }
 
-export const useAdminStudentsStore = create<AdminStudentsState>((set: unknown) => ({
+export const useAdminStudentsStore = create<AdminStudentsState>((set) => ({
   data: [],
   setData: (data: unknown[]) => set({ data }),
 }));

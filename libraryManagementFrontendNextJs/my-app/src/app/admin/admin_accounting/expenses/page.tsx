@@ -8,7 +8,7 @@ import { TrendingUp, Plus, Trash2 } from 'lucide-react';
 import toast from 'react-hot-toast';
 import { AgGridReact } from 'ag-grid-react';
 import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community';
-import { gridTheme } from '@/app/admin/admin_reusable/gridTheme';
+import { gridTheme , AdminGridCell } from '@/app/admin/admin_reusable/gridTheme';
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
@@ -64,24 +64,24 @@ export default function ExpensesPage() {
   };
 
   const colDefs = [
-    { field: 'date', headerName: 'Date', width: 130, cellRenderer: (p: unknown) => <span className="fin-cell-subtext">{p.value}</span> },
+    { field: 'date', headerName: 'Date', width: 130, cellRenderer: (p: AdminGridCell) => <span className="fin-cell-subtext">{p.value}</span> },
     { 
       field: 'category', 
       headerName: 'Category', 
       width: 150,
-      cellRenderer: (p: unknown) => (
+      cellRenderer: (p: AdminGridCell) => (
         <span className="fin-badge fin-badge--neutral mt-2 inline-block">
           {p.value}
         </span>
       )
     },
-    { field: 'description', headerName: 'Description', flex: 1, minWidth: 200, cellRenderer: (p: unknown) => <span className="fin-text-body">{p.value}</span> },
+    { field: 'description', headerName: 'Description', flex: 1, minWidth: 200, cellRenderer: (p: AdminGridCell) => <span className="fin-text-body">{p.value}</span> },
     { 
       field: 'amount', 
       headerName: 'Amount ₹', 
       width: 140,
       cellStyle: { textAlign: 'right', fontWeight: 600 },
-      cellRenderer: (p: unknown) => (
+      cellRenderer: (p: AdminGridCell) => (
         <span className="fin-text-danger">
           ₹{p.value.toLocaleString()}
         </span>
@@ -91,19 +91,19 @@ export default function ExpensesPage() {
       field: 'mode', 
       headerName: 'Mode', 
       width: 120,
-      cellRenderer: (p: unknown) => (
+      cellRenderer: (p: AdminGridCell) => (
         <span className={`${MODE_BADGE[p.value]} mt-2 inline-block capitalize`}>
           {p.value}
         </span>
       )
     },
-    { field: 'paidBy', headerName: 'Paid By', width: 140, cellRenderer: (p: unknown) => <span className="fin-text-body">{p.value}</span> },
+    { field: 'paidBy', headerName: 'Paid By', width: 140, cellRenderer: (p: AdminGridCell) => <span className="fin-text-body">{p.value}</span> },
     {
       headerName: 'Actions',
       width: 100,
       sortable: false,
       cellStyle: { textAlign: 'right' },
-      cellRenderer: (params: unknown) => (
+      cellRenderer: (params: AdminGridCell) => (
         <div className="h-full flex justify-end items-center">
           <button 
             className="fin-badge fin-badge--danger cursor-pointer hover:bg-red-600 hover:text-white transition-colors duration-200" 
@@ -172,7 +172,7 @@ export default function ExpensesPage() {
             <AgGridReact
               theme={gridTheme}
               rowData={visible}
-              columnDefs={colDefs as unknown}
+              columnDefs={colDefs as never}
               rowHeight={56}
               headerHeight={48}
               pagination={true}

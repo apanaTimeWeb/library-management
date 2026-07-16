@@ -21,3 +21,9 @@ export const gridTheme = themeQuartz.withParams({
   wrapperBorder:         false,
   wrapperBorderRadius:   0,
 });
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export interface AdminGridCell {
+  value: any;
+  data?: any;
+}

@@ -8,7 +8,7 @@ interface AdminFinanceState {
   setData: (data: unknown[]) => void;
 }
 
-export const useAdminFinanceStore = create<AdminFinanceState>((set: unknown) => ({
+export const useAdminFinanceStore = create<AdminFinanceState>((set) => ({
   data: [],
   setData: (data: unknown[]) => set({ data }),
 }));

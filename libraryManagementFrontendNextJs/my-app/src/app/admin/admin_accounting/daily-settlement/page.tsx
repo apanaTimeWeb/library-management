@@ -8,7 +8,7 @@ import { CheckCircle } from 'lucide-react';
 import toast from 'react-hot-toast';
 import { AgGridReact } from 'ag-grid-react';
 import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community';
-import { gridTheme } from '@/app/admin/admin_reusable/gridTheme';
+import { gridTheme , AdminGridCell } from '@/app/admin/admin_reusable/gridTheme';
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
@@ -46,48 +46,48 @@ export default function DailySettlementPage() {
   const totalExp  = entries.reduce((s, e) => s + e.expenses, 0);
 
   const colDefs = [
-    { field: 'shift', headerName: 'Shift', flex: 1, minWidth: 180, cellRenderer: (p: unknown) => <span className="fin-cell-name font-medium">{p.value}</span> },
+    { field: 'shift', headerName: 'Shift', flex: 1, minWidth: 180, cellRenderer: (p: AdminGridCell) => <span className="fin-cell-name font-medium">{p.value}</span> },
     { 
       field: 'openingBalance', 
       headerName: 'Opening ₹', 
       width: 130,
       cellStyle: { textAlign: 'right' },
-      cellRenderer: (p: unknown) => <span className="fin-cell-subtext text-sm">₹{p.value.toLocaleString()}</span>
+      cellRenderer: (p: AdminGridCell) => <span className="fin-cell-subtext text-sm">₹{p.value.toLocaleString()}</span>
     },
     { 
       field: 'cashCollected', 
       headerName: 'Cash ₹', 
       width: 120,
       cellStyle: { textAlign: 'right' },
-      cellRenderer: (p: unknown) => <span className="fin-text-success font-medium">₹{p.value.toLocaleString()}</span>
+      cellRenderer: (p: AdminGridCell) => <span className="fin-text-success font-medium">₹{p.value.toLocaleString()}</span>
     },
     { 
       field: 'upiCollected', 
       headerName: 'UPI ₹', 
       width: 120,
       cellStyle: { textAlign: 'right' },
-      cellRenderer: (p: unknown) => <span className="fin-text-info font-medium">₹{p.value.toLocaleString()}</span>
+      cellRenderer: (p: AdminGridCell) => <span className="fin-text-info font-medium">₹{p.value.toLocaleString()}</span>
     },
     { 
       field: 'expenses', 
       headerName: 'Expenses ₹', 
       width: 130,
       cellStyle: { textAlign: 'right' },
-      cellRenderer: (p: unknown) => <span className="fin-text-danger font-medium">₹{p.value.toLocaleString()}</span>
+      cellRenderer: (p: AdminGridCell) => <span className="fin-text-danger font-medium">₹{p.value.toLocaleString()}</span>
     },
     { 
       field: 'closingBalance', 
       headerName: 'Closing ₹', 
       width: 130,
       cellStyle: { textAlign: 'right', fontWeight: 600 },
-      cellRenderer: (p: unknown) => <span className="fin-text-body">₹{p.value.toLocaleString()}</span>
+      cellRenderer: (p: AdminGridCell) => <span className="fin-text-body">₹{p.value.toLocaleString()}</span>
     },
-    { field: 'settledBy', headerName: 'Settled By', width: 140, cellRenderer: (p: unknown) => <span className="fin-cell-subtext">{p.value}</span> },
+    { field: 'settledBy', headerName: 'Settled By', width: 140, cellRenderer: (p: AdminGridCell) => <span className="fin-cell-subtext">{p.value}</span> },
     { 
       field: 'status', 
       headerName: 'Status', 
       width: 120,
-      cellRenderer: (p: unknown) => (
+      cellRenderer: (p: AdminGridCell) => (
         <span className={`fin-badge ${p.value === 'settled' ? 'fin-badge--success' : 'fin-badge--warning'} inline-block mt-2`}>
           {p.value}
         </span>
@@ -98,7 +98,7 @@ export default function DailySettlementPage() {
       width: 120,
       sortable: false,
       cellStyle: { textAlign: 'right' },
-      cellRenderer: (params: unknown) => {
+      cellRenderer: (params: AdminGridCell) => {
         if (params.data.status === 'pending') {
           return (
             <div className="h-full flex justify-end items-center">
@@ -144,7 +144,7 @@ export default function DailySettlementPage() {
             <AgGridReact
               theme={gridTheme}
               rowData={entries}
-              columnDefs={colDefs as unknown}
+              columnDefs={colDefs as never}
               rowHeight={56}
               headerHeight={48}
               pagination={false}

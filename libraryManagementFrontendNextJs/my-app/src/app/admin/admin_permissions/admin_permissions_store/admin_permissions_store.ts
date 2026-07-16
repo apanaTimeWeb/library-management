@@ -8,7 +8,7 @@ interface AdminPermissionsState {
   setData: (data: unknown[]) => void;
 }
 
-export const useAdminPermissionsStore = create<AdminPermissionsState>((set: unknown) => ({
+export const useAdminPermissionsStore = create<AdminPermissionsState>((set) => ({
   data: [],
   setData: (data: unknown[]) => set({ data }),
 }));

@@ -6,7 +6,7 @@ import { useState } from 'react';
 import { ChevronRight, Eye, X } from 'lucide-react';
 import { AgGridReact } from 'ag-grid-react';
 import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community';
-import { gridTheme } from '@/app/admin/admin_reusable/gridTheme';
+import { gridTheme , AdminGridCell } from '@/app/admin/admin_reusable/gridTheme';
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
@@ -54,14 +54,14 @@ export default function WhatsappLogsPage() {
   });
 
   const colDefs = [
-    { field: 'dateTime', headerName: 'Date / Time', width: 160, cellRenderer: (p: unknown) => <span className="eng-td-muted text-sm">{p.value}</span> },
-    { field: 'phone', headerName: 'Phone', width: 130, cellRenderer: (p: unknown) => <span className="eng-td-mono font-medium">{p.value}</span> },
-    { field: 'student', headerName: 'Student', flex: 1, minWidth: 150, cellRenderer: (p: unknown) => <span className="eng-td-bold">{p.value}</span> },
+    { field: 'dateTime', headerName: 'Date / Time', width: 160, cellRenderer: (p: AdminGridCell) => <span className="eng-td-muted text-sm">{p.value}</span> },
+    { field: 'phone', headerName: 'Phone', width: 130, cellRenderer: (p: AdminGridCell) => <span className="eng-td-mono font-medium">{p.value}</span> },
+    { field: 'student', headerName: 'Student', flex: 1, minWidth: 150, cellRenderer: (p: AdminGridCell) => <span className="eng-td-bold">{p.value}</span> },
     { 
       field: 'type', 
       headerName: 'Type', 
       width: 130,
-      cellRenderer: (p: unknown) => (
+      cellRenderer: (p: AdminGridCell) => (
         <span className={`eng-badge ${TYPE_BADGE[p.value]} inline-block mt-2 text-xs`}>
           {TYPE_LABEL[p.value]}
         </span>
@@ -71,18 +71,18 @@ export default function WhatsappLogsPage() {
       field: 'status', 
       headerName: 'Status', 
       width: 120,
-      cellRenderer: (p: unknown) => (
+      cellRenderer: (p: AdminGridCell) => (
         <span className={`eng-badge ${STATUS_BADGE[p.value]} inline-block mt-2 text-xs`}>
           {p.value}
         </span>
       )
     },
-    { field: 'error', headerName: 'Error', width: 180, cellRenderer: (p: unknown) => <span className="eng-td-danger text-xs truncate max-w-[160px] inline-block" title={p.value}>{p.value || '—'}</span> },
+    { field: 'error', headerName: 'Error', width: 180, cellRenderer: (p: AdminGridCell) => <span className="eng-td-danger text-xs truncate max-w-[160px] inline-block" title={p.value}>{p.value || '—'}</span> },
     {
       headerName: 'Actions',
       width: 100,
       sortable: false,
-      cellRenderer: (params: unknown) => (
+      cellRenderer: (params: AdminGridCell) => (
         <div className="h-full flex items-center">
           <button onClick={() => setViewLog(params.data)} className="eng-btn-icon hover:bg-mgr-primary hover:text-white transition-colors duration-200" title="View Message">
             <Eye size={16} />
@@ -183,7 +183,7 @@ export default function WhatsappLogsPage() {
             <AgGridReact
               theme={gridTheme}
               rowData={filtered}
-              columnDefs={colDefs as unknown}
+              columnDefs={colDefs as never}
               rowHeight={56}
               headerHeight={48}
               pagination={true}

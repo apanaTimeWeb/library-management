@@ -8,7 +8,7 @@ interface AdminReusableState {
   setData: (data: unknown[]) => void;
 }
 
-export const useAdminReusableStore = create<AdminReusableState>((set: unknown) => ({
+export const useAdminReusableStore = create<AdminReusableState>((set) => ({
   data: [],
   setData: (data: unknown[]) => set({ data }),
 }));

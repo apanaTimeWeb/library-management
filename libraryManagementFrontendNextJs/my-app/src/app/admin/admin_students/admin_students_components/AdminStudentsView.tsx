@@ -4,7 +4,7 @@ import { useMemo } from 'react';
 import { Download, Search } from 'lucide-react';
 import { AgGridReact } from 'ag-grid-react';
 import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community';
-import { gridTheme } from '@/app/admin/admin_reusable/gridTheme';
+import { gridTheme , AdminGridCell } from '@/app/admin/admin_reusable/gridTheme';
 import { useAdminStudents } from '@/app/admin/admin_students/admin_students_hooks/useAdminStudents';
 
 ModuleRegistry.registerModules([AllCommunityModule]);
@@ -27,7 +27,7 @@ export function AdminStudentsView({ initialStudents }: AdminStudentsViewProps) {
       headerName: 'Status', 
       flex: 1, 
       minWidth: 120, 
-      cellRenderer: (params: unknown) => (
+      cellRenderer: (params: AdminGridCell) => (
         <span className={`admin-badge ${params.value === 'Active' ? 'admin-badge-success' : 'admin-badge-danger'}`}>
             {params.value}
         </span>

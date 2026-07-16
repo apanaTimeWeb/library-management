@@ -8,7 +8,7 @@ interface AdminTestState {
   setData: (data: unknown[]) => void;
 }
 
-export const useAdminTestStore = create<AdminTestState>((set: unknown) => ({
+export const useAdminTestStore = create<AdminTestState>((set) => ({
   data: [],
   setData: (data: unknown[]) => set({ data }),
 }));

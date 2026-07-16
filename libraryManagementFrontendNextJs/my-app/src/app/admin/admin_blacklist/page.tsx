@@ -8,7 +8,7 @@ import { fetchApi } from '@/lib/api';
 import { Trash2, CheckCircle, AlertOctagon, ShieldAlert, X } from 'lucide-react';
 import { AgGridReact } from 'ag-grid-react';
 import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community';
-import { gridTheme } from '@/app/admin/admin_reusable/gridTheme';
+import { gridTheme , AdminGridCell } from '@/app/admin/admin_reusable/gridTheme';
 import toast, { Toaster } from 'react-hot-toast';
 
 ModuleRegistry.registerModules([AllCommunityModule]);
@@ -184,7 +184,7 @@ export default function AdminBlacklistPage() {
           <AgGridReact
             theme={gridTheme}
             rowData={list}
-            columnDefs={colDefs as unknown}
+            columnDefs={colDefs as never}
             rowHeight={56}
             headerHeight={38}
             suppressMovableColumns

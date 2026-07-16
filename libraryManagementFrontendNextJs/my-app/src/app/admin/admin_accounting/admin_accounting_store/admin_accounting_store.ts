@@ -8,7 +8,7 @@ interface AdminAccountingState {
   setData: (data: unknown[]) => void;
 }
 
-export const useAdminAccountingStore = create<AdminAccountingState>((set: unknown) => ({
+export const useAdminAccountingStore = create<AdminAccountingState>((set) => ({
   data: [],
   setData: (data: unknown[]) => set({ data }),
 }));

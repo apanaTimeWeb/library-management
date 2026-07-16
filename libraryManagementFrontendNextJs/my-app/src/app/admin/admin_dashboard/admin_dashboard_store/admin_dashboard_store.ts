@@ -8,7 +8,7 @@ interface AdminDashboardState {
   setData: (data: unknown[]) => void;
 }
 
-export const useAdminDashboardStore = create<AdminDashboardState>((set: unknown) => ({
+export const useAdminDashboardStore = create<AdminDashboardState>((set) => ({
   data: [],
   setData: (data: unknown[]) => set({ data }),
 }));

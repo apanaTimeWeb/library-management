@@ -8,7 +8,7 @@ interface AdminSeatsShiftsLockersState {
   setData: (data: unknown[]) => void;
 }
 
-export const useAdminSeatsShiftsLockersStore = create<AdminSeatsShiftsLockersState>((set: unknown) => ({
+export const useAdminSeatsShiftsLockersStore = create<AdminSeatsShiftsLockersState>((set) => ({
   data: [],
   setData: (data: unknown[]) => set({ data }),
 }));
