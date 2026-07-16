@@ -23,4 +23,5 @@ export const ADMIN_ROUTES = {
 export const ADMIN_API_ROUTES = {
   DASHBOARD: '/admin/dashboard',
   STUDENTS: '/admin/admin_students',
+  REPORTS: '/admin/admin_reports',
 } as const;

@@ -11,39 +11,28 @@ import RecentPaymentsFeed from '@/app/admin/admin_reusable/RecentPaymentsFeed';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from '@/components/ui/card';
 import { ADMIN_KPI_META, ADMIN_ACTION_ICONS } from '@/app/admin/admin_constants/admin_constants';
-import { ADMIN_API_ROUTES } from '@/app/admin/admin_url_config';
-
+import { fetchAdminDashboard } from '@/app/admin/admin_api/admin_api';
 
 async function getDashboardData() {
   const cookieStore = await cookies();
   const token = cookieStore.get('access_token')?.value || '';
-
-  const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'http://127.0.0.1:3001/api/v1';
-  const url = `${API_BASE}${ADMIN_API_ROUTES.DASHBOARD}`;
+  const response = await fetchAdminDashboard(token);
   
-  const res = await fetch(url, {
-    cache: 'no-store',
-    headers: {
-      'Authorization': `Bearer ${token}`,
-      'Content-Type': 'application/json',
-    },
-  });
-  if (!res.ok) {
+  if (!response.success) {
     return null;
   }
-  return res.json();
+  return response.data;
 }
-
 
 export default async function AdminDashboardPage() {
   const data = await getDashboardData();
-  if (!data) return <div>Failed to load dashboard</div>;
+  if (!data) return <div className="p-8">Failed to load dashboard data. Check backend connection.</div>;
 
-  const actionItems: ActionItem[] = data.actionItems.map((a: any) => ({
+  const actionItems: ActionItem[] = data.actionItems?.map((a: any) => ({
     ...a,
     icon: ADMIN_ACTION_ICONS[a.label] ?? AlertCircle,
     type: a.type as 'danger' | 'warning',
-  }));
+  })) || [];
 
   return (
     <div className="space-y-6 pb-10">

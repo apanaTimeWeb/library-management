@@ -33,3 +33,19 @@ export interface AdminActionItem {
   type: 'danger' | 'warning';
   icon?: LucideIcon;
 }
+
+/**
+ * Standard Backend Response Envelope
+ */
+export interface ApiResponse<T> {
+  success: boolean;
+  message: string;
+  data: T | null;
+  meta?: {
+    total?: number;
+    page?: number;
+    limit?: number;
+  };
+  error?: string;
+  statusCode?: number;
+}
