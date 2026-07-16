@@ -12,48 +12,40 @@ import { Payment } from '@/core/entities/payment.entity';
 import { AuthModule } from '@/modules/auth/auth.module';
 
 // Micro-Services
-import { GetAllStudentsService } from './services/get-all-students.service';
-import { GetStudentService } from './services/get-student.service';
-import { CreateStudentService } from './services/create-student.service';
-import { UpdateStudentService } from './services/update-student.service';
-import { DeleteStudentService } from './services/delete-student.service';
+import { StudentsGetAllService } from './services/students-get-all-students.service';
+import { StudentsGetStudentService } from './services/students-get-student.service';
+import { StudentsCreateStudentService } from './services/students-create-student.service';
+import { StudentsUpdateStudentService } from './services/students-update-student.service';
+import { StudentsDeleteStudentService } from './services/students-delete-student.service';
 
 // Micro-Controllers
-import { GetAllStudentsController } from './controllers/get-all-students.controller';
-import { GetStudentController } from './controllers/get-student.controller';
-import { CreateStudentController } from './controllers/create-student.controller';
-import { UpdateStudentController } from './controllers/update-student.controller';
-import { DeleteStudentController } from './controllers/delete-student.controller';
+import { StudentsGetAllController } from './controllers/students-get-all-students.controller';
+import { StudentsGetStudentController } from './controllers/students-get-student.controller';
+import { StudentsCreateStudentController } from './controllers/students-create-student.controller';
+import { StudentsUpdateStudentController } from './controllers/students-update-student.controller';
+import { StudentsDeleteStudentController } from './controllers/students-delete-student.controller';
 
 @Module({
   imports: [
     TypeOrmModule.forFeature([
-      Student,
-      Branch,
-      Shift,
-      Seat,
-      Locker,
-      Plan,
-      StudentSlot,
-      Subscription,
-      Payment,
+      Student, Branch, Shift, Seat, Locker, Plan, StudentSlot, Subscription, Payment,
     ]),
     AuthModule,
   ],
   providers: [
-    GetAllStudentsService,
-    GetStudentService,
-    CreateStudentService,
-    UpdateStudentService,
-    DeleteStudentService,
+    StudentsGetAllService,
+    StudentsGetStudentService,
+    StudentsCreateStudentService,
+    StudentsUpdateStudentService,
+    StudentsDeleteStudentService,
   ],
   controllers: [
-    GetAllStudentsController,
-    GetStudentController,
-    CreateStudentController,
-    UpdateStudentController,
-    DeleteStudentController,
+    StudentsGetAllController,
+    StudentsGetStudentController,
+    StudentsCreateStudentController,
+    StudentsUpdateStudentController,
+    StudentsDeleteStudentController,
   ],
-  exports: [GetStudentService],
+  exports: [StudentsGetStudentService],
 })
-export class AdminStudentsModule {}
+export class StudentsModule {}

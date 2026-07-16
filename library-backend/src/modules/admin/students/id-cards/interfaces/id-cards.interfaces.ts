@@ -1,8 +1,8 @@
-export interface IIDCardRecord {
+export interface IdCardsIIDCardRecord {
   id: string;
 }
 
-export interface IIDCardsPaginationMeta {
+export interface IdCardsIIDCardsPaginationMeta {
   page: number;
   limit: number;
   total: number;

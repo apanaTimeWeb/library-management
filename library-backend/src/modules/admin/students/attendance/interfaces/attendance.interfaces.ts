@@ -1,8 +1,8 @@
-export interface IAttendanceRecord {
+export interface AttendanceIAttendanceRecord {
   id: string;
 }
 
-export interface IAttendancesPaginationMeta {
+export interface AttendanceIAttendancesPaginationMeta {
   page: number;
   limit: number;
   total: number;

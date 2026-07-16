@@ -1,4 +1,4 @@
-export interface StudentListItem {
+export interface StudentsStudentListItem {
   id: string;
   smartId: string;
   name: string;
@@ -15,7 +15,7 @@ export interface StudentListItem {
   college?: string;
 }
 
-export interface StudentDetailItem extends StudentListItem {
+export interface StudentsStudentDetailItem extends StudentListItem {
   firstName: string;
   lastName: string;
   history: Array<{
