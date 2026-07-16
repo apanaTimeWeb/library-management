@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { authLoginSchema, authSignupSchema, authForgotPasswordSchema, authResetPasswordSchema } from '../auth_utils/auth_validation';
+import { authLoginSchema, authSignupSchema, authForgotPasswordSchema, authResetPasswordSchema } from '@/app/auth/auth_utils/auth_validation';
 
 export type FetchState = 'idle' | 'loading' | 'success' | 'error';
 

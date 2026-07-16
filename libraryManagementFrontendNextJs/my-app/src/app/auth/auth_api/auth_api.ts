@@ -1,6 +1,6 @@
 import { StatusCodes } from 'http-status-codes';
-import { AUTH_API_ROUTES } from '../auth_url_config';
-import type { ApiResponse, AuthLoginResponse } from '../auth_types/auth_types';
+import { AUTH_API_ROUTES } from '@/app/auth/auth_url_config';
+import type { ApiResponse, AuthLoginResponse } from '@/app/auth/auth_types/auth_types';
 import { fetchApi } from '@/lib/api';
 
 /**
@@ -37,10 +37,11 @@ export const authApi = {
         data: payload,
         statusCode: StatusCodes.OK
       };
-    } catch (err: any) {
+    } catch (err) {
+      const error = err as Error;
       return {
         success: false,
-        message: err.message || 'Network error occurred.',
+        message: error.message || 'Error occurred.',
         data: null,
         statusCode: StatusCodes.INTERNAL_SERVER_ERROR
       };
@@ -53,8 +54,11 @@ export const authApi = {
         method: 'POST',
       });
       return { success: true, message: 'Logged out successfully', data: null, statusCode: StatusCodes.OK };
-    } catch (err: any) {
-      return { success: false, message: 'Error during logout', data: null, statusCode: StatusCodes.INTERNAL_SERVER_ERROR };
+    } catch (err) {
+      const error = err as Error;
+      return {
+        success: false,
+        message: 'Error during logout', data: null, statusCode: StatusCodes.INTERNAL_SERVER_ERROR };
     } finally {
       if (typeof window !== 'undefined') {
         localStorage.removeItem('access_token');
@@ -88,10 +92,11 @@ export const authApi = {
         data: null,
         statusCode: StatusCodes.CREATED,
       };
-    } catch (err: any) {
+    } catch (err) {
+      const error = err as Error;
       return {
         success: false,
-        message: err.message || 'Error during signup',
+        message: error.message || 'Error during signup',
         data: null,
         statusCode: StatusCodes.INTERNAL_SERVER_ERROR,
       };
@@ -110,10 +115,11 @@ export const authApi = {
         data: null,
         statusCode: StatusCodes.OK,
       };
-    } catch (err: any) {
+    } catch (err) {
+      const error = err as Error;
       return {
         success: false,
-        message: err.message || 'Error sending OTP',
+        message: error.message || 'Error sending OTP',
         data: null,
         statusCode: StatusCodes.INTERNAL_SERVER_ERROR,
       };
@@ -132,10 +138,11 @@ export const authApi = {
         data: null,
         statusCode: StatusCodes.OK,
       };
-    } catch (err: any) {
+    } catch (err) {
+      const error = err as Error;
       return {
         success: false,
-        message: err.message || 'Error resetting password',
+        message: error.message || 'Error resetting password',
         data: null,
         statusCode: StatusCodes.INTERNAL_SERVER_ERROR,
       };
@@ -153,10 +160,11 @@ export const authApi = {
         data: response.data ?? response,
         statusCode: StatusCodes.OK,
       };
-    } catch (err: any) {
+    } catch (err) {
+      const error = err as Error;
       return {
         success: false,
-        message: err.message || 'Error fetching user',
+        message: error.message || 'Error fetching user',
         data: null,
         statusCode: StatusCodes.INTERNAL_SERVER_ERROR,
       };

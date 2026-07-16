@@ -2,9 +2,9 @@
 
 import Link from 'next/link';
 import { Eye, EyeOff, BookOpen, CheckCircle } from 'lucide-react';
-import { useAuthSignup } from '../auth_hooks/useAuthSignup';
-import { AUTH_ROUTES } from '../../auth_url_config';
-import PasswordStrengthMeter from '../../reusable/PasswordStrengthMeter';
+import { useAuthSignup } from '@/app/auth/signup/auth_hooks/useAuthSignup';
+import { AUTH_ROUTES } from '@/app/auth/auth_url_config';
+import PasswordStrengthMeter from '@/app/auth/auth_shared_components/AuthPasswordStrengthMeter';
 
 // RESPONSIBILITY: Renders the signup page UI, including brand panel and form.
 export function AuthSignupForm() {

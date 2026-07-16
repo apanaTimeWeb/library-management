@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { authLoginSchema } from '../../auth_utils/auth_validation';
-import { authApi } from '../../auth_api/auth_api';
-import { AUTH_ROLES, AUTH_ROLE_DEST_LABEL } from '../../auth_constants';
-import type { AuthLoginPayload, FetchState } from '../../auth_types/auth_types';
+import { authLoginSchema } from '@/app/auth/auth_utils/auth_validation';
+import { authApi } from '@/app/auth/auth_api/auth_api';
+import { AUTH_ROLES, AUTH_ROLE_DEST_LABEL } from '@/app/auth/auth_constants';
+import type { AuthLoginPayload, FetchState } from '@/app/auth/auth_types/auth_types';
 
 export function useAuthLogin() {
   const [showPw, setShowPw] = useState(false);

@@ -2,8 +2,8 @@
 
 import Link from 'next/link';
 import { Eye, EyeOff, BookOpen, CheckCircle, ChevronRight } from 'lucide-react';
-import { useAuthLogin } from '../auth_hooks/useAuthLogin';
-import { AUTH_ROUTES } from '../../auth_url_config';
+import { useAuthLogin } from '@/app/auth/login/auth_hooks/useAuthLogin';
+import { AUTH_ROUTES } from '@/app/auth/auth_url_config';
 
 // RESPONSIBILITY: Renders the login page UI, including brand panel and form. No complex logic.
 export function AuthLoginForm() {

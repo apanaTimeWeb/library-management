@@ -1,10 +1,10 @@
 import { useState, useRef, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { authResetPasswordSchema } from '../../auth_utils/auth_validation';
-import { AUTH_RESET_PASSWORD_PRESETS } from '../../auth_constants';
-import type { AuthResetPasswordPayload, FetchState } from '../../auth_types/auth_types';
-import { authApi } from '../../auth_api/auth_api';
+import { authResetPasswordSchema } from '@/app/auth/auth_utils/auth_validation';
+import { AUTH_RESET_PASSWORD_PRESETS } from '@/app/auth/auth_constants';
+import type { AuthResetPasswordPayload, FetchState } from '@/app/auth/auth_types/auth_types';
+import { authApi } from '@/app/auth/auth_api/auth_api';
 
 const CORRECT_OTP = AUTH_RESET_PASSWORD_PRESETS.otp.join('');
 const RESEND_SECS = 45;

@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { authForgotPasswordSchema } from '../../auth_utils/auth_validation';
-import type { AuthForgotPasswordPayload, FetchState } from '../../auth_types/auth_types';
-import { authApi } from '../../auth_api/auth_api';
+import { authForgotPasswordSchema } from '@/app/auth/auth_utils/auth_validation';
+import type { AuthForgotPasswordPayload, FetchState } from '@/app/auth/auth_types/auth_types';
+import { authApi } from '@/app/auth/auth_api/auth_api';
 
 export function useAuthForgotPassword() {
   const [sent, setSent] = useState(false);

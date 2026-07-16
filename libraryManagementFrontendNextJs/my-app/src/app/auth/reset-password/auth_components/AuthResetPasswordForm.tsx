@@ -3,9 +3,9 @@
 import Link from 'next/link';
 import { Eye, EyeOff, BookOpen } from 'lucide-react';
 import { Controller } from 'react-hook-form';
-import { useAuthResetPassword } from '../auth_hooks/useAuthResetPassword';
-import PasswordStrengthMeter from '../../reusable/PasswordStrengthMeter';
-import { AUTH_ROUTES } from '../../auth_url_config';
+import { useAuthResetPassword } from '@/app/auth/reset-password/auth_hooks/useAuthResetPassword';
+import PasswordStrengthMeter from '@/app/auth/auth_shared_components/AuthPasswordStrengthMeter';
+import { AUTH_ROUTES } from '@/app/auth/auth_url_config';
 
 // RESPONSIBILITY: Renders the reset password page UI.
 export function AuthResetPasswordForm() {

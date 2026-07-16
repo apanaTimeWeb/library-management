@@ -2,8 +2,8 @@
 
 import Link from 'next/link';
 import { ArrowLeft, BookOpen, Send } from 'lucide-react';
-import { useAuthForgotPassword } from '../auth_hooks/useAuthForgotPassword';
-import { AUTH_ROUTES } from '../../auth_url_config';
+import { useAuthForgotPassword } from '@/app/auth/forgot-password/auth_hooks/useAuthForgotPassword';
+import { AUTH_ROUTES } from '@/app/auth/auth_url_config';
 
 // RESPONSIBILITY: Renders the forgot password page UI.
 export function AuthForgotPasswordForm() {
