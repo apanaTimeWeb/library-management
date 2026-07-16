@@ -61,10 +61,31 @@ export async function fetchApi<T = any>(endpoint: string, options: RequestInit =
       console.warn(`[Mock Mode] Returning mock data for ${normalizedEndpoint}`);
       return { 
         success: true, 
-        message: 'Mock data loaded successfully', 
+        message: 'Mock data returned', 
         data: mockRegistry[normalizedEndpoint],
-        statusCode: 200 
+        statusCode: 200
       } as any;
+    }
+
+    // Intelligent Cross-Role Fallback
+    const rolePrefixes = ['/admin', '/superadmin', '/manager'];
+    const currentPrefix = rolePrefixes.find(p => normalizedEndpoint.startsWith(p));
+    
+    if (currentPrefix) {
+      const suffix = normalizedEndpoint.slice(currentPrefix.length); // e.g. "/accounting/assets"
+      for (const prefix of rolePrefixes) {
+        if (prefix === currentPrefix) continue;
+        const alternativeEndpoint = `${prefix}${suffix}`;
+        if (mockRegistry[alternativeEndpoint]) {
+          console.warn(`[Mock Mode] Cross-role fallback: Using ${alternativeEndpoint} for ${normalizedEndpoint}`);
+          return { 
+            success: true, 
+            message: 'Cross-role mock data returned', 
+            data: mockRegistry[alternativeEndpoint], 
+            statusCode: 200 
+          } as any;
+        }
+      }
     }
 
     console.warn(`[Mock Mode] No specific mock found for '${normalizedEndpoint}'. Returning safe generic fallback.`);

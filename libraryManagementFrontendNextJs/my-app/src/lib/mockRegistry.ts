@@ -24,7 +24,13 @@ import { SUPERADMIN_REPORTS_MOCK_DATA } from '@/app/superadmin/superadmin_report
 import { SUPERADMIN_SUBSCRIPTIONS_MOCK_DATA } from '@/app/superadmin/superadmin_subscriptions/superadmin_subscriptions_constants/SuperadminSubscriptionsConstants';
 import { SUPERADMIN_SYSTEM_HEALTH_MOCK_DATA } from '@/app/superadmin/superadmin_system-health/superadmin_system_health_constants/SuperadminSystemHealthConstants';
 import { CRM_CONSTANTS } from '@/app/superadmin/superadmin_crm/superadmin_crm_constants';
-
+import { 
+  ADMIN_REPORTS_KPI_CARDS,
+  ADMIN_REPORTS_INCOME_VS_EXPENSE,
+  ADMIN_REPORTS_SHIFT_OCCUPANCY,
+  ADMIN_REPORTS_REVENUE_TREND,
+  ADMIN_REPORTS_STUDENT_GROWTH
+} from '@/app/admin/admin_reports/admin_reports_constants/admin_reports_constants';
 
 const GENERIC_DASHBOARD_MOCK = {
   kpiData: [
@@ -62,6 +68,13 @@ export const mockRegistry: Record<string, any> = {
   '/admin/expenses': MOCK_EXPENSES,
   '/admin/plans': MOCK_PLANS,
   '/admin/manager-reports-data': MOCK_MANAGER_REPORTS_DATA,
+  '/admin/reports': {
+    kpiCards: ADMIN_REPORTS_KPI_CARDS,
+    incomeData: ADMIN_REPORTS_INCOME_VS_EXPENSE,
+    shiftOccupancy: ADMIN_REPORTS_SHIFT_OCCUPANCY,
+    revenueData: ADMIN_REPORTS_REVENUE_TREND,
+    growthData: ADMIN_REPORTS_STUDENT_GROWTH
+  },
   '/superadmin/accounting/asset-maintenance': SUPERADMIN_ASSET_MAINTENANCE_MOCK_DATA,
   '/superadmin/accounting/assets': SUPERADMIN_ASSETS_MOCK_DATA,
   '/superadmin/accounting/daily-settlement': SUPERADMIN_DAILY_SETTLEMENT_MOCK_DATA,
