@@ -106,19 +106,23 @@ export default function AdminCrmEnquiriesClient() {
     fetchApi(ADMIN_API_ROUTES.CRM_ENQUIRIES)
       .then((data: unknown) => {
         const rows = Array.isArray(data) ? data : [];
-        const mapped: Enquiry[] = rows.map((e: Record<string, unknown>) => ({
+        const mapped: Enquiry[] = rows.map((e: any) => ({
           id:              String(e.id ?? ''),
           name:            String(e.name ?? ''),
           phone:           String(e.phone ?? ''),
-          shift:           String(e.preferredShift ?? ''),
+          shift:           String(e.shift || e.preferredShift || 'General'),
           status:          (String(e.status ?? 'new').charAt(0).toUpperCase() + String(e.status ?? 'new').slice(1)) as EnquiryStatus,
-          handledBy:       (e.handledBy as Record<string, unknown>)?.name ? String((e.handledBy as Record<string, unknown>).name) : 'Unassigned',
-          addedDate:       new Date(String(e.createdAt ?? '')).toLocaleDateString(),
+          handledBy:       typeof e.handledBy === 'string' ? e.handledBy : (e.handledBy?.name || 'Unassigned'),
+          addedDate:       String(e.addedDate || new Date(e.createdAt || e.date || Date.now()).toLocaleDateString()),
           source:          String(e.source ?? 'Walk-in'),
-          preferredBranch: String(e.preferredBranch ?? 'Main Branch'),
-          enquiryDate:     new Date(String(e.createdAt ?? '')).toLocaleDateString(),
-          avatar:          String(e.name ?? '').substring(0, 2).toUpperCase(),
-          followUps:       [],
+          preferredBranch: String(e.preferredBranch || e.branch || 'Main Branch'),
+          enquiryDate:     String(e.enquiryDate || new Date(e.createdAt || e.date || Date.now()).toLocaleDateString()),
+          avatar:          String(e.avatar || e.name?.substring(0, 2).toUpperCase() || 'NA'),
+          followUps:       e.followUps || [],
+          isToday:         e.isToday,
+          isUpcoming:      e.isUpcoming,
+          isOverdue:       e.isOverdue,
+          convertedDate:   e.convertedDate
         }));
         setEnquiries(mapped);
         setFetchState('success');
