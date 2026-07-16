@@ -84,7 +84,8 @@ export default function RecentPaymentsFeed({ payments }: { payments: Payment[] }
     },
   ], []);
 
-  const onRowClicked = useCallback((e: unknown) => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const onRowClicked = useCallback((e: any) => {
     const studentId = e.data?.studentId;
     if (studentId) router.push(`/manager/manager_students/${studentId}`);
   }, [router]);
