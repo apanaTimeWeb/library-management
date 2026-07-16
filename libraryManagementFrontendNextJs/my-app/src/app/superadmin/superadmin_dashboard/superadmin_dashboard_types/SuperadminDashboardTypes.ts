@@ -1,4 +1,4 @@
-export interface DashboardKpiCard {
+export interface SuperadminDashboardKpiCard {
   title: string;
   value: string;
   icon: string;
@@ -8,14 +8,14 @@ export interface DashboardKpiCard {
   alert?: string;
 }
 
-export interface DashboardSystemHealth {
+export interface SuperadminDashboardSystemHealth {
   uptime: string;
   activeUsers: number;
   apiLatency: string;
   lastBackup: string;
 }
 
-export interface DashboardActionItem {
+export interface SuperadminDashboardActionItem {
   id: string;
   title: string;
   description: string;
@@ -25,7 +25,7 @@ export interface DashboardActionItem {
   actionUrl: string;
 }
 
-export interface RecentLibrary {
+export interface SuperadminDashboardRecentLibrary {
   initials: string;
   name: string;
   owner: string;
@@ -35,9 +35,9 @@ export interface RecentLibrary {
   joinedAt: string;
 }
 
-export interface DashboardDataResponse {
-  kpiCards: DashboardKpiCard[];
-  systemHealth: DashboardSystemHealth;
-  actionItems: DashboardActionItem[];
-  recentLibraries: RecentLibrary[];
+export interface SuperadminDashboardDataResponse {
+  kpiCards: SuperadminDashboardKpiCard[];
+  systemHealth: SuperadminDashboardSystemHealth;
+  actionItems: SuperadminDashboardActionItem[];
+  recentLibraries: SuperadminDashboardRecentLibrary[];
 }
