@@ -13,6 +13,24 @@ The entire `admin` module is built on the philosophy of **Extreme Isolation**. E
 - `admin_constants/admin_constants.ts`: Hardcoded layout data (Sidebar navigation, KPI lists).
 - `admin_context/AdminContext.tsx`: The global state for the layout (e.g., branch selection).
 
+### Refactored Sub-Modules
+The following modules have been completely refactored to follow Server/Client boundaries, React Hook Form + Zod, Zustand async stores, and `beforeunload` warnings:
+- `admin_audit-logs`: Activity tracking with debounce search.
+- `admin_blacklist`: Banned members table and RHF add dialog.
+- `admin_coupons`: Coupon code creation, usage stats, and status toggling.
+- `admin_plans`: Membership pricing plans with duration features.
+- `admin_expense-categories`: Standardized expense tags (Electricity, Rent, etc.).
+- `admin_expenses`: Viewing daily settlement expenses across branches.
+- `admin_accounting`: Advanced accounting encompassing:
+  - `assets`: Asset tracking and valuation.
+  - `expenses`: Manual accounting expense logging.
+  - `asset-maintenance`: Scheduled maintenance and costs.
+  - `financial-reports`: Income vs expense visualization.
+  - `daily-settlement`: Shift settlement and cash tracking.
+  - `expense-categories`: Budget vs spent tracking for expenses.
+  - `seat-gap-report`: Analysis of vacant seats and revenue loss.
+  - `shift-gap-analyzer`: Comprehensive shift occupancy data.
+
 ### Sub-Module Blueprint (`admin_[featureName]`)
 Every sub-module follows an identical, strict internal architecture. If you are instructed to modify the "System Settings", you only need to look inside `admin_system/`.
 
