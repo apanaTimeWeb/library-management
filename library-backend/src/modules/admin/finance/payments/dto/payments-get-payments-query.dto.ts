@@ -1,6 +1,6 @@
 import { IsOptional, IsInt, Min, IsString } from 'class-validator';
 import { Type } from 'class-transformer';
-import { PAYMENTS_CONSTANTS } from '../constants/payments.constants';
+import { PAYMENTS_CONSTANTS } from '../constants/payments-payments.constants';
 
 export class PaymentsGetPaymentsQueryDto {
   @IsOptional()

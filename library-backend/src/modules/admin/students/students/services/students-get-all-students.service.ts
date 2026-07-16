@@ -2,9 +2,9 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository, ILike } from 'typeorm';
 import { Student } from '@/core/entities/student.entity';
-import { StudentListItem } from '@/modules/admin/students/students/interfaces/students-students.interfaces';
+import { StudentsStudentListItem } from '@/modules/admin/students/students/interfaces/students-students.interfaces';
 import { StudentsPaginationDto } from '../dto/students-pagination.dto';
-import { PaginatedResponse } from '../interfaces/students-pagination.interface';
+import { StudentsPaginatedResponse } from '../interfaces/students-pagination.interface';
 
 @Injectable()
 export class StudentsGetAllService {
@@ -16,7 +16,7 @@ export class StudentsGetAllService {
   async findAll(
     branchId?: string,
     paginationDto?: StudentsPaginationDto,
-  ): Promise<PaginatedResponse<StudentListItem>> {
+  ): Promise<StudentsPaginatedResponse<StudentsStudentListItem>> {
     const {
       page = 1,
       limit = 10,

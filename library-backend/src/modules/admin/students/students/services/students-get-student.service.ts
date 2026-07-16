@@ -3,7 +3,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Student } from '@/core/entities/student.entity';
-import { StudentDetailItem } from '@/modules/admin/students/students/interfaces/students-students.interfaces';
+import { StudentsStudentDetailItem } from '@/modules/admin/students/students/interfaces/students-students.interfaces';
 
 @Injectable()
 export class StudentsGetStudentService {
@@ -12,7 +12,7 @@ export class StudentsGetStudentService {
     private readonly studentRepo: Repository<Student>,
   ) {}
 
-  async findOne(id: string, branchId?: string): Promise<StudentDetailItem> {
+  async findOne(id: string, branchId?: string): Promise<StudentsStudentDetailItem> {
     const isUuid =
       /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(
         id,

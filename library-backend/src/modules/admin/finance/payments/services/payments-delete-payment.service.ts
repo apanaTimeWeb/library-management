@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Payment } from '@/core/entities/payment.entity';
-import { PaymentNotFoundException } from '../exceptions/payments.exceptions';
+import { PaymentNotFoundException } from '../exceptions/payments-payments.exceptions';
 
 @Injectable()
 export class PaymentsDeletePaymentService {

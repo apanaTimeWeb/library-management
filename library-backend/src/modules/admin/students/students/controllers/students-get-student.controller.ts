@@ -3,7 +3,7 @@ import { ApiTags, ApiBearerAuth, ApiOperation } from '@nestjs/swagger';
 import { StudentsGetStudentService } from '@/modules/admin/students/students/services/students-get-student.service';
 import { AuthJwtAuthGuard } from '@/modules/auth/session/guards/auth-jwt-auth.guard';
 import { AuthRolesGuard } from '@/modules/auth/session/guards/auth-roles.guard';
-import { StudentDetailItem } from '@/modules/admin/students/students/interfaces/students-students.interfaces';
+import { StudentsStudentDetailItem } from '@/modules/admin/students/students/interfaces/students-students.interfaces';
 import { AuthRoles } from '@/modules/auth/session/decorators/auth-roles.decorator';
 
 @ApiTags('Admin Students')
@@ -20,7 +20,7 @@ export class StudentsGetStudentController {
   async getStudentById(
     @Param('id') id: string,
     @Req() req: any,
-  ): Promise<StudentDetailItem> {
+  ): Promise<StudentsStudentDetailItem> {
     return this.getStudentService.findOne(id, req.user?.branchId);
   }
 }

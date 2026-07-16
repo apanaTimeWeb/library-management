@@ -1,6 +1,6 @@
 import { Controller, Get, UseGuards } from '@nestjs/common';
 import { ApiTags, ApiBearerAuth, ApiOperation } from '@nestjs/swagger';
-import { DashboardReportsService } from '@/modules/admin/dashboard-reports/dashboard/services/reports.service';
+import { DashboardReportsService } from '@/modules/admin/reports/dashboard/services/dashboard-reports.service';
 import { AuthRoles } from '@/modules/auth/session/decorators/auth-roles.decorator';
 import { AuthJwtAuthGuard } from '@/modules/auth/session/guards/auth-jwt-auth.guard';
 import { AuthRolesGuard } from '@/modules/auth/session/guards/auth-roles.guard';

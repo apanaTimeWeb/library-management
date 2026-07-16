@@ -6,35 +6,35 @@ import { Seat } from '@/core/entities/seat.entity';
 
 // Micro-Services
 import { AdminDashboardService } from './services/admin-dashboard.service';
-import { AdminReportsService } from '@/modules/admin/reports/dashboard/services/reports.service';
+import { DashboardReportsService } from '@/modules/admin/reports/dashboard/services/dashboard-reports.service';
 import { DashboardAuditLogsService } from '@/modules/admin/audit-logs/dashboard/services/dashboard-audit-logs.service';
-import { AdminBlacklistService } from '@/modules/admin/blacklist/dashboard/services/blacklist.service';
-import { AdminBranchesService } from '@/modules/admin/branches/dashboard/services/branches.service';
-import { AdminCouponsService } from '@/modules/admin/coupons/dashboard/services/coupons.service';
-import { AdminExpenseCategoriesService } from '@/modules/admin/expense-categories/dashboard/services/expense-categories.service';
-import { AdminExpensesService } from '@/modules/admin/expenses/dashboard/services/expenses.service';
-import { AdminPermissionsService } from '@/modules/admin/permissions/dashboard/services/permissions.service';
-import { AdminPlansService } from '@/modules/admin/plans/dashboard/services/plans.service';
-import { AdminStaffUsersService } from '@/modules/admin/staff-users/dashboard/services/staff-users.service';
-import { AdminStudentsService } from '@/modules/admin/students/dashboard/services/students.service';
+import { DashboardBlacklistService } from '@/modules/admin/blacklist/dashboard/services/dashboard-blacklist.service';
+import { DashboardBranchesService } from '@/modules/admin/branches/dashboard/services/dashboard-branches.service';
+import { DashboardCouponsService } from '@/modules/admin/coupons/dashboard/services/dashboard-coupons.service';
+import { DashboardExpenseCategoriesService } from '@/modules/admin/expense-categories/dashboard/services/dashboard-expense-categories.service';
+import { DashboardExpensesService } from '@/modules/admin/expenses/dashboard/services/dashboard-expenses.service';
+import { DashboardPermissionsService } from '@/modules/admin/permissions/dashboard/services/dashboard-permissions.service';
+import { DashboardPlansService } from '@/modules/admin/plans/dashboard/services/dashboard-plans.service';
+import { DashboardStaffUsersService } from '@/modules/admin/staff-users/dashboard/services/dashboard-staff-users.service';
+import { DashboardStudentsService } from '@/modules/admin/students/dashboard/services/dashboard-students.service';
 
 // Micro-Controllers
 import { AdminDashboardController } from './controllers/admin-dashboard.controller';
-import { AdminReportsController } from '@/modules/admin/reports/dashboard/controllers/reports.controller';
+import { DashboardReportsController } from '@/modules/admin/reports/dashboard/controllers/dashboard-reports.controller';
 import { DashboardAuditLogsController } from '@/modules/admin/audit-logs/dashboard/controllers/dashboard-audit-logs.controller';
-import { AdminBlacklistController } from '@/modules/admin/blacklist/dashboard/controllers/blacklist.controller';
-import { AdminBranchesController } from '@/modules/admin/branches/dashboard/controllers/branches.controller';
-import { AdminCouponsController } from '@/modules/admin/coupons/dashboard/controllers/coupons.controller';
-import { AdminExpenseCategoriesController } from '@/modules/admin/expense-categories/dashboard/controllers/expense-categories.controller';
-import { AdminExpensesController } from '@/modules/admin/expenses/dashboard/controllers/expenses.controller';
-import { AdminPermissionsController } from '@/modules/admin/permissions/dashboard/controllers/permissions.controller';
-import { AdminPlansController } from '@/modules/admin/plans/dashboard/controllers/plans.controller';
-import { AdminStaffUsersController } from '@/modules/admin/staff-users/dashboard/controllers/staff-users.controller';
-import { AdminStudentsController } from '@/modules/admin/students/dashboard/controllers/students.controller';
+import { DashboardBlacklistController } from '@/modules/admin/blacklist/dashboard/controllers/dashboard-blacklist.controller';
+import { DashboardBranchesController } from '@/modules/admin/branches/dashboard/controllers/dashboard-branches.controller';
+import { DashboardCouponsController } from '@/modules/admin/coupons/dashboard/controllers/dashboard-coupons.controller';
+import { DashboardExpenseCategoriesController } from '@/modules/admin/expense-categories/dashboard/controllers/dashboard-expense-categories.controller';
+import { DashboardExpensesController } from '@/modules/admin/expenses/dashboard/controllers/dashboard-expenses.controller';
+import { DashboardPermissionsController } from '@/modules/admin/permissions/dashboard/controllers/dashboard-permissions.controller';
+import { DashboardPlansController } from '@/modules/admin/plans/dashboard/controllers/dashboard-plans.controller';
+import { DashboardStaffUsersController } from '@/modules/admin/staff-users/dashboard/controllers/dashboard-staff-users.controller';
+import { DashboardStudentsController } from '@/modules/admin/students/dashboard/controllers/dashboard-students.controller';
 
 @Module({
   imports: [TypeOrmModule.forFeature([Student, Payment, Seat])],
-  providers: [AdminDashboardService, AdminReportsService, DashboardAuditLogsService, AdminBlacklistService, AdminBranchesService, AdminCouponsService, AdminExpenseCategoriesService, AdminExpensesService, AdminPermissionsService, AdminPlansService, AdminStaffUsersService, AdminStudentsService, ],
-  controllers: [AdminDashboardController, AdminReportsController, DashboardAuditLogsController, AdminBlacklistController, AdminBranchesController, AdminCouponsController, AdminExpenseCategoriesController, AdminExpensesController, AdminPermissionsController, AdminPlansController, AdminStaffUsersController, AdminStudentsController, ],
+  providers: [AdminDashboardService, DashboardReportsService, DashboardAuditLogsService, DashboardBlacklistService, DashboardBranchesService, DashboardCouponsService, DashboardExpenseCategoriesService, DashboardExpensesService, DashboardPermissionsService, DashboardPlansService, DashboardStaffUsersService, DashboardStudentsService, ],
+  controllers: [AdminDashboardController, DashboardReportsController, DashboardAuditLogsController, DashboardBlacklistController, DashboardBranchesController, DashboardCouponsController, DashboardExpenseCategoriesController, DashboardExpensesController, DashboardPermissionsController, DashboardPlansController, DashboardStaffUsersController, DashboardStudentsController, ],
 })
 export class AdminModule {}

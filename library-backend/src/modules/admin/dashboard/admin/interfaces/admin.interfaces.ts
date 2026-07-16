@@ -6,7 +6,7 @@ export interface AdminTrend {
 export interface AdminKpiCard {
   label: string;
   value: string | number;
-  trend: Trend;
+  trend: AdminTrend;
   sub: string;
 }
 
@@ -37,11 +37,11 @@ export interface AdminActionItem {
 }
 
 export interface AdminDashboardData {
-  kpiCards: KpiCard[];
-  seats: SeatData[];
+  kpiCards: AdminKpiCard[];
+  seats: AdminSeatData[];
   shifts: string[];
-  actionItems: ActionItem[];
-  recentPayments: RecentPayment[];
+  actionItems: AdminActionItem[];
+  recentPayments: AdminRecentPayment[];
 }
 
 export interface AdminIncomeExpenseItem {
@@ -68,21 +68,21 @@ export interface AdminStudentGrowthItem {
 }
 
 export interface AdminReportsData {
-  kpiCards: KpiCard[];
+  kpiCards: AdminKpiCard[];
   incomeVsExpense: {
-    thisMonth: IncomeExpenseItem[];
-    last3Months: IncomeExpenseItem[];
-    thisYear: IncomeExpenseItem[];
+    thisMonth: AdminIncomeExpenseItem[];
+    last3Months: AdminIncomeExpenseItem[];
+    thisYear: AdminIncomeExpenseItem[];
   };
-  shiftOccupancy: ShiftOccupancyItem[];
+  shiftOccupancy: AdminShiftOccupancyItem[];
   revenueTrend: {
-    thisMonth: RevenueTrendItem[];
-    last3Months: RevenueTrendItem[];
-    thisYear: RevenueTrendItem[];
+    thisMonth: AdminRevenueTrendItem[];
+    last3Months: AdminRevenueTrendItem[];
+    thisYear: AdminRevenueTrendItem[];
   };
   studentGrowth: {
-    thisMonth: StudentGrowthItem[];
-    last3Months: StudentGrowthItem[];
-    thisYear: StudentGrowthItem[];
+    thisMonth: AdminStudentGrowthItem[];
+    last3Months: AdminStudentGrowthItem[];
+    thisYear: AdminStudentGrowthItem[];
   };
 }

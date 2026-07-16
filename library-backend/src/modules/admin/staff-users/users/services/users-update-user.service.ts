@@ -3,7 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { User } from '@/core/entities/user.entity';
 import { UsersUpdateUserDto } from '../dto/users-update-user.dto';
-import { UserNotFoundException } from '../exceptions/user-not-found.exception';
+import { UserNotFoundException } from '../exceptions/users-user-not-found.exception';
 
 @Injectable()
 export class UsersUpdateUserService {

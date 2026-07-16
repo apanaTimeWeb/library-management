@@ -18,7 +18,7 @@ export class EnquiriesAddFollowUpService {
       throw new EnquiryNotFoundException(id);
     }
 
-    enquiry.followUps = [EnquiriesfollowUpDto, ...(enquiry.followUps || [])];
+    enquiry.followUps = [followUpDto, ...(enquiry.followUps || [])];
     return this.enquiryRepo.save(enquiry);
   }
 }

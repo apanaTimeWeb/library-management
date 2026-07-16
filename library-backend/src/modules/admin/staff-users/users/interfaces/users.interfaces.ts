@@ -9,7 +9,7 @@ export interface UsersIUser {
 }
 
 export interface UsersIUserListResponse {
-  data: IUser[];
+  data: UsersIUser[];
   meta: {
     total: number;
     page: number;

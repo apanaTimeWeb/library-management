@@ -1,5 +1,5 @@
-import { AdminExpenseCategoriesModule } from './modules/admin/expense-categories/expense-categories/expense-categories.module';
-import { AdminReportsModule } from './modules/admin/reports/reports/reports.module';
+import { ExpenseCategoriesAdminModule } from './modules/admin/expense-categories/expense-categories/expense-categories.module';
+import { ReportsAdminModule } from './modules/admin/reports/reports/reports.module';
 import { ManagerDocumentsModule } from './modules/manager/documents/documents/documents.module';
 import { ManagerReportsModule } from './modules/manager/reports/reports/reports.module';
 import { ManagerStudentDashboardModule } from './modules/manager/student-dashboard/student-dashboard/student-dashboard.module';
@@ -20,29 +20,29 @@ import { AppService } from './app.service';
 
 import { PublicEnquiryModule } from './modules/public/enquiry/enquiry/enquiry.module';
 import { AdminModule } from './modules/admin/dashboard/admin/admin.module';
-import { AdminAttendanceModule } from './modules/admin/students/attendance/attendance.module';
+import { AttendanceAdminModule } from './modules/admin/students/attendance/attendance.module';
 import { AdminAuditLogsModule } from './modules/admin/audit-logs/audit-logs/audit-logs.module';
 import { AdminAccountingExpensesModule } from './modules/admin/accounting/expenses/expenses.module';
 import { AdminAccountingFinancialReportsModule } from './modules/admin/accounting/financial-reports/financial-reports.module';
 import { AdminAccountingAssetMaintenanceModule } from './modules/admin/accounting/asset-maintenance/asset-maintenance.module';
 import { AdminAccountingAssetsModule } from './modules/admin/accounting/assets/assets.module';
 import { AdminAccountingDailySettlementsModule } from './modules/admin/accounting/daily-settlements/daily-settlements.module';
-import { AdminBranchesModule } from './modules/admin/branches/branches/branches.module';
-import { AdminComplaintsModule } from './modules/admin/support-tickets/complaints/complaints.module';
+import { branchesModule } from './modules/admin/branches/branches/branches.module';
+import { ComplaintsAdminModule } from './modules/admin/support-tickets/complaints/complaints.module';
 import { AdminCouponsModule } from './modules/admin/coupons/coupons.module';
-import { AdminEnquiriesModule } from './modules/admin/crm/enquiries/enquiries.module';
-import { AdminExpensesModule } from './modules/admin/expenses/expenses/expenses.module';
-import { AdminLockersModule } from './modules/admin/seats_shifts_lockers/lockers/lockers.module';
-import { AdminPaymentsModule } from './modules/admin/finance/payments/payments.module';
-import { AdminPermissionsModule } from './modules/admin/permissions/permissions/permissions.module';
-import { AdminPlansModule } from './modules/admin/plans/plans/plans.module';
-import { AdminRolesModule } from './modules/admin/staff-users/roles/roles.module';
-import { AdminSeatsModule } from './modules/admin/seats_shifts_lockers/seats/seats.module';
-import { AdminShiftsModule } from './modules/admin/seats_shifts_lockers/shifts/shifts.module';
-import { AdminStudentSlotsModule } from './modules/admin/seats_shifts_lockers/student-slots/student-slots.module';
-import { AdminStudentsModule } from './modules/admin/students/students/students.module';
-import { AdminSubscriptionsModule } from './modules/admin/subscriptions/subscriptions/subscriptions.module';
-import { AdminUsersModule } from './modules/admin/staff-users/users/users.module';
+import { EnquiriesAdminModule } from './modules/admin/crm/enquiries/enquiries.module';
+import { ExpensesAdminModule } from './modules/admin/expenses/expenses/expenses.module';
+import { LockersAdminModule } from './modules/admin/seats_shifts_lockers/lockers/lockers.module';
+import { PaymentsAdminModule } from './modules/admin/finance/payments/payments-payments.module';
+import { PermissionsAdminModule } from './modules/admin/permissions/permissions/permissions.module';
+import { PlansAdminModule } from './modules/admin/plans/plans/plans.module';
+import { RolesAdminModule } from './modules/admin/staff-users/roles/roles.module';
+import { SeatsAdminModule } from './modules/admin/seats_shifts_lockers/seats/seats.module';
+import { ShiftsAdminModule } from './modules/admin/seats_shifts_lockers/shifts/shifts.module';
+import { StudentSlotsAdminModule } from './modules/admin/seats_shifts_lockers/student-slots/student-slots.module';
+import { StudentsModule } from './modules/admin/students/students/students.module';
+import { SubscriptionsAdminModule } from './modules/admin/subscriptions/subscriptions/subscriptions.module';
+import { UsersAdminModule } from './modules/admin/staff-users/users/users.module';
 import { AuthModule } from './modules/auth/auth.module';
 import { ManagerAttendanceModule } from './modules/manager/students/attendance/attendance.module';
 import { ManagerComplaintsModule } from './modules/manager/support-tickets/complaints/complaints.module';
@@ -76,8 +76,8 @@ import { SuperadminUsersModule } from './modules/superadmin/staff-users/users/us
 
 @Module({
   imports: [
-    AdminExpenseCategoriesModule,
-    AdminReportsModule,
+    ExpenseCategoriesAdminModule,
+    ReportsAdminModule,
     ManagerDocumentsModule,
     ManagerReportsModule,
     ManagerStudentDashboardModule,
@@ -128,29 +128,29 @@ import { SuperadminUsersModule } from './modules/superadmin/staff-users/users/us
     }),
     PublicEnquiryModule,
     AdminModule,
-    AdminAttendanceModule,
+    AttendanceAdminModule,
     AdminAuditLogsModule,
     AdminAccountingExpensesModule,
     AdminAccountingFinancialReportsModule,
     AdminAccountingAssetMaintenanceModule,
     AdminAccountingAssetsModule,
     AdminAccountingDailySettlementsModule,
-    AdminBranchesModule,
-    AdminComplaintsModule,
+    branchesModule,
+    ComplaintsAdminModule,
     AdminCouponsModule,
-    AdminEnquiriesModule,
-    AdminExpensesModule,
-    AdminLockersModule,
-    AdminPaymentsModule,
-    AdminPermissionsModule,
-    AdminPlansModule,
-    AdminRolesModule,
-    AdminSeatsModule,
-    AdminShiftsModule,
-    AdminStudentSlotsModule,
-    AdminStudentsModule,
-    AdminSubscriptionsModule,
-    AdminUsersModule,
+    EnquiriesAdminModule,
+    ExpensesAdminModule,
+    LockersAdminModule,
+    PaymentsAdminModule,
+    PermissionsAdminModule,
+    PlansAdminModule,
+    RolesAdminModule,
+    SeatsAdminModule,
+    ShiftsAdminModule,
+    StudentSlotsAdminModule,
+    StudentsModule,
+    SubscriptionsAdminModule,
+    UsersAdminModule,
     AuthModule,
     ManagerAttendanceModule,
     ManagerComplaintsModule,

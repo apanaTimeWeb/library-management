@@ -14,5 +14,5 @@ export interface EnquiriesEnquiryBase {
   status: string;
   createdAt: Date;
   updatedAt: Date;
-  followUps?: EnquiryFollowUp[];
+  followUps?: EnquiriesEnquiryFollowUp[];
 }

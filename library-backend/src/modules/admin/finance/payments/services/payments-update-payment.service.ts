@@ -3,7 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Payment } from '@/core/entities/payment.entity';
 import { PaymentsUpdatePaymentDto } from '../dto/payments-update-payment.dto';
-import { PaymentNotFoundException } from '../exceptions/payments.exceptions';
+import { PaymentNotFoundException } from '../exceptions/payments-payments.exceptions';
 
 @Injectable()
 export class PaymentsUpdatePaymentService {
