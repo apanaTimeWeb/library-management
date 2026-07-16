@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-export const enquirySchema = z.object({
+export const publicEnquirySchema = z.object({
   name:    z.string().min(2, 'Full name is required (min 2 characters)'),
   phone:   z
     .string()
@@ -9,4 +9,4 @@ export const enquirySchema = z.object({
   shift:   z.string().min(1, 'Please select a preferred shift'),
   message: z.string().optional(),
 });
-export type EnquiryFormData = z.infer<typeof enquirySchema>;
+export type PublicEnquiryFormData = z.infer<typeof publicEnquirySchema>;
