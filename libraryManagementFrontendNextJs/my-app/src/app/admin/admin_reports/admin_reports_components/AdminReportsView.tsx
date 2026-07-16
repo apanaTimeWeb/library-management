@@ -238,7 +238,7 @@ export function AdminReportsView({ initialData }: AdminReportsViewProps) {
                 />
                 <Tooltip
                   {...TOOLTIP_STYLE}
-                  formatter={(v: unknown) => [`₹${Number(v).toLocaleString('en-IN')}`, 'Revenue']}
+                  formatter={(v: number) => [`₹${Number(v).toLocaleString('en-IN')}`, 'Revenue']}
                 />
                 <Area
                   type="monotone"

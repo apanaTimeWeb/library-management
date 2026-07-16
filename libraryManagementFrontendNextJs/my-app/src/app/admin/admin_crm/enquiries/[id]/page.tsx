@@ -180,7 +180,7 @@ export default function EnquiryDetailPage({
   useEffect(() => {
     import('@/lib/api').then(({ fetchApi }) => {
       fetchApi(`/crm/enquiries/${id}`)
-        .then((e: unknown) => {
+        .then((e: AdminRecord) => {
           if (!e) {
             setLoading(false);
             return;
@@ -257,7 +257,7 @@ export default function EnquiryDetailPage({
         method: 'PATCH',
         body: JSON.stringify({ status: currentStatus })
       });
-      setEnquiry((prev: unknown) => (prev ? { ...prev, status: currentStatus } : prev));
+      setEnquiry((prev: AdminRecord) => (prev ? { ...prev, status: currentStatus } : prev));
       toast.success(`Status updated to "${currentStatus}"`, {
         className: 'crm-toast crm-toast--success',
       });
@@ -293,7 +293,7 @@ export default function EnquiryDetailPage({
         by: 'Admin',
         remark: formData.remark,
       };
-      setEnquiry((prev: unknown) =>
+      setEnquiry((prev: AdminRecord) =>
         prev ? { ...prev, followUps: [newEntry, ...prev.followUps] } : prev
       );
       resetFU();
@@ -332,7 +332,7 @@ export default function EnquiryDetailPage({
         by: 'Admin',
         remark: reason ? `Marked as Lost — ${reason}` : 'Marked as Lost.',
       };
-      setEnquiry((prev: unknown) =>
+      setEnquiry((prev: AdminRecord) =>
         prev
           ? { ...prev, status: 'Lost', followUps: [lostEntry, ...prev.followUps] }
           : prev
