@@ -29,19 +29,9 @@ export async function fetchApi<T = any>(endpoint: string, options: RequestInit =
     ...(token ? { Authorization: `Bearer ${token}` } : {}),
   };
 
-  let response: Response;
-  try {
-    response = await fetch(url, {
-      ...options,
-      headers,
-      credentials: 'include',
-    });
-  } catch (networkError) {
-    // Network-level failure (server down, CORS blocked, wrong URL)
-    console.error(`[fetchApi] Network error for ${url}:`, networkError);
-
-    // MOCK REGISTRY FALLBACK: Return mock data if backend is unreachable
-    const normalizedEndpoint = endpoint.startsWith('/') ? endpoint : `/${endpoint}`;
+  // ── MOCK FALLBACK HELPER ──────────────────────────────────────────────────
+  const getMockFallback = (ep: string, opts: RequestInit) => {
+    const normalizedEndpoint = ep.startsWith('/') ? ep : `/${ep}`;
     if (mockRegistry[normalizedEndpoint]) {
       console.warn(`[Mock Mode] Returning mock data for ${normalizedEndpoint}`);
       return { 
@@ -52,12 +42,11 @@ export async function fetchApi<T = any>(endpoint: string, options: RequestInit =
       } as any;
     }
 
-    // GENERIC SAFE FALLBACK: If no specific mock is found, return safe defaults to prevent UI crash
     console.warn(`[Mock Mode] No specific mock found for '${normalizedEndpoint}'. Returning safe generic fallback.`);
     let safeData: any = [];
     if (normalizedEndpoint.includes('/dashboard') || normalizedEndpoint.includes('/metrics') || normalizedEndpoint.includes('/stats')) {
       safeData = {}; // Dashboards usually expect objects
-    } else if (options.method && options.method !== 'GET') {
+    } else if (opts.method && opts.method !== 'GET') {
       safeData = { id: 'mock-id-123', message: 'Action simulated successfully' };
     }
 
@@ -67,6 +56,26 @@ export async function fetchApi<T = any>(endpoint: string, options: RequestInit =
       data: safeData,
       statusCode: 200
     } as any;
+  };
+  // ──────────────────────────────────────────────────────────────────────────
+
+  let response: Response;
+  try {
+    response = await fetch(url, {
+      ...options,
+      headers,
+      credentials: 'include',
+    });
+  } catch (networkError) {
+    // Network-level failure (server down, CORS blocked, wrong URL)
+    console.error(`[fetchApi] Network error for ${url}:`, networkError);
+    return getMockFallback(endpoint, options);
+  }
+
+  // If the backend returns a 500, 502, 503, or 504 (usually gateway timeouts or server crashes)
+  if (response.status >= 500) {
+    console.error(`[fetchApi] Backend returned ${response.status} for ${url}. Falling back to mock data.`);
+    return getMockFallback(endpoint, options);
   }
 
   // ── Handle 401 — Token expired → try refresh ─────────────────────────────

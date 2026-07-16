@@ -84,4 +84,25 @@ export const mockRegistry: Record<string, any> = {
   '/crm/enquiries': CRM_CONSTANTS.enquiries,
   '/admin/crm/enquiries': CRM_CONSTANTS.enquiries,
   '/superadmin/crm/enquiries': CRM_CONSTANTS.enquiries,
+  
+  // Auth
+  '/auth/login': {
+    token: 'mock-jwt-token-12345',
+    user: {
+      id: 'mock-user-1',
+      name: 'Test Superadmin',
+      email: 'superadmin@example.com',
+      role: 'superadmin',
+      permissions: ['ALL']
+    }
+  },
+  '/auth/me': {
+    user: {
+      id: 'mock-user-1',
+      name: 'Test Superadmin',
+      email: 'superadmin@example.com',
+      role: 'superadmin',
+      permissions: ['ALL']
+    }
+  },
 };

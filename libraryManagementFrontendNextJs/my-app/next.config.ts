@@ -2,6 +2,9 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   reactCompiler: true,
+  experimental: {
+    optimizePackageImports: ['lucide-react', 'framer-motion'],
+  },
 
   // NOTE: 'standalone' is for Docker only — Vercel handles its own output mode.
   // Remove or comment this line when deploying to Vercel.
