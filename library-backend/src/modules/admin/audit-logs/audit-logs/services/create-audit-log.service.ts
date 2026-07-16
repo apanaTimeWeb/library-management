@@ -2,34 +2,10 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { AuditLog } from '@/core/entities/audit-log.entity';
+import { AuditLogsLogActionParams } from '../interfaces/audit-logs.interfaces';
 
-export interface AuditLogsLogActionParams {
-  entity: string;
-  entityId: string;
-  action: string;
-  oldValues?: Record<string, any> | null;
-  newValues?: Record<string, any> | null;
-  performedById?: string;
-  performedByName?: string;
-  performedByRole?: string;
-  tenantId?: string;
-  branchId?: string;
-  ipAddress?: string;
-  userAgent?: string;
-}
-
-/**
- * Audit Logs Service
- *
- * IMPORTANT: Never log sensitive data:
- * - Passwords (plaintext or hashed)
- * - JWT access tokens
- * - Refresh tokens
- * - OTP codes
- * - Raw Aadhaar / PAN numbers
- */
 @Injectable()
-export class AuditLogsAdminService {
+export class CreateAuditLogService {
   constructor(
     @InjectRepository(AuditLog)
     private auditLogRepo: Repository<AuditLog>,
@@ -39,7 +15,7 @@ export class AuditLogsAdminService {
    * Log any significant action in the system.
    * Call this from services after performing the action.
    */
-  async log(params: LogActionParams): Promise<void> {
+  async execute(params: AuditLogsLogActionParams): Promise<void> {
     try {
       // Sanitize old/new values — remove any sensitive fields before storing
       const sanitized = {
@@ -66,38 +42,10 @@ export class AuditLogsAdminService {
       });
 
       await this.auditLogRepo.save(log);
-    } catch (error) {
+    } catch (error: any) {
       // Audit log failure should NOT break the main operation
       console.error('Failed to write audit log:', error?.message);
     }
-  }
-
-  /**
-   * Get paginated audit logs — superadmin only
-   */
-  async findAll(
-    page = 1,
-    limit = 50,
-    tenantId?: string,
-    entity?: string,
-    action?: string,
-  ): Promise<{ data: AuditLog[]; meta: any }> {
-    const query = this.auditLogRepo
-      .createQueryBuilder('log')
-      .orderBy('log.createdAt', 'DESC')
-      .skip((page - 1) * limit)
-      .take(limit);
-
-    if (tenantId) query.andWhere('log.tenantId = :tenantId', { tenantId });
-    if (entity) query.andWhere('log.entity = :entity', { entity });
-    if (action) query.andWhere('log.action = :action', { action });
-
-    const [logs, total] = await query.getManyAndCount();
-
-    return {
-      data: logs,
-      meta: { total, page, limit, totalPages: Math.ceil(total / limit) },
-    };
   }
 
   // ── Helpers ─────────────────────────────────────────────────────────────────
@@ -107,7 +55,10 @@ export class AuditLogsAdminService {
     obj: Record<string, any> | null | undefined,
   ): Record<string, any> | null {
     if (!obj) return null;
-    const SENSITIVE_KEYS = ['password', 'passwordHash', 'refreshToken', 'refreshTokenHash', 'accessToken', 'token', 'otp', 'pin', 'secret', 'cvv', 'aadhaar', 'pan', ];
+    const SENSITIVE_KEYS = [
+      'password', 'passwordHash', 'refreshToken', 'refreshTokenHash',
+      'accessToken', 'token', 'otp', 'pin', 'secret', 'cvv', 'aadhaar', 'pan'
+    ];
     const sanitized = { ...obj };
     for (const key of SENSITIVE_KEYS) {
       if (key in sanitized) {
