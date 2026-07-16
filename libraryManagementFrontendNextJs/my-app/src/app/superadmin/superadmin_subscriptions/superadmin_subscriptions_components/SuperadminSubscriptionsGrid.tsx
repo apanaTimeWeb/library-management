@@ -1,0 +1,101 @@
+'use client';
+import React, { useRef, useCallback, useMemo } from 'react';
+import { AgGridReact } from 'ag-grid-react';
+import type { ICellRendererParams, GridReadyEvent } from 'ag-grid-community';
+import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community';
+import { gridTheme } from '../../superadmin_reusable/gridTheme';
+import type { SuperadminSubscription } from '../superadmin_subscriptions_types/SuperadminSubscriptionsTypes';
+
+ModuleRegistry.registerModules([AllCommunityModule]);
+
+interface Props {
+  subs: SuperadminSubscription[];
+  filteredSubs: SuperadminSubscription[];
+  filter: string;
+  setFilter: (f: string) => void;
+  onRowClick: (sub: SuperadminSubscription) => void;
+}
+
+const FILTERS = ['All', 'Paid', 'Due Soon', 'Overdue'];
+
+export function SuperadminSubscriptionsGrid({ subs, filteredSubs, filter, setFilter, onRowClick }: Props) {
+  const gridRef = useRef<AgGridReact>(null);
+
+  const colDefs = useMemo<any[]>(() => [
+    {
+      headerName: 'Tenant', field: 'tenant', flex: 2, minWidth: 160,
+      cellRenderer: (p: ICellRendererParams<SuperadminSubscription>) => (
+        <span className="font-extrabold text-[var(--text-primary)]">{p.data?.tenant}</span>
+      )
+    },
+    { headerName: 'Plan', field: 'plan', flex: 1.5, minWidth: 140,
+      cellRenderer: (p: ICellRendererParams<SuperadminSubscription>) => (
+        <span className="text-sm font-semibold text-[var(--text-secondary)]">{p.data?.plan}</span>
+      ) 
+    },
+    {
+      headerName: 'Cycle & MRR', field: 'mrr', flex: 1, minWidth: 120,
+      cellRenderer: (p: ICellRendererParams<SuperadminSubscription>) => (
+        <div className="flex flex-col justify-center h-full">
+          <p className="text-sm font-bold text-[var(--primary)]">₹{p.data?.mrr.toLocaleString()}</p>
+          <p className="text-[11px] font-semibold text-[var(--text-disabled)] uppercase tracking-wider">{p.data?.cycle}</p>
+        </div>
+      ),
+    },
+    { headerName: 'Next Invoice', field: 'nextInvoice', flex: 1, minWidth: 130,
+      cellRenderer: (p: ICellRendererParams<SuperadminSubscription>) => (
+        <span className="text-sm font-medium text-[var(--text-secondary)]">{p.data?.nextInvoice}</span>
+      )
+    },
+    {
+      headerName: 'Status', field: 'status', flex: 1, minWidth: 120,
+      cellRenderer: (p: ICellRendererParams<SuperadminSubscription>) => (
+        <div className="flex items-center h-full">
+          {p.data?.status === 'Paid'     && <span className="inline-flex items-center px-2 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-[var(--success-bg,rgba(52,211,153,0.1))] text-[var(--success)]">✅ Paid</span>}
+          {p.data?.status === 'Due Soon' && <span className="inline-flex items-center px-2 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-[var(--info-bg,rgba(59,130,246,0.1))] text-[var(--info,#3B82F6)]">🔵 Due Soon</span>}
+          {p.data?.status === 'Overdue'  && <span className="inline-flex items-center px-2 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-[var(--danger-bg,rgba(248,113,113,0.1))] text-[var(--danger)]">🔴 Overdue</span>}
+        </div>
+      ),
+    },
+  ], []);
+
+  const onGridReady = useCallback((e: GridReadyEvent) => { e.api.sizeColumnsToFit(); }, []);
+
+  return (
+    <div className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[var(--radius-lg)] overflow-hidden shadow-sm">
+      <div className="p-4 border-b border-[var(--border)] bg-[var(--bg-page)]/30 flex items-center justify-between gap-4 flex-wrap">
+        <div className="flex items-center gap-1.5 bg-[var(--bg-input)] border border-[var(--border)] rounded-[var(--radius-md)] p-1">
+          {FILTERS.map((f: string) => (
+            <button key={f} onClick={() => setFilter(f)}
+              className={`px-3 py-1.5 text-xs font-bold rounded-[var(--radius-sm)] transition-all ${
+                filter === f 
+                  ? 'bg-[var(--bg-card)] text-[var(--primary)] shadow-sm' 
+                  : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-card)]/50'
+              }`}>
+              {f}
+            </button>
+          ))}
+        </div>
+        <span className="text-xs font-semibold text-[var(--text-disabled)] uppercase tracking-wider">{filteredSubs.length} records</span>
+      </div>
+      <div style={{ height: 380 }}>
+        <AgGridReact
+          ref={gridRef}
+          theme={gridTheme}
+          rowData={filteredSubs}
+          columnDefs={colDefs}
+          rowHeight={56}
+          headerHeight={44}
+          onGridReady={onGridReady}
+          onRowClicked={p => onRowClick(p.data!)}
+          pagination={true}
+          paginationPageSize={10}
+          suppressCellFocus={true}
+        />
+      </div>
+      <div className="p-4 border-t border-[var(--border)] text-center bg-[var(--bg-page)]/30">
+        <span className="text-sm font-semibold text-[var(--text-secondary)]">Showing {filteredSubs.length} of {subs.length} subscriptions</span>
+      </div>
+    </div>
+  );
+}
