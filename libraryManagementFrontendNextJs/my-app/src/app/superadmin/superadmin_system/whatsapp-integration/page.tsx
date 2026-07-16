@@ -1,12 +1,12 @@
 'use client';
 import { useState } from 'react';
-import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/app/superadmin/superadmin_system/reusable/Card';
-import { Button } from '@/app/superadmin/superadmin_system/reusable/Button';
-import { Badge } from '@/app/superadmin/superadmin_system/reusable/Badge';
-import { Input } from '@/app/superadmin/superadmin_system/reusable/Input';
-import { Label } from '@/app/superadmin/superadmin_system/reusable/Label';
-import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from '@/app/superadmin/superadmin_system/reusable/Select';
-import { KpiCard } from '@/app/superadmin/superadmin_system/reusable/KpiCard';
+import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/Card';
+import { Button } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/Button';
+import { Badge } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/Badge';
+import { Input } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/Input';
+import { Label } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/Label';
+import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/Select';
+import { KpiCard } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/KpiCard';
 import {
   MessageSquare, ChevronRight, Eye, EyeOff, Copy, CheckCircle,
   XCircle, Phone, Zap, BarChart3, Clock, Loader2

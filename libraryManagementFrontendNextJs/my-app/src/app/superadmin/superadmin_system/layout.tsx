@@ -1,3 +1,5 @@
+import { SystemRoute } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SystemRoute';
+
 export default function SystemModuleLayout({ children }: { children: React.ReactNode }) {
-  return <>{children}</>;
+  return <SystemRoute>{children}</SystemRoute>;
 }

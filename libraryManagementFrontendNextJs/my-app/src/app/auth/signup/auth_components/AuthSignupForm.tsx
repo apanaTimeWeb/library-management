@@ -82,18 +82,18 @@ export function AuthSignupForm() {
             </div>
 
             <form onSubmit={handleSubmit} noValidate className="space-y-4">
-              {/* Owner Name */}
+              {/* Name */}
               <div>
-                <label htmlFor="su-name" className="auth-label auth-label--required">Owner Name</label>
-                <input id="su-name" type="text" placeholder="Your full name" {...register('ownerName')}
-                  className={`auth-input ${errors.ownerName ? 'auth-input--error' : ''}`} />
-                {errors.ownerName && <p className="auth-error">{errors.ownerName.message}</p>}
+                <label htmlFor="su-name" className="auth-label auth-label--required">Full Name</label>
+                <input id="su-name" type="text" placeholder="Your full name" {...register('name')}
+                  className={`auth-input ${errors.name ? 'auth-input--error' : ''}`} />
+                {errors.name && <p className="auth-error">{errors.name.message}</p>}
               </div>
 
               {/* Email + Phone */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label htmlFor="su-email" className="auth-label auth-label--required">Email</label>
+                  <label htmlFor="su-email" className="auth-label">Email (Optional)</label>
                   <input id="su-email" type="email" placeholder="you@example.com" {...register('email')}
                     className={`auth-input ${errors.email ? 'auth-input--error' : ''}`} />
                   {errors.email && <p className="auth-error">{errors.email.message}</p>}
@@ -106,13 +106,6 @@ export function AuthSignupForm() {
                 </div>
               </div>
 
-              {/* Library Name */}
-              <div>
-                <label htmlFor="su-lib" className="auth-label auth-label--required">Library Name</label>
-                <input id="su-lib" type="text" placeholder="e.g. City Reading Hub" {...register('libraryName')}
-                  className={`auth-input ${errors.libraryName ? 'auth-input--error' : ''}`} />
-                {errors.libraryName && <p className="auth-error">{errors.libraryName.message}</p>}
-              </div>
 
               {/* Password */}
               <div>

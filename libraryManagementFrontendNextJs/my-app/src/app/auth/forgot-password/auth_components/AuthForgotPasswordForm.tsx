@@ -40,7 +40,7 @@ export function AuthForgotPasswordForm() {
               <div className="mb-7">
                 <h1 className="text-2xl font-bold text-[var(--text-primary)]">Forgot Password? 🔐</h1>
                 <p className="text-sm text-[var(--text-secondary)] mt-2 leading-relaxed">
-                  Enter your registered phone or email. We&apos;ll send an OTP to reset your password.
+                  Enter your registered phone number. We&apos;ll send an OTP to reset your password.
                 </p>
                 {errorMessage && (
                   <div className="auth-error-banner mt-3">❌ {errorMessage}</div>
@@ -49,16 +49,16 @@ export function AuthForgotPasswordForm() {
 
               <form onSubmit={handleSubmit} noValidate className="space-y-4">
                 <div>
-                  <label htmlFor="fp-identity" className="auth-label auth-label--required">Phone or Email</label>
+                  <label htmlFor="fp-phone" className="auth-label auth-label--required">Phone Number</label>
                   <input
-                    id="fp-identity"
+                    id="fp-phone"
                     type="text"
-                    placeholder="Your registered phone or email"
-                    {...register('identity')}
-                    className={`auth-input ${errors.identity ? 'auth-input--error' : ''}`}
+                    placeholder="Your registered phone number"
+                    {...register('phone')}
+                    className={`auth-input ${errors.phone ? 'auth-input--error' : ''}`}
                   />
-                  {errors.identity
-                    ? <p className="auth-error">{errors.identity.message}</p>
+                  {errors.phone
+                    ? <p className="auth-error">{errors.phone.message}</p>
                     : <p className="auth-helper">An OTP will be sent to your registered mobile number.</p>
                   }
                 </div>

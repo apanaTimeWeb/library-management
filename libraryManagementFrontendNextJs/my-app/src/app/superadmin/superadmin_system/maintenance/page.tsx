@@ -1,8 +1,8 @@
 'use client';
-import { KpiCard } from '@/app/superadmin/superadmin_system/reusable/KpiCard';
-import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/app/superadmin/superadmin_system/reusable/Card';
-import { Badge } from '@/app/superadmin/superadmin_system/reusable/Badge';
-import { Button } from '@/app/superadmin/superadmin_system/reusable/Button';
+import { KpiCard } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/KpiCard';
+import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/Card';
+import { Badge } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/Badge';
+import { Button } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/Button';
 import { Wrench, Package, Lock, ChevronRight } from 'lucide-react';
 
 const SEATS = [

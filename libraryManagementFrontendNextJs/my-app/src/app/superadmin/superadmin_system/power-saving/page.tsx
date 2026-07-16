@@ -1,12 +1,12 @@
 'use client';
 import { useState } from 'react';
-import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/app/superadmin/superadmin_system/reusable/Card';
-import { Button } from '@/app/superadmin/superadmin_system/reusable/Button';
-import { Input } from '@/app/superadmin/superadmin_system/reusable/Input';
-import { Label } from '@/app/superadmin/superadmin_system/reusable/Label';
-import { Switch } from '@/app/superadmin/superadmin_system/reusable/Switch';
-import { Badge } from '@/app/superadmin/superadmin_system/reusable/Badge';
-import { Progress } from '@/app/superadmin/superadmin_system/reusable/Progress';
+import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/Card';
+import { Button } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/Button';
+import { Input } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/Input';
+import { Label } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/Label';
+import { Switch } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/Switch';
+import { Badge } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/Badge';
+import { Progress } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/Progress';
 import { Zap, ChevronRight } from 'lucide-react';
 
 const ZONES = [

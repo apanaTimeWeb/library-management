@@ -64,7 +64,7 @@ export function AuthResetPasswordForm() {
                 <div>
                   <label className="auth-label">Enter OTP sent to your phone</label>
                   <Controller
-                    name="otp"
+                    name="token"
                     control={control}
                     render={() => (
                       <div className="flex gap-1.5 sm:gap-2.5 justify-center" onPaste={handlePaste}>
@@ -79,13 +79,13 @@ export function AuthResetPasswordForm() {
                             value={digit}
                             onChange={e => handleDigitChange(idx, e.target.value)}
                             onKeyDown={e => handleDigitKeyDown(idx, e)}
-                            className={`auth-otp-box ${digit ? 'auth-otp-box--filled' : ''} ${errors.otp ? 'auth-otp-box--error' : ''}`}
+                            className={`auth-otp-box ${digit ? 'auth-otp-box--filled' : ''} ${errors.token ? 'auth-otp-box--error' : ''}`}
                           />
                         ))}
                       </div>
                     )}
                   />
-                  {errors.otp && <p className="auth-error text-center mt-2">{errors.otp.message}</p>}
+                  {errors.token && <p className="auth-error text-center mt-2">{errors.token.message}</p>}
 
                   {/* Resend */}
                   <div className="text-center mt-3">

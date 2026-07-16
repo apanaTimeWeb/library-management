@@ -1,4 +1,4 @@
-import { cn } from '@/app/superadmin/superadmin_system/reusable/utils';
+import { cn } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/utils';
 import { TrendingUp, TrendingDown, Minus } from 'lucide-react';
 
 interface KpiCardProps {

@@ -1,6 +1,6 @@
 'use client';
 import { type InputHTMLAttributes, forwardRef } from 'react';
-import { cn } from '@/app/superadmin/superadmin_system/reusable/utils';
+import { cn } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/utils';
 
 export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {}
 

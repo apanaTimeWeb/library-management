@@ -19,14 +19,13 @@ export function useAuthLogin() {
     formState: { errors },
   } = useForm<AuthLoginPayload>({
     resolver: zodResolver(authLoginSchema),
-    defaultValues: { email: '', password: '', role: 'superadmin' },
+    defaultValues: { phone: '', password: '' },
   });
 
   const handleRoleSelect = (role: typeof AUTH_ROLES[0]) => {
     setSelectedRole(role);
-    setValue('email', '', { shouldValidate: false });
+    setValue('phone', '', { shouldValidate: false });
     setValue('password', '', { shouldValidate: false });
-    setValue('role', role.id as AuthLoginPayload['role']);
     setErrorMessage(null);
   };
 
@@ -39,7 +38,7 @@ export function useAuthLogin() {
     setFetchState('loading');
     setErrorMessage(null);
     
-    const response = await authApi.login(data.email, data.password);
+    const response = await authApi.login(data.phone, data.password);
     
     if (!response.success) {
       setFetchState('error');
@@ -48,7 +47,7 @@ export function useAuthLogin() {
     }
 
     setFetchState('success');
-    const userRole = response.data?.user?.role || data.role;
+    const userRole = response.data?.user?.role || selectedRole.id;
     const roleConfig = AUTH_ROLES.find(r => r.id === userRole);
     window.location.href = roleConfig ? getRedirectUrl(roleConfig) : `/${userRole}/dashboard`;
   };

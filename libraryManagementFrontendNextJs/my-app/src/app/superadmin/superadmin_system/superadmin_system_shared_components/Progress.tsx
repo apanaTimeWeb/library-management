@@ -1,5 +1,5 @@
 'use client';
-import { cn } from '@/app/superadmin/superadmin_system/reusable/utils';
+import { cn } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/utils';
 
 interface ProgressProps {
   value: number;

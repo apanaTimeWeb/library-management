@@ -1,7 +1,7 @@
 'use client';
 import * as SelectPrimitive from '@radix-ui/react-select';
 import { ChevronDown, Check } from 'lucide-react';
-import { cn } from '@/app/superadmin/superadmin_system/reusable/utils';
+import { cn } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/utils';
 
 export const Select      = SelectPrimitive.Root;
 export const SelectValue = SelectPrimitive.Value;

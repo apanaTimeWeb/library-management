@@ -1,12 +1,12 @@
 'use client';
 import { useState } from 'react';
-import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/app/superadmin/superadmin_system/reusable/Card';
-import { Button } from '@/app/superadmin/superadmin_system/reusable/Button';
-import { Input } from '@/app/superadmin/superadmin_system/reusable/Input';
-import { Label } from '@/app/superadmin/superadmin_system/reusable/Label';
-import { Switch } from '@/app/superadmin/superadmin_system/reusable/Switch';
-import { Textarea } from '@/app/superadmin/superadmin_system/reusable/Textarea';
-import { Badge } from '@/app/superadmin/superadmin_system/reusable/Badge';
+import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/Card';
+import { Button } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/Button';
+import { Input } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/Input';
+import { Label } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/Label';
+import { Switch } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/Switch';
+import { Textarea } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/Textarea';
+import { Badge } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/Badge';
 import { ListOrdered, ChevronRight } from 'lucide-react';
 
 const QUEUE = [

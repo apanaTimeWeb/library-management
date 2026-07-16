@@ -75,10 +75,12 @@ export const authApi = {
     try {
       const backendPayload = {
         phone: payload.phone,
-        name: payload.ownerName,
-        email: payload.email,
+        name: payload.name,
+        email: payload.email || undefined,
         password: payload.password,
-        roleName: 'owner', // Default role for signup as per payload assumptions
+        roleName: payload.roleName,
+        tenantId: payload.tenantId || undefined,
+        branchId: payload.branchId || undefined,
       };
 
       await fetchApi(AUTH_API_ROUTES.SIGNUP, {
@@ -103,11 +105,11 @@ export const authApi = {
     }
   },
 
-  forgotPassword: async (payload: { identity: string }): Promise<ApiResponse<null>> => {
+  forgotPassword: async (payload: { phone: string }): Promise<ApiResponse<null>> => {
     try {
       await fetchApi(AUTH_API_ROUTES.FORGOT_PASSWORD, {
         method: 'POST',
-        body: JSON.stringify({ phone: payload.identity }),
+        body: JSON.stringify({ phone: payload.phone }),
       });
       return {
         success: true,
@@ -126,11 +128,11 @@ export const authApi = {
     }
   },
 
-  resetPassword: async (payload: { otp: string; newPassword: string }): Promise<ApiResponse<null>> => {
+  resetPassword: async (payload: { token: string; newPassword: string }): Promise<ApiResponse<null>> => {
     try {
       await fetchApi(AUTH_API_ROUTES.RESET_PASSWORD, {
         method: 'POST',
-        body: JSON.stringify({ token: payload.otp, newPassword: payload.newPassword }),
+        body: JSON.stringify({ token: payload.token, newPassword: payload.newPassword }),
       });
       return {
         success: true,

@@ -19,10 +19,12 @@ export function useAuthSignup() {
   } = useForm<AuthSignupPayload>({
     resolver: zodResolver(authSignupSchema),
     defaultValues: {
-      ownerName:       AUTH_SIGNUP_PRESETS.ownerName,
-      libraryName:     AUTH_SIGNUP_PRESETS.libraryName,
+      name:            AUTH_SIGNUP_PRESETS.ownerName, // Reusing ownerName as name preset
       email:           AUTH_SIGNUP_PRESETS.email,
       phone:           AUTH_SIGNUP_PRESETS.phone,
+      roleName:        'superadmin',
+      tenantId:        '',
+      branchId:        '',
       password:        '',
       confirmPassword: '',
     },

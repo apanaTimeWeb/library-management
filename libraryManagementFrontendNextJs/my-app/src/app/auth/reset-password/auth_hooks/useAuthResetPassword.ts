@@ -32,7 +32,7 @@ export function useAuthResetPassword() {
   } = useForm<AuthResetPasswordPayload>({
     resolver: zodResolver(authResetPasswordSchema),
     defaultValues: {
-      otp: AUTH_RESET_PASSWORD_PRESETS.otp.join(''),
+      token: AUTH_RESET_PASSWORD_PRESETS.otp.join(''),
       newPassword: '',
       confirmPassword: '',
     },
@@ -53,7 +53,7 @@ export function useAuthResetPassword() {
     const next = [...otpDigits];
     next[idx] = val;
     setOtpDigits(next);
-    setValue('otp', next.join(''), { shouldValidate: true });
+    setValue('token', next.join(''), { shouldValidate: true });
     if (val && idx < 5) inputRefs.current[idx + 1]?.focus();
   };
 
@@ -66,7 +66,7 @@ export function useAuthResetPassword() {
     if (text.length === 6) {
       const digits = text.split('');
       setOtpDigits(digits);
-      setValue('otp', text, { shouldValidate: true });
+      setValue('token', text, { shouldValidate: true });
       inputRefs.current[5]?.focus();
     }
     e.preventDefault();
@@ -75,7 +75,7 @@ export function useAuthResetPassword() {
   const handleResend = () => {
     if (!canResend) return;
     setOtpDigits(Array(6).fill(''));
-    setValue('otp', '', { shouldValidate: false });
+    setValue('token', '', { shouldValidate: false });
     setCountdown(RESEND_SECS);
     setCanResend(false);
     inputRefs.current[0]?.focus();
@@ -85,7 +85,7 @@ export function useAuthResetPassword() {
     setFetchState('loading');
     setErrorMessage(null);
     
-    const response = await authApi.resetPassword({ otp: data.otp, newPassword: data.newPassword });
+    const response = await authApi.resetPassword({ token: data.token, newPassword: data.newPassword });
     
     if (!response.success) {
       setFetchState('error');

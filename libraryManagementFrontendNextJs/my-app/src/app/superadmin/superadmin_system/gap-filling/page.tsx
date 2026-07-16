@@ -1,11 +1,11 @@
 'use client';
 import { useState } from 'react';
-import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/app/superadmin/superadmin_system/reusable/Card';
-import { Button } from '@/app/superadmin/superadmin_system/reusable/Button';
-import { Input } from '@/app/superadmin/superadmin_system/reusable/Input';
-import { Label } from '@/app/superadmin/superadmin_system/reusable/Label';
-import { Badge } from '@/app/superadmin/superadmin_system/reusable/Badge';
-import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from '@/app/superadmin/superadmin_system/reusable/Select';
+import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/Card';
+import { Button } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/Button';
+import { Input } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/Input';
+import { Label } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/Label';
+import { Badge } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/Badge';
+import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/Select';
 import { GitBranch, ChevronRight, Zap } from 'lucide-react';
 
 const SEAT_GAPS = [

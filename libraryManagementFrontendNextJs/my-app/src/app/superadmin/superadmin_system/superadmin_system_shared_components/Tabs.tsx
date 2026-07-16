@@ -1,6 +1,6 @@
 'use client';
 import * as TabsPrimitive from '@radix-ui/react-tabs';
-import { cn } from '@/app/superadmin/superadmin_system/reusable/utils';
+import { cn } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/utils';
 
 export const Tabs = TabsPrimitive.Root;
 

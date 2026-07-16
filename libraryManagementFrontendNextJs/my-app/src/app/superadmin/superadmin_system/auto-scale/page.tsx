@@ -1,12 +1,12 @@
 'use client';
 import { useState } from 'react';
-import { KpiCard } from '@/app/superadmin/superadmin_system/reusable/KpiCard';
-import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/app/superadmin/superadmin_system/reusable/Card';
-import { Button } from '@/app/superadmin/superadmin_system/reusable/Button';
-import { Input } from '@/app/superadmin/superadmin_system/reusable/Input';
-import { Label } from '@/app/superadmin/superadmin_system/reusable/Label';
-import { Switch } from '@/app/superadmin/superadmin_system/reusable/Switch';
-import { Badge } from '@/app/superadmin/superadmin_system/reusable/Badge';
+import { KpiCard } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/KpiCard';
+import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/Card';
+import { Button } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/Button';
+import { Input } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/Input';
+import { Label } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/Label';
+import { Switch } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/Switch';
+import { Badge } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/Badge';
 import { BarChart3, ChevronRight, Zap, ArrowRight } from 'lucide-react';
 
 export default function AutoScalePage() {

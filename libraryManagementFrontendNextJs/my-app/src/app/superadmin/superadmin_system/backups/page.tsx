@@ -1,10 +1,10 @@
 'use client';
 import { useState } from 'react';
-import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/app/superadmin/superadmin_system/reusable/Card';
-import { Button } from '@/app/superadmin/superadmin_system/reusable/Button';
-import { Badge } from '@/app/superadmin/superadmin_system/reusable/Badge';
-import { KpiCard } from '@/app/superadmin/superadmin_system/reusable/KpiCard';
-import { Switch } from '@/app/superadmin/superadmin_system/reusable/Switch';
+import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/Card';
+import { Button } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/Button';
+import { Badge } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/Badge';
+import { KpiCard } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/KpiCard';
+import { Switch } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/Switch';
 import {
   Database, ChevronRight, Download, RefreshCw, CheckCircle, Clock,
   AlertTriangle, HardDrive, Shield, Cloud, Loader2

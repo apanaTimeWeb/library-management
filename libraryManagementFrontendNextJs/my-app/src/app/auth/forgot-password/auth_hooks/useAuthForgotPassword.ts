@@ -18,14 +18,14 @@ export function useAuthForgotPassword() {
     formState: { errors },
   } = useForm<AuthForgotPasswordPayload>({
     resolver: zodResolver(authForgotPasswordSchema),
-    defaultValues: { identity: '' },
+    defaultValues: { phone: '' },
   });
 
   const onSubmit = async (data: AuthForgotPasswordPayload) => {
     setFetchState('loading');
     setErrorMessage(null);
     
-    const response = await authApi.forgotPassword({ identity: data.identity });
+    const response = await authApi.forgotPassword({ phone: data.phone });
     
     if (!response.success) {
       setFetchState('error');
@@ -33,7 +33,7 @@ export function useAuthForgotPassword() {
       return;
     }
 
-    setSentTo(data.identity);
+    setSentTo(data.phone);
     setSent(true);
     setFetchState('success');
   };

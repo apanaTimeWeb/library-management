@@ -137,19 +137,17 @@ export function AuthLoginForm() {
 
             {/* Form */}
             <form onSubmit={handleSubmit} noValidate className="space-y-4">
-              <input type="hidden" {...register('role')} />
-
-              {/* Email */}
+              {/* Phone */}
               <div>
-                <label htmlFor="login-email" className="auth-label auth-label--required">Email or Phone</label>
+                <label htmlFor="login-phone" className="auth-label auth-label--required">Phone Number</label>
                 <input
-                  id="login-email"
+                  id="login-phone"
                   type="text"
-                  placeholder="Email or Phone Number"
-                  {...register('email')}
-                  className={`auth-input ${errors.email ? 'auth-input--error' : ''}`}
+                  placeholder="Enter your registered phone number"
+                  {...register('phone')}
+                  className={`auth-input ${errors.phone ? 'auth-input--error' : ''}`}
                 />
-                {errors.email && <p className="auth-error">{errors.email.message}</p>}
+                {errors.phone && <p className="auth-error">{errors.phone.message}</p>}
               </div>
 
               {/* Password */}
