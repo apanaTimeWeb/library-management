@@ -6,6 +6,7 @@ import { authApi } from '@/app/auth/auth_api/auth_api';
 import { AUTH_ROLES, AUTH_ROLE_DEST_LABEL } from '@/app/auth/auth_constants';
 import type { AuthLoginPayload, FetchState } from '@/app/auth/auth_types/auth_types';
 
+// DATA FLOW: API → useAuthLogin.ts → AuthLoginForm
 export function useAuthLogin() {
   const [showPw, setShowPw] = useState(false);
   const [selectedRole, setSelectedRole] = useState(AUTH_ROLES[0]);

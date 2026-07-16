@@ -554,4 +554,16 @@
     border: 1px solid color-mix(in srgb, var(--primary) 20%, transparent);
     color: var(--text-secondary);
   }
+  
+  /* ── Brand Icon Box (Fixing inline styles) ── */
+  .auth-brand-icon-box {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--primary), var(--purple));
+    box-shadow: 0 10px 15px -3px color-mix(in srgb, var(--primary) 20%, transparent);
+  }
 }

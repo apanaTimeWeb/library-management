@@ -87,7 +87,7 @@ export function AuthLoginForm() {
 
       {/* ── RIGHT AUTH PANEL ── */}
       <section className="w-full lg:w-1/2 flex items-start lg:items-center justify-center p-4 sm:p-8 lg:p-12 bg-[var(--bg-page)] overflow-y-auto min-h-screen lg:min-h-0">
-        <div className="w-full max-w-[480px] space-y-6 py-8 lg:py-0">
+        <div className="w-full max-w-md space-y-6 py-8 lg:py-0">
           {/* Mobile logo */}
           <div className="lg:hidden flex justify-center mb-2">
             <div className="flex items-center gap-2.5">
@@ -99,7 +99,7 @@ export function AuthLoginForm() {
           <div className="auth-card">
             <div className="mb-6 text-center">
               <div className="flex justify-center mb-3">
-                <div className="w-12 h-12 bg-gradient-to-br from-[var(--primary)] to-purple-600 rounded-xl flex items-center justify-center shadow-lg shadow-[var(--primary)]/20">
+                <div className="auth-brand-icon-box">
                   <BookOpen size={24} className="text-white" />
                 </div>
               </div>

@@ -1,6 +1,6 @@
 import { StatusCodes } from 'http-status-codes';
 import { AUTH_API_ROUTES } from '@/app/auth/auth_url_config';
-import type { ApiResponse, AuthLoginResponse } from '@/app/auth/auth_types/auth_types';
+import type { ApiResponse, AuthLoginResponse, AuthSignupPayload, AuthUser } from '@/app/auth/auth_types/auth_types';
 import { fetchApi } from '@/lib/api';
 
 /**
@@ -71,7 +71,7 @@ export const authApi = {
     }
   },
 
-  signup: async (payload: any): Promise<ApiResponse<null>> => {
+  signup: async (payload: AuthSignupPayload): Promise<ApiResponse<null>> => {
     try {
       const backendPayload = {
         phone: payload.phone,
@@ -151,7 +151,7 @@ export const authApi = {
     }
   },
 
-  getMe: async (): Promise<ApiResponse<any>> => {
+  getMe: async (): Promise<ApiResponse<AuthUser>> => {
     try {
       const response = await fetchApi(AUTH_API_ROUTES.ME, {
         method: 'GET',

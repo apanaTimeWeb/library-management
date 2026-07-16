@@ -6,6 +6,7 @@ import { authApi } from '@/app/auth/auth_api/auth_api';
 import { AUTH_SIGNUP_PRESETS } from '@/app/auth/auth_constants';
 import type { AuthSignupPayload, FetchState } from '@/app/auth/auth_types/auth_types';
 
+// DATA FLOW: API → useAuthSignup.ts → AuthSignupForm
 export function useAuthSignup() {
   const [shows, setShows] = useState({ pw: false, confirm: false });
   const [fetchState, setFetchState] = useState<FetchState>('idle');

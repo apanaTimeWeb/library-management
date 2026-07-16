@@ -66,7 +66,7 @@ export function AuthSignupForm() {
 
       {/* ── RIGHT PANEL ── */}
       <section className="w-full lg:w-1/2 flex items-start lg:items-center justify-center p-4 sm:p-8 md:p-10 overflow-y-auto min-h-screen lg:min-h-0 bg-[var(--bg-page)]">
-        <div className="w-full max-w-[520px] py-8 lg:py-0">
+        <div className="w-full max-w-lg py-8 lg:py-0">
           {/* Mobile logo */}
           <div className="lg:hidden flex justify-center mb-8">
             <div className="flex items-center gap-2.5">
