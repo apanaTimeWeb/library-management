@@ -17,12 +17,18 @@ export class Plan extends BaseEntity {
   @Column()
   name: string;
 
+  @Column()
+  duration: string;
+
   @Column('int')
   durationDays: number;
 
   @Column('decimal', { precision: 10, scale: 2 })
   price: number;
 
-  @Column({ default: true })
-  isActive: boolean;
+  @Column('simple-array', { nullable: true })
+  features: string[];
+
+  @Column({ default: 'Active' })
+  status: string;
 }
