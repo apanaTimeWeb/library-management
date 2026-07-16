@@ -1,19 +1,22 @@
 'use client';
 
+// RESPONSIBILITY: Visually indicates password strength.
+// DATA FLOW: Props -> AuthPasswordStrengthMeter (`Rule 39`).
+
 type Score = 0 | 1 | 2 | 3 | 4;
 
 const SEGMENT_CLASS: Record<number, string> = {
-  1: 'auth-strength-segment--weak',
-  2: 'auth-strength-segment--fair',
-  3: 'auth-strength-segment--good',
-  4: 'auth-strength-segment--strong',
+  1: 'bg-danger',
+  2: 'bg-warning',
+  3: 'bg-success',
+  4: 'bg-success',
 };
 
-const LABEL: Record<number, { text: string; color: string }> = {
-  1: { text: 'Weak',   color: 'var(--danger)'  },
-  2: { text: 'Fair',   color: 'var(--warning)'  },
-  3: { text: 'Good',   color: 'var(--success)'  },
-  4: { text: 'Strong', color: 'var(--success)'  },
+const LABEL: Record<number, { text: string; colorClass: string }> = {
+  1: { text: 'Weak',   colorClass: 'text-danger'  },
+  2: { text: 'Fair',   colorClass: 'text-warning'  },
+  3: { text: 'Good',   colorClass: 'text-success'  },
+  4: { text: 'Strong', colorClass: 'text-success'  },
 };
 
 function calcScore(pwd: string): Score {
@@ -37,12 +40,12 @@ export default function PasswordStrengthMeter({ password }: { password: string }
         {[0, 1, 2, 3].map(i => (
           <div
             key={i}
-            className={`auth-strength-segment ${i < score ? segClass : ''}`}
+            className={`h-1 flex-1 rounded-full transition-colors ${i < score ? segClass : 'bg-border'}`}
           />
         ))}
       </div>
       {label && (
-        <p className="text-[11px] font-semibold uppercase tracking-wider" style={{ color: label.color }}>
+        <p className={`text-[11px] font-semibold uppercase tracking-wider ${label.colorClass}`}>
           {label.text}
         </p>
       )}

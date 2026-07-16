@@ -3,12 +3,12 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { authResetPasswordSchema } from '@/app/auth/auth_utils/auth_validation';
 import { AUTH_RESET_PASSWORD_PRESETS } from '@/app/auth/auth_constants';
-import type { AuthResetPasswordPayload, FetchState } from '@/app/auth/auth_types/auth_types';
-import { authApi } from '@/app/auth/auth_api/auth_api';
+import type { AuthResetPasswordPayload } from '@/app/auth/auth_types/auth_types';
+import { useAuthStore } from '@/app/auth/auth_store/auth_store';
 
-const CORRECT_OTP = AUTH_RESET_PASSWORD_PRESETS.otp.join('');
 const RESEND_SECS = 45;
 
+// DATA FLOW: UI Component → useAuthResetPassword.ts → useAuthStore → authApi
 export function useAuthResetPassword() {
   const [otpDigits, setOtpDigits] = useState<string[]>(AUTH_RESET_PASSWORD_PRESETS.otp);
   const [showPw, setShowPw] = useState(false);
@@ -18,8 +18,7 @@ export function useAuthResetPassword() {
   const [canResend, setCanResend] = useState(false);
   const inputRefs = useRef<(HTMLInputElement | null)[]>([]);
 
-  const [fetchState, setFetchState] = useState<FetchState>('idle');
-  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const { resetPassword, fetchState, errorMessage, clearError } = useAuthStore();
 
   const {
     register,
@@ -82,23 +81,20 @@ export function useAuthResetPassword() {
   };
 
   const onSubmit = async (data: AuthResetPasswordPayload) => {
-    setFetchState('loading');
-    setErrorMessage(null);
+    clearError();
+    const res = await resetPassword(data);
     
-    const response = await authApi.resetPassword({ token: data.token, newPassword: data.newPassword });
-    
-    if (!response.success) {
-      setFetchState('error');
-      setErrorMessage(response.message);
-      return;
+    if (res.success) {
+      setDone(true);
     }
-
-    setDone(true);
-    setFetchState('success');
   };
 
   return {
     otpDigits,
+    handleDigitChange,
+    handleDigitKeyDown,
+    handlePaste,
+    inputRefs,
     showPw,
     setShowPw,
     showConfirm,
@@ -106,18 +102,13 @@ export function useAuthResetPassword() {
     done,
     countdown,
     canResend,
-    inputRefs,
+    handleResend,
     fetchState,
     errorMessage,
     register,
     handleSubmit: handleSubmit(onSubmit),
-    control,
     errors,
     newPassword,
     confirmPassword,
-    handleDigitChange,
-    handleDigitKeyDown,
-    handlePaste,
-    handleResend,
   };
 }

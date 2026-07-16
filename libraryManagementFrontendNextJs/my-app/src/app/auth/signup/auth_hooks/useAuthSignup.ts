@@ -2,15 +2,16 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { authSignupSchema } from '@/app/auth/auth_utils/auth_validation';
-import { authApi } from '@/app/auth/auth_api/auth_api';
 import { AUTH_SIGNUP_PRESETS } from '@/app/auth/auth_constants';
-import type { AuthSignupPayload, FetchState } from '@/app/auth/auth_types/auth_types';
+import type { AuthSignupPayload } from '@/app/auth/auth_types/auth_types';
+import { useAuthStore } from '@/app/auth/auth_store/auth_store';
+import toast from 'react-hot-toast';
 
-// DATA FLOW: API → useAuthSignup.ts → AuthSignupForm
+// DATA FLOW: UI Component → useAuthSignup.ts → useAuthStore → authApi
 export function useAuthSignup() {
   const [shows, setShows] = useState({ pw: false, confirm: false });
-  const [fetchState, setFetchState] = useState<FetchState>('idle');
-  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  
+  const { signup, fetchState, errorMessage, clearError } = useAuthStore();
 
   const {
     register,
@@ -35,19 +36,13 @@ export function useAuthSignup() {
   const confirmPassword = watch('confirmPassword');
 
   const onSubmit = async (data: AuthSignupPayload) => {
-    setFetchState('loading');
-    setErrorMessage(null);
-    
-    const response = await authApi.signup(data);
-    
-    if (!response.success) {
-      setFetchState('error');
-      setErrorMessage(response.message);
-      return;
-    }
+    clearError();
+    const res = await signup(data);
 
-    setFetchState('success');
-    window.location.href = '/superadmin/superadmin_setup-wizard';
+    if (res.success) {
+      toast.success(res.message || 'Account created successfully');
+      window.location.href = '/superadmin/superadmin_setup-wizard';
+    }
   };
 
   return {

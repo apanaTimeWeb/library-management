@@ -2,16 +2,16 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { authLoginSchema } from '@/app/auth/auth_utils/auth_validation';
-import { authApi } from '@/app/auth/auth_api/auth_api';
 import { AUTH_ROLES, AUTH_ROLE_DEST_LABEL } from '@/app/auth/auth_constants';
-import type { AuthLoginPayload, FetchState } from '@/app/auth/auth_types/auth_types';
+import type { AuthLoginPayload } from '@/app/auth/auth_types/auth_types';
+import { useAuthStore } from '@/app/auth/auth_store/auth_store';
 
-// DATA FLOW: API → useAuthLogin.ts → AuthLoginForm
+// DATA FLOW: UI Component → useAuthLogin.ts → useAuthStore → authApi
 export function useAuthLogin() {
   const [showPw, setShowPw] = useState(false);
   const [selectedRole, setSelectedRole] = useState(AUTH_ROLES[0]);
-  const [fetchState, setFetchState] = useState<FetchState>('idle');
-  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  
+  const { login, fetchState, errorMessage, clearError } = useAuthStore();
 
   const {
     register,
@@ -27,7 +27,7 @@ export function useAuthLogin() {
     setSelectedRole(role);
     setValue('phone', '', { shouldValidate: false });
     setValue('password', '', { shouldValidate: false });
-    setErrorMessage(null);
+    clearError();
   };
 
   const getRedirectUrl = (role: typeof AUTH_ROLES[0]): string => {
@@ -36,21 +36,13 @@ export function useAuthLogin() {
   };
 
   const onSubmit = async (data: AuthLoginPayload) => {
-    setFetchState('loading');
-    setErrorMessage(null);
-    
-    const response = await authApi.login(data.phone, data.password);
-    
-    if (!response.success) {
-      setFetchState('error');
-      setErrorMessage(response.message);
-      return;
-    }
+    const res = await login(data);
 
-    setFetchState('success');
-    const userRole = response.data?.user?.role || selectedRole.id;
-    const roleConfig = AUTH_ROLES.find(r => r.id === userRole);
-    window.location.href = roleConfig ? getRedirectUrl(roleConfig) : `/${userRole}/dashboard`;
+    if (res.success) {
+      const userRole = res.userRole || selectedRole.id;
+      const roleConfig = AUTH_ROLES.find(r => r.id === userRole);
+      window.location.href = roleConfig ? getRedirectUrl(roleConfig) : `/${userRole}/dashboard`;
+    }
   };
 
   return {

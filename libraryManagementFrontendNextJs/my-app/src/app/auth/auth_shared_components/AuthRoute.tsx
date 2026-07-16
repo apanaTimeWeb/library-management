@@ -1,6 +1,5 @@
 'use client';
 import { usePathname } from 'next/navigation';
-import '@/app/auth/auth.css';
 
 const AUTH_ROUTES = [
   '/auth'
@@ -14,7 +13,7 @@ export function AuthRoute({ children }: { children: React.ReactNode }) {
   if (!isAuthRoute) return <>{children}</>;
 
   return (
-    <div className="auth-theme min-h-screen">
+    <div className="min-h-screen bg-page text-text-primary">
       {children}
     </div>
   );

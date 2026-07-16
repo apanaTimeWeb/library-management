@@ -2,15 +2,15 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { authForgotPasswordSchema } from '@/app/auth/auth_utils/auth_validation';
-import type { AuthForgotPasswordPayload, FetchState } from '@/app/auth/auth_types/auth_types';
-import { authApi } from '@/app/auth/auth_api/auth_api';
+import type { AuthForgotPasswordPayload } from '@/app/auth/auth_types/auth_types';
+import { useAuthStore } from '@/app/auth/auth_store/auth_store';
 
+// DATA FLOW: UI Component → useAuthForgotPassword.ts → useAuthStore → authApi
 export function useAuthForgotPassword() {
   const [sent, setSent] = useState(false);
   const [sentTo, setSentTo] = useState('');
   
-  const [fetchState, setFetchState] = useState<FetchState>('idle');
-  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const { forgotPassword, fetchState, errorMessage, clearError } = useAuthStore();
 
   const {
     register,
@@ -22,20 +22,13 @@ export function useAuthForgotPassword() {
   });
 
   const onSubmit = async (data: AuthForgotPasswordPayload) => {
-    setFetchState('loading');
-    setErrorMessage(null);
+    clearError();
+    const res = await forgotPassword(data);
     
-    const response = await authApi.forgotPassword({ phone: data.phone });
-    
-    if (!response.success) {
-      setFetchState('error');
-      setErrorMessage(response.message);
-      return;
+    if (res.success) {
+      setSentTo(data.phone);
+      setSent(true);
     }
-
-    setSentTo(data.phone);
-    setSent(true);
-    setFetchState('success');
   };
 
   return {
