@@ -13,7 +13,7 @@ export function SuperadminAssetMaintenanceHeader({ onAddClick }: Props) {
         <p className="text-sm font-medium text-text-secondary">Track maintenance requests and service history.</p>
       </div>
       <button 
-        className="flex items-center justify-center gap-1.5 bg-info,#3B82F6 hover:bg-[var(--info-hover,rgba(59,130,246,0.9))] text-white text-sm font-bold py-2 px-4 rounded-[var(--radius-md)] transition-colors shadow-sm"
+        className="flex items-center justify-center gap-1.5 bg-info hover:bg-info-hover text-white text-sm font-bold py-2 px-4 rounded-[var(--radius-md)] transition-colors shadow-sm"
         onClick={onAddClick}
       >
         <Plus size={16} /> Log Request
@@ -21,3 +21,4 @@ export function SuperadminAssetMaintenanceHeader({ onAddClick }: Props) {
     </div>
   );
 }
+

@@ -126,7 +126,7 @@ export default function Subscriptions() {
               </tr>
             ) : (
               rows.map(( s: FlexRecord ) => (
-                <tr key={s.id} className="fin-table-hover-row fin-table-row">
+                <tr key={s.id} className="fin-table-hover-row fin-table-row cursor-pointer" onClick={() => toast.success(`Viewing subscription for ${s.studentName}`)}>
                   <td className="py-3 px-4 fin-cell-name">{s.studentName}</td>
                   <td className="py-3 px-4 fin-mono">{s.smartId}</td>
                   <td className="py-3 px-4 fin-text-body">{s.plan}</td>
@@ -151,15 +151,9 @@ export default function Subscriptions() {
                     <div className="flex items-center justify-end gap-2">
                       <button
                         className="fin-badge fin-badge--info cursor-pointer"
-                        onClick={() => router.push(`/superadmin/superadmin_finance/collect-fee?studentId=${s.id}&renew=true`)}
+                        onClick={(e) => { e.stopPropagation(); router.push(`/superadmin/superadmin_finance/collect-fee?studentId=${s.id}&renew=true`); }}
                       >
                         <RefreshCw size={11} /> Renew
-                      </button>
-                      <button
-                        className="fin-badge fin-badge--neutral cursor-pointer"
-                        onClick={() => toast.success(`Viewing subscription for ${s.studentName}`)}
-                      >
-                        <Eye size={11} /> View
                       </button>
                     </div>
                   </td>

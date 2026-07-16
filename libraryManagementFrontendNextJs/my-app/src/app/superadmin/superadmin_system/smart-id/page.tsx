@@ -7,16 +7,16 @@ import {
   SuperadminDialog, SuperadminDialogTrigger, SuperadminDialogContent, SuperadminDialogHeader,
   SuperadminDialogTitle, SuperadminDialogDescription, SuperadminDialogClose
 } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminDialog';
-import { Hash, ChevronRight, ArrowRight, AlertTriangle } from 'lucide-react';
+import { Hash, ChevronRight, ArrowRight, AlertTriangle, LogOut, Search, Target, CheckCircle } from 'lucide-react';
 
 const ACTIVE_IDS = [1, 2, 4, 5, 6, 9, 10, 11, 12, 15, 16, 17, 18, 19, 20];
 const ALL_IDS = Array.from({ length: 20 }, (_, i) => i + 1);
 const GAP_IDS = ALL_IDS.filter(id => !ACTIVE_IDS.includes(id));
 
 const FLOW_STEPS = [
-  { step: '1', icon: '🚪', title: 'Student Exits', desc: 'ID freed — student moved to alumni archive' },
-  { step: '2', icon: '🔍', title: 'System Scans', desc: 'Checks for lowest available gap ID in the sequence' },
-  { step: '3', icon: '🎯', title: 'Gap ID Assigned', desc: 'New student gets freed ID — records stay compact & serial' },
+  { step: '1', icon: <LogOut size={24} className="text-on-surface-variant" />, title: 'Student Exits', desc: 'ID freed — student moved to alumni archive' },
+  { step: '2', icon: <Search size={24} className="text-on-surface-variant" />, title: 'System Scans', desc: 'Checks for lowest available gap ID in the sequence' },
+  { step: '3', icon: <Target size={24} className="text-on-surface-variant" />, title: 'Gap ID Assigned', desc: 'New student gets freed ID — records stay compact & serial' },
 ];
 
 export default function SmartIdPage() {
@@ -77,7 +77,7 @@ export default function SmartIdPage() {
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             🔢 Current ID Sequence
-            {regenerated && <SuperadminBadge variant="success">✅ Regenerated</SuperadminBadge>}
+            {regenerated && <SuperadminBadge variant="success"><CheckCircle size={14} className="inline mr-1" /> Regenerated</SuperadminBadge>}
           </CardTitle>
           <CardDescription>
             Active IDs shown in <span className="text-primary font-medium">indigo</span>. 

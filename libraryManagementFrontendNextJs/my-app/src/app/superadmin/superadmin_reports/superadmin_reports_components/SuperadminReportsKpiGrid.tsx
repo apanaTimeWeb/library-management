@@ -14,10 +14,10 @@ const ICON_MAP: Record<string, React.ElementType> = {
 };
 
 const STYLE_MAP = {
-  primary: { bg: 'bg-[var(--primary-subtle,rgba(99,102,241,0.1))]', text: 'text-primary' },
-  success: { bg: 'bg-[var(--success-bg,rgba(52,211,153,0.1))]', text: 'text-success' },
-  warning: { bg: 'bg-[var(--warning-bg,rgba(251,191,36,0.1))]', text: 'text-warning' },
-  danger:  { bg: 'bg-[var(--danger-bg,rgba(248,113,113,0.1))]', text: 'text-danger' },
+  primary: { bg: 'bg-primary-subtle', text: 'text-primary' },
+  success: { bg: 'bg-success-bg', text: 'text-success' },
+  warning: { bg: 'bg-warning-bg', text: 'text-warning' },
+  danger:  { bg: 'bg-danger-bg', text: 'text-danger' },
 };
 
 export function SuperadminReportsKpiGrid({ kpiCards }: Props) {
@@ -27,7 +27,7 @@ export function SuperadminReportsKpiGrid({ kpiCards }: Props) {
         const Icon = ICON_MAP[k.icon] || TrendingUp;
         const TrendIcon = k.trendType === 'up' ? TrendingUp : TrendingDown;
         const style = STYLE_MAP[k.iconType] || STYLE_MAP.primary;
-        const trendColor = k.trendType === 'up' ? 'text-success bg-[var(--success-bg,rgba(52,211,153,0.1))]' : 'text-danger bg-[var(--danger-bg,rgba(248,113,113,0.1))]';
+        const trendColor = k.trendType === 'up' ? 'text-success bg-success-bg' : 'text-danger bg-danger-bg';
 
         return (
           <div key={i} className="flex items-center gap-4 bg-bg-card border border-border rounded-[var(--radius-lg)] p-5 shadow-sm hover:shadow-md transition-shadow">
@@ -47,3 +47,4 @@ export function SuperadminReportsKpiGrid({ kpiCards }: Props) {
     </div>
   );
 }
+

@@ -4,6 +4,7 @@ import { AgGridReact } from 'ag-grid-react';
 import type { ICellRendererParams, GridReadyEvent } from 'ag-grid-community';
 import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community';
 import { superadmin_gridTheme } from '@/app/superadmin/superadmin_shared_components/superadmin_gridTheme';
+import { CheckCircle, Circle, AlertCircle } from 'lucide-react';
 import type { SuperadminSubscription } from '@/app/superadmin/superadmin_subscriptions/superadmin_subscriptions_types/SuperadminSubscriptionsTypes';
 
 ModuleRegistry.registerModules([AllCommunityModule]);
@@ -50,10 +51,10 @@ export function SuperadminSubscriptionsGrid({ subs, filteredSubs, filter, setFil
     {
       headerName: 'Status', field: 'status', flex: 1, minWidth: 120,
       cellRenderer: (p: ICellRendererParams<SuperadminSubscription>) => (
-        <div className="flex items-center h-full">
-          {p.data?.status === 'Paid'     && <span className="inline-flex items-center px-2 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-[var(--success-bg,rgba(52,211,153,0.1))] text-success">✅ Paid</span>}
-          {p.data?.status === 'Due Soon' && <span className="inline-flex items-center px-2 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-[var(--info-bg,rgba(59,130,246,0.1))] text-info,#3B82F6">🔵 Due Soon</span>}
-          {p.data?.status === 'Overdue'  && <span className="inline-flex items-center px-2 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-[var(--danger-bg,rgba(248,113,113,0.1))] text-danger">🔴 Overdue</span>}
+        <div className="flex items-center h-full gap-1.5">
+          {p.data?.status === 'Paid'     && <span className="inline-flex items-center px-2 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-success-bg text-success"><CheckCircle size={10} className="mr-1"/> Paid</span>}
+          {p.data?.status === 'Due Soon' && <span className="inline-flex items-center px-2 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-info-bg text-info"><Circle size={10} className="mr-1"/> Due Soon</span>}
+          {p.data?.status === 'Overdue'  && <span className="inline-flex items-center px-2 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-danger-bg text-danger"><AlertCircle size={10} className="mr-1"/> Overdue</span>}
         </div>
       ),
     },

@@ -56,10 +56,10 @@ export default function NoticesPage() {
     const status: 'Active' | 'Expired' = form.validTill >= today ? 'Active' : 'Expired';
     if (editItem) {
       setNotices(prev => prev.map(( n: Notice ) => n.id === editItem.id ? { ...n, ...form, status } : n));
-      showToast('✅ Notice updated');
+      showToast('Notice updated');
     } else {
       setNotices(prev => [{ id: Date.now().toString(), ...form, postedBy: 'Admin', postedDate: today, status }, ...prev]);
-      showToast('✅ Notice posted');
+      showToast('Notice posted');
     }
     setShowAdd(false);
   };
@@ -68,12 +68,12 @@ export default function NoticesPage() {
     if (!deleteItem) return;
     setNotices(prev => prev.filter(n => n.id !== deleteItem.id));
     setDeleteItem(null);
-    showToast('🗑️ Notice deleted');
+    showToast('Notice deleted');
   };
 
   const handleBroadcast = () => {
     setBroadcastItem(null);
-    showToast('📱 Notice broadcast to all active students via WhatsApp');
+    showToast('Notice broadcast to all active students via WhatsApp');
   };
 
   const colDefs = [
@@ -85,7 +85,7 @@ export default function NoticesPage() {
       width: 120,
       cellRenderer: (p: ICellRendererParams) => (
         <span className={`eng-badge ${p.value === 'Active' ? 'eng-badge--success' : 'eng-badge--outline'} mt-2 inline-block`}>
-          {p.value === 'Active' ? '✅ Active' : 'Expired'}
+          {p.value === 'Active' ? 'Active' : 'Expired'}
         </span>
       )
     },
@@ -98,8 +98,8 @@ export default function NoticesPage() {
       sortable: false,
       cellRenderer: (params: ICellRendererParams) => (
         <div className="h-full flex items-center gap-2">
-          <button onClick={() => openEdit(params.data)} className="eng-btn-icon hover:bg-mgr-primary hover:text-white transition-colors duration-200" title="Edit"><Edit2 size={14} /></button>
-          <button onClick={() => setBroadcastItem(params.data)} className="eng-btn-icon hover:bg-mgr-primary hover:text-white transition-colors duration-200" title="Broadcast"><Send size={14} /></button>
+          <button onClick={() => openEdit(params.data)} className="eng-btn-icon hover:bg-primary hover:text-white transition-colors duration-200" title="Edit"><Edit2 size={14} /></button>
+          <button onClick={() => setBroadcastItem(params.data)} className="eng-btn-icon hover:bg-primary hover:text-white transition-colors duration-200" title="Broadcast"><Send size={14} /></button>
           <button onClick={() => setDeleteItem(params.data)} className="eng-btn-icon eng-btn-icon--danger hover:bg-red-500 hover:text-white transition-colors duration-200" title="Delete"><Trash2 size={14} /></button>
         </div>
       )
@@ -117,9 +117,9 @@ export default function NoticesPage() {
       {/* Add/Edit Modal */}
       {showAdd && (
         <div className="eng-overlay">
-          <div className="eng-modal eng-modal--lg bg-mgr-bg-card">
+          <div className="eng-modal eng-modal--lg bg-card">
             <button onClick={() => setShowAdd(false)} className="eng-modal-close hover:text-red-500"><X size={16} /></button>
-            <p className="eng-modal-title mb-4 font-bold text-mgr-text-primary">{editItem ? '✏️ Edit Notice' : '📢 Post Notice'}</p>
+            <p className="eng-modal-title mb-4 font-bold text-primary flex items-center gap-2">{editItem ? <><Edit2 size={16}/> Edit Notice</> : <><Send size={16}/> Post Notice</>}</p>
             <div className="eng-form-stack space-y-4">
               <div>
                 <label className="eng-label text-sm font-semibold mb-1 block">Title <span className="eng-required text-red-500">*</span></label>
@@ -138,10 +138,10 @@ export default function NoticesPage() {
               </div>
             </div>
             <div className="eng-modal-footer mt-6 flex justify-end gap-3">
-              <button onClick={() => setShowAdd(false)} className="px-4 py-2 border border-mgr-border text-mgr-text-primary rounded hover:bg-mgr-border transition-colors">Cancel</button>
-              <button onClick={handleSave} className="px-4 py-2 bg-mgr-primary text-white rounded hover:bg-opacity-90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              <button onClick={() => setShowAdd(false)} className="px-4 py-2 border border-border text-primary rounded hover:bg-border transition-colors">Cancel</button>
+              <button onClick={handleSave} className="flex items-center gap-2 px-4 py-2 bg-primary text-white rounded hover:bg-opacity-90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                 disabled={!form.title || !form.message || !form.validTill}>
-                📢 {editItem ? 'Update Notice' : 'Post Notice'}
+                <Send size={16} /> {editItem ? 'Update Notice' : 'Post Notice'}
               </button>
             </div>
           </div>
@@ -151,11 +151,11 @@ export default function NoticesPage() {
       {/* Delete Confirmation */}
       {deleteItem && (
         <div className="eng-overlay">
-          <div className="eng-modal eng-modal--sm bg-mgr-bg-card">
-            <p className="eng-modal-title mb-2 font-bold text-mgr-text-primary">🗑️ Delete Notice?</p>
-            <p className="eng-modal-desc text-sm text-mgr-text-secondary">"{deleteItem.title}" will be permanently deleted.</p>
+          <div className="eng-modal eng-modal--sm bg-card">
+            <p className="eng-modal-title mb-2 font-bold text-primary flex items-center gap-2"><Trash2 size={16} /> Delete Notice?</p>
+            <p className="eng-modal-desc text-sm text-secondary">"{deleteItem.title}" will be permanently deleted.</p>
             <div className="eng-modal-footer mt-6 flex justify-end gap-3">
-              <button onClick={() => setDeleteItem(null)} className="px-4 py-2 border border-mgr-border text-mgr-text-primary rounded hover:bg-mgr-border transition-colors">Cancel</button>
+              <button onClick={() => setDeleteItem(null)} className="px-4 py-2 border border-border text-primary rounded hover:bg-border transition-colors">Cancel</button>
               <button onClick={handleDelete} className="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700 transition-colors">Delete</button>
             </div>
           </div>
@@ -165,12 +165,12 @@ export default function NoticesPage() {
       {/* Broadcast Confirmation */}
       {broadcastItem && (
         <div className="eng-overlay">
-          <div className="eng-modal eng-modal--sm bg-mgr-bg-card">
-            <p className="eng-modal-title mb-2 font-bold text-mgr-text-primary">📱 Broadcast via WhatsApp</p>
-            <p className="eng-modal-desc text-sm text-mgr-text-secondary">Send "{broadcastItem.title}" to all active students via WhatsApp?</p>
+          <div className="eng-modal eng-modal--sm bg-card">
+            <p className="eng-modal-title mb-2 font-bold text-primary flex items-center gap-2"><Send size={16} /> Broadcast via WhatsApp</p>
+            <p className="eng-modal-desc text-sm text-secondary">Send "{broadcastItem.title}" to all active students via WhatsApp?</p>
             <div className="eng-modal-footer mt-6 flex justify-end gap-3">
-              <button onClick={() => setBroadcastItem(null)} className="px-4 py-2 border border-mgr-border text-mgr-text-primary rounded hover:bg-mgr-border transition-colors">Cancel</button>
-              <button onClick={handleBroadcast} className="px-4 py-2 bg-mgr-primary text-white rounded hover:bg-opacity-90 transition-colors">Broadcast</button>
+              <button onClick={() => setBroadcastItem(null)} className="px-4 py-2 border border-border text-primary rounded hover:bg-border transition-colors">Cancel</button>
+              <button onClick={handleBroadcast} className="px-4 py-2 bg-primary text-white rounded hover:bg-opacity-90 transition-colors">Broadcast</button>
             </div>
           </div>
         </div>
@@ -181,10 +181,10 @@ export default function NoticesPage() {
           <div className="eng-breadcrumb mb-2">
             <span>Communication</span><ChevronRight size={12} /><span>Notices</span>
           </div>
-          <h1 className="eng-page-title text-2xl font-bold text-mgr-text-primary">📢 Notice Board</h1>
-          <p className="eng-page-subtitle text-mgr-text-secondary">Post and manage library notices for students.</p>
+          <h1 className="eng-page-title text-2xl font-bold text-primary flex items-center gap-2"><Send size={24}/> Notice Board</h1>
+          <p className="eng-page-subtitle text-secondary">Post and manage library notices for students.</p>
         </div>
-        <button onClick={openAdd} className="flex items-center gap-2 px-4 py-2 bg-mgr-primary text-white rounded hover:bg-opacity-90 transition-colors font-medium">
+        <button onClick={openAdd} className="flex items-center gap-2 px-4 py-2 bg-primary text-white rounded hover:bg-opacity-90 transition-colors font-medium">
           <Plus size={16} /> Post Notice
         </button>
       </div>
@@ -192,9 +192,9 @@ export default function NoticesPage() {
       <div className="eng-card eng-card--flush p-4">
         {notices.length === 0 ? (
           <div className="eng-empty py-12 flex flex-col items-center justify-center text-center">
-            <div className="eng-empty__icon text-4xl mb-4">📢</div>
-            <p className="eng-empty__title text-lg font-semibold text-mgr-text-primary mb-4">No notices posted yet.</p>
-            <button onClick={openAdd} className="flex items-center gap-2 px-4 py-2 bg-mgr-primary text-white rounded hover:bg-opacity-90 transition-colors font-medium">
+            <div className="eng-empty__icon mb-4"><Send size={48} className="text-secondary" /></div>
+            <p className="eng-empty__title text-lg font-semibold text-primary mb-4">No notices posted yet.</p>
+            <button onClick={openAdd} className="flex items-center gap-2 px-4 py-2 bg-primary text-white rounded hover:bg-opacity-90 transition-colors font-medium">
               <Plus size={16} /> Post Notice
             </button>
           </div>

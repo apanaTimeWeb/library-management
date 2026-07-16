@@ -38,7 +38,7 @@ export function SuperadminReportsHeader({ range, setRange }: Props) {
           <button 
             className={`inline-flex items-center gap-2 px-4 py-2.5 rounded-[var(--radius-md)] text-sm font-bold border transition-colors ${
               exported
-                ? 'bg-[var(--success-bg,rgba(52,211,153,0.1))] border-success/20 text-success'
+                ? 'bg-success-bg border-success/20 text-success'
                 : 'bg-bg-card border-border text-text-primary hover:bg-bg-input hover:border-primary'
             }`} 
             onClick={handleExport}
@@ -58,3 +58,4 @@ export function SuperadminReportsHeader({ range, setRange }: Props) {
     </div>
   );
 }
+

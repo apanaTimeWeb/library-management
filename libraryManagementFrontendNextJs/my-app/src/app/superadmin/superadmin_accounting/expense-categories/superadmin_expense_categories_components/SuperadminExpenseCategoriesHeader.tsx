@@ -13,7 +13,7 @@ export function SuperadminExpenseCategoriesHeader({ onAddClick }: Props) {
         <p className="text-sm font-medium text-text-secondary">Manage budget allocation per expense category.</p>
       </div>
       <button 
-        className="flex items-center justify-center gap-1.5 bg-info,#3B82F6 hover:opacity-90 text-white text-sm font-bold py-2 px-4 rounded-[var(--radius-md)] transition-opacity shadow-sm" 
+        className="flex items-center justify-center gap-1.5 bg-info hover:opacity-90 text-white text-sm font-bold py-2 px-4 rounded-[var(--radius-md)] transition-opacity shadow-sm" 
         onClick={onAddClick}
       >
         <Plus size={16} /> Add Category
@@ -21,3 +21,4 @@ export function SuperadminExpenseCategoriesHeader({ onAddClick }: Props) {
     </div>
   );
 }
+

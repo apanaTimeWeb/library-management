@@ -17,10 +17,10 @@ interface Props {
 }
 
 export function ActionBadge({ action }: { action: string }) {
-  if (action === 'Created') return <span className="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-[var(--success-bg,rgba(52,211,153,0.1))] text-success">CREATED</span>;
-  if (action === 'Updated') return <span className="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-[var(--info-bg,rgba(59,130,246,0.1))] text-info,#3B82F6">UPDATED</span>;
-  if (action === 'Deleted') return <span className="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-[var(--danger-bg,rgba(248,113,113,0.1))] text-danger">DELETED</span>;
-  if (action === 'Fee_Collected') return <span className="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-[var(--warning-bg,rgba(251,191,36,0.1))] text-warning">FEE_COLLECTED</span>;
+  if (action === 'Created') return <span className="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-success-bg text-success">CREATED</span>;
+  if (action === 'Updated') return <span className="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-info-bg text-info">UPDATED</span>;
+  if (action === 'Deleted') return <span className="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-danger-bg text-danger">DELETED</span>;
+  if (action === 'Fee_Collected') return <span className="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-warning-bg text-warning">FEE_COLLECTED</span>;
   return null;
 }
 
@@ -62,20 +62,7 @@ export function SuperadminAuditLogsGrid({ logs, onRowClick, actionFilter, onFilt
       cellRenderer: (p: ICellRendererParams<SuperadminAuditLog>) => (
         <span className="font-mono text-[11px] text-text-disabled">{p.data?.ip}</span>
       )
-    },
-    {
-      headerName: 'View', field: 'id', flex: 0.5, minWidth: 70, sortable: false, filter: false,
-      cellRenderer: (p: ICellRendererParams<SuperadminAuditLog>) => (
-        <div className="flex items-center h-full">
-          <button 
-            className="w-7 h-7 flex items-center justify-center rounded-[var(--radius-sm)] text-text-secondary hover:text-primary hover:bg-bg-input transition-colors" 
-            onClick={e => { e.stopPropagation(); onRowClick(p.data!); }}
-          >
-            <Eye size={15} />
-          </button>
-        </div>
-      ),
-    },
+    }
   ], [onRowClick]);
 
   const onGridReady = useCallback((e: GridReadyEvent) => { e.api.sizeColumnsToFit(); }, []);

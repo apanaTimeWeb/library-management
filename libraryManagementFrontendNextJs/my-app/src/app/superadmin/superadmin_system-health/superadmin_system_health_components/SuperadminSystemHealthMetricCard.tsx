@@ -17,7 +17,7 @@ const COLOR_TEXT_CLS: Record<string, string> = {
 
 const COLOR_FILL_CLS: Record<string, string> = {
   success: 'bg-success',
-  info:    'bg-info,#3B82F6',
+  info:    'bg-info',
   warning: 'bg-warning',
   danger:  'bg-danger',
 };
@@ -54,3 +54,4 @@ export function SuperadminSystemHealthMetricCard({ title, icon: Icon, iconColor,
     </div>
   );
 }
+

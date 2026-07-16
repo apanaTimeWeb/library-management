@@ -6,10 +6,10 @@ import type { SuperadminDashboardSystemHealth as SystemHealth } from '@/app/supe
 interface Props { data: SystemHealth; }
 
 const METRICS = [
-  { key: 'uptime',      label: 'System Uptime',   icon: CheckCircle, colorCls: 'text-success', bgCls: 'bg-[var(--success-bg,rgba(52,211,153,0.1))]' },
-  { key: 'activeUsers', label: 'Active Users Now', icon: Users,       colorCls: 'text-primary', bgCls: 'bg-[var(--primary-subtle,rgba(99,102,241,0.1))]' },
-  { key: 'apiLatency',  label: 'API Latency',      icon: Zap,         colorCls: 'text-info,#3B82F6', bgCls: 'bg-[rgba(59,130,246,0.1)]' },
-  { key: 'lastBackup',  label: 'Last Backup',      icon: HardDrive,   colorCls: 'text-text-disabled', bgCls: 'bg-bg-page' },
+  { key: 'uptime',      label: 'System Uptime',   icon: CheckCircle, colorCls: 'text-success', bgCls: 'bg-success-bg' },
+  { key: 'activeUsers', label: 'Active Users Now', icon: Users,       colorCls: 'text-primary', bgCls: 'bg-primary-subtle' },
+  { key: 'apiLatency',  label: 'API Latency',      icon: Zap,         colorCls: 'text-info', bgCls: 'bg-info-bg' },
+  { key: 'lastBackup',  label: 'Last Backup',      icon: HardDrive,   colorCls: 'text-text-disabled', bgCls: 'bg-page' },
 ] as const;
 
 export function SuperadminDashboardSystemHealthPanel({ data }: Props) {

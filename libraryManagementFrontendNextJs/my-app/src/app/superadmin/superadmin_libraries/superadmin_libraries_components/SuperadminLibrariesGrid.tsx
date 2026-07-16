@@ -4,7 +4,7 @@ import { AgGridReact } from 'ag-grid-react';
 import type { ICellRendererParams, GridReadyEvent } from 'ag-grid-community';
 import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community';
 import { superadmin_gridTheme } from '@/app/superadmin/superadmin_shared_components/superadmin_gridTheme';
-import { Eye, Edit2, ShieldAlert } from 'lucide-react';
+import { Edit2, ShieldAlert, CheckCircle, AlertTriangle } from 'lucide-react';
 import type { SuperadminLibrary as Library } from '@/app/superadmin/superadmin_libraries/superadmin_libraries_types/SuperadminLibrariesTypes';
 
 ModuleRegistry.registerModules([AllCommunityModule]);
@@ -54,17 +54,15 @@ export function SuperadminLibrariesGrid({ libraries, onRowClick, onSuspend }: Pr
       headerName: 'Status', field: 'status', flex: 1, minWidth: 120,
       cellRenderer: (p: ICellRendererParams<Library>) => (
         p.data?.status === 'Active'
-          ? <span className="inline-flex items-center px-2 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-[var(--success-bg,rgba(52,211,153,0.1))] text-success">✅ Active</span>
-          : <span className="inline-flex items-center px-2 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-[var(--warning-bg,rgba(251,191,36,0.1))] text-warning">⚠️ Maintenance</span>
+          ? <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-success-bg text-success"><CheckCircle size={12} /> Active</span>
+          : <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-warning-bg text-warning"><AlertTriangle size={12} /> Maintenance</span>
       ),
     },
     {
-      headerName: 'Actions', field: 'id', flex: 1, minWidth: 120, sortable: false, filter: false,
       cellRenderer: (p: ICellRendererParams<Library>) => (
         <div className="flex items-center gap-2 h-full">
-          <button className="w-8 h-8 flex items-center justify-center rounded-[var(--radius-md)] text-text-secondary hover:text-primary hover:bg-[var(--primary-subtle,rgba(99,102,241,0.1))] transition-colors" onClick={e => { e.stopPropagation(); onRowClick(p.data!, 'view'); }}><Eye size={15} /></button>
-          <button className="w-8 h-8 flex items-center justify-center rounded-[var(--radius-md)] text-text-secondary hover:text-success hover:bg-[var(--success-bg,rgba(52,211,153,0.1))] transition-colors" onClick={e => { e.stopPropagation(); onRowClick(p.data!, 'edit'); }}><Edit2 size={15} /></button>
-          <button className="w-8 h-8 flex items-center justify-center rounded-[var(--radius-md)] text-text-secondary hover:text-danger hover:bg-[var(--danger-bg,rgba(248,113,113,0.1))] transition-colors" onClick={e => { e.stopPropagation(); onSuspend(p.data!.id); }}><ShieldAlert size={15} /></button>
+          <button className="w-8 h-8 flex items-center justify-center rounded-[var(--radius-md)] text-text-secondary hover:text-success hover:bg-success-bg transition-colors" onClick={e => { e.stopPropagation(); onRowClick(p.data!, 'edit'); }}><Edit2 size={15} /></button>
+          <button className="w-8 h-8 flex items-center justify-center rounded-[var(--radius-md)] text-text-secondary hover:text-danger hover:bg-danger-bg transition-colors" onClick={e => { e.stopPropagation(); onSuspend(p.data!.id); }}><ShieldAlert size={15} /></button>
         </div>
       ),
     },

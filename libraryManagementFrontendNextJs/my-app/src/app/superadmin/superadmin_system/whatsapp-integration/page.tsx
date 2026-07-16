@@ -9,14 +9,14 @@ import { SuperadminSelect, SuperadminSelectTrigger, SuperadminSelectValue, Super
 import { SuperadminKpiCard } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminKpiCard';
 import {
   MessageSquare, ChevronRight, Eye, EyeOff, Copy, CheckCircle,
-  XCircle, Phone, Zap, BarChart3, Clock, Loader2
+  XCircle, Phone, Zap, BarChart3, Clock, Loader2, Radio, Send, Banknote, Globe, Settings
 } from 'lucide-react';
 
 const PROVIDERS = [
-  { id: 'twilio',   label: 'Twilio',   logo: '🔵', requiresSecret: true  },
-  { id: 'wati',     label: 'Wati',     logo: '🟢', requiresSecret: false },
-  { id: 'aisensy',  label: 'AiSensy',  logo: '🟣', requiresSecret: false },
-  { id: 'custom',   label: 'Custom',   logo: '⚙️', requiresSecret: true  },
+  { id: 'twilio',   label: 'Twilio',   logo: <Globe size={16} className="text-blue-500" />, requiresSecret: true  },
+  { id: 'wati',     label: 'Wati',     logo: <Globe size={16} className="text-green-500" />, requiresSecret: false },
+  { id: 'aisensy',  label: 'AiSensy',  logo: <Globe size={16} className="text-purple-500" />, requiresSecret: false },
+  { id: 'custom',   label: 'Custom',   logo: <Settings size={16} className="text-gray-500" />, requiresSecret: true  },
 ];
 
 interface MessageLog {
@@ -101,11 +101,11 @@ export default function WhatsAppIntegrationPage() {
           : 'bg-surface-container border-outline-variant'
       }`}>
         <div className={`h-12 w-12 rounded-xl flex items-center justify-center text-2xl ${
-          testStatus === 'success' ? 'bg-green-500/20' :
-          testStatus === 'error'  ? 'bg-error-container/30' :
-          'bg-surface-container-high'
+          testStatus === 'success' ? 'bg-green-500/20 text-success-base' :
+          testStatus === 'error'  ? 'bg-error-container/30 text-error-base' :
+          'bg-surface-container-high text-on-surface-variant'
         }`}>
-          {testStatus === 'success' ? '✅' : testStatus === 'error' ? '❌' : '📡'}
+          {testStatus === 'success' ? <CheckCircle size={24} /> : testStatus === 'error' ? <XCircle size={24} /> : <Radio size={24} />}
         </div>
         <div className="flex-1">
           <div className="flex items-center gap-3">
@@ -136,10 +136,10 @@ export default function WhatsAppIntegrationPage() {
 
       {/* Usage Stats */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-5 mb-8">
-        <SuperadminKpiCard title="Sent This Month"  value={MESSAGE_LOGS.length} icon="📤"  subtitle="All messages"      />
-        <SuperadminKpiCard title="Delivered"        value={deliveredCount}      icon="✅"  trend="up" trendLabel={`${deliveryRate}% rate`} />
-        <SuperadminKpiCard title="Failed"           value={failedCount}         icon="❌"  trend={failedCount > 0 ? 'down' : 'neutral'} trendLabel="Failed deliveries" />
-        <SuperadminKpiCard title="Est. Cost"        value="₹18.50"              icon="💸"  subtitle="~₹0.18 per msg"   />
+        <SuperadminKpiCard title="Sent This Month"  value={MESSAGE_LOGS.length} icon={<Send size={20} />}  subtitle="All messages"      />
+        <SuperadminKpiCard title="Delivered"        value={deliveredCount}      icon={<CheckCircle size={20} />}  trend="up" trendLabel={`${deliveryRate}% rate`} />
+        <SuperadminKpiCard title="Failed"           value={failedCount}         icon={<XCircle size={20} />}  trend={failedCount > 0 ? 'down' : 'neutral'} trendLabel="Failed deliveries" />
+        <SuperadminKpiCard title="Est. Cost"        value="₹18.50"              icon={<Banknote size={20} />}  subtitle="~₹0.18 per msg"   />
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">

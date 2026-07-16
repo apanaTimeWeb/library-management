@@ -58,7 +58,7 @@ export default function PaymentPromises() {
     setPromises((prev) =>
       prev.map(( p ) => p.id === id ? { ...p, status: 'fulfilled', fulfilledDate: new Date().toISOString().split('T')[0] } : p)
     );
-    toast.success(`✅ ${name}'s promise marked as paid.`);
+    toast.success(`${name}'s promise marked as paid.`);
   };
 
   const handleExtend = () => {
@@ -125,7 +125,7 @@ export default function PaymentPromises() {
               </tr>
             ) : (
               filtered.map(( p ) => (
-                <tr key={p.id} className="fin-table-hover-row fin-table-row">
+                <tr key={p.id} className="fin-table-hover-row fin-table-row cursor-pointer" onClick={() => toast.success(`Viewing promise for ${p.studentName}`)}>
                   <td className="py-3 px-4">
                     <div className="fin-cell-name">{p.studentName}</div>
                     <div className="fin-cell-subtext">{p.smartId}</div>
@@ -154,18 +154,15 @@ export default function PaymentPromises() {
                       <div className="flex items-center justify-end gap-2">
                         <button
                           className="fin-badge fin-badge--success cursor-pointer"
-                          onClick={() => handleFulfill(p.id, p.studentName)}
+                          onClick={(e) => { e.stopPropagation(); handleFulfill(p.id, p.studentName); }}
                         >
                           <CheckCircle size={11} /> Mark Paid
                         </button>
                         <button
                           className="fin-badge fin-badge--warning cursor-pointer"
-                          onClick={() => setExtendDialog({ id: p.id, name: p.studentName })}
+                          onClick={(e) => { e.stopPropagation(); setExtendDialog({ id: p.id, name: p.studentName }); }}
                         >
                           <CalendarPlus size={11} /> Extend Date
-                        </button>
-                        <button className="fin-badge fin-badge--neutral cursor-pointer">
-                          <Eye size={11} /> View
                         </button>
                       </div>
                     ) : (
@@ -194,7 +191,7 @@ export default function PaymentPromises() {
                 <textarea className="fin-textarea" value={extendReason} onChange={( e: any ) => setExtendReason(e.target.value)} placeholder="Reason for extension..." rows={2} />
               </div>
               <div className="fin-badge fin-badge--warning w-full justify-center py-2">
-                ⚠️ This will decrease the student's Trust Score.
+                 This will decrease the student's Trust Score.
               </div>
             </div>
             <div className="fin-dialog__footer">
@@ -213,3 +210,4 @@ export default function PaymentPromises() {
     </div>
   );
 }
+

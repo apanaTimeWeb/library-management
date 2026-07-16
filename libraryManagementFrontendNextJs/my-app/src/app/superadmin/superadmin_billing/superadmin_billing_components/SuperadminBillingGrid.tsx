@@ -60,8 +60,8 @@ export function SuperadminBillingGrid({ invoices, onRowClick, onExport }: Props)
       cellRenderer: (p: ICellRendererParams<SuperadminBillingInvoice>) => (
         <div className="flex items-center h-full">
           {p.data?.status === 'Paid'
-            ? <span className="inline-flex items-center px-2 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-[var(--success-bg,rgba(52,211,153,0.1))] text-success">✅ Paid</span>
-            : <span className="inline-flex items-center px-2 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-[var(--danger-bg,rgba(248,113,113,0.1))] text-danger">🔴 Overdue</span>}
+            ? <span className="inline-flex items-center px-2 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-success-bg text-success">✅ Paid</span>
+            : <span className="inline-flex items-center px-2 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-danger-bg text-danger">🔴 Overdue</span>}
         </div>
       ),
     },
@@ -103,3 +103,4 @@ export function SuperadminBillingGrid({ invoices, onRowClick, onExport }: Props)
     </div>
   );
 }
+

@@ -58,7 +58,7 @@ export default function ReceiptsPage() {
       row('PAID    :', `Rs.${r.amount.toLocaleString('en-IN')}`),
       row('Mode    :', r.paymentMode),
       '',
-      c('✅ Payment Confirmed'),
+      c('Payment Confirmed'),
       c('Thank You! Keep Studying 😊'),
       line,
     ].join('\n');
@@ -127,7 +127,7 @@ export default function ReceiptsPage() {
             {filtered.length === 0 ? (
               <tr><td colSpan={7}><div className="fin-empty-state"><div className="fin-empty-state__icon">🧾</div><p className="fin-empty-state__title">No receipts found.</p></div></td></tr>
             ) : filtered.map(( r ) => (
-              <tr key={r.id} className="fin-table-hover-row fin-table-row">
+              <tr key={r.id} className="fin-table-hover-row fin-table-row cursor-pointer" onClick={() => router.push(`/superadmin/superadmin_finance/receipt/${r.id}`)}>
                 <td className="py-3 px-4"><span className="fin-mono">{r.receiptNumber}</span></td>
                 <td className="py-3 px-4">
                   <p className="fin-cell-name">{r.studentName}</p>
@@ -141,13 +141,11 @@ export default function ReceiptsPage() {
                 </td>
                 <td className="py-3 px-4">
                   <div className="flex items-center justify-end gap-2">
-                    <Link href={`/superadmin/superadmin_finance/receipt/${r.id}`}>
-                      <button className="fin-badge fin-badge--neutral cursor-pointer"><Eye size={11} /> View</button>
-                    </Link>
-                    <button className="fin-badge fin-badge--neutral cursor-pointer" onClick={() => handlePrint(r)} title="Print (Thermal)">
+
+                    <button className="fin-badge fin-badge--neutral cursor-pointer" onClick={(e) => { e.stopPropagation(); handlePrint(r); }} title="Print (Thermal)">
                       <Printer size={11} />
                     </button>
-                    <button className="fin-badge fin-badge--success cursor-pointer" onClick={() => handleWhatsApp(r)} title="Send WhatsApp">
+                    <button className="fin-badge fin-badge--success cursor-pointer" onClick={(e) => { e.stopPropagation(); handleWhatsApp(r); }} title="Send WhatsApp">
                       <Send size={11} />
                     </button>
                   </div>
@@ -160,3 +158,4 @@ export default function ReceiptsPage() {
     </div>
   );
 }
+

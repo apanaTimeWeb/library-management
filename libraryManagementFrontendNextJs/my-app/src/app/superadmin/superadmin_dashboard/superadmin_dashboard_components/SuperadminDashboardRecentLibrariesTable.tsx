@@ -13,15 +13,15 @@ ModuleRegistry.registerModules([AllCommunityModule]);
 interface Props { data: Library[]; }
 
 const STATUS_CONFIG: Record<string, { label: string; bg: string; text: string }> = {
-  active:   { label: 'Active',    bg: 'bg-[var(--success-bg,rgba(52,211,153,0.1))]', text: 'text-success' },
-  setup:    { label: 'Setup Due', bg: 'bg-[var(--warning-bg,rgba(251,191,36,0.1))]', text: 'text-warning' },
-  inactive: { label: 'Inactive',  bg: 'bg-[var(--danger-bg,rgba(248,113,113,0.1))]', text: 'text-danger' },
+  active:   { label: 'Active',    bg: 'bg-success-bg', text: 'text-success' },
+  setup:    { label: 'Setup Due', bg: 'bg-warning-bg', text: 'text-warning' },
+  inactive: { label: 'Inactive',  bg: 'bg-danger-bg', text: 'text-danger' },
 };
 
 const PLAN_CLS: Record<string, { bg: string; text: string }> = {
-  Basic:      { bg: 'bg-[rgba(59,130,246,0.1)]', text: 'text-info,#3B82F6' },
-  Pro:        { bg: 'bg-[var(--primary-subtle,rgba(99,102,241,0.1))]', text: 'text-primary' },
-  Enterprise: { bg: 'bg-bg-input', text: 'text-text-primary' },
+  Basic:      { bg: 'bg-info-bg', text: 'text-info' },
+  Pro:        { bg: 'bg-primary-subtle', text: 'text-primary' },
+  Enterprise: { bg: 'bg-input', text: 'text-text-primary' },
 };
 
 export function SuperadminDashboardRecentLibrariesTable({ data }: Props) {

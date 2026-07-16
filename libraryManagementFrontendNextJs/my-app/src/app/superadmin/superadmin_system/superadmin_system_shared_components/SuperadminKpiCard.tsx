@@ -5,7 +5,7 @@ interface KpiCardProps {
   title: string;
   value: string | number;
   subtitle?: string;
-  icon?: string;
+  icon?: React.ReactNode;
   trend?: 'up' | 'down' | 'neutral';
   trendLabel?: string;
   className?: string;
@@ -19,7 +19,7 @@ export function SuperadminKpiCard({ title, value, subtitle, icon, trend, trendLa
     <div className={cn('sys-kpi-card', className)}>
       <div className="flex items-center justify-between">
         <span className="sys-kpi-card__label">{title}</span>
-        {icon && <span className="text-2xl">{icon}</span>}
+        {icon && <span className="text-on-surface-variant flex items-center justify-center">{icon}</span>}
       </div>
       <div className="sys-kpi-card__value">{value}</div>
       {(subtitle || trend) && (

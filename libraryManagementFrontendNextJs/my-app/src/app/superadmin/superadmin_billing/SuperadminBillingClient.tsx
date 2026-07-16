@@ -19,14 +19,14 @@ export function SuperadminBillingClient() {
       if (selected && selected.id === id) {
         setSelected({ ...selected, status: 'Paid', method: 'Manual' });
       }
-      showToast('✅ Invoice marked as Paid');
+      showToast('Invoice marked as Paid');
     } catch (err) {
-      showToast('❌ Failed to mark invoice as paid');
+      showToast('Failed to mark invoice as paid');
     }
   };
 
   const handleExport = () => {
-    showToast('📥 CSV exported successfully');
+    showToast('CSV exported successfully');
   };
 
   return (

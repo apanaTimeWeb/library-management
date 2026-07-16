@@ -22,7 +22,7 @@ export function SuperadminDashboardRecentActivity() {
                 item.type === 'success' ? 'bg-success shadow-[0_0_8px_var(--success)]' :
                 item.type === 'danger' ? 'bg-danger shadow-[0_0_8px_var(--danger)]' :
                 item.type === 'warning' ? 'bg-warning shadow-[0_0_8px_var(--warning)]' :
-                'bg-info,#3B82F6 shadow-[0_0_8px_var(--info)]'
+                'bg-info shadow-[0_0_8px_var(--info)]'
               }`} />
               <div className="flex-1 min-w-0">
                 <p className="text-sm font-semibold text-text-primary truncate">{item.title}</p>

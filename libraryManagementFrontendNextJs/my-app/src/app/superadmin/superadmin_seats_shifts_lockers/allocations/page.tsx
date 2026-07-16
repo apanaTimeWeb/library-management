@@ -56,15 +56,7 @@ function StatusCell({ value }: { value: string }) {
   return <span className={STATUS_CLASS[value] ?? 'ss-badge ss-badge--inactive'}><span className="ss-badge__dot" />{value}</span>;
 }
 
-function ActionsCell({ data }: { data: Allocation }) {
-  return (
-    <div className="ss-cell-actions">
-      <button className="ss-btn-icon" title="View Student" onClick={() => toast.success(`Viewing ${data.studentName}`)}>
-        <Eye size={13} />
-      </button>
-    </div>
-  );
-}
+
 
 export default function AllocationsPage() {
   const [shiftFilter, setShiftFilter] = useState('All Shifts');
@@ -89,7 +81,7 @@ export default function AllocationsPage() {
     { field: 'validTill', headerName: 'TILL', flex: 1.3, cellClass: 'ss-cell-secondary' },
     { field: 'daysLeft', headerName: 'DAYS LEFT', flex: 1, cellRenderer: DaysLeftCell },
     { field: 'status', headerName: 'STATUS', flex: 1.2, cellRenderer: StatusCell },
-    { headerName: 'ACTIONS', flex: 0.8, sortable: false, cellRenderer: ActionsCell },
+
   ], []);
 
   return (
@@ -140,7 +132,7 @@ export default function AllocationsPage() {
           </div>
         ) : (
           <div className="ss-table-wrapper ss-grid-h-400">
-            <AgGridReact theme={superadmin_gridTheme} rowData={filtered} columnDefs={colDefs as any} rowHeight={52} headerHeight={40} suppressMovableColumns suppressCellFocus defaultColDef={{ resizable: false, sortable: true }} />
+            <AgGridReact theme={superadmin_gridTheme} rowData={filtered} columnDefs={colDefs as any} rowHeight={52} headerHeight={40} suppressMovableColumns suppressCellFocus defaultColDef={{ resizable: false, sortable: true }} onRowClicked={(p) => toast.success(`Viewing ${p.data.studentName}`)} />
           </div>
         )}
       </div>

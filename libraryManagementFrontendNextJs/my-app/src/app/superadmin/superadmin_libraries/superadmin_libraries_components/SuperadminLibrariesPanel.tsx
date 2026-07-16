@@ -50,7 +50,7 @@ export function SuperadminLibrariesPanel({ lib, mode, onClose, onSave, onSuspend
             </div>
             <div className="flex items-center gap-2">
               {!editing && (
-                <button className="w-8 h-8 flex items-center justify-center rounded-[var(--radius-md)] text-text-secondary hover:text-primary hover:bg-[var(--primary-subtle,rgba(99,102,241,0.1))] transition-colors" onClick={() => setEditing(true)}>
+                <button className="w-8 h-8 flex items-center justify-center rounded-[var(--radius-md)] text-text-secondary hover:text-primary hover:bg-primary-subtle transition-colors" onClick={() => setEditing(true)}>
                   <Edit2 size={16} />
                 </button>
               )}
@@ -106,8 +106,8 @@ export function SuperadminLibrariesPanel({ lib, mode, onClose, onSave, onSuspend
 
           <div>
             {lib.status === 'Active'
-              ? <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider bg-[var(--success-bg,rgba(52,211,153,0.1))] text-success"><CheckCircle size={14} /> Active</span>
-              : <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider bg-[var(--warning-bg,rgba(251,191,36,0.1))] text-warning"><AlertTriangle size={14} /> Maintenance</span>}
+              ? <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider bg-success-bg text-success"><CheckCircle size={14} /> Active</span>
+              : <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider bg-warning-bg text-warning"><AlertTriangle size={14} /> Maintenance</span>}
           </div>
 
           <div className="flex gap-3 pt-4 border-t border-border">
@@ -138,7 +138,7 @@ export function SuperadminLibrariesPanel({ lib, mode, onClose, onSave, onSuspend
                   <Edit2 size={16} /> Edit Library
                 </button>
                 <button 
-                  className="flex-1 flex items-center justify-center gap-2 bg-[var(--danger-bg,rgba(248,113,113,0.1))] text-danger hover:bg-danger hover:text-white text-sm font-bold py-2.5 px-4 rounded-[var(--radius-md)] transition-colors" 
+                  className="flex-1 flex items-center justify-center gap-2 bg-danger-bg text-danger hover:bg-danger hover:text-white text-sm font-bold py-2.5 px-4 rounded-[var(--radius-md)] transition-colors" 
                   onClick={() => { onSuspend(lib.id); onClose(); }}
                 >
                   <ShieldAlert size={16} /> {lib.status === 'Active' ? 'Suspend' : 'Reactivate'}

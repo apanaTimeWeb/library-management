@@ -8,7 +8,7 @@ interface Props {
 
 const COLOR_DOT_CLS: Record<string, string> = {
   success: 'bg-success shadow-[0_0_8px_var(--success)]',
-  info:    'bg-info,#3B82F6 shadow-[0_0_8px_var(--info,#3B82F6)]',
+  info:    'bg-info shadow-[0_0_8px_var(--info,#3B82F6)]',
   warning: 'bg-warning shadow-[0_0_8px_var(--warning)]',
   danger:  'bg-danger shadow-[0_0_8px_var(--danger)]',
 };
@@ -33,3 +33,4 @@ export function SuperadminSystemHealthGatewaysCard({ gateways }: Props) {
     </div>
   );
 }
+

@@ -26,7 +26,7 @@ export class SuperadminErrorBoundary extends React.Component<
   render() {
     if (this.state.hasError) {
       return (
-        <div className="min-h-screen flex flex-col items-center justify-center p-6 bg-bg-page text-text-primary">
+        <div className="min-h-screen flex flex-col items-center justify-center p-6 bg-page text-text-primary">
           <div className="flex justify-center mb-4">
             <AlertCircle size={64} className="text-danger" />
           </div>

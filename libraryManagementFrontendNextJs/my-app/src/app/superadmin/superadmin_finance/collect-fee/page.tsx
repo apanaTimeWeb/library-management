@@ -66,7 +66,7 @@ function buildWhatsAppReceipt(params: {
     ...(txnId ? [r('Txn ID  :', txnId)] : []),
     '',
     ...(remark ? [`Note    : ${remark}`, ''] : []),
-    c('✅ Payment Received & Confirmed'),
+    c('Payment Received & Confirmed'),
     c('Thank You! Keep Studying 😊'),
     line,
     c('Smart Library 360'),
@@ -202,7 +202,7 @@ export default function CollectFee() {
                   </div>
                   <div className="fin-receipt-paid-badge">
                     <CheckCircle size={16} className="fin-receipt-accent-icon" />
-                    <span className="fin-receipt-paid-text">✅ Payment Received</span>
+                    <span className="fin-receipt-paid-text">Payment Received</span>
                   </div>
                   <p className="fin-receipt-footer-quote">&quot;Knowledge is the best investment.&quot;</p>
                   <p className="fin-receipt-footer-thanks">Thank you! Keep studying 😊</p>
@@ -223,7 +223,7 @@ export default function CollectFee() {
                   <Printer size={15} /> Print Receipt (Thermal 80mm)
                 </button>
                 <button className="fin-receipt-btn-download" onClick={() => setReceiptData(null)} style={{ width: '100%', marginTop: 0 }}>
-                  ✅ Done
+                  Done
                 </button>
                 <div className="fin-receipt-modal-info">
                   {[
@@ -326,7 +326,7 @@ export default function CollectFee() {
                     onChange={e => { setCouponCode(e.target.value); setCouponStatus('idle'); setCouponDiscount(0); }} />
                   <button className="fin-badge fin-badge--neutral cursor-pointer" onClick={handleApplyCoupon}>Apply</button>
                 </div>
-                {couponStatus === 'valid'   && <p className="fin-input-hint fin-text-success">✅ {formatCurrency(couponDiscount)} discount applied</p>}
+                {couponStatus === 'valid'   && <p className="fin-input-hint fin-text-success">{formatCurrency(couponDiscount)} discount applied</p>}
                 {couponStatus === 'invalid' && <p className="fin-input-hint fin-text-danger">❌ Invalid/expired code</p>}
               </div>
               <div>
@@ -413,3 +413,4 @@ export default function CollectFee() {
     </>
   );
 }
+

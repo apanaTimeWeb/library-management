@@ -1,7 +1,7 @@
 'use client';
 import { useState } from 'react';
 import Link from 'next/link';
-import { ChevronRight, CheckCircle, X, RefreshCw } from 'lucide-react';
+import { ChevronRight, CheckCircle, X, RefreshCw, LogOut } from 'lucide-react';
 
 interface ScanResult {
   name: string; initials: string; smartId: string;
@@ -105,7 +105,9 @@ export default function QrScannerPage() {
                 </div>
               ) : scanState === 'detected' ? (
                 <div className="eng-qr-success-anim">
-                  <div className="eng-qr-detected-icon">✅</div>
+                  <div className="eng-qr-detected-icon">
+                    <CheckCircle size={48} className="text-success" />
+                  </div>
                   <p className="eng-qr-success-msg">QR Code Detected!</p>
                 </div>
               ) : (
@@ -161,10 +163,10 @@ export default function QrScannerPage() {
             </div>
             <div className="eng-result-actions">
               <button onClick={() => markAttendance('IN')} className="eng-btn eng-btn--success">
-                ✅ Mark IN
+                <CheckCircle size={16} /> Mark IN
               </button>
               <button onClick={() => markAttendance('OUT')} className="eng-btn eng-btn--danger">
-                🔚 Mark OUT
+                <LogOut size={16} /> Mark OUT
               </button>
             </div>
           </div>
@@ -203,9 +205,9 @@ export default function QrScannerPage() {
               </div>
               <div className="eng-manual-actions">
                 <button onClick={() => handleManual('IN')} disabled={!manualId.trim()}
-                  className="eng-btn eng-btn--success">✅ Mark IN</button>
+                  className="eng-btn eng-btn--success"><CheckCircle size={14} /> Mark IN</button>
                 <button onClick={() => handleManual('OUT')} disabled={!manualId.trim()}
-                  className="eng-btn eng-btn--danger">🔚 Mark OUT</button>
+                  className="eng-btn eng-btn--danger"><LogOut size={14} /> Mark OUT</button>
                 <button onClick={() => setShowManual(false)} className="eng-btn eng-btn--ghost">Cancel</button>
               </div>
             </div>

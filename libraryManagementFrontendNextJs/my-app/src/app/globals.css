@@ -75,6 +75,7 @@ body {
   --color-info-bg: var(--info-bg);
   --color-purple: var(--purple);
   --color-purple-bg: var(--purple-bg);
+  --color-primary-subtle: var(--primary-subtle);
 }
 
 .glass-panel {

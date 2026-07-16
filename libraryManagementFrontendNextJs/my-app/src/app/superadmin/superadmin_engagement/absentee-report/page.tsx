@@ -4,7 +4,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { AgGridReact } from 'ag-grid-react';
 import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community';
-import { ChevronRight, Send, Mail, Phone } from 'lucide-react';
+import { ChevronRight, Send, Mail, Phone, CheckCircle } from 'lucide-react';
 import { superadmin_gridTheme } from '@/app/superadmin/superadmin_shared_components/superadmin_gridTheme';
 
 ModuleRegistry.registerModules([AllCommunityModule]);
@@ -45,14 +45,14 @@ export default function AbsenteeReportPage() {
 
   const notify = (id: string) => {
     setRows(p => p.map(( r ) => r.id === id ? { ...r, notified: true } : r));
-    showToast('✅ Alert sent to parent successfully');
+    showToast('Alert sent to parent successfully');
   };
 
   const notifyAll = () => {
     const targets = filtered.filter(r => !r.notified);
     if (!targets.length) return showToast('All parents already notified', 'info');
     setRows(p => p.map(( r ) => filtered.find(f=>f.id===r.id) ? { ...r, notified:true } : r));
-    showToast(`✅ Bulk alerts sent to ${targets.length} parents`);
+    showToast(`Bulk alerts sent to ${targets.length} parents`);
   };
 
   const badgeClass = (d: number) => d >= 7 ? 'eng-badge--danger' : 'eng-badge--warning';
@@ -107,7 +107,7 @@ export default function AbsenteeReportPage() {
       cellRenderer: (params: ICellRendererParams) => (
         <div className="eng-row-actions h-full flex items-center">
           {params.data.notified ? (
-            <span className="eng-badge eng-badge--success">✅ Notified</span>
+            <span className="eng-badge eng-badge--success"><CheckCircle size={12} /> Notified</span>
           ) : (
             <button onClick={() => notify(params.data.id)} className="eng-btn eng-btn--ghost eng-btn--sm hover:bg-mgr-primary hover:text-white transition-colors duration-200">
               <Send size={12} className="mr-1"/> Alert

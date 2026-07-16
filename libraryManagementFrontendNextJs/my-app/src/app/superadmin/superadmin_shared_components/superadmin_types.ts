@@ -79,3 +79,12 @@ export interface SuperadminSupportTicketRecord {
   assignedTo: string;
   createdAt: string;
 }
+
+export interface ApiResponse<T> {
+  success: boolean;
+  message: string;
+  data: T | null;
+  meta?: any;
+  error?: string;
+  statusCode?: number;
+}

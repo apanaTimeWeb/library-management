@@ -83,7 +83,7 @@ export function SuperadminDailySettlementGrid({ entries, onSettle }: Props) {
       headerName: 'Status', 
       width: 120,
       cellRenderer: (p: ICellRendererParams<SuperadminDailySettlementEntry>) => (
-        <span className={`inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider mt-2 ${p.data?.status === 'settled' ? 'bg-[var(--success-bg,rgba(52,211,153,0.1))] text-success' : 'bg-[var(--warning-bg,rgba(251,191,36,0.1))] text-warning'}`}>
+        <span className={`inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider mt-2 ${p.data?.status === 'settled' ? 'bg-success-bg text-success' : 'bg-warning-bg text-warning'}`}>
           {p.data?.status}
         </span>
       )
@@ -99,7 +99,7 @@ export function SuperadminDailySettlementGrid({ entries, onSettle }: Props) {
           return (
             <div className="h-full flex justify-end items-center pr-2">
               <button 
-                className="flex items-center gap-1.5 px-3 py-1 bg-[var(--success-bg,rgba(52,211,153,0.1))] text-success hover:bg-success hover:text-white text-xs font-bold rounded-[var(--radius-sm)] transition-colors duration-200" 
+                className="flex items-center gap-1.5 px-3 py-1 bg-success-bg text-success hover:bg-success hover:text-white text-xs font-bold rounded-[var(--radius-sm)] transition-colors duration-200" 
                 onClick={() => onSettle(p.data!.id)}
               >
                 <CheckCircle size={14} /> Settle
@@ -140,3 +140,4 @@ export function SuperadminDailySettlementGrid({ entries, onSettle }: Props) {
     </div>
   );
 }
+

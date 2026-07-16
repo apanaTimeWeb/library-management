@@ -2,18 +2,20 @@
 import { useState, useRef } from 'react';
 import { ChevronRight, X, Send, Save } from 'lucide-react';
 
-interface Template { id: string; label: string; icon: string; body: string; }
+import { Hand, DollarSign, Repeat, Receipt, Bell, CalendarClock, Handshake, Smartphone, CheckCircle } from 'lucide-react';
+
+interface Template { id: string; label: string; icon: React.ReactNode; body: string; }
 
 const VARS = ['{name}', '{amount}', '{duedate}', '{planname}', '{libraryname}', '{phone}', '{seat}'];
 
 const INIT: Template[] = [
-  { id: 'welcome',      label: 'Welcome Message',      icon: '👋', body: 'Welcome to {libraryname}, {name}! Your seat {seat} is confirmed. We wish you a productive study journey. — Smart Library Team' },
-  { id: 'fee_reminder', label: 'Fee Reminder',          icon: '💰', body: 'Hi {name}, your fee of ₹{amount} is due on {duedate}. Please pay on time to avoid late charges. — {libraryname}' },
-  { id: 'renewal',      label: 'Renewal Alert',         icon: '🔁', body: 'Hi {name}, your {planname} subscription expires in 3 days. Renew now to continue uninterrupted access. — {libraryname}' },
-  { id: 'receipt',      label: 'Payment Receipt',       icon: '🧾', body: 'Dear {name}, your payment of ₹{amount} has been received. Thank you! Contact us at {phone} for queries. — {libraryname}' },
-  { id: 'notice',       label: 'Notice Broadcast',      icon: '📢', body: 'Important Notice from {libraryname}: Dear {name}, please note the following update from the library management.' },
-  { id: 'absentee',     label: 'Absentee Parent Alert', icon: '📅', body: 'Dear Parent, your ward {name} (Seat: {seat}) has been absent for multiple consecutive days. Please contact {libraryname} at {phone}.' },
-  { id: 'ptp',          label: 'PTP Payment Reminder',  icon: '🤝', body: 'Hi {name}, this is a reminder that you had committed to pay ₹{amount} by {duedate}. Please complete your payment. — {libraryname}' },
+  { id: 'welcome',      label: 'Welcome Message',      icon: <Hand size={16}/>, body: 'Welcome to {libraryname}, {name}! Your seat {seat} is confirmed. We wish you a productive study journey. — Smart Library Team' },
+  { id: 'fee_reminder', label: 'Fee Reminder',         icon: <DollarSign size={16}/>, body: 'Hi {name}, your fee of ₹{amount} is due on {duedate}. Please pay on time to avoid late charges. — {libraryname}' },
+  { id: 'renewal',      label: 'Renewal Alert',        icon: <Repeat size={16}/>, body: 'Hi {name}, your {planname} subscription expires in 3 days. Renew now to continue uninterrupted access. — {libraryname}' },
+  { id: 'receipt',      label: 'Payment Receipt',      icon: <Receipt size={16}/>, body: 'Dear {name}, your payment of ₹{amount} has been received. Thank you! Contact us at {phone} for queries. — {libraryname}' },
+  { id: 'notice',       label: 'Notice Broadcast',     icon: <Bell size={16}/>, body: 'Important Notice from {libraryname}: Dear {name}, please note the following update from the library management.' },
+  { id: 'absentee',     label: 'Absentee Parent Alert', icon: <CalendarClock size={16}/>, body: 'Dear Parent, your ward {name} (Seat: {seat}) has been absent for multiple consecutive days. Please contact {libraryname} at {phone}.' },
+  { id: 'ptp',          label: 'PTP Payment Reminder', icon: <Handshake size={16}/>, body: 'Hi {name}, this is a reminder that you had committed to pay ₹{amount} by {duedate}. Please complete your payment. — {libraryname}' },
 ];
 
 const MAX_CHARS = 1024;
@@ -46,7 +48,7 @@ export default function WhatsappTemplatesPage() {
 
   const handleSave = () => {
     setSaved(true);
-    showToast('💾 Template saved');
+    showToast('Template saved');
     setTimeout(() => setSaved(false), 2000);
   };
 
@@ -54,7 +56,7 @@ export default function WhatsappTemplatesPage() {
     if (!testPhone) return;
     setShowTest(false);
     setTestPhone('');
-    showToast(`📱 Test message sent to ${testPhone}`);
+    showToast(`Test message sent to ${testPhone}`);
   };
 
   const preview = active.body
@@ -75,7 +77,7 @@ export default function WhatsappTemplatesPage() {
         <div className="eng-overlay">
           <div className="eng-modal eng-modal--sm">
             <button onClick={() => setShowTest(false)} className="eng-modal-close"><X size={16} /></button>
-            <p className="eng-modal-title">📱 Send Test Message</p>
+            <p className="eng-modal-title flex items-center gap-2"><Smartphone size={16} /> Send Test Message</p>
             <p className="eng-modal-desc">Enter a phone number to send a test version of this template.</p>
             <div>
               <label className="eng-label">Phone Number</label>
@@ -96,7 +98,7 @@ export default function WhatsappTemplatesPage() {
         <div className="eng-breadcrumb">
           <span>Communication</span><ChevronRight size={12} /><span>WhatsApp Templates</span>
         </div>
-        <h1 className="eng-page-title">📱 WhatsApp Templates</h1>
+        <h1 className="eng-page-title flex items-center gap-2"><Smartphone size={24} /> WhatsApp Templates</h1>
         <p className="eng-page-subtitle">Customize automated message templates sent to students.</p>
       </div>
 
@@ -107,7 +109,7 @@ export default function WhatsappTemplatesPage() {
             <div key={t.id} onClick={() => setActiveId(t.id)}
               className={`eng-tpl-item${activeId === t.id ? ' eng-tpl-item--active' : ''}`}
               style={{ width: 'auto', padding: '8px 16px', borderRadius: '30px' }}>
-              {t.icon} {t.label}
+              <span className="flex items-center gap-2">{t.icon} {t.label}</span>
             </div>
           ))}
         </div>
@@ -115,7 +117,7 @@ export default function WhatsappTemplatesPage() {
         {/* Right Editor */}
         <div className="eng-card eng-flex-1">
           <div className="eng-card-header">
-            <h2 className="eng-card-title">{active.icon} {active.label}</h2>
+            <h2 className="eng-card-title flex items-center gap-2">{active.icon} {active.label}</h2>
             <p className="eng-card-desc">Edit the message body. Use variable chips to personalize.</p>
           </div>
 
@@ -157,7 +159,7 @@ export default function WhatsappTemplatesPage() {
               <Send size={14} /> Send Test Message
             </button>
             <button onClick={handleSave} className="eng-btn-primary">
-              {saved ? '✅ Saved!' : <><Save size={14} /> Save Template</>}
+              {saved ? <span className="flex items-center gap-2"><CheckCircle size={14} /> Saved!</span> : <><Save size={14} /> Save Template</>}
             </button>
           </div>
         </div>

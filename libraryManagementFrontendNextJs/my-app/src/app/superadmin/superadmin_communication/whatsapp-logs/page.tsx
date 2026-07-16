@@ -1,7 +1,7 @@
 'use client';
 import type { ICellRendererParams } from 'ag-grid-community';
 import { useState } from 'react';
-import { ChevronRight, Eye, X } from 'lucide-react';
+import { ChevronRight, Eye, X, MessageCircle, AlertTriangle } from 'lucide-react';
 import { AgGridReact } from 'ag-grid-react';
 import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community';
 import { superadmin_gridTheme } from '@/app/superadmin/superadmin_shared_components/superadmin_gridTheme';
@@ -75,19 +75,7 @@ export default function WhatsappLogsPage() {
         </span>
       )
     },
-    { field: 'error', headerName: 'Error', width: 180, cellRenderer: (p: ICellRendererParams) => <span className="eng-td-danger text-xs truncate max-w-[160px] inline-block" title={p.value}>{p.value || '—'}</span> },
-    {
-      headerName: 'Actions',
-      width: 100,
-      sortable: false,
-      cellRenderer: (params: ICellRendererParams) => (
-        <div className="h-full flex items-center">
-          <button onClick={() => setViewLog(params.data)} className="eng-btn-icon hover:bg-mgr-primary hover:text-white transition-colors duration-200" title="View Message">
-            <Eye size={16} />
-          </button>
-        </div>
-      )
-    }
+    { field: 'error', headerName: 'Error', width: 180, cellRenderer: (p: ICellRendererParams) => <span className="eng-td-danger text-xs truncate max-w-[160px] inline-block" title={p.value}>{p.value || '—'}</span> }
   ];
 
   return (
@@ -95,30 +83,30 @@ export default function WhatsappLogsPage() {
       {/* View Message Modal */}
       {viewLog && (
         <div className="eng-overlay">
-          <div className="eng-modal eng-modal--lg bg-mgr-bg-card">
+          <div className="eng-modal eng-modal--lg bg-card">
             <button onClick={() => setViewLog(null)} className="eng-modal-close hover:text-red-500"><X size={16} /></button>
-            <p className="eng-modal-title mb-4 font-bold text-mgr-text-primary">📱 Message Details</p>
+            <p className="eng-modal-title mb-4 font-bold text-primary flex items-center gap-2"><MessageCircle size={16} /> Message Details</p>
             <div className="eng-modal-badge-row mb-6 flex gap-2">
               <span className={`eng-badge ${TYPE_BADGE[viewLog.type]}`}>{TYPE_LABEL[viewLog.type]}</span>
               <span className={`eng-badge ${STATUS_BADGE[viewLog.status]}`}>{viewLog.status}</span>
             </div>
-            <div className="eng-msg-detail-grid grid grid-cols-2 gap-4 mb-6 bg-mgr-bg p-4 rounded-lg">
+            <div className="eng-msg-detail-grid grid grid-cols-2 gap-4 mb-6 bg-input p-4 rounded-lg">
               {([['To', viewLog.phone], ['Student', viewLog.student], ['Sent At', viewLog.dateTime]] as [string, string][]).map(([k, v]) => (
                 <div key={k} className="eng-msg-detail-item">
-                  <p className="eng-msg-detail-key text-xs font-semibold text-mgr-text-secondary uppercase tracking-wider">{k}</p>
-                  <p className="eng-msg-detail-val text-mgr-text-primary font-medium mt-1">{v}</p>
+                  <p className="eng-msg-detail-key text-xs font-semibold text-secondary uppercase tracking-wider">{k}</p>
+                  <p className="eng-msg-detail-val text-primary font-medium mt-1">{v}</p>
                 </div>
               ))}
             </div>
             <div>
               <label className="eng-label text-sm font-semibold mb-2 block">Message Content</label>
-              <div className="eng-msg-body-box bg-mgr-bg p-4 rounded-lg border border-mgr-border text-sm leading-relaxed text-mgr-text-primary whitespace-pre-wrap">{viewLog.message}</div>
+              <div className="eng-msg-body-box bg-input p-4 rounded-lg border border-border text-sm leading-relaxed text-primary whitespace-pre-wrap">{viewLog.message}</div>
             </div>
             {viewLog.error && (
-              <div className="eng-warn-box mt-4 p-3 bg-red-50 text-red-600 rounded-lg border border-red-200 text-sm font-medium">⚠️ Error: {viewLog.error}</div>
+              <div className="eng-warn-box mt-4 p-3 bg-red-50 text-red-600 rounded-lg border border-red-200 text-sm font-medium flex items-center gap-2"><AlertTriangle size={14} /> Error: {viewLog.error}</div>
             )}
             <div className="eng-modal-footer mt-6 flex justify-end">
-              <button onClick={() => setViewLog(null)} className="px-4 py-2 bg-mgr-bg border border-mgr-border text-mgr-text-primary rounded hover:bg-mgr-border transition-colors">Close</button>
+              <button onClick={() => setViewLog(null)} className="px-4 py-2 bg-input border border-border text-primary rounded hover:bg-border transition-colors">Close</button>
             </div>
           </div>
         </div>
@@ -128,7 +116,7 @@ export default function WhatsappLogsPage() {
         <div className="eng-breadcrumb">
           <span>Communication</span><ChevronRight size={12} /><span>WhatsApp Logs</span>
         </div>
-        <h1 className="eng-page-title">📱 WhatsApp Logs</h1>
+        <h1 className="eng-page-title flex items-center gap-2"><MessageCircle size={24} /> WhatsApp Logs</h1>
         <p className="eng-page-subtitle">All outbound WhatsApp messages sent from the system.</p>
       </div>
 
@@ -173,8 +161,8 @@ export default function WhatsappLogsPage() {
       <div className="eng-card eng-card--flush p-4">
         {filtered.length === 0 ? (
           <div className="eng-empty py-12 flex flex-col items-center justify-center text-center">
-            <div className="eng-empty__icon text-4xl mb-4">📱</div>
-            <p className="eng-empty__title text-lg font-semibold text-mgr-text-primary">No WhatsApp messages found.</p>
+            <div className="eng-empty__icon mb-4"><MessageCircle size={48} className="text-secondary" /></div>
+            <p className="eng-empty__title text-lg font-semibold text-primary">No WhatsApp messages found.</p>
           </div>
         ) : (
           <div className="mgr-table-wrapper h-[450px]">
@@ -186,6 +174,7 @@ export default function WhatsappLogsPage() {
               headerHeight={48}
               pagination={true}
               paginationPageSize={10}
+              onRowClicked={p => setViewLog(p.data)}
               defaultColDef={{
                 sortable: true,
                 filter: true,

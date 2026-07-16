@@ -19,7 +19,7 @@ export function SuperadminExpenseCategoriesCard({ category, onDelete }: Props) {
           <span className="text-base font-extrabold text-text-primary tracking-tight">{category.name}</span>
         </div>
         <button 
-          className="w-7 h-7 flex items-center justify-center rounded-[var(--radius-md)] bg-[var(--danger-bg,rgba(248,113,113,0.1))] text-danger hover:bg-danger hover:text-white transition-colors duration-200" 
+          className="w-7 h-7 flex items-center justify-center rounded-[var(--radius-md)] bg-danger-bg text-danger hover:bg-danger hover:text-white transition-colors duration-200" 
           onClick={() => onDelete(category.id)}
           title="Delete Category"
         >
@@ -40,11 +40,11 @@ export function SuperadminExpenseCategoriesCard({ category, onDelete }: Props) {
       </div>
 
       <div className="flex items-center justify-between">
-        <span className={`inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider ${over ? 'bg-[var(--danger-bg,rgba(248,113,113,0.1))] text-danger' : pct > 80 ? 'bg-[var(--warning-bg,rgba(251,191,36,0.1))] text-warning' : 'bg-[var(--success-bg,rgba(52,211,153,0.1))] text-success'}`}>
+        <span className={`inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider ${over ? 'bg-danger-bg text-danger' : pct > 80 ? 'bg-warning-bg text-warning' : 'bg-success-bg text-success'}`}>
           {pct}% used
         </span>
         {over && (
-          <span className="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-[var(--danger-bg,rgba(248,113,113,0.1))] text-danger">
+          <span className="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-danger-bg text-danger">
             Over budget by ₹{(category.spent - category.budget).toLocaleString()}
           </span>
         )}
@@ -52,3 +52,4 @@ export function SuperadminExpenseCategoriesCard({ category, onDelete }: Props) {
     </div>
   );
 }
+

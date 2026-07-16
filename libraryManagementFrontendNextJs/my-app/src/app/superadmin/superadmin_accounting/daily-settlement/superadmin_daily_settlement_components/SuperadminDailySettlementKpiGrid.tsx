@@ -19,7 +19,7 @@ export function SuperadminDailySettlementKpiGrid({ totalCash, totalUpi, totalExp
         <p className="text-[11px] font-bold text-info,#3B82F6 uppercase tracking-wider mb-1">UPI Collected</p>
         <p className="text-xl font-extrabold text-info,#3B82F6">₹{totalUpi.toLocaleString()}</p>
       </div>
-      <div className="bg-[var(--danger-bg,rgba(248,113,113,0.1))] border border-danger/20 rounded-[var(--radius-lg)] p-4 shadow-sm flex flex-col justify-center">
+      <div className="bg-danger-bg border border-danger/20 rounded-[var(--radius-lg)] p-4 shadow-sm flex flex-col justify-center">
         <p className="text-[11px] font-bold text-danger uppercase tracking-wider mb-1">Expenses</p>
         <p className="text-xl font-extrabold text-danger">₹{totalExp.toLocaleString()}</p>
       </div>
@@ -30,3 +30,4 @@ export function SuperadminDailySettlementKpiGrid({ totalCash, totalUpi, totalExp
     </div>
   );
 }
+

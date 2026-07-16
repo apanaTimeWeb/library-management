@@ -13,10 +13,10 @@ const ICON_MAP: Record<string, React.ElementType> = {
 };
 
 const STYLE_MAP = {
-  primary: { bg: 'bg-[var(--primary-subtle,rgba(99,102,241,0.1))]', text: 'text-primary' },
-  success: { bg: 'bg-[var(--success-bg,rgba(52,211,153,0.1))]', text: 'text-success' },
-  warning: { bg: 'bg-[var(--warning-bg,rgba(251,191,36,0.1))]', text: 'text-warning' },
-  danger:  { bg: 'bg-[var(--danger-bg,rgba(248,113,113,0.1))]', text: 'text-danger' },
+  primary: { bg: 'bg-primary-subtle', text: 'text-primary' },
+  success: { bg: 'bg-success-bg', text: 'text-success' },
+  warning: { bg: 'bg-warning-bg', text: 'text-warning' },
+  danger:  { bg: 'bg-danger-bg', text: 'text-danger' },
 };
 
 export function SuperadminSubscriptionsKpiGrid({ kpis }: Props) {

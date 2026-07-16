@@ -69,7 +69,7 @@ export default function LateFees() {
       `👤 *Name:* ${s.studentName}`,
       `🆔 *Smart ID:* ${s.smartId}`,
       ``,
-      `⚠️ *Your fee is overdue by ${s.daysOverdue} days.*`,
+      ` *Your fee is overdue by ${s.daysOverdue} days.*`,
       `📅 *Due Date:* ${s.dueDate}`,
       ``,
       `💰 *Late Fee Accrued:* ${formatCurrency(s.accruedFee)}`,
@@ -174,7 +174,7 @@ export default function LateFees() {
               <tr>
                 <td colSpan={6}>
                   <div className="fin-empty-state">
-                    <div className="fin-empty-state__icon">✅</div>
+                    <div className="fin-empty-state__icon"></div>
                     <p className="fin-empty-state__title">No active late fee charges.</p>
                   </div>
                 </td>
@@ -218,3 +218,4 @@ export default function LateFees() {
     </div>
   );
 }
+

@@ -6,7 +6,7 @@ import { SuperadminInput } from '@/app/superadmin/superadmin_system/superadmin_s
 import { SuperadminLabel } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminLabel';
 import { SuperadminBadge } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminBadge';
 import { SuperadminSelect, SuperadminSelectTrigger, SuperadminSelectValue, SuperadminSelectContent, SuperadminSelectItem } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminSelect';
-import { GitBranch, ChevronRight, Zap } from 'lucide-react';
+import { GitBranch, ChevronRight, Zap, CheckCircle } from 'lucide-react';
 
 interface GapInterval { start: number; end: number; }
 interface GapDetail extends GapInterval { label: string; hours: number; }
@@ -109,7 +109,7 @@ export default function GapFillingPage() {
                       <p className="text-xs text-on-surface-variant">💡 {seat.gap.hours}hrs available</p>
                     </div>
                     {assigned.includes(seat.seat) ? (
-                      <SuperadminBadge variant="success">✅ Assigned</SuperadminBadge>
+                      <SuperadminBadge variant="success"><CheckCircle size={14} className="inline mr-1" /> Assigned</SuperadminBadge>
                     ) : (
                       <SuperadminButton id={`quick-assign-${seat.seat}`} variant="secondary" size="sm"
                         onClick={() => setAssigned(p => [...p, seat.seat])}>

@@ -7,7 +7,7 @@ import { SuperadminLabel } from '@/app/superadmin/superadmin_system/superadmin_s
 import { SuperadminSwitch } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminSwitch';
 import { SuperadminBadge } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminBadge';
 import { SuperadminProgress } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminProgress';
-import { Zap, ChevronRight } from 'lucide-react';
+import { Zap, ChevronRight, ZapOff, CheckCircle } from 'lucide-react';
 
 const ZONES = [
   { name: 'Zone A (Ground Floor)', occupancy: 78, capacity: 40, current: 31 },
@@ -27,8 +27,8 @@ export default function PowerSavingPage() {
   const [alertsEnabled, setAlertsEnabled] = useState(true);
 
   const getZoneStatus = (occ: number) => {
-    if (occ < threshold) return { label: '⚡ Low — Consolidation Suggested', variant: 'warning' as const };
-    return { label: '✅ Normal', variant: 'success' as const };
+    if (occ < threshold) return { label: <><ZapOff size={14} className="inline mr-1" /> Low — Consolidation Suggested</>, variant: 'warning' as const };
+    return { label: <><CheckCircle size={14} className="inline mr-1" /> Normal</>, variant: 'success' as const };
   };
 
   return (

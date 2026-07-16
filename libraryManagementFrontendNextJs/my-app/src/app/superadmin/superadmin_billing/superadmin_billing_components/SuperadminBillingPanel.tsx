@@ -78,8 +78,8 @@ export function SuperadminBillingPanel({ inv, onClose, onMarkPaid }: Props) {
             <p className="text-4xl font-extrabold text-primary tracking-tight mb-3">₹{inv.amount.toLocaleString()}</p>
             <div className="flex justify-center">
               {inv.status === 'Paid'
-                ? <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider bg-[var(--success-bg,rgba(52,211,153,0.1))] text-success"><CheckCircle size={14} /> Paid</span>
-                : <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider bg-[var(--danger-bg,rgba(248,113,113,0.1))] text-danger"><AlertCircle size={14} /> Overdue</span>}
+                ? <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider bg-success-bg text-success"><CheckCircle size={14} /> Paid</span>
+                : <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider bg-danger-bg text-danger"><AlertCircle size={14} /> Overdue</span>}
             </div>
           </div>
 
@@ -105,7 +105,7 @@ export function SuperadminBillingPanel({ inv, onClose, onMarkPaid }: Props) {
             
             {inv.status === 'Overdue' && (
               <button 
-                className="flex-1 flex items-center justify-center gap-2 bg-transparent border border-warning text-warning hover:bg-[var(--warning-bg,rgba(251,191,36,0.1))] text-sm font-bold py-2.5 px-4 rounded-[var(--radius-md)] transition-colors disabled:opacity-70" 
+                className="flex-1 flex items-center justify-center gap-2 bg-transparent border border-warning text-warning hover:bg-warning-bg text-sm font-bold py-2.5 px-4 rounded-[var(--radius-md)] transition-colors disabled:opacity-70" 
                 onClick={handleReminder}
                 disabled={reminding || reminded}
               >
@@ -118,7 +118,7 @@ export function SuperadminBillingPanel({ inv, onClose, onMarkPaid }: Props) {
 
           {inv.status === 'Overdue' && (
             <button 
-              className="w-full flex items-center justify-center gap-2 bg-transparent border border-success text-success hover:bg-[var(--success-bg,rgba(52,211,153,0.1))] text-sm font-bold py-2.5 px-4 rounded-[var(--radius-md)] transition-colors disabled:opacity-70 mt-2" 
+              className="w-full flex items-center justify-center gap-2 bg-transparent border border-success text-success hover:bg-success-bg text-sm font-bold py-2.5 px-4 rounded-[var(--radius-md)] transition-colors disabled:opacity-70 mt-2" 
               onClick={handleMarkPaid}
               disabled={markingPaid || markedPaid}
             >
@@ -132,3 +132,4 @@ export function SuperadminBillingPanel({ inv, onClose, onMarkPaid }: Props) {
     </div>
   );
 }
+

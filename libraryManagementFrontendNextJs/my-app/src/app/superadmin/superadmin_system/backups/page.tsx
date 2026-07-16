@@ -7,7 +7,7 @@ import { SuperadminKpiCard } from '@/app/superadmin/superadmin_system/superadmin
 import { SuperadminSwitch } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminSwitch';
 import {
   Database, ChevronRight, Download, RefreshCw, CheckCircle, Clock,
-  AlertTriangle, HardDrive, Shield, Cloud, Loader2
+  AlertTriangle, HardDrive, Shield, Cloud, Loader2, Archive, XCircle
 } from 'lucide-react';
 
 interface BackupRecord {
@@ -123,10 +123,10 @@ export default function BackupsPage() {
 
       {/* KPI Cards */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-5 mb-8">
-        <SuperadminKpiCard title="Total Backups" value={backups.length}       icon="🗄️"  subtitle="All time"              />
-        <SuperadminKpiCard title="Successful"    value={successCount}         icon="✅"   trend="up" trendLabel="Reliable" />
-        <SuperadminKpiCard title="Failed"        value={failedCount}          icon="❌"   trend={failedCount > 0 ? 'down' : 'neutral'} trendLabel={failedCount > 0 ? 'Needs attention' : 'All good'} />
-        <SuperadminKpiCard title="Last Backup"   value={lastSuccess ? 'Today' : 'Never'} icon="🕐" subtitle={lastSuccess?.createdAt ?? '—'} />
+        <SuperadminKpiCard title="Total Backups" value={backups.length}       icon={<Archive size={20} />}  subtitle="All time"              />
+        <SuperadminKpiCard title="Successful"    value={successCount}         icon={<CheckCircle size={20} />}   trend="up" trendLabel="Reliable" />
+        <SuperadminKpiCard title="Failed"        value={failedCount}          icon={<XCircle size={20} />}   trend={failedCount > 0 ? 'down' : 'neutral'} trendLabel={failedCount > 0 ? 'Needs attention' : 'All good'} />
+        <SuperadminKpiCard title="Last Backup"   value={lastSuccess ? 'Today' : 'Never'} icon={<Clock size={20} />} subtitle={lastSuccess?.createdAt ?? '—'} />
       </div>
 
       {/* Backup Configuration */}

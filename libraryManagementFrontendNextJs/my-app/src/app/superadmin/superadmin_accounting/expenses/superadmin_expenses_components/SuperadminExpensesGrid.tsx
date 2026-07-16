@@ -15,9 +15,9 @@ interface Props {
 }
 
 const MODE_BADGE: Record<string, string> = {
-  cash: 'bg-[var(--success-bg,rgba(52,211,153,0.1))] text-success',
-  upi:  'bg-[var(--info-bg,rgba(59,130,246,0.1))] text-info,#3B82F6',
-  card: 'bg-[var(--warning-bg,rgba(251,191,36,0.1))] text-warning',
+  cash: 'bg-success-bg text-success',
+  upi:  'bg-info-bg text-info,#3B82F6',
+  card: 'bg-warning-bg text-warning',
   bank: 'bg-primary text-white',
 };
 
@@ -88,7 +88,7 @@ export function SuperadminExpensesGrid({ expenses, onDelete }: Props) {
       cellRenderer: (p: ICellRendererParams<SuperadminExpense>) => (
         <div className="h-full flex justify-end items-center pr-2">
           <button 
-            className="w-8 h-8 flex items-center justify-center rounded-[var(--radius-md)] bg-[var(--danger-bg,rgba(248,113,113,0.1))] text-danger hover:bg-danger hover:text-white transition-colors duration-200" 
+            className="w-8 h-8 flex items-center justify-center rounded-[var(--radius-md)] bg-danger-bg text-danger hover:bg-danger hover:text-white transition-colors duration-200" 
             onClick={() => p.data && onDelete(p.data.id)}
             title="Delete Expense"
           >
@@ -129,3 +129,4 @@ export function SuperadminExpensesGrid({ expenses, onDelete }: Props) {
     </div>
   );
 }
+

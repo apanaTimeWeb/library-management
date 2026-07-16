@@ -50,7 +50,7 @@ export function SuperadminAssetMaintenanceTable({ logs, onComplete }: Props) {
               <td className="py-3.5 px-4 text-right">
                 {l.status !== 'completed' && (
                   <button 
-                    className="inline-flex items-center gap-1.5 px-3 py-1 bg-[var(--success-bg,rgba(52,211,153,0.1))] text-success hover:bg-success hover:text-white text-xs font-bold rounded-[var(--radius-sm)] transition-colors duration-200"
+                    className="inline-flex items-center gap-1.5 px-3 py-1 bg-success-bg text-success hover:bg-success hover:text-white text-xs font-bold rounded-[var(--radius-sm)] transition-colors duration-200"
                     onClick={() => onComplete(l.id)}
                   >
                     <CheckCircle size={14} /> Done
@@ -64,3 +64,4 @@ export function SuperadminAssetMaintenanceTable({ logs, onComplete }: Props) {
     </div>
   );
 }
+

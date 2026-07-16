@@ -98,7 +98,7 @@ export default function SupportTicketsPage() {
 
   const handleSave = (updated: Ticket) => {
     setTickets(t => t.map(( x ) => x.id === updated.id ? updated : x));
-    showToast(`✅ ${updated.id} updated to ${updated.status}`);
+    showToast(`${updated.id} updated to ${updated.status}`);
   };
 
   const filtered = filter === 'All' ? tickets : tickets.filter(t => t.status === filter);
@@ -144,15 +144,7 @@ export default function SupportTicketsPage() {
           </p>
         </div>
       ),
-    },
-    {
-      headerName: 'Actions', field: 'id', flex: 0.7, minWidth: 90, sortable: false, filter: false,
-      cellRenderer: (p: ICellRendererParams<Ticket>) => (
-        <button className="sa-btn-ghost sa-btn-ghost--sm" onClick={e => { e.stopPropagation(); setSelected(p.data!); }}>
-          <Eye size={13} /> View
-        </button>
-      ),
-    },
+    }
   ], []);
 
   const onGridReady = useCallback((e: GridReadyEvent) => { e.api.sizeColumnsToFit(); }, []);

@@ -74,7 +74,7 @@ export default function Renewals() {
   };
 
   const handleRemind = (name: string) => {
-    toast.success(`✅ Reminder sent to ${name}`);
+    toast.success(`Reminder sent to ${name}`);
   };
 
   const openRenew = (r: Renewal) => {
@@ -245,7 +245,7 @@ export default function Renewals() {
                 onClick={handleRenew}
                 disabled={isRenewing || !renewAmount}
               >
-                {isRenewing ? 'Renewing...' : '✅ Confirm Renewal'}
+                {isRenewing ? 'Renewing...' : 'Confirm Renewal'}
               </button>
             </div>
           </div>
@@ -254,3 +254,4 @@ export default function Renewals() {
     </div>
   );
 }
+

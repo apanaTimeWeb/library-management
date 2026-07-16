@@ -189,7 +189,7 @@ export default function AttendancePage() {
                         <Bell size={12} /> Alert Parents
                       </button>
                     ) : (
-                      <span className="eng-badge eng-badge--success">✅ Parents Alerted</span>
+                      <span className="eng-badge eng-badge--success"><CheckCircle size={12} /> Parents Alerted</span>
                     )}
                   </div>
                 )}

@@ -3,7 +3,7 @@
 // DATA FLOW: Props (sub, onUpdate, onRenew) -> SuperadminSubscriptionsPanel -> API callbacks
 
 import React, { useState } from 'react';
-import { X, Calendar, IndianRupee, CheckCircle, Edit2, Save, Loader } from 'lucide-react';
+import { X, Calendar, IndianRupee, CheckCircle, Edit2, Save, Loader, AlertCircle } from 'lucide-react';
 import type { SuperadminSubscription } from '@/app/superadmin/superadmin_subscriptions/superadmin_subscriptions_types/SuperadminSubscriptionsTypes';
 import { SUPERADMIN_SUBSCRIPTIONS_PLANS } from '@/app/superadmin/superadmin_subscriptions/superadmin_subscriptions_constants/SuperadminSubscriptionsConstants';
 import { logger } from '@/lib/logger';
@@ -114,9 +114,9 @@ export function SuperadminSubscriptionsPanel({ sub, onClose, onUpdate, onRenew }
             </div>
           ) : (
             <div className="flex items-center gap-2 pt-2">
-              {sub.status === 'Paid'     && <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider bg-[var(--success-bg,rgba(52,211,153,0.1))] text-success"><CheckCircle size={14} /> Paid</span>}
-              {sub.status === 'Due Soon' && <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider bg-[var(--info-bg,rgba(59,130,246,0.1))] text-info,#3B82F6"><Calendar size={14} /> Due Soon</span>}
-              {sub.status === 'Overdue'  && <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider bg-[var(--danger-bg,rgba(248,113,113,0.1))] text-danger"><CheckCircle size={14} /> Overdue</span>}
+              {sub.status === 'Paid'     && <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider bg-success-bg text-success"><CheckCircle size={14} /> Paid</span>}
+              {sub.status === 'Due Soon' && <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider bg-info-bg text-info"><Calendar size={14} /> Due Soon</span>}
+              {sub.status === 'Overdue'  && <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider bg-danger-bg text-danger"><AlertCircle size={14} /> Overdue</span>}
             </div>
           )}
 

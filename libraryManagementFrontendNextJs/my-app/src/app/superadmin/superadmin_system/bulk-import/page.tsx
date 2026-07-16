@@ -3,7 +3,7 @@ import { useState, useRef } from 'react';
 import { SuperadminCard, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminCard';
 import { SuperadminButton } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminButton';
 import { SuperadminBadge } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminBadge';
-import { Upload, FileSpreadsheet, ChevronRight, CheckCircle, XCircle, AlertTriangle, Download, RefreshCw } from 'lucide-react';
+import { Upload, FileSpreadsheet, ChevronRight, CheckCircle, XCircle, AlertTriangle, Download, RefreshCw, Users } from 'lucide-react';
 
 type RowStatus = 'ok' | 'error' | 'warning';
 
@@ -251,7 +251,7 @@ export default function BulkImportPage() {
             </div>
             <div className="p-4 rounded-2xl bg-green-500/10 border border-green-500/20 text-center">
               <p className="text-2xl font-bold text-green-400">{okCount}</p>
-              <p className="text-xs text-on-surface-variant mt-1">✅ Ready to Import</p>
+              <p className="text-xs text-on-surface-variant mt-1"><CheckCircle size={14} className="inline mr-1" /> Ready to Import</p>
             </div>
             <div className="p-4 rounded-2xl bg-tertiary/10 border border-tertiary/20 text-center">
               <p className="text-2xl font-bold text-tertiary">{warningCount}</p>
@@ -294,9 +294,9 @@ export default function BulkImportPage() {
                       }`}
                     >
                       {f === 'all' ? `All (${MOCK_PREVIEW.length})` :
-                       f === 'ok'  ? `✅ OK (${okCount})` :
-                       f === 'warning' ? `⚠️ Warn (${warningCount})` :
-                       `❌ Error (${errorCount})`}
+                       f === 'ok'  ? <><CheckCircle size={14} className="inline mr-1" /> OK ({okCount})</> :
+                       f === 'warning' ? <><AlertTriangle size={14} className="inline mr-1" /> Warn ({warningCount})</> :
+                       <><XCircle size={14} className="inline mr-1" /> Error ({errorCount})</>}
                     </button>
                   ))}
                 </div>
@@ -405,7 +405,7 @@ export default function BulkImportPage() {
             </div>
             <div className="flex gap-3">
               <SuperadminButton id="view-students-btn" variant="primary">
-                👥 View All Students
+                <Users size={16} /> View All Students
               </SuperadminButton>
               <SuperadminButton id="import-again-btn" variant="ghost" onClick={handleReset}>
                 <Upload size={16} /> Import Another File

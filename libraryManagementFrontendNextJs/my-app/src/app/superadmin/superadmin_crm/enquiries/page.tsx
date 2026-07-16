@@ -399,17 +399,7 @@ export default function EnquiriesPage() {
                       </td>
                       <td>
                         <div className="crm-row-actions">
-                          <button
-                            className="crm-btn-icon"
-                            title="View details"
-                            aria-label="View details"
-                            onClick={(e: React.MouseEvent) => {
-                              e.stopPropagation();
-                              router.push(`/superadmin/superadmin_crm/enquiries/${enq.id}`);
-                            }}
-                          >
-                            <Eye size={14} />
-                          </button>
+
                           <button
                             className="crm-btn-icon crm-btn-icon-success"
                             title="Convert to Admission"

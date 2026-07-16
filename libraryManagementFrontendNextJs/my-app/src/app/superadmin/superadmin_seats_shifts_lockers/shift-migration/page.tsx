@@ -56,7 +56,7 @@ export default function ShiftMigrationPage() {
 
   function handleConfirmMigration() {
     setShowConfirm(false);
-    toast.success(`✅ ${selectedStudent?.name} migrated to ${newShift} — Seat ${newSeat}`);
+    toast.success(`${selectedStudent?.name} migrated to ${newShift} — Seat ${newSeat}`);
     setStep(1); setSelectedStudent(null); setSearch('');
     setNewShift(''); setNewSeat(''); setTxnId(''); setRemark('');
     setShowCustomSlot(false); setCustomStart(''); setCustomEnd('');
@@ -258,7 +258,7 @@ export default function ShiftMigrationPage() {
                           ? '🔴 Student pays more — collect ₹' + adjustment + ' before confirming.'
                           : adjustment < 0
                             ? '🔵 Refund ₹' + Math.abs(adjustment) + ' to student.'
-                            : '✅ No fee adjustment needed.'}
+                            : 'No fee adjustment needed.'}
                       </p>
                     </div>
                   </div>
@@ -341,7 +341,7 @@ export default function ShiftMigrationPage() {
                 </button>
               ) : (
                 <button className="ss-btn-primary ss-footer-confirm" onClick={() => setShowConfirm(true)}>
-                  ✅ Confirm Migration
+                  <CheckCircle size={16} className="inline mr-2" /> Confirm Migration
                 </button>
               )}
             </div>
@@ -354,7 +354,7 @@ export default function ShiftMigrationPage() {
       {showConfirm && selectedStudent && (
         <div className="ss-modal-overlay" onClick={() => setShowConfirm(false)}>
           <div className="ss-modal" onClick={e => e.stopPropagation()}>
-            <h2 className="ss-modal-title">✅ Confirm Migration</h2>
+            <h2 className="ss-modal-title"><CheckCircle size={20} className="inline mr-2" /> Confirm Migration</h2>
             <p className="ss-modal-desc">
               Old Seat <strong>{selectedStudent.currentSeat}</strong> ({selectedStudent.currentShift}) will be freed.
               New Seat <strong>{newSeat}</strong> ({newShift}) assigned.

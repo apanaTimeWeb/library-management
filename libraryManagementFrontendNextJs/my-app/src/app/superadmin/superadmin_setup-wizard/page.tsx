@@ -4,7 +4,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useState } from 'react';
 import {
   BookOpen, Check, Plus, Trash2, ChevronRight, ChevronLeft,
-  Rocket, SkipForward, LayoutDashboard, X, AlertTriangle,
+  Rocket, SkipForward, LayoutDashboard, X, AlertTriangle, CheckCircle
 } from 'lucide-react';
 import {
   branchDetailsSchema, type BranchDetailsData,
@@ -301,9 +301,9 @@ export default function SetupWizardPage() {
 
             <div className="sa-wizard-modal-consequences">
               {[
-                { icon: '⚠️', text: 'Students cannot be admitted without seats & shifts' },
-                { icon: '⚠️', text: 'Fee collection requires at least one active plan' },
-                { icon: '✅', text: 'You can still explore the dashboard and admin panel' },
+                { icon: <AlertTriangle size={16} className="text-warning-base" />, text: 'Students cannot be admitted without seats & shifts' },
+                { icon: <AlertTriangle size={16} className="text-warning-base" />, text: 'Fee collection requires at least one active plan' },
+                { icon: <CheckCircle size={16} className="text-success-base" />, text: 'You can still explore the dashboard and admin panel' },
               ].map(({ icon, text }) => (
                 <div key={text} className="sa-wizard-consequence-chip">
                   <span className="sa-wizard-consequence-icon">{icon}</span>

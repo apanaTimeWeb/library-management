@@ -37,7 +37,7 @@ export default function InvoicesPage() {
     const line = '─'.repeat(W);
     const c = (t: string) => ' '.repeat(Math.max(0, Math.floor((W - t.length) / 2))) + t;
     const row = (l: string, v: string) => l + ' '.repeat(Math.max(1, W - l.length - v.length)) + v;
-    const statusEmoji = inv.paymentStatus === 'paid' ? '✅' : inv.paymentStatus === 'pending' ? '⏳' : '⚠️';
+    const statusEmoji = inv.paymentStatus === 'paid' ? '' : inv.paymentStatus === 'pending' ? '' : '';
     const msg = [
       c('★ SMART LIBRARY 360 ★'),
       c('Main Branch'),
@@ -126,7 +126,7 @@ export default function InvoicesPage() {
             {filtered.length === 0 ? (
               <tr><td colSpan={7}><div className="fin-empty-state"><div className="fin-empty-state__icon">🧾</div><p className="fin-empty-state__title">No invoices found.</p></div></td></tr>
             ) : filtered.map(( inv: typeof MOCK_INVOICES[0] ) => (
-              <tr key={inv.id} className="fin-table-hover-row fin-table-row">
+              <tr key={inv.id} className="fin-table-hover-row fin-table-row cursor-pointer" onClick={() => router.push(`/superadmin/superadmin_finance/invoice/${inv.id}`)}>
                 <td className="py-3 px-4"><span className="fin-mono">{inv.invoiceNumber}</span></td>
                 <td className="py-3 px-4">
                   <p className="fin-cell-name">{inv.studentName}</p>
@@ -144,13 +144,11 @@ export default function InvoicesPage() {
                 </td>
                 <td className="py-3 px-4">
                   <div className="flex items-center justify-end gap-2">
-                    <Link href={`/superadmin/superadmin_finance/invoice/${inv.id}`}>
-                      <button className="fin-badge fin-badge--neutral cursor-pointer"><Eye size={11} /> View</button>
-                    </Link>
-                    <button className="fin-badge fin-badge--neutral cursor-pointer" onClick={() => handlePrint(inv)} title="Print (Thermal)">
+
+                    <button className="fin-badge fin-badge--neutral cursor-pointer" onClick={(e) => { e.stopPropagation(); handlePrint(inv); }} title="Print (Thermal)">
                       <Printer size={11} />
                     </button>
-                    <button className="fin-badge fin-badge--success cursor-pointer" onClick={() => handleWhatsApp(inv)} title="Send WhatsApp">
+                    <button className="fin-badge fin-badge--success cursor-pointer" onClick={(e) => { e.stopPropagation(); handleWhatsApp(inv); }} title="Send WhatsApp">
                       <Send size={11} />
                     </button>
                   </div>
@@ -163,3 +161,4 @@ export default function InvoicesPage() {
     </div>
   );
 }
+

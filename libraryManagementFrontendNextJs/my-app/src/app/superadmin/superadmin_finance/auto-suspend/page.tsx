@@ -52,7 +52,7 @@ export default function AutoSuspend() {
     setTimeout(() => {
       setSuspended((prev) => prev.filter((s) => s.studentId !== restoreDialog.id));
       setConfig((prev) => prev ? { ...prev, currentlySuspended: Math.max(0, prev.currentlySuspended - 1), manualRestores: prev.manualRestores + 1 } : prev);
-      toast.success(`✅ ${restoreDialog.name} restored to active.`);
+      toast.success(`${restoreDialog.name} restored to active.`);
       setRestoreDialog(null); setRestoreReason(''); setRestorePending(false);
     }, 700);
   };
@@ -186,7 +186,7 @@ export default function AutoSuspend() {
                         className="fin-badge fin-badge--success cursor-pointer"
                         onClick={() => setRestoreDialog({ id: s.studentId, name: s.studentName })}
                       >
-                        <RotateCcw size={11} /> ✅ Manual Restore
+                        <RotateCcw size={11} /> Manual Restore
                       </button>
                     </div>
                   </td>
@@ -200,7 +200,7 @@ export default function AutoSuspend() {
       {restoreDialog && (
         <div className="fin-dialog-overlay">
           <div className="fin-dialog">
-            <h2 className="fin-dialog__title">✅ Restore Student — {restoreDialog.name}</h2>
+            <h2 className="fin-dialog__title">Restore Student — {restoreDialog.name}</h2>
             <button className="fin-dialog__close" onClick={() => setRestoreDialog(null)}>✕</button>
             <p className="fin-dialog-helper">Manually restore access for {restoreDialog.name}?</p>
             <div className="mt-2">
@@ -223,3 +223,4 @@ export default function AutoSuspend() {
     </div>
   );
 }
+

@@ -15,7 +15,7 @@ interface Props {
 export function SuperadminDashboardClient({ initialData }: Props) {
   if (!initialData) {
     return (
-      <div className="p-8 text-center bg-[var(--danger-bg,rgba(248,113,113,0.1))] text-danger rounded-[var(--radius-lg)]">
+      <div className="p-8 text-center bg-danger-bg text-danger rounded-[var(--radius-lg)]">
         Failed to load dashboard data.
       </div>
     );
@@ -46,3 +46,4 @@ export function SuperadminDashboardClient({ initialData }: Props) {
     </>
   );
 }
+

@@ -35,11 +35,11 @@ export function SuperadminDashboardActionItemsPanel({ data }: Props) {
             <Link key={i} href={href}
               className={`flex items-center justify-between p-4 rounded-[var(--radius-md)] border hover:-translate-y-0.5 transition-all duration-200 ${
                 isError 
-                  ? 'bg-[var(--danger-bg,rgba(248,113,113,0.05))] border-danger/20 hover:border-danger/50' 
-                  : 'bg-[rgba(59,130,246,0.05)] border-info,#3B82F6/20 hover:border-info,#3B82F6/50'
+                  ? 'bg-danger-bg border-danger/20 hover:border-danger/50' 
+                  : 'bg-info-bg border-info/20 hover:border-info/50'
               }`}>
               <div className="flex items-center gap-3">
-                <Icon size={16} className={isError ? 'text-danger' : 'text-info,#3B82F6'} />
+                <Icon size={16} className={isError ? 'text-danger' : 'text-info'} />
                 <span className="text-sm font-semibold text-text-primary">{item.text}</span>
               </div>
               <ChevronRight size={15} className="text-text-disabled" />
@@ -49,7 +49,7 @@ export function SuperadminDashboardActionItemsPanel({ data }: Props) {
       </div>
 
       <div className="mt-auto p-6 border-t border-border bg-bg-page/30">
-        <div className="flex items-start gap-3 mb-4 p-3 rounded-[var(--radius-md)] bg-[var(--primary-subtle,rgba(99,102,241,0.1))] border border-primary/20">
+        <div className="flex items-start gap-3 mb-4 p-3 rounded-[var(--radius-md)] bg-primary-subtle border border-primary/20">
           <div className="bg-primary text-white p-1 rounded-full shrink-0 mt-0.5">
             <Lightbulb size={12} />
           </div>

@@ -5,7 +5,7 @@
 import { useState, useEffect } from 'react';
 import { fetchApi } from '@/lib/api';
 import { logger } from '@/lib/logger';
-import { ChevronRight, Plus, X, Eye, RefreshCw, CheckCircle } from 'lucide-react';
+import { ChevronRight, Plus, X, Eye, RefreshCw, CheckCircle, MessageSquare, Circle, Smile } from 'lucide-react';
 
 type CStatus = 'Open' | 'In-Progress' | 'Resolved';
 
@@ -73,12 +73,12 @@ export default function ComplaintsPage() {
     setComplaints(prev => [c, ...prev]);
     setAddForm({ student: '', anonymous: false, title: '', description: '' });
     setShowAdd(false);
-    showToast('✅ Complaint submitted');
+    showToast('Complaint submitted');
   };
 
   const markInProgress = (id: string) => {
     setComplaints(prev => prev.map(( c: Complaint ) => c.id === id ? { ...c, status: 'In-Progress' } : c));
-    showToast('🔄 Marked In-Progress');
+    showToast('Marked In-Progress');
   };
 
   const handleResolve = () => {
@@ -87,13 +87,13 @@ export default function ComplaintsPage() {
       ? { ...c, status: 'Resolved', resolvedBy: 'Admin', resolvedDate: new Date().toISOString().split('T')[0], resolvedNote: resolveNote }
       : c));
     setResolveItem(null); setResolveNote('');
-    showToast('✅ Complaint resolved');
+    showToast('Complaint resolved');
   };
 
   const statusBadge = (s: CStatus) => {
-    if (s === 'Open')        return <span className="eng-badge eng-badge--danger">🔴 Open</span>;
-    if (s === 'In-Progress') return <span className="eng-badge eng-badge--warning">🟡 In-Progress</span>;
-    return <span className="eng-badge eng-badge--success">✅ Resolved</span>;
+    if (s === 'Open')        return <span className="eng-badge eng-badge--danger"><Circle size={12} className="mr-1" /> Open</span>;
+    if (s === 'In-Progress') return <span className="eng-badge eng-badge--warning"><Circle size={12} className="mr-1" /> In-Progress</span>;
+    return <span className="eng-badge eng-badge--success"><CheckCircle size={12} className="mr-1" /> Resolved</span>;
   };
 
   const toggleDesc = (id: string) =>
@@ -108,7 +108,7 @@ export default function ComplaintsPage() {
         <div className="eng-overlay">
           <div className="eng-modal eng-modal--md">
             <button onClick={() => setShowAdd(false)} className="eng-modal-close"><X size={16} /></button>
-            <p className="eng-modal-title">➕ Add Complaint</p>
+            <p className="eng-modal-title flex items-center gap-2"><Plus size={16} /> Add Complaint</p>
             <p className="eng-modal-desc">Staff raises complaint on student&apos;s behalf.</p>
             <div className="eng-form-stack">
               <div>
@@ -174,7 +174,7 @@ export default function ComplaintsPage() {
         <div className="eng-overlay">
           <div className="eng-modal eng-modal--md">
             <button onClick={() => setResolveItem(null)} className="eng-modal-close"><X size={16} /></button>
-            <p className="eng-modal-title">✅ Resolve Complaint</p>
+            <p className="eng-modal-title flex items-center gap-2"><CheckCircle size={16} /> Resolve Complaint</p>
             <p className="eng-modal-desc">&quot;{resolveItem.title}&quot;</p>
             <div>
               <label className="eng-label">Resolution Note <span className="eng-required">*</span></label>
@@ -184,7 +184,7 @@ export default function ComplaintsPage() {
             <div className="eng-modal-footer">
               <button onClick={() => setResolveItem(null)} className="eng-btn-ghost">Cancel</button>
               <button onClick={handleResolve} className="eng-btn-success" disabled={!resolveNote}>
-                ✅ Mark Resolved
+                <CheckCircle size={16} className="mr-1" /> Mark Resolved
               </button>
             </div>
           </div>
@@ -198,7 +198,7 @@ export default function ComplaintsPage() {
         </div>
         <div className="flex items-center justify-between">
           <div>
-            <h1 className="eng-page-title">💬 Complaints</h1>
+            <h1 className="eng-page-title flex items-center gap-2"><MessageSquare size={24} /> Complaints</h1>
             <p className="eng-page-subtitle">Track and resolve student complaints.</p>
           </div>
           <button onClick={() => setShowAdd(true)} className="eng-btn-primary">
@@ -220,7 +220,7 @@ export default function ComplaintsPage() {
       <div className="eng-card eng-card--flush">
         {filtered.length === 0 ? (
           <div className="eng-empty">
-            <div className="eng-empty__icon">😊</div>
+            <div className="eng-empty__icon"><Smile size={48} className="mx-auto text-text-disabled" /></div>
             <p className="eng-empty__title">No open complaints! All issues are resolved.</p>
           </div>
         ) : (
