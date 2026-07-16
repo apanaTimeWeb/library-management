@@ -1,12 +1,12 @@
-import { EnquiryStatus } from '@/modules/admin/crm/enquiries/dto/update-enquiry-status.dto';
+import { EnquiryStatus } from '@/modules/admin/crm/enquiries/dto/enquiries-update-enquiry-status.dto';
 
-export interface EnquiryFollowUp {
+export interface EnquiriesEnquiryFollowUp {
   date: Date;
   remark: string;
   by: string;
 }
 
-export interface EnquiryBase {
+export interface EnquiriesEnquiryBase {
   id: string;
   name: string;
   phone: string;

@@ -1,8 +1,8 @@
-export interface IComplaintRecord {
+export interface ComplaintsIComplaintRecord {
   id: string;
 }
 
-export interface IComplaintsPaginationMeta {
+export interface ComplaintsIComplaintsPaginationMeta {
   page: number;
   limit: number;
   total: number;

@@ -3,7 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { AuditLog } from '@/core/entities/audit-log.entity';
 
-export interface LogActionParams {
+export interface AuditLogsLogActionParams {
   entity: string;
   entityId: string;
   action: string;
@@ -29,7 +29,7 @@ export interface LogActionParams {
  * - Raw Aadhaar / PAN numbers
  */
 @Injectable()
-export class AdminAuditLogsService {
+export class AuditLogsAdminService {
   constructor(
     @InjectRepository(AuditLog)
     private auditLogRepo: Repository<AuditLog>,
@@ -107,20 +107,7 @@ export class AdminAuditLogsService {
     obj: Record<string, any> | null | undefined,
   ): Record<string, any> | null {
     if (!obj) return null;
-    const SENSITIVE_KEYS = [
-      'password',
-      'passwordHash',
-      'refreshToken',
-      'refreshTokenHash',
-      'accessToken',
-      'token',
-      'otp',
-      'pin',
-      'secret',
-      'cvv',
-      'aadhaar',
-      'pan',
-    ];
+    const SENSITIVE_KEYS = ['password', 'passwordHash', 'refreshToken', 'refreshTokenHash', 'accessToken', 'token', 'otp', 'pin', 'secret', 'cvv', 'aadhaar', 'pan', ];
     const sanitized = { ...obj };
     for (const key of SENSITIVE_KEYS) {
       if (key in sanitized) {

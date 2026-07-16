@@ -1,8 +1,8 @@
-export interface ISubscriptionRecord {
+export interface SubscriptionsISubscriptionRecord {
   id: string;
 }
 
-export interface ISubscriptionsPaginationMeta {
+export interface SubscriptionsISubscriptionsPaginationMeta {
   page: number;
   limit: number;
   total: number;

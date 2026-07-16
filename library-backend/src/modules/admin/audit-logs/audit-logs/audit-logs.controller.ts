@@ -1,18 +1,6 @@
-import {
-  Controller,
-  Get,
-  Query,
-  UseGuards,
-  ParseIntPipe,
-  DefaultValuePipe,
-} from '@nestjs/common';
-import {
-  ApiTags,
-  ApiBearerAuth,
-  ApiOperation,
-  ApiQuery,
-} from '@nestjs/swagger';
-import { AdminAuditLogsService } from './audit-logs.service';
+import { Controller, Get, Query, UseGuards, ParseIntPipe, DefaultValuePipe,  } from '@nestjs/common';
+import { ApiTags, ApiBearerAuth, ApiOperation, AuditLogsApiQuery,  } from '@nestjs/swagger';
+import { AuditLogsAdminService } from './audit-logs.service';
 import { AuthJwtAuthGuard } from '@/modules/auth/guards/auth-jwt-auth.guard';
 import { AuthRolesGuard } from '@/modules/auth/guards/auth-roles.guard';
 import { AuthRoles } from '@/modules/auth/decorators/auth-roles.decorator';
@@ -22,8 +10,8 @@ import { AuthRoles } from '@/modules/auth/decorators/auth-roles.decorator';
 @Controller('api/admin/audit-logs')
 @UseGuards(AuthJwtAuthGuard, AuthRolesGuard)
 @AuthRoles('superadmin')
-export class AdminAuditLogsController {
-  constructor(private readonly auditLogsService: AdminAuditLogsService) {}
+export class AuditLogsAdminController {
+  constructor(private readonly auditLogsService: AuditLogsAdminService) {}
 
   // SLA: FAST
   @Get()

@@ -1,8 +1,8 @@
-export interface ISeatRecord {
+export interface SeatsISeatRecord {
   id: string;
 }
 
-export interface ISeatsPaginationMeta {
+export interface SeatsISeatsPaginationMeta {
   page: number;
   limit: number;
   total: number;

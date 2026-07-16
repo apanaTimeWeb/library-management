@@ -2,34 +2,22 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Subscription } from '@/core/entities/subscription.entity';
 
-import { CreateSubscriptionController } from './controllers/create-subscription.controller';
-import { UpdateSubscriptionController } from './controllers/update-subscription.controller';
-import { DeleteSubscriptionController } from './controllers/delete-subscription.controller';
-import { GetAllSubscriptionsController } from './controllers/get-all-subscriptions.controller';
-import { GetSubscriptionController } from './controllers/get-subscription.controller';
+import { SubscriptionsCreateSubscriptionController } from './controllers/create-subscription.controller';
+import { SubscriptionsUpdateSubscriptionController } from './controllers/update-subscription.controller';
+import { SubscriptionsDeleteSubscriptionController } from './controllers/delete-subscription.controller';
+import { SubscriptionsGetAllController } from './controllers/get-all-subscriptions.controller';
+import { SubscriptionsGetSubscriptionController } from './controllers/get-subscription.controller';
 
-import { CreateSubscriptionService } from './services/create-subscription.service';
-import { UpdateSubscriptionService } from './services/update-subscription.service';
-import { DeleteSubscriptionService } from './services/delete-subscription.service';
-import { GetAllSubscriptionsService } from './services/get-all-subscriptions.service';
-import { GetSubscriptionService } from './services/get-subscription.service';
+import { SubscriptionsCreateSubscriptionService } from './services/create-subscription.service';
+import { SubscriptionsUpdateSubscriptionService } from './services/update-subscription.service';
+import { SubscriptionsDeleteSubscriptionService } from './services/delete-subscription.service';
+import { SubscriptionsGetAllService } from './services/get-all-subscriptions.service';
+import { SubscriptionsGetSubscriptionService } from './services/get-subscription.service';
 
 @Module({
   imports: [TypeOrmModule.forFeature([Subscription])],
-  controllers: [
-    CreateSubscriptionController,
-    UpdateSubscriptionController,
-    DeleteSubscriptionController,
-    GetAllSubscriptionsController,
-    GetSubscriptionController,
-  ],
-  providers: [
-    CreateSubscriptionService,
-    UpdateSubscriptionService,
-    DeleteSubscriptionService,
-    GetAllSubscriptionsService,
-    GetSubscriptionService,
-  ],
-  exports: [GetSubscriptionService],
+  controllers: [SubscriptionsCreateSubscriptionController, SubscriptionsUpdateSubscriptionController, SubscriptionsDeleteSubscriptionController, SubscriptionsGetAllController, SubscriptionsGetSubscriptionController, ],
+  providers: [SubscriptionsCreateSubscriptionService, SubscriptionsUpdateSubscriptionService, SubscriptionsDeleteSubscriptionService, SubscriptionsGetAllService, SubscriptionsGetSubscriptionService, ],
+  exports: [SubscriptionsGetSubscriptionService],
 })
-export class AdminSubscriptionsModule {}
+export class SubscriptionsAdminModule {}

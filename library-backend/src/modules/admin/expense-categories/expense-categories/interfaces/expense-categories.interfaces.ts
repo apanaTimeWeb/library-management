@@ -1,8 +1,8 @@
-export interface IExpenseCategoryRecord {
+export interface ExpenseCategoriesIExpenseCategoryRecord {
   id: string;
 }
 
-export interface IExpenseCategoriesPaginationMeta {
+export interface ExpenseCategoriesIExpenseCategoriesPaginationMeta {
   page: number;
   limit: number;
   total: number;

@@ -1,8 +1,8 @@
-export interface IStudentSlotRecord {
+export interface StudentSlotsIStudentSlotRecord {
   id: string;
 }
 
-export interface IStudentSlotsPaginationMeta {
+export interface StudentSlotsIStudentSlotsPaginationMeta {
   page: number;
   limit: number;
   total: number;

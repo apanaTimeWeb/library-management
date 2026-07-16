@@ -1,8 +1,8 @@
-export interface ISeatHistoryRecord {
+export interface SeatHistoryISeatHistoryRecord {
   id: string;
 }
 
-export interface ISeatHistoriesPaginationMeta {
+export interface SeatHistoryISeatHistoriesPaginationMeta {
   page: number;
   limit: number;
   total: number;

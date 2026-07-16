@@ -2,34 +2,22 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Expense } from '@/core/entities/expense.entity';
 
-import { CreateExpenseController } from './controllers/create-expense.controller';
-import { UpdateExpenseController } from './controllers/update-expense.controller';
-import { DeleteExpenseController } from './controllers/delete-expense.controller';
-import { GetAllExpensesController } from './controllers/get-all-expenses.controller';
-import { GetExpenseController } from './controllers/get-expense.controller';
+import { ExpensesCreateExpenseController } from './controllers/create-expense.controller';
+import { ExpensesUpdateExpenseController } from './controllers/update-expense.controller';
+import { ExpensesDeleteExpenseController } from './controllers/delete-expense.controller';
+import { ExpensesGetAllController } from './controllers/get-all-expenses.controller';
+import { ExpensesGetExpenseController } from './controllers/get-expense.controller';
 
-import { CreateExpenseService } from './services/create-expense.service';
-import { UpdateExpenseService } from './services/update-expense.service';
-import { DeleteExpenseService } from './services/delete-expense.service';
-import { GetAllExpensesService } from './services/get-all-expenses.service';
-import { GetExpenseService } from './services/get-expense.service';
+import { ExpensesCreateExpenseService } from './services/create-expense.service';
+import { ExpensesUpdateExpenseService } from './services/update-expense.service';
+import { ExpensesDeleteExpenseService } from './services/delete-expense.service';
+import { ExpensesGetAllService } from './services/get-all-expenses.service';
+import { ExpensesGetExpenseService } from './services/get-expense.service';
 
 @Module({
   imports: [TypeOrmModule.forFeature([Expense])],
-  controllers: [
-    CreateExpenseController,
-    UpdateExpenseController,
-    DeleteExpenseController,
-    GetAllExpensesController,
-    GetExpenseController,
-  ],
-  providers: [
-    CreateExpenseService,
-    UpdateExpenseService,
-    DeleteExpenseService,
-    GetAllExpensesService,
-    GetExpenseService,
-  ],
-  exports: [GetExpenseService],
+  controllers: [ExpensesCreateExpenseController, ExpensesUpdateExpenseController, ExpensesDeleteExpenseController, ExpensesGetAllController, ExpensesGetExpenseController, ],
+  providers: [ExpensesCreateExpenseService, ExpensesUpdateExpenseService, ExpensesDeleteExpenseService, ExpensesGetAllService, ExpensesGetExpenseService, ],
+  exports: [ExpensesGetExpenseService],
 })
-export class AdminExpensesModule {}
+export class ExpensesAdminModule {}

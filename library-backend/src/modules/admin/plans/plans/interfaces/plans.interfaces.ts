@@ -1,4 +1,4 @@
-export interface IPlanRecord {
+export interface PlansIPlanRecord {
   id: string;
   name: string;
   price: number;
@@ -9,7 +9,7 @@ export interface IPlanRecord {
   subscribers: number;
 }
 
-export interface IPlansPaginationMeta {
+export interface PlansIPlansPaginationMeta {
   page: number;
   limit: number;
   total: number;

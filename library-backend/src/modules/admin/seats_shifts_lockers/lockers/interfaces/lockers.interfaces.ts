@@ -1,8 +1,8 @@
-export interface ILockerRecord {
+export interface LockersILockerRecord {
   id: string;
 }
 
-export interface ILockersPaginationMeta {
+export interface LockersILockersPaginationMeta {
   page: number;
   limit: number;
   total: number;

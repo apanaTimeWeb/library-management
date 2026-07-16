@@ -1,16 +1,16 @@
-export interface Trend {
+export interface AdminTrend {
   value: string;
   up: boolean;
 }
 
-export interface KpiCard {
+export interface AdminKpiCard {
   label: string;
   value: string | number;
   trend: Trend;
   sub: string;
 }
 
-export interface SeatData {
+export interface AdminSeatData {
   id: string;
   shift: string;
   status: string;
@@ -20,7 +20,7 @@ export interface SeatData {
   studentId?: string;
 }
 
-export interface RecentPayment {
+export interface AdminRecentPayment {
   name: string;
   initials: string;
   amount: string;
@@ -29,7 +29,7 @@ export interface RecentPayment {
   studentId: string;
 }
 
-export interface ActionItem {
+export interface AdminActionItem {
   label: string;
   count: number;
   type: string;
@@ -44,24 +44,24 @@ export interface AdminDashboardData {
   recentPayments: RecentPayment[];
 }
 
-export interface IncomeExpenseItem {
+export interface AdminIncomeExpenseItem {
   month: string;
   income: number;
   expense: number;
 }
 
-export interface ShiftOccupancyItem {
+export interface AdminShiftOccupancyItem {
   name: string;
   value: number;
   color: string;
 }
 
-export interface RevenueTrendItem {
+export interface AdminRevenueTrendItem {
   month: string;
   revenue: number;
 }
 
-export interface StudentGrowthItem {
+export interface AdminStudentGrowthItem {
   month: string;
   joined: number;
   exited: number;

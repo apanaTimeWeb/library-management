@@ -1,8 +1,8 @@
-export interface IShiftMigrationRecord {
+export interface ShiftMigrationsIShiftMigrationRecord {
   id: string;
 }
 
-export interface IShiftMigrationsPaginationMeta {
+export interface ShiftMigrationsIShiftMigrationsPaginationMeta {
   page: number;
   limit: number;
   total: number;

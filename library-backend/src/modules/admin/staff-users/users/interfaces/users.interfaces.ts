@@ -1,4 +1,4 @@
-export interface IUser {
+export interface UsersIUser {
   id: string;
   name: string;
   email: string;
@@ -8,7 +8,7 @@ export interface IUser {
   updatedAt: Date;
 }
 
-export interface IUserListResponse {
+export interface UsersIUserListResponse {
   data: IUser[];
   meta: {
     total: number;

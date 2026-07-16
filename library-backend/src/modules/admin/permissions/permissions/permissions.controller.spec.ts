@@ -1,16 +1,16 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { AdminPermissionsController } from './permissions.controller';
+import { PermissionsAdminController } from './permissions.controller';
 
-describe('AdminPermissionsController', () => {
-  let controller: AdminPermissionsController;
+describe('AdminController', () => {
+  let controller: PermissionsAdminController;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      controllers: [AdminPermissionsController],
+      controllers: [PermissionsAdminController],
     }).compile();
 
-    controller = module.get<AdminPermissionsController>(
-      AdminPermissionsController,
+    controller = module.get<AdminController>(
+      AdminController,
     );
   });
 
