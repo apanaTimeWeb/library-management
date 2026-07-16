@@ -1,6 +1,6 @@
 import { Controller, Get, Query } from '@nestjs/common';
-import { StudentSlotsGetAllService } from '../services/get-all-student-slots.service';
-import { StudentSlotsGetStudentSlotsQueryDto } from '../dto/get-student-slots-query.dto';
+import { StudentSlotsGetAllService } from '../services/student-slots-get-all-student-slots.service';
+import { StudentSlotsGetStudentSlotsQueryDto } from '../dto/student-slots-get-student-slots-query.dto';
 
 @Controller('v1/admin/student-slots')
 export class StudentSlotsGetAllController {

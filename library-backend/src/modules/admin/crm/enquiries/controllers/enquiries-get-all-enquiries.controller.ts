@@ -1,6 +1,6 @@
 import { Controller, Get } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
-import { EnquiriesGetAllService } from '../services/get-all-enquiries.service';
+import { EnquiriesGetAllService } from '../services/enquiries-get-all-enquiries.service';
 
 @ApiTags('Admin Enquiries')
 @Controller('admin/enquiries')

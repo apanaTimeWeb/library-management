@@ -1,5 +1,5 @@
 import { Controller, Get, Param } from '@nestjs/common';
-import { StudentSlotsGetStudentSlotService } from '../services/get-student-slot.service';
+import { StudentSlotsGetStudentSlotService } from '../services/student-slots-get-student-slot.service';
 
 @Controller('v1/admin/student-slots')
 export class StudentSlotsGetStudentSlotController {

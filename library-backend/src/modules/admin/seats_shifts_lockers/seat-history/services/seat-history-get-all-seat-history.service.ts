@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository, FindOptionsWhere, ILike } from 'typeorm';
 import { SeatHistory } from '@/core/entities/seat-history.entity';
-import { SeatHistoryGetSeatHistoriesQueryDto } from '../dto/get-seat-history-query.dto';
+import { SeatHistoryGetSeatHistoriesQueryDto } from '../dto/seat-history-get-seat-history-query.dto';
 
 @Injectable()
 export class SeatHistoryGetAllSeatHistoriesService {

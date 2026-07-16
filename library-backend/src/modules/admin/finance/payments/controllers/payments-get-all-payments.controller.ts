@@ -1,6 +1,6 @@
 import { Controller, Get, Query } from '@nestjs/common';
-import { PaymentsGetAllService } from '../services/get-all-payments.service';
-import { PaymentsGetPaymentsQueryDto } from '../dto/get-payments-query.dto';
+import { PaymentsGetAllService } from '../services/payments-get-all-payments.service';
+import { PaymentsGetPaymentsQueryDto } from '../dto/payments-get-payments-query.dto';
 
 @Controller('v1/admin/payments')
 export class PaymentsGetAllController {

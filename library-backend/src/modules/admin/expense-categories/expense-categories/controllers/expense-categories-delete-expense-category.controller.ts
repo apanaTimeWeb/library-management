@@ -1,5 +1,5 @@
 import { Controller, Delete, Param } from '@nestjs/common';
-import { ExpenseCategoriesDeleteExpenseCategoryService } from '../services/delete-expense-category.service';
+import { ExpenseCategoriesDeleteExpenseCategoryService } from '../services/expense-categories-delete-expense-category.service';
 
 @Controller('v1/admin/expense-categories')
 export class ExpenseCategoriesDeleteExpenseCategoryController {

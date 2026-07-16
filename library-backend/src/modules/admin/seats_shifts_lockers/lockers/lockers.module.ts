@@ -2,17 +2,17 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Locker } from '@/core/entities/locker.entity';
 
-import { LockersCreateLockerController } from './controllers/create-locker.controller';
-import { LockersUpdateLockerController } from './controllers/update-locker.controller';
-import { LockersDeleteLockerController } from './controllers/delete-locker.controller';
-import { LockersGetAllController } from './controllers/get-all-lockers.controller';
-import { LockersGetLockerController } from './controllers/get-locker.controller';
+import { LockersCreateLockerController } from './controllers/lockers-create-locker.controller';
+import { LockersUpdateLockerController } from './controllers/lockers-update-locker.controller';
+import { LockersDeleteLockerController } from './controllers/lockers-delete-locker.controller';
+import { LockersGetAllController } from './controllers/lockers-get-all-lockers.controller';
+import { LockersGetLockerController } from './controllers/lockers-get-locker.controller';
 
-import { LockersCreateLockerService } from './services/create-locker.service';
-import { LockersUpdateLockerService } from './services/update-locker.service';
-import { LockersDeleteLockerService } from './services/delete-locker.service';
-import { LockersGetAllService } from './services/get-all-lockers.service';
-import { LockersGetLockerService } from './services/get-locker.service';
+import { LockersCreateLockerService } from './services/lockers-create-locker.service';
+import { LockersUpdateLockerService } from './services/lockers-update-locker.service';
+import { LockersDeleteLockerService } from './services/lockers-delete-locker.service';
+import { LockersGetAllService } from './services/lockers-get-all-lockers.service';
+import { LockersGetLockerService } from './services/lockers-get-locker.service';
 
 @Module({
   imports: [TypeOrmModule.forFeature([Locker])],

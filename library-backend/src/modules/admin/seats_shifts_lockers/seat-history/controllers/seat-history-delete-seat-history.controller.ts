@@ -1,5 +1,5 @@
 import { Controller, Delete, Param } from '@nestjs/common';
-import { SeatHistoryDeleteService } from '../services/delete-seat-history.service';
+import { SeatHistoryDeleteService } from '../services/seat-history-delete-seat-history.service';
 
 @Controller('v1/admin/seat-history')
 export class SeatHistoryDeleteController {

@@ -1,5 +1,5 @@
 import { Controller, Get, Param } from '@nestjs/common';
-import { SeatsGetSeatService } from '../services/get-seat.service';
+import { SeatsGetSeatService } from '../services/seats-get-seat.service';
 
 @Controller('v1/admin/seats')
 export class SeatsGetSeatController {

@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { ShiftMigration } from '@/core/entities/shift-migration.entity';
-import { ShiftMigrationsCreateShiftMigrationDto } from '../dto/create-shift-migration.dto';
+import { ShiftMigrationsCreateShiftMigrationDto } from '../dto/shift-migrations-create-shift-migration.dto';
 
 @Injectable()
 export class ShiftMigrationsCreateShiftMigrationService {

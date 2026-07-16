@@ -1,5 +1,5 @@
 import { Controller, Delete, Param } from '@nestjs/common';
-import { PaymentsDeletePaymentService } from '../services/delete-payment.service';
+import { PaymentsDeletePaymentService } from '../services/payments-delete-payment.service';
 
 @Controller('v1/admin/payments')
 export class PaymentsDeletePaymentController {

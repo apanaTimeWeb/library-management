@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Shift } from '@/core/entities/shift.entity';
-import { ShiftsUpdateShiftDto } from '../dto/update-shift.dto';
+import { ShiftsUpdateShiftDto } from '../dto/shifts-update-shift.dto';
 import { ShiftNotFoundException } from '../exceptions/shifts.exceptions';
 
 @Injectable()

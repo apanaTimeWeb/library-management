@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository, FindOptionsWhere, ILike } from 'typeorm';
 import { Locker } from '@/core/entities/locker.entity';
-import { LockersGetLockersQueryDto } from '../dto/get-lockers-query.dto';
+import { LockersGetLockersQueryDto } from '../dto/lockers-get-lockers-query.dto';
 
 @Injectable()
 export class LockersGetAllService {

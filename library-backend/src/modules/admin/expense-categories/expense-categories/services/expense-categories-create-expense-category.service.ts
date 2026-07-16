@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { ExpenseCategory } from '@/core/entities/expense.entity';
-import { ExpenseCategoriesCreateExpenseCategoryDto } from '../dto/create-expense-category.dto';
+import { ExpenseCategoriesCreateExpenseCategoryDto } from '../dto/expense-categories-create-expense-category.dto';
 
 @Injectable()
 export class ExpenseCategoriesCreateExpenseCategoryService {

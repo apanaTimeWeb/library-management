@@ -2,17 +2,17 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Complaint } from '@/core/entities/complaint.entity';
 
-import { ComplaintsCreateComplaintController } from './controllers/create-complaint.controller';
-import { ComplaintsUpdateComplaintController } from './controllers/update-complaint.controller';
-import { ComplaintsDeleteComplaintController } from './controllers/delete-complaint.controller';
-import { ComplaintsGetAllController } from './controllers/get-all-complaints.controller';
-import { ComplaintsGetComplaintController } from './controllers/get-complaint.controller';
+import { ComplaintsCreateComplaintController } from './controllers/complaints-create-complaint.controller';
+import { ComplaintsUpdateComplaintController } from './controllers/complaints-update-complaint.controller';
+import { ComplaintsDeleteComplaintController } from './controllers/complaints-delete-complaint.controller';
+import { ComplaintsGetAllController } from './controllers/complaints-get-all-complaints.controller';
+import { ComplaintsGetComplaintController } from './controllers/complaints-get-complaint.controller';
 
-import { ComplaintsCreateComplaintService } from './services/create-complaint.service';
-import { ComplaintsUpdateComplaintService } from './services/update-complaint.service';
-import { ComplaintsDeleteComplaintService } from './services/delete-complaint.service';
-import { ComplaintsGetAllService } from './services/get-all-complaints.service';
-import { ComplaintsGetComplaintService } from './services/get-complaint.service';
+import { ComplaintsCreateComplaintService } from './services/complaints-create-complaint.service';
+import { ComplaintsUpdateComplaintService } from './services/complaints-update-complaint.service';
+import { ComplaintsDeleteComplaintService } from './services/complaints-delete-complaint.service';
+import { ComplaintsGetAllService } from './services/complaints-get-all-complaints.service';
+import { ComplaintsGetComplaintService } from './services/complaints-get-complaint.service';
 
 @Module({
   imports: [TypeOrmModule.forFeature([Complaint])],

@@ -1,5 +1,5 @@
 import { Controller, Delete, Param } from '@nestjs/common';
-import { LockersDeleteLockerService } from '../services/delete-locker.service';
+import { LockersDeleteLockerService } from '../services/lockers-delete-locker.service';
 
 @Controller('v1/admin/lockers')
 export class LockersDeleteLockerController {

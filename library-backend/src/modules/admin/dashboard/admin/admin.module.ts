@@ -5,7 +5,7 @@ import { Payment } from '@/core/entities/payment.entity';
 import { Seat } from '@/core/entities/seat.entity';
 
 // Micro-Services
-import { AdminDashboardService } from './services/dashboard.service';
+import { AdminDashboardService } from './services/admin-dashboard.service';
 import { AdminReportsService } from '@/modules/admin/reports/dashboard/services/reports.service';
 import { DashboardAuditLogsService } from '@/modules/admin/audit-logs/dashboard/services/dashboard-audit-logs.service';
 import { AdminBlacklistService } from '@/modules/admin/blacklist/dashboard/services/blacklist.service';
@@ -19,7 +19,7 @@ import { AdminStaffUsersService } from '@/modules/admin/staff-users/dashboard/se
 import { AdminStudentsService } from '@/modules/admin/students/dashboard/services/students.service';
 
 // Micro-Controllers
-import { AdminDashboardController } from './controllers/dashboard.controller';
+import { AdminDashboardController } from './controllers/admin-dashboard.controller';
 import { AdminReportsController } from '@/modules/admin/reports/dashboard/controllers/reports.controller';
 import { DashboardAuditLogsController } from '@/modules/admin/audit-logs/dashboard/controllers/dashboard-audit-logs.controller';
 import { AdminBlacklistController } from '@/modules/admin/blacklist/dashboard/controllers/blacklist.controller';

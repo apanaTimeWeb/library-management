@@ -1,6 +1,6 @@
 import { Controller, Post, Body } from '@nestjs/common';
-import { SeatsCreateSeatService } from '../services/create-seat.service';
-import { SeatsCreateSeatDto } from '../dto/create-seat.dto';
+import { SeatsCreateSeatService } from '../services/seats-create-seat.service';
+import { SeatsCreateSeatDto } from '../dto/seats-create-seat.dto';
 
 @Controller('v1/admin/seats')
 export class SeatsCreateSeatController {

@@ -1,5 +1,5 @@
 import { Controller, Get, Param } from '@nestjs/common';
-import { ShiftsGetShiftService } from '../services/get-shift.service';
+import { ShiftsGetShiftService } from '../services/shifts-get-shift.service';
 
 @Controller('v1/admin/shifts')
 export class ShiftsGetShiftController {

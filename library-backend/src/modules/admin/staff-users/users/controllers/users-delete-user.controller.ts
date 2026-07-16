@@ -1,7 +1,7 @@
 import { Controller, Delete, Param, UseGuards } from '@nestjs/common';
 import { ApiTags, ApiOperation, ApiBearerAuth } from '@nestjs/swagger';
 import { AuthJwtAuthGuard } from '@/modules/auth/session/guards/auth-jwt-auth.guard';
-import { UsersDeleteUserService } from '../services/delete-user.service';
+import { UsersDeleteUserService } from '../services/users-delete-user.service';
 
 @ApiTags('Admin Users')
 @ApiBearerAuth()

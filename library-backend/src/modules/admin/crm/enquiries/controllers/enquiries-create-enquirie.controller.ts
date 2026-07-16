@@ -1,6 +1,6 @@
 import { Controller, Post } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
-import { EnquiriesCreateEnquirieService } from '../services/create-enquirie.service';
+import { EnquiriesCreateEnquirieService } from '../services/enquiries-create-enquirie.service';
 
 @ApiTags('Admin Enquiries')
 @Controller('admin/enquiries')

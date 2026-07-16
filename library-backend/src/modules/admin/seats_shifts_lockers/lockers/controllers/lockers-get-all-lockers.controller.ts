@@ -1,6 +1,6 @@
 import { Controller, Get, Query } from '@nestjs/common';
-import { LockersGetAllService } from '../services/get-all-lockers.service';
-import { LockersGetLockersQueryDto } from '../dto/get-lockers-query.dto';
+import { LockersGetAllService } from '../services/lockers-get-all-lockers.service';
+import { LockersGetLockersQueryDto } from '../dto/lockers-get-lockers-query.dto';
 
 @Controller('v1/admin/lockers')
 export class LockersGetAllController {

@@ -1,6 +1,6 @@
 import { Controller, Patch, Param, Body } from '@nestjs/common';
-import { PlansUpdatePlanService } from '../services/update-plan.service';
-import { PlansUpdatePlanDto } from '../dto/update-plan.dto';
+import { PlansUpdatePlanService } from '../services/plans-update-plan.service';
+import { PlansUpdatePlanDto } from '../dto/plans-update-plan.dto';
 
 @Controller('v1/admin/plans')
 export class PlansUpdatePlanController {

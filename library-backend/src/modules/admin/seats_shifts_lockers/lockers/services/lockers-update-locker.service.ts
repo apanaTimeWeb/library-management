@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Locker } from '@/core/entities/locker.entity';
-import { LockersUpdateLockerDto } from '../dto/update-locker.dto';
+import { LockersUpdateLockerDto } from '../dto/lockers-update-locker.dto';
 import { LockerNotFoundException } from '../exceptions/lockers.exceptions';
 
 @Injectable()

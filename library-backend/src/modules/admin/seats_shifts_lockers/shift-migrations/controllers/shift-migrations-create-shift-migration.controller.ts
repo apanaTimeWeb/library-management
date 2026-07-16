@@ -1,6 +1,6 @@
 import { Controller, Post, Body } from '@nestjs/common';
-import { ShiftMigrationsCreateShiftMigrationService } from '../services/create-shift-migration.service';
-import { ShiftMigrationsCreateShiftMigrationDto } from '../dto/create-shift-migration.dto';
+import { ShiftMigrationsCreateShiftMigrationService } from '../services/shift-migrations-create-shift-migration.service';
+import { ShiftMigrationsCreateShiftMigrationDto } from '../dto/shift-migrations-create-shift-migration.dto';
 
 @Controller('v1/admin/shift-migrations')
 export class ShiftMigrationsCreateShiftMigrationController {

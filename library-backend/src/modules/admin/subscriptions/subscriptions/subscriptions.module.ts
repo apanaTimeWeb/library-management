@@ -2,17 +2,17 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Subscription } from '@/core/entities/subscription.entity';
 
-import { SubscriptionsCreateSubscriptionController } from './controllers/create-subscription.controller';
-import { SubscriptionsUpdateSubscriptionController } from './controllers/update-subscription.controller';
-import { SubscriptionsDeleteSubscriptionController } from './controllers/delete-subscription.controller';
-import { SubscriptionsGetAllController } from './controllers/get-all-subscriptions.controller';
-import { SubscriptionsGetSubscriptionController } from './controllers/get-subscription.controller';
+import { SubscriptionsCreateSubscriptionController } from './controllers/subscriptions-create-subscription.controller';
+import { SubscriptionsUpdateSubscriptionController } from './controllers/subscriptions-update-subscription.controller';
+import { SubscriptionsDeleteSubscriptionController } from './controllers/subscriptions-delete-subscription.controller';
+import { SubscriptionsGetAllController } from './controllers/subscriptions-get-all-subscriptions.controller';
+import { SubscriptionsGetSubscriptionController } from './controllers/subscriptions-get-subscription.controller';
 
-import { SubscriptionsCreateSubscriptionService } from './services/create-subscription.service';
-import { SubscriptionsUpdateSubscriptionService } from './services/update-subscription.service';
-import { SubscriptionsDeleteSubscriptionService } from './services/delete-subscription.service';
-import { SubscriptionsGetAllService } from './services/get-all-subscriptions.service';
-import { SubscriptionsGetSubscriptionService } from './services/get-subscription.service';
+import { SubscriptionsCreateSubscriptionService } from './services/subscriptions-create-subscription.service';
+import { SubscriptionsUpdateSubscriptionService } from './services/subscriptions-update-subscription.service';
+import { SubscriptionsDeleteSubscriptionService } from './services/subscriptions-delete-subscription.service';
+import { SubscriptionsGetAllService } from './services/subscriptions-get-all-subscriptions.service';
+import { SubscriptionsGetSubscriptionService } from './services/subscriptions-get-subscription.service';
 
 @Module({
   imports: [TypeOrmModule.forFeature([Subscription])],

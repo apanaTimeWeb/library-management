@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository, FindOptionsWhere, ILike } from 'typeorm';
 import { StudentSlot } from '@/core/entities/student-slot.entity';
-import { StudentSlotsGetStudentSlotsQueryDto } from '../dto/get-student-slots-query.dto';
+import { StudentSlotsGetStudentSlotsQueryDto } from '../dto/student-slots-get-student-slots-query.dto';
 
 @Injectable()
 export class StudentSlotsGetAllService {

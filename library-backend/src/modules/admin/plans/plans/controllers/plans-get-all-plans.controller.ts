@@ -1,6 +1,6 @@
 import { Controller, Get, Query } from '@nestjs/common';
-import { PlansGetAllService } from '../services/get-all-plans.service';
-import { PlansGetPlansQueryDto } from '../dto/get-plans-query.dto';
+import { PlansGetAllService } from '../services/plans-get-all-plans.service';
+import { PlansGetPlansQueryDto } from '../dto/plans-get-plans-query.dto';
 
 @Controller('v1/admin/plans')
 export class PlansGetAllController {

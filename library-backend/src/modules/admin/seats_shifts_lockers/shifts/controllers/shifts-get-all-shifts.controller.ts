@@ -1,6 +1,6 @@
 import { Controller, Get, Query } from '@nestjs/common';
-import { ShiftsGetAllService } from '../services/get-all-shifts.service';
-import { ShiftsGetShiftsQueryDto } from '../dto/get-shifts-query.dto';
+import { ShiftsGetAllService } from '../services/shifts-get-all-shifts.service';
+import { ShiftsGetShiftsQueryDto } from '../dto/shifts-get-shifts-query.dto';
 
 @Controller('v1/admin/shifts')
 export class ShiftsGetAllController {

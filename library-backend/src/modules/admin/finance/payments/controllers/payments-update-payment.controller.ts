@@ -1,6 +1,6 @@
 import { Controller, Patch, Param, Body } from '@nestjs/common';
-import { PaymentsUpdatePaymentService } from '../services/update-payment.service';
-import { PaymentsUpdatePaymentDto } from '../dto/update-payment.dto';
+import { PaymentsUpdatePaymentService } from '../services/payments-update-payment.service';
+import { PaymentsUpdatePaymentDto } from '../dto/payments-update-payment.dto';
 
 @Controller('v1/admin/payments')
 export class PaymentsUpdatePaymentController {

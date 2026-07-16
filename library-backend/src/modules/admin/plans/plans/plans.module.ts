@@ -3,18 +3,18 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { Plan } from '@/core/entities/plan.entity';
 
 // Controllers
-import { PlansCreatePlanController } from './controllers/create-plan.controller';
-import { PlansUpdatePlanController } from './controllers/update-plan.controller';
-import { PlansDeletePlanController } from './controllers/delete-plan.controller';
-import { PlansGetAllController } from './controllers/get-all-plans.controller';
-import { PlansGetPlanController } from './controllers/get-plan.controller';
+import { PlansCreatePlanController } from './controllers/plans-create-plan.controller';
+import { PlansUpdatePlanController } from './controllers/plans-update-plan.controller';
+import { PlansDeletePlanController } from './controllers/plans-delete-plan.controller';
+import { PlansGetAllController } from './controllers/plans-get-all-plans.controller';
+import { PlansGetPlanController } from './controllers/plans-get-plan.controller';
 
 // Services
-import { PlansCreatePlanService } from './services/create-plan.service';
-import { PlansUpdatePlanService } from './services/update-plan.service';
-import { PlansDeletePlanService } from './services/delete-plan.service';
-import { PlansGetAllService } from './services/get-all-plans.service';
-import { PlansGetPlanService } from './services/get-plan.service';
+import { PlansCreatePlanService } from './services/plans-create-plan.service';
+import { PlansUpdatePlanService } from './services/plans-update-plan.service';
+import { PlansDeletePlanService } from './services/plans-delete-plan.service';
+import { PlansGetAllService } from './services/plans-get-all-plans.service';
+import { PlansGetPlanService } from './services/plans-get-plan.service';
 
 @Module({
   imports: [TypeOrmModule.forFeature([Plan])],

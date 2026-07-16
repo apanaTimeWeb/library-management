@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository, FindOptionsWhere, ILike } from 'typeorm';
 import { Plan } from '@/core/entities/plan.entity';
-import { PlansGetPlansQueryDto } from '../dto/get-plans-query.dto';
+import { PlansGetPlansQueryDto } from '../dto/plans-get-plans-query.dto';
 
 @Injectable()
 export class PlansGetAllService {

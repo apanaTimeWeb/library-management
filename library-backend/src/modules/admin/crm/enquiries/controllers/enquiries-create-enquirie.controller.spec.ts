@@ -1,6 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { EnquiriesCreateEnquirieController } from './create-enquirie.controller';
-import { EnquiriesCreateEnquirieService } from '../services/create-enquirie.service';
+import { EnquiriesCreateEnquirieController } from './enquiries-create-enquirie.controller';
+import { EnquiriesCreateEnquirieService } from '../services/enquiries-create-enquirie.service';
 
 describe('CreateEnquirieController', () => {
   let controller: EnquiriesCreateEnquirieController;

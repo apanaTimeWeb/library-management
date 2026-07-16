@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Plan } from '@/core/entities/plan.entity';
-import { PlansCreatePlanDto } from '../dto/create-plan.dto';
+import { PlansCreatePlanDto } from '../dto/plans-create-plan.dto';
 import { PlanAlreadyExistsException } from '../exceptions/plans.exceptions';
 
 @Injectable()

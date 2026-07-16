@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Seat } from '@/core/entities/seat.entity';
-import { SeatsUpdateSeatDto } from '../dto/update-seat.dto';
+import { SeatsUpdateSeatDto } from '../dto/seats-update-seat.dto';
 import { SeatNotFoundException } from '../exceptions/seats.exceptions';
 
 @Injectable()

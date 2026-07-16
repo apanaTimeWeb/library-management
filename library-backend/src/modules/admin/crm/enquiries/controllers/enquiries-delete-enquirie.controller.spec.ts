@@ -1,6 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { EnquiriesDeleteEnquirieController } from './delete-enquirie.controller';
-import { EnquiriesDeleteEnquirieService } from '../services/delete-enquirie.service';
+import { EnquiriesDeleteEnquirieController } from './enquiries-delete-enquirie.controller';
+import { EnquiriesDeleteEnquirieService } from '../services/enquiries-delete-enquirie.service';
 
 describe('DeleteEnquirieController', () => {
   let controller: EnquiriesDeleteEnquirieController;

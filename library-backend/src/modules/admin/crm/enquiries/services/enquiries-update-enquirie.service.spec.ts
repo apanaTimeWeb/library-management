@@ -1,5 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { EnquiriesUpdateEnquirieService } from './update-enquirie.service';
+import { EnquiriesUpdateEnquirieService } from './enquiries-update-enquirie.service';
 
 describe('UpdateEnquirieService', () => {
   let service: EnquiriesUpdateEnquirieService;

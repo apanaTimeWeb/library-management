@@ -1,6 +1,6 @@
 import { Controller, Get, Query } from '@nestjs/common';
-import { SeatsGetAllService } from '../services/get-all-seats.service';
-import { SeatsGetSeatsQueryDto } from '../dto/get-seats-query.dto';
+import { SeatsGetAllService } from '../services/seats-get-all-seats.service';
+import { SeatsGetSeatsQueryDto } from '../dto/seats-get-seats-query.dto';
 
 @Controller('v1/admin/seats')
 export class SeatsGetAllController {

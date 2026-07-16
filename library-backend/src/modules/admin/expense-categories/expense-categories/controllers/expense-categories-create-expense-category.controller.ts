@@ -1,6 +1,6 @@
 import { Controller, Post, Body } from '@nestjs/common';
-import { ExpenseCategoriesCreateExpenseCategoryService } from '../services/create-expense-category.service';
-import { ExpenseCategoriesCreateExpenseCategoryDto } from '../dto/create-expense-category.dto';
+import { ExpenseCategoriesCreateExpenseCategoryService } from '../services/expense-categories-create-expense-category.service';
+import { ExpenseCategoriesCreateExpenseCategoryDto } from '../dto/expense-categories-create-expense-category.dto';
 
 @Controller('v1/admin/expense-categories')
 export class ExpenseCategoriesCreateExpenseCategoryController {

@@ -1,6 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { UsersDeleteUserController } from './delete-user.controller';
-import { UsersDeleteUserService } from '../services/delete-user.service';
+import { UsersDeleteUserController } from './users-delete-user.controller';
+import { UsersDeleteUserService } from '../services/users-delete-user.service';
 
 describe('DeleteUserController', () => {
   let controller: UsersDeleteUserController;

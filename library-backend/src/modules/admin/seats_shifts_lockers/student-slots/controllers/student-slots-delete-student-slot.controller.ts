@@ -1,5 +1,5 @@
 import { Controller, Delete, Param } from '@nestjs/common';
-import { StudentSlotsDeleteStudentSlotService } from '../services/delete-student-slot.service';
+import { StudentSlotsDeleteStudentSlotService } from '../services/student-slots-delete-student-slot.service';
 
 @Controller('v1/admin/student-slots')
 export class StudentSlotsDeleteStudentSlotController {

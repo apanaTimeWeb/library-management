@@ -1,6 +1,6 @@
 import { Controller, Post, Body } from '@nestjs/common';
-import { SeatHistoryCreateService } from '../services/create-seat-history.service';
-import { SeatHistoryCreateDto } from '../dto/create-seat-history.dto';
+import { SeatHistoryCreateService } from '../services/seat-history-create-seat-history.service';
+import { SeatHistoryCreateDto } from '../dto/seat-history-create-seat-history.dto';
 
 @Controller('v1/admin/seat-history')
 export class SeatHistoryCreateController {

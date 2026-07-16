@@ -1,5 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { EnquiriesDeleteEnquirieService } from './delete-enquirie.service';
+import { EnquiriesDeleteEnquirieService } from './enquiries-delete-enquirie.service';
 
 describe('DeleteEnquirieService', () => {
   let service: EnquiriesDeleteEnquirieService;

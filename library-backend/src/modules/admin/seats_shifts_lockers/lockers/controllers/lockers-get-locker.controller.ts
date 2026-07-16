@@ -1,5 +1,5 @@
 import { Controller, Get, Param } from '@nestjs/common';
-import { LockersGetLockerService } from '../services/get-locker.service';
+import { LockersGetLockerService } from '../services/lockers-get-locker.service';
 
 @Controller('v1/admin/lockers')
 export class LockersGetLockerController {

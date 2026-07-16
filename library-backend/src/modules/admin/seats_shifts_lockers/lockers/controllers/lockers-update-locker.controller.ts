@@ -1,6 +1,6 @@
 import { Controller, Patch, Param, Body } from '@nestjs/common';
-import { LockersUpdateLockerService } from '../services/update-locker.service';
-import { LockersUpdateLockerDto } from '../dto/update-locker.dto';
+import { LockersUpdateLockerService } from '../services/lockers-update-locker.service';
+import { LockersUpdateLockerDto } from '../dto/lockers-update-locker.dto';
 
 @Controller('v1/admin/lockers')
 export class LockersUpdateLockerController {

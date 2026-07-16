@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository, FindOptionsWhere, ILike } from 'typeorm';
 import { Shift } from '@/core/entities/shift.entity';
-import { ShiftsGetShiftsQueryDto } from '../dto/get-shifts-query.dto';
+import { ShiftsGetShiftsQueryDto } from '../dto/shifts-get-shifts-query.dto';
 
 @Injectable()
 export class ShiftsGetAllService {

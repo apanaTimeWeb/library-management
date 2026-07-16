@@ -1,6 +1,6 @@
 import { Controller, Get, Query } from '@nestjs/common';
-import { ShiftMigrationsGetAllService } from '../services/get-all-shift-migrations.service';
-import { ShiftMigrationsGetShiftMigrationsQueryDto } from '../dto/get-shift-migrations-query.dto';
+import { ShiftMigrationsGetAllService } from '../services/shift-migrations-get-all-shift-migrations.service';
+import { ShiftMigrationsGetShiftMigrationsQueryDto } from '../dto/shift-migrations-get-shift-migrations-query.dto';
 
 @Controller('v1/admin/shift-migrations')
 export class ShiftMigrationsGetAllController {

@@ -1,6 +1,6 @@
 import { Controller, Get, Query } from '@nestjs/common';
-import { ExpensesGetAllService } from '../services/get-all-expenses.service';
-import { ExpensesGetExpensesQueryDto } from '../dto/get-expenses-query.dto';
+import { ExpensesGetAllService } from '../services/expenses-get-all-expenses.service';
+import { ExpensesGetExpensesQueryDto } from '../dto/expenses-get-expenses-query.dto';
 
 @Controller('v1/admin/expenses')
 export class ExpensesGetAllController {

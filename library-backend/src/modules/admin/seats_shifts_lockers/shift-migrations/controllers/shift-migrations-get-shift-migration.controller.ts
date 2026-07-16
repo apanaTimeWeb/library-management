@@ -1,5 +1,5 @@
 import { Controller, Get, Param } from '@nestjs/common';
-import { ShiftMigrationsGetShiftMigrationService } from '../services/get-shift-migration.service';
+import { ShiftMigrationsGetShiftMigrationService } from '../services/shift-migrations-get-shift-migration.service';
 
 @Controller('v1/admin/shift-migrations')
 export class ShiftMigrationsGetShiftMigrationController {

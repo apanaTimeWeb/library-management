@@ -1,6 +1,6 @@
 import { Controller, Delete } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
-import { EnquiriesDeleteEnquirieService } from '../services/delete-enquirie.service';
+import { EnquiriesDeleteEnquirieService } from '../services/enquiries-delete-enquirie.service';
 
 @ApiTags('Admin Enquiries')
 @Controller('admin/enquiries')

@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { StudentSlot } from '@/core/entities/student-slot.entity';
-import { StudentSlotsUpdateStudentSlotDto } from '../dto/update-student-slot.dto';
+import { StudentSlotsUpdateStudentSlotDto } from '../dto/student-slots-update-student-slot.dto';
 import { StudentSlotNotFoundException } from '../exceptions/student-slots.exceptions';
 
 @Injectable()

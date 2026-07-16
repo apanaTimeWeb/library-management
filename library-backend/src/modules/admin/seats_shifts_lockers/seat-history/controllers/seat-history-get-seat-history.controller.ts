@@ -1,5 +1,5 @@
 import { Controller, Get, Param } from '@nestjs/common';
-import { SeatHistoryGetService } from '../services/get-seat-history.service';
+import { SeatHistoryGetService } from '../services/seat-history-get-seat-history.service';
 
 @Controller('v1/admin/seat-history')
 export class SeatHistoryGetController {

@@ -1,6 +1,6 @@
 import { Controller, Patch, Param, Body } from '@nestjs/common';
-import { SeatsUpdateSeatService } from '../services/update-seat.service';
-import { SeatsUpdateSeatDto } from '../dto/update-seat.dto';
+import { SeatsUpdateSeatService } from '../services/seats-update-seat.service';
+import { SeatsUpdateSeatDto } from '../dto/seats-update-seat.dto';
 
 @Controller('v1/admin/seats')
 export class SeatsUpdateSeatController {

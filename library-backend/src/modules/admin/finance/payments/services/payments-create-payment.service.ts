@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Payment } from '@/core/entities/payment.entity';
-import { PaymentsCreatePaymentDto } from '../dto/create-payment.dto';
+import { PaymentsCreatePaymentDto } from '../dto/payments-create-payment.dto';
 
 @Injectable()
 export class PaymentsCreatePaymentService {

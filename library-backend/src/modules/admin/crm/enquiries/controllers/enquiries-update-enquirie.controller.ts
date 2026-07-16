@@ -1,6 +1,6 @@
 import { Controller, Patch } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
-import { EnquiriesUpdateEnquirieService } from '../services/update-enquirie.service';
+import { EnquiriesUpdateEnquirieService } from '../services/enquiries-update-enquirie.service';
 
 @ApiTags('Admin Enquiries')
 @Controller('admin/enquiries')

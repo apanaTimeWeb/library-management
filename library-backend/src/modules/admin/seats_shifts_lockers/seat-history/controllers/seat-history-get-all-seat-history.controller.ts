@@ -1,6 +1,6 @@
 import { Controller, Get, Query } from '@nestjs/common';
-import { SeatHistoryGetAllSeatHistoriesService } from '../services/get-all-seat-history.service';
-import { SeatHistoryGetSeatHistoriesQueryDto } from '../dto/get-seat-history-query.dto';
+import { SeatHistoryGetAllSeatHistoriesService } from '../services/seat-history-get-all-seat-history.service';
+import { SeatHistoryGetSeatHistoriesQueryDto } from '../dto/seat-history-get-seat-history-query.dto';
 
 @Controller('v1/admin/seat-history')
 export class SeatHistoryGetAllSeatHistoriesController {

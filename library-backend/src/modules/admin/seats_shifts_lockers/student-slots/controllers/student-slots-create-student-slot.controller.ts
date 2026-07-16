@@ -1,6 +1,6 @@
 import { Controller, Post, Body } from '@nestjs/common';
-import { StudentSlotsCreateStudentSlotService } from '../services/create-student-slot.service';
-import { StudentSlotsCreateStudentSlotDto } from '../dto/create-student-slot.dto';
+import { StudentSlotsCreateStudentSlotService } from '../services/student-slots-create-student-slot.service';
+import { StudentSlotsCreateStudentSlotDto } from '../dto/student-slots-create-student-slot.dto';
 
 @Controller('v1/admin/student-slots')
 export class StudentSlotsCreateStudentSlotController {
