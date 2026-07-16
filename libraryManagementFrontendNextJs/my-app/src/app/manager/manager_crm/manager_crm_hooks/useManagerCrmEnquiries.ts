@@ -14,10 +14,9 @@ function useDebounce<T>(value: T, delay: number): T {
 
 /**
  * Custom hook to manage Enquiries data, searching, and filtering.
- * DATA FLOW: API → useEnquiries → EnquiriesClient
+ * DATA FLOW: API → useManagerCrmEnquiries → ManagerCrmEnquiriesClient
  */
-// DATA FLOW: API → useEnquiries.ts → EnquiriesComponent
-export function useEnquiries() {
+export function useManagerCrmEnquiries() {
   const { enquiries, status, error, fetchData, updateEnquiryStatus } = useCrmStore();
   
   const [view, setView] = useState<'kanban' | 'table'>('kanban');

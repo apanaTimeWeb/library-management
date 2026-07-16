@@ -21,20 +21,23 @@ import {
   AlertTriangle,
 } from 'lucide-react';
 import data from '@/app/manager/manager_crm/manager_crm_shared_components/hardcoded.json';
+import { MANAGER_CRM_URLS } from '@/app/manager/manager_crm/manager_crm_url_config';
 import {
   type Enquiry,
   type EnquiryStatus,
   type FollowUp,
-  STATUS_BADGE,
-  maskPhone,
-  getInitials,
-} from '@/app/manager/manager_crm/manager_crm_shared_components/types';
+  type FollowUp,
+} from '@/app/manager/manager_crm/manager_crm_types';
+import { STATUS_BADGE } from '@/app/manager/manager_crm/manager_crm_constants';
+import { maskPhone, getInitials } from '@/app/manager/manager_crm/manager_crm_utils';
 import {
   followUpSchema,
   type FollowUpFormData,
   markLostSchema,
   type MarkLostFormData,
-} from '@/app/manager/manager_crm/manager_crm_shared_components/schema';
+} from '@/app/manager/manager_crm/manager_crm_shared_components/manager_crm_schema';
+
+// RESPONSIBILITY: Detail view page for a specific enquiry.
 
 /* ── Status Select options ─────────────────────────────── */
 const STATUS_OPTIONS: EnquiryStatus[] = ['New', 'Visited', 'Interested', 'Converted', 'Lost'];
@@ -64,24 +67,24 @@ function MarkLostModal({ onConfirm, onCancel, isSubmitting }: MarkLostModalProps
   const onSubmit = (d: MarkLostFormData) => onConfirm(d.reason ?? '');
 
   return (
-    <div className="crm-modal-overlay" onClick={onCancel}>
+    <div className="fixed inset-0 bg-black/65 backdrop-blur-md z-[200]" onClick={onCancel}>
       <div
-        className="crm-modal"
+        className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90%] max-w-[400px] bg-bg-card border border-border rounded-xl shadow-2xl p-6 z-[201] flex flex-col"
         role="dialog"
         aria-label="Mark enquiry as lost"
         aria-modal="true"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Icon + title */}
-        <div className="crm-modal-header">
-          <div className="crm-modal-icon-wrap">
-            <AlertTriangle size={22} className="crm-modal-icon-danger" />
+        <div className="flex gap-4 items-start mb-6">
+          <div className="w-10 h-10 rounded-full bg-danger/10 flex items-center justify-center shrink-0">
+            <AlertTriangle size={22} className="text-danger" />
           </div>
           <div>
-            <h3 className="crm-modal-title">Mark as Lost?</h3>
-            <p className="crm-modal-desc">
+            <h3 className="text-lg font-bold text-text-primary m-0">Mark as Lost?</h3>
+            <p className="text-sm text-text-secondary mt-1">
               This will move the enquiry to the{' '}
-              <strong className="crm-modal-desc-danger">Lost</strong> column.
+              <strong className="text-danger font-semibold">Lost</strong> column.
               You can still view the full history and re-open it later.
             </p>
           </div>
@@ -89,24 +92,24 @@ function MarkLostModal({ onConfirm, onCancel, isSubmitting }: MarkLostModalProps
 
         {/* Optional reason */}
         <form id="mark-lost-form" onSubmit={handleSubmit(onSubmit)}>
-          <div className="crm-modal-field">
-            <label className="crm-label" htmlFor="lost-reason">
-              Reason <span className="crm-label-optional">(optional)</span>
+          <div className="flex flex-col gap-1.5 mb-6">
+            <label className="text-xs font-semibold text-text-secondary uppercase tracking-wider mb-1" htmlFor="lost-reason">
+              Reason <span className="text-[11px] font-normal text-text-disabled normal-case">(optional)</span>
             </label>
             <textarea
               id="lost-reason"
               rows={3}
-              className="crm-textarea"
+              className="w-full px-3.5 py-2.5 rounded-lg text-sm bg-bg-input text-text-primary border border-border focus:border-primary focus:ring-4 focus:ring-primary/15 outline-none placeholder:text-text-secondary resize-y min-h-[80px] transition-all"
               placeholder="e.g. Didn't respond after 3 follow-ups, found another library…"
               {...register('reason')}
             />
           </div>
 
           {/* Buttons */}
-          <div className="crm-modal-btns">
+          <div className="flex gap-3">
             <button
               type="button"
-              className="crm-btn-ghost crm-btn-flex-1"
+              className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-lg text-sm font-medium bg-transparent text-text-primary border border-border hover:bg-border/40 transition-all flex-1"
               onClick={onCancel}
             >
               Cancel
@@ -114,12 +117,12 @@ function MarkLostModal({ onConfirm, onCancel, isSubmitting }: MarkLostModalProps
             <button
               type="submit"
               form="mark-lost-form"
-              className="crm-btn-danger-solid crm-btn-flex-1"
+              className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-lg text-sm font-semibold bg-danger text-white hover:opacity-90 active:scale-95 transition-all disabled:opacity-55 disabled:cursor-not-allowed flex-1"
               disabled={isSubmitting}
             >
               {isSubmitting ? (
                 <>
-                  <span className="crm-spinner" />
+                  <span className="animate-spin w-4 h-4 border-2 border-current border-t-transparent rounded-full" />
                   Marking…
                 </>
               ) : (
@@ -148,11 +151,11 @@ function InfoItem({
 }) {
   return (
     <div>
-      <p className="crm-info-item-label">
+      <p className="flex items-center gap-1.5 text-xs font-medium text-text-secondary mb-1">
         {icon}
         {label}
       </p>
-      <p className="crm-info-item-value">{value}</p>
+      <p className="text-sm font-semibold text-text-primary m-0">{value}</p>
     </div>
   );
 }
@@ -211,6 +214,9 @@ export default function EnquiryDetailPage({
         })
         .catch((err) => {
           logger.error('Failed to load enquiry detail', { id, message: err instanceof Error ? err.message : String(err) });
+        });
+    });
+  }, [id]);
 
   // ── Follow-up form ──
   const {
@@ -225,20 +231,20 @@ export default function EnquiryDetailPage({
 
   /* ── Loading / Not found ── */
   if (loading) {
-    return <div className="crm-page crm-empty-state"><p>Loading...</p></div>;
+    return <div className="p-6 md:p-8 max-w-7xl mx-auto min-h-full space-y-6 flex flex-col items-center justify-center p-12 text-center h-full"><p>Loading...</p></div>;
   }
 
   if (!enquiry) {
     return (
-      <div className="crm-page crm-empty-state crm-not-found">
-        <XCircle size={48} className="crm-empty-icon" />
-        <p className="crm-empty-title">Enquiry Not Found</p>
-        <p className="crm-empty-sub">
+      <div className="p-6 md:p-8 max-w-7xl mx-auto min-h-full space-y-6 flex flex-col items-center justify-center p-12 text-center h-full bg-bg-card border border-border rounded-xl">
+        <XCircle size={48} className="text-text-secondary mb-4 mx-auto" />
+        <p className="text-lg font-semibold text-text-primary mb-1">Enquiry Not Found</p>
+        <p className="text-sm text-text-secondary mb-6">
           The enquiry with ID &ldquo;{id}&rdquo; does not exist.
         </p>
         <button
-          className="crm-btn-ghost crm-mt-12"
-          onClick={() => router.push('/manager/manager_crm/enquiries')}
+          className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-lg text-sm font-medium bg-transparent text-text-primary border border-border hover:bg-border/40 transition-all mt-12"
+          onClick={() => router.push(MANAGER_CRM_URLS.ENQUIRIES)}
         >
           <ArrowLeft size={15} />
           Back to Pipeline
@@ -307,7 +313,7 @@ export default function EnquiryDetailPage({
 
   const handleConvert = () => {
     router.push(
-      `/manager/manager_students/new?name=${encodeURIComponent(enquiry.name)}&phone=${encodeURIComponent(enquiry.phone)}`
+      MANAGER_CRM_URLS.QUICK_CONVERT(enquiry.name, enquiry.phone)
     );
   };
 
@@ -379,45 +385,45 @@ export default function EnquiryDetailPage({
         />
       )}
 
-      <div className="crm-page">
+      <div className="p-6 md:p-8 max-w-7xl mx-auto min-h-full space-y-6">
 
         {/* ── Breadcrumb + Back ── */}
-        <div className="crm-detail-topbar">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 mb-6">
           <button
-            className="crm-btn-icon crm-btn-icon-back"
-            onClick={() => router.push('/manager/manager_crm/enquiries')}
+            className="p-1.5 rounded-md text-text-secondary hover:text-primary hover:bg-primary/10 transition-colors border border-border bg-bg-card shadow-sm hover:bg-border/40"
+            onClick={() => router.push(MANAGER_CRM_URLS.ENQUIRIES)}
             title="Back to Pipeline"
             aria-label="Back to pipeline"
           >
             <ArrowLeft size={18} />
           </button>
-          <nav className="crm-breadcrumb">
+          <nav className="text-xs font-medium text-text-tertiary uppercase tracking-wider">
             CRM &rsaquo; Enquiries &rsaquo;{' '}
-            <span className="crm-breadcrumb-current">{enquiry.name}</span>
+            <span className="text-text-primary font-bold">{enquiry.name}</span>
           </nav>
         </div>
 
         {/* ── Two-column layout ── */}
-        <div className="crm-detail-grid">
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_340px] gap-6 items-start">
 
           {/* ══════════════════════════════
               LEFT COLUMN  (60%)
           ══════════════════════════════ */}
-          <div className="crm-detail-left">
+          <div className="flex flex-col gap-6 min-w-0">
 
             {/* ── Info Card ── */}
-            <div className="crm-card">
-              <div className="crm-lead-header">
+            <div className="bg-bg-card border border-border rounded-xl p-6 shadow-sm">
+              <div className="flex items-center gap-5 pb-6 border-b border-border mb-6">
                 {/* Avatar */}
-                <div className="crm-avatar crm-avatar--lg">
+                <div className="rounded-full flex items-center justify-center bg-gradient-to-br from-primary to-purple font-bold text-white shrink-0 w-16 h-16 text-xl shadow-lg shadow-primary/20">
                   {getInitials(enquiry.name)}
                 </div>
-                <div className="crm-lead-header-body">
-                  <div className="crm-lead-title-row">
-                    <h1 className="crm-lead-name">{enquiry.name}</h1>
+                <div className="flex flex-col gap-1.5 min-w-0">
+                  <div className="flex items-center gap-3 flex-wrap">
+                    <h1 className="text-2xl font-bold text-text-primary m-0 truncate">{enquiry.name}</h1>
                     <span className={`crm-badge ${statusBadgeCls}`}>{enquiry.status}</span>
                   </div>
-                  <p className="crm-lead-phone">
+                  <p className="flex items-center gap-1.5 text-sm text-text-secondary font-mono m-0">
                     <Phone size={13} />
                     +91 {enquiry.phone}
                   </p>
@@ -425,7 +431,7 @@ export default function EnquiryDetailPage({
               </div>
 
               {/* Details grid */}
-              <div className="crm-info-grid">
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-6">
                 <InfoItem icon={<Tag size={14} />}          label="Source"           value={enquiry.source} />
                 <InfoItem icon={<Clock size={14} />}        label="Preferred Shift"  value={enquiry.shift} />
                 <InfoItem icon={<User size={14} />}         label="Handled By"       value={enquiry.handledBy} />
@@ -436,28 +442,28 @@ export default function EnquiryDetailPage({
             </div>
 
             {/* ── Timeline ── */}
-            <div className="crm-card">
-              <h2 className="crm-section-title">Activity Timeline</h2>
+            <div className="bg-bg-card border border-border rounded-xl p-6 shadow-sm">
+              <h2 className="text-[15px] font-bold text-text-primary mb-5 m-0">Activity Timeline</h2>
 
               {enquiry.followUps.length === 0 ? (
-                <div className="crm-empty-state-sm">
-                  <Clock size={32} className="crm-empty-icon" />
-                  <p className="crm-empty-sub">No follow-ups recorded yet</p>
+                <div className="flex flex-col items-center justify-center p-8 text-center border-2 border-dashed border-border rounded-xl bg-bg-elevated/50">
+                  <Clock size={32} className="text-text-secondary mb-4 mx-auto" />
+                  <p className="text-sm text-text-secondary mb-6">No follow-ups recorded yet</p>
                 </div>
               ) : (
-                <div className="crm-timeline">
+                <div className="relative pl-3 border-l-2 border-border/50 space-y-6">
                   {enquiry.followUps.map(( fu: any ) => (
-                    <div className="crm-timeline-entry" key={fu.id}>
+                    <div className="relative" key={fu.id}>
                       <div className={`crm-timeline-dot ${timelineDotClass(fu.by)}`} />
-                      <div className="crm-timeline-card">
-                        <div className="crm-timeline-card-header">
-                          <p className="crm-timeline-date">
+                      <div className="bg-bg-input border border-border rounded-lg p-4 transition-colors hover:border-text-secondary">
+                        <div className="flex items-center justify-between mb-2">
+                          <p className="text-xs font-semibold text-text-primary m-0 flex items-center gap-2">
                             {fu.date}
-                            <span className="crm-timeline-time">{fu.time}</span>
+                            <span className="text-text-tertiary font-normal">{fu.time}</span>
                           </p>
-                          <p className="crm-timeline-by">by {fu.by}</p>
+                          <p className="text-[11px] font-medium text-text-secondary uppercase tracking-wider m-0">by {fu.by}</p>
                         </div>
-                        <p className="crm-timeline-remark">{fu.remark}</p>
+                        <p className="text-sm text-text-secondary leading-relaxed m-0">{fu.remark}</p>
                       </div>
                     </div>
                   ))}
@@ -470,15 +476,15 @@ export default function EnquiryDetailPage({
           {/* ══════════════════════════════
               RIGHT COLUMN  (40%) — sticky
           ══════════════════════════════ */}
-          <div className="crm-detail-right">
+          <div className="flex flex-col gap-6 lg:sticky lg:top-24">
 
             {/* ── Status Update Card ── */}
-            <div className="crm-card">
-              <h3 className="crm-section-label">Current Status</h3>
-              <div className="crm-status-row">
-                <div className="crm-select-wrap">
+            <div className="bg-bg-card border border-border rounded-xl p-6 shadow-sm">
+              <h3 className="text-xs font-bold text-text-secondary uppercase tracking-widest mb-4 m-0">Current Status</h3>
+              <div className="flex items-center gap-3">
+                <div className="relative flex-1">
                   <select
-                    className="crm-select"
+                    className="w-full px-3 py-2 rounded-lg text-sm bg-bg-input text-text-primary border border-border focus:border-primary outline-none transition-colors appearance-none cursor-pointer"
                     value={currentStatus}
                     onChange={(e) => setCurrentStatus(e.target.value as EnquiryStatus)}
                   >
@@ -488,27 +494,27 @@ export default function EnquiryDetailPage({
                   </select>
                 </div>
                 <button
-                  className="crm-btn-primary"
+                  className="inline-flex items-center justify-center gap-2 px-5 py-2 rounded-lg text-sm font-semibold bg-primary text-white hover:opacity-90 transition-all disabled:opacity-55 disabled:cursor-not-allowed"
                   onClick={handleStatusUpdate}
                   disabled={statusUpdating || currentStatus === enquiry.status}
                 >
-                  {statusUpdating ? <span className="crm-spinner" /> : <CheckCircle size={14} />}
+                  {statusUpdating ? <span className="animate-spin w-4 h-4 border-2 border-current border-t-transparent rounded-full" /> : <CheckCircle size={14} />}
                   {statusUpdating ? 'Saving…' : 'Update'}
                 </button>
               </div>
             </div>
 
             {/* ── Add Follow-Up Card ── */}
-            <div className="crm-card">
-              <h3 className="crm-section-label">Add Follow-Up</h3>
+            <div className="bg-bg-card border border-border rounded-xl p-6 shadow-sm">
+              <h3 className="text-xs font-bold text-text-secondary uppercase tracking-widest mb-4 m-0">Add Follow-Up</h3>
               <form
                 id="followup-form"
                 onSubmit={handleSubmitFU(handleAddFollowUp)}
                 noValidate
-                className="crm-form-stack"
+                className="flex flex-col gap-4"
               >
-                <div className="crm-field">
-                  <label htmlFor="fu-date" className="crm-label crm-label--required">
+                <div className="flex flex-col gap-1.5">
+                  <label htmlFor="fu-date" className="text-xs font-semibold text-text-secondary uppercase tracking-wider mb-1 after:content-['*'] after:text-danger after:ml-1">
                     Follow-up Date
                   </label>
                   <input
@@ -521,8 +527,8 @@ export default function EnquiryDetailPage({
                   {fuErrors.date && <p className="crm-error">{fuErrors.date.message}</p>}
                 </div>
 
-                <div className="crm-field">
-                  <label htmlFor="fu-remark" className="crm-label crm-label--required">
+                <div className="flex flex-col gap-1.5">
+                  <label htmlFor="fu-remark" className="text-xs font-semibold text-text-secondary uppercase tracking-wider mb-1 after:content-['*'] after:text-danger after:ml-1">
                     Remark
                   </label>
                   <textarea
@@ -537,12 +543,12 @@ export default function EnquiryDetailPage({
 
                 <button
                   type="submit"
-                  className="crm-btn-primary crm-btn-full"
+                  className="inline-flex items-center justify-center gap-2 px-5 py-2 rounded-lg text-sm font-semibold bg-primary text-white hover:opacity-90 transition-all disabled:opacity-55 disabled:cursor-not-allowed w-full"
                   disabled={fuSubmitting}
                 >
                   {fuSubmitting ? (
                     <>
-                      <span className="crm-spinner" /> Adding…
+                      <span className="animate-spin w-4 h-4 border-2 border-current border-t-transparent rounded-full" /> Adding…
                     </>
                   ) : (
                     <>
@@ -555,9 +561,9 @@ export default function EnquiryDetailPage({
               {/* Next follow-up display */}
               {(enquiry.isToday || enquiry.isUpcoming || enquiry.isOverdue) && (
                 <>
-                  <div className="crm-divider" />
-                  <div className="crm-followup-next">
-                    <div className="crm-followup-next-left">
+                  <div className="h-px bg-border my-5" />
+                  <div className="flex items-center justify-between bg-bg-elevated border border-border rounded-lg p-3">
+                    <div className="flex items-center gap-2 text-xs text-text-secondary">
                       <CalendarDays size={13} />
                       <span>
                         Next follow-up:{' '}
@@ -565,7 +571,7 @@ export default function EnquiryDetailPage({
                       </span>
                     </div>
                     <button
-                      className="crm-btn-icon"
+                      className="p-1.5 rounded-md text-text-secondary hover:text-primary hover:bg-primary/10 transition-colors"
                       title="Edit follow-up date"
                       aria-label="Edit follow-up date"
                     >
@@ -577,12 +583,12 @@ export default function EnquiryDetailPage({
             </div>
 
             {/* ── Actions Card ── */}
-            <div className="crm-card crm-form-stack">
-              <h3 className="crm-section-label">Actions</h3>
+            <div className="bg-bg-card border border-border rounded-xl p-6 shadow-sm flex flex-col gap-4">
+              <h3 className="text-xs font-bold text-text-secondary uppercase tracking-widest mb-4 m-0">Actions</h3>
 
               {/* Convert to Admission */}
               <button
-                className="crm-btn-success crm-btn-full"
+                className="inline-flex items-center justify-center gap-2 px-5 py-2 rounded-lg text-sm font-semibold bg-success text-white hover:opacity-90 transition-all disabled:opacity-55 w-full"
                 onClick={handleConvert}
                 disabled={enquiry.status === 'Converted'}
               >
@@ -594,7 +600,7 @@ export default function EnquiryDetailPage({
 
               {/* Mark as Lost */}
               <button
-                className="crm-btn-danger crm-btn-full"
+                className="inline-flex items-center justify-center gap-2 px-5 py-2 rounded-lg text-sm font-semibold border border-danger text-danger hover:bg-danger/10 transition-all disabled:opacity-55 w-full"
                 onClick={() => setShowLostModal(true)}
                 disabled={enquiry.status === 'Lost'}
               >

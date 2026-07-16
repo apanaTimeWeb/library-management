@@ -1,5 +1,7 @@
 'use client';
 
+// RESPONSIBILITY: Renders the sidebar navigation for the CRM module.
+
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import {
@@ -131,32 +133,32 @@ const NAV: NavGroup[] = [
   },
 ];
 
-interface SidebarProps {
+interface ManagerCrmSidebarProps {
   isOpen?: boolean;
   onClose?: () => void;
 }
 
-export default function Sidebar({ isOpen, onClose }: SidebarProps) {
+export function ManagerCrmSidebar({ isOpen, onClose }: ManagerCrmSidebarProps) {
   const pathname = usePathname();
 
   return (
-    <aside className={`crm-sidebar${isOpen ? ' crm-sidebar--open' : ''}`}>
-      <div className="crm-sidebar-spacer" />
+    <aside className={`fixed left-0 top-16 h-[calc(100vh-64px)] w-60 z-40 bg-bg-sidebar border-r border-border overflow-y-auto overflow-x-hidden scrollbar-thin transition-all duration-250 ${isOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}`}>
+      <div className="h-3" />
 
       {NAV.map((group, gi) => (
         <div key={gi}>
-          {group.group && <p className="crm-nav-group-label">{group.group}</p>}
+          {group.group && <p className="text-[10px] font-semibold text-text-disabled uppercase tracking-widest px-5 pt-4 pb-1.5 m-0">{group.group}</p>}
 
           {group.items.map((item) => {
             const active =
-              item.href === '/crm/enquiries'
-                ? pathname.startsWith('/crm/enquiries')
+              item.href === '/manager/manager_crm/enquiries'
+                ? pathname.startsWith('/manager/manager_crm/enquiries')
                 : pathname === item.href || pathname.startsWith(item.href + '/');
             return (
               <Link
                 key={item.href}
                 href={item.href}
-                className={`crm-nav-item${active ? ' crm-nav-item--active' : ''}`}
+                className={`flex items-center gap-2.5 px-5 py-2.5 text-[13.5px] font-medium no-underline transition-colors border-l-4 ${active ? 'bg-primary/10 text-primary border-primary font-semibold' : 'text-text-secondary border-transparent hover:bg-primary/5 hover:text-text-primary'}`}
                 onClick={onClose}
                 title={item.label}
               >
@@ -168,7 +170,7 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
         </div>
       ))}
 
-      <div className="crm-sidebar-bottom" />
+      <div className="h-6" />
     </aside>
   );
 }

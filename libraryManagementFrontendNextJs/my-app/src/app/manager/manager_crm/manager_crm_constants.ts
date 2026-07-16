@@ -1,11 +1,46 @@
 import type { EnquiryStatus, KanbanColumn } from '@/app/manager/manager_crm/manager_crm_types';
 
 export const KANBAN_COLUMNS: KanbanColumn[] = [
-  { id: 'New', label: 'New Leads', cardClass: 'crm-col-new' },
-  { id: 'Visited', label: 'Visited', cardClass: 'crm-col-visited' },
-  { id: 'Interested', label: 'Interested', cardClass: 'crm-col-interested' },
-  { id: 'Converted', label: 'Converted', cardClass: 'crm-col-converted' },
-  { id: 'Lost', label: 'Lost', cardClass: 'crm-col-lost' },
+  {
+    id: 'New',
+    label: 'New',
+    colorClass: 'crm-col-label--new',
+    dotColor: 'crm-col-dot--new',
+    cardClass: 'crm-kanban-card--new',
+    badgeClass: 'crm-badge--new',
+  },
+  {
+    id: 'Visited',
+    label: 'Visited',
+    colorClass: 'crm-col-label--visited',
+    dotColor: 'crm-col-dot--visited',
+    cardClass: 'crm-kanban-card--visited',
+    badgeClass: 'crm-badge--visited',
+  },
+  {
+    id: 'Interested',
+    label: 'Interested',
+    colorClass: 'crm-col-label--interested',
+    dotColor: 'crm-col-dot--interested',
+    cardClass: 'crm-kanban-card--interested',
+    badgeClass: 'crm-badge--interested',
+  },
+  {
+    id: 'Converted',
+    label: 'Converted',
+    colorClass: 'crm-col-label--converted',
+    dotColor: 'crm-col-dot--converted',
+    cardClass: 'crm-kanban-card--converted',
+    badgeClass: 'crm-badge--converted',
+  },
+  {
+    id: 'Lost',
+    label: 'Lost',
+    colorClass: 'crm-col-label--lost',
+    dotColor: 'crm-col-dot--lost',
+    cardClass: 'crm-kanban-card--lost',
+    badgeClass: 'crm-badge--neutral',
+  },
 ];
 
 export const STATUS_BADGE: Record<EnquiryStatus, string> = {

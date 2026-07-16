@@ -2,13 +2,14 @@
 
 import { useRouter } from 'next/navigation';
 import { LayoutGrid, List, Plus, Search } from 'lucide-react';
-import { useEnquiries } from '@/app/manager/manager_crm/manager_crm_hooks/useEnquiries';
-import { EnquiriesKanban } from '@/app/manager/manager_crm/manager_crm_components/EnquiriesKanban';
-import { EnquiriesTable } from '@/app/manager/manager_crm/manager_crm_components/EnquiriesTable';
+import { useManagerCrmEnquiries } from '@/app/manager/manager_crm/manager_crm_hooks/useManagerCrmEnquiries';
+import { ManagerCrmEnquiriesKanban } from '@/app/manager/manager_crm/manager_crm_components/ManagerCrmEnquiriesKanban';
+import { ManagerCrmEnquiriesTable } from '@/app/manager/manager_crm/manager_crm_components/ManagerCrmEnquiriesTable';
+import { MANAGER_CRM_URLS } from '@/app/manager/manager_crm/manager_crm_url_config';
 
 // RESPONSIBILITY: Main Client view for CRM Enquiries.
 
-export function EnquiriesClient() {
+export function ManagerCrmEnquiriesClient() {
   const router = useRouter();
   const {
     status, error, filtered,
@@ -16,23 +17,23 @@ export function EnquiriesClient() {
     search, setSearch,
     statusFilter, setStatusFilter,
     getCardsByStatus, updateEnquiryStatus
-  } = useEnquiries();
+  } = useManagerCrmEnquiries();
 
   if (status === 'error') return <div className="p-8 text-danger">Failed to load: {error}</div>;
 
   return (
-    <div className="crm-page">
+    <div className="p-6 md:p-8 space-y-6 max-w-7xl mx-auto">
       {/* ── Page Header ── */}
-      <div className="crm-page-header">
-        <nav className="crm-breadcrumb">CRM &rsaquo; Enquiries</nav>
-        <div className="crm-page-header-row">
+      <div className="mb-8 space-y-4">
+        <nav className="text-xs font-medium text-text-tertiary uppercase tracking-wider mb-2 block">CRM &rsaquo; Enquiries</nav>
+        <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
           <div>
-            <h1 className="crm-page-title">Enquiry Pipeline</h1>
-            <p className="crm-page-subtitle">
+            <h1 className="text-2xl font-bold text-text-primary mb-1">Enquiry Pipeline</h1>
+            <p className="text-sm text-text-secondary">
               {status === 'loading' ? 'Loading...' : `${filtered.length} leads`} {'•'} Track every prospect from enquiry to admission
             </p>
           </div>
-          <div className="crm-page-header-actions">
+          <div className="flex items-center gap-3 w-full md:w-auto">
             {/* View toggle */}
             <div className="flex bg-bg-elevated p-1 rounded-md border border-border">
               <button
@@ -48,7 +49,7 @@ export function EnquiriesClient() {
                 <List size={16} />
               </button>
             </div>
-            <button className="mgr-btn-primary" onClick={() => router.push('/manager/manager_crm/enquiries/add')}>
+            <button className="mgr-btn-primary" onClick={() => router.push(MANAGER_CRM_URLS.ADD_ENQUIRY)}>
               <Plus size={16} /> Add Enquiry
             </button>
           </div>
@@ -85,9 +86,9 @@ export function EnquiriesClient() {
       {status === 'loading' ? (
         <div className="flex items-center justify-center p-24 text-text-secondary">Loading pipeline...</div>
       ) : view === 'kanban' ? (
-        <EnquiriesKanban isEmpty={filtered.length === 0} getCardsByStatus={getCardsByStatus} />
+        <ManagerCrmEnquiriesKanban isEmpty={filtered.length === 0} getCardsByStatus={getCardsByStatus} />
       ) : (
-        <EnquiriesTable filtered={filtered} updateEnquiryStatus={updateEnquiryStatus} />
+        <ManagerCrmEnquiriesTable filtered={filtered} updateEnquiryStatus={updateEnquiryStatus} />
       )}
     </div>
   );
