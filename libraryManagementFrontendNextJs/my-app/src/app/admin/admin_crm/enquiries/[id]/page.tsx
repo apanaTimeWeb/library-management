@@ -170,7 +170,7 @@ export default function EnquiryDetailPage({
   const router = useRouter();
 
   // ── Local state ──
-  const [enquiry, setEnquiry] = useState<unknown>(null);
+  const [enquiry, setEnquiry] = useState<AdminRecord | null>(null);
   const [loading, setLoading] = useState(true);
   const [currentStatus, setCurrentStatus] = useState<EnquiryStatus>('New');
   const [showLostModal, setShowLostModal] = useState(false);
