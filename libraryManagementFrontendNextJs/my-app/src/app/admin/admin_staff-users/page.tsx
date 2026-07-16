@@ -12,12 +12,12 @@ async function getStaffData(): Promise<StaffMember[]> {
     return [];
   }
   
-  const data = response.data || [];
-  return data.map((u: any) => ({
-    id: u.id,
-    name: u.fullName || 'Unknown',
-    email: u.email,
-    phone: u.phone,
+  const data = (response.data as Record<string, unknown>[]) || [];
+  return data.map((u) => ({
+    id: u.id as string,
+    name: (u.fullName as string) || 'Unknown',
+    email: u.email as string,
+    phone: u.phone as string,
     role: u.role === 'manager' ? 'Manager' : 'Staff',
     branch: 'Main Branch',
     status: u.isActive ? 'Active' : 'Inactive',

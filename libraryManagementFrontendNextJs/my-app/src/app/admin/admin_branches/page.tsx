@@ -12,13 +12,13 @@ async function getBranchesData(): Promise<Branch[]> {
     return [];
   }
   
-  const data = response.data || [];
-  return data.map((b: any) => ({
-    id: b.id,
-    name: b.name,
-    address: b.address,
-    city: b.city || 'N/A',
-    phone: b.contactPhone,
+  const data = (response.data as Record<string, unknown>[]) || [];
+  return data.map((b) => ({
+    id: b.id as string,
+    name: b.name as string,
+    address: b.address as string,
+    city: (b.city as string) || 'N/A',
+    phone: b.contactPhone as string,
     manager: 'Manager Name',
     students: 0,
     seats: 50,

@@ -1,3 +1,7 @@
+/**
+ * RESPONSIBILITY: Manages local state for admin staff users, including filtering,
+ * form handling, and statistics calculation.
+ */
 import { useState, useMemo } from 'react';
 
 export interface StaffMember {
@@ -87,7 +91,7 @@ export function useAdminStaff(initialStaff: StaffMember[]) {
   }
 
   const handleFieldChange = (k: keyof FormState) => (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-    setForm(p => ({ ...p, [k]: e.target.value as any }));
+    setForm(p => ({ ...p, [k]: e.target.value as FormState[typeof k] }));
     setErrors(p => ({ ...p, [k]: undefined }));
   };
 

@@ -1,5 +1,7 @@
+// RESPONSIBILITY: Renders the admin permissions matrix.
 'use client';
 
+import React from 'react';
 import { Shield, CheckCircle } from 'lucide-react';
 import { Toaster } from 'react-hot-toast';
 import { useAdminPermissions, type Permission } from '../admin_permissions_hooks/useAdminPermissions';

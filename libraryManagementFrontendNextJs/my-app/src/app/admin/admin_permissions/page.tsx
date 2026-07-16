@@ -49,11 +49,12 @@ async function getPermissionsData(): Promise<Permission[]> {
   const token = cookieStore.get('access_token')?.value || '';
   
   const response = await fetchAdminPermissions(token);
-  if (!response.success || !response.data || response.data.length === 0) {
+  const perms = response.data as Permission[];
+  if (!response.success || !perms || perms.length === 0) {
     return INITIAL_PERMISSIONS;
   }
   
-  return response.data;
+  return perms;
 }
 
 export default async function AdminPermissionsPage() {

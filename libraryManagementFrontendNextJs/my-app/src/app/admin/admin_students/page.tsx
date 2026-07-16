@@ -12,15 +12,15 @@ async function getStudentsData() {
   }
   
   // Mapping logic as per the original fetch
-  const data = response.data || [];
-  return data.map((s: any) => ({
-    id: 'STU-' + (s.id ? s.id.substring(0, 4).toUpperCase() : '0000'),
-    name: s.fullName || 'Unknown',
+  const data = (response.data as Record<string, unknown>[]) || [];
+  return data.map((s) => ({
+    id: 'STU-' + (s.id ? (s.id as string).substring(0, 4).toUpperCase() : '0000'),
+    name: (s.fullName as string) || 'Unknown',
     shift: 'Morning',
     seat: 'A-10',
     plan: 'Monthly',
     status: 'Active',
-    branch: s.branch || 'Main Branch'
+    branch: (s.branch as string) || 'Main Branch'
   }));
 }
 

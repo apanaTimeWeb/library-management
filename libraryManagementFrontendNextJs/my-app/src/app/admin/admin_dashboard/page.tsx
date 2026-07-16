@@ -24,14 +24,24 @@ async function getDashboardData() {
   return response.data;
 }
 
-export default async function AdminDashboardPage() {
-  const data = await getDashboardData();
-  if (!data) return <div className="p-8">Failed to load dashboard data. Check backend connection.</div>;
+interface DashboardData {
+  actionItems: { label: string; count: number; type: string; href?: string }[];
+  kpiCards: { label: string; value: string; trend: { value: string; up: boolean }; sub: string }[];
+  seats: { id: string; status: 'free' | 'occupied' | 'expiring' | 'maintenance'; label: string; assignee?: string; shift: string; fee: 'Paid' | 'Due' }[];
+  shifts: string[];
+  recentPayments: { id: string; name: string; amount: string; date: string; status: string; initials: string; mode: 'UPI' | 'Cash' | 'Card' | 'Bank Transfer'; timeAgo: string }[];
+}
 
-  const actionItems: ActionItem[] = data.actionItems?.map((a: any) => ({
+export default async function AdminDashboardPage() {
+  const rawData = await getDashboardData();
+  if (!rawData) return <div className="p-8">Failed to load dashboard data. Check backend connection.</div>;
+  const data = rawData as unknown as DashboardData;
+
+  const actionItems: ActionItem[] = data.actionItems?.map((a) => ({
     ...a,
     icon: ADMIN_ACTION_ICONS[a.label] ?? AlertCircle,
     type: a.type as 'danger' | 'warning',
+    href: a.href || '#',
   })) || [];
 
   return (
@@ -53,7 +63,7 @@ export default async function AdminDashboardPage() {
 
       {/* Row 1: 4 KPI Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        {data.kpiCards.map((card: any, i: number) => (
+        {data.kpiCards.map((card, i: number) => (
           <KpiCard
             key={i}
             label={card.label}
@@ -61,7 +71,7 @@ export default async function AdminDashboardPage() {
             icon={ADMIN_KPI_META[i].icon}
             iconColor={ADMIN_KPI_META[i].iconColor}
             iconBg={ADMIN_KPI_META[i].iconBg}
-            trend={card.trend as { value: string; up: boolean }}
+            trend={card.trend}
             sub={card.sub}
           />
         ))}
@@ -70,7 +80,7 @@ export default async function AdminDashboardPage() {
       {/* Row 2: Seat Matrix (60%) + Action Items (40%) */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
         <div className="lg:col-span-7 xl:col-span-8 flex flex-col h-full">
-          <SeatMatrixGrid seats={data.seats as any} shifts={data.shifts} />
+          <SeatMatrixGrid seats={data.seats} shifts={data.shifts} />
         </div>
 
         <div className="lg:col-span-5 xl:col-span-4 flex flex-col h-full">
@@ -78,7 +88,7 @@ export default async function AdminDashboardPage() {
             <CardHeader className="pb-3 border-b">
               <CardTitle className="text-base">Action Items</CardTitle>
               <CardDescription className="text-xs">
-                {data.actionItems.reduce((s: number, a: any) => s + a.count, 0)} items need your attention
+                {data.actionItems.reduce((s: number, a) => s + a.count, 0)} items need your attention
               </CardDescription>
             </CardHeader>
 
@@ -107,7 +117,7 @@ export default async function AdminDashboardPage() {
       </div>
 
       {/* Row 3: Recent Payments AG Grid */}
-      <RecentPaymentsFeed payments={data.recentPayments as any} />
+      <RecentPaymentsFeed payments={data.recentPayments} />
     </div>
   );
 }
