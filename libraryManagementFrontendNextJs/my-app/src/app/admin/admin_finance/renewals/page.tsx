@@ -98,29 +98,29 @@ export default function Renewals() {
     }, 800);
   };
 
-  const colDefs = [
-    { field: 'studentName', headerName: 'Student', flex: 1, minWidth: 150, cellRenderer: (p: AdminGridCell) => <span className="fin-cell-name font-medium">{p.value}</span> },
-    { field: 'smartId', headerName: 'Smart ID', width: 120, cellRenderer: (p: AdminGridCell) => <span className="fin-mono text-sm">{p.value}</span> },
-    { field: 'shift', headerName: 'Shift', width: 110, cellRenderer: (p: AdminGridCell) => <div className="h-full flex items-center"><span className="fin-badge fin-badge--neutral">{p.value}</span></div> },
-    { field: 'plan', headerName: 'Plan', width: 110, cellRenderer: (p: AdminGridCell) => <span className="fin-text-body">{p.value}</span> },
-    { field: 'expiryDate', headerName: 'Expiry Date', width: 120, cellRenderer: (p: AdminGridCell) => <span className="fin-cell-subtext">{p.value}</span> },
+  const colDefs: any[] = [
+    { field: 'studentName', headerName: 'Student', flex: 1, minWidth: 150, cellRenderer: (p: any) => <span className="fin-cell-name font-medium">{p.value}</span> },
+    { field: 'smartId', headerName: 'Smart ID', width: 120, cellRenderer: (p: any) => <span className="fin-mono text-sm">{p.value}</span> },
+    { field: 'shift', headerName: 'Shift', width: 110, cellRenderer: (p: any) => <div className="h-full flex items-center"><span className="fin-badge fin-badge--neutral">{p.value}</span></div> },
+    { field: 'plan', headerName: 'Plan', width: 110, cellRenderer: (p: any) => <span className="fin-text-body">{p.value}</span> },
+    { field: 'expiryDate', headerName: 'Expiry Date', width: 120, cellRenderer: (p: any) => <span className="fin-cell-subtext">{p.value}</span> },
     { 
       field: 'daysLeft', 
       headerName: 'Days Left', 
       width: 120,
-      cellRenderer: (p: AdminGridCell) => (
+      cellRenderer: (p: any) => (
         <span className={p.value < 0 ? 'fin-text-danger font-semibold' : p.value <= 7 ? 'fin-text-warning font-semibold' : 'fin-text-body'}>
           {p.value < 0 ? `${Math.abs(p.value)} days ago` : `${p.value} days`}
         </span>
       )
     },
-    { field: 'lastPaymentDate', headerName: 'Last Payment', width: 130, cellRenderer: (p: AdminGridCell) => <span className="fin-cell-subtext">{p.value}</span> },
+    { field: 'lastPaymentDate', headerName: 'Last Payment', width: 130, cellRenderer: (p: any) => <span className="fin-cell-subtext">{p.value}</span> },
     { 
       field: 'due', 
       headerName: 'Due ₹', 
       width: 110,
       cellStyle: { textAlign: 'right', fontWeight: 600 },
-      cellRenderer: (p: AdminGridCell) => (
+      cellRenderer: (p: any) => (
         <span className={p.value > 0 ? 'fin-text-danger' : 'fin-text-body'}>
           {formatCurrency(p.value)}
         </span>
@@ -130,18 +130,18 @@ export default function Renewals() {
       headerName: 'Actions',
       width: 180,
       sortable: false,
-      cellRenderer: (params: AdminGridCell) => (
+      cellRenderer: (params: any) => (
         <div className="flex items-center gap-2 h-full">
           <button
             className="fin-badge fin-badge--info cursor-pointer hover:border-mgr-primary"
-            onClick={() => openRenew(params.data)}
+            onClick={() => openRenew(params?.data)}
             title="Renew Now"
           >
             <RefreshCw size={12} className="mr-1" /> Renew
           </button>
           <button
             className="fin-badge fin-badge--neutral cursor-pointer hover:border-mgr-primary"
-            onClick={() => handleRemind(params.data.studentName)}
+            onClick={() => handleRemind(params?.data?.studentName || '')}
             title="Send WhatsApp Reminder"
           >
             <Send size={12} className="mr-1" /> Remind

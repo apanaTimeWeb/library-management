@@ -10,6 +10,7 @@ import toast from 'react-hot-toast';
 import { formatCurrency } from '@/app/admin/admin_finance/admin_finance_utils/format';
 import { CheckCircle, XCircle, Undo2 } from 'lucide-react';
 import { AdminRecord } from '@/app/admin/admin_reusable/admin_reusable_utils/AdminReusableGridTheme';
+import { logger } from '@/lib/logger';
 
 const STATUS_BADGE: Record<string, string> = {
   pending:   'fin-badge fin-badge--warning',
@@ -54,7 +55,7 @@ export default function Refunds() {
 
   useEffect(() => {
     fetchApi('/finance/refunds').then(data => {
-      const mapped = data.map(( r: AdminRecord ) => ({
+      const mapped = data.map(( r: any ) => ({
         id: parseInt(r.id),
         studentName: r.name,
         smartId: 'S-001',
@@ -66,7 +67,10 @@ export default function Refunds() {
       }));
       setAllRefunds(mapped);
       setIsLoading(false);
-    }).catch(console.error);
+    }).catch(e => {
+      logger.error('Refunds fetch failed:', e);
+      setIsLoading(false);
+    });
   }, []);
 
   const filtered = allRefunds.filter((r) => statusFilter === 'all' || r.status === statusFilter);

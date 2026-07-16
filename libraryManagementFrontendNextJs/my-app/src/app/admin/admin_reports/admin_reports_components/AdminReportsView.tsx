@@ -36,7 +36,7 @@ const TOOLTIP_STYLE = {
 } as const;
 
 interface AdminReportsViewProps {
-  initialData: AdminRecord;
+  initialData: any;
 }
 
 export function AdminReportsView({ initialData }: AdminReportsViewProps) {
@@ -196,7 +196,7 @@ export function AdminReportsView({ initialData }: AdminReportsViewProps) {
                   nameKey="name"
                   strokeWidth={0}
                 >
-                  {shiftOccupancy.map((e: AdminRecord, i: number) => <Cell key={i} fill={e.color} />)}
+                  {shiftOccupancy.map((e: any, i: number) => <Cell key={i} fill={e.color} />)}
                 </Pie>
                 <Tooltip
                   {...TOOLTIP_STYLE}

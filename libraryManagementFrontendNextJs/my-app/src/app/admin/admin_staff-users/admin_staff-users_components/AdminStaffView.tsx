@@ -46,15 +46,15 @@ export function AdminStaffView({ initialStaff }: AdminStaffViewProps) {
     { field: 'phone', headerName: 'Phone', flex: 1, minWidth: 120 },
     {
       field: 'role', headerName: 'Role', flex: 1, minWidth: 120,
-      cellRenderer: (params: AdminGridCell) => (
-        <span className={roleBadgeClass(params.value)}>{params.value}</span>
+      cellRenderer: (params: any) => (
+        <span className={roleBadgeClass(params.value || '')}>{params.value}</span>
       )
     },
     { field: 'branch', headerName: 'Branch', flex: 1, minWidth: 150 },
     { field: 'joinedDate', headerName: 'Joined', flex: 1, minWidth: 120 },
     {
       field: 'status', headerName: 'Status', flex: 1, minWidth: 120,
-      cellRenderer: (params: AdminGridCell) => (
+      cellRenderer: (params: any) => (
         <span className={`admin-badge ${params.value === 'Active' ? 'admin-badge-success' : 'admin-badge-danger'}`}>
           {params.value}
         </span>
@@ -65,12 +65,12 @@ export function AdminStaffView({ initialStaff }: AdminStaffViewProps) {
       flex: 1,
       minWidth: 120,
       sortable: false,
-      cellRenderer: (params: AdminGridCell) => (
+      cellRenderer: (params: any) => (
         <div style={{ display: 'flex', gap: 6, height: '100%', alignItems: 'center' }}>
           <button className="admin-btn-icon" onClick={() => openEdit(params.data)} title="Edit">
             <Pencil size={14} />
           </button>
-          <button className="admin-btn-icon" onClick={() => setDeleteId(params.data.id)} title="Delete" style={{ color: 'var(--danger)' }}>
+          <button className="admin-btn-icon" onClick={() => setDeleteId(params?.data?.id)} title="Delete" style={{ color: 'var(--danger)' }}>
             <Trash2 size={14} />
           </button>
         </div>

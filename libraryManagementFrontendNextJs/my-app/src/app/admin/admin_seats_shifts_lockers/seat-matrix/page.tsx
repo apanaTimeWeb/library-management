@@ -6,6 +6,7 @@ import { useState, useEffect } from 'react';
 import { fetchApi } from '@/lib/api';
 import { CalendarDays, UserPlus, User } from 'lucide-react';
 import { AdminRecord } from '@/app/admin/admin_reusable/admin_reusable_utils/AdminReusableGridTheme';
+import { logger } from '@/lib/logger';
 
 interface SeatData {
   uuid?: string;
@@ -41,13 +42,13 @@ export default function SeatMatrixPage() {
 
   useEffect(() => {
     fetchApi('/seats_shifts_lockers/seat-matrix').then(data => {
-      const mapped = data.map(( s: AdminRecord ) => ({
+      const mapped = data.map(( s: any ) => ({
         uuid: s.id,
-        id: s.seatNumber.replace('S-', ''),
+        id: (s.seatNumber || '').replace('S-', ''),
         status: s.isActive ? 'free' : 'maintenance',
       }));
       setSeatsData(mapped);
-    }).catch(console.error);
+    }).catch(e => logger.error('Seat matrix fetch failed:', e));
   }, []);
 
   const visible = activeTab === 'All'

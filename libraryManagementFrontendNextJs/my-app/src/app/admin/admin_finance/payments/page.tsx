@@ -49,6 +49,7 @@ const MODE_BADGE: Record<string, string> = {
 
 import { gridTheme } from '@/app/admin/admin_finance/admin_finance_components/AdminFinancegridTheme/AdminFinancegridTheme';
 import { AdminGridCell , AdminRecord } from '@/app/admin/admin_reusable/admin_reusable_utils/AdminReusableGridTheme';
+import { logger } from '@/lib/logger';
 export default function Payments() {
   const router = useRouter();
   const [modeFilter, setModeFilter] = useState('all');
@@ -60,7 +61,7 @@ export default function Payments() {
 
   useEffect(() => {
     fetchApi('/finance/payments').then(data => {
-      const mapped = data.map(( p: AdminRecord ) => ({
+      const mapped = data.map(( p: any ) => ({
         id: p.id,
         receiptNumber: 'REC-' + p.id.substring(0, 8),
         date: new Date(p.date).toISOString().split('T')[0],
@@ -73,7 +74,7 @@ export default function Payments() {
         status: p.status === 'completed' ? 'valid' : 'deleted',
       }));
       setAllPayments(mapped);
-    }).catch(console.error);
+    }).catch(e => logger.error('Payments fetch failed:', e));
   }, []);
 
   const visible = allPayments.filter((p) => {
@@ -98,13 +99,13 @@ export default function Payments() {
     }, 700);
   };
 
-  const colDefs = [
+  const colDefs: any[] = [
     { 
       field: 'receiptNumber', 
       headerName: 'Receipt #', 
       width: 150,
-      cellRenderer: (params: AdminGridCell) => (
-        <span className={`fin-mono font-medium ${params.data.status === 'deleted' ? 'line-through opacity-50' : ''}`}>
+      cellRenderer: (params: any) => (
+        <span className={`fin-mono font-medium ${params?.data?.status === 'deleted' ? 'line-through opacity-50' : ''}`}>
           {params.value}
         </span>
       )
@@ -113,17 +114,17 @@ export default function Payments() {
       field: 'date', 
       headerName: 'Date', 
       width: 120,
-      valueFormatter: (p: AdminGridCell) => formatDate(p.value)
+      valueFormatter: (p: any) => formatDate(p.value)
     },
     { 
       field: 'studentName', 
       headerName: 'Student', 
       flex: 1,
       minWidth: 180,
-      cellRenderer: (params: AdminGridCell) => (
-        <div className={`py-1 ${params.data.status === 'deleted' ? 'opacity-50' : ''}`}>
+      cellRenderer: (params: any) => (
+        <div className={`py-1 ${params?.data?.status === 'deleted' ? 'opacity-50' : ''}`}>
           <div className="fin-cell-name">{params.value}</div>
-          <div className="fin-cell-subtext">{params.data.smartId}</div>
+          <div className="fin-cell-subtext">{params?.data?.smartId}</div>
         </div>
       )
     },
@@ -132,25 +133,25 @@ export default function Payments() {
       headerName: 'Amount', 
       width: 120,
       cellStyle: { textAlign: 'right', fontWeight: 600 },
-      valueFormatter: (p: AdminGridCell) => formatCurrency(p.value)
+      valueFormatter: (p: any) => formatCurrency(p.value)
     },
     { 
       field: 'mode', 
       headerName: 'Mode', 
       width: 110,
-      cellRenderer: (params: AdminGridCell) => (
-        <div className={`h-full flex items-center ${params.data.status === 'deleted' ? 'opacity-50' : ''}`}>
+      cellRenderer: (params: any) => (
+        <div className={`h-full flex items-center ${params?.data?.status === 'deleted' ? 'opacity-50' : ''}`}>
           <span className={MODE_BADGE[params.value] || 'fin-badge fin-badge--neutral'}>{params.value}</span>
         </div>
       )
     },
-    { field: 'txnId', headerName: 'Txn ID', width: 130, cellRenderer: (p: AdminGridCell) => <span className="fin-mono">{p.value || '—'}</span> },
+    { field: 'txnId', headerName: 'Txn ID', width: 130, cellRenderer: (p: any) => <span className="fin-mono">{p.value || '—'}</span> },
     { 
       field: 'lateFee', 
       headerName: 'Late Fee', 
       width: 110,
       cellStyle: { textAlign: 'right' },
-      cellRenderer: (p: AdminGridCell) => (
+      cellRenderer: (p: any) => (
         <span className={p.value > 0 ? 'fin-text-warning' : 'fin-text-muted'}>
           {formatCurrency(p.value)}
         </span>
@@ -160,14 +161,14 @@ export default function Payments() {
       field: 'status', 
       headerName: 'Status', 
       width: 130,
-      cellRenderer: (params: AdminGridCell) => (
+      cellRenderer: (params: any) => (
         <div className="h-full flex flex-col justify-center py-1">
           {params.value === 'valid' ? (
             <span className="fin-badge fin-badge--success self-start">Valid</span>
           ) : (
             <span className="fin-badge fin-badge--neutral self-start">DELETED</span>
           )}
-          {params.value === 'deleted' && params.data.deletionReason && (
+          {params.value === 'deleted' && params?.data?.deletionReason && (
             <div className="fin-cell-subtext mt-1 text-[10px] leading-tight" title={params.data.deletionReason}>
               {params.data.deletionReason.length > 15 ? params.data.deletionReason.substring(0, 15) + '...' : params.data.deletionReason}
             </div>
@@ -179,8 +180,8 @@ export default function Payments() {
       headerName: 'Actions',
       width: 140,
       sortable: false,
-      cellRenderer: (params: AdminGridCell) => {
-        if (params.data.status !== 'valid') return null;
+      cellRenderer: (params: any) => {
+        if (params?.data?.status !== 'valid') return null;
         return (
           <div className="flex items-center gap-2 h-full">
             <button

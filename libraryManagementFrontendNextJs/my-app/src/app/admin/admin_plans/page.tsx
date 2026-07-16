@@ -6,7 +6,8 @@
 import { useState, useEffect } from 'react';
 import { fetchApi } from '@/lib/api';
 import { Plus, Pencil, Trash2, CheckCircle, IndianRupee } from 'lucide-react';
-import { AdminGridCell , AdminRecord } from '@/app/admin/admin_reusable/admin_reusable_utils/AdminReusableGridTheme';
+import { AdminGridCell } from '@/app/admin/admin_reusable/admin_reusable_utils/AdminReusableGridTheme';
+import { logger } from '@/lib/logger';
 
 interface Plan {
   id: string;
@@ -55,8 +56,8 @@ export default function AdminPlansPage() {
 
   useEffect(() => {
     fetchApi('/admin/admin_plans').then(data => {
-      const mapped = data.map(( p: AdminRecord ) => ({
-        id: p.id,
+      const mapped = data.map(( p: any ) => ({
+        id: String(p.id),
         name: p.name,
         price: p.price,
         duration: p.durationInDays + ' Days',
@@ -66,7 +67,7 @@ export default function AdminPlansPage() {
         subscribers: 0
       }));
       setPlans(mapped);
-    }).catch(console.error);
+    }).catch(e => logger.error('Plans fetch failed:', e));
   }, []);
   const [showForm, setShowForm] = useState(false);
   const [editing, setEditing]   = useState<string | null>(null);

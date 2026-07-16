@@ -43,8 +43,8 @@ export function AdminBranchesView({ initialBranches }: AdminBranchesViewProps) {
       headerName: 'Capacity',
       flex: 1,
       minWidth: 120,
-      cellRenderer: (params: AdminGridCell) => (
-        <span style={{ fontSize: 13, fontWeight: 500 }}>{params.data.students} / {params.value} Seats</span>
+      cellRenderer: (params: any) => (
+        <span style={{ fontSize: 13, fontWeight: 500 }}>{params?.data?.students} / {params.value} Seats</span>
       )
     },
     {
@@ -52,7 +52,7 @@ export function AdminBranchesView({ initialBranches }: AdminBranchesViewProps) {
       headerName: 'Status',
       flex: 1,
       minWidth: 120,
-      cellRenderer: (params: AdminGridCell) => (
+      cellRenderer: (params: any) => (
         <span className={`admin-badge ${params.value === 'Active' ? 'admin-badge-success' : 'admin-badge-danger'}`}>
           {params.value === 'Active' ? '✅ Active' : '🔴 Inactive'}
         </span>
@@ -63,18 +63,18 @@ export function AdminBranchesView({ initialBranches }: AdminBranchesViewProps) {
       flex: 1,
       minWidth: 100,
       sortable: false,
-      cellRenderer: (params: AdminGridCell) => (
+      cellRenderer: (params: any) => (
         <div style={{ display: 'flex', gap: 6, height: '100%', alignItems: 'center' }}>
-          <button className="admin-btn-icon" onClick={() => openEdit(params.data)} title="Edit">
+          <button className="admin-btn-icon" onClick={() => openEdit(params?.data)} title="Edit">
             <Pencil size={14} />
           </button>
-          <button className="admin-btn-icon" onClick={() => setDeleteId(params.data.id)} title="Delete" style={{ color: 'var(--danger)' }}>
+          <button className="admin-btn-icon" onClick={() => setDeleteId(params?.data?.id)} title="Delete" style={{ color: 'var(--danger)' }}>
             <Trash2 size={14} />
           </button>
         </div>
       ),
     },
-  ], []);
+  ], [openEdit, setDeleteId]);
 
   return (
     <div style={{ height: '100%', display: 'flex', flexDirection: 'column', paddingBottom: 40 }}>

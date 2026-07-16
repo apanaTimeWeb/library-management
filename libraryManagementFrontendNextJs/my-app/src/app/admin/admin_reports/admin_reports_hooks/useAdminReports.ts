@@ -18,15 +18,15 @@ export const RANGE_OPTIONS: { label: string; key: Range }[] = [
 ];
 
 // DATA FLOW: API → useAdminReports.ts → AdminReportsComponent
-export function useAdminReports(initialData?: AdminRecord) {
+export function useAdminReports(initialData?: any) {
   const [range, setRange] = useState<Range>('last3Months');
   const [branch, setBranch] = useState('All Branches');
 
-  const incomeData  = (initialData?.incomeVsExpense as Record<string, unknown>)?.[range] || ADMIN_REPORTS_INCOME_VS_EXPENSE[range];
-  const revenueData = (initialData?.revenueTrend as Record<string, unknown>)?.[range] || ADMIN_REPORTS_REVENUE_TREND[range];
-  const growthData  = (initialData?.studentGrowth as Record<string, unknown>)?.[range] || ADMIN_REPORTS_STUDENT_GROWTH[range];
-  const shiftOccupancy = (initialData?.shiftOccupancy as unknown[]) || ADMIN_REPORTS_SHIFT_OCCUPANCY;
-  const kpiCards = (initialData?.kpiCards as unknown[]) || ADMIN_REPORTS_KPI_CARDS;
+  const incomeData: any[]  = (initialData?.incomeVsExpense?.[range] || ADMIN_REPORTS_INCOME_VS_EXPENSE[range]) as any[];
+  const revenueData: any[] = (initialData?.revenueTrend?.[range] || ADMIN_REPORTS_REVENUE_TREND[range]) as any[];
+  const growthData: any[]  = (initialData?.studentGrowth?.[range] || ADMIN_REPORTS_STUDENT_GROWTH[range]) as any[];
+  const shiftOccupancy: any[] = (initialData?.shiftOccupancy || ADMIN_REPORTS_SHIFT_OCCUPANCY) as any[];
+  const kpiCards: any[] = (initialData?.kpiCards || ADMIN_REPORTS_KPI_CARDS) as any[];
 
   function handleExport(type: 'PDF' | 'Excel') {
     toast.success(`${type} export started — file will download shortly.`, { duration: 3000 });

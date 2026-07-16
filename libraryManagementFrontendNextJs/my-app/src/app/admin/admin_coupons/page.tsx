@@ -9,6 +9,7 @@ import { Plus, Trash2, CheckCircle, Tag } from 'lucide-react';
 import { AgGridReact } from 'ag-grid-react';
 import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community';
 import { gridTheme , AdminGridCell , AdminRecord } from '@/app/admin/admin_reusable/admin_reusable_utils/AdminReusableGridTheme';
+import { logger } from '@/lib/logger';
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
@@ -65,7 +66,7 @@ export default function AdminCouponsPage() {
 
   useEffect(() => {
     fetchApi('/admin/admin_coupons').then(data => {
-      const mapped = data.map(( c: AdminRecord ) => ({
+      const mapped = data.map(( c: any ) => ({
         id: c.id,
         code: c.code,
         discount: c.discountValue,
@@ -76,7 +77,7 @@ export default function AdminCouponsPage() {
         status: c.isActive ? 'Active' : 'Expired',
       }));
       setCoupons(mapped);
-    }).catch(console.error);
+    }).catch(e => logger.error('Coupons fetch failed:', e));
   }, []);
   const [showForm, setShowForm] = useState(false);
   const [deleteId, setDeleteId] = useState<string | null>(null);

@@ -8,6 +8,7 @@ import { AgGridReact } from 'ag-grid-react';
 import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community';
 import { gridTheme , AdminGridCell , AdminRecord } from '@/app/admin/admin_reusable/admin_reusable_utils/AdminReusableGridTheme';
 import { fetchApi } from '@/lib/api';
+import { logger } from '@/lib/logger';
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
@@ -20,17 +21,17 @@ interface Notice {
 const today = new Date().toISOString().split('T')[0];
 
 export default function NoticesPage() {
-  const [notices, setNotices]             = useState<Notice[]>([]);
+  const [notices, setNotices]             = useState<any[]>([]);
   const [showAdd, setShowAdd]             = useState(false);
-  const [editItem, setEditItem]           = useState<Notice | null>(null);
-  const [deleteItem, setDeleteItem]       = useState<Notice | null>(null);
-  const [broadcastItem, setBroadcastItem] = useState<Notice | null>(null);
+  const [editItem, setEditItem]           = useState<any | null>(null);
+  const [deleteItem, setDeleteItem]       = useState<any | null>(null);
+  const [broadcastItem, setBroadcastItem] = useState<any | null>(null);
   const [toast, setToast]                 = useState('');
   const [form, setForm]                   = useState({ title: '', message: '', validTill: '' });
 
   useEffect(() => {
     fetchApi('/communication/notices').then(data => {
-      const mapped = data.map(( n: AdminRecord ) => ({
+      const mapped = data.map(( n: any ) => ({
         id: n.id,
         title: n.title,
         message: n.message,
@@ -40,13 +41,13 @@ export default function NoticesPage() {
         status: new Date(n.validTill) >= new Date() ? 'Active' : 'Expired',
       }));
       setNotices(mapped);
-    }).catch(console.error);
+    }).catch(e => logger.error('Notices fetch failed:', e));
   }, []);
 
   const showToast = (msg: string) => { setToast(msg); setTimeout(() => setToast(''), 3000); };
 
   const openAdd  = () => { setForm({ title: '', message: '', validTill: '' }); setEditItem(null); setShowAdd(true); };
-  const openEdit = (n: Notice) => { setForm({ title: n.title, message: n.message, validTill: n.validTill }); setEditItem(n); setShowAdd(true); };
+  const openEdit = (n: any) => { setForm({ title: n.title, message: n.message, validTill: n.validTill }); setEditItem(n); setShowAdd(true); };
 
   const handleSave = () => {
     if (!form.title || !form.message || !form.validTill) return;
@@ -73,27 +74,27 @@ export default function NoticesPage() {
     showToast('📱 Notice broadcast to all active students via WhatsApp');
   };
 
-  const colDefs = [
-    { field: 'title', headerName: 'Title', width: 220, cellRenderer: (p: AdminGridCell) => <span className="eng-td-bold text-mgr-text-primary">{p.value}</span> },
-    { field: 'message', headerName: 'Message', flex: 1, minWidth: 250, cellRenderer: (p: AdminGridCell) => <span className="eng-td-muted text-sm truncate block w-full pt-1" title={p.value}>{p.value}</span> },
+  const colDefs: any[] = [
+    { field: 'title', headerName: 'Title', width: 220, cellRenderer: (p: any) => <span className="eng-td-bold text-mgr-text-primary">{p.value}</span> },
+    { field: 'message', headerName: 'Message', flex: 1, minWidth: 250, cellRenderer: (p: any) => <span className="eng-td-muted text-sm truncate block w-full pt-1" title={p.value}>{p.value}</span> },
     { 
       field: 'status', 
       headerName: 'Status', 
       width: 120,
-      cellRenderer: (p: AdminGridCell) => (
+      cellRenderer: (p: any) => (
         <span className={`eng-badge ${p.value === 'Active' ? 'eng-badge--success' : 'eng-badge--outline'} mt-2 inline-block`}>
           {p.value === 'Active' ? '✅ Active' : 'Expired'}
         </span>
       )
     },
-    { field: 'validTill', headerName: 'Valid Till', width: 130, cellRenderer: (p: AdminGridCell) => <span className="eng-td-mono text-sm">{p.value}</span> },
-    { field: 'postedBy', headerName: 'Posted By', width: 130, cellRenderer: (p: AdminGridCell) => <span className="eng-td-muted text-sm">{p.value}</span> },
-    { field: 'postedDate', headerName: 'Posted Date', width: 130, cellRenderer: (p: AdminGridCell) => <span className="eng-td-mono text-sm">{p.value}</span> },
+    { field: 'validTill', headerName: 'Valid Till', width: 130, cellRenderer: (p: any) => <span className="eng-td-mono text-sm">{p.value}</span> },
+    { field: 'postedBy', headerName: 'Posted By', width: 130, cellRenderer: (p: any) => <span className="eng-td-muted text-sm">{p.value}</span> },
+    { field: 'postedDate', headerName: 'Posted Date', width: 130, cellRenderer: (p: any) => <span className="eng-td-mono text-sm">{p.value}</span> },
     {
       headerName: 'Actions',
       width: 140,
       sortable: false,
-      cellRenderer: (params: AdminGridCell) => (
+      cellRenderer: (params: any) => (
         <div className="h-full flex items-center gap-2">
           <button onClick={() => openEdit(params.data)} className="eng-btn-icon hover:bg-mgr-primary hover:text-white transition-colors duration-200" title="Edit"><Edit2 size={14} /></button>
           <button onClick={() => setBroadcastItem(params.data)} className="eng-btn-icon hover:bg-mgr-primary hover:text-white transition-colors duration-200" title="Broadcast"><Send size={14} /></button>

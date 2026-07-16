@@ -9,6 +9,7 @@ import { Search, ShieldAlert, ShieldCheck, Shield, AlertTriangle, Info } from 'l
 import { AgGridReact } from 'ag-grid-react';
 import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community';
 import { gridTheme , AdminGridCell , AdminRecord } from '@/app/admin/admin_reusable/admin_reusable_utils/AdminReusableGridTheme';
+import { logger } from '@/lib/logger';
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
@@ -82,7 +83,7 @@ export default function AdminAuditLogsPage() {
 
   useEffect(() => {
     fetchApi('/admin/admin_audit-logs').then(data => {
-      const mapped = data.map(( l: AdminRecord ) => ({
+      const mapped = data.map(( l: any ) => ({
         id: l.id,
         action: l.action,
         module: l.entity,
@@ -94,7 +95,7 @@ export default function AdminAuditLogsPage() {
         ip: '192.168.1.1'
       }));
       setLogs(mapped);
-    }).catch(console.error);
+    }).catch(e => logger.error('Audit logs fetch failed:', e));
   }, []);
 
   const filtered = logs.filter(l => {

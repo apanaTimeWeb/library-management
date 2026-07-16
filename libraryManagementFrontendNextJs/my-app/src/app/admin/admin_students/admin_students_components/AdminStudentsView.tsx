@@ -27,7 +27,7 @@ export function AdminStudentsView({ initialStudents }: AdminStudentsViewProps) {
       headerName: 'Status', 
       flex: 1, 
       minWidth: 120, 
-      cellRenderer: (params: AdminGridCell) => (
+      cellRenderer: (params: any) => (
         <span className={`admin-badge ${params.value === 'Active' ? 'admin-badge-success' : 'admin-badge-danger'}`}>
             {params.value}
         </span>

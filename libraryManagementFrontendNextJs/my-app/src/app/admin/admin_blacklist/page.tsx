@@ -9,6 +9,7 @@ import { Trash2, CheckCircle, AlertOctagon, ShieldAlert, X } from 'lucide-react'
 import { AgGridReact } from 'ag-grid-react';
 import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community';
 import { gridTheme , AdminGridCell , AdminRecord } from '@/app/admin/admin_reusable/admin_reusable_utils/AdminReusableGridTheme';
+import { logger } from '@/lib/logger';
 import toast, { Toaster } from 'react-hot-toast';
 
 ModuleRegistry.registerModules([AllCommunityModule]);
@@ -55,7 +56,7 @@ export default function AdminBlacklistPage() {
 
   useEffect(() => {
     fetchApi('/admin/admin_blacklist').then(data => {
-      const mapped = data.map(( b: AdminRecord ) => ({
+      const mapped = data.map(( b: any ) => ({
         id: b.id,
         name: 'Blacklisted Student', // mock
         phone: '9999999999',
@@ -65,7 +66,7 @@ export default function AdminBlacklistPage() {
         previousSeat: 'S-10'
       }));
       setList(mapped);
-    }).catch(console.error);
+    }).catch(e => logger.error('Blacklist fetch failed:', e));
   }, []);
   const [showForm, setShowForm] = useState(false);
   const [removeId, setRemoveId] = useState<string | null>(null);

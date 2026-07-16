@@ -4,6 +4,7 @@
 
 import { useState, useMemo, useEffect } from 'react';
 import { fetchApi } from '@/lib/api';
+import { logger } from '@/lib/logger';
 import { ChevronRight, Plus, X, Eye, RefreshCw, CheckCircle } from 'lucide-react';
 import { AdminRecord } from '@/app/admin/admin_reusable/admin_reusable_utils/AdminReusableGridTheme';
 
@@ -34,7 +35,7 @@ export default function ComplaintsPage() {
 
   useEffect(() => {
     fetchApi('/communication/complaints').then(data => {
-      const mapped = data.map(( c: AdminRecord ) => ({
+      const mapped = data.map(( c: any ) => ({
         id: c.id,
         title: c.subject,
         desc: c.description,
@@ -43,7 +44,7 @@ export default function ComplaintsPage() {
         student: 'Mock Student (S-001)',
       }));
       setComplaints(mapped);
-    }).catch(console.error);
+    }).catch(e => logger.error('Complaints fetch failed:', e));
   }, []);
   const [toast, setToast]               = useState('');
   const [addForm, setAddForm]           = useState({ student: '', anonymous: false, title: '', description: '' });

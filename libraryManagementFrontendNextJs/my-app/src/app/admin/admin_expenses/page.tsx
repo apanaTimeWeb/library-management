@@ -10,6 +10,7 @@ import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community';
 import { gridTheme , AdminGridCell , AdminRecord } from '@/app/admin/admin_reusable/admin_reusable_utils/AdminReusableGridTheme';
 import { useAdmin } from '@/app/admin/admin_context/AdminContext';
 import { fetchApi } from '@/lib/api';
+import { logger } from '@/lib/logger';
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
@@ -20,7 +21,7 @@ export default function AdminExpensesPage() {
 
   useEffect(() => {
     fetchApi('/admin/admin_expenses').then(data => {
-      const mapped = data.map(( e: AdminRecord ) => ({
+      const mapped = data.map(( e: any ) => ({
         id: e.id,
         date: new Date(e.expenseDate).toLocaleDateString(),
         category: 'Monthly Expense',
@@ -29,7 +30,7 @@ export default function AdminExpensesPage() {
         status: 'Approved'
       }));
       setExpenses(mapped);
-    }).catch(console.error);
+    }).catch(e => logger.error('Expenses fetch failed:', e));
   }, []);
 
   const filtered = expenses.filter(e => {
@@ -48,14 +49,14 @@ export default function AdminExpensesPage() {
       headerName: 'Amount', 
       flex: 1, 
       minWidth: 120,
-      cellRenderer: (params: AdminGridCell) => <span style={{ fontWeight: 600 }}>₹{params.value}</span>
+      cellRenderer: (params: any) => <span style={{ fontWeight: 600 }}>₹{params.value}</span>
     },
     { 
       field: 'status', 
       headerName: 'Status', 
       flex: 1, 
       minWidth: 120, 
-      cellRenderer: (params: AdminGridCell) => (
+      cellRenderer: (params: any) => (
         <span className={`admin-badge ${params.value === 'Approved' ? 'admin-badge-success' : 'admin-badge-info'}`}>
             {params.value}
         </span>

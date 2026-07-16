@@ -3,14 +3,14 @@ import { useAdmin } from '@/app/admin/admin_context/AdminContext';
 import { AdminRecord } from '@/app/admin/admin_reusable/admin_reusable_utils/AdminReusableGridTheme';
 
 // DATA FLOW: API → useAdminStudents.ts → AdminStudentsComponent
-export function useAdminStudents(initialStudents: AdminRecord[]) {
+export function useAdminStudents(initialStudents: any[]) {
   const [search, setSearch] = useState('');
   const { selectedBranch } = useAdmin();
 
   const filteredStudents = useMemo(() => {
-    return initialStudents.filter(( s: AdminRecord ) => {
+    return initialStudents.filter(( s: any ) => {
       if (selectedBranch !== 'All Branches' && s.branch !== selectedBranch) return false;
-      return s.name.toLowerCase().includes(search.toLowerCase());
+      return (s.name || '').toLowerCase().includes(search.toLowerCase());
     });
   }, [initialStudents, selectedBranch, search]);
 

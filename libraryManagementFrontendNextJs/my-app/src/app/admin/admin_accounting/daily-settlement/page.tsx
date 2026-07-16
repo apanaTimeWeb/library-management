@@ -45,49 +45,49 @@ export default function DailySettlementPage() {
   const totalUpi  = entries.reduce((s, e) => s + e.upiCollected, 0);
   const totalExp  = entries.reduce((s, e) => s + e.expenses, 0);
 
-  const colDefs = [
-    { field: 'shift', headerName: 'Shift', flex: 1, minWidth: 180, cellRenderer: (p: AdminGridCell) => <span className="fin-cell-name font-medium">{p.value}</span> },
+  const colDefs: any[] = [
+    { field: 'shift', headerName: 'Shift', flex: 1, minWidth: 180, cellRenderer: (p: any) => <span className="fin-cell-name font-medium">{p.value}</span> },
     { 
       field: 'openingBalance', 
       headerName: 'Opening ₹', 
       width: 130,
       cellStyle: { textAlign: 'right' },
-      cellRenderer: (p: AdminGridCell) => <span className="fin-cell-subtext text-sm">₹{p.value.toLocaleString()}</span>
+      cellRenderer: (p: any) => <span className="fin-cell-subtext text-sm">₹{Number(p.value || 0).toLocaleString()}</span>
     },
     { 
       field: 'cashCollected', 
       headerName: 'Cash ₹', 
       width: 120,
       cellStyle: { textAlign: 'right' },
-      cellRenderer: (p: AdminGridCell) => <span className="fin-text-success font-medium">₹{p.value.toLocaleString()}</span>
+      cellRenderer: (p: any) => <span className="fin-text-success font-medium">₹{Number(p.value || 0).toLocaleString()}</span>
     },
     { 
       field: 'upiCollected', 
       headerName: 'UPI ₹', 
       width: 120,
       cellStyle: { textAlign: 'right' },
-      cellRenderer: (p: AdminGridCell) => <span className="fin-text-info font-medium">₹{p.value.toLocaleString()}</span>
+      cellRenderer: (p: any) => <span className="fin-text-info font-medium">₹{Number(p.value || 0).toLocaleString()}</span>
     },
     { 
       field: 'expenses', 
       headerName: 'Expenses ₹', 
       width: 130,
       cellStyle: { textAlign: 'right' },
-      cellRenderer: (p: AdminGridCell) => <span className="fin-text-danger font-medium">₹{p.value.toLocaleString()}</span>
+      cellRenderer: (p: any) => <span className="fin-text-danger font-medium">₹{Number(p.value || 0).toLocaleString()}</span>
     },
     { 
       field: 'closingBalance', 
       headerName: 'Closing ₹', 
       width: 130,
       cellStyle: { textAlign: 'right', fontWeight: 600 },
-      cellRenderer: (p: AdminGridCell) => <span className="fin-text-body">₹{p.value.toLocaleString()}</span>
+      cellRenderer: (p: any) => <span className="fin-text-body">₹{Number(p.value || 0).toLocaleString()}</span>
     },
-    { field: 'settledBy', headerName: 'Settled By', width: 140, cellRenderer: (p: AdminGridCell) => <span className="fin-cell-subtext">{p.value}</span> },
+    { field: 'settledBy', headerName: 'Settled By', width: 140, cellRenderer: (p: any) => <span className="fin-cell-subtext">{p.value}</span> },
     { 
       field: 'status', 
       headerName: 'Status', 
       width: 120,
-      cellRenderer: (p: AdminGridCell) => (
+      cellRenderer: (p: any) => (
         <span className={`fin-badge ${p.value === 'settled' ? 'fin-badge--success' : 'fin-badge--warning'} inline-block mt-2`}>
           {p.value}
         </span>
@@ -98,13 +98,13 @@ export default function DailySettlementPage() {
       width: 120,
       sortable: false,
       cellStyle: { textAlign: 'right' },
-      cellRenderer: (params: AdminGridCell) => {
-        if (params.data.status === 'pending') {
+      cellRenderer: (params: any) => {
+        if (params?.data?.status === 'pending') {
           return (
             <div className="h-full flex justify-end items-center">
               <button 
                 className="fin-badge fin-badge--success cursor-pointer hover:bg-green-600 hover:text-white transition-colors duration-200" 
-                onClick={() => handleSettle(params.data.id)}
+                onClick={() => handleSettle(params?.data?.id)}
               >
                 <CheckCircle size={12} className="mr-1" /> Settle
               </button>

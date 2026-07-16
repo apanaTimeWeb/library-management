@@ -8,6 +8,7 @@ import type { ReactNode } from 'react';
 import toast from 'react-hot-toast';
 import { fetchApi } from '@/lib/api';
 import { AdminRecord } from '@/app/admin/admin_reusable/admin_reusable_utils/AdminReusableGridTheme';
+import { logger } from '@/lib/logger';
 
 
 
@@ -42,13 +43,13 @@ export default function LockerMatrixPage() {
 
   useEffect(() => {
     fetchApi('/seats_shifts_lockers/lockers').then(data => {
-      const mapped = data.map(( l: AdminRecord ) => ({
+      const mapped = data.map(( l: any ) => ({
         uuid: l.id,
-        id: l.lockerNumber.replace('L-', ''),
+        id: (l.lockerNumber || '').replace('L-', ''),
         status: l.isActive ? 'free' : 'maintenance',
       }));
       setLockerData(mapped);
-    }).catch(console.error);
+    }).catch(e => logger.error('Locker matrix fetch failed:', e));
   }, []);
 
   function handleCellClick(id: string, status: string) {

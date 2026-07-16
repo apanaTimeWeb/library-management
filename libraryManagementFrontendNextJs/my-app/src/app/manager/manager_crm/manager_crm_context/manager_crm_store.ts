@@ -22,7 +22,7 @@ export const useCrmStore = create<CrmState>((set, get) => ({
       const { fetchEnquiries } = await import('../manager_crm_api/manager_crm_api');
       const data = await fetchEnquiries();
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const mapped = data.map(( e: ManagerRecord ) => ({
+      const mapped = data.map(( e: any ) => ({
         id: e.id,
         name: e.name,
         phone: e.phone,

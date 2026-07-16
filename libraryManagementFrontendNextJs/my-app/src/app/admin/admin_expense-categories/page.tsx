@@ -6,7 +6,7 @@
 import { useState, useEffect } from 'react';
 import { fetchApi } from '@/lib/api';
 import { Plus, Trash2, Tag } from 'lucide-react';
-import { AdminRecord } from '@/app/admin/admin_reusable/admin_reusable_utils/AdminReusableGridTheme';
+import { logger } from '@/lib/logger';
 
 interface Category {
   id: string;
@@ -30,14 +30,14 @@ export default function ExpenseCategoriesPage() {
 
   useEffect(() => {
     fetchApi('/admin/admin_expense-categories').then(data => {
-      const mapped = data.map(( c: AdminRecord ) => ({
-        id: c.id,
+      const mapped = data.map(( c: any ) => ({
+        id: String(c.id),
         name: c.name,
         description: c.description,
         status: 'Active'
       }));
       setCategories(mapped);
-    }).catch(console.error);
+    }).catch(e => logger.error('Expense categories fetch failed:', e));
   }, []);
   const [showForm, setShowForm] = useState(false);
   const [newCat, setNewCat] = useState({ name: '', description: '' });

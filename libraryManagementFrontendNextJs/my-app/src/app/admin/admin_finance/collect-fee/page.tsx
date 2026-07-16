@@ -1,5 +1,5 @@
 'use client';
-import { AdminRecord } from '@/app/admin/admin_reusable/admin_reusable_utils/AdminReusableGridTheme';
+
 
 // RESPONSIBILITY: Entry page for the admin_finance module.
 // DATA FLOW: Next.js Router -> Page -> Components
@@ -237,7 +237,7 @@ export default function CollectFee() {
                   ].map(r => (
                     <div key={r.l} className="fin-receipt-modal-info-row">
                       <span className="fin-cell-subtext">{r.l}</span>
-                      <span className="fin-cell-name" style={{ color: (r as AdminRecord).color }}>{r.v}</span>
+                      <span className="fin-cell-name" style={{ color: (r as any).color }}>{r.v}</span>
                     </div>
                   ))}
                 </div>
