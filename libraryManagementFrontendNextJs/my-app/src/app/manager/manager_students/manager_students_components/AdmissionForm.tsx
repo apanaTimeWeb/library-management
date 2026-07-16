@@ -28,8 +28,8 @@ const schema = z.object({
   shift:         z.string().min(1, 'Select a shift'),
   seat:          z.string().min(1, 'Select a seat'),
   plan:          z.string().min(1, 'Select a plan'),
-  manualDiscount:z.coerce.number().optional(),
-  amountPaid:    z.coerce.number().optional(),
+  manualDiscount:z.string().optional(),
+  amountPaid:    z.string().optional(),
   paymentMode:   z.enum(['Cash', 'UPI', 'Card', 'Bank Transfer']),
   transactionId: z.string().optional(),
 });
@@ -81,8 +81,8 @@ export default function AdmissionForm() {
       seat:          SEATS[0],
       plan:          'Monthly',
       paymentMode:   'UPI',
-      manualDiscount:0,
-      amountPaid:    1500,
+      manualDiscount:'0',
+      amountPaid:    '1500',
     },
   });
 
@@ -105,6 +105,8 @@ export default function AdmissionForm() {
       
       const payload = {
         ...data,
+        manualDiscount: discount,
+        amountPaid: Number(data.amountPaid || 0),
       };
 
       const res = await createStudent(payload) as { smartId?: string };
@@ -116,6 +118,7 @@ export default function AdmissionForm() {
         parentPhone:   data.parentPhone,
         shift:         data.shift,
         seat:          data.seat,
+        locker:        'None',
         plan:          data.plan,
         joinDate:      formatDateIN(joinDate),
         expiryDate:    formatDateIN(expiryDate),
@@ -320,7 +323,7 @@ export default function AdmissionForm() {
                           onChange={e => {
                             setValue('plan', e.target.value);
                             const p = PLANS.find(p => p.value === e.target.value);
-                            if (p) setValue('amountPaid', String(p.amount - discount));
+                            if (p) setValue('amountPaid', p.amount - discount);
                           }}
                         >
                           {PLANS.map(p => <option key={p.value} value={p.value}>{p.label}</option>)}
