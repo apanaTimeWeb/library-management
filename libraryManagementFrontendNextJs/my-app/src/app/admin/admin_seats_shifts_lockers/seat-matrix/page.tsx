@@ -40,7 +40,7 @@ export default function SeatMatrixPage() {
 
   useEffect(() => {
     fetchApi('/seats_shifts_lockers/seat-matrix').then(data => {
-      const mapped = data.map((s: unknown) => ({
+      const mapped = data.map(( s: AdminRecord ) => ({
         uuid: s.id,
         id: s.seatNumber.replace('S-', ''),
         status: s.isActive ? 'free' : 'maintenance',

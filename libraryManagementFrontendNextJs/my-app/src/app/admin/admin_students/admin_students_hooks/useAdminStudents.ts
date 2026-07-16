@@ -7,7 +7,7 @@ export function useAdminStudents(initialStudents: unknown[]) {
   const { selectedBranch } = useAdmin();
 
   const filteredStudents = useMemo(() => {
-    return initialStudents.filter((s: unknown) => {
+    return initialStudents.filter(( s: AdminRecord ) => {
       if (selectedBranch !== 'All Branches' && s.branch !== selectedBranch) return false;
       return s.name.toLowerCase().includes(search.toLowerCase());
     });

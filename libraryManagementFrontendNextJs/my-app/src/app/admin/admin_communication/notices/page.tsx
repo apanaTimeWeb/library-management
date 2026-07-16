@@ -6,7 +6,7 @@ import { useState, useEffect } from 'react';
 import { ChevronRight, Plus, X, Edit2, Trash2, Send } from 'lucide-react';
 import { AgGridReact } from 'ag-grid-react';
 import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community';
-import { gridTheme , AdminGridCell } from '@/app/admin/admin_reusable/gridTheme';
+import { gridTheme , AdminGridCell , AdminRecord } from '@/app/admin/admin_reusable/gridTheme';
 import { fetchApi } from '@/lib/api';
 
 ModuleRegistry.registerModules([AllCommunityModule]);
@@ -30,7 +30,7 @@ export default function NoticesPage() {
 
   useEffect(() => {
     fetchApi('/communication/notices').then(data => {
-      const mapped = data.map((n: unknown) => ({
+      const mapped = data.map(( n: AdminRecord ) => ({
         id: n.id,
         title: n.title,
         message: n.message,

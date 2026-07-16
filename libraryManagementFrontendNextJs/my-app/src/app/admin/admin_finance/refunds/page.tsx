@@ -53,7 +53,7 @@ export default function Refunds() {
 
   useEffect(() => {
     fetchApi('/finance/refunds').then(data => {
-      const mapped = data.map((r: unknown) => ({
+      const mapped = data.map(( r: AdminRecord ) => ({
         id: parseInt(r.id),
         studentName: r.name,
         smartId: 'S-001',

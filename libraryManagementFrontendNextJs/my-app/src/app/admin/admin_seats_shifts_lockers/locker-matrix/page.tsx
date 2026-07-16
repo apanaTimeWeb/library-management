@@ -41,7 +41,7 @@ export default function LockerMatrixPage() {
 
   useEffect(() => {
     fetchApi('/seats_shifts_lockers/lockers').then(data => {
-      const mapped = data.map((l: unknown) => ({
+      const mapped = data.map(( l: AdminRecord ) => ({
         uuid: l.id,
         id: l.lockerNumber.replace('L-', ''),
         status: l.isActive ? 'free' : 'maintenance',

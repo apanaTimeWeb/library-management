@@ -8,7 +8,7 @@ import { fetchApi } from '@/lib/api';
 import { Search, ShieldAlert, ShieldCheck, Shield, AlertTriangle, Info } from 'lucide-react';
 import { AgGridReact } from 'ag-grid-react';
 import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community';
-import { gridTheme , AdminGridCell } from '@/app/admin/admin_reusable/gridTheme';
+import { gridTheme , AdminGridCell , AdminRecord } from '@/app/admin/admin_reusable/gridTheme';
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
@@ -82,7 +82,7 @@ export default function AdminAuditLogsPage() {
 
   useEffect(() => {
     fetchApi('/admin/admin_audit-logs').then(data => {
-      const mapped = data.map((l: unknown) => ({
+      const mapped = data.map(( l: AdminRecord ) => ({
         id: l.id,
         action: l.action,
         module: l.entity,

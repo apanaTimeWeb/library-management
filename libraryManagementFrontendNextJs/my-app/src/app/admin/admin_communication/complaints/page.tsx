@@ -33,7 +33,7 @@ export default function ComplaintsPage() {
 
   useEffect(() => {
     fetchApi('/communication/complaints').then(data => {
-      const mapped = data.map((c: unknown) => ({
+      const mapped = data.map(( c: AdminRecord ) => ({
         id: c.id,
         title: c.subject,
         desc: c.description,

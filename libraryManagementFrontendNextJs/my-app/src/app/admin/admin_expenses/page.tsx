@@ -7,7 +7,7 @@ import { useState, useMemo, useEffect } from 'react';
 import { IndianRupee, Download, Search } from 'lucide-react';
 import { AgGridReact } from 'ag-grid-react';
 import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community';
-import { gridTheme , AdminGridCell } from '@/app/admin/admin_reusable/gridTheme';
+import { gridTheme , AdminGridCell , AdminRecord } from '@/app/admin/admin_reusable/gridTheme';
 import { useAdmin } from '@/app/admin/admin_context/AdminContext';
 import { fetchApi } from '@/lib/api';
 
@@ -20,7 +20,7 @@ export default function AdminExpensesPage() {
 
   useEffect(() => {
     fetchApi('/admin/admin_expenses').then(data => {
-      const mapped = data.map((e: unknown) => ({
+      const mapped = data.map(( e: AdminRecord ) => ({
         id: e.id,
         date: new Date(e.expenseDate).toLocaleDateString(),
         category: 'Monthly Expense',

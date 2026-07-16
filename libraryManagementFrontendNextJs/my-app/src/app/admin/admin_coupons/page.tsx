@@ -8,7 +8,7 @@ import { fetchApi } from '@/lib/api';
 import { Plus, Trash2, CheckCircle, Tag } from 'lucide-react';
 import { AgGridReact } from 'ag-grid-react';
 import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community';
-import { gridTheme , AdminGridCell } from '@/app/admin/admin_reusable/gridTheme';
+import { gridTheme , AdminGridCell , AdminRecord } from '@/app/admin/admin_reusable/gridTheme';
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
@@ -65,7 +65,7 @@ export default function AdminCouponsPage() {
 
   useEffect(() => {
     fetchApi('/admin/admin_coupons').then(data => {
-      const mapped = data.map((c: unknown) => ({
+      const mapped = data.map(( c: AdminRecord ) => ({
         id: c.id,
         code: c.code,
         discount: c.discountValue,
