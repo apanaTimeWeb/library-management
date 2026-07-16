@@ -27,3 +27,8 @@ export interface AdminGridCell {
   value: any;
   data?: any;
 }
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export interface AdminRecord {
+  [key: string]: any;
+}
