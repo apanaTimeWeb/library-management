@@ -1,0 +1,1 @@
+interface RowClassParams { data: any; } interface AdminRecord { [key: string]: any; } const fn: (p: RowClassParams) => boolean = (p: AdminRecord) => true;

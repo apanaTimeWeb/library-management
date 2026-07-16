@@ -7,7 +7,7 @@ import Link from 'next/link';
 import { AgGridReact } from 'ag-grid-react';
 import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community';
 import { ChevronRight, Send, Mail, Phone } from 'lucide-react';
-import { gridTheme , AdminGridCell } from '@/app/admin/admin_reusable/gridTheme';
+import { gridTheme , AdminGridCell, AdminRecord } from '@/app/admin/admin_reusable/gridTheme';
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
@@ -232,8 +232,8 @@ export default function AbsenteeReportPage() {
                 resizable: true
               }}
               rowClassRules={{
-                'bg-[color-mix(in_srgb,var(--mgr-danger)_5%,transparent)]': (params: AdminGridCell) => params.data.daysAbsent >= 7,
-                'bg-[color-mix(in_srgb,var(--mgr-warning)_5%,transparent)]': (params: AdminGridCell) => params.data.daysAbsent >= 3 && params.data.daysAbsent < 7
+                'bg-[color-mix(in_srgb,var(--mgr-danger)_5%,transparent)]': (params: AdminRecord) => params.data.daysAbsent >= 7,
+                'bg-[color-mix(in_srgb,var(--mgr-warning)_5%,transparent)]': (params: AdminRecord) => params.data.daysAbsent >= 3 && params.data.daysAbsent < 7
               }}
             />
           </div>
