@@ -88,29 +88,22 @@ export async function fetchApi<T = any>(endpoint: string, options: RequestInit =
       }
     }
 
-    console.warn(`[Mock Mode] No specific mock found for '${normalizedEndpoint}'. Returning safe generic fallback.`);
-    let safeData: any = [];
-    if (normalizedEndpoint.includes('/dashboard') || normalizedEndpoint.includes('/metrics') || normalizedEndpoint.includes('/stats')) {
-      safeData = {}; // Dashboards usually expect objects
-    } else if (opts.method && opts.method !== 'GET') {
-      safeData = { id: 'mock-id-123', message: 'Action simulated successfully' };
-    } else {
-      // Universal Generic Mock Generator for GET list endpoints
-      safeData = Array.from({ length: 5 }).map((_, i) => ({
-        id: `MOCK-${i+100}`,
-        name: `Mock Record ${i+1}`,
-        fullName: `Test User ${i+1}`,
-        title: `Mock Title ${i+1}`,
-        status: i % 2 === 0 ? 'Active' : 'Inactive',
-        isActive: i % 2 === 0,
-        amount: (i+1) * 1500,
-        price: (i+1) * 500,
+    // ── UNIVERSAL GENERIC MOCK GENERATOR ──
+    const generateGenericRecord = (idOffset: number = 0) => ({
+        id: `MOCK-${idOffset + 100}`,
+        name: `Mock Record ${idOffset + 1}`,
+        fullName: `Test User ${idOffset + 1}`,
+        title: `Mock Title ${idOffset + 1}`,
+        status: idOffset % 2 === 0 ? 'Active' : 'Inactive',
+        isActive: idOffset % 2 === 0,
+        amount: (idOffset + 1) * 1500,
+        price: (idOffset + 1) * 500,
         date: new Date().toLocaleDateString(),
         expenseDate: new Date().toLocaleDateString(),
         category: 'General',
-        role: i % 2 === 0 ? 'Manager' : 'Staff',
-        email: `mock${i+1}@smartlibrary.com`,
-        phone: `987654321${i}`,
+        role: idOffset % 2 === 0 ? 'Manager' : 'Staff',
+        email: `mock${idOffset + 1}@smartlibrary.com`,
+        phone: `987654321${idOffset}`,
         branch: 'Main Branch',
         branchId: 'B1',
         branchName: 'Main Branch',
@@ -126,9 +119,38 @@ export async function fetchApi<T = any>(endpoint: string, options: RequestInit =
         joinedDate: '2026-01-01',
         type: 'Standard',
         users: 15,
-        subscribers: 10 * (i+1),
+        subscribers: 10 * (idOffset + 1),
         duration: '1 Month',
-      }));
+        kpiCards: [], // For object fallbacks
+        data: [], // For object fallbacks
+    });
+
+    console.warn(`[Mock Mode] No specific mock found for '${normalizedEndpoint}'. Returning safe generic fallback.`);
+    let safeData: any;
+
+    if (opts.method && ['POST', 'PUT', 'PATCH'].includes(opts.method.toUpperCase())) {
+      // Return a single populated record so new/edited rows aren't blank in the UI
+      let payloadData = {};
+      try {
+        if (opts.body && typeof opts.body === 'string') payloadData = JSON.parse(opts.body);
+      } catch (e) {}
+      safeData = { ...generateGenericRecord(999), ...payloadData, id: `NEW-${Math.floor(Math.random()*1000)}` };
+    } else if (opts.method && opts.method.toUpperCase() === 'DELETE') {
+      safeData = { id: 'mock-deleted-123', message: 'Record deleted successfully' };
+    } else if (
+      normalizedEndpoint.includes('/dashboard') || 
+      normalizedEndpoint.includes('/metrics') || 
+      normalizedEndpoint.includes('/stats') ||
+      normalizedEndpoint.includes('/settings') ||
+      normalizedEndpoint.includes('/config') ||
+      normalizedEndpoint.includes('/profile') ||
+      normalizedEndpoint.match(/\/[a-f0-9-]{10,}$/i) // GUIDs (fetch single item)
+    ) {
+      // Dashboards, settings, or single item GET requests expect objects
+      safeData = generateGenericRecord(0);
+    } else {
+      // Default GET for lists: Return an array of 5 heavily populated generic records
+      safeData = Array.from({ length: 5 }).map((_, i) => generateGenericRecord(i));
     }
 
     return {
