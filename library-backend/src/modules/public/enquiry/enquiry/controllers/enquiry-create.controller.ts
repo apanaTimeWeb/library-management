@@ -1,12 +1,12 @@
 import { Controller, Post, Body } from '@nestjs/common';
 import { ApiTags, ApiOperation } from '@nestjs/swagger';
 import { Throttle } from '@nestjs/throttler';
-import { EnquiryCreateService } from '../services/enquiry-create.service';
-import { EnquiryCreateDto } from '../dto/enquiry-create.dto';
+import { EnquiryCreateService } from '@/modules/public/enquiry/enquiry/services/enquiry-create.service';
+import { EnquiryCreateDto } from '@/modules/public/enquiry/enquiry/dto/enquiry-create.dto';
 import { Enquiry } from '@/core/entities/enquiry.entity';
 
 @ApiTags('Public Enquiry')
-@Controller('api/public/enquiry')
+@Controller('api/v1/public/enquiry')
 export class EnquiryCreateController {
   constructor(private readonly enquiryCreateService: EnquiryCreateService) {}
 

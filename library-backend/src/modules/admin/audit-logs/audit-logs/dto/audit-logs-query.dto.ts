@@ -1,7 +1,7 @@
 import { IsOptional, IsInt, Min, IsString } from 'class-validator';
 import { Type } from 'class-transformer';
 import { ApiProperty } from '@nestjs/swagger';
-import { AUDIT_LOGS_CONSTANTS } from '../constants/audit-logs.constants';
+import { AUDIT_LOGS_CONSTANTS } from '@/modules/admin/audit-logs/audit-logs/constants/audit-logs.constants';
 
 export class AuditLogsQueryDto {
   @ApiProperty({ required: false, description: 'Page number for pagination', example: 1 })

@@ -1,14 +1,14 @@
 import { Controller, Get, Query, UseGuards } from '@nestjs/common';
 import { ApiTags, ApiBearerAuth, ApiOperation } from '@nestjs/swagger';
-import { AuditLogsGetAllService } from '../services/audit-logs-get-all.service';
-import { AuditLogsQueryDto } from '../dto/audit-logs-query.dto';
+import { AuditLogsGetAllService } from '@/modules/admin/audit-logs/audit-logs/services/audit-logs-get-all.service';
+import { AuditLogsQueryDto } from '@/modules/admin/audit-logs/audit-logs/dto/audit-logs-query.dto';
 import { AuthJwtAuthGuard } from '@/modules/auth/session/guards/auth-jwt-auth.guard';
 import { AuthRolesGuard } from '@/modules/auth/session/guards/auth-roles.guard';
 import { AuthRoles } from '@/modules/auth/session/decorators/auth-roles.decorator';
 
 @ApiTags('Audit Logs')
 @ApiBearerAuth()
-@Controller('admin/audit-logs')
+@Controller('api/v1/admin/audit-logs')
 @UseGuards(AuthJwtAuthGuard, AuthRolesGuard)
 @AuthRoles('superadmin')
 export class AuditLogsGetAllController {

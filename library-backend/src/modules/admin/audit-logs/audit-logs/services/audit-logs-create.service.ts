@@ -2,7 +2,8 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { AuditLog } from '@/core/entities/audit-log.entity';
-import { AuditLogsLogActionParams } from '../interfaces/audit-logs.interfaces';
+import { UAParser } from 'ua-parser-js';
+import { AuditLogsLogActionParams } from '@/modules/admin/audit-logs/audit-logs/interfaces/audit-logs.interfaces';
 
 @Injectable()
 export class AuditLogsCreateService {

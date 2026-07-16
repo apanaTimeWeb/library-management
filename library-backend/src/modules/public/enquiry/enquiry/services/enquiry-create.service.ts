@@ -2,7 +2,7 @@ import { Injectable, Logger } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Enquiry } from '@/core/entities/enquiry.entity';
-import { EnquiryCreateDto } from '../dto/enquiry-create.dto';
+import { EnquiryCreateDto } from '@/modules/public/enquiry/enquiry/dto/enquiry-create.dto';
 
 @Injectable()
 export class EnquiryCreateService {

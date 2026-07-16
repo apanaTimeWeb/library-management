@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository, FindOptionsWhere } from 'typeorm';
 import { AuditLog } from '@/core/entities/audit-log.entity';
-import { AuditLogsQueryDto } from '../dto/audit-logs-query.dto';
+import { AuditLogsQueryDto } from '@/modules/admin/audit-logs/audit-logs/dto/audit-logs-query.dto';
 
 @Injectable()
 export class AuditLogsGetAllService {
