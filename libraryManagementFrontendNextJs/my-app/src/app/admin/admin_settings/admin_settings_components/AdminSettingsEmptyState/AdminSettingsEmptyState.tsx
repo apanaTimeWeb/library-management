@@ -16,3 +16,4 @@ export default function AdminSettingsEmptyState({ title = 'No data found', descr
     </div>
   );
 }
+

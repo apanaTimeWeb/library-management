@@ -1,6 +1,10 @@
+// RESPONSIBILITY: Modal dialog for onboarding and registering new physical or digital library assets.
+// DATA FLOW: User Input -> SuperadminAssetsAddDialog -> onSave callback
+
 import React, { useState } from 'react';
 import { X, Loader } from 'lucide-react';
 import type { SuperadminAsset } from '@/app/superadmin/superadmin_accounting/assets/superadmin_assets_types/SuperadminAssetsTypes';
+import { logger } from '@/lib/logger';
 
 interface Props {
   categories: string[];
@@ -32,7 +36,7 @@ export function SuperadminAssetsAddDialog({ categories, onClose, onSave }: Props
       });
       onClose();
     } catch (err) {
-      console.error(err);
+      logger.error('Failed to save asset registration', err);
     } finally {
       setSaving(false);
     }

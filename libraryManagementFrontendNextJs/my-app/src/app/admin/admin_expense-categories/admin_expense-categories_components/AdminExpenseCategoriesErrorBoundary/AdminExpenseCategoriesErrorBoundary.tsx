@@ -16,3 +16,4 @@ export class AdminExpenseCategoriesErrorBoundary extends React.Component<Props, 
     return this.props.children;
   }
 }
+

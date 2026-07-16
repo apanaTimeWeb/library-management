@@ -1,12 +1,14 @@
 'use client';
-/* eslint-disable @typescript-eslint/no-explicit-any */
-
+// RESPONSIBILITY: Renders detailed CRM enquiry view, follow-up timeline, and status transitions.
+// DATA FLOW: API /crm/enquiries/[id] -> Page State -> UI & FollowUp API mutations
 
 import { useState, use, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import toast, { Toaster } from 'react-hot-toast';
+import { logger } from '@/lib/logger';
+import { SUPERADMIN_ROUTES } from '@/app/superadmin/superadmin_url_config';
 import {
   ArrowLeft,
   Phone,
@@ -71,7 +73,7 @@ function MarkLostModal({ onConfirm, onCancel, isSubmitting }: MarkLostModalProps
         role="dialog"
         aria-label="Mark enquiry as lost"
         aria-modal="true"
-        onClick={(e: unknown) => e.stopPropagation()}
+        onClick={(e: React.MouseEvent) => e.stopPropagation()}
       >
         {/* Icon + title */}
         <div className="crm-modal-header">
@@ -168,7 +170,7 @@ export default function EnquiryDetailPage({
   const router = useRouter();
 
   // ── Local state ──
-  const [enquiry, setEnquiry] = useState<FlexRecord | null>(null);
+  const [enquiry, setEnquiry] = useState<Enquiry | null>(null);
   const [loading, setLoading] = useState(true);
   const [currentStatus, setCurrentStatus] = useState<EnquiryStatus>('New');
   const [showLostModal, setShowLostModal] = useState(false);
@@ -178,23 +180,24 @@ export default function EnquiryDetailPage({
   useEffect(() => {
     import('@/lib/api').then(({ fetchApi }) => {
       fetchApi(`/crm/enquiries/${id}`)
-        .then(( e: any ) => {
-          if (!e) {
+        .then(( e: unknown ) => {
+          if (!e || typeof e !== 'object') {
             setLoading(false);
             return;
           }
-          const mapped = {
-            id: e.id,
-            name: e.name,
-            phone: e.phone,
-            shift: e.preferredShift,
-            status: e.status.charAt(0).toUpperCase() + e.status.slice(1),
-            handledBy: e.handledBy?.name || 'Unassigned',
-            addedDate: new Date(e.createdAt).toLocaleDateString(),
-            avatar: e.name.substring(0, 2).toUpperCase(),
-            source: e.source || 'Walk-in',
-            preferredBranch: e.preferredBranch || 'Main Branch',
-            enquiryDate: new Date(e.createdAt).toLocaleDateString(),
+          const dataObj = e as Record<string, unknown>;
+          const mapped: Enquiry = {
+            id: String(dataObj.id || ''),
+            name: String(dataObj.name || ''),
+            phone: String(dataObj.phone || ''),
+            shift: String(dataObj.preferredShift || ''),
+            status: (typeof dataObj.status === 'string' ? dataObj.status.charAt(0).toUpperCase() + dataObj.status.slice(1) : 'New') as EnquiryStatus,
+            handledBy: typeof dataObj.handledBy === 'object' && dataObj.handledBy ? String((dataObj.handledBy as Record<string, unknown>).name || 'Unassigned') : 'Unassigned',
+            addedDate: dataObj.createdAt ? new Date(String(dataObj.createdAt)).toLocaleDateString() : '',
+            avatar: String(dataObj.name || 'U').substring(0, 2).toUpperCase(),
+            source: String(dataObj.source || 'Walk-in'),
+            preferredBranch: String(dataObj.preferredBranch || 'Main Branch'),
+            enquiryDate: dataObj.createdAt ? new Date(String(dataObj.createdAt)).toLocaleDateString() : '',
             followUps: [],
             isOverdue: false,
             isToday: true,
@@ -205,7 +208,7 @@ export default function EnquiryDetailPage({
           setLoading(false);
         })
         .catch((err) => {
-          console.error(err);
+          logger.error('Failed to load enquiry detail', err);
           setLoading(false);
         });
     });
@@ -255,12 +258,12 @@ export default function EnquiryDetailPage({
         method: 'PATCH',
         body: JSON.stringify({ status: currentStatus })
       });
-      setEnquiry((prev: unknown) => (prev ? { ...prev, status: currentStatus } : prev));
+      setEnquiry((prev: Enquiry | null) => (prev ? { ...prev, status: currentStatus } : prev));
       toast.success(`Status updated to "${currentStatus}"`, {
         className: 'crm-toast crm-toast--success',
       });
     } catch (err) {
-      console.error(err);
+      logger.error('Failed to update enquiry status', err);
       toast.error('Failed to update status');
     } finally {
       setStatusUpdating(false);
@@ -291,7 +294,7 @@ export default function EnquiryDetailPage({
         by: 'Admin',
         remark: formData.remark,
       };
-      setEnquiry((prev: unknown) =>
+      setEnquiry((prev: Enquiry | null) =>
         prev ? { ...prev, followUps: [newEntry, ...prev.followUps] } : prev
       );
       resetFU();
@@ -299,14 +302,14 @@ export default function EnquiryDetailPage({
         className: 'crm-toast crm-toast--success',
       });
     } catch (err) {
-      console.error(err);
+      logger.error('Failed to add follow-up', err);
       toast.error('Failed to add follow-up');
     }
   };
 
   const handleConvert = () => {
     router.push(
-      `/manager/manager_students/new?name=${encodeURIComponent(enquiry.name)}&phone=${encodeURIComponent(enquiry.phone)}`
+      `${SUPERADMIN_ROUTES.STUDENTS}?action=new&name=${encodeURIComponent(enquiry.name)}&phone=${encodeURIComponent(enquiry.phone)}`
     );
   };
 
@@ -330,7 +333,7 @@ export default function EnquiryDetailPage({
         by: 'Admin',
         remark: reason ? `Marked as Lost — ${reason}` : 'Marked as Lost.',
       };
-      setEnquiry((prev: unknown) =>
+      setEnquiry((prev: Enquiry | null) =>
         prev
           ? { ...prev, status: 'Lost', followUps: [lostEntry, ...prev.followUps] }
           : prev
@@ -342,7 +345,7 @@ export default function EnquiryDetailPage({
         className: 'crm-toast crm-toast--danger',
       });
     } catch (err) {
-      console.error(err);
+      logger.error('Failed to mark enquiry as lost', err);
       toast.error('Failed to mark as lost');
     } finally {
       setLostSubmitting(false);
@@ -445,7 +448,7 @@ export default function EnquiryDetailPage({
                 </div>
               ) : (
                 <div className="crm-timeline">
-                  {enquiry.followUps.map(( fu: FlexRecord ) => (
+                  {enquiry.followUps.map(( fu: FollowUp ) => (
                     <div className="crm-timeline-entry" key={fu.id}>
                       <div className={`crm-timeline-dot ${timelineDotClass(fu.by)}`} />
                       <div className="crm-timeline-card">
@@ -479,9 +482,9 @@ export default function EnquiryDetailPage({
                   <select
                     className="crm-select"
                     value={currentStatus}
-                    onChange={( e: any ) => setCurrentStatus(e.target.value as EnquiryStatus)}
+                    onChange={( e: React.ChangeEvent<HTMLSelectElement> ) => setCurrentStatus(e.target.value as EnquiryStatus)}
                   >
-                    {STATUS_OPTIONS.map(( s: FlexRecord ) => (
+                    {STATUS_OPTIONS.map(( s: EnquiryStatus ) => (
                       <option key={s} value={s}>{s}</option>
                     ))}
                   </select>

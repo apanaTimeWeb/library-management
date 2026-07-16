@@ -37,3 +37,4 @@ export function useAdminSettings(initialSettings: SettingsState) {
     handleSave,
   };
 }
+

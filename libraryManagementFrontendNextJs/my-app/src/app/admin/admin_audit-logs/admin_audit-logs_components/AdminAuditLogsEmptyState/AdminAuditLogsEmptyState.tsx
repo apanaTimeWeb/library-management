@@ -16,3 +16,4 @@ export default function AdminAuditLogsEmptyState({ title = 'No data found', desc
     </div>
   );
 }
+

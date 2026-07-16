@@ -1,8 +1,10 @@
 'use client';
-/* eslint-disable @typescript-eslint/no-explicit-any */
+// RESPONSIBILITY: Renders interactive real-time library seat matrix showing occupancy, shifts, and maintenance states.
+// DATA FLOW: API /seats_shifts_lockers/seat-matrix -> SeatMatrixPage State -> Seat Grid / Detail Drawer
 
 import { useState, useEffect } from 'react';
 import { fetchApi } from '@/lib/api';
+import { logger } from '@/lib/logger';
 import { CalendarDays, UserPlus, User } from 'lucide-react';
 
 interface SeatData {
@@ -38,14 +40,15 @@ export default function SeatMatrixPage() {
   const [seatsData, setSeatsData]       = useState<SeatData[]>([]);
 
   useEffect(() => {
-    fetchApi('/seats_shifts_lockers/seat-matrix').then(( data: any ) => {
-      const mapped = data.map(( s: FlexRecord ) => ({
-        uuid: s.id,
-        id: s.seatNumber.replace('S-', ''),
-        status: s.isActive ? 'free' : 'maintenance',
+    fetchApi('/seats_shifts_lockers/seat-matrix').then(( data: unknown ) => {
+      if (!Array.isArray(data)) return;
+      const mapped: SeatData[] = data.map(( s: Record<string, unknown> ) => ({
+        uuid: String(s.id || ''),
+        id: String(s.seatNumber || '').replace('S-', ''),
+        status: (s.isActive ? 'free' : 'maintenance') as SeatData['status'],
       }));
       setSeatsData(mapped);
-    }).catch(console.error);
+    }).catch(err => logger.error('Failed to load seat matrix', err));
   }, []);
 
   const visible = activeTab === 'All'

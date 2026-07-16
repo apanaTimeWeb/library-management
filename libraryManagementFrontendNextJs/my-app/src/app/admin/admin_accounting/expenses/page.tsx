@@ -8,7 +8,7 @@ import { TrendingUp, Plus, Trash2 } from 'lucide-react';
 import toast from 'react-hot-toast';
 import { AgGridReact } from 'ag-grid-react';
 import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community';
-import { gridTheme , AdminGridCell } from '@/app/admin/admin_reusable/gridTheme';
+import { gridTheme , AdminGridCell } from '@/app/admin/admin_reusable/admin_reusable_utils/AdminReusableGridTheme';
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
@@ -212,3 +212,4 @@ export default function ExpensesPage() {
     </div>
   );
 }
+

@@ -9,3 +9,4 @@ export async function fetchAdminReports(serverToken?: string): Promise<ApiRespon
   const options = serverToken ? { headers: { Authorization: `Bearer ${serverToken}` } } : {};
   return fetchApi(ADMIN_API_ROUTES.REPORTS, options);
 }
+

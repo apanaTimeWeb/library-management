@@ -12,3 +12,4 @@ export const useAdminStudentsStore = create<AdminStudentsState>((set) => ({
   data: [],
   setData: (data: unknown[]) => set({ data }),
 }));
+

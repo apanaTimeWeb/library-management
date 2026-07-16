@@ -12,3 +12,4 @@ export const useAdminAuditLogsStore = create<AdminAuditLogsState>((set) => ({
   data: [],
   setData: (data: unknown[]) => set({ data }),
 }));
+

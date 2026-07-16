@@ -4,6 +4,7 @@ import { SUPERADMIN_DAILY_SETTLEMENT_MOCK_DATA } from '@/app/superadmin/superadm
 
 const TODAY = new Date().toISOString().split('T')[0];
 
+// RESPONSIBILITY: Hook managing daily settlement records, totals, and settlement state transitions.
 // DATA FLOW: API → useSuperadminDailySettlement.ts → SuperadminDailySettlementComponent
 export function superadmin_useSuperadminDailySettlement() {
   const [date, setDate] = useState(TODAY);
@@ -12,7 +13,7 @@ export function superadmin_useSuperadminDailySettlement() {
   const handleSettle = async (id: number) => {
     // Simulate network delay
     await new Promise(res => setTimeout(res, 800));
-    setEntries(prev => prev.map(( e: FlexRecord ) => 
+    setEntries(prev => prev.map(( e: SuperadminDailySettlementEntry ) => 
       e.id === id ? { ...e, status: 'settled', settledBy: 'Super Admin' } : e
     ));
   };

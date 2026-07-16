@@ -16,3 +16,4 @@ export default function AdminExpenseCategoriesEmptyState({ title = 'No data foun
     </div>
   );
 }
+

@@ -16,3 +16,4 @@ export class AdminSeatsShiftsLockersErrorBoundary extends React.Component<Props,
     return this.props.children;
   }
 }
+

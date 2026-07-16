@@ -136,3 +136,4 @@ export default function AdminReusableRecentPaymentsFeed({ payments }: { payments
     </Card>
   );
 }
+

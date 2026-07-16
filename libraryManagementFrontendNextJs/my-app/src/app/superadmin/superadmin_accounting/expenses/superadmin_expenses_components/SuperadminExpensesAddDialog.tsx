@@ -1,6 +1,10 @@
+// RESPONSIBILITY: Modal dialog for recording new operating expenses and categorization.
+// DATA FLOW: User Input -> SuperadminExpensesAddDialog -> onSave callback
+
 import React, { useState } from 'react';
 import { X, Loader } from 'lucide-react';
 import type { SuperadminExpense, SuperadminExpenseMode } from '@/app/superadmin/superadmin_accounting/expenses/superadmin_expenses_types/SuperadminExpensesTypes';
+import { logger } from '@/lib/logger';
 
 interface Props {
   categories: string[];
@@ -34,7 +38,7 @@ export function SuperadminExpensesAddDialog({ categories, onClose, onSave }: Pro
       });
       onClose();
     } catch (err) {
-      console.error(err);
+      logger.error('Failed to save expense entry', err);
     } finally {
       setSaving(false);
     }

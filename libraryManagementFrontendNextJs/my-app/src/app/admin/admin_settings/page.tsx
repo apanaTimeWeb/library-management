@@ -34,3 +34,4 @@ export default async function AdminSettingsPage() {
 
   return <AdminSettingsView initialSettings={settings} />;
 }
+

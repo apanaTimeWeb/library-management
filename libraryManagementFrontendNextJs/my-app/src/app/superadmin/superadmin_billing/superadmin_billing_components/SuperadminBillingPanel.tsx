@@ -1,7 +1,11 @@
 'use client';
+// RESPONSIBILITY: Side-drawer inspection panel for billing invoices, downloading PDF summaries, and marking payments settled.
+// DATA FLOW: Props (inv, onMarkPaid) -> SuperadminBillingPanel -> API callback
+
 import React, { useState } from 'react';
 import { X, FileText, Download, CheckCircle, AlertCircle, Send, Loader } from 'lucide-react';
 import type { SuperadminBillingInvoice } from '@/app/superadmin/superadmin_billing/superadmin_billing_types/SuperadminBillingTypes';
+import { logger } from '@/lib/logger';
 
 interface Props {
   inv: SuperadminBillingInvoice;
@@ -42,7 +46,7 @@ export function SuperadminBillingPanel({ inv, onClose, onMarkPaid }: Props) {
       setMarkedPaid(true);
       setTimeout(() => { setMarkedPaid(false); onClose(); }, 1200);
     } catch (err) {
-      console.error(err);
+      logger.error('Failed to mark invoice as paid', err);
     } finally {
       setMarkingPaid(false);
     }

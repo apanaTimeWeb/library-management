@@ -1,8 +1,10 @@
+// RESPONSIBILITY: Hook for fetching, mutating, and tracking active library branch states.
+// DATA FLOW: API → superadmin_useSuperadminLibraries.ts → SuperadminLibrariesComponent
+
 import { useState, useEffect, useCallback } from 'react';
 import type { SuperadminLibrary } from '@/app/superadmin/superadmin_libraries/superadmin_libraries_types/SuperadminLibrariesTypes';
 import { SUPERADMIN_LIBRARIES_MOCK_DATA } from '@/app/superadmin/superadmin_libraries/superadmin_libraries_constants/SuperadminLibrariesConstants';
-
-// DATA FLOW: API → superadmin_useSuperadminLibraries.ts → SuperadminLibrariesComponent
+import { logger } from '@/lib/logger';
 export function superadmin_useSuperadminLibraries() {
   const [libraries, setLibraries] = useState<SuperadminLibrary[]>([]);
   const [loading, setLoading] = useState(true);
@@ -15,7 +17,7 @@ export function superadmin_useSuperadminLibraries() {
       await new Promise(res => setTimeout(res, 800));
       setLibraries(SUPERADMIN_LIBRARIES_MOCK_DATA);
     } catch (err) {
-      console.error(err);
+      logger.error('Failed to load library branches', err);
       setError('Failed to load libraries');
     } finally {
       setLoading(false);

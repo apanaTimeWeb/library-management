@@ -12,3 +12,4 @@ export const useAdminPermissionsStore = create<AdminPermissionsState>((set) => (
   data: [],
   setData: (data: unknown[]) => set({ data }),
 }));
+

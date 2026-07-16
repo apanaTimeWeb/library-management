@@ -37,3 +37,4 @@ export default function AdminReusableKpiCard({ label, value, icon: Icon, iconCol
     </Card>
   );
 }
+

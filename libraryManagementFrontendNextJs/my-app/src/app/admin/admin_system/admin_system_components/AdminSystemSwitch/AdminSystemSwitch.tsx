@@ -26,3 +26,4 @@ export function Switch({ checked, onCheckedChange, disabled, id, className }: Sw
     </SwitchPrimitive.Root>
   );
 }
+

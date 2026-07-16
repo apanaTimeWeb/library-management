@@ -1,8 +1,10 @@
 'use client';
-/* eslint-disable @typescript-eslint/no-explicit-any */
+// RESPONSIBILITY: Renders communication notices dashboard, broadcast controls, and notice management modal.
+// DATA FLOW: API /communication/notices -> NoticesPage State -> AG Grid Table / Mutations
 
 import type { ICellRendererParams } from 'ag-grid-community';
 import { useState, useEffect } from 'react';
+import { logger } from '@/lib/logger';
 import { ChevronRight, Plus, X, Edit2, Trash2, Send } from 'lucide-react';
 import { AgGridReact } from 'ag-grid-react';
 import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community';
@@ -29,18 +31,19 @@ export default function NoticesPage() {
   const [form, setForm]                   = useState({ title: '', message: '', validTill: '' });
 
   useEffect(() => {
-    fetchApi('/communication/notices').then(( data: any ) => {
-      const mapped = data.map(( n: FlexRecord ) => ({
-        id: n.id,
-        title: n.title,
-        message: n.message,
+    fetchApi('/communication/notices').then(( data: unknown ) => {
+      if (!Array.isArray(data)) return;
+      const mapped: Notice[] = data.map(( n: Record<string, unknown> ) => ({
+        id: String(n.id || ''),
+        title: String(n.title || 'Notice'),
+        message: String(n.message || ''),
         postedBy: 'Admin',
-        postedDate: new Date(n.createdAt).toISOString().split('T')[0],
-        validTill: new Date(n.validTill).toISOString().split('T')[0],
-        status: new Date(n.validTill) >= new Date() ? 'Active' : 'Expired',
+        postedDate: n.createdAt ? new Date(String(n.createdAt)).toISOString().split('T')[0] : today,
+        validTill: n.validTill ? new Date(String(n.validTill)).toISOString().split('T')[0] : today,
+        status: (n.validTill && new Date(String(n.validTill)) >= new Date() ? 'Active' : 'Expired') as 'Active' | 'Expired',
       }));
       setNotices(mapped);
-    }).catch(console.error);
+    }).catch(err => logger.error('Failed to load notices', err));
   }, []);
 
   const showToast = (msg: string) => { setToast(msg); setTimeout(() => setToast(''), 3000); };
@@ -52,7 +55,7 @@ export default function NoticesPage() {
     if (!form.title || !form.message || !form.validTill) return;
     const status: 'Active' | 'Expired' = form.validTill >= today ? 'Active' : 'Expired';
     if (editItem) {
-      setNotices(prev => prev.map(( n: FlexRecord ) => n.id === editItem.id ? { ...n, ...form, status } : n));
+      setNotices(prev => prev.map(( n: Notice ) => n.id === editItem.id ? { ...n, ...form, status } : n));
       showToast('✅ Notice updated');
     } else {
       setNotices(prev => [{ id: Date.now().toString(), ...form, postedBy: 'Admin', postedDate: today, status }, ...prev]);
@@ -200,7 +203,7 @@ export default function NoticesPage() {
             <AgGridReact
               theme={superadmin_gridTheme}
               rowData={notices}
-              columnDefs={colDefs as unknown}
+              columnDefs={colDefs as any}
               rowHeight={56}
               headerHeight={48}
               pagination={true}

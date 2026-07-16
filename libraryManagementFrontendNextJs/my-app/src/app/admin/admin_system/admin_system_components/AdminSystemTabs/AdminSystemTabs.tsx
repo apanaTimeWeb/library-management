@@ -18,3 +18,4 @@ export function TabsTrigger({ className, ...props }: React.ComponentPropsWithout
 export function TabsContent({ className, ...props }: React.ComponentPropsWithoutRef<typeof TabsPrimitive.Content>) {
   return <TabsPrimitive.Content className={cn('sys-tabs-content', className)} {...props} />;
 }
+

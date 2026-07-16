@@ -52,3 +52,4 @@ export function AdminRoute({ children }: { children: React.ReactNode }) {
     </AdminProvider>
   );
 }
+

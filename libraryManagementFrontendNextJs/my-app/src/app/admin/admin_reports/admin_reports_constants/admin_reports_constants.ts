@@ -32,3 +32,4 @@ export const ADMIN_REPORTS_STUDENT_GROWTH: Record<string, { month: string; joine
   last3Months: [{ month: 'Jan', joined: 42, exited: 8 }, { month: 'Feb', joined: 38, exited: 12 }, { month: 'Mar', joined: 55, exited: 7 }, { month: 'Apr', joined: 48, exited: 10 }, { month: 'May', joined: 60, exited: 9 }, { month: 'Jun', joined: 72, exited: 11 }],
   thisYear:    [{ month: 'Jan', joined: 42, exited: 8 }, { month: 'Feb', joined: 38, exited: 12 }, { month: 'Mar', joined: 55, exited: 7 }, { month: 'Apr', joined: 48, exited: 10 }, { month: 'May', joined: 60, exited: 9 }, { month: 'Jun', joined: 72, exited: 11 }, { month: 'Jul', joined: 65, exited: 8 }, { month: 'Aug', joined: 80, exited: 14 }, { month: 'Sep', joined: 74, exited: 10 }, { month: 'Oct', joined: 88, exited: 13 }, { month: 'Nov', joined: 92, exited: 15 }, { month: 'Dec', joined: 78, exited: 9 }]
 };
+

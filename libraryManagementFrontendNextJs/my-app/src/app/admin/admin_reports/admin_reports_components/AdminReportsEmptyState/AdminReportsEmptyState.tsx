@@ -16,3 +16,4 @@ export default function AdminReportsEmptyState({ title = 'No data found', descri
     </div>
   );
 }
+

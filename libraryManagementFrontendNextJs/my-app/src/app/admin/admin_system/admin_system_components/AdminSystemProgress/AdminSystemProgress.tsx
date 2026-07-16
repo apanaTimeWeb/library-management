@@ -22,3 +22,4 @@ export function Progress({ value, max = 100, className, barClassName }: Progress
     </div>
   );
 }
+

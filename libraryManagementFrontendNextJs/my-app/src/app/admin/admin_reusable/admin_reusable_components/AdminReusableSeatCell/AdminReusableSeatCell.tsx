@@ -51,3 +51,4 @@ export default function AdminReusableSeatCell({ id, status, occupant, shift, exp
     </div>
   );
 }
+

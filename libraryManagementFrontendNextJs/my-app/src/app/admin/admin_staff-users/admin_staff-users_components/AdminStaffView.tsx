@@ -4,7 +4,7 @@ import { useMemo } from 'react';
 import { UserPlus, Pencil, Trash2, CheckCircle, Search, Users } from 'lucide-react';
 import { AgGridReact } from 'ag-grid-react';
 import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community';
-import { gridTheme , AdminGridCell } from '@/app/admin/admin_reusable/gridTheme';
+import { gridTheme , AdminGridCell } from '@/app/admin/admin_reusable/admin_reusable_utils/AdminReusableGridTheme';
 import { useAdminStaff, type StaffMember } from '@/app/admin/admin_staff-users/admin_staff-users_hooks/useAdminStaff';
 
 ModuleRegistry.registerModules([AllCommunityModule]);
@@ -209,3 +209,4 @@ export function AdminStaffView({ initialStaff }: AdminStaffViewProps) {
     </div>
   );
 }
+

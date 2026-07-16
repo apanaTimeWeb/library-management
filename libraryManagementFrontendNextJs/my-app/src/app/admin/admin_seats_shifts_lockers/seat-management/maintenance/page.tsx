@@ -8,7 +8,7 @@ import { AgGridReact } from 'ag-grid-react';
 import { AllCommunityModule, ModuleRegistry, type ColDef } from 'ag-grid-community';
 import { gridTheme } from '@/app/admin/admin_seats_shifts_lockers/admin_seats_shifts_lockers_components/AdminSeatsShiftsLockersgridTheme/AdminSeatsShiftsLockersgridTheme';
 import toast from 'react-hot-toast';
-import { AdminGridCell } from '@/app/admin/admin_reusable/gridTheme';
+import { AdminGridCell } from '@/app/admin/admin_reusable/admin_reusable_utils/AdminReusableGridTheme';
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
@@ -196,3 +196,4 @@ export default function SeatMaintenancePage() {
     </>
   );
 }
+

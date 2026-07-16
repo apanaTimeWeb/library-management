@@ -12,3 +12,4 @@ export const useAdminPlansStore = create<AdminPlansState>((set) => ({
   data: [],
   setData: (data: unknown[]) => set({ data }),
 }));
+

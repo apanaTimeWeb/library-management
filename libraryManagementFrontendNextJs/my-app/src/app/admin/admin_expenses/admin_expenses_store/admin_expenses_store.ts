@@ -12,3 +12,4 @@ export const useAdminExpensesStore = create<AdminExpensesState>((set) => ({
   data: [],
   setData: (data: unknown[]) => set({ data }),
 }));
+

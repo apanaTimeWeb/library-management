@@ -12,3 +12,4 @@ export const useAdminCommunicationStore = create<AdminCommunicationState>((set) 
   data: [],
   setData: (data: unknown[]) => set({ data }),
 }));
+

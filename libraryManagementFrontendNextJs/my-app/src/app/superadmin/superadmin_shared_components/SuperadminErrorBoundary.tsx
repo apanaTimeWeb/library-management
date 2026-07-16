@@ -1,7 +1,10 @@
 'use client';
+// RESPONSIBILITY: Catches runtime UI errors within the Superadmin module and displays a fallback recovery interface without leaking sensitive stack traces.
+// DATA FLOW: React Error Boundary -> logger -> Fallback UI
 
 import React from 'react';
 import { AlertCircle } from 'lucide-react';
+import { logger } from '@/lib/logger';
 
 export class SuperadminErrorBoundary extends React.Component<
   { children: React.ReactNode },
@@ -17,7 +20,7 @@ export class SuperadminErrorBoundary extends React.Component<
   }
 
   componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
-    console.error('Superadmin Module Error:', error, errorInfo);
+    logger.error('Superadmin Module Error caught:', error.message || 'Unknown error', errorInfo.componentStack ? errorInfo.componentStack.slice(0, 500) : '');
   }
 
   render() {

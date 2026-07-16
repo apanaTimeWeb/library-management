@@ -29,3 +29,4 @@ export interface AdminGridCell<TValue = unknown, TData = unknown> {
 }
 
 export type AdminRecord = Record<string, unknown>;
+

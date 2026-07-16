@@ -12,3 +12,4 @@ export const useAdminReportsStore = create<AdminReportsState>((set) => ({
   data: [],
   setData: (data: unknown[]) => set({ data }),
 }));
+

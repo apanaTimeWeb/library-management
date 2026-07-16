@@ -181,7 +181,7 @@ export default function WhatsappLogsPage() {
             <AgGridReact
               theme={superadmin_gridTheme}
               rowData={filtered}
-              columnDefs={colDefs as unknown}
+              columnDefs={colDefs as any}
               rowHeight={56}
               headerHeight={48}
               pagination={true}

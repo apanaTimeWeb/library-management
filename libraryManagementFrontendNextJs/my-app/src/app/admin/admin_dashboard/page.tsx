@@ -11,6 +11,7 @@ import AdminReusableRecentPaymentsFeed, { type AdminReusablePayment } from '@/ap
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from '@/components/ui/card';
 import { ADMIN_KPI_META, ADMIN_ACTION_ICONS } from '@/app/admin/admin_constants/admin_constants';
+import { ADMIN_ROUTES } from '@/app/admin/admin_url_config';
 import { fetchAdminDashboard } from '@/app/admin/admin_dashboard/admin_dashboard_api/admin_dashboard_api';
 
 async function getDashboardData() {
@@ -24,18 +25,17 @@ async function getDashboardData() {
   return response.data;
 }
 
-interface DashboardData {
-  actionItems: { label: string; count: number; type: string; href?: string }[];
-  kpiCards: { label: string; value: string; trend: { value: string; up: boolean }; sub: string }[];
-  seats: AdminReusableSeatData[];
-  shifts: string[];
-  recentPayments: AdminReusablePayment[];
-}
-
 export default async function AdminDashboardPage() {
   const rawData = await getDashboardData();
-  if (!rawData) return <div className="p-8">Failed to load dashboard data. Check backend connection.</div>;
-  const data = rawData as never as DashboardData;
+  if (!rawData) return <div className="admin-empty-state"><p className="admin-empty-title">Failed to load dashboard data.</p></div>;
+  // Safe cast via unknown — rawData is validated by the API layer
+  const data = rawData as unknown as {
+    actionItems: { label: string; count: number; type: string; href?: string }[];
+    kpiCards: { label: string; value: string; trend: { value: string; up: boolean }; sub: string }[];
+    seats: AdminReusableSeatData[];
+    shifts: string[];
+    recentPayments: AdminReusablePayment[];
+  };
 
   const actionItems: AdminReusableActionItem[] = data.actionItems?.map((a) => ({
     ...a,
@@ -54,7 +54,7 @@ export default async function AdminDashboardPage() {
           <h1 className="text-2xl font-bold tracking-tight">Dashboard</h1>
           <p className="text-sm text-muted-foreground mt-1">Welcome back — here's what's happening today.</p>
         </div>
-        <Link href="/admin/admin_reports">
+        <Link href={ADMIN_ROUTES.REPORTS}>
           <Button variant="outline" size="sm">
             View Full Reports <ChevronRight size={14} className="ml-1" />
           </Button>
@@ -65,7 +65,7 @@ export default async function AdminDashboardPage() {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         {data.kpiCards.map((card, i: number) => (
           <AdminReusableKpiCard
-            key={i}
+            key={card.label}
             label={card.label}
             value={card.value}
             icon={ADMIN_KPI_META[i].icon}
@@ -107,7 +107,7 @@ export default async function AdminDashboardPage() {
 
             <CardFooter className="pt-2 pb-4 border-t px-4">
               <Button asChild variant="ghost" className="w-full text-xs text-muted-foreground hover:text-text-primary">
-                <Link href="/admin/admin_audit-logs">
+                <Link href={ADMIN_ROUTES.AUDIT_LOGS}>
                   View All Activities <ChevronRight size={13} className="ml-1" />
                 </Link>
               </Button>
@@ -121,3 +121,4 @@ export default async function AdminDashboardPage() {
     </div>
   );
 }
+

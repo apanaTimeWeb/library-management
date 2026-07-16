@@ -38,3 +38,4 @@ export default function AdminReusableChartCard({ title, badge, badgeColor, legen
     </Card>
   );
 }
+

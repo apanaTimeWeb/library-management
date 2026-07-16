@@ -6,7 +6,7 @@
 import { useState, useEffect } from 'react';
 import { fetchApi } from '@/lib/api';
 import { Plus, Pencil, Trash2, CheckCircle, IndianRupee } from 'lucide-react';
-import { AdminGridCell , AdminRecord } from '@/app/admin/admin_reusable/gridTheme';
+import { AdminGridCell , AdminRecord } from '@/app/admin/admin_reusable/admin_reusable_utils/AdminReusableGridTheme';
 
 interface Plan {
   id: string;
@@ -275,3 +275,4 @@ export default function AdminPlansPage() {
     </div>
   );
 }
+

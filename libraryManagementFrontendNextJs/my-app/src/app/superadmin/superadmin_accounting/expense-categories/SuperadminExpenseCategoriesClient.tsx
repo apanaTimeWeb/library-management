@@ -1,4 +1,7 @@
 'use client';
+// RESPONSIBILITY: Main client view managing expense categories list and creation modal.
+// DATA FLOW: useSuperadminExpenseCategories -> SuperadminExpenseCategoriesClient -> Card / Dialog
+
 import React, { useState } from 'react';
 import { superadmin_useSuperadminExpenseCategories as useSuperadminExpenseCategories } from '@/app/superadmin/superadmin_accounting/expense-categories/superadmin_expense_categories_hooks/superadmin_useSuperadminExpenseCategories';
 import { SuperadminExpenseCategoriesHeader } from '@/app/superadmin/superadmin_accounting/expense-categories/superadmin_expense_categories_components/SuperadminExpenseCategoriesHeader';
@@ -12,7 +15,7 @@ export function SuperadminExpenseCategoriesClient() {
 
   const showToast = (msg: string) => { setToast(msg); setTimeout(() => setToast(''), 2500); };
 
-  const onAddCategory = async (cat: unknown) => {
+  const onAddCategory = async (cat: any) => {
     await handleAdd(cat);
     showToast('✅ Category added successfully');
   };

@@ -16,3 +16,4 @@ export default function AdminSeatsShiftsLockersEmptyState({ title = 'No data fou
     </div>
   );
 }
+

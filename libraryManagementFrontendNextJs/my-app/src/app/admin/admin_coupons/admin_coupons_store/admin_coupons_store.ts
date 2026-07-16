@@ -12,3 +12,4 @@ export const useAdminCouponsStore = create<AdminCouponsState>((set) => ({
   data: [],
   setData: (data: unknown[]) => set({ data }),
 }));
+

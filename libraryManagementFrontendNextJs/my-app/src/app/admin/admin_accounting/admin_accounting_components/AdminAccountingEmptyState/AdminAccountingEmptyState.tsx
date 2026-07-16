@@ -16,3 +16,4 @@ export default function AdminAccountingEmptyState({ title = 'No data found', des
     </div>
   );
 }
+

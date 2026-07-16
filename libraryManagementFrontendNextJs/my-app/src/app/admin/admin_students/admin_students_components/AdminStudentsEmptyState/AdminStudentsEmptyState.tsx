@@ -16,3 +16,4 @@ export default function AdminStudentsEmptyState({ title = 'No data found', descr
     </div>
   );
 }
+

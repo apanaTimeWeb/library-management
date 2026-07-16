@@ -46,3 +46,4 @@ export function useAdminReports(initialData?: AdminRecord) {
     rangeOptions: RANGE_OPTIONS
   };
 }
+

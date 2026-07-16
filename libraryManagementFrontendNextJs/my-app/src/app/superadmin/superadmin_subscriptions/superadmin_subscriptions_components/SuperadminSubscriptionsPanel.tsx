@@ -1,8 +1,12 @@
 'use client';
+// RESPONSIBILITY: Side-drawer inspection panel for managing library subscription plans, renewals, and billing history.
+// DATA FLOW: Props (sub, onUpdate, onRenew) -> SuperadminSubscriptionsPanel -> API callbacks
+
 import React, { useState } from 'react';
 import { X, Calendar, IndianRupee, CheckCircle, Edit2, Save, Loader } from 'lucide-react';
 import type { SuperadminSubscription } from '@/app/superadmin/superadmin_subscriptions/superadmin_subscriptions_types/SuperadminSubscriptionsTypes';
 import { SUPERADMIN_SUBSCRIPTIONS_PLANS } from '@/app/superadmin/superadmin_subscriptions/superadmin_subscriptions_constants/SuperadminSubscriptionsConstants';
+import { logger } from '@/lib/logger';
 
 interface Props {
   sub: SuperadminSubscription;
@@ -26,7 +30,7 @@ export function SuperadminSubscriptionsPanel({ sub, onClose, onUpdate, onRenew }
       setRenewed(true);
       setTimeout(() => setRenewed(false), 2000);
     } catch (err) {
-      console.error(err);
+      logger.error('Failed to renew subscription', err);
     } finally {
       setRenewing(false);
     }
@@ -39,7 +43,7 @@ export function SuperadminSubscriptionsPanel({ sub, onClose, onUpdate, onRenew }
       setSaved(true);
       setTimeout(() => { setSaved(false); setEditing(false); }, 1200);
     } catch (err) {
-      console.error(err);
+      logger.error('Failed to save plan changes', err);
     } finally {
       setSaving(false);
     }

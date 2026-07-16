@@ -12,3 +12,4 @@ export const useAdminBranchesStore = create<AdminBranchesState>((set) => ({
   data: [],
   setData: (data: unknown[]) => set({ data }),
 }));
+

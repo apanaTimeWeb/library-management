@@ -16,3 +16,4 @@ export default function AdminCouponsEmptyState({ title = 'No data found', descri
     </div>
   );
 }
+

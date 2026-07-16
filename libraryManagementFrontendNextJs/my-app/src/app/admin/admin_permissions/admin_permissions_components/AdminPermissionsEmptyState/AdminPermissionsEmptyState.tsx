@@ -16,3 +16,4 @@ export default function AdminPermissionsEmptyState({ title = 'No data found', de
     </div>
   );
 }
+

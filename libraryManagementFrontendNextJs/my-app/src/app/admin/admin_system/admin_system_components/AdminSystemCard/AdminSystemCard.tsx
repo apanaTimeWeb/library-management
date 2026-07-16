@@ -29,3 +29,4 @@ export function CardContent({ children, className }: CardProps) {
 export function CardFooter({ children, className }: CardProps) {
   return <div className={cn('sys-card-footer', className)}>{children}</div>;
 }
+

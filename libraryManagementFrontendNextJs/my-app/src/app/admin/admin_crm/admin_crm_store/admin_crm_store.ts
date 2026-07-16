@@ -12,3 +12,4 @@ export const useAdminCrmStore = create<AdminCrmState>((set) => ({
   data: [],
   setData: (data: unknown[]) => set({ data }),
 }));
+

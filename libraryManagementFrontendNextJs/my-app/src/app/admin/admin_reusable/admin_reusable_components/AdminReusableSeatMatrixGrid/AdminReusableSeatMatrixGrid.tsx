@@ -182,3 +182,4 @@ export default function AdminReusableSeatMatrixGrid({ seats, shifts }: Props) {
     </Card>
   );
 }
+

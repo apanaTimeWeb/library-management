@@ -12,3 +12,4 @@ export const useAdminDashboardStore = create<AdminDashboardState>((set) => ({
   data: [],
   setData: (data: unknown[]) => set({ data }),
 }));
+

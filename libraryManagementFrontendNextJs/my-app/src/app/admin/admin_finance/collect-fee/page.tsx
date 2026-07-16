@@ -1,5 +1,5 @@
 'use client';
-import { AdminRecord } from '@/app/admin/admin_reusable/gridTheme';
+import { AdminRecord } from '@/app/admin/admin_reusable/admin_reusable_utils/AdminReusableGridTheme';
 
 // RESPONSIBILITY: Entry page for the admin_finance module.
 // DATA FLOW: Next.js Router -> Page -> Components
@@ -417,3 +417,4 @@ export default function CollectFee() {
     </>
   );
 }
+

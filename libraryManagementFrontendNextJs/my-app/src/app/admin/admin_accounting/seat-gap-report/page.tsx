@@ -99,3 +99,4 @@ export default function SeatGapReportPage() {
     </div>
   );
 }
+

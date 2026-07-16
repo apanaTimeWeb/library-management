@@ -1,10 +1,10 @@
 'use client';
-/* eslint-disable @typescript-eslint/no-explicit-any */
-
+// RESPONSIBILITY: Renders student security deposit refund processing pipeline with deduction calculation and payout tracking.
+// DATA FLOW: API /finance/refunds -> Refunds State -> Process / Deduct Modals
 
 import { useState, useEffect } from 'react';
 import { fetchApi } from '@/lib/api';
-
+import { logger } from '@/lib/logger';
 import toast from 'react-hot-toast';
 import { formatCurrency } from '@/app/superadmin/superadmin_finance/superadmin_finance_utils/superadmin_format';
 import { CheckCircle, XCircle, Undo2 } from 'lucide-react';
@@ -51,20 +51,24 @@ export default function Refunds() {
   const [deductReason, setDeductReason] = useState('');
 
   useEffect(() => {
-    fetchApi('/finance/refunds').then(( data: any ) => {
-      const mapped = data.map(( r: FlexRecord ) => ({
-        id: parseInt(r.id),
-        studentName: r.name,
+    fetchApi('/finance/refunds').then(( data: unknown ) => {
+      if (!Array.isArray(data)) { setIsLoading(false); return; }
+      const mapped: Refund[] = data.map(( r: Record<string, unknown> ) => ({
+        id: parseInt(String(r.id || '0'), 10),
+        studentName: String(r.name || 'Student'),
         smartId: 'S-001',
         depositHeld: 1000,
         deductionAmount: 0,
-        netRefund: r.amount,
-        status: r.status,
-        requestedDate: new Date(r.date).toISOString().split('T')[0],
+        netRefund: Number(r.amount) || 0,
+        status: (r.status || 'pending') as Refund['status'],
+        requestedDate: r.date ? new Date(String(r.date)).toISOString().split('T')[0] : new Date().toISOString().split('T')[0],
       }));
       setAllRefunds(mapped);
       setIsLoading(false);
-    }).catch(console.error);
+    }).catch(err => {
+      logger.error('Failed to load finance refunds', err);
+      setIsLoading(false);
+    });
   }, []);
 
   const filtered = allRefunds.filter((r) => statusFilter === 'all' || r.status === statusFilter);

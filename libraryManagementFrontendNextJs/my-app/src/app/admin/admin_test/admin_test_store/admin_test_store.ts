@@ -12,3 +12,4 @@ export const useAdminTestStore = create<AdminTestState>((set) => ({
   data: [],
   setData: (data: unknown[]) => set({ data }),
 }));
+

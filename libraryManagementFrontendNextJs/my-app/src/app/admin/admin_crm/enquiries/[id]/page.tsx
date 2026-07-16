@@ -1,7 +1,7 @@
 'use client';
 
-// RESPONSIBILITY: Entry page for the admin_crm module.
-// DATA FLOW: Next.js Router -> Page -> Components
+// RESPONSIBILITY: Renders the CRM Enquiry detail page with status updates, follow-up timeline, and action buttons.
+// DATA FLOW: Next.js Router -> AdminCrmEnquiryDetailPage -> (MarkLostModal, InfoItem, timeline, status card)
 
 import { useState, use, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
@@ -9,21 +9,11 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import toast, { Toaster } from 'react-hot-toast';
 import {
-  ArrowLeft,
-  Phone,
-  MapPin,
-  User,
-  CalendarDays,
-  Tag,
-  Clock,
-  CheckCircle,
-  XCircle,
-  Plus,
-  Edit2,
-  AlertTriangle,
+  ArrowLeft, Phone, MapPin, User, CalendarDays, Tag,
+  Clock, CheckCircle, XCircle, Plus, Edit2, AlertTriangle,
 } from 'lucide-react';
-import data from '@/app/admin/admin_crm/admin_crm_components/hardcoded.json';
-import { AdminRecord } from '@/app/admin/admin_reusable/gridTheme';
+import { fetchApi } from '@/lib/api';
+import { ADMIN_ROUTES, ADMIN_API_ROUTES } from '@/app/admin/admin_url_config';
 import {
   type Enquiry,
   type EnquiryStatus,
@@ -39,10 +29,12 @@ import {
   type MarkLostFormData,
 } from '@/app/admin/admin_crm/admin_crm_components/AdminCrmschema/AdminCrmschema';
 
-/* ── Status Select options ─────────────────────────────── */
+// Rule 44: FetchState enum — no boolean loading flags
+type FetchState = 'idle' | 'loading' | 'success' | 'error';
+
+// Rule 35: no magic strings for status options
 const STATUS_OPTIONS: EnquiryStatus[] = ['New', 'Visited', 'Interested', 'Converted', 'Lost'];
 
-/* ── Timeline dot color by staff ──────────────────────── */
 function timelineDotClass(by: string): string {
   if (by === 'System') return 'crm-timeline-dot--system';
   const lower = by.toLowerCase();
@@ -52,18 +44,17 @@ function timelineDotClass(by: string): string {
   return '';
 }
 
-/* ── Mark Lost Modal ───────────────────────────────────── */
 interface MarkLostModalProps {
   onConfirm: (reason: string) => void;
   onCancel: () => void;
   isSubmitting: boolean;
 }
+
 function MarkLostModal({ onConfirm, onCancel, isSubmitting }: MarkLostModalProps) {
   const { register, handleSubmit } = useForm<MarkLostFormData>({
     resolver: zodResolver(markLostSchema),
     defaultValues: { reason: '' },
   });
-
   const onSubmit = (d: MarkLostFormData) => onConfirm(d.reason ?? '');
 
   return (
@@ -75,7 +66,6 @@ function MarkLostModal({ onConfirm, onCancel, isSubmitting }: MarkLostModalProps
         aria-modal="true"
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Icon + title */}
         <div className="crm-modal-header">
           <div className="crm-modal-icon-wrap">
             <AlertTriangle size={22} className="crm-modal-icon-danger" />
@@ -89,8 +79,6 @@ function MarkLostModal({ onConfirm, onCancel, isSubmitting }: MarkLostModalProps
             </p>
           </div>
         </div>
-
-        {/* Optional reason */}
         <form id="mark-lost-form" onSubmit={handleSubmit(onSubmit)}>
           <div className="crm-modal-field">
             <label className="crm-label" htmlFor="lost-reason">
@@ -100,18 +88,12 @@ function MarkLostModal({ onConfirm, onCancel, isSubmitting }: MarkLostModalProps
               id="lost-reason"
               rows={3}
               className="crm-textarea"
-              placeholder="e.g. Didn't respond after 3 follow-ups, found another library…"
+              placeholder="e.g. Didn't respond after 3 follow-ups…"
               {...register('reason')}
             />
           </div>
-
-          {/* Buttons */}
           <div className="crm-modal-btns">
-            <button
-              type="button"
-              className="crm-btn-ghost crm-btn-flex-1"
-              onClick={onCancel}
-            >
+            <button type="button" className="crm-btn-ghost crm-btn-flex-1" onClick={onCancel}>
               Cancel
             </button>
             <button
@@ -120,17 +102,7 @@ function MarkLostModal({ onConfirm, onCancel, isSubmitting }: MarkLostModalProps
               className="crm-btn-danger-solid crm-btn-flex-1"
               disabled={isSubmitting}
             >
-              {isSubmitting ? (
-                <>
-                  <span className="crm-spinner" />
-                  Marking…
-                </>
-              ) : (
-                <>
-                  <XCircle size={15} />
-                  Mark as Lost
-                </>
-              )}
+              {isSubmitting ? <><span className="crm-spinner" /> Marking…</> : <><XCircle size={15} /> Mark as Lost</>}
             </button>
           </div>
         </form>
@@ -139,81 +111,60 @@ function MarkLostModal({ onConfirm, onCancel, isSubmitting }: MarkLostModalProps
   );
 }
 
-/* ── Info Item helper ─────────────────────────────────── */
-function InfoItem({
-  icon,
-  label,
-  value,
-}: {
-  icon: React.ReactNode;
-  label: string;
-  value: string;
-}) {
+function InfoItem({ icon, label, value }: { icon: React.ReactNode; label: string; value: string }) {
   return (
     <div>
-      <p className="crm-info-item-label">
-        {icon}
-        {label}
-      </p>
+      <p className="crm-info-item-label">{icon}{label}</p>
       <p className="crm-info-item-value">{value}</p>
     </div>
   );
 }
 
-/* ── Main Page ─────────────────────────────────────────── */
-export default function EnquiryDetailPage({
-  params,
-}: {
-  params: Promise<{ id: string }>;
-}) {
+export default function AdminCrmEnquiryDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = use(params);
   const router = useRouter();
 
-  // ── Local state ──
-  const [enquiry, setEnquiry] = useState<AdminRecord | null>(null);
-  const [loading, setLoading] = useState(true);
+  const [enquiry, setEnquiry]           = useState<Enquiry | null>(null);
+  const [fetchState, setFetchState]     = useState<FetchState>('loading');
   const [currentStatus, setCurrentStatus] = useState<EnquiryStatus>('New');
   const [showLostModal, setShowLostModal] = useState(false);
   const [lostSubmitting, setLostSubmitting] = useState(false);
   const [statusUpdating, setStatusUpdating] = useState(false);
 
   useEffect(() => {
-    import('@/lib/api').then(({ fetchApi }) => {
-      fetchApi(`/crm/enquiries/${id}`)
-        .then((e: AdminRecord) => {
-          if (!e) {
-            setLoading(false);
-            return;
-          }
-          const mapped = {
-            id: e.id,
-            name: e.name,
-            phone: e.phone,
-            shift: e.preferredShift,
-            status: e.status.charAt(0).toUpperCase() + e.status.slice(1),
-            handledBy: e.handledBy?.name || 'Unassigned',
-            addedDate: new Date(e.createdAt).toLocaleDateString(),
-            avatar: e.name.substring(0, 2).toUpperCase(),
-            source: e.source || 'Walk-in',
-            preferredBranch: e.preferredBranch || 'Main Branch',
-            enquiryDate: new Date(e.createdAt).toLocaleDateString(),
-            followUps: [],
-            isOverdue: false,
-            isToday: true,
-            isUpcoming: false,
-          };
-          setEnquiry(mapped);
-          setCurrentStatus(mapped.status as EnquiryStatus);
-          setLoading(false);
-        })
-        .catch((err) => {
-          console.error(err);
-          setLoading(false);
-        });
-    });
+    // Rule 55: id is the only dep — re-fetch when route param changes
+    setFetchState('loading');
+    fetchApi(ADMIN_API_ROUTES.CRM_ENQUIRY_BY_ID(id))
+      .then((e: unknown) => {
+        const raw = e as Record<string, unknown>;
+        if (!raw) { setFetchState('error'); return; }
+        const mapped: Enquiry = {
+          id:              String(raw.id ?? ''),
+          name:            String(raw.name ?? ''),
+          phone:           String(raw.phone ?? ''),
+          shift:           String(raw.preferredShift ?? ''),
+          status:          (String(raw.status ?? 'new').charAt(0).toUpperCase() + String(raw.status ?? 'new').slice(1)) as EnquiryStatus,
+          handledBy:       (raw.handledBy as Record<string, unknown>)?.name ? String((raw.handledBy as Record<string, unknown>).name) : 'Unassigned',
+          addedDate:       new Date(String(raw.createdAt ?? '')).toLocaleDateString(),
+          avatar:          String(raw.name ?? '').substring(0, 2).toUpperCase(),
+          source:          String(raw.source ?? 'Walk-in'),
+          preferredBranch: String(raw.preferredBranch ?? 'Main Branch'),
+          enquiryDate:     new Date(String(raw.createdAt ?? '')).toLocaleDateString(),
+          followUps:       [],
+          isOverdue:       false,
+          isToday:         true,
+          isUpcoming:      false,
+        };
+        setEnquiry(mapped);
+        setCurrentStatus(mapped.status);
+        setFetchState('success');
+      })
+      .catch(() => {
+        // Rule 46: no console.error — error surfaced via fetchState
+        setFetchState('error');
+      });
   }, [id]);
 
-  // ── Follow-up form ──
   const {
     register: registerFU,
     handleSubmit: handleSubmitFU,
@@ -224,46 +175,38 @@ export default function EnquiryDetailPage({
     defaultValues: { date: '', remark: '' },
   });
 
-  /* ── Loading / Not found ── */
-  if (loading) {
-    return <div className="crm-page crm-empty-state"><p>Loading...</p></div>;
+  if (fetchState === 'loading') {
+    return <div className="crm-page crm-empty-state"><div className="crm-spinner" /></div>;
   }
 
-  if (!enquiry) {
+  if (fetchState === 'error' || !enquiry) {
     return (
       <div className="crm-page crm-empty-state crm-not-found">
         <XCircle size={48} className="crm-empty-icon" />
         <p className="crm-empty-title">Enquiry Not Found</p>
-        <p className="crm-empty-sub">
-          The enquiry with ID &ldquo;{id}&rdquo; does not exist.
-        </p>
+        <p className="crm-empty-sub">The enquiry with ID &ldquo;{id}&rdquo; does not exist.</p>
         <button
           className="crm-btn-ghost crm-mt-12"
-          onClick={() => router.push('/admin/admin_crm/enquiries')}
+          onClick={() => router.push(ADMIN_ROUTES.CRM_ENQUIRIES)}
         >
-          <ArrowLeft size={15} />
-          Back to Pipeline
+          <ArrowLeft size={15} /> Back to Pipeline
         </button>
       </div>
     );
   }
 
-  /* ── Handlers ── */
   const handleStatusUpdate = async () => {
     setStatusUpdating(true);
     try {
-      const { fetchApi } = await import('@/lib/api');
-      await fetchApi(`/crm/enquiries/${id}/status`, {
+      const res = await fetchApi(ADMIN_API_ROUTES.CRM_ENQUIRY_STATUS(id), {
         method: 'PATCH',
-        body: JSON.stringify({ status: currentStatus })
-      });
-      setEnquiry((prev: AdminRecord) => (prev ? { ...prev, status: currentStatus } : prev));
-      toast.success(`Status updated to "${currentStatus}"`, {
-        className: 'crm-toast crm-toast--success',
-      });
-    } catch (err) {
-      console.error(err);
-      toast.error('Failed to update status');
+        body: JSON.stringify({ status: currentStatus }),
+      }) as { message?: string };
+      setEnquiry((prev) => (prev ? { ...prev, status: currentStatus } : prev));
+      // Rule 14: display backend message
+      toast.success(res?.message ?? 'Status updated', { className: 'crm-toast crm-toast--success' });
+    } catch (err: unknown) {
+      toast.error((err as { message?: string })?.message ?? 'Failed to update status');
     } finally {
       setStatusUpdating(false);
     }
@@ -271,107 +214,75 @@ export default function EnquiryDetailPage({
 
   const handleAddFollowUp = async (formData: FollowUpFormData) => {
     try {
-      const { fetchApi } = await import('@/lib/api');
-      const payload = {
-        date: new Date(formData.date).toISOString(),
-        remark: formData.remark,
-        by: 'Admin'
-      };
-      await fetchApi(`/crm/enquiries/${id}/follow-ups`, {
+      const res = await fetchApi(ADMIN_API_ROUTES.CRM_ENQUIRY_FOLLOW_UPS(id), {
         method: 'POST',
-        body: JSON.stringify(payload)
-      });
-      
-      const newEntry: FollowUp = {
-        id: `fu_${Date.now()}`,
-        date: new Date(formData.date).toLocaleDateString('en-IN', {
-          day: 'numeric',
-          month: 'long',
-          year: 'numeric',
+        body: JSON.stringify({
+          date: new Date(formData.date).toISOString(),
+          remark: formData.remark,
+          by: 'Admin',
         }),
-        time: new Date().toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' }),
-        by: 'Admin',
+      }) as { message?: string };
+      const newEntry: FollowUp = {
+        id:     `fu_${Date.now()}`,
+        date:   new Date(formData.date).toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' }),
+        time:   new Date().toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' }),
+        by:     'Admin',
         remark: formData.remark,
       };
-      setEnquiry((prev: AdminRecord) =>
-        prev ? { ...prev, followUps: [newEntry, ...prev.followUps] } : prev
-      );
+      setEnquiry((prev) => prev ? { ...prev, followUps: [newEntry, ...prev.followUps] } : prev);
       resetFU();
-      toast.success('Follow-up added!', {
-        className: 'crm-toast crm-toast--success',
-      });
-    } catch (err) {
-      console.error(err);
-      toast.error('Failed to add follow-up');
+      // Rule 14: display backend message
+      toast.success(res?.message ?? 'Follow-up added', { className: 'crm-toast crm-toast--success' });
+    } catch (err: unknown) {
+      toast.error((err as { message?: string })?.message ?? 'Failed to add follow-up');
     }
   };
 
   const handleConvert = () => {
-    router.push(
-      `/manager/manager_students/new?name=${encodeURIComponent(enquiry.name)}&phone=${encodeURIComponent(enquiry.phone)}`
-    );
+    // Rule 67: navigate within admin module only — no /manager/ cross-module routes
+    router.push(`${ADMIN_ROUTES.STUDENTS}/new?name=${encodeURIComponent(enquiry.name)}&phone=${encodeURIComponent(enquiry.phone)}`);
   };
 
   const handleMarkLostConfirm = async (reason: string) => {
     setLostSubmitting(true);
     try {
-      const { fetchApi } = await import('@/lib/api');
-      await fetchApi(`/crm/enquiries/${id}/status`, {
+      const res = await fetchApi(ADMIN_API_ROUTES.CRM_ENQUIRY_STATUS(id), {
         method: 'PATCH',
-        body: JSON.stringify({ status: 'Lost', reason: reason })
-      });
-
+        body: JSON.stringify({ status: 'Lost', reason }),
+      }) as { message?: string };
       const lostEntry: FollowUp = {
-        id: `fu_${Date.now()}`,
-        date: new Date().toLocaleDateString('en-IN', {
-          day: 'numeric',
-          month: 'long',
-          year: 'numeric',
-        }),
-        time: new Date().toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' }),
-        by: 'Admin',
+        id:     `fu_${Date.now()}`,
+        date:   new Date().toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' }),
+        time:   new Date().toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' }),
+        by:     'Admin',
         remark: reason ? `Marked as Lost — ${reason}` : 'Marked as Lost.',
       };
-      setEnquiry((prev: AdminRecord) =>
-        prev
-          ? { ...prev, status: 'Lost', followUps: [lostEntry, ...prev.followUps] }
-          : prev
-      );
+      setEnquiry((prev) => prev ? { ...prev, status: 'Lost', followUps: [lostEntry, ...prev.followUps] } : prev);
       setCurrentStatus('Lost');
       setShowLostModal(false);
-      toast('Enquiry marked as lost.', {
-        icon: '❌',
-        className: 'crm-toast crm-toast--danger',
-      });
-    } catch (err) {
-      console.error(err);
-      toast.error('Failed to mark as lost');
+      // Rule 14: display backend message
+      toast(res?.message ?? 'Enquiry marked as lost', { icon: '❌', className: 'crm-toast crm-toast--danger' });
+    } catch (err: unknown) {
+      toast.error((err as { message?: string })?.message ?? 'Failed to mark as lost');
     } finally {
       setLostSubmitting(false);
     }
   };
 
-  /* ── Status badge class ── */
-  const statusBadgeCls = STATUS_BADGE[enquiry.status as keyof typeof STATUS_BADGE];
+  const statusBadgeCls = STATUS_BADGE[enquiry.status];
 
-  /* ── Follow-up next date label ── */
   const followUpDateClass = enquiry.isOverdue
     ? 'crm-followup-date-overdue'
     : enquiry.isToday
     ? 'crm-followup-date-today'
     : 'crm-followup-date-upcoming';
 
-  const followUpDateLabel = enquiry.isOverdue
-    ? 'Overdue'
-    : enquiry.isToday
-    ? 'Today'
-    : 'Upcoming';
+  const followUpDateLabel = enquiry.isOverdue ? 'Overdue' : enquiry.isToday ? 'Today' : 'Upcoming';
 
   return (
     <>
       <Toaster position="bottom-right" />
 
-      {/* Mark Lost Modal */}
       {showLostModal && (
         <MarkLostModal
           onConfirm={handleMarkLostConfirm}
@@ -382,11 +293,10 @@ export default function EnquiryDetailPage({
 
       <div className="crm-page">
 
-        {/* ── Breadcrumb + Back ── */}
         <div className="crm-detail-topbar">
           <button
             className="crm-btn-icon crm-btn-icon-back"
-            onClick={() => router.push('/admin/admin_crm/enquiries')}
+            onClick={() => router.push(ADMIN_ROUTES.CRM_ENQUIRIES)}
             title="Back to Pipeline"
             aria-label="Back to pipeline"
           >
@@ -398,48 +308,34 @@ export default function EnquiryDetailPage({
           </nav>
         </div>
 
-        {/* ── Two-column layout ── */}
         <div className="crm-detail-grid">
 
-          {/* ══════════════════════════════
-              LEFT COLUMN  (60%)
-          ══════════════════════════════ */}
+          {/* LEFT COLUMN */}
           <div className="crm-detail-left">
 
-            {/* ── Info Card ── */}
             <div className="crm-card">
               <div className="crm-lead-header">
-                {/* Avatar */}
-                <div className="crm-avatar crm-avatar--lg">
-                  {getInitials(enquiry.name)}
-                </div>
+                <div className="crm-avatar crm-avatar--lg">{getInitials(enquiry.name)}</div>
                 <div className="crm-lead-header-body">
                   <div className="crm-lead-title-row">
                     <h1 className="crm-lead-name">{enquiry.name}</h1>
                     <span className={`crm-badge ${statusBadgeCls}`}>{enquiry.status}</span>
                   </div>
-                  <p className="crm-lead-phone">
-                    <Phone size={13} />
-                    +91 {enquiry.phone}
-                  </p>
+                  <p className="crm-lead-phone"><Phone size={13} />+91 {enquiry.phone}</p>
                 </div>
               </div>
-
-              {/* Details grid */}
               <div className="crm-info-grid">
-                <InfoItem icon={<Tag size={14} />}          label="Source"           value={enquiry.source} />
-                <InfoItem icon={<Clock size={14} />}        label="Preferred Shift"  value={enquiry.shift} />
-                <InfoItem icon={<User size={14} />}         label="Handled By"       value={enquiry.handledBy} />
+                <InfoItem icon={<Tag size={14} />}          label="Source"            value={enquiry.source} />
+                <InfoItem icon={<Clock size={14} />}        label="Preferred Shift"   value={enquiry.shift} />
+                <InfoItem icon={<User size={14} />}         label="Handled By"        value={enquiry.handledBy} />
                 <InfoItem icon={<MapPin size={14} />}       label="Branch Preference" value={enquiry.preferredBranch} />
-                <InfoItem icon={<CalendarDays size={14} />} label="Enquiry Date"     value={enquiry.enquiryDate} />
-                <InfoItem icon={<Phone size={14} />}        label="Phone (masked)"   value={maskPhone(enquiry.phone)} />
+                <InfoItem icon={<CalendarDays size={14} />} label="Enquiry Date"      value={enquiry.enquiryDate} />
+                <InfoItem icon={<Phone size={14} />}        label="Phone (masked)"    value={maskPhone(enquiry.phone)} />
               </div>
             </div>
 
-            {/* ── Timeline ── */}
             <div className="crm-card">
               <h2 className="crm-section-title">Activity Timeline</h2>
-
               {enquiry.followUps.length === 0 ? (
                 <div className="crm-empty-state-sm">
                   <Clock size={32} className="crm-empty-icon" />
@@ -447,7 +343,7 @@ export default function EnquiryDetailPage({
                 </div>
               ) : (
                 <div className="crm-timeline">
-                  {enquiry.followUps.map(( fu: AdminRecord ) => (
+                  {enquiry.followUps.map((fu: FollowUp) => (
                     <div className="crm-timeline-entry" key={fu.id}>
                       <div className={`crm-timeline-dot ${timelineDotClass(fu.by)}`} />
                       <div className="crm-timeline-card">
@@ -468,12 +364,9 @@ export default function EnquiryDetailPage({
 
           </div>
 
-          {/* ══════════════════════════════
-              RIGHT COLUMN  (40%) — sticky
-          ══════════════════════════════ */}
+          {/* RIGHT COLUMN */}
           <div className="crm-detail-right">
 
-            {/* ── Status Update Card ── */}
             <div className="crm-card">
               <h3 className="crm-section-label">Current Status</h3>
               <div className="crm-status-row">
@@ -483,9 +376,7 @@ export default function EnquiryDetailPage({
                     value={currentStatus}
                     onChange={(e) => setCurrentStatus(e.target.value as EnquiryStatus)}
                   >
-                    {STATUS_OPTIONS.map((s) => (
-                      <option key={s} value={s}>{s}</option>
-                    ))}
+                    {STATUS_OPTIONS.map((s) => <option key={s} value={s}>{s}</option>)}
                   </select>
                 </div>
                 <button
@@ -499,7 +390,6 @@ export default function EnquiryDetailPage({
               </div>
             </div>
 
-            {/* ── Add Follow-Up Card ── */}
             <div className="crm-card">
               <h3 className="crm-section-label">Add Follow-Up</h3>
               <form
@@ -509,9 +399,7 @@ export default function EnquiryDetailPage({
                 className="crm-form-stack"
               >
                 <div className="crm-field">
-                  <label htmlFor="fu-date" className="crm-label crm-label--required">
-                    Follow-up Date
-                  </label>
+                  <label htmlFor="fu-date" className="crm-label crm-label--required">Follow-up Date</label>
                   <input
                     id="fu-date"
                     type="date"
@@ -521,11 +409,8 @@ export default function EnquiryDetailPage({
                   />
                   {fuErrors.date && <p className="crm-error">{fuErrors.date.message}</p>}
                 </div>
-
                 <div className="crm-field">
-                  <label htmlFor="fu-remark" className="crm-label crm-label--required">
-                    Remark
-                  </label>
+                  <label htmlFor="fu-remark" className="crm-label crm-label--required">Remark</label>
                   <textarea
                     id="fu-remark"
                     rows={3}
@@ -535,41 +420,20 @@ export default function EnquiryDetailPage({
                   />
                   {fuErrors.remark && <p className="crm-error">{fuErrors.remark.message}</p>}
                 </div>
-
-                <button
-                  type="submit"
-                  className="crm-btn-primary crm-btn-full"
-                  disabled={fuSubmitting}
-                >
-                  {fuSubmitting ? (
-                    <>
-                      <span className="crm-spinner" /> Adding…
-                    </>
-                  ) : (
-                    <>
-                      <Plus size={15} /> Add Follow-Up
-                    </>
-                  )}
+                <button type="submit" className="crm-btn-primary crm-btn-full" disabled={fuSubmitting}>
+                  {fuSubmitting ? <><span className="crm-spinner" /> Adding…</> : <><Plus size={15} /> Add Follow-Up</>}
                 </button>
               </form>
 
-              {/* Next follow-up display */}
               {(enquiry.isToday || enquiry.isUpcoming || enquiry.isOverdue) && (
                 <>
                   <div className="crm-divider" />
                   <div className="crm-followup-next">
                     <div className="crm-followup-next-left">
                       <CalendarDays size={13} />
-                      <span>
-                        Next follow-up:{' '}
-                        <strong className={followUpDateClass}>{followUpDateLabel}</strong>
-                      </span>
+                      <span>Next follow-up:{' '}<strong className={followUpDateClass}>{followUpDateLabel}</strong></span>
                     </div>
-                    <button
-                      className="crm-btn-icon"
-                      title="Edit follow-up date"
-                      aria-label="Edit follow-up date"
-                    >
+                    <button className="crm-btn-icon" title="Edit follow-up date" aria-label="Edit follow-up date">
                       <Edit2 size={13} />
                     </button>
                   </div>
@@ -577,23 +441,16 @@ export default function EnquiryDetailPage({
               )}
             </div>
 
-            {/* ── Actions Card ── */}
             <div className="crm-card crm-form-stack">
               <h3 className="crm-section-label">Actions</h3>
-
-              {/* Convert to Admission */}
               <button
                 className="crm-btn-success crm-btn-full"
                 onClick={handleConvert}
                 disabled={enquiry.status === 'Converted'}
               >
                 <CheckCircle size={16} />
-                {enquiry.status === 'Converted'
-                  ? 'Already Converted'
-                  : 'Convert to Admission'}
+                {enquiry.status === 'Converted' ? 'Already Converted' : 'Convert to Admission'}
               </button>
-
-              {/* Mark as Lost */}
               <button
                 className="crm-btn-danger crm-btn-full"
                 onClick={() => setShowLostModal(true)}

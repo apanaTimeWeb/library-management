@@ -15,12 +15,12 @@ export interface AdminReusableActionItem {
 export default function AdminReusableActionItemsList({ items }: { items: AdminReusableActionItem[] }) {
   return (
     <div className="flex flex-col gap-3">
-      {items.map((item, i) => {
+      {items.map((item) => {
         const Icon = item.icon;
         const isDanger = item.type === 'danger';
         return (
           <Link
-            key={i}
+            key={item.href}
             href={item.href}
             className={`flex items-center justify-between p-3 rounded-lg border transition-colors ${
               isDanger 
@@ -47,3 +47,4 @@ export default function AdminReusableActionItemsList({ items }: { items: AdminRe
     </div>
   );
 }
+

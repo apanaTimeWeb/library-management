@@ -7,3 +7,4 @@ import { AdminRouteProps } from "@/app/admin/admin_types/admin_types";
 export default function AdminRootLayout({ children }: AdminRouteProps) {
   return <AdminRoute>{children}</AdminRoute>;
 }
+

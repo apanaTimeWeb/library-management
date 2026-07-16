@@ -29,3 +29,4 @@ export interface UpdateStudentDto extends Partial<CreateStudentDto> {
 }
 
 export interface AdminStudentsData {}
+

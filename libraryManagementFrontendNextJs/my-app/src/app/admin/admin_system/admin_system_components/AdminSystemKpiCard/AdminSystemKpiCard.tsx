@@ -35,3 +35,4 @@ export function KpiCard({ title, value, subtitle, icon, trend, trendLabel, class
     </div>
   );
 }
+

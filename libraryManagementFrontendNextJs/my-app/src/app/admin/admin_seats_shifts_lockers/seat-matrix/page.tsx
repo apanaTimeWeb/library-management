@@ -5,7 +5,7 @@
 import { useState, useEffect } from 'react';
 import { fetchApi } from '@/lib/api';
 import { CalendarDays, UserPlus, User } from 'lucide-react';
-import { AdminRecord } from '@/app/admin/admin_reusable/gridTheme';
+import { AdminRecord } from '@/app/admin/admin_reusable/admin_reusable_utils/AdminReusableGridTheme';
 
 interface SeatData {
   uuid?: string;
@@ -190,3 +190,4 @@ export default function SeatMatrixPage() {
     </div>
   );
 }
+

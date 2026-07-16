@@ -19,14 +19,14 @@ import {
 import { ADMIN_SIDEBAR_NAV } from '@/app/admin/admin_constants/admin_constants';
 import { logout } from '@/lib/auth';
 
-interface Props {
+export interface AdminSidebarProps {
   collapsed: boolean;
   onToggle: () => void;
   mobileOpen: boolean;
   onMobileClose: () => void;
 }
 
-export default function AdminSidebar({ collapsed, onToggle, mobileOpen, onMobileClose }: Props) {
+export default function AdminSidebar({ collapsed, onToggle, mobileOpen, onMobileClose }: AdminSidebarProps) {
   const pathname = usePathname();
   const [showLogout, setShowLogout] = useState(false);
 
@@ -127,3 +127,4 @@ export default function AdminSidebar({ collapsed, onToggle, mobileOpen, onMobile
     </>
   );
 }
+

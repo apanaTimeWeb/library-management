@@ -16,3 +16,4 @@ export class AdminCommunicationErrorBoundary extends React.Component<Props, Stat
     return this.props.children;
   }
 }
+

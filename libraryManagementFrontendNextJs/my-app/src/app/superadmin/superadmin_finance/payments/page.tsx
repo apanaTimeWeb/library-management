@@ -1,10 +1,12 @@
 'use client';
-/* eslint-disable @typescript-eslint/no-explicit-any */
+// RESPONSIBILITY: Renders library student fee payment records with receipt generation and voiding/reconciliation controls.
+// DATA FLOW: API /finance/payments -> Payments State -> AG Grid / Receipt Action
 
 import type { ICellRendererParams } from 'ag-grid-community';
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { fetchApi } from '@/lib/api';
+import { logger } from '@/lib/logger';
 import { AgGridReact } from 'ag-grid-react';
 import { AllCommunityModule, ModuleRegistry, themeQuartz } from 'ag-grid-community';
 
@@ -57,21 +59,22 @@ export default function Payments() {
   const [allPayments, setAllPayments] = useState<Payment[]>([]);
 
   useEffect(() => {
-    fetchApi('/finance/payments').then(( data: any ) => {
-      const mapped = data.map(( p: any ) => ({
-        id: p.id,
-        receiptNumber: 'REC-' + p.id.substring(0, 8),
-        date: new Date(p.date).toISOString().split('T')[0],
-        studentName: p.studentName,
+    fetchApi('/finance/payments').then(( data: unknown ) => {
+      if (!Array.isArray(data)) return;
+      const mapped: Payment[] = data.map(( p: Record<string, unknown> ) => ({
+        id: typeof p.id === 'number' ? p.id : parseInt(String(p.id || '0'), 10),
+        receiptNumber: 'REC-' + String(p.id || '').substring(0, 8),
+        date: p.date ? new Date(String(p.date)).toISOString().split('T')[0] : new Date().toISOString().split('T')[0],
+        studentName: String(p.studentName || 'Student'),
         smartId: 'S-001',
-        amount: p.amount,
-        mode: 'cash',
+        amount: Number(p.amount) || 0,
+        mode: 'cash' as const,
         lateFee: 0,
         receivedBy: 'Admin',
         status: p.status === 'completed' ? 'valid' : 'deleted',
       }));
       setAllPayments(mapped);
-    }).catch(console.error);
+    }).catch(err => logger.error('Failed to load payments data', err));
   }, []);
 
   const visible = allPayments.filter((p) => {

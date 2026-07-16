@@ -5,7 +5,7 @@
 import { useState, useMemo, useEffect } from 'react';
 import { fetchApi } from '@/lib/api';
 import { ChevronRight, Plus, X, Eye, RefreshCw, CheckCircle } from 'lucide-react';
-import { AdminRecord } from '@/app/admin/admin_reusable/gridTheme';
+import { AdminRecord } from '@/app/admin/admin_reusable/admin_reusable_utils/AdminReusableGridTheme';
 
 type CStatus = 'Open' | 'In-Progress' | 'Resolved';
 
@@ -276,3 +276,4 @@ export default function ComplaintsPage() {
     </div>
   );
 }
+

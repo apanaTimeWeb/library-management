@@ -1,7 +1,11 @@
 'use client';
+// RESPONSIBILITY: Side-drawer inspection panel for viewing and modifying library branch details, plans, and suspension state.
+// DATA FLOW: Props (lib, onSave, onSuspend) -> SuperadminLibrariesPanel -> API callbacks
+
 import React, { useState } from 'react';
 import { MapPin, Edit2, X, Users, CheckCircle, AlertTriangle, Save, Loader, ShieldAlert } from 'lucide-react';
 import type { SuperadminLibrary, SuperadminLibraryPanelMode } from '@/app/superadmin/superadmin_libraries/superadmin_libraries_types/SuperadminLibrariesTypes';
+import { logger } from '@/lib/logger';
 
 interface Props {
   lib: SuperadminLibrary;
@@ -25,7 +29,7 @@ export function SuperadminLibrariesPanel({ lib, mode, onClose, onSave, onSuspend
       setSaved(true);
       setTimeout(() => { setSaved(false); setEditing(false); }, 1200);
     } catch (err) {
-      console.error(err);
+      logger.error('Failed to save library details', err);
     } finally {
       setSaving(false);
     }

@@ -16,3 +16,4 @@ export default function AdminFinanceEmptyState({ title = 'No data found', descri
     </div>
   );
 }
+

@@ -1,4 +1,7 @@
 'use client';
+// RESPONSIBILITY: Main client component coordinating assets table, search/filter state, and add modal.
+// DATA FLOW: useSuperadminAssets -> SuperadminAssetsClient -> Table / AddDialog
+
 import React, { useState } from 'react';
 import { superadmin_useSuperadminAssets as useSuperadminAssets } from '@/app/superadmin/superadmin_accounting/assets/superadmin_assets_hooks/superadmin_useSuperadminAssets';
 import { SuperadminAssetsHeader } from '@/app/superadmin/superadmin_accounting/assets/superadmin_assets_components/SuperadminAssetsHeader';
@@ -25,7 +28,7 @@ export function SuperadminAssetsClient() {
 
   const showToast = (msg: string) => { setToast(msg); setTimeout(() => setToast(''), 2500); };
 
-  const onSaveAsset = async (assetData: unknown) => {
+  const onSaveAsset = async (assetData: any) => {
     await handleAddAsset(assetData);
     showToast('✅ Asset added successfully');
   };

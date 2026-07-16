@@ -16,3 +16,4 @@ export default function AdminTestEmptyState({ title = 'No data found', descripti
     </div>
   );
 }
+

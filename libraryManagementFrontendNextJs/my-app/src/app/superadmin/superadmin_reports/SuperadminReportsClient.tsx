@@ -1,10 +1,15 @@
 'use client';
+// RESPONSIBILITY: Renders analytics charts and KPI cards for global platform metrics with range filtering.
+// DATA FLOW: API /superadmin/reports -> SuperadminReportsClient -> KPI Grid & Chart Cards
+
 import React, { useState, useEffect } from 'react';
 import type { SuperadminReportsDataResponse } from '@/app/superadmin/superadmin_reports/superadmin_reports_types/SuperadminReportsTypes';
 import { SuperadminReportsHeader } from '@/app/superadmin/superadmin_reports/superadmin_reports_components/SuperadminReportsHeader';
 import { SuperadminReportsKpiGrid } from '@/app/superadmin/superadmin_reports/superadmin_reports_components/SuperadminReportsKpiGrid';
 import { SuperadminReportsCharts } from '@/app/superadmin/superadmin_reports/superadmin_reports_components/SuperadminReportsCharts';
 import { fetchSuperadminReportsData } from '@/app/superadmin/superadmin_reports/superadmin_reports_api/SuperadminReportsApi';
+import { logger } from '@/lib/logger';
+import type { FetchState } from '@/app/superadmin/superadmin_shared_components/superadmin_types';
 
 interface Props {
   initialData: SuperadminReportsDataResponse;
@@ -13,44 +18,64 @@ interface Props {
 export function SuperadminReportsClient({ initialData }: Props) {
   const [range, setRange] = useState('Last 6 Months');
   const [data, setData] = useState<SuperadminReportsDataResponse>(initialData);
-  const [loading, setLoading] = useState(false);
+  const [fetchState, setFetchState] = useState<FetchState>('idle');
+
+  const loading = fetchState === 'loading';
 
   useEffect(() => {
-    // If range is exactly the default, skip re-fetching since we already have initialData
     if (range === 'Last 6 Months' && data === initialData) return;
 
     let mounted = true;
-    setLoading(true);
+    setFetchState('loading');
     
     fetchSuperadminReportsData(range)
       .then(res => {
-        if (mounted) setData(res);
+        if (mounted) {
+          setData(res);
+          setFetchState('success');
+        }
       })
-      .catch(console.error)
-      .finally(() => {
-        if (mounted) setLoading(false);
+      .catch(err => {
+        logger.error('Failed to load superadmin reports data', err);
+        if (mounted) setFetchState('error');
       });
 
     return () => { mounted = false; };
   }, [range, initialData, data]);
 
   return (
-    <div className="p-2 sm:p-4 relative">
+    <div className="p-2 sm:p-4 relative space-y-6">
       <SuperadminReportsHeader range={range} setRange={setRange} />
       
-      {loading && (
-        <div className="absolute inset-0 z-10 bg-bg-page/50 backdrop-blur-[2px] flex items-center justify-center rounded-[var(--radius-lg)]">
-          <div className="bg-bg-card p-4 rounded-full shadow-lg flex items-center gap-2 text-sm font-bold text-primary animate-pulse border border-border">
-            <div className="w-4 h-4 border-2 border-primary border-t-transparent rounded-full animate-spin" />
-            Loading Reports...
+      {loading ? (
+        <div className="space-y-6 animate-pulse">
+          {/* KPI Skeleton Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {[...Array(4)].map((_, i) => (
+              <div key={i} className="h-28 bg-bg-card border border-border rounded-lg p-4 flex flex-col justify-between">
+                <div className="h-4 w-24 bg-border/50 rounded" />
+                <div className="h-8 w-32 bg-border/60 rounded" />
+              </div>
+            ))}
+          </div>
+          {/* Charts Skeleton Grid */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <div className="h-80 bg-bg-card border border-border rounded-lg p-6 flex flex-col justify-between">
+              <div className="h-5 w-40 bg-border/50 rounded" />
+              <div className="h-60 w-full bg-border/30 rounded" />
+            </div>
+            <div className="h-80 bg-bg-card border border-border rounded-lg p-6 flex flex-col justify-between">
+              <div className="h-5 w-40 bg-border/50 rounded" />
+              <div className="h-60 w-full bg-border/30 rounded" />
+            </div>
           </div>
         </div>
+      ) : (
+        <div className="transition-opacity duration-300">
+          <SuperadminReportsKpiGrid kpiCards={data.kpiCards} />
+          <SuperadminReportsCharts data={data} />
+        </div>
       )}
-
-      <div className={loading ? 'opacity-50 pointer-events-none transition-opacity' : 'transition-opacity duration-300'}>
-        <SuperadminReportsKpiGrid kpiCards={data.kpiCards} />
-        <SuperadminReportsCharts data={data} />
-      </div>
     </div>
   );
 }

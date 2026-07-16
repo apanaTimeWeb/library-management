@@ -16,3 +16,4 @@ export default function AdminBranchesEmptyState({ title = 'No data found', descr
     </div>
   );
 }
+

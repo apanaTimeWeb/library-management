@@ -27,3 +27,4 @@ export default async function AdminStudentsPage() {
 
   return <AdminStudentsView initialStudents={students} />;
 }
+

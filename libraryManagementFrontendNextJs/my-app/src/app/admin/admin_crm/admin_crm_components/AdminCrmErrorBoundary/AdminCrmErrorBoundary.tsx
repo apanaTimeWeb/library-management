@@ -16,3 +16,4 @@ export class AdminCrmErrorBoundary extends React.Component<Props, State> {
     return this.props.children;
   }
 }
+

@@ -12,3 +12,4 @@ export const useAdminSettingsStore = create<AdminSettingsState>((set) => ({
   data: [],
   setData: (data: unknown[]) => set({ data }),
 }));
+

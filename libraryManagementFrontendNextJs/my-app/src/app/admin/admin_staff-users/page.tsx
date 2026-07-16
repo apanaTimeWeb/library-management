@@ -29,3 +29,4 @@ export default async function AdminStaffUsersPage() {
 
   return <AdminStaffView initialStaff={staff} />;
 }
+

@@ -12,3 +12,4 @@ export const useAdminAccountingStore = create<AdminAccountingState>((set) => ({
   data: [],
   setData: (data: unknown[]) => set({ data }),
 }));
+

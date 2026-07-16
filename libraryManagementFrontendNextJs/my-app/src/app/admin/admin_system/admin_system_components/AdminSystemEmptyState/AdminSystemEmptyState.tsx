@@ -16,3 +16,4 @@ export default function AdminSystemEmptyState({ title = 'No data found', descrip
     </div>
   );
 }
+

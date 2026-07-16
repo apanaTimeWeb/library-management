@@ -6,7 +6,7 @@
 import { useState, useEffect } from 'react';
 import { fetchApi } from '@/lib/api';
 import { Plus, Trash2, Tag } from 'lucide-react';
-import { AdminRecord } from '@/app/admin/admin_reusable/gridTheme';
+import { AdminRecord } from '@/app/admin/admin_reusable/admin_reusable_utils/AdminReusableGridTheme';
 
 interface Category {
   id: string;
@@ -143,3 +143,4 @@ export default function ExpenseCategoriesPage() {
     </div>
   );
 }
+

@@ -1,6 +1,10 @@
+// RESPONSIBILITY: Modal dialog for creating budget allocations across new expense categories.
+// DATA FLOW: User Input -> SuperadminExpenseCategoriesAddDialog -> onSave callback
+
 import React, { useState } from 'react';
 import { X, Loader } from 'lucide-react';
 import type { SuperadminExpenseCategory } from '@/app/superadmin/superadmin_accounting/expense-categories/superadmin_expense_categories_types/SuperadminExpenseCategoriesTypes';
+import { logger } from '@/lib/logger';
 
 interface Props {
   availableColors: string[];
@@ -28,7 +32,7 @@ export function SuperadminExpenseCategoriesAddDialog({ availableColors, onClose,
       });
       onClose();
     } catch (err) {
-      console.error(err);
+      logger.error('Failed to save expense category', err);
     } finally {
       setSaving(false);
     }

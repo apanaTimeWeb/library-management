@@ -8,7 +8,7 @@ import { fetchApi } from '@/lib/api';
 import { Search, ShieldAlert, ShieldCheck, Shield, AlertTriangle, Info } from 'lucide-react';
 import { AgGridReact } from 'ag-grid-react';
 import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community';
-import { gridTheme , AdminGridCell , AdminRecord } from '@/app/admin/admin_reusable/gridTheme';
+import { gridTheme , AdminGridCell , AdminRecord } from '@/app/admin/admin_reusable/admin_reusable_utils/AdminReusableGridTheme';
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
@@ -182,3 +182,4 @@ export default function AdminAuditLogsPage() {
     </div>
   );
 }
+

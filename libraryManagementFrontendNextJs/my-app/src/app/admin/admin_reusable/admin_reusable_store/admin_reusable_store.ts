@@ -12,3 +12,4 @@ export const useAdminReusableStore = create<AdminReusableState>((set) => ({
   data: [],
   setData: (data: unknown[]) => set({ data }),
 }));
+

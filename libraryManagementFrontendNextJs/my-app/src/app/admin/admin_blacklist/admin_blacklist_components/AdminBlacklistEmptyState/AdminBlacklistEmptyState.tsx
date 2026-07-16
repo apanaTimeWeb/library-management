@@ -16,3 +16,4 @@ export default function AdminBlacklistEmptyState({ title = 'No data found', desc
     </div>
   );
 }
+

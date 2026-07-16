@@ -16,3 +16,4 @@ export default function AdminReusableEmptyState({ title = 'No data found', descr
     </div>
   );
 }
+

@@ -5,6 +5,13 @@
 
 export const SUPERADMIN_ROUTES = {
   PREFIX: '/superadmin',
+  STUDENTS: '/superadmin/superadmin_students',
+  LIBRARIES: '/superadmin/superadmin_libraries',
+  BILLING: '/superadmin/superadmin_billing',
+  SUBSCRIPTIONS: '/superadmin/superadmin_subscriptions',
+  REPORTS: '/superadmin/superadmin_reports',
+  SYSTEM_HEALTH: '/superadmin/superadmin_system-health',
+  CRM_ENQUIRIES: '/superadmin/superadmin_crm/enquiries',
 } as const;
 
 export const SUPERADMIN_API_ROUTES = {

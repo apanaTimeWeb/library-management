@@ -12,3 +12,4 @@ export const useAdminSystemStore = create<AdminSystemState>((set) => ({
   data: [],
   setData: (data: unknown[]) => set({ data }),
 }));
+

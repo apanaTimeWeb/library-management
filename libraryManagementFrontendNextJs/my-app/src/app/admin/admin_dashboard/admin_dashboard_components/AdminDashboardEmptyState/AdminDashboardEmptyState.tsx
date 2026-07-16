@@ -16,3 +16,4 @@ export default function AdminDashboardEmptyState({ title = 'No data found', desc
     </div>
   );
 }
+

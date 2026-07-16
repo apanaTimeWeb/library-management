@@ -4,7 +4,7 @@ import { useMemo } from 'react';
 import { Plus, Pencil, Trash2, CheckCircle, Search } from 'lucide-react';
 import { AgGridReact } from 'ag-grid-react';
 import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community';
-import { gridTheme , AdminGridCell } from '@/app/admin/admin_reusable/gridTheme';
+import { gridTheme , AdminGridCell } from '@/app/admin/admin_reusable/admin_reusable_utils/AdminReusableGridTheme';
 import { useAdminBranches, type Branch } from '@/app/admin/admin_branches/admin_branches_hooks/useAdminBranches';
 
 ModuleRegistry.registerModules([AllCommunityModule]);
@@ -183,3 +183,4 @@ export function AdminBranchesView({ initialBranches }: AdminBranchesViewProps) {
     </div>
   );
 }
+

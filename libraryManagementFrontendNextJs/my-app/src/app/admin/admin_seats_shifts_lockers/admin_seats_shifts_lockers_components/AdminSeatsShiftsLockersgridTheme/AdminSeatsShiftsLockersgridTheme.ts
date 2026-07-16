@@ -21,3 +21,4 @@ export const gridTheme = themeQuartz.withParams({
   wrapperBorder:         false,
   wrapperBorderRadius:   0,
 });
+

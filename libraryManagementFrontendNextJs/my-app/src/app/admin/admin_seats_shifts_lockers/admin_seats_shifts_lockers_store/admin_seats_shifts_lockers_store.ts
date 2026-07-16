@@ -12,3 +12,4 @@ export const useAdminSeatsShiftsLockersStore = create<AdminSeatsShiftsLockersSta
   data: [],
   setData: (data: unknown[]) => set({ data }),
 }));
+

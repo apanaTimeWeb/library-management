@@ -7,7 +7,7 @@ import Link from 'next/link';
 import { AgGridReact } from 'ag-grid-react';
 import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community';
 import { ChevronRight, Send, Mail, Phone } from 'lucide-react';
-import { gridTheme , AdminGridCell, AdminRecord } from '@/app/admin/admin_reusable/gridTheme';
+import { gridTheme , AdminGridCell, AdminRecord } from '@/app/admin/admin_reusable/admin_reusable_utils/AdminReusableGridTheme';
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
@@ -242,3 +242,4 @@ export default function AbsenteeReportPage() {
     </div>
   );
 }
+

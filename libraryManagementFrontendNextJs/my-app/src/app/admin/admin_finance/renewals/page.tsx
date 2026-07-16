@@ -12,7 +12,7 @@ import toast from 'react-hot-toast';
 import { formatCurrency } from '@/app/admin/admin_finance/admin_finance_utils/format';
 import { RefreshCw, Send } from 'lucide-react';
 import { gridTheme } from '@/app/admin/admin_finance/admin_finance_components/AdminFinancegridTheme/AdminFinancegridTheme';
-import { AdminGridCell } from '@/app/admin/admin_reusable/gridTheme';
+import { AdminGridCell } from '@/app/admin/admin_reusable/admin_reusable_utils/AdminReusableGridTheme';
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
@@ -256,3 +256,4 @@ export default function Renewals() {
     </div>
   );
 }
+

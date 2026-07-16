@@ -97,3 +97,4 @@ export function AdminPermissionsView({ initialPermissions }: AdminPermissionsVie
     </>
   );
 }
+

@@ -12,3 +12,4 @@ export const useAdminBlacklistStore = create<AdminBlacklistState>((set) => ({
   data: [],
   setData: (data: unknown[]) => set({ data }),
 }));
+

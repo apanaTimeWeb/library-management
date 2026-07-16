@@ -16,3 +16,4 @@ export default function AdminCrmEmptyState({ title = 'No data found', descriptio
     </div>
   );
 }
+

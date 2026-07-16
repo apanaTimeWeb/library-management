@@ -48,7 +48,7 @@ const MODE_BADGE: Record<string, string> = {
 };
 
 import { gridTheme } from '@/app/admin/admin_finance/admin_finance_components/AdminFinancegridTheme/AdminFinancegridTheme';
-import { AdminGridCell , AdminRecord } from '@/app/admin/admin_reusable/gridTheme';
+import { AdminGridCell , AdminRecord } from '@/app/admin/admin_reusable/admin_reusable_utils/AdminReusableGridTheme';
 export default function Payments() {
   const router = useRouter();
   const [modeFilter, setModeFilter] = useState('all');
@@ -289,3 +289,4 @@ export default function Payments() {
     </div>
   );
 }
+

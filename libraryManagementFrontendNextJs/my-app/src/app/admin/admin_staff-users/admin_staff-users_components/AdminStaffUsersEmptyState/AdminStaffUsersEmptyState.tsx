@@ -16,3 +16,4 @@ export default function AdminStaffUsersEmptyState({ title = 'No data found', des
     </div>
   );
 }
+

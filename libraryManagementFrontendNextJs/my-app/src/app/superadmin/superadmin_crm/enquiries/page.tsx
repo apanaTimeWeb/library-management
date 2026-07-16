@@ -1,9 +1,11 @@
 'use client';
-/* eslint-disable @typescript-eslint/no-explicit-any */
+// RESPONSIBILITY: Renders CRM pipeline board / list view with status columns and quick conversion actions.
+// DATA FLOW: API /crm/enquiries -> EnquiriesPage State -> Kanban / Table View
 
-
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import { logger } from '@/lib/logger';
+import { SUPERADMIN_ROUTES } from '@/app/superadmin/superadmin_url_config';
 import {
   Search,
   LayoutGrid,
@@ -19,7 +21,6 @@ import {
   CalendarDays,
   User,
 } from 'lucide-react';
-import { useEffect } from 'react';
 import { fetchApi } from '@/lib/api';
 import {
   type Enquiry,
@@ -90,7 +91,7 @@ function KanbanCard({
       onClick={onClick}
       role="button"
       tabIndex={0}
-      onKeyDown={(e: unknown) => e.key === 'Enter' && onClick()}
+      onKeyDown={(e: React.KeyboardEvent) => e.key === 'Enter' && onClick()}
     >
       {/* Name + phone */}
       <div className="crm-card-name-block">
@@ -141,24 +142,31 @@ export default function EnquiriesPage() {
   const [statusFilter, setStatusFilter] = useState<string>('All');
 
   useEffect(() => {
-    fetchApi('/crm/enquiries').then(( data: any ) => {
-      // Map DB schema to frontend Enquiry schema
-      const mapped = data.map(( e: FlexRecord ) => ({
-        id: e.id,
-        name: e.name,
-        phone: e.phone,
-        shift: e.preferredShift,
-        status: e.status.charAt(0).toUpperCase() + e.status.slice(1),
-        handledBy: e.handledBy?.name || 'Unassigned',
-        addedDate: new Date(e.createdAt).toLocaleDateString(),
-        avatar: e.name.substring(0, 2).toUpperCase()
+    fetchApi('/crm/enquiries').then(( data: unknown ) => {
+      if (!Array.isArray(data)) return;
+      const mapped: Enquiry[] = data.map(( e: Record<string, unknown> ) => ({
+        id: String(e.id || ''),
+        name: String(e.name || ''),
+        phone: String(e.phone || ''),
+        shift: String(e.preferredShift || ''),
+        status: (typeof e.status === 'string' ? e.status.charAt(0).toUpperCase() + e.status.slice(1) : 'New') as EnquiryStatus,
+        handledBy: typeof e.handledBy === 'object' && e.handledBy ? String((e.handledBy as Record<string, unknown>).name || 'Unassigned') : 'Unassigned',
+        addedDate: e.createdAt ? new Date(String(e.createdAt)).toLocaleDateString() : '',
+        avatar: String(e.name || 'U').substring(0, 2).toUpperCase(),
+        enquiryDate: e.createdAt ? new Date(String(e.createdAt)).toLocaleDateString() : '',
+        source: 'Walk-in',
+        preferredBranch: 'Main Branch',
+        followUps: [],
+        isOverdue: false,
+        isToday: false,
+        isUpcoming: false,
       }));
       setEnquiries(mapped);
-    }).catch(console.error);
+    }).catch(err => logger.error('Failed to load CRM enquiries', err));
   }, []);
 
   /* ── Filter logic ── */
-  const filtered = enquiries.filter(( e: FlexRecord ) => {
+  const filtered = enquiries.filter(( e: Enquiry ) => {
     const matchSearch =
       e.name.toLowerCase().includes(search.toLowerCase()) ||
       e.phone.includes(search.replace(/\D/g, ''));
@@ -167,7 +175,7 @@ export default function EnquiriesPage() {
   });
 
   const colEnquiries = (status: EnquiryStatus) =>
-    filtered.filter(( e: FlexRecord ) => e.status === status);
+    filtered.filter(( e: Enquiry ) => e.status === status);
 
   /* ── Quick actions (table view inline) ── */
   const handleQuickConvert = (e: React.MouseEvent, id: string) => {
@@ -175,14 +183,14 @@ export default function EnquiriesPage() {
     const enq = enquiries.find((x) => x.id === id);
     if (!enq) return;
     router.push(
-      `/manager/manager_students/new?name=${encodeURIComponent(enq.name)}&phone=${encodeURIComponent(enq.phone)}`
+      `${SUPERADMIN_ROUTES.STUDENTS}?action=new&name=${encodeURIComponent(enq.name)}&phone=${encodeURIComponent(enq.phone)}`
     );
   };
 
   const handleQuickLost = (e: React.MouseEvent, id: string) => {
     e.stopPropagation();
     setEnquiries((prev) =>
-      prev.map(( x: FlexRecord ) => (x.id === id ? { ...x, status: 'Lost' as EnquiryStatus } : x))
+      prev.map(( x: Enquiry ) => (x.id === id ? { ...x, status: 'Lost' as EnquiryStatus } : x))
     );
   };
 
@@ -308,7 +316,7 @@ export default function EnquiriesPage() {
                           </p>
                         </div>
                       ) : (
-                        cards.map(( enq: FlexRecord ) => (
+                        cards.map(( enq: Enquiry ) => (
                           <KanbanCard
                             key={enq.id}
                             enq={enq}
@@ -395,7 +403,7 @@ export default function EnquiriesPage() {
                             className="crm-btn-icon"
                             title="View details"
                             aria-label="View details"
-                            onClick={(e: unknown) => {
+                            onClick={(e: React.MouseEvent) => {
                               e.stopPropagation();
                               router.push(`/superadmin/superadmin_crm/enquiries/${enq.id}`);
                             }}
@@ -406,7 +414,7 @@ export default function EnquiriesPage() {
                             className="crm-btn-icon crm-btn-icon-success"
                             title="Convert to Admission"
                             aria-label="Convert to admission"
-                            onClick={(e: unknown) => handleQuickConvert(e, enq.id)}
+                            onClick={(e: React.MouseEvent) => handleQuickConvert(e, enq.id)}
                           >
                             <CheckCircle size={14} />
                           </button>
@@ -414,7 +422,7 @@ export default function EnquiriesPage() {
                             className="crm-btn-icon crm-btn-icon-danger"
                             title="Mark as Lost"
                             aria-label="Mark as lost"
-                            onClick={(e: unknown) => handleQuickLost(e, enq.id)}
+                            onClick={(e: React.MouseEvent) => handleQuickLost(e, enq.id)}
                           >
                             <XCircle size={14} />
                           </button>

@@ -1,8 +1,10 @@
 'use client';
-/* eslint-disable @typescript-eslint/no-explicit-any */
+// RESPONSIBILITY: Renders library student complaint pipeline with status filters, detailed view, and resolution workflow.
+// DATA FLOW: API /communication/complaints -> ComplaintsPage State -> UI / Resolution
 
-import { useState, useMemo, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { fetchApi } from '@/lib/api';
+import { logger } from '@/lib/logger';
 import { ChevronRight, Plus, X, Eye, RefreshCw, CheckCircle } from 'lucide-react';
 
 type CStatus = 'Open' | 'In-Progress' | 'Resolved';
@@ -31,17 +33,22 @@ export default function ComplaintsPage() {
   const [resolveNote, setResolveNote]   = useState('');
 
   useEffect(() => {
-    fetchApi('/communication/complaints').then(( data: any ) => {
-      const mapped = data.map(( c: FlexRecord ) => ({
-        id: c.id,
-        title: c.subject,
-        desc: c.description,
-        date: new Date(c.createdAt).toLocaleDateString(),
-        status: c.status === 'open' ? 'Open' : (c.status === 'resolved' ? 'Resolved' : 'In-Progress'),
+    fetchApi('/communication/complaints').then(( data: unknown ) => {
+      if (!Array.isArray(data)) return;
+      const mapped: Complaint[] = data.map(( c: Record<string, unknown> ) => ({
+        id: String(c.id || ''),
+        title: String(c.subject || 'Complaint'),
+        description: String(c.description || ''),
+        date: c.createdAt ? new Date(String(c.createdAt)).toLocaleDateString() : '',
+        status: (c.status === 'open' ? 'Open' : (c.status === 'resolved' ? 'Resolved' : 'In-Progress')) as CStatus,
         student: 'Mock Student (S-001)',
+        isAnonymous: false,
+        resolvedBy: '—',
+        resolvedDate: '—',
+        resolvedNote: '',
       }));
       setComplaints(mapped);
-    }).catch(console.error);
+    }).catch(err => logger.error('Failed to load complaints data', err));
   }, []);
   const [toast, setToast]               = useState('');
   const [addForm, setAddForm]           = useState({ student: '', anonymous: false, title: '', description: '' });
@@ -70,13 +77,13 @@ export default function ComplaintsPage() {
   };
 
   const markInProgress = (id: string) => {
-    setComplaints(prev => prev.map(( c: FlexRecord ) => c.id === id ? { ...c, status: 'In-Progress' } : c));
+    setComplaints(prev => prev.map(( c: Complaint ) => c.id === id ? { ...c, status: 'In-Progress' } : c));
     showToast('🔄 Marked In-Progress');
   };
 
   const handleResolve = () => {
     if (!resolveItem || !resolveNote) return;
-    setComplaints(prev => prev.map(( c: FlexRecord ) => c.id === resolveItem.id
+    setComplaints(prev => prev.map(( c: Complaint ) => c.id === resolveItem.id
       ? { ...c, status: 'Resolved', resolvedBy: 'Admin', resolvedDate: new Date().toISOString().split('T')[0], resolvedNote: resolveNote }
       : c));
     setResolveItem(null); setResolveNote('');
@@ -202,7 +209,7 @@ export default function ComplaintsPage() {
 
       {/* Filter Tabs */}
       <div className="eng-tabs eng-tabs-inline mb-6">
-        {TABS.map(( t: FlexRecord ) => (
+        {TABS.map(( t: CStatus | 'All' ) => (
           <button key={t} onClick={() => setTab(t)} className={`eng-tab${tab === t ? ' eng-tab--active' : ''}`}>
             {t}
           </button>

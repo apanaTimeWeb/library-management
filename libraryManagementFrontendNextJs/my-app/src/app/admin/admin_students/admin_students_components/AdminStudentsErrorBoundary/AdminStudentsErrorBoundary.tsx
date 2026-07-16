@@ -16,3 +16,4 @@ export class AdminStudentsErrorBoundary extends React.Component<Props, State> {
     return this.props.children;
   }
 }
+

@@ -1,6 +1,10 @@
+// RESPONSIBILITY: Modal dialog for recording asset maintenance and repair schedules.
+// DATA FLOW: User Input -> SuperadminAssetMaintenanceAddDialog -> onSave callback
+
 import React, { useState } from 'react';
 import { X, Loader } from 'lucide-react';
 import type { SuperadminMaintenanceLog } from '@/app/superadmin/superadmin_accounting/asset-maintenance/superadmin_asset_maintenance_types/SuperadminAssetMaintenanceTypes';
+import { logger } from '@/lib/logger';
 
 interface Props {
   onClose: () => void;
@@ -33,7 +37,7 @@ export function SuperadminAssetMaintenanceAddDialog({ onClose, onSave }: Props) 
       });
       onClose();
     } catch (err) {
-      console.error(err);
+      logger.error('Failed to save asset maintenance log', err);
     } finally {
       setSaving(false);
     }

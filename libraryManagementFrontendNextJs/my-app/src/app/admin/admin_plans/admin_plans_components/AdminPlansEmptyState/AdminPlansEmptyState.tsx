@@ -16,3 +16,4 @@ export default function AdminPlansEmptyState({ title = 'No data found', descript
     </div>
   );
 }
+

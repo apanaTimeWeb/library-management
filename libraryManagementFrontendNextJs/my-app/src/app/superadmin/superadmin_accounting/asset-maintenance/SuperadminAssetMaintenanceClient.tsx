@@ -1,5 +1,9 @@
 'use client';
+// RESPONSIBILITY: Main client page orchestrating asset maintenance logs, filter state, and new maintenance requests.
+// DATA FLOW: useSuperadminAssetMaintenance -> SuperadminAssetMaintenanceClient -> Table / AddDialog
+
 import React, { useState } from 'react';
+import type { SuperadminMaintenanceLog } from '@/app/superadmin/superadmin_accounting/asset-maintenance/superadmin_asset_maintenance_types/SuperadminAssetMaintenanceTypes';
 import { superadmin_useSuperadminAssetMaintenance as useSuperadminAssetMaintenance } from '@/app/superadmin/superadmin_accounting/asset-maintenance/superadmin_asset_maintenance_hooks/superadmin_useSuperadminAssetMaintenance';
 import { SuperadminAssetMaintenanceHeader } from '@/app/superadmin/superadmin_accounting/asset-maintenance/superadmin_asset_maintenance_components/SuperadminAssetMaintenanceHeader';
 import { SuperadminAssetMaintenanceKpiGrid } from '@/app/superadmin/superadmin_accounting/asset-maintenance/superadmin_asset_maintenance_components/SuperadminAssetMaintenanceKpiGrid';
@@ -25,7 +29,7 @@ export function SuperadminAssetMaintenanceClient() {
 
   const showToast = (msg: string) => { setToast(msg); setTimeout(() => setToast(''), 2500); };
 
-  const onSaveLog = async (logData: unknown) => {
+  const onSaveLog = async (logData: any) => {
     await handleAddLog(logData);
     showToast('✅ Maintenance request logged successfully');
   };

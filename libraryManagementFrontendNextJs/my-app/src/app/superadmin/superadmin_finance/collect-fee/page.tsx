@@ -230,10 +230,10 @@ export default function CollectFee() {
                     { l: 'Receipt', v: receiptData.receiptNo },
                     { l: 'Amount',  v: formatCurrency(receiptData.total), color: 'var(--success)' },
                     { l: 'Mode',    v: MODE_LABELS[receiptData.mode] },
-                  ].map(( r: FlexRecord ) => (
+                  ].map(( r: any ) => (
                     <div key={r.l} className="fin-receipt-modal-info-row">
                       <span className="fin-cell-subtext">{r.l}</span>
-                      <span className="fin-cell-name" style={{ color: (r as unknown).color }}>{r.v}</span>
+                      <span className="fin-cell-name" style={{ color: r.color }}>{r.v}</span>
                     </div>
                   ))}
                 </div>
@@ -264,7 +264,7 @@ export default function CollectFee() {
                 <div className="fin-dropdown-list">
                   {filteredStudents.length === 0 ? (
                     <div className="fin-table-empty-cell">No students found</div>
-                  ) : filteredStudents.map(( s: FlexRecord ) => (
+                  ) : filteredStudents.map(( s: typeof MOCK_STUDENTS[number] ) => (
                     <button key={s.id} className="fin-dropdown-item" onClick={() => {
                       setSelectedStudent(s); setSearch(s.name); setShowDropdown(false);
                       if (s.dueAmount > 0) { setLateFee('50'); setAmount(s.dueAmount.toString()); }

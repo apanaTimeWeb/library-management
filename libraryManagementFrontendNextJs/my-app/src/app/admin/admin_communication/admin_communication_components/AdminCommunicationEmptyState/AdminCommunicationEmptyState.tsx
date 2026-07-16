@@ -16,3 +16,4 @@ export default function AdminCommunicationEmptyState({ title = 'No data found', 
     </div>
   );
 }
+

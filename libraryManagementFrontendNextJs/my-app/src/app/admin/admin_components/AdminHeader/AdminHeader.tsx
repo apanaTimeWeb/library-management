@@ -9,12 +9,13 @@ import { useAdmin } from '@/app/admin/admin_context/AdminContext';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Button } from '@/components/ui/button';
 
-interface HeaderProps {
+// Rule 7: Props interface defined here since it's a simple shell-level prop — no complex types
+export interface AdminHeaderProps {
   sidebarWidth: number;
   onMobileOpen: () => void;
 }
 
-export default function AdminHeader({ sidebarWidth, onMobileOpen }: HeaderProps) {
+export default function AdminHeader({ sidebarWidth, onMobileOpen }: AdminHeaderProps) {
   const { selectedBranch, setSelectedBranch } = useAdmin();
 
   return (
@@ -60,3 +61,4 @@ export default function AdminHeader({ sidebarWidth, onMobileOpen }: HeaderProps)
     </header>
   );
 }
+
