@@ -1,8 +1,8 @@
 import { Controller, Get, Req, UseGuards, Query } from '@nestjs/common';
 import { ApiTags, ApiBearerAuth, ApiOperation } from '@nestjs/swagger';
 import { StudentsGetAllService } from '@/modules/admin/students/students/services/students-get-all-students.service';
-import { AuthJwtAuthGuard } from '@/modules/auth/guards/auth-jwt-auth.guard';
-import { AuthRolesGuard } from '@/modules/auth/guards/auth-roles.guard';
+import { AuthJwtAuthGuard } from '@/modules/auth/session/guards/auth-jwt-auth.guard';
+import { AuthRolesGuard } from '@/modules/auth/session/guards/auth-roles.guard';
 import { ADMIN_STUDENTS_CONSTANTS } from '@/modules/admin/students/students/constants/students.constants';
 import { StudentsPaginationDto } from '../dto/pagination.dto';
 import { PaginatedResponse } from '../interfaces/pagination.interface';

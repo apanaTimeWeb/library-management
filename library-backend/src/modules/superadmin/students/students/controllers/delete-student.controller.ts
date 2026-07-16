@@ -1,10 +1,10 @@
 import { Controller, Delete, Param, Req, UseGuards } from '@nestjs/common';
 import { ApiTags, ApiBearerAuth, ApiOperation } from '@nestjs/swagger';
 import { DeleteStudentService } from '@/modules/superadmin/students/students/services/delete-student.service';
-import { AuthJwtAuthGuard } from '@/modules/auth/guards/auth-jwt-auth.guard';
+import { AuthJwtAuthGuard } from '@/modules/auth/session/guards/auth-jwt-auth.guard';
 import { STUDENTS_CONSTANTS } from '../constants/students.constants';
-import { AuthRolesGuard } from '@/modules/auth/guards/auth-roles.guard';
-import { AuthRoles } from '@/modules/auth/decorators/auth-roles.decorator';
+import { AuthRolesGuard } from '@/modules/auth/session/guards/auth-roles.guard';
+import { AuthRoles } from '@/modules/auth/session/decorators/auth-roles.decorator';
 
 @ApiTags('Superadmin Students')
 @ApiBearerAuth()

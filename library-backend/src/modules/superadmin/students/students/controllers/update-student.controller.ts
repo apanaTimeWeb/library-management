@@ -4,9 +4,9 @@ import { UpdateStudentService } from '@/modules/superadmin/students/students/ser
 import { UpdateStudentDto } from '@/modules/superadmin/students/students/dto/update-student.dto';
 import { STUDENTS_CONSTANTS } from '../constants/students.constants';
 import { Student } from '@/core/entities/student.entity';
-import { AuthJwtAuthGuard } from '@/modules/auth/guards/auth-jwt-auth.guard';
-import { AuthRolesGuard } from '@/modules/auth/guards/auth-roles.guard';
-import { AuthRoles } from '@/modules/auth/decorators/auth-roles.decorator';
+import { AuthJwtAuthGuard } from '@/modules/auth/session/guards/auth-jwt-auth.guard';
+import { AuthRolesGuard } from '@/modules/auth/session/guards/auth-roles.guard';
+import { AuthRoles } from '@/modules/auth/session/decorators/auth-roles.decorator';
 
 @ApiTags('Superadmin Students')
 @ApiBearerAuth()

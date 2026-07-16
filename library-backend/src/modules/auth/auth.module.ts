@@ -2,35 +2,35 @@ import { Module } from '@nestjs/common';
 import { SuperadminUsersModule } from '@/modules/superadmin/staff-users/users/users.module';
 import { JwtModule } from '@nestjs/jwt';
 import { PassportModule } from '@nestjs/passport';
-import { AuthJwtStrategy } from './strategies/auth-jwt.strategy';
-import { AuthRefreshTokenStrategy } from './strategies/auth-refresh-token.strategy';
+import { AuthJwtStrategy } from '@/modules/auth/session/strategies/auth-jwt.strategy';
+import { AuthRefreshTokenStrategy } from '@/modules/auth/session/strategies/auth-refresh-token.strategy';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { User } from '@/core/entities/user.entity';
 import { Role } from '@/core/entities/role.entity';
 import { Branch } from '@/core/entities/branch.entity';
-import { AuthJwtAuthGuard } from './guards/auth-jwt-auth.guard';
-import { AuthRolesGuard } from './guards/auth-roles.guard';
-import { AuthRefreshTokenGuard } from './guards/auth-refresh-token.guard';
+import { AuthJwtAuthGuard } from '@/modules/auth/session/guards/auth-jwt-auth.guard';
+import { AuthRolesGuard } from '@/modules/auth/session/guards/auth-roles.guard';
+import { AuthRefreshTokenGuard } from '@/modules/auth/session/guards/auth-refresh-token.guard';
 
 // Micro-Services
-import { AuthLoginService } from './services/auth-login.service';
-import { AuthRegisterService } from './services/auth-register.service';
-import { AuthRefreshTokenService } from './services/auth-refresh-token.service';
-import { AuthLogoutService } from './services/auth-logout.service';
-import { AuthGetMeService } from './services/auth-get-me.service';
-import { AuthForgotPasswordService } from './services/auth-forgot-password.service';
-import { AuthResetPasswordService } from './services/auth-reset-password.service';
-import { AuthJwtTokenGeneratorUtil } from './utils/auth-jwt-token-generator.util';
+import { AuthLoginService } from '@/modules/auth/login/services/login.service';
+import { AuthRegisterService } from '@/modules/auth/signup/services/signup.service';
+import { AuthRefreshTokenService } from '@/modules/auth/session/services/refresh-token.service';
+import { AuthLogoutService } from '@/modules/auth/session/services/logout.service';
+import { AuthGetMeService } from '@/modules/auth/session/services/get-me.service';
+import { AuthForgotPasswordService } from '@/modules/auth/forgot-password/services/forgot-password.service';
+import { AuthResetPasswordService } from '@/modules/auth/reset-password/services/reset-password.service';
+import { AuthJwtTokenGeneratorUtil } from '@/modules/auth/session/utils/auth-jwt-token-generator.util';
 
 // Micro-Controllers
-import { AuthLoginController } from './controllers/auth-login.controller';
-import { AuthRegisterController } from './controllers/auth-register.controller';
-import { AuthRefreshTokenController } from './controllers/auth-refresh-token.controller';
-import { AuthLogoutController } from './controllers/auth-logout.controller';
-import { AuthGetMeController } from './controllers/auth-get-me.controller';
-import { AuthForgotPasswordController } from './controllers/auth-forgot-password.controller';
-import { AuthResetPasswordController } from './controllers/auth-reset-password.controller';
+import { AuthLoginController } from '@/modules/auth/login/controllers/login.controller';
+import { AuthRegisterController } from '@/modules/auth/signup/controllers/signup.controller';
+import { AuthRefreshTokenController } from '@/modules/auth/session/controllers/refresh-token.controller';
+import { AuthLogoutController } from '@/modules/auth/session/controllers/logout.controller';
+import { AuthGetMeController } from '@/modules/auth/session/controllers/get-me.controller';
+import { AuthForgotPasswordController } from '@/modules/auth/forgot-password/controllers/forgot-password.controller';
+import { AuthResetPasswordController } from '@/modules/auth/reset-password/controllers/reset-password.controller';
 
 @Module({
   imports: [

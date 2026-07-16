@@ -3,7 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { User } from '@/core/entities/user.entity';
 import * as bcrypt from 'bcrypt';
-import { AUTH_CONSTANTS } from './constants/auth.constants';
+import { AUTH_CONSTANTS } from '@/modules/auth/session/constants/auth.constants';
 
 @Injectable()
 export class AuthSeeder {
