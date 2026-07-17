@@ -13,7 +13,7 @@ export function ManagerSeatsSeatMatrixModal({ isOpen, onClose, selectedSeat }: M
 
   return (
     <div className="ss-modal-overlay flex items-center justify-center fixed inset-0 z-50 bg-black/50" onClick={onClose}>
-      <div className="ss-modal bg-bg-card p-6 rounded-xl shadow-xl w-[400px] border border-border" onClick={e => e.stopPropagation()}>
+      <div className="ss-modal bg-bg-card p-6 rounded-xl shadow-xl w-full max-w-sm border border-border" onClick={e => e.stopPropagation()}>
         {selectedSeat.status === 'free' ? (
           <>
             <div className="ss-occupied-header__row mb-4 flex justify-between items-center">

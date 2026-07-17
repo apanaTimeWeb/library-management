@@ -88,7 +88,7 @@ export default function ManagerStudentsAdmissionSuccessModal({ data, onClose }: 
 
           <ManagerStudentsIdCard data={data} />
 
-          <div className="flex-1 flex flex-col gap-3 min-w-[280px]">
+          <div className="flex-1 flex flex-col gap-3 min-w-72">
             <p className="text-sm font-bold text-text-secondary uppercase tracking-wider mb-2">Quick Actions</p>
 
             <button className="bg-[#25D366] text-white rounded-lg px-5 py-2.5 text-sm font-medium hover:bg-[#20bd5a] transition-colors inline-flex items-center gap-2 w-full justify-center shadow-sm" onClick={handleSendIdCard}>

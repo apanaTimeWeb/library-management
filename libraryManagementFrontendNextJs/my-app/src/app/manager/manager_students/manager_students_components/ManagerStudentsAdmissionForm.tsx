@@ -295,7 +295,7 @@ export default function ManagerStudentsAdmissionForm() {
             </div>{/* end main */}
 
             {/* ── RIGHT: Admission Summary ── */}
-            <aside className="w-full lg:w-[320px] shrink-0">
+            <aside className="w-full lg:w-80 shrink-0">
               <div className="bg-bg-card rounded-xl border border-border p-6 sticky top-[100px]">
                 <div className="flex items-center justify-between mb-4">
                   <h2 className="text-base font-semibold text-text-primary">Admission Summary</h2>

@@ -126,7 +126,7 @@ export function SetupWizardClient() {
       )}
 
       {/* ── STEPPER SIDEBAR ── */}
-      <aside className="w-[280px] shrink-0 border-r border-border bg-bg-card/50 backdrop-blur flex-col p-6 z-10 hidden md:flex">
+      <aside className="w-72 shrink-0 border-r border-border bg-bg-card/50 backdrop-blur flex-col p-6 z-10 hidden md:flex">
         <div className="flex items-center gap-3 mb-10">
           <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-purple flex items-center justify-center shadow-lg shadow-primary/30">
             <BookOpen size={18} className="text-white" />

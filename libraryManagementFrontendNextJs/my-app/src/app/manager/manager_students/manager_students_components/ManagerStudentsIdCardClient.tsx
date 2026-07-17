@@ -286,7 +286,7 @@ export function ManagerStudentsIdCardClient() {
                 Preview — {selected?.name}
               </p>
               <ManagerStudentsIdCard data={cardData} />
-              <p className="text-[11px] text-text-secondary mt-6 text-center max-w-[280px]">
+              <p className="text-[11px] text-text-secondary mt-6 text-center max-w-72">
                 Use buttons on the left to print (80mm thermal) or send via WhatsApp
               </p>
             </>

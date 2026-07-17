@@ -34,7 +34,7 @@ export function SuperadminSubscriptionsKpiGrid({ kpis }: Props) {
               <div className={`w-10 h-10 rounded-[var(--radius-md)] flex items-center justify-center shrink-0 ${style.bg} ${style.text}`}>
                 <Icon size={18} />
               </div>
-              <p className="text-[11px] font-bold text-text-secondary uppercase tracking-widest text-right max-w-[60%]">{k.label}</p>
+              <p className="text-[11px] font-bold text-text-secondary uppercase tracking-widest text-right max-w-3/5">{k.label}</p>
             </div>
             <div>
               <h2 className="text-2xl font-extrabold text-text-primary leading-tight tracking-tight">{k.val}</h2>

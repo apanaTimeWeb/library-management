@@ -45,7 +45,7 @@ export function ManagerCrmEnquiriesAddClient() {
       />
 
       {/* ── Drawer ── */}
-      <aside className="fixed top-0 right-0 h-screen w-full sm:w-[480px] bg-bg-drawer border-l border-border z-[101] flex flex-col overflow-hidden animate-in slide-in-from-right duration-300 shadow-2xl" role="dialog" aria-label="New Enquiry" aria-modal="true">
+      <aside className="fixed top-0 right-0 h-screen w-full sm:w-full max-w-md bg-bg-drawer border-l border-border z-[101] flex flex-col overflow-hidden animate-in slide-in-from-right duration-300 shadow-2xl" role="dialog" aria-label="New Enquiry" aria-modal="true">
 
         {/* Header */}
         <div className="flex items-center justify-between p-5 sm:p-6 border-b border-border shrink-0">

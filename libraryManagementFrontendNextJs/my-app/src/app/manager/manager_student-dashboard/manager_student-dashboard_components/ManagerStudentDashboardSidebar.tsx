@@ -44,7 +44,7 @@
 //       </header>
 
 //       {/* Staff Sidebar - Exact same as your HTML */}
-//       <aside className="fixed left-0 top-0 h-screen w-[240px] z-40 flex flex-col pt-[64px] pb-4 overflow-y-auto bg-[#1b1a26]">
+//       <aside className="fixed left-0 top-0 h-screen w-60 z-40 flex flex-col pt-[64px] pb-4 overflow-y-auto bg-[#1b1a26]">
 //         <div className="px-6 py-6 border-b border-outline-variant/10">
 //           <h2 className="text-xs font-semibold text-primary tracking-widest uppercase">Admission Module</h2>
 //           <p className="text-[10px] text-slate-500 mt-1">Academic Year 2024-25</p>
