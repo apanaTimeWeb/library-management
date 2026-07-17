@@ -6,13 +6,7 @@ import { Search, Receipt, Eye, Printer, Send } from 'lucide-react';
 import { openWhatsApp } from '@/lib/whatsappUtils';
 import { printThermal } from '@/lib/thermalPrint';
 
-const MOCK_RECEIPTS = [
-  { id: 'SL360-TRX-99421-X', receiptNumber: 'REC-20260411-001', studentName: 'Aravind Sharma',  studentId: 'LIB-2024-883', phone: '9876543210', date: '2024-10-24T00:00:00Z', amount: 1249, paymentMode: 'UPI',          planName: 'Premium Reading Zone (Monthly)',  shift: 'Morning', seat: 'A-01' },
-  { id: 'SL360-TRX-88310-Y', receiptNumber: 'REC-20260410-002', studentName: 'Gajodhar Prasad', studentId: 'STU-001234',   phone: '8765432109', date: '2026-04-10T00:00:00Z', amount: 1716, paymentMode: 'UPI',          planName: 'Annual Library Membership',       shift: 'Evening', seat: 'B-05' },
-  { id: 'SL360-TRX-77203-Z', receiptNumber: 'REC-20260409-003', studentName: 'Sara Mishra',     studentId: 'STU-008821',   phone: '7654321098', date: '2024-10-10T00:00:00Z', amount: 9750, paymentMode: 'Bank Transfer', planName: 'Security Deposit Refund',         shift: 'Night',   seat: 'C-12' },
-  { id: 'SL360-TRX-66192-A', receiptNumber: 'REC-20260408-004', studentName: 'Rohan Khanna',    studentId: 'STU-007654',   phone: '6543210987', date: '2026-04-08T00:00:00Z', amount: 900,  paymentMode: 'Cash',         planName: 'Monthly Basic Plan',              shift: 'Morning', seat: 'D-10' },
-  { id: 'SL360-TRX-55081-B', receiptNumber: 'REC-20260407-005', studentName: 'Priya Nair',      studentId: 'STU-003891',   phone: '5432109876', date: '2026-04-07T00:00:00Z', amount: 2400, paymentMode: 'Card',         planName: 'Quarterly Premium Plan',          shift: 'Full Day','seat': 'A-05' },
-];
+import { SUPERADMIN_FINANCE_MOCK_RECEIPTS } from '@/app/superadmin/superadmin_finance/superadmin_finance_constants/SuperadminFinanceConstants';
 
 const MODE_BADGE: Record<string, string> = {
   upi: 'fin-badge fin-badge--upi', cash: 'fin-badge fin-badge--cash',
@@ -21,11 +15,14 @@ const MODE_BADGE: Record<string, string> = {
 
 type FilterMode = 'all' | 'upi' | 'cash' | 'card' | 'bank transfer';
 
+import { useRouter } from 'next/navigation';
+
 export default function ReceiptsPage() {
+  const router = useRouter();
   const [search, setSearch]           = useState('');
   const [modeFilter, setModeFilter]   = useState<FilterMode>('all');
 
-  const filtered = MOCK_RECEIPTS.filter(r => {
+  const filtered = SUPERADMIN_FINANCE_MOCK_RECEIPTS.filter(r => {
     const ms = !search || r.studentName.toLowerCase().includes(search.toLowerCase()) ||
       r.receiptNumber.toLowerCase().includes(search.toLowerCase()) ||
       r.studentId.toLowerCase().includes(search.toLowerCase());
@@ -33,9 +30,9 @@ export default function ReceiptsPage() {
     return ms && mm;
   });
 
-  const totalCollected = MOCK_RECEIPTS.reduce((s, r) => s + r.amount, 0);
+  const totalCollected = SUPERADMIN_FINANCE_MOCK_RECEIPTS.reduce((s, r) => s + r.amount, 0);
 
-  function handleWhatsApp(r: typeof MOCK_RECEIPTS[0]) {
+  function handleWhatsApp(r: typeof SUPERADMIN_FINANCE_MOCK_RECEIPTS[0]) {
     const W = 42;
     const line = '─'.repeat(W);
     const c = (t: string) => ' '.repeat(Math.max(0, Math.floor((W - t.length) / 2))) + t;
@@ -65,7 +62,7 @@ export default function ReceiptsPage() {
     openWhatsApp(r.phone, msg);
   }
 
-  function handlePrint(r: typeof MOCK_RECEIPTS[0]) {
+  function handlePrint(r: typeof SUPERADMIN_FINANCE_MOCK_RECEIPTS[0]) {
     printThermal({
       type: 'receipt', shopName: 'Smart Library 360', branch: 'Main Branch',
       studentName: r.studentName, smartId: r.studentId, phone: r.phone,
@@ -85,9 +82,9 @@ export default function ReceiptsPage() {
 
       <div className="grid grid-cols-3 gap-4">
         {[
-          { label: 'TOTAL RECEIPTS',  value: MOCK_RECEIPTS.length.toString() },
+          { label: 'TOTAL RECEIPTS',  value: SUPERADMIN_FINANCE_MOCK_RECEIPTS.length.toString() },
           { label: 'TOTAL COLLECTED', value: formatCurrency(totalCollected), success: true },
-          { label: 'THIS MONTH',      value: MOCK_RECEIPTS.filter(r => r.date.startsWith(new Date().toISOString().slice(0, 7))).length.toString() },
+          { label: 'THIS MONTH',      value: SUPERADMIN_FINANCE_MOCK_RECEIPTS.filter(r => r.date.startsWith(new Date().toISOString().slice(0, 7))).length.toString() },
         ].map(( k ) => (
           <div key={k.label} className="fin-kpi-card">
             <div className="fin-kpi-card__header"><p className="fin-kpi-label">{k.label}</p><Receipt size={18} className="fin-icon-muted" /></div>

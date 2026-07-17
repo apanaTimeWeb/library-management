@@ -30,14 +30,7 @@ type Student = {
   badge: 'reliable' | 'moderate' | 'low';
 };
 
-const MOCK_STUDENTS: Student[] = [
-  { rank: 1, studentName: 'Rahul Kumar',  smartId: 'STU101', shift: 'Morning',  trustScore: 92, totalPromises: 12, timesChanged: 0, fulfilledCount: 12, badge: 'reliable' },
-  { rank: 2, studentName: 'Priya Singh',  smartId: 'STU102', shift: 'Evening',  trustScore: 85, totalPromises: 9,  timesChanged: 1, fulfilledCount: 8,  badge: 'reliable' },
-  { rank: 3, studentName: 'Aman Verma',   smartId: 'STU103', shift: 'Full Day', trustScore: 67, totalPromises: 15, timesChanged: 3, fulfilledCount: 9,  badge: 'moderate' },
-  { rank: 4, studentName: 'Sneha Patel',  smartId: 'STU104', shift: 'Morning',  trustScore: 45, totalPromises: 8,  timesChanged: 4, fulfilledCount: 3,  badge: 'low'      },
-  { rank: 5, studentName: 'Vikas Sharma', smartId: 'STU105', shift: 'Evening',  trustScore: 78, totalPromises: 11, timesChanged: 2, fulfilledCount: 10, badge: 'moderate' },
-  { rank: 6, studentName: 'Neha Gupta',   smartId: 'STU106', shift: 'Full Day', trustScore: 33, totalPromises: 7,  timesChanged: 5, fulfilledCount: 2,  badge: 'low'      },
-];
+import { SUPERADMIN_FINANCE_MOCK_STUDENTS_TRUST } from '@/app/superadmin/superadmin_finance/superadmin_finance_constants/SuperadminFinanceConstants';
 
 function TrustGauge({ score }: { score: number }) {
   const color = score >= 70 ? 'var(--success)' : score >= 40 ? 'var(--warning)' : 'var(--danger)';
@@ -61,14 +54,14 @@ export default function TrustScores() {
     return () => clearTimeout(t);
   }, []);
 
-  const filtered = MOCK_STUDENTS.filter((s) => {
+  const filtered = SUPERADMIN_FINANCE_MOCK_STUDENTS_TRUST.filter((s) => {
     const lm = levelFilter === 'all' || s.badge === levelFilter;
     const sm = shiftFilter === 'all' || s.shift === shiftFilter;
     return lm && sm;
   });
 
-  const lowTrust = MOCK_STUDENTS.filter((s) => s.trustScore < 40).length;
-  const avg = Math.round(MOCK_STUDENTS.reduce((a, s) => a + s.trustScore, 0) / MOCK_STUDENTS.length);
+  const lowTrust = SUPERADMIN_FINANCE_MOCK_STUDENTS_TRUST.filter((s) => s.trustScore < 40).length;
+  const avg = Math.round(SUPERADMIN_FINANCE_MOCK_STUDENTS_TRUST.reduce((a, s) => a + s.trustScore, 0) / SUPERADMIN_FINANCE_MOCK_STUDENTS_TRUST.length);
 
   return (
     <div className="space-y-6">
@@ -84,7 +77,7 @@ export default function TrustScores() {
             <span className="fin-kpi-label">Scored Students</span>
             <Users size={16} className="fin-icon-muted" />
           </div>
-          <p className="fin-kpi-value">{MOCK_STUDENTS.length}</p>
+          <p className="fin-kpi-value">{SUPERADMIN_FINANCE_MOCK_STUDENTS_TRUST.length}</p>
         </div>
         <div className="fin-kpi-card fin-kpi-card--danger">
           <div className="fin-kpi-card__header">
@@ -192,3 +185,5 @@ export default function TrustScores() {
     </div>
   );
 }
+
+

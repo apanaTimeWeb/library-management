@@ -22,12 +22,8 @@ type OverdueStudent = {
   totalDue: number;
 };
 
-const INIT_CONFIG: Config = { gracePeriodDays: 5, penaltyPerDay: 50 };
-const INIT_OVERDUE: OverdueStudent[] = [
-  { studentId: 'STU101', studentName: 'Rahul Kumar', smartId: 'STU101', phone: '8084350824', dueDate: '2026-04-05', daysOverdue: 6,  accruedFee: 300, totalDue: 45300 },
-  { studentId: 'STU102', studentName: 'Priya Singh', smartId: 'STU102', phone: '8084350824', dueDate: '2026-04-01', daysOverdue: 10, accruedFee: 500, totalDue: 30500 },
-  { studentId: 'STU103', studentName: 'Aman Verma',  smartId: 'STU103', phone: '8084350824', dueDate: '2026-03-28', daysOverdue: 14, accruedFee: 700, totalDue: 60700 },
-];
+import { SUPERADMIN_FINANCE_MOCK_CONFIG_LATE_FEES, SUPERADMIN_FINANCE_MOCK_OVERDUE_STUDENTS } from '@/app/superadmin/superadmin_finance/superadmin_finance_constants/SuperadminFinanceConstants';
+
 
 export default function LateFees() {
   const router = useRouter();
@@ -40,7 +36,7 @@ export default function LateFees() {
   const [isSaving, setIsSaving] = useState(false);
 
   useEffect(() => {
-    const t = setTimeout(() => { setConfig(INIT_CONFIG); setOverdue(INIT_OVERDUE); setIsLoading(false); }, 700);
+    const t = setTimeout(() => { setConfig(SUPERADMIN_FINANCE_MOCK_CONFIG_LATE_FEES); setOverdue(SUPERADMIN_FINANCE_MOCK_OVERDUE_STUDENTS); setIsLoading(false); }, 700);
     return () => clearTimeout(t);
   }, []);
 
@@ -218,4 +214,5 @@ export default function LateFees() {
     </div>
   );
 }
+
 

@@ -26,13 +26,7 @@ type PromiseItem = {
   fulfilledDate?: string;
 };
 
-const INITIAL: PromiseItem[] = [
-  { id: 1, studentName: 'Rahul Kumar',  smartId: 'STU101', promisedAmount: 1499, expectedDate: '2026-04-20', daysUntilDue: 9,   timesChanged: 0, status: 'pending'   },
-  { id: 2, studentName: 'Priya Singh',  smartId: 'STU102', promisedAmount: 999,  expectedDate: '2026-04-05', daysUntilDue: -6,  timesChanged: 1, status: 'overdue'   },
-  { id: 3, studentName: 'Aman Verma',   smartId: 'STU103', promisedAmount: 2499, expectedDate: '2026-03-15', daysUntilDue: -27, timesChanged: 0, status: 'fulfilled', fulfilledDate: '2026-04-10' },
-  { id: 4, studentName: 'Sneha Patel',  smartId: 'STU104', promisedAmount: 1200, expectedDate: '2026-04-30', daysUntilDue: 19,  timesChanged: 2, status: 'pending'   },
-  { id: 5, studentName: 'Vikas Sharma', smartId: 'STU105', promisedAmount: 800,  expectedDate: '2026-04-12', daysUntilDue: -3,  timesChanged: 3, status: 'overdue'   },
-];
+import { SUPERADMIN_FINANCE_MOCK_PROMISES } from '@/app/superadmin/superadmin_finance/superadmin_finance_constants/SuperadminFinanceConstants';
 
 function calcDays(dateStr: string) {
   const today = new Date(); today.setHours(0,0,0,0);
@@ -48,7 +42,7 @@ export default function PaymentPromises() {
   const [extendReason, setExtendReason] = useState('');
 
   useEffect(() => {
-    const t = setTimeout(() => { setPromises(INITIAL); setIsLoading(false); }, 600);
+    const t = setTimeout(() => { setPromises(SUPERADMIN_FINANCE_MOCK_PROMISES as any); setIsLoading(false); }, 600);
     return () => clearTimeout(t);
   }, []);
 
@@ -210,4 +204,6 @@ export default function PaymentPromises() {
     </div>
   );
 }
+
+
 

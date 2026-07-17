@@ -32,14 +32,7 @@ type Payment = {
   deletionReason?: string;
 };
 
-const MOCK_PAYMENTS: Payment[] = [
-  { id: 1, receiptNumber: 'REC-20260401-001', date: '2026-04-01', studentName: 'Aarav Sharma',  smartId: 'STU001', amount: 1499, mode: 'cash', lateFee: 0,   receivedBy: 'Admin',   status: 'valid'   },
-  { id: 2, receiptNumber: 'REC-20260402-002', date: '2026-04-02', studentName: 'Priya Patel',   smartId: 'STU002', amount: 999,  mode: 'upi',  txnId: 'UPI123', lateFee: 100, receivedBy: 'Staff',   status: 'valid'   },
-  { id: 3, receiptNumber: 'REC-20260403-003', date: '2026-04-03', studentName: 'Rohan Kumar',   smartId: 'STU003', amount: 2499, mode: 'card', txnId: 'CARD456', lateFee: 0,   receivedBy: 'Admin',   status: 'deleted', deletionReason: 'Student left the institute' },
-  { id: 4, receiptNumber: 'REC-20260405-004', date: '2026-04-05', studentName: 'Ananya Singh',  smartId: 'STU004', amount: 1499, mode: 'bank', txnId: 'BANK789', lateFee: 0,   receivedBy: 'Manager', status: 'valid'   },
-  { id: 5, receiptNumber: 'REC-20260406-005', date: '2026-04-06', studentName: 'Vikram Rao',    smartId: 'STU005', amount: 999,  mode: 'cash', lateFee: 150, receivedBy: 'Staff',   status: 'valid'   },
-  { id: 6, receiptNumber: 'REC-20260408-006', date: '2026-04-08', studentName: 'Sneha Gupta',   smartId: 'STU006', amount: 2499, mode: 'upi',  txnId: 'UPI999', lateFee: 0,   receivedBy: 'Admin',   status: 'valid'   },
-];
+import { SUPERADMIN_FINANCE_MOCK_PAYMENTS } from '@/app/superadmin/superadmin_finance/superadmin_finance_constants/SuperadminFinanceConstants';
 
 const MODE_BADGE: Record<string, string> = {
   cash: 'fin-badge fin-badge--cash',
@@ -62,7 +55,7 @@ export default function Payments() {
     fetchApi('/finance/payments').then(( data: unknown ) => {
       const actualData = Array.isArray(data) ? data : (data as any)?.data;
       if (!Array.isArray(actualData) || actualData.length === 0 || String(actualData[0]?.id).startsWith('MOCK-')) {
-        setAllPayments(MOCK_PAYMENTS);
+        setAllPayments(SUPERADMIN_FINANCE_MOCK_PAYMENTS as any);
         return;
       }
       const mapped: Payment[] = actualData.map(( p: Record<string, unknown> ) => ({
@@ -294,3 +287,5 @@ export default function Payments() {
     </div>
   );
 }
+
+

@@ -7,14 +7,7 @@ import { Search, CheckCircle, IndianRupee, BookOpen, MessageSquare, Printer, X }
 import { openWhatsApp } from '@/lib/whatsappUtils';
 import { printThermal } from '@/lib/thermalPrint';
 
-const MOCK_STUDENTS = [
-  { id: 1, name: 'Aarav Sharma',  smartId: 'STU001', phone: '8084350824', status: 'active',    dueAmount: 0,    plan: 'Premium Plan', shift: 'Morning', seat: 'A-01' },
-  { id: 2, name: 'Priya Patel',   smartId: 'STU002', phone: '8084350824', status: 'active',    dueAmount: 1800, plan: 'Basic Plan',   shift: 'Evening', seat: 'B-05' },
-  { id: 3, name: 'Rohan Kumar',   smartId: 'STU003', phone: '8084350824', status: 'expired',   dueAmount: 4000, plan: 'Premium Plan', shift: 'Night',   seat: 'C-12' },
-  { id: 4, name: 'Sneha Singh',   smartId: 'STU004', phone: '8084350824', status: 'suspended', dueAmount: 4500, plan: 'Basic Plan',   shift: 'Morning', seat: 'A-08' },
-  { id: 5, name: 'Vikram Rao',    smartId: 'STU005', phone: '8084350824', status: 'active',    dueAmount: 0,    plan: 'Elite Plan',   shift: 'Full Day','seat': 'D-03' },
-  { id: 6, name: 'Ananya Gupta',  smartId: 'STU006', phone: '8084350824', status: 'active',    dueAmount: 0,    plan: 'Basic Plan',   shift: 'Evening', seat: 'B-10' },
-];
+import { SUPERADMIN_FINANCE_MOCK_STUDENTS_COLLECT_FEE } from '@/app/superadmin/superadmin_finance/superadmin_finance_constants/SuperadminFinanceConstants';
 
 const MODES = ['cash', 'upi', 'card', 'bank'] as const;
 type Mode = typeof MODES[number];
@@ -28,7 +21,7 @@ function maskPhone(phone: string): string {
 }
 
 function buildWhatsAppReceipt(params: {
-  receiptNo: string; student: typeof MOCK_STUDENTS[0];
+  receiptNo: string; student: typeof SUPERADMIN_FINANCE_MOCK_STUDENTS_COLLECT_FEE[0];
   amount: number; mode: Mode; txnId: string;
   lateFee: number; couponDiscount: number; total: number;
   remark: string; date: string;
@@ -77,14 +70,14 @@ function buildWhatsAppReceipt(params: {
 interface ReceiptData {
   receiptNo: string; studentName: string; studentId: string;
   phone: string; total: number; mode: Mode; date: string; waMessage: string;
-  student: typeof MOCK_STUDENTS[0]; amount: number; lateFee: number;
+  student: typeof SUPERADMIN_FINANCE_MOCK_STUDENTS_COLLECT_FEE[0]; amount: number; lateFee: number;
   couponDiscount: number; txnId: string; remark: string;
 }
 
 export default function CollectFee() {
   const [search, setSearch]             = useState('');
   const [showDropdown, setShowDropdown] = useState(false);
-  const [selectedStudent, setSelectedStudent] = useState<typeof MOCK_STUDENTS[0] | null>(null);
+  const [selectedStudent, setSelectedStudent] = useState<typeof SUPERADMIN_FINANCE_MOCK_STUDENTS_COLLECT_FEE[0] | null>(null);
   const [amount, setAmount]             = useState('');
   const [mode, setMode]                 = useState<Mode>('cash');
   const [txnId, setTxnId]               = useState('');
@@ -97,7 +90,7 @@ export default function CollectFee() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [receiptData, setReceiptData]   = useState<ReceiptData | null>(null);
 
-  const filteredStudents = MOCK_STUDENTS.filter(s =>
+  const filteredStudents = SUPERADMIN_FINANCE_MOCK_STUDENTS_COLLECT_FEE.filter(s =>
     search.length >= 2 &&
     (s.name.toLowerCase().includes(search.toLowerCase()) ||
       s.smartId.toLowerCase().includes(search.toLowerCase()))
@@ -264,7 +257,7 @@ export default function CollectFee() {
                 <div className="fin-dropdown-list">
                   {filteredStudents.length === 0 ? (
                     <div className="fin-table-empty-cell">No students found</div>
-                  ) : filteredStudents.map(( s: typeof MOCK_STUDENTS[number] ) => (
+                  ) : filteredStudents.map(( s: typeof SUPERADMIN_FINANCE_MOCK_STUDENTS_COLLECT_FEE[number] ) => (
                     <button key={s.id} className="fin-dropdown-item" onClick={() => {
                       setSelectedStudent(s); setSearch(s.name); setShowDropdown(false);
                       if (s.dueAmount > 0) { setLateFee('50'); setAmount(s.dueAmount.toString()); }
@@ -413,4 +406,5 @@ export default function CollectFee() {
     </>
   );
 }
+
 

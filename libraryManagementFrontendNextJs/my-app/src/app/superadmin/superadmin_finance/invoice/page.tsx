@@ -6,13 +6,7 @@ import { Search, FileText, Printer, Download, Eye, Send } from 'lucide-react';
 import { openWhatsApp } from '@/lib/whatsappUtils';
 import { printThermal } from '@/lib/thermalPrint';
 
-const MOCK_INVOICES = [
-  { id: '1', invoiceNumber: 'INV-20260411-001', studentName: 'Gajodhar Prasad', studentId: 'STU-001234', phone: '9876543210', invoiceDate: '2026-04-11T00:00:00Z', grandTotal: 1716, paymentStatus: 'paid',    paymentMode: 'UPI',          planName: 'Annual Library Membership',       shift: 'Evening', seat: 'B-05' },
-  { id: '2', invoiceNumber: 'INV-20260410-002', studentName: 'Aravind Sharma',  studentId: 'STU-002567', phone: '8765432109', invoiceDate: '2026-04-10T00:00:00Z', grandTotal: 1200, paymentStatus: 'paid',    paymentMode: 'Cash',         planName: 'Monthly Basic Plan',              shift: 'Morning', seat: 'A-01' },
-  { id: '3', invoiceNumber: 'INV-20260409-003', studentName: 'Priya Nair',      studentId: 'STU-003891', phone: '7654321098', invoiceDate: '2026-04-09T00:00:00Z', grandTotal: 2400, paymentStatus: 'pending', paymentMode: 'Bank Transfer', planName: 'Quarterly Premium Plan',          shift: 'Full Day','seat': 'A-05' },
-  { id: '4', invoiceNumber: 'INV-20260408-004', studentName: 'Rohan Khanna',    studentId: 'STU-004312', phone: '6543210987', invoiceDate: '2026-04-08T00:00:00Z', grandTotal: 900,  paymentStatus: 'paid',    paymentMode: 'Card',         planName: 'Monthly Basic Plan',              shift: 'Morning', seat: 'D-10' },
-  { id: '5', invoiceNumber: 'INV-20260407-005', studentName: 'Sara Mishra',     studentId: 'STU-005678', phone: '5432109876', invoiceDate: '2026-04-07T00:00:00Z', grandTotal: 1500, paymentStatus: 'overdue', paymentMode: '',             planName: 'Half-Yearly Plan',                shift: 'Night',   seat: 'C-12' },
-];
+import { SUPERADMIN_FINANCE_MOCK_INVOICES } from '@/app/superadmin/superadmin_finance/superadmin_finance_constants/SuperadminFinanceConstants';
 
 const STATUS_BADGE: Record<string, string> = {
   paid: 'fin-badge fin-badge--success', pending: 'fin-badge fin-badge--warning', overdue: 'fin-badge fin-badge--danger',
@@ -20,11 +14,14 @@ const STATUS_BADGE: Record<string, string> = {
 
 type FilterStatus = 'all' | 'paid' | 'pending' | 'overdue';
 
+import { useRouter } from 'next/navigation';
+
 export default function InvoicesPage() {
+  const router = useRouter();
   const [search, setSearch]           = useState('');
   const [statusFilter, setStatusFilter] = useState<FilterStatus>('all');
 
-  const filtered = MOCK_INVOICES.filter(inv => {
+  const filtered = SUPERADMIN_FINANCE_MOCK_INVOICES.filter(inv => {
     const ms = !search || inv.studentName.toLowerCase().includes(search.toLowerCase()) ||
       inv.invoiceNumber.toLowerCase().includes(search.toLowerCase()) ||
       inv.studentId.toLowerCase().includes(search.toLowerCase());
@@ -32,7 +29,7 @@ export default function InvoicesPage() {
     return ms && mst;
   });
 
-  function handleWhatsApp(inv: typeof MOCK_INVOICES[0]) {
+  function handleWhatsApp(inv: typeof SUPERADMIN_FINANCE_MOCK_INVOICES[0]) {
     const W = 42;
     const line = '─'.repeat(W);
     const c = (t: string) => ' '.repeat(Math.max(0, Math.floor((W - t.length) / 2))) + t;
@@ -63,7 +60,7 @@ export default function InvoicesPage() {
     openWhatsApp(inv.phone, msg);
   }
 
-  function handlePrint(inv: typeof MOCK_INVOICES[0]) {
+  function handlePrint(inv: typeof SUPERADMIN_FINANCE_MOCK_INVOICES[0]) {
     printThermal({
       type: 'receipt', shopName: 'Smart Library 360', branch: 'Main Branch',
       studentName: inv.studentName, smartId: inv.studentId, phone: inv.phone,
@@ -85,9 +82,9 @@ export default function InvoicesPage() {
 
       <div className="grid grid-cols-3 gap-4">
         {[
-          { label: 'TOTAL INVOICES',    value: MOCK_INVOICES.length.toString() },
-          { label: 'TOTAL BILLED',      value: formatCurrency(MOCK_INVOICES.reduce((s, i) => s + i.grandTotal, 0)), success: true },
-          { label: 'PENDING / OVERDUE', value: MOCK_INVOICES.filter(i => i.paymentStatus !== 'paid').length.toString(), warning: true },
+          { label: 'TOTAL INVOICES',    value: SUPERADMIN_FINANCE_MOCK_INVOICES.length.toString() },
+          { label: 'TOTAL BILLED',      value: formatCurrency(SUPERADMIN_FINANCE_MOCK_INVOICES.reduce((s, i) => s + i.grandTotal, 0)), success: true },
+          { label: 'PENDING / OVERDUE', value: SUPERADMIN_FINANCE_MOCK_INVOICES.filter(i => i.paymentStatus !== 'paid').length.toString(), warning: true },
         ].map(( k: any ) => (
           <div key={k.label} className={`fin-kpi-card${k.warning ? ' fin-kpi-card--warning' : ''}`}>
             <div className="fin-kpi-card__header"><p className={`fin-kpi-label${k.warning ? ' fin-kpi-label--warning' : ''}`}>{k.label}</p><FileText size={18} className={k.warning ? 'fin-text-warning' : 'fin-icon-muted'} /></div>
@@ -125,7 +122,7 @@ export default function InvoicesPage() {
           <tbody>
             {filtered.length === 0 ? (
               <tr><td colSpan={7}><div className="fin-empty-state"><div className="fin-empty-state__icon">🧾</div><p className="fin-empty-state__title">No invoices found.</p></div></td></tr>
-            ) : filtered.map(( inv: typeof MOCK_INVOICES[0] ) => (
+            ) : filtered.map(( inv: typeof SUPERADMIN_FINANCE_MOCK_INVOICES[0] ) => (
               <tr key={inv.id} className="fin-table-hover-row fin-table-row cursor-pointer" onClick={() => router.push(`/superadmin/superadmin_finance/invoice/${inv.id}`)}>
                 <td className="py-3 px-4"><span className="fin-mono">{inv.invoiceNumber}</span></td>
                 <td className="py-3 px-4">

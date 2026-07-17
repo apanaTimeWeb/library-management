@@ -4,24 +4,7 @@ import { ArrowLeft, BookOpen, CheckCircle, Printer, Send } from 'lucide-react';
 import { openWhatsApp } from '@/lib/whatsappUtils';
 import { printThermal } from '@/lib/thermalPrint';
 
-const RECEIPT_DATA = {
-  id:          'SL360-TRX-99421-X',
-  receiptNo:   'REC-20260411-001',
-  date:        '24 Oct 2024',
-  studentName: 'Aravind Sharma',
-  studentId:   'LIB-2024-883',
-  phone:       '9876543210',
-  shift:       'Morning',
-  seat:        'A-01',
-  plan:        'Premium Reading Zone (Monthly)',
-  items: [
-    { label: 'Subscription Fee', amount: 1200 },
-    { label: 'Processing Fee',   amount: 49   },
-  ],
-  total:       1249,
-  paymentMode: 'UPI (PhonePe)',
-  txnId:       'UPI-9876543210',
-};
+import { SUPERADMIN_FINANCE_MOCK_RECEIPT_DETAIL as RECEIPT_DATA } from '@/app/superadmin/superadmin_finance/superadmin_finance_constants/SuperadminFinanceConstants';
 
 export default function ReceiptDetail() {
   const router = useRouter();

@@ -9,15 +9,7 @@ import toast from 'react-hot-toast';
 import { formatCurrency } from '@/app/superadmin/superadmin_finance/superadmin_finance_utils/superadmin_format';
 import { RefreshCw, Eye } from 'lucide-react';
 
-const MOCK_SUBSCRIPTIONS = [
-  { id: 1, studentName: 'Aarav Sharma',  smartId: 'STU001', plan: 'Premium Plan', shift: 'Morning', startDate: '2026-01-01', endDate: '2026-06-30', daysLeft: 12,  base: 15000, discount: 0,    total: 15000, paid: 15000, due: 0,    status: 'active'    },
-  { id: 2, studentName: 'Priya Patel',   smartId: 'STU002', plan: 'Basic Plan',   shift: 'Evening', startDate: '2025-11-01', endDate: '2026-04-30', daysLeft: 3,   base: 8000,  discount: 200,  total: 7800,  paid: 6000, due: 1800, status: 'active'    },
-  { id: 3, studentName: 'Rohan Kumar',   smartId: 'STU003', plan: 'Premium Plan', shift: 'Full Day',startDate: '2025-08-01', endDate: '2025-12-31', daysLeft: -15, base: 18000, discount: 0,    total: 18000, paid: 18000,due: 0,    status: 'expired'   },
-  { id: 4, studentName: 'Sneha Singh',   smartId: 'STU004', plan: 'Basic Plan',   shift: 'Morning', startDate: '2026-02-01', endDate: '2026-07-31', daysLeft: 45,  base: 9000,  discount: 0,    total: 9000,  paid: 4500, due: 4500, status: 'suspended' },
-  { id: 5, studentName: 'Vikram Rao',    smartId: 'STU005', plan: 'Premium Plan', shift: 'Evening', startDate: '2025-10-01', endDate: '2025-12-31', daysLeft: -45, base: 16000, discount: 500,  total: 15500, paid: 15500,due: 0,    status: 'cancelled' },
-  { id: 6, studentName: 'Ananya Gupta',  smartId: 'STU006', plan: 'Basic Plan',   shift: 'Full Day',startDate: '2026-03-01', endDate: '2026-08-31', daysLeft: 8,   base: 7500,  discount: 0,    total: 7500,  paid: 7500, due: 0,    status: 'active'    },
-  { id: 7, studentName: 'Karan Mehta',   smartId: 'STU007', plan: 'Premium Plan', shift: 'Morning', startDate: '2025-09-01', endDate: '2026-02-28', daysLeft: -5,  base: 14000, discount: 0,    total: 14000, paid: 10000,due: 4000, status: 'expired'   },
-];
+import { SUPERADMIN_FINANCE_MOCK_SUBSCRIPTIONS } from '@/app/superadmin/superadmin_finance/superadmin_finance_constants/SuperadminFinanceConstants';
 
 const STATUS_BADGE: Record<string, string> = {
   active:    'fin-badge fin-badge--success',
@@ -38,7 +30,7 @@ export default function Subscriptions() {
   const [statusFilter, setStatusFilter] = useState('all');
   const [planFilter, setPlanFilter] = useState('all');
   const [shiftFilter, setShiftFilter] = useState('all');
-  const [rows, setRows] = useState(MOCK_SUBSCRIPTIONS);
+  const [rows, setRows] = useState(SUPERADMIN_FINANCE_MOCK_SUBSCRIPTIONS);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -48,7 +40,7 @@ export default function Subscriptions() {
 
   useEffect(() => {
     setRows(
-      MOCK_SUBSCRIPTIONS.filter((s) => {
+      SUPERADMIN_FINANCE_MOCK_SUBSCRIPTIONS.filter((s) => {
         const st = statusFilter === 'all' || s.status === statusFilter;
         const pl = planFilter === 'all' || s.plan === planFilter;
         const sh = shiftFilter === 'all' || s.shift === shiftFilter;
@@ -166,3 +158,5 @@ export default function Subscriptions() {
     </div>
   );
 }
+
+

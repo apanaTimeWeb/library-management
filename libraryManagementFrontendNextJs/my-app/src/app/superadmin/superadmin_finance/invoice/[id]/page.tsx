@@ -5,31 +5,7 @@ import { Printer, ArrowLeft, Send } from 'lucide-react';
 import { openWhatsApp } from '@/lib/whatsappUtils';
 import { printThermal } from '@/lib/thermalPrint';
 
-const INV = {
-  invoiceNumber:        'INV-20260411-001',
-  libraryName:          'Smart Library 360',
-  libraryAddress:       'Main Branch, Pune',
-  libraryGstin:         '22AAACP1234B1Z5',
-  libraryPhone:         '+91 98765 43210',
-  studentName:          'Gajodhar Prasad',
-  studentSmartId:       'STU-001234',
-  studentPhone:         '9876543210',
-  studentAddress:       'Burla, Sambalpur, Odisha',
-  invoiceDate:          '2026-04-01T00:00:00Z',
-  paymentDate:          '2026-04-05T00:00:00Z',
-  shift:                'Evening',
-  seat:                 'B-05',
-  items: [
-    { description: 'Annual Library Membership', hsnCode: '9992', duration: '12 months', amount: 1200, gstPercent: 18, gstAmount: 216 },
-    { description: 'Book Issue Fee',            hsnCode: '9992', duration: '—',         amount: 300,  gstPercent: 0,  gstAmount: 0   },
-  ],
-  subtotal:             1500,
-  totalGst:             216,
-  grandTotal:           1716,
-  paymentMode:          'UPI',
-  paymentTransactionId: 'UPI-1234567890',
-  paymentStatus:        'paid',
-};
+import { SUPERADMIN_FINANCE_MOCK_INVOICE_DETAIL as INV } from '@/app/superadmin/superadmin_finance/superadmin_finance_constants/SuperadminFinanceConstants';
 
 export default function InvoiceDetail() {
   const router = useRouter();

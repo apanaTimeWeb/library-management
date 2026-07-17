@@ -24,226 +24,10 @@ const STEPS = [
 
 const inputCls = (hasErr?: boolean) => `sa-input${hasErr ? ' sa-input--error' : ''}`;
 
-// ──── Step 1 ───────────────────────────────────────────────────────────────────
-function Step1({ onNext }: { onNext: (d: BranchDetailsData) => void }) {
-  const { register, handleSubmit, formState: { errors } } = useForm<BranchDetailsData>({
-    resolver: zodResolver(branchDetailsSchema),
-    defaultValues: { name: d.libraryName, address: d.address, city: d.city, gst: d.gst },
-  });
-  return (
-    <form id="step1-form" onSubmit={handleSubmit(onNext)} noValidate className="space-y-4">
-      <div className="space-y-1.5">
-        <label className="sa-wizard-field-label">
-          Library Name <span className="sa-wizard-field-required">*</span>
-        </label>
-        <input {...register('name')} placeholder="e.g. City Reading Hub" className={inputCls(!!errors.name)} />
-        {errors.name && <p className="sa-wizard-field-error">{errors.name.message}</p>}
-      </div>
-
-      <div className="space-y-1.5">
-        <label className="sa-wizard-field-label">
-          Address <span className="sa-wizard-field-required">*</span>
-        </label>
-        <textarea {...register('address')} rows={3} placeholder="Full address..."
-          className={`${inputCls(!!errors.address)} resize-none`} />
-        {errors.address && <p className="sa-wizard-field-error">{errors.address.message}</p>}
-      </div>
-
-      <div className="grid grid-cols-2 gap-4">
-        <div className="space-y-1.5">
-          <label className="sa-wizard-field-label">
-            City <span className="sa-wizard-field-required">*</span>
-          </label>
-          <input {...register('city')} placeholder="City" className={inputCls(!!errors.city)} />
-          {errors.city && <p className="sa-wizard-field-error">{errors.city.message}</p>}
-        </div>
-        <div className="space-y-1.5">
-          <label className="sa-wizard-field-label">
-            GST Number <span className="sa-wizard-field-optional">(optional)</span>
-          </label>
-          <input {...register('gst')} placeholder="22AAAAA0000A1Z5" className={inputCls()} />
-        </div>
-      </div>
-    </form>
-  );
-}
-
-// ──── Step 2 ───────────────────────────────────────────────────────────────────
-function Step2({ onNext }: { onNext: (d: ShiftsData) => void }) {
-  const { register, control, handleSubmit, formState: { errors } } = useForm<ShiftsData>({
-    resolver: zodResolver(shiftsSchema),
-    defaultValues: { shifts: d.shifts },
-  });
-  const { fields, append, remove } = useFieldArray({ control, name: 'shifts' });
-
-  return (
-    <form id="step2-form" onSubmit={handleSubmit(onNext)} noValidate className="space-y-3">
-      {fields.map((field, i) => (
-        <div key={field.id} className="sa-wizard-row sa-wizard-row--shifts">
-          <div className="space-y-1.5">
-            <label className="sa-wizard-field-label--sm">Shift Name</label>
-            <input {...register(`shifts.${i}.name`)} placeholder="e.g. Morning"
-              className={inputCls(!!(errors.shifts?.[i]?.name))} />
-            {errors.shifts?.[i]?.name && (
-              <p className="sa-wizard-field-error">{errors.shifts[i].name?.message}</p>
-            )}
-          </div>
-          <div className="space-y-1.5">
-            <label className="sa-wizard-field-label--sm">Start</label>
-            <input type="time" {...register(`shifts.${i}.start`)}
-              className={`${inputCls()} [color-scheme:dark]`} />
-          </div>
-          <div className="space-y-1.5">
-            <label className="sa-wizard-field-label--sm">End</label>
-            <input type="time" {...register(`shifts.${i}.end`)}
-              className={`${inputCls()} [color-scheme:dark]`} />
-          </div>
-          <button
-            type="button"
-            onClick={() => remove(i)}
-            disabled={fields.length <= 1}
-            className="sa-wizard-remove-btn"
-          >
-            <Trash2 size={14} />
-          </button>
-        </div>
-      ))}
-
-      <button
-        type="button"
-        onClick={() => append({ name: '', start: '06:00', end: '12:00' })}
-        className="sa-btn-dashed"
-      >
-        <Plus size={15} /> Add Another Shift
-      </button>
-    </form>
-  );
-}
-
-// ──── Step 3 ───────────────────────────────────────────────────────────────────
-function Step3({ onNext }: { onNext: (d: SeatsData) => void }) {
-  const { register, handleSubmit, watch, formState: { errors } } = useForm<SeatsData>({
-    resolver: zodResolver(seatsSchema),
-    defaultValues: { count: d.seatCount, prefix: d.seatPrefix },
-  });
-  const count  = watch('count')  || 0;
-  const prefix = watch('prefix') || '';
-
-  const preview =
-    Array.from({ length: Math.min(count, 5) }, (_, i) =>
-      `${prefix}${String(i + 1).padStart(2, '0')}`
-    ).join(', ') + (count > 5 ? ` ... ${prefix}${String(count).padStart(2, '0')}` : '');
-
-  const seatCellClass = (i: number) => {
-    if (i === 0) return 'sa-wizard-seat-cell sa-wizard-seat-cell--occupied';
-    if (i === 1) return 'sa-wizard-seat-cell sa-wizard-seat-cell--expiring';
-    return 'sa-wizard-seat-cell sa-wizard-seat-cell--free';
-  };
-
-  return (
-    <form id="step3-form" onSubmit={handleSubmit(onNext)} noValidate className="space-y-5">
-      <div className="grid grid-cols-2 gap-4">
-        <div className="space-y-1.5">
-          <label className="sa-wizard-field-label">
-            Total Seats <span className="sa-wizard-field-required">*</span>
-          </label>
-          <input type="number" min={1}
-            {...register('count', { valueAsNumber: true })}
-            className={inputCls(!!errors.count)} />
-          {errors.count && <p className="sa-wizard-field-error">{errors.count.message}</p>}
-        </div>
-        <div className="space-y-1.5">
-          <label className="sa-wizard-field-label">
-            Seat Prefix <span className="sa-wizard-field-optional">(max 3)</span>
-          </label>
-          <input maxLength={3} {...register('prefix')} placeholder="e.g. SL-"
-            className={inputCls(!!errors.prefix)} />
-          {errors.prefix && <p className="sa-wizard-field-error">{errors.prefix.message}</p>}
-        </div>
-      </div>
-
-      <div className="sa-wizard-preview-card">
-        <p className="sa-wizard-preview-label">💡 Seats will be generated as:</p>
-        <p className="sa-wizard-seat-preview-text">
-          {prefix ? preview : '(enter prefix to preview)'}
-        </p>
-        <p className="sa-wizard-seat-preview-sub">
-          {count} seat{count !== 1 ? 's' : ''} total
-        </p>
-      </div>
-
-      <div>
-        <p className="sa-wizard-seat-grid-label">Sample grid preview:</p>
-        <div className="flex flex-wrap gap-2">
-          {Array.from({ length: Math.min(count, 20) }, (_, i) => (
-            <div key={i} className={seatCellClass(i)}>
-              {prefix}{String(i + 1).padStart(2, '0')}
-            </div>
-          ))}
-          {count > 20 && (
-            <div className="sa-wizard-seat-cell sa-wizard-seat-cell--more">
-              +{count - 20}
-            </div>
-          )}
-        </div>
-      </div>
-    </form>
-  );
-}
-
-// ──── Step 4 ───────────────────────────────────────────────────────────────────
-function Step4({ onNext }: { onNext: (d: PlansData) => void }) {
-  const { register, control, handleSubmit, formState: { errors } } = useForm<PlansData>({
-    resolver: zodResolver(plansSchema),
-    defaultValues: { plans: d.plans },
-  });
-  const { fields, append, remove } = useFieldArray({ control, name: 'plans' });
-
-  return (
-    <form id="step4-form" onSubmit={handleSubmit(onNext)} noValidate className="space-y-3">
-      {fields.map((field, i) => (
-        <div key={field.id} className="sa-wizard-row sa-wizard-row--plans">
-          <div className="space-y-1.5">
-            <label className="sa-wizard-field-label--sm">
-              Plan Name <span className="sa-wizard-field-required">*</span>
-            </label>
-            <input {...register(`plans.${i}.name`)} placeholder="e.g. Monthly"
-              className={inputCls(!!(errors.plans?.[i]?.name))} />
-          </div>
-          <div className="space-y-1.5">
-            <label className="sa-wizard-field-label--sm">Days</label>
-            <input type="number" min={1}
-              {...register(`plans.${i}.days`, { valueAsNumber: true })}
-              className={inputCls()} />
-          </div>
-          <div className="space-y-1.5">
-            <label className="sa-wizard-field-label--sm">Price (₹)</label>
-            <input type="number" min={0}
-              {...register(`plans.${i}.price`, { valueAsNumber: true })}
-              placeholder="1000"
-              className={inputCls()} />
-          </div>
-          <button
-            type="button"
-            onClick={() => remove(i)}
-            disabled={fields.length <= 1}
-            className="sa-wizard-remove-btn"
-          >
-            <Trash2 size={14} />
-          </button>
-        </div>
-      ))}
-
-      <button
-        type="button"
-        onClick={() => append({ name: '', days: 30, price: 0 })}
-        className="sa-btn-dashed"
-      >
-        <Plus size={15} /> Add Another Plan
-      </button>
-    </form>
-  );
-}
+import { SuperadminSetupWizardStep1 } from '@/app/superadmin/superadmin_setup-wizard/superadmin_setup_wizard_components/SuperadminSetupWizardStep1';
+import { SuperadminSetupWizardStep2 } from '@/app/superadmin/superadmin_setup-wizard/superadmin_setup_wizard_components/SuperadminSetupWizardStep2';
+import { SuperadminSetupWizardStep3 } from '@/app/superadmin/superadmin_setup-wizard/superadmin_setup_wizard_components/SuperadminSetupWizardStep3';
+import { SuperadminSetupWizardStep4 } from '@/app/superadmin/superadmin_setup-wizard/superadmin_setup_wizard_components/SuperadminSetupWizardStep4';
 
 // ──── Main Wizard ─────────────────────────────────────────────────────────────
 export default function SetupWizardPage() {
@@ -418,10 +202,10 @@ export default function SetupWizardPage() {
               <h2 className="sa-wizard-step-title">{STEPS[step - 1].title}</h2>
             </div>
 
-            {step === 1 && <Step1 onNext={d => { setBranch(d); nextStep(); }} />}
-            {step === 2 && <Step2 onNext={d => { setShifts(d); nextStep(); }} />}
-            {step === 3 && <Step3 onNext={d => { setSeats(d);  nextStep(); }} />}
-            {step === 4 && <Step4 onNext={d => { setPlans(d);  nextStep(); }} />}
+            {step === 1 && <SuperadminSetupWizardStep1 onNext={d => { setBranch(d); nextStep(); }} />}
+            {step === 2 && <SuperadminSetupWizardStep2 onNext={d => { setShifts(d); nextStep(); }} />}
+            {step === 3 && <SuperadminSetupWizardStep3 onNext={d => { setSeats(d);  nextStep(); }} />}
+            {step === 4 && <SuperadminSetupWizardStep4 onNext={d => { setPlans(d);  nextStep(); }} />}
 
             {/* ── Step 5: Launch ── */}
             {step === 5 && (
@@ -452,7 +236,7 @@ export default function SetupWizardPage() {
                 <div className="sa-wizard-shifts-preview">
                   <p className="sa-wizard-preview-section-label">Shifts</p>
                   <div className="flex flex-wrap gap-2">
-                    {shifts.shifts.map(( s: FlexRecord ) => (
+                    {shifts.shifts.map(( s ) => (
                       <span key={s.name} className="sa-wizard-preview-chip">
                         {s.name}: {s.start} – {s.end}
                       </span>
@@ -463,7 +247,7 @@ export default function SetupWizardPage() {
                 <div className="sa-wizard-plans-preview">
                   <p className="sa-wizard-preview-section-label">Fee Plans</p>
                   <div className="flex flex-wrap gap-2">
-                    {plans.plans.map(( pl: FlexRecord ) => (
+                    {plans.plans.map(( pl ) => (
                       <span key={pl.name} className="sa-wizard-preview-chip">
                         {pl.name} · {pl.days}d · ₹{pl.price}
                       </span>

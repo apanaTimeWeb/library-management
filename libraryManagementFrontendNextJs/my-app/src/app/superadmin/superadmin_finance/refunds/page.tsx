@@ -31,13 +31,7 @@ type Refund = {
   rejectionReason?: string;
 };
 
-const MOCK_REFUNDS: Refund[] = [
-  { id: 1, studentName: 'Sara Mishra',    smartId: 'STU-8821', exitDate: '2024-10-10', depositHeld: 10000, deductionAmount: 250,   netRefund: 9750, status: 'processed', requestedDate: '2024-10-10', processedDate: '2024-10-12', paymentMethod: 'UPI'  },
-  { id: 2, studentName: 'Rohan Khanna',   smartId: 'STU-7654', exitDate: '2024-10-15', depositHeld: 12000, deductionAmount: 3200,  netRefund: 8800, status: 'pending',   requestedDate: '2024-10-15' },
-  { id: 3, studentName: 'Ananya Sharma',  smartId: 'STU-5432', exitDate: '2024-10-18', depositHeld: 8000,  deductionAmount: 0,     netRefund: 8000, status: 'approved',  requestedDate: '2024-10-18' },
-  { id: 4, studentName: 'Vikram Singh',   smartId: 'STU-3321', exitDate: '2024-10-05', depositHeld: 15000, deductionAmount: 15000, netRefund: 0,    status: 'rejected',  requestedDate: '2024-10-05', processedDate: '2024-10-08', rejectionReason: 'Deposit forfeited due to contract violation' },
-  { id: 5, studentName: 'Priya Mehta',    smartId: 'STU-6670', exitDate: '2024-10-20', depositHeld: 10000, deductionAmount: 500,   netRefund: 9500, status: 'pending',   requestedDate: '2024-10-20' },
-];
+import { SUPERADMIN_FINANCE_MOCK_REFUNDS } from '@/app/superadmin/superadmin_finance/superadmin_finance_constants/SuperadminFinanceConstants';
 
 export default function Refunds() {
   const [statusFilter, setStatusFilter] = useState('all');
@@ -54,7 +48,7 @@ export default function Refunds() {
     fetchApi('/finance/refunds').then(( data: unknown ) => {
       const actualData = Array.isArray(data) ? data : (data as any)?.data;
       if (!Array.isArray(actualData) || actualData.length === 0 || String(actualData[0]?.id).startsWith('MOCK-')) {
-        setAllRefunds(MOCK_REFUNDS);
+        setAllRefunds(SUPERADMIN_FINANCE_MOCK_REFUNDS as any);
         setIsLoading(false);
         return;
       }
@@ -295,3 +289,6 @@ export default function Refunds() {
     </div>
   );
 }
+
+
+
