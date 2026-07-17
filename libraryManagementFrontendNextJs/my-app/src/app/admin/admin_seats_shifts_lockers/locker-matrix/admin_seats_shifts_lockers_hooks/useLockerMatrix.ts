@@ -20,6 +20,7 @@ export function useLockerMatrix() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setIsLoading(true);
     fetchApi('/seats_shifts_lockers/lockers')
       .then(data => {

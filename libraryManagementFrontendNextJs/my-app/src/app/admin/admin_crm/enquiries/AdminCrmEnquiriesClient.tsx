@@ -92,7 +92,7 @@ export default function AdminCrmEnquiriesClient() {
 
   if (fetchState === 'loading') {
     return (
-      <div className="flex flex-col items-center justify-center h-[50vh] gap-4">
+      <div className="flex flex-col items-center justify-center h-96 gap-4">
         <div className="h-8 w-8 rounded-full border-4 border-primary border-t-transparent animate-spin" />
         <p className="text-muted-foreground font-medium">Loading enquiries…</p>
       </div>
@@ -101,7 +101,7 @@ export default function AdminCrmEnquiriesClient() {
 
   if (fetchState === 'error') {
     return (
-      <div className="flex flex-col items-center justify-center h-[50vh] gap-4">
+      <div className="flex flex-col items-center justify-center h-96 gap-4">
         <XCircle size={40} className="text-danger" />
         <p className="text-xl font-bold text-primary">Failed to load enquiries</p>
         <p className="text-sm text-muted-foreground">Check your backend connection and try again.</p>
@@ -182,7 +182,7 @@ export default function AdminCrmEnquiriesClient() {
               </Button>
             </div>
           ) : (
-            <div className="flex overflow-x-auto gap-4 pb-4 h-[calc(100vh-250px)] min-h-96">
+            <div className="flex overflow-x-auto gap-4 pb-4 h-full min-h-96 min-h-96">
               {KANBAN_COLUMNS.map((col) => {
                 const cards = colEnquiries(col.id);
                 return (

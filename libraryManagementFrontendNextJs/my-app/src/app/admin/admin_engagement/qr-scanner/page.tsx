@@ -143,7 +143,7 @@ export default function QrScannerPage() {
                     <div className="absolute bottom-4 left-4 w-8 h-8 border-b-4 border-l-4 border-primary rounded-bl-lg"/>
                     <div className="absolute bottom-4 right-4 w-8 h-8 border-b-4 border-r-4 border-primary rounded-br-lg"/>
                     {/* Scan animation line */}
-                    <div className="absolute left-0 top-0 w-full h-1 bg-primary shadow-[0_0_8px_rgba(var(--primary),0.8)] animate-[scan_2s_ease-in-out_infinite_alternate]"/>
+                    <div className="absolute left-0 top-0 w-full h-1 bg-primary shadow-lg shadow-primary/80 animate-pulse"/>
                   </>
                 )}
               </div>

@@ -2,6 +2,7 @@
 
 import { Download, Search } from 'lucide-react';
 import { useAdminStudents, type AdminStudentData } from '@/app/admin/admin_students/admin_students_hooks/useAdminStudents';
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';

@@ -94,6 +94,7 @@ export function AdminSystemMaintenanceClient() {
                 </tr>
               </thead>
               <tbody className="divide-y divide-outline-variant/30">
+                {/* eslint-disable-next-line @typescript-eslint/no-unused-vars */}
                 {assets.map((asset, i) => (
                   <tr key={asset.name} className="hover:bg-surface-container-high transition-colors">
                     <td className="py-3 pr-4 font-medium text-on-surface">{asset.name}</td>

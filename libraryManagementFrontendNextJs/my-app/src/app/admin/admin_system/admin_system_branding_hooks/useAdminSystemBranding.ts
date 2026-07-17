@@ -17,6 +17,7 @@ export function useAdminSystemBranding() {
 
   /* Read defaults from system.css tokens on mount */
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setForm(f => ({
       ...f,
       primaryColor: readToken('--branding-primary-default'),

@@ -21,7 +21,7 @@ export default async function AdminDashboardPage() {
   
   if (!rawData) {
     return (
-      <div className="flex flex-col items-center justify-center h-[50vh]">
+      <div className="flex flex-col items-center justify-center h-96">
         <p className="text-lg font-semibold text-muted-foreground">Failed to load dashboard data.</p>
       </div>
     );

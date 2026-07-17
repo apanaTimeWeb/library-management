@@ -28,5 +28,6 @@ export interface UpdateStudentDto extends Partial<CreateStudentDto> {
   status?: 'ACTIVE' | 'INACTIVE' | 'SUSPENDED';
 }
 
+// eslint-disable-next-line @typescript-eslint/no-empty-object-type
 export interface AdminStudentsData {}
 

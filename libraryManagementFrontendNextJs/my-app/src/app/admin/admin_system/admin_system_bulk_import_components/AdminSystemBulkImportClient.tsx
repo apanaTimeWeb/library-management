@@ -93,7 +93,7 @@ export function AdminSystemBulkImportClient() {
                 onClick={() => fileInputRef.current?.click()}
                 className={`flex flex-col items-center justify-center gap-4 p-16 rounded-2xl border-2 border-dashed cursor-pointer transition-all ${
                   isDragging
-                    ? 'border-primary bg-primary/8 scale-[1.01]'
+                    ? 'border-primary bg-primary/8 scale-105'
                     : 'border-outline-variant hover:border-primary/50 hover:bg-surface-container-high'
                 }`}
               >
@@ -293,6 +293,7 @@ export function AdminSystemBulkImportClient() {
             <div className="text-5xl animate-bounce">⏳</div>
             <div>
               <h2 className="text-xl font-bold text-on-surface mb-1">Importing Students...</h2>
+              {/* eslint-disable-next-line react/no-unescaped-entities */}
               <p className="text-sm text-on-surface-variant">Please don't close this tab while import is in progress.</p>
             </div>
             <div className="w-full max-w-sm space-y-2">

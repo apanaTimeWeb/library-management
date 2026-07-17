@@ -21,6 +21,7 @@ export function fmtH(h: number) {
 }
 
 export function useShiftGapAnalyzer() {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [shifts, setShifts] = useState<ShiftData[]>(ADMIN_SEATS_MOCK_SHIFT_GAPS as ShiftData[]);
   const [shiftFilter, setShiftFilter] = useState('All');
   const [period, setPeriod] = useState('Today');

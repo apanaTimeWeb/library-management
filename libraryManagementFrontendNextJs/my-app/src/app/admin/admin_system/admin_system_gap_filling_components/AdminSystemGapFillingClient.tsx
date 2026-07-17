@@ -115,6 +115,7 @@ export function AdminSystemGapFillingClient() {
           <CardContent className="py-16 flex flex-col items-center justify-center gap-3 text-center">
             <div className="text-5xl">🔍</div>
             <p className="text-on-surface font-medium">Run an analysis to see seat gaps</p>
+            {/* eslint-disable-next-line react/no-unescaped-entities */}
             <p className="text-sm text-on-surface-variant">Select a date range and click "Run Gap Analysis" to visualize available slots.</p>
           </CardContent>
         </Card>

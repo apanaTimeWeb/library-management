@@ -312,7 +312,7 @@ export function ShiftMigrationClient() {
       </div>
 
       {/* Sticky footer */}
-      <div className="fixed bottom-0 left-0 right-0 md:left-64 z-40 bg-background/80 backdrop-blur-md border-t border-border shadow-[0_-4px_12px_rgba(0,0,0,0.05)]">
+      <div className="fixed bottom-0 left-0 right-0 md:left-64 z-40 bg-background/80 backdrop-blur-md border-t border-border shadow-md shadow-black/5">
         <div className="max-w-6xl mx-auto w-full px-6 py-4 flex items-center justify-between">
           <Button 
             variant="outline" 

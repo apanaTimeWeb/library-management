@@ -76,7 +76,7 @@ export function LockerMatrixClient() {
               <p className="text-muted-foreground font-medium">Loading locker grid...</p>
             </div>
           ) : (
-            <div className="grid grid-cols-[repeat(auto-fill,minmax(50px,1fr))] gap-2 sm:gap-3 place-content-start w-full">
+            <div className="grid  gap-2 sm:gap-3 place-content-start w-full" style={{ gridTemplateColumns: "repeat(auto-fill, minmax(50px, 1fr))" }}>
               {lockerData.map(({ uuid, id, status }, index) => (
                 <button
                   key={uuid || `${id}-${index}`}

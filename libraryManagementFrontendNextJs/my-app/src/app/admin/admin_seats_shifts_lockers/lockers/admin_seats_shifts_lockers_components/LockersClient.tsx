@@ -1,6 +1,7 @@
 'use client';
 
 import { Plus, UserPlus, Unlock, Wrench, Search, X } from 'lucide-react';
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { useLockers, Locker } from '@/app/admin/admin_seats_shifts_lockers/lockers/admin_seats_shifts_lockers_hooks/useLockers';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -77,11 +78,11 @@ export function LockersClient() {
           <table className="w-full text-sm text-left whitespace-nowrap min-w-max">
             <thead className="bg-muted/30 border-b text-muted-foreground text-xs font-bold uppercase tracking-wider sticky top-0 z-10">
               <tr>
-                <th className="px-5 py-3 w-[15%]">Locker #</th>
-                <th className="px-5 py-3 w-[15%]">Status</th>
-                <th className="px-5 py-3 w-[35%]">Assigned To</th>
-                <th className="px-5 py-3 w-[20%]">Since</th>
-                <th className="px-5 py-3 w-[15%] text-right">Actions</th>
+                <th className="px-5 py-3  w-2/12 ">Locker #</th>
+                <th className="px-5 py-3  w-2/12 ">Status</th>
+                <th className="px-5 py-3  w-4/12 ">Assigned To</th>
+                <th className="px-5 py-3  w-1/5 ">Since</th>
+                <th className="px-5 py-3  w-2/12  text-right">Actions</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-border">

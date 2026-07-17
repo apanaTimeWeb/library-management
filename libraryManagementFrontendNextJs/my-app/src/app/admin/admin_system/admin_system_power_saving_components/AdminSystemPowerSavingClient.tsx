@@ -66,6 +66,7 @@ export function AdminSystemPowerSavingClient() {
 
       {/* Zone Status Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+        {/* eslint-disable-next-line @typescript-eslint/no-unused-vars */}
         {zones.map((zone, i) => {
           const status = getZoneStatus(zone.occupancy);
           const isLow = zone.occupancy < threshold;

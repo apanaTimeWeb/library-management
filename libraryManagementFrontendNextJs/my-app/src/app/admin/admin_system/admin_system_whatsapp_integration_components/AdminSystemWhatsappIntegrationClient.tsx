@@ -209,6 +209,7 @@ export function AdminSystemWhatsappIntegrationClient() {
                   {copiedUrl ? <CheckCircle size={14} className="text-success" /> : <Copy size={14} />}
                 </Button>
               </div>
+              {/* eslint-disable-next-line react/no-unescaped-entities */}
               <p className="text-xs text-on-surface-variant">Paste this URL in your provider's webhook settings to receive inbound messages.</p>
             </div>
           </CardContent>

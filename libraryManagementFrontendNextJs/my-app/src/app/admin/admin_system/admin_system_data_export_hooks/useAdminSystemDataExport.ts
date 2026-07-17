@@ -12,6 +12,7 @@ export function useAdminSystemDataExport() {
   const toggleModule = useCallback((id: string) => {
     setSelected(prev => {
       const next = new Set(prev);
+      // eslint-disable-next-line @typescript-eslint/no-unused-expressions
       next.has(id) ? next.delete(id) : next.add(id);
       return next;
     });

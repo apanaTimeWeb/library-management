@@ -183,7 +183,7 @@ export default function AdminCrmEnquiryDetailPage({ params }: { params: Promise<
 
   if (fetchState === 'loading') {
     return (
-      <div className="flex flex-col items-center justify-center min-h-[50vh] gap-4">
+      <div className="flex flex-col items-center justify-center min-h-96 gap-4">
         <div className="h-8 w-8 rounded-full border-4 border-primary border-t-transparent animate-spin" />
         <p className="text-muted-foreground font-medium">Loading enquiry details…</p>
       </div>
@@ -192,7 +192,7 @@ export default function AdminCrmEnquiryDetailPage({ params }: { params: Promise<
 
   if (fetchState === 'error' || !enquiry) {
     return (
-      <div className="flex flex-col items-center justify-center min-h-[50vh] text-center gap-4">
+      <div className="flex flex-col items-center justify-center min-h-96 text-center gap-4">
         <XCircle size={48} className="text-muted-foreground opacity-20" />
         <p className="text-xl font-bold">Enquiry Not Found</p>
         <p className="text-sm text-muted-foreground">The enquiry with ID &ldquo;{id}&rdquo; does not exist.</p>

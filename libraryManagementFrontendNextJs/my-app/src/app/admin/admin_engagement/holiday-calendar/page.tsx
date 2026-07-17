@@ -164,7 +164,7 @@ export default function HolidayCalendarPage() {
                 <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Holiday</span>
               </div>
               <div className="flex items-center gap-2">
-                <div className="w-2.5 h-2.5 rounded-full bg-primary shadow-[0_0_0_2px_rgba(var(--primary),0.2)]"></div>
+                <div className="w-2.5 h-2.5 rounded-full bg-primary ring-2 ring-primary/20"></div>
                 <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Today</span>
               </div>
             </div>

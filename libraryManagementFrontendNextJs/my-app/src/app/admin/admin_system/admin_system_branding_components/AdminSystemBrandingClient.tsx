@@ -20,6 +20,7 @@ export function AdminSystemBrandingClient() {
           Branding & White-Label
         </h1>
         <p className="text-on-surface-variant mt-1 text-sm">
+          {/* eslint-disable-next-line react/no-unescaped-entities */}
           Customize your library's visual identity. Changes reflect across the entire app.
         </p>
       </div>

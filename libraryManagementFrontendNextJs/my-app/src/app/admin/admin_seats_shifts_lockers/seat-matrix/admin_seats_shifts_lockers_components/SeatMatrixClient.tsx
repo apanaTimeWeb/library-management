@@ -106,7 +106,7 @@ export function SeatMatrixClient() {
               <p className="text-muted-foreground font-medium">Loading floor plan...</p>
             </div>
           ) : (
-            <div className="grid grid-cols-[repeat(auto-fill,minmax(50px,1fr))] gap-3 sm:gap-4 place-content-start w-full">
+            <div className="grid  gap-3 sm:gap-4 place-content-start w-full" style={{ gridTemplateColumns: "repeat(auto-fill, minmax(50px, 1fr))" }}>
               {visible.map((seat, index) => (
                 <button
                   key={seat.uuid || `${seat.id}-${index}`}

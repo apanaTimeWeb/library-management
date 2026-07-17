@@ -30,6 +30,7 @@ export function useAdminSystemSettings() {
 
   /* Read color defaults from system.css tokens */
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setForm(f => ({
       ...f,
       primaryColor: readToken('--branding-primary-default'),

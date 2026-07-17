@@ -11,7 +11,9 @@ import {
 import { ADMIN_SYSTEM_SETTINGS_CATEGORIES } from '@/app/admin/admin_system/admin_system_data/AdminSystemMockData2';
 import { useAdminSystemSettings } from '@/app/admin/admin_system/admin_system_settings_hooks/useAdminSystemSettings';
 
-const ICON_MAP: Record<string, any> = {
+import React from 'react';
+
+const ICON_MAP: Record<string, React.ElementType> = {
   'Palette': Palette,
   'AlertCircle': AlertCircle,
   'Zap': Zap,

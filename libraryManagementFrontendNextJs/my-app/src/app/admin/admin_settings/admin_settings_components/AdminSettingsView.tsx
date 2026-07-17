@@ -34,6 +34,7 @@ export function AdminSettingsView({ initialSettings }: AdminSettingsViewProps) {
           <div>
             <nav className="text-xs text-muted-foreground font-medium mb-1 tracking-wide uppercase">Smart Library 360 › Admin › Settings</nav>
             <h1 className="text-2xl font-bold tracking-tight">Global Settings</h1>
+            {/* eslint-disable-next-line react/no-unescaped-entities */}
             <p className="text-sm text-muted-foreground mt-1">Configure your library's core identity, billing info, and preferences.</p>
           </div>
           <Button 

@@ -207,7 +207,7 @@ export default function AttendancePage() {
       </Card>
 
       {/* ── Sticky Save Bar ── */}
-      <div className="fixed bottom-0 left-0 right-0 lg:left-72 p-4 bg-background/80 backdrop-blur-md border-t border-border flex items-center justify-between z-50 shadow-[0_-4px_12px_rgba(0,0,0,0.05)]">
+      <div className="fixed bottom-0 left-0 right-0 lg:left-72 p-4 bg-background/80 backdrop-blur-md border-t border-border flex items-center justify-between z-50 shadow-md shadow-black/5">
         <p className="text-sm text-foreground">
           <strong className="text-primary">{marked}</strong> of <strong>{filtered.length}</strong> marked for <strong className="font-mono">{date}</strong>
         </p>

@@ -186,7 +186,7 @@ export function FinanceCollectFeeClient() {
                 />
               </div>
               {showDropdown && search.length >= 2 && !selectedStudent && (
-                <div className="absolute z-20 w-[calc(100%-3rem)] max-w-md mt-1 bg-card border border-border rounded-md shadow-xl max-h-60 overflow-y-auto">
+                <div className="absolute z-20 w-11/12 max-w-md mt-1 bg-card border border-border rounded-md shadow-xl max-h-60 overflow-y-auto">
                   {filteredStudents.length === 0 ? (
                     <div className="p-4 text-sm text-muted-foreground text-center">No students found</div>
                   ) : filteredStudents.map(s => (

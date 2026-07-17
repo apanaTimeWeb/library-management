@@ -110,7 +110,7 @@ export default function AddEnquiryPage() {
             <Button
               type="submit"
               form="add-enquiry-form"
-              className="flex-[2] gap-2"
+              className=" gap-2" style={{ flex: 2 }}
               disabled={isSubmitting}
             >
               {isSubmitting ? (
