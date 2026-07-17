@@ -36,8 +36,8 @@ export const useManagerCommunicationStore = create<ManagerCommunicationState>((s
   fetchNotices: async () => {
     set({ noticesStatus: 'loading', noticesError: null });
     try {
-      const data = await fetchApi<any[]>('/communication/notices');
-      if (!Array.isArray(actualData) || actualData.length === 0 || String(actualData[0]?.id).startsWith('MOCK-')) {
+      const actualData = await fetchApi<unknown[]>('/communication/notices');
+      if (!Array.isArray(actualData) || actualData.length === 0 || String((actualData[0] as { id?: string })?.id).startsWith('MOCK-')) {
         const MOCK_NOTICES: Notice[] = [
           { id: 'N1', title: 'Library Closed for Maintenance', message: 'The library will be closed on Sunday due to scheduled maintenance.', postedBy: 'Admin', postedDate: '2026-04-10', validTill: '2026-04-15', status: 'Active' },
           { id: 'N2', title: 'New AC Installed', message: 'We have installed a new AC in the quiet zone.', postedBy: 'Manager', postedDate: '2026-04-08', validTill: '2026-04-30', status: 'Active' },
@@ -99,8 +99,8 @@ export const useManagerCommunicationStore = create<ManagerCommunicationState>((s
   fetchComplaints: async () => {
     set({ complaintsStatus: 'loading', complaintsError: null });
     try {
-      const data = await fetchApi<any[]>('/communication/complaints');
-      if (!Array.isArray(actualData) || actualData.length === 0 || String(actualData[0]?.id).startsWith('MOCK-')) {
+      const actualData = await fetchApi<unknown[]>('/communication/complaints');
+      if (!Array.isArray(actualData) || actualData.length === 0 || String((actualData[0] as { id?: string })?.id).startsWith('MOCK-')) {
         const MOCK_COMPLAINTS: Complaint[] = [
           { id: 'C1', title: 'AC not cooling', studentName: 'Rahul Sharma', desc: 'The AC in Zone A has not been cooling properly for the past 3 days. Very uncomfortable to study.', status: 'New', submittedOn: '2026-04-10', phone: '9999999999', category: 'General', priority: 'High' },
           { id: 'C2', title: 'WiFi very slow', studentName: 'Anonymous', desc: 'Internet speed is extremely slow during evening hours. Cannot load study materials.', status: 'In-Progress', submittedOn: '2026-04-09', phone: '9999999999', category: 'IT', priority: 'Medium' },

@@ -9,6 +9,8 @@ import { gridTheme } from '@/app/manager/manager_reusable/gridTheme';
 import { useNotices } from '@/app/manager/manager_communication/manager_communication_hooks/useNotices';
 import type { Notice } from '@/app/manager/manager_communication/manager_communication_types/manager_communication_types';
 
+type CellParams = { value: string; data?: Notice };
+
 ModuleRegistry.registerModules([AllCommunityModule]);
 
 export function ManagerCommunicationNoticesClient() {
@@ -51,26 +53,26 @@ export function ManagerCommunicationNoticesClient() {
   };
 
   const colDefs: unknown[] = [
-    { field: 'title', headerName: 'Title', width: 220, cellRenderer: (p: unknown) => <span className="text-sm font-semibold text-text-primary">{p.value}</span> },
-    { field: 'message', headerName: 'Message', flex: 1, minWidth: 250, cellRenderer: (p: unknown) => <span className="text-sm text-text-secondary truncate block w-full pt-1" title={p.value}>{p.value}</span> },
+    { field: 'title', headerName: 'Title', width: 220, cellRenderer: (p: CellParams) => <span className="text-sm font-semibold text-text-primary">{p.value}</span> },
+    { field: 'message', headerName: 'Message', flex: 1, minWidth: 250, cellRenderer: (p: CellParams) => <span className="text-sm text-text-secondary truncate block w-full pt-1" title={p.value}>{p.value}</span> },
     { 
       field: 'status', 
       headerName: 'Status', 
       width: 120,
-      cellRenderer: (p: unknown) => (
+      cellRenderer: (p: CellParams) => (
         <span className={`rounded-full px-2.5 py-0.5 text-[11px] font-semibold mt-2 inline-flex items-center gap-1 ${p.value === 'Active' ? 'bg-success-bg text-success' : 'border border-border text-text-secondary'}`}>
           {p.value === 'Active' ? <CheckCircle size={12} /> : null} {p.value}
         </span>
       )
     },
-    { field: 'validTill', headerName: 'Valid Till', width: 130, cellRenderer: (p: unknown) => <span className="font-mono text-[12px] text-text-primary tracking-tight">{p.value}</span> },
-    { field: 'postedBy', headerName: 'Posted By', width: 130, cellRenderer: (p: unknown) => <span className="text-sm text-text-secondary">{p.value}</span> },
-    { field: 'postedDate', headerName: 'Posted Date', width: 130, cellRenderer: (p: unknown) => <span className="font-mono text-[12px] text-text-primary tracking-tight">{p.value}</span> },
+    { field: 'validTill', headerName: 'Valid Till', width: 130, cellRenderer: (p: CellParams) => <span className="font-mono text-[12px] text-text-primary tracking-tight">{p.value}</span> },
+    { field: 'postedBy', headerName: 'Posted By', width: 130, cellRenderer: (p: CellParams) => <span className="text-sm text-text-secondary">{p.value}</span> },
+    { field: 'postedDate', headerName: 'Posted Date', width: 130, cellRenderer: (p: CellParams) => <span className="font-mono text-[12px] text-text-primary tracking-tight">{p.value}</span> },
     {
       headerName: 'Actions',
       width: 140,
       sortable: false,
-      cellRenderer: (params: unknown) => (
+      cellRenderer: (params: CellParams) => (
         <div className="h-full flex items-center gap-2">
           <button onClick={() => openEdit(params?.data)} className="w-8 h-8 flex items-center justify-center rounded-lg border border-border text-text-secondary bg-transparent hover:bg-primary hover:text-white transition-colors" title="Edit"><Edit2 size={14} /></button>
           <button onClick={() => setBroadcastItem(params?.data)} className="w-8 h-8 flex items-center justify-center rounded-lg border border-border text-text-secondary bg-transparent hover:bg-primary hover:text-white transition-colors" title="Broadcast"><Send size={14} /></button>

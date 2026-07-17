@@ -7,14 +7,13 @@ import { ChevronRight, Plus, X, Eye, RefreshCw, CheckCircle, Smile, MessageCircl
 import { useComplaints } from '@/app/manager/manager_communication/manager_communication_hooks/useComplaints';
 import type { Complaint } from '@/app/manager/manager_communication/manager_communication_types/manager_communication_types';
 
-type CStatus = Complaint['status'];
-const TABS: (CStatus | 'All')[] = ['All', 'New', 'In-Progress', 'Resolved'];
+const TABS: (Complaint['status'] | 'All')[] = ['All', 'New', 'In-Progress', 'Resolved'];
 
 export function ManagerCommunicationComplaintsClient() {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
-  const currentTab = (searchParams.get('tab') as CStatus | 'All') || 'All';
+  const currentTab = (searchParams.get('tab') as Complaint['status'] | 'All') || 'All';
 
   const { complaints, status, addComplaint, updateComplaintStatus } = useComplaints();
 
@@ -63,7 +62,7 @@ export function ManagerCommunicationComplaintsClient() {
     showToast('Complaint resolved');
   };
 
-  const statusBadge = (s: CStatus) => {
+  const statusBadge = (s: Complaint['status']) => {
     if (s === 'New') return <span className="eng-badge eng-badge--danger inline-flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-red-500"></span> New</span>;
     if (s === 'In-Progress') return <span className="eng-badge eng-badge--warning inline-flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-yellow-500"></span> In-Progress</span>;
     return <span className="eng-badge eng-badge--success inline-flex items-center gap-1"><CheckCircle size={12}/> Resolved</span>;

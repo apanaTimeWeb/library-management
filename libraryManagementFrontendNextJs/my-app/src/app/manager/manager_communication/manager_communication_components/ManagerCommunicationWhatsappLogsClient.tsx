@@ -8,6 +8,9 @@ import { gridTheme } from '@/app/manager/manager_reusable/gridTheme';
 import { ManagerRecord } from '@/app/manager/manager_reusable/gridTheme';
 import { WaLog } from '@/app/manager/manager_communication/manager_communication_types/ManagerCommunicationTypes';
 import { WA_LOGS_DATA } from '@/app/manager/manager_communication/manager_communication_constants/ManagerCommunicationConstants';
+import { ManagerSearchableDropdown } from '@/app/manager/manager_shared_components/ManagerSearchableDropdown';
+
+type CellParams = { value: string; data?: WaLog };
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
@@ -34,9 +37,9 @@ export function ManagerCommunicationWhatsappLogsClient() {
   const [search,       setSearch]       = useState('');
   const [dateFrom,     setDateFrom]     = useState('');
   const [dateTo,       setDateTo]       = useState('');
-  const [viewLog,      setViewLog]      = useState<any | null>(null);
+  const [viewLog,      setViewLog]      = useState<WaLog | null>(null);
 
-  const filtered = WA_LOGS_DATA.filter((l: unknown) => {
+  const filtered = WA_LOGS_DATA.filter((l: WaLog) => {
     if (typeFilter !== 'All' && l.type !== typeFilter) return false;
     if (statusFilter !== 'All' && l.status !== statusFilter) return false;
     if (search && !l.student.toLowerCase().includes(search.toLowerCase()) && !l.phone.includes(search)) return false;
@@ -44,14 +47,14 @@ export function ManagerCommunicationWhatsappLogsClient() {
   });
 
   const colDefs: unknown[] = [
-    { field: 'dateTime', headerName: 'Date / Time', width: 160, cellRenderer: (p: unknown) => <span className="text-text-secondary text-sm">{p.value}</span> },
-    { field: 'phone', headerName: 'Phone', width: 130, cellRenderer: (p: unknown) => <span className="font-mono text-[12px] text-text-primary tracking-tight">{p.value}</span> },
-    { field: 'student', headerName: 'Student', flex: 1, minWidth: 150, cellRenderer: (p: unknown) => <span className="text-sm font-semibold text-text-primary">{p.value}</span> },
+    { field: 'dateTime', headerName: 'Date / Time', width: 160, cellRenderer: (p: CellParams) => <span className="text-text-secondary text-sm">{p.value}</span> },
+    { field: 'phone', headerName: 'Phone', width: 130, cellRenderer: (p: CellParams) => <span className="font-mono text-[12px] text-text-primary tracking-tight">{p.value}</span> },
+    { field: 'student', headerName: 'Student', flex: 1, minWidth: 150, cellRenderer: (p: CellParams) => <span className="text-sm font-semibold text-text-primary">{p.value}</span> },
     { 
       field: 'type', 
       headerName: 'Type', 
       width: 130,
-      cellRenderer: (p: unknown) => (
+      cellRenderer: (p: CellParams) => (
         <span className={`rounded-full px-2.5 py-0.5 text-[11px] font-semibold ${TYPE_BADGE[String(p.value)] || 'bg-info-bg text-info'} inline-block mt-2`}>
           {TYPE_LABEL[String(p.value)] || p.value}
         </span>
@@ -61,18 +64,18 @@ export function ManagerCommunicationWhatsappLogsClient() {
       field: 'status', 
       headerName: 'Status', 
       width: 120,
-      cellRenderer: (p: unknown) => (
+      cellRenderer: (p: CellParams) => (
         <span className={`rounded-full px-2.5 py-0.5 text-[11px] font-semibold ${STATUS_BADGE[String(p.value)] || 'bg-info-bg text-info'} inline-block mt-2`}>
           {p.value}
         </span>
       )
     },
-    { field: 'error', headerName: 'Error', width: 180, cellRenderer: (p: unknown) => <span className="text-danger text-xs truncate max-w-[160px] inline-block" title={p.value}>{p.value || '—'}</span> },
+    { field: 'error', headerName: 'Error', width: 180, cellRenderer: (p: CellParams) => <span className="text-danger text-xs truncate max-w-[160px] inline-block" title={p.value}>{p.value || '—'}</span> },
     {
       headerName: 'Actions',
       width: 100,
       sortable: false,
-      cellRenderer: (params: unknown) => (
+      cellRenderer: (params: CellParams) => (
         <div className="h-full flex items-center">
           <button onClick={() => setViewLog(params?.data)} className="w-8 h-8 flex items-center justify-center rounded-lg border border-border text-text-secondary bg-transparent hover:bg-primary hover:text-white transition-colors" title="View Message">
             <Eye size={16} />
@@ -129,22 +132,34 @@ export function ManagerCommunicationWhatsappLogsClient() {
         <div className="flex flex-wrap gap-4 items-end">
           <div className="flex flex-col">
             <label className="text-[13px] font-medium text-text-secondary mb-1.5">Message Type</label>
-            <select value={typeFilter} onChange={e => setTypeFilter(e.target.value)} className="bg-bg-input border border-border rounded-lg px-3.5 py-2 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary appearance-none">
-              <option value="All">All Types</option>
-              <option value="welcome">Welcome</option>
-              <option value="fee_reminder">Fee Reminder</option>
-              <option value="receipt">Receipt</option>
-              <option value="notice">Notice</option>
-              <option value="renewal">Renewal</option>
-            </select>
+            <ManagerSearchableDropdown
+              className="w-48"
+              value={typeFilter}
+              onChange={setTypeFilter}
+              options={[
+                { label: 'All Types', value: 'All' },
+                { label: 'Welcome', value: 'welcome' },
+                { label: 'Fee Reminder', value: 'fee_reminder' },
+                { label: 'Receipt', value: 'receipt' },
+                { label: 'Notice', value: 'notice' },
+                { label: 'Renewal', value: 'renewal' },
+              ]}
+            />
           </div>
           <div className="flex flex-col">
             <label className="text-[13px] font-medium text-text-secondary mb-1.5">Status</label>
-            <select value={statusFilter} onChange={e => setStatusFilter(e.target.value)} className="bg-bg-input border border-border rounded-lg px-3.5 py-2 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary appearance-none">
-              <option value="All">All</option>
-              <option>Pending</option><option>Sent</option>
-              <option>Delivered</option><option>Failed</option>
-            </select>
+            <ManagerSearchableDropdown
+              className="w-32"
+              value={statusFilter}
+              onChange={setStatusFilter}
+              options={[
+                { label: 'All', value: 'All' },
+                { label: 'Pending', value: 'Pending' },
+                { label: 'Sent', value: 'Sent' },
+                { label: 'Delivered', value: 'Delivered' },
+                { label: 'Failed', value: 'Failed' },
+              ]}
+            />
           </div>
           <div className="flex flex-col">
             <label className="text-[13px] font-medium text-text-secondary mb-1.5">From</label>
