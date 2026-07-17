@@ -134,7 +134,7 @@ export default function SuperadminSidebar({ collapsed, onToggle, mobileOpen, onM
       </aside>
 
       <SuperadminDialog open={showLogout} onOpenChange={setShowLogout}>
-        <SuperadminDialogContent className="max-w-[360px]">
+        <SuperadminDialogContent className="max-w-sm">
           <SuperadminDialogHeader>
             <SuperadminDialogTitle>Log out?</SuperadminDialogTitle>
             <SuperadminDialogDescription>

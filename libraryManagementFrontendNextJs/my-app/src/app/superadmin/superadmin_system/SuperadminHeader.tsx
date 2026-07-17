@@ -31,7 +31,7 @@ export default function SuperadminHeader({ sidebarWidth, onMobileOpen }: HeaderP
         <div className="flex items-center gap-2">
           <Building2 size={15} className="text-muted-foreground hidden sm:block" />
           <SuperadminSelect value={selectedBranch} onValueChange={setSelectedBranch}>
-            <SuperadminSelectTrigger className="w-[160px] h-8 text-sm font-medium border-none shadow-none bg-transparent hover:bg-muted/50 focus:ring-0">
+            <SuperadminSelectTrigger className="w-40 h-8 text-sm font-medium border-none shadow-none bg-transparent hover:bg-muted/50 focus:ring-0">
               <SuperadminSelectValue placeholder="Select Branch" />
             </SuperadminSelectTrigger>
             <SuperadminSelectContent>

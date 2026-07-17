@@ -14,7 +14,7 @@ export default function SuperAdminDashboardLayout({
       <Sidebar />
 
       {/* Main Content Area */}
-      <div className="flex-1 ml-[240px] min-h-screen">
+      <div className="flex-1 ml-60 min-h-screen">
         <Header />
 
         <main className="pt-20 p-8 min-h-screen space-y-8">

@@ -22,7 +22,7 @@ export function SuperadminSeatGapReportFilterBar({ shiftFilter, setShiftFilter, 
     <div className="bg-bg-card border border-border rounded-[var(--radius-lg)] p-4 shadow-sm mb-6 flex flex-wrap items-center gap-3">
       <label className="text-xs font-bold text-text-secondary uppercase tracking-wider mr-1">Filters:</label>
       <select 
-        className="bg-bg-input border border-border rounded-[var(--radius-md)] py-1.5 px-3 text-sm font-medium text-text-primary focus:outline-none focus:border-primary transition-colors shadow-inner min-w-[140px]" 
+        className="bg-bg-input border border-border rounded-[var(--radius-md)] py-1.5 px-3 text-sm font-medium text-text-primary focus:outline-none focus:border-primary transition-colors shadow-inner min-w-36" 
         value={shiftFilter} 
         onChange={e => setShiftFilter(e.target.value)}
       >
@@ -33,7 +33,7 @@ export function SuperadminSeatGapReportFilterBar({ shiftFilter, setShiftFilter, 
       </select>
       
       <select 
-        className="bg-bg-input border border-border rounded-[var(--radius-md)] py-1.5 px-3 text-sm font-medium text-text-primary focus:outline-none focus:border-primary transition-colors shadow-inner min-w-[140px]" 
+        className="bg-bg-input border border-border rounded-[var(--radius-md)] py-1.5 px-3 text-sm font-medium text-text-primary focus:outline-none focus:border-primary transition-colors shadow-inner min-w-36" 
         value={statusFilter} 
         onChange={e => setStatusFilter(e.target.value)}
       >

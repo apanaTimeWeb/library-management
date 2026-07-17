@@ -31,7 +31,7 @@ export function SuperadminSystemProfileClient() {
         <p className="text-on-surface-variant mt-1 text-sm">Manage your personal information and account security.</p>
       </div>
 
-      <div className="max-w-[560px] mx-auto space-y-6">
+      <div className="max-w-xl mx-auto space-y-6">
         {/* Personal Info */}
         <SuperadminCard>
           <CardHeader>

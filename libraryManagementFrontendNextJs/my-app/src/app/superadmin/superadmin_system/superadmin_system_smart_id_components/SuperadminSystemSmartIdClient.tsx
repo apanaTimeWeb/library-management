@@ -50,7 +50,7 @@ export function SuperadminSystemSmartIdClient() {
                   <div className="text-center">
                     <p className="text-xs font-semibold text-primary uppercase tracking-wider">Step {step.step}</p>
                     <p className="text-sm font-medium text-on-surface mt-0.5">{step.title}</p>
-                    <p className="text-xs text-on-surface-variant mt-1 max-w-[160px]">{step.desc}</p>
+                    <p className="text-xs text-on-surface-variant mt-1 max-w-xs">{step.desc}</p>
                   </div>
                 </div>
                 {i < FLOW_STEPS.length - 1 && (

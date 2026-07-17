@@ -33,7 +33,7 @@ function ChartCard({ title, subtitle, children }: { title: string, subtitle: str
         <p className="text-sm font-bold text-text-primary">{title}</p>
         <p className="text-[11px] font-medium text-text-disabled mt-0.5">{subtitle}</p>
       </div>
-      <div className="p-5 h-[280px]">
+      <div className="p-5 h-72">
         {children}
       </div>
     </div>
