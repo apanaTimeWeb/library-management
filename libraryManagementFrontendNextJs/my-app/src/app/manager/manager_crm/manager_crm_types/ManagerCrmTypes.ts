@@ -1,3 +1,5 @@
+import { ReactNode } from 'react';
+
 export type EnquiryStatus = 'New' | 'Visited' | 'Interested' | 'Converted' | 'Lost';
 
 export interface FollowUp {
@@ -15,11 +17,14 @@ export interface EnquiryDetail {
 }
 
 export interface ManagerCrmKanbanCardProps {
-  enquiry: EnquiryDetail;
+  enq: import('@/app/manager/manager_crm/manager_crm_types').Enquiry;
+  colClass: string;
+  onClick: () => void;
 }
 
 export interface ManagerCrmEnquiriesTableProps {
-  data: EnquiryDetail[];
+  filtered: import('@/app/manager/manager_crm/manager_crm_types').Enquiry[];
+  updateEnquiryStatus: (id: string, status: import('@/app/manager/manager_crm/manager_crm_types').Enquiry['status']) => void;
 }
 
 export interface ManagerCrmEnquiriesKanbanProps {
@@ -31,4 +36,21 @@ export interface MarkLostModalProps {
   onClose: () => void;
   onSubmit: (reason: string, details: string) => void;
   isSubmitting: boolean;
+}
+
+export interface ManagerCrmErrorBoundaryProps {
+  children: ReactNode;
+}
+
+export interface ManagerCrmErrorBoundaryState {
+  hasError: boolean;
+  error?: Error;
+}
+
+export interface ManagerCrmState {
+  enquiries: import('@/app/manager/manager_crm/manager_crm_types').Enquiry[];
+  status: import('@/app/manager/manager_crm/manager_crm_types').FetchState;
+  error: string | null;
+  fetchData: () => Promise<void>;
+  updateEnquiryStatus: (id: string, status: import('@/app/manager/manager_crm/manager_crm_types').Enquiry['status']) => void;
 }

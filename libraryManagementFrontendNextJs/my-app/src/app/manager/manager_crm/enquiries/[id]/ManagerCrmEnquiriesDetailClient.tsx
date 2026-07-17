@@ -24,6 +24,7 @@ import {
   Edit2,
   AlertTriangle,
 } from 'lucide-react';
+import { ManagerSearchableDropdown } from '@/app/manager/manager_shared_components/ManagerSearchableDropdown';
 import { useManagerCrmEnquiriesDetail } from '@/app/manager/manager_crm/manager_crm_hooks/useManagerCrmEnquiriesDetail';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -372,19 +373,16 @@ export function ManagerCrmEnquiriesDetailClient({ id }: { id: string }) {
               <h3 className="text-xs font-bold text-text-secondary uppercase tracking-widest mb-4 m-0">Current Status</h3>
               <div className="flex items-center gap-3">
                 <div className="relative flex-1">
-                  <select
-                    className="w-full px-3 py-2 rounded-lg text-sm bg-bg-input text-text-primary border border-border focus:border-primary outline-none transition-colors appearance-none cursor-pointer"
+                  <ManagerSearchableDropdown
+                    className="w-full"
                     value={currentStatus}
-                    onChange={handleStatusChange}
-                  >
-                    {STATUS_OPTIONS.map((s) => (
-                      <option key={s} value={s}>{s}</option>
-                    ))}
-                  </select>
+                    onChange={(val) => setCurrentStatus(val as EnquiryStatus)}
+                    options={STATUS_OPTIONS.map(s => ({ label: s, value: s }))}
+                  />
                 </div>
                 <button
                   className="inline-flex items-center justify-center gap-2 px-5 py-2 rounded-lg text-sm font-semibold bg-primary text-white hover:opacity-90 transition-all disabled:opacity-55 disabled:cursor-not-allowed"
-                  onClick={() => handleStatusChange({ target: { value: currentStatus } } as any)}
+                  onClick={() => handleStatusUpdate()}
                   disabled={statusUpdating || currentStatus === enquiry.status}
                 >
                   {statusUpdating ? <span className="animate-spin w-4 h-4 border-2 border-current border-t-transparent rounded-full" /> : <CheckCircle size={14} />}

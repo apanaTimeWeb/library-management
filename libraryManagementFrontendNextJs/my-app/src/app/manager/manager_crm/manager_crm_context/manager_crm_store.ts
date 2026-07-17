@@ -1,18 +1,11 @@
 import { create } from 'zustand';
 import type { Enquiry, FetchState } from '@/app/manager/manager_crm/manager_crm_types';
+import type { ManagerCrmState } from '@/app/manager/manager_crm/manager_crm_types/ManagerCrmTypes';
 
 // RESPONSIBILITY: Module-scoped Zustand store for managing CRM Enquiries API data.
 // DATA FLOW: API -> useCrmStore -> useManagerCrmEnquiries -> ManagerCrmEnquiriesClient
 
-interface CrmState {
-  enquiries: Enquiry[];
-  status: FetchState;
-  error: string | null;
-  fetchData: () => Promise<void>;
-  updateEnquiryStatus: (id: string, status: Enquiry['status']) => void;
-}
-
-export const useCrmStore = create<CrmState>((set, get) => ({
+export const useCrmStore = create<ManagerCrmState>((set, get) => ({
   enquiries: [],
   status: 'idle',
   error: null,
@@ -30,7 +23,7 @@ export const useCrmStore = create<CrmState>((set, get) => ({
           { id: 'E3', name: 'Amit Patel', phone: '7654321098', shift: 'Full Day', status: 'Converted' as const, handledBy: 'Admin', addedDate: '2026-04-08', avatar: 'AP' },
           { id: 'E4', name: 'Sneha Gupta', phone: '6543210987', shift: 'Night', status: 'Lost' as const, handledBy: 'Staff', addedDate: '2026-04-07', avatar: 'SG' },
         ];
-        set({ enquiries: MOCK_ENQUIRIES as any, status: 'success' });
+        set({ enquiries: MOCK_ENQUIRIES as import('@/app/manager/manager_crm/manager_crm_types').Enquiry[], status: 'success' });
         return;
       }
       interface RawEnquiry {

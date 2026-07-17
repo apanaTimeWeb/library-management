@@ -12,9 +12,11 @@ function FollowUpBadge({ isOverdue, isToday, isUpcoming }: Pick<Enquiry, 'isOver
   return null;
 }
 
+import type { ManagerCrmKanbanCardProps } from '@/app/manager/manager_crm/manager_crm_types/ManagerCrmTypes';
+
 // Props interface centralized.
 
-export function ManagerCrmKanbanCard({ enq, colClass, onClick }: unknown) {
+export function ManagerCrmKanbanCard({ enq, colClass, onClick }: ManagerCrmKanbanCardProps) {
   return (
     <div className={`bg-bg-card border border-border p-4 rounded-xl shadow-sm cursor-pointer hover:-translate-y-1 hover:border-text-secondary transition-all focus:outline-none focus:ring-2 focus:ring-primary ${colClass}`} onClick={onClick} role="button" tabIndex={0} onKeyDown={(e) => e.key === 'Enter' && onClick()}>
       <div className="flex flex-col gap-1 mb-3">

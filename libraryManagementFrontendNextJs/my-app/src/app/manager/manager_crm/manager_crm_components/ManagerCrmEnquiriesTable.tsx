@@ -5,6 +5,7 @@ import { maskPhone } from '@/app/manager/manager_crm/manager_crm_utils';
 import { STATUS_BADGE } from '@/app/manager/manager_crm/manager_crm_constants';
 import type { Enquiry, EnquiryStatus } from '@/app/manager/manager_crm/manager_crm_types';
 import { MANAGER_CRM_URLS } from '@/app/manager/manager_crm/manager_crm_url_config';
+import type { ManagerCrmEnquiriesTableProps } from '@/app/manager/manager_crm/manager_crm_types/ManagerCrmTypes';
 
 // RESPONSIBILITY: Renders the Table view for CRM Enquiries.
 
@@ -96,5 +97,3 @@ export function ManagerCrmEnquiriesTable({ filtered, updateEnquiryStatus }: Mana
     </div>
   );
 }
-
-

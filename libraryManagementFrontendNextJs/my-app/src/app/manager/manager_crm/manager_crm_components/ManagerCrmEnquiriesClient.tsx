@@ -5,6 +5,7 @@ import { LayoutGrid, List, Plus, Search } from 'lucide-react';
 import { useManagerCrmEnquiries } from '@/app/manager/manager_crm/manager_crm_hooks/useManagerCrmEnquiries';
 import { ManagerCrmEnquiriesKanban } from '@/app/manager/manager_crm/manager_crm_components/ManagerCrmEnquiriesKanban';
 import { ManagerCrmEnquiriesTable } from '@/app/manager/manager_crm/manager_crm_components/ManagerCrmEnquiriesTable';
+import { ManagerSearchableDropdown } from '@/app/manager/manager_shared_components/ManagerSearchableDropdown';
 import { MANAGER_CRM_URLS } from '@/app/manager/manager_crm/manager_crm_url_config';
 
 // RESPONSIBILITY: Main Client view for CRM Enquiries.
@@ -68,18 +69,19 @@ export function ManagerCrmEnquiriesClient() {
             onChange={(e) => setSearch(e.target.value)}
           />
         </div>
-        <select
-          className="py-2 px-3 bg-bg-card border border-border rounded-md text-sm text-text-primary outline-none focus:border-primary transition-colors"
+        <ManagerSearchableDropdown
+          className="w-48"
           value={statusFilter}
-          onChange={(e) => setStatusFilter(e.target.value)}
-        >
-          <option value="All">All Statuses</option>
-          <option value="New">New</option>
-          <option value="Visited">Visited</option>
-          <option value="Interested">Interested</option>
-          <option value="Converted">Converted</option>
-          <option value="Lost">Lost</option>
-        </select>
+          onChange={(value) => setStatusFilter(value)}
+          options={[
+            { label: 'All Statuses', value: 'All' },
+            { label: 'New', value: 'New' },
+            { label: 'Visited', value: 'Visited' },
+            { label: 'Interested', value: 'Interested' },
+            { label: 'Converted', value: 'Converted' },
+            { label: 'Lost', value: 'Lost' },
+          ]}
+        />
       </div>
 
       {/* ── Views ── */}

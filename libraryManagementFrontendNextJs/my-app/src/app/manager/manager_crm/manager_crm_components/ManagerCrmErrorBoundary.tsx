@@ -5,21 +5,14 @@ import { logger } from '@/lib/logger';
 
 // RESPONSIBILITY: Catches errors exclusively within the Manager CRM module.
 
-interface Props {
-  children: ReactNode;
-}
+import type { ManagerCrmErrorBoundaryProps, ManagerCrmErrorBoundaryState } from '@/app/manager/manager_crm/manager_crm_types/ManagerCrmTypes';
 
-interface State {
-  hasError: boolean;
-  error?: Error;
-}
-
-export class ManagerCrmErrorBoundary extends Component<Props, State> {
-  public state: State = {
+export class ManagerCrmErrorBoundary extends Component<ManagerCrmErrorBoundaryProps, ManagerCrmErrorBoundaryState> {
+  public state: ManagerCrmErrorBoundaryState = {
     hasError: false
   };
 
-  public static getDerivedStateFromError(error: Error): State {
+  public static getDerivedStateFromError(error: Error): ManagerCrmErrorBoundaryState {
     return { hasError: true, error };
   }
 
