@@ -163,3 +163,9 @@ export const SUPERADMIN_FINANCE_MOCK_DEPOSITS = [
   { id: 4, studentName: 'Sneha Patel',  smartId: 'STU104', depositAmount: 9000,  collectedBy: 'Admin',   collectedDate: '2026-03-05', deductionAmount: 9000, deductionReason: 'Multiple violations', status: 'forfeited' },
   { id: 5, studentName: 'Vikas Sharma', smartId: 'STU105', depositAmount: 11000, collectedBy: 'Manager', collectedDate: '2026-04-01', deductionAmount: 0,    status: 'held'     },
 ];
+
+export const SUPERADMIN_FINANCE_PROMISE_STATUS_BADGE: Record<string, string> = {
+  pending:   'bg-warning text-warning-foreground px-2.5 py-0.5 rounded-full text-[11px] font-semibold',
+  fulfilled: 'bg-success text-success-foreground px-2.5 py-0.5 rounded-full text-[11px] font-semibold',
+  overdue:   'bg-danger text-danger-foreground px-2.5 py-0.5 rounded-full text-[11px] font-semibold',
+};

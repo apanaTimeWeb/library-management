@@ -1,68 +1,37 @@
 // RESPONSIBILITY: Renders the PaymentPromisesClient component.
 'use client';
 
-import { useState, useEffect } from 'react';
 import toast from 'react-hot-toast';
 import { formatCurrency } from '@/app/superadmin/superadmin_finance/superadmin_finance_utils/superadmin_format';
 import { CheckCircle, CalendarPlus } from 'lucide-react';
 import { SuperadminSearchableDropdown } from '@/app/superadmin/superadmin_shared_components/SuperadminSearchableDropdown';
-import type { SuperadminFinancePromiseItem, SuperadminFinanceDialogState } from '@/app/superadmin/superadmin_finance/superadmin_finance_types/SuperadminFinanceTypes';
-import { SUPERADMIN_FINANCE_MOCK_PROMISES } from '@/app/superadmin/superadmin_finance/superadmin_finance_constants/SuperadminFinanceConstants';
-
-const STATUS_BADGE: Record<string, string> = {
-  pending:   'fin-badge fin-badge--warning',
-  fulfilled: 'fin-badge fin-badge--success',
-  overdue:   'fin-badge fin-badge--danger',
-};
-
-function calcDays(dateStr: string) {
-  const today = new Date(); today.setHours(0,0,0,0);
-  return Math.ceil((new Date(dateStr).getTime() - today.getTime()) / 86400000);
-}
+import { SUPERADMIN_FINANCE_PROMISE_STATUS_BADGE } from '@/app/superadmin/superadmin_finance/superadmin_finance_constants/SuperadminFinanceConstants';
+import { usePaymentPromisesClient } from './usePaymentPromisesClient';
 
 export function PaymentPromisesClient() {
-  const [statusFilter, setStatusFilter] = useState('all');
-  const [promises, setPromises] = useState<SuperadminFinancePromiseItem[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [extendDialog, setExtendDialog] = useState<SuperadminFinanceDialogState | null>(null);
-  const [newDate, setNewDate] = useState('');
-  const [extendReason, setExtendReason] = useState('');
-
-  useEffect(() => {
-    const t = setTimeout(() => { setPromises(SUPERADMIN_FINANCE_MOCK_PROMISES as SuperadminFinancePromiseItem[]); setIsLoading(false); }, 600);
-    return () => clearTimeout(t);
-  }, []);
-
-  const filtered = promises.filter((p) => statusFilter === 'all' || p.status === statusFilter);
-
-  const handleFulfill = (id: number, name: string) => {
-    setPromises((prev) =>
-      prev.map(( p ) => p.id === id ? { ...p, status: 'fulfilled', fulfilledDate: new Date().toISOString().split('T')[0] } : p)
-    );
-    toast.success(`${name}'s promise marked as paid.`);
-  };
-
-  const handleExtend = () => {
-    if (!extendDialog || !newDate || !extendReason) return;
-    setPromises((prev) =>
-      prev.map(( p ) =>
-        p.id === extendDialog.id
-          ? { ...p, expectedDate: newDate, timesChanged: p.timesChanged + 1, daysUntilDue: calcDays(newDate) }
-          : p
-      )
-    );
-    toast.success(`📅 ${extendDialog.name}'s promise date extended.`);
-    setExtendDialog(null); setNewDate(''); setExtendReason('');
-  };
+  const {
+    statusFilter,
+    setStatusFilter,
+    filteredPromises,
+    isLoading,
+    extendDialog,
+    setExtendDialog,
+    newDate,
+    setNewDate,
+    extendReason,
+    setExtendReason,
+    handleFulfill,
+    handleExtend,
+  } = usePaymentPromisesClient();
 
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="fin-page-title">Payment Promises</h1>
-        <p className="fin-page-subtitle">Track and manage student payment commitments.</p>
+        <h1 className="text-[22px] font-bold text-text-primary">Payment Promises</h1>
+        <p className="text-[12px] text-text-secondary">Track and manage student payment commitments.</p>
       </div>
 
-      <div className="fin-filter-bar flex gap-2">
+      <div className="flex gap-2 mb-6">
         <div className="w-40">
           <SuperadminSearchableDropdown
             options={[
@@ -77,83 +46,83 @@ export function PaymentPromisesClient() {
         </div>
       </div>
 
-      <div className="fin-card overflow-x-auto">
-        <table className="w-full">
+      <div className="bg-card rounded-[var(--radius-lg)] border border-border overflow-x-auto">
+        <table className="w-full text-left border-collapse">
           <thead>
-            <tr className="fin-table-header-row">
-              <th className="text-left py-3 px-4">Student</th>
+            <tr className="bg-primary/5 uppercase text-[12px] font-semibold text-text-secondary border-b border-border">
+              <th className="py-3 px-4">Student</th>
               <th className="text-right py-3 px-4">Promised ₹</th>
-              <th className="text-left py-3 px-4">Expected Date</th>
-              <th className="text-left py-3 px-4">Days Until/Since Due</th>
-              <th className="text-left py-3 px-4">Times Changed</th>
-              <th className="text-left py-3 px-4">Status</th>
+              <th className="py-3 px-4">Expected Date</th>
+              <th className="py-3 px-4">Days Until/Since Due</th>
+              <th className="py-3 px-4">Times Changed</th>
+              <th className="py-3 px-4">Status</th>
               <th className="text-right py-3 px-4">Actions</th>
             </tr>
           </thead>
           <tbody>
             {isLoading ? (
               Array.from({ length: 4 }).map((_, i) => (
-                <tr key={i} className="fin-table-row">
+                <tr key={i} className="border-b border-border last:border-0 hover:bg-primary/5">
                   {Array.from({ length: 7 }).map((_, j) => (
                     <td key={j} className="py-3 px-4">
-                      <div className="fin-skeleton h-4 w-20" />
+                      <div className="h-4 w-20 bg-skeleton-base rounded animate-pulse" />
                     </td>
                   ))}
                 </tr>
               ))
-            ) : filtered.length === 0 ? (
+            ) : filteredPromises.length === 0 ? (
               <tr>
                 <td colSpan={7}>
-                  <div className="fin-empty-state">
-                    <div className="fin-empty-state__icon">🤝</div>
-                    <p className="fin-empty-state__title">No payment promises recorded.</p>
+                  <div className="flex flex-col items-center justify-center p-8 text-center space-y-3">
+                    <div className="text-4xl">🤝</div>
+                    <p className="text-[16px] text-text-secondary">No payment promises recorded.</p>
                   </div>
                 </td>
               </tr>
             ) : (
-              filtered.map(( p ) => (
-                <tr key={p.id} className="fin-table-hover-row fin-table-row cursor-pointer" onClick={() => toast.success(`Viewing promise for ${p.studentName}`)}>
+              filteredPromises.map(( p ) => (
+                <tr key={p.id} className="border-b border-border last:border-0 hover:bg-primary/5 cursor-pointer transition-colors duration-200" onClick={() => toast.success(`Viewing promise for ${p.studentName}`)}>
                   <td className="py-3 px-4">
-                    <div className="fin-cell-name">{p.studentName}</div>
-                    <div className="fin-cell-subtext">{p.smartId}</div>
+                    <div className="font-medium text-text-primary text-[14px]">{p.studentName}</div>
+                    <div className="text-[12px] text-text-secondary">{p.smartId}</div>
                   </td>
-                  <td className="py-3 px-4 text-right font-semibold fin-text-body">{formatCurrency(p.promisedAmount)}</td>
-                  <td className="py-3 px-4 fin-cell-subtext">{p.expectedDate}</td>
+                  <td className="py-3 px-4 text-right font-semibold text-text-primary text-[14px]">{formatCurrency(p.promisedAmount)}</td>
+                  <td className="py-3 px-4 text-[12px] text-text-secondary">{p.expectedDate}</td>
                   <td className="py-3 px-4">
-                    <span className={p.daysUntilDue < 0 ? 'fin-text-danger font-semibold' : p.daysUntilDue <= 3 ? 'fin-text-warning' : 'fin-text-body'}>
+                    <span className={p.daysUntilDue < 0 ? 'text-danger font-semibold text-[14px]' : p.daysUntilDue <= 3 ? 'text-warning text-[14px]' : 'text-text-primary text-[14px]'}>
                       {p.daysUntilDue < 0 ? `${Math.abs(p.daysUntilDue)}d overdue` : `${p.daysUntilDue}d`}
                     </span>
                   </td>
                   <td className="py-3 px-4">
                     {p.timesChanged >= 3 ? (
-                      <span className="fin-badge fin-badge--danger">{p.timesChanged}x changed</span>
+                      <span className="bg-danger text-danger-foreground px-2.5 py-0.5 rounded-full text-[11px] font-semibold">{p.timesChanged}x changed</span>
                     ) : p.timesChanged > 0 ? (
-                      <span className="fin-badge fin-badge--warning">{p.timesChanged}x changed</span>
+                      <span className="bg-warning text-warning-foreground px-2.5 py-0.5 rounded-full text-[11px] font-semibold">{p.timesChanged}x changed</span>
                     ) : (
-                      <span className="fin-text-muted">—</span>
+                      <span className="text-text-secondary">—</span>
                     )}
                   </td>
                   <td className="py-3 px-4">
-                    <span className={STATUS_BADGE[p.status] || 'fin-badge fin-badge--neutral'}>{p.status}</span>
+                    <span className={SUPERADMIN_FINANCE_PROMISE_STATUS_BADGE[p.status] || 'bg-gray-200 text-gray-700 px-2.5 py-0.5 rounded-full text-[11px] font-semibold'}>{p.status}</span>
                   </td>
                   <td className="py-3 px-4">
                     {p.status !== 'fulfilled' ? (
                       <div className="flex items-center justify-end gap-2">
                         <button
-                          className="fin-badge fin-badge--success cursor-pointer"
+                          className="bg-success text-success-foreground px-2.5 py-1 rounded-[var(--radius-md)] text-[12px] font-semibold flex items-center gap-1 hover:brightness-95 transition-all duration-200"
                           onClick={(e) => { e.stopPropagation(); handleFulfill(p.id, p.studentName); }}
                         >
                           <CheckCircle size={11} /> Mark Paid
                         </button>
                         <button
-                          className="fin-badge fin-badge--warning cursor-pointer"
+                          className="bg-warning text-warning-foreground px-2.5 py-1 rounded-[var(--radius-md)] text-[12px] font-semibold flex items-center gap-1 hover:brightness-95 transition-all duration-200"
                           onClick={(e) => { e.stopPropagation(); setExtendDialog({ id: p.id, name: p.studentName }); }}
                         >
                           <CalendarPlus size={11} /> Extend Date
                         </button>
                       </div>
                     ) : (
-                      <span className="fin-cell-subtext">Paid on {p.fulfilledDate}</span>
+                      <span className="text-[12px] text-text-secondary">Paid on {p.fulfilledDate}</span>
                     )}
                   </td>
                 </tr>
@@ -164,27 +133,28 @@ export function PaymentPromisesClient() {
       </div>
 
       {extendDialog && (
-        <div className="fin-dialog-overlay">
-          <div className="fin-dialog">
-            <h2 className="fin-dialog__title">📅 Extend Promise — {extendDialog.name}</h2>
-            <button className="fin-dialog__close" onClick={() => setExtendDialog(null)}>✕</button>
+        <div className="fixed inset-0 z-40 flex items-center justify-center p-4">
+          <div className="absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity" onClick={() => setExtendDialog(null)} />
+          <div className="relative w-full max-w-md bg-card rounded-[var(--radius-xl)] shadow-2xl overflow-hidden p-7 animate-in fade-in zoom-in-95 duration-200">
+            <h2 className="text-[18px] font-bold text-text-primary mb-4">📅 Extend Promise — {extendDialog.name}</h2>
+            <button className="absolute top-4 right-4 text-text-secondary hover:text-danger transition-colors cursor-pointer" onClick={() => setExtendDialog(null)}>✕</button>
             <div className="space-y-4">
               <div>
-                <label className="fin-label">New Expected Date <span className="fin-text-danger">*</span></label>
-                <input type="date" className="fin-input" value={newDate} onChange={( e: React.ChangeEvent<HTMLInputElement> ) => setNewDate(e.target.value)} />
+                <label className="text-[14px] font-bold text-text-secondary block mb-1">New Expected Date <span className="text-danger">*</span></label>
+                <input type="date" className="w-full bg-input border border-border rounded-[var(--radius-md)] py-2.5 px-3 text-[14px] font-medium text-text-primary focus:outline-none focus:border-primary transition-colors" value={newDate} onChange={( e: React.ChangeEvent<HTMLInputElement> ) => setNewDate(e.target.value)} />
               </div>
               <div>
-                <label className="fin-label">Reason <span className="fin-text-danger">*</span></label>
-                <textarea className="fin-textarea" value={extendReason} onChange={( e: React.ChangeEvent<HTMLTextAreaElement> ) => setExtendReason(e.target.value)} placeholder="Reason for extension..." rows={2} />
+                <label className="text-[14px] font-bold text-text-secondary block mb-1">Reason <span className="text-danger">*</span></label>
+                <textarea className="w-full bg-input border border-border rounded-[var(--radius-md)] py-2.5 px-3 text-[14px] font-medium text-text-primary focus:outline-none focus:border-primary transition-colors" value={extendReason} onChange={( e: React.ChangeEvent<HTMLTextAreaElement> ) => setExtendReason(e.target.value)} placeholder="Reason for extension..." rows={2} />
               </div>
-              <div className="fin-badge fin-badge--warning w-full justify-center py-2">
+              <div className="bg-warning text-warning-foreground text-[12px] font-semibold p-2 rounded flex justify-center">
                  This will decrease the student&apos;s Trust Score.
               </div>
             </div>
-            <div className="fin-dialog__footer mt-6">
-              <button className="fin-badge fin-badge--neutral cursor-pointer" onClick={() => setExtendDialog(null)}>Cancel</button>
+            <div className="flex justify-end gap-3 mt-6">
+              <button className="px-4 py-2 bg-transparent border border-border text-text-primary text-[14px] font-medium rounded-[var(--radius-md)] hover:bg-primary/5 transition-colors duration-200 cursor-pointer" onClick={() => setExtendDialog(null)}>Cancel</button>
               <button
-                className="fin-badge fin-badge--warning cursor-pointer"
+                className="px-4 py-2 bg-warning text-warning-foreground text-[14px] font-medium rounded-[var(--radius-md)] hover:brightness-95 transition-all duration-200 disabled:opacity-50 cursor-pointer"
                 onClick={handleExtend}
                 disabled={!newDate || !extendReason}
               >
