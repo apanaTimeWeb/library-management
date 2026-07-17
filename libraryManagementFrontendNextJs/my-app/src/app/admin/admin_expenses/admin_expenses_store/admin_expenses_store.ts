@@ -21,7 +21,13 @@ export const useAdminExpensesStore = create<AdminExpensesStoreState>((set) => ({
     try {
       const data = await fetchApi(ADMIN_API_ROUTES.EXPENSES);
       const actualData = Array.isArray(data) ? data : (data?.data || []);
-      if (Array.isArray(actualData) && actualData.length > 0) {
+      
+      if (actualData.length === 0 || actualData[0]?.id?.startsWith('MOCK-')) {
+        set({ expenses: MOCK_EXPENSES, fetchState: 'success' });
+        return;
+      }
+
+      if (Array.isArray(actualData)) {
         const mapped: ExpenseRecord[] = actualData.map((e: Record<string, unknown>) => ({
           id: String(e.id || `E-${Math.random().toString(36).substring(2, 8)}`),
           date: e.expenseDate ? new Date(String(e.expenseDate)).toLocaleDateString() : String(e.date || '01/01/2026'),

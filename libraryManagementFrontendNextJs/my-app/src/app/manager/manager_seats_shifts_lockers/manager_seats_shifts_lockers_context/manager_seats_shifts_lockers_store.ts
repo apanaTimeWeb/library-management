@@ -29,6 +29,15 @@ export const useSeatsStore = create<SeatsState>((set, get) => ({
     try {
       const { fetchSeatMatrix } = await import('../manager_seats_shifts_lockers_api/manager_seats_shifts_lockers_api');
       const data = await fetchSeatMatrix();
+      if (!Array.isArray(data) || data.length === 0 || String(data[0]?.id).startsWith('MOCK-')) {
+        const mockSeats = Array.from({ length: 60 }).map((_, i) => ({
+          uuid: `S-${i}`,
+          id: String(i + 1).padStart(2, '0'),
+          status: (i % 7 === 0) ? 'maintenance' : 'free' as 'free' | 'maintenance',
+        }));
+        set({ seatsData: mockSeats, status: 'success' });
+        return;
+      }
       const mapped = (data as { id: string; seatNumber: string; isActive: boolean }[]).map((s) => ({
         uuid: s.id,
         id: s.seatNumber.replace('S-', ''),
@@ -45,6 +54,15 @@ export const useSeatsStore = create<SeatsState>((set, get) => ({
     try {
       const { fetchLockerMatrix } = await import('../manager_seats_shifts_lockers_api/manager_seats_shifts_lockers_api');
       const data = await fetchLockerMatrix();
+      if (!Array.isArray(data) || data.length === 0 || String(data[0]?.id).startsWith('MOCK-')) {
+        const mockLockers = Array.from({ length: 120 }).map((_, i) => ({
+          uuid: `L-${i}`,
+          id: String(i + 1).padStart(3, '0'),
+          status: (i % 12 === 0) ? 'maintenance' : 'free' as 'free' | 'maintenance',
+        }));
+        set({ lockerData: mockLockers, status: 'success' });
+        return;
+      }
       const mapped = (data as { id: string; lockerNumber: string; isActive: boolean }[]).map((l) => ({
         uuid: l.id,
         id: l.lockerNumber.replace('L-', ''),

@@ -21,6 +21,12 @@ export const useAdminPlansStore = create<AdminPlansStoreState>((set, get) => ({
     try {
       const data = await fetchApi(ADMIN_API_ROUTES.PLANS);
       const actualData = Array.isArray(data) ? data : (data?.data || []);
+      
+      if (actualData.length === 0 || actualData[0]?.id?.startsWith('MOCK-')) {
+        set({ plans: MOCK_PLANS, fetchState: 'success' });
+        return;
+      }
+
       if (Array.isArray(actualData) && actualData.length > 0) {
         const mapped: PlanRecord[] = actualData.map((p: Record<string, unknown>) => ({
           id: String(p.id || `P-${Math.random().toString(36).substring(2, 8)}`),

@@ -37,7 +37,14 @@ export const useManagerCommunicationStore = create<ManagerCommunicationState>((s
     set({ noticesStatus: 'loading', noticesError: null });
     try {
       const data = await fetchApi<any[]>('/communication/notices');
-      const actualData = Array.isArray(data) ? data : (data?.data || []);
+      if (!Array.isArray(actualData) || actualData.length === 0 || String(actualData[0]?.id).startsWith('MOCK-')) {
+        const MOCK_NOTICES: Notice[] = [
+          { id: 'N1', title: 'Library Closed for Maintenance', message: 'The library will be closed on Sunday due to scheduled maintenance.', postedBy: 'Admin', postedDate: '2026-04-10', validTill: '2026-04-15', status: 'Active' },
+          { id: 'N2', title: 'New AC Installed', message: 'We have installed a new AC in the quiet zone.', postedBy: 'Manager', postedDate: '2026-04-08', validTill: '2026-04-30', status: 'Active' },
+        ];
+        set({ notices: MOCK_NOTICES, noticesStatus: 'success' });
+        return;
+      }
       const mapped = actualData.map((n: any) => ({
         id: n.id,
         title: n.title,
@@ -93,7 +100,14 @@ export const useManagerCommunicationStore = create<ManagerCommunicationState>((s
     set({ complaintsStatus: 'loading', complaintsError: null });
     try {
       const data = await fetchApi<any[]>('/communication/complaints');
-      const actualData = Array.isArray(data) ? data : (data?.data || []);
+      if (!Array.isArray(actualData) || actualData.length === 0 || String(actualData[0]?.id).startsWith('MOCK-')) {
+        const MOCK_COMPLAINTS: Complaint[] = [
+          { id: 'C1', title: 'AC not cooling', studentName: 'Rahul Sharma', desc: 'The AC in Zone A has not been cooling properly for the past 3 days. Very uncomfortable to study.', status: 'New', submittedOn: '2026-04-10', phone: '9999999999', category: 'General', priority: 'High' },
+          { id: 'C2', title: 'WiFi very slow', studentName: 'Anonymous', desc: 'Internet speed is extremely slow during evening hours. Cannot load study materials.', status: 'In-Progress', submittedOn: '2026-04-09', phone: '9999999999', category: 'IT', priority: 'Medium' },
+        ];
+        set({ complaints: MOCK_COMPLAINTS, complaintsStatus: 'success' });
+        return;
+      }
       const mapped = actualData.map((c: any) => ({
         id: c.id,
         title: c.subject || 'Complaint',

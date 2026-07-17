@@ -33,7 +33,15 @@ export default function NoticesPage() {
   useEffect(() => {
     fetchApi('/communication/notices').then(( data: unknown ) => {
       const actualData = Array.isArray(data) ? data : (data as any)?.data;
-      if (!Array.isArray(actualData)) return;
+      if (!Array.isArray(actualData) || actualData.length === 0 || actualData[0]?.id?.startsWith('MOCK-')) {
+        const mockNotices: Notice[] = [
+          { id: 'N1', title: 'Library Closed for Maintenance', message: 'The library will be closed on Sunday due to scheduled maintenance.', postedBy: 'Admin', postedDate: '2026-04-10', validTill: '2026-04-15', status: 'Active' },
+          { id: 'N2', title: 'New AC Installed', message: 'We have installed a new AC in the quiet zone.', postedBy: 'Manager', postedDate: '2026-04-08', validTill: '2026-04-30', status: 'Active' },
+          { id: 'N3', title: 'Holiday Notice', message: 'Library will remain closed on the occasion of Holi.', postedBy: 'Admin', postedDate: '2026-03-20', validTill: '2026-03-26', status: 'Expired' },
+        ];
+        setNotices(mockNotices);
+        return;
+      }
       const mapped: Notice[] = actualData.map(( n: Record<string, unknown> ) => ({
         id: String(n.id || ''),
         title: String(n.title || 'Notice'),

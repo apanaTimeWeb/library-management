@@ -21,7 +21,13 @@ export const useAdminCouponsStore = create<AdminCouponsStoreState>((set, get) =>
     try {
       const data = await fetchApi(ADMIN_API_ROUTES.COUPONS);
       const actualData = Array.isArray(data) ? data : (data?.data || []);
-      if (Array.isArray(actualData) && actualData.length > 0) {
+      
+      if (actualData.length === 0 || actualData[0]?.id?.startsWith('MOCK-')) {
+        set({ coupons: MOCK_COUPONS, fetchState: 'success' });
+        return;
+      }
+
+      if (Array.isArray(actualData)) {
         const mapped: CouponRecord[] = actualData.map((c: Record<string, unknown>) => ({
           id: String(c.id || `C-${Math.random().toString(36).substring(2, 8)}`),
           code: String(c.code || 'COUPON').toUpperCase(),

@@ -21,7 +21,13 @@ export const useAdminAuditLogsStore = create<AdminAuditLogsStoreState>((set) => 
     try {
       const data = await fetchApi(ADMIN_API_ROUTES.AUDIT_LOGS);
       const actualData = Array.isArray(data) ? data : (data?.data || []);
-      if (Array.isArray(actualData) && actualData.length > 0) {
+      
+      if (actualData.length === 0 || actualData[0]?.id?.startsWith('MOCK-')) {
+        set({ logs: MOCK_AUDIT_LOGS, fetchState: 'success' });
+        return;
+      }
+
+      if (Array.isArray(actualData)) {
         const mapped: AuditLogRecord[] = actualData.map((l: Record<string, unknown>) => ({
           id: String(l.id || `LOG-${Math.random().toString(36).substring(2, 9)}`),
           action: String(l.action || 'System Action'),
@@ -32,7 +38,7 @@ export const useAdminAuditLogsStore = create<AdminAuditLogsStoreState>((set) => 
           severity: (['danger', 'warning', 'info', 'success'].includes(String(l.severity)) 
             ? String(l.severity) 
             : 'info') as AuditLogRecord['severity'],
-          timestamp: l.createdAt ? new Date(String(l.createdAt)).toLocaleString() : new Date().toLocaleString(),
+          timestamp: l.timestamp ? String(l.timestamp) : (l.createdAt ? new Date(String(l.createdAt)).toLocaleString() : new Date().toLocaleString()),
           ip: String(l.ip || '192.168.1.1'),
         }));
         set({ logs: mapped, fetchState: 'success' });

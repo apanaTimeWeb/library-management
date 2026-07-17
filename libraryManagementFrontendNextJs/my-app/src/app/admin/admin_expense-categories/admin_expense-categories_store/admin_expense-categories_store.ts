@@ -21,12 +21,21 @@ export const useAdminExpenseCategoriesStore = create<AdminExpenseCategoriesStore
     try {
       const data = await fetchApi(ADMIN_API_ROUTES.EXPENSE_CATEGORIES);
       const actualData = Array.isArray(data) ? data : (data?.data || []);
-      if (Array.isArray(actualData) && actualData.length > 0) {
+      
+      if (actualData.length === 0 || actualData[0]?.id?.startsWith('MOCK-')) {
+        set({ categories: MOCK_EXPENSE_CATEGORIES, fetchState: 'success' });
+        return;
+      }
+
+      if (Array.isArray(actualData)) {
         const mapped: ExpenseCategoryRecord[] = actualData.map((c: Record<string, unknown>) => ({
-          id: String(c.id || `C-${Math.random().toString(36).substring(2, 8)}`),
+          id: String(c.id || `CAT-${Math.random().toString(36).substring(2, 8)}`),
           name: String(c.name || 'Unnamed Category'),
-          description: String(c.description || ''),
-          status: (c.isActive || c.status === 'Active' ? 'Active' : 'Inactive') as ExpenseCategoryRecord['status'],
+          type: String(c.type || 'Fixed'),
+          status: String(c.status || 'Active') as ExpenseCategoryRecord['status'],
+          totalExpenses: Number(c.totalExpenses || 0),
+          lastUsed: String(c.lastUsed || new Date().toLocaleDateString()),
+          description: String(c.description || 'No description provided'),
         }));
         set({ categories: mapped, fetchState: 'success' });
       } else {

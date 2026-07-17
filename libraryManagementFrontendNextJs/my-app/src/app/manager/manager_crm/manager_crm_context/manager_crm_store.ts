@@ -23,6 +23,16 @@ export const useCrmStore = create<CrmState>((set, get) => ({
       const { fetchEnquiries } = await import('../manager_crm_api/manager_crm_api');
       const data = await fetchEnquiries();
       
+      if (!Array.isArray(data) || data.length === 0 || String(data[0]?.id).startsWith('MOCK-')) {
+        const MOCK_ENQUIRIES = [
+          { id: 'E1', name: 'Ravi Kumar', phone: '9876543210', shift: 'Morning', status: 'New' as const, handledBy: 'Admin', addedDate: '2026-04-10', avatar: 'RK' },
+          { id: 'E2', name: 'Priya Singh', phone: '8765432109', shift: 'Evening', status: 'Interested' as const, handledBy: 'Manager', addedDate: '2026-04-09', avatar: 'PS' },
+          { id: 'E3', name: 'Amit Patel', phone: '7654321098', shift: 'Full Day', status: 'Converted' as const, handledBy: 'Admin', addedDate: '2026-04-08', avatar: 'AP' },
+          { id: 'E4', name: 'Sneha Gupta', phone: '6543210987', shift: 'Night', status: 'Lost' as const, handledBy: 'Staff', addedDate: '2026-04-07', avatar: 'SG' },
+        ];
+        set({ enquiries: MOCK_ENQUIRIES as any, status: 'success' });
+        return;
+      }
       interface RawEnquiry {
         id: string | number;
         name: string;

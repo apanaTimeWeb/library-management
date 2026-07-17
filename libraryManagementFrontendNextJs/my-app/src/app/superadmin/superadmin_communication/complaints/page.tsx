@@ -35,7 +35,10 @@ export default function ComplaintsPage() {
   useEffect(() => {
     fetchApi('/communication/complaints').then(( data: unknown ) => {
       const actualData = Array.isArray(data) ? data : (data as any)?.data;
-      if (!Array.isArray(actualData)) return;
+      if (!Array.isArray(actualData) || actualData.length === 0 || String(actualData[0]?.id).startsWith('MOCK-')) {
+        setComplaints(INIT);
+        return;
+      }
       const mapped: Complaint[] = actualData.map(( c: Record<string, unknown> ) => ({
         id: String(c.id || Math.random()),
         title: String(c.subject || c.title || 'Complaint'),

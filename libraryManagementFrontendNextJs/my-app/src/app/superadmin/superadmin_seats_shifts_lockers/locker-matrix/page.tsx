@@ -43,7 +43,15 @@ export default function LockerMatrixPage() {
   useEffect(() => {
     fetchApi('/seats_shifts_lockers/lockers').then(( data: unknown ) => {
       const actualData = Array.isArray(data) ? data : (data as any)?.data;
-      if (!Array.isArray(actualData)) return;
+      if (!Array.isArray(actualData) || actualData.length === 0 || actualData[0]?.id?.startsWith('MOCK-')) {
+        const mockLockers = Array.from({ length: 120 }).map((_, i) => ({
+          uuid: `L-${i}`,
+          id: String(i + 1).padStart(3, '0'),
+          status: (i % 12 === 0) ? 'maintenance' : (i % 3 === 0 ? 'occupied' : 'free') as 'free' | 'occupied' | 'maintenance',
+        }));
+        setLockerData(mockLockers);
+        return;
+      }
       const mapped: LockerData[] = actualData.map(( l: Record<string, unknown> ) => ({
         uuid: String(l.id || ''),
         id: String(l.lockerNumber || '').replace('L-', ''),
