@@ -2,23 +2,27 @@
 import { useState } from 'react';
 import { ChevronRight, ArrowRight, CheckCheck, DollarSign, Phone, Handshake, Armchair, Calendar, Clock, Lock, Bell, AlertCircle, Circle } from 'lucide-react';
 
+import { SUPERADMIN_COMMUNICATION_MOCK_NOTIFICATIONS } from '@/app/superadmin/superadmin_communication/superadmin_communication_constants/SuperadminCommunicationConstants';
+
 type Category = 'All' | 'Finance' | 'CRM' | 'Operations' | 'Attendance' | 'High Only';
 
 interface Notification {
   id: string; category: 'Finance' | 'CRM' | 'Operations' | 'Attendance';
-  icon: React.ReactNode; title: string; description: string;
+  icon: string; title: string; description: string;
   time: string; priority: 'High' | 'Medium'; link: string; read: boolean;
 }
 
-const NOTIFS: Notification[] = [
-  { id: '1', category: 'Finance',    icon: <DollarSign size={20}/>, title: '5 subscriptions expire today',           description: 'Rahul, Priya, Amit, Sneha, Rohan — subscriptions end today.',                 time: '2h ago', priority: 'High',   link: '/renewals',         read: false },
-  { id: '2', category: 'CRM',        icon: <Phone size={20}/>, title: 'Call Rahul — enquired 3 days ago',       description: 'Rahul Sharma enquired about Morning shift. Follow up now.',                   time: '3h ago', priority: 'Medium', link: '/crm/enquiries',        read: false },
-  { id: '3', category: 'Finance',    icon: <Handshake size={20}/>, title: '3 Payment Promise dates hit today',      description: 'Amit Kumar, Deepak Mishra, Anita Roy promised payment today.',                time: '4h ago', priority: 'High',   link: '/payment-promises', read: false },
-  { id: '4', category: 'Operations', icon: <Armchair size={20}/>, title: 'Seat A-05 maintenance overdue 45 days',  description: 'Last maintenance was on 2026-02-25. Immediate attention required.',           time: '1d ago', priority: 'Medium', link: '/system/maintenance',      read: false },
-  { id: '5', category: 'Attendance', icon: <Calendar size={20}/>, title: 'Sneha Patel absent 7 consecutive days',  description: 'Sneha Patel has not attended for 7 days. Parent alert recommended.',          time: '1d ago', priority: 'High',   link: '/absentee-report',  read: false },
-  { id: '6', category: 'Finance',    icon: <Clock size={20}/>, title: '2 late fee penalties auto-applied',      description: 'Late fees applied to Vikram Nair and Kavita Singh for overdue payments.',     time: '2d ago', priority: 'Medium', link: '/late-fees',        read: true  },
-  { id: '7', category: 'Operations', icon: <Lock size={20}/>, title: 'Locker L-03 issue reported',             description: 'Lock jammed on Locker L-03. Reported by student on 2026-04-08.',             time: '3d ago', priority: 'Medium', link: '/system/maintenance',      read: true  },
-];
+const ICON_MAP: Record<string, React.ReactNode> = {
+  DollarSign: <DollarSign size={20}/>,
+  Phone: <Phone size={20}/>,
+  Handshake: <Handshake size={20}/>,
+  Armchair: <Armchair size={20}/>,
+  Calendar: <Calendar size={20}/>,
+  Clock: <Clock size={20}/>,
+  Lock: <Lock size={20}/>,
+};
+
+
 
 const CATS: { id: Category; label: string; icon: React.ReactNode }[] = [
   { id: 'All',        label: 'All Notifications',  icon: <Bell size={16}/> },
@@ -36,7 +40,7 @@ const ICON_CLS: Record<string, string> = {
 
 export default function NotificationCenterPage() {
   const [cat, setCat]       = useState<Category>('All');
-  const [notifs, setNotifs] = useState<Notification[]>(NOTIFS);
+  const [notifs, setNotifs] = useState<Notification[]>(SUPERADMIN_COMMUNICATION_MOCK_NOTIFICATIONS as Notification[]);
 
   const filtered = notifs.filter(n => {
     if (cat === 'All')       return true;
@@ -86,7 +90,7 @@ export default function NotificationCenterPage() {
           ) : (
             filtered.map(( n: Notification ) => (
               <div key={n.id} className={`eng-notif-item${n.read ? ' eng-notif-read' : ''}`}>
-                <div className={`eng-notif-icon ${ICON_CLS[n.category]}`}>{n.icon}</div>
+                <div className={`eng-notif-icon ${ICON_CLS[n.category]}`}>{ICON_MAP[n.icon]}</div>
                 <div className="eng-flex-1">
                   <div className="flex items-center gap-2 mb-1">
                     <p className="eng-notif-title">{n.title}</p>

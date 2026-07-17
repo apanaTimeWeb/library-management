@@ -11,6 +11,12 @@ import { logger } from '@/lib/logger';
 
 
 
+interface LockerData {
+  uuid: string;
+  id: string;
+  status: 'free' | 'occupied' | 'maintenance';
+}
+
 const STATS: { label: string; value: string; border: string; valueClass: string }[] = [
   { label: 'Total Capacity',   value: '120', border: 'ss-kpi-card__border-primary', valueClass: 'ss-kpi-card__value--primary' },
   { label: 'Available',        value: '42',  border: 'ss-kpi-card__border-success', valueClass: 'ss-kpi-card__value--success' },

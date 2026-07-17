@@ -23,7 +23,7 @@ import { SUPERADMIN_LIBRARIES_MOCK_DATA } from '@/app/superadmin/superadmin_libr
 import { SUPERADMIN_REPORTS_MOCK_DATA } from '@/app/superadmin/superadmin_reports/superadmin_reports_constants/SuperadminReportsConstants';
 import { SUPERADMIN_SUBSCRIPTIONS_MOCK_DATA } from '@/app/superadmin/superadmin_subscriptions/superadmin_subscriptions_constants/SuperadminSubscriptionsConstants';
 import { SUPERADMIN_SYSTEM_HEALTH_MOCK_DATA } from '@/app/superadmin/superadmin_system-health/superadmin_system_health_constants/SuperadminSystemHealthConstants';
-import { CRM_CONSTANTS } from '@/app/superadmin/superadmin_crm/superadmin_crm_constants';
+import { CRM_CONSTANTS } from '@/app/superadmin/superadmin_crm/superadmin_crm_constants/SuperadminCrmConstants';
 import { 
   ADMIN_REPORTS_KPI_CARDS,
   ADMIN_REPORTS_INCOME_VS_EXPENSE,

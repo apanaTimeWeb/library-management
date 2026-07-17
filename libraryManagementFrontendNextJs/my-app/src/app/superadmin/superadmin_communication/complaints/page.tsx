@@ -6,6 +6,7 @@ import { useState, useEffect } from 'react';
 import { fetchApi } from '@/lib/api';
 import { logger } from '@/lib/logger';
 import { ChevronRight, Plus, X, Eye, RefreshCw, CheckCircle, MessageSquare, Circle, Smile } from 'lucide-react';
+import { SUPERADMIN_COMMUNICATION_MOCK_COMPLAINTS } from '@/app/superadmin/superadmin_communication/superadmin_communication_constants/SuperadminCommunicationConstants';
 
 type CStatus = 'Open' | 'In-Progress' | 'Resolved';
 
@@ -15,18 +16,12 @@ interface Complaint {
   resolvedBy: string; resolvedDate: string; resolvedNote: string;
 }
 
-const INIT: Complaint[] = [
-  { id: '1', title: 'AC not cooling',     student: 'Rahul Sharma', isAnonymous: false, description: 'The AC in Zone A has not been cooling properly for the past 3 days. Very uncomfortable to study.', status: 'Open',        date: '2026-04-10', resolvedBy: '—', resolvedDate: '—', resolvedNote: '' },
-  { id: '2', title: 'WiFi very slow',     student: 'Anonymous',    isAnonymous: true,  description: 'Internet speed is extremely slow during evening hours. Cannot load study materials.',              status: 'In-Progress', date: '2026-04-09', resolvedBy: 'Admin', resolvedDate: '—', resolvedNote: '' },
-  { id: '3', title: 'Locker door broken', student: 'Priya Verma',  isAnonymous: false, description: 'Locker door hinge is broken. Cannot lock properly.',                                               status: 'Resolved',    date: '2026-04-07', resolvedBy: 'Staff Ravi', resolvedDate: '2026-04-08', resolvedNote: 'Hinge replaced.' },
-  { id: '4', title: 'Noise from outside', student: 'Anonymous',    isAnonymous: true,  description: 'Construction noise from outside is very disturbing during morning hours.',                         status: 'Open',        date: '2026-04-11', resolvedBy: '—', resolvedDate: '—', resolvedNote: '' },
-];
 
 const TABS: (CStatus | 'All')[] = ['All', 'Open', 'In-Progress', 'Resolved'];
 
 export default function ComplaintsPage() {
   const [tab, setTab]                   = useState<CStatus | 'All'>('All');
-  const [complaints, setComplaints]     = useState<Complaint[]>(INIT);
+  const [complaints, setComplaints]     = useState<Complaint[]>(SUPERADMIN_COMMUNICATION_MOCK_COMPLAINTS as Complaint[]);
   const [showAdd, setShowAdd]           = useState(false);
   const [viewItem, setViewItem]         = useState<Complaint | null>(null);
   const [resolveItem, setResolveItem]   = useState<Complaint | null>(null);
@@ -36,7 +31,7 @@ export default function ComplaintsPage() {
     fetchApi('/communication/complaints').then(( data: unknown ) => {
       const actualData = Array.isArray(data) ? data : (data as any)?.data;
       if (!Array.isArray(actualData) || actualData.length === 0 || String(actualData[0]?.id).startsWith('MOCK-')) {
-        setComplaints(INIT);
+        setComplaints(SUPERADMIN_COMMUNICATION_MOCK_COMPLAINTS as Complaint[]);
         return;
       }
       const mapped: Complaint[] = actualData.map(( c: Record<string, unknown> ) => ({
@@ -45,8 +40,8 @@ export default function ComplaintsPage() {
         student: String(c.student || c.studentName || 'Mock Student'),
         isAnonymous: Boolean(c.isAnonymous),
         description: String(c.description || ''),
-        status: c.status === 'open' ? 'Open' : (c.status === 'resolved' ? 'Resolved' : 'In-Progress'),
-        date: c.createdAt ? new Date(String(c.createdAt)).toLocaleDateString() : (c.date || new Date().toLocaleDateString()),
+        status: (c.status || 'Open') as CStatus,
+        date: String(c.createdAt || c.date || new Date().toISOString()),
         resolvedBy: String(c.resolvedBy || '—'),
         resolvedDate: String(c.resolvedDate || '—'),
         resolvedNote: String(c.resolvedNote || ''),

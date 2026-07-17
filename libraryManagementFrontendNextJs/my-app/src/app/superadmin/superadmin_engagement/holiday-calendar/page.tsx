@@ -2,16 +2,11 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { ChevronRight, ChevronLeft, Plus, X, Trash2, CalendarDays } from 'lucide-react';
+import { SUPERADMIN_ENGAGEMENT_MOCK_HOLIDAYS } from '@/app/superadmin/superadmin_engagement/superadmin_engagement_constants/SuperadminEngagementConstants';
 
 interface Holiday { id: string; date: string; name: string; type: string; }
 
-const INIT_HOLIDAYS: Holiday[] = [
-  { id:'1', date:'2026-04-14', name:'Dr. Ambedkar Jayanti',      type:'National'  },
-  { id:'2', date:'2026-04-21', name:'Ram Navami',                type:'Religious' },
-  { id:'3', date:'2026-05-01', name:'International Labour Day',  type:'National'  },
-  { id:'4', date:'2026-08-15', name:'Independence Day',          type:'National'  },
-  { id:'5', date:'2026-10-02', name:'Gandhi Jayanti',            type:'National'  },
-];
+
 
 const WEEK_DAYS = ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
 
@@ -28,7 +23,7 @@ export default function HolidayCalendarPage() {
   const now = new Date();
   const [year, setYear]         = useState(now.getFullYear());
   const [month, setMonth]       = useState(now.getMonth());
-  const [holidays, setHolidays] = useState<Holiday[]>(INIT_HOLIDAYS);
+  const [holidays, setHolidays] = useState<Holiday[]>(SUPERADMIN_ENGAGEMENT_MOCK_HOLIDAYS as Holiday[]);
   const [showAdd, setShowAdd]   = useState(false);
   const [form, setForm]         = useState({ date:'', name:'', type:'National' });
   const [toast, setToast]       = useState('');

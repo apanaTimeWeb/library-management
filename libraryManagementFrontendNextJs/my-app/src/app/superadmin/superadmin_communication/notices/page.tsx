@@ -10,6 +10,7 @@ import { AgGridReact } from 'ag-grid-react';
 import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community';
 import { superadmin_gridTheme } from '@/app/superadmin/superadmin_shared_components/superadmin_gridTheme';
 import { fetchApi } from '@/lib/api';
+import { SUPERADMIN_COMMUNICATION_MOCK_NOTICES } from '@/app/superadmin/superadmin_communication/superadmin_communication_constants/SuperadminCommunicationConstants';
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
@@ -34,12 +35,7 @@ export default function NoticesPage() {
     fetchApi('/communication/notices').then(( data: unknown ) => {
       const actualData = Array.isArray(data) ? data : (data as any)?.data;
       if (!Array.isArray(actualData) || actualData.length === 0 || actualData[0]?.id?.startsWith('MOCK-')) {
-        const mockNotices: Notice[] = [
-          { id: 'N1', title: 'Library Closed for Maintenance', message: 'The library will be closed on Sunday due to scheduled maintenance.', postedBy: 'Admin', postedDate: '2026-04-10', validTill: '2026-04-15', status: 'Active' },
-          { id: 'N2', title: 'New AC Installed', message: 'We have installed a new AC in the quiet zone.', postedBy: 'Manager', postedDate: '2026-04-08', validTill: '2026-04-30', status: 'Active' },
-          { id: 'N3', title: 'Holiday Notice', message: 'Library will remain closed on the occasion of Holi.', postedBy: 'Admin', postedDate: '2026-03-20', validTill: '2026-03-26', status: 'Expired' },
-        ];
-        setNotices(mockNotices);
+        setNotices(SUPERADMIN_COMMUNICATION_MOCK_NOTICES as Notice[]);
         return;
       }
       const mapped: Notice[] = actualData.map(( n: Record<string, unknown> ) => ({

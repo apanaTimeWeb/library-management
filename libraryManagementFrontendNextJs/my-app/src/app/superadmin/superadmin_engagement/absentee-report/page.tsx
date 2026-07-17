@@ -6,6 +6,7 @@ import { AgGridReact } from 'ag-grid-react';
 import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community';
 import { ChevronRight, Send, Mail, Phone, CheckCircle } from 'lucide-react';
 import { superadmin_gridTheme } from '@/app/superadmin/superadmin_shared_components/superadmin_gridTheme';
+import { SUPERADMIN_ENGAGEMENT_MOCK_ABSENTEES } from '@/app/superadmin/superadmin_engagement/superadmin_engagement_constants/SuperadminEngagementConstants';
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
@@ -15,18 +16,12 @@ interface AbsenteeRow {
   parentPhone: string; parentEmail: string; notified: boolean;
 }
 
-const DATA: AbsenteeRow[] = [
-  { id:'1', name:'Priya Verma',   initials:'PV', smartId:'SL-002', shift:'Morning',   daysAbsent:4,  lastSeen:'2026-04-08', parentPhone:'+91 98••••1234', parentEmail:'parent1@email.com', notified:false },
-  { id:'2', name:'Sneha Patel',   initials:'SP', smartId:'SL-004', shift:'Morning',   daysAbsent:8,  lastSeen:'2026-04-04', parentPhone:'+91 97••••5678', parentEmail:'parent2@email.com', notified:false },
-  { id:'3', name:'Deepak Mishra', initials:'DM', smartId:'SL-008', shift:'Afternoon', daysAbsent:3,  lastSeen:'2026-04-09', parentPhone:'+91 96••••9012', parentEmail:'parent3@email.com', notified:false },
-  { id:'4', name:'Anita Roy',     initials:'AR', smartId:'SL-011', shift:'Evening',   daysAbsent:12, lastSeen:'2026-03-31', parentPhone:'+91 95••••3456', parentEmail:'parent4@email.com', notified:true  },
-  { id:'5', name:'Vikram Nair',   initials:'VN', smartId:'SL-015', shift:'Morning',   daysAbsent:5,  lastSeen:'2026-04-07', parentPhone:'+91 94••••7890', parentEmail:'parent5@email.com', notified:false },
-];
+
 
 export default function AbsenteeReportPage() {
   const [threshold, setThreshold] = useState('3');
   const [shift, setShift]         = useState('All');
-  const [rows, setRows]           = useState<AbsenteeRow[]>(DATA);
+  const [rows, setRows]           = useState<AbsenteeRow[]>(SUPERADMIN_ENGAGEMENT_MOCK_ABSENTEES as AbsenteeRow[]);
   const [toast, setToast]         = useState('');
   const [toastType, setToastType] = useState('');
 
@@ -230,8 +225,8 @@ export default function AbsenteeReportPage() {
                 resizable: true
               }}
               rowClassRules={{
-                'bg-[color-mix(in_srgb,var(--mgr-danger)_5%,transparent)]': (params: FlexRecord) => params.data.daysAbsent >= 7,
-                'bg-[color-mix(in_srgb,var(--mgr-warning)_5%,transparent)]': (params: FlexRecord) => params.data.daysAbsent >= 3 && params.data.daysAbsent < 7
+                'bg-[color-mix(in_srgb,var(--mgr-danger)_5%,transparent)]': (params: any) => params.data.daysAbsent >= 7,
+                'bg-[color-mix(in_srgb,var(--mgr-warning)_5%,transparent)]': (params: any) => params.data.daysAbsent >= 3 && params.data.daysAbsent < 7
               }}
             />
           </div>

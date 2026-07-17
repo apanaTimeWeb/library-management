@@ -3,25 +3,28 @@ import { useState, useRef } from 'react';
 import { ChevronRight, X, Send, Save } from 'lucide-react';
 
 import { Hand, DollarSign, Repeat, Receipt, Bell, CalendarClock, Handshake, Smartphone, CheckCircle } from 'lucide-react';
+import { SUPERADMIN_COMMUNICATION_MOCK_WA_TEMPLATES } from '@/app/superadmin/superadmin_communication/superadmin_communication_constants/SuperadminCommunicationConstants';
 
-interface Template { id: string; label: string; icon: React.ReactNode; body: string; }
+interface Template { id: string; label: string; icon: string; body: string; }
+
+const ICON_MAP: Record<string, React.ReactNode> = {
+  Hand: <Hand size={16}/>,
+  DollarSign: <DollarSign size={16}/>,
+  Repeat: <Repeat size={16}/>,
+  Receipt: <Receipt size={16}/>,
+  Bell: <Bell size={16}/>,
+  CalendarClock: <CalendarClock size={16}/>,
+  Handshake: <Handshake size={16}/>,
+};
 
 const VARS = ['{name}', '{amount}', '{duedate}', '{planname}', '{libraryname}', '{phone}', '{seat}'];
 
-const INIT: Template[] = [
-  { id: 'welcome',      label: 'Welcome Message',      icon: <Hand size={16}/>, body: 'Welcome to {libraryname}, {name}! Your seat {seat} is confirmed. We wish you a productive study journey. — Smart Library Team' },
-  { id: 'fee_reminder', label: 'Fee Reminder',         icon: <DollarSign size={16}/>, body: 'Hi {name}, your fee of ₹{amount} is due on {duedate}. Please pay on time to avoid late charges. — {libraryname}' },
-  { id: 'renewal',      label: 'Renewal Alert',        icon: <Repeat size={16}/>, body: 'Hi {name}, your {planname} subscription expires in 3 days. Renew now to continue uninterrupted access. — {libraryname}' },
-  { id: 'receipt',      label: 'Payment Receipt',      icon: <Receipt size={16}/>, body: 'Dear {name}, your payment of ₹{amount} has been received. Thank you! Contact us at {phone} for queries. — {libraryname}' },
-  { id: 'notice',       label: 'Notice Broadcast',     icon: <Bell size={16}/>, body: 'Important Notice from {libraryname}: Dear {name}, please note the following update from the library management.' },
-  { id: 'absentee',     label: 'Absentee Parent Alert', icon: <CalendarClock size={16}/>, body: 'Dear Parent, your ward {name} (Seat: {seat}) has been absent for multiple consecutive days. Please contact {libraryname} at {phone}.' },
-  { id: 'ptp',          label: 'PTP Payment Reminder', icon: <Handshake size={16}/>, body: 'Hi {name}, this is a reminder that you had committed to pay ₹{amount} by {duedate}. Please complete your payment. — {libraryname}' },
-];
+
 
 const MAX_CHARS = 1024;
 
 export default function WhatsappTemplatesPage() {
-  const [templates, setTemplates] = useState<Template[]>(INIT);
+  const [templates, setTemplates] = useState<Template[]>(SUPERADMIN_COMMUNICATION_MOCK_WA_TEMPLATES as Template[]);
   const [activeId, setActiveId]   = useState('welcome');
   const [saved, setSaved]         = useState(false);
   const [showTest, setShowTest]   = useState(false);
@@ -109,7 +112,7 @@ export default function WhatsappTemplatesPage() {
             <div key={t.id} onClick={() => setActiveId(t.id)}
               className={`eng-tpl-item${activeId === t.id ? ' eng-tpl-item--active' : ''}`}
               style={{ width: 'auto', padding: '8px 16px', borderRadius: '30px' }}>
-              <span className="flex items-center gap-2">{t.icon} {t.label}</span>
+              <span className="flex items-center gap-2">{ICON_MAP[t.icon]} {t.label}</span>
             </div>
           ))}
         </div>
@@ -117,7 +120,7 @@ export default function WhatsappTemplatesPage() {
         {/* Right Editor */}
         <div className="eng-card eng-flex-1">
           <div className="eng-card-header">
-            <h2 className="eng-card-title flex items-center gap-2">{active.icon} {active.label}</h2>
+            <h2 className="eng-card-title flex items-center gap-2">{ICON_MAP[active.icon]} {active.label}</h2>
             <p className="eng-card-desc">Edit the message body. Use variable chips to personalize.</p>
           </div>
 
