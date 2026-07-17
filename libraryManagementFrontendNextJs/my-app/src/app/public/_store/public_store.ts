@@ -2,8 +2,8 @@
 // DATA FLOW: UI Component -> usePublicStore -> publicApi -> backend (`Rule 39`).
 
 import { create } from 'zustand';
-import { publicApi, type FetchState } from '@/app/public/public_api/public_api';
-import type { PublicEnquiryFormData } from '@/app/public/enquiry/public_enquiry_types/PublicEnquiryValidation';
+import { publicApi, type FetchState } from '@/app/public/_api/public_api';
+import type { PublicEnquiryFormData } from '@/app/public/enquiry/_types/PublicEnquiryValidation';
 
 interface PublicStoreState {
   fetchState: FetchState;

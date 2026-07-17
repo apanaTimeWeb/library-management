@@ -1,6 +1,6 @@
 import { StatusCodes } from 'http-status-codes';
-import { fetchApi } from '@/lib/api';
-import type { PublicEnquiryFormData } from '@/app/public/enquiry/public_enquiry_types/PublicEnquiryValidation';
+
+import type { PublicEnquiryFormData } from '@/app/public/enquiry/_types/PublicEnquiryValidation';
 
 export type FetchState = 'idle' | 'loading' | 'success' | 'error';
 
@@ -12,7 +12,7 @@ export interface ApiResponse<T> {
 }
 
 export const publicApi = {
-  submitEnquiry: async (payload: PublicEnquiryFormData): Promise<ApiResponse<null>> => {
+  submitEnquiry: async (_payload: PublicEnquiryFormData): Promise<ApiResponse<null>> => {
     try {
       // In a real app, this would hit the backend:
       // await fetchApi('/public/enquiry', { method: 'POST', body: JSON.stringify(payload) });

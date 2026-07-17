@@ -1,8 +1,8 @@
 import React from 'react';
-import { User, Phone, MessageSquare, Clock, Send, Loader2 } from 'lucide-react';
+import { User, Send, Loader2 } from 'lucide-react';
 import { UseFormReturn } from 'react-hook-form';
-import { PublicEnquiryFormData } from '@/app/public/enquiry/public_enquiry_types/PublicEnquiryValidation';
-import { PUBLIC_ENQUIRY_SHIFTS } from '@/app/public/enquiry/public_enquiry_constants/PublicEnquiryConstants';
+import { PublicEnquiryFormData } from '@/app/public/enquiry/_types/PublicEnquiryValidation';
+
 
 // RESPONSIBILITY: Renders the enquiry form input fields and handles user interaction.
 
