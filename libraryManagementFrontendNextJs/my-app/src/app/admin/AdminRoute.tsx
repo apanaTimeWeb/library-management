@@ -28,7 +28,7 @@ export function AdminRoute({ children }: { children: React.ReactNode }) {
 
   return (
     <AdminProvider>
-      <div className="admin-theme admin-shell-flex">
+      <div className="admin-theme flex min-h-screen relative w-full bg-background text-foreground overflow-x-hidden">
         <AdminSidebar
           collapsed={collapsed}
           onToggle={() => setCollapsed(c => !c)}
@@ -37,14 +37,14 @@ export function AdminRoute({ children }: { children: React.ReactNode }) {
         />
         
         <div
-          className="admin-main-offset"
+          className="flex flex-col flex-1 min-w-0 transition-all duration-300"
           style={{ marginLeft: sidebarWidth }}
         >
         <AdminHeader
           sidebarWidth={sidebarWidth}
           onMobileOpen={() => setMobileOpen(true)}
         />
-        <main className="admin-shell-content">
+        <main className="flex-1 p-4 md:p-6 lg:p-8 pt-[72px] md:pt-[88px] overflow-y-auto">
           {children}
         </main>
       </div>
@@ -52,4 +52,3 @@ export function AdminRoute({ children }: { children: React.ReactNode }) {
     </AdminProvider>
   );
 }
-

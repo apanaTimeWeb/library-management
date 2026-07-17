@@ -5,6 +5,9 @@ import React from 'react';
 import { Shield, CheckCircle } from 'lucide-react';
 import { Toaster } from 'react-hot-toast';
 import { useAdminPermissions, type Permission } from '@/app/admin/admin_permissions/admin_permissions_hooks/useAdminPermissions';
+import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
+import { Card } from '@/components/ui/card';
 
 interface AdminPermissionsViewProps {
   initialPermissions: Permission[];
@@ -19,69 +22,76 @@ export function AdminPermissionsView({ initialPermissions }: AdminPermissionsVie
         position="bottom-right"
         toastOptions={{
           style: {
-            background: 'var(--bg-card)',
-            color: 'var(--text-primary)',
-            border: '1px solid var(--border)',
+            background: 'hsl(var(--card))',
+            color: 'hsl(var(--card-foreground))',
+            border: '1px solid hsl(var(--border))',
             fontSize: 13,
           },
         }}
       />
 
-      <div style={{ paddingBottom: 40 }}>
+      <div className="pb-10">
         {/* Page Header */}
-        <div className="admin-page-header" style={{ borderBottom: '1px solid var(--border)', paddingBottom: 16, marginBottom: 24 }}>
+        <div className="flex flex-wrap items-end justify-between gap-4 border-b border-border pb-4 mb-6">
           <div>
-            <p className="admin-breadcrumb">Smart Library 360 › Admin › Permissions</p>
-            <h1 className="admin-page-title">Role Permissions</h1>
-            <p className="admin-page-subtitle">Configure what Managers are allowed to do across branches.</p>
+            <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-1">Smart Library 360 › Admin › Permissions</p>
+            <h1 className="text-2xl font-bold tracking-tight text-foreground">Role Permissions</h1>
+            <p className="text-sm text-muted-foreground mt-1">Configure what Managers are allowed to do across branches.</p>
           </div>
-          <div className="admin-page-actions">
-            <button className="admin-btn-primary" onClick={handleSave}>
+          <div className="flex items-center gap-2 flex-wrap">
+            <Button onClick={handleSave} className="gap-2">
               <CheckCircle size={16} /> Save Changes
-            </button>
+            </Button>
           </div>
         </div>
 
         {/* Permissions Card */}
-        <div className="admin-card" style={{ maxWidth: 700, overflow: 'hidden' }}>
-          <div style={{ overflowX: 'auto' }}>
-            <table className="admin-perm-table">
-              <thead>
+        <Card className="max-w-4xl overflow-hidden bg-card border-border shadow-sm">
+          <div className="overflow-x-auto">
+            <table className="w-full text-sm text-left">
+              <thead className="bg-muted/50 text-muted-foreground sticky top-0 z-10 border-b border-border">
                 <tr>
-                  <th className="admin-perm-th" style={{ width: 300 }}>Permission Module &amp; Action</th>
+                  <th className="px-6 py-3 font-semibold uppercase text-xs tracking-wider w-72">Permission Module &amp; Action</th>
                   {roles.map(role => (
-                    <th key={role} className="admin-perm-th" style={{ textAlign: 'right', paddingRight: 32 }}>
-                      <span className="admin-badge admin-badge-primary">{role}</span>
+                    <th key={role} className="px-6 py-3 font-semibold text-right">
+                      <Badge variant="secondary" className="bg-primary/10 text-primary border-none text-xs">{role}</Badge>
                     </th>
                   ))}
                 </tr>
               </thead>
-              <tbody>
+              <tbody className="divide-y divide-border">
                 {perms.map((module, mIdx) => (
                   <React.Fragment key={`module-${module.module}`}>
                     {/* Module header row */}
-                    <tr style={{ background: 'var(--bg-card)' }}>
-                      <td colSpan={roles.length + 1} className="admin-perm-td" style={{ borderBottom: '1px solid var(--border)' }}>
-                        <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                          <Shield size={15} style={{ color: 'var(--success)' }} />
-                          <span className="admin-perm-module">{module.module}</span>
+                    <tr className="bg-muted/20">
+                      <td colSpan={roles.length + 1} className="px-6 py-3">
+                        <div className="flex items-center gap-2">
+                          <Shield size={15} className="text-success" />
+                          <span className="font-semibold text-foreground text-xs uppercase tracking-wider">{module.module}</span>
                         </div>
                       </td>
                     </tr>
                     {/* Action rows */}
                     {module.actions.map((action, aIdx) => (
-                      <tr key={action.key} className="admin-perm-row">
-                        <td className="admin-perm-td" style={{ paddingLeft: 36, color: 'var(--text-secondary)', fontSize: 13, borderRight: '1px solid var(--border)' }}>
+                      <tr key={action.key} className="hover:bg-muted/30 transition-colors">
+                        <td className="px-6 py-3 pl-10 text-muted-foreground font-medium text-[13px] border-r border-border/50">
                           {action.label}
                         </td>
                         {roles.map(role => (
-                          <td key={role} className="admin-perm-td" style={{ textAlign: 'right', paddingRight: 32 }}>
+                          <td key={role} className="px-6 py-3 text-right">
                             <button
+                              type="button"
                               onClick={() => toggle(mIdx, aIdx, role)}
-                              className={`admin-perm-toggle ${action.roles[role] ? 'admin-perm-toggle-on' : 'admin-perm-toggle-off'}`}
+                              className={`relative inline-flex h-5 w-9 shrink-0 cursor-pointer items-center justify-center rounded-full border-2 border-transparent transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background ${
+                                action.roles[role] ? 'bg-success' : 'bg-muted'
+                              }`}
                               aria-label={action.roles[role] ? 'Disable' : 'Enable'}
                             >
-                              <span className="admin-perm-toggle-thumb" />
+                              <span
+                                className={`pointer-events-none inline-block h-4 w-4 rounded-full bg-background shadow-lg ring-0 transition-transform ${
+                                  action.roles[role] ? 'translate-x-4' : 'translate-x-0'
+                                }`}
+                              />
                             </button>
                           </td>
                         ))}
@@ -92,9 +102,8 @@ export function AdminPermissionsView({ initialPermissions }: AdminPermissionsVie
               </tbody>
             </table>
           </div>
-        </div>
+        </Card>
       </div>
     </>
   );
 }
-

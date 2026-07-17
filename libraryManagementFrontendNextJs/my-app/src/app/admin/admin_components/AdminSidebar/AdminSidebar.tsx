@@ -35,36 +35,38 @@ export default function AdminSidebar({ collapsed, onToggle, mobileOpen, onMobile
       {/* Mobile overlay */}
       {mobileOpen && (
         <div
-          className="admin-sidebar-overlay"
+          className="fixed inset-0 bg-black/60 z-40 md:hidden"
           onClick={onMobileClose}
           aria-hidden="true"
         />
       )}
 
       <aside
-        className={`admin-sidebar${mobileOpen ? ' admin-sidebar-mobile-open' : ''}`}
-        style={{ width: collapsed ? 60 : 240 }}
+        className={`fixed top-0 left-0 h-screen bg-card border-r border-border z-50 flex flex-col transition-all duration-300 ${
+          mobileOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'
+        }`}
+        style={{ width: collapsed && !mobileOpen ? 60 : 240 }}
       >
-        <div className="admin-sidebar-logo">
+        <div className="h-16 flex items-center shrink-0 border-b border-border px-2">
           <Button
             variant="ghost"
             size="icon"
             onClick={mobileOpen ? onMobileClose : onToggle}
             aria-label={mobileOpen ? 'Close sidebar' : 'Toggle sidebar'}
-            className="h-8 w-8 ml-2 hover:bg-muted/50"
+            className="h-8 w-8 hover:bg-muted/50"
           >
             {mobileOpen ? <X size={18} /> : <Menu size={18} />}
           </Button>
           {(!collapsed || mobileOpen) && (
-            <span className="admin-sidebar-logo-text ml-2">📚 Smart Library</span>
+            <span className="font-bold text-[15px] text-foreground ml-3 truncate">📚 Smart Library</span>
           )}
         </div>
 
-        <nav className="admin-sidebar-nav">
+        <nav className="flex-1 overflow-y-auto overflow-x-hidden p-3 space-y-1">
           {ADMIN_SIDEBAR_NAV.map((item, i) => {
             if ('group' in item) {
               if (collapsed && !mobileOpen) return null;
-              return <div key={i} className="admin-nav-group-label">{item.group}</div>;
+              return <div key={i} className="px-3 pt-4 pb-1 text-[10px] font-bold tracking-wider text-muted-foreground uppercase">{item.group}</div>;
             }
             const Icon = item.icon;
             const isExactMatch = pathname === item.href;
@@ -77,13 +79,17 @@ export default function AdminSidebar({ collapsed, onToggle, mobileOpen, onMobile
               <Link
                 key={item.href}
                 href={item.href}
-                className={`admin-nav-item${isActive ? ' active' : ''}`}
+                className={`flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
+                  isActive 
+                    ? 'bg-primary/10 text-primary' 
+                    : 'text-muted-foreground hover:bg-muted/50 hover:text-foreground'
+                } ${collapsed && !mobileOpen ? 'justify-center' : ''}`}
                 title={(collapsed && !mobileOpen) ? item.label : undefined}
                 onClick={mobileOpen ? onMobileClose : undefined}
               >
-                <Icon size={15} className="shrink-0 admin-nav-icon" />
+                <Icon size={18} className="shrink-0" />
                 {(!collapsed || mobileOpen) && (
-                  <span className="admin-nav-label">{item.label}</span>
+                  <span className="truncate">{item.label}</span>
                 )}
               </Link>
             );
@@ -91,20 +97,22 @@ export default function AdminSidebar({ collapsed, onToggle, mobileOpen, onMobile
         </nav>
 
         {(!collapsed || mobileOpen) && (
-          <div className="admin-sidebar-footer">
-            <div className="admin-avatar">LA</div>
-            <div className="admin-sidebar-user-info">
-              <p className="admin-sidebar-user-name">Library Admin</p>
-              <p className="admin-sidebar-user-email">admin@library.com</p>
+          <div className="p-4 border-t border-border flex items-center gap-3 bg-muted/10 shrink-0">
+            <div className="w-8 h-8 rounded-full bg-primary/20 text-primary flex items-center justify-center text-xs font-bold shrink-0">
+              LA
+            </div>
+            <div className="flex-1 min-w-0">
+              <p className="text-sm font-semibold text-foreground truncate leading-tight">Library Admin</p>
+              <p className="text-[11px] text-muted-foreground truncate leading-tight mt-0.5">admin@library.com</p>
             </div>
             <Button
               variant="ghost"
               size="icon"
-              className="h-8 w-8 text-muted-foreground hover:text-danger hover:bg-danger/10 ml-auto"
+              className="h-8 w-8 text-muted-foreground hover:text-danger hover:bg-danger/10 ml-auto shrink-0"
               aria-label="Log out"
               onClick={() => setShowLogout(true)}
             >
-              <LogOut size={14} />
+              <LogOut size={16} />
             </Button>
           </div>
         )}
@@ -127,4 +135,3 @@ export default function AdminSidebar({ collapsed, onToggle, mobileOpen, onMobile
     </>
   );
 }
-
