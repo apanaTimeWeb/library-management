@@ -5,6 +5,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { ChevronRight, Save, FileBarChart2, Bell, CheckCircle, Clock } from 'lucide-react';
 import { SUPERADMIN_ENGAGEMENT_MOCK_ATTENDANCE } from '@superadmin/superadmin_engagement/superadmin_engagement_data/SuperadminEngagementMockData';
+import { SuperadminSearchableDropdown } from '@/app/superadmin/superadmin_shared_components/SuperadminSearchableDropdown';
 
 type AttStatus = 'present' | 'absent' | 'late' | null;
 
@@ -100,15 +101,18 @@ export function AttendanceClient() {
             <input type="date" className="eng-input" value={date}
               onChange={e => setDate(e.target.value)} />
           </div>
-          <div className="eng-filter-field">
+          <div className="eng-filter-field w-40">
             <label className="eng-label">Shift</label>
-            <select className="eng-select eng-filter-select" value={shift}
-              onChange={e => setShift(e.target.value)}>
-              <option>All</option>
-              <option>Morning</option>
-              <option>Afternoon</option>
-              <option>Evening</option>
-            </select>
+            <SuperadminSearchableDropdown
+              options={[
+                { label: 'All', value: 'All' },
+                { label: 'Morning', value: 'Morning' },
+                { label: 'Afternoon', value: 'Afternoon' },
+                { label: 'Evening', value: 'Evening' }
+              ]}
+              value={shift}
+              onChange={setShift}
+            />
           </div>
           <div className="eng-filter-badges">
             <span className="eng-badge eng-badge--success">{present} Present</span>
@@ -146,7 +150,7 @@ export function AttendanceClient() {
                 <div className="eng-seg-group">
                   {(['present', 'absent', 'late'] as AttStatus[]).map(( st ) => (
                     <button key={st} onClick={() => setStatus(s.id, st)}
-                      className={`eng-seg-btn${s.status === st ? ` eng-seg-btn--${st}` : ''}`}>
+                      className={`eng-seg-btn${s.status === st ? ` eng-seg-btn--${st}` : ''} cursor-pointer`}>
                       {st === 'present' ? <><CheckCircle size={12}/> Present</>
                        : st === 'absent' ? '✕ Absent'
                        : <><Clock size={12}/> Late</>}
@@ -179,7 +183,7 @@ export function AttendanceClient() {
                       ⚠️ {s.consecutiveAbsent} days consecutive
                     </span>
                     {!hasAlerted ? (
-                      <button onClick={() => handleAlert(s.id)} className="eng-btn eng-btn--ghost eng-btn--sm">
+                      <button onClick={() => handleAlert(s.id)} className="eng-btn eng-btn--ghost eng-btn--sm cursor-pointer">
                         <Bell size={12} /> Alert Parents
                       </button>
                     ) : (
@@ -199,7 +203,7 @@ export function AttendanceClient() {
         <p className="eng-save-bar-info">
           <strong>{marked}</strong> of <strong>{filtered.length}</strong> marked for <strong>{date}</strong>
         </p>
-        <button onClick={handleSave} className="eng-btn eng-btn--primary">
+        <button onClick={handleSave} className="eng-btn eng-btn--primary cursor-pointer">
           {saved ? <><CheckCircle size={15}/> Saved!</> : <><Save size={15}/> Save Attendance</>}
         </button>
       </div>

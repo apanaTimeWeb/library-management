@@ -8,6 +8,7 @@ import { AgGridReact } from 'ag-grid-react';
 import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community';
 import { superadmin_gridTheme } from '@/app/superadmin/superadmin_shared_components/superadmin_gridTheme';
 import { SUPERADMIN_COMMUNICATION_MOCK_WA_LOGS } from '@superadmin/superadmin_communication/superadmin_communication_data/SuperadminCommunicationMockData';
+import { SuperadminSearchableDropdown } from '@/app/superadmin/superadmin_shared_components/SuperadminSearchableDropdown';
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
@@ -79,7 +80,7 @@ export function WhatsappLogsClient() {
       {viewLog && (
         <div className="eng-overlay">
           <div className="eng-modal eng-modal--lg bg-card">
-            <button onClick={() => setViewLog(null)} className="eng-modal-close hover:text-red-500"><X size={16} /></button>
+            <button onClick={() => setViewLog(null)} className="eng-modal-close hover:text-red-500 cursor-pointer"><X size={16} /></button>
             <p className="eng-modal-title mb-4 font-bold text-primary flex items-center gap-2"><MessageCircle size={16} /> Message Details</p>
             <div className="eng-modal-badge-row mb-6 flex gap-2">
               <span className={`eng-badge ${TYPE_BADGE[viewLog.type]}`}>{TYPE_LABEL[viewLog.type]}</span>
@@ -101,7 +102,7 @@ export function WhatsappLogsClient() {
               <div className="eng-warn-box mt-4 p-3 bg-red-50 text-red-600 rounded-lg border border-red-200 text-sm font-medium flex items-center gap-2"><AlertTriangle size={14} /> Error: {viewLog.error}</div>
             )}
             <div className="eng-modal-footer mt-6 flex justify-end">
-              <button onClick={() => setViewLog(null)} className="px-4 py-2 bg-input border border-border text-primary rounded hover:bg-border transition-colors">Close</button>
+              <button onClick={() => setViewLog(null)} className="px-4 py-2 bg-input border border-border text-primary rounded hover:bg-border transition-colors cursor-pointer">Close</button>
             </div>
           </div>
         </div>
@@ -118,24 +119,34 @@ export function WhatsappLogsClient() {
       {/* Filter Bar */}
       <div className="eng-card mb-6 p-4 border border-mgr-border rounded-lg">
         <div className="eng-filter-row flex flex-wrap gap-4 items-end">
-          <div className="flex flex-col">
+          <div className="flex flex-col w-40">
             <label className="eng-label text-xs mb-1 font-semibold text-mgr-text-secondary">Message Type</label>
-            <select value={typeFilter} onChange={e => setTypeFilter(e.target.value)} className="eng-select py-2 px-3 border rounded">
-              <option value="All">All Types</option>
-              <option value="welcome">Welcome</option>
-              <option value="fee_reminder">Fee Reminder</option>
-              <option value="receipt">Receipt</option>
-              <option value="notice">Notice</option>
-              <option value="renewal">Renewal</option>
-            </select>
+            <SuperadminSearchableDropdown
+              options={[
+                { label: 'All Types', value: 'All' },
+                { label: 'Welcome', value: 'welcome' },
+                { label: 'Fee Reminder', value: 'fee_reminder' },
+                { label: 'Receipt', value: 'receipt' },
+                { label: 'Notice', value: 'notice' },
+                { label: 'Renewal', value: 'renewal' }
+              ]}
+              value={typeFilter}
+              onChange={setTypeFilter}
+            />
           </div>
-          <div className="flex flex-col">
+          <div className="flex flex-col w-40">
             <label className="eng-label text-xs mb-1 font-semibold text-mgr-text-secondary">Status</label>
-            <select value={statusFilter} onChange={e => setStatusFilter(e.target.value)} className="eng-select py-2 px-3 border rounded">
-              <option value="All">All</option>
-              <option>Pending</option><option>Sent</option>
-              <option>Delivered</option><option>Failed</option>
-            </select>
+            <SuperadminSearchableDropdown
+              options={[
+                { label: 'All', value: 'All' },
+                { label: 'Pending', value: 'Pending' },
+                { label: 'Sent', value: 'Sent' },
+                { label: 'Delivered', value: 'Delivered' },
+                { label: 'Failed', value: 'Failed' }
+              ]}
+              value={statusFilter}
+              onChange={setStatusFilter}
+            />
           </div>
           <div className="flex flex-col">
             <label className="eng-label text-xs mb-1 font-semibold text-mgr-text-secondary">From</label>

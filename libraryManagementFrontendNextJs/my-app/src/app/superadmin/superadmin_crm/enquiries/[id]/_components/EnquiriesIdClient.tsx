@@ -39,6 +39,7 @@ import {
   markLostSchema,
   type MarkLostFormData,
 } from '@/app/superadmin/superadmin_crm/superadmin_crm_shared_components/superadmin_schema';
+import { SuperadminSearchableDropdown } from '@/app/superadmin/superadmin_shared_components/SuperadminSearchableDropdown';
 
 /* ── Status Select options ─────────────────────────────── */
 const STATUS_OPTIONS: EnquiryStatus[] = ['New', 'Visited', 'Interested', 'Converted', 'Lost'];
@@ -110,7 +111,7 @@ function MarkLostModal({ onConfirm, onCancel, isSubmitting }: MarkLostModalProps
           <div className="crm-modal-btns">
             <button
               type="button"
-              className="crm-btn-ghost crm-btn-flex-1"
+              className="crm-btn-ghost crm-btn-flex-1 cursor-pointer"
               onClick={onCancel}
             >
               Cancel
@@ -118,7 +119,7 @@ function MarkLostModal({ onConfirm, onCancel, isSubmitting }: MarkLostModalProps
             <button
               type="submit"
               form="mark-lost-form"
-              className="crm-btn-danger-solid crm-btn-flex-1"
+              className="crm-btn-danger-solid crm-btn-flex-1 cursor-pointer"
               disabled={isSubmitting}
             >
               {isSubmitting ? (
@@ -240,7 +241,7 @@ export function EnquiriesIdClient({
           The enquiry with ID &ldquo;{id}&rdquo; does not exist.
         </p>
         <button
-          className="crm-btn-ghost crm-mt-12"
+          className="crm-btn-ghost crm-mt-12 cursor-pointer"
           onClick={() => router.push('/superadmin/superadmin_crm/enquiries')}
         >
           <ArrowLeft size={15} />
@@ -387,7 +388,7 @@ export function EnquiriesIdClient({
         {/* ── Breadcrumb + Back ── */}
         <div className="crm-detail-topbar">
           <button
-            className="crm-btn-icon crm-btn-icon-back"
+            className="crm-btn-icon crm-btn-icon-back cursor-pointer"
             onClick={() => router.push('/superadmin/superadmin_crm/enquiries')}
             title="Back to Pipeline"
             aria-label="Back to pipeline"
@@ -480,18 +481,14 @@ export function EnquiriesIdClient({
               <h3 className="crm-section-label">Current Status</h3>
               <div className="crm-status-row">
                 <div className="crm-select-wrap">
-                  <select
-                    className="crm-select"
+                  <SuperadminSearchableDropdown
+                    options={STATUS_OPTIONS.map((s: EnquiryStatus) => ({ label: s, value: s }))}
                     value={currentStatus}
-                    onChange={( e: React.ChangeEvent<HTMLSelectElement> ) => setCurrentStatus(e.target.value as EnquiryStatus)}
-                  >
-                    {STATUS_OPTIONS.map(( s: EnquiryStatus ) => (
-                      <option key={s} value={s}>{s}</option>
-                    ))}
-                  </select>
+                    onChange={(val) => setCurrentStatus(val as EnquiryStatus)}
+                  />
                 </div>
                 <button
-                  className="crm-btn-primary"
+                  className="crm-btn-primary cursor-pointer"
                   onClick={handleStatusUpdate}
                   disabled={statusUpdating || currentStatus === enquiry.status}
                 >
@@ -540,7 +537,7 @@ export function EnquiriesIdClient({
 
                 <button
                   type="submit"
-                  className="crm-btn-primary crm-btn-full"
+                  className="crm-btn-primary crm-btn-full cursor-pointer"
                   disabled={fuSubmitting}
                 >
                   {fuSubmitting ? (
@@ -568,7 +565,7 @@ export function EnquiriesIdClient({
                       </span>
                     </div>
                     <button
-                      className="crm-btn-icon"
+                      className="crm-btn-icon cursor-pointer"
                       title="Edit follow-up date"
                       aria-label="Edit follow-up date"
                     >
@@ -585,7 +582,7 @@ export function EnquiriesIdClient({
 
               {/* Convert to Admission */}
               <button
-                className="crm-btn-success crm-btn-full"
+                className="crm-btn-success crm-btn-full cursor-pointer"
                 onClick={handleConvert}
                 disabled={enquiry.status === 'Converted'}
               >
@@ -597,7 +594,7 @@ export function EnquiriesIdClient({
 
               {/* Mark as Lost */}
               <button
-                className="crm-btn-danger crm-btn-full"
+                className="crm-btn-danger crm-btn-full cursor-pointer"
                 onClick={() => setShowLostModal(true)}
                 disabled={enquiry.status === 'Lost'}
               >

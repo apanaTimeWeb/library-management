@@ -31,6 +31,7 @@ import {
   STATUS_BADGE,
   maskPhone,
 } from '@/app/superadmin/superadmin_crm/superadmin_crm_shared_components/superadmin_types';
+import { SuperadminSearchableDropdown } from '@/app/superadmin/superadmin_shared_components/SuperadminSearchableDropdown';
 
 /* ── Helpers ─────────────────────────────────────────────── */
 function StatusBadge({ status }: { status: EnquiryStatus }) {
@@ -89,7 +90,7 @@ function KanbanCard({
 }) {
   return (
     <div
-      className={`crm-kanban-card ${colClass}`}
+      className={`crm-kanban-card ${colClass} cursor-pointer`}
       onClick={onClick}
       role="button"
       tabIndex={0}
@@ -218,7 +219,7 @@ export function EnquiriesClient() {
             {/* View toggle */}
             <div className="crm-view-toggle">
               <button
-                className={`crm-view-btn ${view === 'kanban' ? 'crm-view-btn--active' : ''}`}
+                className={`crm-view-btn ${view === 'kanban' ? 'crm-view-btn--active' : ''} cursor-pointer`}
                 onClick={() => setView('kanban')}
                 title="Kanban view"
                 aria-label="Switch to kanban view"
@@ -226,7 +227,7 @@ export function EnquiriesClient() {
                 <LayoutGrid size={16} />
               </button>
               <button
-                className={`crm-view-btn ${view === 'table' ? 'crm-view-btn--active' : ''}`}
+                className={`crm-view-btn ${view === 'table' ? 'crm-view-btn--active' : ''} cursor-pointer`}
                 onClick={() => setView('table')}
                 title="Table view"
                 aria-label="Switch to table view"
@@ -237,7 +238,7 @@ export function EnquiriesClient() {
 
             {/* Add Enquiry CTA */}
             <button
-              className="crm-btn-primary"
+              className="crm-btn-primary cursor-pointer"
               onClick={() => router.push('/superadmin/superadmin_crm/enquiries/add')}
             >
               <Plus size={16} />
@@ -257,23 +258,25 @@ export function EnquiriesClient() {
             className="crm-search-input"
             placeholder="Search by name or phone…"
             value={search}
-            onChange={( e: unknown ) => setSearch(e.target.value)}
+            onChange={( e: unknown ) => setSearch((e as React.ChangeEvent<HTMLInputElement>).target.value)}
           />
         </div>
 
         {/* Status filter */}
-        <select
-          className="crm-select crm-status-filter"
-          value={statusFilter}
-          onChange={( e: unknown ) => setStatusFilter(e.target.value)}
-        >
-          <option value="All">All Statuses</option>
-          <option value="New">New</option>
-          <option value="Visited">Visited</option>
-          <option value="Interested">Interested</option>
-          <option value="Converted">Converted</option>
-          <option value="Lost">Lost</option>
-        </select>
+        <div className="w-48">
+          <SuperadminSearchableDropdown
+            options={[
+              { label: 'All Statuses', value: 'All' },
+              { label: 'New', value: 'New' },
+              { label: 'Visited', value: 'Visited' },
+              { label: 'Interested', value: 'Interested' },
+              { label: 'Converted', value: 'Converted' },
+              { label: 'Lost', value: 'Lost' }
+            ]}
+            value={statusFilter}
+            onChange={setStatusFilter}
+          />
+        </div>
       </div>
 
       {/* ════════════════════════════════════════
@@ -287,7 +290,7 @@ export function EnquiriesClient() {
               <p className="crm-empty-title">No enquiries yet</p>
               <p className="crm-empty-sub">Add your first lead to start the pipeline</p>
               <button
-                className="crm-btn-primary crm-mt-8"
+                className="crm-btn-primary crm-mt-8 cursor-pointer"
                 onClick={() => router.push('/superadmin/superadmin_crm/enquiries/add')}
               >
                 <Plus size={15} />
@@ -307,7 +310,7 @@ export function EnquiriesClient() {
                         <span className="crm-kanban-col-label">{col.label}</span>
                         <span className="crm-col-count">{cards.length}</span>
                       </div>
-                      <button className="crm-btn-icon" title="More options" aria-label="Column options">
+                      <button className="crm-btn-icon cursor-pointer" title="More options" aria-label="Column options">
                         <MoreHorizontal size={15} />
                       </button>
                     </div>
@@ -352,7 +355,7 @@ export function EnquiriesClient() {
               <p className="crm-empty-title">No enquiries found</p>
               <p className="crm-empty-sub">Try a different search or status filter</p>
               <button
-                className="crm-btn-primary crm-mt-8"
+                className="crm-btn-primary crm-mt-8 cursor-pointer"
                 onClick={() => router.push('/superadmin/superadmin_crm/enquiries/add')}
               >
                 <Plus size={15} />
@@ -380,6 +383,7 @@ export function EnquiriesClient() {
                     <tr
                       key={enq.id}
                       onClick={() => router.push(`/superadmin/superadmin_crm/enquiries/${enq.id}`)}
+                      className="cursor-pointer"
                     >
                       <td className="crm-td-index">{idx + 1}</td>
                       <td>
@@ -408,7 +412,7 @@ export function EnquiriesClient() {
                         <div className="crm-row-actions">
 
                           <button
-                            className="crm-btn-icon crm-btn-icon-success"
+                            className="crm-btn-icon crm-btn-icon-success cursor-pointer"
                             title="Convert to Admission"
                             aria-label="Convert to admission"
                             onClick={(e: React.MouseEvent) => handleQuickConvert(e, enq.id)}
@@ -416,7 +420,7 @@ export function EnquiriesClient() {
                             <CheckCircle size={14} />
                           </button>
                           <button
-                            className="crm-btn-icon crm-btn-icon-danger"
+                            className="crm-btn-icon crm-btn-icon-danger cursor-pointer"
                             title="Mark as Lost"
                             aria-label="Mark as lost"
                             onClick={(e: React.MouseEvent) => handleQuickLost(e, enq.id)}
@@ -436,4 +440,3 @@ export function EnquiriesClient() {
     </div>
   );
 }
-

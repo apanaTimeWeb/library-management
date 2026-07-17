@@ -6,6 +6,7 @@ import React, { useState } from 'react';
 import { MapPin, Edit2, X, Users, CheckCircle, AlertTriangle, Save, Loader, ShieldAlert } from 'lucide-react';
 import type { SuperadminLibrary, SuperadminLibraryPanelMode } from '@/app/superadmin/superadmin_libraries/superadmin_libraries_types/SuperadminLibrariesTypes';
 import { logger } from '@/lib/logger';
+import { SuperadminSearchableDropdown } from '@/app/superadmin/superadmin_shared_components/SuperadminSearchableDropdown';
 
 interface Props {
   lib: SuperadminLibrary;
@@ -50,11 +51,11 @@ export function SuperadminLibrariesPanel({ lib, mode, onClose, onSave, onSuspend
             </div>
             <div className="flex items-center gap-2">
               {!editing && (
-                <button className="w-8 h-8 flex items-center justify-center rounded-[var(--radius-md)] text-text-secondary hover:text-primary hover:bg-primary-subtle transition-colors" onClick={() => setEditing(true)}>
+                <button className="w-8 h-8 flex items-center justify-center rounded-[var(--radius-md)] text-text-secondary hover:text-primary hover:bg-primary-subtle transition-colors cursor-pointer" onClick={() => setEditing(true)}>
                   <Edit2 size={16} />
                 </button>
               )}
-              <button className="w-8 h-8 flex items-center justify-center rounded-[var(--radius-md)] text-text-secondary hover:text-text-primary hover:bg-bg-input transition-colors" onClick={onClose}>
+              <button className="w-8 h-8 flex items-center justify-center rounded-[var(--radius-md)] text-text-secondary hover:text-text-primary hover:bg-bg-input transition-colors cursor-pointer" onClick={onClose}>
                 <X size={18} />
               </button>
             </div>
@@ -74,12 +75,11 @@ export function SuperadminLibrariesPanel({ lib, mode, onClose, onSave, onSuspend
               ))}
               <div>
                 <label className="block text-xs font-semibold text-text-secondary uppercase tracking-wider mb-1.5">Plan</label>
-                <select 
-                  className="w-full bg-bg-input border border-border rounded-[var(--radius-md)] py-2 px-3 text-sm text-text-primary focus:outline-none focus:border-primary transition-colors"
+                <SuperadminSearchableDropdown
+                  options={['Basic', 'Pro', 'Enterprise'].map((p: string) => ({ label: p, value: p }))}
                   value={form.plan}
-                  onChange={e => setForm(f => ({ ...f, plan: e.target.value }))}>
-                  {['Basic','Pro','Enterprise'].map((p: string) => <option key={p} value={p}>{p}</option>)}
-                </select>
+                  onChange={val => setForm(f => ({ ...f, plan: val }))}
+                />
               </div>
             </div>
           ) : (
@@ -114,7 +114,7 @@ export function SuperadminLibrariesPanel({ lib, mode, onClose, onSave, onSuspend
             {editing ? (
               <>
                 <button 
-                  className="flex-1 flex items-center justify-center gap-2 bg-primary hover:bg-primary-hover text-white text-sm font-bold py-2.5 px-4 rounded-[var(--radius-md)] transition-all disabled:opacity-70 disabled:cursor-not-allowed" 
+                  className="flex-1 flex items-center justify-center gap-2 bg-primary hover:bg-primary-hover text-white text-sm font-bold py-2.5 px-4 rounded-[var(--radius-md)] transition-all disabled:opacity-70 disabled:cursor-not-allowed cursor-pointer" 
                   onClick={handleSave} 
                   disabled={saving}
                 >
@@ -123,7 +123,7 @@ export function SuperadminLibrariesPanel({ lib, mode, onClose, onSave, onSuspend
                     : <><Save size={16} /> Save Changes</>}
                 </button>
                 <button 
-                  className="flex-1 flex items-center justify-center gap-2 bg-transparent border border-border hover:bg-bg-input text-text-primary text-sm font-bold py-2.5 px-4 rounded-[var(--radius-md)] transition-all" 
+                  className="flex-1 flex items-center justify-center gap-2 bg-transparent border border-border hover:bg-bg-input text-text-primary text-sm font-bold py-2.5 px-4 rounded-[var(--radius-md)] transition-all cursor-pointer" 
                   onClick={() => setEditing(false)}
                 >
                   Cancel
@@ -132,13 +132,13 @@ export function SuperadminLibrariesPanel({ lib, mode, onClose, onSave, onSuspend
             ) : (
               <>
                 <button 
-                  className="flex-1 flex items-center justify-center gap-2 bg-primary hover:bg-primary-hover text-white text-sm font-bold py-2.5 px-4 rounded-[var(--radius-md)] transition-all" 
+                  className="flex-1 flex items-center justify-center gap-2 bg-primary hover:bg-primary-hover text-white text-sm font-bold py-2.5 px-4 rounded-[var(--radius-md)] transition-all cursor-pointer" 
                   onClick={() => setEditing(true)}
                 >
                   <Edit2 size={16} /> Edit Library
                 </button>
                 <button 
-                  className="flex-1 flex items-center justify-center gap-2 bg-danger-bg text-danger hover:bg-danger hover:text-white text-sm font-bold py-2.5 px-4 rounded-[var(--radius-md)] transition-colors" 
+                  className="flex-1 flex items-center justify-center gap-2 bg-danger-bg text-danger hover:bg-danger hover:text-white text-sm font-bold py-2.5 px-4 rounded-[var(--radius-md)] transition-colors cursor-pointer" 
                   onClick={() => { onSuspend(lib.id); onClose(); }}
                 >
                   <ShieldAlert size={16} /> {lib.status === 'Active' ? 'Suspend' : 'Reactivate'}

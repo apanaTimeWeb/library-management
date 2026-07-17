@@ -9,6 +9,7 @@ import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community';
 import { ChevronRight, Send, Mail, Phone, CheckCircle } from 'lucide-react';
 import { superadmin_gridTheme } from '@/app/superadmin/superadmin_shared_components/superadmin_gridTheme';
 import { SUPERADMIN_ENGAGEMENT_MOCK_ABSENTEES } from '@superadmin/superadmin_engagement/superadmin_engagement_data/SuperadminEngagementMockData';
+import { SuperadminSearchableDropdown } from '@/app/superadmin/superadmin_shared_components/SuperadminSearchableDropdown';
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
@@ -174,25 +175,31 @@ export function AbsenteeReportClient() {
       <div className="eng-card eng-card--flush eng-mb-6 p-4 border-b border-mgr-border">
         <div className="eng-filter-bar flex items-center justify-between">
           <div className="flex gap-6 items-center">
-            <div className="eng-filter-field flex flex-col">
+            <div className="eng-filter-field flex flex-col w-40">
               <span className="eng-label mb-1 text-xs font-semibold text-mgr-text-secondary">Days Threshold</span>
-              <select className="eng-select eng-filter-select py-1 px-2 border rounded" value={threshold}
-                onChange={e => setThreshold(e.target.value)}>
-                <option value="3">3+ Days</option>
-                <option value="5">5+ Days</option>
-                <option value="7">7+ Days (Critical)</option>
-                <option value="all">Show All</option>
-              </select>
+              <SuperadminSearchableDropdown
+                options={[
+                  { label: '3+ Days', value: '3' },
+                  { label: '5+ Days', value: '5' },
+                  { label: '7+ Days (Critical)', value: '7' },
+                  { label: 'Show All', value: 'all' }
+                ]}
+                value={threshold}
+                onChange={setThreshold}
+              />
             </div>
-            <div className="eng-filter-field flex flex-col">
+            <div className="eng-filter-field flex flex-col w-40">
               <span className="eng-label mb-1 text-xs font-semibold text-mgr-text-secondary">Shift</span>
-              <select className="eng-select eng-filter-select py-1 px-2 border rounded" value={shift}
-                onChange={e => setShift(e.target.value)}>
-                <option>All</option>
-                <option>Morning</option>
-                <option>Afternoon</option>
-                <option>Evening</option>
-              </select>
+              <SuperadminSearchableDropdown
+                options={[
+                  { label: 'All', value: 'All' },
+                  { label: 'Morning', value: 'Morning' },
+                  { label: 'Afternoon', value: 'Afternoon' },
+                  { label: 'Evening', value: 'Evening' }
+                ]}
+                value={shift}
+                onChange={setShift}
+              />
             </div>
           </div>
           <div className="eng-filter-badges flex gap-2">
@@ -227,8 +234,8 @@ export function AbsenteeReportClient() {
                 resizable: true
               }}
               rowClassRules={{
-                'bg-[color-mix(in_srgb,var(--mgr-danger)_5%,transparent)]': (params: unknown) => params.data.daysAbsent >= 7,
-                'bg-[color-mix(in_srgb,var(--mgr-warning)_5%,transparent)]': (params: unknown) => params.data.daysAbsent >= 3 && params.data.daysAbsent < 7
+                'bg-[color-mix(in_srgb,var(--mgr-danger)_5%,transparent)]': (params: unknown) => (params as any).data.daysAbsent >= 7,
+                'bg-[color-mix(in_srgb,var(--mgr-warning)_5%,transparent)]': (params: unknown) => (params as any).data.daysAbsent >= 3 && (params as any).data.daysAbsent < 7
               }}
             />
           </div>

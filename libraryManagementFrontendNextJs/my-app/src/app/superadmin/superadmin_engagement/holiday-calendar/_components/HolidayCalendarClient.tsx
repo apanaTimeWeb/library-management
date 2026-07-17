@@ -5,6 +5,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { ChevronRight, ChevronLeft, Plus, X, Trash2, CalendarDays } from 'lucide-react';
 import { SUPERADMIN_ENGAGEMENT_MOCK_HOLIDAYS } from '@superadmin/superadmin_engagement/superadmin_engagement_data/SuperadminEngagementMockData';
+import { SuperadminSearchableDropdown } from '@/app/superadmin/superadmin_shared_components/SuperadminSearchableDropdown';
 
 interface Holiday { id: string; date: string; name: string; type: string; }
 
@@ -83,7 +84,7 @@ export function HolidayCalendarClient() {
       {showAdd && (
         <div className="eng-overlay">
           <div className="eng-modal eng-modal--sm">
-            <button onClick={()=>setShowAdd(false)} className="eng-modal-close"><X size={16}/></button>
+            <button onClick={()=>setShowAdd(false)} className="eng-modal-close cursor-pointer"><X size={16}/></button>
             <p className="eng-modal-title">📅 Add Holiday</p>
             <p className="eng-modal-sub">Mark a library closure or holiday in the calendar.</p>
 
@@ -99,18 +100,21 @@ export function HolidayCalendarClient() {
             </div>
             <div className="eng-field">
               <label className="eng-label">Type</label>
-              <select className="eng-select" value={form.type}
-                onChange={e => setForm(f=>({...f, type:e.target.value}))}>
-                <option>National</option>
-                <option>Religious</option>
-                <option>Library</option>
-              </select>
+              <SuperadminSearchableDropdown
+                options={[
+                  { label: 'National', value: 'National' },
+                  { label: 'Religious', value: 'Religious' },
+                  { label: 'Library', value: 'Library' }
+                ]}
+                value={form.type}
+                onChange={val => setForm(f=>({...f, type:val}))}
+              />
             </div>
 
             <div className="eng-modal-footer">
-              <button onClick={()=>setShowAdd(false)} className="eng-btn eng-btn--ghost">Cancel</button>
+              <button onClick={()=>setShowAdd(false)} className="eng-btn eng-btn--ghost cursor-pointer">Cancel</button>
               <button onClick={addHoliday} disabled={!form.date||!form.name}
-                className="eng-btn eng-btn--primary">
+                className="eng-btn eng-btn--primary cursor-pointer">
                 <CalendarDays size={14}/> Add Holiday
               </button>
             </div>
@@ -133,7 +137,7 @@ export function HolidayCalendarClient() {
             <p className="eng-page-subtitle">Manage library holidays, closures, and special events.</p>
           </div>
           <div className="eng-page-actions">
-            <button onClick={()=>setShowAdd(true)} className="eng-btn eng-btn--primary">
+            <button onClick={()=>setShowAdd(true)} className="eng-btn eng-btn--primary cursor-pointer">
               <Plus size={14}/> Add Holiday
             </button>
           </div>
@@ -172,11 +176,11 @@ export function HolidayCalendarClient() {
           <div className="eng-card">
             {/* Month navigation */}
             <div className="eng-cal-nav">
-              <button onClick={prevMonth} className="eng-btn eng-btn--icon">
+              <button onClick={prevMonth} className="eng-btn eng-btn--icon cursor-pointer">
                 <ChevronLeft size={18}/>
               </button>
               <span className="eng-cal-month">{monthLabel}</span>
-              <button onClick={nextMonth} className="eng-btn eng-btn--icon">
+              <button onClick={nextMonth} className="eng-btn eng-btn--icon cursor-pointer">
                 <ChevronRight size={18}/>
               </button>
             </div>
@@ -234,7 +238,7 @@ export function HolidayCalendarClient() {
                 </div>
                 <div className="eng-card-desc">{thisMonthHolidays.length} this month</div>
               </div>
-              <button onClick={()=>setShowAdd(true)} className="eng-btn eng-btn--primary eng-btn--sm">
+              <button onClick={()=>setShowAdd(true)} className="eng-btn eng-btn--primary eng-btn--sm cursor-pointer">
                 <Plus size={13}/> Add
               </button>
             </div>
@@ -257,7 +261,7 @@ export function HolidayCalendarClient() {
                       </div>
                     </div>
                     <button onClick={()=>removeHoliday(h.id)}
-                      className="eng-btn eng-btn--icon eng-btn--icon-danger">
+                      className="eng-btn eng-btn--icon eng-btn--icon-danger cursor-pointer">
                       <Trash2 size={13}/>
                     </button>
                   </div>
@@ -282,7 +286,7 @@ export function HolidayCalendarClient() {
                         <div className="eng-holiday-date">{h.date}</div>
                       </div>
                       <button onClick={()=>removeHoliday(h.id)}
-                        className="eng-btn eng-btn--icon eng-btn--icon-danger">
+                        className="eng-btn eng-btn--icon eng-btn--icon-danger cursor-pointer">
                         <Trash2 size={11}/>
                       </button>
                     </div>

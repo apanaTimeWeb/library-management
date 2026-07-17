@@ -7,6 +7,7 @@ import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community';
 import { superadmin_gridTheme } from '@/app/superadmin/superadmin_shared_components/superadmin_gridTheme';
 import { Eye } from 'lucide-react';
 import type { SuperadminAuditLog } from '@/app/superadmin/superadmin_audit-logs/superadmin_audit_logs_types/SuperadminAuditLogsTypes';
+import { SuperadminSearchableDropdown } from '@/app/superadmin/superadmin_shared_components/SuperadminSearchableDropdown';
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
@@ -78,17 +79,19 @@ export function SuperadminAuditLogsGrid({ logs, onRowClick, actionFilter, onFilt
           onChange={e => gridRef.current?.api.setGridOption('quickFilterText', e.target.value)} 
         />
         <div className="flex items-center gap-4 ml-auto">
-          <select 
-            className="bg-bg-input border border-border rounded-[var(--radius-md)] py-2 px-3 text-sm font-medium text-text-primary focus:outline-none focus:border-primary transition-colors shadow-inner" 
-            value={actionFilter} 
-            onChange={e => onFilterChange(e.target.value)}
-          >
-            <option>All Actions</option>
-            <option>Created</option>
-            <option>Updated</option>
-            <option>Deleted</option>
-            <option>Fee_Collected</option>
-          </select>
+          <div className="w-40">
+            <SuperadminSearchableDropdown
+              options={[
+                { label: 'All Actions', value: 'All Actions' },
+                { label: 'Created', value: 'Created' },
+                { label: 'Updated', value: 'Updated' },
+                { label: 'Deleted', value: 'Deleted' },
+                { label: 'Fee_Collected', value: 'Fee_Collected' }
+              ]}
+              value={actionFilter}
+              onChange={onFilterChange}
+            />
+          </div>
           <span className="text-[11px] font-bold text-text-disabled uppercase tracking-wider">{logs.length} entries</span>
         </div>
       </div>
