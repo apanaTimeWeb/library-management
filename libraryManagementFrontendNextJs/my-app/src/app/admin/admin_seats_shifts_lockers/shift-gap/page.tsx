@@ -5,6 +5,7 @@
 import { useState } from 'react';
 import { ChevronDown, Zap } from 'lucide-react';
 import toast from 'react-hot-toast';
+import { ADMIN_SEATS_MOCK_SHIFT_GAPS, ADMIN_SEATS_MOCK_VIEW_PERIODS } from '@/app/admin/admin_seats_shifts_lockers/admin_seats_constants/AdminSeatsConstants';
 
 const DAY_START_H = 6;
 const DAY_END_H   = 23;
@@ -14,34 +15,7 @@ interface BookedBlock { startH: number; endH: number; label: string; }
 interface GapBlock    { startH: number; endH: number; seats: number; revLoss: number; }
 interface ShiftData   { id: string; name: string; occupied: number; capacity: number; booked: BookedBlock[]; gaps: GapBlock[]; }
 
-const SHIFTS: ShiftData[] = [
-  {
-    id: '1', name: 'Morning', occupied: 38, capacity: 60,
-    booked: [
-      { startH: 6,  endH: 10, label: 'Batch A (22 students)' },
-      { startH: 10, endH: 12, label: 'Batch B (16 students)' },
-    ],
-    gaps: [{ startH: 8, endH: 10, seats: 6, revLoss: 600 }],
-  },
-  {
-    id: '2', name: 'Afternoon', occupied: 18, capacity: 60,
-    booked: [
-      { startH: 12, endH: 14, label: 'Batch C (10 students)' },
-      { startH: 16, endH: 18, label: 'Batch D (8 students)'  },
-    ],
-    gaps: [{ startH: 14, endH: 16, seats: 12, revLoss: 960 }],
-  },
-  {
-    id: '3', name: 'Evening', occupied: 24, capacity: 40,
-    booked: [
-      { startH: 18, endH: 20, label: 'Batch E (14 students)' },
-      { startH: 20, endH: 22, label: 'Batch F (10 students)' },
-    ],
-    gaps: [{ startH: 19, endH: 21, seats: 8, revLoss: 800 }],
-  },
-];
 
-const VIEW_PERIODS = ['Today', 'This Week', 'This Month'];
 
 function pct(h: number) { return ((h - DAY_START_H) / TOTAL_HOURS) * 100; }
 
@@ -52,10 +26,11 @@ function fmtH(h: number) {
 }
 
 export default function ShiftGapAnalyzerPage() {
+  const [shifts, setShifts] = useState<ShiftData[]>(ADMIN_SEATS_MOCK_SHIFT_GAPS as ShiftData[]);
   const [shiftFilter, setShiftFilter] = useState('All');
   const [period, setPeriod]           = useState('Today');
 
-  const visible = shiftFilter === 'All' ? SHIFTS : SHIFTS.filter(s => s.name === shiftFilter);
+  const visible = shiftFilter === 'All' ? shifts : shifts.filter(s => s.name === shiftFilter);
 
   return (
     <>
@@ -72,13 +47,13 @@ export default function ShiftGapAnalyzerPage() {
           <div className="ss-filter-bar__select-wrap">
             <select className="ss-select" value={shiftFilter} onChange={e => setShiftFilter(e.target.value)}>
               <option value="All">All Shifts</option>
-              {SHIFTS.map(s => <option key={s.id}>{s.name}</option>)}
+              {ADMIN_SEATS_MOCK_SHIFT_GAPS.map(s => <option key={s.id}>{s.name}</option>)}
             </select>
             <ChevronDown size={14} className="ss-select-icon" />
           </div>
           <div className="ss-filter-bar__select-wrap">
             <select className="ss-select" value={period} onChange={e => setPeriod(e.target.value)}>
-              {VIEW_PERIODS.map(p => <option key={p}>{p}</option>)}
+              {ADMIN_SEATS_MOCK_VIEW_PERIODS.map(p => <option key={p}>{p}</option>)}
             </select>
             <ChevronDown size={14} className="ss-select-icon" />
           </div>

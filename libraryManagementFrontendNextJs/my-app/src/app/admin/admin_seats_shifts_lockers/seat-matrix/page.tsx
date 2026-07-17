@@ -7,6 +7,7 @@ import { fetchApi } from '@/lib/api';
 import { CalendarDays, UserPlus, User } from 'lucide-react';
 import { AdminRecord } from '@/app/admin/admin_reusable/admin_reusable_utils/AdminReusableGridTheme';
 import { logger } from '@/lib/logger';
+import { ADMIN_SEATS_MOCK_SHIFT_TABS, ADMIN_SEATS_MOCK_LEGEND_ITEMS } from '@/app/admin/admin_seats_shifts_lockers/admin_seats_constants/AdminSeatsConstants';
 
 interface SeatData {
   uuid?: string;
@@ -19,14 +20,7 @@ interface SeatData {
 }
 
 
-const SHIFT_TABS = ['All', 'Morning', 'Evening', 'Full Day'];
 
-const LEGEND_ITEMS = [
-  { cls: 'ss-legend-dot--success',     label: 'Free' },
-  { cls: 'ss-legend-dot--danger',      label: 'Occupied' },
-  { cls: 'ss-legend-dot--warning',     label: 'Expiring ≤7 days' },
-  { cls: 'ss-legend-dot--maintenance', label: 'Maintenance' },
-];
 
 const SHIFT_BADGE: Record<string, string> = {
   Morning:  'ss-badge ss-badge--primary',
@@ -61,7 +55,7 @@ export default function SeatMatrixPage() {
       {/* Filter bar */}
       <div className="ss-matrix-filter-bar">
         <div className="ss-tab-group">
-          {SHIFT_TABS.map(tab => (
+          {ADMIN_SEATS_MOCK_SHIFT_TABS.map((tab) => (
             <button
               key={tab}
               onClick={() => setActiveTab(tab)}
@@ -84,7 +78,7 @@ export default function SeatMatrixPage() {
 
       {/* Legend */}
       <div className="ss-legend-card">
-        {LEGEND_ITEMS.map(({ cls, label }) => (
+        {ADMIN_SEATS_MOCK_LEGEND_ITEMS.map(({ cls, label }) => (
           <div key={label} className="ss-legend-item">
             <span className={`ss-legend-dot ${cls}`} />
             <span className="ss-legend-label">{label}</span>

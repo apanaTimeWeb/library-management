@@ -12,15 +12,9 @@ import {
   Settings, Palette, AlertCircle, Zap, CreditCard, Bell, Globe,
   Upload, Eye, EyeOff, Save, ChevronRight
 } from 'lucide-react';
+import { ADMIN_SYSTEM_SETTINGS_CATEGORIES } from '@/app/admin/admin_system/admin_system_constants/AdminSystemConstants';
 
-const CATEGORIES = [
-  { id: 'branding',     label: 'Branding',         icon: Palette     },
-  { id: 'late-fee',     label: 'Late Fee Rules',    icon: AlertCircle },
-  { id: 'auto-suspend', label: 'Auto-Suspend Rules',icon: Zap         },
-  { id: 'upi',          label: 'UPI / Payment',     icon: CreditCard  },
-  { id: 'notifications',label: 'Notifications',     icon: Bell        },
-  { id: 'general',      label: 'General',           icon: Globe       },
-];
+
 
 function readToken(token: string) {
   if (typeof window === 'undefined') return '';
@@ -28,6 +22,14 @@ function readToken(token: string) {
 }
 
 export default function SettingsPage() {
+  const ICON_MAP: Record<string, any> = {
+    'Palette': Palette,
+    'AlertCircle': AlertCircle,
+    'Zap': Zap,
+    'CreditCard': CreditCard,
+    'Bell': Bell,
+    'Globe': Globe
+  };
   const [active, setActive] = useState('branding');
   const [showApiKey, setShowApiKey] = useState(false);
   const [saved, setSaved] = useState(false);
@@ -84,12 +86,6 @@ export default function SettingsPage() {
         {/* Left sidebar nav */}
         <aside className="w-52 shrink-0">
           <nav className="flex flex-col gap-1">
-            {CATEGORIES.map(({ id, label, icon: Icon }) => (
-              <button
-                key={id}
-                id={`settings-nav-${id}`}
-                onClick={() => setActive(id)}
-                className={`flex items-center gap-3 rounded-xl px-4 py-2.5 text-sm font-medium transition-all duration-150 text-left ${
                   active === id
                     ? 'bg-primary/15 text-primary border border-primary/20'
                     : 'text-on-surface-variant hover:bg-surface-container hover:text-on-surface'

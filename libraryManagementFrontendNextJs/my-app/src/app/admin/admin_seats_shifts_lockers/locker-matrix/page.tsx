@@ -7,23 +7,18 @@ import { User, KeyRound, LockKeyhole, Settings } from 'lucide-react';
 import type { ReactNode } from 'react';
 import toast from 'react-hot-toast';
 import { fetchApi } from '@/lib/api';
-import { AdminRecord } from '@/app/admin/admin_reusable/admin_reusable_utils/AdminReusableGridTheme';
 import { logger } from '@/lib/logger';
+import {
+  ADMIN_SEATS_MOCK_LOCKER_STATS,
+  ADMIN_SEATS_MOCK_LOCKER_LEGEND,
+  ADMIN_SEATS_MOCK_LOCKER_ACTIVITY
+} from '@/app/admin/admin_seats_shifts_lockers/admin_seats_constants/AdminSeatsConstants';
 
 
 
-const STATS: { label: string; value: string; border: string; valueClass: string }[] = [
-  { label: 'Total Capacity',   value: '120', border: 'ss-kpi-card__border-primary', valueClass: 'ss-kpi-card__value--primary' },
-  { label: 'Available',        value: '42',  border: 'ss-kpi-card__border-success', valueClass: 'ss-kpi-card__value--success' },
-  { label: 'Occupied',         value: '71',  border: 'ss-kpi-card__border-danger',  valueClass: 'ss-kpi-card__value--danger'  },
-  { label: 'Service Required', value: '07',  border: 'ss-kpi-card__border-warning', valueClass: 'ss-kpi-card__value--warning' },
-];
 
-const LEGEND_ITEMS = [
-  { cls: 'ss-legend-dot--success', label: 'Free' },
-  { cls: 'ss-legend-dot--danger',  label: 'Occupied' },
-  { cls: 'ss-legend-dot--warning', label: 'Maintenance' },
-];
+
+
 
 interface ActivityItem {
   icon: ReactNode;
@@ -32,10 +27,7 @@ interface ActivityItem {
   id: string;
 }
 
-const ACTIVITY: ActivityItem[] = [
-  { icon: <User size={16} />,     text: 'Locker C10 assigned to Alex Chen',  sub: '2 mins ago • Monthly Plan', id: '#99201' },
-  { icon: <KeyRound size={16} />, text: 'Locker B08 released by Maria V.',   sub: '15 mins ago • Session End', id: '#99198' },
-];
+
 
 export default function LockerMatrixPage() {
   const [assignTarget, setAssignTarget] = useState<string | null>(null);
@@ -73,7 +65,7 @@ export default function LockerMatrixPage() {
         {/* Compact Legend */}
         <div className="ss-card ss-card--p-sm">
           <div className="ss-legend-compact">
-            {LEGEND_ITEMS.map(({ cls, label }) => (
+            {ADMIN_SEATS_MOCK_LOCKER_LEGEND.map(({ cls, label }) => (
               <div key={label} className="ss-legend-item">
                 <span className={`ss-legend-dot ${cls}`} />
                 <span className="ss-legend-label">{label}</span>
@@ -85,7 +77,7 @@ export default function LockerMatrixPage() {
 
       {/* Stats */}
       <div className="ss-locker-stats">
-        {STATS.map(({ label, value, border, valueClass }) => (
+        {ADMIN_SEATS_MOCK_LOCKER_STATS.map(({ label, value, border, valueClass }) => (
           <div key={label} className={`ss-kpi-card ${border}`}>
             <span className="ss-kpi-card__label">{label}</span>
             <span className={`ss-kpi-card__value ${valueClass}`}>{value}</span>
@@ -119,13 +111,13 @@ export default function LockerMatrixPage() {
             <button className="ss-btn-ghost ss-btn--sm">View All</button>
           </div>
           <div className="ss-activity-list">
-            {ACTIVITY.map(({ icon, text, sub, id }) => (
-              <div key={id} className="ss-activity-row">
+            {ADMIN_SEATS_MOCK_LOCKER_ACTIVITY.map((a) => (
+              <div key={a.id} className="ss-activity-row">
                 <div className="ss-activity-row__left">
-                  <div className="ss-activity-icon">{icon}</div>
+                  <div className="ss-activity-icon">{a.icon}</div>
                   <div>
-                    <p className="ss-activity-title">{text}</p>
-                    <p className="ss-activity-sub">{sub}</p>
+                    <p className="ss-activity-title">{a.text}</p>
+                    <p className="ss-activity-sub">{a.sub}</p>
                   </div>
                 </div>
                 <span className="ss-activity-id ss-text-mono">{id}</span>

@@ -7,6 +7,7 @@ import { fetchApi } from '@/lib/api';
 import { logger } from '@/lib/logger';
 import { ChevronRight, Plus, X, Eye, RefreshCw, CheckCircle } from 'lucide-react';
 import { AdminRecord } from '@/app/admin/admin_reusable/admin_reusable_utils/AdminReusableGridTheme';
+import { ADMIN_COMMUNICATION_MOCK_COMPLAINTS, ADMIN_COMMUNICATION_COMPLAINTS_TABS } from '@/app/admin/admin_communication/admin_communication_constants/AdminCommunicationConstants';
 
 type CStatus = 'Open' | 'In-Progress' | 'Resolved';
 
@@ -16,18 +17,11 @@ interface Complaint {
   resolvedBy: string; resolvedDate: string; resolvedNote: string;
 }
 
-const INIT: Complaint[] = [
-  { id: '1', title: 'AC not cooling',     student: 'Rahul Sharma', isAnonymous: false, description: 'The AC in Zone A has not been cooling properly for the past 3 days. Very uncomfortable to study.', status: 'Open',        date: '2026-04-10', resolvedBy: '—', resolvedDate: '—', resolvedNote: '' },
-  { id: '2', title: 'WiFi very slow',     student: 'Anonymous',    isAnonymous: true,  description: 'Internet speed is extremely slow during evening hours. Cannot load study materials.',              status: 'In-Progress', date: '2026-04-09', resolvedBy: 'Admin', resolvedDate: '—', resolvedNote: '' },
-  { id: '3', title: 'Locker door broken', student: 'Priya Verma',  isAnonymous: false, description: 'Locker door hinge is broken. Cannot lock properly.',                                               status: 'Resolved',    date: '2026-04-07', resolvedBy: 'Staff Ravi', resolvedDate: '2026-04-08', resolvedNote: 'Hinge replaced.' },
-  { id: '4', title: 'Noise from outside', student: 'Anonymous',    isAnonymous: true,  description: 'Construction noise from outside is very disturbing during morning hours.',                         status: 'Open',        date: '2026-04-11', resolvedBy: '—', resolvedDate: '—', resolvedNote: '' },
-];
 
-const TABS: (CStatus | 'All')[] = ['All', 'Open', 'In-Progress', 'Resolved'];
 
 export default function ComplaintsPage() {
   const [tab, setTab]                   = useState<CStatus | 'All'>('All');
-  const [complaints, setComplaints]     = useState<Complaint[]>(INIT);
+  const [complaints, setComplaints]     = useState<Complaint[]>(ADMIN_COMMUNICATION_MOCK_COMPLAINTS as Complaint[]);
   const [showAdd, setShowAdd]           = useState(false);
   const [viewItem, setViewItem]         = useState<Complaint | null>(null);
   const [resolveItem, setResolveItem]   = useState<Complaint | null>(null);
@@ -205,8 +199,8 @@ export default function ComplaintsPage() {
 
       {/* Filter Tabs */}
       <div className="eng-tabs eng-tabs-inline mb-6">
-        {TABS.map(t => (
-          <button key={t} onClick={() => setTab(t)} className={`eng-tab${tab === t ? ' eng-tab--active' : ''}`}>
+        {ADMIN_COMMUNICATION_COMPLAINTS_TABS.map(t => (
+          <button key={t} onClick={() => setTab(t as any)} className={`eng-tab${tab === t ? ' eng-tab--active' : ''}`}>
             {t}
           </button>
         ))}

@@ -4,25 +4,16 @@
 
 import { useState, useRef } from 'react';
 import { ChevronRight, X, Send, Save } from 'lucide-react';
+import { ADMIN_COMMUNICATION_WHATSAPP_VARS, ADMIN_COMMUNICATION_WHATSAPP_TEMPLATES } from '@/app/admin/admin_communication/admin_communication_constants/AdminCommunicationConstants';
 
 interface Template { id: string; label: string; icon: string; body: string; }
 
-const VARS = ['{name}', '{amount}', '{duedate}', '{planname}', '{libraryname}', '{phone}', '{seat}'];
 
-const INIT: Template[] = [
-  { id: 'welcome',      label: 'Welcome Message',      icon: '👋', body: 'Welcome to {libraryname}, {name}! Your seat {seat} is confirmed. We wish you a productive study journey. — Smart Library Team' },
-  { id: 'fee_reminder', label: 'Fee Reminder',          icon: '💰', body: 'Hi {name}, your fee of ₹{amount} is due on {duedate}. Please pay on time to avoid late charges. — {libraryname}' },
-  { id: 'renewal',      label: 'Renewal Alert',         icon: '🔁', body: 'Hi {name}, your {planname} subscription expires in 3 days. Renew now to continue uninterrupted access. — {libraryname}' },
-  { id: 'receipt',      label: 'Payment Receipt',       icon: '🧾', body: 'Dear {name}, your payment of ₹{amount} has been received. Thank you! Contact us at {phone} for queries. — {libraryname}' },
-  { id: 'notice',       label: 'Notice Broadcast',      icon: '📢', body: 'Important Notice from {libraryname}: Dear {name}, please note the following update from the library management.' },
-  { id: 'absentee',     label: 'Absentee Parent Alert', icon: '📅', body: 'Dear Parent, your ward {name} (Seat: {seat}) has been absent for multiple consecutive days. Please contact {libraryname} at {phone}.' },
-  { id: 'ptp',          label: 'PTP Payment Reminder',  icon: '🤝', body: 'Hi {name}, this is a reminder that you had committed to pay ₹{amount} by {duedate}. Please complete your payment. — {libraryname}' },
-];
 
 const MAX_CHARS = 1024;
 
 export default function WhatsappTemplatesPage() {
-  const [templates, setTemplates] = useState<Template[]>(INIT);
+  const [templates, setTemplates] = useState<Template[]>(ADMIN_COMMUNICATION_WHATSAPP_TEMPLATES);
   const [activeId, setActiveId]   = useState('welcome');
   const [saved, setSaved]         = useState(false);
   const [showTest, setShowTest]   = useState(false);
@@ -140,7 +131,7 @@ export default function WhatsappTemplatesPage() {
           <div className="eng-tpl-section">
             <label className="eng-label">Insert Variable</label>
             <div className="eng-tpl-var-row">
-              {VARS.map(v => (
+              {ADMIN_COMMUNICATION_WHATSAPP_VARS.map(v => (
                 <button key={v} onClick={() => insertVar(v)} className="eng-var-chip">{v}</button>
               ))}
             </div>

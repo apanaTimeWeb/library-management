@@ -11,16 +11,10 @@ import {
   DialogTitle, DialogDescription, DialogClose
 } from '@/app/admin/admin_system/admin_system_components/AdminSystemDialog/AdminSystemDialog';
 import { Hash, ChevronRight, ArrowRight, AlertTriangle } from 'lucide-react';
+import { ADMIN_SYSTEM_SMART_ID_ACTIVE_IDS, ADMIN_SYSTEM_SMART_ID_FLOW_STEPS } from '@/app/admin/admin_system/admin_system_constants/AdminSystemConstants';
 
-const ACTIVE_IDS = [1, 2, 4, 5, 6, 9, 10, 11, 12, 15, 16, 17, 18, 19, 20];
 const ALL_IDS = Array.from({ length: 20 }, (_, i) => i + 1);
-const GAP_IDS = ALL_IDS.filter(id => !ACTIVE_IDS.includes(id));
-
-const FLOW_STEPS = [
-  { step: '1', icon: '🚪', title: 'Student Exits', desc: 'ID freed — student moved to alumni archive' },
-  { step: '2', icon: '🔍', title: 'System Scans', desc: 'Checks for lowest available gap ID in the sequence' },
-  { step: '3', icon: '🎯', title: 'Gap ID Assigned', desc: 'New student gets freed ID — records stay compact & serial' },
-];
+const GAP_IDS = ALL_IDS.filter(id => !ADMIN_SYSTEM_SMART_ID_ACTIVE_IDS.includes(id));
 
 export default function SmartIdPage() {
   const [confirmed, setConfirmed] = useState(false);
@@ -43,7 +37,9 @@ export default function SmartIdPage() {
           <Hash size={28} className="text-primary" />
           Smart ID Auto-Fill
         </h1>
-        <p className="text-on-surface-variant mt-1 text-sm">Intelligent ID gap detection keeps student records compact and serial.</p>
+        <p className="text-on-surface-variant mt-1 text-sm">
+          <span className="text-on-surface-variant text-sm mt-1">{ADMIN_SYSTEM_SMART_ID_ACTIVE_IDS.length} of 20 used</span> keeps student records compact and serial.
+        </p>
       </div>
 
       {/* Algorithm Explanation */}
@@ -54,7 +50,7 @@ export default function SmartIdPage() {
         </CardHeader>
         <CardContent>
           <div className="flex flex-col md:flex-row items-center gap-4">
-            {FLOW_STEPS.map((step, i) => (
+            {ADMIN_SYSTEM_SMART_ID_FLOW_STEPS.map((step, i) => (
               <div key={step.step} className="flex items-center gap-4 flex-1">
                 <div className="flex flex-col items-center gap-2 flex-1">
                   <div className="h-14 w-14 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center text-2xl">
@@ -66,7 +62,7 @@ export default function SmartIdPage() {
                     <p className="text-xs text-on-surface-variant mt-1 max-w-[160px]">{step.desc}</p>
                   </div>
                 </div>
-                {i < FLOW_STEPS.length - 1 && (
+                {i < ADMIN_SYSTEM_SMART_ID_FLOW_STEPS.length - 1 && (
                   <ArrowRight size={20} className="text-primary/40 shrink-0 hidden md:block" />
                 )}
               </div>
@@ -90,7 +86,8 @@ export default function SmartIdPage() {
         <CardContent>
           <div className="flex flex-wrap gap-2 mb-4">
             {ALL_IDS.map(id => {
-              const isGap = GAP_IDS.includes(id);
+              const isActive = ADMIN_SYSTEM_SMART_ID_ACTIVE_IDS.includes(id);
+              const isGap = !isActive;
               return (
                 <span
                   key={id}

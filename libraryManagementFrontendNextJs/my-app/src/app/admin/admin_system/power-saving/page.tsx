@@ -11,19 +11,9 @@ import { Switch } from '@/app/admin/admin_system/admin_system_components/AdminSy
 import { Badge } from '@/app/admin/admin_system/admin_system_components/AdminSystemBadge/AdminSystemBadge';
 import { Progress } from '@/app/admin/admin_system/admin_system_components/AdminSystemProgress/AdminSystemProgress';
 import { Zap, ChevronRight } from 'lucide-react';
+import { ADMIN_SYSTEM_MOCK_POWER_ZONES, ADMIN_SYSTEM_MOCK_POWER_ALERTS } from '@/app/admin/admin_system/admin_system_constants/AdminSystemConstants';
 
-const ZONES = [
-  { name: 'Zone A (Ground Floor)', occupancy: 78, capacity: 40, current: 31 },
-  { name: 'Zone B (First Floor)', occupancy: 22, capacity: 35, current: 8 },
-  { name: 'Zone C (Reading Hall)', occupancy: 91, capacity: 60, current: 55 },
-  { name: 'Zone D (Silent Room)', occupancy: 15, capacity: 20, current: 3 },
-];
 
-const ALERT_LOG = [
-  { date: '2026-04-10', shift: 'Evening', zone: 'Zone B', threshold: '30%', action: 'Advisory sent to manager' },
-  { date: '2026-04-09', shift: 'Afternoon', zone: 'Zone D', threshold: '30%', action: 'AC shutdown suggested' },
-  { date: '2026-04-07', shift: 'Morning', zone: 'Zone B', threshold: '30%', action: 'Advisory sent to manager' },
-];
 
 export default function PowerSavingPage() {
   const [threshold, setThreshold] = useState(30);
@@ -88,7 +78,7 @@ export default function PowerSavingPage() {
 
       {/* Zone Status Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-        {ZONES.map(zone => {
+        {ADMIN_SYSTEM_MOCK_POWER_ZONES.map((zone, i) => {
           const status = getZoneStatus(zone.occupancy);
           const isLow = zone.occupancy < threshold;
           return (
@@ -138,13 +128,13 @@ export default function PowerSavingPage() {
                 </tr>
               </thead>
               <tbody className="divide-y divide-outline-variant/30">
-                {ALERT_LOG.map((log, i) => (
+                {ADMIN_SYSTEM_MOCK_POWER_ALERTS.map((alert, i) => (
                   <tr key={i} className="hover:bg-surface-container-high transition-colors">
-                    <td className="py-3 pr-4 text-on-surface-variant">{log.date}</td>
-                    <td className="py-3 pr-4 text-on-surface">{log.shift}</td>
-                    <td className="py-3 pr-4 text-on-surface">{log.zone}</td>
-                    <td className="py-3 pr-4"><Badge variant="warning">&lt; {log.threshold}</Badge></td>
-                    <td className="py-3 text-on-surface-variant">{log.action}</td>
+                    <td className="py-3 pr-4 text-on-surface-variant">{alert.date}</td>
+                    <td className="py-3 pr-4 text-on-surface">{alert.shift}</td>
+                    <td className="py-3 pr-4 text-on-surface">{alert.zone}</td>
+                    <td className="py-3 pr-4"><Badge variant="warning">&lt; {alert.threshold}</Badge></td>
+                    <td className="py-3 text-on-surface-variant">{alert.action}</td>
                   </tr>
                 ))}
               </tbody>

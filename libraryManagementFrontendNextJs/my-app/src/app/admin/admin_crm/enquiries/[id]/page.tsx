@@ -28,12 +28,12 @@ import {
   markLostSchema,
   type MarkLostFormData,
 } from '@/app/admin/admin_crm/admin_crm_components/AdminCrmschema/AdminCrmschema';
+import { ADMIN_CRM_ENQUIRIES_STATUS_OPTIONS } from '@/app/admin/admin_crm/admin_crm_constants/AdminCrmConstants';
 
 // Rule 44: FetchState enum — no boolean loading flags
 type FetchState = 'idle' | 'loading' | 'success' | 'error';
 
-// Rule 35: no magic strings for status options
-const STATUS_OPTIONS: EnquiryStatus[] = ['New', 'Visited', 'Interested', 'Converted', 'Lost'];
+
 
 function timelineDotClass(by: string): string {
   if (by === 'System') return 'crm-timeline-dot--system';
@@ -376,7 +376,7 @@ export default function AdminCrmEnquiryDetailPage({ params }: { params: Promise<
                     value={currentStatus}
                     onChange={(e) => setCurrentStatus(e.target.value as EnquiryStatus)}
                   >
-                    {STATUS_OPTIONS.map((s) => <option key={s} value={s}>{s}</option>)}
+                    {ADMIN_CRM_ENQUIRIES_STATUS_OPTIONS.map(opt => (<option key={opt} value={opt}>{opt}</option>))}
                   </select>
                 </div>
                 <button

@@ -7,17 +7,12 @@ import { useState, useEffect } from 'react';
 
 import toast from 'react-hot-toast';
 import { Settings, Ban, RotateCcw, Bell, Save, UserCheck, ShieldAlert } from 'lucide-react';
+import { ADMIN_FINANCE_MOCK_CONFIG, ADMIN_FINANCE_MOCK_SUSPENDED } from '@/app/admin/admin_finance/admin_finance_constants/AdminFinanceConstants';
 
 type Config = { daysBeforeSuspend: number; currentlySuspended: number; autoRestoredThisMonth: number; manualRestores: number };
 type SuspendedStudent = { id: number; studentId: number; studentName: string; smartId: string; seat: string; shift: string; daysOverdue: number; suspendedSince: string };
 
-const MOCK_CONFIG: Config = { daysBeforeSuspend: 7, currentlySuspended: 4, autoRestoredThisMonth: 2, manualRestores: 1 };
-const MOCK_SUSPENDED: SuspendedStudent[] = [
-  { id: 1, studentId: 101, studentName: 'Rahul Kumar',  smartId: 'STU101', seat: 'A-12', shift: 'Morning',  daysOverdue: 14, suspendedSince: '2026-03-28' },
-  { id: 2, studentId: 102, studentName: 'Priya Singh',  smartId: 'STU102', seat: 'B-05', shift: 'Evening',  daysOverdue: 9,  suspendedSince: '2026-04-02' },
-  { id: 3, studentId: 103, studentName: 'Aman Verma',   smartId: 'STU103', seat: 'C-18', shift: 'Full Day', daysOverdue: 21, suspendedSince: '2026-03-21' },
-  { id: 4, studentId: 104, studentName: 'Sneha Patel',  smartId: 'STU104', seat: 'A-07', shift: 'Morning',  daysOverdue: 8,  suspendedSince: '2026-04-03' },
-];
+
 
 export default function AutoSuspend() {
   const [config, setConfig] = useState<Config | null>(null);
@@ -32,8 +27,8 @@ export default function AutoSuspend() {
   const [restorePending, setRestorePending] = useState(false);
 
   useEffect(() => {
-    const t1 = setTimeout(() => { setConfig(MOCK_CONFIG); setConfigLoading(false); }, 500);
-    const t2 = setTimeout(() => { setSuspended(MOCK_SUSPENDED); setSuspendedLoading(false); }, 700);
+    const t1 = setTimeout(() => { setConfig(ADMIN_FINANCE_MOCK_CONFIG); setConfigLoading(false); }, 500);
+    const t2 = setTimeout(() => { setSuspended(ADMIN_FINANCE_MOCK_SUSPENDED as SuspendedStudent[]); setSuspendedLoading(false); }, 700);
     return () => { clearTimeout(t1); clearTimeout(t2); };
   }, []);
 

@@ -5,18 +5,11 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { ChevronRight, ChevronLeft, Plus, X, Trash2, CalendarDays } from 'lucide-react';
+import { ADMIN_ENGAGEMENT_MOCK_HOLIDAYS, ADMIN_ENGAGEMENT_WEEK_DAYS } from '@/app/admin/admin_engagement/admin_engagement_constants/AdminEngagementConstants';
 
 interface Holiday { id: string; date: string; name: string; type: string; }
 
-const INIT_HOLIDAYS: Holiday[] = [
-  { id:'1', date:'2026-04-14', name:'Dr. Ambedkar Jayanti',      type:'National'  },
-  { id:'2', date:'2026-04-21', name:'Ram Navami',                type:'Religious' },
-  { id:'3', date:'2026-05-01', name:'International Labour Day',  type:'National'  },
-  { id:'4', date:'2026-08-15', name:'Independence Day',          type:'National'  },
-  { id:'5', date:'2026-10-02', name:'Gandhi Jayanti',            type:'National'  },
-];
 
-const WEEK_DAYS = ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
 
 function getDays(y:number, m:number) { return new Date(y, m+1, 0).getDate(); }
 function getFirstDayIdx(y:number, m:number) { const d=new Date(y,m,1).getDay(); return d===0?6:d-1; }
@@ -31,7 +24,7 @@ export default function HolidayCalendarPage() {
   const now = new Date();
   const [year, setYear]         = useState(now.getFullYear());
   const [month, setMonth]       = useState(now.getMonth());
-  const [holidays, setHolidays] = useState<Holiday[]>(INIT_HOLIDAYS);
+  const [holidays, setHolidays] = useState<Holiday[]>(ADMIN_ENGAGEMENT_MOCK_HOLIDAYS);
   const [showAdd, setShowAdd]   = useState(false);
   const [form, setForm]         = useState({ date:'', name:'', type:'National' });
   const [toast, setToast]       = useState('');
@@ -189,7 +182,7 @@ export default function HolidayCalendarPage() {
 
             {/* Day headers */}
             <div className="eng-cal-grid eng-cal-mb-2">
-              {WEEK_DAYS.map(d => (
+              {ADMIN_ENGAGEMENT_WEEK_DAYS.map(d => (
                 <div key={d} className="eng-cal-day-hdr">{d}</div>
               ))}
             </div>

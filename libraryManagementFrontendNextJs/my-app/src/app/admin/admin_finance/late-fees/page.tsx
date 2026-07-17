@@ -10,6 +10,7 @@ import toast from 'react-hot-toast';
 import { formatCurrency } from '@/app/admin/admin_finance/admin_finance_utils/format';
 import { Settings, AlertTriangle, Save, MessageSquare } from 'lucide-react';
 import { openWhatsApp } from '@/lib/whatsappUtils';
+import { ADMIN_FINANCE_MOCK_LATE_FEES_CONFIG, ADMIN_FINANCE_MOCK_LATE_FEES_OVERDUE } from '@/app/admin/admin_finance/admin_finance_constants/AdminFinanceConstants';
 
 type Config = { gracePeriodDays: number; penaltyPerDay: number };
 type OverdueStudent = {
@@ -23,12 +24,7 @@ type OverdueStudent = {
   totalDue: number;
 };
 
-const INIT_CONFIG: Config = { gracePeriodDays: 5, penaltyPerDay: 50 };
-const INIT_OVERDUE: OverdueStudent[] = [
-  { studentId: 'STU101', studentName: 'Rahul Kumar', smartId: 'STU101', phone: '8084350824', dueDate: '2026-04-05', daysOverdue: 6,  accruedFee: 300, totalDue: 45300 },
-  { studentId: 'STU102', studentName: 'Priya Singh', smartId: 'STU102', phone: '8084350824', dueDate: '2026-04-01', daysOverdue: 10, accruedFee: 500, totalDue: 30500 },
-  { studentId: 'STU103', studentName: 'Aman Verma',  smartId: 'STU103', phone: '8084350824', dueDate: '2026-03-28', daysOverdue: 14, accruedFee: 700, totalDue: 60700 },
-];
+
 
 export default function LateFees() {
   const router = useRouter();
@@ -41,7 +37,7 @@ export default function LateFees() {
   const [isSaving, setIsSaving] = useState(false);
 
   useEffect(() => {
-    const t = setTimeout(() => { setConfig(INIT_CONFIG); setOverdue(INIT_OVERDUE); setIsLoading(false); }, 700);
+    const t = setTimeout(() => { setConfig(ADMIN_FINANCE_MOCK_LATE_FEES_CONFIG); setOverdue(ADMIN_FINANCE_MOCK_LATE_FEES_OVERDUE); setIsLoading(false); }, 700);
     return () => clearTimeout(t);
   }, []);
 

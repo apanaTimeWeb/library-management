@@ -9,6 +9,7 @@ import {
   TrendingUp, TrendingDown, IndianRupee, Receipt, AlertTriangle, RefreshCw,
 } from 'lucide-react';
 import { formatCurrency } from '@/app/admin/admin_finance/admin_finance_utils/format';
+import { ADMIN_FINANCE_MOCK_DASHBOARD_STATS, ADMIN_FINANCE_MOCK_RECENT_PAYMENTS } from '@/app/admin/admin_finance/admin_finance_constants/AdminFinanceConstants';
 
 interface DashboardStats {
   totalCollections: number; collectionsGrowth: number; activeStudents: number;
@@ -21,18 +22,6 @@ interface RecentPayment {
   amount: number; mode: string; date: string;
 }
 
-const MOCK_STATS: DashboardStats = {
-  totalCollections: 44880, collectionsGrowth: 12.5, activeStudents: 12,
-  expiringSoon: 3, suspended: 2, totalReferrals: 6, depositsHeld: 16000,
-  pendingPromises: 2, overdueStudents: 3, pendingRefunds: 18, renewalsDue: 4, lateFeeAccrued: 1500,
-};
-const MOCK_RECENT_PAYMENTS: RecentPayment[] = [
-  { id: 1, studentName: 'Aarav Sharma',  studentSmartId: 'STU001', amount: 1499, mode: 'cash', date: '2026-04-01' },
-  { id: 2, studentName: 'Priya Patel',   studentSmartId: 'STU002', amount: 1049, mode: 'upi',  date: '2026-04-02' },
-  { id: 3, studentName: 'Ananya Singh',  studentSmartId: 'STU004', amount: 1499, mode: 'bank', date: '2026-04-05' },
-  { id: 4, studentName: 'Vikram Rao',    studentSmartId: 'STU005', amount: 1149, mode: 'cash', date: '2026-04-06' },
-  { id: 5, studentName: 'Sneha Gupta',   studentSmartId: 'STU006', amount: 2199, mode: 'upi',  date: '2026-04-08' },
-];
 
 export default function DashboardPage() {
   const [stats, setStats] = useState<DashboardStats | null>(null);
@@ -40,7 +29,7 @@ export default function DashboardPage() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const t = setTimeout(() => { setStats(MOCK_STATS); setRecentPayments(MOCK_RECENT_PAYMENTS); setIsLoading(false); }, 600);
+    const t = setTimeout(() => { setStats(ADMIN_FINANCE_MOCK_DASHBOARD_STATS as DashboardStats); setRecentPayments(ADMIN_FINANCE_MOCK_RECENT_PAYMENTS); setIsLoading(false); }, 600);
     return () => clearTimeout(t);
   }, []);
 

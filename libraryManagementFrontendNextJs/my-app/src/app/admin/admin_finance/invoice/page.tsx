@@ -8,14 +8,9 @@ import { formatCurrency, formatDate } from '@/app/admin/admin_finance/admin_fina
 import { Search, FileText, Printer, Download, Eye, Send } from 'lucide-react';
 import { openWhatsApp } from '@/lib/whatsappUtils';
 import { printThermal } from '@/lib/thermalPrint';
+import { ADMIN_FINANCE_MOCK_INVOICES } from '@/app/admin/admin_finance/admin_finance_constants/AdminFinanceConstants';
 
-const MOCK_INVOICES = [
-  { id: '1', invoiceNumber: 'INV-20260411-001', studentName: 'Gajodhar Prasad', studentId: 'STU-001234', phone: '9876543210', invoiceDate: '2026-04-11T00:00:00Z', grandTotal: 1716, paymentStatus: 'paid',    paymentMode: 'UPI',          planName: 'Annual Library Membership',       shift: 'Evening', seat: 'B-05' },
-  { id: '2', invoiceNumber: 'INV-20260410-002', studentName: 'Aravind Sharma',  studentId: 'STU-002567', phone: '8765432109', invoiceDate: '2026-04-10T00:00:00Z', grandTotal: 1200, paymentStatus: 'paid',    paymentMode: 'Cash',         planName: 'Monthly Basic Plan',              shift: 'Morning', seat: 'A-01' },
-  { id: '3', invoiceNumber: 'INV-20260409-003', studentName: 'Priya Nair',      studentId: 'STU-003891', phone: '7654321098', invoiceDate: '2026-04-09T00:00:00Z', grandTotal: 2400, paymentStatus: 'pending', paymentMode: 'Bank Transfer', planName: 'Quarterly Premium Plan',          shift: 'Full Day','seat': 'A-05' },
-  { id: '4', invoiceNumber: 'INV-20260408-004', studentName: 'Rohan Khanna',    studentId: 'STU-004312', phone: '6543210987', invoiceDate: '2026-04-08T00:00:00Z', grandTotal: 900,  paymentStatus: 'paid',    paymentMode: 'Card',         planName: 'Monthly Basic Plan',              shift: 'Morning', seat: 'D-10' },
-  { id: '5', invoiceNumber: 'INV-20260407-005', studentName: 'Sara Mishra',     studentId: 'STU-005678', phone: '5432109876', invoiceDate: '2026-04-07T00:00:00Z', grandTotal: 1500, paymentStatus: 'overdue', paymentMode: '',             planName: 'Half-Yearly Plan',                shift: 'Night',   seat: 'C-12' },
-];
+
 
 const STATUS_BADGE: Record<string, string> = {
   paid: 'fin-badge fin-badge--success', pending: 'fin-badge fin-badge--warning', overdue: 'fin-badge fin-badge--danger',
@@ -27,7 +22,7 @@ export default function InvoicesPage() {
   const [search, setSearch]           = useState('');
   const [statusFilter, setStatusFilter] = useState<FilterStatus>('all');
 
-  const filtered = MOCK_INVOICES.filter(inv => {
+  const filtered = ADMIN_FINANCE_MOCK_INVOICES.filter(inv => {
     const ms = !search || inv.studentName.toLowerCase().includes(search.toLowerCase()) ||
       inv.invoiceNumber.toLowerCase().includes(search.toLowerCase()) ||
       inv.studentId.toLowerCase().includes(search.toLowerCase());
@@ -35,7 +30,7 @@ export default function InvoicesPage() {
     return ms && mst;
   });
 
-  function handleWhatsApp(inv: typeof MOCK_INVOICES[0]) {
+  function handleWhatsApp(inv: typeof ADMIN_FINANCE_MOCK_INVOICES[0]) {
     const W = 42;
     const line = '─'.repeat(W);
     const c = (t: string) => ' '.repeat(Math.max(0, Math.floor((W - t.length) / 2))) + t;

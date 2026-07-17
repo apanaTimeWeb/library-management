@@ -4,15 +4,9 @@
 
 import { useEffect, useState } from 'react';
 import { WifiOff, RefreshCw, CheckCircle, XCircle } from 'lucide-react';
+import { ADMIN_SYSTEM_OFFLINE_FEATURES } from '@/app/admin/admin_system/admin_system_constants/AdminSystemConstants';
 
-const FEATURES = [
-  { available: true,  text: 'Mark attendance (syncs when online)' },
-  { available: true,  text: 'View student basic info (cached)' },
-  { available: true,  text: 'View seat matrix (read-only)' },
-  { available: false, text: 'Financial transactions require internet' },
-  { available: false, text: 'WhatsApp messages require internet' },
-  { available: false, text: 'Fee collection requires internet' },
-];
+
 
 export default function OfflinePage() {
   const [dots, setDots]         = useState('');
@@ -82,7 +76,7 @@ export default function OfflinePage() {
         {/* Feature list */}
         {!online && (
           <div className="sys-offline-feature-list">
-            {FEATURES.map((f, i) => (
+            {ADMIN_SYSTEM_OFFLINE_FEATURES.map((f, i) => (
               <div
                 key={i}
                 className={`sys-offline-feature-item ${

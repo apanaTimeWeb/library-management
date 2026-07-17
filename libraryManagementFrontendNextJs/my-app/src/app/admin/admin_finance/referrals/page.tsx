@@ -6,6 +6,7 @@
 import { useState, useEffect } from 'react';
 import { formatCurrency } from '@/app/admin/admin_finance/admin_finance_utils/format';
 import { Users, Trophy, Gift, IndianRupee } from 'lucide-react';
+import { ADMIN_FINANCE_MOCK_REFERRERS } from '@/app/admin/admin_finance/admin_finance_constants/AdminFinanceConstants';
 
 type Referrer = {
   id: number;
@@ -18,18 +19,9 @@ type Referrer = {
   balance: number;
 };
 
-const MOCK_REFERRERS: Referrer[] = [
-  { id: 1, name: 'Rahul Kumar',  smartId: 'STU101', referredNames: ['Priya S', 'Aman V', 'Sneha P', 'Vikas S', 'Neha G'], referredCount: 8, bonusEarned: 800, redeemed: 300, balance: 500 },
-  { id: 2, name: 'Priya Singh',  smartId: 'STU102', referredNames: ['Aman V', 'Rohan M'],                                   referredCount: 5, bonusEarned: 500, redeemed: 200, balance: 300 },
-  { id: 3, name: 'Aman Verma',   smartId: 'STU103', referredNames: ['Sneha P', 'Vikas S'],                                  referredCount: 4, bonusEarned: 400, redeemed: 0,   balance: 400 },
-  { id: 4, name: 'Sneha Patel',  smartId: 'STU104', referredNames: ['Neha G', 'Rohan M', 'Kiran D'],                        referredCount: 3, bonusEarned: 300, redeemed: 100, balance: 200 },
-  { id: 5, name: 'Vikas Sharma', smartId: 'STU105', referredNames: ['Kiran D'],                                             referredCount: 2, bonusEarned: 200, redeemed: 0,   balance: 200 },
-  { id: 6, name: 'Neha Gupta',   smartId: 'STU106', referredNames: ['Rohan M'],                                             referredCount: 1, bonusEarned: 100, redeemed: 0,   balance: 100 },
-];
-
-const totalReferrals = MOCK_REFERRERS.reduce((a, r) => a + r.referredCount, 0);
-const totalBonus = MOCK_REFERRERS.reduce((a, r) => a + r.bonusEarned, 0);
-const topReferrer = MOCK_REFERRERS[0];
+const totalReferrals = ADMIN_FINANCE_MOCK_REFERRERS.reduce((a, r) => a + r.referredCount, 0);
+const totalBonus = ADMIN_FINANCE_MOCK_REFERRERS.reduce((a, r) => a + r.bonusEarned, 0);
+const topReferrer = ADMIN_FINANCE_MOCK_REFERRERS[0];
 
 export default function Referrals() {
   const [isLoading, setIsLoading] = useState(true);
@@ -107,7 +99,7 @@ export default function Referrals() {
                 </td>
               </tr>
             ) : (
-              MOCK_REFERRERS.map((r, idx) => (
+              ADMIN_FINANCE_MOCK_REFERRERS.map((r, idx) => (
                 <tr key={r.id} className="fin-table-hover-row fin-table-row">
                     <td className="py-3 px-4">
                       <span className={idx === 0 ? 'fin-text-warning font-bold' : 'fin-text-muted'}>#{idx + 1}</span>

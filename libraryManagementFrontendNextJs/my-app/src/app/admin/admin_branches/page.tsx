@@ -2,6 +2,7 @@ import { cookies } from 'next/headers';
 import { AdminBranchesView } from '@/app/admin/admin_branches/admin_branches_components/AdminBranchesView';
 import { fetchAdminBranches } from '@/app/admin/admin_branches/admin_branches_api/admin_branches_api';
 import { Branch } from '@/app/admin/admin_branches/admin_branches_hooks/useAdminBranches';
+import { ADMIN_BRANCHES_MOCK_DATA } from '@/app/admin/admin_branches/admin_branches_constants/AdminBranchesConstants';
 
 async function getBranchesData(): Promise<Branch[]> {
   const cookieStore = await cookies();
@@ -14,10 +15,7 @@ async function getBranchesData(): Promise<Branch[]> {
   
   const data = (response.data as Record<string, unknown>[]) || [];
   if (data.length === 0 || String(data[0]?.id).startsWith('MOCK-')) {
-    return [
-      { id: 'B-001', name: 'Main Branch', address: '123 Main St', city: 'City Center', phone: '9876543210', manager: 'Amit Kumar', students: 150, seats: 200, status: 'Active' },
-      { id: 'B-002', name: 'South Branch', address: '456 South St', city: 'South District', phone: '8765432109', manager: 'Priya Sharma', students: 80, seats: 100, status: 'Active' }
-    ];
+    return ADMIN_BRANCHES_MOCK_DATA;
   }
   return data.map((b) => ({
     id: (b.id || b.branchId || `B-${Math.random().toString(36).substr(2, 5)}`) as string,

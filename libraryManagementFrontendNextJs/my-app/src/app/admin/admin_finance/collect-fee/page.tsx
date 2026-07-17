@@ -10,18 +10,9 @@ import { formatCurrency } from '@/app/admin/admin_finance/admin_finance_utils/fo
 import { Search, CheckCircle, IndianRupee, BookOpen, MessageSquare, Printer, X } from 'lucide-react';
 import { openWhatsApp } from '@/lib/whatsappUtils';
 import { printThermal } from '@/lib/thermalPrint';
+import { ADMIN_FINANCE_MOCK_STUDENTS, ADMIN_FINANCE_MODES } from '@/app/admin/admin_finance/admin_finance_constants/AdminFinanceConstants';
 
-const MOCK_STUDENTS = [
-  { id: 1, name: 'Aarav Sharma',  smartId: 'STU001', phone: '8084350824', status: 'active',    dueAmount: 0,    plan: 'Premium Plan', shift: 'Morning', seat: 'A-01' },
-  { id: 2, name: 'Priya Patel',   smartId: 'STU002', phone: '8084350824', status: 'active',    dueAmount: 1800, plan: 'Basic Plan',   shift: 'Evening', seat: 'B-05' },
-  { id: 3, name: 'Rohan Kumar',   smartId: 'STU003', phone: '8084350824', status: 'expired',   dueAmount: 4000, plan: 'Premium Plan', shift: 'Night',   seat: 'C-12' },
-  { id: 4, name: 'Sneha Singh',   smartId: 'STU004', phone: '8084350824', status: 'suspended', dueAmount: 4500, plan: 'Basic Plan',   shift: 'Morning', seat: 'A-08' },
-  { id: 5, name: 'Vikram Rao',    smartId: 'STU005', phone: '8084350824', status: 'active',    dueAmount: 0,    plan: 'Elite Plan',   shift: 'Full Day','seat': 'D-03' },
-  { id: 6, name: 'Ananya Gupta',  smartId: 'STU006', phone: '8084350824', status: 'active',    dueAmount: 0,    plan: 'Basic Plan',   shift: 'Evening', seat: 'B-10' },
-];
-
-const MODES = ['cash', 'upi', 'card', 'bank'] as const;
-type Mode = typeof MODES[number];
+type Mode = typeof ADMIN_FINANCE_MODES[number];
 const MODE_LABELS: Record<Mode, string> = { cash: 'Cash', upi: 'UPI', card: 'Card', bank: 'Bank Transfer' };
 
 let receiptCounter = 124;
@@ -32,7 +23,7 @@ function maskPhone(phone: string): string {
 }
 
 function buildWhatsAppReceipt(params: {
-  receiptNo: string; student: typeof MOCK_STUDENTS[0];
+  receiptNo: string; student: typeof ADMIN_FINANCE_MOCK_STUDENTS[0];
   amount: number; mode: Mode; txnId: string;
   lateFee: number; couponDiscount: number; total: number;
   remark: string; date: string;
@@ -101,12 +92,11 @@ export default function CollectFee() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [receiptData, setReceiptData]   = useState<ReceiptData | null>(null);
 
-  const filteredStudents = MOCK_STUDENTS.filter(s =>
-    search.length >= 2 &&
-    (s.name.toLowerCase().includes(search.toLowerCase()) ||
-      s.smartId.toLowerCase().includes(search.toLowerCase()))
-  );
-
+  const filteredStudents = search
+    ? ADMIN_FINANCE_MOCK_STUDENTS.filter(
+        (s) => s.name.toLowerCase().includes(search.toLowerCase()) || s.smartId.toLowerCase().includes(search.toLowerCase())
+      )
+    : [];
   const baseAmount  = parseFloat(amount) || 0;
   const lateFeeAmt  = parseFloat(lateFee) || 0;
   const total       = baseAmount + lateFeeAmt - couponDiscount;
@@ -310,7 +300,7 @@ export default function CollectFee() {
               <div>
                 <label className="fin-label">Payment Mode</label>
                 <div className="flex gap-2 mt-1 flex-wrap">
-                  {MODES.map(m => (
+                  {ADMIN_FINANCE_MODES.map((m) => (
                     <button key={m} onClick={() => setMode(m)} className={`fin-badge cursor-pointer ${mode === m ? 'fin-badge--info' : 'fin-badge--neutral'}`}>
                       {MODE_LABELS[m]}
                     </button>

@@ -7,6 +7,7 @@ import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter }
 import { Button } from '@/app/admin/admin_system/admin_system_components/AdminSystemButton/AdminSystemButton';
 import { Badge } from '@/app/admin/admin_system/admin_system_components/AdminSystemBadge/AdminSystemBadge';
 import { Upload, FileSpreadsheet, ChevronRight, CheckCircle, XCircle, AlertTriangle, Download, RefreshCw } from 'lucide-react';
+import { ADMIN_SYSTEM_MOCK_PREVIEW, ADMIN_SYSTEM_TEMPLATE_HEADERS } from '@/app/admin/admin_system/admin_system_constants/AdminSystemConstants';
 
 type RowStatus = 'ok' | 'error' | 'warning';
 
@@ -21,18 +22,7 @@ interface PreviewRow {
   issue?: string;
 }
 
-const MOCK_PREVIEW: PreviewRow[] = [
-  { row: 1, name: 'Rahul Sharma',    phone: '9876543210', email: 'rahul@gmail.com',   shift: 'Morning',   seat: 'S-01', status: 'ok' },
-  { row: 2, name: 'Priya Verma',     phone: '9812345678', email: 'priya@yahoo.com',   shift: 'Afternoon', seat: 'S-02', status: 'ok' },
-  { row: 3, name: 'Amit Kumar',      phone: '',           email: 'amit@gmail.com',    shift: 'Evening',   seat: 'S-03', status: 'error',   issue: 'Mobile Number missing' },
-  { row: 4, name: 'Sneha Patel',     phone: '9999988888', email: '',                  shift: 'Morning',   seat: 'S-04', status: 'warning', issue: 'Email missing (optional)' },
-  { row: 5, name: 'Rohan Das',       phone: '9870001234', email: 'rohan@gmail.com',   shift: 'Afternoon', seat: 'S-05', status: 'ok' },
-  { row: 6, name: '',                phone: '9810001234', email: 'unknown@gmail.com', shift: 'Morning',   seat: 'S-06', status: 'error',   issue: 'Student Name is required' },
-  { row: 7, name: 'Kavita Singh',    phone: '9820001234', email: 'kavita@gmail.com',  shift: 'Evening',   seat: 'S-07', status: 'ok' },
-  { row: 8, name: 'Deepak Mishra',   phone: '9830001234', email: 'deepak@gmail.com',  shift: 'Morning',   seat: '',     status: 'error',   issue: 'Seat Number missing' },
-];
 
-const TEMPLATE_HEADERS = ['Name*', 'Phone*', 'Email', 'Shift*', 'Seat', 'Plan', 'Fee Paid', 'Join Date'];
 
 const STATUS_CONFIG = {
   ok:      { label: 'OK',      variant: 'success'  as const, icon: CheckCircle  },
@@ -50,11 +40,11 @@ export default function BulkImportPage() {
   const [importProgress, setImportProgress] = useState(0);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-  const errorCount   = MOCK_PREVIEW.filter(r => r.status === 'error').length;
-  const warningCount = MOCK_PREVIEW.filter(r => r.status === 'warning').length;
-  const okCount      = MOCK_PREVIEW.filter(r => r.status === 'ok').length;
+  const errorCount   = (ADMIN_SYSTEM_MOCK_PREVIEW as PreviewRow[]).filter(r => r.status === 'error').length;
+  const warningCount = (ADMIN_SYSTEM_MOCK_PREVIEW as PreviewRow[]).filter(r => r.status === 'warning').length;
+  const okCount      = (ADMIN_SYSTEM_MOCK_PREVIEW as PreviewRow[]).filter(r => r.status === 'ok').length;
 
-  const filteredRows = filter === 'all' ? MOCK_PREVIEW : MOCK_PREVIEW.filter(r => r.status === filter);
+  const filteredRows = filter === 'all' ? (ADMIN_SYSTEM_MOCK_PREVIEW as PreviewRow[]) : (ADMIN_SYSTEM_MOCK_PREVIEW as PreviewRow[]).filter(r => r.status === filter);
 
   const handleFileSelect = (name: string) => {
     setFileName(name);
@@ -86,7 +76,7 @@ export default function BulkImportPage() {
   };
 
   const downloadTemplate = () => {
-    const csv = [TEMPLATE_HEADERS.join(','), 'Rahul Sharma,9876543210,rahul@gmail.com,Morning,S-01,Monthly,1000,2026-04-12'].join('\n');
+    const csv = [ADMIN_SYSTEM_TEMPLATE_HEADERS.join(','), 'Rahul Sharma,9876543210,rahul@gmail.com,Morning,S-01,Monthly,1000,2026-04-12'].join('\n');
     const blob = new Blob([csv], { type: 'text/csv' });
     const url  = URL.createObjectURL(blob);
     const a = document.createElement('a'); a.href = url; a.download = 'bulk_import_template.csv'; a.click();

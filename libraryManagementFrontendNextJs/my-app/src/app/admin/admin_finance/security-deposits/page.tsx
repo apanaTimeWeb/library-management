@@ -8,6 +8,7 @@ import { useState, useEffect } from 'react';
 import toast from 'react-hot-toast';
 import { formatCurrency } from '@/app/admin/admin_finance/admin_finance_utils/format';
 import { Undo2, Minus } from 'lucide-react';
+import { ADMIN_FINANCE_MOCK_DEPOSITS } from '@/app/admin/admin_finance/admin_finance_constants/AdminFinanceConstants';
 
 const STATUS_BADGE: Record<string, string> = {
   held:      'fin-badge fin-badge--info',
@@ -28,13 +29,7 @@ type Deposit = {
   refundedDate?: string;
 };
 
-const INITIAL: Deposit[] = [
-  { id: 1, studentName: 'Rahul Kumar',  smartId: 'STU101', depositAmount: 10000, collectedBy: 'Admin',   collectedDate: '2026-03-15', deductionAmount: 0,    status: 'held'     },
-  { id: 2, studentName: 'Priya Singh',  smartId: 'STU102', depositAmount: 8000,  collectedBy: 'Manager', collectedDate: '2026-03-20', deductionAmount: 1500, deductionReason: 'Damaged property', status: 'held' },
-  { id: 3, studentName: 'Aman Verma',   smartId: 'STU103', depositAmount: 12000, collectedBy: 'Admin',   collectedDate: '2026-02-10', deductionAmount: 0,    status: 'refunded', refundedDate: '2026-04-08' },
-  { id: 4, studentName: 'Sneha Patel',  smartId: 'STU104', depositAmount: 9000,  collectedBy: 'Admin',   collectedDate: '2026-03-05', deductionAmount: 9000, deductionReason: 'Multiple violations', status: 'forfeited' },
-  { id: 5, studentName: 'Vikas Sharma', smartId: 'STU105', depositAmount: 11000, collectedBy: 'Manager', collectedDate: '2026-04-01', deductionAmount: 0,    status: 'held'     },
-];
+
 
 export default function SecurityDeposits() {
   const [statusFilter, setStatusFilter] = useState('all');
@@ -49,7 +44,7 @@ export default function SecurityDeposits() {
   const [deductReason, setDeductReason] = useState('');
 
   useEffect(() => {
-    const t = setTimeout(() => { setDeposits(INITIAL); setIsLoading(false); }, 700);
+    const t = setTimeout(() => { setDeposits(ADMIN_FINANCE_MOCK_DEPOSITS as Deposit[]); setIsLoading(false); }, 700);
     return () => clearTimeout(t);
   }, []);
 

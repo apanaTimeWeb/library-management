@@ -7,6 +7,7 @@ import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter }
 import { Button } from '@/app/admin/admin_system/admin_system_components/AdminSystemButton/AdminSystemButton';
 import { Badge } from '@/app/admin/admin_system/admin_system_components/AdminSystemBadge/AdminSystemBadge';
 import { Download, FileSpreadsheet, Database, Users, CreditCard, CalendarDays, ChevronRight, CheckCircle, Loader2 } from 'lucide-react';
+import { ADMIN_SYSTEM_EXPORT_MODULES, ADMIN_SYSTEM_QUICK_EXPORTS } from '@/app/admin/admin_system/admin_system_constants/AdminSystemConstants';
 
 interface ExportModule {
   id: string;
@@ -17,16 +18,7 @@ interface ExportModule {
   formats: string[];
 }
 
-const EXPORT_MODULES: ExportModule[] = [
-  { id: 'students',     label: 'Students',            description: 'All student records including personal info, seat, shift, and status', icon: '🎓', estimatedRows: 248,  formats: ['CSV', 'XLSX'] },
-  { id: 'payments',     label: 'Payments & Fees',     description: 'Complete payment history — fee collected, due amounts, receipts',     icon: '💳', estimatedRows: 1240, formats: ['CSV', 'XLSX'] },
-  { id: 'attendance',   label: 'Attendance',          description: 'Full attendance log — daily check-ins by student and shift',          icon: '📅', estimatedRows: 5800, formats: ['CSV', 'XLSX'] },
-  { id: 'expenses',     label: 'Expenses',            description: 'Library expense records — rent, electricity, salaries, etc.',         icon: '💸', estimatedRows: 320,  formats: ['CSV', 'XLSX'] },
-  { id: 'enquiries',    label: 'CRM Enquiries',       description: 'Lead pipeline — all enquires with status and follow-up history',      icon: '📞', estimatedRows: 186,  formats: ['CSV', 'XLSX'] },
-  { id: 'seats',        label: 'Seats & Lockers',     description: 'Seat matrix, locker assignments, and maintenance logs',               icon: '🪑', estimatedRows: 140,  formats: ['CSV', 'XLSX'] },
-  { id: 'whatsapp',     label: 'WhatsApp Logs',       description: 'All outbound WhatsApp messages — receipts, renewals, alerts',        icon: '📱', estimatedRows: 890,  formats: ['CSV'] },
-  { id: 'audit',        label: 'Audit Logs',          description: 'Staff actions log — sensitive operations, deletes, and edits',        icon: '🔍', estimatedRows: 2400, formats: ['CSV', 'XLSX'] },
-];
+
 
 interface QuickExport {
   id: string;
@@ -36,14 +28,15 @@ interface QuickExport {
   format: string;
 }
 
-const QUICK_EXPORTS: QuickExport[] = [
-  { id: 'due-fees',     label: 'Fee Due Report',        description: 'Students with pending fee payments',  icon: <CreditCard size={18} />,  format: 'CSV' },
-  { id: 'expiring',     label: 'Expiring Subscriptions',description: 'Students expiring in the next 7 days', icon: <CalendarDays size={18} />, format: 'CSV' },
-  { id: 'active',       label: 'Active Students',       description: 'All currently active students',        icon: <Users size={18} />,       format: 'XLSX' },
-  { id: 'full-backup',  label: 'Full Data Backup',      description: 'Everything — all modules in one ZIP',  icon: <Database size={18} />,    format: 'ZIP' },
-];
+
 
 export default function DataExportPage() {
+  const ICON_MAP: Record<string, React.ReactNode> = {
+    'CreditCard': <CreditCard size={18} />,
+    'CalendarDays': <CalendarDays size={18} />,
+    'Users': <Users size={18} />,
+    'Database': <Database size={18} />
+  };
   const [selected, setSelected] = useState<Set<string>>(new Set());
   const [format, setFormat] = useState<'CSV' | 'XLSX'>('XLSX');
   const [dateFrom, setDateFrom] = useState('2026-01-01');
@@ -92,7 +85,7 @@ export default function DataExportPage() {
       <div className="mb-8">
         <h2 className="text-base font-semibold text-on-surface mb-3">⚡ Quick Exports</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          {QUICK_EXPORTS.map(qe => (
+          {ADMIN_SYSTEM_QUICK_EXPORTS.map((qe) => (
             <Card key={qe.id} className="hover:border-primary/40 transition-colors cursor-pointer group">
               <CardContent className="flex items-start gap-3 py-4">
                 <div className="h-10 w-10 rounded-xl bg-primary/10 text-primary flex items-center justify-center shrink-0 group-hover:bg-primary/20 transition-colors">
@@ -143,7 +136,7 @@ export default function DataExportPage() {
         <CardContent className="space-y-5">
           {/* Module selection */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-            {EXPORT_MODULES.map(mod => {
+            {ADMIN_SYSTEM_EXPORT_MODULES.map((mod) => {
               const isSelected = selected.has(mod.id);
               return (
                 <div

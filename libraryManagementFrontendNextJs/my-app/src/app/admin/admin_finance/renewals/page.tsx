@@ -13,6 +13,7 @@ import { formatCurrency } from '@/app/admin/admin_finance/admin_finance_utils/fo
 import { RefreshCw, Send } from 'lucide-react';
 import { gridTheme } from '@/app/admin/admin_finance/admin_finance_components/AdminFinancegridTheme/AdminFinancegridTheme';
 import { AdminGridCell } from '@/app/admin/admin_reusable/admin_reusable_utils/AdminReusableGridTheme';
+import { ADMIN_FINANCE_MOCK_RENEWALS, ADMIN_FINANCE_MOCK_PLANS, ADMIN_FINANCE_FILTERS } from '@/app/admin/admin_finance/admin_finance_constants/AdminFinanceConstants';
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
@@ -32,31 +33,12 @@ type Renewal = {
   total: number;
 };
 
-const MOCK_RENEWALS: Renewal[] = [
-  { id: 1, studentName: 'Aarav Sharma',  smartId: 'STU001', shift: 'Morning', plan: 'Premium', planId: 2, expiryDate: '2026-04-05', daysLeft: -6,  lastPaymentDate: '2026-03-01', due: 1499, total: 1499 },
-  { id: 2, studentName: 'Priya Patel',   smartId: 'STU002', shift: 'Evening', plan: 'Basic',   planId: 1, expiryDate: '2026-04-15', daysLeft: 4,   lastPaymentDate: '2026-03-15', due: 999,  total: 999  },
-  { id: 3, studentName: 'Rohan Kumar',   smartId: 'STU003', shift: 'Morning', plan: 'Elite',   planId: 3, expiryDate: '2026-04-20', daysLeft: 12,  lastPaymentDate: '2026-03-20', due: 2499, total: 2499 },
-  { id: 4, studentName: 'Ananya Singh',  smartId: 'STU004', shift: 'Evening', plan: 'Premium', planId: 2, expiryDate: '2026-04-08', daysLeft: -2,  lastPaymentDate: '2026-03-08', due: 1499, total: 1499 },
-  { id: 5, studentName: 'Vikram Rao',    smartId: 'STU005', shift: 'Morning', plan: 'Basic',   planId: 1, expiryDate: '2026-04-16', daysLeft: 6,   lastPaymentDate: '2026-03-16', due: 999,  total: 999  },
-  { id: 6, studentName: 'Sneha Gupta',   smartId: 'STU006', shift: 'Evening', plan: 'Elite',   planId: 3, expiryDate: '2026-04-22', daysLeft: 14,  lastPaymentDate: '2026-03-22', due: 2499, total: 2499 },
-];
 
-const PLANS = [
-  { id: 1, name: 'Basic',   price: 999  },
-  { id: 2, name: 'Premium', price: 1499 },
-  { id: 3, name: 'Elite',   price: 2499 },
-];
-
-const FILTERS: { label: string; value: FilterType; emoji: string }[] = [
-  { label: 'Expired',            value: 'expired',     emoji: '🔴' },
-  { label: 'Expiring in 7 days', value: 'expiring_7',  emoji: '🟠' },
-  { label: 'Expiring in 15 days',value: 'expiring_15', emoji: '🟡' },
-];
 
 export default function Renewals() {
   const router = useRouter();
   const [filter, setFilter] = useState<FilterType>('expiring_7');
-  const [allRenewals, setAllRenewals] = useState(MOCK_RENEWALS);
+  const [allRenewals, setAllRenewals] = useState(ADMIN_FINANCE_MOCK_RENEWALS as Renewal[]);
   const [renewDialog, setRenewDialog] = useState<{ id: number; name: string } | null>(null);
   const [renewPlanId, setRenewPlanId] = useState('');
   const [renewAmount, setRenewAmount] = useState('');
@@ -209,13 +191,13 @@ export default function Renewals() {
                   onChange={(e) => {
                     const id = e.target.value;
                     setRenewPlanId(id);
-                    const selectedPlan = PLANS.find((p) => String(p.id) === id);
+                    const selectedPlan = ADMIN_FINANCE_MOCK_PLANS.find((p) => String(p.id) === id);
                     if (selectedPlan) {
                       setRenewAmount(String(selectedPlan.price));
                     }
                   }}
                 >
-                  {PLANS.map((p) => (
+                  {ADMIN_FINANCE_MOCK_PLANS.map((p) => (
                     <option key={p.id} value={String(p.id)}>{p.name} — {formatCurrency(p.price)}</option>
                   ))}
                 </select>

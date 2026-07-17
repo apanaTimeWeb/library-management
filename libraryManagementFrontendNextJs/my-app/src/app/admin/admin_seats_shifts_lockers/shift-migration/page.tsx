@@ -5,24 +5,14 @@
 import { useState } from 'react';
 import { ArrowLeft, Search, ChevronDown, CreditCard, QrCode, Banknote, CheckCircle, Clock } from 'lucide-react';
 import toast from 'react-hot-toast';
+import { ADMIN_SEATS_MOCK_STUDENTS, ADMIN_SEATS_MOCK_SHIFT_RATES, ADMIN_SEATS_STEPS } from '@/app/admin/admin_seats_shifts_lockers/admin_seats_constants/AdminSeatsConstants';
 
 interface Student {
   id: string; name: string; smartId: string;
   currentShift: string; currentSeat: string; validTill: string; plan: string; dailyRate: number;
 }
 
-const STUDENTS: Student[] = [
-  { id: '1', name: 'Alex Rivera',  smartId: 'LIB-88429', currentShift: 'Morning',  currentSeat: 'A-12', validTill: '2025-04-30', plan: 'Monthly ₹1000', dailyRate: 33 },
-  { id: '2', name: 'Priya Sharma', smartId: 'LIB-00234', currentShift: 'Evening',  currentSeat: 'B-05', validTill: '2025-05-15', plan: 'Monthly ₹1200', dailyRate: 40 },
-  { id: '3', name: 'Rohan Mehta',  smartId: 'LIB-00567', currentShift: 'Full Day', currentSeat: 'C-08', validTill: '2025-06-01', plan: 'Monthly ₹1500', dailyRate: 50 },
-];
 
-const SHIFTS = [
-  { name: 'Morning',   seats: 4, rate: 33 },
-  { name: 'Afternoon', seats: 8, rate: 36 },
-  { name: 'Evening',   seats: 2, rate: 40 },
-  { name: 'Full Day',  seats: 1, rate: 50 },
-];
 
 type PayMode = 'Cash' | 'UPI' | 'Card';
 
@@ -45,13 +35,13 @@ export default function ShiftMigrationPage() {
   const [remark, setRemark]                     = useState('');
   const [showConfirm, setShowConfirm]           = useState(false);
 
-  const filteredStudents = STUDENTS.filter(s =>
+  const filteredStudents = ADMIN_SEATS_MOCK_STUDENTS.filter(s =>
     s.name.toLowerCase().includes(search.toLowerCase()) ||
     s.smartId.toLowerCase().includes(search.toLowerCase())
   );
 
   const daysLeft       = selectedStudent ? daysRemaining(selectedStudent.validTill) : 0;
-  const selectedShiftData = SHIFTS.find(s => s.name === newShift);
+  const selectedShiftData = ADMIN_SEATS_MOCK_SHIFT_RATES.find(s => s.name === newShift);
   const newRate        = selectedShiftData?.rate ?? 0;
   const oldRate        = selectedStudent?.dailyRate ?? 0;
   const adjustment     = (newRate - oldRate) * daysLeft;
@@ -65,11 +55,7 @@ export default function ShiftMigrationPage() {
     setShowCustomSlot(false); setCustomStart(''); setCustomEnd('');
   }
 
-  const STEPS = [
-    { n: 1, label: 'Select Student' },
-    { n: 2, label: 'Choose New Slot' },
-    { n: 3, label: 'Review & Pay' },
-  ];
+
 
   return (
     <>
@@ -87,7 +73,7 @@ export default function ShiftMigrationPage() {
           {/* dynamic computed width — allowed inline style */}
           <div className="ss-stepper__progress" style={{ width: `${((step - 1) / 2) * 100}%` }} />
           <div className="ss-stepper__steps">
-            {STEPS.map(s => (
+            {ADMIN_SEATS_STEPS.map(s => (
               <div key={s.n} className="ss-stepper__step">
                 <div className={`ss-stepper__circle ${step >= s.n ? 'ss-stepper__circle--active' : 'ss-stepper__circle--inactive'}`}>
                   {step > s.n ? <CheckCircle size={18} /> : s.n}
@@ -165,8 +151,8 @@ export default function ShiftMigrationPage() {
                     <div className="ss-select-wrap">
                       <select className="ss-select" value={newShift} onChange={e => { setNewShift(e.target.value); setNewSeat(''); }}>
                         <option value="">Select shift...</option>
-                        {SHIFTS.map(s => (
-                          <option key={s.name} value={s.name}>{s.name} ({s.seats} seats free)</option>
+                        {ADMIN_SEATS_MOCK_SHIFT_RATES.map(sh => (
+                          <option key={sh.name} value={sh.name}>{sh.name} ({sh.seats} seats free)</option>
                         ))}
                       </select>
                       <ChevronDown size={14} className="ss-select-icon" />

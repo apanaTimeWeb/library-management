@@ -5,6 +5,7 @@
 import { useState } from 'react';
 import { Plus, Edit, PowerOff, Zap, ChevronDown } from 'lucide-react';
 import toast from 'react-hot-toast';
+import { ADMIN_SEATS_MOCK_SHIFTS } from '@/app/admin/admin_seats_shifts_lockers/admin_seats_constants/AdminSeatsConstants';
 
 interface Shift {
   id: string;
@@ -16,16 +17,12 @@ interface Shift {
   active: boolean;
 }
 
-const INITIAL_SHIFTS: Shift[] = [
-  { id: '1', name: 'Morning',   startTime: '06:00', endTime: '12:00', occupancy: 32, capacity: 40, active: true  },
-  { id: '2', name: 'Afternoon', startTime: '12:00', endTime: '18:00', occupancy: 18, capacity: 40, active: true  },
-  { id: '3', name: 'Evening',   startTime: '18:00', endTime: '22:00', occupancy: 0,  capacity: 40, active: false },
-];
+
 
 const EMPTY_FORM = { name: '', startTime: '', endTime: '', active: true };
 
 export default function ShiftManagementPage() {
-  const [shifts, setShifts]             = useState<Shift[]>(INITIAL_SHIFTS);
+  const [shifts, setShifts]             = useState<Shift[]>(ADMIN_SEATS_MOCK_SHIFTS as Shift[]);
   const [showModal, setShowModal]       = useState(false);
   const [editShift, setEditShift]       = useState<Shift | null>(null);
   const [form, setForm]                 = useState(EMPTY_FORM);

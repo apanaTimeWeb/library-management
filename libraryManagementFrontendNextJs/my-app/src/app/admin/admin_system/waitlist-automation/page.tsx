@@ -11,14 +11,9 @@ import { Switch } from '@/app/admin/admin_system/admin_system_components/AdminSy
 import { Textarea } from '@/app/admin/admin_system/admin_system_components/AdminSystemTextarea/AdminSystemTextarea';
 import { Badge } from '@/app/admin/admin_system/admin_system_components/AdminSystemBadge/AdminSystemBadge';
 import { ListOrdered, ChevronRight } from 'lucide-react';
+import { ADMIN_SYSTEM_WAITLIST_QUEUE } from '@/app/admin/admin_system/admin_system_constants/AdminSystemConstants';
 
-const QUEUE = [
-  { name: 'Rahul Sharma', shift: 'Morning', position: 1, avatar: 'R', joined: '2026-04-08' },
-  { name: 'Priya Verma', shift: 'Afternoon', position: 2, avatar: 'P', joined: '2026-04-09' },
-  { name: 'Amit Kumar', shift: 'Evening', position: 3, avatar: 'A', joined: '2026-04-10' },
-  { name: 'Sneha Patel', shift: 'Morning', position: 4, avatar: 'S', joined: '2026-04-10' },
-  { name: 'Rohan Das', shift: 'Afternoon', position: 5, avatar: 'R', joined: '2026-04-11' },
-];
+
 
 export default function WaitlistAutomationPage() {
   const [enabled, setEnabled] = useState(true);
@@ -112,7 +107,7 @@ export default function WaitlistAutomationPage() {
         </CardHeader>
         <CardContent>
           <div className="space-y-3">
-            {QUEUE.map(student => (
+            {ADMIN_SYSTEM_WAITLIST_QUEUE.map((student) => (
               <div
                 key={student.position}
                 className="flex items-center gap-4 p-3 rounded-xl bg-surface-container-high border border-outline-variant/50 hover:border-outline-variant transition-colors"

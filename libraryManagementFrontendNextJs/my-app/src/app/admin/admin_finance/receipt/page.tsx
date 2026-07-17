@@ -8,14 +8,9 @@ import { formatCurrency, formatDate } from '@/app/admin/admin_finance/admin_fina
 import { Search, Receipt, Eye, Printer, Send } from 'lucide-react';
 import { openWhatsApp } from '@/lib/whatsappUtils';
 import { printThermal } from '@/lib/thermalPrint';
+import { ADMIN_FINANCE_MOCK_RECEIPTS } from '@/app/admin/admin_finance/admin_finance_constants/AdminFinanceConstants';
 
-const MOCK_RECEIPTS = [
-  { id: 'SL360-TRX-99421-X', receiptNumber: 'REC-20260411-001', studentName: 'Aravind Sharma',  studentId: 'LIB-2024-883', phone: '9876543210', date: '2024-10-24T00:00:00Z', amount: 1249, paymentMode: 'UPI',          planName: 'Premium Reading Zone (Monthly)',  shift: 'Morning', seat: 'A-01' },
-  { id: 'SL360-TRX-88310-Y', receiptNumber: 'REC-20260410-002', studentName: 'Gajodhar Prasad', studentId: 'STU-001234',   phone: '8765432109', date: '2026-04-10T00:00:00Z', amount: 1716, paymentMode: 'UPI',          planName: 'Annual Library Membership',       shift: 'Evening', seat: 'B-05' },
-  { id: 'SL360-TRX-77203-Z', receiptNumber: 'REC-20260409-003', studentName: 'Sara Mishra',     studentId: 'STU-008821',   phone: '7654321098', date: '2024-10-10T00:00:00Z', amount: 9750, paymentMode: 'Bank Transfer', planName: 'Security Deposit Refund',         shift: 'Night',   seat: 'C-12' },
-  { id: 'SL360-TRX-66192-A', receiptNumber: 'REC-20260408-004', studentName: 'Rohan Khanna',    studentId: 'STU-007654',   phone: '6543210987', date: '2026-04-08T00:00:00Z', amount: 900,  paymentMode: 'Cash',         planName: 'Monthly Basic Plan',              shift: 'Morning', seat: 'D-10' },
-  { id: 'SL360-TRX-55081-B', receiptNumber: 'REC-20260407-005', studentName: 'Priya Nair',      studentId: 'STU-003891',   phone: '5432109876', date: '2026-04-07T00:00:00Z', amount: 2400, paymentMode: 'Card',         planName: 'Quarterly Premium Plan',          shift: 'Full Day','seat': 'A-05' },
-];
+
 
 const MODE_BADGE: Record<string, string> = {
   upi: 'fin-badge fin-badge--upi', cash: 'fin-badge fin-badge--cash',
@@ -28,7 +23,7 @@ export default function ReceiptsPage() {
   const [search, setSearch]           = useState('');
   const [modeFilter, setModeFilter]   = useState<FilterMode>('all');
 
-  const filtered = MOCK_RECEIPTS.filter(r => {
+  const filtered = ADMIN_FINANCE_MOCK_RECEIPTS.filter(r => {
     const ms = !search || r.studentName.toLowerCase().includes(search.toLowerCase()) ||
       r.receiptNumber.toLowerCase().includes(search.toLowerCase()) ||
       r.studentId.toLowerCase().includes(search.toLowerCase());
@@ -36,9 +31,9 @@ export default function ReceiptsPage() {
     return ms && mm;
   });
 
-  const totalCollected = MOCK_RECEIPTS.reduce((s, r) => s + r.amount, 0);
+  const totalCollected = ADMIN_FINANCE_MOCK_RECEIPTS.reduce((s, r) => s + r.amount, 0);
 
-  function handleWhatsApp(r: typeof MOCK_RECEIPTS[0]) {
+  function handleWhatsApp(r: typeof ADMIN_FINANCE_MOCK_RECEIPTS[0]) {
     const W = 42;
     const line = '─'.repeat(W);
     const c = (t: string) => ' '.repeat(Math.max(0, Math.floor((W - t.length) / 2))) + t;

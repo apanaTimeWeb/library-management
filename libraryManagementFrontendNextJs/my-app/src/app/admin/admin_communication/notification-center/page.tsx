@@ -4,6 +4,7 @@
 
 import { useState } from 'react';
 import { ChevronRight, ArrowRight, CheckCheck } from 'lucide-react';
+import { ADMIN_COMMUNICATION_MOCK_NOTIFICATIONS, ADMIN_COMMUNICATION_NOTIFICATION_CATS } from '@/app/admin/admin_communication/admin_communication_constants/AdminCommunicationConstants';
 
 type Category = 'All' | 'Finance' | 'CRM' | 'Operations' | 'Attendance' | 'High Only';
 
@@ -13,24 +14,7 @@ interface Notification {
   time: string; priority: 'High' | 'Medium'; link: string; read: boolean;
 }
 
-const NOTIFS: Notification[] = [
-  { id: '1', category: 'Finance',    icon: '💰', title: '5 subscriptions expire today',           description: 'Rahul, Priya, Amit, Sneha, Rohan — subscriptions end today.',                 time: '2h ago', priority: 'High',   link: '/renewals',         read: false },
-  { id: '2', category: 'CRM',        icon: '📞', title: 'Call Rahul — enquired 3 days ago',       description: 'Rahul Sharma enquired about Morning shift. Follow up now.',                   time: '3h ago', priority: 'Medium', link: '/crm/enquiries',        read: false },
-  { id: '3', category: 'Finance',    icon: '🤝', title: '3 Payment Promise dates hit today',      description: 'Amit Kumar, Deepak Mishra, Anita Roy promised payment today.',                time: '4h ago', priority: 'High',   link: '/payment-promises', read: false },
-  { id: '4', category: 'Operations', icon: '🪑', title: 'Seat A-05 maintenance overdue 45 days',  description: 'Last maintenance was on 2026-02-25. Immediate attention required.',           time: '1d ago', priority: 'Medium', link: '/system/maintenance',      read: false },
-  { id: '5', category: 'Attendance', icon: '📅', title: 'Sneha Patel absent 7 consecutive days',  description: 'Sneha Patel has not attended for 7 days. Parent alert recommended.',          time: '1d ago', priority: 'High',   link: '/absentee-report',  read: false },
-  { id: '6', category: 'Finance',    icon: '⏰', title: '2 late fee penalties auto-applied',      description: 'Late fees applied to Vikram Nair and Kavita Singh for overdue payments.',     time: '2d ago', priority: 'Medium', link: '/late-fees',        read: true  },
-  { id: '7', category: 'Operations', icon: '🔒', title: 'Locker L-03 issue reported',             description: 'Lock jammed on Locker L-03. Reported by student on 2026-04-08.',             time: '3d ago', priority: 'Medium', link: '/system/maintenance',      read: true  },
-];
 
-const CATS: { id: Category; label: string; icon: string }[] = [
-  { id: 'All',        label: 'All Notifications',  icon: '🔔' },
-  { id: 'Finance',    label: 'Finance',             icon: '💰' },
-  { id: 'CRM',        label: 'CRM',                 icon: '📞' },
-  { id: 'Operations', label: 'Operations',          icon: '🪑' },
-  { id: 'Attendance', label: 'Attendance',          icon: '📅' },
-  { id: 'High Only',  label: 'Priority: High Only', icon: '🔴' },
-];
 
 const ICON_CLS: Record<string, string> = {
   Finance: 'eng-notif-icon--finance', CRM: 'eng-notif-icon--crm',
@@ -39,7 +23,7 @@ const ICON_CLS: Record<string, string> = {
 
 export default function NotificationCenterPage() {
   const [cat, setCat]       = useState<Category>('All');
-  const [notifs, setNotifs] = useState<Notification[]>(NOTIFS);
+  const [notifs, setNotifs] = useState<Notification[]>(ADMIN_COMMUNICATION_MOCK_NOTIFICATIONS as Notification[]);
 
   const filtered = notifs.filter(n => {
     if (cat === 'All')       return true;
@@ -70,7 +54,7 @@ export default function NotificationCenterPage() {
       <div className="flex flex-col gap-6">
         {/* Top Filter Bar */}
         <div className="eng-notif-topbar flex flex-wrap gap-3">
-          {CATS.map(c => (
+          {ADMIN_COMMUNICATION_NOTIFICATION_CATS.map(c => (
             <button key={c.id} onClick={() => setCat(c.id)}
               className={`eng-notif-cat${cat === c.id ? ' eng-notif-cat--active' : ''}`}
               style={{ width: 'auto', padding: '8px 16px', borderRadius: '30px' }}>

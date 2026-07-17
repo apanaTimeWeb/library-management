@@ -10,13 +10,9 @@ import { Label } from '@/app/admin/admin_system/admin_system_components/AdminSys
 import { Badge } from '@/app/admin/admin_system/admin_system_components/AdminSystemBadge/AdminSystemBadge';
 import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from '@/app/admin/admin_system/admin_system_components/AdminSystemSelect/AdminSystemSelect';
 import { GitBranch, ChevronRight, Zap } from 'lucide-react';
+import { ADMIN_SYSTEM_MOCK_SEAT_GAPS } from '@/app/admin/admin_system/admin_system_constants/AdminSystemConstants';
 
-const SEAT_GAPS = [
-  { seat: 'S-03', booked: [{ start: 0, end: 25 }, { start: 70, end: 100 }], gap: { start: 25, end: 70,  label: '10AM – 2PM', hours: 4  } },
-  { seat: 'S-07', booked: [{ start: 0, end: 45 }],                          gap: { start: 45, end: 100, label: '12PM – 6PM', hours: 6  } },
-  { seat: 'S-12', booked: [{ start: 30, end: 60 }, { start: 80, end: 100 }],gap: { start: 60, end: 80,  label: '2PM – 4PM',  hours: 2  } },
-  { seat: 'S-15', booked: [{ start: 0, end: 15 }],                          gap: { start: 15, end: 100, label: '8AM – 6PM',  hours: 10 } },
-];
+
 
 export default function GapFillingPage() {
   const [analyzed, setAnalyzed] = useState(false);
@@ -76,9 +72,9 @@ export default function GapFillingPage() {
         <div className="space-y-4">
           <div className="flex items-center justify-between mb-2">
             <h2 className="text-lg font-semibold text-on-surface">Gap Analysis Results</h2>
-            <Badge variant="primary">{SEAT_GAPS.length} seats analyzed</Badge>
+            <Badge variant="primary">{ADMIN_SYSTEM_MOCK_SEAT_GAPS.length} seats analyzed</Badge>
           </div>
-          {SEAT_GAPS.map(seat => (
+          {ADMIN_SYSTEM_MOCK_SEAT_GAPS.map(seat => (
             <Card key={seat.seat}>
               <CardContent>
                 <div className="flex items-center gap-4">

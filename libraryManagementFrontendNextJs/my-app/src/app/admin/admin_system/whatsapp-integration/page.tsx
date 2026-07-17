@@ -14,31 +14,9 @@ import {
   MessageSquare, ChevronRight, Eye, EyeOff, Copy, CheckCircle,
   XCircle, Phone, Zap, BarChart3, Clock, Loader2
 } from 'lucide-react';
+import { ADMIN_SYSTEM_WHATSAPP_PROVIDERS, ADMIN_SYSTEM_WHATSAPP_MESSAGE_LOGS } from '@/app/admin/admin_system/admin_system_constants/AdminSystemConstants';
 
-const PROVIDERS = [
-  { id: 'twilio',   label: 'Twilio',   logo: '🔵', requiresSecret: true  },
-  { id: 'wati',     label: 'Wati',     logo: '🟢', requiresSecret: false },
-  { id: 'aisensy',  label: 'AiSensy',  logo: '🟣', requiresSecret: false },
-  { id: 'custom',   label: 'Custom',   logo: '⚙️', requiresSecret: true  },
-];
 
-interface MessageLog {
-  id: string;
-  to: string;
-  type: string;
-  status: 'delivered' | 'failed' | 'pending';
-  sentAt: string;
-  template: string;
-}
-
-const MESSAGE_LOGS: MessageLog[] = [
-  { id: 'wl-001', to: '98****2310', type: 'Fee Receipt',      status: 'delivered', sentAt: '2026-04-12 10:45 AM', template: 'receipt_confirmation' },
-  { id: 'wl-002', to: '97****8810', type: 'Renewal Reminder', status: 'delivered', sentAt: '2026-04-12 09:30 AM', template: 'renewal_alert' },
-  { id: 'wl-003', to: '89****1230', type: 'Welcome Message',  status: 'delivered', sentAt: '2026-04-11 06:01 PM', template: 'welcome_new_student' },
-  { id: 'wl-004', to: '73****5670', type: 'Fee Reminder',     status: 'failed',    sentAt: '2026-04-11 02:00 PM', template: 'fee_due_reminder' },
-  { id: 'wl-005', to: '91****4430', type: 'Seat Vacancy',     status: 'delivered', sentAt: '2026-04-10 11:00 AM', template: 'waitlist_notify' },
-  { id: 'wl-006', to: '98****0010', type: 'Fee Receipt',      status: 'delivered', sentAt: '2026-04-10 09:15 AM', template: 'receipt_confirmation' },
-];
 
 const STATUS_CFG = {
   delivered: { variant: 'success' as const, icon: CheckCircle },
@@ -60,12 +38,12 @@ export default function WhatsAppIntegrationPage() {
 
   const webhookUrl = 'https://api.smartlibrary360.com/webhooks/whatsapp/inbound';
 
-  const selectedProvider = PROVIDERS.find(p => p.id === provider)!;
+  const activeProvider = ADMIN_SYSTEM_WHATSAPP_PROVIDERS.find(p => p.id === provider)!;
 
-  const deliveredCount = MESSAGE_LOGS.filter(l => l.status === 'delivered').length;
-  const failedCount    = MESSAGE_LOGS.filter(l => l.status === 'failed').length;
-  const pendingCount   = MESSAGE_LOGS.filter(l => l.status === 'pending').length;
-  const deliveryRate   = Math.round((deliveredCount / MESSAGE_LOGS.length) * 100);
+  const deliveredCount = ADMIN_SYSTEM_WHATSAPP_MESSAGE_LOGS.filter(l => l.status === 'delivered').length;
+  const failedCount    = ADMIN_SYSTEM_WHATSAPP_MESSAGE_LOGS.filter(l => l.status === 'failed').length;
+  const pendingCount   = ADMIN_SYSTEM_WHATSAPP_MESSAGE_LOGS.filter(l => l.status === 'pending').length;
+  const deliveryRate   = Math.round((deliveredCount / ADMIN_SYSTEM_WHATSAPP_MESSAGE_LOGS.length) * 100);
 
   const handleTestConnection = () => {
     setTestStatus('testing');
@@ -159,7 +137,7 @@ export default function WhatsAppIntegrationPage() {
             <div className="space-y-2">
               <Label>API Provider</Label>
               <div className="grid grid-cols-2 gap-2">
-                {PROVIDERS.map(p => (
+                {ADMIN_SYSTEM_WHATSAPP_PROVIDERS.map(p => (
                   <button
                     key={p.id}
                     id={`provider-${p.id}`}
@@ -332,7 +310,7 @@ export default function WhatsAppIntegrationPage() {
                 </tr>
               </thead>
               <tbody className="divide-y divide-outline-variant/30">
-                {MESSAGE_LOGS.map(log => {
+                {ADMIN_SYSTEM_WHATSAPP_MESSAGE_LOGS.map(log => {
                   const cfg  = STATUS_CFG[log.status];
                   const Icon = cfg.icon;
                   return (
