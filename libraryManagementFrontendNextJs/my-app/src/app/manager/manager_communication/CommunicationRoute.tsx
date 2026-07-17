@@ -1,7 +1,7 @@
 // RESPONSIBILITY: Renders the CommunicationRoute.tsx component.
 'use client';
 import { usePathname } from 'next/navigation';
-import '@/app/manager/manager_communication/communication.css';
+
 
 const COMMUNICATION_ROUTES = ['/communication'];
 

@@ -1,6 +1,6 @@
 'use client';
 import { usePathname } from 'next/navigation';
-import '@/app/superadmin/superadmin_communication/communication.css';
+
 
 const COMMUNICATION_ROUTES = ['/communication'];
 

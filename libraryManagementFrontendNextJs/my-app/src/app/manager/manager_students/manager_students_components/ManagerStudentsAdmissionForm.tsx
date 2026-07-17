@@ -50,9 +50,9 @@ export default function ManagerStudentsAdmissionForm() {
         position="bottom-right"
         toastOptions={{
           style: {
-            background: 'var(--mgr-bg-card)',
-            color: 'var(--mgr-text-primary)',
-            border: '1px solid var(--mgr-border)',
+            background: 'var(--bg-card)',
+            color: 'var(--text-primary)',
+            border: '1px solid var(--border)',
             fontSize: 13,
           },
         }}
@@ -61,98 +61,98 @@ export default function ManagerStudentsAdmissionForm() {
       <div className="p-6 min-h-screen">
 
         {/* Page Header */}
-        <div className="p-6 min-h-screen-header">
+        <div className="mb-8 flex flex-col md:flex-row md:items-end justify-between gap-4">
           <div>
-            <Link href="/manager/manager_students" className="mgr-back-link">
+            <Link href="/manager/manager_students" className="flex items-center gap-1.5 text-[13px] font-medium text-text-secondary hover:text-primary transition-colors mb-4 inline-flex">
               <ArrowLeft size={14} /> Back to Students
             </Link>
             <h1 className="text-[22px] font-bold text-text-primary">New Student Admission</h1>
-            <p className="p-6 min-h-screen-subtitle">Fill all mandatory (*) fields accurately. Smart ID is auto-generated.</p>
+            <p className="text-[13px] text-text-secondary mt-1.5">Fill all mandatory (*) fields accurately. Smart ID is auto-generated.</p>
           </div>
           {/* Smart ID Badge */}
-          <div className="mgr-smartid-badge">
-            <span className="mgr-smartid-label">Smart ID</span>
-            <span className="mgr-smartid-value">{SMART_ID}</span>
-            <span className="rounded-full px-2.5 py-0.5 text-[11px] font-semibold rounded-full px-2.5 py-0.5 text-[11px] font-semibold--info">Gap slot reused</span>
+          <div className="flex items-center gap-3 bg-primary-subtle/50 px-4 py-2.5 rounded-xl border border-primary/10">
+            <span className="text-xs font-semibold text-text-secondary uppercase tracking-wider">Smart ID</span>
+            <span className="font-mono text-base font-bold text-primary tracking-tight">{SMART_ID}</span>
+            <span className="rounded-full px-2.5 py-0.5 text-[11px] font-semibold bg-info/10 text-info">Gap slot reused</span>
           </div>
         </div>
 
         <form onSubmit={handleSubmit} noValidate>
-          <div className="mgr-admission-layout">
+          <div className="flex flex-col lg:flex-row gap-8">
 
             {/* ── LEFT: Form Sections ── */}
-            <div className="mgr-admission-main">
+            <div className="flex-1 space-y-8">
 
               {/* Section 1: Personal Info */}
               <div className="bg-bg-card rounded-xl border border-border p-6">
                 <div className="flex items-center justify-between mb-4">
-                  <div className="mgr-section-number">01</div>
+                  <div className="w-6 h-6 rounded-md bg-primary-subtle text-primary flex items-center justify-center text-xs font-bold">01</div>
                   <h2 className="text-base font-semibold text-text-primary">Personal Information</h2>
                 </div>
-                <div className="">
-                  <div className="mgr-form-grid">
+                <div>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-5">
 
-                    <div className="mgr-form-field mgr-form-field-full">
-                      <label className="block text-sm font-medium text-text-secondary mb-1.5 block text-sm font-medium text-text-secondary mb-1.5-required">Full Name</label>
-                      <div className="w-full bg-bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent-icon-wrap">
-                        <User size={14} className="w-full bg-bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent-icon" />
+                    <div className="flex flex-col col-span-1 md:col-span-2">
+                      <label className="block text-[13px] font-medium text-text-secondary mb-1.5 after:content-['*'] after:ml-1 after:text-danger">Full Name</label>
+                      <div className="relative">
+                        <User size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-text-secondary" />
                         <input
                           {...register('fullName')}
-                          className={`w-full bg-bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent w-full bg-bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent-with-icon${errors.fullName ? ' w-full bg-bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent-error' : ''}`}
+                          className={`w-full bg-bg-input border ${errors.fullName ? 'border-danger focus:ring-danger' : 'border-border focus:ring-primary'} rounded-lg pl-9 pr-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2`}
                           placeholder="Enter student full name"
                         />
                       </div>
-                      {errors.fullName && <p className="mgr-error">{errors.fullName.message}</p>}
+                      {errors.fullName && <p className="text-[11px] text-danger mt-1.5 font-medium">{errors.fullName.message}</p>}
                     </div>
 
-                    <div className="mgr-form-field">
-                      <label className="block text-sm font-medium text-text-secondary mb-1.5 block text-sm font-medium text-text-secondary mb-1.5-required">Phone Number</label>
-                      <div className="w-full bg-bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent-icon-wrap">
-                        <Phone size={14} className="w-full bg-bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent-icon" />
+                    <div className="flex flex-col">
+                      <label className="block text-[13px] font-medium text-text-secondary mb-1.5 after:content-['*'] after:ml-1 after:text-danger">Phone Number</label>
+                      <div className="relative">
+                        <Phone size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-text-secondary" />
                         <input
                           {...register('phone')}
                           type="tel"
-                          className={`w-full bg-bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent w-full bg-bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent-with-icon${errors.phone ? ' w-full bg-bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent-error' : ''}`}
+                          className={`w-full bg-bg-input border ${errors.phone ? 'border-danger focus:ring-danger' : 'border-border focus:ring-primary'} rounded-lg pl-9 pr-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2`}
                           placeholder="9876543210"
                         />
                       </div>
-                      {errors.phone && <p className="mgr-error">{errors.phone.message}</p>}
+                      {errors.phone && <p className="text-[11px] text-danger mt-1.5 font-medium">{errors.phone.message}</p>}
                     </div>
 
-                    <div className="mgr-form-field">
-                      <label className="block text-sm font-medium text-text-secondary mb-1.5">Parent / Guardian Phone</label>
-                      <div className="w-full bg-bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent-icon-wrap">
-                        <Phone size={14} className="w-full bg-bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent-icon" />
+                    <div className="flex flex-col">
+                      <label className="block text-[13px] font-medium text-text-secondary mb-1.5">Parent / Guardian Phone</label>
+                      <div className="relative">
+                        <Phone size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-text-secondary" />
                         <input
                           {...register('parentPhone')}
                           type="tel"
-                          className="w-full bg-bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent w-full bg-bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent-with-icon"
+                          className="w-full bg-bg-input border border-border rounded-lg pl-9 pr-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary"
                           placeholder="Optional"
                         />
                       </div>
                     </div>
 
-                    <div className="mgr-form-field">
-                      <label className="block text-sm font-medium text-text-secondary mb-1.5">Email Address</label>
-                      <div className="w-full bg-bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent-icon-wrap">
-                        <Mail size={14} className="w-full bg-bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent-icon" />
+                    <div className="flex flex-col">
+                      <label className="block text-[13px] font-medium text-text-secondary mb-1.5">Email Address</label>
+                      <div className="relative">
+                        <Mail size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-text-secondary" />
                         <input
                           {...register('email')}
                           type="email"
-                          className={`w-full bg-bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent w-full bg-bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent-with-icon${errors.email ? ' w-full bg-bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent-error' : ''}`}
+                          className={`w-full bg-bg-input border ${errors.email ? 'border-danger focus:ring-danger' : 'border-border focus:ring-primary'} rounded-lg pl-9 pr-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2`}
                           placeholder="student@email.com"
                         />
                       </div>
-                      {errors.email && <p className="mgr-error">{errors.email.message}</p>}
+                      {errors.email && <p className="text-[11px] text-danger mt-1.5 font-medium">{errors.email.message}</p>}
                     </div>
 
-                    <div className="mgr-form-field">
-                      <label className="block text-sm font-medium text-text-secondary mb-1.5">College / Preparing For</label>
-                      <div className="w-full bg-bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent-icon-wrap">
-                        <GraduationCap size={14} className="w-full bg-bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent-icon" />
+                    <div className="flex flex-col">
+                      <label className="block text-[13px] font-medium text-text-secondary mb-1.5">College / Preparing For</label>
+                      <div className="relative">
+                        <GraduationCap size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-text-secondary" />
                         <input
                           {...register('college')}
-                          className="w-full bg-bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent w-full bg-bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent-with-icon"
+                          className="w-full bg-bg-input border border-border rounded-lg pl-9 pr-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary"
                           placeholder="e.g. UPSC / IIT / Delhi University"
                         />
                       </div>
@@ -165,38 +165,36 @@ export default function ManagerStudentsAdmissionForm() {
               {/* Section 2: Seat & Shift */}
               <div className="bg-bg-card rounded-xl border border-border p-6">
                 <div className="flex items-center justify-between mb-4">
-                  <div className="mgr-section-number">02</div>
+                  <div className="w-6 h-6 rounded-md bg-primary-subtle text-primary flex items-center justify-center text-xs font-bold">02</div>
                   <h2 className="text-base font-semibold text-text-primary">Seat & Shift Allocation</h2>
                 </div>
-                <div className="">
-                  <div className="mgr-form-grid">
+                <div>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-5">
 
-                    <div className="mgr-form-field">
-                      <label className="block text-sm font-medium text-text-secondary mb-1.5 block text-sm font-medium text-text-secondary mb-1.5-required">Select Shift</label>
-                      <div className="w-full bg-bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent-icon-wrap">
-                        <Armchair size={14} className="w-full bg-bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent-icon" />
+                    <div className="flex flex-col">
+                      <label className="block text-[13px] font-medium text-text-secondary mb-1.5 after:content-['*'] after:ml-1 after:text-danger">Select Shift</label>
+                      <div className="relative">
+                        <Armchair size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-text-secondary" />
                         <select
                           {...register('shift')}
-                          className={`mgr-select w-full bg-bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent-with-icon${errors.shift ? ' w-full bg-bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent-error' : ''}`}
+                          className={`w-full bg-bg-input border ${errors.shift ? 'border-danger focus:ring-danger' : 'border-border focus:ring-primary'} rounded-lg pl-9 pr-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 appearance-none`}
                         >
                           {SHIFTS.map((s: any) => <option key={s} value={s}>{s}</option>)}
                         </select>
                       </div>
-                      {errors.shift && <p className="mgr-error">{errors.shift.message}</p>}
+                      {errors.shift && <p className="text-[11px] text-danger mt-1.5 font-medium">{errors.shift.message}</p>}
                     </div>
 
-                    <div className="mgr-form-field">
-                      <label className="block text-sm font-medium text-text-secondary mb-1.5 block text-sm font-medium text-text-secondary mb-1.5-required">Seat Number</label>
+                    <div className="flex flex-col">
+                      <label className="block text-[13px] font-medium text-text-secondary mb-1.5 after:content-['*'] after:ml-1 after:text-danger">Seat Number</label>
                       <select
                         {...register('seat')}
-                        className={`mgr-select${errors.seat ? ' w-full bg-bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent-error' : ''}`}
+                        className={`w-full bg-bg-input border ${errors.seat ? 'border-danger focus:ring-danger' : 'border-border focus:ring-primary'} rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2`}
                       >
                         {SEATS.map((s: any) => <option key={s} value={s}>{s}</option>)}
                       </select>
-                      {errors.seat && <p className="mgr-error">{errors.seat.message}</p>}
+                      {errors.seat && <p className="text-[11px] text-danger mt-1.5 font-medium">{errors.seat.message}</p>}
                     </div>
-
-
 
                   </div>
                 </div>
@@ -205,19 +203,19 @@ export default function ManagerStudentsAdmissionForm() {
               {/* Section 3: Fee & Payment */}
               <div className="bg-bg-card rounded-xl border border-border p-6">
                 <div className="flex items-center justify-between mb-4">
-                  <div className="mgr-section-number">03</div>
+                  <div className="w-6 h-6 rounded-md bg-primary-subtle text-primary flex items-center justify-center text-xs font-bold">03</div>
                   <h2 className="text-base font-semibold text-text-primary">Fee & Payment</h2>
                 </div>
-                <div className="">
-                  <div className="mgr-form-grid">
+                <div>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-5">
 
-                    <div className="mgr-form-field">
-                      <label className="block text-sm font-medium text-text-secondary mb-1.5 block text-sm font-medium text-text-secondary mb-1.5-required">Subscription Plan</label>
-                      <div className="w-full bg-bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent-icon-wrap">
-                        <FileText size={14} className="w-full bg-bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent-icon" />
+                    <div className="flex flex-col">
+                      <label className="block text-[13px] font-medium text-text-secondary mb-1.5 after:content-['*'] after:ml-1 after:text-danger">Subscription Plan</label>
+                      <div className="relative">
+                        <FileText size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-text-secondary" />
                         <select
                           {...register('plan')}
-                          className="mgr-select w-full bg-bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent-with-icon"
+                          className="w-full bg-bg-input border border-border rounded-lg pl-9 pr-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary appearance-none"
                           onChange={e => {
                             setValue('plan', e.target.value);
                             const p = PLANS.find((p: any) => p.value === e.target.value);
@@ -229,50 +227,50 @@ export default function ManagerStudentsAdmissionForm() {
                       </div>
                     </div>
 
-                    <div className="mgr-form-field">
-                      <label className="block text-sm font-medium text-text-secondary mb-1.5">Manual Discount (₹)</label>
-                      <div className="w-full bg-bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent-icon-wrap">
-                        <IndianRupee size={14} className="w-full bg-bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent-icon" />
+                    <div className="flex flex-col">
+                      <label className="block text-[13px] font-medium text-text-secondary mb-1.5">Manual Discount (₹)</label>
+                      <div className="relative">
+                        <IndianRupee size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-text-secondary" />
                         <input
                           {...register('manualDiscount')}
                           type="number"
                           min="0"
-                          className="w-full bg-bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent w-full bg-bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent-with-icon"
+                          className="w-full bg-bg-input border border-border rounded-lg pl-9 pr-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary"
                           placeholder="0"
                         />
                       </div>
                     </div>
 
-                    <div className="mgr-form-field">
-                      <label className="block text-sm font-medium text-text-secondary mb-1.5">Coupon Code</label>
+                    <div className="flex flex-col">
+                      <label className="block text-[13px] font-medium text-text-secondary mb-1.5">Coupon Code</label>
                       <div className="flex gap-2">
-                        <input className="w-full bg-bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent uppercase" placeholder="e.g. SUMMER50" />
-                        <button type="button" className="bg-transparent border border-border text-text-primary rounded-lg px-5 py-2.5 text-sm font-medium hover:bg-primary-subtle hover:border-primary transition-colors inline-flex items-center gap-2 mgr-btn-sm">Apply</button>
+                        <input className="w-full bg-bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary uppercase" placeholder="e.g. SUMMER50" />
+                        <button type="button" className="bg-transparent border border-border text-text-primary rounded-lg px-4 py-2 text-[13px] font-medium hover:bg-primary-subtle hover:border-primary transition-colors inline-flex items-center gap-2">Apply</button>
                       </div>
                     </div>
 
-                    <div className="mgr-form-field">
-                      <label className="block text-sm font-medium text-text-secondary mb-1.5 block text-sm font-medium text-text-secondary mb-1.5-required">Amount Paid Now (₹)</label>
-                      <div className="w-full bg-bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent-icon-wrap">
-                        <IndianRupee size={14} className="w-full bg-bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent-icon" />
+                    <div className="flex flex-col">
+                      <label className="block text-[13px] font-medium text-text-secondary mb-1.5 after:content-['*'] after:ml-1 after:text-danger">Amount Paid Now (₹)</label>
+                      <div className="relative">
+                        <IndianRupee size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-text-secondary" />
                         <input
                           {...register('amountPaid')}
                           type="number"
-                          className={`w-full bg-bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent w-full bg-bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent-with-icon${errors.amountPaid ? ' w-full bg-bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent-error' : ''}`}
+                          className={`w-full bg-bg-input border ${errors.amountPaid ? 'border-danger focus:ring-danger' : 'border-border focus:ring-primary'} rounded-lg pl-9 pr-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2`}
                         />
                       </div>
-                      {errors.amountPaid && <p className="mgr-error">{errors.amountPaid.message}</p>}
+                      {errors.amountPaid && <p className="text-[11px] text-danger mt-1.5 font-medium">{errors.amountPaid.message}</p>}
                     </div>
 
-                    <div className="mgr-form-field mgr-form-field-full">
-                      <label className="block text-sm font-medium text-text-secondary mb-1.5 block text-sm font-medium text-text-secondary mb-1.5-required">Payment Mode</label>
-                      <div className="mgr-payment-mode-group">
+                    <div className="flex flex-col col-span-1 md:col-span-2">
+                      <label className="block text-[13px] font-medium text-text-secondary mb-1.5 after:content-['*'] after:ml-1 after:text-danger">Payment Mode</label>
+                      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
                         {(['Cash', 'UPI', 'Card', 'Bank Transfer'] as const).map(mode => (
                           <button
                             key={mode}
                             type="button"
                             onClick={() => setValue('paymentMode', mode)}
-                            className={`mgr-payment-mode-btn${watchedMode === mode ? ' active' : ''}`}
+                            className={`flex items-center justify-center gap-2 px-3 py-2.5 rounded-lg border text-[13px] font-medium transition-all duration-200 ${watchedMode === mode ? 'border-primary bg-primary-subtle text-primary ring-1 ring-primary/20' : 'border-border bg-bg-page text-text-secondary hover:border-primary/50 hover:bg-primary-subtle/30'}`}
                           >
                             <CreditCard size={13} />
                             {mode}
@@ -281,16 +279,14 @@ export default function ManagerStudentsAdmissionForm() {
                       </div>
                     </div>
 
-                    <div className="mgr-form-field">
-                      <label className="block text-sm font-medium text-text-secondary mb-1.5">Transaction ID / Reference</label>
+                    <div className="flex flex-col col-span-1 md:col-span-2">
+                      <label className="block text-[13px] font-medium text-text-secondary mb-1.5">Transaction ID / Reference</label>
                       <input
                         {...register('transactionId')}
-                        className="w-full bg-bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                        className="w-full bg-bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary"
                         placeholder="e.g. 41220912…"
                       />
                     </div>
-
-
 
                   </div>
                 </div>
@@ -299,65 +295,66 @@ export default function ManagerStudentsAdmissionForm() {
             </div>{/* end main */}
 
             {/* ── RIGHT: Admission Summary ── */}
-            <aside className="mgr-admission-summary">
-              <div className="bg-bg-card rounded-xl border border-border p-6 sticky top-[80px]">
+            <aside className="w-full lg:w-[320px] shrink-0">
+              <div className="bg-bg-card rounded-xl border border-border p-6 sticky top-[100px]">
                 <div className="flex items-center justify-between mb-4">
                   <h2 className="text-base font-semibold text-text-primary">Admission Summary</h2>
                 </div>
-                <div className="">
-                  <div className="mgr-summary-rows">
-                    <div className="mgr-summary-row">
-                      <span className="mgr-summary-label">Smart ID</span>
-                      <span className="mgr-smartid-chip">{SMART_ID}</span>
+                <div>
+                  <div className="space-y-3.5 mb-6">
+                    <div className="flex justify-between items-center text-[13.5px]">
+                      <span className="text-text-secondary">Smart ID</span>
+                      <span className="bg-primary-subtle text-primary px-2 py-0.5 rounded text-xs font-bold font-mono tracking-tight">{SMART_ID}</span>
                     </div>
-                    <div className="mgr-summary-row">
-                      <span className="mgr-summary-label">Plan</span>
-                      <span className="mgr-summary-value">{watchedPlan}</span>
+                    <div className="flex justify-between items-center text-[13.5px]">
+                      <span className="text-text-secondary">Plan</span>
+                      <span className="font-semibold text-text-primary">{watchedPlan}</span>
                     </div>
-                    <div className="mgr-summary-row">
-                      <span className="mgr-summary-label">Shift</span>
-                      <span className="mgr-summary-value">{watchedShift.split(' ')[0]}</span>
+                    <div className="flex justify-between items-center text-[13.5px]">
+                      <span className="text-text-secondary">Shift</span>
+                      <span className="font-semibold text-text-primary">{watchedShift.split(' ')[0]}</span>
                     </div>
-                    <div className="mgr-summary-row">
-                      <span className="mgr-summary-label">Seat</span>
-                      <span className="mgr-summary-value">{watchedSeat}</span>
+                    <div className="flex justify-between items-center text-[13.5px]">
+                      <span className="text-text-secondary">Seat</span>
+                      <span className="font-semibold text-text-primary">{watchedSeat}</span>
                     </div>
 
-                    <div className="mgr-summary-divider" />
-                    <div className="mgr-summary-row">
-                      <span className="mgr-summary-label">Base Amount</span>
-                      <span className="mgr-summary-value">₹{baseAmt.toLocaleString('en-IN')}</span>
+                    <div className="h-px bg-border my-4" />
+                    
+                    <div className="flex justify-between items-center text-[13.5px]">
+                      <span className="text-text-secondary">Base Amount</span>
+                      <span className="font-semibold text-text-primary">₹{baseAmt.toLocaleString('en-IN')}</span>
                     </div>
-                    <div className="mgr-summary-row">
-                      <span className="mgr-summary-label">Discount</span>
-                      <span className="mgr-text-warning">− ₹{discount.toLocaleString('en-IN')}</span>
+                    <div className="flex justify-between items-center text-[13.5px]">
+                      <span className="text-text-secondary">Discount</span>
+                      <span className="font-semibold text-warning">− ₹{discount.toLocaleString('en-IN')}</span>
                     </div>
-                    <div className="mgr-summary-total-row">
-                      <span className="mgr-summary-total-label">Total Payable</span>
-                      <span className="mgr-summary-total-value">₹{totalPayable.toLocaleString('en-IN')}</span>
+                    <div className="flex justify-between items-center pt-2 pb-1">
+                      <span className="text-[15px] font-bold text-text-primary">Total Payable</span>
+                      <span className="text-[18px] font-bold text-primary">₹{totalPayable.toLocaleString('en-IN')}</span>
                     </div>
-                    <div className="mgr-summary-row">
-                      <span className="mgr-summary-label">Paid Now</span>
-                      <span className="mgr-text-success">₹{Number(watchedAmount || 0).toLocaleString('en-IN')}</span>
+                    <div className="flex justify-between items-center text-[13.5px]">
+                      <span className="text-text-secondary">Paid Now</span>
+                      <span className="font-semibold text-success">₹{Number(watchedAmount || 0).toLocaleString('en-IN')}</span>
                     </div>
                     {totalPayable - Number(watchedAmount || 0) > 0 && (
-                      <div className="mgr-summary-row">
-                        <span className="mgr-summary-label">Balance Due</span>
-                        <span className="mgr-text-danger">₹{(totalPayable - Number(watchedAmount || 0)).toLocaleString('en-IN')}</span>
+                      <div className="flex justify-between items-center text-[13.5px]">
+                        <span className="text-text-secondary">Balance Due</span>
+                        <span className="font-semibold text-danger">₹{(totalPayable - Number(watchedAmount || 0)).toLocaleString('en-IN')}</span>
                       </div>
                     )}
                   </div>
 
-                  <div className="mgr-summary-actions">
+                  <div className="flex flex-col gap-3">
                     <button
                       type="submit"
                       disabled={isSubmitting}
-                      className="bg-primary text-white rounded-lg px-5 py-2.5 text-sm font-medium hover:bg-primary-hover transition-colors inline-flex items-center gap-2 mgr-btn-full"
+                      className="w-full flex justify-center items-center gap-2 bg-primary text-white rounded-lg px-5 py-2.5 text-[13.5px] font-semibold hover:bg-primary-hover transition-colors disabled:opacity-50"
                     >
                       <CheckCircle size={15} />
                       {isSubmitting ? 'Confirming…' : 'Confirm Admission'}
                     </button>
-                    <Link href="/manager/manager_students" className="bg-transparent border border-border text-text-primary rounded-lg px-5 py-2.5 text-sm font-medium hover:bg-primary-subtle hover:border-primary transition-colors inline-flex items-center gap-2 mgr-btn-full">
+                    <Link href="/manager/manager_students" className="w-full flex justify-center items-center gap-2 bg-transparent border border-border text-text-primary rounded-lg px-5 py-2.5 text-[13.5px] font-semibold hover:bg-primary-subtle hover:border-primary transition-colors">
                       Cancel
                     </Link>
                   </div>
@@ -371,6 +368,3 @@ export default function ManagerStudentsAdmissionForm() {
     </>
   );
 }
-
-
-

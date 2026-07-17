@@ -9,7 +9,6 @@ import AdminSidebar from '@/app/admin/admin_components/AdminSidebar/AdminSidebar
 import AdminHeader from '@/app/admin/admin_components/AdminHeader/AdminHeader';
 import { AdminProvider } from '@/app/admin/admin_context/AdminContext';
 import { ADMIN_ROUTES } from '@/app/admin/admin_url_config';
-import '@/app/admin/admin.css';
 
 // All route prefixes that belong to admin shell
 const ADMIN_ROUTE_PREFIXES = [

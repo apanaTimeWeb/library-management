@@ -2,7 +2,7 @@
 'use client';
 import { Toaster } from 'react-hot-toast';
 import { usePathname } from 'next/navigation';
-import '@/app/manager/manager_seats_shifts_lockers/seat_shift.css';
+
 
 const SEATS_ROUTES = ['/seats_shifts_lockers'];
 

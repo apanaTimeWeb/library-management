@@ -1,7 +1,7 @@
 // RESPONSIBILITY: Renders the EngagementRoute.tsx component.
 'use client';
 import { usePathname } from 'next/navigation';
-import '@/app/manager/manager_engagement/engagement.css';
+
 
 const ENGAGEMENT_ROUTES = ['/engagement'];
 

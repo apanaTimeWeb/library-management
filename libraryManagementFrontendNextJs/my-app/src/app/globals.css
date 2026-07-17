@@ -1,93 +1,117 @@
-
 @import "tailwindcss";
 
 body {
   font-family: var(--font-inter), system-ui, sans-serif;
+  background-color: var(--bg-page);
+  color: var(--text-primary);
 }
 
 :root {
+  /* DARK MODE (DEFAULT) */
+  --primary: #6366F1;
+  --primary-hover: #4F46E5;
+  --primary-subtle: #EEF2FF;
+  
+  --bg-page: #0F0F1A;
+  --bg-card: #1A1A2E;
+  --bg-sidebar: #12121F;
+  --bg-header: #16162A;
+  --bg-input: #1E1E32;
+  
+  --border: #2A2A3E;
+  --border-focus: #6366F1;
+  
+  --text-primary: #F0F0FF;
+  --text-secondary: #94A3B8;
+  --text-disabled: #44445A;
+  
+  --skeleton-base: #2A2A3E;
+  --skeleton-highlight: #3F3F5A;
+
+  /* Status Colors */
+  --success: #34D399;
+  --success-bg: #064E3B;
+  --warning: #FBBF24;
+  --warning-bg: #451A03;
+  --danger: #F87171;
+  --danger-bg: #450A0A;
+  --info: #60A5FA;
+  --info-bg: #1E3A5F;
+  --purple: #C084FC;
+  --purple-bg: #581C87;
+
+  /* Payment Mode Colors */
+  --pay-cash: #5EEAD4;
+  --pay-cash-bg: #134E4A;
+  --pay-upi: #67E8F9;
+  --pay-upi-bg: #164E63;
+  --pay-card: #94A3B8;
+  --pay-card-bg: #1E293B;
+  --pay-bank: #38BDF8;
+  --pay-bank-bg: #0C4A6E;
+
+  /* Shadcn UI Variables (Dark mode defaults) */
   --background: 240 10% 3.9%;
   --foreground: 0 0% 98%;
   --card: 240 10% 10%;
   --card-foreground: 0 0% 98%;
   --popover: 240 10% 3.9%;
   --popover-foreground: 0 0% 98%;
-  --primary: 240 5.9% 10%;
-  --primary-foreground: 0 0% 98%;
-  --secondary: 240 3.7% 15.9%;
-  --secondary-foreground: 0 0% 98%;
   --muted: 240 3.7% 15.9%;
   --muted-foreground: 240 5% 64.9%;
   --accent: 240 3.7% 15.9%;
   --accent-foreground: 0 0% 98%;
   --destructive: 0 62.8% 30.6%;
   --destructive-foreground: 0 0% 98%;
-  --border: 240 3.7% 15.9%;
-  --input: 240 3.7% 15.9%;
-  --ring: 240 4.9% 83.9%;
+  --ring: 236 80% 67%;
   --radius: 0.75rem;
 }
 
-@theme {
-  --color-surface: #12121d;
-  --color-surface-dim: #12121d;
-  --color-surface-bright: #383845;
-  --color-surface-container-lowest: #0d0d18;
-  --color-surface-container-low: #1b1a26;
-  --color-surface-container: #1f1e2a;
-  --color-surface-container-high: #292935;
-  --color-surface-container-highest: #343440;
-  --color-surface-variant: #343440;
-  --color-surface-tint: #c0c1ff;
-  --color-on-surface: #e3e0f1;
-  --color-on-surface-variant: #c7c4d7;
-  --color-background: #12121d;
-  --color-on-background: #e3e0f1;
-  --color-primary: #c0c1ff;
-  --color-primary-container: #8083ff;
-  --color-primary-fixed: #e1e0ff;
-  --color-primary-fixed-dim: #c0c1ff;
-  --color-on-primary: #1000a9;
-  --color-on-primary-container: #0d0096;
-  --color-on-primary-fixed: #07006c;
-  --color-on-primary-fixed-variant: #2f2ebe;
-  --color-inverse-primary: #494bd6;
-  --color-secondary: #c6c4de;
-  --color-secondary-container: #47475d;
-  --color-secondary-fixed: #e2e0fb;
-  --color-secondary-fixed-dim: #c6c4de;
-  --color-on-secondary: #2f2f43;
-  --color-on-secondary-container: #b8b6d0;
-  --color-on-secondary-fixed: #1a1a2d;
-  --color-on-secondary-fixed-variant: #45455a;
-  --color-tertiary: #ffb783;
-  --color-tertiary-container: #d97721;
-  --color-tertiary-fixed: #ffdcc5;
-  --color-tertiary-fixed-dim: #ffb783;
-  --color-on-tertiary: #4f2500;
-  --color-on-tertiary-container: #452000;
-  --color-on-tertiary-fixed: #301400;
-  --color-on-tertiary-fixed-variant: #703700;
-  --color-error: #ffb4ab;
-  --color-error-container: #93000a;
-  --color-on-error: #690005;
-  --color-on-error-container: #ffdad6;
-  --color-outline: #908fa0;
-  --color-outline-variant: #464554;
-  --color-inverse-surface: #e3e0f1;
-  --color-inverse-on-surface: #302f3b;
+[data-theme='light'], .light {
+  /* LIGHT MODE */
+  --primary: #4F46E5;
+  --primary-hover: #4338CA;
+  --primary-subtle: #EEF2FF;
+  
+  --bg-page: #F8FAFC;
+  --bg-card: #FFFFFF;
+  --bg-sidebar: #F1F5F9;
+  --bg-header: #FFFFFF;
+  --bg-input: #FFFFFF;
+  
+  --border: #E2E8F0;
+  --border-focus: #4F46E5;
+  
+  --text-primary: #0F172A;
+  --text-secondary: #64748B;
+  --text-disabled: #94A3B8;
+  
+  --skeleton-base: #E2E8F0;
+  --skeleton-highlight: #F1F5F9;
+}
 
-  /* Theme mappings for custom tokens */
-  --color-page: var(--bg-page);
-  --color-card: var(--bg-card);
-  --color-sidebar: var(--bg-sidebar);
-  --color-header: var(--bg-header);
-  --color-input: var(--bg-input);
+@theme {
+  /* Theme mappings for Tailwind v4 */
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-primary-subtle: var(--primary-subtle);
+  
+  --color-bg-page: var(--bg-page);
+  --color-bg-card: var(--bg-card);
+  --color-bg-sidebar: var(--bg-sidebar);
+  --color-bg-header: var(--bg-header);
+  --color-bg-input: var(--bg-input);
+  
   --color-border: var(--border);
   --color-border-focus: var(--border-focus);
+  
   --color-text-primary: var(--text-primary);
   --color-text-secondary: var(--text-secondary);
   --color-text-disabled: var(--text-disabled);
+  
+  --color-skeleton-base: var(--skeleton-base);
+  --color-skeleton-highlight: var(--skeleton-highlight);
+
   --color-success: var(--success);
   --color-success-bg: var(--success-bg);
   --color-warning: var(--warning);
@@ -98,25 +122,23 @@ body {
   --color-info-bg: var(--info-bg);
   --color-purple: var(--purple);
   --color-purple-bg: var(--purple-bg);
-  --color-primary-subtle: var(--primary-subtle);
-  /* Shadcn UI Overrides */
-  --color-background: hsl(240, 10%, 3.9%);
-  --color-foreground: hsl(0, 0%, 98%);
-  --color-card: hsl(240, 10%, 10%); /* #1A1A2E */
-  --color-card-foreground: hsl(0, 0%, 98%);
-  --color-popover: hsl(240, 10%, 3.9%);
-  --color-popover-foreground: hsl(0, 0%, 98%);
-  --color-primary-foreground: hsl(0, 0%, 98%);
-  --color-secondary: hsl(240, 3.7%, 15.9%);
-  --color-secondary-foreground: hsl(0, 0%, 98%);
-  --color-muted: hsl(240, 3.7%, 15.9%);
-  --color-muted-foreground: hsl(240, 5%, 64.9%);
-  --color-accent: hsl(240, 3.7%, 15.9%);
-  --color-accent-foreground: hsl(0, 0%, 98%);
-  --color-destructive: hsl(0, 62.8%, 30.6%);
-  --color-destructive-foreground: hsl(0, 0%, 98%);
-  --color-ring: hsl(236, 80%, 67%);
-  --radius: 0.75rem;
+
+  --color-pay-cash: var(--pay-cash);
+  --color-pay-cash-bg: var(--pay-cash-bg);
+  --color-pay-upi: var(--pay-upi);
+  --color-pay-upi-bg: var(--pay-upi-bg);
+  --color-pay-card: var(--pay-card);
+  --color-pay-card-bg: var(--pay-card-bg);
+  --color-pay-bank: var(--pay-bank);
+  --color-pay-bank-bg: var(--pay-bank-bg);
+
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-full: 999px;
+  
+  --radius: var(--radius);
 }
 
 .glass-panel {
@@ -125,69 +147,9 @@ body {
   -webkit-backdrop-filter: blur(20px);
 }
 
-.otp-input {
-  width: 3.5rem;
-  height: 4rem;
-  text-align: center;
-  font-size: 1.5rem;
-  font-weight: 700;
-  background-color: #1f1e2a;
-  border: none;
-  border-radius: 0.75rem;
-  color: #e3e0f1;
-}
-
-.strength-meter-segment {
-  height: 4px;
-  flex: 1;
-  border-radius: 2px;
-  background-color: #343440;
-}
-
-.strength-medium {
-  background-color: #ffb783;
-}
-
-/* ─────────────────────────────────────────────
-   GLOBAL LIGHT MODE OVERRIDES
-───────────────────────────────────────────── */
-[data-theme='light'] .mgr-theme,
-[data-theme='light'] .admin-theme,
-[data-theme='light'] .fin-theme,
-[data-theme='light'] .sa-theme,
-[data-theme='light'] .crm-theme,
-[data-theme='light'] .eng-theme,
-[data-theme='light'] .comm-theme,
-[data-theme='light'] .ss-theme,
-[data-theme='light'] .sys-theme {
-    /* Backgrounds */
-    --bg-page:          #F9FAFB;
-    --bg-card:          #FFFFFF;
-    --bg-sidebar:       #FFFFFF;
-    --bg-header:        #FFFFFF;
-    --bg-input:         #F3F4F6;
-    
-    /* Borders */
-    --border:           #E5E7EB;
-    
-    /* Text */
-    --text-primary:     #111827;
-    --text-secondary:   #4B5563;
-    --text-disabled:    #9CA3AF;
-    
-    /* AG grid specifics if present */
-    --ag-bg:            #FFFFFF;
-    --ag-fg:            #111827;
-    --ag-header-bg:     #F9FAFB;
-    --ag-header-text:   #4B5563;
-    --ag-border:        #E5E7EB;
-    --ag-odd-row-bg:    #F9FAFB;
-    --ag-row-hover:     #F3F4F6;
-}
-
 [data-theme='light'] .glass-panel {
   background: rgba(255, 255, 255, 0.85);
-  border: 1px solid #E5E7EB;
+  border: 1px solid var(--border);
 }
 
 /* ─────────────────────────────────────────────
@@ -201,4 +163,22 @@ body {
   flex: 1;
   width: 100%;
   height: 100%;
+}
+
+/* ─────────────────────────────────────────────
+   GLOBAL UI POLISH (Phase 4)
+───────────────────────────────────────────── */
+/* Global focus rings for accessibility and aesthetics */
+a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--bg-page), 0 0 0 4px var(--primary);
+  border-color: var(--primary);
+}
+
+/* Micro-animations and transitions */
+button, a {
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+button:active {
+  transform: scale(0.97);
 }

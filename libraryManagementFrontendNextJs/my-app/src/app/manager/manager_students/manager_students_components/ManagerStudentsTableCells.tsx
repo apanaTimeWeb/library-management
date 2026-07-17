@@ -11,10 +11,10 @@ export function NameCell({ data }: { data: Student }) {
   const initials = data.name.split(' ').map((n: string) => n[0]).join('').slice(0, 2).toUpperCase();
   return (
     <div style={{ display: 'flex', alignItems: 'center', gap: 10, height: '100%' }}>
-      <div className="mgr-avatar-sm">{initials}</div>
+      <div className="w-8 h-8 rounded-full bg-primary/10 text-primary flex items-center justify-center text-xs font-bold shrink-0">{initials}</div>
       <div>
-        <p className="mgr-cell-name">{data.name}</p>
-        <p className="mgr-cell-sub">{data.phone}</p>
+        <p className="text-sm font-semibold text-text-primary">{data.name}</p>
+        <p className="text-xs text-text-secondary mt-0.5">{data.phone}</p>
       </div>
     </div>
   );
@@ -23,8 +23,8 @@ export function NameCell({ data }: { data: Student }) {
 export function ShiftCell({ data }: { data: Student }) {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', height: '100%' }}>
-      <span className="mgr-cell-name">{data.shift}</span>
-      <span className="mgr-cell-sub">{data.seat}</span>
+      <span className="text-sm font-semibold text-text-primary">{data.shift}</span>
+      <span className="text-xs text-text-secondary mt-0.5">{data.seat}</span>
     </div>
   );
 }
@@ -32,7 +32,7 @@ export function ShiftCell({ data }: { data: Student }) {
 export function StatusCell({ value }: { value: string }) {
   const cls = value === 'Active' ? 'rounded-full px-2.5 py-0.5 text-[11px] font-semibold bg-success-bg text-success'
     : value === 'Suspended' ? 'rounded-full px-2.5 py-0.5 text-[11px] font-semibold bg-warning-bg text-warning'
-    : 'rounded-full px-2.5 py-0.5 text-[11px] font-semibold rounded-full px-2.5 py-0.5 text-[11px] font-semibold--danger';
+    : 'rounded-full px-2.5 py-0.5 text-[11px] font-semibold bg-danger-bg text-danger';
   return <span className={cls}>{value}</span>;
 }
 
@@ -82,7 +82,7 @@ export function ActionsCell({ data }: { data: Student }) {
       </Link>
       {data.due > 0 && (
         <button
-          className="w-8 h-8 rounded-lg border border-border text-text-secondary inline-flex items-center justify-center hover:bg-primary-subtle hover:text-primary transition-colors w-8 h-8 rounded-lg border border-border text-text-secondary inline-flex items-center justify-center hover:bg-primary-subtle hover:text-primary transition-colors--wa"
+          className="w-8 h-8 rounded-lg border border-border text-text-secondary inline-flex items-center justify-center hover:bg-success/20 hover:text-success transition-colors"
           title={`Send dues reminder — ₹${data.due}`}
           onClick={(e) => { e.stopPropagation(); sendDuesReminder(); }}
         >
