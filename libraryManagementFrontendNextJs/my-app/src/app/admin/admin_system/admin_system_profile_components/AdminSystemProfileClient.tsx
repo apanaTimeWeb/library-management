@@ -102,7 +102,7 @@ export function AdminSystemProfileClient() {
               {newPw && (
                 <div className="space-y-1.5 mt-2">
                   <Progress value={strength.score} max={4} barClassName={strength.color} />
-                  <p className={`text-xs font-medium ${strength.score >= 3 ? 'text-green-400' : strength.score === 2 ? 'text-tertiary' : 'text-error'}`}>
+                  <p className={`text-xs font-medium ${strength.score >= 3 ? 'text-success' : strength.score === 2 ? 'text-tertiary' : 'text-error'}`}>
                     Password strength: {strength.label}
                   </p>
                 </div>

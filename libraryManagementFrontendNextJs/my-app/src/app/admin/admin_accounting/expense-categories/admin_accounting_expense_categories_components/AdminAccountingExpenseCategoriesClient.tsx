@@ -16,7 +16,7 @@ const MOCK: Category[] = [
   { id: 3, name: 'Internet',      budget: 2500,  spent: 2200,  color: 'bg-info' },
   { id: 4, name: 'Salary',        budget: 15000, spent: 12000, color: 'bg-primary' },
   { id: 5, name: 'Stationery',    budget: 1000,  spent: 650,   color: 'bg-success' },
-  { id: 6, name: 'Cleaning',      budget: 1200,  spent: 900,   color: 'bg-purple-500' },
+  { id: 6, name: 'Cleaning',      budget: 1200,  spent: 900,   color: 'bg-info' },
 ];
 
 export function AdminAccountingExpenseCategoriesClient() {

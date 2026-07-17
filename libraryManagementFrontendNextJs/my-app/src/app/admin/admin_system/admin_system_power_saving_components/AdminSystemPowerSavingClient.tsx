@@ -82,9 +82,9 @@ export function AdminSystemPowerSavingClient() {
                 <div className="space-y-1.5">
                   <div className="flex justify-between text-xs text-on-surface-variant">
                     <span>Occupancy</span>
-                    <span className={isLow ? 'text-tertiary font-semibold' : 'text-green-400 font-semibold'}>{zone.occupancy}%</span>
+                    <span className={isLow ? 'text-tertiary font-semibold' : 'text-success font-semibold'}>{zone.occupancy}%</span>
                   </div>
-                  <Progress value={zone.occupancy} barClassName={isLow ? 'bg-tertiary' : 'bg-green-500'} />
+                  <Progress value={zone.occupancy} barClassName={isLow ? 'bg-tertiary' : 'bg-success'} />
                 </div>
                 {isLow && (
                   <div className="mt-3 p-2.5 rounded-lg bg-tertiary/10 border border-tertiary/20 text-xs text-tertiary">

@@ -19,7 +19,18 @@ export interface AdminDashboardSeatData {
 interface Props {
   seats: AdminDashboardSeatData[];
   shifts: string[];
-  state: any;
+  state: {
+    activeShift: string;
+    setActiveShift: (val: string) => void;
+    feeFilter: string;
+    setFeeFilter: (val: string) => void;
+    appliedFee: string;
+    appliedShift: string;
+    setAppliedShift: (val: string) => void;
+    handleSeatClick: (seat: AdminDashboardSeatData) => void;
+    handleApplyFilters: () => void;
+    handleClearFilters: () => void;
+  };
 }
 
 const LEGEND = [

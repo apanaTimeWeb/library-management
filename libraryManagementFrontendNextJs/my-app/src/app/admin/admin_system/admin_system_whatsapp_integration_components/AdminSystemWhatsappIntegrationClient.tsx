@@ -50,13 +50,13 @@ export function AdminSystemWhatsappIntegrationClient() {
       {/* Connection Status Banner */}
       <div className={`flex items-center gap-4 p-4 rounded-2xl border mb-8 ${
         testStatus === 'success'
-          ? 'bg-green-500/10 border-green-500/25'
+          ? 'bg-success/10 border-success/25'
           : testStatus === 'error'
           ? 'bg-error-container/10 border-error/20'
           : 'bg-surface-container border-outline-variant'
       }`}>
         <div className={`h-12 w-12 rounded-xl flex items-center justify-center text-2xl ${
-          testStatus === 'success' ? 'bg-green-500/20' :
+          testStatus === 'success' ? 'bg-success/20' :
           testStatus === 'error' ? 'bg-error-container/30' :
           'bg-surface-container-high'
         }`}>
@@ -206,7 +206,7 @@ export function AdminSystemWhatsappIntegrationClient() {
                   size="sm"
                   onClick={handleCopyWebhook}
                 >
-                  {copiedUrl ? <CheckCircle size={14} className="text-green-400" /> : <Copy size={14} />}
+                  {copiedUrl ? <CheckCircle size={14} className="text-success" /> : <Copy size={14} />}
                 </Button>
               </div>
               <p className="text-xs text-on-surface-variant">Paste this URL in your provider's webhook settings to receive inbound messages.</p>

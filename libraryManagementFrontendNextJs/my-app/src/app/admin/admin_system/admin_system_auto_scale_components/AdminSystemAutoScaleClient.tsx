@@ -106,7 +106,7 @@ export function AdminSystemAutoScaleClient() {
           <div className={`p-4 rounded-xl border ${
             seatRec.color === 'danger' ? 'bg-error-container/10 border-error/20' :
             seatRec.color === 'warning' ? 'bg-tertiary/10 border-tertiary/20' :
-            'bg-green-500/10 border-green-500/20'
+            'bg-success/10 border-success/20'
           }`}>
             <div className="flex items-center justify-between">
               <div className="flex items-start gap-3">
@@ -127,7 +127,7 @@ export function AdminSystemAutoScaleClient() {
           <div className={`p-4 rounded-xl border ${
             lockerRec.color === 'danger' ? 'bg-error-container/10 border-error/20' :
             lockerRec.color === 'warning' ? 'bg-tertiary/10 border-tertiary/20' :
-            'bg-green-500/10 border-green-500/20'
+            'bg-success/10 border-success/20'
           }`}>
             <div className="flex items-center justify-between">
               <div className="flex items-start gap-3">

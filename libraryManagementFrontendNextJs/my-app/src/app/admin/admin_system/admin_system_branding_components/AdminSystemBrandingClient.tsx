@@ -111,7 +111,7 @@ export function AdminSystemBrandingClient() {
                 <p className="text-xs text-on-surface-variant uppercase tracking-wider mb-2">Sidebar</p>
                 <div className="rounded-xl border border-outline-variant overflow-hidden w-64 bg-surface flex flex-col shadow-sm">
                   <div className="p-3 flex items-center gap-2 bg-surface">
-                    <div className="h-8 w-8 rounded-lg flex items-center justify-center text-base font-bold shadow-sm" style={{ backgroundColor: 'var(--preview-primary, #6366f1)', color: '#ffffff' }}>
+                    <div className="h-8 w-8 rounded-lg flex items-center justify-center text-base font-bold shadow-sm" style={{ backgroundColor: 'var(--preview-primary, #6366f1)' }}>
                       📚
                     </div>
                     <div>
@@ -133,7 +133,7 @@ export function AdminSystemBrandingClient() {
                 <p className="text-xs text-on-surface-variant uppercase tracking-wider mb-2">Login Page</p>
                 <div className="rounded-xl border border-outline-variant p-5 max-w-xs bg-surface shadow-sm">
                   <div className="flex flex-col items-center mb-3 gap-1">
-                    <div className="h-10 w-10 rounded-xl flex items-center justify-center text-xl font-bold shadow-sm" style={{ backgroundColor: 'var(--preview-primary, #6366f1)', color: '#ffffff' }}>
+                    <div className="h-10 w-10 rounded-xl flex items-center justify-center text-xl font-bold shadow-sm" style={{ backgroundColor: 'var(--preview-primary, #6366f1)' }}>
                       📚
                     </div>
                     <p className="text-sm font-bold text-on-surface">{form.libraryName || 'Library'}</p>
@@ -142,7 +142,7 @@ export function AdminSystemBrandingClient() {
                   <div className="space-y-2">
                     <div className="h-7 rounded-lg bg-surface-container-highest" />
                     <div className="h-7 rounded-lg bg-surface-container-highest" />
-                    <div className="h-8 rounded-lg flex items-center justify-center text-xs font-bold shadow-sm transition-all hover:-translate-y-0.5" style={{ backgroundColor: 'var(--preview-primary, #6366f1)', color: '#ffffff' }}>Login</div>
+                    <div className="h-8 rounded-lg flex items-center justify-center text-xs font-bold shadow-sm transition-all hover:-translate-y-0.5" style={{ backgroundColor: 'var(--preview-primary, #6366f1)' }}>Login</div>
                   </div>
                 </div>
               </div>
@@ -151,7 +151,7 @@ export function AdminSystemBrandingClient() {
               <div>
                 <p className="text-xs text-on-surface-variant uppercase tracking-wider mb-2">Student ID Card</p>
                 <div className="rounded-xl border border-outline-variant overflow-hidden max-w-xs shadow-sm bg-surface">
-                  <div className="p-3 flex items-center gap-3" style={{ backgroundColor: 'var(--preview-primary, #6366f1)', color: '#ffffff' }}>
+                  <div className="p-3 flex items-center gap-3" style={{ backgroundColor: 'var(--preview-primary, #6366f1)' }}>
                     <div className="h-8 w-8 rounded-lg bg-white/20 flex items-center justify-center text-lg">📚</div>
                     <div>
                       <p className="font-bold text-sm tracking-tight text-white">{form.libraryName || 'Library'}</p>

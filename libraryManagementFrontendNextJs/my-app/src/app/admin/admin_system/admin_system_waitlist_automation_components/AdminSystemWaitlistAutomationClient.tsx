@@ -37,7 +37,7 @@ export function AdminSystemWaitlistAutomationClient() {
         <CardContent>
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4">
-              <div className={`h-12 w-12 rounded-2xl flex items-center justify-center text-2xl ${enabled ? 'bg-green-500/15' : 'bg-surface-container-highest'}`}>
+              <div className={`h-12 w-12 rounded-2xl flex items-center justify-center text-2xl ${enabled ? 'bg-success/15' : 'bg-surface-container-highest'}`}>
                 📋
               </div>
               <div>

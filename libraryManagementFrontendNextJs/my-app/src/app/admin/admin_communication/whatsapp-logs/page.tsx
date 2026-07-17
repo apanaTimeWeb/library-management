@@ -22,7 +22,7 @@ const TYPE_BADGE: Record<string, string> = {
   welcome: 'bg-info/10 text-info hover:bg-info/20', 
   fee_reminder: 'bg-warning/10 text-warning hover:bg-warning/20',
   receipt: 'bg-success/10 text-success hover:bg-success/20', 
-  notice: 'bg-purple-500/10 text-purple-500 hover:bg-purple-500/20', 
+  notice: 'bg-info/10 text-info hover:bg-info/20', 
   renewal: 'bg-primary/10 text-primary hover:bg-primary/20',
 };
 const TYPE_LABEL: Record<string, string> = {

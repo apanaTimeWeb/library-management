@@ -147,12 +147,12 @@ export function AdminSystemBackupsClient() {
                     <option>Custom S3-Compatible</option>
                   </select>
                 </div>
-                <div className="flex items-center gap-3 p-3 rounded-xl bg-green-500/10 border border-green-500/20">
-                  <div className="h-8 w-8 rounded-full bg-green-500/20 flex items-center justify-center">
-                    <Shield size={16} className="text-green-400" />
+                <div className="flex items-center gap-3 p-3 rounded-xl bg-success/10 border border-success/20">
+                  <div className="h-8 w-8 rounded-full bg-success/20 flex items-center justify-center">
+                    <Shield size={16} className="text-success" />
                   </div>
                   <div>
-                    <p className="text-xs font-semibold text-green-400">Connected — Google Drive</p>
+                    <p className="text-xs font-semibold text-success">Connected — Google Drive</p>
                     <p className="text-xs text-on-surface-variant">Last synced: 2026-04-12 at 02:03 AM</p>
                   </div>
                 </div>

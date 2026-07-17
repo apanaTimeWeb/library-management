@@ -33,7 +33,7 @@ export function AdminStaffUsersClient({ initialStaff }: AdminStaffUsersClientPro
   } = useAdminStaff(initialStaff);
 
   const getRoleBadgeClass = (role: string) => {
-    if (role === 'Admin')   return 'bg-purple-500/10 text-purple-500 hover:bg-purple-500/20';
+    if (role === 'Admin')   return 'bg-info/10 text-info hover:bg-info/20';
     if (role === 'Manager') return 'bg-info/10 text-info hover:bg-info/20';
     return 'bg-success/10 text-success hover:bg-success/20';
   };

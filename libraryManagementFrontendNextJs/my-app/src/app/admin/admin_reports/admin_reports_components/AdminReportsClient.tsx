@@ -290,8 +290,8 @@ export function AdminReportsClient({ initialData }: AdminReportsClientProps) {
           <Card className="p-5 shadow-none border-border bg-card">
             <div className="flex items-center justify-between mb-5">
               <div className="flex items-center gap-2">
-                <div className="w-8 h-8 rounded-lg flex items-center justify-center bg-purple-500/10">
-                  <Users size={16} className="text-purple-500" />
+                <div className="w-8 h-8 rounded-lg flex items-center justify-center bg-info/10">
+                  <Users size={16} className="text-info" />
                 </div>
                 <h3 className="font-bold text-sm text-primary">Student Growth</h3>
               </div>
