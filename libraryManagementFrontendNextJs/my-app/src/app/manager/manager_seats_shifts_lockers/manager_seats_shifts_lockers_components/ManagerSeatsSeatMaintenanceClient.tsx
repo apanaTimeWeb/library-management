@@ -1,7 +1,6 @@
-// @ts-nocheck
 // RESPONSIBILITY: Renders the ManagerSeatsSeatMaintenanceClient.tsx component UI.
 'use client';
-import { Allocation, ActivityItem, Locker, SeatHistoryEntry, LogEntry, Seat, ManagerSeatsSeatMatrixModalProps, ShiftData, Shift, Student } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_types/ManagerSeatsTypes';
+import { Allocation, ActivityItem, Locker, SeatHistoryEntry, LogEntry, Seat, ManagerSeatsSeatMatrixModalProps, ShiftData, Shift, Student, SeatStatus } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_types';
 import { ACTIVITY_DATA, INITIAL_LOCKERS, INITIAL_SEATS, SHIFTS_DATA, INITIAL_SHIFTS, STUDENTS_DATA } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_constants/ManagerSeatsConstants';
 import { useState, useMemo } from 'react';
 import { ChevronDown, AlertTriangle, Plus } from 'lucide-react';
@@ -9,12 +8,9 @@ import { AgGridReact } from 'ag-grid-react';
 import { AllCommunityModule, ModuleRegistry, type ColDef } from 'ag-grid-community';
 import { gridTheme } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shared_components/gridTheme';
 import toast from 'react-hot-toast';
+import { ManagerSearchableDropdown } from '@/app/manager/manager_shared_components/ManagerSearchableDropdown';
 
 ModuleRegistry.registerModules([AllCommunityModule]);
-
-type SeatStatus = 'Working' | 'Maintenance' | 'Broken';
-
-// LogEntry type centralized.
 
 const SEAT_LOGS: Record<string, LogEntry[]> = {
   'S-006': [
@@ -113,10 +109,11 @@ export function ManagerSeatsSeatMaintenanceClient() {
         {/* Seat selector + status */}
         <div className="ss-filter-bar">
           <div className="ss-filter-bar__select-wrap">
-            <select className="ss-select" value={selectedSeat} onChange={e => setSelectedSeat(e.target.value)}>
-              {SEATS.map(s => <option key={s}>{s}</option>)}
-            </select>
-            <ChevronDown size={14} className="ss-select-icon" />
+            <ManagerSearchableDropdown
+              value={selectedSeat}
+              onChange={setSelectedSeat}
+              options={SEATS.map(s => ({ label: s, value: s }))}
+            />
           </div>
           <span className={STATUS_CLASS[currentStatus]}>{currentStatus}</span>
         </div>
@@ -157,12 +154,15 @@ export function ManagerSeatsSeatMaintenanceClient() {
             <div className="ss-form-field">
               <label className="ss-label">New Seat Status <span className="ss-text-danger">*</span></label>
               <div className="ss-select-wrap">
-                <select className="ss-select" value={form.newStatus} onChange={e => setForm(p => ({ ...p, newStatus: e.target.value as SeatStatus }))}>
-                  <option>Working</option>
-                  <option>Maintenance</option>
-                  <option>Broken</option>
-                </select>
-                <ChevronDown size={14} className="ss-select-icon" />
+                <ManagerSearchableDropdown
+                  value={form.newStatus}
+                  onChange={v => setForm(p => ({ ...p, newStatus: v as SeatStatus }))}
+                  options={[
+                    { label: 'Working', value: 'Working' },
+                    { label: 'Maintenance', value: 'Maintenance' },
+                    { label: 'Broken', value: 'Broken' }
+                  ]}
+                />
               </div>
             </div>
             <div className="ss-form-field">
@@ -186,9 +186,3 @@ export function ManagerSeatsSeatMaintenanceClient() {
     </>
   );
 }
-
-
-
-
-
-

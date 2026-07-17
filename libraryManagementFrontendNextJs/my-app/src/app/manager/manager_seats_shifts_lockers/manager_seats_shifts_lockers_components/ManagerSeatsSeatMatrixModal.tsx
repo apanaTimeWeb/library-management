@@ -1,13 +1,9 @@
-// @ts-nocheck
 import { UserPlus, User } from 'lucide-react';
-import type { SeatData } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_types';
-import { SHIFT_BADGE } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_constants';
+import type { SeatData, ManagerSeatsSeatMatrixModalProps } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_types';
+import { SHIFT_BADGE } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_constants/ManagerSeatsConstants';
 
 // RESPONSIBILITY: Renders the seat detail modal popover.
 
-// Props interface centralized.
-
-export interface ManagerSeatsSeatMatrixModalProps { isOpen: boolean; onClose: () => void; selectedSeat?: string; }
 export function ManagerSeatsSeatMatrixModal({ isOpen, onClose, selectedSeat }: ManagerSeatsSeatMatrixModalProps) {
   if (!selectedSeat) return null;
 
@@ -80,12 +76,3 @@ export function ManagerSeatsSeatMatrixModal({ isOpen, onClose, selectedSeat }: M
     </div>
   );
 }
-
-
-
-
-
-
-
-
-

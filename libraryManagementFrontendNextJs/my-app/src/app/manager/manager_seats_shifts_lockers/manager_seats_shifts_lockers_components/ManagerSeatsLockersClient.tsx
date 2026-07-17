@@ -1,32 +1,17 @@
-// @ts-nocheck
 // RESPONSIBILITY: Renders the ManagerSeatsLockersClient.tsx component UI.
 'use client';
 import { useState, useMemo } from 'react';
-import { Allocation, ActivityItem, Locker, SeatHistoryEntry, LogEntry, Seat, ManagerSeatsSeatMatrixModalProps, ShiftData, Shift, Student } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_types/ManagerSeatsTypes';
+import { Allocation, ActivityItem, Locker, SeatHistoryEntry, LogEntry, Seat, ManagerSeatsSeatMatrixModalProps, ShiftData, Shift, Student } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_types';
 import { ACTIVITY_DATA, INITIAL_LOCKERS, INITIAL_SEATS, SHIFTS_DATA, INITIAL_SHIFTS, STUDENTS_DATA } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_constants/ManagerSeatsConstants';
 import { Plus, ChevronDown, Search, UserPlus, Unlock, Wrench } from 'lucide-react';
-import { Allocation, ActivityItem, Locker, SeatHistoryEntry, LogEntry, Seat, ManagerSeatsSeatMatrixModalProps, ShiftData, Shift, Student } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_types/ManagerSeatsTypes';
-import { ACTIVITY_DATA, INITIAL_LOCKERS, INITIAL_SEATS, SHIFTS_DATA, INITIAL_SHIFTS, STUDENTS_DATA } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_constants/ManagerSeatsConstants';
 import { AgGridReact } from 'ag-grid-react';
-import { Allocation, ActivityItem, Locker, SeatHistoryEntry, LogEntry, Seat, ManagerSeatsSeatMatrixModalProps, ShiftData, Shift, Student } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_types/ManagerSeatsTypes';
-import { ACTIVITY_DATA, INITIAL_LOCKERS, INITIAL_SEATS, SHIFTS_DATA, INITIAL_SHIFTS, STUDENTS_DATA } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_constants/ManagerSeatsConstants';
 import { AllCommunityModule, ModuleRegistry, type ColDef } from 'ag-grid-community';
-import { Allocation, ActivityItem, Locker, SeatHistoryEntry, LogEntry, Seat, ManagerSeatsSeatMatrixModalProps, ShiftData, Shift, Student } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_types/ManagerSeatsTypes';
-import { ACTIVITY_DATA, INITIAL_LOCKERS, INITIAL_SEATS, SHIFTS_DATA, INITIAL_SHIFTS, STUDENTS_DATA } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_constants/ManagerSeatsConstants';
 import { gridTheme } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shared_components/gridTheme';
-import { Allocation, ActivityItem, Locker, SeatHistoryEntry, LogEntry, Seat, ManagerSeatsSeatMatrixModalProps, ShiftData, Shift, Student } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_types/ManagerSeatsTypes';
-import { ACTIVITY_DATA, INITIAL_LOCKERS, INITIAL_SEATS, SHIFTS_DATA, INITIAL_SHIFTS, STUDENTS_DATA } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_constants/ManagerSeatsConstants';
 import toast from 'react-hot-toast';
-import { Allocation, ActivityItem, Locker, SeatHistoryEntry, LogEntry, Seat, ManagerSeatsSeatMatrixModalProps, ShiftData, Shift, Student } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_types/ManagerSeatsTypes';
-import { ACTIVITY_DATA, INITIAL_LOCKERS, INITIAL_SEATS, SHIFTS_DATA, INITIAL_SHIFTS, STUDENTS_DATA } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_constants/ManagerSeatsConstants';
+import { ManagerSearchableDropdown } from '@/app/manager/manager_shared_components/ManagerSearchableDropdown';
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
-type LockerStatus = 'Free' | 'Occupied' | 'Maintenance';
-
-// Locker type centralized.
-
-// INITIAL_LOCKERS centralized.
 
 const STATUS_CLASS: Record<LockerStatus, string> = {
   Free: 'ss-badge ss-badge--success',
@@ -47,11 +32,11 @@ function LockerStatusCell(props: { value: string }) {
 }
 
 function AssignedToCell(props: { data: Locker }) {
-  if (props.data.assignedTo === '—') return <span className="ss-table__cell-muted">Unassigned</span>;
+  if (props.data?.assignedTo === '—') return <span className="ss-table__cell-muted">Unassigned</span>;
   return (
     <div className="ss-cell-stack">
-      <p className="ss-cell-name">{props.data.assignedTo}</p>
-      <p className="ss-table__cell-sub">{props.data.studentId}</p>
+      <p className="ss-cell-name">{props.data?.assignedTo}</p>
+      <p className="ss-table__cell-sub">{props.data?.studentId}</p>
     </div>
   );
 }
@@ -114,11 +99,11 @@ export function ManagerSeatsLockersClient() {
     { field: 'assignedSince', headerName: 'SINCE', flex: 1.3, cellClass: 'ss-cell-secondary' },
     {
       headerName: 'ACTIONS', flex: 1.2, sortable: false,
-      cellRenderer: (props: { value: string; data?: unknown }) => {
+      cellRenderer: (props: { value: string; data?: Locker }) => {
         const data = props.data as Locker;
         return (
           <div className="ss-cell-actions">
-            {data.status === 'Available' && (
+            {data.status === 'Free' && (
               <button className="ss-btn-icon" title="Assign Student" onClick={() => setShowAssign(data)}>
                 <UserPlus size={13} />
               </button>
@@ -154,13 +139,16 @@ export function ManagerSeatsLockersClient() {
 
         <div className="ss-filter-bar">
           <div className="ss-filter-bar__select-wrap">
-            <select className="ss-select" value={statusFilter} onChange={e => setStatusFilter(e.target.value)}>
-              <option>All Statuses</option>
-              <option>Free</option>
-              <option>Occupied</option>
-              <option>Maintenance</option>
-            </select>
-            <ChevronDown size={14} className="ss-select-icon" />
+            <ManagerSearchableDropdown
+              value={statusFilter}
+              onChange={setStatusFilter}
+              options={[
+                { label: 'All Statuses', value: 'All Statuses' },
+                { label: 'Free', value: 'Free' },
+                { label: 'Occupied', value: 'Occupied' },
+                { label: 'Maintenance', value: 'Maintenance' }
+              ]}
+            />
           </div>
         </div>
 
@@ -239,7 +227,3 @@ export function ManagerSeatsLockersClient() {
     </>
   );
 }
-
-
-
-

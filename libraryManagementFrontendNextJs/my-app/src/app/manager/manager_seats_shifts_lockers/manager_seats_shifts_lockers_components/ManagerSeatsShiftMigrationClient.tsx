@@ -1,15 +1,11 @@
 // RESPONSIBILITY: Renders the ManagerSeatsShiftMigrationClient.tsx component UI.
 'use client';
 import { useState } from 'react';
-import { Allocation, ActivityItem, Locker, SeatHistoryEntry, LogEntry, Seat, ManagerSeatsSeatMatrixModalProps, ShiftData, Shift, Student } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_types/ManagerSeatsTypes';
+import { Allocation, ActivityItem, Locker, SeatHistoryEntry, LogEntry, Seat, ManagerSeatsSeatMatrixModalProps, ShiftData, Shift, Student, PayMode } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_types';
 import { ACTIVITY_DATA, INITIAL_LOCKERS, INITIAL_SEATS, SHIFTS_DATA, INITIAL_SHIFTS, STUDENTS_DATA } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_constants/ManagerSeatsConstants';
 import toast from 'react-hot-toast';
 import { ArrowLeft, Search, ChevronDown, CreditCard, QrCode, Banknote, CheckCircle, Clock } from 'lucide-react';
 import { ManagerSearchableDropdown } from '@/app/manager/manager_shared_components/ManagerSearchableDropdown';
-
-// Student type centralized.
-
-// STUDENTS_DATA centralized.
 
 const SHIFTS = [
   { name: 'Morning',   seats: 4, rate: 33 },
@@ -18,7 +14,6 @@ const SHIFTS = [
   { name: 'Full Day',  seats: 1, rate: 50 },
 ];
 
-type PayMode = 'Cash' | 'UPI' | 'Card';
 
 function daysRemaining(validTill: string): number {
   const diff = new Date(validTill).getTime() - Date.now();
@@ -150,18 +145,22 @@ export function ManagerSeatsShiftMigrationClient() {
                   <div>
                     <label className="ss-label">New Shift <span className="ss-text-danger">*</span></label>
                     <div className="ss-select-wrap">
-                      <select className="ss-select" value={newShift} onChange={e => { setNewShift(e.target.value); setNewSeat(''); }}>
-                        <option value="">Select shift...</option>
-                        {SHIFTS.map(s => (
-                          <option key={s.name} value={s.name}>{s.name} ({s.seats} seats free)</option>
-                        ))}
-                      </select>
-                      <ChevronDown size={14} className="ss-select-icon" />
+                      <ManagerSearchableDropdown
+                        value={newShift}
+                        onChange={v => { setNewShift(v); setNewSeat(''); }}
+                        options={[
+                          { label: 'Select shift...', value: '' },
+                          ...SHIFTS.map(s => ({
+                            label: `${s.name} (${s.seats} seats free)`,
+                            value: s.name
+                          }))
+                        ]}
+                      />
                     </div>
                   </div>
                   <div>
                     <label className="ss-label">New Seat <span className="ss-text-danger">*</span></label>
-                                        <ManagerSearchableDropdown
+                    <ManagerSearchableDropdown
                       options={newShift ? ['B-01', 'B-02', 'B-03', 'B-04'].map(s => ({label: s, value: s})) : []}
                       value={newSeat}
                       onChange={(v) => setNewSeat(v)}
@@ -315,7 +314,7 @@ export function ManagerSeatsShiftMigrationClient() {
             </button>
             <div className="ss-sticky-footer__right">
               {step < 3 ? (
-                <button
+               <button
                   className="ss-btn-primary ss-footer-confirm"
                   disabled={step === 1 ? !selectedStudent : !newShift || !newSeat}
                   onClick={() => setStep(s => s + 1)}
@@ -352,9 +351,3 @@ export function ManagerSeatsShiftMigrationClient() {
     </>
   );
 }
-
-
-
-
-
-

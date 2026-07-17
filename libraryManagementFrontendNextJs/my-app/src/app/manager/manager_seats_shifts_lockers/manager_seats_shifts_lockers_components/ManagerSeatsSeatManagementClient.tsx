@@ -1,7 +1,6 @@
-// @ts-nocheck
 // RESPONSIBILITY: Renders the ManagerSeatsSeatManagementClient.tsx component UI.
 'use client';
-import { Allocation, ActivityItem, Locker, SeatHistoryEntry, LogEntry, Seat, ManagerSeatsSeatMatrixModalProps, ShiftData, Shift, Student } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_types/ManagerSeatsTypes';
+import { Allocation, ActivityItem, Locker, SeatHistoryEntry, LogEntry, Seat, ManagerSeatsSeatMatrixModalProps, ShiftData, Shift, Student, SeatStatus } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_types';
 import { ACTIVITY_DATA, INITIAL_LOCKERS, INITIAL_SEATS, SHIFTS_DATA, INITIAL_SHIFTS, STUDENTS_DATA } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_constants/ManagerSeatsConstants';
 import { useState, useMemo } from 'react';
 import { Plus, Search, ChevronDown, Wrench, Edit, AlertTriangle, CheckCircle } from 'lucide-react';
@@ -9,14 +8,9 @@ import { AgGridReact } from 'ag-grid-react';
 import { AllCommunityModule, ModuleRegistry, type ColDef } from 'ag-grid-community';
 import { gridTheme } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shared_components/gridTheme';
 import toast from 'react-hot-toast';
+import { ManagerSearchableDropdown } from '@/app/manager/manager_shared_components/ManagerSearchableDropdown';
 
 ModuleRegistry.registerModules([AllCommunityModule]);
-
-type SeatStatus = 'Working' | 'Maintenance' | 'Broken';
-
-// Seat type centralized.
-
-// INITIAL_SEATS centralized.
 
 const STATUS_CLASS: Record<SeatStatus, string> = {
   Working: 'ss-badge ss-badge--success',
@@ -31,7 +25,7 @@ function SeatNoCell(props: { value: string }) {
 }
 
 function BranchCell(props: { data: Seat }) {
-  return <span className="ss-cell-primary">{props.data.branch}</span>;
+  return <span className="ss-cell-primary">{props.data?.branch}</span>;
 }
 
 function SeatStatusCell(props: { value: string }) {
@@ -43,19 +37,19 @@ function SeatStatusCell(props: { value: string }) {
 }
 
 export function ManagerSeatsSeatManagementClient() {
-  const [seats, setSeats] = useState<any[]>(INITIAL_SEATS);
+  const [seats, setSeats] = useState<Seat[]>(INITIAL_SEATS);
   const [search, setSearch] = useState('');
   const [statusFilter, setStatusFilter] = useState('All Statuses');
   const [showModal, setShowModal] = useState(false);
-  const [editSeat, setEditSeat] = useState<any | null>(null);
+  const [editSeat, setEditSeat] = useState<Seat | null>(null);
   const [form, setForm] = useState(EMPTY_FORM);
   const [errors, setErrors] = useState<Record<string, string>>({});
-  const [confirmBroken, setConfirmBroken] = useState<any | null>(null);
+  const [confirmBroken, setConfirmBroken] = useState<Seat | null>(null);
 
-  const filtered = seats.filter((s: unknown) => {
+  const filtered = seats.filter((s: Seat) => {
     const matchSearch = s.seatNo.toLowerCase().includes(search.toLowerCase()) ||
       s.branch.toLowerCase().includes(search.toLowerCase()) ||
-      s.assignedTo.toLowerCase().includes(search.toLowerCase());
+      (s.assignedTo || '').toLowerCase().includes(search.toLowerCase());
     const matchStatus = statusFilter === 'All Statuses' || s.status === statusFilter;
     return matchSearch && matchStatus;
   });
@@ -67,9 +61,9 @@ export function ManagerSeatsSeatManagementClient() {
     setShowModal(true);
   }
 
-  function openEdit(seat: unknown) {
+  function openEdit(seat: Seat) {
     setEditSeat(seat);
-    setForm({ seatNo: seat.seatNo, branch: seat.branch, status: seat.status });
+    setForm({ seatNo: seat.seatNo, branch: seat.branch, status: seat.status as SeatStatus });
     setErrors({});
     setShowModal(true);
   }
@@ -85,23 +79,23 @@ export function ManagerSeatsSeatManagementClient() {
   function handleSave() {
     if (!validate()) return;
     if (editSeat) {
-      setSeats(prev => prev.map((s: unknown) => s.id === editSeat.id ? { ...s, ...form } : s));
+      setSeats(prev => prev.map((s: Seat) => s.id === editSeat.id ? { ...s, ...form, status: form.status as SeatStatus } : s));
       toast.success('Seat updated.');
     } else {
-      setSeats(prev => [...prev, { id: Date.now().toString(), ...form, assignedTo: '—', lastMaintenance: '—' }]);
+      setSeats(prev => [...prev, { id: Date.now().toString(), ...form, assignedTo: '—', lastMaintenance: '—', status: form.status as SeatStatus }]);
       toast.success('Seat added.');
     }
     setShowModal(false);
   }
 
   function handleMarkFixed(seat: Seat) {
-    setSeats(prev => prev.map((s: unknown) => s.id === seat.id ? { ...s, status: 'Working' } : s));
+    setSeats(prev => prev.map((s: Seat) => s.id === seat.id ? { ...s, status: 'Working' } : s));
     toast.success(`Seat ${seat.seatNo} marked as Working.`);
   }
 
   function confirmMarkBroken() {
     if (!confirmBroken) return;
-    setSeats(prev => prev.map((s: unknown) => s.id === confirmBroken.id ? { ...s, status: 'Broken' } : s));
+    setSeats(prev => prev.map((s: Seat) => s.id === confirmBroken.id ? { ...s, status: 'Broken' } : s));
     toast.success(`Seat ${confirmBroken.seatNo} marked as Broken.`);
     setConfirmBroken(null);
   }
@@ -114,7 +108,7 @@ export function ManagerSeatsSeatManagementClient() {
     { field: 'lastMaintenance', headerName: 'LAST MAINTENANCE', flex: 1.5, cellClass: 'ss-cell-secondary' },
     {
       headerName: 'ACTIONS', flex: 1.5, sortable: false,
-      cellRenderer: (props: { value: string; data?: unknown }) => {
+      cellRenderer: (props: { value: string; data?: Seat }) => {
         const data = props.data as Seat;
         return (
           <div className="ss-cell-actions">
@@ -158,13 +152,16 @@ export function ManagerSeatsSeatManagementClient() {
             <input type="text" placeholder="Search by seat #, branch or student..." className="ss-input" value={search} onChange={e => setSearch(e.target.value)} />
           </div>
           <div className="ss-filter-bar__select-wrap">
-            <select className="ss-select" value={statusFilter} onChange={e => setStatusFilter(e.target.value)}>
-              <option>All Statuses</option>
-              <option>Working</option>
-              <option>Maintenance</option>
-              <option>Broken</option>
-            </select>
-            <ChevronDown size={14} className="ss-select-icon" />
+            <ManagerSearchableDropdown
+              value={statusFilter}
+              onChange={setStatusFilter}
+              options={[
+                { label: 'All Statuses', value: 'All Statuses' },
+                { label: 'Working', value: 'Working' },
+                { label: 'Maintenance', value: 'Maintenance' },
+                { label: 'Broken', value: 'Broken' }
+              ]}
+            />
           </div>
         </div>
 
@@ -200,12 +197,15 @@ export function ManagerSeatsSeatManagementClient() {
               <div className="ss-form-field ss-form-field--full">
                 <label className="ss-label">Status</label>
                 <div className="ss-select-wrap">
-                  <select className="ss-select" value={form.status} onChange={e => setForm(p => ({ ...p, status: e.target.value as SeatStatus }))}>
-                    <option>Working</option>
-                    <option>Maintenance</option>
-                    <option>Broken</option>
-                  </select>
-                  <ChevronDown size={14} className="ss-select-icon" />
+                  <ManagerSearchableDropdown
+                    value={form.status}
+                    onChange={v => setForm(p => ({ ...p, status: v as SeatStatus }))}
+                    options={[
+                      { label: 'Working', value: 'Working' },
+                      { label: 'Maintenance', value: 'Maintenance' },
+                      { label: 'Broken', value: 'Broken' }
+                    ]}
+                  />
                 </div>
               </div>
             </div>
@@ -232,10 +232,3 @@ export function ManagerSeatsSeatManagementClient() {
     </>
   );
 }
-
-
-
-
-
-
-

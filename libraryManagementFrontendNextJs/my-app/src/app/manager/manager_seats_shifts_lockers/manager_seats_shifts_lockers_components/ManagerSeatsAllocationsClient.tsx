@@ -1,31 +1,17 @@
-// @ts-nocheck
 // RESPONSIBILITY: Renders the ManagerSeatsAllocationsClient.tsx component UI.
 'use client';
 import { useMemo, useState, useEffect } from 'react';
-import { Allocation, ActivityItem, Locker, SeatHistoryEntry, LogEntry, Seat, ManagerSeatsSeatMatrixModalProps, ShiftData, Shift, Student } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_types/ManagerSeatsTypes';
+import { Allocation, ActivityItem, Locker, SeatHistoryEntry, LogEntry, Seat, ManagerSeatsSeatMatrixModalProps, ShiftData, Shift, Student } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_types';
 import { ACTIVITY_DATA, INITIAL_LOCKERS, INITIAL_SEATS, SHIFTS_DATA, INITIAL_SHIFTS, STUDENTS_DATA } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_constants/ManagerSeatsConstants';
-import { ChevronDown, Download, Eye } from 'lucide-react';
-import { Allocation, ActivityItem, Locker, SeatHistoryEntry, LogEntry, Seat, ManagerSeatsSeatMatrixModalProps, ShiftData, Shift, Student } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_types/ManagerSeatsTypes';
-import { ACTIVITY_DATA, INITIAL_LOCKERS, INITIAL_SEATS, SHIFTS_DATA, INITIAL_SHIFTS, STUDENTS_DATA } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_constants/ManagerSeatsConstants';
+import { Download, Eye } from 'lucide-react';
 import { AgGridReact } from 'ag-grid-react';
-import { Allocation, ActivityItem, Locker, SeatHistoryEntry, LogEntry, Seat, ManagerSeatsSeatMatrixModalProps, ShiftData, Shift, Student } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_types/ManagerSeatsTypes';
-import { ACTIVITY_DATA, INITIAL_LOCKERS, INITIAL_SEATS, SHIFTS_DATA, INITIAL_SHIFTS, STUDENTS_DATA } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_constants/ManagerSeatsConstants';
 import { AllCommunityModule, ModuleRegistry, type ColDef } from 'ag-grid-community';
-import { Allocation, ActivityItem, Locker, SeatHistoryEntry, LogEntry, Seat, ManagerSeatsSeatMatrixModalProps, ShiftData, Shift, Student } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_types/ManagerSeatsTypes';
-import { ACTIVITY_DATA, INITIAL_LOCKERS, INITIAL_SEATS, SHIFTS_DATA, INITIAL_SHIFTS, STUDENTS_DATA } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_constants/ManagerSeatsConstants';
 import { gridTheme } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shared_components/gridTheme';
-import { Allocation, ActivityItem, Locker, SeatHistoryEntry, LogEntry, Seat, ManagerSeatsSeatMatrixModalProps, ShiftData, Shift, Student } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_types/ManagerSeatsTypes';
-import { ACTIVITY_DATA, INITIAL_LOCKERS, INITIAL_SEATS, SHIFTS_DATA, INITIAL_SHIFTS, STUDENTS_DATA } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_constants/ManagerSeatsConstants';
 import toast from 'react-hot-toast';
-import { Allocation, ActivityItem, Locker, SeatHistoryEntry, LogEntry, Seat, ManagerSeatsSeatMatrixModalProps, ShiftData, Shift, Student } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_types/ManagerSeatsTypes';
-import { ACTIVITY_DATA, INITIAL_LOCKERS, INITIAL_SEATS, SHIFTS_DATA, INITIAL_SHIFTS, STUDENTS_DATA } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_constants/ManagerSeatsConstants';
 import { useSeatsStore } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_context/manager_seats_shifts_lockers_store';
-import { Allocation, ActivityItem, Locker, SeatHistoryEntry, LogEntry, Seat, ManagerSeatsSeatMatrixModalProps, ShiftData, Shift, Student } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_types/ManagerSeatsTypes';
-import { ACTIVITY_DATA, INITIAL_LOCKERS, INITIAL_SEATS, SHIFTS_DATA, INITIAL_SHIFTS, STUDENTS_DATA } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_constants/ManagerSeatsConstants';
+import { ManagerSearchableDropdown } from '@/app/manager/manager_shared_components/ManagerSearchableDropdown';
 
 ModuleRegistry.registerModules([AllCommunityModule]);
-
-// Allocation type centralized.
 
 const STATUS_CLASS: Record<string, string> = {
   Active: 'ss-badge ss-badge--success',
@@ -36,8 +22,8 @@ const STATUS_CLASS: Record<string, string> = {
 function StudentCell(props: { data: Allocation }) {
   return (
     <div className="ss-cell-stack">
-      <p className="ss-cell-name">{props.data.studentName}</p>
-      <p className="ss-table__cell-sub">{props.data.smartId}</p>
+      <p className="ss-cell-name">{props.data?.studentName}</p>
+      <p className="ss-table__cell-sub">{props.data?.smartId}</p>
     </div>
   );
 }
@@ -56,7 +42,7 @@ function StatusCell(props: { value: string }) {
 function ActionsCell(props: { data: Allocation }) {
   return (
     <div className="ss-cell-actions">
-      <button className="ss-btn-icon" title="View Student" onClick={() => toast.success(`Viewing ${props.data.studentName}`)}>
+      <button className="ss-btn-icon" title="View Student" onClick={() => toast.success(`Viewing ${props.data?.studentName}`)}>
         <Eye size={13} />
       </button>
     </div>
@@ -113,22 +99,28 @@ export function ManagerSeatsAllocationsClient() {
 
         <div className="ss-filter-bar">
           <div className="ss-filter-bar__select-wrap">
-            <select className="ss-select" value={shiftFilter} onChange={e => setShiftFilter(e.target.value)}>
-              <option>All Shifts</option>
-              <option>Morning</option>
-              <option>Evening</option>
-              <option>Full Day</option>
-            </select>
-            <ChevronDown size={14} className="ss-select-icon" />
+            <ManagerSearchableDropdown
+              value={shiftFilter}
+              onChange={setShiftFilter}
+              options={[
+                { label: 'All Shifts', value: 'All Shifts' },
+                { label: 'Morning', value: 'Morning' },
+                { label: 'Evening', value: 'Evening' },
+                { label: 'Full Day', value: 'Full Day' }
+              ]}
+            />
           </div>
           <div className="ss-filter-bar__select-wrap">
-            <select className="ss-select" value={statusFilter} onChange={e => setStatusFilter(e.target.value)}>
-              <option>All Statuses</option>
-              <option>Active</option>
-              <option>Expired</option>
-              <option>Suspended</option>
-            </select>
-            <ChevronDown size={14} className="ss-select-icon" />
+            <ManagerSearchableDropdown
+              value={statusFilter}
+              onChange={setStatusFilter}
+              options={[
+                { label: 'All Statuses', value: 'All Statuses' },
+                { label: 'Active', value: 'Active' },
+                { label: 'Expired', value: 'Expired' },
+                { label: 'Suspended', value: 'Suspended' }
+              ]}
+            />
           </div>
           <div className="ss-filter-bar__input-wrap">
             <input type="date" className="ss-input ss-input--no-icon" value={dateFrom} onChange={e => setDateFrom(e.target.value)} />
@@ -152,6 +144,3 @@ export function ManagerSeatsAllocationsClient() {
     </>
   );
 }
-
-
-

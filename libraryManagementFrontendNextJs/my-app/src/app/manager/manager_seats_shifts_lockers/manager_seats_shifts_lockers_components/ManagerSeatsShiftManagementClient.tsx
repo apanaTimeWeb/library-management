@@ -1,25 +1,21 @@
 // RESPONSIBILITY: Renders the ManagerSeatsShiftManagementClient.tsx component UI.
 'use client';
 import { useState } from 'react';
-import { Allocation, ActivityItem, Locker, SeatHistoryEntry, LogEntry, Seat, ManagerSeatsSeatMatrixModalProps, ShiftData, Shift as ImportedShift, Student } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_types/ManagerSeatsTypes';
-interface Shift { id: string; name: string; startTime: string; endTime: string; active: boolean; occupancy: number; capacity: number; }
+import { Allocation, ActivityItem, Locker, SeatHistoryEntry, LogEntry, Seat, ManagerSeatsSeatMatrixModalProps, ShiftData, Shift, Student } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_types';
 import { ACTIVITY_DATA, INITIAL_LOCKERS, INITIAL_SEATS, SHIFTS_DATA, INITIAL_SHIFTS, STUDENTS_DATA } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_constants/ManagerSeatsConstants';
 import toast from 'react-hot-toast';
 import { Plus, Edit, PowerOff, Zap, ChevronDown } from 'lucide-react';
-
-// Shift type centralized.
-
-// INITIAL_SHIFTS centralized.
+import { ManagerSearchableDropdown } from '@/app/manager/manager_shared_components/ManagerSearchableDropdown';
 
 const EMPTY_FORM = { name: '', startTime: '', endTime: '', active: true };
 
 export function ManagerSeatsShiftManagementClient() {
-  const [shifts, setShifts]             = useState<any[]>(INITIAL_SHIFTS);
+  const [shifts, setShifts]             = useState<Shift[]>(INITIAL_SHIFTS);
   const [showModal, setShowModal]       = useState(false);
-  const [editShift, setEditShift]       = useState<any | null>(null);
+  const [editShift, setEditShift]       = useState<Shift | null>(null);
   const [form, setForm]                 = useState(EMPTY_FORM);
   const [errors, setErrors]             = useState<Record<string, string>>({});
-  const [deactivateTarget, setDeactivateTarget] = useState<any | null>(null);
+  const [deactivateTarget, setDeactivateTarget] = useState<Shift | null>(null);
 
   function openAdd() {
     setEditShift(null);
@@ -28,9 +24,9 @@ export function ManagerSeatsShiftManagementClient() {
     setShowModal(true);
   }
 
-  function openEdit(shift: unknown) {
+  function openEdit(shift: Shift) {
     setEditShift(shift);
-    setForm({ name: shift.name, startTime: shift.startTime, endTime: shift.endTime, active: shift.active });
+    setForm({ name: shift.name, startTime: shift.startTime || '', endTime: shift.endTime || '', active: shift.active ?? true });
     setErrors({});
     setShowModal(true);
   }
@@ -47,7 +43,7 @@ export function ManagerSeatsShiftManagementClient() {
   function handleSave() {
     if (!validate()) return;
     if (editShift) {
-      setShifts(prev => prev.map((s: unknown) => s.id === editShift.id ? { ...s, ...form } : s));
+      setShifts(prev => prev.map((s: Shift) => s.id === editShift.id ? { ...s, ...form } : s));
       toast.success('Shift updated.');
     } else {
       setShifts(prev => [...prev, { id: Date.now().toString(), ...form, occupancy: 0, capacity: 40 }]);
@@ -58,13 +54,13 @@ export function ManagerSeatsShiftManagementClient() {
 
   function handleDeactivate() {
     if (!deactivateTarget) return;
-    setShifts(prev => prev.map((s: unknown) => s.id === deactivateTarget.id ? { ...s, active: false } : s));
+    setShifts(prev => prev.map((s: Shift) => s.id === deactivateTarget.id ? { ...s, active: false } : s));
     toast.success(`${deactivateTarget.name} shift deactivated.`);
     setDeactivateTarget(null);
   }
 
   function handleActivate(shift: Shift) {
-    setShifts(prev => prev.map((s: unknown) => s.id === shift.id ? { ...s, active: true } : s));
+    setShifts(prev => prev.map((s: Shift) => s.id === shift.id ? { ...s, active: true } : s));
     toast.success(`${shift.name} shift activated.`);
   }
 
@@ -115,7 +111,7 @@ export function ManagerSeatsShiftManagementClient() {
                       </p>
                     </div>
                     <div className="ss-occupancy-bar">
-                      <div className="ss-occupancy-bar__fill" style={{ width: `${Math.round((shift.occupancy / shift.capacity) * 100)}%` }} />
+                      <div className="ss-occupancy-bar__fill" style={{ width: `${Math.round(((shift.occupancy || 0) / (shift.capacity || 1)) * 100)}%` }} />
                     </div>
                   </div>
 
@@ -163,11 +159,14 @@ export function ManagerSeatsShiftManagementClient() {
               <div className="ss-form-field ss-form-field--full">
                 <label className="ss-label">Active</label>
                 <div className="ss-select-wrap">
-                  <select className="ss-select" value={form.active ? 'yes' : 'no'} onChange={e => setForm(p => ({ ...p, active: e.target.value === 'yes' }))}>
-                    <option value="yes">Yes</option>
-                    <option value="no">No</option>
-                  </select>
-                  <ChevronDown size={14} className="ss-select-icon" />
+                  <ManagerSearchableDropdown
+                    value={form.active ? 'yes' : 'no'}
+                    onChange={v => setForm(p => ({ ...p, active: v === 'yes' }))}
+                    options={[
+                      { label: 'Yes', value: 'yes' },
+                      { label: 'No', value: 'no' }
+                    ]}
+                  />
                 </div>
               </div>
             </div>
@@ -196,10 +195,3 @@ export function ManagerSeatsShiftManagementClient() {
     </>
   );
 }
-
-
-
-
-
-
-

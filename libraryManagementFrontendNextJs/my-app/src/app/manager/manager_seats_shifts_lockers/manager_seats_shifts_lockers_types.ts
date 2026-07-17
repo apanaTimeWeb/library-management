@@ -1,4 +1,6 @@
-export type SeatStatus = 'free' | 'occupied' | 'expiring' | 'maintenance';
+export type SeatStatus = 'free' | 'occupied' | 'expiring' | 'maintenance' | 'Working' | 'Maintenance' | 'Broken';
+export type LockerStatus = 'Free' | 'Occupied' | 'Maintenance' | 'Available';
+export type PayMode = 'Cash' | 'UPI' | 'Card';
 export type FetchState = 'idle' | 'loading' | 'success' | 'error';
 
 export interface SeatData {
@@ -14,7 +16,9 @@ export interface SeatData {
 export interface LockerData {
   uuid?: string;
   id: string;
-  status: 'free' | 'occupied' | 'maintenance';
+  lockerNumber?: string;
+  isActive?: boolean;
+  status: LockerStatus;
 }
 
 export interface SeatsState {
@@ -31,7 +35,22 @@ export interface SeatsState {
 }
 
 export interface Allocation {
-  id: string; student: string; seat: string; shift: string; start: string; end: string; status: 'Active' | 'Expiring' | 'Expired'; avatar?: string;
+  id?: string;
+  studentName?: string;
+  student?: string;
+  seat?: string;
+  seatNo?: string;
+  shift: string;
+  start?: string;
+  end?: string;
+  customSlots?: string;
+  lockerNo?: string;
+  validFrom?: string;
+  validTill?: string;
+  daysLeft?: number;
+  status: 'Active' | 'Expiring' | 'Expired' | 'Suspended';
+  avatar?: string;
+  smartId?: string;
 }
 
 export interface ActivityItem {
@@ -39,25 +58,40 @@ export interface ActivityItem {
 }
 
 export interface Locker {
-  id: string; number: string; zone: string; status: 'Available' | 'Occupied' | 'Maintenance';
+  id: string; number: string; zone?: string; status: LockerStatus;
   assignedTo?: string; validUntil?: string; issue?: string;
+  studentId?: string; assignedSince?: string;
 }
 
 export interface SeatHistoryEntry {
-  id: string; student: string; startDate: string; endDate: string; shift: string; status: 'Completed' | 'Terminated' | 'Transferred';
+  id?: string;
+  studentName?: string;
+  smartId?: string;
+  seatNo?: string;
+  student?: string;
+  startDate?: string;
+  endDate?: string;
+  occupiedFrom?: string;
+  occupiedTill?: string;
+  shift: string;
+  status?: 'Completed' | 'Terminated' | 'Transferred';
+  duration?: string;
+  reason?: string;
 }
 
 export interface LogEntry {
-  id: string; date: string; type: 'Repair' | 'Cleaning' | 'Replacement'; notes: string; by: string;
+  id: string; num?: number; date: string; type?: 'Repair' | 'Cleaning' | 'Replacement'; notes?: string; by?: string;
+  remark?: string; doneBy?: string; statusBefore?: string; statusAfter?: string; cost?: string;
 }
 
 export interface Seat {
-  id: string; number: string; zone: 'Quiet' | 'Discussion' | 'Standard'; type: 'Premium' | 'Standard';
-  condition: 'Excellent' | 'Good' | 'Needs Repair'; hasPower: boolean;
+  id: string; seatNo?: string; branch?: string; number?: string; zone?: 'Quiet' | 'Discussion' | 'Standard'; type?: 'Premium' | 'Standard';
+  condition?: 'Excellent' | 'Good' | 'Needs Repair'; hasPower?: boolean;
+  assignedTo?: string; lastMaintenance?: string; status: SeatStatus;
 }
 
 export interface ManagerSeatsSeatMatrixModalProps {
-  isOpen: boolean; onClose: () => void; selectedSeat?: string;
+  isOpen: boolean; onClose: () => void; selectedSeat?: SeatData;
 }
 
 export interface BookedBlock { startH: number; endH: number; label: string; }

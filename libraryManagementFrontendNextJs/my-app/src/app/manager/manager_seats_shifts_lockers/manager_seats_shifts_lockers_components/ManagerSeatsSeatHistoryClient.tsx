@@ -1,7 +1,6 @@
-// @ts-nocheck
 // RESPONSIBILITY: Renders the ManagerSeatsSeatHistoryClient.tsx component UI.
 'use client';
-import { Allocation, ActivityItem, Locker, SeatHistoryEntry, LogEntry, Seat, ManagerSeatsSeatMatrixModalProps, ShiftData, Shift, Student } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_types/ManagerSeatsTypes';
+import { Allocation, ActivityItem, Locker, SeatHistoryEntry, LogEntry, Seat, ManagerSeatsSeatMatrixModalProps, ShiftData, Shift, Student } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_types';
 import { ACTIVITY_DATA, INITIAL_LOCKERS, INITIAL_SEATS, SHIFTS_DATA, INITIAL_SHIFTS, STUDENTS_DATA } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_constants/ManagerSeatsConstants';
 import { useMemo, useState, useEffect } from 'react';
 import { ChevronDown, Search } from 'lucide-react';
@@ -9,10 +8,9 @@ import { AgGridReact } from 'ag-grid-react';
 import { AllCommunityModule, ModuleRegistry, type ColDef } from 'ag-grid-community';
 import { gridTheme } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shared_components/gridTheme';
 import { useSeatsStore } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_context/manager_seats_shifts_lockers_store';
+import { ManagerSearchableDropdown } from '@/app/manager/manager_shared_components/ManagerSearchableDropdown';
 
 ModuleRegistry.registerModules([AllCommunityModule]);
-
-// SeatHistoryEntry type centralized.
 
 const REASON_CLASS: Record<string, string> = {
   Admission: 'ss-badge ss-badge--success',
@@ -20,8 +18,8 @@ const REASON_CLASS: Record<string, string> = {
   'Seat Change': 'ss-badge ss-badge--warning',
 };
 
-function StudentCell(props: { data: unknown }) {
-  return <span className="ss-cell-name">{props.data.studentName}</span>;
+function StudentCell(props: { data: SeatHistoryEntry }) {
+  return <span className="ss-cell-name">{props.data?.studentName}</span>;
 }
 
 function ReasonCell(props: { value: string }) {
@@ -74,13 +72,16 @@ export function ManagerSeatsSeatHistoryClient() {
 
       <div className="ss-filter-bar">
         <div className="ss-filter-bar__select-wrap">
-          <select className="ss-select" value={seatFilter} onChange={e => setSeatFilter(e.target.value)}>
-            <option>All Seats</option>
-            <option>S-07</option>
-            <option>S-12</option>
-            <option>S-31</option>
-          </select>
-          <ChevronDown size={14} className="ss-select-icon" />
+          <ManagerSearchableDropdown
+            value={seatFilter}
+            onChange={setSeatFilter}
+            options={[
+              { label: 'All Seats', value: 'All Seats' },
+              { label: 'S-07', value: 'S-07' },
+              { label: 'S-12', value: 'S-12' },
+              { label: 'S-31', value: 'S-31' }
+            ]}
+          />
         </div>
         <div className="ss-filter-bar__input-wrap">
           <Search size={14} className="ss-input-icon" />
@@ -107,8 +108,3 @@ export function ManagerSeatsSeatHistoryClient() {
     </div>
   );
 }
-
-
-
-
-
