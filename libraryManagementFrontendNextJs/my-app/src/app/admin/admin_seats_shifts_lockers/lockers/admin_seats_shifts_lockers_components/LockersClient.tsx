@@ -1,7 +1,7 @@
 'use client';
 
 import { Plus, UserPlus, Unlock, Wrench, Search, X } from 'lucide-react';
-import { useLockers, Locker } from '../admin_seats_shifts_lockers_hooks/useLockers';
+import { useLockers, Locker } from '@/app/admin/admin_seats_shifts_lockers/lockers/admin_seats_shifts_lockers_hooks/useLockers';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';

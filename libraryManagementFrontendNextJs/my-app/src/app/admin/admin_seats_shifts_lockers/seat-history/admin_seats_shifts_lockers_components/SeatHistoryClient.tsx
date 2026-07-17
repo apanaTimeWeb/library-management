@@ -2,7 +2,7 @@
 
 import { Download, Search } from 'lucide-react';
 import toast from 'react-hot-toast';
-import { useSeatHistory } from '../admin_seats_shifts_lockers_hooks/useSeatHistory';
+import { useSeatHistory } from '@/app/admin/admin_seats_shifts_lockers/seat-history/admin_seats_shifts_lockers_hooks/useSeatHistory';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';

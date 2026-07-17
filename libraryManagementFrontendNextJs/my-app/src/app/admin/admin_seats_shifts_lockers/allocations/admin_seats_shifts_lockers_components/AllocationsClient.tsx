@@ -2,7 +2,7 @@
 
 import { Download, Eye } from 'lucide-react';
 import toast from 'react-hot-toast';
-import { useAllocations } from '../admin_seats_shifts_lockers_hooks/useAllocations';
+import { useAllocations } from '@/app/admin/admin_seats_shifts_lockers/allocations/admin_seats_shifts_lockers_hooks/useAllocations';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';

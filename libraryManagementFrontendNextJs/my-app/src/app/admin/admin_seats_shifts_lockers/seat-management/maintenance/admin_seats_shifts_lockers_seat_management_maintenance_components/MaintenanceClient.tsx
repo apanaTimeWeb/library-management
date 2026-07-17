@@ -1,7 +1,7 @@
 'use client';
 
 import { ChevronDown, AlertTriangle, Plus } from 'lucide-react';
-import { useMaintenance, type SeatStatus } from '../admin_seats_shifts_lockers_seat_management_maintenance_hooks/useMaintenance';
+import { useMaintenance, type SeatStatus } from '@/app/admin/admin_seats_shifts_lockers/seat-management/maintenance/admin_seats_shifts_lockers_seat_management_maintenance_hooks/useMaintenance';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
