@@ -5,7 +5,7 @@ import { Input } from '@/app/admin/admin_system/admin_system_components/AdminSys
 import { Label } from '@/app/admin/admin_system/admin_system_components/AdminSystemLabel/AdminSystemLabel';
 import { Progress } from '@/app/admin/admin_system/admin_system_components/AdminSystemProgress/AdminSystemProgress';
 import { User, Lock, Camera, Eye, EyeOff, ChevronRight } from 'lucide-react';
-import { useAdminSystemProfile } from '../admin_system_profile_hooks/useAdminSystemProfile';
+import { useAdminSystemProfile } from '@/app/admin/admin_system/admin_system_profile_hooks/useAdminSystemProfile';
 
 export function AdminSystemProfileClient() {
   const {
@@ -31,7 +31,7 @@ export function AdminSystemProfileClient() {
         <p className="text-on-surface-variant mt-1 text-sm">Manage your personal information and account security.</p>
       </div>
 
-      <div className="max-w-[560px] mx-auto space-y-6">
+      <div className="max-w-xl mx-auto space-y-6">
         {/* Personal Info */}
         <Card>
           <CardHeader>

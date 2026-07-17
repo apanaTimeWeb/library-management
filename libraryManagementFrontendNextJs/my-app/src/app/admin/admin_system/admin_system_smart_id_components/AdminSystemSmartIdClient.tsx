@@ -7,7 +7,7 @@ import {
   DialogTitle, DialogDescription, DialogClose
 } from '@/app/admin/admin_system/admin_system_components/AdminSystemDialog/AdminSystemDialog';
 import { Hash, ChevronRight, ArrowRight, AlertTriangle } from 'lucide-react';
-import { useAdminSystemSmartId } from '../admin_system_smart_id_hooks/useAdminSystemSmartId';
+import { useAdminSystemSmartId } from '@/app/admin/admin_system/admin_system_smart_id_hooks/useAdminSystemSmartId';
 
 export function AdminSystemSmartIdClient() {
   const { regenerated, handleRegenerate, activeIds, flowSteps, allIds, gapIds } = useAdminSystemSmartId();
@@ -46,7 +46,7 @@ export function AdminSystemSmartIdClient() {
                   <div className="text-center">
                     <p className="text-xs font-semibold text-primary uppercase tracking-wider">Step {step.step}</p>
                     <p className="text-sm font-medium text-on-surface mt-0.5">{step.title}</p>
-                    <p className="text-xs text-on-surface-variant mt-1 max-w-[160px]">{step.desc}</p>
+                    <p className="text-xs text-on-surface-variant mt-1 max-w-40">{step.desc}</p>
                   </div>
                 </div>
                 {i < flowSteps.length - 1 && (

@@ -1,7 +1,7 @@
 'use client';
 
 import { Download, Search } from 'lucide-react';
-import { useAdminStudents, type AdminStudentData } from '../admin_students_hooks/useAdminStudents';
+import { useAdminStudents, type AdminStudentData } from '@/app/admin/admin_students/admin_students_hooks/useAdminStudents';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';

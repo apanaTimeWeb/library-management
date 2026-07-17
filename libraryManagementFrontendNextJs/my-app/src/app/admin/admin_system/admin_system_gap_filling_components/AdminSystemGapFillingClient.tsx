@@ -6,7 +6,7 @@ import { Label } from '@/app/admin/admin_system/admin_system_components/AdminSys
 import { Badge } from '@/app/admin/admin_system/admin_system_components/AdminSystemBadge/AdminSystemBadge';
 import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from '@/app/admin/admin_system/admin_system_components/AdminSystemSelect/AdminSystemSelect';
 import { GitBranch, ChevronRight, Zap } from 'lucide-react';
-import { useAdminSystemGapFilling } from '../admin_system_gap_filling_hooks/useAdminSystemGapFilling';
+import { useAdminSystemGapFilling } from '@/app/admin/admin_system/admin_system_gap_filling_hooks/useAdminSystemGapFilling';
 
 export function AdminSystemGapFillingClient() {
   const {
@@ -83,12 +83,12 @@ export function AdminSystemGapFillingClient() {
                     {seat.booked.map((b, i) => (
                       <div key={i} className="absolute top-0 h-full bg-primary/70 flex items-center justify-center"
                         style={{ left: `${b.start}%`, width: `${b.end - b.start}%` }}>
-                        <span className="text-[10px] text-on-primary font-medium truncate px-1">Booked</span>
+                        <span className="text-xs text-on-primary font-medium truncate px-1">Booked</span>
                       </div>
                     ))}
                     <div className="absolute top-0 h-full bg-tertiary/30 border border-dashed border-tertiary/60 flex items-center justify-center animate-pulse"
                       style={{ left: `${seat.gap.start}%`, width: `${seat.gap.end - seat.gap.start}%` }}>
-                      <span className="text-[10px] text-tertiary font-medium truncate px-1">🕳️ Gap</span>
+                      <span className="text-xs text-tertiary font-medium truncate px-1">🕳️ Gap</span>
                     </div>
                   </div>
                   <div className="w-64 shrink-0 flex items-center gap-3">

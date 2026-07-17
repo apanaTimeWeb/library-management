@@ -106,7 +106,7 @@ export function LockersClient() {
                   <tr key={i} className="hover:bg-muted/10 transition-colors">
                     <td className="px-5 py-4 text-[15px] font-black text-primary tracking-tight">{l.lockerId}</td>
                     <td className="px-5 py-4">
-                      <Badge variant="secondary" className={`${getStatusBadge(l.status)} uppercase tracking-wider font-bold text-[10px]`}>
+                      <Badge variant="secondary" className={`${getStatusBadge(l.status)} uppercase tracking-wider font-bold text-xs`}>
                         <span className="w-1.5 h-1.5 rounded-full bg-current mr-1.5 opacity-70" />
                         {l.status}
                       </Badge>

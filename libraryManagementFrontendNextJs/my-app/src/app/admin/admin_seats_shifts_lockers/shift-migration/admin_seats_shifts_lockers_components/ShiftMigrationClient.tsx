@@ -86,7 +86,7 @@ export function ShiftMigrationClient() {
               </div>
 
               {search && (
-                <div className="flex flex-col gap-2 max-h-[300px] overflow-y-auto pr-2">
+                <div className="flex flex-col gap-2 max-h-72 overflow-y-auto pr-2">
                   {filteredStudents.length === 0 ? (
                     <p className="text-sm font-medium text-muted-foreground p-4 bg-muted/20 rounded-md text-center">No students found.</p>
                   ) : filteredStudents.map(s => (
@@ -272,7 +272,7 @@ export function ShiftMigrationClient() {
               <Card className="p-6 shadow-sm border-border bg-card flex flex-col gap-3">
                 <label className="text-sm font-medium text-primary">Remark (optional)</label>
                 <textarea 
-                  className="flex min-h-[80px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2" 
+                  className="flex min-h-20 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2" 
                   placeholder="Any notes about this migration..." 
                   value={remark} 
                   onChange={e => setRemark(e.target.value)} 
@@ -285,7 +285,7 @@ export function ShiftMigrationClient() {
 
         {/* Sidebar summary */}
         {selectedStudent && (
-          <div className="w-full lg:w-[320px] shrink-0">
+          <div className="w-full lg:w-80 shrink-0">
             <Card className="p-6 shadow-sm border-border bg-card sticky top-6">
               <h4 className="text-lg font-black text-primary">{selectedStudent.name}</h4>
               <p className="text-xs font-mono text-muted-foreground mb-6">{selectedStudent.smartId}</p>
@@ -301,7 +301,7 @@ export function ShiftMigrationClient() {
                   ...(showCustomSlot && customStart && customEnd ? [{ label: 'Custom Slot', value: `${customStart} – ${customEnd}`, highlight: true }] : []),
                 ].map(({ label, value, highlight }) => (
                   <div key={label} className={`flex flex-col gap-1 pb-3 border-b border-border last:border-0 last:pb-0 ${highlight ? 'text-primary' : ''}`}>
-                    <p className={`text-[10px] font-bold uppercase tracking-wider ${highlight ? 'text-primary/70' : 'text-muted-foreground'}`}>{label}</p>
+                    <p className={`text-xs font-bold uppercase tracking-wider ${highlight ? 'text-primary/70' : 'text-muted-foreground'}`}>{label}</p>
                     <p className={`text-sm font-bold ${highlight ? 'text-primary' : 'text-primary'}`}>{value}</p>
                   </div>
                 ))}

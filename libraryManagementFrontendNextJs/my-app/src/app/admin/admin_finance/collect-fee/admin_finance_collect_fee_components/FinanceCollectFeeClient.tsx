@@ -4,7 +4,7 @@ import { Toaster } from 'react-hot-toast';
 import { Search, CheckCircle, IndianRupee, BookOpen, MessageSquare, Printer, X } from 'lucide-react';
 import { formatCurrency } from '@/app/admin/admin_finance/admin_finance_utils/format';
 import { ADMIN_FINANCE_MODES } from '@/app/admin/admin_finance/admin_finance_constants/AdminFinanceConstants';
-import { useFinanceCollectFee, MODE_LABELS, maskPhone } from './admin_finance_collect_fee_hooks/useFinanceCollectFee';
+import { useFinanceCollectFee, MODE_LABELS, maskPhone } from '@/app/admin/admin_finance/collect-fee/admin_finance_collect_fee_components/admin_finance_collect_fee_hooks/useFinanceCollectFee';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -75,7 +75,7 @@ export function FinanceCollectFeeClient() {
             
             {/* Modal Body - Thermal Ticket */}
             <div className="p-6 bg-muted/5">
-              <div className="bg-white text-black font-mono text-sm max-w-[320px] mx-auto shadow-sm border border-gray-200 relative overflow-hidden">
+              <div className="bg-white text-black font-mono text-sm max-w-80 mx-auto shadow-sm border border-gray-200 relative overflow-hidden">
                 {/* Top Zigzag */}
                 <div className="absolute top-0 left-0 right-0 h-2 flex overflow-hidden">
                   {Array.from({ length: 20 }).map((_, i) => (
@@ -91,7 +91,7 @@ export function FinanceCollectFeeClient() {
                   <p className="text-xs uppercase tracking-widest border-b border-black/30 pb-2 mb-4 w-full text-center">Payment Receipt</p>
                   
                   <div className="w-full border border-black/20 p-2 mb-4 text-center bg-gray-50">
-                    <p className="text-[10px] text-gray-500 uppercase tracking-widest mb-0.5">Receipt Number</p>
+                    <p className="text-xs text-gray-500 uppercase tracking-widest mb-0.5">Receipt Number</p>
                     <p className="font-bold text-sm">{receiptData.receiptNo}</p>
                   </div>
 
@@ -120,8 +120,8 @@ export function FinanceCollectFeeClient() {
                     <span>Payment Received</span>
                   </div>
 
-                  <p className="text-[10px] italic text-gray-500 text-center">"Knowledge is the best investment."</p>
-                  <p className="text-[10px] font-bold mt-1">Thank you! Keep studying 😊</p>
+                  <p className="text-xs italic text-gray-500 text-center">"Knowledge is the best investment."</p>
+                  <p className="text-xs font-bold mt-1">Thank you! Keep studying 😊</p>
                 </div>
 
                 {/* Bottom Zigzag */}
@@ -199,7 +199,7 @@ export function FinanceCollectFeeClient() {
                         <div className="font-bold text-sm text-primary">{s.name}</div>
                         <div className="text-xs text-muted-foreground mt-0.5">{s.smartId} · {s.plan} · +91-{maskPhone(s.phone)}</div>
                       </div>
-                      <Badge variant="secondary" className={`${s.status === 'active' ? 'bg-success/10 text-success' : s.status === 'suspended' ? 'bg-danger/10 text-danger' : 'bg-warning/10 text-warning'} border-none uppercase tracking-wider font-bold text-[10px]`}>
+                      <Badge variant="secondary" className={`${s.status === 'active' ? 'bg-success/10 text-success' : s.status === 'suspended' ? 'bg-danger/10 text-danger' : 'bg-warning/10 text-warning'} border-none uppercase tracking-wider font-bold text-xs`}>
                         {s.status}
                       </Badge>
                     </button>
@@ -320,7 +320,7 @@ export function FinanceCollectFeeClient() {
                     <BookOpen size={20} className="text-black" />
                   </div>
                   <p className="font-bold text-sm tracking-widest uppercase mb-1">Smart Library 360</p>
-                  <p className="text-[10px] uppercase tracking-widest border-b border-black/30 pb-2 mb-4 w-full text-center">Payment Receipt</p>
+                  <p className="text-xs uppercase tracking-widest border-b border-black/30 pb-2 mb-4 w-full text-center">Payment Receipt</p>
                   
                   <div className="w-full space-y-2 mb-4 text-[11px]">
                     <div className="flex justify-between w-full">
@@ -342,7 +342,7 @@ export function FinanceCollectFeeClient() {
                   </div>
 
                   <div className="w-full border-t border-dashed border-black/30 pt-3 mb-4 text-center">
-                    <p className="text-[10px] text-gray-500 uppercase tracking-widest mb-1">Total Amount</p>
+                    <p className="text-xs text-gray-500 uppercase tracking-widest mb-1">Total Amount</p>
                     <p className="text-xl font-bold">₹{total > 0 ? total.toFixed(0) : '0'}</p>
                   </div>
                   

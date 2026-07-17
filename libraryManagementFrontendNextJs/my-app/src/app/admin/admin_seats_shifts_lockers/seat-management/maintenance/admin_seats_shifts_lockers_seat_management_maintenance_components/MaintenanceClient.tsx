@@ -139,7 +139,7 @@ export function MaintenanceClient() {
         </div>
         <div className="space-y-2 mb-6">
           <label className="text-sm font-medium">Remark <span className="text-danger">*</span></label>
-          <textarea className={`flex min-h-[80px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 ${errors.remark ? 'border-danger focus-visible:ring-danger' : ''}`} rows={2} placeholder="e.g. Chair leg repaired" value={form.remark} onChange={e => setForm(p => ({ ...p, remark: e.target.value }))} />
+          <textarea className={`flex min-h-20 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 ${errors.remark ? 'border-danger focus-visible:ring-danger' : ''}`} rows={2} placeholder="e.g. Chair leg repaired" value={form.remark} onChange={e => setForm(p => ({ ...p, remark: e.target.value }))} />
           {errors.remark && <p className="text-xs text-danger">{errors.remark}</p>}
         </div>
         <div className="flex justify-end pt-4 border-t border-border">

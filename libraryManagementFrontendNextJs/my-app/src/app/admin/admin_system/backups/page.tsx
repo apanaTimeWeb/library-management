@@ -1,4 +1,4 @@
-import { AdminSystemBackupsClient } from '../admin_system_backups_components/AdminSystemBackupsClient';
+import { AdminSystemBackupsClient } from '@/app/admin/admin_system/admin_system_backups_components/AdminSystemBackupsClient';
 
 export default function BackupsPage() {
   return <AdminSystemBackupsClient />;

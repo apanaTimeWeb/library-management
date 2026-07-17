@@ -6,11 +6,11 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from '@/components/ui/card';
 import { ADMIN_KPI_META, ADMIN_ACTION_ICONS } from '@/app/admin/admin_constants/admin_constants';
 import { ADMIN_ROUTES } from '@/app/admin/admin_url_config';
-import { useAdminDashboard } from '../admin_dashboard_hooks/useAdminDashboard';
-import { AdminDashboardKpiCard } from './AdminDashboardKpiCard';
-import { AdminDashboardSeatMatrixGrid } from './AdminDashboardSeatMatrixGrid';
-import { AdminDashboardActionItemsList, type AdminDashboardActionItem } from './AdminDashboardActionItemsList';
-import { AdminDashboardRecentPaymentsFeed } from './AdminDashboardRecentPaymentsFeed';
+import { useAdminDashboard } from '@/app/admin/admin_dashboard/admin_dashboard_hooks/useAdminDashboard';
+import { AdminDashboardKpiCard } from '@/app/admin/admin_dashboard/admin_dashboard_components/AdminDashboardKpiCard';
+import { AdminDashboardSeatMatrixGrid } from '@/app/admin/admin_dashboard/admin_dashboard_components/AdminDashboardSeatMatrixGrid';
+import { AdminDashboardActionItemsList, type AdminDashboardActionItem } from '@/app/admin/admin_dashboard/admin_dashboard_components/AdminDashboardActionItemsList';
+import { AdminDashboardRecentPaymentsFeed } from '@/app/admin/admin_dashboard/admin_dashboard_components/AdminDashboardRecentPaymentsFeed';
 
 export function AdminDashboardClient({ initialData }: { initialData: any }) {
   const { data, seatMatrixState } = useAdminDashboard(initialData);

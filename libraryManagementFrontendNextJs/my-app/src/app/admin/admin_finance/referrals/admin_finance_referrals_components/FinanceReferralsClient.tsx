@@ -2,7 +2,7 @@
 
 import { Users, Trophy, IndianRupee } from 'lucide-react';
 import { formatCurrency } from '@/app/admin/admin_finance/admin_finance_utils/format';
-import { useFinanceReferrals } from './admin_finance_referrals_hooks/useFinanceReferrals';
+import { useFinanceReferrals } from '@/app/admin/admin_finance/referrals/admin_finance_referrals_components/admin_finance_referrals_hooks/useFinanceReferrals';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -113,7 +113,7 @@ export function FinanceReferralsClient() {
                       {expanded === r.id && (
                         <div className="flex flex-wrap gap-1 mt-3 animate-in fade-in slide-in-from-top-1">
                           {r.referredNames.map((name, i) => (
-                            <Badge key={i} variant="secondary" className="bg-primary/10 text-primary border-none text-[10px] uppercase tracking-wider font-bold">
+                            <Badge key={i} variant="secondary" className="bg-primary/10 text-primary border-none text-xs uppercase tracking-wider font-bold">
                               {name}
                             </Badge>
                           ))}

@@ -4,7 +4,7 @@ import { Button } from '@/app/admin/admin_system/admin_system_components/AdminSy
 import { Badge } from '@/app/admin/admin_system/admin_system_components/AdminSystemBadge/AdminSystemBadge';
 import { Upload, FileSpreadsheet, ChevronRight, CheckCircle, XCircle, AlertTriangle, Download, RefreshCw } from 'lucide-react';
 import { ADMIN_SYSTEM_MOCK_PREVIEW } from '@/app/admin/admin_system/admin_system_data/AdminSystemMockData2';
-import { useAdminSystemBulkImport } from '../admin_system_bulk_import_hooks/useAdminSystemBulkImport';
+import { useAdminSystemBulkImport } from '@/app/admin/admin_system/admin_system_bulk_import_hooks/useAdminSystemBulkImport';
 
 const STATUS_CONFIG = {
   ok: { label: 'OK', variant: 'success' as const, icon: CheckCircle },

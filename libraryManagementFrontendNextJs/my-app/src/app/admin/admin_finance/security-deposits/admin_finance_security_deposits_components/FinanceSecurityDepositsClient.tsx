@@ -2,7 +2,7 @@
 
 import { Undo2, Minus, X } from 'lucide-react';
 import { formatCurrency } from '@/app/admin/admin_finance/admin_finance_utils/format';
-import { useFinanceSecurityDeposits } from './admin_finance_security_deposits_hooks/useFinanceSecurityDeposits';
+import { useFinanceSecurityDeposits } from '@/app/admin/admin_finance/security-deposits/admin_finance_security_deposits_components/admin_finance_security_deposits_hooks/useFinanceSecurityDeposits';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -112,7 +112,7 @@ export function FinanceSecurityDepositsClient() {
                     </td>
                     <td className="px-5 py-4 text-right text-[13px] font-bold text-primary">{formatCurrency(d.depositAmount)}</td>
                     <td className="px-5 py-4">
-                      <Badge variant="secondary" className={`${getStatusBadge(d.status)} uppercase tracking-wider font-bold text-[10px]`}>
+                      <Badge variant="secondary" className={`${getStatusBadge(d.status)} uppercase tracking-wider font-bold text-xs`}>
                         {d.status}
                       </Badge>
                     </td>

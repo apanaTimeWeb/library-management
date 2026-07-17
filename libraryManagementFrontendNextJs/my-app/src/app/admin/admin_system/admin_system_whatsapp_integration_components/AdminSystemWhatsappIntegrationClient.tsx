@@ -9,7 +9,7 @@ import {
   MessageSquare, ChevronRight, Eye, EyeOff, Copy, CheckCircle,
   XCircle, Phone, Zap, BarChart3, Clock, Loader2
 } from 'lucide-react';
-import { useAdminSystemWhatsappIntegration } from '../admin_system_whatsapp_integration_hooks/useAdminSystemWhatsappIntegration';
+import { useAdminSystemWhatsappIntegration } from '@/app/admin/admin_system/admin_system_whatsapp_integration_hooks/useAdminSystemWhatsappIntegration';
 
 const STATUS_CFG = {
   delivered: { variant: 'success' as const, icon: CheckCircle },

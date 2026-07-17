@@ -70,7 +70,7 @@ export function AdminDashboardRecentPaymentsFeed({ payments }: { payments: Admin
                 >
                   <td className="px-4 py-3">
                     <div className="flex items-center gap-3">
-                      <div className="flex items-center justify-center h-8 w-8 rounded-full bg-primary text-white text-[10px] font-bold shadow-sm">
+                      <div className="flex items-center justify-center h-8 w-8 rounded-full bg-primary text-white text-xs font-bold shadow-sm">
                         {payment.initials}
                       </div>
                       <span className="font-semibold text-sm text-primary group-hover:text-primary transition-colors">{payment.name}</span>
@@ -80,7 +80,7 @@ export function AdminDashboardRecentPaymentsFeed({ payments }: { payments: Admin
                     {payment.amount}
                   </td>
                   <td className="px-4 py-3">
-                    <Badge variant="secondary" className={`${getModeBadgeClass(payment.mode)} text-[10px] uppercase font-bold tracking-wider rounded-md border-none`}>
+                    <Badge variant="secondary" className={`${getModeBadgeClass(payment.mode)} text-xs uppercase font-bold tracking-wider rounded-md border-none`}>
                       {payment.mode}
                     </Badge>
                   </td>

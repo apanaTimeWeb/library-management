@@ -2,7 +2,7 @@
 
 import { Undo2, X } from 'lucide-react';
 import { formatCurrency } from '@/app/admin/admin_finance/admin_finance_utils/format';
-import { useFinanceRefunds } from './admin_finance_refunds_hooks/useFinanceRefunds';
+import { useFinanceRefunds } from '@/app/admin/admin_finance/refunds/admin_finance_refunds_components/admin_finance_refunds_hooks/useFinanceRefunds';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -147,16 +147,16 @@ export function FinanceRefundsClient() {
                     </td>
                     <td className="px-5 py-4">
                       <div className="flex flex-col gap-1">
-                        <Badge variant="secondary" className={`${getStatusBadge(r.status)} border-none uppercase tracking-wider font-bold text-[10px] w-fit`}>
+                        <Badge variant="secondary" className={`${getStatusBadge(r.status)} border-none uppercase tracking-wider font-bold text-xs w-fit`}>
                           {r.status}
                         </Badge>
                         {r.status === 'rejected' && r.rejectionReason && (
-                          <span className="text-[10px] text-muted-foreground leading-tight max-w-[120px] truncate" title={r.rejectionReason}>
+                          <span className="text-xs text-muted-foreground leading-tight max-w-32 truncate" title={r.rejectionReason}>
                             {r.rejectionReason}
                           </span>
                         )}
                         {r.status === 'processed' && r.processedDate && (
-                          <span className="text-[10px] text-muted-foreground leading-tight">
+                          <span className="text-xs text-muted-foreground leading-tight">
                             {r.processedDate} · {r.paymentMethod}
                           </span>
                         )}

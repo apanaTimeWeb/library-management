@@ -12,7 +12,7 @@ import {
   KANBAN_COLUMNS,
   maskPhone,
 } from '@/app/admin/admin_crm/admin_crm_components/AdminCrmtypes/AdminCrmtypes';
-import { useAdminCrmEnquiries } from '../admin_crm_hooks/useAdminCrmEnquiries';
+import { useAdminCrmEnquiries } from '@/app/admin/admin_crm/admin_crm_hooks/useAdminCrmEnquiries';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -156,7 +156,7 @@ export default function AdminCrmEnquiriesClient() {
           />
         </div>
         <select
-          className="flex h-10 w-full max-w-[200px] items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
+          className="flex h-10 w-full max-w-52 items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
           value={statusParam}
           onChange={(e) => pushParams({ status: e.target.value })}
         >

@@ -143,7 +143,7 @@ export function AdminPlansClient() {
                     >
                       {plan.status}
                     </Badge>
-                    <Badge variant="outline" className="text-[10px] bg-primary/5 text-primary border-primary/20">{plan.duration}</Badge>
+                    <Badge variant="outline" className="text-xs bg-primary/5 text-primary border-primary/20">{plan.duration}</Badge>
                   </div>
                 </div>
 
@@ -184,7 +184,7 @@ export function AdminPlansClient() {
 
               {/* Footer Actions */}
               <CardFooter className="flex items-center justify-between p-4 bg-muted/20 border-t border-border">
-                <span className="font-mono text-[10px] text-muted-foreground">ID: #{plan.id}</span>
+                <span className="font-mono text-xs text-muted-foreground">ID: #{plan.id}</span>
                 <div className="flex items-center gap-1.5">
                   <Button
                     variant="ghost"
@@ -234,7 +234,7 @@ export function AdminPlansClient() {
                   <Calendar size={18} />
                 </div>
                 <div>
-                  <span className="font-mono text-[10px] text-muted-foreground block mb-0.5">#{selectedPlanDetails.id}</span>
+                  <span className="font-mono text-xs text-muted-foreground block mb-0.5">#{selectedPlanDetails.id}</span>
                   <CardTitle className="text-lg">{selectedPlanDetails.name} Plan</CardTitle>
                 </div>
               </div>

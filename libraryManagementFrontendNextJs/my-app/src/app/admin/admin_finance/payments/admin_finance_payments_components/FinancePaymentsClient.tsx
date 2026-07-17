@@ -3,7 +3,7 @@
 import { useRouter } from 'next/navigation';
 import { Receipt, Trash2, FileText, Download, X } from 'lucide-react';
 import { formatCurrency, formatDate } from '@/app/admin/admin_finance/admin_finance_utils/format';
-import { useFinancePayments } from './admin_finance_payments_hooks/useFinancePayments';
+import { useFinancePayments } from '@/app/admin/admin_finance/payments/admin_finance_payments_components/admin_finance_payments_hooks/useFinancePayments';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -133,7 +133,7 @@ export function FinancePaymentsClient() {
                         </span>
                       </td>
                       <td className={`px-4 py-3 ${isDeleted ? 'opacity-50' : ''}`}>
-                        <Badge variant="secondary" className={`${getModeBadge(p.mode)} border-none uppercase tracking-wider font-bold text-[10px]`}>
+                        <Badge variant="secondary" className={`${getModeBadge(p.mode)} border-none uppercase tracking-wider font-bold text-xs`}>
                           {p.mode}
                         </Badge>
                       </td>
@@ -148,16 +148,16 @@ export function FinancePaymentsClient() {
                       <td className="px-4 py-3">
                         <div className="flex flex-col gap-1">
                           {isDeleted ? (
-                            <Badge variant="secondary" className="bg-danger/10 text-danger border-none uppercase tracking-wider font-bold text-[10px] w-fit">
+                            <Badge variant="secondary" className="bg-danger/10 text-danger border-none uppercase tracking-wider font-bold text-xs w-fit">
                               Deleted
                             </Badge>
                           ) : (
-                            <Badge variant="secondary" className="bg-success/10 text-success border-none uppercase tracking-wider font-bold text-[10px] w-fit">
+                            <Badge variant="secondary" className="bg-success/10 text-success border-none uppercase tracking-wider font-bold text-xs w-fit">
                               Valid
                             </Badge>
                           )}
                           {isDeleted && p.deletionReason && (
-                            <span className="text-[10px] text-muted-foreground leading-tight max-w-[120px] truncate" title={p.deletionReason}>
+                            <span className="text-xs text-muted-foreground leading-tight max-w-32 truncate" title={p.deletionReason}>
                               {p.deletionReason}
                             </span>
                           )}
@@ -228,7 +228,7 @@ export function FinancePaymentsClient() {
             <div className="space-y-2">
               <label className="text-sm font-medium">Deletion reason <span className="text-danger">*</span></label>
               <textarea
-                className="flex min-h-[80px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                className="flex min-h-20 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
                 value={deleteReason}
                 onChange={(e) => setDeleteReason(e.target.value)}
                 placeholder="Enter reason for deletion..."

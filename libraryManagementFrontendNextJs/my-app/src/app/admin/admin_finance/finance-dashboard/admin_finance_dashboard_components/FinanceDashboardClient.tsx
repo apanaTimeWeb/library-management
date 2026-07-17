@@ -5,7 +5,7 @@ import {
   TrendingUp, TrendingDown, IndianRupee, Receipt, AlertTriangle, RefreshCw,
 } from 'lucide-react';
 import { formatCurrency } from '@/app/admin/admin_finance/admin_finance_utils/format';
-import { useFinanceDashboard } from './admin_finance_dashboard_hooks/useFinanceDashboard';
+import { useFinanceDashboard } from '@/app/admin/admin_finance/finance-dashboard/admin_finance_dashboard_components/admin_finance_dashboard_hooks/useFinanceDashboard';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 

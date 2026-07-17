@@ -2,7 +2,7 @@
 
 import { RefreshCw, Send, X } from 'lucide-react';
 import { formatCurrency } from '@/app/admin/admin_finance/admin_finance_utils/format';
-import { useFinanceRenewals } from './admin_finance_renewals_hooks/useFinanceRenewals';
+import { useFinanceRenewals } from '@/app/admin/admin_finance/renewals/admin_finance_renewals_components/admin_finance_renewals_hooks/useFinanceRenewals';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -100,7 +100,7 @@ export function FinanceRenewalsClient() {
                     <td className="px-5 py-4 font-bold text-[13px] text-primary">{r.studentName}</td>
                     <td className="px-5 py-4 text-[12px] font-mono text-muted-foreground">{r.smartId}</td>
                     <td className="px-5 py-4">
-                      <Badge variant="secondary" className="bg-muted text-muted-foreground border-none font-bold text-[10px]">
+                      <Badge variant="secondary" className="bg-muted text-muted-foreground border-none font-bold text-xs">
                         {r.shift}
                       </Badge>
                     </td>

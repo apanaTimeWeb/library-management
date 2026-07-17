@@ -66,7 +66,7 @@ export default function AdminSidebar({ collapsed, onToggle, mobileOpen, onMobile
           {ADMIN_SIDEBAR_NAV.map((item, i) => {
             if ('group' in item) {
               if (collapsed && !mobileOpen) return null;
-              return <div key={i} className="px-3 pt-4 pb-1 text-[10px] font-bold tracking-wider text-muted-foreground uppercase">{item.group}</div>;
+              return <div key={i} className="px-3 pt-4 pb-1 text-xs font-bold tracking-wider text-muted-foreground uppercase">{item.group}</div>;
             }
             const Icon = item.icon;
             const isExactMatch = pathname === item.href;

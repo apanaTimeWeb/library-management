@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { Search, FileText, Printer, Eye, Send } from 'lucide-react';
 import { formatCurrency, formatDate } from '@/app/admin/admin_finance/admin_finance_utils/format';
-import { useFinanceInvoice, type FilterStatus } from './admin_finance_invoice_hooks/useFinanceInvoice';
+import { useFinanceInvoice, type FilterStatus } from '@/app/admin/admin_finance/invoice/admin_finance_invoice_components/admin_finance_invoice_hooks/useFinanceInvoice';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -80,7 +80,7 @@ export function FinanceInvoiceClient() {
           />
         </div>
         <select 
-          className="flex h-10 w-full max-w-[200px] items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
+          className="flex h-10 w-full max-w-52 items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
           value={statusFilter} 
           onChange={e => setStatusFilter(e.target.value as FilterStatus)}
         >
@@ -135,7 +135,7 @@ export function FinanceInvoiceClient() {
                     </td>
                     <td className="px-5 py-4">
                       {inv.paymentMode ? (
-                        <Badge variant="secondary" className="bg-muted text-primary border-none uppercase tracking-wider font-bold text-[10px]">
+                        <Badge variant="secondary" className="bg-muted text-primary border-none uppercase tracking-wider font-bold text-xs">
                           {inv.paymentMode}
                         </Badge>
                       ) : (
@@ -143,7 +143,7 @@ export function FinanceInvoiceClient() {
                       )}
                     </td>
                     <td className="px-5 py-4">
-                      <Badge variant="secondary" className={`${getStatusBadge(inv.paymentStatus)} border-none uppercase tracking-wider font-bold text-[10px]`}>
+                      <Badge variant="secondary" className={`${getStatusBadge(inv.paymentStatus)} border-none uppercase tracking-wider font-bold text-xs`}>
                         {inv.paymentStatus}
                       </Badge>
                     </td>

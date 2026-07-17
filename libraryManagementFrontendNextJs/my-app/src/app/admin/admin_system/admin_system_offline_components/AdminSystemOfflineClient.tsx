@@ -1,6 +1,6 @@
 'use client';
 import { WifiOff, RefreshCw, CheckCircle, XCircle } from 'lucide-react';
-import { useAdminSystemOffline } from '../admin_system_offline_hooks/useAdminSystemOffline';
+import { useAdminSystemOffline } from '@/app/admin/admin_system/admin_system_offline_hooks/useAdminSystemOffline';
 
 export function AdminSystemOfflineClient() {
   const { dots, online, checking, handleRetry, features } = useAdminSystemOffline();
@@ -8,9 +8,9 @@ export function AdminSystemOfflineClient() {
   return (
     <div className="min-h-screen flex items-center justify-center p-6 bg-surface relative overflow-hidden text-on-surface">
       {/* Ambient glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[100px] pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-primary/5 rounded-full blur-3xl pointer-events-none" />
 
-      <div className="w-full max-w-[420px] flex flex-col items-center gap-0 relative z-10">
+      <div className="w-full max-w-md flex flex-col items-center gap-0 relative z-10">
 
         {/* Icon */}
         <div className={`mb-6 h-24 w-24 rounded-full flex items-center justify-center shadow-lg transition-colors duration-500 ${

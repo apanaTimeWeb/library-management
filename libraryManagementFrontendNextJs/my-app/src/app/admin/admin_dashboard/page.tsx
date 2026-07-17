@@ -3,7 +3,7 @@
 
 import { cookies } from 'next/headers';
 import { fetchAdminDashboard } from '@/app/admin/admin_dashboard/admin_dashboard_api/admin_dashboard_api';
-import { AdminDashboardClient } from './admin_dashboard_components/AdminDashboardClient';
+import { AdminDashboardClient } from '@/app/admin/admin_dashboard/admin_dashboard_components/AdminDashboardClient';
 
 async function getDashboardData() {
   const cookieStore = await cookies();

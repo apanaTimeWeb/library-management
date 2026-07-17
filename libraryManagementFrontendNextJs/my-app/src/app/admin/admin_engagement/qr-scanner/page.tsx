@@ -232,7 +232,7 @@ export default function QrScannerPage() {
         </div>
 
         {/* ── Right: Recent History ── */}
-        <div className="w-full lg:w-[320px] shrink-0">
+        <div className="w-full lg:w-80 shrink-0">
           <Card className="shadow-sm border-border h-full">
             <CardHeader className="border-b border-border bg-muted/20 pb-4">
               <CardTitle className="text-lg">Recent Scans</CardTitle>

@@ -7,7 +7,7 @@ import {
   PieChart, Pie, Cell, Legend,
   AreaChart, Area,
 } from 'recharts';
-import { useAdminReports } from '../admin_reports_hooks/useAdminReports';
+import { useAdminReports } from '@/app/admin/admin_reports/admin_reports_hooks/useAdminReports';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';

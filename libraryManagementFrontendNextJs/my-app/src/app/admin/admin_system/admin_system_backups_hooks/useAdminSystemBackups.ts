@@ -1,6 +1,6 @@
 import { useState, useCallback, useMemo } from 'react';
 import { ADMIN_SYSTEM_MOCK_BACKUP_HISTORY } from '@/app/admin/admin_system/admin_system_data/AdminSystemMockData2';
-import { BackupRecord } from '../admin_system_types/AdminSystemBackupsTypes';
+import { BackupRecord } from '@/app/admin/admin_system/admin_system_types/AdminSystemBackupsTypes';
 
 export function useAdminSystemBackups() {
   const [autoBackup, setAutoBackup] = useState(true);

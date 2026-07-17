@@ -62,7 +62,7 @@ export function AdminSettingsView({ initialSettings }: AdminSettingsViewProps) {
               </div>
               <div className="space-y-1.5">
                 <label className="text-sm font-medium text-primary" htmlFor="address">Full Address (For Invoices)</label>
-                <Textarea id="address" name="address" value={form.address} onChange={handleChange} rows={3} className="resize-none min-h-[80px]" />
+                <Textarea id="address" name="address" value={form.address} onChange={handleChange} rows={3} className="resize-none min-h-20" />
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="space-y-1.5">
@@ -100,7 +100,7 @@ export function AdminSettingsView({ initialSettings }: AdminSettingsViewProps) {
               </div>
               <div className="space-y-1.5">
                 <label className="text-sm font-medium text-primary" htmlFor="termsAndConditions">Terms & Conditions (Printed on Receipt)</label>
-                <Textarea id="termsAndConditions" name="termsAndConditions" value={form.termsAndConditions} onChange={handleChange} rows={4} className="resize-none min-h-[105px]" />
+                <Textarea id="termsAndConditions" name="termsAndConditions" value={form.termsAndConditions} onChange={handleChange} rows={4} className="resize-none min-h-28" />
               </div>
             </div>
           </Card>

@@ -2,7 +2,7 @@
 
 import { Plus, Search, Wrench, Edit, AlertTriangle, CheckCircle, X } from 'lucide-react';
 import toast, { Toaster } from 'react-hot-toast';
-import { useSeatManagement, type Seat, type SeatStatus } from './useSeatManagement';
+import { useSeatManagement, type Seat, type SeatStatus } from '@/app/admin/admin_seats_shifts_lockers/seat-management/useSeatManagement';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -72,7 +72,7 @@ export function SeatManagementClient({ initialSeats }: SeatManagementClientProps
           />
         </div>
         <select 
-          className="flex h-10 w-full max-w-[200px] items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
+          className="flex h-10 w-full max-w-52 items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
           value={statusFilter} 
           onChange={e => setStatusFilter(e.target.value)}
         >

@@ -69,7 +69,7 @@ export default function AdminReusableRecentPaymentsFeed({ payments }: { payments
               >
                 <td className="px-4 py-3">
                   <div className="flex items-center gap-3">
-                    <div className="flex items-center justify-center h-7 w-7 rounded-full bg-primary text-primary-foreground text-[10px] font-bold">
+                    <div className="flex items-center justify-center h-7 w-7 rounded-full bg-primary text-primary-foreground text-xs font-bold">
                       {payment.initials}
                     </div>
                     <span className="font-semibold text-sm text-foreground">{payment.name}</span>
@@ -79,7 +79,7 @@ export default function AdminReusableRecentPaymentsFeed({ payments }: { payments
                   <span className="font-bold text-sm text-foreground">{payment.amount}</span>
                 </td>
                 <td className="px-4 py-3">
-                  <Badge variant="secondary" className={`${getModeBadgeClass(payment.mode)} text-[10px] uppercase font-bold tracking-wider rounded-md border-none`}>
+                  <Badge variant="secondary" className={`${getModeBadgeClass(payment.mode)} text-xs uppercase font-bold tracking-wider rounded-md border-none`}>
                     {payment.mode}
                   </Badge>
                 </td>

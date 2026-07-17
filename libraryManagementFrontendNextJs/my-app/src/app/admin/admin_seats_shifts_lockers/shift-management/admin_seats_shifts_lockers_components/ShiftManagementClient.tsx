@@ -54,7 +54,7 @@ export function ShiftManagementClient() {
             <Card key={shift.id} className={`flex flex-col p-5 shadow-sm border-border bg-card transition-all ${!shift.active ? 'opacity-70 bg-muted/30' : ''}`}>
               <div className="flex justify-between items-start mb-4">
                 <h3 className="text-lg font-bold text-primary tracking-tight">{shift.name}</h3>
-                <Badge variant="secondary" className={`${shift.active ? 'bg-success/10 text-success' : 'bg-muted text-muted-foreground'} border-none uppercase tracking-wider font-bold text-[10px]`}>
+                <Badge variant="secondary" className={`${shift.active ? 'bg-success/10 text-success' : 'bg-muted text-muted-foreground'} border-none uppercase tracking-wider font-bold text-xs`}>
                   {shift.active ? 'Active' : 'Inactive'}
                 </Badge>
               </div>

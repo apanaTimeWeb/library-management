@@ -47,12 +47,12 @@ export default function AdminReusableSeatCell({ id, status, occupant, shift, exp
           <>
             <span className="text-xs font-semibold text-foreground truncate">{occupant}</span>
             {shift && (
-              <span className={`text-[10px] font-semibold rounded-full px-2 py-0.5 self-start ${getShiftClass(shift)}`}>
+              <span className={`text-xs font-semibold rounded-full px-2 py-0.5 self-start ${getShiftClass(shift)}`}>
                 {shift}
               </span>
             )}
             {expiry && (
-              <span className={`text-[10px] ${status === 'expiring' ? 'text-warning' : 'text-muted-foreground'}`}>
+              <span className={`text-xs ${status === 'expiring' ? 'text-warning' : 'text-muted-foreground'}`}>
                 Expires: {expiry}
               </span>
             )}

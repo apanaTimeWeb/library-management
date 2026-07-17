@@ -88,7 +88,7 @@ export function ShiftGapAnalyzerClient() {
                       style={{ left: `${pct(b.startH)}%`, width: `${pct(b.endH) - pct(b.startH)}%` }}
                       title={b.label}
                     >
-                      <span className="text-[10px] font-bold text-primary truncate px-1 opacity-70">
+                      <span className="text-xs font-bold text-primary truncate px-1 opacity-70">
                         {pct(b.endH) - pct(b.startH) > 5 ? b.label : ''}
                       </span>
                     </div>
@@ -100,14 +100,14 @@ export function ShiftGapAnalyzerClient() {
                       style={{ left: `${pct(g.startH)}%`, width: `${pct(g.endH) - pct(g.startH)}%` }}
                       title={`Gap: ${fmtH(g.startH)} – ${fmtH(g.endH)}`}
                     >
-                      <span className="text-[10px] font-black text-warning uppercase tracking-wider truncate px-1">
+                      <span className="text-xs font-black text-warning uppercase tracking-wider truncate px-1">
                         {pct(g.endH) - pct(g.startH) > 5 ? 'GAP' : ''}
                       </span>
                     </div>
                   ))}
                 </div>
 
-                <div className="flex justify-between items-center text-[10px] font-bold text-muted-foreground">
+                <div className="flex justify-between items-center text-xs font-bold text-muted-foreground">
                   <span>{fmtH(DAY_START_H)}</span>
                   <span>{fmtH(Math.round((DAY_START_H + DAY_END_H) / 2))}</span>
                   <span>{fmtH(DAY_END_H)}</span>
@@ -123,7 +123,7 @@ export function ShiftGapAnalyzerClient() {
                   {shift.gaps.map((g, i) => (
                     <div key={i} className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-3 rounded-md bg-warning/5 border border-warning/20">
                       <div className="flex items-start gap-3">
-                        <Badge variant="secondary" className="bg-warning/20 text-warning border-none uppercase tracking-wider font-bold text-[10px] shrink-0 mt-0.5">
+                        <Badge variant="secondary" className="bg-warning/20 text-warning border-none uppercase tracking-wider font-bold text-xs shrink-0 mt-0.5">
                           🕳️ Gap
                         </Badge>
                         <div>

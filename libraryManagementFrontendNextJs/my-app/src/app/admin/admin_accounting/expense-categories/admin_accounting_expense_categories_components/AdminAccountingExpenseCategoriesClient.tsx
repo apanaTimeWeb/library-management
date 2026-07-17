@@ -57,7 +57,7 @@ export function AdminAccountingExpenseCategoriesClient() {
                 <div className="h-2.5 w-full bg-muted rounded-full overflow-hidden">
                   <div className={`h-full ${cat.color} transition-all`} style={{ width: `${pct}%` }} />
                 </div>
-                <p className="text-[10px] font-medium text-right text-muted-foreground uppercase tracking-wider mt-1">
+                <p className="text-xs font-medium text-right text-muted-foreground uppercase tracking-wider mt-1">
                   {pct.toFixed(0)}% Used
                 </p>
               </div>

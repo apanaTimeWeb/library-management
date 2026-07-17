@@ -7,7 +7,7 @@ import { Label } from '@/app/admin/admin_system/admin_system_components/AdminSys
 import { Switch } from '@/app/admin/admin_system/admin_system_components/AdminSystemSwitch/AdminSystemSwitch';
 import { Badge } from '@/app/admin/admin_system/admin_system_components/AdminSystemBadge/AdminSystemBadge';
 import { BarChart3, ChevronRight, Zap, ArrowRight } from 'lucide-react';
-import { useAdminSystemAutoScale } from '../admin_system_auto_scale_hooks/useAdminSystemAutoScale';
+import { useAdminSystemAutoScale } from '@/app/admin/admin_system/admin_system_auto_scale_hooks/useAdminSystemAutoScale';
 
 export function AdminSystemAutoScaleClient() {
   const {

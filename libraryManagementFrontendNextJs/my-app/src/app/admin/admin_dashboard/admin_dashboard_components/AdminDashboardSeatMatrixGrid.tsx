@@ -4,7 +4,7 @@ import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter }
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { AdminDashboardSeatCell } from './AdminDashboardSeatCell';
+import { AdminDashboardSeatCell } from '@/app/admin/admin_dashboard/admin_dashboard_components/AdminDashboardSeatCell';
 
 export interface AdminDashboardSeatData {
   id: string;

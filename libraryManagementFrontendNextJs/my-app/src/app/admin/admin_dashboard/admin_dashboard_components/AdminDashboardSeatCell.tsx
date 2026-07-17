@@ -34,13 +34,13 @@ export function AdminDashboardSeatCell({ id, status, occupant, shift, expiry, on
       <span className="font-bold text-xs">{id}</span>
 
       {/* Tooltip */}
-      <div className="absolute z-10 bottom-full mb-2 left-1/2 -translate-x-1/2 w-max max-w-[200px] bg-slate-900 text-slate-100 text-xs rounded-lg px-3 py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all shadow-xl flex flex-col items-center gap-1">
+      <div className="absolute z-10 bottom-full mb-2 left-1/2 -translate-x-1/2 w-max max-w-52 bg-slate-900 text-slate-100 text-xs rounded-lg px-3 py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all shadow-xl flex flex-col items-center gap-1">
         {occupant ? (
           <>
             <span className="font-bold">{occupant}</span>
-            {shift && <span className={`text-[10px] px-1.5 py-0.5 rounded uppercase font-bold tracking-wider ${getShiftClass(shift)}`}>{shift}</span>}
+            {shift && <span className={`text-xs px-1.5 py-0.5 rounded uppercase font-bold tracking-wider ${getShiftClass(shift)}`}>{shift}</span>}
             {expiry && (
-              <span className={`text-[10px] mt-1 ${status === 'expiring' ? 'text-error font-bold' : 'text-slate-400'}`}>
+              <span className={`text-xs mt-1 ${status === 'expiring' ? 'text-error font-bold' : 'text-slate-400'}`}>
                 Expires: {expiry}
               </span>
             )}

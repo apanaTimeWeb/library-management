@@ -138,7 +138,7 @@ export default function WhatsappLogsPage() {
                     </Badge>
                   </td>
                   <td className="py-4 px-4">
-                    <span className="text-danger font-medium text-xs max-w-[160px] truncate block" title={l.error}>{l.error || '—'}</span>
+                    <span className="text-danger font-medium text-xs max-w-40 truncate block" title={l.error}>{l.error || '—'}</span>
                   </td>
                   <td className="py-4 px-4">
                     <div className="flex items-center justify-center">

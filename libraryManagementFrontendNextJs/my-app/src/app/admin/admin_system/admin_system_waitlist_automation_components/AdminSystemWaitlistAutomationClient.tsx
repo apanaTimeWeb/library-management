@@ -8,7 +8,7 @@ import { Textarea } from '@/app/admin/admin_system/admin_system_components/Admin
 import { Badge } from '@/app/admin/admin_system/admin_system_components/AdminSystemBadge/AdminSystemBadge';
 import { ListOrdered, ChevronRight } from 'lucide-react';
 import { ADMIN_SYSTEM_WAITLIST_QUEUE } from '@/app/admin/admin_system/admin_system_data/AdminSystemMockData2';
-import { useAdminSystemWaitlistAutomation } from '../admin_system_waitlist_automation_hooks/useAdminSystemWaitlistAutomation';
+import { useAdminSystemWaitlistAutomation } from '@/app/admin/admin_system/admin_system_waitlist_automation_hooks/useAdminSystemWaitlistAutomation';
 
 export function AdminSystemWaitlistAutomationClient() {
   const {

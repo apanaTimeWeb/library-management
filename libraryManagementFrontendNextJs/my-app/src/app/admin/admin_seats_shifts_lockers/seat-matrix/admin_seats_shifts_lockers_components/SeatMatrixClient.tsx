@@ -204,11 +204,11 @@ export function SeatMatrixClient() {
                 <div className="p-6 flex flex-col gap-6">
                   <div className="grid grid-cols-2 gap-4">
                     <div className="bg-muted/30 p-3 rounded-md border border-border flex flex-col gap-1">
-                      <span className="text-[10px] font-bold text-muted-foreground uppercase tracking-wider">Shift</span>
+                      <span className="text-xs font-bold text-muted-foreground uppercase tracking-wider">Shift</span>
                       <span className="text-sm font-bold text-primary">{selectedSeat.shift || '—'}</span>
                     </div>
                     <div className={`p-3 rounded-md border flex flex-col gap-1 ${selectedSeat.status === 'expiring' ? 'bg-warning/10 border-warning/30' : 'bg-muted/30 border-border'}`}>
-                      <span className="text-[10px] font-bold text-muted-foreground uppercase tracking-wider">Expires</span>
+                      <span className="text-xs font-bold text-muted-foreground uppercase tracking-wider">Expires</span>
                       <span className={`text-sm font-bold ${selectedSeat.status === 'expiring' ? 'text-warning' : 'text-primary'}`}>
                         {selectedSeat.expiry || '—'}
                       </span>

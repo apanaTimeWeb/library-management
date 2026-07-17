@@ -6,7 +6,7 @@ import type {
   StudentDetailItem, 
   CreateStudentDto, 
   UpdateStudentDto 
-} from '../admin_students_types/admin_students_types';
+} from '@/app/admin/admin_students/admin_students_types/admin_students_types';
 
 const route = ADMIN_API_ROUTES.STUDENTS;
 

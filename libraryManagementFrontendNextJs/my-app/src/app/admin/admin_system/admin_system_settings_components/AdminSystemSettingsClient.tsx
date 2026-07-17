@@ -9,7 +9,7 @@ import {
   Upload, Eye, EyeOff, Save, ChevronRight
 } from 'lucide-react';
 import { ADMIN_SYSTEM_SETTINGS_CATEGORIES } from '@/app/admin/admin_system/admin_system_data/AdminSystemMockData2';
-import { useAdminSystemSettings } from '../admin_system_settings_hooks/useAdminSystemSettings';
+import { useAdminSystemSettings } from '@/app/admin/admin_system/admin_system_settings_hooks/useAdminSystemSettings';
 
 const ICON_MAP: Record<string, any> = {
   'Palette': Palette,
@@ -176,7 +176,7 @@ export function AdminSystemSettingsClient() {
                 <div className="space-y-2">
                   <Label htmlFor="days-before-suspend">Days Before Suspend</Label>
                   <div className="flex items-center gap-2">
-                    <Input id="days-before-suspend" type="number" value={form.daysBefore} onChange={e => setForm(f => ({ ...f, daysBefore: +e.target.value }))} className="max-w-[120px]" />
+                    <Input id="days-before-suspend" type="number" value={form.daysBefore} onChange={e => setForm(f => ({ ...f, daysBefore: +e.target.value }))} className="max-w-32" />
                     <span className="text-sm text-on-surface-variant">days after due date</span>
                   </div>
                 </div>

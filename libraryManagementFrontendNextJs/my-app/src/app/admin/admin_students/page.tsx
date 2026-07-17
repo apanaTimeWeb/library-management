@@ -1,8 +1,8 @@
 import { cookies } from 'next/headers';
-import { AdminStudentsClient } from './admin_students_components/AdminStudentsClient';
+import { AdminStudentsClient } from '@/app/admin/admin_students/admin_students_components/AdminStudentsClient';
 import { fetchAdminStudents } from '@/app/admin/admin_students/admin_students_api/admin_students_api';
 import { ADMIN_STUDENTS_MOCK_DATA } from '@/app/admin/admin_students/admin_students_constants/AdminStudentsConstants';
-import { type AdminStudentData } from './admin_students_hooks/useAdminStudents';
+import { type AdminStudentData } from '@/app/admin/admin_students/admin_students_hooks/useAdminStudents';
 
 async function getStudentsData(): Promise<AdminStudentData[]> {
   const cookieStore = await cookies();

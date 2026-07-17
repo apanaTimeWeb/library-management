@@ -4,7 +4,7 @@ import { Button } from '@/app/admin/admin_system/admin_system_components/AdminSy
 import { Badge } from '@/app/admin/admin_system/admin_system_components/AdminSystemBadge/AdminSystemBadge';
 import { Download, FileSpreadsheet, ChevronRight, CheckCircle, Loader2 } from 'lucide-react';
 import { ADMIN_SYSTEM_QUICK_EXPORTS } from '@/app/admin/admin_system/admin_system_data/AdminSystemMockData2';
-import { useAdminSystemDataExport } from '../admin_system_data_export_hooks/useAdminSystemDataExport';
+import { useAdminSystemDataExport } from '@/app/admin/admin_system/admin_system_data_export_hooks/useAdminSystemDataExport';
 
 export function AdminSystemDataExportClient() {
   const {

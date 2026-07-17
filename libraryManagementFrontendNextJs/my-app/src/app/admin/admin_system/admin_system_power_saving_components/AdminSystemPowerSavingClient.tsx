@@ -7,7 +7,7 @@ import { Switch } from '@/app/admin/admin_system/admin_system_components/AdminSy
 import { Badge } from '@/app/admin/admin_system/admin_system_components/AdminSystemBadge/AdminSystemBadge';
 import { Progress } from '@/app/admin/admin_system/admin_system_components/AdminSystemProgress/AdminSystemProgress';
 import { Zap, ChevronRight } from 'lucide-react';
-import { useAdminSystemPowerSaving } from '../admin_system_power_saving_hooks/useAdminSystemPowerSaving';
+import { useAdminSystemPowerSaving } from '@/app/admin/admin_system/admin_system_power_saving_hooks/useAdminSystemPowerSaving';
 
 export function AdminSystemPowerSavingClient() {
   const { threshold, setThreshold, alertsEnabled, setAlertsEnabled, getZoneStatus, zones, alerts } = useAdminSystemPowerSaving();

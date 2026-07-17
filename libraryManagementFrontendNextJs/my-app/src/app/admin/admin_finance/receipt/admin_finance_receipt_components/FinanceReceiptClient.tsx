@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { Search, Receipt, Eye, Printer, Send } from 'lucide-react';
 import { formatCurrency, formatDate } from '@/app/admin/admin_finance/admin_finance_utils/format';
-import { useFinanceReceipt, type FilterMode } from './admin_finance_receipt_hooks/useFinanceReceipt';
+import { useFinanceReceipt, type FilterMode } from '@/app/admin/admin_finance/receipt/admin_finance_receipt_components/admin_finance_receipt_hooks/useFinanceReceipt';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -81,7 +81,7 @@ export function FinanceReceiptClient() {
           />
         </div>
         <select 
-          className="flex h-10 w-full max-w-[200px] items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
+          className="flex h-10 w-full max-w-52 items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
           value={modeFilter} 
           onChange={e => setModeFilter(e.target.value as FilterMode)}
         >
@@ -139,7 +139,7 @@ export function FinanceReceiptClient() {
                       <span className="font-bold text-[13px] text-primary">{formatCurrency(r.amount)}</span>
                     </td>
                     <td className="px-5 py-4">
-                      <Badge variant="secondary" className={`${getModeBadge(r.paymentMode)} border-none uppercase tracking-wider font-bold text-[10px]`}>
+                      <Badge variant="secondary" className={`${getModeBadge(r.paymentMode)} border-none uppercase tracking-wider font-bold text-xs`}>
                         {r.paymentMode}
                       </Badge>
                     </td>

@@ -2,7 +2,7 @@
 
 import { RefreshCw, Eye } from 'lucide-react';
 import { formatCurrency } from '@/app/admin/admin_finance/admin_finance_utils/format';
-import { useFinanceSubscriptions } from './admin_finance_subscriptions_hooks/useFinanceSubscriptions';
+import { useFinanceSubscriptions } from '@/app/admin/admin_finance/subscriptions/admin_finance_subscriptions_components/admin_finance_subscriptions_hooks/useFinanceSubscriptions';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -145,7 +145,7 @@ export function FinanceSubscriptionsClient() {
                       {formatCurrency(s.due)}
                     </td>
                     <td className="px-5 py-3">
-                      <Badge variant="secondary" className={`${getStatusBadge(s.status)} uppercase tracking-wider font-bold text-[10px]`}>
+                      <Badge variant="secondary" className={`${getStatusBadge(s.status)} uppercase tracking-wider font-bold text-xs`}>
                         {s.status}
                       </Badge>
                     </td>

@@ -197,7 +197,7 @@ export default function HolidayCalendarPage() {
                         <div className="font-bold text-foreground text-sm">{h.name}</div>
                         <div className="flex items-center gap-2 mt-1">
                           <span className="text-xs font-mono text-muted-foreground">{h.date}</span>
-                          <Badge variant="secondary" className={`${TYPE_BADGE[h.type]||'bg-muted/50'} border-none text-[10px] uppercase tracking-wide px-1.5 py-0`}>
+                          <Badge variant="secondary" className={`${TYPE_BADGE[h.type]||'bg-muted/50'} border-none text-xs uppercase tracking-wide px-1.5 py-0`}>
                             {h.type}
                           </Badge>
                         </div>
@@ -216,7 +216,7 @@ export default function HolidayCalendarPage() {
                   <div className="px-4 py-2 bg-muted/50 border-y border-border text-xs font-bold text-muted-foreground uppercase tracking-wider">
                     All Upcoming Holidays ({holidays.length})
                   </div>
-                  <div className="divide-y divide-border max-h-[300px] overflow-y-auto">
+                  <div className="divide-y divide-border max-h-72 overflow-y-auto">
                     {holidays
                       .sort((a,b)=>a.date.localeCompare(b.date))
                       .map(h => (

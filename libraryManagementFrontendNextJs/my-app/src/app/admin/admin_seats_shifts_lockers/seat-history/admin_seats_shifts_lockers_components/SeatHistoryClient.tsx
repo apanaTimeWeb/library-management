@@ -120,7 +120,7 @@ export function SeatHistoryClient() {
                     <td className="px-5 py-4 text-[13px] text-muted-foreground">{h.occupiedTill}</td>
                     <td className="px-5 py-4 text-[13px] font-medium text-primary">{h.duration}</td>
                     <td className="px-5 py-4">
-                      <Badge variant="secondary" className={`${getReasonBadge(h.reason)} uppercase tracking-wider font-bold text-[10px]`}>
+                      <Badge variant="secondary" className={`${getReasonBadge(h.reason)} uppercase tracking-wider font-bold text-xs`}>
                         {h.reason}
                       </Badge>
                     </td>

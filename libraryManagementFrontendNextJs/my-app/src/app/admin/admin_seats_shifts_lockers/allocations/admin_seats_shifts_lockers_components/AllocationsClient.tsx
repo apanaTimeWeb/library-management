@@ -141,7 +141,7 @@ export function AllocationsClient() {
                       {renderDaysLeft(a.daysLeft)}
                     </td>
                     <td className="px-5 py-3">
-                      <Badge variant="secondary" className={`${getStatusBadge(a.status)} uppercase tracking-wider font-bold text-[10px]`}>
+                      <Badge variant="secondary" className={`${getStatusBadge(a.status)} uppercase tracking-wider font-bold text-xs`}>
                         <span className="w-1.5 h-1.5 rounded-full bg-current mr-1.5 opacity-70" />
                         {a.status}
                       </Badge>

@@ -4,7 +4,7 @@ import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/app
 import { Badge } from '@/app/admin/admin_system/admin_system_components/AdminSystemBadge/AdminSystemBadge';
 import { Button } from '@/app/admin/admin_system/admin_system_components/AdminSystemButton/AdminSystemButton';
 import { Wrench, Package, Lock, ChevronRight } from 'lucide-react';
-import { useAdminSystemMaintenance } from '../admin_system_maintenance_hooks/useAdminSystemMaintenance';
+import { useAdminSystemMaintenance } from '@/app/admin/admin_system/admin_system_maintenance_hooks/useAdminSystemMaintenance';
 
 export function AdminSystemMaintenanceClient() {
   const { seatsNeedingAttention, assetsOverdue, lockerIssues, seats, assets, lockers } = useAdminSystemMaintenance();

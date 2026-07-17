@@ -4,7 +4,7 @@ import { Button } from '@/app/admin/admin_system/admin_system_components/AdminSy
 import { Input } from '@/app/admin/admin_system/admin_system_components/AdminSystemInput/AdminSystemInput';
 import { Label } from '@/app/admin/admin_system/admin_system_components/AdminSystemLabel/AdminSystemLabel';
 import { Palette, ChevronRight, Upload, RotateCcw, Save } from 'lucide-react';
-import { useAdminSystemBranding } from '../admin_system_branding_hooks/useAdminSystemBranding';
+import { useAdminSystemBranding } from '@/app/admin/admin_system/admin_system_branding_hooks/useAdminSystemBranding';
 
 export function AdminSystemBrandingClient() {
   const { form, setForm, containerRef, handleReset } = useAdminSystemBranding();
@@ -116,7 +116,7 @@ export function AdminSystemBrandingClient() {
                     </div>
                     <div>
                       <p className="text-xs font-bold text-on-surface leading-tight">{form.libraryName || 'Library'}</p>
-                      {form.tagline && <p className="text-[10px] text-on-surface-variant leading-tight truncate w-28">{form.tagline}</p>}
+                      {form.tagline && <p className="text-xs text-on-surface-variant leading-tight truncate w-28">{form.tagline}</p>}
                     </div>
                   </div>
                   {['Dashboard', 'Students', 'Finance', 'Reports'].map((item, i) => (
@@ -137,12 +137,12 @@ export function AdminSystemBrandingClient() {
                       📚
                     </div>
                     <p className="text-sm font-bold text-on-surface">{form.libraryName || 'Library'}</p>
-                    {form.tagline && <p className="text-[10px] text-on-surface-variant">{form.tagline}</p>}
+                    {form.tagline && <p className="text-xs text-on-surface-variant">{form.tagline}</p>}
                   </div>
                   <div className="space-y-2">
                     <div className="h-7 rounded-lg bg-surface-container-highest" />
                     <div className="h-7 rounded-lg bg-surface-container-highest" />
-                    <div className="h-8 rounded-lg flex items-center justify-center text-xs font-bold shadow-sm transition-all hover:-translate-y-[1px]" style={{ backgroundColor: 'var(--preview-primary, #6366f1)', color: '#ffffff' }}>Login</div>
+                    <div className="h-8 rounded-lg flex items-center justify-center text-xs font-bold shadow-sm transition-all hover:-translate-y-0.5" style={{ backgroundColor: 'var(--preview-primary, #6366f1)', color: '#ffffff' }}>Login</div>
                   </div>
                 </div>
               </div>
@@ -155,15 +155,15 @@ export function AdminSystemBrandingClient() {
                     <div className="h-8 w-8 rounded-lg bg-white/20 flex items-center justify-center text-lg">📚</div>
                     <div>
                       <p className="font-bold text-sm tracking-tight text-white">{form.libraryName || 'Library'}</p>
-                      <p className="text-[10px] text-white/80 font-medium tracking-wide">Student Identity Card</p>
+                      <p className="text-xs text-white/80 font-medium tracking-wide">Student Identity Card</p>
                     </div>
                   </div>
                   <div className="p-3 flex items-center gap-3 bg-surface">
                     <div className="h-12 w-12 rounded-lg bg-surface-container-highest flex items-center justify-center text-xl">👤</div>
                     <div>
                       <p className="text-xs font-bold text-on-surface">Rahul Sharma</p>
-                      <p className="text-[10px] text-on-surface-variant">ID: #0042 | Morning Shift</p>
-                      <p className="text-[10px] text-on-surface-variant">Valid till: June 2026</p>
+                      <p className="text-xs text-on-surface-variant">ID: #0042 | Morning Shift</p>
+                      <p className="text-xs text-on-surface-variant">Valid till: June 2026</p>
                     </div>
                   </div>
                 </div>

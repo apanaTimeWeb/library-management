@@ -5,7 +5,7 @@ import type {
   IUser, 
   CreateUserDto, 
   UpdateUserDto 
-} from '../admin_staff-users_types/admin_staff-users_types';
+} from '@/app/admin/admin_staff-users/admin_staff-users_types/admin_staff-users_types';
 
 const route = ADMIN_API_ROUTES.STAFF_USERS;
 

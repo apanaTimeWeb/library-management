@@ -1,5 +1,5 @@
 import { cookies } from 'next/headers';
-import { AdminStaffUsersClient } from './admin_staff-users_components/AdminStaffUsersClient';
+import { AdminStaffUsersClient } from '@/app/admin/admin_staff-users/admin_staff-users_components/AdminStaffUsersClient';
 import { fetchAdminStaffUsers } from '@/app/admin/admin_staff-users/admin_staff-users_api/admin_staff-users_api';
 import { type StaffMember } from '@/app/admin/admin_staff-users/admin_staff-users_hooks/useAdminStaff';
 
