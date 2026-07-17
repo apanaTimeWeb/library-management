@@ -9,6 +9,10 @@ import { useAdminExpenseCategories } from '@/app/admin/admin_expense-categories/
 import { AdminExpenseCategoriesSkeleton } from '@/app/admin/admin_expense-categories/admin_expense-categories_components/AdminExpenseCategoriesSkeleton';
 import { AdminExpenseCategoriesEmptyState } from '@/app/admin/admin_expense-categories/admin_expense-categories_components/AdminExpenseCategoriesEmptyState';
 import { AdminExpenseCategoriesAddDialog } from '@/app/admin/admin_expense-categories/admin_expense-categories_components/AdminExpenseCategoriesAddDialog';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Badge } from '@/components/ui/badge';
+import { Card } from '@/components/ui/card';
 
 export function AdminExpenseCategoriesClient() {
   const {
@@ -32,27 +36,25 @@ export function AdminExpenseCategoriesClient() {
   return (
     <div className="h-full flex flex-col pb-10 space-y-6">
       {/* Page Header */}
-      <div className="admin-page-header border-b border-border pb-4 flex flex-wrap items-center justify-between gap-4">
+      <div className="border-b border-border pb-4 flex flex-wrap items-end justify-between gap-4">
         <div>
-          <p className="admin-breadcrumb">Smart Library 360 › Admin › Expense Categories</p>
-          <h1 className="admin-page-title">Expense Categories</h1>
-          <p className="admin-page-subtitle">Define the types of expenses managers can record in Daily Settlements.</p>
+          <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-1">
+            Smart Library 360 <span className="opacity-50">›</span> Admin <span className="opacity-50">›</span> Expense Categories
+          </p>
+          <h1 className="text-2xl font-bold tracking-tight text-foreground">Expense Categories</h1>
+          <p className="text-sm text-muted-foreground mt-1">Define the types of expenses managers can record in Daily Settlements.</p>
         </div>
-        <button
-          type="button"
-          onClick={() => setIsAddOpen(true)}
-          className="admin-btn-primary flex items-center gap-2"
-        >
+        <Button onClick={() => setIsAddOpen(true)} className="gap-2">
           <Plus size={16} /> Add Category
-        </button>
+        </Button>
       </div>
 
       {/* Search Bar (`Rule 15: Debounced search`) */}
       <div className="flex flex-wrap items-center justify-between gap-4">
         <div className="relative max-w-xs w-full">
           <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
-          <input
-            className="admin-input pl-9"
+          <Input
+            className="pl-9"
             placeholder="Search category name or description…"
             value={searchInput}
             onChange={(e) => setSearchInput(e.target.value)}
@@ -69,10 +71,9 @@ export function AdminExpenseCategoriesClient() {
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
           {categories.map((cat) => (
-            <div
+            <Card
               key={cat.id}
-              className="p-5 rounded-xl border border-border bg-card flex flex-col h-full hover:shadow-md transition-shadow group"
-              style={{ opacity: cat.status === 'Inactive' ? 0.72 : 1 }}
+              className={`p-5 flex flex-col h-full hover:shadow-md transition-all group ${cat.status === 'Inactive' ? 'opacity-70' : 'opacity-100'}`}
             >
               {/* Card Header */}
               <div className="flex justify-between items-start gap-2 mb-3">
@@ -83,12 +84,12 @@ export function AdminExpenseCategoriesClient() {
                 <button
                   type="button"
                   onClick={() => handleToggleStatus(cat.id)}
-                  className={`admin-badge transition-colors shrink-0 ${
-                    cat.status === 'Active' ? 'admin-badge-success hover:bg-success/20' : 'admin-badge-danger hover:bg-danger/20'
-                  }`}
+                  className="shrink-0 transition-transform hover:scale-105 active:scale-95"
                   title="Click to toggle active status"
                 >
-                  {cat.status}
+                  <Badge variant="secondary" className={`${cat.status === 'Active' ? 'bg-success/10 text-success hover:bg-success/20' : 'bg-danger/10 text-danger hover:bg-danger/20'} border-none`}>
+                    {cat.status}
+                  </Badge>
                 </button>
               </div>
 
@@ -101,20 +102,21 @@ export function AdminExpenseCategoriesClient() {
 
               {/* Actions */}
               <div className="flex items-center justify-end pt-4 mt-4 border-t border-border">
-                <button
-                  type="button"
+                <Button
+                  variant="ghost"
+                  size="icon"
                   onClick={() => {
                     if (window.confirm(`Are you sure you want to delete the expense category "${cat.name}"?`)) {
                       handleDeleteCategory(cat.id);
                     }
                   }}
-                  className="p-1.5 rounded-md text-danger hover:bg-danger/10 transition-colors opacity-0 group-hover:opacity-100 focus:opacity-100"
+                  className="h-8 w-8 text-danger hover:bg-danger/10 hover:text-danger opacity-0 group-hover:opacity-100 focus-visible:opacity-100 transition-opacity"
                   title="Delete Category"
                 >
                   <Trash2 size={15} />
-                </button>
+                </Button>
               </div>
-            </div>
+            </Card>
           ))}
         </div>
       )}
