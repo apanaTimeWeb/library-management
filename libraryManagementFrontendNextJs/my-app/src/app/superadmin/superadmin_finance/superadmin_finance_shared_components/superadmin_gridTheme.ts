@@ -9,15 +9,15 @@ const v = (name: string): string =>
     : '';
 
 export const superadmin_gridTheme = themeQuartz.withParams({
-  backgroundColor:       v('--ag-bg'),
-  foregroundColor:       v('--ag-fg'),
-  headerBackgroundColor: v('--ag-header-bg'),
-  headerTextColor:       v('--ag-header-text'),
-  borderColor:           v('--ag-border'),
+  backgroundColor:       '#16161e',
+  foregroundColor:       '#c0caf5',
+  headerBackgroundColor: '#1a1b26',
+  headerTextColor:       '#a9b1d6',
+  borderColor:           '#292e42',
   rowBorder:             true,
-  oddRowBackgroundColor: v('--ag-odd-row-bg'),
-  rowHoverColor:         v('--ag-row-hover'),
-  fontFamily:            v('--ag-font'),
+  oddRowBackgroundColor: '#1a1b26',
+  rowHoverColor:         '#292e42',
+  fontFamily:            'Inter, sans-serif',
   fontSize:              13,
   wrapperBorder:         false,
   wrapperBorderRadius:   0,
