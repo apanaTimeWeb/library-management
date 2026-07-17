@@ -11,7 +11,7 @@ import {
   DialogTitle, DialogDescription, DialogClose
 } from '@/app/admin/admin_system/admin_system_components/AdminSystemDialog/AdminSystemDialog';
 import { Hash, ChevronRight, ArrowRight, AlertTriangle } from 'lucide-react';
-import { ADMIN_SYSTEM_SMART_ID_ACTIVE_IDS, ADMIN_SYSTEM_SMART_ID_FLOW_STEPS } from '@/app/admin/admin_system/admin_system_constants/AdminSystemConstants';
+import { ADMIN_SYSTEM_SMART_ID_ACTIVE_IDS, ADMIN_SYSTEM_SMART_ID_FLOW_STEPS } from '@/app/admin/admin_system/admin_system_constants/AdminSystemConstantsX';
 
 const ALL_IDS = Array.from({ length: 20 }, (_, i) => i + 1);
 const GAP_IDS = ALL_IDS.filter(id => !ADMIN_SYSTEM_SMART_ID_ACTIVE_IDS.includes(id));

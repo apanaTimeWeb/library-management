@@ -4,7 +4,7 @@
 
 import { useEffect, useState } from 'react';
 import { WifiOff, RefreshCw, CheckCircle, XCircle } from 'lucide-react';
-import { ADMIN_SYSTEM_OFFLINE_FEATURES } from '@/app/admin/admin_system/admin_system_constants/AdminSystemConstants';
+import { ADMIN_SYSTEM_OFFLINE_FEATURES } from '@/app/admin/admin_system/admin_system_constants/AdminSystemConstantsX';
 
 
 

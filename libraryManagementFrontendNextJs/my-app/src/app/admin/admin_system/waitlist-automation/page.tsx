@@ -11,7 +11,7 @@ import { Switch } from '@/app/admin/admin_system/admin_system_components/AdminSy
 import { Textarea } from '@/app/admin/admin_system/admin_system_components/AdminSystemTextarea/AdminSystemTextarea';
 import { Badge } from '@/app/admin/admin_system/admin_system_components/AdminSystemBadge/AdminSystemBadge';
 import { ListOrdered, ChevronRight } from 'lucide-react';
-import { ADMIN_SYSTEM_WAITLIST_QUEUE } from '@/app/admin/admin_system/admin_system_constants/AdminSystemConstants';
+import { ADMIN_SYSTEM_WAITLIST_QUEUE } from '@/app/admin/admin_system/admin_system_constants/AdminSystemConstantsX';
 
 
 
