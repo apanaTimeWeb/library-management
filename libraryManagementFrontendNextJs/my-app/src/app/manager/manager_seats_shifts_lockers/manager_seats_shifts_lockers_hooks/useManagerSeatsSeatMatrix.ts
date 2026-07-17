@@ -4,10 +4,10 @@ import type { SeatData } from '@/app/manager/manager_seats_shifts_lockers/manage
 
 /**
  * Custom hook to fetch and filter seat matrix data.
- * DATA FLOW: API → useSeatMatrix → ManagerSeatsSeatMatrixClient
+ * DATA FLOW: API → useManagerSeatsSeatMatrix → ManagerSeatsSeatMatrixClient
  */
-// DATA FLOW: API → useSeatMatrix.ts → SeatMatrixComponent
-export function useSeatMatrix() {
+// DATA FLOW: API → useManagerSeatsSeatMatrix.ts → SeatMatrixComponent
+export function useManagerSeatsSeatMatrix() {
   const { seatsData, status, error, fetchData } = useSeatsStore();
   
   const [activeTab, setActiveTab] = useState('All');
@@ -38,4 +38,5 @@ export function useSeatMatrix() {
     date, setDate
   };
 }
+
 

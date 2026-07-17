@@ -12,9 +12,10 @@ export function ManagerStudentsEmptyState() {
       </div>
       <h3 className="text-text-primary font-semibold text-lg mb-2">No students yet</h3>
       <p className="text-text-secondary text-sm mb-6">Get started by adding your first admission.</p>
-      <Link href={MANAGER_ROUTES.STUDENTS_NEW} className="mgr-btn-primary">
+      <Link href={MANAGER_ROUTES.STUDENTS_NEW} className="bg-primary text-white rounded-lg px-5 py-2.5 text-sm font-medium hover:bg-primary-hover transition-colors inline-flex items-center gap-2">
         ➕ Add Student
       </Link>
     </div>
   );
 }
+

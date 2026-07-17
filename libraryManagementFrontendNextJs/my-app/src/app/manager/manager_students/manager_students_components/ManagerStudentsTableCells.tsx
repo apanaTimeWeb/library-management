@@ -30,9 +30,9 @@ export function ShiftCell({ data }: { data: Student }) {
 }
 
 export function StatusCell({ value }: { value: string }) {
-  const cls = value === 'Active' ? 'mgr-badge mgr-badge--success'
-    : value === 'Suspended' ? 'mgr-badge mgr-badge--warning'
-    : 'mgr-badge mgr-badge--danger';
+  const cls = value === 'Active' ? 'rounded-full px-2.5 py-0.5 text-[11px] font-semibold bg-success-bg text-success'
+    : value === 'Suspended' ? 'rounded-full px-2.5 py-0.5 text-[11px] font-semibold bg-warning-bg text-warning'
+    : 'rounded-full px-2.5 py-0.5 text-[11px] font-semibold rounded-full px-2.5 py-0.5 text-[11px] font-semibold--danger';
   return <span className={cls}>{value}</span>;
 }
 
@@ -76,15 +76,15 @@ export function ActionsCell({ data }: { data: Student }) {
 
   return (
     <div style={{ display: 'flex', alignItems: 'center', gap: 6, height: '100%' }}>
-      <Link href={profileUrl} className="mgr-btn-icon" title="View Profile">
+      <Link href={profileUrl} className="w-8 h-8 rounded-lg border border-border text-text-secondary inline-flex items-center justify-center hover:bg-primary-subtle hover:text-primary transition-colors" title="View Profile">
         <Eye size={13} />
       </Link>
-      <Link href={`${profileUrl}/edit`} className="mgr-btn-icon" title="Edit">
+      <Link href={`${profileUrl}/edit`} className="w-8 h-8 rounded-lg border border-border text-text-secondary inline-flex items-center justify-center hover:bg-primary-subtle hover:text-primary transition-colors" title="Edit">
         <Pencil size={13} />
       </Link>
       {data.due > 0 && (
         <button
-          className="mgr-btn-icon mgr-btn-icon--wa"
+          className="w-8 h-8 rounded-lg border border-border text-text-secondary inline-flex items-center justify-center hover:bg-primary-subtle hover:text-primary transition-colors w-8 h-8 rounded-lg border border-border text-text-secondary inline-flex items-center justify-center hover:bg-primary-subtle hover:text-primary transition-colors--wa"
           title={`Send dues reminder — ₹${data.due}`}
           onClick={sendDuesReminder}
         >
@@ -94,3 +94,4 @@ export function ActionsCell({ data }: { data: Student }) {
     </div>
   );
 }
+

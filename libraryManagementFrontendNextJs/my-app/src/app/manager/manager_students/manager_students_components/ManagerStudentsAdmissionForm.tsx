@@ -56,22 +56,22 @@ export default function ManagerStudentsAdmissionForm() {
         }}
       />
 
-      <div className="mgr-page">
+      <div className="p-6 min-h-screen">
 
         {/* Page Header */}
-        <div className="mgr-page-header">
+        <div className="p-6 min-h-screen-header">
           <div>
             <Link href="/manager/manager_students" className="mgr-back-link">
               <ArrowLeft size={14} /> Back to Students
             </Link>
-            <h1 className="mgr-page-title">New Student Admission</h1>
-            <p className="mgr-page-subtitle">Fill all mandatory (*) fields accurately. Smart ID is auto-generated.</p>
+            <h1 className="text-[22px] font-bold text-text-primary">New Student Admission</h1>
+            <p className="p-6 min-h-screen-subtitle">Fill all mandatory (*) fields accurately. Smart ID is auto-generated.</p>
           </div>
           {/* Smart ID Badge */}
           <div className="mgr-smartid-badge">
             <span className="mgr-smartid-label">Smart ID</span>
             <span className="mgr-smartid-value">{SMART_ID}</span>
-            <span className="mgr-badge mgr-badge--info">Gap slot reused</span>
+            <span className="rounded-full px-2.5 py-0.5 text-[11px] font-semibold rounded-full px-2.5 py-0.5 text-[11px] font-semibold--info">Gap slot reused</span>
           </div>
         </div>
 
@@ -82,21 +82,21 @@ export default function ManagerStudentsAdmissionForm() {
             <div className="mgr-admission-main">
 
               {/* Section 1: Personal Info */}
-              <div className="mgr-card">
-                <div className="mgr-card-header">
+              <div className="bg-bg-card rounded-xl border border-border p-6">
+                <div className="flex items-center justify-between mb-4">
                   <div className="mgr-section-number">01</div>
-                  <h2 className="mgr-section-title">Personal Information</h2>
+                  <h2 className="text-base font-semibold text-text-primary">Personal Information</h2>
                 </div>
-                <div className="mgr-card-body">
+                <div className="">
                   <div className="mgr-form-grid">
 
                     <div className="mgr-form-field mgr-form-field-full">
-                      <label className="mgr-label mgr-label-required">Full Name</label>
-                      <div className="mgr-input-icon-wrap">
-                        <User size={14} className="mgr-input-icon" />
+                      <label className="block text-sm font-medium text-text-secondary mb-1.5 block text-sm font-medium text-text-secondary mb-1.5-required">Full Name</label>
+                      <div className="w-full bg-bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent-icon-wrap">
+                        <User size={14} className="w-full bg-bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent-icon" />
                         <input
                           {...register('fullName')}
-                          className={`mgr-input mgr-input-with-icon${errors.fullName ? ' mgr-input-error' : ''}`}
+                          className={`w-full bg-bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent w-full bg-bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent-with-icon${errors.fullName ? ' w-full bg-bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent-error' : ''}`}
                           placeholder="Enter student full name"
                         />
                       </div>
@@ -104,13 +104,13 @@ export default function ManagerStudentsAdmissionForm() {
                     </div>
 
                     <div className="mgr-form-field">
-                      <label className="mgr-label mgr-label-required">Phone Number</label>
-                      <div className="mgr-input-icon-wrap">
-                        <Phone size={14} className="mgr-input-icon" />
+                      <label className="block text-sm font-medium text-text-secondary mb-1.5 block text-sm font-medium text-text-secondary mb-1.5-required">Phone Number</label>
+                      <div className="w-full bg-bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent-icon-wrap">
+                        <Phone size={14} className="w-full bg-bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent-icon" />
                         <input
                           {...register('phone')}
                           type="tel"
-                          className={`mgr-input mgr-input-with-icon${errors.phone ? ' mgr-input-error' : ''}`}
+                          className={`w-full bg-bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent w-full bg-bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent-with-icon${errors.phone ? ' w-full bg-bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent-error' : ''}`}
                           placeholder="9876543210"
                         />
                       </div>
@@ -118,26 +118,26 @@ export default function ManagerStudentsAdmissionForm() {
                     </div>
 
                     <div className="mgr-form-field">
-                      <label className="mgr-label">Parent / Guardian Phone</label>
-                      <div className="mgr-input-icon-wrap">
-                        <Phone size={14} className="mgr-input-icon" />
+                      <label className="block text-sm font-medium text-text-secondary mb-1.5">Parent / Guardian Phone</label>
+                      <div className="w-full bg-bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent-icon-wrap">
+                        <Phone size={14} className="w-full bg-bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent-icon" />
                         <input
                           {...register('parentPhone')}
                           type="tel"
-                          className="mgr-input mgr-input-with-icon"
+                          className="w-full bg-bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent w-full bg-bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent-with-icon"
                           placeholder="Optional"
                         />
                       </div>
                     </div>
 
                     <div className="mgr-form-field">
-                      <label className="mgr-label">Email Address</label>
-                      <div className="mgr-input-icon-wrap">
-                        <Mail size={14} className="mgr-input-icon" />
+                      <label className="block text-sm font-medium text-text-secondary mb-1.5">Email Address</label>
+                      <div className="w-full bg-bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent-icon-wrap">
+                        <Mail size={14} className="w-full bg-bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent-icon" />
                         <input
                           {...register('email')}
                           type="email"
-                          className={`mgr-input mgr-input-with-icon${errors.email ? ' mgr-input-error' : ''}`}
+                          className={`w-full bg-bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent w-full bg-bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent-with-icon${errors.email ? ' w-full bg-bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent-error' : ''}`}
                           placeholder="student@email.com"
                         />
                       </div>
@@ -145,12 +145,12 @@ export default function ManagerStudentsAdmissionForm() {
                     </div>
 
                     <div className="mgr-form-field">
-                      <label className="mgr-label">College / Preparing For</label>
-                      <div className="mgr-input-icon-wrap">
-                        <GraduationCap size={14} className="mgr-input-icon" />
+                      <label className="block text-sm font-medium text-text-secondary mb-1.5">College / Preparing For</label>
+                      <div className="w-full bg-bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent-icon-wrap">
+                        <GraduationCap size={14} className="w-full bg-bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent-icon" />
                         <input
                           {...register('college')}
-                          className="mgr-input mgr-input-with-icon"
+                          className="w-full bg-bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent w-full bg-bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent-with-icon"
                           placeholder="e.g. UPSC / IIT / Delhi University"
                         />
                       </div>
@@ -161,21 +161,21 @@ export default function ManagerStudentsAdmissionForm() {
               </div>
 
               {/* Section 2: Seat & Shift */}
-              <div className="mgr-card">
-                <div className="mgr-card-header">
+              <div className="bg-bg-card rounded-xl border border-border p-6">
+                <div className="flex items-center justify-between mb-4">
                   <div className="mgr-section-number">02</div>
-                  <h2 className="mgr-section-title">Seat & Shift Allocation</h2>
+                  <h2 className="text-base font-semibold text-text-primary">Seat & Shift Allocation</h2>
                 </div>
-                <div className="mgr-card-body">
+                <div className="">
                   <div className="mgr-form-grid">
 
                     <div className="mgr-form-field">
-                      <label className="mgr-label mgr-label-required">Select Shift</label>
-                      <div className="mgr-input-icon-wrap">
-                        <Armchair size={14} className="mgr-input-icon" />
+                      <label className="block text-sm font-medium text-text-secondary mb-1.5 block text-sm font-medium text-text-secondary mb-1.5-required">Select Shift</label>
+                      <div className="w-full bg-bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent-icon-wrap">
+                        <Armchair size={14} className="w-full bg-bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent-icon" />
                         <select
                           {...register('shift')}
-                          className={`mgr-select mgr-input-with-icon${errors.shift ? ' mgr-input-error' : ''}`}
+                          className={`mgr-select w-full bg-bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent-with-icon${errors.shift ? ' w-full bg-bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent-error' : ''}`}
                         >
                           {SHIFTS.map(s => <option key={s} value={s}>{s}</option>)}
                         </select>
@@ -184,10 +184,10 @@ export default function ManagerStudentsAdmissionForm() {
                     </div>
 
                     <div className="mgr-form-field">
-                      <label className="mgr-label mgr-label-required">Seat Number</label>
+                      <label className="block text-sm font-medium text-text-secondary mb-1.5 block text-sm font-medium text-text-secondary mb-1.5-required">Seat Number</label>
                       <select
                         {...register('seat')}
-                        className={`mgr-select${errors.seat ? ' mgr-input-error' : ''}`}
+                        className={`mgr-select${errors.seat ? ' w-full bg-bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent-error' : ''}`}
                       >
                         {SEATS.map(s => <option key={s} value={s}>{s}</option>)}
                       </select>
@@ -201,21 +201,21 @@ export default function ManagerStudentsAdmissionForm() {
               </div>
 
               {/* Section 3: Fee & Payment */}
-              <div className="mgr-card">
-                <div className="mgr-card-header">
+              <div className="bg-bg-card rounded-xl border border-border p-6">
+                <div className="flex items-center justify-between mb-4">
                   <div className="mgr-section-number">03</div>
-                  <h2 className="mgr-section-title">Fee & Payment</h2>
+                  <h2 className="text-base font-semibold text-text-primary">Fee & Payment</h2>
                 </div>
-                <div className="mgr-card-body">
+                <div className="">
                   <div className="mgr-form-grid">
 
                     <div className="mgr-form-field">
-                      <label className="mgr-label mgr-label-required">Subscription Plan</label>
-                      <div className="mgr-input-icon-wrap">
-                        <FileText size={14} className="mgr-input-icon" />
+                      <label className="block text-sm font-medium text-text-secondary mb-1.5 block text-sm font-medium text-text-secondary mb-1.5-required">Subscription Plan</label>
+                      <div className="w-full bg-bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent-icon-wrap">
+                        <FileText size={14} className="w-full bg-bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent-icon" />
                         <select
                           {...register('plan')}
-                          className="mgr-select mgr-input-with-icon"
+                          className="mgr-select w-full bg-bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent-with-icon"
                           onChange={e => {
                             setValue('plan', e.target.value);
                             const p = PLANS.find(p => p.value === e.target.value);
@@ -228,42 +228,42 @@ export default function ManagerStudentsAdmissionForm() {
                     </div>
 
                     <div className="mgr-form-field">
-                      <label className="mgr-label">Manual Discount (₹)</label>
-                      <div className="mgr-input-icon-wrap">
-                        <IndianRupee size={14} className="mgr-input-icon" />
+                      <label className="block text-sm font-medium text-text-secondary mb-1.5">Manual Discount (₹)</label>
+                      <div className="w-full bg-bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent-icon-wrap">
+                        <IndianRupee size={14} className="w-full bg-bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent-icon" />
                         <input
                           {...register('manualDiscount')}
                           type="number"
                           min="0"
-                          className="mgr-input mgr-input-with-icon"
+                          className="w-full bg-bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent w-full bg-bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent-with-icon"
                           placeholder="0"
                         />
                       </div>
                     </div>
 
                     <div className="mgr-form-field">
-                      <label className="mgr-label">Coupon Code</label>
+                      <label className="block text-sm font-medium text-text-secondary mb-1.5">Coupon Code</label>
                       <div className="flex gap-2">
-                        <input className="mgr-input uppercase" placeholder="e.g. SUMMER50" />
-                        <button type="button" className="mgr-btn-ghost mgr-btn-sm">Apply</button>
+                        <input className="w-full bg-bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent uppercase" placeholder="e.g. SUMMER50" />
+                        <button type="button" className="bg-transparent border border-border text-text-primary rounded-lg px-5 py-2.5 text-sm font-medium hover:bg-primary-subtle hover:border-primary transition-colors inline-flex items-center gap-2 mgr-btn-sm">Apply</button>
                       </div>
                     </div>
 
                     <div className="mgr-form-field">
-                      <label className="mgr-label mgr-label-required">Amount Paid Now (₹)</label>
-                      <div className="mgr-input-icon-wrap">
-                        <IndianRupee size={14} className="mgr-input-icon" />
+                      <label className="block text-sm font-medium text-text-secondary mb-1.5 block text-sm font-medium text-text-secondary mb-1.5-required">Amount Paid Now (₹)</label>
+                      <div className="w-full bg-bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent-icon-wrap">
+                        <IndianRupee size={14} className="w-full bg-bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent-icon" />
                         <input
                           {...register('amountPaid')}
                           type="number"
-                          className={`mgr-input mgr-input-with-icon${errors.amountPaid ? ' mgr-input-error' : ''}`}
+                          className={`w-full bg-bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent w-full bg-bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent-with-icon${errors.amountPaid ? ' w-full bg-bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent-error' : ''}`}
                         />
                       </div>
                       {errors.amountPaid && <p className="mgr-error">{errors.amountPaid.message}</p>}
                     </div>
 
                     <div className="mgr-form-field mgr-form-field-full">
-                      <label className="mgr-label mgr-label-required">Payment Mode</label>
+                      <label className="block text-sm font-medium text-text-secondary mb-1.5 block text-sm font-medium text-text-secondary mb-1.5-required">Payment Mode</label>
                       <div className="mgr-payment-mode-group">
                         {(['Cash', 'UPI', 'Card', 'Bank Transfer'] as const).map(mode => (
                           <button
@@ -280,10 +280,10 @@ export default function ManagerStudentsAdmissionForm() {
                     </div>
 
                     <div className="mgr-form-field">
-                      <label className="mgr-label">Transaction ID / Reference</label>
+                      <label className="block text-sm font-medium text-text-secondary mb-1.5">Transaction ID / Reference</label>
                       <input
                         {...register('transactionId')}
-                        className="mgr-input"
+                        className="w-full bg-bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
                         placeholder="e.g. 41220912…"
                       />
                     </div>
@@ -298,11 +298,11 @@ export default function ManagerStudentsAdmissionForm() {
 
             {/* ── RIGHT: Admission Summary ── */}
             <aside className="mgr-admission-summary">
-              <div className="mgr-card sticky top-[80px]">
-                <div className="mgr-card-header">
-                  <h2 className="mgr-section-title">Admission Summary</h2>
+              <div className="bg-bg-card rounded-xl border border-border p-6 sticky top-[80px]">
+                <div className="flex items-center justify-between mb-4">
+                  <h2 className="text-base font-semibold text-text-primary">Admission Summary</h2>
                 </div>
-                <div className="mgr-card-body">
+                <div className="">
                   <div className="mgr-summary-rows">
                     <div className="mgr-summary-row">
                       <span className="mgr-summary-label">Smart ID</span>
@@ -350,12 +350,12 @@ export default function ManagerStudentsAdmissionForm() {
                     <button
                       type="submit"
                       disabled={isSubmitting}
-                      className="mgr-btn-primary mgr-btn-full"
+                      className="bg-primary text-white rounded-lg px-5 py-2.5 text-sm font-medium hover:bg-primary-hover transition-colors inline-flex items-center gap-2 mgr-btn-full"
                     >
                       <CheckCircle size={15} />
                       {isSubmitting ? 'Confirming…' : 'Confirm Admission'}
                     </button>
-                    <Link href="/manager/manager_students" className="mgr-btn-ghost mgr-btn-full">
+                    <Link href="/manager/manager_students" className="bg-transparent border border-border text-text-primary rounded-lg px-5 py-2.5 text-sm font-medium hover:bg-primary-subtle hover:border-primary transition-colors inline-flex items-center gap-2 mgr-btn-full">
                       Cancel
                     </Link>
                   </div>
@@ -369,3 +369,4 @@ export default function ManagerStudentsAdmissionForm() {
     </>
   );
 }
+

@@ -64,10 +64,10 @@ export function ManagerDocumentsClient() {
       sortable: false,
       cellRenderer: (params: any) => (
         <div className="flex gap-2 items-center h-full">
-          <button className="mgr-btn-ghost mgr-btn-sm" title="Download">
+          <button className="bg-transparent border border-border text-text-primary rounded-lg px-5 py-2.5 text-sm font-medium hover:bg-primary-subtle hover:border-primary transition-colors inline-flex items-center gap-2 mgr-btn-sm" title="Download">
             <Download size={16} />
           </button>
-          <button onClick={() => deleteDocument(params.data.id)} className="mgr-btn-ghost mgr-btn-sm text-danger" title="Delete">
+          <button onClick={() => deleteDocument(params.data.id)} className="bg-transparent border border-border text-text-primary rounded-lg px-5 py-2.5 text-sm font-medium hover:bg-primary-subtle hover:border-primary transition-colors inline-flex items-center gap-2 mgr-btn-sm text-danger" title="Delete">
             <Trash2 size={16} />
           </button>
         </div>
@@ -76,18 +76,18 @@ export function ManagerDocumentsClient() {
   ];
 
   if (status === 'loading') {
-    return <div className="mgr-page"><div className="animate-pulse space-y-4"><div className="h-8 bg-gray-300 rounded w-1/4"></div><div className="h-32 bg-gray-300 rounded w-full"></div><div className="h-64 bg-gray-300 rounded w-full"></div></div></div>;
+    return <div className="p-6 min-h-screen"><div className="animate-pulse space-y-4"><div className="h-8 bg-gray-300 rounded w-1/4"></div><div className="h-32 bg-gray-300 rounded w-full"></div><div className="h-64 bg-gray-300 rounded w-full"></div></div></div>;
   }
 
   return (
-    <div className="mgr-page">
-      <div className="mgr-page-header">
+    <div className="p-6 min-h-screen">
+      <div className="p-6 min-h-screen-header">
         <div>
           <div className="mgr-breadcrumb">Home / Documents</div>
-          <h1 className="mgr-page-title flex items-center gap-2"><FolderOpen size={24}/> Document Vault</h1>
+          <h1 className="text-[22px] font-bold text-text-primary flex items-center gap-2"><FolderOpen size={24}/> Document Vault</h1>
         </div>
-        <div className="mgr-page-actions">
-          <button className="mgr-btn-primary flex items-center gap-2">
+        <div className="p-6 min-h-screen-actions">
+          <button className="bg-primary text-white rounded-lg px-5 py-2.5 text-sm font-medium hover:bg-primary-hover transition-colors inline-flex items-center gap-2 flex items-center gap-2">
             <Upload size={16} />
             <span>Upload File</span>
           </button>
@@ -95,36 +95,36 @@ export function ManagerDocumentsClient() {
       </div>
 
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
-        <div className="mgr-card p-4 flex flex-col items-center justify-center cursor-pointer hover:border-primary transition-colors border-2 border-transparent">
+        <div className="bg-bg-card rounded-xl border border-border p-6 p-4 flex flex-col items-center justify-center cursor-pointer hover:border-primary transition-colors border-2 border-transparent">
           <FolderOpen size={32} className="text-primary mb-2" />
           <p className="font-medium text-text-primary">ID Proofs</p>
           <p className="text-xs text-text-secondary">124 Files</p>
         </div>
-        <div className="mgr-card p-4 flex flex-col items-center justify-center cursor-pointer hover:border-primary transition-colors border-2 border-transparent">
+        <div className="bg-bg-card rounded-xl border border-border p-6 p-4 flex flex-col items-center justify-center cursor-pointer hover:border-primary transition-colors border-2 border-transparent">
           <FolderOpen size={32} className="text-success mb-2" />
           <p className="font-medium text-text-primary">Finance</p>
           <p className="text-xs text-text-secondary">845 Files</p>
         </div>
-        <div className="mgr-card p-4 flex flex-col items-center justify-center cursor-pointer hover:border-primary transition-colors border-2 border-transparent">
+        <div className="bg-bg-card rounded-xl border border-border p-6 p-4 flex flex-col items-center justify-center cursor-pointer hover:border-primary transition-colors border-2 border-transparent">
           <FolderOpen size={32} className="text-warning mb-2" />
           <p className="font-medium text-text-primary">Study Material</p>
           <p className="text-xs text-text-secondary">42 Files</p>
         </div>
-        <div className="mgr-card p-4 flex flex-col items-center justify-center cursor-pointer hover:border-primary transition-colors border-2 border-transparent">
+        <div className="bg-bg-card rounded-xl border border-border p-6 p-4 flex flex-col items-center justify-center cursor-pointer hover:border-primary transition-colors border-2 border-transparent">
           <FolderOpen size={32} className="text-info mb-2" />
           <p className="font-medium text-text-primary">Other</p>
           <p className="text-xs text-text-secondary">19 Files</p>
         </div>
       </div>
 
-      <div className="mgr-card p-4">
+      <div className="bg-bg-card rounded-xl border border-border p-6 p-4">
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-4">
-          <div className="mgr-input-icon-wrap w-full max-w-sm">
-            <Search size={16} className="mgr-input-icon" />
+          <div className="w-full bg-bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent-icon-wrap w-full max-w-sm">
+            <Search size={16} className="w-full bg-bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent-icon" />
             <input 
               type="text" 
               placeholder="Search documents..." 
-              className="mgr-input mgr-input-with-icon"
+              className="w-full bg-bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent w-full bg-bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent-with-icon"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
             />
@@ -144,3 +144,4 @@ export function ManagerDocumentsClient() {
     </div>
   );
 }
+

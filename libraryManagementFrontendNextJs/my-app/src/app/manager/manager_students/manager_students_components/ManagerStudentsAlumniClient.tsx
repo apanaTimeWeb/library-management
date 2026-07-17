@@ -50,32 +50,32 @@ export function ManagerStudentsAlumniClient() {
       headerName: 'Actions', width: 100, sortable: false,
       cellRenderer: () => (
         <div className="flex gap-2 items-center h-full">
-          <button className="mgr-btn-icon" title="Send Message"><Mail size={14} /></button>
+          <button className="w-8 h-8 rounded-lg border border-border text-text-secondary inline-flex items-center justify-center hover:bg-primary-subtle hover:text-primary transition-colors" title="Send Message"><Mail size={14} /></button>
         </div>
       ),
     },
   ];
 
   return (
-    <div className="mgr-page">
-      <div className="mgr-page-header">
+    <div className="p-6 min-h-screen">
+      <div className="p-6 min-h-screen-header">
         <div>
           <div className="mgr-breadcrumb">Students › Alumni</div>
-          <h1 className="mgr-page-title">Alumni Directory</h1>
-          <p className="mgr-page-subtitle">Students who have successfully completed their journey here.</p>
+          <h1 className="text-[22px] font-bold text-text-primary">Alumni Directory</h1>
+          <p className="p-6 min-h-screen-subtitle">Students who have successfully completed their journey here.</p>
         </div>
-        <div className="mgr-page-actions">
-          <button className="mgr-btn-ghost"><Award size={16} /> Success Stories</button>
+        <div className="p-6 min-h-screen-actions">
+          <button className="bg-transparent border border-border text-text-primary rounded-lg px-5 py-2.5 text-sm font-medium hover:bg-primary-subtle hover:border-primary transition-colors inline-flex items-center gap-2"><Award size={16} /> Success Stories</button>
         </div>
       </div>
 
-      <div className="mgr-card">
-        <div className="mgr-card-header">
-          <div className="mgr-input-icon-wrap" style={{ maxWidth: 320 }}>
-            <Search size={14} className="mgr-input-icon" />
-            <input type="text" placeholder="Search alumni by name or exam…" className="mgr-input mgr-input-with-icon" />
+      <div className="bg-bg-card rounded-xl border border-border p-6">
+        <div className="flex items-center justify-between mb-4">
+          <div className="w-full bg-bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent-icon-wrap" style={{ maxWidth: 320 }}>
+            <Search size={14} className="w-full bg-bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent-icon" />
+            <input type="text" placeholder="Search alumni by name or exam…" className="w-full bg-bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent w-full bg-bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent-with-icon" />
           </div>
-          <button className="mgr-btn-ghost mgr-btn-sm"><Filter size={14} /> Filters</button>
+          <button className="bg-transparent border border-border text-text-primary rounded-lg px-5 py-2.5 text-sm font-medium hover:bg-primary-subtle hover:border-primary transition-colors inline-flex items-center gap-2 mgr-btn-sm"><Filter size={14} /> Filters</button>
         </div>
         <div className="mgr-table-wrapper" style={{ height: 500 }}>
           <AgGridReact
@@ -93,3 +93,4 @@ export function ManagerStudentsAlumniClient() {
     </div>
   );
 }
+

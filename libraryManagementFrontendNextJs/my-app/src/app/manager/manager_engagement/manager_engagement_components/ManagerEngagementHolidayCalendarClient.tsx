@@ -2,16 +2,10 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { ChevronRight, ChevronLeft, Plus, X, Trash2, CalendarDays } from 'lucide-react';
+import { Holiday } from '@/app/manager/manager_engagement/manager_engagement_types/ManagerEngagementTypes';
+import { INIT_HOLIDAYS } from '@/app/manager/manager_engagement/manager_engagement_constants/ManagerEngagementConstants';
 
-interface Holiday { id: string; date: string; name: string; type: string; }
-
-const INIT_HOLIDAYS: Holiday[] = [
-  { id:'1', date:'2026-04-14', name:'Dr. Ambedkar Jayanti',      type:'National'  },
-  { id:'2', date:'2026-04-21', name:'Ram Navami',                type:'Religious' },
-  { id:'3', date:'2026-05-01', name:'International Labour Day',  type:'National'  },
-  { id:'4', date:'2026-08-15', name:'Independence Day',          type:'National'  },
-  { id:'5', date:'2026-10-02', name:'Gandhi Jayanti',            type:'National'  },
-];
+// Types and Constants are centralized
 
 const WEEK_DAYS = ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
 
@@ -24,6 +18,7 @@ const TYPE_BADGE: Record<string, string> = {
   Library:   'eng-badge--info',
 };
 
+// RESPONSIBILITY: Renders the holiday calendar view with month navigation and holiday management.
 export function ManagerEngagementHolidayCalendarClient() {
   const now = new Date();
   const [year, setYear]         = useState(now.getFullYear());

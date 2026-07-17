@@ -2,20 +2,12 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { ChevronRight, CheckCircle, X, RefreshCw } from 'lucide-react';
+import { ScanResult, ScanState } from '@/app/manager/manager_engagement/manager_engagement_types/ManagerEngagementTypes';
+import { MOCK_STUDENT } from '@/app/manager/manager_engagement/manager_engagement_constants/ManagerEngagementConstants';
 
-interface ScanResult {
-  name: string; initials: string; smartId: string;
-  shift: string; validTill: string; plan: string;
-}
+// Types and Constants are centralized
 
-const MOCK_STUDENT: ScanResult = {
-  name: 'Rahul Sharma', initials: 'RS',
-  smartId: 'SL-001', shift: 'Morning',
-  validTill: '30 Jun 2026', plan: 'Premium – 6 Month',
-};
-
-type ScanState = 'idle' | 'scanning' | 'detected' | 'success';
-
+// RESPONSIBILITY: Provides the QR code scanning interface, displays result overlays, and manages scan history.
 export function ManagerEngagementQrScannerClient() {
   const [scanState, setScanState]   = useState<ScanState>('idle');
   const [result, setResult]         = useState<ScanResult | null>(null);

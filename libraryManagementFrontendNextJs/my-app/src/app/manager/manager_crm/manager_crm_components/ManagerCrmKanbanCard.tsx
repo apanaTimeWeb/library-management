@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders an individual CRM enquiry card within the kanban board.
 import { Phone, CalendarDays, CheckCircle, User, Clock } from 'lucide-react';
 import { maskPhone } from '@/app/manager/manager_crm/manager_crm_utils';
 import type { Enquiry } from '@/app/manager/manager_crm/manager_crm_types';
@@ -11,11 +12,7 @@ function FollowUpBadge({ isOverdue, isToday, isUpcoming }: Pick<Enquiry, 'isOver
   return null;
 }
 
-interface ManagerCrmKanbanCardProps {
-  enq: Enquiry;
-  colClass: string;
-  onClick: () => void;
-}
+// Props interface centralized.
 
 export function ManagerCrmKanbanCard({ enq, colClass, onClick }: ManagerCrmKanbanCardProps) {
   return (
@@ -41,3 +38,4 @@ export function ManagerCrmKanbanCard({ enq, colClass, onClick }: ManagerCrmKanba
     </div>
   );
 }
+

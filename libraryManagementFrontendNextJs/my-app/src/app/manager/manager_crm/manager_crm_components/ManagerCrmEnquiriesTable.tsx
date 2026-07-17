@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the list view of CRM enquiries using AgGrid.
 import { useRouter } from 'next/navigation';
 import { Eye, CheckCircle, XCircle, PhoneCall, Plus } from 'lucide-react';
 import { maskPhone } from '@/app/manager/manager_crm/manager_crm_utils';
@@ -7,10 +8,7 @@ import { MANAGER_CRM_URLS } from '@/app/manager/manager_crm/manager_crm_url_conf
 
 // RESPONSIBILITY: Renders the Table view for CRM Enquiries.
 
-interface ManagerCrmEnquiriesTableProps {
-  filtered: Enquiry[];
-  updateEnquiryStatus: (id: string, status: EnquiryStatus) => void;
-}
+// Props interface centralized.
 
 export function ManagerCrmEnquiriesTable({ filtered, updateEnquiryStatus }: ManagerCrmEnquiriesTableProps) {
   const router = useRouter();
@@ -22,7 +20,7 @@ export function ManagerCrmEnquiriesTable({ filtered, updateEnquiryStatus }: Mana
           <PhoneCall size={40} className="text-text-secondary mx-auto mb-4" />
           <p className="text-text-primary font-semibold text-lg mb-2">No enquiries found</p>
           <p className="text-text-secondary text-sm mb-6">Try a different search or status filter</p>
-          <button className="mgr-btn-primary" onClick={() => router.push(MANAGER_CRM_URLS.ADD_ENQUIRY)}>
+          <button className="bg-primary text-white rounded-lg px-5 py-2.5 text-sm font-medium hover:bg-primary-hover transition-colors inline-flex items-center gap-2" onClick={() => router.push(MANAGER_CRM_URLS.ADD_ENQUIRY)}>
             <Plus size={15} /> Add Enquiry
           </button>
         </div>
@@ -73,19 +71,19 @@ export function ManagerCrmEnquiriesTable({ filtered, updateEnquiryStatus }: Mana
                   </div>
                 </td>
                 <td className="p-3 font-mono text-sm text-text-secondary">{maskPhone(enq.phone)}</td>
-                <td className="p-3"><span className="mgr-badge mgr-badge--info">{enq.shift}</span></td>
-                <td className="p-3"><span className={`mgr-badge ${STATUS_BADGE[enq.status]}`}>{enq.status}</span></td>
+                <td className="p-3"><span className="rounded-full px-2.5 py-0.5 text-[11px] font-semibold rounded-full px-2.5 py-0.5 text-[11px] font-semibold--info">{enq.shift}</span></td>
+                <td className="p-3"><span className={`rounded-full px-2.5 py-0.5 text-[11px] font-semibold ${STATUS_BADGE[enq.status]}`}>{enq.status}</span></td>
                 <td className="p-3 text-text-secondary">{enq.handledBy}</td>
                 <td className="p-3 text-text-secondary">{enq.addedDate}</td>
                 <td className="p-3">
                   <div className="flex items-center gap-2">
-                    <button className="mgr-btn-icon" title="View details" onClick={(e) => { e.stopPropagation(); router.push(MANAGER_CRM_URLS.ENQUIRY_DETAIL(enq.id)); }}>
+                    <button className="w-8 h-8 rounded-lg border border-border text-text-secondary inline-flex items-center justify-center hover:bg-primary-subtle hover:text-primary transition-colors" title="View details" onClick={(e) => { e.stopPropagation(); router.push(MANAGER_CRM_URLS.ENQUIRY_DETAIL(enq.id)); }}>
                       <Eye size={14} />
                     </button>
-                    <button className="mgr-btn-icon text-success" title="Convert to Admission" onClick={(e) => handleQuickConvert(e, enq.id, enq.name, enq.phone)}>
+                    <button className="w-8 h-8 rounded-lg border border-border text-text-secondary inline-flex items-center justify-center hover:bg-primary-subtle hover:text-primary transition-colors text-success" title="Convert to Admission" onClick={(e) => handleQuickConvert(e, enq.id, enq.name, enq.phone)}>
                       <CheckCircle size={14} />
                     </button>
-                    <button className="mgr-btn-icon text-danger" title="Mark as Lost" onClick={(e) => handleQuickLost(e, enq.id)}>
+                    <button className="w-8 h-8 rounded-lg border border-border text-text-secondary inline-flex items-center justify-center hover:bg-primary-subtle hover:text-primary transition-colors text-danger" title="Mark as Lost" onClick={(e) => handleQuickLost(e, enq.id)}>
                       <XCircle size={14} />
                     </button>
                   </div>
@@ -98,3 +96,5 @@ export function ManagerCrmEnquiriesTable({ filtered, updateEnquiryStatus }: Mana
     </div>
   );
 }
+
+

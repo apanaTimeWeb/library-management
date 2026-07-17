@@ -1,10 +1,11 @@
+// RESPONSIBILITY: Renders WhatsApp message templates and allows editing and testing.
 'use client';
 import { useState, useRef } from 'react';
+import { Template } from '@/app/manager/manager_communication/manager_communication_types/ManagerCommunicationTypes';
+import { INIT_TEMPLATES } from '@/app/manager/manager_communication/manager_communication_constants/ManagerCommunicationConstants';
 import { ChevronRight, X, Send, Save } from 'lucide-react';
 
-interface Template { id: string; label: string; icon: string; body: string; }
-
-const VARS = ['{name}', '{amount}', '{duedate}', '{planname}', '{libraryname}', '{phone}', '{seat}'];
+// Types and constants centralized.
 
 const INIT: Template[] = [
   { id: 'welcome',      label: 'Welcome Message',      icon: '👋', body: 'Welcome to {libraryname}, {name}! Your seat {seat} is confirmed. We wish you a productive study journey. — Smart Library Team' },
@@ -19,7 +20,7 @@ const INIT: Template[] = [
 const MAX_CHARS = 1024;
 
 export function ManagerCommunicationWhatsappTemplatesClient() {
-  const [templates, setTemplates] = useState<Template[]>(INIT);
+  const [templates, setTemplates] = useState<Template[]>(INIT_TEMPLATES);
   const [activeId, setActiveId]   = useState('welcome');
   const [saved, setSaved]         = useState(false);
   const [showTest, setShowTest]   = useState(false);
@@ -165,3 +166,4 @@ export function ManagerCommunicationWhatsappTemplatesClient() {
     </div>
   );
 }
+

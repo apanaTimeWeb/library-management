@@ -1,16 +1,15 @@
+// RESPONSIBILITY: Renders the kanban board view of CRM enquiries grouped by status.
 import { useRouter } from 'next/navigation';
 import { PhoneCall, MoreHorizontal, Plus } from 'lucide-react';
 import { KANBAN_COLUMNS, DOT_CLASS } from '@/app/manager/manager_crm/manager_crm_constants';
 import type { EnquiryStatus, Enquiry } from '@/app/manager/manager_crm/manager_crm_types';
-import { ManagerCrmKanbanCard } from '@/app/manager/manager_crm/manager_crm_components/ManagerCrmKanbanCard';
+import { ManagerCrmKanbanCard }
+import { ManagerCrmEnquiriesKanbanProps } from '@/app/manager/manager_crm/manager_crm_types/ManagerCrmTypes'; from '@/app/manager/manager_crm/manager_crm_components/ManagerCrmKanbanCard';
 import { MANAGER_CRM_URLS } from '@/app/manager/manager_crm/manager_crm_url_config';
 
 // RESPONSIBILITY: Renders the entire Kanban board for CRM Enquiries.
 
-interface ManagerCrmEnquiriesKanbanProps {
-  isEmpty: boolean;
-  getCardsByStatus: (status: EnquiryStatus) => Enquiry[];
-}
+// Props interface centralized.
 
 export function ManagerCrmEnquiriesKanban({ isEmpty, getCardsByStatus }: ManagerCrmEnquiriesKanbanProps) {
   const router = useRouter();
@@ -22,7 +21,7 @@ export function ManagerCrmEnquiriesKanban({ isEmpty, getCardsByStatus }: Manager
         <p className="text-text-primary font-semibold text-lg mb-2">No enquiries yet</p>
         <p className="text-text-secondary text-sm mb-6">Add your first lead to start the pipeline</p>
         <button
-          className="mgr-btn-primary"
+          className="bg-primary text-white rounded-lg px-5 py-2.5 text-sm font-medium hover:bg-primary-hover transition-colors inline-flex items-center gap-2"
           onClick={() => router.push(MANAGER_CRM_URLS.ADD_ENQUIRY)}
         >
           <Plus size={15} /> Add Enquiry
@@ -71,3 +70,5 @@ export function ManagerCrmEnquiriesKanban({ isEmpty, getCardsByStatus }: Manager
     </div>
   );
 }
+
+

@@ -32,15 +32,15 @@ export function ManagerStudentsExitClient() {
 
   if (confirmed && student) {
     return (
-      <div className="mgr-page">
-        <div className="mgr-card" style={{ maxWidth: 480, margin: '60px auto' }}>
+      <div className="p-6 min-h-screen">
+        <div className="bg-bg-card rounded-xl border border-border p-6" style={{ maxWidth: 480, margin: '60px auto' }}>
           <div className="mgr-empty-state">
             <div className="mgr-empty-icon">✅</div>
             <p className="mgr-empty-title">Exit Processed</p>
             <p className="mgr-empty-sub">{student.name} ({student.smartId}) has been marked as exited.</p>
             <div style={{ marginTop: 20, display: 'flex', gap: 10 }}>
-              <Link href="/manager/manager_students" className="mgr-btn-primary mgr-btn-sm">Back to Students</Link>
-              <button className="mgr-btn-ghost mgr-btn-sm" onClick={() => { setConfirmed(false); setSelected(''); setReason(''); }}>
+              <Link href="/manager/manager_students" className="bg-primary text-white rounded-lg px-5 py-2.5 text-sm font-medium hover:bg-primary-hover transition-colors inline-flex items-center gap-2 mgr-btn-sm">Back to Students</Link>
+              <button className="bg-transparent border border-border text-text-primary rounded-lg px-5 py-2.5 text-sm font-medium hover:bg-primary-subtle hover:border-primary transition-colors inline-flex items-center gap-2 mgr-btn-sm" onClick={() => { setConfirmed(false); setSelected(''); setReason(''); }}>
                 Process Another
               </button>
             </div>
@@ -51,27 +51,27 @@ export function ManagerStudentsExitClient() {
   }
 
   return (
-    <div className="mgr-page">
-      <div className="mgr-page-header">
+    <div className="p-6 min-h-screen">
+      <div className="p-6 min-h-screen-header">
         <div>
           <Link href="/manager/manager_students" className="mgr-back-link">
             <ArrowLeft size={14} /> Back to Students
           </Link>
-          <h1 className="mgr-page-title">Student Exit</h1>
-          <p className="mgr-page-subtitle">Process a student exit / de-registration from the library.</p>
+          <h1 className="text-[22px] font-bold text-text-primary">Student Exit</h1>
+          <p className="p-6 min-h-screen-subtitle">Process a student exit / de-registration from the library.</p>
         </div>
       </div>
 
       <div className="mgr-dashboard-row2">
-        <div className="mgr-card">
-          <div className="mgr-card-header">
-            <h2 className="mgr-section-title">Select Student</h2>
+        <div className="bg-bg-card rounded-xl border border-border p-6">
+          <div className="flex items-center justify-between mb-4">
+            <h2 className="text-base font-semibold text-text-primary">Select Student</h2>
           </div>
-          <div className="mgr-card-body">
-            <div className="mgr-input-icon-wrap" style={{ marginBottom: 16 }}>
-              <Search size={14} className="mgr-input-icon" />
+          <div className="">
+            <div className="w-full bg-bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent-icon-wrap" style={{ marginBottom: 16 }}>
+              <Search size={14} className="w-full bg-bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent-icon" />
               <input
-                className="mgr-input mgr-input-with-icon"
+                className="w-full bg-bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent w-full bg-bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent-with-icon"
                 placeholder="Search name or Smart ID…"
                 value={search}
                 onChange={e => setSearch(e.target.value)}
@@ -89,7 +89,7 @@ export function ManagerStudentsExitClient() {
                     <p className="mgr-cell-name">{s.name}</p>
                     <p className="mgr-cell-sub">{s.smartId} · {s.shift} · {s.seat}</p>
                   </div>
-                  <span className={s.status === 'Active' ? 'mgr-badge mgr-badge--success' : 'mgr-badge mgr-badge--danger'}>
+                  <span className={s.status === 'Active' ? 'rounded-full px-2.5 py-0.5 text-[11px] font-semibold bg-success-bg text-success' : 'rounded-full px-2.5 py-0.5 text-[11px] font-semibold rounded-full px-2.5 py-0.5 text-[11px] font-semibold--danger'}>
                     {s.status}
                   </span>
                 </button>
@@ -100,11 +100,11 @@ export function ManagerStudentsExitClient() {
 
         <div className="admin-flex-col admin-gap-16">
           {student && (
-            <div className="mgr-card">
-              <div className="mgr-card-header">
-                <h2 className="mgr-section-title">Exit Details</h2>
+            <div className="bg-bg-card rounded-xl border border-border p-6">
+              <div className="flex items-center justify-between mb-4">
+                <h2 className="text-base font-semibold text-text-primary">Exit Details</h2>
               </div>
-              <div className="mgr-card-body" style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
+              <div className="" style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
                 <div className="mgr-action-item">
                   <span className="mgr-action-label">Student</span>
                   <span style={{ color: 'var(--text-primary)', fontWeight: 600 }}>{student.name}</span>
@@ -121,7 +121,7 @@ export function ManagerStudentsExitClient() {
                 </div>
 
                 <div className="mgr-form-field" style={{ marginTop: 8 }}>
-                  <label className="mgr-label mgr-label-required">Reason for Exit</label>
+                  <label className="block text-sm font-medium text-text-secondary mb-1.5 block text-sm font-medium text-text-secondary mb-1.5-required">Reason for Exit</label>
                   <select className="mgr-select" value={reason} onChange={e => setReason(e.target.value)}>
                     <option value="">Select reason…</option>
                     <option>Exam completed</option>
@@ -140,7 +140,7 @@ export function ManagerStudentsExitClient() {
                 )}
 
                 <button
-                  className="mgr-btn-danger mgr-btn-full"
+                  className="bg-danger text-white rounded-lg px-5 py-2.5 text-sm font-medium hover:opacity-90 transition-opacity inline-flex items-center gap-2 mgr-btn-full"
                   onClick={handleExit}
                   disabled={!reason}
                 >
@@ -152,7 +152,7 @@ export function ManagerStudentsExitClient() {
           )}
 
           {!student && (
-            <div className="mgr-card">
+            <div className="bg-bg-card rounded-xl border border-border p-6">
               <div className="mgr-empty-state">
                 <div className="mgr-empty-icon">👈</div>
                 <p className="mgr-empty-title">Select a student</p>
@@ -165,3 +165,4 @@ export function ManagerStudentsExitClient() {
     </div>
   );
 }
+

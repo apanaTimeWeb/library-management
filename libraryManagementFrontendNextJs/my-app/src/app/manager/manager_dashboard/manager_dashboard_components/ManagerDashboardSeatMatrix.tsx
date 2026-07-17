@@ -17,11 +17,11 @@ export function ManagerDashboardSeatMatrix({ seatData }: DashboardSeatMatrixProp
   if (!seatData || seatData.length === 0) return null;
 
   return (
-    <div className="mgr-card">
-      <div className="mgr-card-header">
-        <h2 className="mgr-section-title">Mini Seat Matrix — Today&apos;s Shifts</h2>
+    <div className="bg-bg-card rounded-xl border border-border p-6">
+      <div className="flex items-center justify-between mb-4">
+        <h2 className="text-base font-semibold text-text-primary">Mini Seat Matrix — Today&apos;s Shifts</h2>
       </div>
-      <div className="mgr-card-body">
+      <div className="">
         <div className="mgr-seat-grid">
           {seatData.map((seat) => (
             <div
@@ -51,3 +51,4 @@ export function ManagerDashboardSeatMatrix({ seatData }: DashboardSeatMatrixProp
     </div>
   );
 }
+

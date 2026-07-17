@@ -172,8 +172,8 @@ export default function ManagerSidebar({ collapsed, onToggle, mobileOpen, onMobi
             <p className="mgr-modal-title">Log out?</p>
             <p className="mgr-modal-desc">Are you sure you want to log out?</p>
             <div className="mgr-modal-footer">
-              <button className="mgr-btn-ghost mgr-btn-sm" onClick={() => setShowLogout(false)}>Cancel</button>
-              <button className="mgr-btn-danger mgr-btn-sm" onClick={() => router.push('/auth/login')}>Log out</button>
+              <button className="bg-transparent border border-border text-text-primary rounded-lg px-5 py-2.5 text-sm font-medium hover:bg-primary-subtle hover:border-primary transition-colors inline-flex items-center gap-2 mgr-btn-sm" onClick={() => setShowLogout(false)}>Cancel</button>
+              <button className="bg-danger text-white rounded-lg px-5 py-2.5 text-sm font-medium hover:opacity-90 transition-opacity inline-flex items-center gap-2 mgr-btn-sm" onClick={() => router.push('/auth/login')}>Log out</button>
             </div>
           </div>
         </div>
@@ -181,3 +181,4 @@ export default function ManagerSidebar({ collapsed, onToggle, mobileOpen, onMobi
     </>
   );
 }
+

@@ -20,11 +20,11 @@ function SmartIdCell({ value }: { value: string }) {
   return <span className="mgr-table-id">{value}</span>;
 }
 function ShiftCell({ value }: { value: string }) {
-  return <span className="mgr-badge mgr-badge--info">{value}</span>;
+  return <span className="rounded-full px-2.5 py-0.5 text-[11px] font-semibold rounded-full px-2.5 py-0.5 text-[11px] font-semibold--info">{value}</span>;
 }
 function StatusCell({ value }: { value: string }) {
-  const cls = STATUS_CLASS[value] ?? 'mgr-badge--info';
-  return <span className={`mgr-badge ${cls}`}>{value}</span>;
+  const cls = STATUS_CLASS[value] ?? 'rounded-full px-2.5 py-0.5 text-[11px] font-semibold--info';
+  return <span className={`rounded-full px-2.5 py-0.5 text-[11px] font-semibold ${cls}`}>{value}</span>;
 }
 function PhoneCell({ value }: { value: string }) {
   return <span className="mgr-text-secondary">{value}</span>;
@@ -52,14 +52,14 @@ export function ManagerDashboardClient() {
   return (
     <div>
       {/* Page Header */}
-      <div className="mgr-page-header">
+      <div className="p-6 min-h-screen-header">
         <div>
           <p className="mgr-breadcrumb">Manager › Dashboard</p>
-          <h1 className="mgr-page-title">Manager Dashboard</h1>
-          <p className="mgr-page-subtitle">Good morning, Manager — aaj ka quick overview</p>
+          <h1 className="text-[22px] font-bold text-text-primary">Manager Dashboard</h1>
+          <p className="p-6 min-h-screen-subtitle">Good morning, Manager — aaj ka quick overview</p>
         </div>
-        <div className="mgr-page-actions">
-          <Link href={MANAGER_ROUTES.STUDENT_REPORTS} className="mgr-btn-primary mgr-btn-sm">
+        <div className="p-6 min-h-screen-actions">
+          <Link href={MANAGER_ROUTES.STUDENT_REPORTS} className="bg-primary text-white rounded-lg px-5 py-2.5 text-sm font-medium hover:bg-primary-hover transition-colors inline-flex items-center gap-2 mgr-btn-sm">
             <TrendingUp size={14} /> View Reports
           </Link>
         </div>
@@ -71,18 +71,18 @@ export function ManagerDashboardClient() {
       <div className="mgr-dashboard-row2 mgr-section-gap">
         <ManagerDashboardSeatMatrix seatData={data.seatData} />
 
-        <div className="mgr-card">
-          <div className="mgr-card-header">
-            <h2 className="mgr-section-title">My Action Items</h2>
+        <div className="bg-bg-card rounded-xl border border-border p-6">
+          <div className="flex items-center justify-between mb-4">
+            <h2 className="text-base font-semibold text-text-primary">My Action Items</h2>
           </div>
-          <div className="mgr-card-body">
+          <div className="">
             {data.actionItems?.map((item) => (
               <div key={item.title} className="mgr-action-item">
                 <span className="mgr-action-label">{item.title}</span>
                 <div className="mgr-action-right">
                   <span className={item.countClass}>{item.count}</span>
                   {item.showRenew ? (
-                    <Link href={item.href} className="mgr-btn-primary mgr-btn-sm">Renew</Link>
+                    <Link href={item.href} className="bg-primary text-white rounded-lg px-5 py-2.5 text-sm font-medium hover:bg-primary-hover transition-colors inline-flex items-center gap-2 mgr-btn-sm">Renew</Link>
                   ) : (
                     <Link href={item.href} className="mgr-action-link">View</Link>
                   )}
@@ -95,9 +95,9 @@ export function ManagerDashboardClient() {
 
       {/* Row 3 — Recent Activity */}
       <div className="mgr-dashboard-row3 mgr-section-gap">
-        <div className="mgr-card">
-          <div className="mgr-card-header">
-            <h2 className="mgr-section-title">Recent New Admissions</h2>
+        <div className="bg-bg-card rounded-xl border border-border p-6">
+          <div className="flex items-center justify-between mb-4">
+            <h2 className="text-base font-semibold text-text-primary">Recent New Admissions</h2>
             <Link href={MANAGER_ROUTES.STUDENTS} className="mgr-action-link">View all</Link>
           </div>
           <div style={{ height: 280 }}>
@@ -114,9 +114,9 @@ export function ManagerDashboardClient() {
           </div>
         </div>
 
-        <div className="mgr-card">
-          <div className="mgr-card-header">
-            <h2 className="mgr-section-title">Recent Enquiries</h2>
+        <div className="bg-bg-card rounded-xl border border-border p-6">
+          <div className="flex items-center justify-between mb-4">
+            <h2 className="text-base font-semibold text-text-primary">Recent Enquiries</h2>
             <Link href={MANAGER_ROUTES.CRM_ENQUIRIES} className="mgr-action-link">View all</Link>
           </div>
           <div style={{ height: 280 }}>
@@ -135,11 +135,11 @@ export function ManagerDashboardClient() {
       </div>
 
       {/* Quick Links */}
-      <div className="mgr-card">
-        <div className="mgr-card-header">
-          <h2 className="mgr-section-title">Quick Links</h2>
+      <div className="bg-bg-card rounded-xl border border-border p-6">
+        <div className="flex items-center justify-between mb-4">
+          <h2 className="text-base font-semibold text-text-primary">Quick Links</h2>
         </div>
-        <div className="mgr-card-body">
+        <div className="">
           <div className="mgr-quick-links-grid">
             {QUICK_LINKS.map((link) => (
               <Link key={link.title} href={link.href} className="mgr-action-link">
@@ -152,3 +152,4 @@ export function ManagerDashboardClient() {
     </div>
   );
 }
+

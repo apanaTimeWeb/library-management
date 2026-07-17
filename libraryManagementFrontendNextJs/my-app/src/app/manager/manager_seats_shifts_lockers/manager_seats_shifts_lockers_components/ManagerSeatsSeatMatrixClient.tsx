@@ -1,7 +1,7 @@
 'use client';
 
 import { CalendarDays } from 'lucide-react';
-import { useSeatMatrix } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_hooks/useSeatMatrix';
+import { useManagerSeatsSeatMatrix } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_hooks/useManagerSeatsSeatMatrix';
 import { SHIFT_TABS, LEGEND_ITEMS } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_constants';
 import { ManagerSeatsSeatMatrixModal } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_components/ManagerSeatsSeatMatrixModal';
 
@@ -13,7 +13,7 @@ export function ManagerSeatsSeatMatrixClient() {
     activeTab, setActiveTab,
     selectedSeat, setSelectedSeat,
     date, setDate
-  } = useSeatMatrix();
+  } = useManagerSeatsSeatMatrix();
 
   if (status === 'error') return <div className="p-8 text-danger">Failed to load: {error}</div>;
 
@@ -91,4 +91,5 @@ export function ManagerSeatsSeatMatrixClient() {
     </div>
   );
 }
+
 

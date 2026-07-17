@@ -51,19 +51,19 @@ export function ManagerStudentsClient() {
   if (status === 'error') return <div className="p-8 text-danger">Failed to load: {error}</div>;
 
   return (
-    <div className="mgr-page">
-      <div className="mgr-page-header">
+    <div className="p-6 min-h-screen">
+      <div className="p-6 min-h-screen-header">
         <div>
           <p className="mgr-breadcrumb">Smart Library 360 › Students</p>
-          <h1 className="mgr-page-title">Student Directory</h1>
-          <p className="mgr-page-subtitle">Manage admissions, seating, and billing for all active learners.</p>
+          <h1 className="text-[22px] font-bold text-text-primary">Student Directory</h1>
+          <p className="p-6 min-h-screen-subtitle">Manage admissions, seating, and billing for all active learners.</p>
         </div>
         <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
-          <button className="mgr-btn-ghost mgr-btn-sm"><Download size={14} /> Export</button>
-          <Link href={MANAGER_ROUTES.STUDENTS_GROUP} className="mgr-btn-ghost mgr-btn-sm">
+          <button className="bg-transparent border border-border text-text-primary rounded-lg px-5 py-2.5 text-sm font-medium hover:bg-primary-subtle hover:border-primary transition-colors inline-flex items-center gap-2 mgr-btn-sm"><Download size={14} /> Export</button>
+          <Link href={MANAGER_ROUTES.STUDENTS_GROUP} className="bg-transparent border border-border text-text-primary rounded-lg px-5 py-2.5 text-sm font-medium hover:bg-primary-subtle hover:border-primary transition-colors inline-flex items-center gap-2 mgr-btn-sm">
             <Users2 size={14} /> Group Admission
           </Link>
-          <Link href={MANAGER_ROUTES.STUDENTS_NEW} className="mgr-btn-primary">
+          <Link href={MANAGER_ROUTES.STUDENTS_NEW} className="bg-primary text-white rounded-lg px-5 py-2.5 text-sm font-medium hover:bg-primary-hover transition-colors inline-flex items-center gap-2">
             <UserPlus size={14} /> New Admission
           </Link>
         </div>
@@ -87,7 +87,7 @@ export function ManagerStudentsClient() {
       {/* Filters */}
       <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10, marginBottom: 16 }}>
         <input
-          className="mgr-input mgr-search-input"
+          className="w-full bg-bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent mgr-search-input"
           placeholder="Search name, phone, Smart ID…"
           value={search}
           onChange={e => setSearch(e.target.value)}
@@ -130,3 +130,4 @@ export function ManagerStudentsClient() {
     </div>
   );
 }
+

@@ -49,7 +49,7 @@ export function ManagerCrmEnquiriesClient() {
                 <List size={16} />
               </button>
             </div>
-            <button className="mgr-btn-primary" onClick={() => router.push(MANAGER_CRM_URLS.ADD_ENQUIRY)}>
+            <button className="bg-primary text-white rounded-lg px-5 py-2.5 text-sm font-medium hover:bg-primary-hover transition-colors inline-flex items-center gap-2" onClick={() => router.push(MANAGER_CRM_URLS.ADD_ENQUIRY)}>
               <Plus size={16} /> Add Enquiry
             </button>
           </div>
@@ -93,3 +93,4 @@ export function ManagerCrmEnquiriesClient() {
     </div>
   );
 }
+

@@ -25,16 +25,16 @@ export function ManagerStudentReportsClient() {
     router.replace(`${pathname}?${params.toString()}`, { scroll: false });
   };
 
-  if (status === 'loading') return <div className="mgr-page"><div className="animate-pulse space-y-4"><div className="h-8 bg-gray-300 rounded w-1/4"></div><div className="h-64 bg-gray-300 rounded w-full"></div></div></div>;
-  if (!data || status === 'error')   return <div className="mgr-page"><div className="p-4 text-red-500">Failed to load reports: {error}</div></div>;
+  if (status === 'loading') return <div className="p-6 min-h-screen"><div className="animate-pulse space-y-4"><div className="h-8 bg-gray-300 rounded w-1/4"></div><div className="h-64 bg-gray-300 rounded w-full"></div></div></div>;
+  if (!data || status === 'error')   return <div className="p-6 min-h-screen"><div className="p-4 text-red-500">Failed to load reports: {error}</div></div>;
 
   return (
-    <div className="mgr-page">
-      <div className="mgr-page-header">
+    <div className="p-6 min-h-screen">
+      <div className="p-6 min-h-screen-header">
         <div>
           <p className="mgr-breadcrumb">Manager › Student Reports</p>
-          <h1 className="mgr-page-title">Student Reports</h1>
-          <p className="mgr-page-subtitle">Operational overview (finance reports blocked)</p>
+          <h1 className="text-[22px] font-bold text-text-primary">Student Reports</h1>
+          <p className="p-6 min-h-screen-subtitle">Operational overview (finance reports blocked)</p>
         </div>
       </div>
 
@@ -72,7 +72,7 @@ export function ManagerStudentReportsClient() {
       {/* Charts */}
       <div className="mgr-charts-grid">
 
-        <div className="mgr-card">
+        <div className="bg-bg-card rounded-xl border border-border p-6">
           <h3 className="font-semibold mb-4">Shift-wise Occupancy</h3>
           <Chart 
             type="pie" 
@@ -86,7 +86,7 @@ export function ManagerStudentReportsClient() {
           />
         </div>
 
-        <div className="mgr-card">
+        <div className="bg-bg-card rounded-xl border border-border p-6">
           <h3 className="font-semibold mb-4">Student Growth Trend (Last 30 days)</h3>
           <Chart 
             type="line" 
@@ -104,7 +104,7 @@ export function ManagerStudentReportsClient() {
           />
         </div>
 
-        <div className="mgr-card">
+        <div className="bg-bg-card rounded-xl border border-border p-6">
           <h3 className="font-semibold mb-4">Daily Attendance Trend</h3>
           <Chart 
             type="bar" 
@@ -119,7 +119,7 @@ export function ManagerStudentReportsClient() {
           />
         </div>
 
-        <div className="mgr-card">
+        <div className="bg-bg-card rounded-xl border border-border p-6">
           <h3 className="font-semibold mb-4">Top Absentees (Top 5 students)</h3>
           <Chart 
             type="bar" 
@@ -134,7 +134,7 @@ export function ManagerStudentReportsClient() {
           />
         </div>
 
-        <div className="mgr-card col-span-2">
+        <div className="bg-bg-card rounded-xl border border-border p-6 col-span-2">
           <h3 className="font-semibold mb-4">Complaints Status</h3>
           <Chart 
             type="donut" 
@@ -151,17 +151,17 @@ export function ManagerStudentReportsClient() {
 
       {/* Tables */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-8">
-        <div className="mgr-card">
+        <div className="bg-bg-card rounded-xl border border-border p-6">
           <h3 className="font-semibold mb-4">Absentee Report</h3>
           <table className="mgr-table">
-            <thead><tr className="mgr-table-header">
+            <thead><tr className="bg-primary-subtle text-xs uppercase font-semibold text-text-secondary text-left">
               <th className="mgr-table-th">Name</th>
               <th className="mgr-table-th">Absent Days</th>
               <th className="mgr-table-th">Last Present</th>
             </tr></thead>
             <tbody>
               {data.absenteeReportData?.map((r) => (
-                <tr key={r.id} className="mgr-table-row">
+                <tr key={r.id} className="border-b border-border hover:bg-primary-subtle/30 transition-colors">
                   <td className="mgr-table-td">{r.name}</td>
                   <td className="mgr-table-td">{r.absentDays}</td>
                   <td className="mgr-table-td">{r.lastPresent}</td>
@@ -171,10 +171,10 @@ export function ManagerStudentReportsClient() {
           </table>
         </div>
 
-        <div className="mgr-card">
+        <div className="bg-bg-card rounded-xl border border-border p-6">
           <h3 className="font-semibold mb-4">Enquiry Conversion Rate</h3>
           <table className="mgr-table">
-            <thead><tr className="mgr-table-header">
+            <thead><tr className="bg-primary-subtle text-xs uppercase font-semibold text-text-secondary text-left">
               <th className="mgr-table-th">Month</th>
               <th className="mgr-table-th">New</th>
               <th className="mgr-table-th">Converted</th>
@@ -182,7 +182,7 @@ export function ManagerStudentReportsClient() {
             </tr></thead>
             <tbody>
               {data.enquiryConversionData?.map((r) => (
-                <tr key={r.id} className="mgr-table-row">
+                <tr key={r.id} className="border-b border-border hover:bg-primary-subtle/30 transition-colors">
                   <td className="mgr-table-td">{r.month}</td>
                   <td className="mgr-table-td">{r.new}</td>
                   <td className="mgr-table-td">{r.converted}</td>
@@ -193,17 +193,17 @@ export function ManagerStudentReportsClient() {
           </table>
         </div>
 
-        <div className="mgr-card">
+        <div className="bg-bg-card rounded-xl border border-border p-6">
           <h3 className="font-semibold mb-4">Seat Utilization Report (per shift)</h3>
           <table className="mgr-table">
-            <thead><tr className="mgr-table-header">
+            <thead><tr className="bg-primary-subtle text-xs uppercase font-semibold text-text-secondary text-left">
               <th className="mgr-table-th">Shift</th>
               <th className="mgr-table-th">Utilization %</th>
               <th className="mgr-table-th">Occupancy</th>
             </tr></thead>
             <tbody>
               {data.seatUtilizationData?.map((r) => (
-                <tr key={r.id} className="mgr-table-row">
+                <tr key={r.id} className="border-b border-border hover:bg-primary-subtle/30 transition-colors">
                   <td className="mgr-table-td">{r.shift}</td>
                   <td className="mgr-table-td">{r.utilization}%</td>
                   <td className="mgr-table-td">{r.occupancy}/{r.total}</td>
@@ -213,17 +213,17 @@ export function ManagerStudentReportsClient() {
           </table>
         </div>
 
-        <div className="mgr-card">
+        <div className="bg-bg-card rounded-xl border border-border p-6">
           <h3 className="font-semibold mb-4">Locker Utilization Report</h3>
           <table className="mgr-table">
-            <thead><tr className="mgr-table-header">
+            <thead><tr className="bg-primary-subtle text-xs uppercase font-semibold text-text-secondary text-left">
               <th className="mgr-table-th">Type</th>
               <th className="mgr-table-th">Utilization %</th>
               <th className="mgr-table-th">Available</th>
             </tr></thead>
             <tbody>
               {data.lockerUtilizationData?.map((r) => (
-                <tr key={r.id} className="mgr-table-row">
+                <tr key={r.id} className="border-b border-border hover:bg-primary-subtle/30 transition-colors">
                   <td className="mgr-table-td">{r.type}</td>
                   <td className="mgr-table-td">{r.utilization}%</td>
                   <td className="mgr-table-td">{r.available}</td>
@@ -233,10 +233,10 @@ export function ManagerStudentReportsClient() {
           </table>
         </div>
 
-        <div className="mgr-card lg:col-span-2">
+        <div className="bg-bg-card rounded-xl border border-border p-6 lg:col-span-2">
           <h3 className="font-semibold mb-4">Pending Maintenance (Assets & Seats)</h3>
           <table className="mgr-table">
-            <thead><tr className="mgr-table-header">
+            <thead><tr className="bg-primary-subtle text-xs uppercase font-semibold text-text-secondary text-left">
               <th className="mgr-table-th">Item</th>
               <th className="mgr-table-th">Issue</th>
               <th className="mgr-table-th">Reported</th>
@@ -244,14 +244,14 @@ export function ManagerStudentReportsClient() {
             </tr></thead>
             <tbody>
               {data.maintenanceData?.map((r) => (
-                <tr key={r.id} className="mgr-table-row">
+                <tr key={r.id} className="border-b border-border hover:bg-primary-subtle/30 transition-colors">
                   <td className="mgr-table-td">{r.item}</td>
                   <td className="mgr-table-td">{r.issue}</td>
                   <td className="mgr-table-td">{r.reported}</td>
                   <td className="mgr-table-td">
-                    <span className={`mgr-badge ${
-                      r.status === 'Pending' ? 'mgr-badge--warning' :
-                      r.status === 'Active' ? 'mgr-badge--success' : 'mgr-badge--danger'
+                    <span className={`rounded-full px-2.5 py-0.5 text-[11px] font-semibold ${
+                      r.status === 'Pending' ? 'bg-warning-bg text-warning' :
+                      r.status === 'Active' ? 'bg-success-bg text-success' : 'rounded-full px-2.5 py-0.5 text-[11px] font-semibold--danger'
                     }`}>{r.status}</span>
                   </td>
                 </tr>
@@ -263,3 +263,4 @@ export function ManagerStudentReportsClient() {
     </div>
   );
 }
+

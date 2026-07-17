@@ -28,27 +28,27 @@ export function ManagerStudentsReferralsClient() {
     { field: 'method',   headerName: 'Payout Method',              width: 150 },
     { field: 'status',   headerName: 'Status',                     width: 130,
       cellRenderer: (p: { value: string; data?: Record<string, unknown> }) => {
-        const cls = p.value === 'Claimed' ? 'mgr-badge--success' : p.value === 'Approved' ? 'mgr-badge--info' : 'mgr-badge--warning';
-        return <span className={`mgr-badge ${cls}`}>{p.value}</span>;
+        const cls = p.value === 'Claimed' ? 'bg-success-bg text-success' : p.value === 'Approved' ? 'rounded-full px-2.5 py-0.5 text-[11px] font-semibold--info' : 'bg-warning-bg text-warning';
+        return <span className={`rounded-full px-2.5 py-0.5 text-[11px] font-semibold ${cls}`}>{p.value}</span>;
       }
     },
     { headerName: 'Actions', width: 120, sortable: false,
       cellRenderer: (p: { value: string; data?: Record<string, unknown> }) => p.data?.status !== 'Claimed'
-        ? <div className="flex gap-2 items-center h-full"><button className="mgr-btn-ghost mgr-btn-sm">Process</button></div>
+        ? <div className="flex gap-2 items-center h-full"><button className="bg-transparent border border-border text-text-primary rounded-lg px-5 py-2.5 text-sm font-medium hover:bg-primary-subtle hover:border-primary transition-colors inline-flex items-center gap-2 mgr-btn-sm">Process</button></div>
         : null
     },
   ];
 
   return (
-    <div className="mgr-page">
-      <div className="mgr-page-header">
+    <div className="p-6 min-h-screen">
+      <div className="p-6 min-h-screen-header">
         <div>
           <div className="mgr-breadcrumb">Students › Referrals</div>
-          <h1 className="mgr-page-title">Referral Program</h1>
-          <p className="mgr-page-subtitle">Track and manage student referral bonuses.</p>
+          <h1 className="text-[22px] font-bold text-text-primary">Referral Program</h1>
+          <p className="p-6 min-h-screen-subtitle">Track and manage student referral bonuses.</p>
         </div>
-        <div className="mgr-page-actions">
-          <button className="mgr-btn-primary">
+        <div className="p-6 min-h-screen-actions">
+          <button className="bg-primary text-white rounded-lg px-5 py-2.5 text-sm font-medium hover:bg-primary-hover transition-colors inline-flex items-center gap-2">
             <Award size={16} /> New Referral
           </button>
         </div>
@@ -75,13 +75,13 @@ export function ManagerStudentsReferralsClient() {
         })}
       </div>
 
-      <div className="mgr-card">
-        <div className="mgr-card-header">
-          <div className="mgr-input-icon-wrap" style={{ maxWidth: 320 }}>
-            <Search size={14} className="mgr-input-icon" />
-            <input type="text" placeholder="Search by student name…" className="mgr-input mgr-input-with-icon" />
+      <div className="bg-bg-card rounded-xl border border-border p-6">
+        <div className="flex items-center justify-between mb-4">
+          <div className="w-full bg-bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent-icon-wrap" style={{ maxWidth: 320 }}>
+            <Search size={14} className="w-full bg-bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent-icon" />
+            <input type="text" placeholder="Search by student name…" className="w-full bg-bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent w-full bg-bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent-with-icon" />
           </div>
-          <button className="mgr-btn-ghost mgr-btn-sm"><Filter size={14} /> Filters</button>
+          <button className="bg-transparent border border-border text-text-primary rounded-lg px-5 py-2.5 text-sm font-medium hover:bg-primary-subtle hover:border-primary transition-colors inline-flex items-center gap-2 mgr-btn-sm"><Filter size={14} /> Filters</button>
         </div>
         <div className="mgr-table-wrapper" style={{ height: 400 }}>
           <AgGridReact
@@ -99,3 +99,4 @@ export function ManagerStudentsReferralsClient() {
     </div>
   );
 }
+

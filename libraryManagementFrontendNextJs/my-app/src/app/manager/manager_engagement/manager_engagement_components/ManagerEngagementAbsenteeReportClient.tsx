@@ -5,27 +5,18 @@ import { AgGridReact } from 'ag-grid-react';
 import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community';
 import { ChevronRight, Send, Mail, Phone } from 'lucide-react';
 import { gridTheme , ManagerRecord } from '@/app/manager/manager_reusable/gridTheme';
+import { AbsenteeRow } from '@/app/manager/manager_engagement/manager_engagement_types/ManagerEngagementTypes';
+import { ABSENTEE_MOCK_DATA } from '@/app/manager/manager_engagement/manager_engagement_constants/ManagerEngagementConstants';
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
-interface AbsenteeRow {
-  id: string; name: string; initials: string; smartId: string;
-  shift: string; daysAbsent: number; lastSeen: string;
-  parentPhone: string; parentEmail: string; notified: boolean;
-}
+// Data loaded from centralized constants
 
-const DATA: AbsenteeRow[] = [
-  { id:'1', name:'Priya Verma',   initials:'PV', smartId:'SL-002', shift:'Morning',   daysAbsent:4,  lastSeen:'2026-04-08', parentPhone:'+91 98••••1234', parentEmail:'parent1@email.com', notified:false },
-  { id:'2', name:'Sneha Patel',   initials:'SP', smartId:'SL-004', shift:'Morning',   daysAbsent:8,  lastSeen:'2026-04-04', parentPhone:'+91 97••••5678', parentEmail:'parent2@email.com', notified:false },
-  { id:'3', name:'Deepak Mishra', initials:'DM', smartId:'SL-008', shift:'Afternoon', daysAbsent:3,  lastSeen:'2026-04-09', parentPhone:'+91 96••••9012', parentEmail:'parent3@email.com', notified:false },
-  { id:'4', name:'Anita Roy',     initials:'AR', smartId:'SL-011', shift:'Evening',   daysAbsent:12, lastSeen:'2026-03-31', parentPhone:'+91 95••••3456', parentEmail:'parent4@email.com', notified:true  },
-  { id:'5', name:'Vikram Nair',   initials:'VN', smartId:'SL-015', shift:'Morning',   daysAbsent:5,  lastSeen:'2026-04-07', parentPhone:'+91 94••••7890', parentEmail:'parent5@email.com', notified:false },
-];
-
+// RESPONSIBILITY: Renders the absentee report grid with filtering and notification actions.
 export function ManagerEngagementAbsenteeReportClient() {
   const [threshold, setThreshold] = useState('3');
   const [shift, setShift]         = useState('All');
-  const [rows, setRows]           = useState<AbsenteeRow[]>(DATA);
+  const [rows, setRows]           = useState<AbsenteeRow[]>(ABSENTEE_MOCK_DATA);
   const [toast, setToast]         = useState('');
   const [toastType, setToastType] = useState('');
 
@@ -239,3 +230,4 @@ export function ManagerEngagementAbsenteeReportClient() {
     </div>
   );
 }
+

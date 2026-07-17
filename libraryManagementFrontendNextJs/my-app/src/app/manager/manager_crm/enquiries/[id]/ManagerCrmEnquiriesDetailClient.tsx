@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders detailed CRM enquiry page, including timelines and follow-up updates.
 'use client';
 
 // RESPONSIBILITY: Renders the detail view for a specific enquiry, handling status updates and follow-ups.
@@ -51,114 +52,7 @@ function timelineDotClass(by: string): string {
 }
 
 /* ── Mark Lost Modal ───────────────────────────────────── */
-interface MarkLostModalProps {
-  onConfirm: (reason: string) => void;
-  onCancel: () => void;
-  isSubmitting: boolean;
-}
-function MarkLostModal({ onConfirm, onCancel, isSubmitting }: MarkLostModalProps) {
-  const { register, handleSubmit } = useForm<MarkLostFormData>({
-    resolver: zodResolver(markLostSchema),
-    defaultValues: { reason: '' },
-  });
-
-  const onSubmit = (d: MarkLostFormData) => onConfirm(d.reason ?? '');
-
-  return (
-    <div className="fixed inset-0 bg-black/65 backdrop-blur-md z-[200]" onClick={onCancel}>
-      <div
-        className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90%] max-w-[400px] bg-bg-card border border-border rounded-xl shadow-2xl p-6 z-[201] flex flex-col"
-        role="dialog"
-        aria-label="Mark enquiry as lost"
-        aria-modal="true"
-        onClick={(e) => e.stopPropagation()}
-      >
-        <div className="flex gap-4 items-start mb-6">
-          <div className="w-10 h-10 rounded-full bg-danger/10 flex items-center justify-center shrink-0">
-            <AlertTriangle size={22} className="text-danger" />
-          </div>
-          <div>
-            <h3 className="text-lg font-bold text-text-primary m-0">Mark as Lost?</h3>
-            <p className="text-sm text-text-secondary mt-1">
-              This will move the enquiry to the{' '}
-              <strong className="text-danger font-semibold">Lost</strong> column.
-              You can still view the full history and re-open it later.
-            </p>
-          </div>
-        </div>
-
-        <form id="mark-lost-form" onSubmit={handleSubmit(onSubmit)}>
-          <div className="flex flex-col gap-1.5 mb-6">
-            <label className="text-xs font-semibold text-text-secondary uppercase tracking-wider mb-1" htmlFor="lost-reason">
-              Reason <span className="text-[11px] font-normal text-text-disabled normal-case">(optional)</span>
-            </label>
-            <textarea
-              id="lost-reason"
-              rows={3}
-              className="w-full px-3.5 py-2.5 rounded-lg text-sm bg-bg-input text-text-primary border border-border focus:border-primary focus:ring-4 focus:ring-primary/15 outline-none placeholder:text-text-secondary resize-y min-h-[80px] transition-all"
-              placeholder="e.g. Didn't respond after 3 follow-ups, found another library…"
-              {...register('reason')}
-            />
-          </div>
-
-          <div className="flex gap-3">
-            <button
-              type="button"
-              className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-lg text-sm font-medium bg-transparent text-text-primary border border-border hover:bg-border/40 transition-all flex-1"
-              onClick={onCancel}
-            >
-              Cancel
-            </button>
-            <button
-              type="submit"
-              form="mark-lost-form"
-              className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-lg text-sm font-semibold bg-danger text-white hover:opacity-90 active:scale-95 transition-all disabled:opacity-55 disabled:cursor-not-allowed flex-1"
-              disabled={isSubmitting}
-            >
-              {isSubmitting ? (
-                <>
-                  <span className="animate-spin w-4 h-4 border-2 border-current border-t-transparent rounded-full" />
-                  Marking…
-                </>
-              ) : (
-                <>
-                  <XCircle size={15} />
-                  Mark as Lost
-                </>
-              )}
-            </button>
-          </div>
-        </form>
-      </div>
-    </div>
-  );
-}
-
-/* ── Info Item helper ─────────────────────────────────── */
-function InfoItem({
-  icon,
-  label,
-  value,
-}: {
-  icon: React.ReactNode;
-  label: string;
-  value: string;
-}) {
-  return (
-    <div>
-      <p className="flex items-center gap-1.5 text-xs font-medium text-text-secondary mb-1">
-        {icon}
-        {label}
-      </p>
-      <p className="text-sm font-semibold text-text-primary m-0">{value}</p>
-    </div>
-  );
-}
-
-interface EnquiryDetail {
-  id: string; name: string; phone: string; email?: string; date?: string; status: string;
-  enquiryDate: string; preferredBranch: string; shift: string; handledBy: string; source: string; notes?: string; score?: number;
-  followUps: FollowUp[]; timeline?: Record<string, unknown>[]; isToday?: boolean; isUpcoming?: boolean; isOverdue?: boolean; avatar?: string;
+// Types and constants centralized. timeline?: Record<string, unknown>[]; isToday?: boolean; isUpcoming?: boolean; isOverdue?: boolean; avatar?: string;
 }
 
 /* ── Main Page ─────────────────────────────────────────── */
@@ -607,3 +501,4 @@ export function ManagerCrmEnquiriesDetailClient({ id }: { id: string }) {
     </>
   );
 }
+
