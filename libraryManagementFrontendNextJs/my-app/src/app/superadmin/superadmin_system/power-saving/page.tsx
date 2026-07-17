@@ -11,7 +11,7 @@ import { Zap, ChevronRight, ZapOff, CheckCircle } from 'lucide-react';
 import {
   SUPERADMIN_SYSTEM_MOCK_POWER_ZONES,
   SUPERADMIN_SYSTEM_MOCK_POWER_ALERTS
-} from '@/app/superadmin/superadmin_system/superadmin_system_constants/SuperadminSystemConstants';
+} from '@/app/superadmin/superadmin_system/superadmin_system_data/SuperadminSystemMockData';
 
 
 

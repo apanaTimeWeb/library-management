@@ -11,7 +11,7 @@ import {
   MessageSquare, ChevronRight, Eye, EyeOff, Copy, CheckCircle,
   XCircle, Phone, Zap, BarChart3, Clock, Loader2, Radio, Send, Banknote, Globe, Settings
 } from 'lucide-react';
-import { SUPERADMIN_SYSTEM_MOCK_WHATSAPP_LOGS } from '@/app/superadmin/superadmin_system/superadmin_system_constants/SuperadminSystemConstants';
+import { SUPERADMIN_SYSTEM_MOCK_WHATSAPP_LOGS } from '@/app/superadmin/superadmin_system/superadmin_system_data/SuperadminSystemMockData';
 
 const PROVIDERS = [
   { id: 'twilio',   label: 'Twilio',   logo: <Globe size={16} className="text-blue-500" />, requiresSecret: true  },

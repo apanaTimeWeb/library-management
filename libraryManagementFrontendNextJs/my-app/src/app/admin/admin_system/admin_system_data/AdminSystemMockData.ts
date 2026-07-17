@@ -9,11 +9,11 @@ export const ADMIN_SYSTEM_MOCK_BACKUP_HISTORY = [
     modules: ['Students', 'Payments', 'Attendance', 'Seats', 'Expenses'],
   },
   {
-    id: 'bk-003', name: 'Manual Backup — Pre-Import',type: 'manual', size: '4.0 MB', createdAt: '2026-04-10 11:30 AM', status: 'success',
+    id: 'bk-003', name: 'Manual Backup ï¿½ Pre-Import',type: 'manual', size: '4.0 MB', createdAt: '2026-04-10 11:30 AM', status: 'success',
     modules: ['Students', 'Payments', 'Seats'],
   },
   {
-    id: 'bk-004', name: 'Nightly Auto Backup',    type: 'auto',   size: '—',      createdAt: '2026-04-09 02:00 AM', status: 'failed',
+    id: 'bk-004', name: 'Nightly Auto Backup',    type: 'auto',   size: 'ï¿½',      createdAt: '2026-04-09 02:00 AM', status: 'failed',
     modules: [],
   },
   {
@@ -21,7 +21,7 @@ export const ADMIN_SYSTEM_MOCK_BACKUP_HISTORY = [
     modules: ['Students', 'Payments', 'Attendance', 'Seats', 'Expenses'],
   },
   {
-    id: 'bk-006', name: 'Manual Backup — Monthly',type: 'manual', size: '3.7 MB', createdAt: '2026-04-01 09:00 AM', status: 'success',
+    id: 'bk-006', name: 'Manual Backup ï¿½ Monthly',type: 'manual', size: '3.7 MB', createdAt: '2026-04-01 09:00 AM', status: 'success',
     modules: ['Students', 'Payments', 'Attendance', 'Seats', 'Expenses', 'CRM', 'WhatsApp Logs'],
   },
 ];
@@ -41,28 +41,28 @@ export const ADMIN_SYSTEM_TEMPLATE_HEADERS = ['Name*', 'Phone*', 'Email', 'Shift
 
 export const ADMIN_SYSTEM_EXPORT_MODULES = [
   { id: 'students',     label: 'Students',            description: 'All student records including personal info, seat, shift, and status', icon: '??', estimatedRows: 248,  formats: ['CSV', 'XLSX'] },
-  { id: 'payments',     label: 'Payments & Fees',     description: 'Complete payment history — fee collected, due amounts, receipts',     icon: '??', estimatedRows: 1240, formats: ['CSV', 'XLSX'] },
-  { id: 'attendance',   label: 'Attendance',          description: 'Full attendance log — daily check-ins by student and shift',          icon: '??', estimatedRows: 5800, formats: ['CSV', 'XLSX'] },
-  { id: 'expenses',     label: 'Expenses',            description: 'Library expense records — rent, electricity, salaries, etc.',         icon: '??', estimatedRows: 320,  formats: ['CSV', 'XLSX'] },
-  { id: 'enquiries',    label: 'CRM Enquiries',       description: 'Lead pipeline — all enquires with status and follow-up history',      icon: '??', estimatedRows: 186,  formats: ['CSV', 'XLSX'] },
+  { id: 'payments',     label: 'Payments & Fees',     description: 'Complete payment history ï¿½ fee collected, due amounts, receipts',     icon: '??', estimatedRows: 1240, formats: ['CSV', 'XLSX'] },
+  { id: 'attendance',   label: 'Attendance',          description: 'Full attendance log ï¿½ daily check-ins by student and shift',          icon: '??', estimatedRows: 5800, formats: ['CSV', 'XLSX'] },
+  { id: 'expenses',     label: 'Expenses',            description: 'Library expense records ï¿½ rent, electricity, salaries, etc.',         icon: '??', estimatedRows: 320,  formats: ['CSV', 'XLSX'] },
+  { id: 'enquiries',    label: 'CRM Enquiries',       description: 'Lead pipeline ï¿½ all enquires with status and follow-up history',      icon: '??', estimatedRows: 186,  formats: ['CSV', 'XLSX'] },
   { id: 'seats',        label: 'Seats & Lockers',     description: 'Seat matrix, locker assignments, and maintenance logs',               icon: '??', estimatedRows: 140,  formats: ['CSV', 'XLSX'] },
-  { id: 'whatsapp',     label: 'WhatsApp Logs',       description: 'All outbound WhatsApp messages — receipts, renewals, alerts',        icon: '??', estimatedRows: 890,  formats: ['CSV'] },
-  { id: 'audit',        label: 'Audit Logs',          description: 'Staff actions log — sensitive operations, deletes, and edits',        icon: '??', estimatedRows: 2400, formats: ['CSV', 'XLSX'] },
+  { id: 'whatsapp',     label: 'WhatsApp Logs',       description: 'All outbound WhatsApp messages ï¿½ receipts, renewals, alerts',        icon: '??', estimatedRows: 890,  formats: ['CSV'] },
+  { id: 'audit',        label: 'Audit Logs',          description: 'Staff actions log ï¿½ sensitive operations, deletes, and edits',        icon: '??', estimatedRows: 2400, formats: ['CSV', 'XLSX'] },
 ];
 
 export const ADMIN_SYSTEM_QUICK_EXPORTS = [
   { id: 'due-fees',     label: 'Fee Due Report',        description: 'Students with pending fee payments',  icon: 'CreditCard',  format: 'CSV' },
   { id: 'expiring',     label: 'Expiring Subscriptions',description: 'Students expiring in the next 7 days', icon: 'CalendarDays', format: 'CSV' },
   { id: 'active',       label: 'Active Students',       description: 'All currently active students',        icon: 'Users',       format: 'XLSX' },
-  { id: 'full-backup',  label: 'Full Data Backup',      description: 'Everything — all modules in one ZIP',  icon: 'Database',    format: 'ZIP' },
+  { id: 'full-backup',  label: 'Full Data Backup',      description: 'Everything ï¿½ all modules in one ZIP',  icon: 'Database',    format: 'ZIP' },
 ];
 
 
 export const ADMIN_SYSTEM_MOCK_SEAT_GAPS = [
-  { seat: 'S-03', booked: [{ start: 0, end: 25 }, { start: 70, end: 100 }], gap: { start: 25, end: 70,  label: '10AM – 2PM', hours: 4  } },
-  { seat: 'S-07', booked: [{ start: 0, end: 45 }],                          gap: { start: 45, end: 100, label: '12PM – 6PM', hours: 6  } },
-  { seat: 'S-12', booked: [{ start: 30, end: 60 }, { start: 80, end: 100 }],gap: { start: 60, end: 80,  label: '2PM – 4PM',  hours: 2  } },
-  { seat: 'S-15', booked: [{ start: 0, end: 15 }],                          gap: { start: 15, end: 100, label: '8AM – 6PM',  hours: 10 } },
+  { seat: 'S-03', booked: [{ start: 0, end: 25 }, { start: 70, end: 100 }], gap: { start: 25, end: 70,  label: '10AM ï¿½ 2PM', hours: 4  } },
+  { seat: 'S-07', booked: [{ start: 0, end: 45 }],                          gap: { start: 45, end: 100, label: '12PM ï¿½ 6PM', hours: 6  } },
+  { seat: 'S-12', booked: [{ start: 30, end: 60 }, { start: 80, end: 100 }],gap: { start: 60, end: 80,  label: '2PM ï¿½ 4PM',  hours: 2  } },
+  { seat: 'S-15', booked: [{ start: 0, end: 15 }],                          gap: { start: 15, end: 100, label: '8AM ï¿½ 6PM',  hours: 10 } },
 ];
 
 export const ADMIN_SYSTEM_MOCK_MAINTENANCE_SEATS = [
@@ -79,9 +79,9 @@ export const ADMIN_SYSTEM_MOCK_MAINTENANCE_ASSETS = [
 ];
 
 export const ADMIN_SYSTEM_MOCK_MAINTENANCE_LOCKERS = [
-  { id: 'L-03', status: 'Issue Reported', lastIssue: 'Lock jammed — 2026-04-08' },
+  { id: 'L-03', status: 'Issue Reported', lastIssue: 'Lock jammed ï¿½ 2026-04-08' },
   { id: 'L-11', status: 'OK', lastIssue: 'None' },
-  { id: 'L-19', status: 'Issue Reported', lastIssue: 'Door hinge broken — 2026-04-06' },
+  { id: 'L-19', status: 'Issue Reported', lastIssue: 'Door hinge broken ï¿½ 2026-04-06' },
 ];
 
 export const ADMIN_SYSTEM_OFFLINE_FEATURES = [
@@ -118,9 +118,9 @@ export const ADMIN_SYSTEM_SETTINGS_CATEGORIES = [
 
 export const ADMIN_SYSTEM_SMART_ID_ACTIVE_IDS = [1, 2, 4, 5, 6, 9, 10, 11, 12, 15, 16, 17, 18, 19, 20];
 export const ADMIN_SYSTEM_SMART_ID_FLOW_STEPS = [
-  { step: '1', icon: '??', title: 'Student Exits', desc: 'ID freed — student moved to alumni archive' },
+  { step: '1', icon: '??', title: 'Student Exits', desc: 'ID freed ï¿½ student moved to alumni archive' },
   { step: '2', icon: '??', title: 'System Scans', desc: 'Checks for lowest available gap ID in the sequence' },
-  { step: '3', icon: '??', title: 'Gap ID Assigned', desc: 'New student gets freed ID — records stay compact & serial' },
+  { step: '3', icon: '??', title: 'Gap ID Assigned', desc: 'New student gets freed ID ï¿½ records stay compact & serial' },
 ];
 
 export const ADMIN_SYSTEM_WAITLIST_QUEUE = [

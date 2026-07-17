@@ -10,7 +10,7 @@ import { AgGridReact } from 'ag-grid-react';
 import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community';
 import { superadmin_gridTheme } from '@/app/superadmin/superadmin_shared_components/superadmin_gridTheme';
 import { fetchApi } from '@/lib/api';
-import { SUPERADMIN_COMMUNICATION_MOCK_NOTICES } from '@/app/superadmin/superadmin_communication/superadmin_communication_constants/SuperadminCommunicationConstants';
+import { SUPERADMIN_COMMUNICATION_MOCK_NOTICES } from '@/app/superadmin/superadmin_communication/superadmin_communication_data/SuperadminCommunicationMockData';
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 

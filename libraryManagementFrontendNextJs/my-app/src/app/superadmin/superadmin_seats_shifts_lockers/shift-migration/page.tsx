@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import { ArrowLeft, Search, ChevronDown, CreditCard, QrCode, Banknote, CheckCircle, Clock } from 'lucide-react';
 import toast from 'react-hot-toast';
-import { SUPERADMIN_SEATS_MOCK_MIGRATION_STUDENTS } from '@/app/superadmin/superadmin_seats_shifts_lockers/superadmin_seats_constants/SuperadminSeatsConstants';
+import { SUPERADMIN_SEATS_MOCK_MIGRATION_STUDENTS } from '@/app/superadmin/superadmin_seats_shifts_lockers/superadmin_seats_data/SuperadminSeatsMockData';
 
 interface Student {
   id: string; name: string; smartId: string;

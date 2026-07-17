@@ -8,7 +8,7 @@ import {
   SUPERADMIN_SYSTEM_MOCK_MAINTENANCE_SEATS,
   SUPERADMIN_SYSTEM_MOCK_MAINTENANCE_ASSETS,
   SUPERADMIN_SYSTEM_MOCK_MAINTENANCE_LOCKERS
-} from '@/app/superadmin/superadmin_system/superadmin_system_constants/SuperadminSystemConstants';
+} from '@/app/superadmin/superadmin_system/superadmin_system_data/SuperadminSystemMockData';
 
 
 

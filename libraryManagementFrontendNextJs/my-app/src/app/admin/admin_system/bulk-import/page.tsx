@@ -7,7 +7,7 @@ import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter }
 import { Button } from '@/app/admin/admin_system/admin_system_components/AdminSystemButton/AdminSystemButton';
 import { Badge } from '@/app/admin/admin_system/admin_system_components/AdminSystemBadge/AdminSystemBadge';
 import { Upload, FileSpreadsheet, ChevronRight, CheckCircle, XCircle, AlertTriangle, Download, RefreshCw } from 'lucide-react';
-import { ADMIN_SYSTEM_MOCK_PREVIEW, ADMIN_SYSTEM_TEMPLATE_HEADERS } from '@/app/admin/admin_system/admin_system_constants/AdminSystemConstantsX';
+import { ADMIN_SYSTEM_MOCK_PREVIEW, ADMIN_SYSTEM_TEMPLATE_HEADERS } from '@/app/admin/admin_system/admin_system_data/AdminSystemMockData';
 
 type RowStatus = 'ok' | 'error' | 'warning';
 
@@ -239,7 +239,7 @@ export default function BulkImportPage() {
           {/* Summary */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             <div className="p-4 rounded-2xl bg-surface-container border border-outline-variant text-center">
-              <p className="text-2xl font-bold text-on-surface">{MOCK_PREVIEW.length}</p>
+              <p className="text-2xl font-bold text-on-surface">{ADMIN_SYSTEM_MOCK_PREVIEW.length}</p>
               <p className="text-xs text-on-surface-variant mt-1">Total Rows</p>
             </div>
             <div className="p-4 rounded-2xl bg-green-500/10 border border-green-500/20 text-center">
@@ -286,7 +286,7 @@ export default function BulkImportPage() {
                           : 'bg-surface-container-high text-on-surface-variant hover:text-on-surface'
                       }`}
                     >
-                      {f === 'all' ? `All (${MOCK_PREVIEW.length})` :
+                      {f === 'all' ? `All (${ADMIN_SYSTEM_MOCK_PREVIEW.length})` :
                        f === 'ok'  ? `✅ OK (${okCount})` :
                        f === 'warning' ? `⚠️ Warn (${warningCount})` :
                        `❌ Error (${errorCount})`}

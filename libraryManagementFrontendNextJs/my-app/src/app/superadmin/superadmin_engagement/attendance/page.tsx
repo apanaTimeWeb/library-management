@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { ChevronRight, Save, FileBarChart2, Bell, CheckCircle, Clock } from 'lucide-react';
-import { SUPERADMIN_ENGAGEMENT_MOCK_ATTENDANCE } from '@/app/superadmin/superadmin_engagement/superadmin_engagement_constants/SuperadminEngagementConstants';
+import { SUPERADMIN_ENGAGEMENT_MOCK_ATTENDANCE } from '@/app/superadmin/superadmin_engagement/superadmin_engagement_data/SuperadminEngagementMockData';
 
 type AttStatus = 'present' | 'absent' | 'late' | null;
 

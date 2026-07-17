@@ -9,7 +9,7 @@ import { AllCommunityModule, ModuleRegistry, type ColDef } from 'ag-grid-communi
 import { gridTheme } from '@/app/admin/admin_seats_shifts_lockers/admin_seats_shifts_lockers_components/AdminSeatsShiftsLockersgridTheme/AdminSeatsShiftsLockersgridTheme';
 import toast from 'react-hot-toast';
 import { AdminGridCell } from '@/app/admin/admin_reusable/admin_reusable_utils/AdminReusableGridTheme';
-import { ADMIN_SEATS_MOCK_LOCKERS } from '@/app/admin/admin_seats_shifts_lockers/admin_seats_constants/AdminSeatsConstants';
+import { ADMIN_SEATS_MOCK_LOCKERS } from '@/app/admin/admin_seats_shifts_lockers/admin_seats_data/AdminSeatsMockData';
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 

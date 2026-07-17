@@ -3,7 +3,7 @@ import { useState, useRef } from 'react';
 import { ChevronRight, X, Send, Save } from 'lucide-react';
 
 import { Hand, DollarSign, Repeat, Receipt, Bell, CalendarClock, Handshake, Smartphone, CheckCircle } from 'lucide-react';
-import { SUPERADMIN_COMMUNICATION_MOCK_WA_TEMPLATES } from '@/app/superadmin/superadmin_communication/superadmin_communication_constants/SuperadminCommunicationConstants';
+import { SUPERADMIN_COMMUNICATION_MOCK_WA_TEMPLATES } from '@/app/superadmin/superadmin_communication/superadmin_communication_data/SuperadminCommunicationMockData';
 
 interface Template { id: string; label: string; icon: string; body: string; }
 

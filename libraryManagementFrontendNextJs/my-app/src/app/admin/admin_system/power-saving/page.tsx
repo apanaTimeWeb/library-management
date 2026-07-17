@@ -11,7 +11,7 @@ import { Switch } from '@/app/admin/admin_system/admin_system_components/AdminSy
 import { Badge } from '@/app/admin/admin_system/admin_system_components/AdminSystemBadge/AdminSystemBadge';
 import { Progress } from '@/app/admin/admin_system/admin_system_components/AdminSystemProgress/AdminSystemProgress';
 import { Zap, ChevronRight } from 'lucide-react';
-import { ADMIN_SYSTEM_MOCK_POWER_ZONES, ADMIN_SYSTEM_MOCK_POWER_ALERTS } from '@/app/admin/admin_system/admin_system_constants/AdminSystemConstantsX';
+import { ADMIN_SYSTEM_MOCK_POWER_ZONES, ADMIN_SYSTEM_MOCK_POWER_ALERTS } from '@/app/admin/admin_system/admin_system_data/AdminSystemMockData';
 
 
 

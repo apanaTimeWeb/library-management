@@ -10,7 +10,7 @@ import { Label } from '@/app/admin/admin_system/admin_system_components/AdminSys
 import { Badge } from '@/app/admin/admin_system/admin_system_components/AdminSystemBadge/AdminSystemBadge';
 import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from '@/app/admin/admin_system/admin_system_components/AdminSystemSelect/AdminSystemSelect';
 import { GitBranch, ChevronRight, Zap } from 'lucide-react';
-import { ADMIN_SYSTEM_MOCK_SEAT_GAPS } from '@/app/admin/admin_system/admin_system_constants/AdminSystemConstantsX';
+import { ADMIN_SYSTEM_MOCK_SEAT_GAPS } from '../admin_system_data/AdminSystemMockData';
 
 
 

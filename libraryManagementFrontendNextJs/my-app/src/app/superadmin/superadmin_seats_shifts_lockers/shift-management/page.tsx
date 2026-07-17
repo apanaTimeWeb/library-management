@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import { Plus, Edit, PowerOff, Zap, ChevronDown } from 'lucide-react';
 import toast from 'react-hot-toast';
-import { SUPERADMIN_SEATS_MOCK_SHIFTS } from '@/app/superadmin/superadmin_seats_shifts_lockers/superadmin_seats_constants/SuperadminSeatsConstants';
+import { SUPERADMIN_SEATS_MOCK_SHIFTS } from '@/app/superadmin/superadmin_seats_shifts_lockers/superadmin_seats_data/SuperadminSeatsMockData';
 
 interface Shift {
   id: string;

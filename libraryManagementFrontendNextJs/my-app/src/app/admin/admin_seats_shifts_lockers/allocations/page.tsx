@@ -8,7 +8,7 @@ import { AgGridReact } from 'ag-grid-react';
 import { AllCommunityModule, ModuleRegistry, type ColDef } from 'ag-grid-community';
 import { gridTheme } from '@/app/admin/admin_seats_shifts_lockers/admin_seats_shifts_lockers_components/AdminSeatsShiftsLockersgridTheme/AdminSeatsShiftsLockersgridTheme';
 import { AdminGridCell } from '@/app/admin/admin_reusable/admin_reusable_utils/AdminReusableGridTheme';
-import { ADMIN_SEATS_MOCK_ALLOCATIONS } from '@/app/admin/admin_seats_shifts_lockers/admin_seats_constants/AdminSeatsConstants';
+import { ADMIN_SEATS_MOCK_ALLOCATIONS } from '@/app/admin/admin_seats_shifts_lockers/admin_seats_data/AdminSeatsMockData';
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
@@ -19,8 +19,61 @@ interface Allocation {
   shift: string;
   customSlots: string;
   lockerNo: string;
+  validFrom: string;
+  validTill: string;
+  daysLeft: number;
+  status: 'Active' | 'Expired' | 'Suspended';
+}
+
+const STATUS_CLASS: Record<string, string> = {
+  Active: 'ss-badge ss-badge--success',
+  Expired: 'ss-badge ss-badge--danger',
+  Suspended: 'ss-badge ss-badge--warning',
+};
+
+function StudentCell({ data }: { data: Allocation }) {
+  return (
+    <div className="ss-cell-stack">
+      <p className="ss-cell-name">{data.studentName}</p>
+      <p className="ss-table__cell-sub">{data.smartId}</p>
+    </div>
+  );
+}
+
+function DaysLeftCell({ value }: { value: number }) {
+  if (value < 0) return <span className="ss-badge ss-badge--danger">{Math.abs(value)}d ago</span>;
+  if (value <= 7) return <span className="ss-badge ss-badge--danger">{value}d left</span>;
+  if (value <= 15) return <span className="ss-badge ss-badge--warning">{value}d left</span>;
+  return <span className="ss-badge ss-badge--success">{value}d left</span>;
+}
+
+function StatusCell({ value }: { value: string }) {
+  return <span className={STATUS_CLASS[value] ?? 'ss-badge ss-badge--inactive'}><span className="ss-badge__dot" />{value}</span>;
+}
+
+function ActionsCell() {
+  return (
+    <button className="ss-btn-icon ss-tooltip-wrap">
+      <Eye size={16} />
+      <span className="ss-tooltip">View Profile</span>
+    </button>
+  );
+}
+
+export default function AllocationsPage() {
+  const [shiftFilter, setShiftFilter] = useState('All Shifts');
+  const [statusFilter, setStatusFilter] = useState('All Statuses');
+  const [dateFrom, setDateFrom] = useState('');
+  const [dateTo, setDateTo] = useState('');
+
+  const filtered = (ADMIN_SEATS_MOCK_ALLOCATIONS as Allocation[]).filter(a => {
+    const matchShift = shiftFilter === 'All Shifts' || a.shift === shiftFilter;
+    const matchStatus = statusFilter === 'All Statuses' || a.status === statusFilter;
+    const matchFrom = !dateFrom || a.validFrom >= dateFrom;
+    const matchTo = !dateTo || a.validTill <= dateTo;
     return matchShift && matchStatus && matchFrom && matchTo;
   });
+
   const colDefs = useMemo<any[]>(() => [
     { field: 'studentName', headerName: 'STUDENT', flex: 2, cellRenderer: StudentCell },
     { field: 'seatNo', headerName: 'SEAT #', flex: 0.8, cellClass: 'ss-table__seat-no' },
@@ -43,7 +96,7 @@ interface Allocation {
             <h1 className="ss-page-title">Allocations</h1>
             <p className="ss-page-subtitle">All active and past seat allocations</p>
           </div>
-          <button className="ss-btn-ghost ss-btn-start" onClick={() => toast.success('Exporting...')}>
+          <button className="ss-btn-ghost ss-btn-start" onClick={() => alert('Exporting...')}>
             <Download size={15} />Export
           </button>
         </div>
@@ -77,7 +130,7 @@ interface Allocation {
 
         {filtered.length === 0 ? (
           <div className="ss-empty-state">
-            <p className="ss-empty-state__icon">📋</p>
+            <p className="ss-empty-state__icon">??</p>
             <p className="ss-empty-state__title">No allocations found.</p>
           </div>
         ) : (
@@ -89,4 +142,3 @@ interface Allocation {
     </>
   );
 }
-

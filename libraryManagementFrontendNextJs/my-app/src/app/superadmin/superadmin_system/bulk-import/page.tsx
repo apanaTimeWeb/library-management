@@ -4,7 +4,7 @@ import { SuperadminCard, CardHeader, CardTitle, CardDescription, CardContent, Ca
 import { SuperadminButton } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminButton';
 import { SuperadminBadge } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminBadge';
 import { Upload, FileSpreadsheet, ChevronRight, CheckCircle, XCircle, AlertTriangle, Download, RefreshCw, Users } from 'lucide-react';
-import { SUPERADMIN_SYSTEM_MOCK_IMPORT_PREVIEW } from '@/app/superadmin/superadmin_system/superadmin_system_constants/SuperadminSystemConstants';
+import { SUPERADMIN_SYSTEM_MOCK_IMPORT_PREVIEW } from '@/app/superadmin/superadmin_system/superadmin_system_data/SuperadminSystemMockData';
 
 type RowStatus = 'ok' | 'error' | 'warning';
 

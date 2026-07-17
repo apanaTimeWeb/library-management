@@ -12,7 +12,7 @@ import {
   Settings, Palette, AlertCircle, Zap, CreditCard, Bell, Globe,
   Upload, Eye, EyeOff, Save, ChevronRight
 } from 'lucide-react';
-import { ADMIN_SYSTEM_SETTINGS_CATEGORIES } from '@/app/admin/admin_system/admin_system_constants/AdminSystemConstantsX';
+import { ADMIN_SYSTEM_SETTINGS_CATEGORIES } from '@/app/admin/admin_system/admin_system_data/AdminSystemMockData';
 
 
 
@@ -86,6 +86,12 @@ export default function SettingsPage() {
         {/* Left sidebar nav */}
         <aside className="w-52 shrink-0">
           <nav className="flex flex-col gap-1">
+            {ADMIN_SYSTEM_SETTINGS_CATEGORIES.map(({ id, label, icon: Icon }) => (
+              <button
+                key={id}
+                id={`settings-nav-${id}`}
+                onClick={() => setActive(id)}
+                className={`flex items-center gap-3 rounded-xl px-4 py-2.5 text-sm font-medium transition-all duration-150 text-left ${
                   active === id
                     ? 'bg-primary/15 text-primary border border-primary/20'
                     : 'text-on-surface-variant hover:bg-surface-container hover:text-on-surface'

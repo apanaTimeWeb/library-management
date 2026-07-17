@@ -12,7 +12,7 @@ import {
   Database, ChevronRight, Download, RefreshCw, CheckCircle, Clock,
   AlertTriangle, HardDrive, Shield, Cloud, Loader2
 } from 'lucide-react';
-import { ADMIN_SYSTEM_MOCK_BACKUP_HISTORY } from '@/app/admin/admin_system/admin_system_constants/AdminSystemConstantsX';
+import { ADMIN_SYSTEM_MOCK_ADMIN_SYSTEM_MOCK_BACKUP_HISTORY } from '@/app/admin/admin_system/admin_system_data/AdminSystemMockData';
 
 interface BackupRecord {
   id: string;
@@ -39,7 +39,7 @@ export default function BackupsPage() {
   const [retention, setRetention]     = useState(30);
   const [creating, setCreating]       = useState(false);
   const [downloading, setDownloading] = useState<string | null>(null);
-  const [backups, setBackups]         = useState<BackupRecord[]>(BACKUP_HISTORY);
+  const [backups, setBackups]         = useState<BackupRecord[]>(ADMIN_SYSTEM_MOCK_BACKUP_HISTORY);
 
   const successCount = backups.filter(b => b.status === 'success').length;
   const failedCount  = backups.filter(b => b.status === 'failed').length;
@@ -250,7 +250,7 @@ export default function BackupsPage() {
                 </tr>
               </thead>
               <tbody className="divide-y divide-outline-variant/30">
-                {ADMIN_SYSTEM_MOCK_BACKUP_HISTORY.map((backup) => {
+                {ADMIN_SYSTEM_MOCK_ADMIN_SYSTEM_MOCK_BACKUP_HISTORY.map((backup) => {
                   const cfg  = STATUS_CFG[backup.status];
                   const Icon = cfg.icon;
                   return (

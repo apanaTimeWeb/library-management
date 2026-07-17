@@ -7,7 +7,7 @@ import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter }
 import { Button } from '@/app/admin/admin_system/admin_system_components/AdminSystemButton/AdminSystemButton';
 import { Badge } from '@/app/admin/admin_system/admin_system_components/AdminSystemBadge/AdminSystemBadge';
 import { Download, FileSpreadsheet, Database, Users, CreditCard, CalendarDays, ChevronRight, CheckCircle, Loader2 } from 'lucide-react';
-import { ADMIN_SYSTEM_EXPORT_MODULES, ADMIN_SYSTEM_QUICK_EXPORTS } from '@/app/admin/admin_system/admin_system_constants/AdminSystemConstantsX';
+import { ADMIN_SYSTEM_EXPORT_MODULES, ADMIN_SYSTEM_QUICK_EXPORTS } from '@/app/admin/admin_system/admin_system_data/AdminSystemMockData';
 
 interface ExportModule {
   id: string;
@@ -52,10 +52,10 @@ export default function DataExportPage() {
     });
   };
 
-  const selectAll = () => setSelected(new Set(EXPORT_MODULES.map(m => m.id)));
+  const selectAll = () => setSelected(new Set(ADMIN_SYSTEM_EXPORT_MODULES.map(m => m.id)));
   const clearAll  = () => setSelected(new Set());
 
-  const estimatedTotal = EXPORT_MODULES.filter(m => selected.has(m.id)).reduce((sum, m) => sum + m.estimatedRows, 0);
+  const estimatedTotal = ADMIN_SYSTEM_EXPORT_MODULES.filter(m => selected.has(m.id)).reduce((sum, m) => sum + m.estimatedRows, 0);
 
   const handleExport = (id?: string) => {
     const key = id ?? 'bulk';

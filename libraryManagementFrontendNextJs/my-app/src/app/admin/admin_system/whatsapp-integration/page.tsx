@@ -14,7 +14,7 @@ import {
   MessageSquare, ChevronRight, Eye, EyeOff, Copy, CheckCircle,
   XCircle, Phone, Zap, BarChart3, Clock, Loader2
 } from 'lucide-react';
-import { ADMIN_SYSTEM_WHATSAPP_PROVIDERS, ADMIN_SYSTEM_WHATSAPP_MESSAGE_LOGS } from '@/app/admin/admin_system/admin_system_constants/AdminSystemConstantsX';
+import { ADMIN_SYSTEM_WHATSAPP_PROVIDERS, ADMIN_SYSTEM_WHATSAPP_MESSAGE_LOGS } from '@/app/admin/admin_system/admin_system_data/AdminSystemMockData';
 
 
 
@@ -102,7 +102,7 @@ export default function WhatsAppIntegrationPage() {
           </div>
           <p className="text-xs text-on-surface-variant mt-0.5">
             {testStatus === 'success'
-              ? `Provider: ${selectedProvider.label} · Test message sent to ${senderPhone}`
+              ? `Provider: ${activeProvider.label} · Test message sent to ${senderPhone}`
               : testStatus === 'error'
               ? 'Check your API key and try again. Ensure the number is registered on WhatsApp Business.'
               : 'Click "Test Connection" to verify your WhatsApp setup.'}
@@ -117,7 +117,7 @@ export default function WhatsAppIntegrationPage() {
 
       {/* Usage Stats */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-5 mb-8">
-        <KpiCard title="Sent This Month"  value={MESSAGE_LOGS.length} icon="📤"  subtitle="All messages"      />
+        <KpiCard title="Sent This Month"  value={ADMIN_SYSTEM_WHATSAPP_MESSAGE_LOGS.length} icon="📤"  subtitle="All messages"      />
         <KpiCard title="Delivered"        value={deliveredCount}      icon="✅"  trend="up" trendLabel={`${deliveryRate}% rate`} />
         <KpiCard title="Failed"           value={failedCount}         icon="❌"  trend={failedCount > 0 ? 'down' : 'neutral'} trendLabel="Failed deliveries" />
         <KpiCard title="Est. Cost"        value="₹18.50"              icon="💸"  subtitle="~₹0.18 per msg"   />
@@ -179,7 +179,7 @@ export default function WhatsAppIntegrationPage() {
             </div>
 
             {/* API Secret (conditional) */}
-            {selectedProvider.requiresSecret && (
+            {activeProvider.requiresSecret && (
               <div className="space-y-2">
                 <Label htmlFor="whatsapp-api-secret">API Secret</Label>
                 <div className="relative">
