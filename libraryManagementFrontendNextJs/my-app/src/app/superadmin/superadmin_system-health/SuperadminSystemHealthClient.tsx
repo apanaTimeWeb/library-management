@@ -4,7 +4,8 @@
 
 import React, { useState } from 'react';
 import { Server, Database } from 'lucide-react';
-import type { SuperadminSystemHealthDataResponse } from '@/app/superadmin/superadmin_system-health/superadmin_system_health_types/SuperadminSystemHealthTypes';
+import type { SuperadminSystemHealthDataResponse, SuperadminSystemHealthClientProps } from '@/app/superadmin/superadmin_system-health/superadmin_system_health_types/SuperadminSystemHealthTypes';
+
 import { SuperadminSystemHealthHeader } from '@/app/superadmin/superadmin_system-health/superadmin_system_health_components/SuperadminSystemHealthHeader';
 import { SuperadminSystemHealthMetricCard } from '@/app/superadmin/superadmin_system-health/superadmin_system_health_components/SuperadminSystemHealthMetricCard';
 import { SuperadminSystemHealthGatewaysCard } from '@/app/superadmin/superadmin_system-health/superadmin_system_health_components/SuperadminSystemHealthGatewaysCard';
@@ -12,11 +13,7 @@ import { fetchSuperadminSystemHealthData } from '@/app/superadmin/superadmin_sys
 import { logger } from '@/lib/logger';
 import type { FetchState } from '@/app/superadmin/superadmin_shared_components/superadmin_types';
 
-interface Props {
-  initialData: SuperadminSystemHealthDataResponse;
-}
-
-export function SuperadminSystemHealthClient({ initialData }: Props) {
+export function SuperadminSystemHealthClient({ initialData }: SuperadminSystemHealthClientProps) {
   const [data, setData] = useState<SuperadminSystemHealthDataResponse>(initialData);
   const [fetchState, setFetchState] = useState<FetchState>('idle');
   const [lastRefresh, setLastRefresh] = useState('Just now');

@@ -2,13 +2,9 @@
 import React from 'react';
 import { RefreshCw } from 'lucide-react';
 
-interface Props {
-  lastRefresh: string;
-  refreshing: boolean;
-  onRefresh: () => void;
-}
+import { SuperadminSystemHealthHeaderProps } from '@/app/superadmin/superadmin_system-health/superadmin_system_health_types/SuperadminSystemHealthTypes';
 
-export function SuperadminSystemHealthHeader({ lastRefresh, refreshing, onRefresh }: Props) {
+export function SuperadminSystemHealthHeader({ lastRefresh, refreshing, onRefresh }: SuperadminSystemHealthHeaderProps) {
   return (
     <div className="flex flex-col gap-1 mb-8">
       <div className="flex items-center gap-1.5 text-[11px] font-bold text-text-disabled uppercase tracking-widest mb-2">

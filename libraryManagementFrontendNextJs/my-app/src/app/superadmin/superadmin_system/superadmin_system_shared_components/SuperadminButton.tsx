@@ -1,7 +1,8 @@
 // RESPONSIBILITY: Renders the SuperadminButton component.
 'use client';
-import { type ButtonHTMLAttributes, forwardRef } from 'react';
+import { forwardRef } from 'react';
 import { cn } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/superadmin_utils';
+import { SuperadminButtonProps } from '@/app/superadmin/superadmin_system/superadmin_system_types/SuperadminSystemSharedComponentsTypes';
 
 const VARIANT: Record<string, string> = {
   primary:     'sys-btn-primary',
@@ -18,12 +19,7 @@ const SIZE: Record<string, string> = {
   icon: 'sys-btn--icon',
 };
 
-export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: keyof typeof VARIANT;
-  size?: keyof typeof SIZE;
-}
-
-const SuperadminButton = forwardRef<HTMLButtonElement, ButtonProps>(
+const SuperadminButton = forwardRef<HTMLButtonElement, SuperadminButtonProps>(
   ({ className, variant = 'primary', size = 'md', ...props }, ref) => (
     <button
       ref={ref}

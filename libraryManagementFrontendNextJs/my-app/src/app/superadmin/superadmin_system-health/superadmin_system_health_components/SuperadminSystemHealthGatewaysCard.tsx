@@ -1,11 +1,7 @@
 // RESPONSIBILITY: Renders the SuperadminSystemHealthGatewaysCard component.
 import React from 'react';
 import { Globe } from 'lucide-react';
-import type { SuperadminSystemHealthGateway } from '@/app/superadmin/superadmin_system-health/superadmin_system_health_types/SuperadminSystemHealthTypes';
-
-interface Props {
-  gateways: SuperadminSystemHealthGateway[];
-}
+import type { SuperadminSystemHealthGateway, SuperadminSystemHealthGatewaysCardProps } from '@/app/superadmin/superadmin_system-health/superadmin_system_health_types/SuperadminSystemHealthTypes';
 
 const COLOR_DOT_CLS: Record<string, string> = {
   success: 'bg-success shadow-[0_0_8px_var(--success)]',
@@ -14,7 +10,7 @@ const COLOR_DOT_CLS: Record<string, string> = {
   danger:  'bg-danger shadow-[0_0_8px_var(--danger)]',
 };
 
-export function SuperadminSystemHealthGatewaysCard({ gateways }: Props) {
+export function SuperadminSystemHealthGatewaysCard({ gateways }: SuperadminSystemHealthGatewaysCardProps) {
   return (
     <div className="col-span-1 md:col-span-2 bg-bg-card border border-border rounded-[var(--radius-lg)] p-6 shadow-sm hover:shadow-md transition-shadow">
       <h2 className="text-sm font-bold text-text-primary mb-5 flex items-center gap-2 uppercase tracking-wider">

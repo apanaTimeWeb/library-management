@@ -6,21 +6,13 @@ import type { ICellRendererParams, GridReadyEvent } from 'ag-grid-community';
 import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community';
 import { superadmin_gridTheme } from '@/app/superadmin/superadmin_shared_components/superadmin_gridTheme';
 import { CheckCircle, Circle, AlertCircle } from 'lucide-react';
-import type { SuperadminSubscription } from '@/app/superadmin/superadmin_subscriptions/superadmin_subscriptions_types/SuperadminSubscriptionsTypes';
+import type { SuperadminSubscription, SuperadminSubscriptionsGridProps } from '@/app/superadmin/superadmin_subscriptions/superadmin_subscriptions_types/SuperadminSubscriptionsTypes';
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
-interface Props {
-  subs: SuperadminSubscription[];
-  filteredSubs: SuperadminSubscription[];
-  filter: string;
-  setFilter: (f: string) => void;
-  onRowClick: (sub: SuperadminSubscription) => void;
-}
-
 const FILTERS = ['All', 'Paid', 'Due Soon', 'Overdue'];
 
-export function SuperadminSubscriptionsGrid({ subs, filteredSubs, filter, setFilter, onRowClick }: Props) {
+export function SuperadminSubscriptionsGrid({ subs, filteredSubs, filter, setFilter, onRowClick }: SuperadminSubscriptionsGridProps) {
   const gridRef = useRef<AgGridReact>(null);
 
   const colDefs = useMemo<any[]>(() => [

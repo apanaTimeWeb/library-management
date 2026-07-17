@@ -1,13 +1,6 @@
 // RESPONSIBILITY: Renders the SuperadminSystemHealthMetricCard component.
 import React from 'react';
-import type { SuperadminSystemHealthMetric } from '@/app/superadmin/superadmin_system-health/superadmin_system_health_types/SuperadminSystemHealthTypes';
-
-interface Props {
-  title: string;
-  icon: React.ElementType;
-  iconColor: string;
-  metrics: SuperadminSystemHealthMetric[];
-}
+import type { SuperadminSystemHealthMetric, SuperadminSystemHealthMetricCardProps } from '@/app/superadmin/superadmin_system-health/superadmin_system_health_types/SuperadminSystemHealthTypes';
 
 const COLOR_TEXT_CLS: Record<string, string> = {
   success: 'text-success',
@@ -43,7 +36,7 @@ function MetricRow({ label, sub, val, pct, colorKey }: SuperadminSystemHealthMet
   );
 }
 
-export function SuperadminSystemHealthMetricCard({ title, icon: Icon, iconColor, metrics }: Props) {
+export function SuperadminSystemHealthMetricCard({ title, icon: Icon, iconColor, metrics }: SuperadminSystemHealthMetricCardProps) {
   return (
     <div className="bg-bg-card border border-border rounded-[var(--radius-lg)] p-6 shadow-sm hover:shadow-md transition-shadow">
       <h2 className="text-sm font-bold text-text-primary mb-6 flex items-center gap-2 uppercase tracking-wider">

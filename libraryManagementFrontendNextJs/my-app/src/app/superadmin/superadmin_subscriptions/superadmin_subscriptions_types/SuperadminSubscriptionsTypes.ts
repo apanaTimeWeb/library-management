@@ -18,3 +18,22 @@ export interface SuperadminSubscriptionKpi {
   trend: string;
   trendType?: 'success' | 'warning' | 'danger';
 }
+
+export interface SuperadminSubscriptionsPanelProps {
+  sub: SuperadminSubscription;
+  onClose: () => void;
+  onUpdate: (s: SuperadminSubscription) => Promise<void>;
+  onRenew: (id: string) => Promise<void>;
+}
+
+export interface SuperadminSubscriptionsKpiGridProps {
+  kpis: SuperadminSubscriptionKpi[];
+}
+
+export interface SuperadminSubscriptionsGridProps {
+  subs: SuperadminSubscription[];
+  filteredSubs: SuperadminSubscription[];
+  filter: string;
+  setFilter: (f: string) => void;
+  onRowClick: (sub: SuperadminSubscription) => void;
+}

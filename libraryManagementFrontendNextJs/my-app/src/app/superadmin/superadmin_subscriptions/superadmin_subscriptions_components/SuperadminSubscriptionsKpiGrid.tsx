@@ -1,11 +1,7 @@
 // RESPONSIBILITY: Renders the SuperadminSubscriptionsKpiGrid component.
 import React from 'react';
 import { Users, ReceiptText, TrendingDown } from 'lucide-react';
-import type { SuperadminSubscriptionKpi } from '@/app/superadmin/superadmin_subscriptions/superadmin_subscriptions_types/SuperadminSubscriptionsTypes';
-
-interface Props {
-  kpis: SuperadminSubscriptionKpi[];
-}
+import type { SuperadminSubscriptionKpi, SuperadminSubscriptionsKpiGridProps } from '@/app/superadmin/superadmin_subscriptions/superadmin_subscriptions_types/SuperadminSubscriptionsTypes';
 
 const ICON_MAP: Record<string, React.ElementType> = {
   users: Users,
@@ -20,7 +16,7 @@ const STYLE_MAP = {
   danger:  { bg: 'bg-danger-bg', text: 'text-danger' },
 };
 
-export function SuperadminSubscriptionsKpiGrid({ kpis }: Props) {
+export function SuperadminSubscriptionsKpiGrid({ kpis }: SuperadminSubscriptionsKpiGridProps) {
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
       {kpis.map((k, i) => {

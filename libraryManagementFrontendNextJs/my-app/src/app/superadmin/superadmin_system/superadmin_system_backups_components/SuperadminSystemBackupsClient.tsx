@@ -10,7 +10,8 @@ import {
   AlertTriangle, HardDrive, Shield, Cloud, Loader2, Archive, XCircle
 } from 'lucide-react';
 import { useSuperadminSystemBackups } from '@/app/superadmin/superadmin_system/superadmin_system_backups_hooks/useSuperadminSystemBackups';
-import React from 'react';
+import React, { useState } from 'react';
+import { SuperadminSearchableDropdown } from '@/app/superadmin/superadmin_shared_components/SuperadminSearchableDropdown';
 
 const STATUS_CFG: Record<string, { label: string; variant: 'success' | 'danger' | 'warning'; icon: React.ElementType }> = {
   success:     { label: 'Success',     variant: 'success', icon: CheckCircle  },
@@ -24,6 +25,14 @@ export function SuperadminSystemBackupsClient() {
     retention, setRetention, creating, downloading, backups, stats,
     handleCreateBackup, handleDownload, handleDeleteBackup
   } = useSuperadminSystemBackups();
+  const [cloudProvider, setCloudProvider] = useState('Google Drive');
+
+  const cloudProviderOptions = [
+    { label: 'Google Drive', value: 'Google Drive' },
+    { label: 'AWS S3', value: 'AWS S3' },
+    { label: 'Dropbox', value: 'Dropbox' },
+    { label: 'Custom S3-Compatible', value: 'Custom S3-Compatible' }
+  ];
 
   return (
     <div>
@@ -138,12 +147,11 @@ export function SuperadminSystemBackupsClient() {
               <>
                 <div className="space-y-2">
                   <label className="text-sm font-medium text-on-surface-variant">Cloud Provider</label>
-                  <select className="w-full px-3 py-2 rounded-lg bg-surface-container-highest border border-outline-variant text-sm text-on-surface focus:outline-none focus:border-primary">
-                    <option>Google Drive</option>
-                    <option>AWS S3</option>
-                    <option>Dropbox</option>
-                    <option>Custom S3-Compatible</option>
-                  </select>
+                  <SuperadminSearchableDropdown
+                    options={cloudProviderOptions}
+                    value={cloudProvider}
+                    onChange={setCloudProvider}
+                  />
                 </div>
                 <div className="flex items-center gap-3 p-3 rounded-xl bg-green-500/10 border border-green-500/20">
                   <div className="h-8 w-8 rounded-full bg-green-500/20 flex items-center justify-center">

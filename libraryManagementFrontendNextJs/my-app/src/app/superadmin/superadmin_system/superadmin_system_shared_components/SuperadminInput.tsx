@@ -3,9 +3,9 @@
 import { type InputHTMLAttributes, forwardRef } from 'react';
 import { cn } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/superadmin_utils';
 
-export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {}
+import { SuperadminInputProps } from '@/app/superadmin/superadmin_system/superadmin_system_types/SuperadminSystemSharedComponentsTypes';
 
-const SuperadminInput = forwardRef<HTMLInputElement, InputProps>(
+const SuperadminInput = forwardRef<HTMLInputElement, SuperadminInputProps>(
   ({ className, type, ...props }, ref) => (
     <input
       type={type}

@@ -6,13 +6,9 @@ import { ThemeToggle } from '@/components/ThemeToggle';
 import { useAdmin } from '@/app/admin/admin_context/AdminContext';
 import { SuperadminSelect, SuperadminSelectContent, SuperadminSelectItem, SuperadminSelectTrigger, SuperadminSelectValue } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminSelect';
 import { SuperadminButton } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminButton';
+import { SuperadminHeaderProps } from '@/app/superadmin/superadmin_shared_components/superadmin_shared_types';
 
-interface HeaderProps {
-  sidebarWidth: number;
-  onMobileOpen: () => void;
-}
-
-export default function SuperadminHeader({ sidebarWidth, onMobileOpen }: HeaderProps) {
+export default function SuperadminHeader({ sidebarWidth, onMobileOpen }: SuperadminHeaderProps) {
   const { selectedBranch, setSelectedBranch } = useAdmin();
 
   return (

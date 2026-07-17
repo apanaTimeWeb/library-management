@@ -4,18 +4,12 @@
 
 import React, { useState } from 'react';
 import { X, Calendar, IndianRupee, CheckCircle, Edit2, Save, Loader, AlertCircle } from 'lucide-react';
-import type { SuperadminSubscription } from '@/app/superadmin/superadmin_subscriptions/superadmin_subscriptions_types/SuperadminSubscriptionsTypes';
+import type { SuperadminSubscription, SuperadminSubscriptionsPanelProps } from '@/app/superadmin/superadmin_subscriptions/superadmin_subscriptions_types/SuperadminSubscriptionsTypes';
 import { SUPERADMIN_SUBSCRIPTIONS_PLANS } from '@/app/superadmin/superadmin_subscriptions/superadmin_subscriptions_constants/SuperadminSubscriptionsConstants';
 import { logger } from '@/lib/logger';
+import { SuperadminSearchableDropdown } from '@/app/superadmin/superadmin_shared_components/SuperadminSearchableDropdown';
 
-interface Props {
-  sub: SuperadminSubscription;
-  onClose: () => void;
-  onUpdate: (s: SuperadminSubscription) => Promise<void>;
-  onRenew: (id: string) => Promise<void>;
-}
-
-export function SuperadminSubscriptionsPanel({ sub, onClose, onUpdate, onRenew }: Props) {
+export function SuperadminSubscriptionsPanel({ sub, onClose, onUpdate, onRenew }: SuperadminSubscriptionsPanelProps) {
   const [editing, setEditing] = useState(false);
   const [plan, setPlan] = useState(sub.plan);
   const [renewing, setRenewing] = useState(false);
@@ -87,12 +81,11 @@ export function SuperadminSubscriptionsPanel({ sub, onClose, onUpdate, onRenew }
             <div className="space-y-4 pt-2">
               <div>
                 <label className="block text-xs font-bold text-text-secondary uppercase tracking-wider mb-2">Change Plan</label>
-                <select 
-                  className="w-full bg-bg-card border border-border rounded-[var(--radius-md)] py-2.5 px-3 text-sm font-medium text-text-primary focus:outline-none focus:border-primary transition-colors shadow-sm" 
-                  value={plan} 
-                  onChange={e => setPlan(e.target.value)}>
-                  {SUPERADMIN_SUBSCRIPTIONS_PLANS.map((p: string) => <option key={p} value={p}>{p}</option>)}
-                </select>
+                <SuperadminSearchableDropdown
+                  options={SUPERADMIN_SUBSCRIPTIONS_PLANS.map((p: string) => ({ label: p, value: p }))}
+                  value={plan}
+                  onChange={setPlan}
+                />
               </div>
               <div className="flex gap-3 pt-2">
                 <button 

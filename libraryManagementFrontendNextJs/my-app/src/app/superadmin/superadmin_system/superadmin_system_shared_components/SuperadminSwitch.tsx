@@ -2,16 +2,9 @@
 'use client';
 import * as SwitchPrimitive from '@radix-ui/react-switch';
 import { cn } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/superadmin_utils';
+import { SuperadminSwitchProps } from '@/app/superadmin/superadmin_system/superadmin_system_types/SuperadminSystemSharedComponentsTypes';
 
-interface SwitchProps {
-  checked?: boolean;
-  onCheckedChange?: (checked: boolean) => void;
-  disabled?: boolean;
-  id?: string;
-  className?: string;
-}
-
-export function SuperadminSwitch({ checked, onCheckedChange, disabled, id, className }: SwitchProps) {
+export function SuperadminSwitch({ checked, onCheckedChange, disabled = false, id, className }: SuperadminSwitchProps & { id?: string, className?: string }) {
   return (
     <SwitchPrimitive.Root
       id={id}

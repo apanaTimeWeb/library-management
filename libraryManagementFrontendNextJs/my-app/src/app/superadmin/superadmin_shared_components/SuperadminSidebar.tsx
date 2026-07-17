@@ -36,14 +36,9 @@ const NAV: NavItem[] = [
   { href: '/superadmin/superadmin_settings', icon: Settings, label: 'Settings' },
 ];
 
-interface Props {
-  collapsed: boolean;
-  onToggle: () => void;
-  mobileOpen: boolean;
-  onMobileClose: () => void;
-}
+import { SuperadminSidebarProps } from '@/app/superadmin/superadmin_shared_components/superadmin_shared_types';
 
-export default function SuperadminSidebar({ collapsed, onToggle, mobileOpen, onMobileClose }: Props) {
+export default function SuperadminSidebar({ collapsed, onToggle, mobileOpen, onMobileClose }: SuperadminSidebarProps) {
   const pathname = usePathname();
   const router = useRouter();
   const [showLogout, setShowLogout] = useState(false);
