@@ -1,28 +1,9 @@
 import { create } from 'zustand';
 import { fetchApi } from '@/lib/api';
-import type { FetchState, Notice, Complaint } from '@/app/manager/manager_communication/manager_communication_types/manager_communication_types';
+import type { FetchState, Notice, Complaint, ManagerCommunicationState } from '@/app/manager/manager_communication/manager_communication_types/manager_communication_types';
 import { logger } from '@/lib/logger';
 
 // DATA FLOW: API -> Store -> Hook -> Component
-
-interface ManagerCommunicationState {
-  notices: Notice[];
-  noticesStatus: FetchState;
-  noticesError: string | null;
-
-  complaints: Complaint[];
-  complaintsStatus: FetchState;
-  complaintsError: string | null;
-
-  fetchNotices: () => Promise<void>;
-  addNotice: (notice: Partial<Notice>) => Promise<void>;
-  updateNotice: (id: string, updates: Partial<Notice>) => Promise<void>;
-  deleteNotice: (id: string) => Promise<void>;
-
-  fetchComplaints: () => Promise<void>;
-  addComplaint: (complaint: Partial<Complaint>) => Promise<void>;
-  updateComplaintStatus: (id: string, status: Complaint['status'], resolution?: string) => Promise<void>;
-}
 
 export const useManagerCommunicationStore = create<ManagerCommunicationState>((set, get) => ({
   notices: [],

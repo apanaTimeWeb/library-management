@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 import type { Enquiry, FetchState } from '@/app/manager/manager_crm/manager_crm_types';
-import type { ManagerCrmState } from '@/app/manager/manager_crm/manager_crm_types/ManagerCrmTypes';
+import type { ManagerCrmState, RawEnquiry } from '@/app/manager/manager_crm/manager_crm_types/ManagerCrmTypes';
 
 // RESPONSIBILITY: Module-scoped Zustand store for managing CRM Enquiries API data.
 // DATA FLOW: API -> useCrmStore -> useManagerCrmEnquiries -> ManagerCrmEnquiriesClient
@@ -26,16 +26,8 @@ export const useCrmStore = create<ManagerCrmState>((set, get) => ({
         set({ enquiries: MOCK_ENQUIRIES as import('@/app/manager/manager_crm/manager_crm_types').Enquiry[], status: 'success' });
         return;
       }
-      interface RawEnquiry {
-        id: string | number;
-        name: string;
-        phone: string;
-        preferredShift: string;
-        status: string;
-        handledBy?: { name: string };
-        createdAt: string;
-      }
       
+
       const mapped = (data as RawEnquiry[]).map((e: RawEnquiry) => ({
         id: String(e.id),
         name: String(e.name),

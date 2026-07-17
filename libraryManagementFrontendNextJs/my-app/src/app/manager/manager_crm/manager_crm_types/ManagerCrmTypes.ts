@@ -54,3 +54,13 @@ export interface ManagerCrmState {
   fetchData: () => Promise<void>;
   updateEnquiryStatus: (id: string, status: import('@/app/manager/manager_crm/manager_crm_types').Enquiry['status']) => void;
 }
+
+export interface RawEnquiry {
+  id: string | number;
+  name: string;
+  phone: string;
+  preferredShift: string;
+  status: string;
+  handledBy?: { name: string };
+  createdAt: string;
+}
