@@ -9,7 +9,7 @@ import type { SuperadminLibrary, SuperadminLibraryPanelMode } from '@/app/supera
 import { SUPERADMIN_LIBRARIES_TOASTS } from '@/app/superadmin/superadmin_libraries/superadmin_libraries_constants/SuperadminLibrariesConstants';
 
 export function SuperadminLibrariesClient() {
-  const { libraries, loading, updateLibrary, toggleStatus } = superadmin_useSuperadminLibraries();
+  const { libraries, fetchState, updateLibrary, toggleStatus } = superadmin_useSuperadminLibraries();
   const [selected, setSelected] = useState<SuperadminLibrary | null>(null);
   const [panelMode, setPanelMode] = useState<SuperadminLibraryPanelMode>('view');
   const [toast, setToast] = useState('');
@@ -35,7 +35,7 @@ export function SuperadminLibrariesClient() {
     }
   };
 
-  if (loading) {
+  if (fetchState === 'loading') {
     return (
       <div className="p-8">
         <SuperadminLibrariesHeader />

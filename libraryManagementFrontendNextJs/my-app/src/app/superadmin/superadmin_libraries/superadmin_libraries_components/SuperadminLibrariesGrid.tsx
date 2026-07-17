@@ -7,11 +7,16 @@ import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community';
 import { superadmin_gridTheme } from '@/app/superadmin/superadmin_shared_components/superadmin_gridTheme';
 import { Edit2, ShieldAlert, CheckCircle, AlertTriangle } from 'lucide-react';
 import type { SuperadminLibrary as Library, SuperadminLibrariesGridProps as Props } from '@/app/superadmin/superadmin_libraries/superadmin_libraries_types/SuperadminLibrariesTypes';
+import { SuperadminLibrariesEmptyState } from '@/app/superadmin/superadmin_libraries/superadmin_libraries_components/SuperadminLibrariesEmptyState';
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
 export function SuperadminLibrariesGrid({ libraries, onRowClick, onSuspend }: Props) {
   const gridRef = useRef<AgGridReact>(null);
+  
+  const components = useMemo(() => ({
+    noRowsOverlayComponent: SuperadminLibrariesEmptyState,
+  }), []);
 
   const colDefs = useMemo<any[]>(() => [
     {
@@ -65,6 +70,16 @@ export function SuperadminLibrariesGrid({ libraries, onRowClick, onSuspend }: Pr
 
   const onGridReady = useCallback((e: GridReadyEvent) => { e.api.sizeColumnsToFit(); }, []);
 
+  const searchTimeout = useRef<NodeJS.Timeout | null>(null);
+
+  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const val = e.target.value;
+    if (searchTimeout.current) clearTimeout(searchTimeout.current);
+    searchTimeout.current = setTimeout(() => {
+      gridRef.current?.api.setGridOption('quickFilterText', val);
+    }, 300);
+  };
+
   return (
     <div className="bg-bg-card border border-border rounded-[var(--radius-lg)] overflow-hidden shadow-sm">
       <div className="p-4 border-b border-border bg-bg-page/30 flex items-center justify-between">
@@ -72,7 +87,7 @@ export function SuperadminLibrariesGrid({ libraries, onRowClick, onSuspend }: Pr
           type="text" 
           placeholder="Search by name or location..." 
           className="w-72 bg-bg-input border border-border rounded-[var(--radius-md)] py-2 px-3 text-sm text-text-primary focus:outline-none focus:border-primary transition-colors"
-          onChange={e => gridRef.current?.api.setGridOption('quickFilterText', e.target.value)} 
+          onChange={handleSearch} 
         />
         <span className="text-xs font-semibold text-text-disabled uppercase tracking-wider">{libraries.length} libraries</span>
       </div>
@@ -89,6 +104,8 @@ export function SuperadminLibrariesGrid({ libraries, onRowClick, onSuspend }: Pr
           pagination={true}
           paginationPageSize={10}
           suppressCellFocus={true}
+          components={components}
+          noRowsOverlayComponent="noRowsOverlayComponent"
         />
       </div>
     </div>

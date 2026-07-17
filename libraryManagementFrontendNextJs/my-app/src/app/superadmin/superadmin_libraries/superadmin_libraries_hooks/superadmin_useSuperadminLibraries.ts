@@ -2,25 +2,23 @@
 // DATA FLOW: API → superadmin_useSuperadminLibraries.ts → SuperadminLibrariesComponent
 
 import { useState, useEffect, useCallback } from 'react';
-import type { SuperadminLibrary } from '@/app/superadmin/superadmin_libraries/superadmin_libraries_types/SuperadminLibrariesTypes';
+import type { SuperadminLibrary, SuperadminLibrariesFetchState } from '@/app/superadmin/superadmin_libraries/superadmin_libraries_types/SuperadminLibrariesTypes';
 import { SUPERADMIN_LIBRARIES_MOCK_DATA } from '@/app/superadmin/superadmin_libraries/superadmin_libraries_constants/SuperadminLibrariesConstants';
 import { logger } from '@/lib/logger';
 export function superadmin_useSuperadminLibraries() {
   const [libraries, setLibraries] = useState<SuperadminLibrary[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const [fetchState, setFetchState] = useState<SuperadminLibrariesFetchState>('idle');
 
   const loadLibraries = useCallback(async () => {
-    setLoading(true);
+    setFetchState('loading');
     try {
       // Simulate network request
       await new Promise(res => setTimeout(res, 800));
       setLibraries(SUPERADMIN_LIBRARIES_MOCK_DATA);
+      setFetchState('success');
     } catch (err) {
       logger.error('Failed to load library branches', err);
-      setError('Failed to load libraries');
-    } finally {
-      setLoading(false);
+      setFetchState('error');
     }
   }, []);
 
@@ -46,8 +44,7 @@ export function superadmin_useSuperadminLibraries() {
 
   return {
     libraries,
-    loading,
-    error,
+    fetchState,
     updateLibrary,
     toggleStatus,
   };
