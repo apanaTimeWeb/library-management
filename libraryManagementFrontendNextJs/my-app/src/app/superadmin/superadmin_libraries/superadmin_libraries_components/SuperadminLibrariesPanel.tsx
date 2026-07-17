@@ -46,7 +46,7 @@ export function SuperadminLibrariesPanel({ lib, mode, onClose, onSave, onSuspend
     <div className="fixed inset-0 z-50 flex items-stretch justify-end" onClick={onClose}>
       <div className="absolute inset-0 bg-bg-page/80 backdrop-blur-sm transition-opacity" />
       <div 
-        className="relative w-full max-w-md bg-bg-card shadow-[-10px_0_30px_rgba(0,0,0,0.1)] border-l border-border overflow-y-auto animate-in slide-in-from-right duration-300 flex flex-col"
+        className="relative w-full max-w-md bg-bg-card shadow-2xl border-l border-border overflow-y-auto animate-in slide-in-from-right duration-300 flex flex-col"
         onClick={e => e.stopPropagation()}
       >
         <div className="p-6 space-y-6 flex-1">

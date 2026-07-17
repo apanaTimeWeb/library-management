@@ -8,6 +8,7 @@ import { superadmin_gridTheme } from '@/app/superadmin/superadmin_shared_compone
 import { Edit2, ShieldAlert, CheckCircle, AlertTriangle } from 'lucide-react';
 import type { SuperadminLibrary as Library, SuperadminLibrariesGridProps as Props } from '@/app/superadmin/superadmin_libraries/superadmin_libraries_types/SuperadminLibrariesTypes';
 import { SuperadminLibrariesEmptyState } from '@/app/superadmin/superadmin_libraries/superadmin_libraries_components/SuperadminLibrariesEmptyState';
+import type { ColDef } from 'ag-grid-community';
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
@@ -18,7 +19,7 @@ export function SuperadminLibrariesGrid({ libraries, onRowClick, onSuspend }: Pr
     noRowsOverlayComponent: SuperadminLibrariesEmptyState,
   }), []);
 
-  const colDefs = useMemo<any[]>(() => [
+  const colDefs = useMemo<ColDef<Library>[]>(() => [
     {
       headerName: 'Library Name', field: 'name', flex: 2, minWidth: 180,
       cellRenderer: (p: ICellRendererParams<Library>) => (
@@ -59,10 +60,13 @@ export function SuperadminLibrariesGrid({ libraries, onRowClick, onSuspend }: Pr
       ),
     },
     {
+      headerName: 'Actions',
+      flex: 1,
+      minWidth: 100,
       cellRenderer: (p: ICellRendererParams<Library>) => (
         <div className="flex items-center gap-2 h-full">
-          <button className="w-8 h-8 flex items-center justify-center rounded-[var(--radius-md)] text-text-secondary hover:text-success hover:bg-success-bg transition-colors" onClick={e => { e.stopPropagation(); onRowClick(p.data!, 'edit'); }}><Edit2 size={15} /></button>
-          <button className="w-8 h-8 flex items-center justify-center rounded-[var(--radius-md)] text-text-secondary hover:text-danger hover:bg-danger-bg transition-colors" onClick={e => { e.stopPropagation(); onSuspend(p.data!.id); }}><ShieldAlert size={15} /></button>
+          <button className="w-8 h-8 flex items-center justify-center rounded-[var(--radius-md)] text-text-secondary hover:text-success hover:bg-success-bg transition-colors" title="Edit" onClick={e => { e.stopPropagation(); onRowClick(p.data!, 'edit'); }}><Edit2 size={15} /></button>
+          <button className="w-8 h-8 flex items-center justify-center rounded-[var(--radius-md)] text-text-secondary hover:text-danger hover:bg-danger-bg transition-colors" title="Suspend" onClick={e => { e.stopPropagation(); onSuspend(p.data!.id); }}><ShieldAlert size={15} /></button>
         </div>
       ),
     },
