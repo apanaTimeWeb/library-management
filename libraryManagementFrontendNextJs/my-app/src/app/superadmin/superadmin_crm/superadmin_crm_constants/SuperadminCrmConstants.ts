@@ -186,3 +186,11 @@ export const CRM_CONSTANTS = {
     { id: "shift_005", name: "Full Day", time: "6 AM – 10 PM" }
   ]
 };
+import { Enquiry } from '@/app/superadmin/superadmin_crm/superadmin_crm_shared_components/superadmin_types';
+
+export const SUPERADMIN_CRM_MOCK_ENQUIRIES: Enquiry[] = [
+  { id: 'E1', name: 'Ravi Kumar', phone: '9876543210', shift: 'Morning', status: 'New', addedDate: '2026-04-10', source: 'Walk-in', handledBy: 'Admin', enquiryDate: '2026-04-10', preferredBranch: 'Main', avatar: 'RK', followUps: [], isOverdue: false, isToday: false, isUpcoming: false },
+  { id: 'E2', name: 'Priya Singh', phone: '8765432109', shift: 'Evening', status: 'Interested', addedDate: '2026-04-09', source: 'WhatsApp', handledBy: 'Manager', enquiryDate: '2026-04-09', preferredBranch: 'Main', avatar: 'PS', followUps: [], isOverdue: false, isToday: false, isUpcoming: false },
+  { id: 'E3', name: 'Amit Patel', phone: '7654321098', shift: 'Full Day', status: 'Converted', addedDate: '2026-04-08', source: 'Referral', handledBy: 'Admin', enquiryDate: '2026-04-08', preferredBranch: 'Main', avatar: 'AP', followUps: [], isOverdue: false, isToday: false, isUpcoming: false },
+  { id: 'E4', name: 'Sneha Gupta', phone: '6543210987', shift: 'Night', status: 'Lost', addedDate: '2026-04-07', source: 'Instagram', handledBy: 'Staff', enquiryDate: '2026-04-07', preferredBranch: 'Main', avatar: 'SG', followUps: [], isOverdue: false, isToday: false, isUpcoming: false },
+];

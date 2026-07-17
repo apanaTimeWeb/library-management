@@ -22,6 +22,7 @@ import {
   User,
 } from 'lucide-react';
 import { fetchApi } from '@/lib/api';
+import { SUPERADMIN_CRM_MOCK_ENQUIRIES } from '@/app/superadmin/superadmin_crm/superadmin_crm_constants/SuperadminCrmConstants';
 import {
   type Enquiry,
   type EnquiryStatus,
@@ -145,13 +146,8 @@ export default function EnquiriesPage() {
     fetchApi('/crm/enquiries').then(( data: unknown ) => {
       const actualData = Array.isArray(data) ? data : (data as any)?.data;
       if (!Array.isArray(actualData) || actualData.length === 0 || actualData[0]?.id?.startsWith('MOCK-')) {
-        const mockEnquiries: Enquiry[] = [
-          { id: 'E1', name: 'Ravi Kumar', phone: '9876543210', shift: 'Morning', status: 'New', addedDate: '2026-04-10', source: 'Walk-in', handledBy: 'Admin', enquiryDate: '2026-04-10', preferredBranch: 'Main', avatar: 'RK', followUps: [] },
-          { id: 'E2', name: 'Priya Singh', phone: '8765432109', shift: 'Evening', status: 'Interested', addedDate: '2026-04-09', source: 'WhatsApp', handledBy: 'Manager', enquiryDate: '2026-04-09', preferredBranch: 'Main', avatar: 'PS', followUps: [] },
-          { id: 'E3', name: 'Amit Patel', phone: '7654321098', shift: 'Full Day', status: 'Converted', addedDate: '2026-04-08', source: 'Referral', handledBy: 'Admin', enquiryDate: '2026-04-08', preferredBranch: 'Main', avatar: 'AP', followUps: [] },
-          { id: 'E4', name: 'Sneha Gupta', phone: '6543210987', shift: 'Night', status: 'Lost', addedDate: '2026-04-07', source: 'Instagram', handledBy: 'Staff', enquiryDate: '2026-04-07', preferredBranch: 'Main', avatar: 'SG', followUps: [] },
-        ];
-        setEnquiries(mockEnquiries);
+        
+        setEnquiries(SUPERADMIN_CRM_MOCK_ENQUIRIES);
         return;
       }
       const mapped: Enquiry[] = actualData.map(( e: Record<string, unknown> ) => ({
@@ -439,3 +435,4 @@ export default function EnquiriesPage() {
     </div>
   );
 }
+
