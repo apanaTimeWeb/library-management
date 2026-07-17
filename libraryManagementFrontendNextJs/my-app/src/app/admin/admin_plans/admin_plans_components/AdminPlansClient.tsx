@@ -11,6 +11,10 @@ import { AdminPlansEmptyState } from '@/app/admin/admin_plans/admin_plans_compon
 import { AdminPlansAddDialog } from '@/app/admin/admin_plans/admin_plans_components/AdminPlansAddDialog';
 import { PlanRecord } from '@/app/admin/admin_plans/admin_plans_types/admin_plans_types';
 import toast from 'react-hot-toast';
+import { Card, CardHeader, CardTitle, CardContent, CardFooter } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
+import { Input } from '@/components/ui/input';
 
 export function AdminPlansClient() {
   const {
@@ -58,27 +62,29 @@ export function AdminPlansClient() {
   return (
     <div className="h-full flex flex-col pb-10 space-y-6">
       {/* Page Header */}
-      <div className="admin-page-header border-b border-border pb-4 flex flex-wrap items-center justify-between gap-4">
+      <div className="border-b border-border pb-4 flex flex-col md:flex-row md:items-end justify-between gap-4">
         <div>
-          <p className="admin-breadcrumb">Smart Library 360 › Admin › Plans</p>
-          <h1 className="admin-page-title">Membership Plans</h1>
-          <p className="admin-page-subtitle">Create and manage subscription pricing plans across library branches.</p>
+          <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-1">
+            Smart Library 360 <span className="opacity-50">›</span> Admin <span className="opacity-50">›</span> Plans
+          </p>
+          <h1 className="text-2xl font-bold tracking-tight text-foreground">Membership Plans</h1>
+          <p className="text-sm text-muted-foreground mt-1">Create and manage subscription pricing plans across library branches.</p>
         </div>
-        <button
+        <Button
           type="button"
           onClick={openCreateDialog}
-          className="admin-btn-primary flex items-center gap-2"
+          className="gap-2"
         >
           <Plus size={16} /> Create Plan
-        </button>
+        </Button>
       </div>
 
       {/* Search & Stats Bar (`Rule 15: Debounced search`) */}
       <div className="flex flex-wrap items-center justify-between gap-4">
         <div className="relative max-w-xs w-full">
           <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
-          <input
-            className="admin-input pl-9"
+          <Input
+            className="pl-9"
             placeholder="Search plan name or feature…"
             value={searchInput}
             onChange={(e) => setSearchInput(e.target.value)}
@@ -97,14 +103,14 @@ export function AdminPlansClient() {
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
           {plans.map((plan) => (
-            <div
+            <Card
               key={plan.id}
               onClick={() => setSelectedPlanDetails(plan)}
-              className="admin-plan-card p-6 rounded-xl border border-border bg-card shadow-sm hover:shadow-md transition-all flex flex-col justify-between cursor-pointer relative group"
+              className="hover:shadow-md transition-all flex flex-col justify-between cursor-pointer relative group border-border"
               style={{ opacity: plan.status === 'Inactive' ? 0.72 : 1 }}
             >
-              {/* Card Top */}
-              <div>
+              <CardContent className="p-6">
+                {/* Card Top */}
                 <div className="flex justify-between items-start gap-2">
                   <div>
                     <div className="flex items-center gap-2">
@@ -124,25 +130,25 @@ export function AdminPlansClient() {
                   </div>
 
                   <div className="flex flex-col items-end gap-1.5 shrink-0">
-                    <button
-                      type="button"
+                    <Badge
+                      variant="secondary"
                       onClick={(e) => {
                         e.stopPropagation();
                         handleToggleStatus(plan.id);
                       }}
-                      className={`admin-badge transition-colors ${
-                        plan.status === 'Active' ? 'admin-badge-success hover:bg-success/20' : 'admin-badge-danger hover:bg-danger/20'
+                      className={`cursor-pointer transition-colors border-none ${
+                        plan.status === 'Active' ? 'bg-success/10 text-success hover:bg-success/20' : 'bg-danger/10 text-danger hover:bg-danger/20'
                       }`}
                       title="Click to toggle active status"
                     >
                       {plan.status}
-                    </button>
-                    <span className="admin-badge admin-badge-primary text-[10px]">{plan.duration}</span>
+                    </Badge>
+                    <Badge variant="outline" className="text-[10px] bg-primary/5 text-primary border-primary/20">{plan.duration}</Badge>
                   </div>
                 </div>
 
                 {/* Price */}
-                <div className="flex items-baseline gap-1 mt-3">
+                <div className="flex items-baseline gap-1 mt-4">
                   <IndianRupee size={20} className="text-primary self-center" />
                   <span className="text-3xl font-extrabold text-foreground tracking-tight leading-none">
                     {plan.price}
@@ -151,22 +157,22 @@ export function AdminPlansClient() {
                 </div>
 
                 {/* Subscribers badge */}
-                <div className="mt-3">
-                  <span className="admin-badge admin-badge-info flex items-center gap-1.5 w-fit text-xs">
+                <div className="mt-4">
+                  <Badge variant="secondary" className="bg-info/10 text-info border-none flex items-center gap-1.5 w-fit text-xs font-semibold">
                     <Users size={12} /> {plan.subscribers} active subscribers
-                  </span>
+                  </Badge>
                 </div>
 
                 {/* Features (`Rule 57: No key={index}`) */}
-                <div className="border-t border-border pt-3 mt-4">
-                  <p className="text-[11px] font-semibold text-muted-foreground uppercase tracking-wider mb-2">
+                <div className="border-t border-border pt-4 mt-5">
+                  <p className="text-[11px] font-semibold text-muted-foreground uppercase tracking-wider mb-3">
                     Included Features
                   </p>
                   <ul className="list-none p-0 m-0 space-y-2">
                     {plan.features.map((feat) => (
                       <li
                         key={`${plan.id}-${feat}`}
-                        className="flex items-start gap-2 text-xs text-foreground leading-snug"
+                        className="flex items-start gap-2 text-xs text-foreground leading-snug font-medium"
                       >
                         <CheckCircle size={14} className="text-success shrink-0 mt-0.5" />
                         <span>{feat}</span>
@@ -174,36 +180,38 @@ export function AdminPlansClient() {
                     ))}
                   </ul>
                 </div>
-              </div>
+              </CardContent>
 
               {/* Footer Actions */}
-              <div className="flex items-center justify-between pt-4 mt-5 border-t border-border">
+              <CardFooter className="flex items-center justify-between p-4 bg-muted/20 border-t border-border">
                 <span className="font-mono text-[10px] text-muted-foreground">ID: #{plan.id}</span>
                 <div className="flex items-center gap-1.5">
-                  <button
-                    type="button"
+                  <Button
+                    variant="ghost"
+                    size="icon"
                     onClick={(e) => openEditDialog(e, plan)}
-                    className="p-1.5 rounded-md text-info hover:bg-info/10 transition-colors"
+                    className="h-8 w-8 text-info hover:text-info hover:bg-info/10"
                     title="Edit Plan"
                   >
                     <Pencil size={15} />
-                  </button>
-                  <button
-                    type="button"
+                  </Button>
+                  <Button
+                    variant="ghost"
+                    size="icon"
                     onClick={(e) => {
                       e.stopPropagation();
                       if (window.confirm(`Are you sure you want to delete membership plan "${plan.name}"?`)) {
                         handleDeletePlan(plan.id);
                       }
                     }}
-                    className="p-1.5 rounded-md text-danger hover:bg-danger/10 transition-colors"
+                    className="h-8 w-8 text-danger hover:text-danger hover:bg-danger/10"
                     title="Delete Plan"
                   >
                     <Trash2 size={15} />
-                  </button>
+                  </Button>
                 </div>
-              </div>
-            </div>
+              </CardFooter>
+            </Card>
           ))}
         </div>
       )}
@@ -219,82 +227,87 @@ export function AdminPlansClient() {
       {/* Detail Drawer / Modal (`Rule 19`) */}
       {selectedPlanDetails && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4 animate-in fade-in-50">
-          <div className="bg-card border border-border rounded-xl shadow-2xl max-w-lg w-full p-6 space-y-4">
-            <div className="flex items-center justify-between border-b border-border pb-3">
-              <div className="flex items-center gap-2">
-                <span className="font-mono text-xs text-muted-foreground">#{selectedPlanDetails.id}</span>
-                <h3 className="font-bold text-lg text-foreground">{selectedPlanDetails.name} Plan</h3>
-              </div>
-              <button
-                type="button"
-                onClick={() => setSelectedPlanDetails(null)}
-                aria-label="Close details"
-                className="p-1.5 rounded-md hover:bg-muted text-muted-foreground hover:text-foreground transition-colors"
-              >
-                <X size={18} />
-              </button>
-            </div>
-
-            <div className="grid grid-cols-2 gap-4 text-sm">
-              <div>
-                <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Plan Price</span>
-                <p className="font-extrabold text-lg text-primary mt-0.5 flex items-center">
-                  <IndianRupee size={16} /> {selectedPlanDetails.price}
-                </p>
-              </div>
-              <div>
-                <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Validity Period</span>
-                <p className="font-medium text-foreground mt-0.5 flex items-center gap-1.5">
-                  <Calendar size={14} className="text-muted-foreground" /> {selectedPlanDetails.duration} ({selectedPlanDetails.durationDays} Days)
-                </p>
-              </div>
-              <div>
-                <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Status</span>
-                <div className="mt-1">
-                  <span className={`admin-badge ${selectedPlanDetails.status === 'Active' ? 'admin-badge-success' : 'admin-badge-danger'}`}>
-                    {selectedPlanDetails.status}
-                  </span>
+          <Card className="max-w-lg w-full shadow-2xl border-border">
+            <CardHeader className="flex flex-row items-center justify-between border-b border-border pb-4 bg-muted/20">
+              <div className="flex items-center gap-3">
+                <div className="h-10 w-10 rounded-full bg-primary/10 text-primary flex items-center justify-center">
+                  <Calendar size={18} />
+                </div>
+                <div>
+                  <span className="font-mono text-[10px] text-muted-foreground block mb-0.5">#{selectedPlanDetails.id}</span>
+                  <CardTitle className="text-lg">{selectedPlanDetails.name} Plan</CardTitle>
                 </div>
               </div>
-              <div>
-                <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Subscribers</span>
-                <p className="font-mono font-medium text-foreground mt-0.5">
-                  {selectedPlanDetails.subscribers} enrolled
-                </p>
-              </div>
-              <div className="col-span-2 border-t border-border pt-3">
-                <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">All Included Features</span>
-                <ul className="list-none p-0 m-0 space-y-2 mt-2 bg-muted/30 p-3 rounded-lg border border-border">
-                  {selectedPlanDetails.features.map((feat) => (
-                    <li key={`${selectedPlanDetails.id}-modal-${feat}`} className="flex items-start gap-2 text-xs text-foreground">
-                      <CheckCircle size={14} className="text-success shrink-0 mt-0.5" />
-                      <span>{feat}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={() => setSelectedPlanDetails(null)}
+                aria-label="Close details"
+                className="text-muted-foreground hover:text-foreground"
+              >
+                <X size={18} />
+              </Button>
+            </CardHeader>
 
-            <div className="flex items-center justify-between pt-3 border-t border-border">
-              <button
-                type="button"
+            <CardContent className="p-6">
+              <div className="grid grid-cols-2 gap-y-6 gap-x-4 text-sm">
+                <div>
+                  <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wider block mb-1">Plan Price</span>
+                  <p className="font-extrabold text-2xl text-primary flex items-center">
+                    <IndianRupee size={20} /> {selectedPlanDetails.price}
+                  </p>
+                </div>
+                <div>
+                  <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wider block mb-1">Validity Period</span>
+                  <p className="font-bold text-foreground flex items-center gap-1.5 text-base mt-1">
+                    {selectedPlanDetails.duration} <span className="font-normal text-muted-foreground text-sm">({selectedPlanDetails.durationDays} Days)</span>
+                  </p>
+                </div>
+                <div>
+                  <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wider block mb-1">Status</span>
+                  <Badge variant="secondary" className={`border-none ${selectedPlanDetails.status === 'Active' ? 'bg-success/10 text-success' : 'bg-danger/10 text-danger'}`}>
+                    {selectedPlanDetails.status}
+                  </Badge>
+                </div>
+                <div>
+                  <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wider block mb-1">Subscribers</span>
+                  <p className="font-mono font-bold text-foreground text-base">
+                    {selectedPlanDetails.subscribers} <span className="font-medium text-muted-foreground text-sm">enrolled</span>
+                  </p>
+                </div>
+                <div className="col-span-2 border-t border-border pt-4">
+                  <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wider block mb-3">All Included Features</span>
+                  <ul className="list-none p-4 space-y-2.5 bg-muted/30 rounded-lg border border-border">
+                    {selectedPlanDetails.features.map((feat) => (
+                      <li key={`${selectedPlanDetails.id}-modal-${feat}`} className="flex items-start gap-2.5 text-sm text-foreground font-medium">
+                        <CheckCircle size={16} className="text-success shrink-0 mt-0.5" />
+                        <span>{feat}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </CardContent>
+
+            <CardFooter className="flex items-center justify-between p-4 border-t border-border bg-muted/20">
+              <Button
+                variant="outline"
                 onClick={(e) => {
                   openEditDialog(e, selectedPlanDetails);
                   setSelectedPlanDetails(null);
                 }}
-                className="px-3.5 py-1.5 text-xs font-medium rounded-md bg-info/10 text-info hover:bg-info/20 transition-colors flex items-center gap-1.5"
+                className="gap-2 text-info border-info/20 hover:bg-info/10 hover:text-info"
               >
                 <Pencil size={14} /> Edit Plan Details
-              </button>
-              <button
-                type="button"
+              </Button>
+              <Button
+                variant="ghost"
                 onClick={() => setSelectedPlanDetails(null)}
-                className="px-4 py-2 text-sm font-medium rounded-md bg-muted text-foreground hover:bg-muted/80 transition-colors"
               >
                 Close
-              </button>
-            </div>
-          </div>
+              </Button>
+            </CardFooter>
+          </Card>
         </div>
       )}
     </div>

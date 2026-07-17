@@ -4,8 +4,12 @@
 import { useEffect, useState } from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm as useReactHookForm } from 'react-hook-form';
-import { IndianRupee, X, Loader2 } from 'lucide-react';
+import { IndianRupee, Loader2 } from 'lucide-react';
 import { adminPlanFormSchema, AdminPlanFormData, PlanRecord } from '@/app/admin/admin_plans/admin_plans_types/admin_plans_types';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from '@/components/ui/dialog';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
 
 interface AdminPlansAddDialogProps {
   isOpen: boolean;
@@ -72,8 +76,6 @@ export function AdminPlansAddDialog({ isOpen, onClose, onSubmit, editingPlan }: 
     };
   }, [isDirty, isOpen]);
 
-  if (!isOpen) return null;
-
   const onFormSubmit = async (data: AdminPlanFormData) => {
     setIsSubmitting(true);
     try {
@@ -87,7 +89,8 @@ export function AdminPlansAddDialog({ isOpen, onClose, onSubmit, editingPlan }: 
     }
   };
 
-  const handleModalClose = () => {
+  const handleModalClose = (open: boolean) => {
+    if (open) return;
     if (isDirty) {
       if (window.confirm('You have unsaved changes in this form. Are you sure you want to discard them? (`Rule 48`)')) {
         reset();
@@ -100,128 +103,118 @@ export function AdminPlansAddDialog({ isOpen, onClose, onSubmit, editingPlan }: 
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4 animate-in fade-in-50">
-      <div className="bg-card border border-border rounded-xl shadow-2xl max-w-md w-full p-6 space-y-5">
-        {/* Header */}
-        <div className="flex items-center justify-between border-b border-border pb-3">
-          <div className="flex items-center gap-2.5 text-primary font-semibold text-lg">
+    <Dialog open={isOpen} onOpenChange={handleModalClose}>
+      <DialogContent className="sm:max-w-[425px]">
+        <DialogHeader>
+          <div className="flex items-center gap-2 text-primary font-semibold text-lg mb-1">
             <IndianRupee size={20} />
-            <h2>{editingPlan ? 'Edit Membership Plan' : 'Create Membership Plan'}</h2>
+            <DialogTitle>{editingPlan ? 'Edit Membership Plan' : 'Create Membership Plan'}</DialogTitle>
           </div>
-          <button
-            type="button"
-            onClick={handleModalClose}
-            aria-label="Close dialog"
-            className="p-1.5 rounded-md hover:bg-muted text-muted-foreground hover:text-foreground transition-colors"
-          >
-            <X size={18} />
-          </button>
-        </div>
-
-        <p className="text-xs text-muted-foreground m-0">
-          Configure pricing, duration, and feature lists displayed to students during branch subscription selection.
-        </p>
+          <DialogDescription>
+            Configure pricing, duration, and feature lists displayed to students during branch subscription selection.
+          </DialogDescription>
+        </DialogHeader>
 
         {/* Form (`Rule 16`) */}
-        <form onSubmit={handleSubmit(onFormSubmit)} className="space-y-4">
-          <div>
-            <label htmlFor="plan-name" className="block text-xs font-semibold text-foreground uppercase tracking-wider mb-1">
-              Plan Name *
+        <form id="plan-form" onSubmit={handleSubmit(onFormSubmit)} className="space-y-4 py-4">
+          <div className="space-y-1.5">
+            <label htmlFor="plan-name" className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">
+              Plan Name <span className="text-danger">*</span>
             </label>
-            <input
+            <Input
               id="plan-name"
               type="text"
               {...register('name')}
               placeholder="e.g. Monthly Standard"
-              className="admin-input w-full font-medium"
+              className={errors.name ? 'border-danger focus-visible:ring-danger font-medium' : 'font-medium'}
               disabled={isSubmitting}
             />
-            {errors.name && <p className="text-xs text-danger mt-1 font-medium">{errors.name.message}</p>}
+            {errors.name && <p className="text-xs text-danger font-medium">{errors.name.message}</p>}
           </div>
 
           <div className="grid grid-cols-2 gap-3">
-            <div>
-              <label htmlFor="plan-price" className="block text-xs font-semibold text-foreground uppercase tracking-wider mb-1">
-                Price (₹ INR) *
+            <div className="space-y-1.5">
+              <label htmlFor="plan-price" className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">
+                Price (₹ INR) <span className="text-danger">*</span>
               </label>
-              <input
+              <Input
                 id="plan-price"
                 type="number"
                 {...register('price', { valueAsNumber: true })}
                 placeholder="1000"
-                className="admin-input w-full font-bold"
+                className={errors.price ? 'border-danger focus-visible:ring-danger font-bold' : 'font-bold'}
                 disabled={isSubmitting}
               />
-              {errors.price && <p className="text-xs text-danger mt-1 font-medium">{errors.price.message}</p>}
+              {errors.price && <p className="text-xs text-danger font-medium">{errors.price.message}</p>}
             </div>
 
-            <div>
-              <label htmlFor="plan-duration" className="block text-xs font-semibold text-foreground uppercase tracking-wider mb-1">
-                Duration Label *
+            <div className="space-y-1.5">
+              <label htmlFor="plan-duration" className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">
+                Duration Label <span className="text-danger">*</span>
               </label>
-              <input
+              <Input
                 id="plan-duration"
                 type="text"
                 {...register('duration')}
                 placeholder="e.g. 1 Month"
-                className="admin-input w-full"
+                className={errors.duration ? 'border-danger focus-visible:ring-danger' : ''}
                 disabled={isSubmitting}
               />
-              {errors.duration && <p className="text-xs text-danger mt-1 font-medium">{errors.duration.message}</p>}
+              {errors.duration && <p className="text-xs text-danger font-medium">{errors.duration.message}</p>}
             </div>
           </div>
 
-          <div>
-            <label htmlFor="plan-duration-days" className="block text-xs font-semibold text-foreground uppercase tracking-wider mb-1">
-              Validity in Days (for exact calculation) *
+          <div className="space-y-1.5">
+            <label htmlFor="plan-duration-days" className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">
+              Validity in Days <span className="lowercase font-normal opacity-70">(for exact calculation)</span> <span className="text-danger">*</span>
             </label>
-            <input
+            <Input
               id="plan-duration-days"
               type="number"
               {...register('durationDays', { valueAsNumber: true })}
               placeholder="30"
-              className="admin-input w-full"
+              className={errors.durationDays ? 'border-danger focus-visible:ring-danger' : ''}
               disabled={isSubmitting}
             />
-            {errors.durationDays && <p className="text-xs text-danger mt-1 font-medium">{errors.durationDays.message}</p>}
+            {errors.durationDays && <p className="text-xs text-danger font-medium">{errors.durationDays.message}</p>}
           </div>
 
-          <div>
-            <label htmlFor="plan-features" className="block text-xs font-semibold text-foreground uppercase tracking-wider mb-1">
-              Features List (One feature per line) *
+          <div className="space-y-1.5">
+            <label htmlFor="plan-features" className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">
+              Features List <span className="lowercase font-normal opacity-70">(One feature per line)</span> <span className="text-danger">*</span>
             </label>
-            <textarea
+            <Textarea
               id="plan-features"
               rows={4}
               {...register('featuresText')}
               placeholder={'Any single shift\nLocker access\nWiFi included'}
-              className="admin-input w-full resize-none py-2 font-mono text-xs"
+              className={errors.featuresText ? 'border-danger focus-visible:ring-danger resize-none font-mono text-xs' : 'resize-none font-mono text-xs'}
               disabled={isSubmitting}
             />
-            {errors.featuresText && <p className="text-xs text-danger mt-1 font-medium">{errors.featuresText.message}</p>}
-          </div>
-
-          {/* Action Buttons */}
-          <div className="flex items-center justify-end gap-3 pt-3 border-t border-border">
-            <button
-              type="button"
-              onClick={handleModalClose}
-              disabled={isSubmitting}
-              className="px-4 py-2 text-sm font-medium rounded-md bg-muted text-foreground hover:bg-muted/80 transition-colors disabled:opacity-50"
-            >
-              Cancel
-            </button>
-            <button
-              type="submit"
-              disabled={isSubmitting}
-              className="px-4 py-2 text-sm font-medium rounded-md bg-primary text-primary-foreground hover:bg-primary/90 transition-colors flex items-center gap-2 disabled:opacity-50"
-            >
-              {isSubmitting && <Loader2 size={15} className="animate-spin" />}
-              {isSubmitting ? 'Saving…' : editingPlan ? 'Update Plan' : 'Create Plan'}
-            </button>
+            {errors.featuresText && <p className="text-xs text-danger font-medium">{errors.featuresText.message}</p>}
           </div>
         </form>
-      </div>
-    </div>
+
+        <DialogFooter>
+          <Button
+            type="button"
+            variant="outline"
+            onClick={() => handleModalClose(false)}
+            disabled={isSubmitting}
+          >
+            Cancel
+          </Button>
+          <Button
+            type="submit"
+            form="plan-form"
+            disabled={isSubmitting}
+            className="gap-2"
+          >
+            {isSubmitting && <Loader2 size={15} className="animate-spin" />}
+            {isSubmitting ? 'Saving…' : editingPlan ? 'Update Plan' : 'Create Plan'}
+          </Button>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
   );
 }
