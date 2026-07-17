@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the CommunicationRoute.tsx component.
 'use client';
 import { usePathname } from 'next/navigation';
 import '@/app/manager/manager_communication/communication.css';
@@ -13,3 +14,4 @@ export function CommunicationRoute({ children }: { children: React.ReactNode }) 
 
   return <>{children}</>;
 }
+

@@ -76,9 +76,7 @@ export function ActionsCell({ data }: { data: Student }) {
 
   return (
     <div style={{ display: 'flex', alignItems: 'center', gap: 6, height: '100%' }}>
-      <Link href={profileUrl} className="w-8 h-8 rounded-lg border border-border text-text-secondary inline-flex items-center justify-center hover:bg-primary-subtle hover:text-primary transition-colors" title="View Profile">
-        <Eye size={13} />
-      </Link>
+      
       <Link href={`${profileUrl}/edit`} className="w-8 h-8 rounded-lg border border-border text-text-secondary inline-flex items-center justify-center hover:bg-primary-subtle hover:text-primary transition-colors" title="Edit">
         <Pencil size={13} />
       </Link>
@@ -86,7 +84,7 @@ export function ActionsCell({ data }: { data: Student }) {
         <button
           className="w-8 h-8 rounded-lg border border-border text-text-secondary inline-flex items-center justify-center hover:bg-primary-subtle hover:text-primary transition-colors w-8 h-8 rounded-lg border border-border text-text-secondary inline-flex items-center justify-center hover:bg-primary-subtle hover:text-primary transition-colors--wa"
           title={`Send dues reminder — ₹${data.due}`}
-          onClick={sendDuesReminder}
+          onClick={(e) => { e.stopPropagation(); sendDuesReminder(); }}
         >
           <MessageSquare size={13} />
         </button>
@@ -94,4 +92,5 @@ export function ActionsCell({ data }: { data: Student }) {
     </div>
   );
 }
+
 

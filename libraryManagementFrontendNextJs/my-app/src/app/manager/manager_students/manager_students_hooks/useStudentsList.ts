@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo } from 'react';
-import { useDebounce } from '@/app/manager/manager_students/manager_students_hooks/useDebounce';
+import { useDebounce } from '@/app/manager/manager_shared_hooks/useDebounce';
 import { useStudentsStore } from '@/app/manager/manager_students/manager_students_context/manager_students_store';
 
 /**
@@ -47,3 +47,4 @@ export function useStudentsList() {
     shiftFilter, setShiftFilter
   };
 }
+

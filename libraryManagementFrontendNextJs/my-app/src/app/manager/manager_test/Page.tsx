@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the Page.tsx component.
 import React from 'react'
 
 function Page() {
@@ -7,3 +8,4 @@ function Page() {
 }
 
 export default Page
+

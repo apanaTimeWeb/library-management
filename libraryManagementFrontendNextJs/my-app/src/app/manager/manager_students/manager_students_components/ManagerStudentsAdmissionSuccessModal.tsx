@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the ManagerStudentsAdmissionSuccessModal.tsx component.
 'use client';
 
 import { useRouter } from 'next/navigation';
@@ -136,4 +137,5 @@ export default function ManagerStudentsAdmissionSuccessModal({ data, onClose }: 
     </div>
   );
 }
+
 

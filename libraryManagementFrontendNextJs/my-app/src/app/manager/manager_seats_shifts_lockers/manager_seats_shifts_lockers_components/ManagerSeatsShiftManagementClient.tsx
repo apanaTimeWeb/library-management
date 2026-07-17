@@ -1,23 +1,18 @@
+// RESPONSIBILITY: Renders the ManagerSeatsShiftManagementClient.tsx component UI.
 'use client';
 import { useState } from 'react';
+import { Allocation, ActivityItem, Locker, SeatHistoryEntry, LogEntry, Seat, ManagerSeatsSeatMatrixModalProps, ShiftData, Shift, Student } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_types/ManagerSeatsTypes';
+import { ACTIVITY_DATA, INITIAL_LOCKERS, INITIAL_SEATS, SHIFTS_DATA, INITIAL_SHIFTS, STUDENTS_DATA } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_constants/ManagerSeatsConstants';
 import { Plus, Edit, PowerOff, Zap, ChevronDown } from 'lucide-react';
+import { Allocation, ActivityItem, Locker, SeatHistoryEntry, LogEntry, Seat, ManagerSeatsSeatMatrixModalProps, ShiftData, Shift, Student } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_types/ManagerSeatsTypes';
+import { ACTIVITY_DATA, INITIAL_LOCKERS, INITIAL_SEATS, SHIFTS_DATA, INITIAL_SHIFTS, STUDENTS_DATA } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_constants/ManagerSeatsConstants';
 import toast from 'react-hot-toast';
+import { Allocation, ActivityItem, Locker, SeatHistoryEntry, LogEntry, Seat, ManagerSeatsSeatMatrixModalProps, ShiftData, Shift, Student } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_types/ManagerSeatsTypes';
+import { ACTIVITY_DATA, INITIAL_LOCKERS, INITIAL_SEATS, SHIFTS_DATA, INITIAL_SHIFTS, STUDENTS_DATA } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_constants/ManagerSeatsConstants';
 
-interface Shift {
-  id: string;
-  name: string;
-  startTime: string;
-  endTime: string;
-  occupancy: number;
-  capacity: number;
-  active: boolean;
-}
+// Shift type centralized.
 
-const INITIAL_SHIFTS: Shift[] = [
-  { id: '1', name: 'Morning',   startTime: '06:00', endTime: '12:00', occupancy: 32, capacity: 40, active: true  },
-  { id: '2', name: 'Afternoon', startTime: '12:00', endTime: '18:00', occupancy: 18, capacity: 40, active: true  },
-  { id: '3', name: 'Evening',   startTime: '18:00', endTime: '22:00', occupancy: 0,  capacity: 40, active: false },
-];
+// INITIAL_SHIFTS centralized.
 
 const EMPTY_FORM = { name: '', startTime: '', endTime: '', active: true };
 
@@ -204,4 +199,5 @@ export function ManagerSeatsShiftManagementClient() {
     </>
   );
 }
+
 

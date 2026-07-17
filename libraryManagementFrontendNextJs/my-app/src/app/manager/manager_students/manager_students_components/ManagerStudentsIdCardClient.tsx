@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the ManagerStudentsIdCardClient.tsx component.
 'use client';
 
 import { useState, useMemo, useEffect } from 'react';
@@ -19,6 +20,7 @@ export function ManagerStudentsIdCardClient() {
   const [students, setStudents] = useState<Student[]>([]);
   const [selectedId, setSelectedId] = useState<string>('');
   const [search, setSearch]         = useState('');
+  const debouncedSearch = useDebounce(search, 300);
 
   useEffect(() => {
     fetchStudents().then(setStudents).catch(console.error);
@@ -27,11 +29,11 @@ export function ManagerStudentsIdCardClient() {
   const filtered = useMemo(() =>
     students.filter(s =>
       !search ||
-      s.name.toLowerCase().includes(search.toLowerCase()) ||
-      s.smartId.toLowerCase().includes(search.toLowerCase()) ||
-      s.phone.includes(search)
+      s.name.toLowerCase().includes(debouncedSearch.toLowerCase()) ||
+      s.smartId.toLowerCase().includes(debouncedSearch.toLowerCase()) ||
+      s.phone.includes(debouncedSearch)
     ),
-    [students, search]
+    [students, debouncedSearch]
   );
 
   const selected = useMemo(
@@ -215,4 +217,6 @@ export function ManagerStudentsIdCardClient() {
     </div>
   );
 }
+
+
 

@@ -1,8 +1,16 @@
 'use client';
 import { useState, useEffect } from 'react';
+import { Allocation, ActivityItem, Locker, SeatHistoryEntry, LogEntry, Seat, ManagerSeatsSeatMatrixModalProps, ShiftData, Shift, Student } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_types/ManagerSeatsTypes';
+import { ACTIVITY_DATA, INITIAL_LOCKERS, INITIAL_SEATS, SHIFTS_DATA, INITIAL_SHIFTS, STUDENTS_DATA } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_constants/ManagerSeatsConstants';
 import { User, KeyRound, LockKeyhole, Settings } from 'lucide-react';
+import { Allocation, ActivityItem, Locker, SeatHistoryEntry, LogEntry, Seat, ManagerSeatsSeatMatrixModalProps, ShiftData, Shift, Student } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_types/ManagerSeatsTypes';
+import { ACTIVITY_DATA, INITIAL_LOCKERS, INITIAL_SEATS, SHIFTS_DATA, INITIAL_SHIFTS, STUDENTS_DATA } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_constants/ManagerSeatsConstants';
 import type { ReactNode } from 'react';
+import { Allocation, ActivityItem, Locker, SeatHistoryEntry, LogEntry, Seat, ManagerSeatsSeatMatrixModalProps, ShiftData, Shift, Student } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_types/ManagerSeatsTypes';
+import { ACTIVITY_DATA, INITIAL_LOCKERS, INITIAL_SEATS, SHIFTS_DATA, INITIAL_SHIFTS, STUDENTS_DATA } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_constants/ManagerSeatsConstants';
 import toast from 'react-hot-toast';
+import { Allocation, ActivityItem, Locker, SeatHistoryEntry, LogEntry, Seat, ManagerSeatsSeatMatrixModalProps, ShiftData, Shift, Student } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_types/ManagerSeatsTypes';
+import { ACTIVITY_DATA, INITIAL_LOCKERS, INITIAL_SEATS, SHIFTS_DATA, INITIAL_SHIFTS, STUDENTS_DATA } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_constants/ManagerSeatsConstants';
 
 const STATS: { label: string; value: string; border: string; valueClass: string }[] = [
   { label: 'Total Capacity',   value: '120', border: 'ss-kpi-card__border-primary', valueClass: 'ss-kpi-card__value--primary' },
@@ -17,19 +25,13 @@ const LEGEND_ITEMS = [
   { cls: 'ss-legend-dot--warning', label: 'Maintenance' },
 ];
 
-interface ActivityItem {
-  icon: ReactNode;
-  text: string;
-  sub: string;
-  id: string;
-}
+// ActivityItem type centralized.
 
-const ACTIVITY: ActivityItem[] = [
-  { icon: <User size={16} />,     text: 'Locker C10 assigned to Alex Chen',  sub: '2 mins ago • Monthly Plan', id: '#99201' },
-  { icon: <KeyRound size={16} />, text: 'Locker B08 released by Maria V.',   sub: '15 mins ago • Session End', id: '#99198' },
-];
+// ACTIVITY_DATA centralized.
 
 import { useSeatsStore } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_context/manager_seats_shifts_lockers_store';
+import { Allocation, ActivityItem, Locker, SeatHistoryEntry, LogEntry, Seat, ManagerSeatsSeatMatrixModalProps, ShiftData, Shift, Student } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_types/ManagerSeatsTypes';
+import { ACTIVITY_DATA, INITIAL_LOCKERS, INITIAL_SEATS, SHIFTS_DATA, INITIAL_SHIFTS, STUDENTS_DATA } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_constants/ManagerSeatsConstants';
 
 // RESPONSIBILITY: Render locker matrix UI using mocked data
 export function ManagerSeatsLockerMatrixClient() {
@@ -140,4 +142,6 @@ export function ManagerSeatsLockerMatrixClient() {
     </>
   );
 }
+
+
 

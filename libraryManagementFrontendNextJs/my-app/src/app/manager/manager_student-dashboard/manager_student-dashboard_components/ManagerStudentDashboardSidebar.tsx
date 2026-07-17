@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the ManagerStudentDashboardSidebar.tsx component.
 // // staff/students/layout.tsx
 // import Link from 'next/link';
 
@@ -122,3 +123,4 @@
  export function ManagerStudentDashboardSidebarComponent() {
    return <ManagerStudentDashboardSidebar />;
  }
+

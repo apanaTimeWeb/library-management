@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the ManagerStudentsAlumniClient.tsx component.
 'use client';
 
 import React, { useState } from 'react';
@@ -93,4 +94,5 @@ export function ManagerStudentsAlumniClient() {
     </div>
   );
 }
+
 

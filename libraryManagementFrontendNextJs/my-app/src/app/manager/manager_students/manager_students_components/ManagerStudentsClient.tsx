@@ -1,6 +1,7 @@
 'use client';
 
-import { useMemo } from 'react';
+import { useMemo, useCallback } from 'react';
+import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { UserPlus, Users2, Download } from 'lucide-react';
 import { AgGridReact } from 'ag-grid-react';
@@ -123,6 +124,8 @@ export function ManagerStudentsClient() {
               suppressMovableColumns
               suppressCellFocus
               defaultColDef={{ resizable: true, sortable: true }}
+              onRowClicked={handleRowClick}
+              rowClass="cursor-pointer hover:bg-bg-elevated transition-colors"
             />
           )}
         </div>
@@ -130,4 +133,5 @@ export function ManagerStudentsClient() {
     </div>
   );
 }
+
 

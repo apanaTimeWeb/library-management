@@ -1,18 +1,18 @@
+// RESPONSIBILITY: Renders the ManagerSeatsShiftMigrationClient.tsx component UI.
 'use client';
 import { useState } from 'react';
+import { Allocation, ActivityItem, Locker, SeatHistoryEntry, LogEntry, Seat, ManagerSeatsSeatMatrixModalProps, ShiftData, Shift, Student } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_types/ManagerSeatsTypes';
+import { ACTIVITY_DATA, INITIAL_LOCKERS, INITIAL_SEATS, SHIFTS_DATA, INITIAL_SHIFTS, STUDENTS_DATA } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_constants/ManagerSeatsConstants';
 import { ArrowLeft, Search, ChevronDown, CreditCard, QrCode, Banknote, CheckCircle, Clock } from 'lucide-react';
+import { Allocation, ActivityItem, Locker, SeatHistoryEntry, LogEntry, Seat, ManagerSeatsSeatMatrixModalProps, ShiftData, Shift, Student } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_types/ManagerSeatsTypes';
+import { ACTIVITY_DATA, INITIAL_LOCKERS, INITIAL_SEATS, SHIFTS_DATA, INITIAL_SHIFTS, STUDENTS_DATA } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_constants/ManagerSeatsConstants';
 import toast from 'react-hot-toast';
+import { Allocation, ActivityItem, Locker, SeatHistoryEntry, LogEntry, Seat, ManagerSeatsSeatMatrixModalProps, ShiftData, Shift, Student } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_types/ManagerSeatsTypes';
+import { ACTIVITY_DATA, INITIAL_LOCKERS, INITIAL_SEATS, SHIFTS_DATA, INITIAL_SHIFTS, STUDENTS_DATA } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_constants/ManagerSeatsConstants';
 
-interface Student {
-  id: string; name: string; smartId: string;
-  currentShift: string; currentSeat: string; validTill: string; plan: string; dailyRate: number;
-}
+// Student type centralized.
 
-const STUDENTS: Student[] = [
-  { id: '1', name: 'Alex Rivera',  smartId: 'LIB-88429', currentShift: 'Morning',  currentSeat: 'A-12', validTill: '2025-04-30', plan: 'Monthly ₹1000', dailyRate: 33 },
-  { id: '2', name: 'Priya Sharma', smartId: 'LIB-00234', currentShift: 'Evening',  currentSeat: 'B-05', validTill: '2025-05-15', plan: 'Monthly ₹1200', dailyRate: 40 },
-  { id: '3', name: 'Rohan Mehta',  smartId: 'LIB-00567', currentShift: 'Full Day', currentSeat: 'C-08', validTill: '2025-06-01', plan: 'Monthly ₹1500', dailyRate: 50 },
-];
+// STUDENTS_DATA centralized.
 
 const SHIFTS = [
   { name: 'Morning',   seats: 4, rate: 33 },
@@ -164,15 +164,13 @@ export function ManagerSeatsShiftMigrationClient() {
                   </div>
                   <div>
                     <label className="ss-label">New Seat <span className="ss-text-danger">*</span></label>
-                    <div className="ss-select-wrap">
-                      <select className="ss-select" value={newSeat} onChange={e => setNewSeat(e.target.value)} disabled={!newShift}>
-                        <option value="">Select seat...</option>
-                        {newShift && ['B-01', 'B-02', 'B-03', 'B-04'].map(seat => (
-                          <option key={seat}>{seat}</option>
-                        ))}
-                      </select>
-                      <ChevronDown size={14} className="ss-select-icon" />
-                    </div>
+                                        <ManagerSearchableDropdown
+                      options={newShift ? ['B-01', 'B-02', 'B-03', 'B-04'].map(s => ({label: s, value: s})) : []}
+                      value={newSeat}
+                      onChange={(v) => setNewSeat(v)}
+                      placeholder="Select seat..."
+                      className={!newShift ? 'opacity-50 pointer-events-none' : ''}
+                    />
                   </div>
                 </div>
 
@@ -357,4 +355,7 @@ export function ManagerSeatsShiftMigrationClient() {
     </>
   );
 }
+
+
+
 

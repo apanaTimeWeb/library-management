@@ -1,42 +1,24 @@
+// RESPONSIBILITY: Renders the ManagerSeatsShiftGapClient.tsx component UI.
 'use client';
 import { useState } from 'react';
+import { Allocation, ActivityItem, Locker, SeatHistoryEntry, LogEntry, Seat, ManagerSeatsSeatMatrixModalProps, ShiftData, Shift, Student } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_types/ManagerSeatsTypes';
+import { ACTIVITY_DATA, INITIAL_LOCKERS, INITIAL_SEATS, SHIFTS_DATA, INITIAL_SHIFTS, STUDENTS_DATA } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_constants/ManagerSeatsConstants';
 import { ChevronDown, Zap } from 'lucide-react';
+import { Allocation, ActivityItem, Locker, SeatHistoryEntry, LogEntry, Seat, ManagerSeatsSeatMatrixModalProps, ShiftData, Shift, Student } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_types/ManagerSeatsTypes';
+import { ACTIVITY_DATA, INITIAL_LOCKERS, INITIAL_SEATS, SHIFTS_DATA, INITIAL_SHIFTS, STUDENTS_DATA } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_constants/ManagerSeatsConstants';
 import toast from 'react-hot-toast';
+import { Allocation, ActivityItem, Locker, SeatHistoryEntry, LogEntry, Seat, ManagerSeatsSeatMatrixModalProps, ShiftData, Shift, Student } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_types/ManagerSeatsTypes';
+import { ACTIVITY_DATA, INITIAL_LOCKERS, INITIAL_SEATS, SHIFTS_DATA, INITIAL_SHIFTS, STUDENTS_DATA } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_constants/ManagerSeatsConstants';
 
 const DAY_START_H = 6;
 const DAY_END_H   = 23;
 const TOTAL_HOURS = DAY_END_H - DAY_START_H;
 
-interface BookedBlock { startH: number; endH: number; label: string; }
-interface GapBlock    { startH: number; endH: number; seats: number; revLoss: number; }
-interface ShiftData   { id: string; name: string; occupied: number; capacity: number; booked: BookedBlock[]; gaps: GapBlock[]; }
+// BookedBlock centralized.
+// GapBlock centralized.
+// ShiftData centralized.
 
-const SHIFTS: ShiftData[] = [
-  {
-    id: '1', name: 'Morning', occupied: 38, capacity: 60,
-    booked: [
-      { startH: 6,  endH: 10, label: 'Batch A (22 students)' },
-      { startH: 10, endH: 12, label: 'Batch B (16 students)' },
-    ],
-    gaps: [{ startH: 8, endH: 10, seats: 6, revLoss: 600 }],
-  },
-  {
-    id: '2', name: 'Afternoon', occupied: 18, capacity: 60,
-    booked: [
-      { startH: 12, endH: 14, label: 'Batch C (10 students)' },
-      { startH: 16, endH: 18, label: 'Batch D (8 students)'  },
-    ],
-    gaps: [{ startH: 14, endH: 16, seats: 12, revLoss: 960 }],
-  },
-  {
-    id: '3', name: 'Evening', occupied: 24, capacity: 40,
-    booked: [
-      { startH: 18, endH: 20, label: 'Batch E (14 students)' },
-      { startH: 20, endH: 22, label: 'Batch F (10 students)' },
-    ],
-    gaps: [{ startH: 19, endH: 21, seats: 8, revLoss: 800 }],
-  },
-];
+// SHIFTS_DATA centralized.
 
 const VIEW_PERIODS = ['Today', 'This Week', 'This Month'];
 
@@ -159,4 +141,6 @@ export function ManagerSeatsShiftGapClient() {
     </>
   );
 }
+
+
 

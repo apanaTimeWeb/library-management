@@ -1,4 +1,5 @@
 // RESPONSIBILITY: Renders detailed CRM enquiry page, including timelines and follow-up updates.
+// RESPONSIBILITY: Renders detailed CRM enquiry page, including timelines and follow-up updates.
 'use client';
 
 // RESPONSIBILITY: Renders the detail view for a specific enquiry, handling status updates and follow-ups.
@@ -23,6 +24,9 @@ import {
   Edit2,
   AlertTriangle,
 } from 'lucide-react';
+import { useManagerCrmEnquiriesDetail } from '@/app/manager/manager_crm/manager_crm_hooks/useManagerCrmEnquiriesDetail';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
 import { MANAGER_CRM_URLS } from '@/app/manager/manager_crm/manager_crm_url_config';
 import {
   type Enquiry,
@@ -372,7 +376,7 @@ export function ManagerCrmEnquiriesDetailClient({ id }: { id: string }) {
                   <select
                     className="w-full px-3 py-2 rounded-lg text-sm bg-bg-input text-text-primary border border-border focus:border-primary outline-none transition-colors appearance-none cursor-pointer"
                     value={currentStatus}
-                    onChange={(e) => setCurrentStatus(e.target.value as EnquiryStatus)}
+                    onChange={handleStatusChange}
                   >
                     {STATUS_OPTIONS.map((s) => (
                       <option key={s} value={s}>{s}</option>
@@ -381,7 +385,7 @@ export function ManagerCrmEnquiriesDetailClient({ id }: { id: string }) {
                 </div>
                 <button
                   className="inline-flex items-center justify-center gap-2 px-5 py-2 rounded-lg text-sm font-semibold bg-primary text-white hover:opacity-90 transition-all disabled:opacity-55 disabled:cursor-not-allowed"
-                  onClick={handleStatusUpdate}
+                  onClick={() => handleStatusChange({ target: { value: currentStatus } } as any)}
                   disabled={statusUpdating || currentStatus === enquiry.status}
                 >
                   {statusUpdating ? <span className="animate-spin w-4 h-4 border-2 border-current border-t-transparent rounded-full" /> : <CheckCircle size={14} />}
@@ -395,7 +399,7 @@ export function ManagerCrmEnquiriesDetailClient({ id }: { id: string }) {
               <h3 className="text-xs font-bold text-text-secondary uppercase tracking-widest mb-4 m-0">Add Follow-Up</h3>
               <form
                 id="followup-form"
-                onSubmit={handleSubmitFU(handleAddFollowUp)}
+                onSubmit={handleSubmitFU(onSubmitFU)}
                 noValidate
                 className="flex flex-col gap-4"
               >
@@ -501,4 +505,7 @@ export function ManagerCrmEnquiriesDetailClient({ id }: { id: string }) {
     </>
   );
 }
+
+
+
 

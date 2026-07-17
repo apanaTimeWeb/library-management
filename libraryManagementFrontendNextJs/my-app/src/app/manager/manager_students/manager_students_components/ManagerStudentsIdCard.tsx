@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the ManagerStudentsIdCard.tsx component.
 'use client';
 
 import React from 'react';
@@ -183,3 +184,4 @@ export default function ManagerStudentsIdCard({ data }: Props) {
     </div>
   );
 }
+

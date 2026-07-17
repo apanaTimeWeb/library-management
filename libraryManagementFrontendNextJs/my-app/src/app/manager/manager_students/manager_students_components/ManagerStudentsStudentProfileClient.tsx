@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the ManagerStudentsStudentProfileClient.tsx component.
 'use client';
 
 import { useEffect, useState } from 'react';
@@ -168,4 +169,5 @@ export function ManagerStudentsStudentProfileClient({ id }: { id: string }) {
     </div>
   );
 }
+
 

@@ -1,49 +1,27 @@
 'use client';
-import { useState } from 'react';
+
 import Link from 'next/link';
 import { AgGridReact } from 'ag-grid-react';
 import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community';
 import { ChevronRight, Send, Mail, Phone } from 'lucide-react';
 import { gridTheme , ManagerRecord } from '@/app/manager/manager_reusable/gridTheme';
 import { AbsenteeRow } from '@/app/manager/manager_engagement/manager_engagement_types/ManagerEngagementTypes';
-import { ABSENTEE_MOCK_DATA } from '@/app/manager/manager_engagement/manager_engagement_constants/ManagerEngagementConstants';
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
 // Data loaded from centralized constants
 
 // RESPONSIBILITY: Renders the absentee report grid with filtering and notification actions.
+import { useManagerEngagementAbsentee } from '@/app/manager/manager_engagement/manager_engagement_hooks/useManagerEngagementAbsentee';
+
 export function ManagerEngagementAbsenteeReportClient() {
-  const [threshold, setThreshold] = useState('3');
-  const [shift, setShift]         = useState('All');
-  const [rows, setRows]           = useState<AbsenteeRow[]>(ABSENTEE_MOCK_DATA);
-  const [toast, setToast]         = useState('');
-  const [toastType, setToastType] = useState('');
-
-  const showToast = (msg: string, type = 'success') => {
-    setToast(msg); setToastType(type);
-    setTimeout(() => setToast(''), 3000);
-  };
-
-  const filtered = rows.filter(r => {
-    const thr = threshold === 'all' ? 0 : parseInt(threshold);
-    return r.daysAbsent >= thr && (shift === 'All' || r.shift === shift);
-  });
-
-  const critical  = filtered.filter(r => r.daysAbsent >= 7);
-  const moderate  = filtered.filter(r => r.daysAbsent >= 3 && r.daysAbsent < 7);
-
-  const notify = (id: string) => {
-    setRows(p => p.map(r => r.id === id ? { ...r, notified: true } : r));
-    showToast('✅ Alert sent to parent successfully');
-  };
-
-  const notifyAll = () => {
-    const targets = filtered.filter(r => !r.notified);
-    if (!targets.length) return showToast('All parents already notified', 'info');
-    setRows(p => p.map(r => filtered.find(f=>f.id===r.id) ? { ...r, notified:true } : r));
-    showToast(`✅ Bulk alerts sent to ${targets.length} parents`);
-  };
+  const {
+    threshold, setThreshold,
+    shift, setShift,
+    toast, toastType,
+    filtered, critical, moderate,
+    notify, notifyAll
+  } = useManagerEngagementAbsentee();
 
   const badgeClass = (d: number) => d >= 7 ? 'eng-badge--danger' : 'eng-badge--warning';
   
@@ -230,4 +208,5 @@ export function ManagerEngagementAbsenteeReportClient() {
     </div>
   );
 }
+
 

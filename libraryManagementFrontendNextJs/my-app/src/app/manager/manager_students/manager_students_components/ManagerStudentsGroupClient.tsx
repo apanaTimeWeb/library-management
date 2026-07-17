@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the ManagerStudentsGroupClient.tsx component.
 'use client';
 
 import React from 'react';
@@ -59,4 +60,5 @@ export function ManagerStudentsGroupClient() {
     </div>
   );
 }
+
 

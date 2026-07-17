@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the ManagerStudentsExitClient.tsx component.
 'use client';
 
 import { useState, useEffect } from 'react';
@@ -9,6 +10,7 @@ import type { Student } from '@/app/manager/manager_students/manager_students_ty
 export function ManagerStudentsExitClient() {
   const [students, setStudents] = useState<Student[]>([]);
   const [search, setSearch] = useState('');
+  const debouncedSearch = useDebounce(search, 300);
   const [selected, setSelected] = useState('');
   const [reason, setReason] = useState('');
   const [confirmed, setConfirmed] = useState(false);
@@ -19,8 +21,8 @@ export function ManagerStudentsExitClient() {
 
   const filtered = students.filter(s =>
     !search ||
-    s.name.toLowerCase().includes(search.toLowerCase()) ||
-    s.smartId.toLowerCase().includes(search.toLowerCase())
+    s.name.toLowerCase().includes(debouncedSearch.toLowerCase()) ||
+    s.smartId.toLowerCase().includes(debouncedSearch.toLowerCase())
   );
 
   const student = students.find(s => s.smartId === selected);
@@ -165,4 +167,6 @@ export function ManagerStudentsExitClient() {
     </div>
   );
 }
+
+
 

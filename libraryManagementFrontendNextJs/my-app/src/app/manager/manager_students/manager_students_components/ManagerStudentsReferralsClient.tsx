@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the ManagerStudentsReferralsClient.tsx component.
 'use client';
 
 import React, { useState } from 'react';
@@ -99,4 +100,5 @@ export function ManagerStudentsReferralsClient() {
     </div>
   );
 }
+
 

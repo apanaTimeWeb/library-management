@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the SeatsRoute.tsx component.
 'use client';
 import { Toaster } from 'react-hot-toast';
 import { usePathname } from 'next/navigation';
@@ -33,3 +34,4 @@ export function SeatsRoute({ children }: { children: React.ReactNode }) {
     </>
   );
 }
+
