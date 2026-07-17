@@ -64,7 +64,7 @@ function KanbanCard({ enq, onClick }: { enq: Enquiry; onClick: () => void }) {
         <Badge variant="outline" className="bg-info/5 text-info border-info/20">{enq.shift}</Badge>
         <FollowUpBadge isOverdue={enq.isOverdue} isToday={enq.isToday} isUpcoming={enq.isUpcoming} />
       </div>
-      <div className="flex items-center justify-between text-[11px] text-muted-foreground font-medium pt-2 border-t">
+      <div className="flex items-center justify-between text-xs text-muted-foreground font-medium pt-2 border-t">
         <span className="flex items-center gap-1"><CalendarDays size={11} />{enq.addedDate}</span>
         {enq.convertedDate ? (
           <span className="flex items-center gap-1 text-success font-bold"><CheckCircle size={11} />{enq.convertedDate}</span>

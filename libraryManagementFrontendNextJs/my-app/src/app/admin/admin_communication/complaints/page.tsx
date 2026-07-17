@@ -33,7 +33,7 @@ export default function ComplaintsPage() {
 
   useEffect(() => {
     fetchApi('/communication/complaints').then(data => {
-      const mapped = data.map(( c: any ) => ({
+      const mapped = data.map(( c: Record<string, unknown> ) => ({
         id: String(c.id || Math.random()),
         title: String(c.subject || c.title || 'Complaint'),
         desc: String(c.description || ''),
@@ -114,7 +114,7 @@ export default function ComplaintsPage() {
             key={t}
             variant={tab === t ? 'secondary' : 'ghost'}
             size="sm"
-            onClick={() => setTab(t as any)}
+            onClick={() => setTab(t as CStatus | 'All')}
             className={`text-sm font-semibold capitalize ${tab === t ? 'bg-background shadow-sm' : ''}`}
           >
             {t}

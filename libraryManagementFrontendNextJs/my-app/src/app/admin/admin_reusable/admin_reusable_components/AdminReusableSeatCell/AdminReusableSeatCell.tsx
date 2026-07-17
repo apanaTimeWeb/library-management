@@ -58,7 +58,7 @@ export default function AdminReusableSeatCell({ id, status, occupant, shift, exp
             )}
           </>
         ) : (
-          <span className="text-[11px] text-muted-foreground text-center">
+          <span className="text-xs text-muted-foreground text-center">
             {status === 'free' ? 'Free — click to assign' : 'Under Maintenance'}
           </span>
         )}

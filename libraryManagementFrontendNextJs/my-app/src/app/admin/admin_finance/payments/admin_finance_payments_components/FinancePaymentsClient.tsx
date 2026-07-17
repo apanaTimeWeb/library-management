@@ -81,7 +81,7 @@ export function FinancePaymentsClient() {
       <Card className="flex-1 shadow-none border-border bg-card overflow-hidden flex flex-col">
         <div className="w-full overflow-x-auto flex-1">
           <table className="w-full text-sm text-left">
-            <thead className="bg-muted/30 border-b text-muted-foreground text-[11px] font-bold uppercase tracking-wider sticky top-0 z-10">
+            <thead className="bg-muted/30 border-b text-muted-foreground text-xs font-bold uppercase tracking-wider sticky top-0 z-10">
               <tr>
                 <th className="px-4 py-3">Receipt #</th>
                 <th className="px-4 py-3">Date</th>
@@ -116,19 +116,19 @@ export function FinancePaymentsClient() {
                   return (
                     <tr key={p.id} className={`hover:bg-muted/10 transition-colors ${isDeleted ? 'bg-danger/5' : ''}`}>
                       <td className="px-4 py-3">
-                        <span className={`font-mono text-[13px] font-medium ${isDeleted ? 'line-through opacity-50 text-muted-foreground' : 'text-primary'}`}>
+                        <span className={`font-mono text-sm font-medium ${isDeleted ? 'line-through opacity-50 text-muted-foreground' : 'text-primary'}`}>
                           {p.receiptNumber}
                         </span>
                       </td>
-                      <td className="px-4 py-3 text-[13px] text-muted-foreground font-medium">
+                      <td className="px-4 py-3 text-sm text-muted-foreground font-medium">
                         {formatDate(p.date)}
                       </td>
                       <td className={`px-4 py-3 ${isDeleted ? 'opacity-50' : ''}`}>
-                        <div className="font-bold text-[13px] text-primary">{p.studentName}</div>
-                        <div className="text-[11px] text-muted-foreground font-medium">{p.smartId}</div>
+                        <div className="font-bold text-sm text-primary">{p.studentName}</div>
+                        <div className="text-xs text-muted-foreground font-medium">{p.smartId}</div>
                       </td>
                       <td className="px-4 py-3 text-right">
-                        <span className="font-bold text-[13px] text-primary">
+                        <span className="font-bold text-sm text-primary">
                           {formatCurrency(p.amount)}
                         </span>
                       </td>
@@ -138,10 +138,10 @@ export function FinancePaymentsClient() {
                         </Badge>
                       </td>
                       <td className="px-4 py-3">
-                        <span className="font-mono text-[11px] text-muted-foreground">{p.txnId || '—'}</span>
+                        <span className="font-mono text-xs text-muted-foreground">{p.txnId || '—'}</span>
                       </td>
                       <td className="px-4 py-3 text-right">
-                        <span className={`text-[13px] font-bold ${p.lateFee > 0 ? 'text-warning' : 'text-muted-foreground opacity-50'}`}>
+                        <span className={`text-sm font-bold ${p.lateFee > 0 ? 'text-warning' : 'text-muted-foreground opacity-50'}`}>
                           {formatCurrency(p.lateFee)}
                         </span>
                       </td>

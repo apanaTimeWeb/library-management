@@ -19,7 +19,7 @@ export function AdminDashboardKpiCard({ label, value, icon: Icon, iconColor, ico
           <Icon size={18} style={{ color: iconColor }} />
         </div>
         {trend && (
-          <span className={`flex items-center gap-1 text-[11px] font-bold px-2 py-0.5 rounded-full ${trend.up ? 'bg-success/10 text-success' : 'bg-danger/10 text-danger'}`}>
+          <span className={`flex items-center gap-1 text-xs font-bold px-2 py-0.5 rounded-full ${trend.up ? 'bg-success/10 text-success' : 'bg-danger/10 text-danger'}`}>
             {trend.up ? <TrendingUp size={10} /> : <TrendingDown size={10} />}
             {trend.value}
           </span>
@@ -27,9 +27,9 @@ export function AdminDashboardKpiCard({ label, value, icon: Icon, iconColor, ico
       </div>
 
       <div>
-        <p className="text-[13px] font-semibold text-muted-foreground uppercase tracking-wider">{label}</p>
+        <p className="text-sm font-semibold text-muted-foreground uppercase tracking-wider">{label}</p>
         <p className="text-2xl font-bold text-primary mt-1">{value}</p>
-        {sub && <p className="text-[12px] text-muted-foreground mt-1">{sub}</p>}
+        {sub && <p className="text-xs text-muted-foreground mt-1">{sub}</p>}
       </div>
     </Card>
   );

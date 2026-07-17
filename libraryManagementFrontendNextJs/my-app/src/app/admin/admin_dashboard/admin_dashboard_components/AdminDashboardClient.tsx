@@ -12,10 +12,10 @@ import { AdminDashboardSeatMatrixGrid } from '@/app/admin/admin_dashboard/admin_
 import { AdminDashboardActionItemsList, type AdminDashboardActionItem } from '@/app/admin/admin_dashboard/admin_dashboard_components/AdminDashboardActionItemsList';
 import { AdminDashboardRecentPaymentsFeed } from '@/app/admin/admin_dashboard/admin_dashboard_components/AdminDashboardRecentPaymentsFeed';
 
-export function AdminDashboardClient({ initialData }: { initialData: any }) {
+export function AdminDashboardClient({ initialData }: { initialData: Record<string, unknown> }) {
   const { data, seatMatrixState } = useAdminDashboard(initialData);
 
-  const actionItems: AdminDashboardActionItem[] = data.actionItems?.map((a: any) => ({
+  const actionItems: AdminDashboardActionItem[] = (data.actionItems as Record<string, unknown>[])?.map((a: Record<string, unknown>) => ({
     ...a,
     icon: ADMIN_ACTION_ICONS[a.label as keyof typeof ADMIN_ACTION_ICONS] ?? AlertCircle,
     type: a.type as 'danger' | 'warning',
@@ -40,7 +40,7 @@ export function AdminDashboardClient({ initialData }: { initialData: any }) {
 
       {/* Row 1: 4 KPI Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        {data.kpiCards.map((card: any, i: number) => (
+        {(data.kpiCards as Record<string, unknown>[]).map((card: Record<string, unknown>, i: number) => (
           <AdminDashboardKpiCard
             key={card.label}
             label={card.label}
@@ -58,8 +58,8 @@ export function AdminDashboardClient({ initialData }: { initialData: any }) {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
         <div className="lg:col-span-7 xl:col-span-8 flex flex-col h-full">
           <AdminDashboardSeatMatrixGrid 
-            seats={data.seats || []} 
-            shifts={data.shifts || []} 
+            seats={(data.seats as unknown[]) || []} 
+            shifts={(data.shifts as unknown[]) || []} 
             state={seatMatrixState}
           />
         </div>
@@ -69,7 +69,7 @@ export function AdminDashboardClient({ initialData }: { initialData: any }) {
             <CardHeader className="pb-3 border-b">
               <CardTitle className="text-base">Action Items</CardTitle>
               <CardDescription className="text-xs">
-                {data.actionItems?.reduce((s: number, a: any) => s + a.count, 0) || 0} items need your attention
+                {(data.actionItems as Record<string, unknown>[])?.reduce((s: number, a: Record<string, unknown>) => s + (a.count as number), 0) || 0} items need your attention
               </CardDescription>
             </CardHeader>
 
@@ -98,7 +98,7 @@ export function AdminDashboardClient({ initialData }: { initialData: any }) {
       </div>
 
       {/* Row 3: Recent Payments Table */}
-      <AdminDashboardRecentPaymentsFeed payments={data.recentPayments || []} />
+      <AdminDashboardRecentPaymentsFeed payments={(data.recentPayments as unknown[]) || []} />
     </div>
   );
 }

@@ -58,7 +58,7 @@ export default function AdminSidebar({ collapsed, onToggle, mobileOpen, onMobile
             {mobileOpen ? <X size={18} /> : <Menu size={18} />}
           </Button>
           {(!collapsed || mobileOpen) && (
-            <span className="font-bold text-[15px] text-foreground ml-3 truncate">📚 Smart Library</span>
+            <span className="font-bold text-base text-foreground ml-3 truncate">📚 Smart Library</span>
           )}
         </div>
 
@@ -103,7 +103,7 @@ export default function AdminSidebar({ collapsed, onToggle, mobileOpen, onMobile
             </div>
             <div className="flex-1 min-w-0">
               <p className="text-sm font-semibold text-foreground truncate leading-tight">Library Admin</p>
-              <p className="text-[11px] text-muted-foreground truncate leading-tight mt-0.5">admin@library.com</p>
+              <p className="text-xs text-muted-foreground truncate leading-tight mt-0.5">admin@library.com</p>
             </div>
             <Button
               variant="ghost"

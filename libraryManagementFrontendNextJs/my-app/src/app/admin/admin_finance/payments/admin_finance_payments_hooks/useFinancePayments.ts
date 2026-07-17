@@ -34,7 +34,7 @@ export function useFinancePayments() {
   useEffect(() => {
     setIsLoading(true);
     fetchApi('/finance/payments').then(data => {
-      const mapped = data.map((p: any) => ({
+      const mapped = data.map((p: Record<string, unknown>) => ({
         id: p.id || Math.random(),
         receiptNumber: 'REC-' + String(p.id || '').substring(0, 8),
         date: p.date ? new Date(p.date).toISOString().split('T')[0] : new Date().toISOString().split('T')[0],

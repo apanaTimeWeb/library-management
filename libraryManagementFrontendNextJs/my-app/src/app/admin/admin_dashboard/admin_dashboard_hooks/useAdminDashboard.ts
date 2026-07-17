@@ -2,7 +2,7 @@ import { useState, useMemo } from 'react';
 import { useRouter } from 'next/navigation';
 import { ADMIN_ROUTES } from '@/app/admin/admin_url_config';
 
-export function useAdminDashboard(initialData: any) {
+export function useAdminDashboard(initialData: Record<string, unknown>) {
   const router = useRouter();
   
   // States for Seat Matrix
@@ -11,7 +11,7 @@ export function useAdminDashboard(initialData: any) {
   const [appliedFee, setAppliedFee] = useState('All');
   const [appliedShift, setAppliedShift] = useState('All');
 
-  const handleSeatClick = (seat: any) => {
+  const handleSeatClick = (seat: Record<string, unknown>) => {
     if (seat.status === 'occupied' || seat.status === 'expiring') {
       router.push(seat.studentId ? `${ADMIN_ROUTES.STUDENTS}/${seat.studentId}` : ADMIN_ROUTES.STUDENTS);
     } else if (seat.status === 'free') {

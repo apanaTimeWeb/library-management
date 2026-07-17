@@ -165,7 +165,7 @@ export function AdminPlansClient() {
 
                 {/* Features (`Rule 57: No key={index}`) */}
                 <div className="border-t border-border pt-4 mt-5">
-                  <p className="text-[11px] font-semibold text-muted-foreground uppercase tracking-wider mb-3">
+                  <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-3">
                     Included Features
                   </p>
                   <ul className="list-none p-0 m-0 space-y-2">

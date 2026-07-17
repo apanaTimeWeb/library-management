@@ -75,7 +75,7 @@ export function LockersClient() {
       <Card className="flex-1 shadow-none border-border bg-card overflow-hidden flex flex-col min-h-[450px]">
         <div className="w-full overflow-x-auto flex-1">
           <table className="w-full text-sm text-left whitespace-nowrap min-w-max">
-            <thead className="bg-muted/30 border-b text-muted-foreground text-[11px] font-bold uppercase tracking-wider sticky top-0 z-10">
+            <thead className="bg-muted/30 border-b text-muted-foreground text-xs font-bold uppercase tracking-wider sticky top-0 z-10">
               <tr>
                 <th className="px-5 py-3 w-[15%]">Locker #</th>
                 <th className="px-5 py-3 w-[15%]">Status</th>
@@ -104,7 +104,7 @@ export function LockersClient() {
               ) : (
                 filtered.map((l, i) => (
                   <tr key={i} className="hover:bg-muted/10 transition-colors">
-                    <td className="px-5 py-4 text-[15px] font-black text-primary tracking-tight">{l.lockerId}</td>
+                    <td className="px-5 py-4 text-base font-black text-primary tracking-tight">{l.lockerId}</td>
                     <td className="px-5 py-4">
                       <Badge variant="secondary" className={`${getStatusBadge(l.status)} uppercase tracking-wider font-bold text-xs`}>
                         <span className="w-1.5 h-1.5 rounded-full bg-current mr-1.5 opacity-70" />
@@ -116,12 +116,12 @@ export function LockersClient() {
                         <span className="text-muted-foreground text-sm font-medium italic">Unassigned</span>
                       ) : (
                         <div className="flex flex-col">
-                          <span className="font-bold text-[13px] text-primary">{l.assignedTo}</span>
-                          <span className="text-[11px] text-muted-foreground font-mono">{l.studentId}</span>
+                          <span className="font-bold text-sm text-primary">{l.assignedTo}</span>
+                          <span className="text-xs text-muted-foreground font-mono">{l.studentId}</span>
                         </div>
                       )}
                     </td>
-                    <td className="px-5 py-4 text-[13px] text-muted-foreground">{l.assignedSince}</td>
+                    <td className="px-5 py-4 text-sm text-muted-foreground">{l.assignedSince}</td>
                     <td className="px-5 py-4 text-right">
                       <div className="flex items-center justify-end gap-1">
                         {l.status === 'Free' && (

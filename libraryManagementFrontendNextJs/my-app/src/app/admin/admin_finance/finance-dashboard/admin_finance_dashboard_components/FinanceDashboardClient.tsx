@@ -13,17 +13,17 @@ export function FinanceDashboardClient() {
   const { stats, recentPayments, isLoading } = useFinanceDashboard();
 
   const statCards = stats ? [
-    { label: 'Total Collections',   value: formatCurrency(stats.totalCollections), icon: PiggyBank,     sub: <span className="text-success font-medium flex items-center gap-1 text-[11px]"><TrendingUp size={12} />+{stats.collectionsGrowth}% vs last month</span>, variant: 'default' },
+    { label: 'Total Collections',   value: formatCurrency(stats.totalCollections), icon: PiggyBank,     sub: <span className="text-success font-medium flex items-center gap-1 text-xs"><TrendingUp size={12} />+{stats.collectionsGrowth}% vs last month</span>, variant: 'default' },
     { label: 'Active Students',      value: stats.activeStudents,                   icon: Users,         sub: null,                                                                                                    variant: 'default' },
-    { label: 'Expiring Soon',        value: stats.expiringSoon,                     icon: Clock,         sub: <span className="text-warning text-[11px] font-medium">within 7 days</span>,                                    variant: 'warning' },
+    { label: 'Expiring Soon',        value: stats.expiringSoon,                     icon: Clock,         sub: <span className="text-warning text-xs font-medium">within 7 days</span>,                                    variant: 'warning' },
     { label: 'Currently Suspended',  value: stats.suspended,                        icon: Ban,           sub: null,                                                                                                    variant: 'danger'  },
     { label: 'Total Referrals',      value: stats.totalReferrals,                   icon: UsersRound,    sub: null,                                                                                                    variant: 'default' },
     { label: 'Deposits Held',        value: formatCurrency(stats.depositsHeld),     icon: ShieldAlert,   sub: null,                                                                                                    variant: 'default' },
-    { label: 'Pending Promises',     value: stats.pendingPromises,                  icon: Receipt,       sub: <span className="text-muted-foreground text-[11px]">payment promises pending</span>,                           variant: 'default' },
-    { label: 'Overdue Students',     value: stats.overdueStudents,                  icon: AlertTriangle, sub: <span className="text-warning text-[11px] font-medium">late fee accruing</span>,                                variant: 'warning' },
-    { label: 'Renewals Due',         value: stats.renewalsDue,                      icon: RefreshCw,     sub: <span className="text-muted-foreground text-[11px]">need renewal</span>,                                       variant: 'default' },
-    { label: 'Pending Refunds',      value: stats.pendingRefunds,                   icon: IndianRupee,   sub: <span className="text-muted-foreground text-[11px]">deposit refund requests</span>,                            variant: 'default' },
-    { label: 'Late Fee Accrued',     value: formatCurrency(stats.lateFeeAccrued),   icon: TrendingDown,  sub: <span className="text-danger text-[11px] font-medium">this month</span>,                                        variant: 'danger'  },
+    { label: 'Pending Promises',     value: stats.pendingPromises,                  icon: Receipt,       sub: <span className="text-muted-foreground text-xs">payment promises pending</span>,                           variant: 'default' },
+    { label: 'Overdue Students',     value: stats.overdueStudents,                  icon: AlertTriangle, sub: <span className="text-warning text-xs font-medium">late fee accruing</span>,                                variant: 'warning' },
+    { label: 'Renewals Due',         value: stats.renewalsDue,                      icon: RefreshCw,     sub: <span className="text-muted-foreground text-xs">need renewal</span>,                                       variant: 'default' },
+    { label: 'Pending Refunds',      value: stats.pendingRefunds,                   icon: IndianRupee,   sub: <span className="text-muted-foreground text-xs">deposit refund requests</span>,                            variant: 'default' },
+    { label: 'Late Fee Accrued',     value: formatCurrency(stats.lateFeeAccrued),   icon: TrendingDown,  sub: <span className="text-danger text-xs font-medium">this month</span>,                                        variant: 'danger'  },
   ] : [];
 
   return (
@@ -56,7 +56,7 @@ export function FinanceDashboardClient() {
                 }`}
               >
                 <div className="flex items-center justify-between">
-                  <span className={`text-[11px] font-bold tracking-wider uppercase ${
+                  <span className={`text-xs font-bold tracking-wider uppercase ${
                     variant === 'warning' ? 'text-warning' : 
                     variant === 'danger' ? 'text-danger' : 'text-muted-foreground'
                   }`}>

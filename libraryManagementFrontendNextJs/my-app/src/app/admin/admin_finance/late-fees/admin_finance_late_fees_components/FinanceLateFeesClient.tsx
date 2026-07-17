@@ -106,7 +106,7 @@ export function FinanceLateFeesClient() {
         
         <div className="w-full overflow-x-auto flex-1">
           <table className="w-full text-sm text-left">
-            <thead className="bg-muted/30 border-b text-muted-foreground text-[11px] font-bold uppercase tracking-wider sticky top-0 z-10">
+            <thead className="bg-muted/30 border-b text-muted-foreground text-xs font-bold uppercase tracking-wider sticky top-0 z-10">
               <tr>
                 <th className="px-5 py-3">Student</th>
                 <th className="px-5 py-3">Due Date</th>
@@ -140,20 +140,20 @@ export function FinanceLateFeesClient() {
                 overdue.map((s) => (
                   <tr key={s.studentId} className="hover:bg-muted/10 transition-colors">
                     <td className="px-5 py-4">
-                      <div className="font-bold text-[13px] text-primary">{s.studentName}</div>
-                      <div className="text-[11px] text-muted-foreground font-medium mt-0.5">{s.smartId}</div>
+                      <div className="font-bold text-sm text-primary">{s.studentName}</div>
+                      <div className="text-xs text-muted-foreground font-medium mt-0.5">{s.smartId}</div>
                     </td>
-                    <td className="px-5 py-4 text-[13px] text-muted-foreground font-medium">
+                    <td className="px-5 py-4 text-sm text-muted-foreground font-medium">
                       {s.dueDate}
                     </td>
                     <td className="px-5 py-4 text-right">
-                      <span className="font-bold text-[13px] text-danger">{s.daysOverdue}d</span>
+                      <span className="font-bold text-sm text-danger">{s.daysOverdue}d</span>
                     </td>
                     <td className="px-5 py-4 text-right">
-                      <span className="font-bold text-[13px] text-warning">{formatCurrency(s.accruedFee)}</span>
+                      <span className="font-bold text-sm text-warning">{formatCurrency(s.accruedFee)}</span>
                     </td>
                     <td className="px-5 py-4 text-right">
-                      <span className="font-bold text-[13px] text-danger">{formatCurrency(s.totalDue)}</span>
+                      <span className="font-bold text-sm text-danger">{formatCurrency(s.totalDue)}</span>
                     </td>
                     <td className="px-5 py-4 text-right">
                       <div className="flex items-center justify-end gap-2">

@@ -70,7 +70,7 @@ export function FinanceSecurityDepositsClient() {
       <Card className="flex-1 shadow-none border-border bg-card overflow-hidden flex flex-col min-h-[450px]">
         <div className="w-full overflow-x-auto flex-1">
           <table className="w-full text-sm text-left whitespace-nowrap min-w-max">
-            <thead className="bg-muted/30 border-b text-muted-foreground text-[11px] font-bold uppercase tracking-wider sticky top-0 z-10">
+            <thead className="bg-muted/30 border-b text-muted-foreground text-xs font-bold uppercase tracking-wider sticky top-0 z-10">
               <tr>
                 <th className="px-5 py-3">Student</th>
                 <th className="px-5 py-3 text-right">Deposit ₹</th>
@@ -107,22 +107,22 @@ export function FinanceSecurityDepositsClient() {
                 filtered.map((d) => (
                   <tr key={d.id} className="hover:bg-muted/10 transition-colors">
                     <td className="px-5 py-4">
-                      <div className="font-bold text-[13px] text-primary">{d.studentName}</div>
-                      <div className="text-[11px] font-mono text-muted-foreground">{d.smartId}</div>
+                      <div className="font-bold text-sm text-primary">{d.studentName}</div>
+                      <div className="text-xs font-mono text-muted-foreground">{d.smartId}</div>
                     </td>
-                    <td className="px-5 py-4 text-right text-[13px] font-bold text-primary">{formatCurrency(d.depositAmount)}</td>
+                    <td className="px-5 py-4 text-right text-sm font-bold text-primary">{formatCurrency(d.depositAmount)}</td>
                     <td className="px-5 py-4">
                       <Badge variant="secondary" className={`${getStatusBadge(d.status)} uppercase tracking-wider font-bold text-xs`}>
                         {d.status}
                       </Badge>
                     </td>
-                    <td className="px-5 py-4 text-[13px] font-medium text-primary">{d.collectedBy}</td>
-                    <td className="px-5 py-4 text-[13px] text-muted-foreground">{d.collectedDate}</td>
-                    <td className={`px-5 py-4 text-right text-[13px] font-bold ${d.deductionAmount > 0 ? 'text-danger' : 'text-muted-foreground font-medium'}`}>
+                    <td className="px-5 py-4 text-sm font-medium text-primary">{d.collectedBy}</td>
+                    <td className="px-5 py-4 text-sm text-muted-foreground">{d.collectedDate}</td>
+                    <td className={`px-5 py-4 text-right text-sm font-bold ${d.deductionAmount > 0 ? 'text-danger' : 'text-muted-foreground font-medium'}`}>
                       {d.deductionAmount > 0 ? formatCurrency(d.deductionAmount) : '—'}
                     </td>
-                    <td className="px-5 py-4 text-[13px] text-muted-foreground">{d.deductionReason || '—'}</td>
-                    <td className="px-5 py-4 text-[13px] text-muted-foreground">{d.refundedDate || '—'}</td>
+                    <td className="px-5 py-4 text-sm text-muted-foreground">{d.deductionReason || '—'}</td>
+                    <td className="px-5 py-4 text-sm text-muted-foreground">{d.refundedDate || '—'}</td>
                     <td className="px-5 py-4 text-right">
                       {d.status === 'held' && (
                         <div className="flex items-center justify-end gap-2">
@@ -148,7 +148,7 @@ export function FinanceSecurityDepositsClient() {
                         </div>
                       )}
                       {d.status === 'refunded' && d.refundedDate && (
-                        <span className="text-[11px] font-medium text-muted-foreground">Refunded {d.refundedDate}</span>
+                        <span className="text-xs font-medium text-muted-foreground">Refunded {d.refundedDate}</span>
                       )}
                     </td>
                   </tr>

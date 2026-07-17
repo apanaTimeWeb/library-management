@@ -9,8 +9,10 @@ async function getStudentsData(): Promise<AdminStudentData[]> {
   const token = cookieStore.get('access_token')?.value || '';
   
   const response = await fetchAdminStudents(token);
+type ApiStudent = { id?: string; smartId?: string; _id?: string; fullName?: string; name?: string; shift?: string; seatId?: string; seat?: string; currentPlanId?: string; plan?: string; status?: string; branchId?: string; branch?: string; };
+
   if (!response.success || !response.data || response.data.length === 0 || String(response.data[0]?.id).startsWith('MOCK-')) {
-    return ADMIN_STUDENTS_MOCK_DATA.map((s: any) => ({
+    return ADMIN_STUDENTS_MOCK_DATA.map((s: AdminStudentData) => ({
       id: s.id,
       name: s.name,
       shift: s.shift,
@@ -21,7 +23,7 @@ async function getStudentsData(): Promise<AdminStudentData[]> {
     }));
   }
   
-  return response.data.map((s: any) => ({
+  return response.data.map((s: ApiStudent) => ({
     id: s.id || s.smartId || s._id || `STU-${Math.random().toString(36).substr(2, 5)}`,
     name: s.fullName || s.name || 'Unknown Student',
     shift: s.shift || 'Morning',

@@ -36,10 +36,20 @@ const TOOLTIP_STYLE = {
 } as const;
 
 interface AdminReportsClientProps {
-  initialData: any;
+  initialData?: Record<string, Record<string, unknown[]>>;
 }
 
-function AdminReportsKpiCard({ label, value, icon: Icon, iconColor, iconBg, trend, sub }: any) {
+interface KpiCardProps {
+  label: string;
+  value: string | number;
+  icon: React.ElementType;
+  iconColor: string;
+  iconBg: string;
+  trend?: { up: boolean; value: string };
+  sub?: string;
+}
+
+function AdminReportsKpiCard({ label, value, icon: Icon, iconColor, iconBg, trend, sub }: KpiCardProps) {
   return (
     <Card className="p-5 flex flex-col gap-4 shadow-none border-border bg-card hover:shadow-md transition-shadow">
       <div className="flex items-center justify-between">
@@ -137,16 +147,16 @@ export function AdminReportsClient({ initialData }: AdminReportsClientProps) {
 
         {/* KPI Cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          {kpiCards.map((card: any, i: number) => (
+          {kpiCards.map((card: Record<string, unknown>, i: number) => (
             <AdminReportsKpiCard
               key={i}
-              label={card.label}
-              value={card.value}
+              label={card.label as string}
+              value={card.value as string}
               icon={KPI_META[i].icon}
               iconColor={KPI_META[i].iconColor}
               iconBg={KPI_META[i].iconBg}
-              trend={card.trend}
-              sub={card.sub}
+              trend={card.trend as { up: boolean; value: string } | undefined}
+              sub={card.sub as string | undefined}
             />
           ))}
         </div>
@@ -215,7 +225,7 @@ export function AdminReportsClient({ initialData }: AdminReportsClientProps) {
                   nameKey="name"
                   strokeWidth={0}
                 >
-                  {shiftOccupancy.map((e: any, i: number) => <Cell key={i} fill={e.color} />)}
+                  {shiftOccupancy.map((e: Record<string, unknown>, i: number) => <Cell key={i} fill={e.color as string} />)}
                 </Pie>
                 <Tooltip
                   {...TOOLTIP_STYLE}
@@ -338,11 +348,11 @@ export function AdminReportsClient({ initialData }: AdminReportsClientProps) {
                   { branch: 'Nashik Branch',  revenue: '₹14,000', expense: '₹5,000',  profit: '₹9,000',  students: 42,  occ: 60 },
                 ].map((row, i) => (
                   <tr key={i} className="hover:bg-muted/10 transition-colors">
-                    <td className="px-4 py-3 font-bold text-[13px] text-primary">{row.branch}</td>
-                    <td className="px-4 py-3 font-bold text-[13px] text-primary">{row.revenue}</td>
-                    <td className="px-4 py-3 font-bold text-[13px] text-danger">{row.expense}</td>
-                    <td className="px-4 py-3 font-bold text-[13px] text-success">{row.profit}</td>
-                    <td className="px-4 py-3 font-medium text-[13px] text-primary">{row.students}</td>
+                    <td className="px-4 py-3 font-bold text-sm text-primary">{row.branch}</td>
+                    <td className="px-4 py-3 font-bold text-sm text-primary">{row.revenue}</td>
+                    <td className="px-4 py-3 font-bold text-sm text-danger">{row.expense}</td>
+                    <td className="px-4 py-3 font-bold text-sm text-success">{row.profit}</td>
+                    <td className="px-4 py-3 font-medium text-sm text-primary">{row.students}</td>
                     <td className="px-4 py-3">
                       <div className="flex items-center gap-2">
                         <div className="flex-1 h-1.5 bg-muted rounded-full overflow-hidden">
@@ -355,7 +365,7 @@ export function AdminReportsClient({ initialData }: AdminReportsClientProps) {
                           />
                         </div>
                         <span 
-                          className="text-[12px] font-bold min-w-[32px]"
+                          className="text-xs font-bold min-w-[32px]"
                           style={{ color: row.occ >= 85 ? 'var(--success)' : row.occ >= 70 ? 'var(--warning)' : 'var(--danger)' }}
                         >
                           {row.occ}%

@@ -59,7 +59,7 @@ export function FinanceRenewalsClient() {
             key={f.value}
             variant="secondary"
             onClick={() => setFilter(f.value as any)}
-            className={`cursor-pointer px-4 py-2 border-none font-bold text-[13px] uppercase tracking-wider transition-colors ${filter === f.value ? 'bg-primary text-white' : 'bg-muted text-muted-foreground hover:bg-muted/80'}`}
+            className={`cursor-pointer px-4 py-2 border-none font-bold text-sm uppercase tracking-wider transition-colors ${filter === f.value ? 'bg-primary text-white' : 'bg-muted text-muted-foreground hover:bg-muted/80'}`}
           >
             {f.emoji} {f.label}
           </Badge>
@@ -70,7 +70,7 @@ export function FinanceRenewalsClient() {
       <Card className="flex-1 shadow-none border-border bg-card overflow-hidden flex flex-col min-h-[450px]">
         <div className="w-full overflow-x-auto flex-1">
           <table className="w-full text-sm text-left whitespace-nowrap min-w-max">
-            <thead className="bg-muted/30 border-b text-muted-foreground text-[11px] font-bold uppercase tracking-wider sticky top-0 z-10">
+            <thead className="bg-muted/30 border-b text-muted-foreground text-xs font-bold uppercase tracking-wider sticky top-0 z-10">
               <tr>
                 <th className="px-5 py-3">Student</th>
                 <th className="px-5 py-3">Smart ID</th>
@@ -97,22 +97,22 @@ export function FinanceRenewalsClient() {
               ) : (
                 visible.map((r) => (
                   <tr key={r.id} className="hover:bg-muted/10 transition-colors">
-                    <td className="px-5 py-4 font-bold text-[13px] text-primary">{r.studentName}</td>
-                    <td className="px-5 py-4 text-[12px] font-mono text-muted-foreground">{r.smartId}</td>
+                    <td className="px-5 py-4 font-bold text-sm text-primary">{r.studentName}</td>
+                    <td className="px-5 py-4 text-xs font-mono text-muted-foreground">{r.smartId}</td>
                     <td className="px-5 py-4">
                       <Badge variant="secondary" className="bg-muted text-muted-foreground border-none font-bold text-xs">
                         {r.shift}
                       </Badge>
                     </td>
-                    <td className="px-5 py-4 text-[13px] font-medium text-primary">{r.plan}</td>
-                    <td className="px-5 py-4 text-[13px] text-muted-foreground">{r.expiryDate}</td>
+                    <td className="px-5 py-4 text-sm font-medium text-primary">{r.plan}</td>
+                    <td className="px-5 py-4 text-sm text-muted-foreground">{r.expiryDate}</td>
                     <td className="px-5 py-4">
                       <span className={getDaysLeftStyle(r.daysLeft)}>
                         {r.daysLeft < 0 ? `${Math.abs(r.daysLeft)} days ago` : `${r.daysLeft} days`}
                       </span>
                     </td>
-                    <td className="px-5 py-4 text-[13px] text-muted-foreground">{r.lastPaymentDate}</td>
-                    <td className={`px-5 py-4 text-right text-[13px] font-bold ${r.due > 0 ? 'text-danger' : 'text-primary'}`}>
+                    <td className="px-5 py-4 text-sm text-muted-foreground">{r.lastPaymentDate}</td>
+                    <td className={`px-5 py-4 text-right text-sm font-bold ${r.due > 0 ? 'text-danger' : 'text-primary'}`}>
                       {formatCurrency(r.due)}
                     </td>
                     <td className="px-5 py-4 text-right">

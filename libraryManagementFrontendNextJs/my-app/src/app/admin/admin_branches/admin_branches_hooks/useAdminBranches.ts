@@ -60,7 +60,7 @@ export function useAdminBranches(initialBranches: Branch[]) {
     setShowForm(true);
   }
 
-  function openEdit(b: any) {
+  function openEdit(b: Branch) {
     setEditId(b.id);
     setForm({ name: b.name, address: b.address, city: b.city, phone: b.phone, manager: b.manager, seats: String(b.seats) });
     setErrors({});

@@ -33,19 +33,19 @@ export function useAdminCrmEnquiries() {
     fetchApi(ADMIN_API_ROUTES.CRM_ENQUIRIES)
       .then((data: unknown) => {
         const rows = Array.isArray(data) ? data : [];
-        const mapped: Enquiry[] = rows.map((e: any) => ({
+        const mapped: Enquiry[] = rows.map((e: Record<string, unknown>) => ({
           id:              String(e.id ?? ''),
           name:            String(e.name ?? ''),
           phone:           String(e.phone ?? ''),
           shift:           String(e.shift || e.preferredShift || 'General'),
           status:          (String(e.status ?? 'new').charAt(0).toUpperCase() + String(e.status ?? 'new').slice(1)) as EnquiryStatus,
-          handledBy:       typeof e.handledBy === 'string' ? e.handledBy : (e.handledBy?.name || 'Unassigned'),
-          addedDate:       String(e.addedDate || new Date(e.createdAt || e.date || Date.now()).toLocaleDateString()),
+          handledBy:       typeof e.handledBy === 'string' ? e.handledBy : ((e.handledBy as Record<string, unknown>)?.name as string || 'Unassigned'),
+          addedDate:       String(e.addedDate || new Date((e.createdAt || e.date || Date.now()) as string | number).toLocaleDateString()),
           source:          String(e.source ?? 'Walk-in'),
           preferredBranch: String(e.preferredBranch || e.branch || 'Main Branch'),
-          enquiryDate:     String(e.enquiryDate || new Date(e.createdAt || e.date || Date.now()).toLocaleDateString()),
-          avatar:          String(e.avatar || e.name?.substring(0, 2).toUpperCase() || 'NA'),
-          followUps:       e.followUps || [],
+          enquiryDate:     String(e.enquiryDate || new Date((e.createdAt || e.date || Date.now()) as string | number).toLocaleDateString()),
+          avatar:          String(e.avatar || (e.name as string)?.substring(0, 2).toUpperCase() || 'NA'),
+          followUps:       (e.followUps as never[]) || [],
           isToday:         e.isToday,
           isUpcoming:      e.isUpcoming,
           isOverdue:       e.isOverdue,

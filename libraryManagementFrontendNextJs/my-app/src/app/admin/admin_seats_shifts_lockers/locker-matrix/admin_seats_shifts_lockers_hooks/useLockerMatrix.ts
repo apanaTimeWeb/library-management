@@ -23,7 +23,8 @@ export function useLockerMatrix() {
     setIsLoading(true);
     fetchApi('/seats_shifts_lockers/lockers')
       .then(data => {
-        const mapped = data.map(( l: any ) => ({
+        type ApiLockerData = { id?: string; lockerNumber?: string; isActive?: boolean; };
+        const mapped = data.map(( l: ApiLockerData ) => ({
           uuid: l.id,
           id: (l.lockerNumber || '').replace('L-', ''),
           status: l.isActive ? 'free' : 'maintenance',

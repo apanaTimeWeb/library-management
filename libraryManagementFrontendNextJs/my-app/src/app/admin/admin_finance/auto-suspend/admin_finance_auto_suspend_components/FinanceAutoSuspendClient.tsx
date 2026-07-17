@@ -51,7 +51,7 @@ export function FinanceAutoSuspendClient() {
         {KPI_CARDS.map(({ label, value, icon: Icon, variant }) => (
           <Card key={label} className={`p-4 shadow-none flex flex-col justify-center ${variant === 'danger' ? 'border-danger/30 bg-danger/5' : 'border-border bg-card'}`}>
             <div className="flex items-center justify-between mb-1">
-              <span className={`text-[11px] font-bold tracking-wider uppercase ${variant === 'danger' ? 'text-danger' : 'text-muted-foreground'}`}>{label}</span>
+              <span className={`text-xs font-bold tracking-wider uppercase ${variant === 'danger' ? 'text-danger' : 'text-muted-foreground'}`}>{label}</span>
               <Icon size={16} className={variant === 'danger' ? 'text-danger' : 'text-muted-foreground'} />
             </div>
             <p className={`text-2xl font-bold ${variant === 'danger' ? 'text-danger' : 'text-primary'}`}>{value}</p>
@@ -112,7 +112,7 @@ export function FinanceAutoSuspendClient() {
         
         <div className="w-full overflow-x-auto flex-1">
           <table className="w-full text-sm text-left">
-            <thead className="bg-muted/30 border-b text-muted-foreground text-[11px] font-bold uppercase tracking-wider sticky top-0 z-10">
+            <thead className="bg-muted/30 border-b text-muted-foreground text-xs font-bold uppercase tracking-wider sticky top-0 z-10">
               <tr>
                 <th className="px-5 py-3">Student</th>
                 <th className="px-5 py-3">Seat</th>
@@ -147,20 +147,20 @@ export function FinanceAutoSuspendClient() {
                 suspended.map((s) => (
                   <tr key={s.id} className="hover:bg-muted/10 transition-colors">
                     <td className="px-5 py-4">
-                      <div className="font-bold text-[13px] text-primary">{s.studentName}</div>
-                      <div className="text-[11px] text-muted-foreground font-medium mt-0.5">{s.smartId}</div>
+                      <div className="font-bold text-sm text-primary">{s.studentName}</div>
+                      <div className="text-xs text-muted-foreground font-medium mt-0.5">{s.smartId}</div>
                     </td>
-                    <td className="px-5 py-4 text-[13px] font-medium text-primary">{s.seat}</td>
+                    <td className="px-5 py-4 text-sm font-medium text-primary">{s.seat}</td>
                     <td className="px-5 py-4">
                       <Badge variant="secondary" className="bg-muted text-muted-foreground border-none font-bold text-xs">
                         {s.shift}
                       </Badge>
                     </td>
-                    <td className="px-5 py-4 text-[13px] text-muted-foreground font-medium">—</td>
+                    <td className="px-5 py-4 text-sm text-muted-foreground font-medium">—</td>
                     <td className="px-5 py-4">
-                      <span className="font-bold text-[13px] text-danger">{s.daysOverdue}d</span>
+                      <span className="font-bold text-sm text-danger">{s.daysOverdue}d</span>
                     </td>
-                    <td className="px-5 py-4 text-[13px] text-muted-foreground font-medium">{s.suspendedSince}</td>
+                    <td className="px-5 py-4 text-sm text-muted-foreground font-medium">{s.suspendedSince}</td>
                     <td className="px-5 py-4 text-right">
                       <div className="flex items-center justify-end gap-2">
                         <Button 

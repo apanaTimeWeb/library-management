@@ -38,7 +38,7 @@ export function useFinanceRefunds() {
   useEffect(() => {
     fetchApi('/finance/refunds')
       .then(data => {
-        const mapped = data.map((r: any) => ({
+        const mapped = data.map((r: Record<string, unknown>) => ({
           id: typeof r.id === 'number' ? r.id : (parseInt(String(r.id).replace(/\D/g, '')) || Math.floor(Math.random() * 10000)),
           studentName: r.name || r.studentName || 'Unknown Student',
           smartId: r.smartId || 'S-001',

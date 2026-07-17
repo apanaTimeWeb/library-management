@@ -18,15 +18,15 @@ export const RANGE_OPTIONS: { label: string; key: Range }[] = [
 ];
 
 // DATA FLOW: API → useAdminReports.ts → AdminReportsComponent
-export function useAdminReports(initialData?: any) {
+export function useAdminReports(initialData?: Record<string, Record<string, unknown[]>>) {
   const [range, setRange] = useState<Range>('last3Months');
   const [branch, setBranch] = useState('All Branches');
 
-  const incomeData: any[]  = (initialData?.incomeVsExpense?.[range] || ADMIN_REPORTS_INCOME_VS_EXPENSE[range]) as any[];
-  const revenueData: any[] = (initialData?.revenueTrend?.[range] || ADMIN_REPORTS_REVENUE_TREND[range]) as any[];
-  const growthData: any[]  = (initialData?.studentGrowth?.[range] || ADMIN_REPORTS_STUDENT_GROWTH[range]) as any[];
-  const shiftOccupancy: any[] = (initialData?.shiftOccupancy || ADMIN_REPORTS_SHIFT_OCCUPANCY) as any[];
-  const kpiCards: any[] = (initialData?.kpiCards || ADMIN_REPORTS_KPI_CARDS) as any[];
+  const incomeData: Record<string, unknown>[]  = (initialData?.incomeVsExpense?.[range as string] || ADMIN_REPORTS_INCOME_VS_EXPENSE[range as keyof typeof ADMIN_REPORTS_INCOME_VS_EXPENSE]) as Record<string, unknown>[];
+  const revenueData: Record<string, unknown>[] = (initialData?.revenueTrend?.[range as string] || ADMIN_REPORTS_REVENUE_TREND[range as keyof typeof ADMIN_REPORTS_REVENUE_TREND]) as Record<string, unknown>[];
+  const growthData: Record<string, unknown>[]  = (initialData?.studentGrowth?.[range as string] || ADMIN_REPORTS_STUDENT_GROWTH[range as keyof typeof ADMIN_REPORTS_STUDENT_GROWTH]) as Record<string, unknown>[];
+  const shiftOccupancy: Record<string, unknown>[] = (initialData?.shiftOccupancy as Record<string, unknown>[] | undefined || ADMIN_REPORTS_SHIFT_OCCUPANCY) as Record<string, unknown>[];
+  const kpiCards: Record<string, unknown>[] = (initialData?.kpiCards as Record<string, unknown>[] | undefined || ADMIN_REPORTS_KPI_CARDS) as Record<string, unknown>[];
 
   function handleExport(type: 'PDF' | 'Excel') {
     toast.success(`${type} export started — file will download shortly.`, { duration: 3000 });

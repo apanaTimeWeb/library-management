@@ -137,7 +137,7 @@ export function FinanceCollectFeeClient() {
             <div className="p-4 bg-muted/20 border-t border-border flex flex-col gap-3 rounded-b-xl">
               <Button 
                 onClick={() => { /* openWhatsApp stub */ }}
-                className="w-full bg-[#25D366] hover:bg-[#1DA851] text-white font-bold gap-2"
+                className="w-full bg-success hover:bg-success/90 text-white font-bold gap-2"
               >
                 <MessageSquare size={16} /> Send Receipt on WhatsApp
               </Button>
@@ -322,7 +322,7 @@ export function FinanceCollectFeeClient() {
                   <p className="font-bold text-sm tracking-widest uppercase mb-1">Smart Library 360</p>
                   <p className="text-xs uppercase tracking-widest border-b border-black/30 pb-2 mb-4 w-full text-center">Payment Receipt</p>
                   
-                  <div className="w-full space-y-2 mb-4 text-[11px]">
+                  <div className="w-full space-y-2 mb-4 text-xs">
                     <div className="flex justify-between w-full">
                       <span className="text-gray-500">Date</span>
                       <span className="font-bold text-right">{new Date().toLocaleDateString('en-IN')}</span>
@@ -349,13 +349,13 @@ export function FinanceCollectFeeClient() {
                   <Button
                     onClick={handleCollect}
                     disabled={!selectedStudent || !amount || parseFloat(amount) <= 0 || isSubmitting}
-                    className={`w-full h-12 font-bold text-sm rounded-none border-none transition-all ${(!selectedStudent || !amount || parseFloat(amount) <= 0 || isSubmitting) ? 'bg-gray-200 text-gray-400 cursor-not-allowed' : 'bg-[#10b981] hover:bg-[#059669] text-white shadow-lg shadow-success/20'}`}
+                    className={`w-full h-12 font-bold text-sm rounded-none border-none transition-all ${(!selectedStudent || !amount || parseFloat(amount) <= 0 || isSubmitting) ? 'bg-muted text-muted-foreground cursor-not-allowed' : 'bg-success hover:bg-success/90 text-white shadow-lg shadow-success/20'}`}
                   >
                     <CheckCircle size={16} className="mr-2" />
                     {isSubmitting ? 'Processing...' : 'Received by Manager'}
                   </Button>
                   
-                  <p className="text-[9px] italic text-gray-400 text-center mt-4">"Knowledge is the best investment."</p>
+                  <p className="text-xs italic text-muted-foreground text-center mt-4">"Knowledge is the best investment."</p>
                 </div>
               </div>
               <Button variant="outline" className="w-full text-muted-foreground font-bold" onClick={resetForm}>🚫 Cancel & Reset</Button>

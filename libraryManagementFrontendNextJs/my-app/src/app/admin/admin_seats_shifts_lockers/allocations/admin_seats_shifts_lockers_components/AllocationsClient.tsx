@@ -97,7 +97,7 @@ export function AllocationsClient() {
       <Card className="flex-1 shadow-none border-border bg-card overflow-hidden flex flex-col min-h-[450px]">
         <div className="w-full overflow-x-auto flex-1">
           <table className="w-full text-sm text-left whitespace-nowrap min-w-max">
-            <thead className="bg-muted/30 border-b text-muted-foreground text-[11px] font-bold uppercase tracking-wider sticky top-0 z-10">
+            <thead className="bg-muted/30 border-b text-muted-foreground text-xs font-bold uppercase tracking-wider sticky top-0 z-10">
               <tr>
                 <th className="px-5 py-3">Student</th>
                 <th className="px-5 py-3">Seat #</th>
@@ -127,16 +127,16 @@ export function AllocationsClient() {
                   <tr key={i} className="hover:bg-muted/10 transition-colors">
                     <td className="px-5 py-3">
                       <div className="flex flex-col">
-                        <span className="font-bold text-[13px] text-primary">{a.studentName}</span>
-                        <span className="text-[11px] text-muted-foreground">{a.smartId}</span>
+                        <span className="font-bold text-sm text-primary">{a.studentName}</span>
+                        <span className="text-xs text-muted-foreground">{a.smartId}</span>
                       </div>
                     </td>
-                    <td className="px-5 py-3 text-[14px] font-black text-primary">{a.seatNo}</td>
-                    <td className="px-5 py-3 font-medium text-[13px] text-primary">{a.shift}</td>
-                    <td className="px-5 py-3 text-[13px] text-muted-foreground">{a.customSlots || '—'}</td>
-                    <td className="px-5 py-3 text-[13px] text-muted-foreground font-mono">{a.lockerNo || '—'}</td>
-                    <td className="px-5 py-3 text-[13px] text-muted-foreground">{a.validFrom}</td>
-                    <td className="px-5 py-3 text-[13px] text-muted-foreground">{a.validTill}</td>
+                    <td className="px-5 py-3 text-sm font-black text-primary">{a.seatNo}</td>
+                    <td className="px-5 py-3 font-medium text-sm text-primary">{a.shift}</td>
+                    <td className="px-5 py-3 text-sm text-muted-foreground">{a.customSlots || '—'}</td>
+                    <td className="px-5 py-3 text-sm text-muted-foreground font-mono">{a.lockerNo || '—'}</td>
+                    <td className="px-5 py-3 text-sm text-muted-foreground">{a.validFrom}</td>
+                    <td className="px-5 py-3 text-sm text-muted-foreground">{a.validTill}</td>
                     <td className="px-5 py-3">
                       {renderDaysLeft(a.daysLeft)}
                     </td>

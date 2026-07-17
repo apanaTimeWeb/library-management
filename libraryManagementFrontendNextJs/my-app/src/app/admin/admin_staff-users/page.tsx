@@ -15,11 +15,13 @@ async function getStaffData(): Promise<StaffMember[]> {
     ];
   }
   
-  return response.data.map((u: any) => ({
-    id: u.id,
-    name: u.fullName,
-    email: u.email,
-    phone: u.phone,
+  type ApiStaff = { id?: string; fullName?: string; email?: string; phone?: string; role?: string; branchId?: string; isActive?: boolean; joinedDate?: string; };
+
+  return response.data.map((u: ApiStaff) => ({
+    id: u.id || `STAFF-${Math.random().toString(36).substr(2, 5)}`,
+    name: u.fullName || 'Unknown',
+    email: u.email || '',
+    phone: u.phone || '',
     role: u.role === 'manager' ? 'Manager' : 'Staff',
     branch: u.branchId || 'Main Branch',
     status: u.isActive ? 'Active' : 'Inactive',

@@ -74,7 +74,7 @@ export function AdminPermissionsView({ initialPermissions }: AdminPermissionsVie
                     {/* Action rows */}
                     {module.actions.map((action, aIdx) => (
                       <tr key={action.key} className="hover:bg-muted/30 transition-colors">
-                        <td className="px-6 py-3 pl-10 text-muted-foreground font-medium text-[13px] border-r border-border/50">
+                        <td className="px-6 py-3 pl-10 text-muted-foreground font-medium text-sm border-r border-border/50">
                           {action.label}
                         </td>
                         {roles.map(role => (

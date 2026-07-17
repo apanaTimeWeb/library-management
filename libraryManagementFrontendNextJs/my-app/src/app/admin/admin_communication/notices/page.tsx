@@ -32,7 +32,7 @@ export default function NoticesPage() {
 
   useEffect(() => {
     fetchApi('/communication/notices').then(data => {
-      const mapped = data.map(( n: any ) => ({
+      const mapped = data.map(( n: Record<string, unknown> ) => ({
         id: String(n.id || Math.random()),
         title: String(n.title || n.name || 'Notice'),
         message: String(n.message || n.details || ''),

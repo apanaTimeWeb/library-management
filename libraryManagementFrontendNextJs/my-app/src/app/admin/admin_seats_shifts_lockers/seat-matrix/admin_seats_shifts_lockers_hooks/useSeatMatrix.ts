@@ -24,7 +24,8 @@ export function useSeatMatrix() {
     setIsLoading(true);
     fetchApi('/seats_shifts_lockers/seat-matrix')
       .then(data => {
-        const mapped = data.map(( s: any ) => ({
+        type ApiSeatData = { id?: string; seatNumber?: string; isActive?: boolean; };
+        const mapped = data.map(( s: ApiSeatData ) => ({
           uuid: s.id,
           id: (s.seatNumber || '').replace('S-', ''),
           status: s.isActive ? 'free' : 'maintenance',
