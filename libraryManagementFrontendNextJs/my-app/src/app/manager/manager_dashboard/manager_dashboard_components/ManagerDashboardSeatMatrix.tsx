@@ -11,7 +11,7 @@ interface DashboardSeatMatrixProps {
   seatData: DashboardSeatData[];
 }
 
-export function DashboardSeatMatrix({ seatData }: DashboardSeatMatrixProps) {
+export function ManagerDashboardSeatMatrix({ seatData }: DashboardSeatMatrixProps) {
   const router = useRouter();
 
   if (!seatData || seatData.length === 0) return null;

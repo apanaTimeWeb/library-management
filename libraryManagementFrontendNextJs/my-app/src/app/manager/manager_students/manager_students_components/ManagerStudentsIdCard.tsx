@@ -59,7 +59,7 @@ export interface IdCardData {
 
 interface Props { data: IdCardData; }
 
-export default function StudentIdCard({ data }: Props) {
+export default function ManagerStudentsIdCard({ data }: Props) {
   const initials = data.name.split(' ').map(n => n[0]).join('').slice(0, 2).toUpperCase();
   const shiftLabel = data.shift.split(' ')[0];
   const avatarColors = ['#6366F1', '#8B5CF6', '#3B82F6', '#10B981', '#F59E0B', '#EF4444'];

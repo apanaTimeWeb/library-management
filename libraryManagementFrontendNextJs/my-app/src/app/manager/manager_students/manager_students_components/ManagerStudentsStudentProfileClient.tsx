@@ -8,7 +8,7 @@ import { calcExpiryDate, formatDateIN } from '@/lib/whatsappUtils';
 import { fetchStudentById } from '@/app/manager/manager_students/manager_students_api/manager_students_api';
 import type { Student } from '@/app/manager/manager_students/manager_students_types';
 
-export function StudentProfileClient({ id }: { id: string }) {
+export function ManagerStudentsStudentProfileClient({ id }: { id: string }) {
   const [student, setStudent] = useState<Student | null>(null);
   const [loading, setLoading] = useState(true);
 

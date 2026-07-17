@@ -9,7 +9,7 @@ import { gridTheme } from '@/app/manager/manager_reusable/gridTheme';
 import { useStudentsList } from '@/app/manager/manager_students/manager_students_hooks/useStudentsList';
 import { STUDENT_STATUS_OPTIONS, STUDENT_SHIFT_OPTIONS } from '@/app/manager/manager_students/manager_students_constants';
 import { MANAGER_ROUTES } from '@/app/manager/manager_url_config';
-import { NameCell, ShiftCell, StatusCell, DueCell, ActionsCell } from '@/app/manager/manager_students/manager_students_components/StudentsTableCells';
+import { NameCell, ShiftCell, StatusCell, DueCell, ActionsCell } from '@/app/manager/manager_students/manager_students_components/ManagerStudentsTableCells';
 import { ManagerStudentsEmptyState } from '@/app/manager/manager_students/manager_students_components/ManagerStudentsEmptyState';
 
 ModuleRegistry.registerModules([AllCommunityModule]);

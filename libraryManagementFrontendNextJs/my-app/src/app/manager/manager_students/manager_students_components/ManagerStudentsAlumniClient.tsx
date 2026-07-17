@@ -14,7 +14,7 @@ const ALUMNI_DATA = [
   { id: 'AL-1003', name: 'Anita Desai', phone: '+91 7766554433', leftDate: '2026-04-10', duration: '8 Months',  exam: 'Bank PO',   currentStatus: 'Preparing from home'  },
 ];
 
-export function AlumniClient() {
+export function ManagerStudentsAlumniClient() {
   const [rowData] = useState(ALUMNI_DATA);
 
   const colDefs: ColDef[] = [

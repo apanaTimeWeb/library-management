@@ -7,8 +7,8 @@ import { AgGridReact } from 'ag-grid-react';
 import { AllCommunityModule, ModuleRegistry, type ColDef } from 'ag-grid-community';
 import { gridTheme } from '@/app/manager/manager_reusable/gridTheme';
 import { useDashboardData } from '@/app/manager/manager_dashboard/manager_dashboard_hooks/useDashboardData';
-import { DashboardKpiGrid } from '@/app/manager/manager_dashboard/manager_dashboard_components/DashboardKpiGrid';
-import { DashboardSeatMatrix } from '@/app/manager/manager_dashboard/manager_dashboard_components/DashboardSeatMatrix';
+import { ManagerDashboardKpiGrid } from '@/app/manager/manager_dashboard/manager_dashboard_components/ManagerDashboardKpiGrid';
+import { ManagerDashboardSeatMatrix } from '@/app/manager/manager_dashboard/manager_dashboard_components/ManagerDashboardSeatMatrix';
 import { STATUS_CLASS, QUICK_LINKS } from '@/app/manager/manager_dashboard/manager_dashboard_constants';
 import { MANAGER_ROUTES } from '@/app/manager/manager_url_config';
 
@@ -65,11 +65,11 @@ export function ManagerDashboardClient() {
         </div>
       </div>
 
-      <DashboardKpiGrid kpiData={data.kpiData} />
+      <ManagerDashboardKpiGrid kpiData={data.kpiData} />
 
       {/* Row 2 — Seat Matrix + Action Items */}
       <div className="mgr-dashboard-row2 mgr-section-gap">
-        <DashboardSeatMatrix seatData={data.seatData} />
+        <ManagerDashboardSeatMatrix seatData={data.seatData} />
 
         <div className="mgr-card">
           <div className="mgr-card-header">

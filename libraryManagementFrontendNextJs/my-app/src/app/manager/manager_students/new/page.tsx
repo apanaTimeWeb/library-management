@@ -1,10 +1,10 @@
 import { Suspense } from 'react';
-import AdmissionForm from '@/app/manager/manager_students/manager_students_components/AdmissionForm';
+import ManagerStudentsAdmissionForm from '@/app/manager/manager_students/manager_students_components/ManagerStudentsAdmissionForm';
 
 export default function NewAdmissionPage() {
   return (
     <Suspense fallback={<div>Loading form...</div>}>
-      <AdmissionForm />
+      <ManagerStudentsAdmissionForm />
     </Suspense>
   );
 }

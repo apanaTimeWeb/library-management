@@ -11,7 +11,7 @@ const iconMap: Record<string, React.ElementType> = {
   Users, CalendarCheck, Phone, Armchair,
 };
 
-export function DashboardKpiGrid({ kpiData }: DashboardKpiGridProps) {
+export function ManagerDashboardKpiGrid({ kpiData }: DashboardKpiGridProps) {
   if (!kpiData || kpiData.length === 0) return null;
 
   return (

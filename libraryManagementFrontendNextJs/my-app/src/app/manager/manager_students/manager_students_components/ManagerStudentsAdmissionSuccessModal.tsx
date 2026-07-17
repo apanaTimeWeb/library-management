@@ -2,7 +2,7 @@
 
 import { useRouter } from 'next/navigation';
 import { X, Printer, MessageSquare, Users, CheckCircle } from 'lucide-react';
-import StudentIdCard, { type IdCardData } from '@/app/manager/manager_students/manager_students_components/StudentIdCard';
+import ManagerStudentsIdCard, { type IdCardData } from '@/app/manager/manager_students/manager_students_components/ManagerStudentsIdCard';
 import { formatIdCardMessage, openWhatsApp, type StudentWhatsAppData } from '@/lib/whatsappUtils';
 import { printThermal } from '@/lib/thermalPrint';
 import { ManagerRecord } from '@/app/manager/manager_reusable/gridTheme';
@@ -20,7 +20,7 @@ interface Props {
   onClose: () => void;
 }
 
-export default function AdmissionSuccessModal({ data, onClose }: Props) {
+export default function ManagerStudentsAdmissionSuccessModal({ data, onClose }: Props) {
   const router  = useRouter();
   const balance = data.totalPayable - data.amountPaid;
 
@@ -85,7 +85,7 @@ export default function AdmissionSuccessModal({ data, onClose }: Props) {
 
         <div className="mgr-success-body">
 
-          <StudentIdCard data={data} />
+          <ManagerStudentsIdCard data={data} />
 
           <div className="mgr-success-actions-panel">
             <p className="mgr-success-actions-title">Quick Actions</p>

@@ -6,7 +6,7 @@ import { ArrowLeft, Search, LogOut, AlertTriangle } from 'lucide-react';
 import { fetchStudents } from '@/app/manager/manager_students/manager_students_api/manager_students_api';
 import type { Student } from '@/app/manager/manager_students/manager_students_types';
 
-export function ExitClient() {
+export function ManagerStudentsExitClient() {
   const [students, setStudents] = useState<Student[]>([]);
   const [search, setSearch] = useState('');
   const [selected, setSelected] = useState('');

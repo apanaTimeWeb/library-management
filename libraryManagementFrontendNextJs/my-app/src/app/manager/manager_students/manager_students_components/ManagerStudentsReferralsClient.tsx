@@ -14,7 +14,7 @@ const REFERRALS_DATA = [
   { id: 'REF-003', referrer: 'Rohan Sharma', referred: 'Aditi Jain',  date: '2026-06-03', status: 'Approved', bonus: '₹500', method: 'Fee Discount' },
 ];
 
-export function ReferralsClient() {
+export function ManagerStudentsReferralsClient() {
   const [rowData] = useState(REFERRALS_DATA);
 
   const colDefs: ColDef[] = [

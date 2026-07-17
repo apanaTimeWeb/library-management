@@ -3,7 +3,7 @@
 import { useState, useMemo, useEffect } from 'react';
 import Link from 'next/link';
 import { ArrowLeft, Search, Printer, MessageSquare, IdCard, CheckCircle2 } from 'lucide-react';
-import StudentIdCard, { type IdCardData } from '@/app/manager/manager_students/manager_students_components/StudentIdCard';
+import ManagerStudentsIdCard, { type IdCardData } from '@/app/manager/manager_students/manager_students_components/ManagerStudentsIdCard';
 import {
   formatIdCardMessage,
   openWhatsApp,
@@ -15,7 +15,7 @@ import { printThermal } from '@/lib/thermalPrint';
 import { fetchStudents } from '@/app/manager/manager_students/manager_students_api/manager_students_api';
 import type { Student } from '@/app/manager/manager_students/manager_students_types';
 
-export function IdCardClient() {
+export function ManagerStudentsIdCardClient() {
   const [students, setStudents] = useState<Student[]>([]);
   const [selectedId, setSelectedId] = useState<string>('');
   const [search, setSearch]         = useState('');
@@ -195,7 +195,7 @@ export function IdCardClient() {
               <p className="mgr-page-subtitle mgr-idcard-preview-label">
                 Preview — {selected?.name}
               </p>
-              <StudentIdCard data={cardData} />
+              <ManagerStudentsIdCard data={cardData} />
               <p className="mgr-cell-sub mgr-idcard-preview-hint">
                 Use buttons on the left to print (80mm thermal) or send via WhatsApp
               </p>
