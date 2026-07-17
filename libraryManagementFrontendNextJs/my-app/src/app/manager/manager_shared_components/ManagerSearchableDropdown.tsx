@@ -35,7 +35,7 @@ export function ManagerSearchableDropdown({ options, value, onChange, placeholde
   }, []);
 
   return (
-    <div className={elative \} ref={dropdownRef}>
+    <div className={`relative ${className}`} ref={dropdownRef}>
       <div 
         className="flex items-center justify-between bg-bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary cursor-pointer hover:border-primary transition-colors"
         onClick={() => setIsOpen(!isOpen)}
@@ -43,7 +43,7 @@ export function ManagerSearchableDropdown({ options, value, onChange, placeholde
         <span className={selectedOption ? 'text-text-primary' : 'text-text-tertiary'}>
           {selectedOption ? selectedOption.label : placeholder}
         </span>
-        <ChevronDown size={16} className={	ext-text-secondary transition-transform \} />
+        <ChevronDown size={16} className={`text-text-secondary transition-transform ${isOpen ? 'rotate-180' : ''}`} />
       </div>
 
       {isOpen && (
@@ -66,7 +66,7 @@ export function ManagerSearchableDropdown({ options, value, onChange, placeholde
               filteredOptions.map(opt => (
                 <div
                   key={opt.value}
-                  className={px-3 py-2 text-sm rounded-md cursor-pointer hover:bg-primary-subtle hover:text-primary transition-colors \}
+                  className={`px-3 py-2 text-sm rounded-md cursor-pointer hover:bg-primary-subtle hover:text-primary transition-colors ${value === opt.value ? 'bg-primary-subtle text-primary font-medium' : 'text-text-primary'}`}
                   onClick={() => {
                     onChange(opt.value);
                     setIsOpen(false);

@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import toast from 'react-hot-toast';
 import { EnquiryDetail, EnquiryStatus, FollowUp } from '@/app/manager/manager_crm/manager_crm_types/ManagerCrmTypes';
-import { MANAGER_CRM_URL_CONFIG } from '@/app/manager/manager_crm/manager_crm_url_config';
 
 export function useManagerCrmEnquiriesDetail(id: string) {
   const router = useRouter();
@@ -16,7 +15,7 @@ export function useManagerCrmEnquiriesDetail(id: string) {
 
   useEffect(() => {
     import('@/lib/api').then(({ fetchApi }) => {
-      fetchApi<{id: string, name: string, phone: string, preferredShift: string, status: string, handledBy: {name: string}, createdAt: string, source: string, preferredBranch: string}>(/crm/enquiries/ + id)
+      fetchApi<{id: string, name: string, phone: string, preferredShift: string, status: string, handledBy: {name: string}, createdAt: string, source: string, preferredBranch: string}>(`/crm/enquiries/${id}`)
         .then((e) => {
           if (!e) {
             setLoading(false);
@@ -59,12 +58,12 @@ export function useManagerCrmEnquiriesDetail(id: string) {
     setStatusUpdating(true);
     try {
       const { fetchApi } = await import('@/lib/api');
-      await fetchApi(/crm/enquiries/ + id + /status, {
+      await fetchApi(`/crm/enquiries/${id}/status`, {
         method: 'PATCH',
         body: JSON.stringify({ status: val })
       });
       setEnquiry((prev) => (prev ? { ...prev, status: val } : prev));
-      toast.success(Status updated to " + val + ");
+      toast.success(`Status updated to ${val}`);
     } catch (err) {
       toast.error('Failed to update status');
     } finally {
@@ -80,13 +79,13 @@ export function useManagerCrmEnquiriesDetail(id: string) {
         remark: formData.remark,
         by: 'Admin'
       };
-      await fetchApi(/crm/enquiries/ + id + /follow-ups, {
+      await fetchApi(`/crm/enquiries/${id}/follow-ups`, {
         method: 'POST',
         body: JSON.stringify(payload)
       });
       
       const newEntry: FollowUp = {
-        id: u_ + Date.now(),
+        id: `fu_${Date.now()}`,
         date: new Date(formData.date).toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' }),
         by: 'Admin',
         note: formData.remark,
@@ -100,23 +99,23 @@ export function useManagerCrmEnquiriesDetail(id: string) {
   };
 
   const handleConvert = () => {
-    if(enquiry) router.push(/manager/manager_students/new?name= + enquiry.name + &phone= + enquiry.phone);
+    if(enquiry) router.push(`/manager/manager_students/new?name=${enquiry.name}&phone=${enquiry.phone}`);
   };
 
   const handleMarkLostConfirm = async (reason: string) => {
     setLostSubmitting(true);
     try {
       const { fetchApi } = await import('@/lib/api');
-      await fetchApi(/crm/enquiries/ + id + /status, {
+      await fetchApi(`/crm/enquiries/${id}/status`, {
         method: 'PATCH',
         body: JSON.stringify({ status: 'Lost', reason: reason })
       });
 
       const lostEntry: FollowUp = {
-        id: u_ + Date.now(),
+        id: `fu_${Date.now()}`,
         date: new Date().toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' }),
         by: 'Admin',
-        note: reason ? Marked as Lost -  + reason : 'Marked as Lost.',
+        note: reason ? `Marked as Lost - ${reason}` : 'Marked as Lost.',
       };
       setEnquiry((prev) => prev ? { ...prev, status: 'Lost', followUps: [lostEntry, ...prev.followUps] } : prev);
       setCurrentStatus('Lost');

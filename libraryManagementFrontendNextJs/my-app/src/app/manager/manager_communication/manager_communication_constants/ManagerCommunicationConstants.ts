@@ -1,11 +1,11 @@
 import { Template, WaLog, Notification, Category } from '@/app/manager/manager_communication/manager_communication_types/ManagerCommunicationTypes';
 
 export const INIT_TEMPLATES: Template[] = [
-  { id: 'welcome',      label: 'Welcome Message',       icon: 'dY+', body: 'Welcome to {libraryname}, {name}! Your Smart ID is {smartid}. Your seat {seat} is confirmed in the {shift} shift. Happy reading!' },
-  { id: 'fee_reminder', label: 'Fee Reminder (Auto)',   icon: 'dY ?', body: 'Hi {name}, a gentle reminder that your subscription fee of {amount} is due on {duedate}. Kindly ignore if already paid. ?" {libraryname}' },
-  { id: 'receipt',      label: 'Payment Receipt',       icon: 'dY'', body: 'Dear {name}, we have received your payment of {amount} on {date}. Your new validity is {validtill}. Receipt: {receiptno}. Thank you! ?" {libraryname}' },
-  { id: 'absentee',     label: 'Absentee Parent Alert', icon: 'dY".', body: 'Dear Parent, your ward {name} (Seat: {seat}) has been absent for multiple consecutive days. Please contact {libraryname} at {phone}.' },
-  { id: 'ptp',          label: 'PTP Payment Reminder',  icon: 'dY ?', body: 'Hi {name}, this is a reminder that you had committed to pay {amount} by {duedate}. Please complete your payment. ?" {libraryname}' },
+  { id: 'welcome',      label: 'Welcome Message',       icon: '??', body: 'Welcome to {libraryname}, {name}! Your Smart ID is {smartid}. Your seat {seat} is confirmed in the {shift} shift. Happy reading!' },
+  { id: 'fee_reminder', label: 'Fee Reminder (Auto)',   icon: '??', body: 'Hi {name}, a gentle reminder that your subscription fee of {amount} is due on {duedate}. Kindly ignore if already paid. ?? {libraryname}' },
+  { id: 'receipt',      label: 'Payment Receipt',       icon: '??', body: 'Dear {name}, we have received your payment of {amount} on {date}. Your new validity is {validtill}. Receipt: {receiptno}. Thank you! ?? {libraryname}' },
+  { id: 'absentee',     label: 'Absentee Parent Alert', icon: '??', body: 'Dear Parent, your ward {name} (Seat: {seat}) has been absent for multiple consecutive days. Please contact {libraryname} at {phone}.' },
+  { id: 'ptp',          label: 'PTP Payment Reminder',  icon: '??', body: 'Hi {name}, this is a reminder that you had committed to pay {amount} by {duedate}. Please complete your payment. ?? {libraryname}' },
 ];
 
 export const WA_LOGS_DATA: WaLog[] = [

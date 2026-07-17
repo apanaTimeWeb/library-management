@@ -1,3 +1,4 @@
+import { useManagerDebounce } from '@/app/manager/manager_shared_hooks/useManagerDebounce';
 // RESPONSIBILITY: Renders the ManagerStudentsIdCardClient.tsx component.
 'use client';
 
@@ -20,7 +21,7 @@ export function ManagerStudentsIdCardClient() {
   const [students, setStudents] = useState<Student[]>([]);
   const [selectedId, setSelectedId] = useState<string>('');
   const [search, setSearch]         = useState('');
-  const debouncedSearch = useDebounce(search, 300);
+  const debouncedSearch = useManagerDebounce(search, 300);
 
   useEffect(() => {
     fetchStudents().then(setStudents).catch(console.error);

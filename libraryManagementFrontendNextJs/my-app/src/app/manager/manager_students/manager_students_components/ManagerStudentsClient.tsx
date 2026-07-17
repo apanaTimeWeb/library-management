@@ -124,7 +124,7 @@ export function ManagerStudentsClient() {
               suppressMovableColumns
               suppressCellFocus
               defaultColDef={{ resizable: true, sortable: true }}
-              onRowClicked={handleRowClick}
+              onRowClicked={() => {}}
               rowClass="cursor-pointer hover:bg-bg-elevated transition-colors"
             />
           )}

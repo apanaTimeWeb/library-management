@@ -1,3 +1,4 @@
+import { useManagerDebounce } from '@/app/manager/manager_shared_hooks/useManagerDebounce';
 // RESPONSIBILITY: Renders the ManagerStudentsExitClient.tsx component.
 'use client';
 
@@ -10,7 +11,7 @@ import type { Student } from '@/app/manager/manager_students/manager_students_ty
 export function ManagerStudentsExitClient() {
   const [students, setStudents] = useState<Student[]>([]);
   const [search, setSearch] = useState('');
-  const debouncedSearch = useDebounce(search, 300);
+  const debouncedSearch = useManagerDebounce(search, 300);
   const [selected, setSelected] = useState('');
   const [reason, setReason] = useState('');
   const [confirmed, setConfirmed] = useState(false);

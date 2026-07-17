@@ -22,8 +22,8 @@ export const useStudentsStore = create<StudentsState>((set, get) => ({
       const students = await fetchStudents();
       if (!Array.isArray(students) || students.length === 0 || String(students[0]?.id).startsWith('MOCK-')) {
         const MOCK_STUDENTS: Student[] = [
-          { id: '1', name: 'Alice Smith', smartId: 'STU001', phone: '9876543210', assignedSeat: 'S-10', currentShift: 'Morning', status: 'Active', plan: 'Basic', locker: 'L-01', balance: 0, joiningDate: '2026-04-01', kycStatus: 'Verified' },
-          { id: '2', name: 'Bob Jones', smartId: 'STU002', phone: '8765432109', assignedSeat: 'S-12', currentShift: 'Evening', status: 'Inactive', plan: 'Premium', locker: 'None', balance: 500, joiningDate: '2026-03-15', kycStatus: 'Pending' },
+          { id: '1', name: 'Alice Smith', smartId: 'STU001', phone: '9876543210', currentSeat: 'S-10', currentShift: 'Morning', status: 'Active', plan: 'Basic', locker: 'L-01', balance: 0, joiningDate: '2026-04-01', kycStatus: 'Verified' },
+          { id: '2', name: 'Bob Jones', smartId: 'STU002', phone: '8765432109', currentSeat: 'S-12', currentShift: 'Evening', status: 'Inactive', plan: 'Premium', locker: 'None', balance: 500, joiningDate: '2026-03-15', kycStatus: 'Pending' },
         ];
         set({ students: MOCK_STUDENTS as any, status: 'success' });
         return;

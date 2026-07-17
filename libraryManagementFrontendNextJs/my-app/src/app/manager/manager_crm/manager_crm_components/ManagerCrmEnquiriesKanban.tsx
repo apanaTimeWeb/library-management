@@ -3,8 +3,8 @@ import { useRouter } from 'next/navigation';
 import { PhoneCall, MoreHorizontal, Plus } from 'lucide-react';
 import { KANBAN_COLUMNS, DOT_CLASS } from '@/app/manager/manager_crm/manager_crm_constants';
 import type { EnquiryStatus, Enquiry } from '@/app/manager/manager_crm/manager_crm_types';
-import { ManagerCrmKanbanCard }
-import { ManagerCrmEnquiriesKanbanProps } from '@/app/manager/manager_crm/manager_crm_types/ManagerCrmTypes'; from '@/app/manager/manager_crm/manager_crm_components/ManagerCrmKanbanCard';
+import { ManagerCrmKanbanCard } from '@/app/manager/manager_crm/manager_crm_components/ManagerCrmKanbanCard';
+import { ManagerCrmEnquiriesKanbanProps } from '@/app/manager/manager_crm/manager_crm_types/ManagerCrmTypes';
 import { MANAGER_CRM_URLS } from '@/app/manager/manager_crm/manager_crm_url_config';
 
 // RESPONSIBILITY: Renders the entire Kanban board for CRM Enquiries.

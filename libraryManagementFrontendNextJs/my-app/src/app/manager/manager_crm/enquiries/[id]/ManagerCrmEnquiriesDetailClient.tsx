@@ -57,7 +57,6 @@ function timelineDotClass(by: string): string {
 
 /* ── Mark Lost Modal ───────────────────────────────────── */
 // Types and constants centralized. timeline?: Record<string, unknown>[]; isToday?: boolean; isUpcoming?: boolean; isOverdue?: boolean; avatar?: string;
-}
 
 /* ── Main Page ─────────────────────────────────────────── */
 export function ManagerCrmEnquiriesDetailClient({ id }: { id: string }) {
