@@ -5,7 +5,7 @@
 
 import Link from 'next/link';
 import { ArrowLeft, BookOpen, Send, Loader2 } from 'lucide-react';
-import { useAuthForgotPassword } from '@/app/auth/forgot-password/auth_hooks/useAuthForgotPassword';
+import { useAuthForgotPassword } from '@/app/auth/forgot-password/auth_forgot_password_hooks/useAuthForgotPassword';
 import { AUTH_ROUTES } from '@/app/auth/auth_url_config';
 
 export function AuthForgotPasswordForm() {

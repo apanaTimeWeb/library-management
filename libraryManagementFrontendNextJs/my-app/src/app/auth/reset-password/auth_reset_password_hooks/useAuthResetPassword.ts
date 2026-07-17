@@ -106,6 +106,7 @@ export function useAuthResetPassword() {
     fetchState,
     errorMessage,
     register,
+    control,
     handleSubmit: handleSubmit(onSubmit),
     errors,
     newPassword,

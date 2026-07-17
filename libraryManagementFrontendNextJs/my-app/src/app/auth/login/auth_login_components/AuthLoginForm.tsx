@@ -5,7 +5,7 @@
 
 import Link from 'next/link';
 import { Eye, EyeOff, BookOpen, CheckCircle, ChevronRight, Loader2 } from 'lucide-react';
-import { useAuthLogin } from '@/app/auth/login/auth_hooks/useAuthLogin';
+import { useAuthLogin } from '@/app/auth/login/auth_login_hooks/useAuthLogin';
 import { AUTH_ROUTES } from '@/app/auth/auth_url_config';
 
 export function AuthLoginForm() {

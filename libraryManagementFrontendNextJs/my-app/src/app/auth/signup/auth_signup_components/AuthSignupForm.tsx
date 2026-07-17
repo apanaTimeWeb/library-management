@@ -5,7 +5,7 @@
 
 import Link from 'next/link';
 import { Eye, EyeOff, BookOpen, CheckCircle, Loader2 } from 'lucide-react';
-import { useAuthSignup } from '@/app/auth/signup/auth_hooks/useAuthSignup';
+import { useAuthSignup } from '@/app/auth/signup/auth_signup_hooks/useAuthSignup';
 import { AUTH_ROUTES } from '@/app/auth/auth_url_config';
 import PasswordStrengthMeter from '@/app/auth/auth_shared_components/AuthPasswordStrengthMeter';
 

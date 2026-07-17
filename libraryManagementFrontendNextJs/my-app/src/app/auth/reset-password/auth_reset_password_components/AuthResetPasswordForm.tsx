@@ -6,7 +6,7 @@
 import Link from 'next/link';
 import { Eye, EyeOff, BookOpen, Loader2 } from 'lucide-react';
 import { Controller } from 'react-hook-form';
-import { useAuthResetPassword } from '@/app/auth/reset-password/auth_hooks/useAuthResetPassword';
+import { useAuthResetPassword } from '@/app/auth/reset-password/auth_reset_password_hooks/useAuthResetPassword';
 import PasswordStrengthMeter from '@/app/auth/auth_shared_components/AuthPasswordStrengthMeter';
 import { AUTH_ROUTES } from '@/app/auth/auth_url_config';
 

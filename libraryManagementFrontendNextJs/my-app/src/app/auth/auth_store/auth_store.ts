@@ -72,7 +72,7 @@ export const useAuthStore = create<AuthStoreState>((set) => ({
 
   resetPassword: async (payload) => {
     set({ fetchState: 'loading', errorMessage: null });
-    const response = await authApi.resetPassword({ token: payload.otp, newPassword: payload.newPassword });
+    const response = await authApi.resetPassword({ token: payload.token, newPassword: payload.newPassword });
     
     if (response.success) {
       set({ fetchState: 'success' });
