@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   title: "Nexus 360",
 };
 
-import { CommandPalette } from "@/components/CommandPalette";
+import { GlobalCommandPalette } from "@/components/GlobalCommandPalette";
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -18,7 +18,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className={`bg-background text-on-background ${inter.variable} font-sans`} suppressHydrationWarning>
         <ThemeProvider attribute="data-theme" defaultTheme="dark" enableSystem={false}>
           {children}
-          <CommandPalette />
+          <GlobalCommandPalette />
         </ThemeProvider>
       </body>
     </html>
