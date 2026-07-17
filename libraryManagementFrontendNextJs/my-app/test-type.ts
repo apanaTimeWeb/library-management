@@ -1,1 +1,0 @@
-type CellParams = any; const f = (p: CellParams) => p.value;
