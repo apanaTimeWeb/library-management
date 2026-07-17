@@ -5,8 +5,8 @@ import { usePathname, useRouter } from 'next/navigation';
 import { useState } from 'react';
 import {
   LayoutDashboard, BarChart2, History,
-  FileText, User, Building2, Key, Tag,
-  Ban, LogOut, Menu, X, type LucideIcon, IndianRupee, Users
+  FileText, Building2, LogOut, Menu, X, type LucideIcon, IndianRupee,
+  Activity, LifeBuoy, Settings
 } from 'lucide-react';
 import { SuperadminButton } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminButton';
 import {
@@ -22,22 +22,17 @@ type NavItem =
   | { href: string; icon: LucideIcon; label: string };
 
 const NAV: NavItem[] = [
-  { href: '/admin/admin_dashboard', icon: LayoutDashboard, label: 'Dashboard' },
-  { href: '/admin/admin_reports',   icon: BarChart2,       label: 'Reports'   },
-  { group: 'Admin' },
-  { href: '/admin/admin_branches',    icon: Building2, label: 'Branches'      },
-  { href: '/admin/admin_staff-users', icon: User,      label: 'Staff & Users' },
-  { href: '/admin/admin_permissions', icon: Key,       label: 'Permissions'   },
-  { href: '/admin/admin_plans',       icon: FileText,  label: 'Plans'         },
-  { href: '/admin/admin_coupons',     icon: Tag,       label: 'Coupons'       },
-  { href: '/admin/admin_blacklist',   icon: Ban,       label: 'Blacklist'     },
-  { href: '/admin/admin_audit-logs',  icon: History,   label: 'Audit Logs'    },
-  { group: 'Operations (All Branches)' },
-  { href: '/admin/admin_expenses',    icon: IndianRupee, label: 'Expenses'    },
-  { href: '/admin/admin_students',    icon: Users,       label: 'Students'    },
-  { group: 'Configuration' },
-  { href: '/admin/admin_expense-categories', icon: Tag, label: 'Expense Types' },
-  { href: '/admin/admin_settings',    icon: Key,       label: 'Settings'      },
+  { href: '/superadmin/superadmin_dashboard', icon: LayoutDashboard, label: 'Dashboard' },
+  { href: '/superadmin/superadmin_libraries', icon: Building2, label: 'Libraries' },
+  { href: '/superadmin/superadmin_subscriptions', icon: FileText, label: 'Subscriptions' },
+  { href: '/superadmin/superadmin_billing', icon: IndianRupee, label: 'Billing' },
+  { href: '/superadmin/superadmin_reports', icon: BarChart2, label: 'Reports' },
+  { group: 'Monitoring & Support' },
+  { href: '/superadmin/superadmin_system-health', icon: Activity, label: 'System Health' },
+  { href: '/superadmin/superadmin_audit-logs', icon: History, label: 'Audit Logs' },
+  { href: '/superadmin/superadmin_support-tickets', icon: LifeBuoy, label: 'Support Tickets' },
+  { group: 'System' },
+  { href: '/superadmin/superadmin_settings', icon: Settings, label: 'Settings' },
 ];
 
 interface Props {
@@ -115,10 +110,10 @@ export default function SuperadminSidebar({ collapsed, onToggle, mobileOpen, onM
 
         {(!collapsed || mobileOpen) && (
           <div className="admin-sidebar-footer">
-            <div className="admin-avatar">LA</div>
+            <div className="admin-avatar">SA</div>
             <div className="admin-sidebar-user-info">
-              <p className="admin-sidebar-user-name">Library Admin</p>
-              <p className="admin-sidebar-user-email">admin@library.com</p>
+              <p className="admin-sidebar-user-name">Super Admin</p>
+              <p className="admin-sidebar-user-email">superadmin@nexus360.com</p>
             </div>
             <SuperadminButton
               variant="ghost"
