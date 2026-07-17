@@ -1,15 +1,24 @@
 import { cookies } from 'next/headers';
-import { AdminStudentsView } from '@/app/admin/admin_students/admin_students_components/AdminStudentsView';
+import { AdminStudentsClient } from './admin_students_components/AdminStudentsClient';
 import { fetchAdminStudents } from '@/app/admin/admin_students/admin_students_api/admin_students_api';
 import { ADMIN_STUDENTS_MOCK_DATA } from '@/app/admin/admin_students/admin_students_constants/AdminStudentsConstants';
+import { type AdminStudentData } from './admin_students_hooks/useAdminStudents';
 
-async function getStudentsData() {
+async function getStudentsData(): Promise<AdminStudentData[]> {
   const cookieStore = await cookies();
   const token = cookieStore.get('access_token')?.value || '';
   
   const response = await fetchAdminStudents(token);
   if (!response.success || !response.data || response.data.length === 0 || String(response.data[0]?.id).startsWith('MOCK-')) {
-    return ADMIN_STUDENTS_MOCK_DATA;
+    return ADMIN_STUDENTS_MOCK_DATA.map((s: any) => ({
+      id: s.id,
+      name: s.name,
+      shift: s.shift,
+      seat: s.seat,
+      plan: s.plan,
+      status: s.status,
+      branch: s.branch || 'Main Branch'
+    }));
   }
   
   return response.data.map((s: any) => ({
@@ -26,6 +35,5 @@ async function getStudentsData() {
 export default async function AdminStudentsPage() {
   const students = await getStudentsData();
 
-  return <AdminStudentsView initialStudents={students} />;
+  return <AdminStudentsClient initialStudents={students} />;
 }
-

@@ -1,14 +1,22 @@
 import { useState, useMemo } from 'react';
 import { useAdmin } from '@/app/admin/admin_context/AdminContext';
-import { AdminRecord } from '@/app/admin/admin_reusable/admin_reusable_utils/AdminReusableGridTheme';
 
-// DATA FLOW: API → useAdminStudents.ts → AdminStudentsComponent
-export function useAdminStudents(initialStudents: any[]) {
+export interface AdminStudentData {
+  id: string;
+  name: string;
+  shift: string;
+  seat: string;
+  plan: string;
+  status: string;
+  branch: string;
+}
+
+export function useAdminStudents(initialStudents: AdminStudentData[]) {
   const [search, setSearch] = useState('');
   const { selectedBranch } = useAdmin();
 
   const filteredStudents = useMemo(() => {
-    return initialStudents.filter(( s: any ) => {
+    return initialStudents.filter(s => {
       if (selectedBranch !== 'All Branches' && s.branch !== selectedBranch) return false;
       return (s.name || '').toLowerCase().includes(search.toLowerCase());
     });
@@ -21,4 +29,3 @@ export function useAdminStudents(initialStudents: any[]) {
     filteredStudents
   };
 }
-
