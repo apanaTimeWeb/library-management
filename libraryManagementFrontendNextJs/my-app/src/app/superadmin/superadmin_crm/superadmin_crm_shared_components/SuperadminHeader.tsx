@@ -1,10 +1,7 @@
 // RESPONSIBILITY: Renders the SuperadminHeader component.
 'use client';
 import { BellRing, Building2, Menu } from 'lucide-react';
-
-interface HeaderProps {
-  onMenuClick?: () => void;
-}
+import type { SuperadminCrmHeaderProps as HeaderProps } from '@/app/superadmin/superadmin_crm/superadmin_crm_types/SuperadminCrmTypes';
 
 export default function SuperadminHeader({ onMenuClick }: HeaderProps) {
   return (

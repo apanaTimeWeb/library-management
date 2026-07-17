@@ -3,17 +3,13 @@
 // DATA FLOW: API /superadmin/reports -> SuperadminReportsClient -> KPI Grid & Chart Cards
 
 import React, { useState, useEffect } from 'react';
-import type { SuperadminReportsDataResponse } from '@/app/superadmin/superadmin_reports/superadmin_reports_types/SuperadminReportsTypes';
+import type { SuperadminReportsDataResponse, SuperadminReportsClientProps as Props } from '@/app/superadmin/superadmin_reports/superadmin_reports_types/SuperadminReportsTypes';
 import { SuperadminReportsHeader } from '@/app/superadmin/superadmin_reports/superadmin_reports_components/SuperadminReportsHeader';
 import { SuperadminReportsKpiGrid } from '@/app/superadmin/superadmin_reports/superadmin_reports_components/SuperadminReportsKpiGrid';
 import { SuperadminReportsCharts } from '@/app/superadmin/superadmin_reports/superadmin_reports_components/SuperadminReportsCharts';
 import { fetchSuperadminReportsData } from '@/app/superadmin/superadmin_reports/superadmin_reports_api/SuperadminReportsApi';
 import { logger } from '@/lib/logger';
 import type { FetchState } from '@/app/superadmin/superadmin_shared_components/superadmin_types';
-
-interface Props {
-  initialData: SuperadminReportsDataResponse;
-}
 
 export function SuperadminReportsClient({ initialData }: Props) {
   const [range, setRange] = useState('Last 6 Months');

@@ -1,10 +1,7 @@
 // RESPONSIBILITY: Renders the SuperadminFinancialReportsHeader component.
 import React from 'react';
 
-interface Props {
-  period: 'monthly' | 'quarterly' | 'yearly';
-  setPeriod: (val: 'monthly' | 'quarterly' | 'yearly') => void;
-}
+import type { SuperadminFinancialReportsHeaderProps as Props } from '@/app/superadmin/superadmin_accounting/superadmin_accounting_types/SuperadminAccountingTypes';
 
 export function SuperadminFinancialReportsHeader({ period, setPeriod }: Props) {
   return (

@@ -1,26 +1,5 @@
 // RESPONSIBILITY: Renders the QrScannerClient component.
 'use client';
-
-import { useState } from 'react';
-import Link from 'next/link';
-import { ChevronRight, CheckCircle, X, RefreshCw, LogOut } from 'lucide-react';
-import { SUPERADMIN_ENGAGEMENT_MOCK_QR_STUDENT } from '@superadmin/superadmin_engagement/superadmin_engagement_data/SuperadminEngagementMockData';
-
-interface ScanResult {
-  name: string; initials: string; smartId: string;
-  shift: string; validTill: string; plan: string;
-}
-
-
-
-type ScanState = 'idle' | 'scanning' | 'detected' | 'success';
-
-export function QrScannerClient() {
-  const [scanState, setScanState]   = useState<ScanState>('idle');
-  const [result, setResult]         = useState<ScanResult | null>(null);
-  const [successMsg, setSuccessMsg] = useState('');
-  const [history, setHistory]       = useState<{name:string;type:string;time:string;id:string}[]>([]);
-  const [manualId, setManualId]     = useState('');
   const [showManual, setShowManual] = useState(false);
 
   const startScan = () => setScanState('scanning');

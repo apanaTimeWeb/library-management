@@ -4,9 +4,7 @@ import { Armchair } from 'lucide-react';
 import type { SuperadminGapRow } from '@/app/superadmin/superadmin_accounting/seat-gap-report/superadmin_seat_gap_report_types/SuperadminSeatGapReportTypes';
 import { SUPERADMIN_SEAT_GAP_REPORT_STATUS_STYLES } from '@/app/superadmin/superadmin_accounting/seat-gap-report/superadmin_seat_gap_report_constants/SuperadminSeatGapReportConstants';
 
-interface Props {
-  rows: SuperadminGapRow[];
-}
+import type { SuperadminSeatGapReportTableProps as Props } from '@/app/superadmin/superadmin_accounting/superadmin_accounting_types/SuperadminAccountingTypes';
 
 export function SuperadminSeatGapReportTable({ rows }: Props) {
   if (rows.length === 0) {

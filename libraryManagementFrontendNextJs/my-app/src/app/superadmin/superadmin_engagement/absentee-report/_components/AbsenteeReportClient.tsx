@@ -10,16 +10,9 @@ import { ChevronRight, Send, Mail, Phone, CheckCircle } from 'lucide-react';
 import { superadmin_gridTheme } from '@/app/superadmin/superadmin_shared_components/superadmin_gridTheme';
 import { SUPERADMIN_ENGAGEMENT_MOCK_ABSENTEES } from '@superadmin/superadmin_engagement/superadmin_engagement_data/SuperadminEngagementMockData';
 import { SuperadminSearchableDropdown } from '@/app/superadmin/superadmin_shared_components/SuperadminSearchableDropdown';
+import type { SuperadminEngagementAbsenteeRow as AbsenteeRow } from '@/app/superadmin/superadmin_engagement/superadmin_engagement_types/SuperadminEngagementTypes';
 
 ModuleRegistry.registerModules([AllCommunityModule]);
-
-interface AbsenteeRow {
-  id: string; name: string; initials: string; smartId: string;
-  shift: string; daysAbsent: number; lastSeen: string;
-  parentPhone: string; parentEmail: string; notified: boolean;
-}
-
-
 
 export function AbsenteeReportClient() {
   const [threshold, setThreshold] = useState('3');

@@ -3,9 +3,7 @@ import React from 'react';
 import { CalendarX2 } from 'lucide-react';
 import type { SuperadminDayGap } from '@/app/superadmin/superadmin_accounting/shift-gap-analyzer/superadmin_shift_gap_analyzer_types/SuperadminShiftGapAnalyzerTypes';
 
-interface Props {
-  days: SuperadminDayGap[];
-}
+import type { SuperadminShiftGapAnalyzerTableProps as Props } from '@/app/superadmin/superadmin_accounting/superadmin_accounting_types/SuperadminAccountingTypes';
 
 export function SuperadminShiftGapAnalyzerTable({ days }: Props) {
   if (days.length === 0) {

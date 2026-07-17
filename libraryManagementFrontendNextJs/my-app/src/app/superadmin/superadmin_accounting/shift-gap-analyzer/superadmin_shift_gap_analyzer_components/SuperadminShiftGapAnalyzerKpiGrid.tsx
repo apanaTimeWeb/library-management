@@ -1,12 +1,7 @@
 // RESPONSIBILITY: Renders the SuperadminShiftGapAnalyzerKpiGrid component.
 import React from 'react';
 
-interface Props {
-  totalLoss: number;
-  totalVacant: number;
-  avgOccupancy: number;
-  shiftsAnalyzed: number;
-}
+import type { SuperadminShiftGapAnalyzerKpiGridProps as Props } from '@/app/superadmin/superadmin_accounting/superadmin_accounting_types/SuperadminAccountingTypes';
 
 export function SuperadminShiftGapAnalyzerKpiGrid({ totalLoss, totalVacant, avgOccupancy, shiftsAnalyzed }: Props) {
   return (

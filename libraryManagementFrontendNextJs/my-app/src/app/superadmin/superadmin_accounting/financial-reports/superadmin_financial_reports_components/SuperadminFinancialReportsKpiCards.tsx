@@ -2,11 +2,7 @@
 import React from 'react';
 import { BarChart2, TrendingUp, TrendingDown } from 'lucide-react';
 
-interface Props {
-  totalIncome: number;
-  totalExpense: number;
-  netProfit: number;
-}
+import type { SuperadminFinancialReportsKpiCardsProps as Props } from '@/app/superadmin/superadmin_accounting/superadmin_accounting_types/SuperadminAccountingTypes';
 
 export function SuperadminFinancialReportsKpiCards({ totalIncome, totalExpense, netProfit }: Props) {
   return (

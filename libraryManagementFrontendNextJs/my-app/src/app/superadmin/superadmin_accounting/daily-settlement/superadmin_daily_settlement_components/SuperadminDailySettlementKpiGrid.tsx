@@ -1,11 +1,7 @@
 // RESPONSIBILITY: Renders the SuperadminDailySettlementKpiGrid component.
 import React from 'react';
 
-interface Props {
-  totalCash: number;
-  totalUpi: number;
-  totalExp: number;
-}
+import type { SuperadminDailySettlementKpiGridProps as Props } from '@/app/superadmin/superadmin_accounting/superadmin_accounting_types/SuperadminAccountingTypes';
 
 export function SuperadminDailySettlementKpiGrid({ totalCash, totalUpi, totalExp }: Props) {
   const net = totalCash + totalUpi - totalExp;

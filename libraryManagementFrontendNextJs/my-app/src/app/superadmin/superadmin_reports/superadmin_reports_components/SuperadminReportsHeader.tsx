@@ -2,11 +2,7 @@
 import React, { useState } from 'react';
 import { Download, FileSpreadsheet, CheckCircle } from 'lucide-react';
 import { SUPERADMIN_REPORTS_DATE_RANGES } from '@/app/superadmin/superadmin_reports/superadmin_reports_constants/SuperadminReportsConstants';
-
-interface Props {
-  range: string;
-  setRange: (r: string) => void;
-}
+import type { SuperadminReportsHeaderProps as Props } from '@/app/superadmin/superadmin_reports/superadmin_reports_types/SuperadminReportsTypes';
 
 export function SuperadminReportsHeader({ range, setRange }: Props) {
   const [exported, setExported] = useState(false);

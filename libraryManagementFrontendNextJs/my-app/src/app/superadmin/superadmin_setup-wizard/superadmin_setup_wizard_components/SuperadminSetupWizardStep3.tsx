@@ -7,7 +7,9 @@ import { SETUP_WIZARD_DATA as d } from '@/app/superadmin/superadmin_setup-wizard
 
 const inputCls = (hasErr?: boolean) => `w-full bg-bg-input border rounded-lg px-3.5 py-2.5 text-[15px] text-text-primary focus:outline-none focus:ring-2 transition-all placeholder:text-text-tertiary ${hasErr ? 'border-danger focus:ring-danger/20 focus:border-danger' : 'border-border focus:ring-primary/20 focus:border-primary'}`;
 
-export function SuperadminSetupWizardStep3({ onNext }: { onNext: (d: SeatsData) => void }) {
+import type { SuperadminSetupWizardStep3Props as Props } from '@/app/superadmin/superadmin_setup-wizard/superadmin_setup_wizard_types/SuperadminSetupWizardTypes';
+
+export function SuperadminSetupWizardStep3({ onNext }: Props) {
   const { register, handleSubmit, watch, formState: { errors } } = useForm<SeatsData>({
     resolver: zodResolver(seatsSchema),
     defaultValues: { count: d.seatCount, prefix: d.seatPrefix },

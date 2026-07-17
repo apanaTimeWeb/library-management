@@ -38,3 +38,20 @@ export interface SuperadminReportsDataResponse {
   occupancy: SuperadminReportsOccupancy[];
   kpiCards: SuperadminReportsKpiCard[];
 }
+
+export interface SuperadminReportsClientProps {
+  initialData: SuperadminReportsDataResponse;
+}
+
+export interface SuperadminReportsHeaderProps {
+  range: string;
+  setRange: (r: string) => void;
+}
+
+export interface SuperadminReportsKpiGridProps {
+  kpiCards: SuperadminReportsKpiCard[];
+}
+
+export interface SuperadminReportsChartsProps {
+  data: SuperadminReportsDataResponse;
+}

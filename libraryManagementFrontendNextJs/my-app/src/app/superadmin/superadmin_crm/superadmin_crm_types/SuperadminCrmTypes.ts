@@ -1,0 +1,14 @@
+export interface SuperadminCrmSidebarProps {
+  isOpen?: boolean;
+  onClose?: () => void;
+}
+
+export interface SuperadminCrmHeaderProps {
+  onMenuClick?: () => void;
+}
+
+export interface SuperadminCrmMarkLostModalProps {
+  onConfirm: (reason: string) => void;
+  onCancel: () => void;
+  isSubmitting: boolean;
+}

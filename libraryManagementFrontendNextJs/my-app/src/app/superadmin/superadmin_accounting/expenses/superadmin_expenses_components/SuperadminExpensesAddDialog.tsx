@@ -7,11 +7,7 @@ import type { SuperadminExpense, SuperadminExpenseMode } from '@/app/superadmin/
 import { logger } from '@/lib/logger';
 import { SuperadminSearchableDropdown } from '@/app/superadmin/superadmin_shared_components/SuperadminSearchableDropdown';
 
-interface Props {
-  categories: string[];
-  onClose: () => void;
-  onSave: (exp: Omit<SuperadminExpense, 'id'>) => Promise<void>;
-}
+import type { SuperadminExpensesAddDialogProps as Props } from '@/app/superadmin/superadmin_accounting/superadmin_accounting_types/SuperadminAccountingTypes';
 
 export function SuperadminExpensesAddDialog({ categories, onClose, onSave }: Props) {
   const [form, setForm] = useState({ 

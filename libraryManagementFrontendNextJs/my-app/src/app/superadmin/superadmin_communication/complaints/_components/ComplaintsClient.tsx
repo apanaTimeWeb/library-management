@@ -1,37 +1,4 @@
 'use client';
-
-// RESPONSIBILITY: Renders library student complaint pipeline with status filters, detailed view, and resolution workflow.
-// DATA FLOW: API /communication/complaints -> ComplaintsPage State -> UI / Resolution
-
-import { useState, useEffect } from 'react';
-import { fetchApi } from '@/lib/api';
-import { logger } from '@/lib/logger';
-import { ChevronRight, Plus, X, Eye, RefreshCw, CheckCircle, MessageSquare, Circle, Smile } from 'lucide-react';
-import { SUPERADMIN_COMMUNICATION_MOCK_COMPLAINTS } from '@superadmin/superadmin_communication/superadmin_communication_data/SuperadminCommunicationMockData';
-
-type CStatus = 'Open' | 'In-Progress' | 'Resolved';
-
-interface Complaint {
-  id: string; title: string; student: string; isAnonymous: boolean;
-  description: string; status: CStatus; date: string;
-  resolvedBy: string; resolvedDate: string; resolvedNote: string;
-}
-
-
-const TABS: (CStatus | 'All')[] = ['All', 'Open', 'In-Progress', 'Resolved'];
-
-export function ComplaintsClient() {
-  const [tab, setTab]                   = useState<CStatus | 'All'>('All');
-  const [complaints, setComplaints]     = useState<Complaint[]>(SUPERADMIN_COMMUNICATION_MOCK_COMPLAINTS as Complaint[]);
-  const [showAdd, setShowAdd]           = useState(false);
-  const [viewItem, setViewItem]         = useState<Complaint | null>(null);
-  const [resolveItem, setResolveItem]   = useState<Complaint | null>(null);
-  const [resolveNote, setResolveNote]   = useState('');
-
-  useEffect(() => {
-    fetchApi('/communication/complaints').then(( data: unknown ) => {
-      const actualData = Array.isArray(data) ? data : (data as any)?.data;
-      if (!Array.isArray(actualData) || actualData.length === 0 || String(actualData[0]?.id).startsWith('MOCK-')) {
         setComplaints(SUPERADMIN_COMMUNICATION_MOCK_COMPLAINTS as Complaint[]);
         return;
       }

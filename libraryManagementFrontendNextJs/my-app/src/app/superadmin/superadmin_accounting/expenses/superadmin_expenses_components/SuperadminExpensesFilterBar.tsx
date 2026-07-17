@@ -4,11 +4,7 @@ import { TrendingUp } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { SuperadminSearchableDropdown } from '@/app/superadmin/superadmin_shared_components/SuperadminSearchableDropdown';
 
-interface Props {
-  categories: string[];
-  catFilter: string;
-  setCatFilter: (val: string) => void;
-}
+import type { SuperadminExpensesFilterBarProps as Props } from '@/app/superadmin/superadmin_accounting/superadmin_accounting_types/SuperadminAccountingTypes';
 
 export function SuperadminExpensesFilterBar({ categories, catFilter, setCatFilter }: Props) {
   const router = useRouter();

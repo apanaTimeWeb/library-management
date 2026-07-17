@@ -12,3 +12,17 @@ export interface SuperadminLibrary {
 }
 
 export type SuperadminLibraryPanelMode = 'view' | 'edit';
+
+export interface SuperadminLibrariesGridProps {
+  libraries: SuperadminLibrary[];
+  onRowClick: (lib: SuperadminLibrary, mode: SuperadminLibraryPanelMode) => void;
+  onSuspend: (id: string) => void;
+}
+
+export interface SuperadminLibrariesPanelProps {
+  lib: SuperadminLibrary;
+  mode: SuperadminLibraryPanelMode;
+  onClose: () => void;
+  onSave: (updated: SuperadminLibrary) => Promise<void>;
+  onSuspend: (id: string) => Promise<void>;
+}

@@ -3,13 +3,7 @@ import React, { useState } from 'react';
 import { Download, Loader } from 'lucide-react';
 import { SuperadminSearchableDropdown } from '@/app/superadmin/superadmin_shared_components/SuperadminSearchableDropdown';
 
-interface Props {
-  shiftFilter: string;
-  setShiftFilter: (val: string) => void;
-  statusFilter: string;
-  setStatusFilter: (val: string) => void;
-  onExport: () => Promise<void>;
-}
+import type { SuperadminSeatGapReportFilterBarProps as Props } from '@/app/superadmin/superadmin_accounting/superadmin_accounting_types/SuperadminAccountingTypes';
 
 export function SuperadminSeatGapReportFilterBar({ shiftFilter, setShiftFilter, statusFilter, setStatusFilter, onExport }: Props) {
   const [exporting, setExporting] = useState(false);

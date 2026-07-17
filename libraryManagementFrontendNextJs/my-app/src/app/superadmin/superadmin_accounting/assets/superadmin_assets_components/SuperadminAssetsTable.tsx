@@ -4,9 +4,7 @@ import { PackageOpen } from 'lucide-react';
 import type { SuperadminAsset } from '@/app/superadmin/superadmin_accounting/assets/superadmin_assets_types/SuperadminAssetsTypes';
 import { SUPERADMIN_ASSETS_STATUS_STYLES } from '@/app/superadmin/superadmin_accounting/assets/superadmin_assets_constants/SuperadminAssetsConstants';
 
-interface Props {
-  assets: SuperadminAsset[];
-}
+import type { SuperadminAssetsTableProps as Props } from '@/app/superadmin/superadmin_accounting/superadmin_accounting_types/SuperadminAccountingTypes';
 
 export function SuperadminAssetsTable({ assets }: Props) {
   if (assets.length === 0) {

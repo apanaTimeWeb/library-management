@@ -7,11 +7,9 @@ import type { ICellRendererParams, GridReadyEvent } from 'ag-grid-community';
 import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community';
 import { superadmin_gridTheme } from '@/app/superadmin/superadmin_shared_components/superadmin_gridTheme';
 import { ExternalLink } from 'lucide-react';
-import type { SuperadminDashboardRecentLibrary as Library } from '@/app/superadmin/superadmin_dashboard/superadmin_dashboard_types/SuperadminDashboardTypes';
+import type { SuperadminDashboardRecentLibrary as Library, SuperadminDashboardRecentLibrariesTableProps as Props } from '@/app/superadmin/superadmin_dashboard/superadmin_dashboard_types/SuperadminDashboardTypes';
 
 ModuleRegistry.registerModules([AllCommunityModule]);
-
-interface Props { data: Library[]; }
 
 const STATUS_CONFIG: Record<string, { label: string; bg: string; text: string }> = {
   active:   { label: 'Active',    bg: 'bg-success-bg', text: 'text-success' },

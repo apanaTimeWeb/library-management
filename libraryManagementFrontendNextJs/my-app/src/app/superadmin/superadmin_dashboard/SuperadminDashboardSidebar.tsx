@@ -8,6 +8,7 @@ import {
   LayoutDashboard, Wand2, Building2, CreditCard, Receipt,
   HeadphonesIcon, ScrollText, Activity, Settings, BarChart2, LogOut,
 } from 'lucide-react';
+import type { SuperadminDashboardSidebarProps as SidebarProps } from '@/app/superadmin/superadmin_dashboard/superadmin_dashboard_types/SuperadminDashboardTypes';
 
 const NAV_ITEMS = [
   { href: '/superadmin/superadmin_dashboard',       icon: LayoutDashboard, label: 'Dashboard'         },
@@ -21,10 +22,6 @@ const NAV_ITEMS = [
   { href: '/superadmin/superadmin_reports',         icon: BarChart2,       label: 'Reports'           },
   { href: '/superadmin/superadmin_settings',        icon: Settings,        label: 'Platform Settings' },
 ];
-
-interface SidebarProps {
-  open?: boolean;
-}
 
 export default function Sidebar({ open }: SidebarProps) {
   const pathname = usePathname();

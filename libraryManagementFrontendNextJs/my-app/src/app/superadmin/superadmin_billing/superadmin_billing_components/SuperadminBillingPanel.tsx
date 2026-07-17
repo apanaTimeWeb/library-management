@@ -4,14 +4,8 @@
 
 import React, { useState } from 'react';
 import { X, FileText, Download, CheckCircle, AlertCircle, Send, Loader } from 'lucide-react';
-import type { SuperadminBillingInvoice } from '@/app/superadmin/superadmin_billing/superadmin_billing_types/SuperadminBillingTypes';
+import type { SuperadminBillingInvoice, SuperadminBillingPanelProps as Props } from '@/app/superadmin/superadmin_billing/superadmin_billing_types/SuperadminBillingTypes';
 import { logger } from '@/lib/logger';
-
-interface Props {
-  inv: SuperadminBillingInvoice;
-  onClose: () => void;
-  onMarkPaid: (id: string) => Promise<void>;
-}
 
 export function SuperadminBillingPanel({ inv, onClose, onMarkPaid }: Props) {
   const [downloading, setDownloading] = useState(false);

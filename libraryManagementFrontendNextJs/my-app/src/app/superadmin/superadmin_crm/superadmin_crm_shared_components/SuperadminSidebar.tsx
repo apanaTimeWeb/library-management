@@ -132,10 +132,7 @@ const NAV: NavGroup[] = [
   },
 ];
 
-interface SidebarProps {
-  isOpen?: boolean;
-  onClose?: () => void;
-}
+import type { SuperadminCrmSidebarProps as SidebarProps } from '@/app/superadmin/superadmin_crm/superadmin_crm_types/SuperadminCrmTypes';
 
 export default function SuperadminSidebar({ isOpen, onClose }: SidebarProps) {
   const pathname = usePathname();
@@ -148,7 +145,7 @@ export default function SuperadminSidebar({ isOpen, onClose }: SidebarProps) {
         <div key={gi}>
           {group.group && <p className="crm-nav-group-label">{group.group}</p>}
 
-          {group.items.map(( item: FlexRecord ) => {
+          {group.items.map(( item: NavItem ) => {
             const active =
               item.href === '/crm/enquiries'
                 ? pathname.startsWith('/crm/enquiries')

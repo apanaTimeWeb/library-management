@@ -1,13 +1,8 @@
 // RESPONSIBILITY: Renders the SuperadminAuditLogsPanel component.
 import React from 'react';
 import { X, Shield } from 'lucide-react';
-import type { SuperadminAuditLog } from '@/app/superadmin/superadmin_audit-logs/superadmin_audit_logs_types/SuperadminAuditLogsTypes';
+import type { SuperadminAuditLog, SuperadminAuditLogsPanelProps as Props } from '@/app/superadmin/superadmin_audit-logs/superadmin_audit_logs_types/SuperadminAuditLogsTypes';
 import { ActionBadge } from '@/app/superadmin/superadmin_audit-logs/superadmin_audit_logs_components/SuperadminAuditLogsGrid';
-
-interface Props {
-  log: SuperadminAuditLog;
-  onClose: () => void;
-}
 
 export function SuperadminAuditLogsPanel({ log, onClose }: Props) {
   return (

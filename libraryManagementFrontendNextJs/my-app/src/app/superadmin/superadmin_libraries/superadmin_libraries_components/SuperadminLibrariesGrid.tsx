@@ -6,15 +6,9 @@ import type { ICellRendererParams, GridReadyEvent } from 'ag-grid-community';
 import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community';
 import { superadmin_gridTheme } from '@/app/superadmin/superadmin_shared_components/superadmin_gridTheme';
 import { Edit2, ShieldAlert, CheckCircle, AlertTriangle } from 'lucide-react';
-import type { SuperadminLibrary as Library } from '@/app/superadmin/superadmin_libraries/superadmin_libraries_types/SuperadminLibrariesTypes';
+import type { SuperadminLibrary as Library, SuperadminLibrariesGridProps as Props } from '@/app/superadmin/superadmin_libraries/superadmin_libraries_types/SuperadminLibrariesTypes';
 
 ModuleRegistry.registerModules([AllCommunityModule]);
-
-interface Props {
-  libraries: Library[];
-  onRowClick: (lib: Library, mode: 'view' | 'edit') => void;
-  onSuspend: (id: string) => void;
-}
 
 export function SuperadminLibrariesGrid({ libraries, onRowClick, onSuspend }: Props) {
   const gridRef = useRef<AgGridReact>(null);

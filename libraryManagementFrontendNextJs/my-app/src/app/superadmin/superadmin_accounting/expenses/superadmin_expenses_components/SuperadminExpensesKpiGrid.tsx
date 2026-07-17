@@ -2,10 +2,7 @@
 import React from 'react';
 import type { SuperadminExpense } from '@/app/superadmin/superadmin_accounting/expenses/superadmin_expenses_types/SuperadminExpensesTypes';
 
-interface Props {
-  allExpenses: SuperadminExpense[];
-  visibleExpenses: SuperadminExpense[];
-}
+import type { SuperadminExpensesKpiGridProps as Props } from '@/app/superadmin/superadmin_accounting/superadmin_accounting_types/SuperadminAccountingTypes';
 
 export function SuperadminExpensesKpiGrid({ allExpenses, visibleExpenses }: Props) {
   const total = allExpenses.reduce((s, e) => s + e.amount, 0);

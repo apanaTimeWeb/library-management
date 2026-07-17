@@ -7,11 +7,7 @@ import type { SuperadminAsset } from '@/app/superadmin/superadmin_accounting/ass
 import { logger } from '@/lib/logger';
 import { SuperadminSearchableDropdown } from '@/app/superadmin/superadmin_shared_components/SuperadminSearchableDropdown';
 
-interface Props {
-  categories: string[];
-  onClose: () => void;
-  onSave: (asset: Omit<SuperadminAsset, 'id' | 'status' | 'currentValue'>) => Promise<void>;
-}
+import type { SuperadminAssetsAddDialogProps as Props } from '@/app/superadmin/superadmin_accounting/superadmin_accounting_types/SuperadminAccountingTypes';
 
 export function SuperadminAssetsAddDialog({ categories, onClose, onSave }: Props) {
   const [form, setForm] = useState({ 

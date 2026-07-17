@@ -6,11 +6,7 @@ import { X, Loader } from 'lucide-react';
 import type { SuperadminExpenseCategory } from '@/app/superadmin/superadmin_accounting/expense-categories/superadmin_expense_categories_types/SuperadminExpenseCategoriesTypes';
 import { logger } from '@/lib/logger';
 
-interface Props {
-  availableColors: string[];
-  onClose: () => void;
-  onSave: (category: Omit<SuperadminExpenseCategory, 'id' | 'spent'>) => Promise<void>;
-}
+import type { SuperadminExpenseCategoriesAddDialogProps as Props } from '@/app/superadmin/superadmin_accounting/superadmin_accounting_types/SuperadminAccountingTypes';
 
 export function SuperadminExpenseCategoriesAddDialog({ availableColors, onClose, onSave }: Props) {
   const [form, setForm] = useState({ 

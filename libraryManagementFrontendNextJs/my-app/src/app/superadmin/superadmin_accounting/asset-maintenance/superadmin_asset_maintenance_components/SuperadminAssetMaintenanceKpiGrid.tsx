@@ -1,12 +1,7 @@
 // RESPONSIBILITY: Renders the SuperadminAssetMaintenanceKpiGrid component.
 import React from 'react';
 
-interface Props {
-  pendingCount: number;
-  inProgressCount: number;
-  completedCount: number;
-  totalCost: number;
-}
+import type { SuperadminAssetMaintenanceKpiGridProps as Props } from '@/app/superadmin/superadmin_accounting/superadmin_accounting_types/SuperadminAccountingTypes';
 
 export function SuperadminAssetMaintenanceKpiGrid({ pendingCount, inProgressCount, completedCount, totalCost }: Props) {
   return (

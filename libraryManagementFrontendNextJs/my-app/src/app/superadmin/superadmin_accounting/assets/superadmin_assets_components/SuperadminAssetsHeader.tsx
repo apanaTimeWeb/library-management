@@ -2,9 +2,7 @@
 import React from 'react';
 import { Plus } from 'lucide-react';
 
-interface Props {
-  onAddClick: () => void;
-}
+import type { SuperadminAssetsHeaderProps as Props } from '@/app/superadmin/superadmin_accounting/superadmin_accounting_types/SuperadminAccountingTypes';
 
 export function SuperadminAssetsHeader({ onAddClick }: Props) {
   return (

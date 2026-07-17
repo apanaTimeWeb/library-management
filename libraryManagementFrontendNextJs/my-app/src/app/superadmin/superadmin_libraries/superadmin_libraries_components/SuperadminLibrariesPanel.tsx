@@ -4,17 +4,9 @@
 
 import React, { useState } from 'react';
 import { MapPin, Edit2, X, Users, CheckCircle, AlertTriangle, Save, Loader, ShieldAlert } from 'lucide-react';
-import type { SuperadminLibrary, SuperadminLibraryPanelMode } from '@/app/superadmin/superadmin_libraries/superadmin_libraries_types/SuperadminLibrariesTypes';
+import type { SuperadminLibrary, SuperadminLibraryPanelMode, SuperadminLibrariesPanelProps as Props } from '@/app/superadmin/superadmin_libraries/superadmin_libraries_types/SuperadminLibrariesTypes';
 import { logger } from '@/lib/logger';
 import { SuperadminSearchableDropdown } from '@/app/superadmin/superadmin_shared_components/SuperadminSearchableDropdown';
-
-interface Props {
-  lib: SuperadminLibrary;
-  mode: SuperadminLibraryPanelMode;
-  onClose: () => void;
-  onSave: (updated: SuperadminLibrary) => Promise<void>;
-  onSuspend: (id: string) => Promise<void>;
-}
 
 export function SuperadminLibrariesPanel({ lib, mode, onClose, onSave, onSuspend }: Props) {
   const [editing, setEditing] = useState(mode === 'edit');

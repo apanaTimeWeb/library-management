@@ -38,3 +38,23 @@ export interface SuperadminDashboardDataResponse {
   actionItems: SuperadminDashboardActionItem[];
   recentLibraries: SuperadminDashboardRecentLibrary[];
 }
+
+export interface SuperadminDashboardClientProps {
+  initialData: SuperadminDashboardDataResponse | null;
+}
+
+export interface SuperadminDashboardSidebarProps {
+  open?: boolean;
+}
+
+export interface SuperadminDashboardActionItemsPanelProps {
+  data: SuperadminDashboardActionItem[];
+}
+
+export interface SuperadminDashboardSystemHealthPanelProps {
+  data: SuperadminDashboardSystemHealth;
+}
+
+export interface SuperadminDashboardRecentLibrariesTableProps {
+  data: SuperadminDashboardRecentLibrary[];
+}

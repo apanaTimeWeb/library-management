@@ -2,9 +2,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { CheckCircle, Users, Zap, HardDrive, ExternalLink } from 'lucide-react';
-import type { SuperadminDashboardSystemHealth as SystemHealth } from '@/app/superadmin/superadmin_dashboard/superadmin_dashboard_types/SuperadminDashboardTypes';
-
-interface Props { data: SystemHealth; }
+import type { SuperadminDashboardSystemHealth as SystemHealth, SuperadminDashboardSystemHealthPanelProps as Props } from '@/app/superadmin/superadmin_dashboard/superadmin_dashboard_types/SuperadminDashboardTypes';
 
 const METRICS = [
   { key: 'uptime',      label: 'System Uptime',   icon: CheckCircle, colorCls: 'text-success', bgCls: 'bg-success-bg' },

@@ -1,21 +1,5 @@
 // RESPONSIBILITY: Renders the WhatsappTemplatesClient component.
 'use client';
-
-import { useState, useRef } from 'react';
-import { ChevronRight, X, Send, Save } from 'lucide-react';
-
-import { Hand, DollarSign, Repeat, Receipt, Bell, CalendarClock, Handshake, Smartphone, CheckCircle } from 'lucide-react';
-import { SUPERADMIN_COMMUNICATION_MOCK_WA_TEMPLATES } from '@superadmin/superadmin_communication/superadmin_communication_data/SuperadminCommunicationMockData';
-
-interface Template { id: string; label: string; icon: string; body: string; }
-
-const ICON_MAP: Record<string, React.ReactNode> = {
-  Hand: <Hand size={16}/>,
-  DollarSign: <DollarSign size={16}/>,
-  Repeat: <Repeat size={16}/>,
-  Receipt: <Receipt size={16}/>,
-  Bell: <Bell size={16}/>,
-  CalendarClock: <CalendarClock size={16}/>,
   Handshake: <Handshake size={16}/>,
 };
 

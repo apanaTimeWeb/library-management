@@ -1,17 +1,13 @@
 // RESPONSIBILITY: Renders the SuperadminDashboardClient component.
 'use client';
 import React from 'react';
-import type { SuperadminDashboardDataResponse } from '@/app/superadmin/superadmin_dashboard/superadmin_dashboard_types/SuperadminDashboardTypes';
+import type { SuperadminDashboardDataResponse, SuperadminDashboardClientProps as Props } from '@/app/superadmin/superadmin_dashboard/superadmin_dashboard_types/SuperadminDashboardTypes';
 import { SuperadminDashboardHeader } from '@/app/superadmin/superadmin_dashboard/superadmin_dashboard_components/SuperadminDashboardHeader';
 import { SuperadminDashboardKpiCard } from '@/app/superadmin/superadmin_dashboard/superadmin_dashboard_components/SuperadminDashboardKpiCard';
 import { SuperadminDashboardSystemHealthPanel } from '@/app/superadmin/superadmin_dashboard/superadmin_dashboard_components/SuperadminDashboardSystemHealthPanel';
 import { SuperadminDashboardActionItemsPanel } from '@/app/superadmin/superadmin_dashboard/superadmin_dashboard_components/SuperadminDashboardActionItemsPanel';
 import { SuperadminDashboardRecentLibrariesTable } from '@/app/superadmin/superadmin_dashboard/superadmin_dashboard_components/SuperadminDashboardRecentLibrariesTable';
 import { SuperadminDashboardRecentActivity } from '@/app/superadmin/superadmin_dashboard/superadmin_dashboard_components/SuperadminDashboardRecentActivity';
-
-interface Props {
-  initialData: SuperadminDashboardDataResponse | null;
-}
 
 export function SuperadminDashboardClient({ initialData }: Props) {
   if (!initialData) {

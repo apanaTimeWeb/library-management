@@ -5,24 +5,6 @@ import { useState } from 'react';
 import { Save, ShieldCheck, Mail, Building, CheckCircle } from 'lucide-react';
 import { SUPERADMIN_SETTINGS_MOCK_NOTIF_ITEMS } from '@/app/superadmin/superadmin_settings/superadmin_settings_constants/SuperadminSettingsConstants';
 
-
-
-export function SettingsClient() {
-  const [saved, setSaved] = useState(false);
-  const [platform, setPlatform] = useState({ name: 'Smart Library 360', email: 'support@library360.com', phone: '+91 9988776655' });
-  const [security, setSecurity] = useState({ maxAttempts: 5, autoLogout: 30 });
-  const [checks, setChecks] = useState<Record<string, boolean>>(
-    Object.fromEntries(SUPERADMIN_SETTINGS_MOCK_NOTIF_ITEMS.map(( n: FlexRecord ) => [n.id, n.default]))
-  );
-
-  const handleSave = () => {
-
-import { useState } from 'react';
-import { Save, ShieldCheck, Mail, Building, CheckCircle } from 'lucide-react';
-import { SUPERADMIN_SETTINGS_MOCK_NOTIF_ITEMS } from '@/app/superadmin/superadmin_settings/superadmin_settings_constants/SuperadminSettingsConstants';
-
-
-
 export function SettingsClient() {
   const [saved, setSaved] = useState(false);
   const [platform, setPlatform] = useState({ name: 'Smart Library 360', email: 'support@library360.com', phone: '+91 9988776655' });
@@ -65,7 +47,7 @@ export function SettingsClient() {
               <Building size={15} className="text-primary" /> Platform Identity
             </h2>
             <div className="space-y-4">
-              <div>
+               <div>
                 <label className="block text-[13px] font-semibold text-text-secondary mb-1.5">Platform Name</label>
                 <input type="text" className="w-full h-9 px-3 bg-bg-input border border-border rounded-md text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all" value={platform.name}
                   onChange={e => setPlatform(p => ({ ...p, name: e.target.value }))} />
@@ -91,7 +73,7 @@ export function SettingsClient() {
               <Mail size={15} className="text-success" /> SaaS Auto-Notifications
             </h2>
             <div className="space-y-4">
-              {SUPERADMIN_SETTINGS_MOCK_NOTIF_ITEMS.map((item: FlexRecord) => (
+               {SUPERADMIN_SETTINGS_MOCK_NOTIF_ITEMS.map((item: FlexRecord) => (
                 <div key={item.id} className="flex items-center gap-3 cursor-pointer"
                   onClick={() => setChecks(c => ({ ...c, [item.id]: !c[item.id] }))}>
                   <div className={`w-10 h-[22px] rounded-full relative transition-colors duration-200 ease-in-out ${checks[item.id] ? 'bg-success' : 'bg-border'}`}>

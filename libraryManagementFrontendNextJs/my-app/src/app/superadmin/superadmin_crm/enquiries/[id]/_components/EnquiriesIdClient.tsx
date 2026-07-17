@@ -40,6 +40,7 @@ import {
   type MarkLostFormData,
 } from '@/app/superadmin/superadmin_crm/superadmin_crm_shared_components/superadmin_schema';
 import { SuperadminSearchableDropdown } from '@/app/superadmin/superadmin_shared_components/SuperadminSearchableDropdown';
+import type { SuperadminCrmMarkLostModalProps as MarkLostModalProps } from '@/app/superadmin/superadmin_crm/superadmin_crm_types/SuperadminCrmTypes';
 
 /* ── Status Select options ─────────────────────────────── */
 const STATUS_OPTIONS: EnquiryStatus[] = ['New', 'Visited', 'Interested', 'Converted', 'Lost'];
@@ -55,11 +56,6 @@ function timelineDotClass(by: string): string {
 }
 
 /* ── Mark Lost Modal ───────────────────────────────────── */
-interface MarkLostModalProps {
-  onConfirm: (reason: string) => void;
-  onCancel: () => void;
-  isSubmitting: boolean;
-}
 function MarkLostModal({ onConfirm, onCancel, isSubmitting }: MarkLostModalProps) {
   const { register, handleSubmit } = useForm<MarkLostFormData>({
     resolver: zodResolver(markLostSchema),

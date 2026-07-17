@@ -6,10 +6,7 @@ import { X, Loader } from 'lucide-react';
 import type { SuperadminMaintenanceLog } from '@/app/superadmin/superadmin_accounting/asset-maintenance/superadmin_asset_maintenance_types/SuperadminAssetMaintenanceTypes';
 import { logger } from '@/lib/logger';
 
-interface Props {
-  onClose: () => void;
-  onSave: (log: Omit<SuperadminMaintenanceLog, 'id' | 'status'>) => Promise<void>;
-}
+import type { SuperadminAssetMaintenanceAddDialogProps as Props } from '@/app/superadmin/superadmin_accounting/superadmin_accounting_types/SuperadminAccountingTypes';
 
 export function SuperadminAssetMaintenanceAddDialog({ onClose, onSave }: Props) {
   const [form, setForm] = useState({ 

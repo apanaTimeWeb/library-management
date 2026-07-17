@@ -9,17 +9,9 @@ import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community';
 import { superadmin_gridTheme } from '@/app/superadmin/superadmin_shared_components/superadmin_gridTheme';
 import { SUPERADMIN_COMMUNICATION_MOCK_WA_LOGS } from '@superadmin/superadmin_communication/superadmin_communication_data/SuperadminCommunicationMockData';
 import { SuperadminSearchableDropdown } from '@/app/superadmin/superadmin_shared_components/SuperadminSearchableDropdown';
+import type { SuperadminCommunicationWhatsappLog as WaLog } from '@/app/superadmin/superadmin_communication/superadmin_communication_types/SuperadminCommunicationTypes';
 
 ModuleRegistry.registerModules([AllCommunityModule]);
-
-interface WaLog {
-  id: string; dateTime: string; phone: string; student: string;
-  type: 'welcome' | 'fee_reminder' | 'receipt' | 'notice' | 'renewal';
-  status: 'Pending' | 'Sent' | 'Delivered' | 'Failed';
-  error: string; message: string;
-}
-
-
 
 const TYPE_BADGE: Record<string, string> = {
   welcome: 'eng-badge--info', fee_reminder: 'eng-badge--warning',

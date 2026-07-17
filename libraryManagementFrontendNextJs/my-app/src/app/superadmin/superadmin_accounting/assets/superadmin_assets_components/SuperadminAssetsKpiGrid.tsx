@@ -1,12 +1,7 @@
 // RESPONSIBILITY: Renders the SuperadminAssetsKpiGrid component.
 import React from 'react';
 
-interface Props {
-  totalAssets: number;
-  totalValue: number;
-  maintenanceCount: number;
-  disposedCount: number;
-}
+import type { SuperadminAssetsKpiGridProps as Props } from '@/app/superadmin/superadmin_accounting/superadmin_accounting_types/SuperadminAccountingTypes';
 
 export function SuperadminAssetsKpiGrid({ totalAssets, totalValue, maintenanceCount, disposedCount }: Props) {
   return (

@@ -2,9 +2,7 @@
 import React from 'react';
 import type { SuperadminShiftGap } from '@/app/superadmin/superadmin_accounting/shift-gap-analyzer/superadmin_shift_gap_analyzer_types/SuperadminShiftGapAnalyzerTypes';
 
-interface Props {
-  shifts: SuperadminShiftGap[];
-}
+import type { SuperadminShiftGapAnalyzerSummaryCardsProps as Props } from '@/app/superadmin/superadmin_accounting/superadmin_accounting_types/SuperadminAccountingTypes';
 
 export function SuperadminShiftGapAnalyzerSummaryCards({ shifts }: Props) {
   return (

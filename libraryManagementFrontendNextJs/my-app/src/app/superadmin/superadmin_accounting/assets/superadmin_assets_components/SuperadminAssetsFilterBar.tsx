@@ -2,11 +2,7 @@
 import React from 'react';
 import { SuperadminSearchableDropdown } from '@/app/superadmin/superadmin_shared_components/SuperadminSearchableDropdown';
 
-interface Props {
-  categories: string[];
-  catFilter: string;
-  setCatFilter: (val: string) => void;
-}
+import type { SuperadminAssetsFilterBarProps as Props } from '@/app/superadmin/superadmin_accounting/superadmin_accounting_types/SuperadminAccountingTypes';
 
 export function SuperadminAssetsFilterBar({ categories, catFilter, setCatFilter }: Props) {
   return (

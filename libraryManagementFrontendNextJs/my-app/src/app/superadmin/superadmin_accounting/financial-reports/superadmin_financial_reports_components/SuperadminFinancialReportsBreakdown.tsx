@@ -2,9 +2,7 @@
 import React from 'react';
 import type { SuperadminCategoryBreakdown } from '@/app/superadmin/superadmin_accounting/financial-reports/superadmin_financial_reports_types/SuperadminFinancialReportsTypes';
 
-interface Props {
-  categoryBreakdown: SuperadminCategoryBreakdown[];
-}
+import type { SuperadminFinancialReportsBreakdownProps as Props } from '@/app/superadmin/superadmin_accounting/superadmin_accounting_types/SuperadminAccountingTypes';
 
 export function SuperadminFinancialReportsBreakdown({ categoryBreakdown }: Props) {
   return (

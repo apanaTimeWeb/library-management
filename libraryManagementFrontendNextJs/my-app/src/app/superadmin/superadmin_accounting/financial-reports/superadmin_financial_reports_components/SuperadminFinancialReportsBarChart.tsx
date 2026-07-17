@@ -1,11 +1,7 @@
 // RESPONSIBILITY: Renders the SuperadminFinancialReportsBarChart component.
 import React from 'react';
 import type { SuperadminMonthlyReport } from '@/app/superadmin/superadmin_accounting/financial-reports/superadmin_financial_reports_types/SuperadminFinancialReportsTypes';
-
-interface Props {
-  monthlyData: SuperadminMonthlyReport[];
-  maxIncome: number;
-}
+import type { SuperadminFinancialReportsBarChartProps as Props } from '@/app/superadmin/superadmin_accounting/superadmin_accounting_types/SuperadminAccountingTypes';
 
 export function SuperadminFinancialReportsBarChart({ monthlyData, maxIncome }: Props) {
   return (
@@ -14,7 +10,7 @@ export function SuperadminFinancialReportsBarChart({ monthlyData, maxIncome }: P
       
       <div className="flex items-end gap-4 h-56 overflow-x-auto pb-4 hide-scrollbar">
         {monthlyData.map(m => (
-          <div key={m.month} className="flex flex-col items-center gap-2 flex-1 min-w-14 group">
+           <div key={m.month} className="flex flex-col items-center gap-2 flex-1 min-w-14 group">
             <div className="flex items-end gap-1.5 w-full justify-center h-40">
               <div
                 className="w-5 rounded-t-[var(--radius-sm)] transition-all duration-500 ease-out hover:opacity-80"

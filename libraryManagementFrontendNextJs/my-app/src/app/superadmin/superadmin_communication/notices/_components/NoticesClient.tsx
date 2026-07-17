@@ -1,7 +1,6 @@
-'use client';
-
 // RESPONSIBILITY: Renders communication notices dashboard, broadcast controls, and notice management modal.
 // DATA FLOW: API /communication/notices -> NoticesPage State -> AG Grid Table / Mutations
+'use client';
 
 import type { ICellRendererParams } from 'ag-grid-community';
 import { useState, useEffect } from 'react';
@@ -12,14 +11,9 @@ import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community';
 import { superadmin_gridTheme } from '@/app/superadmin/superadmin_shared_components/superadmin_gridTheme';
 import { fetchApi } from '@/lib/api';
 import { SUPERADMIN_COMMUNICATION_MOCK_NOTICES } from '@superadmin/superadmin_communication/superadmin_communication_data/SuperadminCommunicationMockData';
+import type { SuperadminCommunicationNotice as Notice } from '@/app/superadmin/superadmin_communication/superadmin_communication_types/SuperadminCommunicationTypes';
 
 ModuleRegistry.registerModules([AllCommunityModule]);
-
-interface Notice {
-  id: string; title: string; message: string;
-  validTill: string; postedBy: string; postedDate: string;
-  status: 'Active' | 'Expired';
-}
 
 const today = new Date().toISOString().split('T')[0];
 

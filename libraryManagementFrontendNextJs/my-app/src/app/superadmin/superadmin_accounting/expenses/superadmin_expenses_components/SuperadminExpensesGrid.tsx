@@ -10,10 +10,7 @@ import type { SuperadminExpense } from '@/app/superadmin/superadmin_accounting/e
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
-interface Props {
-  expenses: SuperadminExpense[];
-  onDelete: (id: number) => void;
-}
+import type { SuperadminExpensesGridProps as Props } from '@/app/superadmin/superadmin_accounting/superadmin_accounting_types/SuperadminAccountingTypes';
 
 const MODE_BADGE: Record<string, string> = {
   cash: 'bg-success-bg text-success',

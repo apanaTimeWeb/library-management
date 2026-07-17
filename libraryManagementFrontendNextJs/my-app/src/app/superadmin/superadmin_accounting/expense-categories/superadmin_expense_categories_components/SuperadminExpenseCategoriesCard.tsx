@@ -3,10 +3,7 @@ import React from 'react';
 import { Trash2 } from 'lucide-react';
 import type { SuperadminExpenseCategory } from '@/app/superadmin/superadmin_accounting/expense-categories/superadmin_expense_categories_types/SuperadminExpenseCategoriesTypes';
 
-interface Props {
-  category: SuperadminExpenseCategory;
-  onDelete: (id: number) => void;
-}
+import type { SuperadminExpenseCategoriesCardProps as Props } from '@/app/superadmin/superadmin_accounting/superadmin_accounting_types/SuperadminAccountingTypes';
 
 export function SuperadminExpenseCategoriesCard({ category, onDelete }: Props) {
   const pct = Math.min(Math.round((category.spent / category.budget) * 100), 100);

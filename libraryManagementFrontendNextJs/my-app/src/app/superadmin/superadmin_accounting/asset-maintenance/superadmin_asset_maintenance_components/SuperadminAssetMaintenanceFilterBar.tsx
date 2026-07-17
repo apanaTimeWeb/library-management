@@ -2,10 +2,7 @@
 import React from 'react';
 import { SuperadminSearchableDropdown } from '@/app/superadmin/superadmin_shared_components/SuperadminSearchableDropdown';
 
-interface Props {
-  statusFilter: string;
-  setStatusFilter: (val: string) => void;
-}
+import type { SuperadminAssetMaintenanceFilterBarProps as Props } from '@/app/superadmin/superadmin_accounting/superadmin_accounting_types/SuperadminAccountingTypes';
 
 export function SuperadminAssetMaintenanceFilterBar({ statusFilter, setStatusFilter }: Props) {
   return (

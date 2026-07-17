@@ -1,10 +1,7 @@
 // RESPONSIBILITY: Renders the SuperadminDailySettlementHeader component.
 import React from 'react';
 
-interface Props {
-  date: string;
-  setDate: (val: string) => void;
-}
+import type { SuperadminDailySettlementHeaderProps as Props } from '@/app/superadmin/superadmin_accounting/superadmin_accounting_types/SuperadminAccountingTypes';
 
 export function SuperadminDailySettlementHeader({ date, setDate }: Props) {
   return (

@@ -6,17 +6,10 @@ import type { ICellRendererParams, GridReadyEvent } from 'ag-grid-community';
 import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community';
 import { superadmin_gridTheme } from '@/app/superadmin/superadmin_shared_components/superadmin_gridTheme';
 import { Eye } from 'lucide-react';
-import type { SuperadminAuditLog } from '@/app/superadmin/superadmin_audit-logs/superadmin_audit_logs_types/SuperadminAuditLogsTypes';
+import type { SuperadminAuditLog, SuperadminAuditLogsGridProps as Props } from '@/app/superadmin/superadmin_audit-logs/superadmin_audit_logs_types/SuperadminAuditLogsTypes';
 import { SuperadminSearchableDropdown } from '@/app/superadmin/superadmin_shared_components/SuperadminSearchableDropdown';
 
 ModuleRegistry.registerModules([AllCommunityModule]);
-
-interface Props {
-  logs: SuperadminAuditLog[];
-  onRowClick: (log: SuperadminAuditLog) => void;
-  actionFilter: string;
-  onFilterChange: (val: string) => void;
-}
 
 export function ActionBadge({ action }: { action: string }) {
   if (action === 'Created') return <span className="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-success-bg text-success">CREATED</span>;

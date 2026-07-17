@@ -4,10 +4,7 @@ import { Wrench, CheckCircle } from 'lucide-react';
 import type { SuperadminMaintenanceLog } from '@/app/superadmin/superadmin_accounting/asset-maintenance/superadmin_asset_maintenance_types/SuperadminAssetMaintenanceTypes';
 import { SUPERADMIN_ASSET_MAINTENANCE_STATUS_STYLES } from '@/app/superadmin/superadmin_accounting/asset-maintenance/superadmin_asset_maintenance_constants/SuperadminAssetMaintenanceConstants';
 
-interface Props {
-  logs: SuperadminMaintenanceLog[];
-  onComplete: (id: number) => void;
-}
+import type { SuperadminAssetMaintenanceTableProps as Props } from '@/app/superadmin/superadmin_accounting/superadmin_accounting_types/SuperadminAccountingTypes';
 
 export function SuperadminAssetMaintenanceTable({ logs, onComplete }: Props) {
   if (logs.length === 0) {

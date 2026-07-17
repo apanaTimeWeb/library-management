@@ -2,9 +2,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { AlertTriangle, CreditCard, Headphones, CloudUpload, ChevronRight, Lightbulb, ExternalLink } from 'lucide-react';
-import type { SuperadminDashboardActionItem } from '@/app/superadmin/superadmin_dashboard/superadmin_dashboard_types/SuperadminDashboardTypes';
-
-interface Props { data: SuperadminDashboardActionItem[]; }
+import type { SuperadminDashboardActionItem, SuperadminDashboardActionItemsPanelProps as Props } from '@/app/superadmin/superadmin_dashboard/superadmin_dashboard_types/SuperadminDashboardTypes';
 
 const ICON_MAP: Record<string, React.ElementType> = {
   warning:         AlertTriangle,

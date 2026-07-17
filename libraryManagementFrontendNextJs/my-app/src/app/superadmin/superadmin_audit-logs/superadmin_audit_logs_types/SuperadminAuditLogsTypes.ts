@@ -10,3 +10,15 @@ export interface SuperadminAuditLog {
   ip: string;
   detail: string;
 }
+
+export interface SuperadminAuditLogsGridProps {
+  logs: SuperadminAuditLog[];
+  onRowClick: (log: SuperadminAuditLog) => void;
+  actionFilter: string;
+  onFilterChange: (val: string) => void;
+}
+
+export interface SuperadminAuditLogsPanelProps {
+  log: SuperadminAuditLog;
+  onClose: () => void;
+}

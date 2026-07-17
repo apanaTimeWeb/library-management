@@ -1,18 +1,12 @@
 // RESPONSIBILITY: Renders the NotificationCenterClient component.
 'use client';
 
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { ChevronRight, ArrowRight, CheckCheck, DollarSign, Phone, Handshake, Armchair, Calendar, Clock, Lock, Bell, AlertCircle, Circle } from 'lucide-react';
-
 import { SUPERADMIN_COMMUNICATION_MOCK_NOTIFICATIONS } from '@superadmin/superadmin_communication/superadmin_communication_data/SuperadminCommunicationMockData';
+import type { SuperadminCommunicationNotification as Notification } from '@/app/superadmin/superadmin_communication/superadmin_communication_types/SuperadminCommunicationTypes';
 
 type Category = 'All' | 'Finance' | 'CRM' | 'Operations' | 'Attendance' | 'High Only';
-
-interface Notification {
-  id: string; category: 'Finance' | 'CRM' | 'Operations' | 'Attendance';
-  icon: string; title: string; description: string;
-  time: string; priority: 'High' | 'Medium'; link: string; read: boolean;
-}
 
 const ICON_MAP: Record<string, React.ReactNode> = {
   DollarSign: <DollarSign size={20}/>,

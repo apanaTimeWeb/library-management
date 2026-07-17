@@ -1,12 +1,7 @@
 // RESPONSIBILITY: Renders the SuperadminSeatGapReportKpiGrid component.
 import React from 'react';
 
-interface Props {
-  totalGapSeats: number;
-  totalLoss: number;
-  avgGapDays: number;
-  maintenanceCount: number;
-}
+import type { SuperadminSeatGapReportKpiGridProps as Props } from '@/app/superadmin/superadmin_accounting/superadmin_accounting_types/SuperadminAccountingTypes';
 
 export function SuperadminSeatGapReportKpiGrid({ totalGapSeats, totalLoss, avgGapDays, maintenanceCount }: Props) {
   return (

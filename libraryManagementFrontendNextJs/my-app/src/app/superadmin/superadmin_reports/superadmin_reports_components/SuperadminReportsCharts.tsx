@@ -6,12 +6,9 @@ import {
   XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer,
 } from 'recharts';
 import type { 
-  SuperadminReportsDataResponse
+  SuperadminReportsDataResponse,
+  SuperadminReportsChartsProps as Props
 } from '@/app/superadmin/superadmin_reports/superadmin_reports_types/SuperadminReportsTypes';
-
-interface Props {
-  data: SuperadminReportsDataResponse;
-}
 
 const PIE_COLORS = ['var(--primary)', 'var(--success)', 'var(--warning)', 'var(--border)'];
 const AXIS_TICK = { fill: 'var(--text-secondary)', fontSize: 11, fontFamily: 'Inter, sans-serif' };

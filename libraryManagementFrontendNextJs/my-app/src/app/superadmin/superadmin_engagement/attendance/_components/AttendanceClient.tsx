@@ -6,20 +6,12 @@ import Link from 'next/link';
 import { ChevronRight, Save, FileBarChart2, Bell, CheckCircle, Clock } from 'lucide-react';
 import { SUPERADMIN_ENGAGEMENT_MOCK_ATTENDANCE } from '@superadmin/superadmin_engagement/superadmin_engagement_data/SuperadminEngagementMockData';
 import { SuperadminSearchableDropdown } from '@/app/superadmin/superadmin_shared_components/SuperadminSearchableDropdown';
-
-type AttStatus = 'present' | 'absent' | 'late' | null;
-
-interface Student {
-  id: string; smartId: string; name: string; initials: string;
-  shift: string; consecutiveAbsent: number;
-  status: AttStatus; inTime: string; outTime: string;
-}
-
-
+import type { SuperadminEngagementStudent as Student, SuperadminEngagementAttStatus as AttStatus } from '@/app/superadmin/superadmin_engagement/superadmin_engagement_types/SuperadminEngagementTypes';
 
 const today = new Date().toISOString().split('T')[0];
 
 export function AttendanceClient() {
+
   const [date, setDate]         = useState(today);
   const [shift, setShift]       = useState('All');
   const [students, setStudents] = useState<Student[]>(SUPERADMIN_ENGAGEMENT_MOCK_ATTENDANCE as Student[]);

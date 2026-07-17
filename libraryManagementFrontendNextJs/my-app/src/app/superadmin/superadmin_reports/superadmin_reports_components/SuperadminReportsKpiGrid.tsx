@@ -1,11 +1,7 @@
 // RESPONSIBILITY: Renders the SuperadminReportsKpiGrid component.
 import React from 'react';
 import { IndianRupee, TrendingUp, TrendingDown, Users } from 'lucide-react';
-import type { SuperadminReportsKpiCard } from '@/app/superadmin/superadmin_reports/superadmin_reports_types/SuperadminReportsTypes';
-
-interface Props {
-  kpiCards: SuperadminReportsKpiCard[];
-}
+import type { SuperadminReportsKpiCard, SuperadminReportsKpiGridProps as Props } from '@/app/superadmin/superadmin_reports/superadmin_reports_types/SuperadminReportsTypes';
 
 const ICON_MAP: Record<string, React.ElementType> = {
   rupee: IndianRupee,

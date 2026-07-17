@@ -6,15 +6,9 @@ import type { ICellRendererParams, GridReadyEvent } from 'ag-grid-community';
 import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community';
 import { superadmin_gridTheme } from '@/app/superadmin/superadmin_shared_components/superadmin_gridTheme';
 import { Download, FileText, CheckCircle } from 'lucide-react';
-import type { SuperadminBillingInvoice } from '@/app/superadmin/superadmin_billing/superadmin_billing_types/SuperadminBillingTypes';
+import type { SuperadminBillingInvoice, SuperadminBillingGridProps as Props } from '@/app/superadmin/superadmin_billing/superadmin_billing_types/SuperadminBillingTypes';
 
 ModuleRegistry.registerModules([AllCommunityModule]);
-
-interface Props {
-  invoices: SuperadminBillingInvoice[];
-  onRowClick: (inv: SuperadminBillingInvoice) => void;
-  onExport: () => void;
-}
 
 export function SuperadminBillingGrid({ invoices, onRowClick, onExport }: Props) {
   const gridRef = useRef<AgGridReact>(null);

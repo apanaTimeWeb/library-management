@@ -2,10 +2,7 @@
 import React from 'react';
 import { SuperadminSearchableDropdown } from '@/app/superadmin/superadmin_shared_components/SuperadminSearchableDropdown';
 
-interface Props {
-  shiftFilter: string;
-  setShiftFilter: (val: string) => void;
-}
+import type { SuperadminShiftGapAnalyzerFilterBarProps as Props } from '@/app/superadmin/superadmin_accounting/superadmin_accounting_types/SuperadminAccountingTypes';
 
 export function SuperadminShiftGapAnalyzerFilterBar({ shiftFilter, setShiftFilter }: Props) {
   return (

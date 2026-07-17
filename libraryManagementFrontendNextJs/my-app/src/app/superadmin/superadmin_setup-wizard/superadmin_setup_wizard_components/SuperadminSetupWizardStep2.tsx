@@ -8,7 +8,9 @@ import { SETUP_WIZARD_DATA as d } from '@/app/superadmin/superadmin_setup-wizard
 
 const inputCls = (hasErr?: boolean) => `w-full bg-bg-input border rounded-lg px-3 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 transition-all placeholder:text-text-tertiary ${hasErr ? 'border-danger focus:ring-danger' : 'border-border focus:ring-primary'}`;
 
-export function SuperadminSetupWizardStep2({ onNext }: { onNext: (d: ShiftsData) => void }) {
+import type { SuperadminSetupWizardStep2Props as Props } from '@/app/superadmin/superadmin_setup-wizard/superadmin_setup_wizard_types/SuperadminSetupWizardTypes';
+
+export function SuperadminSetupWizardStep2({ onNext }: Props) {
   const { register, control, handleSubmit, formState: { errors } } = useForm<ShiftsData>({
     resolver: zodResolver(shiftsSchema),
     defaultValues: { shifts: d.shifts },

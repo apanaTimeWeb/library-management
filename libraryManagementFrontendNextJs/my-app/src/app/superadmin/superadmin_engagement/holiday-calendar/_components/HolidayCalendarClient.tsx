@@ -6,10 +6,7 @@ import Link from 'next/link';
 import { ChevronRight, ChevronLeft, Plus, X, Trash2, CalendarDays } from 'lucide-react';
 import { SUPERADMIN_ENGAGEMENT_MOCK_HOLIDAYS } from '@superadmin/superadmin_engagement/superadmin_engagement_data/SuperadminEngagementMockData';
 import { SuperadminSearchableDropdown } from '@/app/superadmin/superadmin_shared_components/SuperadminSearchableDropdown';
-
-interface Holiday { id: string; date: string; name: string; type: string; }
-
-
+import type { SuperadminEngagementHoliday as Holiday } from '@/app/superadmin/superadmin_engagement/superadmin_engagement_types/SuperadminEngagementTypes';
 
 const WEEK_DAYS = ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
 

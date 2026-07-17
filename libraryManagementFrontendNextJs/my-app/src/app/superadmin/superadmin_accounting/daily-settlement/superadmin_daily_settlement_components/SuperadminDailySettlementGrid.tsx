@@ -10,10 +10,7 @@ import type { SuperadminDailySettlementEntry } from '@/app/superadmin/superadmin
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
-interface Props {
-  entries: SuperadminDailySettlementEntry[];
-  onSettle: (id: number) => void;
-}
+import type { SuperadminDailySettlementGridProps as Props } from '@/app/superadmin/superadmin_accounting/superadmin_accounting_types/SuperadminAccountingTypes';
 
 export function SuperadminDailySettlementGrid({ entries, onSettle }: Props) {
   const colDefs = useMemo<any[]>(() => [
