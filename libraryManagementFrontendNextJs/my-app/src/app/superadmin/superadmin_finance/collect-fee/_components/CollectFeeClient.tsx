@@ -48,7 +48,7 @@ export function CollectFeeClient() {
   return (
     <>
       <Toaster position="bottom-right" toastOptions={{
-        style: { background: '#1A1A2E', color: '#F0F0FF', border: '1px solid #2A2A3E', fontSize: 13 }
+        className: 'bg-card text-text-primary border border-border text-[13px]'
       }} />
 
       {receiptData && (

@@ -27,7 +27,7 @@ export function CollectFeeReceiptModal({ receiptData, onClose, onPrint }: Props)
         
         {/* Left Side: Thermal Receipt Preview */}
         <div className="flex-1 bg-page p-6 md:p-8 border-r border-border flex flex-col items-center justify-center">
-          <div className="w-full max-w-sm bg-white text-black shadow-lg relative overflow-hidden" style={{ fontFamily: 'monospace' }}>
+          <div className="w-full max-w-sm bg-white text-black shadow-lg relative overflow-hidden font-mono">
             <div className="h-2 w-full flex space-x-1 absolute top-0">
               {Array.from({ length: 20 }).map((_, i) => <div key={i} className="w-4 h-4 bg-page rotate-45 -mt-2" />)}
             </div>
