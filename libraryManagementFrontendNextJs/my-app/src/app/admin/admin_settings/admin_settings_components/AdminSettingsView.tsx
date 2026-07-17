@@ -3,6 +3,10 @@
 import { Save, CheckCircle, Settings } from 'lucide-react';
 import { Toaster } from 'react-hot-toast';
 import { useAdminSettings, type SettingsState } from '@/app/admin/admin_settings/admin_settings_hooks/useAdminSettings';
+import { Card } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
 
 interface AdminSettingsViewProps {
   initialSettings: SettingsState;
@@ -17,95 +21,92 @@ export function AdminSettingsView({ initialSettings }: AdminSettingsViewProps) {
         position="bottom-right"
         toastOptions={{
           style: {
-            background: 'var(--bg-card)',
-            color: 'var(--text-primary)',
-            border: '1px solid var(--border)',
+            background: 'hsl(var(--card))',
+            color: 'hsl(var(--foreground))',
+            border: '1px solid hsl(var(--border))',
             fontSize: 13,
           },
         }}
       />
-      <div style={{ maxWidth: 1000, paddingBottom: 40 }}>
+      <div className="h-full flex flex-col pb-10 space-y-6 relative max-w-5xl mx-auto">
         {/* Page Header */}
-        <div className="admin-page-header" style={{ borderBottom: '1px solid var(--border)', paddingBottom: 16, marginBottom: 24 }}>
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b pb-4">
           <div>
-            <p className="admin-breadcrumb">Smart Library 360 › Admin › Settings</p>
-            <h1 className="admin-page-title">Global Settings</h1>
-            <p className="admin-page-subtitle">Configure your library's core identity, billing info, and preferences.</p>
+            <nav className="text-xs text-muted-foreground font-medium mb-1 tracking-wide uppercase">Smart Library 360 › Admin › Settings</nav>
+            <h1 className="text-2xl font-bold tracking-tight">Global Settings</h1>
+            <p className="text-sm text-muted-foreground mt-1">Configure your library's core identity, billing info, and preferences.</p>
           </div>
-          <div className="admin-page-actions">
-            <button className="admin-btn-primary" onClick={handleSave} disabled={loading}>
-              <Save size={16} />
-              {loading ? 'Saving…' : 'Save Settings'}
-            </button>
-          </div>
+          <Button 
+            onClick={handleSave} 
+            disabled={loading}
+            className="gap-2 w-full md:w-auto font-bold"
+          >
+            <Save size={16} />
+            {loading ? 'Saving…' : 'Save Settings'}
+          </Button>
         </div>
 
         {/* 2-col grid of cards */}
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20 }}>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
 
           {/* Library Identity Card */}
-          <div className="admin-card">
-            <div className="admin-card-header">
-              <h2 className="admin-section-title" style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                <Settings size={17} style={{ color: 'var(--primary)' }} />
-                Library Identity
-              </h2>
-            </div>
-            <div className="admin-card-body admin-flex-col admin-gap-16">
-              <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
-                <label className="admin-label" htmlFor="libraryName">Library Name</label>
-                <input className="admin-input" id="libraryName" name="libraryName" value={form.libraryName} onChange={handleChange} />
+          <Card className="p-6 shadow-sm border-border bg-bg-card flex flex-col gap-6">
+            <h2 className="text-lg font-bold flex items-center gap-2 border-b pb-3 text-text-primary">
+              <Settings size={18} className="text-primary" /> Library Identity
+            </h2>
+            
+            <div className="flex flex-col gap-5">
+              <div className="space-y-1.5">
+                <label className="text-sm font-medium text-text-primary" htmlFor="libraryName">Library Name</label>
+                <Input id="libraryName" name="libraryName" value={form.libraryName} onChange={handleChange} className="h-10" />
               </div>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
-                <label className="admin-label" htmlFor="address">Full Address (For Invoices)</label>
-                <textarea className="admin-textarea" id="address" name="address" value={form.address} onChange={handleChange} rows={3} style={{ resize: 'none' }} />
+              <div className="space-y-1.5">
+                <label className="text-sm font-medium text-text-primary" htmlFor="address">Full Address (For Invoices)</label>
+                <Textarea id="address" name="address" value={form.address} onChange={handleChange} rows={3} className="resize-none min-h-[80px]" />
               </div>
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
-                  <label className="admin-label" htmlFor="contactEmail">Contact Email</label>
-                  <input className="admin-input" id="contactEmail" name="contactEmail" value={form.contactEmail} onChange={handleChange} type="email" />
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="space-y-1.5">
+                  <label className="text-sm font-medium text-text-primary" htmlFor="contactEmail">Contact Email</label>
+                  <Input id="contactEmail" name="contactEmail" value={form.contactEmail} onChange={handleChange} type="email" className="h-10" />
                 </div>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
-                  <label className="admin-label" htmlFor="contactPhone">Contact Phone</label>
-                  <input className="admin-input" id="contactPhone" name="contactPhone" value={form.contactPhone} onChange={handleChange} />
+                <div className="space-y-1.5">
+                  <label className="text-sm font-medium text-text-primary" htmlFor="contactPhone">Contact Phone</label>
+                  <Input id="contactPhone" name="contactPhone" value={form.contactPhone} onChange={handleChange} className="h-10" />
                 </div>
               </div>
             </div>
-          </div>
+          </Card>
 
           {/* Billing & Receipts Card */}
-          <div className="admin-card">
-            <div className="admin-card-header">
-              <h2 className="admin-section-title" style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                <CheckCircle size={17} style={{ color: 'var(--success)' }} />
-                Billing &amp; Invoicing
-              </h2>
-            </div>
-            <div className="admin-card-body admin-flex-col admin-gap-16">
-              <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
-                <label className="admin-label" htmlFor="gstin">GSTIN / Tax ID</label>
-                <input className="admin-input" id="gstin" name="gstin" value={form.gstin} onChange={handleChange} />
+          <Card className="p-6 shadow-sm border-border bg-bg-card flex flex-col gap-6">
+            <h2 className="text-lg font-bold flex items-center gap-2 border-b pb-3 text-text-primary">
+              <CheckCircle size={18} className="text-success" /> Billing & Invoicing
+            </h2>
+            
+            <div className="flex flex-col gap-5">
+              <div className="space-y-1.5">
+                <label className="text-sm font-medium text-text-primary" htmlFor="gstin">GSTIN / Tax ID</label>
+                <Input id="gstin" name="gstin" value={form.gstin} onChange={handleChange} className="h-10" />
               </div>
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
-                  <label className="admin-label" htmlFor="receiptPrefix">Receipt Prefix</label>
-                  <input className="admin-input" id="receiptPrefix" name="receiptPrefix" value={form.receiptPrefix} onChange={handleChange} placeholder="e.g. REC-" />
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="space-y-1.5">
+                  <label className="text-sm font-medium text-text-primary" htmlFor="receiptPrefix">Receipt Prefix</label>
+                  <Input id="receiptPrefix" name="receiptPrefix" value={form.receiptPrefix} onChange={handleChange} placeholder="e.g. REC-" className="h-10" />
                 </div>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
-                  <label className="admin-label" htmlFor="taxPercentage">Default Tax (%)</label>
-                  <input className="admin-input" id="taxPercentage" name="taxPercentage" value={form.taxPercentage} onChange={handleChange} type="number" />
+                <div className="space-y-1.5">
+                  <label className="text-sm font-medium text-text-primary" htmlFor="taxPercentage">Default Tax (%)</label>
+                  <Input id="taxPercentage" name="taxPercentage" value={form.taxPercentage} onChange={handleChange} type="number" className="h-10" />
                 </div>
               </div>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
-                <label className="admin-label" htmlFor="termsAndConditions">Terms &amp; Conditions (Printed on Receipt)</label>
-                <textarea className="admin-textarea" id="termsAndConditions" name="termsAndConditions" value={form.termsAndConditions} onChange={handleChange} rows={4} style={{ resize: 'none' }} />
+              <div className="space-y-1.5">
+                <label className="text-sm font-medium text-text-primary" htmlFor="termsAndConditions">Terms & Conditions (Printed on Receipt)</label>
+                <Textarea id="termsAndConditions" name="termsAndConditions" value={form.termsAndConditions} onChange={handleChange} rows={4} className="resize-none min-h-[105px]" />
               </div>
             </div>
-          </div>
+          </Card>
 
         </div>
       </div>
     </>
   );
 }
-
