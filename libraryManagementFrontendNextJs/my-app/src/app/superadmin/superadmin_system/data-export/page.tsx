@@ -4,6 +4,7 @@ import { SuperadminCard, CardHeader, CardTitle, CardDescription, CardContent, Ca
 import { SuperadminButton } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminButton';
 import { SuperadminBadge } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminBadge';
 import { Download, FileSpreadsheet, Database, Users, CreditCard, CalendarDays, ChevronRight, CheckCircle, Loader2 } from 'lucide-react';
+import { SUPERADMIN_SYSTEM_MOCK_EXPORT_MODULES } from '@/app/superadmin/superadmin_system/superadmin_system_constants/SuperadminSystemConstants';
 
 interface ExportModule {
   id: string;
@@ -13,17 +14,6 @@ interface ExportModule {
   estimatedRows: number;
   formats: string[];
 }
-
-const EXPORT_MODULES: ExportModule[] = [
-  { id: 'students',     label: 'Students',            description: 'All student records including personal info, seat, shift, and status', icon: '🎓', estimatedRows: 248,  formats: ['CSV', 'XLSX'] },
-  { id: 'payments',     label: 'Payments & Fees',     description: 'Complete payment history — fee collected, due amounts, receipts',     icon: '💳', estimatedRows: 1240, formats: ['CSV', 'XLSX'] },
-  { id: 'attendance',   label: 'Attendance',          description: 'Full attendance log — daily check-ins by student and shift',          icon: '📅', estimatedRows: 5800, formats: ['CSV', 'XLSX'] },
-  { id: 'expenses',     label: 'Expenses',            description: 'Library expense records — rent, electricity, salaries, etc.',         icon: '💸', estimatedRows: 320,  formats: ['CSV', 'XLSX'] },
-  { id: 'enquiries',    label: 'CRM Enquiries',       description: 'Lead pipeline — all enquires with status and follow-up history',      icon: '📞', estimatedRows: 186,  formats: ['CSV', 'XLSX'] },
-  { id: 'seats',        label: 'Seats & Lockers',     description: 'Seat matrix, locker assignments, and maintenance logs',               icon: '🪑', estimatedRows: 140,  formats: ['CSV', 'XLSX'] },
-  { id: 'whatsapp',     label: 'WhatsApp Logs',       description: 'All outbound WhatsApp messages — receipts, renewals, alerts',        icon: '📱', estimatedRows: 890,  formats: ['CSV'] },
-  { id: 'audit',        label: 'Audit Logs',          description: 'Staff actions log — sensitive operations, deletes, and edits',        icon: '🔍', estimatedRows: 2400, formats: ['CSV', 'XLSX'] },
-];
 
 interface QuickExport {
   id: string;
@@ -56,10 +46,10 @@ export default function DataExportPage() {
     });
   };
 
-  const selectAll = () => setSelected(new Set(EXPORT_MODULES.map(( m ) => m.id)));
+  const selectAll = () => setSelected(new Set(SUPERADMIN_SYSTEM_MOCK_EXPORT_MODULES.map(( m ) => m.id)));
   const clearAll  = () => setSelected(new Set());
 
-  const estimatedTotal = EXPORT_MODULES.filter(m => selected.has(m.id)).reduce((sum, m) => sum + m.estimatedRows, 0);
+  const estimatedTotal = SUPERADMIN_SYSTEM_MOCK_EXPORT_MODULES.filter(m => selected.has(m.id)).reduce((sum, m) => sum + m.estimatedRows, 0);
 
   const handleExport = (id?: string) => {
     const key = id ?? 'bulk';
@@ -140,7 +130,7 @@ export default function DataExportPage() {
         <CardContent className="space-y-5">
           {/* Module selection */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-            {EXPORT_MODULES.map(( mod ) => {
+            {SUPERADMIN_SYSTEM_MOCK_EXPORT_MODULES.map((mod) => {
               const isSelected = selected.has(mod.id);
               return (
                 <div

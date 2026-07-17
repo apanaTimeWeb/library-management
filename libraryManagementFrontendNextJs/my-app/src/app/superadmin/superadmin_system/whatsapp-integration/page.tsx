@@ -11,6 +11,7 @@ import {
   MessageSquare, ChevronRight, Eye, EyeOff, Copy, CheckCircle,
   XCircle, Phone, Zap, BarChart3, Clock, Loader2, Radio, Send, Banknote, Globe, Settings
 } from 'lucide-react';
+import { SUPERADMIN_SYSTEM_MOCK_WHATSAPP_LOGS } from '@/app/superadmin/superadmin_system/superadmin_system_constants/SuperadminSystemConstants';
 
 const PROVIDERS = [
   { id: 'twilio',   label: 'Twilio',   logo: <Globe size={16} className="text-blue-500" />, requiresSecret: true  },
@@ -28,14 +29,7 @@ interface MessageLog {
   template: string;
 }
 
-const MESSAGE_LOGS: MessageLog[] = [
-  { id: 'wl-001', to: '98****2310', type: 'Fee Receipt',      status: 'delivered', sentAt: '2026-04-12 10:45 AM', template: 'receipt_confirmation' },
-  { id: 'wl-002', to: '97****8810', type: 'Renewal Reminder', status: 'delivered', sentAt: '2026-04-12 09:30 AM', template: 'renewal_alert' },
-  { id: 'wl-003', to: '89****1230', type: 'Welcome Message',  status: 'delivered', sentAt: '2026-04-11 06:01 PM', template: 'welcome_new_student' },
-  { id: 'wl-004', to: '73****5670', type: 'Fee Reminder',     status: 'failed',    sentAt: '2026-04-11 02:00 PM', template: 'fee_due_reminder' },
-  { id: 'wl-005', to: '91****4430', type: 'Seat Vacancy',     status: 'delivered', sentAt: '2026-04-10 11:00 AM', template: 'waitlist_notify' },
-  { id: 'wl-006', to: '98****0010', type: 'Fee Receipt',      status: 'delivered', sentAt: '2026-04-10 09:15 AM', template: 'receipt_confirmation' },
-];
+
 
 const STATUS_CFG = {
   delivered: { variant: 'success' as const, icon: CheckCircle },
@@ -59,10 +53,10 @@ export default function WhatsAppIntegrationPage() {
 
   const selectedProvider = PROVIDERS.find(p => p.id === provider)!;
 
-  const deliveredCount = MESSAGE_LOGS.filter(l => l.status === 'delivered').length;
-  const failedCount    = MESSAGE_LOGS.filter(l => l.status === 'failed').length;
-  const pendingCount   = MESSAGE_LOGS.filter(l => l.status === 'pending').length;
-  const deliveryRate   = Math.round((deliveredCount / MESSAGE_LOGS.length) * 100);
+  const deliveredCount = SUPERADMIN_SYSTEM_MOCK_WHATSAPP_LOGS.filter(l => l.status === 'delivered').length;
+  const failedCount    = SUPERADMIN_SYSTEM_MOCK_WHATSAPP_LOGS.filter(l => l.status === 'failed').length;
+  const pendingCount   = SUPERADMIN_SYSTEM_MOCK_WHATSAPP_LOGS.filter(l => l.status === 'pending').length;
+  const deliveryRate   = Math.round((deliveredCount / SUPERADMIN_SYSTEM_MOCK_WHATSAPP_LOGS.length) * 100);
 
   const handleTestConnection = () => {
     setTestStatus('testing');
@@ -136,7 +130,7 @@ export default function WhatsAppIntegrationPage() {
 
       {/* Usage Stats */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-5 mb-8">
-        <SuperadminKpiCard title="Sent This Month"  value={MESSAGE_LOGS.length} icon={<Send size={20} />}  subtitle="All messages"      />
+        <SuperadminKpiCard title="Sent This Month"  value={SUPERADMIN_SYSTEM_MOCK_WHATSAPP_LOGS.length} icon={<Send size={20} />}  subtitle="All messages"      />
         <SuperadminKpiCard title="Delivered"        value={deliveredCount}      icon={<CheckCircle size={20} />}  trend="up" trendLabel={`${deliveryRate}% rate`} />
         <SuperadminKpiCard title="Failed"           value={failedCount}         icon={<XCircle size={20} />}  trend={failedCount > 0 ? 'down' : 'neutral'} trendLabel="Failed deliveries" />
         <SuperadminKpiCard title="Est. Cost"        value="₹18.50"              icon={<Banknote size={20} />}  subtitle="~₹0.18 per msg"   />
@@ -329,7 +323,7 @@ export default function WhatsAppIntegrationPage() {
                 </tr>
               </thead>
               <tbody className="divide-y divide-outline-variant/30">
-                {MESSAGE_LOGS.map((log) => {
+                  {SUPERADMIN_SYSTEM_MOCK_WHATSAPP_LOGS.map((log) => {
                   const cfg  = STATUS_CFG[log.status as keyof typeof STATUS_CFG];
                   const Icon = cfg.icon;
                   return (

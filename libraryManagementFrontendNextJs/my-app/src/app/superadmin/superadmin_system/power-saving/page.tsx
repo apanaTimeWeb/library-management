@@ -8,19 +8,12 @@ import { SuperadminSwitch } from '@/app/superadmin/superadmin_system/superadmin_
 import { SuperadminBadge } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminBadge';
 import { SuperadminProgress } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminProgress';
 import { Zap, ChevronRight, ZapOff, CheckCircle } from 'lucide-react';
+import {
+  SUPERADMIN_SYSTEM_MOCK_POWER_ZONES,
+  SUPERADMIN_SYSTEM_MOCK_POWER_ALERTS
+} from '@/app/superadmin/superadmin_system/superadmin_system_constants/SuperadminSystemConstants';
 
-const ZONES = [
-  { name: 'Zone A (Ground Floor)', occupancy: 78, capacity: 40, current: 31 },
-  { name: 'Zone B (First Floor)', occupancy: 22, capacity: 35, current: 8 },
-  { name: 'Zone C (Reading Hall)', occupancy: 91, capacity: 60, current: 55 },
-  { name: 'Zone D (Silent Room)', occupancy: 15, capacity: 20, current: 3 },
-];
 
-const ALERT_LOG = [
-  { date: '2026-04-10', shift: 'Evening', zone: 'Zone B', threshold: '30%', action: 'Advisory sent to manager' },
-  { date: '2026-04-09', shift: 'Afternoon', zone: 'Zone D', threshold: '30%', action: 'AC shutdown suggested' },
-  { date: '2026-04-07', shift: 'Morning', zone: 'Zone B', threshold: '30%', action: 'Advisory sent to manager' },
-];
 
 export default function PowerSavingPage() {
   const [threshold, setThreshold] = useState(30);
@@ -85,7 +78,7 @@ export default function PowerSavingPage() {
 
       {/* Zone Status Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-        {ZONES.map(( zone: FlexRecord ) => {
+        {SUPERADMIN_SYSTEM_MOCK_POWER_ZONES.map((zone, i) => {
           const status = getZoneStatus(zone.occupancy);
           const isLow = zone.occupancy < threshold;
           return (
@@ -135,7 +128,7 @@ export default function PowerSavingPage() {
                 </tr>
               </thead>
               <tbody className="divide-y divide-outline-variant/30">
-                {ALERT_LOG.map(( log: FlexRecord ) => (
+                {SUPERADMIN_SYSTEM_MOCK_POWER_ALERTS.map((log, i) => (
                   <tr key={log.date + log.zone} className="hover:bg-surface-container-high transition-colors">
                     <td className="py-3 pr-4 text-on-surface-variant">{log.date}</td>
                     <td className="py-3 pr-4 text-on-surface">{log.shift}</td>

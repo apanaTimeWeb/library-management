@@ -1,14 +1,15 @@
-'use client';
+'use client';
 import { useMemo, useState } from 'react';
 import { ChevronDown, Download, Eye } from 'lucide-react';
 import { AgGridReact } from 'ag-grid-react';
 import { AllCommunityModule, ModuleRegistry, type ColDef } from 'ag-grid-community';
 import { superadmin_gridTheme } from '@/app/superadmin/superadmin_seats_shifts_lockers/superadmin_seats_shared_components/superadmin_gridTheme';
 import toast from 'react-hot-toast';
+import { SUPERADMIN_SEATS_MOCK_ALLOCATIONS } from '@/app/superadmin/superadmin_seats_shifts_lockers/superadmin_seats_constants/SuperadminSeatsConstants';
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
-interface Allocation {
+export interface Allocation {
   studentName: string;
   smartId: string;
   seatNo: string;
@@ -20,15 +21,6 @@ interface Allocation {
   daysLeft: number;
   status: 'Active' | 'Expired' | 'Suspended';
 }
-
-const ALLOCATIONS: Allocation[] = [
-  { studentName: 'Alex Rivera', smartId: 'LIB-001', seatNo: 'S-02', shift: 'Morning', customSlots: '8AM–10AM, 5PM–8PM', lockerNo: 'A01', validFrom: '01 Oct 2024', validTill: '31 Oct 2024', daysLeft: 7, status: 'Active' },
-  { studentName: 'Priya Sharma', smartId: 'LIB-002', seatNo: 'S-11', shift: 'Evening', customSlots: '—', lockerNo: '—', validFrom: '15 Sep 2024', validTill: '14 Oct 2024', daysLeft: 3, status: 'Active' },
-  { studentName: 'Rohan Mehta', smartId: 'LIB-003', seatNo: 'S-22', shift: 'Morning', customSlots: '—', lockerNo: 'B04', validFrom: '01 Sep 2024', validTill: '30 Sep 2024', daysLeft: -5, status: 'Expired' },
-  { studentName: 'Sneha Patel', smartId: 'LIB-004', seatNo: 'S-36', shift: 'Full Day', customSlots: '—', lockerNo: '—', validFrom: '10 Oct 2024', validTill: '09 Nov 2024', daysLeft: 20, status: 'Active' },
-  { studentName: 'Vikram Rao', smartId: 'LIB-005', seatNo: 'S-45', shift: 'Evening', customSlots: '6PM–9PM', lockerNo: 'C10', validFrom: '20 Oct 2024', validTill: '19 Nov 2024', daysLeft: 30, status: 'Active' },
-  { studentName: 'Ananya Gupta', smartId: 'LIB-006', seatNo: 'S-08', shift: 'Morning', customSlots: '—', lockerNo: '—', validFrom: '05 Oct 2024', validTill: '04 Oct 2024', daysLeft: 12, status: 'Suspended' },
-];
 
 const STATUS_CLASS: Record<string, string> = {
   Active: 'ss-badge ss-badge--success',
@@ -64,7 +56,7 @@ export default function AllocationsPage() {
   const [dateFrom, setDateFrom] = useState('');
   const [dateTo, setDateTo] = useState('');
 
-  const filtered = ALLOCATIONS.filter(a => {
+  const filtered = (SUPERADMIN_SEATS_MOCK_ALLOCATIONS as Allocation[]).filter(a => {
     const matchShift = shiftFilter === 'All Shifts' || a.shift === shiftFilter;
     const matchStatus = statusFilter === 'All Statuses' || a.status === statusFilter;
     const matchFrom = !dateFrom || a.validFrom >= dateFrom;

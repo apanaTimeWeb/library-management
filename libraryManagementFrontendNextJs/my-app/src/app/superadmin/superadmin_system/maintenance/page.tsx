@@ -4,30 +4,18 @@ import { SuperadminCard, CardHeader, CardTitle, CardDescription, CardContent } f
 import { SuperadminBadge } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminBadge';
 import { SuperadminButton } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminButton';
 import { Wrench, Package, Lock, ChevronRight } from 'lucide-react';
+import {
+  SUPERADMIN_SYSTEM_MOCK_MAINTENANCE_SEATS,
+  SUPERADMIN_SYSTEM_MOCK_MAINTENANCE_ASSETS,
+  SUPERADMIN_SYSTEM_MOCK_MAINTENANCE_LOCKERS
+} from '@/app/superadmin/superadmin_system/superadmin_system_constants/SuperadminSystemConstants';
 
-const SEATS = [
-  { id: 'S-01', status: 'Needs Attention', lastMaint: '2026-01-12', daysSince: 89 },
-  { id: 'S-07', status: 'OK', lastMaint: '2026-03-20', daysSince: 22 },
-  { id: 'S-14', status: 'Needs Attention', lastMaint: '2025-12-31', daysSince: 101 },
-  { id: 'S-22', status: 'OK', lastMaint: '2026-04-01', daysSince: 10 },
-];
 
-const ASSETS = [
-  { name: 'AC Unit - Zone A', qty: 1, status: 'Overdue', lastServiced: '2025-11-15', nextDue: '2026-02-15', daysOverdue: 55 },
-  { name: 'Ceiling Fan (Batch)', qty: 8, status: 'Due Soon', lastServiced: '2026-02-01', nextDue: '2026-04-20', daysOverdue: -9 },
-  { name: 'CCTV System', qty: 4, status: 'OK', lastServiced: '2026-03-10', nextDue: '2026-06-10', daysOverdue: -60 },
-];
-
-const LOCKERS = [
-  { id: 'L-03', status: 'Issue Reported', lastIssue: 'Lock jammed — 2026-04-08' },
-  { id: 'L-11', status: 'OK', lastIssue: 'None' },
-  { id: 'L-19', status: 'Issue Reported', lastIssue: 'Door hinge broken — 2026-04-06' },
-];
 
 export default function MaintenancePage() {
-  const seatsNeedingAttention = SEATS.filter(s => s.status === 'Needs Attention').length;
-  const assetsOverdue = ASSETS.filter(a => a.daysOverdue > 0).length;
-  const lockerIssues = LOCKERS.filter(l => l.status === 'Issue Reported').length;
+  const seatsNeedingAttention = SUPERADMIN_SYSTEM_MOCK_MAINTENANCE_SEATS.filter(s => s.status === 'Needs Attention').length;
+  const assetsOverdue = SUPERADMIN_SYSTEM_MOCK_MAINTENANCE_ASSETS.filter(a => a.daysOverdue > 0).length;
+  const lockerIssues = SUPERADMIN_SYSTEM_MOCK_MAINTENANCE_LOCKERS.filter(l => l.status === 'Issue Reported').length;
 
   return (
     <div>
@@ -70,7 +58,7 @@ export default function MaintenancePage() {
                 </tr>
               </thead>
               <tbody className="divide-y divide-outline-variant/30">
-                {SEATS.map(( seat: FlexRecord ) => (
+                {SUPERADMIN_SYSTEM_MOCK_MAINTENANCE_SEATS.map((seat) => (
                   <tr key={seat.id} className="hover:bg-surface-container-high transition-colors">
                     <td className="py-3 pr-4 font-mono font-medium text-on-surface">{seat.id}</td>
                     <td className="py-3 pr-4">
@@ -114,7 +102,7 @@ export default function MaintenancePage() {
                 </tr>
               </thead>
               <tbody className="divide-y divide-outline-variant/30">
-                {ASSETS.map(( asset: FlexRecord ) => (
+                {SUPERADMIN_SYSTEM_MOCK_MAINTENANCE_ASSETS.map((asset, i) => (
                   <tr key={asset.name} className="hover:bg-surface-container-high transition-colors">
                     <td className="py-3 pr-4 font-medium text-on-surface">{asset.name}</td>
                     <td className="py-3 pr-4 text-center text-on-surface-variant">{asset.qty}</td>
@@ -161,7 +149,7 @@ export default function MaintenancePage() {
                 </tr>
               </thead>
               <tbody className="divide-y divide-outline-variant/30">
-                {LOCKERS.map(( locker: FlexRecord ) => (
+                {SUPERADMIN_SYSTEM_MOCK_MAINTENANCE_LOCKERS.map((locker, i) => (
                   <tr key={locker.id} className="hover:bg-surface-container-high transition-colors">
                     <td className="py-3 pr-4 font-mono font-medium text-on-surface">{locker.id}</td>
                     <td className="py-3 pr-4">

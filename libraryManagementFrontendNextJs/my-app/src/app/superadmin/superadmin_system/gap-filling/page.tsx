@@ -7,6 +7,7 @@ import { SuperadminLabel } from '@/app/superadmin/superadmin_system/superadmin_s
 import { SuperadminBadge } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminBadge';
 import { SuperadminSelect, SuperadminSelectTrigger, SuperadminSelectValue, SuperadminSelectContent, SuperadminSelectItem } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminSelect';
 import { GitBranch, ChevronRight, Zap, CheckCircle } from 'lucide-react';
+import { SUPERADMIN_SYSTEM_MOCK_SEAT_GAPS } from '@/app/superadmin/superadmin_system/superadmin_system_constants/SuperadminSystemConstants';
 
 interface GapInterval { start: number; end: number; }
 interface GapDetail extends GapInterval { label: string; hours: number; }
@@ -16,12 +17,7 @@ interface SeatGapRecord {
   gap: GapDetail;
 }
 
-const SEAT_GAPS: SeatGapRecord[] = [
-  { seat: 'S-03', booked: [{ start: 0, end: 25 }, { start: 70, end: 100 }], gap: { start: 25, end: 70,  label: '10AM – 2PM', hours: 4  } },
-  { seat: 'S-07', booked: [{ start: 0, end: 45 }],                          gap: { start: 45, end: 100, label: '12PM – 6PM', hours: 6  } },
-  { seat: 'S-12', booked: [{ start: 30, end: 60 }, { start: 80, end: 100 }],gap: { start: 60, end: 80,  label: '2PM – 4PM',  hours: 2  } },
-  { seat: 'S-15', booked: [{ start: 0, end: 15 }],                          gap: { start: 15, end: 100, label: '8AM – 6PM',  hours: 10 } },
-];
+
 
 export default function GapFillingPage() {
   const [analyzed, setAnalyzed] = useState(false);
@@ -81,9 +77,9 @@ export default function GapFillingPage() {
         <div className="space-y-4">
           <div className="flex items-center justify-between mb-2">
             <h2 className="text-lg font-semibold text-on-surface">Gap Analysis Results</h2>
-            <SuperadminBadge variant="primary">{SEAT_GAPS.length} seats analyzed</SuperadminBadge>
+            <SuperadminBadge variant="primary">{SUPERADMIN_SYSTEM_MOCK_SEAT_GAPS.length} seats analyzed</SuperadminBadge>
           </div>
-          {SEAT_GAPS.map(( seat ) => (
+          {SUPERADMIN_SYSTEM_MOCK_SEAT_GAPS.map((seat) => (
             <SuperadminCard key={seat.seat}>
               <CardContent>
                 <div className="flex items-center gap-4">

@@ -4,6 +4,7 @@ import { SuperadminCard, CardHeader, CardTitle, CardDescription, CardContent, Ca
 import { SuperadminButton } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminButton';
 import { SuperadminBadge } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminBadge';
 import { Upload, FileSpreadsheet, ChevronRight, CheckCircle, XCircle, AlertTriangle, Download, RefreshCw, Users } from 'lucide-react';
+import { SUPERADMIN_SYSTEM_MOCK_IMPORT_PREVIEW } from '@/app/superadmin/superadmin_system/superadmin_system_constants/SuperadminSystemConstants';
 
 type RowStatus = 'ok' | 'error' | 'warning';
 
@@ -18,16 +19,7 @@ interface PreviewRow {
   issue?: string;
 }
 
-const MOCK_PREVIEW: PreviewRow[] = [
-  { row: 1, name: 'Rahul Sharma',    phone: '9876543210', email: 'rahul@gmail.com',   shift: 'Morning',   seat: 'S-01', status: 'ok' },
-  { row: 2, name: 'Priya Verma',     phone: '9812345678', email: 'priya@yahoo.com',   shift: 'Afternoon', seat: 'S-02', status: 'ok' },
-  { row: 3, name: 'Amit Kumar',      phone: '',           email: 'amit@gmail.com',    shift: 'Evening',   seat: 'S-03', status: 'error',   issue: 'Mobile Number missing' },
-  { row: 4, name: 'Sneha Patel',     phone: '9999988888', email: '',                  shift: 'Morning',   seat: 'S-04', status: 'warning', issue: 'Email missing (optional)' },
-  { row: 5, name: 'Rohan Das',       phone: '9870001234', email: 'rohan@gmail.com',   shift: 'Afternoon', seat: 'S-05', status: 'ok' },
-  { row: 6, name: '',                phone: '9810001234', email: 'unknown@gmail.com', shift: 'Morning',   seat: 'S-06', status: 'error',   issue: 'Student Name is required' },
-  { row: 7, name: 'Kavita Singh',    phone: '9820001234', email: 'kavita@gmail.com',  shift: 'Evening',   seat: 'S-07', status: 'ok' },
-  { row: 8, name: 'Deepak Mishra',   phone: '9830001234', email: 'deepak@gmail.com',  shift: 'Morning',   seat: '',     status: 'error',   issue: 'Seat Number missing' },
-];
+
 
 const TEMPLATE_HEADERS = ['Name*', 'Phone*', 'Email', 'Shift*', 'Seat', 'Plan', 'Fee Paid', 'Join Date'];
 
@@ -43,18 +35,20 @@ export default function BulkImportPage() {
   const [step, setStep] = useState<ImportStep>('upload');
   const [isDragging, setIsDragging] = useState(false);
   const [fileName, setFileName] = useState('');
+  const [previewData, setPreviewData] = useState<PreviewRow[]>([]);
   const [filter, setFilter] = useState<'all' | RowStatus>('all');
   const [importProgress, setImportProgress] = useState(0);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-  const errorCount   = MOCK_PREVIEW.filter(r => r.status === 'error').length;
-  const warningCount = MOCK_PREVIEW.filter(r => r.status === 'warning').length;
-  const okCount      = MOCK_PREVIEW.filter(r => r.status === 'ok').length;
+  const errorCount   = previewData.filter(r => r.status === 'error').length;
+  const warningCount = previewData.filter(r => r.status === 'warning').length;
+  const okCount      = previewData.filter(r => r.status === 'ok').length;
 
-  const filteredRows = filter === 'all' ? MOCK_PREVIEW : MOCK_PREVIEW.filter(r => r.status === filter);
+  const filteredRows = filter === 'all' ? previewData : previewData.filter(r => r.status === filter);
 
   const handleFileSelect = (name: string) => {
     setFileName(name);
+    setPreviewData(SUPERADMIN_SYSTEM_MOCK_IMPORT_PREVIEW as PreviewRow[]);
     setTimeout(() => setStep('preview'), 800);
   };
 
@@ -246,7 +240,7 @@ export default function BulkImportPage() {
           {/* Summary */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             <div className="p-4 rounded-2xl bg-surface-container border border-outline-variant text-center">
-              <p className="text-2xl font-bold text-on-surface">{MOCK_PREVIEW.length}</p>
+              <p className="text-2xl font-bold text-on-surface">{previewData.length}</p>
               <p className="text-xs text-on-surface-variant mt-1">Total Rows</p>
             </div>
             <div className="p-4 rounded-2xl bg-green-500/10 border border-green-500/20 text-center">
@@ -293,7 +287,7 @@ export default function BulkImportPage() {
                           : 'bg-surface-container-high text-on-surface-variant hover:text-on-surface'
                       }`}
                     >
-                      {f === 'all' ? `All (${MOCK_PREVIEW.length})` :
+                      {f === 'all' ? `All (${previewData.length})` :
                        f === 'ok'  ? <><CheckCircle size={14} className="inline mr-1" /> OK ({okCount})</> :
                        f === 'warning' ? <><AlertTriangle size={14} className="inline mr-1" /> Warn ({warningCount})</> :
                        <><XCircle size={14} className="inline mr-1" /> Error ({errorCount})</>}

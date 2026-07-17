@@ -4,6 +4,7 @@ import { ChevronDown, Search } from 'lucide-react';
 import { AgGridReact } from 'ag-grid-react';
 import { AllCommunityModule, ModuleRegistry, type ColDef } from 'ag-grid-community';
 import { superadmin_gridTheme } from '@/app/superadmin/superadmin_seats_shifts_lockers/superadmin_seats_shared_components/superadmin_gridTheme';
+import { SUPERADMIN_SEATS_MOCK_HISTORY } from '@/app/superadmin/superadmin_seats_shifts_lockers/superadmin_seats_constants/SuperadminSeatsConstants';
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
@@ -18,14 +19,7 @@ interface SeatHistoryEntry {
   reason: 'Admission' | 'Shift Change' | 'Seat Change';
 }
 
-const HISTORY: SeatHistoryEntry[] = [
-  { seatNo: 'S-12', studentName: 'Rahul Verma', smartId: 'LIB-088', shift: 'Morning', occupiedFrom: '01 Jan 2024', occupiedTill: '31 Mar 2024', duration: '90 days', reason: 'Admission' },
-  { seatNo: 'S-12', studentName: 'Pooja Nair', smartId: 'LIB-045', shift: 'Morning', occupiedFrom: '01 Apr 2024', occupiedTill: '15 Jun 2024', duration: '75 days', reason: 'Seat Change' },
-  { seatNo: 'S-12', studentName: 'Arjun Singh', smartId: 'LIB-112', shift: 'Morning', occupiedFrom: '01 Jul 2024', occupiedTill: '30 Sep 2024', duration: '91 days', reason: 'Shift Change' },
-  { seatNo: 'S-07', studentName: 'Meera Joshi', smartId: 'LIB-033', shift: 'Evening', occupiedFrom: '15 Feb 2024', occupiedTill: '14 May 2024', duration: '89 days', reason: 'Admission' },
-  { seatNo: 'S-07', studentName: 'Karan Malhotra', smartId: 'LIB-077', shift: 'Evening', occupiedFrom: '01 Jun 2024', occupiedTill: '10 Aug 2024', duration: '70 days', reason: 'Seat Change' },
-  { seatNo: 'S-31', studentName: 'Divya Kapoor', smartId: 'LIB-099', shift: 'Full Day', occupiedFrom: '01 Mar 2024', occupiedTill: '31 Aug 2024', duration: '183 days', reason: 'Admission' },
-];
+
 
 const REASON_CLASS: Record<string, string> = {
   Admission: 'ss-badge ss-badge--success',
@@ -47,7 +41,7 @@ export default function SeatHistoryPage() {
   const [dateFrom, setDateFrom] = useState('');
   const [dateTo, setDateTo] = useState('');
 
-  const filtered = HISTORY.filter(h => {
+  const filtered = (SUPERADMIN_SEATS_MOCK_HISTORY as SeatHistoryEntry[]).filter(h => {
     const matchSeat = seatFilter === 'All Seats' || h.seatNo === seatFilter;
     const matchSearch = !search ||
       h.studentName.toLowerCase().includes(search.toLowerCase()) ||

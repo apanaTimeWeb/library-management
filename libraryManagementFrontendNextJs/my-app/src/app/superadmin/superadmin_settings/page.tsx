@@ -1,20 +1,16 @@
 'use client';
 import { useState } from 'react';
 import { Save, ShieldCheck, Mail, Building, CheckCircle } from 'lucide-react';
+import { SUPERADMIN_SETTINGS_MOCK_NOTIF_ITEMS } from '@/app/superadmin/superadmin_settings/superadmin_settings_constants/SuperadminSettingsConstants';
 
-const NOTIF_ITEMS = [
-  { id: 'welcome', label: 'Send Welcome Email to New Tenants',     default: true },
-  { id: 'invoice', label: 'Auto-send SaaS Invoice via WhatsApp',   default: true },
-  { id: 'backup',  label: 'Alert Owner on Failed Backup',          default: true },
-  { id: 'ticket',  label: 'Notify me when Support Ticket created', default: false },
-];
+
 
 export default function SettingsPage() {
   const [saved, setSaved] = useState(false);
   const [platform, setPlatform] = useState({ name: 'Smart Library 360', email: 'support@library360.com', phone: '+91 9988776655' });
   const [security, setSecurity] = useState({ maxAttempts: 5, autoLogout: 30 });
   const [checks, setChecks] = useState<Record<string, boolean>>(
-    Object.fromEntries(NOTIF_ITEMS.map(( n: FlexRecord ) => [n.id, n.default]))
+    Object.fromEntries(SUPERADMIN_SETTINGS_MOCK_NOTIF_ITEMS.map(( n: FlexRecord ) => [n.id, n.default]))
   );
 
   const handleSave = () => {
@@ -77,7 +73,7 @@ export default function SettingsPage() {
               <Mail size={15} className="text-success" /> SaaS Auto-Notifications
             </h2>
             <div className="space-y-4">
-              {NOTIF_ITEMS.map(( item: FlexRecord ) => (
+              {SUPERADMIN_SETTINGS_MOCK_NOTIF_ITEMS.map((item: FlexRecord) => (
                 <div key={item.id} className="flex items-center gap-3 cursor-pointer"
                   onClick={() => setChecks(c => ({ ...c, [item.id]: !c[item.id] }))}>
                   <div className={`sa-toggle-track ${checks[item.id] ? 'sa-toggle-track--on' : ''}`}>

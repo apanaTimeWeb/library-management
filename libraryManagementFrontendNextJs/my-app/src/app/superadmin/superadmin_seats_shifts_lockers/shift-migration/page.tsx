@@ -2,17 +2,12 @@
 import { useState } from 'react';
 import { ArrowLeft, Search, ChevronDown, CreditCard, QrCode, Banknote, CheckCircle, Clock } from 'lucide-react';
 import toast from 'react-hot-toast';
+import { SUPERADMIN_SEATS_MOCK_MIGRATION_STUDENTS } from '@/app/superadmin/superadmin_seats_shifts_lockers/superadmin_seats_constants/SuperadminSeatsConstants';
 
 interface Student {
   id: string; name: string; smartId: string;
   currentShift: string; currentSeat: string; validTill: string; plan: string; dailyRate: number;
 }
-
-const STUDENTS: Student[] = [
-  { id: '1', name: 'Alex Rivera',  smartId: 'LIB-88429', currentShift: 'Morning',  currentSeat: 'A-12', validTill: '2025-04-30', plan: 'Monthly ₹1000', dailyRate: 33 },
-  { id: '2', name: 'Priya Sharma', smartId: 'LIB-00234', currentShift: 'Evening',  currentSeat: 'B-05', validTill: '2025-05-15', plan: 'Monthly ₹1200', dailyRate: 40 },
-  { id: '3', name: 'Rohan Mehta',  smartId: 'LIB-00567', currentShift: 'Full Day', currentSeat: 'C-08', validTill: '2025-06-01', plan: 'Monthly ₹1500', dailyRate: 50 },
-];
 
 const SHIFTS = [
   { name: 'Morning',   seats: 4, rate: 33 },
@@ -31,6 +26,7 @@ function daysRemaining(validTill: string): number {
 export default function ShiftMigrationPage() {
   const [step, setStep]                         = useState(1);
   const [search, setSearch]                     = useState('');
+  const [students] = useState<Student[]>(SUPERADMIN_SEATS_MOCK_MIGRATION_STUDENTS as Student[]);
   const [selectedStudent, setSelectedStudent]   = useState<Student | null>(null);
   const [newShift, setNewShift]                 = useState('');
   const [newSeat, setNewSeat]                   = useState('');
@@ -42,7 +38,7 @@ export default function ShiftMigrationPage() {
   const [remark, setRemark]                     = useState('');
   const [showConfirm, setShowConfirm]           = useState(false);
 
-  const filteredStudents = STUDENTS.filter(s =>
+  const filteredStudents = students.filter(s =>
     s.name.toLowerCase().includes(search.toLowerCase()) ||
     s.smartId.toLowerCase().includes(search.toLowerCase())
   );

@@ -5,6 +5,7 @@ import { AgGridReact } from 'ag-grid-react';
 import { AllCommunityModule, ModuleRegistry, type ColDef } from 'ag-grid-community';
 import { superadmin_gridTheme } from '@/app/superadmin/superadmin_seats_shifts_lockers/superadmin_seats_shared_components/superadmin_gridTheme';
 import toast from 'react-hot-toast';
+import { SUPERADMIN_SEATS_MOCK_LOCKERS } from '@/app/superadmin/superadmin_seats_shifts_lockers/superadmin_seats_constants/SuperadminSeatsConstants';
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
@@ -19,14 +20,7 @@ interface Locker {
   assignedSince: string;
 }
 
-const INITIAL_LOCKERS: Locker[] = [
-  { id: '1', lockerId: 'A01', status: 'Occupied', assignedTo: 'Alex Chen', studentId: 'LIB-021', assignedSince: '01 Oct 2024' },
-  { id: '2', lockerId: 'A02', status: 'Free', assignedTo: '—', studentId: '—', assignedSince: '—' },
-  { id: '3', lockerId: 'A05', status: 'Maintenance', assignedTo: '—', studentId: '—', assignedSince: '—' },
-  { id: '4', lockerId: 'B04', status: 'Occupied', assignedTo: 'Maria Vargas', studentId: 'LIB-055', assignedSince: '15 Sep 2024' },
-  { id: '5', lockerId: 'B06', status: 'Free', assignedTo: '—', studentId: '—', assignedSince: '—' },
-  { id: '6', lockerId: 'C10', status: 'Occupied', assignedTo: 'Ravi Kumar', studentId: 'LIB-099', assignedSince: '10 Oct 2024' },
-];
+
 
 const STATUS_CLASS: Record<LockerStatus, string> = {
   Free: 'ss-badge ss-badge--success',
@@ -57,7 +51,7 @@ function AssignedToCell({ data }: { data: Locker }) {
 }
 
 export default function LockersPage() {
-  const [lockers, setLockers] = useState<Locker[]>(INITIAL_LOCKERS);
+  const [lockers, setLockers] = useState<Locker[]>(SUPERADMIN_SEATS_MOCK_LOCKERS as Locker[]);
   const [statusFilter, setStatusFilter] = useState('All Statuses');
   const [showAssign, setShowAssign] = useState<Locker | null>(null);
   const [assignSearch, setAssignSearch] = useState('');

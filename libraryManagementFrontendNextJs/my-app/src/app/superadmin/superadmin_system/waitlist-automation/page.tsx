@@ -8,14 +8,9 @@ import { SuperadminSwitch } from '@/app/superadmin/superadmin_system/superadmin_
 import { SuperadminTextarea } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminTextarea';
 import { SuperadminBadge } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminBadge';
 import { ListOrdered, ChevronRight } from 'lucide-react';
+import { SUPERADMIN_SYSTEM_MOCK_WAITLIST } from '@/app/superadmin/superadmin_system/superadmin_system_constants/SuperadminSystemConstants';
 
-const QUEUE = [
-  { name: 'Rahul Sharma', shift: 'Morning', position: 1, avatar: 'R', joined: '2026-04-08' },
-  { name: 'Priya Verma', shift: 'Afternoon', position: 2, avatar: 'P', joined: '2026-04-09' },
-  { name: 'Amit Kumar', shift: 'Evening', position: 3, avatar: 'A', joined: '2026-04-10' },
-  { name: 'Sneha Patel', shift: 'Morning', position: 4, avatar: 'S', joined: '2026-04-10' },
-  { name: 'Rohan Das', shift: 'Afternoon', position: 5, avatar: 'R', joined: '2026-04-11' },
-];
+
 
 export default function WaitlistAutomationPage() {
   const [enabled, setEnabled] = useState(true);
@@ -109,7 +104,7 @@ export default function WaitlistAutomationPage() {
         </CardHeader>
         <CardContent>
           <div className="space-y-3">
-            {QUEUE.map(( student: FlexRecord ) => (
+            {SUPERADMIN_SYSTEM_MOCK_WAITLIST.map((student) => (
               <div
                 key={student.position}
                 className="flex items-center gap-4 p-3 rounded-xl bg-surface-container-high border border-outline-variant/50 hover:border-outline-variant transition-colors"

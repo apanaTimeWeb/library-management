@@ -5,6 +5,7 @@ import { AgGridReact } from 'ag-grid-react';
 import { AllCommunityModule, ModuleRegistry, type ColDef } from 'ag-grid-community';
 import { superadmin_gridTheme } from '@/app/superadmin/superadmin_seats_shifts_lockers/superadmin_seats_shared_components/superadmin_gridTheme';
 import toast from 'react-hot-toast';
+import { SUPERADMIN_SEATS_MOCK_SEATS } from '@/app/superadmin/superadmin_seats_shifts_lockers/superadmin_seats_constants/SuperadminSeatsConstants';
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
@@ -19,12 +20,7 @@ interface Seat {
   lastMaintenance: string;
 }
 
-const INITIAL_SEATS: Seat[] = [
-  { id: '1', seatNo: 'S-042', branch: 'North Wing', status: 'Working', assignedTo: 'Elias Hawthorne', lastMaintenance: 'Oct 14, 2024' },
-  { id: '2', seatNo: 'S-109', branch: 'South Archive', status: 'Maintenance', assignedTo: '—', lastMaintenance: 'Today' },
-  { id: '3', seatNo: 'S-012', branch: 'Main Reading', status: 'Broken', assignedTo: '—', lastMaintenance: 'Pending' },
-  { id: '4', seatNo: 'S-088', branch: 'North Wing', status: 'Working', assignedTo: 'Seraphina Vane', lastMaintenance: 'Nov 02, 2024' },
-];
+
 
 const STATUS_CLASS: Record<SeatStatus, string> = {
   Working: 'ss-badge ss-badge--success',
@@ -51,7 +47,7 @@ function SeatStatusCell({ value }: { value: string }) {
 }
 
 export default function SeatManagementPage() {
-  const [seats, setSeats] = useState<Seat[]>(INITIAL_SEATS);
+  const [seats, setSeats] = useState<Seat[]>(SUPERADMIN_SEATS_MOCK_SEATS as Seat[]);
   const [search, setSearch] = useState('');
   const [statusFilter, setStatusFilter] = useState('All Statuses');
   const [showModal, setShowModal] = useState(false);
