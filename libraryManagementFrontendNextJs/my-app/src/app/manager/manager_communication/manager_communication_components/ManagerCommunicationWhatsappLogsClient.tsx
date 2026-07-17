@@ -11,17 +11,21 @@ import { WA_LOGS_DATA } from '@/app/manager/manager_communication/manager_commun
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
-// Types and constants centralized.
-
 const TYPE_BADGE: Record<string, string> = {
-  welcome: 'eng-badge--info', fee_reminder: 'eng-badge--warning',
-  receipt: 'eng-badge--success', notice: 'eng-badge--purple', renewal: 'eng-badge--primary',
+  welcome: 'bg-info-bg text-info', 
+  fee_reminder: 'bg-warning-bg text-warning',
+  receipt: 'bg-success-bg text-success', 
+  notice: 'bg-primary/10 text-primary', 
+  renewal: 'bg-primary-subtle text-primary',
 };
 const TYPE_LABEL: Record<string, string> = {
   welcome: 'Welcome', fee_reminder: 'Fee Reminder', receipt: 'Receipt', notice: 'Notice', renewal: 'Renewal',
 };
 const STATUS_BADGE: Record<string, string> = {
-  Pending: 'eng-badge--warning', Sent: 'eng-badge--info', Delivered: 'eng-badge--success', Failed: 'eng-badge--danger',
+  Pending: 'bg-warning-bg text-warning', 
+  Sent: 'bg-info-bg text-info', 
+  Delivered: 'bg-success-bg text-success', 
+  Failed: 'bg-danger-bg text-danger',
 };
 
 export function ManagerCommunicationWhatsappLogsClient() {
@@ -32,7 +36,7 @@ export function ManagerCommunicationWhatsappLogsClient() {
   const [dateTo,       setDateTo]       = useState('');
   const [viewLog,      setViewLog]      = useState<any | null>(null);
 
-  const filtered = LOGS.filter(l => {
+  const filtered = WA_LOGS_DATA.filter((l: any) => {
     if (typeFilter !== 'All' && l.type !== typeFilter) return false;
     if (statusFilter !== 'All' && l.status !== statusFilter) return false;
     if (search && !l.student.toLowerCase().includes(search.toLowerCase()) && !l.phone.includes(search)) return false;
@@ -40,15 +44,15 @@ export function ManagerCommunicationWhatsappLogsClient() {
   });
 
   const colDefs: any[] = [
-    { field: 'dateTime', headerName: 'Date / Time', width: 160, cellRenderer: (p: any) => <span className="eng-td-muted text-sm">{p.value}</span> },
-    { field: 'phone', headerName: 'Phone', width: 130, cellRenderer: (p: any) => <span className="eng-td-mono font-medium">{p.value}</span> },
-    { field: 'student', headerName: 'Student', flex: 1, minWidth: 150, cellRenderer: (p: any) => <span className="eng-td-bold">{p.value}</span> },
+    { field: 'dateTime', headerName: 'Date / Time', width: 160, cellRenderer: (p: any) => <span className="text-text-secondary text-sm">{p.value}</span> },
+    { field: 'phone', headerName: 'Phone', width: 130, cellRenderer: (p: any) => <span className="font-mono text-[12px] text-text-primary tracking-tight">{p.value}</span> },
+    { field: 'student', headerName: 'Student', flex: 1, minWidth: 150, cellRenderer: (p: any) => <span className="text-sm font-semibold text-text-primary">{p.value}</span> },
     { 
       field: 'type', 
       headerName: 'Type', 
       width: 130,
       cellRenderer: (p: any) => (
-        <span className={`eng-badge ${TYPE_BADGE[String(p.value)] || 'eng-badge--info'} inline-block mt-2 text-xs`}>
+        <span className={`rounded-full px-2.5 py-0.5 text-[11px] font-semibold ${TYPE_BADGE[String(p.value)] || 'bg-info-bg text-info'} inline-block mt-2`}>
           {TYPE_LABEL[String(p.value)] || p.value}
         </span>
       )
@@ -58,19 +62,19 @@ export function ManagerCommunicationWhatsappLogsClient() {
       headerName: 'Status', 
       width: 120,
       cellRenderer: (p: any) => (
-        <span className={`eng-badge ${STATUS_BADGE[String(p.value)] || 'eng-badge--info'} inline-block mt-2 text-xs`}>
+        <span className={`rounded-full px-2.5 py-0.5 text-[11px] font-semibold ${STATUS_BADGE[String(p.value)] || 'bg-info-bg text-info'} inline-block mt-2`}>
           {p.value}
         </span>
       )
     },
-    { field: 'error', headerName: 'Error', width: 180, cellRenderer: (p: any) => <span className="eng-td-danger text-xs truncate max-w-[160px] inline-block" title={p.value}>{p.value || '—'}</span> },
+    { field: 'error', headerName: 'Error', width: 180, cellRenderer: (p: any) => <span className="text-danger text-xs truncate max-w-[160px] inline-block" title={p.value}>{p.value || '—'}</span> },
     {
       headerName: 'Actions',
       width: 100,
       sortable: false,
       cellRenderer: (params: any) => (
         <div className="h-full flex items-center">
-          <button onClick={() => setViewLog(params?.data)} className="eng-btn-icon hover:bg-mgr-primary hover:text-white transition-colors duration-200" title="View Message">
+          <button onClick={() => setViewLog(params?.data)} className="w-8 h-8 flex items-center justify-center rounded-lg border border-border text-text-secondary bg-transparent hover:bg-primary hover:text-white transition-colors" title="View Message">
             <Eye size={16} />
           </button>
         </div>
@@ -79,53 +83,53 @@ export function ManagerCommunicationWhatsappLogsClient() {
   ];
 
   return (
-    <div className="eng-page">
+    <div className="p-6 min-h-screen relative">
       {/* View Message Modal */}
       {viewLog && (
-        <div className="eng-overlay">
-          <div className="eng-modal eng-modal--lg bg-mgr-bg-card">
-            <button onClick={() => setViewLog(null)} className="eng-modal-close hover:text-red-500"><X size={16} /></button>
-            <p className="eng-modal-title mb-4 font-bold text-mgr-text-primary">📱 Message Details</p>
-            <div className="eng-modal-badge-row mb-6 flex gap-2">
-              <span className={`eng-badge ${TYPE_BADGE[viewLog.type]}`}>{TYPE_LABEL[viewLog.type]}</span>
-              <span className={`eng-badge ${STATUS_BADGE[viewLog.status]}`}>{viewLog.status}</span>
+        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 overflow-y-auto">
+          <div className="bg-bg-card w-full rounded-2xl shadow-2xl flex flex-col p-6 max-w-lg relative border border-border">
+            <button onClick={() => setViewLog(null)} className="absolute top-4 right-4 w-8 h-8 flex items-center justify-center rounded-full hover:bg-danger-bg text-text-secondary hover:text-danger transition-colors"><X size={16} /></button>
+            <p className="text-lg font-bold text-text-primary mb-4">📱 Message Details</p>
+            <div className="flex gap-2 mb-6">
+              <span className={`rounded-full px-2.5 py-0.5 text-[11px] font-semibold ${TYPE_BADGE[viewLog.type]}`}>{TYPE_LABEL[viewLog.type]}</span>
+              <span className={`rounded-full px-2.5 py-0.5 text-[11px] font-semibold ${STATUS_BADGE[viewLog.status]}`}>{viewLog.status}</span>
             </div>
-            <div className="eng-msg-detail-grid grid grid-cols-2 gap-4 mb-6 bg-mgr-bg p-4 rounded-lg">
+            <div className="grid grid-cols-2 gap-4 mb-6 bg-bg-elevated p-4 rounded-lg border border-border/50">
               {([['To', viewLog.phone], ['Student', viewLog.student], ['Sent At', viewLog.dateTime]] as [string, string][]).map(([k, v]) => (
-                <div key={k} className="eng-msg-detail-item">
-                  <p className="eng-msg-detail-key text-xs font-semibold text-mgr-text-secondary uppercase tracking-wider">{k}</p>
-                  <p className="eng-msg-detail-val text-mgr-text-primary font-medium mt-1">{v}</p>
+                <div key={k}>
+                  <p className="text-xs font-semibold text-text-secondary uppercase tracking-wider">{k}</p>
+                  <p className="text-sm text-text-primary font-medium mt-1">{v}</p>
                 </div>
               ))}
             </div>
             <div>
-              <label className="eng-label text-sm font-semibold mb-2 block">Message Content</label>
-              <div className="eng-msg-body-box bg-mgr-bg p-4 rounded-lg border border-mgr-border text-sm leading-relaxed text-mgr-text-primary whitespace-pre-wrap">{viewLog.message}</div>
+              <label className="text-[13px] font-medium text-text-secondary mb-1.5 block">Message Content</label>
+              <div className="bg-bg-input p-4 rounded-lg border border-border text-sm leading-relaxed text-text-primary whitespace-pre-wrap">{viewLog.message}</div>
             </div>
             {viewLog.error && (
-              <div className="eng-warn-box mt-4 p-3 bg-red-50 text-red-600 rounded-lg border border-red-200 text-sm font-medium">⚠️ Error: {viewLog.error}</div>
+              <div className="mt-4 p-3 bg-danger-bg text-danger rounded-lg border border-danger/20 text-sm font-medium">⚠️ Error: {viewLog.error}</div>
             )}
-            <div className="eng-modal-footer mt-6 flex justify-end">
-              <button onClick={() => setViewLog(null)} className="px-4 py-2 bg-mgr-bg border border-mgr-border text-mgr-text-primary rounded hover:bg-mgr-border transition-colors">Close</button>
+            <div className="flex justify-end mt-6">
+              <button onClick={() => setViewLog(null)} className="px-5 py-2.5 bg-transparent border border-border text-text-primary font-medium text-sm rounded-lg hover:bg-bg-elevated transition-colors">Close</button>
             </div>
           </div>
         </div>
       )}
 
       <div className="mb-8">
-        <div className="eng-breadcrumb">
-          <span>Communication</span><ChevronRight size={12} /><span>WhatsApp Logs</span>
+        <div className="text-xs font-medium text-text-secondary uppercase tracking-wider mb-2 flex items-center gap-1.5">
+          <span>Communication</span><ChevronRight size={12} className="mx-1" /><span>WhatsApp Logs</span>
         </div>
-        <h1 className="eng-page-title">📱 WhatsApp Logs</h1>
-        <p className="eng-page-subtitle">All outbound WhatsApp messages sent from the system.</p>
+        <h1 className="text-[22px] font-bold text-text-primary">📱 WhatsApp Logs</h1>
+        <p className="text-[13px] text-text-secondary mt-1.5">All outbound WhatsApp messages sent from the system.</p>
       </div>
 
       {/* Filter Bar */}
-      <div className="eng-card mb-6 p-4 border border-mgr-border rounded-lg">
-        <div className="eng-filter-row flex flex-wrap gap-4 items-end">
+      <div className="bg-bg-card mb-6 p-4 border border-border rounded-xl shadow-sm">
+        <div className="flex flex-wrap gap-4 items-end">
           <div className="flex flex-col">
-            <label className="eng-label text-xs mb-1 font-semibold text-mgr-text-secondary">Message Type</label>
-            <select value={typeFilter} onChange={e => setTypeFilter(e.target.value)} className="eng-select py-2 px-3 border rounded">
+            <label className="text-[13px] font-medium text-text-secondary mb-1.5">Message Type</label>
+            <select value={typeFilter} onChange={e => setTypeFilter(e.target.value)} className="bg-bg-input border border-border rounded-lg px-3.5 py-2 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary appearance-none">
               <option value="All">All Types</option>
               <option value="welcome">Welcome</option>
               <option value="fee_reminder">Fee Reminder</option>
@@ -135,37 +139,37 @@ export function ManagerCommunicationWhatsappLogsClient() {
             </select>
           </div>
           <div className="flex flex-col">
-            <label className="eng-label text-xs mb-1 font-semibold text-mgr-text-secondary">Status</label>
-            <select value={statusFilter} onChange={e => setStatusFilter(e.target.value)} className="eng-select py-2 px-3 border rounded">
+            <label className="text-[13px] font-medium text-text-secondary mb-1.5">Status</label>
+            <select value={statusFilter} onChange={e => setStatusFilter(e.target.value)} className="bg-bg-input border border-border rounded-lg px-3.5 py-2 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary appearance-none">
               <option value="All">All</option>
               <option>Pending</option><option>Sent</option>
               <option>Delivered</option><option>Failed</option>
             </select>
           </div>
           <div className="flex flex-col">
-            <label className="eng-label text-xs mb-1 font-semibold text-mgr-text-secondary">From</label>
-            <input type="date" className="eng-input py-2 px-3 border rounded" value={dateFrom} onChange={e => setDateFrom(e.target.value)} />
+            <label className="text-[13px] font-medium text-text-secondary mb-1.5">From</label>
+            <input type="date" className="bg-bg-input border border-border rounded-lg px-3.5 py-2 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary" value={dateFrom} onChange={e => setDateFrom(e.target.value)} />
           </div>
           <div className="flex flex-col">
-            <label className="eng-label text-xs mb-1 font-semibold text-mgr-text-secondary">To</label>
-            <input type="date" className="eng-input py-2 px-3 border rounded" value={dateTo} onChange={e => setDateTo(e.target.value)} />
+            <label className="text-[13px] font-medium text-text-secondary mb-1.5">To</label>
+            <input type="date" className="bg-bg-input border border-border rounded-lg px-3.5 py-2 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary" value={dateTo} onChange={e => setDateTo(e.target.value)} />
           </div>
-          <div className="eng-flex-1 flex flex-col flex-grow min-w-[200px]">
-            <label className="eng-label text-xs mb-1 font-semibold text-mgr-text-secondary">Search</label>
-            <input className="eng-input py-2 px-3 border rounded w-full" placeholder="Student name or phone..." value={search} onChange={e => setSearch(e.target.value)} />
+          <div className="flex flex-col flex-grow min-w-[200px]">
+            <label className="text-[13px] font-medium text-text-secondary mb-1.5">Search</label>
+            <input className="w-full bg-bg-input border border-border rounded-lg px-3.5 py-2 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary" placeholder="Student name or phone..." value={search} onChange={e => setSearch(e.target.value)} />
           </div>
         </div>
       </div>
 
       {/* Table */}
-      <div className="eng-card eng-card--flush p-4">
+      <div className="bg-bg-card rounded-xl border border-border p-4 shadow-sm">
         {filtered.length === 0 ? (
-          <div className="eng-empty py-12 flex flex-col items-center justify-center text-center">
-            <div className="eng-empty__icon text-4xl mb-4">📱</div>
-            <p className="eng-empty__title text-lg font-semibold text-mgr-text-primary">No WhatsApp messages found.</p>
+          <div className="py-12 flex flex-col items-center justify-center text-center">
+            <div className="text-4xl mb-4">📱</div>
+            <p className="text-lg font-semibold text-text-primary">No WhatsApp messages found.</p>
           </div>
         ) : (
-          <div className="mgr-table-wrapper h-[450px]">
+          <div className="w-full overflow-hidden border border-border rounded-xl h-[450px]">
             <AgGridReact
               theme={gridTheme}
               rowData={filtered}
@@ -186,5 +190,3 @@ export function ManagerCommunicationWhatsappLogsClient() {
     </div>
   );
 }
-
-

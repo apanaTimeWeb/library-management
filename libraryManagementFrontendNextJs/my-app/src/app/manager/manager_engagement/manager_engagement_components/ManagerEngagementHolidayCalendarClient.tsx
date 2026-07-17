@@ -5,20 +5,17 @@ import { ChevronRight, ChevronLeft, Plus, X, Trash2, CalendarDays } from 'lucide
 import { Holiday } from '@/app/manager/manager_engagement/manager_engagement_types/ManagerEngagementTypes';
 import { INIT_HOLIDAYS } from '@/app/manager/manager_engagement/manager_engagement_constants/ManagerEngagementConstants';
 
-// Types and Constants are centralized
-
 const WEEK_DAYS = ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
 
 function getDays(y:number, m:number) { return new Date(y, m+1, 0).getDate(); }
 function getFirstDayIdx(y:number, m:number) { const d=new Date(y,m,1).getDay(); return d===0?6:d-1; }
 
 const TYPE_BADGE: Record<string, string> = {
-  National:  'eng-badge--primary',
-  Religious: 'eng-badge--warning',
-  Library:   'eng-badge--info',
+  National:  'bg-primary/10 text-primary',
+  Religious: 'bg-warning-bg text-warning',
+  Library:   'bg-info-bg text-info',
 };
 
-// RESPONSIBILITY: Renders the holiday calendar view with month navigation and holiday management.
 export function ManagerEngagementHolidayCalendarClient() {
   const now = new Date();
   const [year, setYear]         = useState(now.getFullYear());
@@ -69,35 +66,35 @@ export function ManagerEngagementHolidayCalendarClient() {
     .sort((a,b) => a.date.localeCompare(b.date));
 
   return (
-    <div className="eng-page">
+    <div className="p-6 min-h-screen relative">
       {/* ── Toast ── */}
       {toast && (
-        <div className="eng-toast-wrap">
-          <div className="eng-toast">{toast}</div>
+        <div className="fixed bottom-4 right-4 z-50">
+          <div className="bg-bg-card border border-border shadow-lg rounded-xl px-4 py-3 text-sm text-text-primary">{toast}</div>
         </div>
       )}
 
       {/* ── Add Holiday Modal ── */}
       {showAdd && (
-        <div className="eng-overlay">
-          <div className="eng-modal eng-modal--sm">
-            <button onClick={()=>setShowAdd(false)} className="eng-modal-close"><X size={16}/></button>
-            <p className="eng-modal-title">📅 Add Holiday</p>
-            <p className="eng-modal-sub">Mark a library closure or holiday in the calendar.</p>
+        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 overflow-y-auto">
+          <div className="bg-bg-page w-full rounded-2xl shadow-2xl flex flex-col p-6 max-w-sm relative">
+            <button onClick={()=>setShowAdd(false)} className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-black/5 dark:hover:bg-white/10 text-text-secondary transition-colors absolute top-4 right-4"><X size={16}/></button>
+            <p className="text-lg font-bold text-text-primary">📅 Add Holiday</p>
+            <p className="text-sm text-text-secondary mt-1 mb-6">Mark a library closure or holiday in the calendar.</p>
 
-            <div className="eng-field">
-              <label className="eng-label">Date <span className="eng-required">*</span></label>
-              <input type="date" className="eng-input" value={form.date}
+            <div className="flex flex-col mb-4">
+              <label className="block text-[13px] font-medium text-text-secondary mb-1.5">Date <span className="text-danger ml-1">*</span></label>
+              <input type="date" className="w-full bg-bg-input border border-border rounded-lg px-3.5 py-2 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary" value={form.date}
                 onChange={e => setForm(f=>({...f, date:e.target.value}))} />
             </div>
-            <div className="eng-field">
-              <label className="eng-label">Event Name <span className="eng-required">*</span></label>
-              <input className="eng-input" placeholder="e.g. Diwali" value={form.name}
+            <div className="flex flex-col mb-4">
+              <label className="block text-[13px] font-medium text-text-secondary mb-1.5">Event Name <span className="text-danger ml-1">*</span></label>
+              <input className="w-full bg-bg-input border border-border rounded-lg px-3.5 py-2 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary" placeholder="e.g. Diwali" value={form.name}
                 onChange={e => setForm(f=>({...f, name:e.target.value}))} />
             </div>
-            <div className="eng-field">
-              <label className="eng-label">Type</label>
-              <select className="eng-select" value={form.type}
+            <div className="flex flex-col mb-4">
+              <label className="block text-[13px] font-medium text-text-secondary mb-1.5">Type</label>
+              <select className="w-full bg-bg-input border border-border rounded-lg px-3.5 py-2 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary appearance-none" value={form.type}
                 onChange={e => setForm(f=>({...f, type:e.target.value}))}>
                 <option>National</option>
                 <option>Religious</option>
@@ -105,10 +102,10 @@ export function ManagerEngagementHolidayCalendarClient() {
               </select>
             </div>
 
-            <div className="eng-modal-footer">
-              <button onClick={()=>setShowAdd(false)} className="eng-btn eng-btn--ghost">Cancel</button>
+            <div className="flex justify-end gap-3 mt-6 pt-4 border-t border-border">
+              <button onClick={()=>setShowAdd(false)} className="bg-transparent border border-border text-text-primary rounded-lg px-5 py-2 text-sm font-medium hover:bg-primary-subtle hover:border-primary transition-colors inline-flex items-center gap-2">Cancel</button>
               <button onClick={addHoliday} disabled={!form.date||!form.name}
-                className="eng-btn eng-btn--primary">
+                className="bg-primary text-white rounded-lg px-5 py-2 text-sm font-medium hover:bg-primary-hover transition-colors inline-flex items-center gap-2 disabled:opacity-50">
                 <CalendarDays size={14}/> Add Holiday
               </button>
             </div>
@@ -117,21 +114,21 @@ export function ManagerEngagementHolidayCalendarClient() {
       )}
 
       {/* ── Breadcrumb ── */}
-      <div className="eng-breadcrumb">
+      <div className="text-xs font-medium text-text-secondary uppercase tracking-wider mb-2 flex items-center gap-1.5">
         <Link href="/manager/manager_engagement/attendance">Engagement</Link>
-        <ChevronRight size={12} className="eng-breadcrumb-sep"/>
+        <ChevronRight size={12} className="mx-1"/>
         <span>Holiday Calendar</span>
       </div>
 
       {/* ── Page Header ── */}
-      <div className="eng-page-header">
-        <div className="eng-page-title-row">
+      <div className="mb-8">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
           <div>
-            <h1 className="eng-page-title">📅 Holiday Calendar</h1>
-            <p className="eng-page-subtitle">Manage library holidays, closures, and special events.</p>
+            <h1 className="text-[22px] font-bold text-text-primary">📅 Holiday Calendar</h1>
+            <p className="text-[13px] text-text-secondary mt-1.5">Manage library holidays, closures, and special events.</p>
           </div>
-          <div className="eng-page-actions">
-            <button onClick={()=>setShowAdd(true)} className="eng-btn eng-btn--primary">
+          <div className="flex gap-2">
+            <button onClick={()=>setShowAdd(true)} className="bg-primary text-white rounded-lg px-5 py-2.5 text-sm font-medium hover:bg-primary-hover transition-colors inline-flex items-center gap-2">
               <Plus size={14}/> Add Holiday
             </button>
           </div>
@@ -139,66 +136,66 @@ export function ManagerEngagementHolidayCalendarClient() {
       </div>
 
       {/* ── Stats ── */}
-      <div className="eng-stats-row">
-        <div className="eng-stat-card">
-          <div className="eng-stat-label">Total Holidays</div>
-          <div className="eng-stat-value">{holidays.length}</div>
-          <div className="eng-stat-sub">This year</div>
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+        <div className="bg-bg-card border border-border rounded-xl p-5 flex flex-col justify-center">
+          <div className="text-[13px] font-medium text-text-secondary mb-1.5">Total Holidays</div>
+          <div className="text-2xl font-bold text-text-primary">{holidays.length}</div>
+          <div className="text-[11px] font-medium text-text-secondary mt-1">This year</div>
         </div>
-        <div className="eng-stat-card">
-          <div className="eng-stat-label">This Month</div>
-          <div className="eng-stat-value">{thisMonthHolidays.length}</div>
-          <div className="eng-stat-sub">{monthLabel}</div>
+        <div className="bg-bg-card border border-border rounded-xl p-5 flex flex-col justify-center">
+          <div className="text-[13px] font-medium text-text-secondary mb-1.5">This Month</div>
+          <div className="text-2xl font-bold text-text-primary">{thisMonthHolidays.length}</div>
+          <div className="text-[11px] font-medium text-text-secondary mt-1">{monthLabel}</div>
         </div>
-        <div className="eng-stat-card">
-          <div className="eng-stat-label">National</div>
-          <div className="eng-stat-value">{holidays.filter(h=>h.type==='National').length}</div>
-          <div className="eng-stat-sub">National holidays</div>
+        <div className="bg-bg-card border border-border rounded-xl p-5 flex flex-col justify-center">
+          <div className="text-[13px] font-medium text-text-secondary mb-1.5">National</div>
+          <div className="text-2xl font-bold text-text-primary">{holidays.filter(h=>h.type==='National').length}</div>
+          <div className="text-[11px] font-medium text-text-secondary mt-1">National holidays</div>
         </div>
-        <div className="eng-stat-card">
-          <div className="eng-stat-label">Religious</div>
-          <div className="eng-stat-value">{holidays.filter(h=>h.type==='Religious').length}</div>
-          <div className="eng-stat-sub">Religious observances</div>
+        <div className="bg-bg-card border border-border rounded-xl p-5 flex flex-col justify-center">
+          <div className="text-[13px] font-medium text-text-secondary mb-1.5">Religious</div>
+          <div className="text-2xl font-bold text-text-primary">{holidays.filter(h=>h.type==='Religious').length}</div>
+          <div className="text-[11px] font-medium text-text-secondary mt-1">Religious observances</div>
         </div>
       </div>
 
       {/* ── Two-column Layout ── */}
-      <div className="eng-cal-layout">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
 
         {/* Left: Calendar Grid */}
-        <div className="eng-cal-main">
-          <div className="eng-card">
+        <div className="lg:col-span-2">
+          <div className="bg-bg-card border border-border rounded-xl p-6">
             {/* Month navigation */}
-            <div className="eng-cal-nav">
-              <button onClick={prevMonth} className="eng-btn eng-btn--icon">
+            <div className="flex items-center justify-between mb-6">
+              <button onClick={prevMonth} className="w-8 h-8 rounded-lg border border-border text-text-secondary inline-flex items-center justify-center hover:bg-primary-subtle hover:text-primary transition-colors">
                 <ChevronLeft size={18}/>
               </button>
-              <span className="eng-cal-month">{monthLabel}</span>
-              <button onClick={nextMonth} className="eng-btn eng-btn--icon">
+              <span className="text-lg font-bold text-text-primary">{monthLabel}</span>
+              <button onClick={nextMonth} className="w-8 h-8 rounded-lg border border-border text-text-secondary inline-flex items-center justify-center hover:bg-primary-subtle hover:text-primary transition-colors">
                 <ChevronRight size={18}/>
               </button>
             </div>
 
             {/* Day headers */}
-            <div className="eng-cal-grid eng-cal-mb-2">
+            <div className="grid grid-cols-7 gap-2 mb-2">
               {WEEK_DAYS.map(d => (
-                <div key={d} className="eng-cal-day-hdr">{d}</div>
+                <div key={d} className="text-center text-xs font-bold text-text-secondary uppercase tracking-wider">{d}</div>
               ))}
             </div>
 
             {/* Day cells */}
-            <div className="eng-cal-grid">
+            <div className="grid grid-cols-7 gap-2">
               {cells.map((day, i) => {
-                if (!day) return <div key={i} className="eng-cal-cell eng-cal-cell--empty"/>;
+                if (!day) return <div key={i} className="aspect-square rounded-lg flex items-center justify-center text-sm font-semibold transition-all border border-border/50 invisible"/>;
                 const ds = `${year}-${String(month+1).padStart(2,'0')}-${String(day).padStart(2,'0')}`;
                 const isToday   = ds === todayStr;
                 const hol       = holidayMap.get(day);
                 return (
                   <div key={i}
                     className={[
-                      'eng-cal-cell',
-                      isToday  ? 'eng-cal-cell--today'   : '',
-                      hol      ? 'eng-cal-cell--holiday' : '',
+                      'aspect-square rounded-lg flex items-center justify-center text-sm font-semibold transition-all border border-border/50 cursor-default hover:bg-bg-elevated',
+                      isToday  ? 'border-primary bg-primary-subtle text-primary ring-1 ring-primary/20'   : '',
+                      hol      ? 'bg-danger/10 text-danger border-danger/20 shadow-inner' : '',
                     ].filter(Boolean).join(' ')}
                     title={hol?.name}
                   >
@@ -209,13 +206,13 @@ export function ManagerEngagementHolidayCalendarClient() {
             </div>
 
             {/* Legend */}
-            <div className="eng-cal-legend">
-              <div className="eng-cal-legend-item">
-                <div className="eng-cal-dot eng-cal-dot--holiday"/>
+            <div className="flex items-center gap-6 mt-6 pt-4 border-t border-border">
+              <div className="flex items-center gap-2 text-xs font-medium text-text-secondary">
+                <div className="w-3 h-3 rounded-full bg-danger/50"/>
                 <span>Holiday</span>
               </div>
-              <div className="eng-cal-legend-item">
-                <div className="eng-cal-dot eng-cal-dot--today"/>
+              <div className="flex items-center gap-2 text-xs font-medium text-text-secondary">
+                <div className="w-3 h-3 rounded-full bg-primary"/>
                 <span>Today</span>
               </div>
             </div>
@@ -223,39 +220,39 @@ export function ManagerEngagementHolidayCalendarClient() {
         </div>
 
         {/* Right: Holiday List */}
-        <div className="eng-cal-panel">
-          <div className="eng-card">
-            <div className="eng-holiday-header">
+        <div className="flex flex-col gap-6">
+          <div className="bg-bg-card border border-border rounded-xl p-6">
+            <div className="flex items-center justify-between mb-4">
               <div>
-                <div className="eng-card-title">
+                <div className="text-base font-semibold text-text-primary">
                   {monthLabel} Holidays
                 </div>
-                <div className="eng-card-desc">{thisMonthHolidays.length} this month</div>
+                <div className="text-[13px] text-text-secondary mt-1">{thisMonthHolidays.length} this month</div>
               </div>
-              <button onClick={()=>setShowAdd(true)} className="eng-btn eng-btn--primary eng-btn--sm">
+              <button onClick={()=>setShowAdd(true)} className="bg-primary text-white rounded-lg h-8 px-3 text-xs font-medium hover:bg-primary-hover transition-colors inline-flex items-center gap-2">
                 <Plus size={13}/> Add
               </button>
             </div>
 
             {thisMonthHolidays.length === 0 ? (
-              <div className="eng-holiday-empty">
+              <div className="text-sm text-text-secondary italic text-center py-6">
                 No holidays in {monthLabel} 🎉
               </div>
             ) : (
-              <div className="eng-holiday-list">
+              <div className="flex flex-col gap-3 max-h-[300px] overflow-y-auto pr-2">
                 {thisMonthHolidays.map(h => (
-                  <div key={h.id} className="eng-holiday-item">
+                  <div key={h.id} className="flex items-center justify-between p-3 rounded-lg border border-border hover:bg-bg-elevated transition-colors">
                     <div>
-                      <div className="eng-holiday-name">{h.name}</div>
-                      <div className="eng-holiday-date-row">
-                        <div className="eng-holiday-date">{h.date}</div>
-                        <span className={`eng-badge ${TYPE_BADGE[h.type]||'eng-badge--ghost'} eng-badge--micro`}>
+                      <div className="text-sm font-bold text-text-primary mb-1">{h.name}</div>
+                      <div className="flex items-center gap-2">
+                        <div className="text-xs text-text-secondary">{h.date}</div>
+                        <span className={`rounded-full px-2 py-0.5 text-[10px] font-bold ${TYPE_BADGE[h.type]||'bg-bg-elevated text-text-secondary'}`}>
                           {h.type}
                         </span>
                       </div>
                     </div>
                     <button onClick={()=>removeHoliday(h.id)}
-                      className="eng-btn eng-btn--icon eng-btn--icon-danger">
+                      className="w-8 h-8 rounded-lg text-text-secondary inline-flex items-center justify-center hover:bg-danger/10 hover:text-danger transition-colors">
                       <Trash2 size={13}/>
                     </button>
                   </div>
@@ -266,21 +263,21 @@ export function ManagerEngagementHolidayCalendarClient() {
             {/* All holidays summary */}
             {holidays.length > 0 && (
               <>
-                <div className="eng-divider" />
-                <div className="eng-card-title--sm">
+                <div className="h-[1px] w-full bg-border my-4" />
+                <div className="text-sm font-bold text-text-primary uppercase tracking-wider mb-4">
                   All Holidays ({holidays.length})
                 </div>
-                <div className="eng-holiday-list">
+                <div className="flex flex-col gap-3 max-h-[300px] overflow-y-auto pr-2">
                   {holidays
                     .sort((a,b)=>a.date.localeCompare(b.date))
                     .map(h => (
-                    <div key={h.id} className="eng-holiday-item">
+                    <div key={h.id} className="flex items-center justify-between p-3 rounded-lg border border-border hover:bg-bg-elevated transition-colors">
                       <div>
-                        <div className="eng-holiday-name--sm">{h.name}</div>
-                        <div className="eng-holiday-date">{h.date}</div>
+                        <div className="text-[13px] font-bold text-text-primary mb-1">{h.name}</div>
+                        <div className="text-xs text-text-secondary">{h.date}</div>
                       </div>
                       <button onClick={()=>removeHoliday(h.id)}
-                        className="eng-btn eng-btn--icon eng-btn--icon-danger">
+                        className="w-8 h-8 rounded-lg text-text-secondary inline-flex items-center justify-center hover:bg-danger/10 hover:text-danger transition-colors">
                         <Trash2 size={11}/>
                       </button>
                     </div>

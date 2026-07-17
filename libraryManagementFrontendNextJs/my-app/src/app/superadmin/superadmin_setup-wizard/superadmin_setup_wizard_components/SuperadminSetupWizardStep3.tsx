@@ -4,7 +4,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { seatsSchema, type SeatsData } from '@/app/superadmin/superadmin_shared_components/superadmin_schema';
 import { SETUP_WIZARD_DATA as d } from '@/app/superadmin/superadmin_setup-wizard/superadmin_setupWizard_constants';
 
-const inputCls = (hasErr?: boolean) => `sa-input${hasErr ? ' sa-input--error' : ''}`;
+const inputCls = (hasErr?: boolean) => `w-full bg-bg-input border rounded-lg px-3.5 py-2.5 text-[15px] text-text-primary focus:outline-none focus:ring-2 transition-all placeholder:text-text-tertiary ${hasErr ? 'border-danger focus:ring-danger/20 focus:border-danger' : 'border-border focus:ring-primary/20 focus:border-primary'}`;
 
 export function SuperadminSetupWizardStep3({ onNext }: { onNext: (d: SeatsData) => void }) {
   const { register, handleSubmit, watch, formState: { errors } } = useForm<SeatsData>({
@@ -20,45 +20,46 @@ export function SuperadminSetupWizardStep3({ onNext }: { onNext: (d: SeatsData) 
     ).join(', ') + (count > 5 ? ` ... ${prefix}${String(count).padStart(2, '0')}` : '');
 
   const seatCellClass = (i: number) => {
-    if (i === 0) return 'sa-wizard-seat-cell sa-wizard-seat-cell--occupied';
-    if (i === 1) return 'sa-wizard-seat-cell sa-wizard-seat-cell--expiring';
-    return 'sa-wizard-seat-cell sa-wizard-seat-cell--free';
+    const base = 'w-[50px] h-[50px] flex items-center justify-center rounded-lg text-xs font-bold font-mono transition-colors border';
+    if (i === 0) return `${base} bg-danger-bg border-danger text-danger`;
+    if (i === 1) return `${base} bg-warning-bg border-warning text-warning`;
+    return `${base} bg-bg-elevated border-border text-text-secondary`;
   };
 
   return (
     <form id="step3-form" onSubmit={handleSubmit(onNext)} noValidate className="space-y-5">
       <div className="grid grid-cols-2 gap-4">
         <div className="space-y-1.5">
-          <label className="sa-wizard-field-label">
-            Total Seats <span className="sa-wizard-field-required">*</span>
+          <label className="text-[13px] font-semibold text-text-secondary uppercase tracking-wider mb-2 block">
+            Total Seats <span className="text-danger ml-1">*</span>
           </label>
           <input type="number" min={1}
             {...register('count', { valueAsNumber: true })}
             className={inputCls(!!errors.count)} />
-          {errors.count && <p className="sa-wizard-field-error">{errors.count.message}</p>}
+          {errors.count && <p className="text-xs text-danger mt-1.5">{errors.count.message}</p>}
         </div>
         <div className="space-y-1.5">
-          <label className="sa-wizard-field-label">
-            Seat Prefix <span className="sa-wizard-field-optional">(max 3)</span>
+          <label className="text-[13px] font-semibold text-text-secondary uppercase tracking-wider mb-2 block">
+            Seat Prefix <span className="text-text-tertiary font-normal text-xs ml-1 lowercase">(max 3)</span>
           </label>
           <input maxLength={3} {...register('prefix')} placeholder="e.g. SL-"
             className={inputCls(!!errors.prefix)} />
-          {errors.prefix && <p className="sa-wizard-field-error">{errors.prefix.message}</p>}
+          {errors.prefix && <p className="text-xs text-danger mt-1.5">{errors.prefix.message}</p>}
         </div>
       </div>
 
-      <div className="sa-wizard-preview-card">
-        <p className="sa-wizard-preview-label">💡 Seats will be generated as:</p>
-        <p className="sa-wizard-seat-preview-text">
+      <div className="bg-info-bg/30 border border-info/20 rounded-xl p-5">
+        <p className="text-[13px] font-semibold text-info mb-1.5">💡 Seats will be generated as:</p>
+        <p className="text-[15px] font-mono text-text-primary tracking-wide mb-1">
           {prefix ? preview : '(enter prefix to preview)'}
         </p>
-        <p className="sa-wizard-seat-preview-sub">
+        <p className="text-xs text-text-secondary font-medium">
           {count} seat{count !== 1 ? 's' : ''} total
         </p>
       </div>
 
       <div>
-        <p className="sa-wizard-seat-grid-label">Sample grid preview:</p>
+        <p className="text-xs font-semibold text-text-secondary uppercase tracking-wider mb-3">Sample grid preview:</p>
         <div className="flex flex-wrap gap-2">
           {Array.from({ length: Math.min(count, 20) }, (_, i) => (
             <div key={i} className={seatCellClass(i)}>
@@ -66,7 +67,7 @@ export function SuperadminSetupWizardStep3({ onNext }: { onNext: (d: SeatsData) 
             </div>
           ))}
           {count > 20 && (
-            <div className="sa-wizard-seat-cell sa-wizard-seat-cell--more">
+            <div className="w-[50px] h-[50px] flex items-center justify-center rounded-lg text-xs font-bold font-mono transition-colors border bg-bg-input border-dashed border-border text-text-tertiary">
               +{count - 20}
             </div>
           )}

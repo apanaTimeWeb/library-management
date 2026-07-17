@@ -1,15 +1,15 @@
 export const SEAT_CLASS: Record<string, string> = {
-  available: 'mgr-seat-available',
-  occupied:  'mgr-seat-occupied',
-  expiring:  'mgr-seat-expiring',
+  available: 'bg-success-bg border-success text-success',
+  occupied:  'bg-border border-border text-text-secondary',
+  expiring:  'bg-warning-bg border-warning text-warning-hover',
 };
 
 export const STATUS_CLASS: Record<string, string> = {
-  New:        'mgr-badge--info',
-  Visited:    'mgr-badge--warning',
-  Interested: 'mgr-badge--primary',
-  Converted:  'mgr-badge--success',
-  Lost:       'mgr-badge--danger',
+  New:        'bg-info-bg text-info',
+  Visited:    'bg-warning-bg text-warning',
+  Interested: 'bg-primary-subtle text-primary',
+  Converted:  'bg-success-bg text-success',
+  Lost:       'bg-danger-bg text-danger',
 };
 
 export const QUICK_LINKS = [

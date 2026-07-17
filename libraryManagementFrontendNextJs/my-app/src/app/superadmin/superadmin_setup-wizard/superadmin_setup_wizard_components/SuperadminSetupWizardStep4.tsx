@@ -5,7 +5,7 @@ import { Trash2, Plus } from 'lucide-react';
 import { plansSchema, type PlansData } from '@/app/superadmin/superadmin_shared_components/superadmin_schema';
 import { SETUP_WIZARD_DATA as d } from '@/app/superadmin/superadmin_setup-wizard/superadmin_setupWizard_constants';
 
-const inputCls = (hasErr?: boolean) => `sa-input${hasErr ? ' sa-input--error' : ''}`;
+const inputCls = (hasErr?: boolean) => `w-full bg-bg-input border rounded-lg px-3 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 transition-all placeholder:text-text-tertiary ${hasErr ? 'border-danger focus:ring-danger' : 'border-border focus:ring-primary'}`;
 
 export function SuperadminSetupWizardStep4({ onNext }: { onNext: (d: PlansData) => void }) {
   const { register, control, handleSubmit, formState: { errors } } = useForm<PlansData>({
@@ -17,22 +17,22 @@ export function SuperadminSetupWizardStep4({ onNext }: { onNext: (d: PlansData) 
   return (
     <form id="step4-form" onSubmit={handleSubmit(onNext)} noValidate className="space-y-3">
       {fields.map((field, i) => (
-        <div key={field.id} className="sa-wizard-row sa-wizard-row--plans">
+        <div key={field.id} className="grid gap-4 items-end bg-bg-card p-4 rounded-xl border border-border shadow-sm grid-cols-[1fr_80px_120px_40px] md:grid-cols-[1fr_100px_140px_40px]">
           <div className="space-y-1.5">
-            <label className="sa-wizard-field-label--sm">
-              Plan Name <span className="sa-wizard-field-required">*</span>
+            <label className="text-xs font-semibold text-text-secondary uppercase tracking-wider mb-1.5 block">
+              Plan Name <span className="text-danger ml-0.5">*</span>
             </label>
             <input {...register(`plans.${i}.name`)} placeholder="e.g. Monthly"
               className={inputCls(!!(errors.plans?.[i]?.name))} />
           </div>
           <div className="space-y-1.5">
-            <label className="sa-wizard-field-label--sm">Days</label>
+            <label className="text-xs font-semibold text-text-secondary uppercase tracking-wider mb-1.5 block">Days</label>
             <input type="number" min={1}
               {...register(`plans.${i}.days`, { valueAsNumber: true })}
               className={inputCls()} />
           </div>
           <div className="space-y-1.5">
-            <label className="sa-wizard-field-label--sm">Price (₹)</label>
+            <label className="text-xs font-semibold text-text-secondary uppercase tracking-wider mb-1.5 block">Price (₹)</label>
             <input type="number" min={0}
               {...register(`plans.${i}.price`, { valueAsNumber: true })}
               placeholder="1000"
@@ -42,7 +42,7 @@ export function SuperadminSetupWizardStep4({ onNext }: { onNext: (d: PlansData) 
             type="button"
             onClick={() => remove(i)}
             disabled={fields.length <= 1}
-            className="sa-wizard-remove-btn"
+            className="w-10 h-10 flex items-center justify-center rounded-lg border border-border bg-transparent text-text-tertiary hover:text-danger hover:border-danger hover:bg-danger-bg transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
           >
             <Trash2 size={14} />
           </button>
@@ -52,7 +52,7 @@ export function SuperadminSetupWizardStep4({ onNext }: { onNext: (d: PlansData) 
       <button
         type="button"
         onClick={() => append({ name: '', days: 30, price: 0 })}
-        className="sa-btn-dashed"
+        className="w-full py-3 flex items-center justify-center gap-2 rounded-xl border-2 border-dashed border-border text-text-secondary font-medium hover:border-primary hover:text-primary hover:bg-primary-subtle transition-all"
       >
         <Plus size={15} /> Add Another Plan
       </button>

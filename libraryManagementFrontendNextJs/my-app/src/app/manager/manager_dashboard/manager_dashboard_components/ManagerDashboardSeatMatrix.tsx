@@ -22,28 +22,28 @@ export function ManagerDashboardSeatMatrix({ seatData }: DashboardSeatMatrixProp
         <h2 className="text-base font-semibold text-text-primary">Mini Seat Matrix — Today&apos;s Shifts</h2>
       </div>
       <div className="">
-        <div className="mgr-seat-grid">
+        <div className="grid grid-cols-5 sm:grid-cols-8 gap-2 mb-6">
           {seatData.map((seat) => (
             <div
               key={seat.id}
-              className={`mgr-seat-cell ${SEAT_CLASS[seat.status] || ''}`}
+              className={`aspect-square rounded-md border flex items-center justify-center text-[11px] font-bold cursor-pointer transition-colors hover:opacity-80 ${SEAT_CLASS[seat.status] || ''}`}
               onClick={() => router.push(`${MANAGER_ROUTES.STUDENTS}?seat=${seat.id}`)}
             >
               {seat.id}
             </div>
           ))}
         </div>
-        <div className="mgr-seat-legend">
-          <div className="mgr-seat-legend-item">
-            <div className="mgr-seat-legend-dot mgr-seat-legend-dot--available" />
+        <div className="flex flex-wrap items-center justify-center gap-4 border-t border-border pt-4">
+          <div className="flex items-center gap-2 text-[11px] font-medium text-text-secondary uppercase tracking-wider">
+            <div className="w-2.5 h-2.5 rounded-full bg-success" />
             Available
           </div>
-          <div className="mgr-seat-legend-item">
-            <div className="mgr-seat-legend-dot mgr-seat-legend-dot--occupied" />
+          <div className="flex items-center gap-2 text-[11px] font-medium text-text-secondary uppercase tracking-wider">
+            <div className="w-2.5 h-2.5 rounded-full bg-border" />
             Occupied
           </div>
-          <div className="mgr-seat-legend-item">
-            <div className="mgr-seat-legend-dot mgr-seat-legend-dot--expiring" />
+          <div className="flex items-center gap-2 text-[11px] font-medium text-text-secondary uppercase tracking-wider">
+            <div className="w-2.5 h-2.5 rounded-full bg-warning" />
             Expiring Soon
           </div>
         </div>

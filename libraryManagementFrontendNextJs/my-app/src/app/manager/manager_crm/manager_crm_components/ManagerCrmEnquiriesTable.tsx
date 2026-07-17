@@ -71,7 +71,7 @@ export function ManagerCrmEnquiriesTable({ filtered, updateEnquiryStatus }: Mana
                   </div>
                 </td>
                 <td className="p-3 font-mono text-sm text-text-secondary">{maskPhone(enq.phone)}</td>
-                <td className="p-3"><span className="rounded-full px-2.5 py-0.5 text-[11px] font-semibold rounded-full px-2.5 py-0.5 text-[11px] font-semibold--info">{enq.shift}</span></td>
+                <td className="p-3"><span className="rounded-full px-2.5 py-0.5 text-[11px] font-semibold bg-info-bg text-info">{enq.shift}</span></td>
                 <td className="p-3"><span className={`rounded-full px-2.5 py-0.5 text-[11px] font-semibold ${STATUS_BADGE[enq.status]}`}>{enq.status}</span></td>
                 <td className="p-3 text-text-secondary">{enq.handledBy}</td>
                 <td className="p-3 text-text-secondary">{enq.addedDate}</td>

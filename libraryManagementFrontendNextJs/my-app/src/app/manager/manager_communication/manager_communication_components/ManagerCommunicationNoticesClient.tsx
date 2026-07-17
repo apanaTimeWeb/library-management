@@ -51,75 +51,75 @@ export function ManagerCommunicationNoticesClient() {
   };
 
   const colDefs: any[] = [
-    { field: 'title', headerName: 'Title', width: 220, cellRenderer: (p: any) => <span className="eng-td-bold text-mgr-text-primary">{p.value}</span> },
-    { field: 'message', headerName: 'Message', flex: 1, minWidth: 250, cellRenderer: (p: any) => <span className="eng-td-muted text-sm truncate block w-full pt-1" title={p.value}>{p.value}</span> },
+    { field: 'title', headerName: 'Title', width: 220, cellRenderer: (p: any) => <span className="text-sm font-semibold text-text-primary">{p.value}</span> },
+    { field: 'message', headerName: 'Message', flex: 1, minWidth: 250, cellRenderer: (p: any) => <span className="text-sm text-text-secondary truncate block w-full pt-1" title={p.value}>{p.value}</span> },
     { 
       field: 'status', 
       headerName: 'Status', 
       width: 120,
       cellRenderer: (p: any) => (
-        <span className={`eng-badge ${p.value === 'Active' ? 'eng-badge--success' : 'eng-badge--outline'} mt-2 inline-flex items-center gap-1`}>
+        <span className={`rounded-full px-2.5 py-0.5 text-[11px] font-semibold mt-2 inline-flex items-center gap-1 ${p.value === 'Active' ? 'bg-success-bg text-success' : 'border border-border text-text-secondary'}`}>
           {p.value === 'Active' ? <CheckCircle size={12} /> : null} {p.value}
         </span>
       )
     },
-    { field: 'validTill', headerName: 'Valid Till', width: 130, cellRenderer: (p: any) => <span className="eng-td-mono text-sm">{p.value}</span> },
-    { field: 'postedBy', headerName: 'Posted By', width: 130, cellRenderer: (p: any) => <span className="eng-td-muted text-sm">{p.value}</span> },
-    { field: 'postedDate', headerName: 'Posted Date', width: 130, cellRenderer: (p: any) => <span className="eng-td-mono text-sm">{p.value}</span> },
+    { field: 'validTill', headerName: 'Valid Till', width: 130, cellRenderer: (p: any) => <span className="font-mono text-[12px] text-text-primary tracking-tight">{p.value}</span> },
+    { field: 'postedBy', headerName: 'Posted By', width: 130, cellRenderer: (p: any) => <span className="text-sm text-text-secondary">{p.value}</span> },
+    { field: 'postedDate', headerName: 'Posted Date', width: 130, cellRenderer: (p: any) => <span className="font-mono text-[12px] text-text-primary tracking-tight">{p.value}</span> },
     {
       headerName: 'Actions',
       width: 140,
       sortable: false,
       cellRenderer: (params: any) => (
         <div className="h-full flex items-center gap-2">
-          <button onClick={() => openEdit(params?.data)} className="eng-btn-icon hover:bg-mgr-primary hover:text-white transition-colors duration-200" title="Edit"><Edit2 size={14} /></button>
-          <button onClick={() => setBroadcastItem(params?.data)} className="eng-btn-icon hover:bg-mgr-primary hover:text-white transition-colors duration-200" title="Broadcast"><Send size={14} /></button>
-          <button onClick={() => setDeleteItem(params?.data)} className="eng-btn-icon eng-btn-icon--danger hover:bg-red-500 hover:text-white transition-colors duration-200" title="Delete"><Trash2 size={14} /></button>
+          <button onClick={() => openEdit(params?.data)} className="w-8 h-8 flex items-center justify-center rounded-lg border border-border text-text-secondary bg-transparent hover:bg-primary hover:text-white transition-colors" title="Edit"><Edit2 size={14} /></button>
+          <button onClick={() => setBroadcastItem(params?.data)} className="w-8 h-8 flex items-center justify-center rounded-lg border border-border text-text-secondary bg-transparent hover:bg-primary hover:text-white transition-colors" title="Broadcast"><Send size={14} /></button>
+          <button onClick={() => setDeleteItem(params?.data)} className="w-8 h-8 flex items-center justify-center rounded-lg border border-border text-danger bg-transparent hover:bg-danger hover:text-white transition-colors" title="Delete"><Trash2 size={14} /></button>
         </div>
       )
     }
   ];
 
   if (status === 'loading') {
-    return <div className="eng-page"><div className="animate-pulse flex space-x-4"><div className="flex-1 space-y-4 py-1"><div className="h-4 bg-gray-400 rounded w-3/4"></div><div className="space-y-2"><div className="h-4 bg-gray-400 rounded"></div><div className="h-4 bg-gray-400 rounded w-5/6"></div></div></div></div></div>;
+    return <div className="p-6 min-h-screen"><div className="animate-pulse flex space-x-4"><div className="flex-1 space-y-4 py-1"><div className="h-4 bg-gray-400 rounded w-3/4"></div><div className="space-y-2"><div className="h-4 bg-gray-400 rounded"></div><div className="h-4 bg-gray-400 rounded w-5/6"></div></div></div></div></div>;
   }
 
   return (
-    <div className="eng-page">
+    <div className="p-6 min-h-screen relative">
       {toast && (
-        <div className="eng-toast-wrap">
-          <div className="eng-toast flex items-center gap-2"><CheckCircle size={16} /> {toast}</div>
+        <div className="fixed top-4 right-4 z-50">
+          <div className="bg-bg-card border border-border shadow-lg rounded-lg px-4 py-3 text-sm font-medium text-text-primary flex items-center gap-2"><CheckCircle size={16} className="text-success" /> {toast}</div>
         </div>
       )}
 
       {/* Add/Edit Modal */}
       {showAdd && (
-        <div className="eng-overlay">
-          <div className="eng-modal eng-modal--lg bg-mgr-bg-card">
-            <button onClick={() => setShowAdd(false)} className="eng-modal-close hover:text-red-500"><X size={16} /></button>
-            <p className="eng-modal-title mb-4 font-bold text-mgr-text-primary flex items-center gap-2">
+        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 overflow-y-auto">
+          <div className="bg-bg-card w-full rounded-2xl shadow-2xl flex flex-col p-6 max-w-lg relative border border-border">
+            <button onClick={() => setShowAdd(false)} className="absolute top-4 right-4 w-8 h-8 flex items-center justify-center rounded-full hover:bg-danger-bg text-text-secondary hover:text-danger transition-colors"><X size={16} /></button>
+            <p className="text-lg font-bold text-text-primary mb-4 flex items-center gap-2">
               {editItem ? <Edit2 size={18} /> : <Megaphone size={18} />} {editItem ? 'Edit Notice' : 'Post Notice'}
             </p>
-            <div className="eng-form-stack space-y-4">
+            <div className="space-y-4">
               <div>
-                <label className="eng-label text-sm font-semibold mb-1 block">Title <span className="eng-required text-red-500">*</span></label>
-                <input className="eng-input py-2 px-3 border rounded w-full" placeholder="Notice title"
+                <label className="text-[13px] font-medium text-text-secondary mb-1 block">Title <span className="text-danger">*</span></label>
+                <input className="w-full bg-bg-input border border-border rounded-lg px-3.5 py-2 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary" placeholder="Notice title"
                   value={form.title} onChange={e => setForm(f => ({ ...f, title: e.target.value }))} />
               </div>
               <div>
-                <label className="eng-label text-sm font-semibold mb-1 block">Message <span className="eng-required text-red-500">*</span></label>
-                <textarea className="eng-textarea py-2 px-3 border rounded w-full" rows={6} placeholder="Notice message..."
+                <label className="text-[13px] font-medium text-text-secondary mb-1 block">Message <span className="text-danger">*</span></label>
+                <textarea className="w-full bg-bg-input border border-border rounded-lg px-3.5 py-2 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary" rows={6} placeholder="Notice message..."
                   value={form.message} onChange={e => setForm(f => ({ ...f, message: e.target.value }))} />
               </div>
               <div>
-                <label className="eng-label text-sm font-semibold mb-1 block">Valid Till <span className="eng-required text-red-500">*</span></label>
-                <input type="date" className="eng-input py-2 px-3 border rounded w-full"
+                <label className="text-[13px] font-medium text-text-secondary mb-1 block">Valid Till <span className="text-danger">*</span></label>
+                <input type="date" className="w-full bg-bg-input border border-border rounded-lg px-3.5 py-2 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary"
                   value={form.validTill} onChange={e => setForm(f => ({ ...f, validTill: e.target.value }))} />
               </div>
             </div>
-            <div className="eng-modal-footer mt-6 flex justify-end gap-3">
-              <button onClick={() => setShowAdd(false)} className="px-4 py-2 border border-mgr-border text-mgr-text-primary rounded hover:bg-mgr-border transition-colors">Cancel</button>
-              <button onClick={handleSave} className="px-4 py-2 bg-mgr-primary text-white rounded hover:bg-opacity-90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
+            <div className="mt-6 flex justify-end gap-3">
+              <button onClick={() => setShowAdd(false)} className="px-4 py-2 border border-border text-text-primary rounded hover:bg-bg-elevated transition-colors text-sm font-medium">Cancel</button>
+              <button onClick={handleSave} className="px-4 py-2 bg-primary text-white rounded hover:bg-primary-hover transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 text-sm font-medium"
                 disabled={!form.title || !form.message || !form.validTill}>
                 <Megaphone size={16} /> {editItem ? 'Update Notice' : 'Post Notice'}
               </button>
@@ -130,13 +130,13 @@ export function ManagerCommunicationNoticesClient() {
 
       {/* Delete Confirmation */}
       {deleteItem && (
-        <div className="eng-overlay">
-          <div className="eng-modal eng-modal--sm bg-mgr-bg-card">
-            <p className="eng-modal-title mb-2 font-bold text-mgr-text-primary flex items-center gap-2"><Trash2 size={18} /> Delete Notice?</p>
-            <p className="eng-modal-desc text-sm text-mgr-text-secondary">"{deleteItem.title}" will be permanently deleted.</p>
-            <div className="eng-modal-footer mt-6 flex justify-end gap-3">
-              <button onClick={() => setDeleteItem(null)} className="px-4 py-2 border border-mgr-border text-mgr-text-primary rounded hover:bg-mgr-border transition-colors">Cancel</button>
-              <button onClick={handleDelete} className="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700 transition-colors">Delete</button>
+        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 overflow-y-auto">
+          <div className="bg-bg-card w-full rounded-2xl shadow-2xl flex flex-col p-6 max-w-sm relative border border-border">
+            <p className="text-lg font-bold text-text-primary mb-2 flex items-center gap-2"><Trash2 size={18} className="text-danger" /> Delete Notice?</p>
+            <p className="text-sm text-text-secondary">"{deleteItem.title}" will be permanently deleted.</p>
+            <div className="mt-6 flex justify-end gap-3">
+              <button onClick={() => setDeleteItem(null)} className="px-4 py-2 border border-border text-text-primary rounded hover:bg-bg-elevated transition-colors text-sm font-medium">Cancel</button>
+              <button onClick={handleDelete} className="px-4 py-2 bg-danger text-white rounded hover:bg-danger-hover transition-colors text-sm font-medium">Delete</button>
             </div>
           </div>
         </div>
@@ -144,13 +144,13 @@ export function ManagerCommunicationNoticesClient() {
 
       {/* Broadcast Confirmation */}
       {broadcastItem && (
-        <div className="eng-overlay">
-          <div className="eng-modal eng-modal--sm bg-mgr-bg-card">
-            <p className="eng-modal-title mb-2 font-bold text-mgr-text-primary flex items-center gap-2"><Smartphone size={18} /> Broadcast via WhatsApp</p>
-            <p className="eng-modal-desc text-sm text-mgr-text-secondary">Send "{broadcastItem.title}" to all active students via WhatsApp?</p>
-            <div className="eng-modal-footer mt-6 flex justify-end gap-3">
-              <button onClick={() => setBroadcastItem(null)} className="px-4 py-2 border border-mgr-border text-mgr-text-primary rounded hover:bg-mgr-border transition-colors">Cancel</button>
-              <button onClick={handleBroadcast} className="px-4 py-2 bg-mgr-primary text-white rounded hover:bg-opacity-90 transition-colors">Broadcast</button>
+        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 overflow-y-auto">
+          <div className="bg-bg-card w-full rounded-2xl shadow-2xl flex flex-col p-6 max-w-sm relative border border-border">
+            <p className="text-lg font-bold text-text-primary mb-2 flex items-center gap-2"><Smartphone size={18} className="text-success" /> Broadcast via WhatsApp</p>
+            <p className="text-sm text-text-secondary">Send "{broadcastItem.title}" to all active students via WhatsApp?</p>
+            <div className="mt-6 flex justify-end gap-3">
+              <button onClick={() => setBroadcastItem(null)} className="px-4 py-2 border border-border text-text-primary rounded hover:bg-bg-elevated transition-colors text-sm font-medium">Cancel</button>
+              <button onClick={handleBroadcast} className="px-4 py-2 bg-primary text-white rounded hover:bg-primary-hover transition-colors text-sm font-medium">Broadcast</button>
             </div>
           </div>
         </div>
@@ -158,28 +158,28 @@ export function ManagerCommunicationNoticesClient() {
 
       <div className="mb-8 flex items-center justify-between">
         <div>
-          <div className="eng-breadcrumb mb-2">
+          <div className="text-xs font-medium text-text-secondary uppercase tracking-wider mb-2 flex items-center gap-1.5">
             <span>Communication</span><ChevronRight size={12} /><span>Notices</span>
           </div>
-          <h1 className="eng-page-title text-2xl font-bold text-mgr-text-primary flex items-center gap-2"><Megaphone size={24} /> Notice Board</h1>
-          <p className="eng-page-subtitle text-mgr-text-secondary">Post and manage library notices for students.</p>
+          <h1 className="text-[22px] font-bold text-text-primary flex items-center gap-2"><Megaphone size={24} /> Notice Board</h1>
+          <p className="text-[13px] text-text-secondary mt-1.5">Post and manage library notices for students.</p>
         </div>
-        <button onClick={openAdd} className="flex items-center gap-2 px-4 py-2 bg-mgr-primary text-white rounded hover:bg-opacity-90 transition-colors font-medium">
+        <button onClick={openAdd} className="flex items-center gap-2 px-4 py-2 bg-primary text-white rounded hover:bg-primary-hover transition-colors text-sm font-medium">
           <Plus size={16} /> Post Notice
         </button>
       </div>
 
-      <div className="eng-card eng-card--flush p-4">
+      <div className="bg-bg-card rounded-xl border border-border p-4 shadow-sm">
         {notices.length === 0 ? (
-          <div className="eng-empty py-12 flex flex-col items-center justify-center text-center">
-            <div className="eng-empty__icon mb-4 text-gray-400"><Megaphone size={48} /></div>
-            <p className="eng-empty__title text-lg font-semibold text-mgr-text-primary mb-4">No notices posted yet.</p>
-            <button onClick={openAdd} className="flex items-center gap-2 px-4 py-2 bg-mgr-primary text-white rounded hover:bg-opacity-90 transition-colors font-medium">
+          <div className="py-12 flex flex-col items-center justify-center text-center">
+            <div className="mb-4 text-text-secondary opacity-50"><Megaphone size={48} /></div>
+            <p className="text-lg font-semibold text-text-primary mb-4">No notices posted yet.</p>
+            <button onClick={openAdd} className="flex items-center gap-2 px-4 py-2 bg-primary text-white rounded hover:bg-primary-hover transition-colors text-sm font-medium">
               <Plus size={16} /> Post Notice
             </button>
           </div>
         ) : (
-          <div className="mgr-table-wrapper h-[500px]">
+          <div className="w-full overflow-hidden border border-border rounded-xl h-[500px]">
             <AgGridReact
               theme={gridTheme}
               rowData={notices}
@@ -200,4 +200,3 @@ export function ManagerCommunicationNoticesClient() {
     </div>
   );
 }
-

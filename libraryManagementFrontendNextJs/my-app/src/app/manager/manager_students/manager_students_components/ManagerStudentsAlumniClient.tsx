@@ -24,10 +24,10 @@ export function ManagerStudentsAlumniClient() {
       field: 'name', headerName: 'Alumni Name', flex: 1,
       cellRenderer: (p: { value: string; data?: { phone: string } }) => (
         <div className="flex items-center gap-3 py-2">
-          <div className="mgr-avatar-sm">{p.value?.charAt(0)}</div>
+          <div className="w-8 h-8 rounded-full bg-primary/10 text-primary flex items-center justify-center text-xs font-bold shrink-0">{p.value?.charAt(0)}</div>
           <div>
-            <p className="mgr-cell-name">{p.value}</p>
-            <p className="mgr-cell-sub">{p.data?.phone}</p>
+            <p className="text-sm font-semibold text-text-primary truncate">{p.value}</p>
+            <p className="text-xs text-text-secondary mt-0.5 truncate">{p.data?.phone}</p>
           </div>
         </div>
       ),
@@ -39,7 +39,7 @@ export function ManagerStudentsAlumniClient() {
       cellRenderer: (p: { value: string; data?: unknown }) => {
         const isSelected = p.value?.includes('Selected');
         return (
-          <span className={isSelected ? 'mgr-text-success' : 'mgr-text-secondary'} style={{ fontWeight: isSelected ? 600 : 400 }}>
+          <span className={isSelected ? 'text-success' : 'text-text-secondary'} style={{ fontWeight: isSelected ? 600 : 400 }}>
             {isSelected && <Award size={14} style={{ display: 'inline', marginRight: 4 }} />}
             {p.value}
           </span>
@@ -61,9 +61,9 @@ export function ManagerStudentsAlumniClient() {
     <div className="p-6 min-h-screen">
       <div className="p-6 min-h-screen-header">
         <div>
-          <div className="mgr-breadcrumb">Students › Alumni</div>
+          <div className="text-xs font-medium text-text-secondary uppercase tracking-wider mb-2">Students › Alumni</div>
           <h1 className="text-[22px] font-bold text-text-primary">Alumni Directory</h1>
-          <p className="p-6 min-h-screen-subtitle">Students who have successfully completed their journey here.</p>
+          <p className="text-[13px] text-text-secondary mt-1.5">Students who have successfully completed their journey here.</p>
         </div>
         <div className="p-6 min-h-screen-actions">
           <button className="bg-transparent border border-border text-text-primary rounded-lg px-5 py-2.5 text-sm font-medium hover:bg-primary-subtle hover:border-primary transition-colors inline-flex items-center gap-2"><Award size={16} /> Success Stories</button>
@@ -76,9 +76,9 @@ export function ManagerStudentsAlumniClient() {
             <Search size={14} className="w-full bg-bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent-icon" />
             <input type="text" placeholder="Search alumni by name or exam…" className="w-full bg-bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent w-full bg-bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent-with-icon" />
           </div>
-          <button className="bg-transparent border border-border text-text-primary rounded-lg px-5 py-2.5 text-sm font-medium hover:bg-primary-subtle hover:border-primary transition-colors inline-flex items-center gap-2 mgr-btn-sm"><Filter size={14} /> Filters</button>
+          <button className="bg-transparent border border-border text-text-primary rounded-lg px-5 py-2.5 text-sm font-medium hover:bg-primary-subtle hover:border-primary transition-colors inline-flex items-center gap-2"><Filter size={14} /> Filters</button>
         </div>
-        <div className="mgr-table-wrapper" style={{ height: 500 }}>
+        <div className="w-full overflow-hidden border border-border rounded-xl mt-4" style={{ height: 500 }}>
           <AgGridReact
             theme={gridTheme}
             rowData={rowData}

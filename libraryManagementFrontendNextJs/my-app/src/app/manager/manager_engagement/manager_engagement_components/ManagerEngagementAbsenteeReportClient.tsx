@@ -6,13 +6,11 @@ import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community';
 import { ChevronRight, Send, Mail, Phone } from 'lucide-react';
 import { gridTheme , ManagerRecord } from '@/app/manager/manager_reusable/gridTheme';
 import { AbsenteeRow } from '@/app/manager/manager_engagement/manager_engagement_types/ManagerEngagementTypes';
+import { useManagerEngagementAbsentee } from '@/app/manager/manager_engagement/manager_engagement_hooks/useManagerEngagementAbsentee';
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
-// Data loaded from centralized constants
-
 // RESPONSIBILITY: Renders the absentee report grid with filtering and notification actions.
-import { useManagerEngagementAbsentee } from '@/app/manager/manager_engagement/manager_engagement_hooks/useManagerEngagementAbsentee';
 
 export function ManagerEngagementAbsenteeReportClient() {
   const {
@@ -23,7 +21,7 @@ export function ManagerEngagementAbsenteeReportClient() {
     notify, notifyAll
   } = useManagerEngagementAbsentee();
 
-  const badgeClass = (d: number) => d >= 7 ? 'eng-badge--danger' : 'eng-badge--warning';
+  const badgeClass = (d: number) => d >= 7 ? 'rounded-full px-2.5 py-0.5 text-[11px] font-semibold bg-danger-bg text-danger' : 'rounded-full px-2.5 py-0.5 text-[11px] font-semibold bg-warning-bg text-warning';
   
   const colDefs = [
     { 
@@ -32,37 +30,37 @@ export function ManagerEngagementAbsenteeReportClient() {
       flex: 1, 
       minWidth: 200,
       cellRenderer: (p: { value: string; data: AbsenteeRow }) => (
-        <div className="eng-td-cell py-2">
-          <div className="eng-att-avatar eng-avatar--sm mr-3">
+        <div className="flex items-center py-2 h-full">
+          <div className="w-8 h-8 rounded-full bg-primary/10 text-primary flex items-center justify-center text-xs font-bold shrink-0 mr-3">
             {p.data.initials}
           </div>
-          <span className="eng-td-name font-medium">{p.value}</span>
+          <span className="text-sm font-semibold text-text-primary truncate">{p.value}</span>
         </div>
       )
     },
-    { field: 'smartId', headerName: 'Smart ID', width: 120, cellRenderer: (p: { value: string }) => <span className="eng-td-mono">{p.value}</span> },
-    { field: 'shift', headerName: 'Shift', width: 120, cellRenderer: (p: { value: string }) => <span className="eng-badge eng-badge--ghost mt-2 inline-block">{p.value}</span> },
+    { field: 'smartId', headerName: 'Smart ID', width: 120, cellRenderer: (p: { value: string }) => <span className="font-mono text-[12px] text-text-primary tracking-tight">{p.value}</span> },
+    { field: 'shift', headerName: 'Shift', width: 120, cellRenderer: (p: { value: string }) => <span className="rounded-full px-2.5 py-0.5 text-[11px] font-semibold bg-bg-elevated text-text-secondary mt-2 inline-block">{p.value}</span> },
     { 
       field: 'daysAbsent', 
       headerName: 'Days Absent', 
       width: 140,
       cellRenderer: (p: { value: number }) => (
-        <span className={`eng-badge ${badgeClass(p.value)} eng-badge--lg mt-2 inline-block`}>
+        <span className={`${badgeClass(p.value)} mt-2 inline-block`}>
           {p.value} days
         </span>
       )
     },
-    { field: 'lastSeen', headerName: 'Last Seen', width: 130, cellRenderer: (p: { value: string }) => <span className="eng-td-muted">{p.value}</span> },
+    { field: 'lastSeen', headerName: 'Last Seen', width: 130, cellRenderer: (p: { value: string }) => <span className="text-xs text-text-secondary">{p.value}</span> },
     { 
       field: 'parentPhone', 
       headerName: 'Parent Contact', 
       width: 220,
       cellRenderer: (p: { value: string; data: AbsenteeRow }) => (
-        <div className="eng-td-contact flex flex-col justify-center h-full space-y-1">
-          <span className="eng-td-mono flex items-center text-xs">
+        <div className="flex flex-col justify-center h-full space-y-1">
+          <span className="font-mono text-[12px] text-text-primary tracking-tight flex items-center">
             <Phone size={10} className="mr-1"/> {p.value}
           </span>
-          <span className="eng-td-muted flex items-center text-xs">
+          <span className="text-xs text-text-secondary flex items-center">
             <Mail size={10} className="mr-1"/> {p.data.parentEmail}
           </span>
         </div>
@@ -73,11 +71,11 @@ export function ManagerEngagementAbsenteeReportClient() {
       width: 140,
       sortable: false,
       cellRenderer: (params: ManagerRecord) => (
-        <div className="eng-row-actions h-full flex items-center">
+        <div className="h-full flex items-center">
           {params.data.notified ? (
-            <span className="eng-badge eng-badge--success">✅ Notified</span>
+            <span className="rounded-full px-2.5 py-0.5 text-[11px] font-semibold bg-success-bg text-success">✅ Notified</span>
           ) : (
-            <button onClick={() => notify(params.data.id)} className="eng-btn eng-btn--ghost eng-btn--sm hover:bg-mgr-primary hover:text-white transition-colors duration-200">
+            <button onClick={() => notify(params.data.id)} className="bg-transparent border border-border text-text-primary rounded-lg h-8 px-3 text-xs font-medium hover:bg-primary-subtle hover:border-primary transition-colors inline-flex items-center gap-2">
               <Send size={12} className="mr-1"/> Alert
             </button>
           )}
@@ -87,30 +85,30 @@ export function ManagerEngagementAbsenteeReportClient() {
   ];
 
   return (
-    <div className="eng-page">
+    <div className="p-6 min-h-screen">
       {/* ── Toast ── */}
       {toast && (
-        <div className="eng-toast-wrap">
-          <div className={`eng-toast${toastType === 'info' ? ' eng-toast--info' : ''}`}>{toast}</div>
+        <div className="fixed bottom-4 right-4 z-50">
+          <div className={`bg-bg-card border border-border shadow-lg rounded-xl px-4 py-3 text-sm text-text-primary ${toastType === 'info' ? 'bg-info-bg border-info text-info' : ''}`}>{toast}</div>
         </div>
       )}
 
       {/* ── Breadcrumb ── */}
-      <div className="eng-breadcrumb">
+      <div className="text-xs font-medium text-text-secondary uppercase tracking-wider mb-2 flex items-center gap-1.5">
         <Link href="/manager/manager_engagement/attendance">Engagement</Link>
-        <ChevronRight size={12} className="eng-breadcrumb-sep"/>
+        <ChevronRight size={12} className="mx-1"/>
         <span>Absentee Report</span>
       </div>
 
       {/* ── Page Header ── */}
-      <div className="eng-page-header">
-        <div className="eng-page-title-row">
+      <div className="mb-8">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
           <div>
-            <h1 className="eng-page-title">📋 Absentee Report</h1>
-            <p className="eng-page-subtitle">Students with consecutive absences requiring attention.</p>
+            <h1 className="text-[22px] font-bold text-text-primary">📋 Absentee Report</h1>
+            <p className="text-[13px] text-text-secondary mt-1.5">Students with consecutive absences requiring attention.</p>
           </div>
-          <div className="eng-page-actions">
-            <button onClick={notifyAll} className="eng-btn eng-btn--primary">
+          <div className="flex gap-2">
+            <button onClick={notifyAll} className="bg-primary text-white rounded-lg px-5 py-2.5 text-sm font-medium hover:bg-primary-hover transition-colors inline-flex items-center gap-2">
               <Send size={14}/> Bulk Alert Parents
             </button>
           </div>
@@ -118,36 +116,36 @@ export function ManagerEngagementAbsenteeReportClient() {
       </div>
 
       {/* ── KPI Stats ── */}
-      <div className="eng-stats-row">
-        <div className="eng-stat-card">
-          <div className="eng-stat-label">Total Absentees</div>
-          <div className="eng-stat-value">{filtered.length}</div>
-          <div className="eng-stat-sub">above {threshold === 'all' ? '0' : threshold} day threshold</div>
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+        <div className="bg-bg-card border border-border rounded-xl p-5 flex flex-col justify-center">
+          <div className="text-[13px] font-medium text-text-secondary mb-1.5">Total Absentees</div>
+          <div className="text-2xl font-bold text-text-primary">{filtered.length}</div>
+          <div className="text-[11px] font-medium text-text-secondary mt-1">above {threshold === 'all' ? '0' : threshold} day threshold</div>
         </div>
-        <div className="eng-stat-card">
-          <div className="eng-stat-label">Critical (7+ days)</div>
-          <div className="eng-stat-value eng-stat-value--danger">{critical.length}</div>
-          <div className="eng-stat-sub">Immediate action needed</div>
+        <div className="bg-bg-card border border-border rounded-xl p-5 flex flex-col justify-center">
+          <div className="text-[13px] font-medium text-text-secondary mb-1.5">Critical (7+ days)</div>
+          <div className="text-2xl font-bold text-danger">{critical.length}</div>
+          <div className="text-[11px] font-medium text-text-secondary mt-1">Immediate action needed</div>
         </div>
-        <div className="eng-stat-card">
-          <div className="eng-stat-label">Moderate (3–6 days)</div>
-          <div className="eng-stat-value eng-stat-value--warning">{moderate.length}</div>
-          <div className="eng-stat-sub">Monitoring required</div>
+        <div className="bg-bg-card border border-border rounded-xl p-5 flex flex-col justify-center">
+          <div className="text-[13px] font-medium text-text-secondary mb-1.5">Moderate (3–6 days)</div>
+          <div className="text-2xl font-bold text-warning">{moderate.length}</div>
+          <div className="text-[11px] font-medium text-text-secondary mt-1">Monitoring required</div>
         </div>
-        <div className="eng-stat-card">
-          <div className="eng-stat-label">Parents Notified</div>
-          <div className="eng-stat-value eng-stat-value--success">{filtered.filter(r=>r.notified).length}</div>
-          <div className="eng-stat-sub">of {filtered.length} total</div>
+        <div className="bg-bg-card border border-border rounded-xl p-5 flex flex-col justify-center">
+          <div className="text-[13px] font-medium text-text-secondary mb-1.5">Parents Notified</div>
+          <div className="text-2xl font-bold text-success">{filtered.filter(r=>r.notified).length}</div>
+          <div className="text-[11px] font-medium text-text-secondary mt-1">of {filtered.length} total</div>
         </div>
       </div>
 
       {/* ── Filters ── */}
-      <div className="eng-card eng-card--flush eng-mb-6 p-4 border-b border-mgr-border">
-        <div className="eng-filter-bar flex items-center justify-between">
+      <div className="bg-bg-card rounded-xl border border-border mb-6 p-4">
+        <div className="flex items-center justify-between">
           <div className="flex gap-6 items-center">
-            <div className="eng-filter-field flex flex-col">
-              <span className="eng-label mb-1 text-xs font-semibold text-mgr-text-secondary">Days Threshold</span>
-              <select className="eng-select eng-filter-select py-1 px-2 border rounded" value={threshold}
+            <div className="flex flex-col">
+              <span className="block text-[13px] font-medium text-text-secondary mb-1.5">Days Threshold</span>
+              <select className="bg-bg-input border border-border rounded-lg px-3 py-1.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary appearance-none" value={threshold}
                 onChange={e => setThreshold(e.target.value)}>
                 <option value="3">3+ Days</option>
                 <option value="5">5+ Days</option>
@@ -155,9 +153,9 @@ export function ManagerEngagementAbsenteeReportClient() {
                 <option value="all">Show All</option>
               </select>
             </div>
-            <div className="eng-filter-field flex flex-col">
-              <span className="eng-label mb-1 text-xs font-semibold text-mgr-text-secondary">Shift</span>
-              <select className="eng-select eng-filter-select py-1 px-2 border rounded" value={shift}
+            <div className="flex flex-col">
+              <span className="block text-[13px] font-medium text-text-secondary mb-1.5">Shift</span>
+              <select className="bg-bg-input border border-border rounded-lg px-3 py-1.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary appearance-none" value={shift}
                 onChange={e => setShift(e.target.value)}>
                 <option>All</option>
                 <option>Morning</option>
@@ -166,24 +164,24 @@ export function ManagerEngagementAbsenteeReportClient() {
               </select>
             </div>
           </div>
-          <div className="eng-filter-badges flex gap-2">
-            <span className="eng-badge eng-badge--danger px-2 py-1 rounded-full text-xs">{critical.length} critical</span>
-            <span className="eng-badge eng-badge--warning px-2 py-1 rounded-full text-xs">{moderate.length} moderate</span>
-            <span className="eng-badge eng-badge--success px-2 py-1 rounded-full text-xs">{filtered.filter(r=>r.notified).length} notified</span>
+          <div className="flex gap-2">
+            <span className="rounded-full px-2.5 py-0.5 text-[11px] font-semibold bg-danger-bg text-danger">{critical.length} critical</span>
+            <span className="rounded-full px-2.5 py-0.5 text-[11px] font-semibold bg-warning-bg text-warning">{moderate.length} moderate</span>
+            <span className="rounded-full px-2.5 py-0.5 text-[11px] font-semibold bg-success-bg text-success">{filtered.filter(r=>r.notified).length} notified</span>
           </div>
         </div>
       </div>
 
       {/* ── Table ── */}
-      <div className="eng-card eng-card--flush p-4">
+      <div className="bg-bg-card rounded-xl border border-border p-4">
         {filtered.length === 0 ? (
-          <div className="eng-empty py-12 flex flex-col items-center justify-center text-center">
-            <div className="eng-empty-icon text-4xl mb-4">🎉</div>
-            <p className="eng-empty-title text-lg font-semibold text-mgr-text-primary mb-1">No absentees above threshold!</p>
-            <p className="eng-empty-sub text-sm text-mgr-text-secondary">All students have great attendance above the selected threshold.</p>
+          <div className="py-12 flex flex-col items-center justify-center text-center">
+            <div className="text-4xl mb-4">🎉</div>
+            <p className="text-lg font-semibold text-text-primary mb-1">No absentees above threshold!</p>
+            <p className="text-sm text-text-secondary">All students have great attendance above the selected threshold.</p>
           </div>
         ) : (
-          <div className="mgr-table-wrapper h-[450px]">
+          <div className="w-full overflow-hidden border border-border rounded-xl mt-4 h-[450px]">
             <AgGridReact
               theme={gridTheme}
               rowData={filtered}
@@ -198,8 +196,8 @@ export function ManagerEngagementAbsenteeReportClient() {
                 resizable: true
               }}
               rowClassRules={{
-                'bg-mgr-danger/5': (params: ManagerRecord) => params.data.daysAbsent >= 7,
-                'bg-mgr-warning/5': (params: ManagerRecord) => params.data.daysAbsent >= 3 && params.data.daysAbsent < 7
+                'bg-danger-bg': (params: ManagerRecord) => params.data.daysAbsent >= 7,
+                'bg-warning-bg': (params: ManagerRecord) => params.data.daysAbsent >= 3 && params.data.daysAbsent < 7
               }}
             />
           </div>
@@ -208,5 +206,3 @@ export function ManagerEngagementAbsenteeReportClient() {
     </div>
   );
 }
-
-

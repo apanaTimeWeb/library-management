@@ -17,17 +17,17 @@ ModuleRegistry.registerModules([AllCommunityModule]);
 // RESPONSIBILITY: Main Client view for the Manager Dashboard. Glues data and components together.
 
 function SmartIdCell({ value }: { value: string }) {
-  return <span className="mgr-table-id">{value}</span>;
+  return <span className="font-mono text-primary font-semibold tracking-tight text-[11px] bg-primary/10 px-1.5 py-0.5 rounded">{value}</span>;
 }
 function ShiftCell({ value }: { value: string }) {
-  return <span className="rounded-full px-2.5 py-0.5 text-[11px] font-semibold rounded-full px-2.5 py-0.5 text-[11px] font-semibold--info">{value}</span>;
+  return <span className="rounded-full px-2.5 py-0.5 text-[11px] font-semibold bg-info-bg text-info">{value}</span>;
 }
 function StatusCell({ value }: { value: string }) {
-  const cls = STATUS_CLASS[value] ?? 'rounded-full px-2.5 py-0.5 text-[11px] font-semibold--info';
+  const cls = STATUS_CLASS[value] ?? 'bg-info-bg text-info';
   return <span className={`rounded-full px-2.5 py-0.5 text-[11px] font-semibold ${cls}`}>{value}</span>;
 }
 function PhoneCell({ value }: { value: string }) {
-  return <span className="mgr-text-secondary">{value}</span>;
+  return <span className="text-text-secondary">{value}</span>;
 }
 
 export function ManagerDashboardClient() {
@@ -54,12 +54,12 @@ export function ManagerDashboardClient() {
       {/* Page Header */}
       <div className="p-6 min-h-screen-header">
         <div>
-          <p className="mgr-breadcrumb">Manager › Dashboard</p>
+          <p className="text-xs font-medium text-text-secondary uppercase tracking-wider mb-2">Manager › Dashboard</p>
           <h1 className="text-[22px] font-bold text-text-primary">Manager Dashboard</h1>
-          <p className="p-6 min-h-screen-subtitle">Good morning, Manager — aaj ka quick overview</p>
+          <p className="text-[13px] text-text-secondary mt-1.5">Good morning, Manager — aaj ka quick overview</p>
         </div>
         <div className="p-6 min-h-screen-actions">
-          <Link href={MANAGER_ROUTES.STUDENT_REPORTS} className="bg-primary text-white rounded-lg px-5 py-2.5 text-sm font-medium hover:bg-primary-hover transition-colors inline-flex items-center gap-2 mgr-btn-sm">
+          <Link href={MANAGER_ROUTES.STUDENT_REPORTS} className="bg-primary text-white rounded-lg px-5 py-2.5 text-sm font-medium hover:bg-primary-hover transition-colors inline-flex items-center gap-2 h-8 px-3 text-xs">
             <TrendingUp size={14} /> View Reports
           </Link>
         </div>
@@ -68,7 +68,7 @@ export function ManagerDashboardClient() {
       <ManagerDashboardKpiGrid kpiData={data.kpiData} />
 
       {/* Row 2 — Seat Matrix + Action Items */}
-      <div className="mgr-dashboard-row2 mgr-section-gap">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-6">
         <ManagerDashboardSeatMatrix seatData={data.seatData} />
 
         <div className="bg-bg-card rounded-xl border border-border p-6">
@@ -77,14 +77,14 @@ export function ManagerDashboardClient() {
           </div>
           <div className="">
             {data.actionItems?.map((item) => (
-              <div key={item.title} className="mgr-action-item">
-                <span className="mgr-action-label">{item.title}</span>
-                <div className="mgr-action-right">
+              <div key={item.title} className="flex items-center justify-between py-3 border-b border-border last:border-0">
+                <span className="text-sm font-medium text-text-secondary flex items-center">{item.title}</span>
+                <div className="flex items-center gap-3">
                   <span className={item.countClass}>{item.count}</span>
                   {item.showRenew ? (
-                    <Link href={item.href} className="bg-primary text-white rounded-lg px-5 py-2.5 text-sm font-medium hover:bg-primary-hover transition-colors inline-flex items-center gap-2 mgr-btn-sm">Renew</Link>
+                    <Link href={item.href} className="bg-primary text-white rounded-lg px-5 py-2.5 text-sm font-medium hover:bg-primary-hover transition-colors inline-flex items-center gap-2 h-8 px-3 text-xs">Renew</Link>
                   ) : (
-                    <Link href={item.href} className="mgr-action-link">View</Link>
+                    <Link href={item.href} className="text-[13px] font-semibold text-primary hover:text-primary-hover transition-colors inline-flex items-center gap-1">View</Link>
                   )}
                 </div>
               </div>
@@ -94,11 +94,11 @@ export function ManagerDashboardClient() {
       </div>
 
       {/* Row 3 — Recent Activity */}
-      <div className="mgr-dashboard-row3 mgr-section-gap">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-6">
         <div className="bg-bg-card rounded-xl border border-border p-6">
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-base font-semibold text-text-primary">Recent New Admissions</h2>
-            <Link href={MANAGER_ROUTES.STUDENTS} className="mgr-action-link">View all</Link>
+            <Link href={MANAGER_ROUTES.STUDENTS} className="text-[13px] font-semibold text-primary hover:text-primary-hover transition-colors inline-flex items-center gap-1">View all</Link>
           </div>
           <div style={{ height: 280 }}>
             <AgGridReact
@@ -117,7 +117,7 @@ export function ManagerDashboardClient() {
         <div className="bg-bg-card rounded-xl border border-border p-6">
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-base font-semibold text-text-primary">Recent Enquiries</h2>
-            <Link href={MANAGER_ROUTES.CRM_ENQUIRIES} className="mgr-action-link">View all</Link>
+            <Link href={MANAGER_ROUTES.CRM_ENQUIRIES} className="text-[13px] font-semibold text-primary hover:text-primary-hover transition-colors inline-flex items-center gap-1">View all</Link>
           </div>
           <div style={{ height: 280 }}>
             <AgGridReact
@@ -135,14 +135,14 @@ export function ManagerDashboardClient() {
       </div>
 
       {/* Quick Links */}
-      <div className="bg-bg-card rounded-xl border border-border p-6">
+      <div className="bg-bg-card rounded-xl border border-border p-6 mt-6">
         <div className="flex items-center justify-between mb-4">
           <h2 className="text-base font-semibold text-text-primary">Quick Links</h2>
         </div>
         <div className="">
-          <div className="mgr-quick-links-grid">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {QUICK_LINKS.map((link) => (
-              <Link key={link.title} href={link.href} className="mgr-action-link">
+              <Link key={link.title} href={link.href} className="text-[13px] font-semibold text-primary hover:text-primary-hover transition-colors inline-flex items-center gap-1">
                 <ChevronRight size={14} />{link.title}
               </Link>
             ))}
@@ -152,4 +152,3 @@ export function ManagerDashboardClient() {
     </div>
   );
 }
-

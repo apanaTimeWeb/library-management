@@ -6,15 +6,15 @@ import type { Enquiry } from '@/app/manager/manager_crm/manager_crm_types';
 // RESPONSIBILITY: Renders an individual Kanban card. No API calls.
 
 function FollowUpBadge({ isOverdue, isToday, isUpcoming }: Pick<Enquiry, 'isOverdue' | 'isToday' | 'isUpcoming'>) {
-  if (isOverdue) return <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-semibold text-danger bg-danger/10"><Clock size={10} /> Overdue</span>;
-  if (isToday) return <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-semibold text-warning bg-warning/10"><Clock size={10} /> Today</span>;
-  if (isUpcoming) return <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-semibold text-success bg-success/10"><Clock size={10} /> Upcoming</span>;
+  if (isOverdue) return <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-semibold text-danger bg-danger-bg"><Clock size={10} /> Overdue</span>;
+  if (isToday) return <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-semibold text-warning bg-warning-bg"><Clock size={10} /> Today</span>;
+  if (isUpcoming) return <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-semibold text-success bg-success-bg"><Clock size={10} /> Upcoming</span>;
   return null;
 }
 
 // Props interface centralized.
 
-export function ManagerCrmKanbanCard({ enq, colClass, onClick }: ManagerCrmKanbanCardProps) {
+export function ManagerCrmKanbanCard({ enq, colClass, onClick }: any) {
   return (
     <div className={`bg-bg-card border border-border p-4 rounded-xl shadow-sm cursor-pointer hover:-translate-y-1 hover:border-text-secondary transition-all focus:outline-none focus:ring-2 focus:ring-primary ${colClass}`} onClick={onClick} role="button" tabIndex={0} onKeyDown={(e) => e.key === 'Enter' && onClick()}>
       <div className="flex flex-col gap-1 mb-3">
@@ -25,7 +25,7 @@ export function ManagerCrmKanbanCard({ enq, colClass, onClick }: ManagerCrmKanba
         </p>
       </div>
       <div className="flex flex-wrap gap-2 mb-4">
-        <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-semibold text-info bg-info/10">{enq.shift}</span>
+        <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-semibold text-info bg-info-bg">{enq.shift}</span>
         <FollowUpBadge isOverdue={enq.isOverdue} isToday={enq.isToday} isUpcoming={enq.isUpcoming} />
       </div>
       <div className="flex items-center justify-between text-[11px] text-text-tertiary pt-3 border-t border-border/50">
@@ -38,4 +38,3 @@ export function ManagerCrmKanbanCard({ enq, colClass, onClick }: ManagerCrmKanba
     </div>
   );
 }
-

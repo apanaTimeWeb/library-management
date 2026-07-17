@@ -23,8 +23,6 @@ const STEPS = [
   { num: 5, title: 'Launch',         desc: 'Review & go live' },
 ];
 
-const inputCls = (hasErr?: boolean) => `sa-input${hasErr ? ' sa-input--error' : ''}`;
-
 import { SuperadminSetupWizardStep1 } from '@/app/superadmin/superadmin_setup-wizard/superadmin_setup_wizard_components/SuperadminSetupWizardStep1';
 import { SuperadminSetupWizardStep2 } from '@/app/superadmin/superadmin_setup-wizard/superadmin_setup_wizard_components/SuperadminSetupWizardStep2';
 import { SuperadminSetupWizardStep3 } from '@/app/superadmin/superadmin_setup-wizard/superadmin_setup_wizard_components/SuperadminSetupWizardStep3';
@@ -44,7 +42,6 @@ export function SetupWizardClient() {
   const [seats,  setSeats]  = useState<SeatsData>({ count: d.seatCount, prefix: d.seatPrefix });
   const [plans,  setPlans]  = useState<PlansData>({ plans: d.plans });
 
-  // ✅ RULE 3 — dynamic computed width is the ONLY style prop allowed
   const progress = ((step - 1) / (STEPS.length - 1)) * 100;
 
   const nextStep = () => setStep(s => Math.min(STEPS.length, s + 1));
@@ -62,47 +59,47 @@ export function SetupWizardClient() {
   };
 
   return (
-    <div className="sa-wizard-shell">
-      <div className="sa-wizard-glow" />
+    <div className="h-screen w-full flex bg-bg-base overflow-hidden relative">
+      <div className="absolute top-0 left-0 w-full h-[300px] bg-gradient-to-b from-primary/10 to-transparent pointer-events-none opacity-50" />
 
       {/* ── SKIP CONFIRMATION MODAL ── */}
       {showSkipModal && (
-        <div className="sa-wizard-modal-overlay">
-          <div className="sa-wizard-modal">
-            <div className="sa-wizard-modal-icon">
-              <AlertTriangle size={22} className="sa-metric--warning" />
+        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+          <div className="bg-bg-card max-w-md w-full rounded-2xl shadow-2xl p-6 relative border border-border flex flex-col items-center text-center animate-in zoom-in-95 duration-200">
+            <div className="w-12 h-12 rounded-full bg-warning-bg/50 flex items-center justify-center mb-4">
+              <AlertTriangle size={22} className="text-warning" />
             </div>
 
-            <h3 className="sa-wizard-modal-title">Skip Library Setup?</h3>
-            <p className="sa-wizard-modal-desc">
+            <h3 className="text-xl font-bold text-text-primary mb-2">Skip Library Setup?</h3>
+            <p className="text-sm text-text-secondary leading-relaxed mb-4">
               Your library will have{' '}
               <strong>no shifts, no seats, and no fee plans</strong>{' '}
               configured.
             </p>
-            <p className="sa-wizard-modal-desc">
+            <p className="text-sm text-text-secondary leading-relaxed mb-4">
               You can complete setup anytime from{' '}
-              <span className="sa-wizard-modal-desc-link">Dashboard → Settings → Setup Wizard</span>.
+              <span className="font-medium text-text-primary underline decoration-border underline-offset-4">Dashboard → Settings → Setup Wizard</span>.
             </p>
 
-            <div className="sa-wizard-modal-consequences">
+            <div className="w-full bg-bg-elevated rounded-xl p-4 text-left space-y-3 mb-6">
               {[
-                { icon: <AlertTriangle size={16} className="text-warning-base" />, text: 'Students cannot be admitted without seats & shifts' },
-                { icon: <AlertTriangle size={16} className="text-warning-base" />, text: 'Fee collection requires at least one active plan' },
-                { icon: <CheckCircle size={16} className="text-success-base" />, text: 'You can still explore the dashboard and admin panel' },
+                { icon: <AlertTriangle size={16} className="text-warning" />, text: 'Students cannot be admitted without seats & shifts' },
+                { icon: <AlertTriangle size={16} className="text-warning" />, text: 'Fee collection requires at least one active plan' },
+                { icon: <CheckCircle size={16} className="text-success" />, text: 'You can still explore the dashboard and admin panel' },
               ].map(({ icon, text }) => (
-                <div key={text} className="sa-wizard-consequence-chip">
-                  <span className="sa-wizard-consequence-icon">{icon}</span>
+                <div key={text} className="flex items-start gap-3 text-sm text-text-secondary">
+                  <span className="shrink-0 mt-0.5">{icon}</span>
                   <span>{text}</span>
                 </div>
               ))}
             </div>
 
-            <div className="flex gap-3">
+            <div className="flex w-full gap-3">
               <button
                 id="skip-cancel-btn"
                 type="button"
                 onClick={() => setShowSkipModal(false)}
-                className="sa-btn-ghost flex-1 py-2.5"
+                className="px-4 py-2 rounded-lg text-sm font-medium transition-colors border border-border text-text-secondary bg-transparent hover:bg-bg-elevated hover:text-text-primary flex-1 py-2.5"
               >
                 Continue Setup
               </button>
@@ -110,7 +107,7 @@ export function SetupWizardClient() {
                 id="skip-confirm-btn"
                 type="button"
                 onClick={handleSkipToDashboard}
-                className="sa-wizard-modal-go-btn"
+                className="flex-[2] inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-lg text-sm font-semibold bg-danger text-white hover:bg-danger-hover transition-colors"
               >
                 <LayoutDashboard size={15} /> Go to Dashboard
               </button>
@@ -119,7 +116,7 @@ export function SetupWizardClient() {
             <button
               type="button"
               onClick={() => setShowSkipModal(false)}
-              className="sa-wizard-modal-close"
+              className="absolute top-4 right-4 w-8 h-8 flex items-center justify-center rounded-full hover:bg-bg-elevated text-text-secondary hover:text-danger transition-colors"
             >
               <X size={15} />
             </button>
@@ -128,12 +125,12 @@ export function SetupWizardClient() {
       )}
 
       {/* ── STEPPER SIDEBAR ── */}
-      <aside className="sa-wizard-sidebar">
-        <div className="sa-wizard-logo-area">
-          <div className="sa-wizard-logo-box">
+      <aside className="w-[280px] shrink-0 border-r border-border bg-bg-card/50 backdrop-blur flex-col p-6 z-10 hidden md:flex">
+        <div className="flex items-center gap-3 mb-10">
+          <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-purple flex items-center justify-center shadow-lg shadow-primary/30">
             <BookOpen size={18} className="text-white" />
           </div>
-          <span className="sa-wizard-logo-title">Setup Wizard</span>
+          <span className="font-bold text-lg text-text-primary tracking-tight">Setup Wizard</span>
         </div>
 
         <div className="space-y-1">
@@ -143,20 +140,20 @@ export function SetupWizardClient() {
             return (
               <div key={s.num} className="relative">
                 {i < STEPS.length - 1 && (
-                  <div className={`sa-step-connector ${isDone ? 'sa-step-connector--done' : ''}`} />
+                  <div className={`absolute left-[11px] top-[30px] bottom-[-10px] w-[2px] bg-border transition-colors duration-500 ${isDone ? 'bg-primary' : ''}`} />
                 )}
-                <div className={`sa-step-item ${isActive ? 'sa-step-item--active' : ''}`}>
-                  <div className={`sa-step-dot ${isDone ? 'sa-step-dot--done' : isActive ? 'sa-step-dot--active' : ''}`}>
+                <div className={`flex gap-4 py-3 relative z-10 opacity-60 transition-opacity ${isActive ? 'opacity-100' : ''}`}>
+                  <div className={`w-[24px] h-[24px] rounded-full border-2 bg-bg-card flex items-center justify-center transition-colors shrink-0 border-border ${isDone ? 'bg-primary border-primary' : isActive ? 'border-primary ring-4 ring-primary/20' : ''}`}>
                     {isDone
                       ? <Check size={14} className="text-white" />
-                      : <span className={`sa-wizard-step-num-badge ${isActive ? 'sa-wizard-step-num-badge--active' : ''}`}>{s.num}</span>
+                      : <span className={`text-[10px] font-bold text-text-tertiary ${isActive ? 'text-primary' : ''}`}>{s.num}</span>
                     }
                   </div>
                   <div>
-                    <p className={`sa-step-label ${isActive ? 'sa-step-label--active' : isDone ? 'sa-step-label--done' : ''}`}>
+                    <p className={`text-sm font-semibold text-text-primary transition-colors ${isActive ? 'text-primary' : isDone ? 'text-text-primary' : ''}`}>
                       {s.title}
                     </p>
-                    <p className="sa-wizard-field-label--sm-no-mb">{s.desc}</p>
+                    <p className="text-[11px] font-medium text-text-secondary uppercase tracking-wider">{s.desc}</p>
                   </div>
                 </div>
               </div>
@@ -165,14 +162,14 @@ export function SetupWizardClient() {
         </div>
 
         <div className="mt-auto space-y-3">
-          <div className="sa-tip-card">
+          <div className="p-3 rounded-lg bg-info-bg/50 border border-info/20 text-[13px] text-info font-medium leading-relaxed">
             💡 You can update these settings anytime from your dashboard.
           </div>
           <button
             id="skip-setup-sidebar-btn"
             type="button"
             onClick={() => setShowSkipModal(true)}
-            className="sa-wizard-skip-btn"
+            className="w-full py-2 flex items-center justify-center gap-2 text-[13px] font-medium text-text-tertiary hover:text-text-primary transition-colors hover:bg-bg-elevated rounded-md"
           >
             <SkipForward size={12} /> Skip setup for now
           </button>
@@ -181,26 +178,26 @@ export function SetupWizardClient() {
 
       {/* ── MAIN CONTENT ── */}
       <main className="flex-1 flex flex-col">
-        <div className="sa-wizard-topbar">
-          <div className="sa-wizard-progress-track">
+        <div className="h-14 border-b border-border bg-bg-card/80 backdrop-blur flex items-center justify-between px-6 shrink-0 md:hidden">
+          <div className="h-1.5 w-32 bg-border rounded-full overflow-hidden">
             {/* ✅ RULE 3 — dynamic computed width */}
-            <div className="sa-wizard-progress-fill" style={{ width: `${progress}%` }} />
+            <div className="h-full bg-primary rounded-full transition-all duration-500" style={{ width: `${progress}%` }} />
           </div>
           <button
             id="skip-setup-btn"
             type="button"
             onClick={() => setShowSkipModal(true)}
-            className="sa-wizard-topbar-skip"
+            className="text-xs font-medium text-text-tertiary hover:text-text-primary flex items-center gap-1.5"
           >
             <SkipForward size={13} /> Skip Setup
           </button>
         </div>
 
-        <div className="sa-wizard-content-area">
-          <div className="sa-wizard-content-inner">
-            <div className="sa-wizard-step-header">
-              <p className="sa-wizard-step-label">Step {step} of {STEPS.length}</p>
-              <h2 className="sa-wizard-step-title">{STEPS[step - 1].title}</h2>
+        <div className="flex-1 overflow-y-auto p-6 md:p-10 relative z-10 scrollbar-thin">
+          <div className="max-w-2xl mx-auto w-full">
+            <div className="mb-8 animate-in fade-in slide-in-from-bottom-2 duration-500">
+              <p className="text-[13px] font-semibold text-primary uppercase tracking-wider mb-2 flex items-center gap-2">Step {step} of {STEPS.length}</p>
+              <h2 className="text-2xl font-bold text-text-primary">{STEPS[step - 1].title}</h2>
             </div>
 
             {step === 1 && <SuperadminSetupWizardStep1 onNext={d => { setBranch(d); nextStep(); }} />}
@@ -211,45 +208,45 @@ export function SetupWizardClient() {
             {/* ── Step 5: Launch ── */}
             {step === 5 && (
               <div className="space-y-5">
-                <div className="sa-wizard-summary-card">
-                  <h3 className="sa-wizard-summary-title">{branch.name}</h3>
-                  <p className="sa-wizard-summary-address">
+                <div className="p-6 rounded-xl border border-border bg-bg-card shadow-sm">
+                  <h3 className="text-lg font-bold text-text-primary mb-1">{branch.name}</h3>
+                  <p className="text-sm text-text-secondary mb-4">
                     {branch.address}, {branch.city}
                   </p>
                   <div className="flex flex-wrap gap-2">
-                    <span className="sa-wizard-summary-badge sa-wizard-summary-badge--shifts">
+                    <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-[11px] font-semibold border bg-info-bg border-info/20 text-info">
                       ⏰ {shifts.shifts.length} Shifts Added
                     </span>
-                    <span className="sa-wizard-summary-badge sa-wizard-summary-badge--seats">
+                    <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-[11px] font-semibold border bg-warning-bg border-warning/20 text-warning">
                       🪑 {seats.count} Seats Created
                     </span>
-                    <span className="sa-wizard-summary-badge sa-wizard-summary-badge--plans">
+                    <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-[11px] font-semibold border bg-success-bg border-success/20 text-success">
                       💳 {plans.plans.length} Plans Ready
                     </span>
                     {branch.gst && (
-                      <span className="sa-wizard-summary-badge sa-wizard-summary-badge--gst">
+                      <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-[11px] font-semibold border bg-purple/10 border-purple/20 text-purple">
                         🧾 GST Enabled
                       </span>
                     )}
                   </div>
                 </div>
 
-                <div className="sa-wizard-shifts-preview">
-                  <p className="sa-wizard-preview-section-label">Shifts</p>
+                <div className="p-4 rounded-xl border border-border bg-bg-card shadow-sm">
+                  <p className="text-xs font-bold text-text-tertiary uppercase tracking-wider mb-3">Shifts</p>
                   <div className="flex flex-wrap gap-2">
                     {shifts.shifts.map(( s ) => (
-                      <span key={s.name} className="sa-wizard-preview-chip">
+                      <span key={s.name} className="text-xs font-medium text-text-secondary bg-bg-elevated px-2 py-1 rounded border border-border">
                         {s.name}: {s.start} – {s.end}
                       </span>
                     ))}
                   </div>
                 </div>
 
-                <div className="sa-wizard-plans-preview">
-                  <p className="sa-wizard-preview-section-label">Fee Plans</p>
+                <div className="p-4 rounded-xl border border-border bg-bg-card shadow-sm">
+                  <p className="text-xs font-bold text-text-tertiary uppercase tracking-wider mb-3">Fee Plans</p>
                   <div className="flex flex-wrap gap-2">
                     {plans.plans.map(( pl ) => (
-                      <span key={pl.name} className="sa-wizard-preview-chip">
+                      <span key={pl.name} className="text-xs font-medium text-text-secondary bg-bg-elevated px-2 py-1 rounded border border-border">
                         {pl.name} · {pl.days}d · ₹{pl.price}
                       </span>
                     ))}
@@ -261,12 +258,12 @@ export function SetupWizardClient() {
                   type="button"
                   onClick={handleLaunch}
                   disabled={launching || launched}
-                  className={`sa-wizard-launch-btn ${launched ? 'sa-wizard-launch-btn--done' : ''}`}
+                  className={`w-full py-3.5 rounded-xl text-white font-bold shadow-lg shadow-primary/25 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-primary/40 active:translate-y-0 transition-all flex items-center justify-center gap-2 text-base bg-primary ${launched ? 'bg-success hover:-translate-y-0 shadow-none hover:shadow-none' : ''}`}
                 >
                   {launched ? (
                     <><Check size={20} /> Launched! Redirecting...</>
                   ) : launching ? (
-                    <><span className="sa-wizard-launch-spinner" />Setting up your library...</>
+                    <><span className="animate-spin w-5 h-5 border-2 border-white/30 border-t-white rounded-full" />Setting up your library...</>
                   ) : (
                     <><Rocket size={20} /> 🚀 Launch Dashboard</>
                   )}
@@ -276,22 +273,22 @@ export function SetupWizardClient() {
 
             {/* ── FOOTER NAV ── */}
             {step !== 5 ? (
-              <div className="sa-wizard-footer">
+              <div className="mt-8 pt-6 border-t border-border flex items-center justify-between">
                 <button
                   type="button"
                   id="wizard-back-btn"
                   onClick={prevStep}
                   disabled={step === 1}
-                  className="sa-btn-ghost sa-btn-ghost--sm disabled:opacity-30 disabled:cursor-not-allowed"
+                  className="px-3 py-1.5 text-[13px] rounded-lg font-medium transition-colors border border-border text-text-secondary bg-transparent hover:bg-bg-elevated hover:text-text-primary disabled:opacity-30 disabled:cursor-not-allowed"
                 >
                   <ChevronLeft size={16} /> Back
                 </button>
-                <span className="sa-wizard-footer-step-count">Step {step} of {STEPS.length}</span>
+                <span className="text-xs font-medium text-text-secondary">Step {step} of {STEPS.length}</span>
                 <button
                   type="submit"
                   id="wizard-next-btn"
                   form={`step${step}-form`}
-                  className="sa-wizard-next-btn"
+                  className="inline-flex items-center justify-center gap-2 px-5 py-2 rounded-lg text-[13px] font-semibold bg-primary text-white hover:brightness-110 active:scale-95 transition-all"
                 >
                   Next Step <ChevronRight size={16} />
                 </button>
@@ -301,7 +298,7 @@ export function SetupWizardClient() {
                 <button
                   type="button"
                   onClick={prevStep}
-                  className="sa-wizard-back-link"
+                  className="text-sm font-medium text-text-secondary hover:text-text-primary transition-colors underline decoration-border underline-offset-4"
                 >
                   ← Back to Fee Plans
                 </button>

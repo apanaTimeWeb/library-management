@@ -33,10 +33,10 @@ export function ManagerStudentsStudentProfileClient({ id }: { id: string }) {
     return (
       <div className="p-6 min-h-screen">
         <div className="bg-bg-card rounded-xl border border-border p-6">
-          <div className="mgr-empty-state">
-            <div className="mgr-empty-icon">🔍</div>
-            <p className="mgr-empty-title">Student not found</p>
-            <p className="mgr-empty-sub">ID: {id}</p>
+          <div className="flex flex-col items-center justify-center p-12 text-center h-full min-h-[300px]">
+            <div className="text-4xl mb-4 opacity-50">🔍</div>
+            <p className="text-lg font-bold text-text-primary mb-1">Student not found</p>
+            <p className="text-sm text-text-secondary">ID: {id}</p>
           </div>
         </div>
       </div>
@@ -51,73 +51,73 @@ export function ManagerStudentsStudentProfileClient({ id }: { id: string }) {
     <div className="p-6 min-h-screen">
       <div className="p-6 min-h-screen-header">
         <div>
-          <Link href="/manager/manager_students" className="mgr-back-link">
+          <Link href="/manager/manager_students" className="inline-flex items-center gap-2 text-sm font-medium text-text-secondary hover:text-primary transition-colors mb-4">
             <ArrowLeft size={14} /> Back to Students
           </Link>
           <h1 className="text-[22px] font-bold text-text-primary">Student Profile</h1>
-          <p className="mgr-breadcrumb">Manager › Students › {student.name}</p>
+          <p className="text-[11px] font-bold uppercase tracking-wider text-text-secondary mt-1">Manager › Students › {student.name}</p>
         </div>
         <div className="p-6 min-h-screen-actions">
-          <Link href={`/manager/manager_students/${id}/edit`} className="bg-transparent border border-border text-text-primary rounded-lg px-5 py-2.5 text-sm font-medium hover:bg-primary-subtle hover:border-primary transition-colors inline-flex items-center gap-2 mgr-btn-sm">
+          <Link href={`/manager/manager_students/${id}/edit`} className="bg-transparent border border-border text-text-primary rounded-lg px-5 py-2.5 text-sm font-medium hover:bg-primary-subtle hover:border-primary transition-colors inline-flex items-center gap-2">
             Edit
           </Link>
         </div>
       </div>
 
-      <div className="mgr-dashboard-row2">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <div className="bg-bg-card rounded-xl border border-border p-6">
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-base font-semibold text-text-primary">Personal Details</h2>
             <span className={
               student.status === 'Active'    ? 'rounded-full px-2.5 py-0.5 text-[11px] font-semibold bg-success-bg text-success' :
               student.status === 'Suspended' ? 'rounded-full px-2.5 py-0.5 text-[11px] font-semibold bg-warning-bg text-warning' :
-                                               'rounded-full px-2.5 py-0.5 text-[11px] font-semibold rounded-full px-2.5 py-0.5 text-[11px] font-semibold--danger'
+                                               'rounded-full px-2.5 py-0.5 text-[11px] font-semibold bg-danger-bg text-danger'
             }>{student.status}</span>
           </div>
           <div className="">
             <div style={{ display: 'flex', alignItems: 'center', gap: 16, marginBottom: 24 }}>
-              <div className="mgr-avatar" style={{ width: 56, height: 56, fontSize: 20, borderRadius: 14 }}>
+              <div className="w-14 h-14 rounded-2xl bg-primary/10 text-primary flex items-center justify-center text-xl font-bold shrink-0">
                 {student.name.split(' ').map((n: string) => n[0]).join('').slice(0, 2).toUpperCase()}
               </div>
               <div>
-                <p className="text-[22px] font-bold text-text-primary" style={{ fontSize: 18 }}>{student.name}</p>
-                <span className="mgr-smartid-chip">{student.smartId}</span>
+                <p className="text-lg font-bold text-text-primary">{student.name}</p>
+                <span className="inline-block px-2 py-0.5 rounded-full bg-info-bg text-info text-xs font-semibold mt-1">{student.smartId}</span>
               </div>
             </div>
 
-            <div className="mgr-form-grid">
-              <div className="mgr-form-field">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pt-6 border-t border-border">
+              <div className="flex flex-col gap-1.5">
                 <label className="block text-sm font-medium text-text-secondary mb-1.5">Phone</label>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
                   <Phone size={14} style={{ color: 'var(--primary)' }} />
                   <span style={{ color: 'var(--text-primary)' }}>{student.phone}</span>
                 </div>
               </div>
-              <div className="mgr-form-field">
+              <div className="flex flex-col gap-1.5">
                 <label className="block text-sm font-medium text-text-secondary mb-1.5">Branch</label>
                 <span style={{ color: 'var(--text-primary)' }}>{student.branch}</span>
               </div>
-              <div className="mgr-form-field">
+              <div className="flex flex-col gap-1.5">
                 <label className="block text-sm font-medium text-text-secondary mb-1.5">Shift</label>
-                <span className="rounded-full px-2.5 py-0.5 text-[11px] font-semibold rounded-full px-2.5 py-0.5 text-[11px] font-semibold--info">{student.shift}</span>
+                <span className="rounded-full px-2.5 py-0.5 text-[11px] font-semibold bg-info-bg text-info">{student.shift}</span>
               </div>
-              <div className="mgr-form-field">
+              <div className="flex flex-col gap-1.5">
                 <label className="block text-sm font-medium text-text-secondary mb-1.5">Seat</label>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
                   <Armchair size={14} style={{ color: 'var(--primary)' }} />
                   <span style={{ color: 'var(--text-primary)', fontWeight: 600 }}>{student.seat}</span>
                 </div>
               </div>
-              <div className="mgr-form-field">
+              <div className="flex flex-col gap-1.5">
                 <label className="block text-sm font-medium text-text-secondary mb-1.5">Plan</label>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
                   <CreditCard size={14} style={{ color: 'var(--primary)' }} />
                   <span style={{ color: 'var(--text-primary)' }}>{student.plan}</span>
                 </div>
               </div>
-              <div className="mgr-form-field">
+              <div className="flex flex-col gap-1.5">
                 <label className="block text-sm font-medium text-text-secondary mb-1.5">Dues</label>
-                <span className={student.due > 0 ? 'mgr-text-danger' : 'mgr-text-success'} style={{ fontWeight: 700 }}>
+                <span className={student.due > 0 ? 'text-danger font-bold' : 'text-success font-bold'}>
                   {student.due > 0 ? `₹${student.due.toLocaleString('en-IN')}` : '✅ Clear'}
                 </span>
               </div>
@@ -125,21 +125,21 @@ export function ManagerStudentsStudentProfileClient({ id }: { id: string }) {
           </div>
         </div>
 
-        <div className="admin-flex-col admin-gap-16">
+        <div className="flex flex-col gap-6">
           <div className="bg-bg-card rounded-xl border border-border p-6">
             <div className="flex items-center justify-between mb-4">
               <h2 className="text-base font-semibold text-text-primary">Validity</h2>
             </div>
             <div className="">
-              <div className="mgr-action-item">
-                <span className="mgr-action-label">
+              <div className="flex items-center justify-between py-3 border-b border-border last:border-0">
+                <span className="text-sm font-medium text-text-secondary flex items-center">
                   <Calendar size={13} style={{ display: 'inline', marginRight: 6 }} />
                   Joined
                 </span>
                 <span style={{ color: 'var(--text-primary)', fontWeight: 500 }}>{student.joined}</span>
               </div>
-              <div className="mgr-action-item">
-                <span className="mgr-action-label">
+              <div className="flex items-center justify-between py-3 border-b border-border last:border-0">
+                <span className="text-sm font-medium text-text-secondary flex items-center">
                   <Shield size={13} style={{ display: 'inline', marginRight: 6 }} />
                   Expires
                 </span>
@@ -152,14 +152,14 @@ export function ManagerStudentsStudentProfileClient({ id }: { id: string }) {
             <div className="flex items-center justify-between mb-4">
               <h2 className="text-base font-semibold text-text-primary">Quick Actions</h2>
             </div>
-            <div className=" admin-flex-col admin-gap-8">
-              <Link href={`/manager/manager_finance/collect-fee?id=${student.smartId}`} className="bg-primary text-white rounded-lg px-5 py-2.5 text-sm font-medium hover:bg-primary-hover transition-colors inline-flex items-center gap-2 mgr-btn-full">
+            <div className="flex flex-col gap-3">
+              <Link href={`/manager/manager_finance/collect-fee?id=${student.smartId}`} className="bg-primary text-white rounded-lg px-5 py-2.5 text-sm font-medium hover:bg-primary-hover transition-colors inline-flex items-center gap-2 w-full justify-center">
                 Collect Fee
               </Link>
-              <Link href={`/manager/manager_students/id-card?id=${student.smartId}`} className="bg-transparent border border-border text-text-primary rounded-lg px-5 py-2.5 text-sm font-medium hover:bg-primary-subtle hover:border-primary transition-colors inline-flex items-center gap-2 mgr-btn-full">
+              <Link href={`/manager/manager_students/id-card?id=${student.smartId}`} className="bg-transparent border border-border text-text-primary rounded-lg px-5 py-2.5 text-sm font-medium hover:bg-primary-subtle hover:border-primary transition-colors inline-flex items-center gap-2 w-full justify-center">
                 View ID Card
               </Link>
-              <Link href={`/manager/manager_finance/renewals?id=${student.smartId}`} className="bg-transparent border border-border text-text-primary rounded-lg px-5 py-2.5 text-sm font-medium hover:bg-primary-subtle hover:border-primary transition-colors inline-flex items-center gap-2 mgr-btn-full">
+              <Link href={`/manager/manager_finance/renewals?id=${student.smartId}`} className="bg-transparent border border-border text-text-primary rounded-lg px-5 py-2.5 text-sm font-medium hover:bg-primary-subtle hover:border-primary transition-colors inline-flex items-center gap-2 w-full justify-center">
                 Renew Subscription
               </Link>
             </div>

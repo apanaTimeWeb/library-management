@@ -31,14 +31,14 @@ export function ManagerStudentsClient() {
   const colDefs: ColDef[] = useMemo(() => [
     {
       field: 'smartId', headerName: 'SMART ID', width: 110,
-      cellStyle: { color: 'var(--mgr-primary)', fontFamily: 'monospace', fontSize: '12px' },
+      cellStyle: { color: 'var(--primary)', fontFamily: 'monospace', fontSize: '12px' },
     },
     { field: 'name',   headerName: 'STUDENT',      flex: 2, minWidth: 160, cellRenderer: NameCell },
     { field: 'shift',  headerName: 'SHIFT / SEAT', flex: 1, minWidth: 120, cellRenderer: ShiftCell },
     { field: 'status', headerName: 'STATUS',        width: 105, cellRenderer: StatusCell },
-    { field: 'plan',   headerName: 'PLAN',          flex: 1, minWidth: 100, cellStyle: { color: 'var(--mgr-text-secondary)', fontSize: '13px', fontFamily: 'inherit' } },
+    { field: 'plan',   headerName: 'PLAN',          flex: 1, minWidth: 100, cellStyle: { color: 'var(--text-secondary)', fontSize: '13px', fontFamily: 'inherit' } },
     { field: 'due',    headerName: 'DUE',           width: 100, cellRenderer: DueCell },
-    { field: 'joined', headerName: 'JOINED',        width: 100, cellStyle: { color: 'var(--mgr-text-secondary)', fontSize: '12px', fontFamily: 'inherit' } },
+    { field: 'joined', headerName: 'JOINED',        width: 100, cellStyle: { color: 'var(--text-secondary)', fontSize: '12px', fontFamily: 'inherit' } },
     {
       headerName: 'ACTIONS',
       width: 120,

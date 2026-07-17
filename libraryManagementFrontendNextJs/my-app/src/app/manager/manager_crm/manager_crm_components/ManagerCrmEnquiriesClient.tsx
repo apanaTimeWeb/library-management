@@ -62,14 +62,14 @@ export function ManagerCrmEnquiriesClient() {
           <Search size={15} className="absolute left-3 top-1/2 -translate-y-1/2 text-text-secondary" />
           <input
             type="text"
-            className="w-full pl-9 pr-3 py-2 bg-bg-card border border-border rounded-md text-sm text-text-primary outline-none focus:border-mgr-primary transition-colors"
+            className="w-full pl-9 pr-3 py-2 bg-bg-card border border-border rounded-md text-sm text-text-primary outline-none focus:border-primary transition-colors"
             placeholder="Search by name or phone…"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
           />
         </div>
         <select
-          className="py-2 px-3 bg-bg-card border border-border rounded-md text-sm text-text-primary outline-none focus:border-mgr-primary transition-colors"
+          className="py-2 px-3 bg-bg-card border border-border rounded-md text-sm text-text-primary outline-none focus:border-primary transition-colors"
           value={statusFilter}
           onChange={(e) => setStatusFilter(e.target.value)}
         >

@@ -21,9 +21,9 @@ export function ManagerStudentsReferralsClient() {
   const colDefs: ColDef[] = [
     { field: 'id',       headerName: 'Ref ID',                    width: 110 },
     { field: 'referrer', headerName: 'Referrer (Existing)',        flex: 1,
-      cellRenderer: (p: { value: string; data?: Record<string, unknown> }) => <span className="mgr-table-id">{p.value}</span> },
+      cellRenderer: (p: { value: string; data?: Record<string, unknown> }) => <span className="text-[13px] font-semibold text-text-secondary">{p.value}</span> },
     { field: 'referred', headerName: 'Referred Student',           flex: 1,
-      cellRenderer: (p: { value: string; data?: Record<string, unknown> }) => <span className="mgr-cell-name">{p.value}</span> },
+      cellRenderer: (p: { value: string; data?: Record<string, unknown> }) => <span className="text-[13.5px] font-semibold text-text-primary">{p.value}</span> },
     { field: 'date',     headerName: 'Date',                       width: 130 },
     { field: 'bonus',    headerName: 'Bonus',                      width: 110, cellStyle: { fontWeight: 600 } },
     { field: 'method',   headerName: 'Payout Method',              width: 150 },
@@ -35,7 +35,7 @@ export function ManagerStudentsReferralsClient() {
     },
     { headerName: 'Actions', width: 120, sortable: false,
       cellRenderer: (p: { value: string; data?: Record<string, unknown> }) => p.data?.status !== 'Claimed'
-        ? <div className="flex gap-2 items-center h-full"><button className="bg-transparent border border-border text-text-primary rounded-lg px-5 py-2.5 text-sm font-medium hover:bg-primary-subtle hover:border-primary transition-colors inline-flex items-center gap-2 mgr-btn-sm">Process</button></div>
+        ? <div className="flex gap-2 items-center h-full"><button className="bg-transparent border border-border text-text-primary rounded-lg h-8 px-3 text-xs font-medium hover:bg-primary-subtle hover:border-primary transition-colors inline-flex items-center gap-2">Process</button></div>
         : null
     },
   ];
@@ -44,7 +44,7 @@ export function ManagerStudentsReferralsClient() {
     <div className="p-6 min-h-screen">
       <div className="p-6 min-h-screen-header">
         <div>
-          <div className="mgr-breadcrumb">Students › Referrals</div>
+          <div className="text-[11px] font-bold uppercase tracking-wider text-text-secondary mb-2">Students › Referrals</div>
           <h1 className="text-[22px] font-bold text-text-primary">Referral Program</h1>
           <p className="p-6 min-h-screen-subtitle">Track and manage student referral bonuses.</p>
         </div>
@@ -55,21 +55,21 @@ export function ManagerStudentsReferralsClient() {
         </div>
       </div>
 
-      <div className="mgr-kpi-grid mgr-section-gap">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
         {[
-          { label: 'Total Referrals',        value: '45',       icon: Award,        iconClass: 'mgr-kpi-icon--primary' },
-          { label: 'Pending Approvals',       value: '8',        icon: Search,       iconClass: 'mgr-kpi-icon--warning' },
-          { label: 'Total Bonus Distributed', value: '₹18,500', icon: IndianRupee,  iconClass: 'mgr-kpi-icon--success' },
+          { label: 'Total Referrals',        value: '45',       icon: Award,        iconClass: 'bg-primary/10 text-primary' },
+          { label: 'Pending Approvals',       value: '8',        icon: Search,       iconClass: 'bg-warning/10 text-warning' },
+          { label: 'Total Bonus Distributed', value: '₹18,500', icon: IndianRupee,  iconClass: 'bg-success/10 text-success' },
         ].map(k => {
           const Icon = k.icon;
           return (
-            <div key={k.label} className="mgr-kpi-card">
-              <div className="mgr-kpi-top-row">
-                <div className={`mgr-kpi-icon ${k.iconClass}`}><Icon size={18} /></div>
+            <div key={k.label} className="bg-bg-card border border-border rounded-xl p-5 shadow-sm flex flex-col justify-between">
+              <div className="flex items-center justify-between mb-4">
+                <div className={`w-10 h-10 rounded-lg flex items-center justify-center shrink-0 ${k.iconClass}`}><Icon size={18} /></div>
               </div>
               <div>
-                <p className="mgr-kpi-label">{k.label}</p>
-                <p className="mgr-kpi-value">{k.value}</p>
+                <p className="text-[13px] font-semibold text-text-secondary mb-1">{k.label}</p>
+                <p className="text-2xl font-bold text-text-primary tracking-tight">{k.value}</p>
               </div>
             </div>
           );
@@ -82,9 +82,9 @@ export function ManagerStudentsReferralsClient() {
             <Search size={14} className="w-full bg-bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent-icon" />
             <input type="text" placeholder="Search by student name…" className="w-full bg-bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent w-full bg-bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent-with-icon" />
           </div>
-          <button className="bg-transparent border border-border text-text-primary rounded-lg px-5 py-2.5 text-sm font-medium hover:bg-primary-subtle hover:border-primary transition-colors inline-flex items-center gap-2 mgr-btn-sm"><Filter size={14} /> Filters</button>
+          <button className="bg-transparent border border-border text-text-primary rounded-lg h-8 px-3 text-xs font-medium hover:bg-primary-subtle hover:border-primary transition-colors inline-flex items-center gap-2"><Filter size={14} /> Filters</button>
         </div>
-        <div className="mgr-table-wrapper" style={{ height: 400 }}>
+        <div className="w-full overflow-hidden flex flex-col" style={{ height: 400 }}>
           <AgGridReact
             theme={gridTheme}
             rowData={rowData}
