@@ -136,3 +136,5 @@ export type SuperadminFinanceInvoiceFilterStatus = 'all' | 'paid' | 'pending' | 
 export type SuperadminFinanceAutoSuspendConfig = { daysBeforeSuspend: number; currentlySuspended: number; autoRestoredThisMonth: number; manualRestores: number };
 
 export type SuperadminFinanceSuspendedStudent = { id: number; studentId: number; studentName: string; smartId: string; seat: string; shift: string; daysOverdue: number; suspendedSince: string };
+
+export type SuperadminFinanceDialogState = { id: number; name: string };

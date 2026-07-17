@@ -1,18 +1,12 @@
 // RESPONSIBILITY: Renders the AutoSuspendClient component.
 'use client';
 
-/* eslint-disable @typescript-eslint/no-explicit-any */
-
-
 import { useState, useEffect } from 'react';
-
 import toast from 'react-hot-toast';
 import { Settings, Ban, RotateCcw, Bell, Save, UserCheck, ShieldAlert } from 'lucide-react';
 
-import type { SuperadminFinanceAutoSuspendConfig, SuperadminFinanceSuspendedStudent } from '@/app/superadmin/superadmin_finance/superadmin_finance_types/SuperadminFinanceTypes';
-
+import type { SuperadminFinanceAutoSuspendConfig, SuperadminFinanceSuspendedStudent, SuperadminFinanceDialogState } from '@/app/superadmin/superadmin_finance/superadmin_finance_types/SuperadminFinanceTypes';
 import { SUPERADMIN_FINANCE_MOCK_CONFIG_AUTO_SUSPEND, SUPERADMIN_FINANCE_MOCK_SUSPENDED_STUDENTS } from '@/app/superadmin/superadmin_finance/superadmin_finance_constants/SuperadminFinanceConstants';
-
 
 export function AutoSuspendClient() {
   const [config, setConfig] = useState<SuperadminFinanceAutoSuspendConfig | null>(null);
@@ -22,7 +16,7 @@ export function AutoSuspendClient() {
   const [editing, setEditing] = useState(false);
   const [days, setDays] = useState('');
   const [updatePending, setUpdatePending] = useState(false);
-  const [restoreDialog, setRestoreDialog] = useState<{ id: number; name: string } | null>(null);
+  const [restoreDialog, setRestoreDialog] = useState<SuperadminFinanceDialogState | null>(null);
   const [restoreReason, setRestoreReason] = useState('');
   const [restorePending, setRestorePending] = useState(false);
 
@@ -99,7 +93,7 @@ export function AutoSuspendClient() {
           <div className="space-y-4">
             <div>
               <label className="fin-label">Days before auto-suspend</label>
-              <input type="number" className="fin-input" value={days} onChange={( e: any ) => setDays(e.target.value)} />
+              <input type="number" className="fin-input" value={days} onChange={( e: React.ChangeEvent<HTMLInputElement> ) => setDays(e.target.value)} />
               <p className="fin-input-hint">Students overdue beyond this period are automatically suspended.</p>
             </div>
             <div className="flex gap-2">
@@ -201,7 +195,7 @@ export function AutoSuspendClient() {
             <p className="fin-dialog-helper">Manually restore access for {restoreDialog.name}?</p>
             <div className="mt-2">
               <label className="fin-label">Override reason <span className="fin-text-danger">*</span></label>
-              <input className="fin-input mt-1" value={restoreReason} onChange={( e: any ) => setRestoreReason(e.target.value)} placeholder="Enter reason..." />
+              <input className="fin-input mt-1" value={restoreReason} onChange={( e: React.ChangeEvent<HTMLInputElement> ) => setRestoreReason(e.target.value)} placeholder="Enter reason..." />
             </div>
             <div className="fin-dialog__footer">
               <button className="fin-badge fin-badge--neutral cursor-pointer" onClick={() => setRestoreDialog(null)}>Cancel</button>
