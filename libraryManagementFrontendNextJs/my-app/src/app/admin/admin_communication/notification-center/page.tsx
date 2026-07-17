@@ -5,6 +5,10 @@
 import { useState } from 'react';
 import { ChevronRight, ArrowRight, CheckCheck } from 'lucide-react';
 import { ADMIN_COMMUNICATION_MOCK_NOTIFICATIONS, ADMIN_COMMUNICATION_NOTIFICATION_CATS } from '@/app/admin/admin_communication/admin_communication_constants/AdminCommunicationConstants';
+import { Card } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
+import Link from 'next/link';
 
 type Category = 'All' | 'Finance' | 'CRM' | 'Operations' | 'Attendance' | 'High Only';
 
@@ -14,11 +18,9 @@ interface Notification {
   time: string; priority: 'High' | 'Medium'; link: string; read: boolean;
 }
 
-
-
 const ICON_CLS: Record<string, string> = {
-  Finance: 'eng-notif-icon--finance', CRM: 'eng-notif-icon--crm',
-  Operations: 'eng-notif-icon--ops',  Attendance: 'eng-notif-icon--attend',
+  Finance: 'bg-success/10 text-success', CRM: 'bg-primary/10 text-primary',
+  Operations: 'bg-info/10 text-info',  Attendance: 'bg-warning/10 text-warning',
 };
 
 export default function NotificationCenterPage() {
@@ -35,67 +37,72 @@ export default function NotificationCenterPage() {
   const markAllRead = () => setNotifs(prev => prev.map(n => ({ ...n, read: true })));
 
   return (
-    <div className="eng-page">
-      <div className="mb-8">
-        <div className="eng-breadcrumb">
-          <span>Communication</span><ChevronRight size={12} /><span>Notification Center</span>
+    <div className="space-y-6 pb-10">
+      {/* Header */}
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b pb-4">
+        <div>
+          <p className="text-xs font-semibold text-muted-foreground flex items-center gap-1 uppercase tracking-wider mb-1">
+            Communication <ChevronRight size={12} /> Notification Center
+          </p>
+          <h1 className="text-2xl font-bold tracking-tight">🔔 Notification Center</h1>
+          <p className="text-sm text-muted-foreground mt-1">{unread} unread notifications requiring your attention.</p>
         </div>
-        <div className="flex items-center justify-between">
-          <div>
-            <h1 className="eng-page-title">🔔 Notification Center</h1>
-            <p className="eng-page-subtitle">{unread} unread notifications requiring your attention.</p>
-          </div>
-          <button onClick={markAllRead} className="eng-btn-ghost" disabled={unread === 0}>
-            <CheckCheck size={16} /> Mark All Read
-          </button>
-        </div>
+        <Button variant="outline" onClick={markAllRead} disabled={unread === 0} className="gap-2">
+          <CheckCheck size={16} /> Mark All Read
+        </Button>
       </div>
 
       <div className="flex flex-col gap-6">
         {/* Top Filter Bar */}
-        <div className="eng-notif-topbar flex flex-wrap gap-3">
+        <div className="flex flex-wrap gap-3">
           {ADMIN_COMMUNICATION_NOTIFICATION_CATS.map(c => (
-            <button key={c.id} onClick={() => setCat(c.id)}
-              className={`eng-notif-cat${cat === c.id ? ' eng-notif-cat--active' : ''}`}
-              style={{ width: 'auto', padding: '8px 16px', borderRadius: '30px' }}>
+            <Button
+              key={c.id}
+              variant={cat === c.id ? 'default' : 'outline'}
+              className="rounded-full gap-2 px-4"
+              onClick={() => setCat(c.id as Category)}
+            >
               <span>{c.icon}</span><span>{c.label}</span>
-            </button>
+            </Button>
           ))}
         </div>
 
         {/* Notifications List */}
-        <div className="eng-card eng-card--flush">
+        <Card className="shadow-sm border-border overflow-hidden">
           {filtered.length === 0 ? (
-            <div className="eng-empty">
-              <div className="eng-empty__icon">🔔</div>
-              <p className="eng-empty__title">All caught up! No pending notifications.</p>
+            <div className="flex flex-col items-center justify-center p-12 text-center text-muted-foreground">
+              <div className="text-4xl mb-4">🔔</div>
+              <p className="font-medium text-foreground">All caught up! No pending notifications.</p>
             </div>
           ) : (
-            filtered.map(n => (
-              <div key={n.id} className={`eng-notif-item${n.read ? ' eng-notif-read' : ''}`}>
-                <div className={`eng-notif-icon ${ICON_CLS[n.category]}`}>{n.icon}</div>
-                <div className="eng-flex-1">
-                  <div className="flex items-center gap-2 mb-1">
-                    <p className="eng-notif-title">{n.title}</p>
-                    <span className={`eng-badge ${n.priority === 'High' ? 'eng-badge--danger' : 'eng-badge--warning'}`}>
-                      {n.priority === 'High' ? '🔴 High' : '🟡 Medium'}
-                    </span>
-                    {!n.read && <span className="eng-badge eng-badge--primary">New</span>}
+            <div className="divide-y divide-border">
+              {filtered.map(n => (
+                <div key={n.id} className={`p-4 flex flex-col md:flex-row gap-4 transition-colors ${n.read ? 'bg-background hover:bg-muted/30' : 'bg-muted/10 hover:bg-muted/20'}`}>
+                  <div className={`w-12 h-12 rounded-full flex items-center justify-center text-xl shrink-0 ${ICON_CLS[n.category] || 'bg-muted text-muted-foreground'}`}>
+                    {n.icon}
                   </div>
-                  <p className="eng-notif-desc">{n.description}</p>
+                  <div className="flex-1 min-w-0">
+                    <div className="flex flex-wrap items-center gap-2 mb-1">
+                      <p className={`font-bold truncate ${n.read ? 'text-muted-foreground' : 'text-foreground'}`}>{n.title}</p>
+                      <Badge variant="secondary" className={`${n.priority === 'High' ? 'bg-danger/10 text-danger hover:bg-danger/20' : 'bg-warning/10 text-warning hover:bg-warning/20'} border-none font-bold tracking-wide`}>
+                        {n.priority === 'High' ? '🔴 High' : '🟡 Medium'}
+                      </Badge>
+                      {!n.read && <Badge className="bg-primary hover:bg-primary/90 text-primary-foreground border-none font-bold tracking-wide">New</Badge>}
+                    </div>
+                    <p className={`text-sm ${n.read ? 'text-muted-foreground/80' : 'text-muted-foreground'}`}>{n.description}</p>
+                  </div>
+                  <div className="flex md:flex-col items-center md:items-end justify-between md:justify-center gap-2 shrink-0 md:min-w-[120px]">
+                    <span className="text-xs font-semibold text-muted-foreground">{n.time}</span>
+                    <Link href={n.link} className="text-xs font-semibold text-info hover:text-info/80 flex items-center gap-1 group">
+                      Go to page <ArrowRight size={12} className="group-hover:translate-x-1 transition-transform" />
+                    </Link>
+                  </div>
                 </div>
-                <div className="eng-notif-meta">
-                  <span className="eng-notif-time">{n.time}</span>
-                  <a href={n.link} className="eng-notif-link">
-                    Go to page <ArrowRight size={12} />
-                  </a>
-                </div>
-              </div>
-            ))
+              ))}
+            </div>
           )}
-        </div>
+        </Card>
       </div>
     </div>
   );
 }
-
