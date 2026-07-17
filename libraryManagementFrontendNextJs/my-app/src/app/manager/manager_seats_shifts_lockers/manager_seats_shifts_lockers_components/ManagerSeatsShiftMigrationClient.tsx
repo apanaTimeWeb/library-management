@@ -2,20 +2,14 @@
 'use client';
 import { useState } from 'react';
 import { Allocation, ActivityItem, Locker, SeatHistoryEntry, LogEntry, Seat, ManagerSeatsSeatMatrixModalProps, ShiftData, Shift, Student } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_types/ManagerSeatsTypes';
-import { ACTIVITY_DATA, INITIAL_LOCKERS, INITIAL_SEATS, SHIFTS_DATA, INITIAL_SHIFTS, STUDENTS_DATA_DATA } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_constants/ManagerSeatsConstants';
-import { Allocation, ActivityItem, Locker, SeatHistoryEntry, LogEntry, Seat, ManagerSeatsSeatMatrixModalProps, ShiftData, Shift, Student } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_types/ManagerSeatsTypes';
-import { ACTIVITY_DATA, INITIAL_LOCKERS, INITIAL_SEATS, SHIFTS_DATA, INITIAL_SHIFTS, STUDENTS_DATA_DATA } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_constants/ManagerSeatsConstants';
+import { ACTIVITY_DATA, INITIAL_LOCKERS, INITIAL_SEATS, SHIFTS_DATA, INITIAL_SHIFTS, STUDENTS_DATA } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_constants/ManagerSeatsConstants';
+import toast from 'react-hot-toast';
 import { ArrowLeft, Search, ChevronDown, CreditCard, QrCode, Banknote, CheckCircle, Clock } from 'lucide-react';
 import { ManagerSearchableDropdown } from '@/app/manager/manager_shared_components/ManagerSearchableDropdown';
-import { Allocation, ActivityItem, Locker, SeatHistoryEntry, LogEntry, Seat, ManagerSeatsSeatMatrixModalProps, ShiftData, Shift, Student } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_types/ManagerSeatsTypes';
-import { ACTIVITY_DATA, INITIAL_LOCKERS, INITIAL_SEATS, SHIFTS_DATA, INITIAL_SHIFTS, STUDENTS_DATA_DATA } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_constants/ManagerSeatsConstants';
-import toast from 'react-hot-toast';
-import { Allocation, ActivityItem, Locker, SeatHistoryEntry, LogEntry, Seat, ManagerSeatsSeatMatrixModalProps, ShiftData, Shift, Student } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_types/ManagerSeatsTypes';
-import { ACTIVITY_DATA, INITIAL_LOCKERS, INITIAL_SEATS, SHIFTS_DATA, INITIAL_SHIFTS, STUDENTS_DATA_DATA } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_constants/ManagerSeatsConstants';
 
 // Student type centralized.
 
-// STUDENTS_DATA_DATA centralized.
+// STUDENTS_DATA centralized.
 
 const SHIFTS = [
   { name: 'Morning',   seats: 4, rate: 33 },
@@ -45,12 +39,12 @@ export function ManagerSeatsShiftMigrationClient() {
   const [remark, setRemark]                     = useState('');
   const [showConfirm, setShowConfirm]           = useState(false);
 
-  const filteredStudents = STUDENTS_DATA.filter(s =>
+  const filteredStudents = STUDENTS_DATA.filter((s: Student) =>
     s.name.toLowerCase().includes(search.toLowerCase()) ||
-    s.smartId.toLowerCase().includes(search.toLowerCase())
+    (s.smartId?.toLowerCase() || "").includes(search.toLowerCase())
   );
 
-  const daysLeft       = selectedStudent ? daysRemaining(selectedStudent.validTill) : 0;
+  const daysLeft       = selectedStudent ? daysRemaining(selectedStudent.validTill || "") : 0;
   const selectedShiftData = SHIFTS.find(s => s.name === newShift);
   const newRate        = selectedShiftData?.rate ?? 0;
   const oldRate        = selectedStudent?.dailyRate ?? 0;
@@ -117,14 +111,14 @@ export function ManagerSeatsShiftMigrationClient() {
                   <div className="ss-search-results">
                     {filteredStudents.length === 0 ? (
                       <p className="ss-text-secondary ss-text-caption">No students found.</p>
-                    ) : filteredStudents.map(s => (
+                    ) : filteredStudents.map((s: Student) => (
                       <button
                         key={s.id}
                         className={`ss-search-result-item${selectedStudent?.id === s.id ? ' ss-search-result-item--active' : ''}`}
                         onClick={() => {
                           setSelectedStudent(s);
                           setNewShift(s.currentShift);
-                          setNewSeat(s.currentSeat);
+                          setNewSeat(s.currentSeat || "");
                         }}
                       >
                         <p className="ss-cell-name">{s.name}</p>
@@ -358,6 +352,8 @@ export function ManagerSeatsShiftMigrationClient() {
     </>
   );
 }
+
+
 
 
 

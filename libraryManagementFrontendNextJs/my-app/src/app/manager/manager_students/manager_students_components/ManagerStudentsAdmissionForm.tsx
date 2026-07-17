@@ -14,6 +14,7 @@ import {
 } from 'lucide-react';
 import ManagerStudentsAdmissionSuccessModal from '@/app/manager/manager_students/manager_students_components/ManagerStudentsAdmissionSuccessModal';
 import { useManagerStudentsAdmissionForm } from '@/app/manager/manager_students/manager_students_hooks/useManagerStudentsAdmissionForm';
+import { PLANS, SHIFTS, SEATS } from '@/app/manager/manager_students/manager_students_constants';
 
 export default function ManagerStudentsAdmissionForm() {
   const {
@@ -76,7 +77,7 @@ export default function ManagerStudentsAdmissionForm() {
           </div>
         </div>
 
-        <form onSubmit={handleSubmit(onSubmit)} noValidate>
+        <form onSubmit={handleSubmit} noValidate>
           <div className="mgr-admission-layout">
 
             {/* ── LEFT: Form Sections ── */}
@@ -178,7 +179,7 @@ export default function ManagerStudentsAdmissionForm() {
                           {...register('shift')}
                           className={`mgr-select w-full bg-bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent-with-icon${errors.shift ? ' w-full bg-bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent-error' : ''}`}
                         >
-                          {SHIFTS.map(s => <option key={s} value={s}>{s}</option>)}
+                          {SHIFTS.map((s: any) => <option key={s} value={s}>{s}</option>)}
                         </select>
                       </div>
                       {errors.shift && <p className="mgr-error">{errors.shift.message}</p>}
@@ -190,7 +191,7 @@ export default function ManagerStudentsAdmissionForm() {
                         {...register('seat')}
                         className={`mgr-select${errors.seat ? ' w-full bg-bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent-error' : ''}`}
                       >
-                        {SEATS.map(s => <option key={s} value={s}>{s}</option>)}
+                        {SEATS.map((s: any) => <option key={s} value={s}>{s}</option>)}
                       </select>
                       {errors.seat && <p className="mgr-error">{errors.seat.message}</p>}
                     </div>
@@ -219,11 +220,11 @@ export default function ManagerStudentsAdmissionForm() {
                           className="mgr-select w-full bg-bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent-with-icon"
                           onChange={e => {
                             setValue('plan', e.target.value);
-                            const p = PLANS.find(p => p.value === e.target.value);
+                            const p = PLANS.find((p: any) => p.value === e.target.value);
                             if (p) setValue('amountPaid', String(p.amount - discount));
                           }}
                         >
-                          {PLANS.map(p => <option key={p.value} value={p.value}>{p.label}</option>)}
+                          {PLANS.map((p: any) => <option key={p.value} value={p.value}>{p.label}</option>)}
                         </select>
                       </div>
                     </div>
@@ -370,5 +371,6 @@ export default function ManagerStudentsAdmissionForm() {
     </>
   );
 }
+
 
 

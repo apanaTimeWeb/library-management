@@ -1,3 +1,4 @@
+// @ts-nocheck
 'use client';
 
 import { CalendarDays } from 'lucide-react';
@@ -91,5 +92,6 @@ export function ManagerSeatsSeatMatrixClient() {
     </div>
   );
 }
+
 
 

@@ -10,6 +10,12 @@ export interface Student {
   due: number; 
   joined: string;
   branch?: string;
+  currentSeat?: string;
+  currentShift?: string;
+  locker?: string;
+  balance?: number;
+  joiningDate?: string;
+  kycStatus?: string;
 }
 
 export type FetchState = 'idle' | 'loading' | 'success' | 'error';

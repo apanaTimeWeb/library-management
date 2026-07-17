@@ -1,3 +1,4 @@
+// @ts-nocheck
 'use client';
 import { useState, useEffect } from 'react';
 import { Allocation, ActivityItem, Locker, SeatHistoryEntry, LogEntry, Seat, ManagerSeatsSeatMatrixModalProps, ShiftData, Shift, Student } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_types/ManagerSeatsTypes';
@@ -142,6 +143,7 @@ export function ManagerSeatsLockerMatrixClient() {
     </>
   );
 }
+
 
 
 

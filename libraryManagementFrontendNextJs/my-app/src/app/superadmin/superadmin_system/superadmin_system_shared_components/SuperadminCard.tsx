@@ -1,10 +1,10 @@
 'use client';
 import { cn } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/superadmin_utils';
 
-interface CardProps { children: React.ReactNode; className?: string; }
+interface CardProps extends React.HTMLAttributes<HTMLDivElement> { children: React.ReactNode; className?: string; }
 
-export function SuperadminCard({ children, className }: CardProps) {
-  return <div className={cn('sys-card', className)}>{children}</div>;
+export function SuperadminCard({ children, className, ...props }: CardProps) {
+  return <div className={cn('sys-card', className)} {...props}>{children}</div>;
 }
 
 export function CardHeader({ children, className }: CardProps) {

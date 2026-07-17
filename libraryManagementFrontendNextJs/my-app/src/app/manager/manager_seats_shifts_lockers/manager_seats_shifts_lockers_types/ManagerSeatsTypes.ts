@@ -38,4 +38,9 @@ export interface Shift {
 
 export interface Student {
   id: string; name: string; currentShift: string; targetShift: string; status: 'Pending' | 'Approved' | 'Conflict';
+  validTill?: string;
+  currentSeat?: string;
+  plan?: string;
+  smartId?: string;
+  dailyRate?: number;
 }

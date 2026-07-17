@@ -4,11 +4,7 @@ import { useState } from 'react';
 import { Allocation, ActivityItem, Locker, SeatHistoryEntry, LogEntry, Seat, ManagerSeatsSeatMatrixModalProps, ShiftData, Shift, Student } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_types/ManagerSeatsTypes';
 import { ACTIVITY_DATA, INITIAL_LOCKERS, INITIAL_SEATS, SHIFTS_DATA, INITIAL_SHIFTS, STUDENTS_DATA } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_constants/ManagerSeatsConstants';
 import { ChevronDown, Zap } from 'lucide-react';
-import { Allocation, ActivityItem, Locker, SeatHistoryEntry, LogEntry, Seat, ManagerSeatsSeatMatrixModalProps, ShiftData, Shift, Student } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_types/ManagerSeatsTypes';
-import { ACTIVITY_DATA, INITIAL_LOCKERS, INITIAL_SEATS, SHIFTS_DATA, INITIAL_SHIFTS, STUDENTS_DATA } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_constants/ManagerSeatsConstants';
 import toast from 'react-hot-toast';
-import { Allocation, ActivityItem, Locker, SeatHistoryEntry, LogEntry, Seat, ManagerSeatsSeatMatrixModalProps, ShiftData, Shift, Student } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_types/ManagerSeatsTypes';
-import { ACTIVITY_DATA, INITIAL_LOCKERS, INITIAL_SEATS, SHIFTS_DATA, INITIAL_SHIFTS, STUDENTS_DATA } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_constants/ManagerSeatsConstants';
 
 const DAY_START_H = 6;
 const DAY_END_H   = 23;
@@ -34,7 +30,7 @@ export function ManagerSeatsShiftGapClient() {
   const [shiftFilter, setShiftFilter] = useState('All');
   const [period, setPeriod]           = useState('Today');
 
-  const visible = shiftFilter === 'All' ? SHIFTS : SHIFTS.filter(s => s.name === shiftFilter);
+  const visible = shiftFilter === 'All' ? SHIFTS_DATA : SHIFTS_DATA.filter((s: any) => s.name === shiftFilter);
 
   return (
     <>
@@ -49,8 +45,8 @@ export function ManagerSeatsShiftGapClient() {
         <div className="ss-filter-bar">
           <div className="ss-filter-bar__select-wrap">
             <select className="ss-select" value={shiftFilter} onChange={e => setShiftFilter(e.target.value)}>
-              <option value="All">All Shifts</option>
-              {SHIFTS.map(s => <option key={s.id}>{s.name}</option>)}
+              <option value="All">All SHIFTS_DATA</option>
+              {SHIFTS_DATA.map((s: any) => <option key={s.id}>{s.name}</option>)}
             </select>
             <ChevronDown size={14} className="ss-select-icon" />
           </div>
@@ -62,7 +58,7 @@ export function ManagerSeatsShiftGapClient() {
           </div>
         </div>
 
-        {visible.map(shift => {
+        {visible.map((shift: any) => {
           const utilPct = Math.round((shift.occupied / shift.capacity) * 100);
           return (
             <div key={shift.id} className="ss-gap-card">
@@ -82,7 +78,7 @@ export function ManagerSeatsShiftGapClient() {
 
               <div className="ss-gap-card__body">
                 <div className="ss-timebar">
-                  {shift.booked.map((b, i) => (
+                  {shift.booked.map((b: any, i: number) => (
                     <div
                       key={i}
                       className="ss-timebar__block ss-timebar__block--booked"
@@ -92,7 +88,7 @@ export function ManagerSeatsShiftGapClient() {
                       {b.label}
                     </div>
                   ))}
-                  {shift.gaps.map((g, i) => (
+                  {shift.gaps.map((g: any, i: number) => (
                     <div
                       key={i}
                       className="ss-timebar__block ss-timebar__block--gap"
@@ -114,7 +110,7 @@ export function ManagerSeatsShiftGapClient() {
                   <p className="ss-text-secondary ss-text-caption">No gaps detected — fully utilized.</p>
                 ) : (
                   <div className="ss-gap-list">
-                    {shift.gaps.map((g, i) => (
+                    {shift.gaps.map((g: any, i: number) => (
                       <div key={i} className="ss-gap-row">
                         <div className="ss-gap-row__left">
                           <span className="ss-badge ss-badge--warning">🕳️ Gap</span>
@@ -141,6 +137,11 @@ export function ManagerSeatsShiftGapClient() {
     </>
   );
 }
+
+
+
+
+
 
 
 
