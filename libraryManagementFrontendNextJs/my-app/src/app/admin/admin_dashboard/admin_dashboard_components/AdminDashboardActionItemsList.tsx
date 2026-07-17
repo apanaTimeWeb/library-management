@@ -1,14 +1,7 @@
 // RESPONSIBILITY: Renders the AdminDashboardActionItemsList component.
 import Link from 'next/link';
-import { ChevronRight, type LucideIcon } from 'lucide-react';
-
-export interface AdminDashboardActionItem {
-  icon: LucideIcon;
-  label: string;
-  count: number;
-  type: 'danger' | 'warning';
-  href: string;
-}
+import { ChevronRight } from 'lucide-react';
+import type { AdminDashboardActionItem } from '@/app/admin/admin_dashboard/admin_dashboard_types/admin_dashboard_types';
 
 export function AdminDashboardActionItemsList({ items }: { items: AdminDashboardActionItem[] }) {
   return (
@@ -22,8 +15,8 @@ export function AdminDashboardActionItemsList({ items }: { items: AdminDashboard
             href={item.href}
             className={`flex items-center justify-between p-3 rounded-lg border transition-colors ${
               isDanger 
-                ? 'bg-danger/10 border-danger/20 hover:bg-danger/15' 
-                : 'bg-warning/10 border-warning/20 hover:bg-warning/15'
+                ? 'bg-danger-bg border-danger/20 hover:bg-danger/15' 
+                : 'bg-warning-bg border-warning/20 hover:bg-warning/15'
             }`}
           >
             <div className="flex items-center gap-3">
@@ -31,14 +24,14 @@ export function AdminDashboardActionItemsList({ items }: { items: AdminDashboard
                 size={16}
                 className={isDanger ? 'text-danger' : 'text-warning'}
               />
-              <span className="text-sm font-medium text-primary">
+              <span className="text-sm font-medium text-text-primary">
                 <span className={`font-bold mr-1 ${isDanger ? 'text-danger' : 'text-warning'}`}>
                   {item.count}
                 </span>{' '}
                 {item.label}
               </span>
             </div>
-            <ChevronRight size={14} className="text-muted-foreground" />
+            <ChevronRight size={14} className="text-text-secondary" />
           </Link>
         );
       })}

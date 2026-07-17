@@ -6,39 +6,13 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { AdminDashboardSeatCell } from '@/app/admin/admin_dashboard/admin_dashboard_components/AdminDashboardSeatCell';
-
-export interface AdminDashboardSeatData {
-  id: string;
-  shift: string;
-  status: 'free' | 'occupied' | 'expiring' | 'maintenance';
-  fee: 'Paid' | 'Due';
-  occupant?: string;
-  expiry?: string;
-  studentId?: string;
-}
-
-interface Props {
-  seats: AdminDashboardSeatData[];
-  shifts: string[];
-  state: {
-    activeShift: string;
-    setActiveShift: (val: string) => void;
-    feeFilter: string;
-    setFeeFilter: (val: string) => void;
-    appliedFee: string;
-    appliedShift: string;
-    setAppliedShift: (val: string) => void;
-    handleSeatClick: (seat: AdminDashboardSeatData) => void;
-    handleApplyFilters: () => void;
-    handleClearFilters: () => void;
-  };
-}
+import type { AdminDashboardSeatMatrixProps as Props } from '@/app/admin/admin_dashboard/admin_dashboard_types/admin_dashboard_types';
 
 const LEGEND = [
-  { label: 'Free',          cls: 'bg-success/10 text-success' },
-  { label: 'Occupied',      cls: 'bg-info/10 text-info' },
-  { label: 'Expiring ≤7d',  cls: 'bg-warning/10 text-warning' },
-  { label: 'Maintenance',   cls: 'bg-muted text-muted-foreground' },
+  { label: 'Free',          cls: 'bg-success-bg text-success' },
+  { label: 'Occupied',      cls: 'bg-info-bg text-info' },
+  { label: 'Expiring ≤7d',  cls: 'bg-warning-bg text-warning' },
+  { label: 'Maintenance',   cls: 'bg-bg-page text-text-secondary' },
 ];
 
 export function AdminDashboardSeatMatrixGrid({ seats, shifts, state }: Props) {
@@ -69,26 +43,26 @@ export function AdminDashboardSeatMatrixGrid({ seats, shifts, state }: Props) {
   };
 
   return (
-    <Card className="flex flex-col overflow-hidden h-full border-border bg-card shadow-none">
-      <CardHeader className="pb-3 border-b">
+    <Card className="flex flex-col overflow-hidden h-full border-border bg-bg-card shadow-none">
+      <CardHeader className="pb-3 border-b border-border">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div>
-            <CardTitle className="text-base">Seat Matrix</CardTitle>
-            <CardDescription className="text-xs mt-1">
+            <CardTitle className="text-base text-text-primary">Seat Matrix</CardTitle>
+            <CardDescription className="text-xs mt-1 text-text-secondary">
               {counts.occupied + counts.expiring} occupied · {counts.free} free
               · {counts.expiring} expiring · {counts.maintenance} maintenance
             </CardDescription>
           </div>
 
-          <div className="flex bg-muted/50 p-1 rounded-md overflow-x-auto max-w-full no-scrollbar">
+          <div className="flex bg-bg-input/50 p-1 rounded-md overflow-x-auto max-w-full no-scrollbar">
             {allTabs.map(tab => (
               <button
                 key={tab}
                 onClick={() => setActiveShift(tab)}
                 className={`px-3 py-1.5 text-xs font-medium rounded-sm whitespace-nowrap transition-colors ${
                   activeShift === tab 
-                    ? 'bg-background text-foreground shadow-sm' 
-                    : 'text-muted-foreground hover:text-foreground'
+                    ? 'bg-bg-page text-text-primary shadow-sm' 
+                    : 'text-text-secondary hover:text-text-primary'
                 }`}
               >
                 {tab}
@@ -98,10 +72,10 @@ export function AdminDashboardSeatMatrixGrid({ seats, shifts, state }: Props) {
         </div>
       </CardHeader>
 
-      <CardContent className="flex-1 p-4 overflow-y-auto bg-muted/10 min-h-72">
+      <CardContent className="flex-1 p-4 overflow-y-auto bg-bg-page min-h-72">
         {filtered.length === 0 ? (
           <div className="flex items-center justify-center h-full min-h-48">
-            <p className="text-muted-foreground text-sm font-medium">
+            <p className="text-text-secondary text-sm font-medium">
               No seats match the selected filters.
             </p>
           </div>
@@ -122,8 +96,8 @@ export function AdminDashboardSeatMatrixGrid({ seats, shifts, state }: Props) {
         )}
       </CardContent>
 
-      <div className="flex flex-wrap items-center gap-3 px-4 py-3 bg-muted/30 border-t">
-        <span className="text-xs font-semibold text-muted-foreground mr-1">Legend:</span>
+      <div className="flex flex-wrap items-center gap-3 px-4 py-3 bg-bg-page border-t border-border">
+        <span className="text-xs font-semibold text-text-secondary mr-1">Legend:</span>
         {LEGEND.map(l => (
           <Badge key={l.label} variant="secondary" className={`${l.cls} border-none`}>
             {l.label}
@@ -131,36 +105,36 @@ export function AdminDashboardSeatMatrixGrid({ seats, shifts, state }: Props) {
         ))}
       </div>
 
-      <CardFooter className="flex flex-wrap items-center gap-3 py-3 px-4 bg-muted/10 border-t">
-        <span className="text-xs font-semibold text-muted-foreground">Filter:</span>
+      <CardFooter className="flex flex-wrap items-center gap-3 py-3 px-4 bg-bg-page border-t border-border">
+        <span className="text-xs font-semibold text-text-secondary">Filter:</span>
 
         <Select value={appliedShift} onValueChange={setAppliedShift}>
-          <SelectTrigger className="w-36 h-8 text-xs">
+          <SelectTrigger className="w-36 h-8 text-xs border-border bg-bg-input text-text-primary">
             <SelectValue placeholder="All Shifts" />
           </SelectTrigger>
-          <SelectContent>
+          <SelectContent className="bg-bg-card border-border text-text-primary">
             <SelectItem value="All">All Shifts</SelectItem>
             {shifts.map(s => <SelectItem key={s} value={s}>{s}</SelectItem>)}
           </SelectContent>
         </Select>
 
         <Select value={feeFilter} onValueChange={setFeeFilter}>
-          <SelectTrigger className="w-36 h-8 text-xs">
+          <SelectTrigger className="w-36 h-8 text-xs border-border bg-bg-input text-text-primary">
             <SelectValue placeholder="All Fee Status" />
           </SelectTrigger>
-          <SelectContent>
+          <SelectContent className="bg-bg-card border-border text-text-primary">
             <SelectItem value="All">All Fee Status</SelectItem>
             <SelectItem value="Due">Due</SelectItem>
             <SelectItem value="Paid">Paid</SelectItem>
           </SelectContent>
         </Select>
 
-        <Button onClick={handleApplyFilters} size="sm" variant="default" className="h-8 text-xs">
+        <Button onClick={handleApplyFilters} size="sm" variant="default" className="h-8 text-xs bg-primary text-white hover:bg-primary-hover">
           Apply Filter
         </Button>
 
         {(appliedFee !== 'All' || appliedShift !== 'All') && (
-          <Button onClick={handleClearFilters} size="sm" variant="ghost" className="h-8 text-xs text-muted-foreground">
+          <Button onClick={handleClearFilters} size="sm" variant="ghost" className="h-8 text-xs text-text-secondary hover:text-text-primary">
             Clear
           </Button>
         )}

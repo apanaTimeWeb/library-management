@@ -7,17 +7,9 @@ import { ExternalLink } from 'lucide-react';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { ADMIN_ROUTES } from '@/app/admin/admin_url_config';
+import type { AdminDashboardPaymentData } from '@/app/admin/admin_dashboard/admin_dashboard_types/admin_dashboard_types';
 
-export interface AdminDashboardPayment {
-  name: string;
-  initials: string;
-  amount: string;
-  mode: 'UPI' | 'Cash' | 'Card' | 'Bank Transfer';
-  timeAgo: string;
-  studentId?: string;
-}
-
-export function AdminDashboardRecentPaymentsFeed({ payments }: { payments: AdminDashboardPayment[] }) {
+export function AdminDashboardRecentPaymentsFeed({ payments }: { payments: AdminDashboardPaymentData[] }) {
   const router = useRouter();
 
   const handleRowClick = (studentId?: string) => {
@@ -27,19 +19,19 @@ export function AdminDashboardRecentPaymentsFeed({ payments }: { payments: Admin
   };
 
   const getModeBadgeClass = (mode: string) => {
-    if (mode === 'UPI') return 'bg-info/10 text-info';
-    if (mode === 'Cash') return 'bg-success/10 text-success';
-    if (mode === 'Card') return 'bg-primary/10 text-primary';
-    if (mode === 'Bank Transfer') return 'bg-warning/10 text-warning';
-    return 'bg-muted text-muted-foreground';
+    if (mode === 'UPI') return 'bg-info-bg text-info';
+    if (mode === 'Cash') return 'bg-success-bg text-success';
+    if (mode === 'Card') return 'bg-primary-subtle text-primary';
+    if (mode === 'Bank Transfer') return 'bg-warning-bg text-warning';
+    return 'bg-bg-input text-text-secondary';
   };
 
   return (
-    <Card className="overflow-hidden border-border bg-card shadow-none flex flex-col h-full">
+    <Card className="overflow-hidden border-border bg-bg-card shadow-none flex flex-col h-full">
       <CardHeader className="pb-4 flex flex-row items-center justify-between space-y-0">
         <div>
-          <CardTitle className="text-base">Recent Payments</CardTitle>
-          <CardDescription className="text-xs mt-1">
+          <CardTitle className="text-base text-text-primary">Recent Payments</CardTitle>
+          <CardDescription className="text-xs mt-1 text-text-secondary">
             Last {payments.length} transactions today — click row to view student
           </CardDescription>
         </div>
@@ -54,7 +46,7 @@ export function AdminDashboardRecentPaymentsFeed({ payments }: { payments: Admin
       <CardContent className="p-0 flex-1">
         <div className="w-full overflow-x-auto">
           <table className="w-full text-sm text-left">
-            <thead className="bg-muted/30 border-y text-muted-foreground text-xs font-medium uppercase tracking-wider">
+            <thead className="bg-bg-page border-y border-border text-text-secondary text-xs font-medium uppercase tracking-wider">
               <tr>
                 <th className="px-4 py-3">Student Name</th>
                 <th className="px-4 py-3">Amount</th>
@@ -66,33 +58,33 @@ export function AdminDashboardRecentPaymentsFeed({ payments }: { payments: Admin
               {payments.map((payment, i) => (
                 <tr 
                   key={i} 
-                  onClick={() => handleRowClick(payment.studentId)}
-                  className="hover:bg-muted/10 transition-colors cursor-pointer group"
+                  onClick={() => handleRowClick(payment.id)}
+                  className="hover:bg-bg-page transition-colors cursor-pointer group"
                 >
                   <td className="px-4 py-3">
                     <div className="flex items-center gap-3">
                       <div className="flex items-center justify-center h-8 w-8 rounded-full bg-primary text-white text-xs font-bold shadow-sm">
-                        {payment.initials}
+                        {payment.studentName.charAt(0)}
                       </div>
-                      <span className="font-semibold text-sm text-primary group-hover:text-primary transition-colors">{payment.name}</span>
+                      <span className="font-semibold text-sm text-text-primary group-hover:text-primary transition-colors">{payment.studentName}</span>
                     </div>
                   </td>
-                  <td className="px-4 py-3 font-bold text-sm text-primary">
-                    {payment.amount}
+                  <td className="px-4 py-3 font-bold text-sm text-text-primary">
+                    ₹{payment.amount}
                   </td>
                   <td className="px-4 py-3">
-                    <Badge variant="secondary" className={`${getModeBadgeClass(payment.mode)} text-xs uppercase font-bold tracking-wider rounded-md border-none`}>
-                      {payment.mode}
+                    <Badge variant="secondary" className={`${getModeBadgeClass('Cash')} text-xs uppercase font-bold tracking-wider rounded-md border-none`}>
+                      {payment.status}
                     </Badge>
                   </td>
-                  <td className="px-4 py-3 text-xs text-muted-foreground font-medium">
-                    {payment.timeAgo}
+                  <td className="px-4 py-3 text-xs text-text-secondary font-medium">
+                    {payment.date}
                   </td>
                 </tr>
               ))}
               {payments.length === 0 && (
                 <tr>
-                  <td colSpan={4} className="px-4 py-8 text-center text-muted-foreground">
+                  <td colSpan={4} className="px-4 py-8 text-center text-text-secondary">
                     No recent payments found.
                   </td>
                 </tr>

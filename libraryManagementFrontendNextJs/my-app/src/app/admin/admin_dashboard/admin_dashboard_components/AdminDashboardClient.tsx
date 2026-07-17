@@ -10,30 +10,31 @@ import { ADMIN_ROUTES } from '@/app/admin/admin_url_config';
 import { useAdminDashboard } from '@/app/admin/admin_dashboard/admin_dashboard_hooks/useAdminDashboard';
 import { AdminDashboardKpiCard } from '@/app/admin/admin_dashboard/admin_dashboard_components/AdminDashboardKpiCard';
 import { AdminDashboardSeatMatrixGrid } from '@/app/admin/admin_dashboard/admin_dashboard_components/AdminDashboardSeatMatrixGrid';
-import { AdminDashboardActionItemsList, type AdminDashboardActionItem } from '@/app/admin/admin_dashboard/admin_dashboard_components/AdminDashboardActionItemsList';
+import { AdminDashboardActionItemsList } from '@/app/admin/admin_dashboard/admin_dashboard_components/AdminDashboardActionItemsList';
 import { AdminDashboardRecentPaymentsFeed } from '@/app/admin/admin_dashboard/admin_dashboard_components/AdminDashboardRecentPaymentsFeed';
+import type { AdminDashboardData, AdminDashboardActionItem } from '@/app/admin/admin_dashboard/admin_dashboard_types/admin_dashboard_types';
 
-export function AdminDashboardClient({ initialData }: { initialData: Record<string, unknown> }) {
+export function AdminDashboardClient({ initialData }: { initialData: AdminDashboardData }) {
   const { data, seatMatrixState } = useAdminDashboard(initialData);
 
-  const actionItems: AdminDashboardActionItem[] = (data.actionItems as Record<string, unknown>[])?.map((a: Record<string, unknown>) => ({
+  const actionItems: AdminDashboardActionItem[] = data.actionItems?.map((a) => ({
     ...a,
     icon: ADMIN_ACTION_ICONS[a.label as keyof typeof ADMIN_ACTION_ICONS] ?? AlertCircle,
-    type: a.type as 'danger' | 'warning',
+    type: (a.type === 'danger' || a.type === 'warning') ? a.type : 'warning',
     href: a.href || '#',
   })) || [];
 
   return (
     <div className="space-y-6 pb-10">
       {/* Breadcrumb + Title */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b pb-4">
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-border pb-4">
         <div>
-          <p className="text-sm text-muted-foreground mb-1">Smart Library 360 › Admin › Dashboard</p>
-          <h1 className="text-2xl font-bold tracking-tight">Dashboard</h1>
-          <p className="text-sm text-muted-foreground mt-1">Welcome back — here's what's happening today.</p>
+          <p className="text-sm text-text-secondary mb-1">Smart Library 360 › Admin › Dashboard</p>
+          <h1 className="text-2xl font-bold tracking-tight text-text-primary">Dashboard</h1>
+          <p className="text-sm text-text-secondary mt-1">Welcome back — here's what's happening today.</p>
         </div>
         <Link href={ADMIN_ROUTES.REPORTS}>
-          <Button variant="outline" size="sm">
+          <Button variant="outline" size="sm" className="border-border text-text-primary">
             View Full Reports <ChevronRight size={14} className="ml-1" />
           </Button>
         </Link>
@@ -41,7 +42,7 @@ export function AdminDashboardClient({ initialData }: { initialData: Record<stri
 
       {/* Row 1: 4 KPI Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        {(data.kpiCards as Record<string, unknown>[]).map((card: Record<string, unknown>, i: number) => (
+        {data.kpiCards.map((card, i) => (
           <AdminDashboardKpiCard
             key={card.label}
             label={card.label}
@@ -59,18 +60,18 @@ export function AdminDashboardClient({ initialData }: { initialData: Record<stri
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
         <div className="lg:col-span-7 xl:col-span-8 flex flex-col h-full">
           <AdminDashboardSeatMatrixGrid 
-            seats={(data.seats as unknown[]) || []} 
-            shifts={(data.shifts as unknown[]) || []} 
+            seats={data.seats || []} 
+            shifts={data.shifts || []} 
             state={seatMatrixState}
           />
         </div>
 
         <div className="lg:col-span-5 xl:col-span-4 flex flex-col h-full">
-          <Card className="flex flex-col h-full border-border bg-card shadow-none">
-            <CardHeader className="pb-3 border-b">
-              <CardTitle className="text-base">Action Items</CardTitle>
-              <CardDescription className="text-xs">
-                {(data.actionItems as Record<string, unknown>[])?.reduce((s: number, a: Record<string, unknown>) => s + (a.count as number), 0) || 0} items need your attention
+          <Card className="flex flex-col h-full border-border bg-bg-card shadow-none">
+            <CardHeader className="pb-3 border-b border-border">
+              <CardTitle className="text-base text-text-primary">Action Items</CardTitle>
+              <CardDescription className="text-xs text-text-secondary">
+                {data.actionItems?.reduce((s, a) => s + (a.count || 0), 0) || 0} items need your attention
               </CardDescription>
             </CardHeader>
 
@@ -79,7 +80,7 @@ export function AdminDashboardClient({ initialData }: { initialData: Record<stri
             </CardContent>
 
             <div className="px-4 pb-3">
-              <div className="flex items-start gap-2 bg-info/10 border border-info/20 p-3 rounded-md">
+              <div className="flex items-start gap-2 bg-info-bg border border-info/20 p-3 rounded-md">
                 <span className="text-sm">💡</span>
                 <p className="text-xs text-info font-medium leading-relaxed">
                   5 students expire within 7 days. Consider sending renewal reminders via WhatsApp.
@@ -87,8 +88,8 @@ export function AdminDashboardClient({ initialData }: { initialData: Record<stri
               </div>
             </div>
 
-            <CardFooter className="pt-2 pb-4 border-t px-4">
-              <Button asChild variant="ghost" className="w-full text-xs text-muted-foreground hover:text-primary">
+            <CardFooter className="pt-2 pb-4 border-t border-border px-4">
+              <Button asChild variant="ghost" className="w-full text-xs text-text-secondary hover:text-primary">
                 <Link href={ADMIN_ROUTES.AUDIT_LOGS}>
                   View All Activities <ChevronRight size={13} className="ml-1" />
                 </Link>
@@ -99,7 +100,7 @@ export function AdminDashboardClient({ initialData }: { initialData: Record<stri
       </div>
 
       {/* Row 3: Recent Payments Table */}
-      <AdminDashboardRecentPaymentsFeed payments={(data.recentPayments as unknown[]) || []} />
+      <AdminDashboardRecentPaymentsFeed payments={data.recentPayments || []} />
     </div>
   );
 }
