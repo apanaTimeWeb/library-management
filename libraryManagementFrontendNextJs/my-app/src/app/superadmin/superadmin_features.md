@@ -13,6 +13,7 @@ The module is highly isolated and micro-modularized into feature-specific direct
 - **`superadmin_system/`**: Manages global tenants, platform-wide roles, and core settings. Maps to the backend `system/tenants` controllers.
 - **`superadmin_libraries/`**: Detailed management of individual library branches, their statuses, and operational limits.
 - **`superadmin_billing/` & `superadmin_finance/` & `superadmin_accounting/`**: Handles platform revenue, subscription plans, invoicing, and complex financial reporting.
+  - Sub-modules like `collect-fee`, `auto-suspend`, and `late-fees` are strictly split into Presentational Components, Custom Hooks for logic/state (e.g., `useCollectFeeClient.ts`), and Modals.
 - **`superadmin_subscriptions/`**: Manages the subscription tiers (Free, Pro, Enterprise) available to libraries.
 - **`superadmin_reports/`**: Generates cross-platform analytics and usage reports.
 - **`superadmin_support-tickets/` & `superadmin_communication/`**: Manages customer support interactions and broadcast messaging to tenants.
@@ -21,7 +22,8 @@ The module is highly isolated and micro-modularized into feature-specific direct
 - **`superadmin_shared_components/`**: Components shared exclusively across the `superadmin` module, such as `SuperadminErrorBoundary.tsx` and `SuperadminRoute.tsx`.
 
 ## 3. Key Design Patterns
-- **Strict Separation of Concerns**: UI components are dumb (`..._components`); hooks handle all logic (`..._hooks`).
+- **Strict Separation of Concerns**: UI components are dumb (`..._components`); hooks handle all logic (`..._hooks`). Forms use `react-hook-form` and `zod` for strictly typed validation.
 - **Absolute Imports Only**: All imports use `@/app/superadmin/...`. No relative paths are permitted.
 - **Uniform Error Handling**: Uses standard `ApiResponse` format `{ success, message, data, statusCode }` for API responses.
 - **Strict Naming Prefix**: Every file begins with `superadmin_` to avoid any ambiguity across the massive codebase.
+- **Standard Tailwind**: Components use standard Tailwind utility classes mapping to `global_design_system.md` variables (e.g., `bg-card`, `text-text-primary`). Legacy custom CSS classes like `fin-*` are strictly prohibited.

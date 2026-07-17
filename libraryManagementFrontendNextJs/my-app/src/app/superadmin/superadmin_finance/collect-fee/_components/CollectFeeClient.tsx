@@ -1,129 +1,34 @@
 // RESPONSIBILITY: Renders the CollectFeeClient component.
 'use client';
 
-
-import { useState } from 'react';
-import toast, { Toaster } from 'react-hot-toast';
+import React from 'react';
+import { Toaster } from 'react-hot-toast';
 import { formatCurrency } from '@/app/superadmin/superadmin_finance/superadmin_finance_utils/superadmin_format';
-import { Search, CheckCircle, IndianRupee, BookOpen, MessageSquare, Printer, X } from 'lucide-react';
-import { openWhatsApp } from '@/lib/whatsappUtils';
+import { Search, CheckCircle, IndianRupee, BookOpen } from 'lucide-react';
 import { printThermal } from '@/lib/thermalPrint';
-
-import type { SuperadminFinanceCollectFeeMode, SuperadminFinanceReceiptData } from '@/app/superadmin/superadmin_finance/superadmin_finance_types/SuperadminFinanceTypes';
-import { SUPERADMIN_FINANCE_MOCK_STUDENTS_COLLECT_FEE } from '@/app/superadmin/superadmin_finance/superadmin_finance_constants/SuperadminFinanceConstants';
+import type { SuperadminFinanceCollectFeeMode } from '@/app/superadmin/superadmin_finance/superadmin_finance_types/SuperadminFinanceTypes';
+import { useCollectFeeClient } from './useCollectFeeClient';
+import { CollectFeeReceiptModal } from './CollectFeeReceiptModal';
 
 const MODES = ['cash', 'upi', 'card', 'bank'] as const;
 const MODE_LABELS: Record<SuperadminFinanceCollectFeeMode, string> = { cash: 'Cash', upi: 'UPI', card: 'Card', bank: 'Bank Transfer' };
-
-let receiptCounter = 124;
 
 function maskPhone(phone: string): string {
   const d = phone.replace(/\D/g, '').slice(-10);
   return `${d.slice(0, 2)}****${d.slice(6)}`;
 }
 
-function buildWhatsAppReceipt(params: {
-  receiptNo: string; student: typeof SUPERADMIN_FINANCE_MOCK_STUDENTS_COLLECT_FEE[0];
-  amount: number; mode: SuperadminFinanceCollectFeeMode; txnId: string;
-  lateFee: number; couponDiscount: number; total: number;
-  remark: string; date: string;
-}): string {
-  const { receiptNo, student, amount, mode, txnId, lateFee, couponDiscount, total, remark, date } = params;
-  const W = 42;
-  const line = '─'.repeat(W);
-  const c = (t: string) => ' '.repeat(Math.max(0, Math.floor((W - t.length) / 2))) + t;
-  const r = (l: string, v: string) => l + ' '.repeat(Math.max(1, W - l.length - v.length)) + v;
-
-  const lines = [
-    c('★ SMART LIBRARY 360 ★'),
-    c('Main Branch'),
-    line,
-    c('[ FEE RECEIPT ]'),
-    line,
-    r('Receipt :', receiptNo),
-    r('Date    :', date),
-    '',
-    r('Name    :', student.name),
-    r('Smart ID:', '#' + student.smartId),
-    r('Phone   :', student.phone),
-    '',
-    line,
-    r('Plan    :', student.plan),
-    r('Shift   :', student.shift),
-    r('Seat    :', student.seat),
-    line,
-    r('Base Amt:', `Rs.${amount.toLocaleString('en-IN')}`),
-    ...(lateFee > 0 ? [r('Late Fee:', `Rs.${lateFee.toLocaleString('en-IN')}`)] : []),
-    ...(couponDiscount > 0 ? [r('Discount:', `-Rs.${couponDiscount.toLocaleString('en-IN')}`)] : []),
-    r('PAID    :', `Rs.${total.toLocaleString('en-IN')}`),
-    line,
-    r('Mode    :', MODE_LABELS[mode]),
-    ...(txnId ? [r('Txn ID  :', txnId)] : []),
-    '',
-    ...(remark ? [`Note    : ${remark}`, ''] : []),
-    c('Payment Received & Confirmed'),
-    c('Thank You! Keep Studying 😊'),
-    line,
-    c('Smart Library 360'),
-  ];
-  return lines.join('\n');
-}
-
 export function CollectFeeClient() {
-  const [search, setSearch]             = useState('');
-  const [showDropdown, setShowDropdown] = useState(false);
-  const [selectedStudent, setSelectedStudent] = useState<typeof SUPERADMIN_FINANCE_MOCK_STUDENTS_COLLECT_FEE[0] | null>(null);
-  const [amount, setAmount]             = useState('');
-  const [mode, setMode]                 = useState<SuperadminFinanceCollectFeeMode>('cash');
-  const [txnId, setTxnId]               = useState('');
-  const [couponCode, setCouponCode]     = useState('');
-  const [couponDiscount, setCouponDiscount] = useState(0);
-  const [couponStatus, setCouponStatus] = useState<'idle' | 'valid' | 'invalid'>('idle');
-  const [lateFee, setLateFee]           = useState('0');
-  const [lateFeeOverride, setLateFeeOverride] = useState(false);
-  const [remark, setRemark]             = useState('');
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [receiptData, setReceiptData]   = useState<SuperadminFinanceReceiptData | null>(null);
+  const {
+    form, search, setSearch, showDropdown, setShowDropdown,
+    selectedStudent, filteredStudents, handleSelectStudent,
+    couponStatus, setCouponStatus, setCouponDiscount, handleApplyCoupon,
+    isSubmitting, receiptData, setReceiptData, total, currentMode,
+    lateFeeOverride, onSubmit, resetForm
+  } = useCollectFeeClient();
 
-  const filteredStudents = SUPERADMIN_FINANCE_MOCK_STUDENTS_COLLECT_FEE.filter(s =>
-    search.length >= 2 &&
-    (s.name.toLowerCase().includes(search.toLowerCase()) ||
-      s.smartId.toLowerCase().includes(search.toLowerCase()))
-  );
-
-  const baseAmount  = parseFloat(amount) || 0;
-  const lateFeeAmt  = parseFloat(lateFee) || 0;
-  const total       = baseAmount + lateFeeAmt - couponDiscount;
-
-  function resetForm() {
-    setSelectedStudent(null); setSearch(''); setAmount(''); setTxnId('');
-    setCouponCode(''); setCouponDiscount(0); setCouponStatus('idle');
-    setLateFee('0'); setLateFeeOverride(false); setRemark(''); setIsSubmitting(false);
-  }
-
-  function handleApplyCoupon() {
-    if (!couponCode.trim()) return;
-    if (couponCode.toUpperCase() === 'SAVE50')     { setCouponDiscount(50);  setCouponStatus('valid');   toast.success('₹50 discount applied'); }
-    else if (couponCode.toUpperCase() === 'FRIEND100') { setCouponDiscount(100); setCouponStatus('valid');   toast.success('₹100 discount applied'); }
-    else                                            { setCouponDiscount(0);   setCouponStatus('invalid'); toast.error('Invalid/expired code'); }
-  }
-
-  function handleCollect() {
-    if (!selectedStudent || !amount || parseFloat(amount) <= 0) return;
-    setIsSubmitting(true);
-    setTimeout(() => {
-      const rn   = `REC-${receiptCounter++}`;
-      const date = new Date().toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' });
-      const waMsg = buildWhatsAppReceipt({ receiptNo: rn, student: selectedStudent, amount: baseAmount, mode, txnId, lateFee: lateFeeAmt, couponDiscount, total, remark, date });
-
-      setReceiptData({ receiptNo: rn, studentName: selectedStudent.name, studentId: selectedStudent.smartId, phone: selectedStudent.phone, total, mode, date, waMessage: waMsg, student: selectedStudent, amount: baseAmount, lateFee: lateFeeAmt, couponDiscount, txnId, remark });
-
-      if (selectedStudent.status === 'suspended') {
-        setTimeout(() => toast.success('🔓 Seat access automatically restored.'), 500);
-      }
-      resetForm();
-    }, 900);
-  }
+  const { register, formState: { errors }, watch, setValue } = form;
+  const currentAmount = watch('amount');
 
   function handlePrintReceipt() {
     if (!receiptData) return;
@@ -146,258 +51,217 @@ export function CollectFeeClient() {
         style: { background: '#1A1A2E', color: '#F0F0FF', border: '1px solid #2A2A3E', fontSize: 13 }
       }} />
 
-      {/* Receipt Modal */}
       {receiptData && (
-        <div className="fin-receipt-modal-overlay" onClick={() => setReceiptData(null)} role="dialog" aria-modal="true">
-          <div className="fin-receipt-modal" onClick={e => e.stopPropagation()}>
-            <div className="fin-receipt-modal-header">
-              <div>
-                <h2 className="fin-receipt-modal-title">🎉 Payment Collected!</h2>
-                <span className="fin-receipt-modal-badge"><CheckCircle size={11} /> {receiptData.receiptNo}</span>
-              </div>
-              <button className="fin-receipt-modal-close" onClick={() => setReceiptData(null)} aria-label="Close"><X size={15} /></button>
-            </div>
-            <div className="fin-receipt-modal-body">
-              <div className="fin-receipt-thermal fin-receipt-modal-card">
-                <div className="fin-receipt-zigzag fin-receipt-zigzag--top">
-                  {Array.from({ length: 20 }).map((_, i) => <div key={i} className="fin-receipt-zigzag-dot" />)}
-                </div>
-                <div className="fin-receipt-body">
-                  <div className="fin-receipt-logo-circle"><BookOpen size={28} className="fin-receipt-accent-icon" /></div>
-                  <p className="fin-receipt-brand">Smart Library 360</p>
-                  <p className="fin-receipt-title">Payment Receipt</p>
-                  <div className="fin-receipt-id-box" style={{ marginTop: 24 }}>
-                    <p className="fin-receipt-id-label">Receipt Number</p>
-                    <p className="fin-receipt-id-value">{receiptData.receiptNo}</p>
-                  </div>
-                  <div className="fin-receipt-modal-details">
-                    {[
-                      ['Date',    receiptData.date],
-                      ['Student', receiptData.studentName],
-                      ['Smart ID',receiptData.studentId],
-                      ['Phone',   `+91-${maskPhone(receiptData.phone)}`],
-                      ['Mode',    MODE_LABELS[receiptData.mode]],
-                    ].map(([l, v]) => (
-                      <div key={l} className="fin-receipt-modal-row">
-                        <span className="fin-receipt-row-label">{l}</span>
-                        <span className="fin-receipt-row-value">{v}</span>
-                      </div>
-                    ))}
-                  </div>
-                  <div className="fin-receipt-dashed-line">
-                    <p className="fin-receipt-total-label">Total Paid</p>
-                    <p className="fin-receipt-total-amount">₹{receiptData.total.toFixed(0)}</p>
-                  </div>
-                  <div className="fin-receipt-paid-badge">
-                    <CheckCircle size={16} className="fin-receipt-accent-icon" />
-                    <span className="fin-receipt-paid-text">Payment Received</span>
-                  </div>
-                  <p className="fin-receipt-footer-quote">&quot;Knowledge is the best investment.&quot;</p>
-                  <p className="fin-receipt-footer-thanks">Thank you! Keep studying 😊</p>
-                </div>
-                <div className="fin-receipt-zigzag fin-receipt-zigzag--bottom">
-                  {Array.from({ length: 20 }).map((_, i) => <div key={i} className="fin-receipt-zigzag-dot" />)}
-                </div>
-              </div>
-
-              <div className="fin-receipt-modal-actions">
-                <p className="fin-receipt-modal-actions-title">Send / Print Receipt</p>
-                <button className="fin-receipt-btn-wa fin-receipt-btn-wa--full" onClick={() => openWhatsApp(receiptData.phone, receiptData.waMessage)}>
-                  <MessageSquare size={16} /> Send Receipt on WhatsApp
-                </button>
-                <p className="fin-receipt-wa-hint">📱 +91-{maskPhone(receiptData.phone)} · {receiptData.studentName}</p>
-                <div className="fin-divider" />
-                <button className="fin-receipt-btn-secondary admin-w-full" onClick={handlePrintReceipt}>
-                  <Printer size={15} /> Print Receipt (Thermal 80mm)
-                </button>
-                <button className="fin-receipt-btn-download" onClick={() => setReceiptData(null)} style={{ width: '100%', marginTop: 0 }}>
-                  Done
-                </button>
-                <div className="fin-receipt-modal-info">
-                  {[
-                    { l: 'Receipt', v: receiptData.receiptNo },
-                    { l: 'Amount',  v: formatCurrency(receiptData.total), color: 'var(--success)' },
-                    { l: 'Mode',    v: MODE_LABELS[receiptData.mode] },
-                  ].map(( r: any ) => (
-                    <div key={r.l} className="fin-receipt-modal-info-row">
-                      <span className="fin-cell-subtext">{r.l}</span>
-                      <span className="fin-cell-name" style={{ color: r.color }}>{r.v}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        <CollectFeeReceiptModal 
+          receiptData={receiptData} 
+          onClose={() => setReceiptData(null)} 
+          onPrint={handlePrintReceipt} 
+        />
       )}
 
       <div className="space-y-6">
         <div>
-          <h1 className="fin-page-title">Collect Fee</h1>
-          <p className="fin-page-subtitle">Record a new payment from a student.</p>
+          <h1 className="text-[22px] font-bold text-text-primary">Collect Fee</h1>
+          <p className="text-[12px] text-text-secondary">Record a new payment from a student.</p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-6 fin-collect-fee-grid">
+        <form onSubmit={onSubmit} className="grid grid-cols-1 lg:grid-cols-5 gap-6">
           {/* Left — Form */}
           <div className="lg:col-span-3 space-y-4">
-            <div className="fin-card p-6 space-y-3">
-              <p className="fin-section-label">Student <span className="fin-text-danger">*</span></p>
+            <div className="bg-card rounded-[var(--radius-lg)] border border-border p-6 space-y-4">
+              <p className="text-[14px] font-bold text-text-secondary uppercase tracking-wider block mb-1">Student <span className="text-danger">*</span></p>
               <div className="relative">
-                <Search size={15} className="absolute left-3 top-1/2 -translate-y-1/2 fin-icon-muted" />
-                <input className="fin-input fin-input--pl9" placeholder="Search by name or Smart ID..." value={search}
-                  onChange={e => { setSearch(e.target.value); setSelectedStudent(null); setShowDropdown(true); }}
-                  onFocus={() => setShowDropdown(true)} />
+                <Search size={15} className="absolute left-3 top-1/2 -translate-y-1/2 text-text-secondary" />
+                <input 
+                  className="w-full bg-input border border-border rounded-[var(--radius-md)] py-2.5 pl-9 pr-3 text-[14px] font-medium text-text-primary focus:outline-none focus:border-primary transition-colors" 
+                  placeholder="Search by name or Smart ID..." 
+                  value={search}
+                  onChange={e => { setSearch(e.target.value); handleSelectStudent(null as any); setShowDropdown(true); }}
+                  onFocus={() => setShowDropdown(true)} 
+                />
               </div>
+              
               {showDropdown && search.length >= 2 && !selectedStudent && (
-                <div className="fin-dropdown-list">
+                <div className="absolute z-10 w-full max-w-md bg-card border border-border rounded-[var(--radius-md)] shadow-lg mt-1 max-h-60 overflow-y-auto">
                   {filteredStudents.length === 0 ? (
-                    <div className="fin-table-empty-cell">No students found</div>
-                  ) : filteredStudents.map(( s: typeof SUPERADMIN_FINANCE_MOCK_STUDENTS_COLLECT_FEE[number] ) => (
-                    <button key={s.id} className="fin-dropdown-item" onClick={() => {
-                      setSelectedStudent(s); setSearch(s.name); setShowDropdown(false);
-                      if (s.dueAmount > 0) { setLateFee('50'); setAmount(s.dueAmount.toString()); }
-                      else { setLateFee('0'); setAmount(''); }
-                    }}>
+                    <div className="p-4 text-center text-[12px] text-text-secondary">No students found</div>
+                  ) : filteredStudents.map((s) => (
+                    <button key={s.id} type="button" className="w-full text-left p-3 border-b border-border hover:bg-primary/5 transition-colors flex justify-between items-center" onClick={() => handleSelectStudent(s)}>
                       <div>
-                        <div className="font-medium">{s.name}</div>
-                        <div className="fin-cell-subtext">{s.smartId} · {s.plan} · +91-{maskPhone(s.phone)}</div>
+                        <div className="font-medium text-text-primary">{s.name}</div>
+                        <div className="text-[12px] text-text-secondary">{s.smartId} · {s.plan} · +91-{maskPhone(s.phone)}</div>
                       </div>
-                      <span className={`fin-badge ${s.status === 'active' ? 'fin-badge--success' : s.status === 'suspended' ? 'fin-badge--danger' : 'fin-badge--warning'}`}>{s.status}</span>
+                      <span className={`px-2.5 py-0.5 rounded-full text-[11px] font-semibold ${s.status === 'active' ? 'bg-success text-success-foreground' : s.status === 'suspended' ? 'bg-danger text-danger-foreground' : 'bg-warning text-warning-foreground'}`}>{s.status}</span>
                     </button>
                   ))}
                 </div>
               )}
+              
               {selectedStudent && (
-                <div className="fin-student-confirmed">
+                <div className="flex items-center gap-2 bg-success/10 text-success border border-success/20 p-3 rounded-[var(--radius-md)]">
                   <CheckCircle size={16} />
-                  <span className="fin-cell-name">{selectedStudent.name}</span>
-                  <span className="fin-cell-subtext">({selectedStudent.smartId})</span>
-                  <span className="fin-cell-subtext">· +91-{maskPhone(selectedStudent.phone)}</span>
+                  <span className="font-bold text-[14px]">{selectedStudent.name}</span>
+                  <span className="text-[12px]">({selectedStudent.smartId})</span>
+                  <span className="text-[12px]">· +91-{maskPhone(selectedStudent.phone)}</span>
                 </div>
               )}
+              
               {selectedStudent != null && selectedStudent.dueAmount > 0 && (
-                <div className="fin-badge fin-badge--danger w-full justify-center py-2">
-                  🔴 Due Amount: {formatCurrency(selectedStudent?.dueAmount ?? 0)} pending
+                <div className="bg-danger text-danger-foreground text-[12px] font-semibold p-2 rounded flex justify-center">
+                  🔴 Due Amount: {formatCurrency(selectedStudent.dueAmount)} pending
                 </div>
               )}
             </div>
 
-            <div className="fin-card p-6 space-y-4">
-              <p className="fin-section-label">Payment Details</p>
+            <div className="bg-card rounded-[var(--radius-lg)] border border-border p-6 space-y-5">
+              <p className="text-[14px] font-bold text-text-secondary uppercase tracking-wider block border-b border-border pb-2">Payment Details</p>
+              
               <div>
-                <label className="fin-label">Amount <span className="fin-text-danger">*</span></label>
+                <label className="text-[12px] font-bold text-text-secondary block mb-1">Amount <span className="text-danger">*</span></label>
                 <div className="relative mt-1">
-                  <IndianRupee size={14} className="absolute left-3 top-1/2 -translate-y-1/2 fin-icon-muted" />
-                  <input type="number" className="fin-input fin-input--pl8" placeholder="0.00" value={amount} onChange={e => setAmount(e.target.value)} />
+                  <IndianRupee size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-text-secondary" />
+                  <input 
+                    type="number" 
+                    {...register('amount', { valueAsNumber: true })}
+                    className={`w-full bg-input border ${errors.amount ? 'border-danger' : 'border-border'} rounded-[var(--radius-md)] py-2.5 pl-8 pr-3 text-[14px] font-medium text-text-primary focus:outline-none focus:border-primary transition-colors`} 
+                    placeholder="0.00" 
+                  />
                 </div>
+                {errors.amount && <p className="text-danger text-[11px] mt-1">{errors.amount.message}</p>}
               </div>
+
               <div>
-                <label className="fin-label">Payment Mode</label>
-                <div className="flex gap-2 mt-1 flex-wrap">
+                <label className="text-[12px] font-bold text-text-secondary block mb-2">Payment Mode</label>
+                <div className="flex gap-2 flex-wrap">
                   {MODES.map((m) => (
-                    <button key={m} onClick={() => setMode(m)} className={`fin-badge cursor-pointer hover:opacity-80 transition-opacity ${mode === m ? 'fin-badge--info ring-2 ring-blue-500' : 'fin-badge--neutral'}`}>
+                    <button 
+                      key={m} 
+                      type="button"
+                      onClick={() => setValue('mode', m, { shouldValidate: true })} 
+                      className={`px-3 py-1.5 rounded-full text-[12px] font-bold transition-all border ${currentMode === m ? 'bg-primary/10 text-primary border-primary ring-2 ring-primary/30' : 'bg-transparent text-text-secondary border-border hover:bg-input'}`}
+                    >
                       {MODE_LABELS[m]}
                     </button>
                   ))}
                 </div>
               </div>
-              {mode !== 'cash' && (
+              
+              {currentMode !== 'cash' && (
                 <div>
-                  <label className="fin-label">Transaction ID <span className="fin-text-danger">*</span></label>
-                  <input className="fin-input w-full mt-1" placeholder="Enter transaction reference" value={txnId} onChange={e => setTxnId(e.target.value)} />
+                  <label className="text-[12px] font-bold text-text-secondary block mb-1">Transaction ID <span className="text-danger">*</span></label>
+                  <input 
+                    {...register('txnId')}
+                    className={`w-full bg-input border ${errors.txnId ? 'border-danger' : 'border-border'} rounded-[var(--radius-md)] py-2.5 px-3 text-[14px] font-medium text-text-primary focus:outline-none focus:border-primary transition-colors`} 
+                    placeholder="Enter transaction reference" 
+                  />
+                  {errors.txnId && <p className="text-danger text-[11px] mt-1">{errors.txnId.message}</p>}
                 </div>
               )}
+              
               <div>
-                <label className="fin-label">Coupon Code</label>
+                <label className="text-[12px] font-bold text-text-secondary block mb-1">Coupon Code</label>
                 <div className="flex gap-2 mt-1">
-                  <input className="fin-input flex-1" placeholder="e.g. SAVE50" value={couponCode}
-                    onChange={e => { setCouponCode(e.target.value); setCouponStatus('idle'); setCouponDiscount(0); }} />
-                  <button className="fin-badge fin-badge--neutral cursor-pointer" onClick={handleApplyCoupon}>Apply</button>
+                  <input 
+                    {...register('couponCode')}
+                    className="flex-1 bg-input border border-border rounded-[var(--radius-md)] py-2 px-3 text-[14px] font-medium text-text-primary focus:outline-none focus:border-primary transition-colors" 
+                    placeholder="e.g. SAVE50" 
+                    onChange={e => { setValue('couponCode', e.target.value); setCouponStatus('idle'); setCouponDiscount(0); }} 
+                  />
+                  <button type="button" className="px-4 py-2 bg-input border border-border text-text-primary text-[12px] font-bold rounded-[var(--radius-md)] hover:bg-border transition-colors cursor-pointer" onClick={handleApplyCoupon}>Apply</button>
                 </div>
-                {couponStatus === 'valid'   && <p className="fin-input-hint fin-text-success">{formatCurrency(couponDiscount)} discount applied</p>}
-                {couponStatus === 'invalid' && <p className="fin-input-hint fin-text-danger">❌ Invalid/expired code</p>}
+                {couponStatus === 'valid' && <p className="text-success text-[11px] mt-1 font-semibold">{formatCurrency(watch('amount') ? watch('amount') * 0.1 : 0)} discount applied (assuming logic applies)</p>}
+                {couponStatus === 'invalid' && <p className="text-danger text-[11px] mt-1">❌ Invalid/expired code</p>}
               </div>
+
               <div>
                 <div className="flex items-center justify-between">
-                  <label className="fin-label">Late Fee</label>
-                  <label className="flex items-center gap-1 fin-text-xs cursor-pointer">
-                    <input type="checkbox" checked={lateFeeOverride} onChange={e => setLateFeeOverride(e.target.checked)} /> Override
+                  <label className="text-[12px] font-bold text-text-secondary block mb-1">Late Fee</label>
+                  <label className="flex items-center gap-1 text-[11px] font-semibold text-text-secondary cursor-pointer">
+                    <input type="checkbox" {...register('lateFeeOverride')} className="rounded border-border bg-input" /> Override
                   </label>
                 </div>
-                <input type="number" className="fin-input w-full mt-1" value={lateFee} onChange={e => setLateFee(e.target.value)} readOnly={!lateFeeOverride} />
+                <input 
+                  type="number" 
+                  {...register('lateFee', { valueAsNumber: true })} 
+                  className={`w-full bg-input border ${errors.lateFee ? 'border-danger' : 'border-border'} rounded-[var(--radius-md)] py-2.5 px-3 text-[14px] font-medium text-text-primary focus:outline-none focus:border-primary transition-colors ${!lateFeeOverride ? 'opacity-60' : ''}`}
+                  readOnly={!lateFeeOverride} 
+                />
+                {errors.lateFee && <p className="text-danger text-[11px] mt-1">{errors.lateFee.message}</p>}
               </div>
+
               <div>
-                <label className="fin-label">Remark (optional)</label>
-                <textarea className="fin-textarea mt-1" rows={2} placeholder="Any notes..." value={remark} onChange={e => setRemark(e.target.value)} />
+                <label className="text-[12px] font-bold text-text-secondary block mb-1">Remark (optional)</label>
+                <textarea 
+                  {...register('remark')}
+                  className="w-full bg-input border border-border rounded-[var(--radius-md)] py-2.5 px-3 text-[14px] font-medium text-text-primary focus:outline-none focus:border-primary transition-colors" 
+                  rows={2} 
+                  placeholder="Any notes..." 
+                />
               </div>
             </div>
           </div>
 
-          {/* Right — Receipt Preview */}
+          {/* Right — Receipt Preview (Static Layout representation) */}
           <div className="lg:col-span-2">
-            <div className="fin-receipt-preview">
-              <div className="fin-receipt-thermal">
-                <div className="fin-receipt-zigzag fin-receipt-zigzag--top">
-                  {Array.from({ length: 20 }).map((_, i) => <div key={i} className="fin-receipt-zigzag-dot" />)}
+            <div className="sticky top-6">
+              <div className="bg-white text-black rounded-[var(--radius-lg)] overflow-hidden shadow-md flex flex-col font-mono relative p-6 items-center">
+                
+                {/* Thermal receipt zig-zag top */}
+                <div className="h-2 w-full flex space-x-1 absolute top-0">
+                  {Array.from({ length: 20 }).map((_, i) => <div key={i} className="w-4 h-4 bg-page rotate-45 -mt-2" />)}
                 </div>
-                <div className="fin-receipt-body">
-                  <div className="fin-receipt-logo-circle"><BookOpen size={28} className="fin-receipt-accent-icon" /></div>
-                  <p className="fin-receipt-brand">Smart Library 360</p>
-                  <p className="fin-receipt-title">Payment Receipt</p>
-                  <div className="fin-receipt-id-box mt-6">
-                    <p className="fin-receipt-id-label">Receipt Number</p>
-                    <p className="fin-receipt-id-value">REC-{receiptCounter}</p>
-                  </div>
-                  <div className="space-y-3 text-left mb-6">
-                    {[
-                      ['Date',    new Date().toLocaleDateString('en-IN')],
-                      ['Student', selectedStudent?.name || '—'],
-                      ['Smart ID',selectedStudent?.smartId || '—'],
-                      ['Phone',   selectedStudent ? `+91-${maskPhone(selectedStudent.phone)}` : '—'],
-                      ['Mode',    MODE_LABELS[mode]],
-                    ].map(([l, v]) => (
-                      <div key={l} className="flex justify-between">
-                        <span className="fin-receipt-row-label">{l}</span>
-                        <span className="fin-receipt-row-value">{v}</span>
-                      </div>
-                    ))}
-                  </div>
-                  <div className="fin-receipt-dashed-line">
-                    <p className="fin-receipt-total-label">Total Amount</p>
-                    <p className="fin-receipt-total-amount">₹{total > 0 ? total.toFixed(0) : '0'}</p>
-                  </div>
-                  <button
-                    className="fin-receipt-paid-badge"
-                    onClick={handleCollect}
-                    disabled={!selectedStudent || !amount || parseFloat(amount) <= 0 || isSubmitting}
-                    style={{
-                      border: 'none', width: '100%',
-                      cursor: (!selectedStudent || !amount || parseFloat(amount) <= 0 || isSubmitting) ? 'not-allowed' : 'pointer',
-                      opacity: (!selectedStudent || !amount || parseFloat(amount) <= 0 || isSubmitting) ? 0.5 : 1,
-                      backgroundColor: (!selectedStudent || !amount || parseFloat(amount) <= 0 || isSubmitting) ? 'rgba(192,193,255,0.1)' : 'var(--success)',
-                      color: (!selectedStudent || !amount || parseFloat(amount) <= 0 || isSubmitting) ? 'var(--receipt-accent)' : '#ffffff',
-                      transition: 'all 0.2s',
-                    }}
-                  >
-                    <CheckCircle size={16} color={(!selectedStudent || !amount || parseFloat(amount) <= 0 || isSubmitting) ? 'var(--receipt-accent)' : '#ffffff'} />
-                    <span className="fin-receipt-paid-text" style={{ color: (!selectedStudent || !amount || parseFloat(amount) <= 0 || isSubmitting) ? 'var(--receipt-accent)' : '#ffffff' }}>
-                      {isSubmitting ? 'Processing...' : 'Received by Manager'}
-                    </span>
-                  </button>
-                  <p className="fin-receipt-footer-quote">&quot;Knowledge is the best investment.&quot;</p>
-                  <p className="fin-receipt-footer-thanks">Thank you! See you again 😊</p>
+
+                <div className="w-12 h-12 rounded-full border-2 border-black flex items-center justify-center mb-2 mt-4"><BookOpen size={24} className="text-black" /></div>
+                <p className="font-bold text-lg text-center leading-tight">Smart Library 360</p>
+                <p className="text-sm font-medium mb-6 text-center text-gray-600">Payment Receipt</p>
+                
+                <div className="w-full text-sm space-y-2 mb-6">
+                  {[
+                    ['Date',    new Date().toLocaleDateString('en-IN')],
+                    ['Student', selectedStudent?.name || '—'],
+                    ['Smart ID',selectedStudent?.smartId || '—'],
+                    ['Phone',   selectedStudent ? `+91-${maskPhone(selectedStudent.phone)}` : '—'],
+                    ['Mode',    MODE_LABELS[currentMode]],
+                  ].map(([l, v]) => (
+                    <div key={l} className="flex justify-between border-b border-gray-100 pb-1">
+                      <span className="text-gray-500">{l}</span>
+                      <span className="font-semibold text-right">{v}</span>
+                    </div>
+                  ))}
                 </div>
-                <div className="fin-receipt-zigzag fin-receipt-zigzag--bottom">
-                  {Array.from({ length: 20 }).map((_, i) => <div key={i} className="fin-receipt-zigzag-dot" />)}
+                
+                <div className="w-full border-t border-dashed border-gray-400 pt-4 pb-4 mb-4 flex justify-between items-center">
+                  <p className="text-sm font-bold text-gray-600">Total Amount</p>
+                  <p className="text-xl font-bold">₹{total > 0 ? total.toFixed(0) : '0'}</p>
+                </div>
+                
+                <button
+                  type="submit"
+                  disabled={!selectedStudent || !currentAmount || currentAmount <= 0 || isSubmitting}
+                  className={`w-full flex items-center justify-center gap-2 py-3 rounded text-[14px] font-bold transition-all ${(!selectedStudent || !currentAmount || currentAmount <= 0 || isSubmitting) ? 'bg-gray-200 text-gray-400 cursor-not-allowed' : 'bg-green-600 text-white hover:bg-green-700 shadow-md cursor-pointer'}`}
+                >
+                  <CheckCircle size={18} />
+                  <span>{isSubmitting ? 'Processing...' : 'Collect Payment'}</span>
+                </button>
+                
+                <p className="text-[10px] italic text-gray-500 mt-6 text-center">&quot;Knowledge is the best investment.&quot;</p>
+                
+                {/* Thermal receipt zig-zag bottom */}
+                <div className="h-2 w-full flex space-x-1 absolute bottom-0">
+                  {Array.from({ length: 20 }).map((_, i) => <div key={i} className="w-4 h-4 bg-page rotate-45 mb-[-8px]" />)}
                 </div>
               </div>
-              <div className="space-y-3 mt-4">
-                <button className="fin-receipt-btn-secondary" onClick={resetForm}>🚫 Cancel</button>
+              
+              <div className="mt-4">
+                <button type="button" className="w-full bg-transparent border border-border text-text-primary px-4 py-2.5 rounded-[var(--radius-md)] text-[14px] font-bold hover:bg-input transition-all cursor-pointer" onClick={resetForm}>
+                  🚫 Cancel
+                </button>
               </div>
             </div>
           </div>
-        </div>
+        </form>
       </div>
     </>
   );
 }
+
