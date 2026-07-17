@@ -58,7 +58,7 @@ export function SuperadminAssetsAddDialog({ categories, onClose, onSave }: Props
         
         <div className="p-6 space-y-4 max-h-[70vh] overflow-y-auto">
           <div>
-            <label className="text-[11px] font-bold text-text-secondary uppercase tracking-wider block mb-1.5">Asset Name <span className="text-danger">*</span></label>
+            <label className="text-xs font-bold text-text-secondary uppercase tracking-wider block mb-1.5">Asset Name <span className="text-danger">*</span></label>
             <input 
               className="w-full bg-bg-input border border-border rounded-[var(--radius-md)] py-2 px-3 text-sm font-medium text-text-primary focus:outline-none focus:border-primary transition-colors shadow-inner" 
               placeholder="e.g. AC Unit" 
@@ -67,7 +67,7 @@ export function SuperadminAssetsAddDialog({ categories, onClose, onSave }: Props
             />
           </div>
           <div>
-            <label className="text-[11px] font-bold text-text-secondary uppercase tracking-wider block mb-1.5">Category</label>
+            <label className="text-xs font-bold text-text-secondary uppercase tracking-wider block mb-1.5">Category</label>
             <SuperadminSearchableDropdown
               options={allCategories.map(c => ({ label: c, value: c }))}
               value={form.category}
@@ -75,7 +75,7 @@ export function SuperadminAssetsAddDialog({ categories, onClose, onSave }: Props
             />
           </div>
           <div>
-            <label className="text-[11px] font-bold text-text-secondary uppercase tracking-wider block mb-1.5">Purchase Date <span className="text-danger">*</span></label>
+            <label className="text-xs font-bold text-text-secondary uppercase tracking-wider block mb-1.5">Purchase Date <span className="text-danger">*</span></label>
             <input 
               type="date"
               className="w-full bg-bg-input border border-border rounded-[var(--radius-md)] py-2 px-3 text-sm font-medium text-text-primary focus:outline-none focus:border-primary transition-colors shadow-inner" 
@@ -84,7 +84,7 @@ export function SuperadminAssetsAddDialog({ categories, onClose, onSave }: Props
             />
           </div>
           <div>
-            <label className="text-[11px] font-bold text-text-secondary uppercase tracking-wider block mb-1.5">Purchase Value ₹ <span className="text-danger">*</span></label>
+            <label className="text-xs font-bold text-text-secondary uppercase tracking-wider block mb-1.5">Purchase Value ₹ <span className="text-danger">*</span></label>
             <input 
               type="number"
               className="w-full bg-bg-input border border-border rounded-[var(--radius-md)] py-2 px-3 text-sm font-medium text-text-primary focus:outline-none focus:border-primary transition-colors shadow-inner" 
@@ -94,7 +94,7 @@ export function SuperadminAssetsAddDialog({ categories, onClose, onSave }: Props
             />
           </div>
           <div>
-            <label className="text-[11px] font-bold text-text-secondary uppercase tracking-wider block mb-1.5">Location <span className="text-danger">*</span></label>
+            <label className="text-xs font-bold text-text-secondary uppercase tracking-wider block mb-1.5">Location <span className="text-danger">*</span></label>
             <input 
               className="w-full bg-bg-input border border-border rounded-[var(--radius-md)] py-2 px-3 text-sm font-medium text-text-primary focus:outline-none focus:border-primary transition-colors shadow-inner" 
               placeholder="e.g. Ground Floor" 

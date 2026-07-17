@@ -9,6 +9,7 @@ import { SuperadminAssetsKpiGrid } from '@/app/superadmin/superadmin_accounting/
 import { SuperadminAssetsFilterBar } from '@/app/superadmin/superadmin_accounting/assets/superadmin_assets_components/SuperadminAssetsFilterBar';
 import { SuperadminAssetsTable } from '@/app/superadmin/superadmin_accounting/assets/superadmin_assets_components/SuperadminAssetsTable';
 import { SuperadminAssetsAddDialog } from '@/app/superadmin/superadmin_accounting/assets/superadmin_assets_components/SuperadminAssetsAddDialog';
+import type { SuperadminAsset } from '@/app/superadmin/superadmin_accounting/assets/superadmin_assets_types/SuperadminAssetsTypes';
 
 export function SuperadminAssetsClient() {
   const { 
@@ -28,7 +29,7 @@ export function SuperadminAssetsClient() {
 
   const showToast = (msg: string) => { setToast(msg); setTimeout(() => setToast(''), 2500); };
 
-  const onSaveAsset = async (assetData: unknown) => {
+  const onSaveAsset = async (assetData: Omit<SuperadminAsset, 'id' | 'currentValue' | 'status'>) => {
     await handleAddAsset(assetData);
     showToast('✅ Asset added successfully');
   };
