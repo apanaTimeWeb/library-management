@@ -28,6 +28,21 @@ export interface UpdateStudentDto extends Partial<CreateStudentDto> {
   status?: 'ACTIVE' | 'INACTIVE' | 'SUSPENDED';
 }
 
-// eslint-disable-next-line @typescript-eslint/no-empty-object-type
-export interface AdminStudentsData {}
+export interface AdminStudentData {
+  id: string;
+  name: string;
+  shift: string;
+  seat: string;
+  plan: string;
+  status: string;
+  branch: string;
+}
 
+export interface AdminStudentsClientProps {
+  initialStudents: AdminStudentData[];
+}
+
+export interface AdminStudentsErrorBoundaryProps {
+  error: Error & { digest?: string };
+  reset: () => void;
+}

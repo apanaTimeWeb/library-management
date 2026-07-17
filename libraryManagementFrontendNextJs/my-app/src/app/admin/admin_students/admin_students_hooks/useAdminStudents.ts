@@ -1,15 +1,6 @@
 import { useState, useMemo } from 'react';
 import { useAdmin } from '@/app/admin/admin_context/AdminContext';
-
-export interface AdminStudentData {
-  id: string;
-  name: string;
-  shift: string;
-  seat: string;
-  plan: string;
-  status: string;
-  branch: string;
-}
+import type { AdminStudentData } from '@/app/admin/admin_students/admin_students_types/admin_students_types';
 
 export function useAdminStudents(initialStudents: AdminStudentData[]) {
   const [search, setSearch] = useState('');
