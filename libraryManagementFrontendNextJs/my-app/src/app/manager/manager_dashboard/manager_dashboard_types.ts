@@ -40,3 +40,27 @@ export interface DashboardData {
   recentAdmissions: RecentAdmission[];
   recentEnquiries: RecentEnquiry[];
 }
+
+export interface DashboardState {
+  data: DashboardData | null;
+  status: FetchState;
+  error: string | null;
+  fetchData: () => Promise<void>;
+}
+
+export interface DashboardSeatMatrixProps {
+  seatData: DashboardSeatData[];
+}
+
+export interface DashboardKpiGridProps {
+  kpiData: DashboardKpiData[];
+}
+
+export interface DashboardErrorBoundaryProps {
+  children: React.ReactNode;
+}
+
+export interface DashboardErrorBoundaryState {
+  hasError: boolean;
+  error: Error | null;
+}

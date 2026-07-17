@@ -1,20 +1,7 @@
 import { create } from 'zustand';
-import type { SeatData, FetchState } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_types';
+import type { SeatData, FetchState, SeatsState, LockerData, Allocation, SeatHistoryEntry } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_types';
 
 // RESPONSIBILITY: Module-scoped Zustand store for managing Seat Matrix API data.
-
-interface SeatsState {
-  seatsData: SeatData[];
-  lockerData: { uuid?: string; id: string; status: 'free' | 'occupied' | 'maintenance' }[];
-  allocationsData: unknown[];
-  seatHistoryData: unknown[];
-  status: FetchState;
-  error: string | null;
-  fetchData: () => Promise<void>;
-  fetchLockers: () => Promise<void>;
-  fetchAllocationsData: () => Promise<void>;
-  fetchSeatHistoryData: () => Promise<void>;
-}
 
 export const useSeatsStore = create<SeatsState>((set, get) => ({
   seatsData: [],
@@ -29,7 +16,7 @@ export const useSeatsStore = create<SeatsState>((set, get) => ({
     try {
       const { fetchSeatMatrix } = await import('../manager_seats_shifts_lockers_api/manager_seats_shifts_lockers_api');
       const data = await fetchSeatMatrix();
-      if (!Array.isArray(data) || data.length === 0 || String((data as any[])[0]?.id).startsWith('MOCK-')) {
+      if (!Array.isArray(data) || data.length === 0 || String((data[0] as { id?: string })?.id).startsWith('MOCK-')) {
         const mockSeats = Array.from({ length: 60 }).map((_, i) => ({
           uuid: `S-${i}`,
           id: String(i + 1).padStart(2, '0'),
@@ -54,7 +41,7 @@ export const useSeatsStore = create<SeatsState>((set, get) => ({
     try {
       const { fetchLockerMatrix } = await import('../manager_seats_shifts_lockers_api/manager_seats_shifts_lockers_api');
       const data = await fetchLockerMatrix();
-      if (!Array.isArray(data) || data.length === 0 || String((data as any[])[0]?.id).startsWith('MOCK-')) {
+      if (!Array.isArray(data) || data.length === 0 || String((data[0] as { id?: string })?.id).startsWith('MOCK-')) {
         const mockLockers = Array.from({ length: 120 }).map((_, i) => ({
           uuid: `L-${i}`,
           id: String(i + 1).padStart(3, '0'),

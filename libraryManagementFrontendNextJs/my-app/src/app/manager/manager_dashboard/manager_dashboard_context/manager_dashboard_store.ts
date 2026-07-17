@@ -1,14 +1,7 @@
 import { create } from 'zustand';
-import type { DashboardData, FetchState } from '@/app/manager/manager_dashboard/manager_dashboard_types';
+import type { DashboardData, FetchState, DashboardState } from '@/app/manager/manager_dashboard/manager_dashboard_types';
 
 // RESPONSIBILITY: Module-scoped Zustand store for managing Dashboard API data.
-
-interface DashboardState {
-  data: DashboardData | null;
-  status: FetchState;
-  error: string | null;
-  fetchData: () => Promise<void>;
-}
 
 export const useDashboardStore = create<DashboardState>((set, get) => ({
   data: null,

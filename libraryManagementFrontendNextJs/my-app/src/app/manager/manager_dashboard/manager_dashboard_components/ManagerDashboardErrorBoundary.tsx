@@ -3,23 +3,17 @@
 import { Component, ErrorInfo, ReactNode } from 'react';
 import { logger } from '@/lib/logger';
 
+import type { DashboardErrorBoundaryProps, DashboardErrorBoundaryState } from '@/app/manager/manager_dashboard/manager_dashboard_types';
+
 // RESPONSIBILITY: Catches errors exclusively within the Manager Dashboard module.
 
-interface Props {
-  children: ReactNode;
-}
-
-interface State {
-  hasError: boolean;
-  error?: Error;
-}
-
-export class ManagerDashboardErrorBoundary extends Component<Props, State> {
-  public state: State = {
-    hasError: false
+export class ManagerDashboardErrorBoundary extends Component<DashboardErrorBoundaryProps, DashboardErrorBoundaryState> {
+  public state: DashboardErrorBoundaryState = {
+    hasError: false,
+    error: null
   };
 
-  public static getDerivedStateFromError(error: Error): State {
+  public static getDerivedStateFromError(error: Error): DashboardErrorBoundaryState {
     return { hasError: true, error };
   }
 
