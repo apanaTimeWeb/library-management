@@ -148,3 +148,16 @@ body {
   background: rgba(255, 255, 255, 0.85);
   border: 1px solid #E5E7EB;
 }
+
+/* ─────────────────────────────────────────────
+   GLOBAL AG GRID HEIGHT FIX
+───────────────────────────────────────────── */
+[class*="-table-wrapper"] {
+  display: flex;
+  flex-direction: column;
+}
+[class*="-table-wrapper"] > div {
+  flex: 1;
+  width: 100%;
+  height: 100%;
+}
