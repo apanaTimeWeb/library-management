@@ -80,7 +80,7 @@ export function AdminBlacklistAddDialog({ isOpen, onClose, onSubmit }: AdminBlac
 
   return (
     <Dialog open={isOpen} onOpenChange={handleModalClose}>
-      <DialogContent className="sm:max-w-[425px]">
+      <DialogContent className="sm:max-w-md">
         <DialogHeader>
           <div className="flex items-center gap-2 text-danger font-semibold text-lg mb-1">
             <AlertOctagon size={20} />

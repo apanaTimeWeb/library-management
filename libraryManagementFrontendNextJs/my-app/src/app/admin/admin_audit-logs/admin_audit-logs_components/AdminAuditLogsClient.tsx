@@ -144,7 +144,7 @@ export function AdminAuditLogsClient() {
       {logs.length === 0 ? (
         <AdminAuditLogsEmptyState onResetFilters={handleResetFilters} />
       ) : (
-        <Card className="flex-1 min-h-[450px] shadow-sm border-border bg-card overflow-hidden flex flex-col">
+        <Card className="flex-1 min-h-96 shadow-sm border-border bg-card overflow-hidden flex flex-col">
           <div className="overflow-x-auto flex-1">
             <table className="w-full text-sm text-left">
               <thead className="text-xs text-muted-foreground uppercase bg-muted/50 sticky top-0 z-10">
@@ -204,7 +204,7 @@ export function AdminAuditLogsClient() {
 
       {/* Detail Modal / Drawer (`Rule 19`) */}
       <Dialog open={!!selectedLog} onOpenChange={(open) => !open && setSelectedLog(null)}>
-        <DialogContent className="sm:max-w-[550px]">
+        <DialogContent className="sm:max-w-xl">
           {selectedLog && (
             <>
               <DialogHeader>

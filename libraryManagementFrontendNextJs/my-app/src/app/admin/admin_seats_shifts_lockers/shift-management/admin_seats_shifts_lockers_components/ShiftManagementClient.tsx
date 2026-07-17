@@ -1,7 +1,7 @@
 'use client';
 
 import { Plus, Edit, PowerOff, Zap, AlertTriangle, X } from 'lucide-react';
-import { useShiftManagement } from './admin_seats_shifts_lockers_hooks/useShiftManagement';
+import { useShiftManagement } from '../admin_seats_shifts_lockers_hooks/useShiftManagement';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';

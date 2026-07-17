@@ -128,7 +128,7 @@ export function AdminBlacklistClient() {
       {list.length === 0 ? (
         <AdminBlacklistEmptyState onResetSearch={handleResetSearch} isSearching={Boolean(searchInput.trim())} />
       ) : (
-        <Card className="flex-1 min-h-[450px] shadow-sm border-border bg-card overflow-hidden flex flex-col">
+        <Card className="flex-1 min-h-96 shadow-sm border-border bg-card overflow-hidden flex flex-col">
           <div className="overflow-x-auto flex-1">
             <table className="w-full text-sm text-left">
               <thead className="text-xs text-muted-foreground uppercase bg-muted/50 sticky top-0 z-10">
@@ -156,7 +156,7 @@ export function AdminBlacklistClient() {
                     <td className="px-6 py-3">
                       <NameCell data={student} />
                     </td>
-                    <td className="px-6 py-3 text-xs text-muted-foreground font-medium truncate max-w-[200px]">
+                    <td className="px-6 py-3 text-xs text-muted-foreground font-medium truncate max-w-48">
                       {student.reason}
                     </td>
                     <td className="px-6 py-3 text-xs text-muted-foreground">
@@ -204,7 +204,7 @@ export function AdminBlacklistClient() {
 
       {/* Detail Drawer Modal (`Rule 19`) */}
       <Dialog open={!!selectedStudent} onOpenChange={(open) => !open && setSelectedStudent(null)}>
-        <DialogContent className="sm:max-w-[500px]">
+        <DialogContent className="sm:max-w-lg">
           {selectedStudent && (
             <>
               <DialogHeader>

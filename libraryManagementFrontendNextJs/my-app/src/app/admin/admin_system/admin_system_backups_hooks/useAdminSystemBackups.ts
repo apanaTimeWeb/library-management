@@ -1,5 +1,5 @@
 import { useState, useCallback, useMemo } from 'react';
-import { ADMIN_SYSTEM_MOCK_ADMIN_SYSTEM_MOCK_BACKUP_HISTORY } from '@/app/admin/admin_system/admin_system_data/AdminSystemMockData2';
+import { ADMIN_SYSTEM_MOCK_BACKUP_HISTORY } from '@/app/admin/admin_system/admin_system_data/AdminSystemMockData2';
 import { BackupRecord } from '../admin_system_types/AdminSystemBackupsTypes';
 
 export function useAdminSystemBackups() {
@@ -9,7 +9,7 @@ export function useAdminSystemBackups() {
   const [retention, setRetention] = useState(30);
   const [creating, setCreating] = useState(false);
   const [downloading, setDownloading] = useState<string | null>(null);
-  const [backups, setBackups] = useState<BackupRecord[]>(ADMIN_SYSTEM_MOCK_ADMIN_SYSTEM_MOCK_BACKUP_HISTORY as BackupRecord[]);
+  const [backups, setBackups] = useState<BackupRecord[]>(ADMIN_SYSTEM_MOCK_BACKUP_HISTORY as BackupRecord[]);
 
   const successCount = useMemo(() => backups.filter(b => b.status === 'success').length, [backups]);
   const failedCount = useMemo(() => backups.filter(b => b.status === 'failed').length, [backups]);

@@ -1,7 +1,7 @@
 'use client';
 
 import { Zap } from 'lucide-react';
-import { useShiftGapAnalyzer, pct, fmtH, DAY_START_H, DAY_END_H } from './admin_seats_shifts_lockers_hooks/useShiftGapAnalyzer';
+import { useShiftGapAnalyzer, pct, fmtH, DAY_START_H, DAY_END_H } from '../admin_seats_shifts_lockers_hooks/useShiftGapAnalyzer';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';

@@ -1,7 +1,7 @@
 'use client';
 
 import { LockKeyhole, Settings, Zap, X } from 'lucide-react';
-import { useLockerMatrix } from './admin_seats_shifts_lockers_hooks/useLockerMatrix';
+import { useLockerMatrix } from '../admin_seats_shifts_lockers_hooks/useLockerMatrix';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 

@@ -5,6 +5,8 @@ export type FetchState = 'idle' | 'loading' | 'success' | 'error';
 
 export type AuditLogSeverity = 'danger' | 'warning' | 'info' | 'success';
 
+export type AuditLogTabType = 'all' | AuditLogSeverity;
+
 export interface AuditLogRecord {
   id: string;
   action: string;

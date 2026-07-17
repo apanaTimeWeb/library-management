@@ -1,7 +1,7 @@
 'use client';
 
 import { ArrowLeft, Search, ChevronDown, CreditCard, QrCode, Banknote, CheckCircle, Clock } from 'lucide-react';
-import { useShiftMigration, PayMode } from './admin_seats_shifts_lockers_hooks/useShiftMigration';
+import { useShiftMigration, PayMode } from '../admin_seats_shifts_lockers_hooks/useShiftMigration';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
