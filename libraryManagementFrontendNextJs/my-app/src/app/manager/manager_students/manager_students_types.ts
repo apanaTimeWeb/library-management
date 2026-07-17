@@ -35,6 +35,10 @@ export interface IdCardData {
   id?: string; avatar?: string; bloodGroup?: string; emergencyContact?: string; validTill?: string; qrCode?: string;
 }
 
+export interface ManagerStudentsIdCardProps {
+  data: IdCardData;
+}
+
 export type AdmittedData = IdCardData & {
   phone: string;
   parentPhone?: string;
@@ -44,6 +48,11 @@ export type AdmittedData = IdCardData & {
   paymentMode: string;
   transactionId?: string;
 };
+
+export interface ManagerStudentsAdmissionSuccessModalProps {
+  data: AdmittedData;
+  onClose: () => void;
+}
 
 export interface ManagerStudentsErrorBoundaryProps {
   children: React.ReactNode;

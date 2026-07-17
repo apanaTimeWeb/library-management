@@ -3,10 +3,7 @@ import { ManagerSearchableDropdown } from '@/app/manager/manager_shared_componen
 
 // RESPONSIBILITY: Renders the filter controls (Date Range, Branch) and triggers state updates.
 
-interface ManagerReportsFilterBarProps {
-  dateRange: string;
-  onDateRangeChange: (range: string) => void;
-}
+import { ManagerReportsFilterBarProps } from '@/app/manager/manager_reports/manager_reports_types/ManagerReportsTypes';
 
 export function ManagerReportsFilterBar({ dateRange, onDateRangeChange }: ManagerReportsFilterBarProps) {
   return (

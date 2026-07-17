@@ -78,14 +78,9 @@ const ALL_HREFS = NAV.filter((n): n is { href: string; icon: LucideIcon; label: 
 
 const ICON_COLORS = ['var(--primary)', 'var(--success)', 'var(--warning)', 'var(--info)', 'var(--purple)', 'var(--danger)', 'var(--primary)'];
 
-interface Props {
-  collapsed: boolean;
-  onToggle: () => void;
-  mobileOpen: boolean;
-  onMobileClose: () => void;
-}
+import { ManagerSidebarProps } from '@/app/manager/manager_shared_components/manager_shared_types';
 
-export default function ManagerSidebar({ collapsed, onToggle, mobileOpen, onMobileClose }: Props) {
+export default function ManagerSidebar({ collapsed, onToggle, mobileOpen, onMobileClose }: ManagerSidebarProps) {
   const pathname = usePathname();
   const router   = useRouter();
   const [showLogout, setShowLogout] = useState(false);

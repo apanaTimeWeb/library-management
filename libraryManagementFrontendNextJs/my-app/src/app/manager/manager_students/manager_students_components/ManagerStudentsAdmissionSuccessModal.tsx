@@ -4,17 +4,12 @@
 import { useRouter } from 'next/navigation';
 import { X, Printer, MessageSquare, Users, CheckCircle } from 'lucide-react';
 import ManagerStudentsIdCard from '@/app/manager/manager_students/manager_students_components/ManagerStudentsIdCard';
-import { AdmittedData } from '@/app/manager/manager_students/manager_students_types';
+import { AdmittedData, ManagerStudentsAdmissionSuccessModalProps } from '@/app/manager/manager_students/manager_students_types';
 import { formatIdCardMessage, openWhatsApp, type StudentWhatsAppData } from '@/lib/whatsappUtils';
 import { printThermal } from '@/lib/thermalPrint';
 import { ManagerRecord } from '@/app/manager/manager_reusable/gridTheme';
 
-interface Props {
-  data: AdmittedData;
-  onClose: () => void;
-}
-
-export default function ManagerStudentsAdmissionSuccessModal({ data, onClose }: Props) {
+export default function ManagerStudentsAdmissionSuccessModal({ data, onClose }: ManagerStudentsAdmissionSuccessModalProps) {
   const router  = useRouter();
   const balance = data.totalPayable - data.amountPaid;
 

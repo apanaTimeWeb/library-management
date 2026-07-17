@@ -39,9 +39,6 @@ function PriorityCell(props: unknown) {
   return <span className={`px-2 py-0.5 rounded-full text-[11px] font-semibold border ${cls}`}>{props.value}</span>;
 }
 
-interface ManagerReportsTablesGridProps {
-  data: ManagerReportsData;
-}
 
 export function ManagerReportsTablesGrid({ data }: ManagerReportsTablesGridProps) {
   const absenteeCols = useMemo<ColDef[]>(() => [
