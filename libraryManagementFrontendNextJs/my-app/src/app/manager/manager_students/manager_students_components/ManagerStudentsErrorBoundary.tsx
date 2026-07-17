@@ -5,21 +5,14 @@ import { logger } from '@/lib/logger';
 
 // RESPONSIBILITY: Catches errors exclusively within the Manager Students module and prevents the whole app from crashing.
 
-interface Props {
-  children: ReactNode;
-}
+import { ManagerStudentsErrorBoundaryProps, ManagerStudentsErrorBoundaryState } from '@/app/manager/manager_students/manager_students_types';
 
-interface State {
-  hasError: boolean;
-  error?: Error;
-}
-
-export class ManagerStudentsErrorBoundary extends Component<Props, State> {
-  public state: State = {
+export class ManagerStudentsErrorBoundary extends Component<ManagerStudentsErrorBoundaryProps, ManagerStudentsErrorBoundaryState> {
+  public state: ManagerStudentsErrorBoundaryState = {
     hasError: false
   };
 
-  public static getDerivedStateFromError(error: Error): State {
+  public static getDerivedStateFromError(error: Error): ManagerStudentsErrorBoundaryState {
     return { hasError: true, error };
   }
 

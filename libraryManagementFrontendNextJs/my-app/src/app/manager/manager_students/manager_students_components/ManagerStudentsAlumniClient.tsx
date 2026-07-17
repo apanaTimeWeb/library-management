@@ -6,23 +6,24 @@ import { AgGridReact } from 'ag-grid-react';
 import { AllCommunityModule, ModuleRegistry, type ColDef } from 'ag-grid-community';
 import { Search, Filter, Mail, Award } from 'lucide-react';
 import { gridTheme } from '@/app/manager/manager_reusable/gridTheme';
+import { AlumniData } from '@/app/manager/manager_students/manager_students_types';
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
-const ALUMNI_DATA = [
+const ALUMNI_DATA: AlumniData[] = [
   { id: 'AL-1001', name: 'Neha Reddy',  phone: '+91 9988776655', leftDate: '2025-12-01', duration: '12 Months', exam: 'UPSC CSE',  currentStatus: 'Selected (IAS)'      },
   { id: 'AL-1002', name: 'Karan Mehra', phone: '+91 8877665544', leftDate: '2026-02-15', duration: '6 Months',  exam: 'SSC CGL',   currentStatus: 'Selected'             },
   { id: 'AL-1003', name: 'Anita Desai', phone: '+91 7766554433', leftDate: '2026-04-10', duration: '8 Months',  exam: 'Bank PO',   currentStatus: 'Preparing from home'  },
 ];
 
 export function ManagerStudentsAlumniClient() {
-  const [rowData] = useState(ALUMNI_DATA);
+  const [rowData] = useState<AlumniData[]>(ALUMNI_DATA);
 
-  const colDefs: ColDef[] = [
+  const colDefs: ColDef<AlumniData>[] = [
     { field: 'id',   headerName: 'ID', width: 100 },
     {
       field: 'name', headerName: 'Alumni Name', flex: 1,
-      cellRenderer: (p: { value: string; data?: { phone: string } }) => (
+      cellRenderer: (p: { value: string; data?: AlumniData }) => (
         <div className="flex items-center gap-3 py-2">
           <div className="w-8 h-8 rounded-full bg-primary/10 text-primary flex items-center justify-center text-xs font-bold shrink-0">{p.value?.charAt(0)}</div>
           <div>
@@ -36,7 +37,7 @@ export function ManagerStudentsAlumniClient() {
     { field: 'exam',          headerName: 'Target Exam',    width: 140 },
     {
       field: 'currentStatus', headerName: 'Current Status', width: 200,
-      cellRenderer: (p: { value: string; data?: unknown }) => {
+      cellRenderer: (p: { value: string; data?: AlumniData }) => {
         const isSelected = p.value?.includes('Selected');
         return (
           <span className={isSelected ? 'text-success' : 'text-text-secondary'} style={{ fontWeight: isSelected ? 600 : 400 }}>
@@ -94,5 +95,3 @@ export function ManagerStudentsAlumniClient() {
     </div>
   );
 }
-
-

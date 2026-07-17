@@ -75,19 +75,7 @@ function QrPattern({ id }: { id: string }) {
   );
 }
 
-export interface IdCardData {
-  name: string;
-  smartId: string;
-  phone: string;
-  shift: string;
-  seat: string;
-  locker: string;
-  plan: string;
-  joinDate: string;
-  expiryDate: string;
-  branch?: string;
-  college?: string;
-}
+import { IdCardData } from '@/app/manager/manager_students/manager_students_types';
 
 interface Props { data: IdCardData; }
 

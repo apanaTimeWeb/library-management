@@ -3,21 +3,14 @@
 
 import { useRouter } from 'next/navigation';
 import { X, Printer, MessageSquare, Users, CheckCircle } from 'lucide-react';
-import ManagerStudentsIdCard, { type IdCardData } from '@/app/manager/manager_students/manager_students_components/ManagerStudentsIdCard';
+import ManagerStudentsIdCard from '@/app/manager/manager_students/manager_students_components/ManagerStudentsIdCard';
+import { AdmittedData } from '@/app/manager/manager_students/manager_students_types';
 import { formatIdCardMessage, openWhatsApp, type StudentWhatsAppData } from '@/lib/whatsappUtils';
 import { printThermal } from '@/lib/thermalPrint';
 import { ManagerRecord } from '@/app/manager/manager_reusable/gridTheme';
 
 interface Props {
-  data: IdCardData & {
-    phone: string;
-    parentPhone?: string;
-    amountPaid: number;
-    totalPayable: number;
-    discount: number;
-    paymentMode: string;
-    transactionId?: string;
-  };
+  data: AdmittedData;
   onClose: () => void;
 }
 

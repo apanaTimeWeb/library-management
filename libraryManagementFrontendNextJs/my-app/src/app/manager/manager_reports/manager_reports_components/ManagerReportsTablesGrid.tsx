@@ -2,7 +2,7 @@ import React, { useMemo } from 'react';
 import { AgGridReact } from 'ag-grid-react';
 import { type ColDef, AllCommunityModule, ModuleRegistry } from 'ag-grid-community';
 import { gridTheme } from '@/app/manager/manager_reusable/gridTheme';
-import { ManagerReportsData } from '@/app/manager/manager_reports/manager_reports_types/ManagerReportsTypes';
+import type { ManagerReportsData, ManagerReportsTablesGridProps } from '@/app/manager/manager_reports/manager_reports_types/ManagerReportsTypes';
 
 // RESPONSIBILITY: Renders the grid of AgGridReact tables for manager reports.
 

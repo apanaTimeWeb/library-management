@@ -4,7 +4,7 @@ import {
   BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend,
   LineChart, Line,
 } from 'recharts';
-import { ManagerReportsData } from '@/app/manager/manager_reports/manager_reports_types/ManagerReportsTypes';
+import type { ManagerReportsData, ManagerReportsChartsGridProps } from '@/app/manager/manager_reports/manager_reports_types/ManagerReportsTypes';
 
 // RESPONSIBILITY: Renders the 2x2 grid of Recharts components for the manager reports.
 
@@ -22,10 +22,6 @@ const TOOLTIP_STYLE = {
   labelStyle: { color: 'var(--text-secondary)' },
 };
 const AXIS_TICK = { fill: 'var(--text-secondary)', fontSize: 11 } as const;
-
-interface ManagerReportsChartsGridProps {
-  data: ManagerReportsData;
-}
 
 export function ManagerReportsChartsGrid({ data }: ManagerReportsChartsGridProps) {
   return (

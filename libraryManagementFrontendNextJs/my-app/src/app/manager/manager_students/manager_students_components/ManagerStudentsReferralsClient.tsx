@@ -6,35 +6,36 @@ import { AgGridReact } from 'ag-grid-react';
 import { AllCommunityModule, ModuleRegistry, type ColDef } from 'ag-grid-community';
 import { Award, Search, Filter, IndianRupee } from 'lucide-react';
 import { gridTheme } from '@/app/manager/manager_reusable/gridTheme';
+import { ReferralData } from '@/app/manager/manager_students/manager_students_types';
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
-const REFERRALS_DATA = [
+const REFERRALS_DATA: ReferralData[] = [
   { id: 'REF-001', referrer: 'Arjun Das',    referred: 'Riya Sen',    date: '2026-05-15', status: 'Claimed',  bonus: '₹500', method: 'Fee Discount' },
   { id: 'REF-002', referrer: 'Priya Verma',  referred: 'Kunal Singh', date: '2026-06-02', status: 'Pending',  bonus: '₹500', method: 'Cash'         },
   { id: 'REF-003', referrer: 'Rohan Sharma', referred: 'Aditi Jain',  date: '2026-06-03', status: 'Approved', bonus: '₹500', method: 'Fee Discount' },
 ];
 
 export function ManagerStudentsReferralsClient() {
-  const [rowData] = useState(REFERRALS_DATA);
+  const [rowData] = useState<ReferralData[]>(REFERRALS_DATA);
 
-  const colDefs: ColDef[] = [
+  const colDefs: ColDef<ReferralData>[] = [
     { field: 'id',       headerName: 'Ref ID',                    width: 110 },
     { field: 'referrer', headerName: 'Referrer (Existing)',        flex: 1,
-      cellRenderer: (p: { value: string; data?: Record<string, unknown> }) => <span className="text-[13px] font-semibold text-text-secondary">{p.value}</span> },
+      cellRenderer: (p: { value: string; data?: ReferralData }) => <span className="text-[13px] font-semibold text-text-secondary">{p.value}</span> },
     { field: 'referred', headerName: 'Referred Student',           flex: 1,
-      cellRenderer: (p: { value: string; data?: Record<string, unknown> }) => <span className="text-[13.5px] font-semibold text-text-primary">{p.value}</span> },
+      cellRenderer: (p: { value: string; data?: ReferralData }) => <span className="text-[13.5px] font-semibold text-text-primary">{p.value}</span> },
     { field: 'date',     headerName: 'Date',                       width: 130 },
     { field: 'bonus',    headerName: 'Bonus',                      width: 110, cellStyle: { fontWeight: 600 } },
     { field: 'method',   headerName: 'Payout Method',              width: 150 },
     { field: 'status',   headerName: 'Status',                     width: 130,
-      cellRenderer: (p: { value: string; data?: Record<string, unknown> }) => {
+      cellRenderer: (p: { value: string; data?: ReferralData }) => {
         const cls = p.value === 'Claimed' ? 'bg-success-bg text-success' : p.value === 'Approved' ? 'rounded-full px-2.5 py-0.5 text-[11px] font-semibold--info' : 'bg-warning-bg text-warning';
         return <span className={`rounded-full px-2.5 py-0.5 text-[11px] font-semibold ${cls}`}>{p.value}</span>;
       }
     },
     { headerName: 'Actions', width: 120, sortable: false,
-      cellRenderer: (p: { value: string; data?: Record<string, unknown> }) => p.data?.status !== 'Claimed'
+      cellRenderer: (p: { value: string; data?: ReferralData }) => p.data?.status !== 'Claimed'
         ? <div className="flex gap-2 items-center h-full"><button className="bg-transparent border border-border text-text-primary rounded-lg h-8 px-3 text-xs font-medium hover:bg-primary-subtle hover:border-primary transition-colors inline-flex items-center gap-2">Process</button></div>
         : null
     },
@@ -100,5 +101,3 @@ export function ManagerStudentsReferralsClient() {
     </div>
   );
 }
-
-

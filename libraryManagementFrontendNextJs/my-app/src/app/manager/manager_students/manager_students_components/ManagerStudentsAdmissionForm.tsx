@@ -15,6 +15,7 @@ import {
 import ManagerStudentsAdmissionSuccessModal from '@/app/manager/manager_students/manager_students_components/ManagerStudentsAdmissionSuccessModal';
 import { useManagerStudentsAdmissionForm } from '@/app/manager/manager_students/manager_students_hooks/useManagerStudentsAdmissionForm';
 import { PLANS, SHIFTS, SEATS } from '@/app/manager/manager_students/manager_students_constants';
+import { ManagerSearchableDropdown } from '@/app/manager/manager_shared_components/ManagerSearchableDropdown';
 
 export default function ManagerStudentsAdmissionForm() {
   const {
@@ -175,24 +176,28 @@ export default function ManagerStudentsAdmissionForm() {
                       <label className="block text-[13px] font-medium text-text-secondary mb-1.5 after:content-['*'] after:ml-1 after:text-danger">Select Shift</label>
                       <div className="relative">
                         <Armchair size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-text-secondary" />
-                        <select
-                          {...register('shift')}
-                          className={`w-full bg-bg-input border ${errors.shift ? 'border-danger focus:ring-danger' : 'border-border focus:ring-primary'} rounded-lg pl-9 pr-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 appearance-none`}
-                        >
-                          {SHIFTS.map((s: unknown) => <option key={s} value={s}>{s}</option>)}
-                        </select>
+                        <ManagerSearchableDropdown
+                          value={watchedShift}
+                          onChange={(v) => setValue('shift', v)}
+                          options={[
+                            { label: 'Select shift...', value: '' },
+                            ...SHIFTS.map((s: string) => ({ label: s, value: s }))
+                          ]}
+                        />
                       </div>
                       {errors.shift && <p className="text-[11px] text-danger mt-1.5 font-medium">{errors.shift.message}</p>}
                     </div>
 
                     <div className="flex flex-col">
                       <label className="block text-[13px] font-medium text-text-secondary mb-1.5 after:content-['*'] after:ml-1 after:text-danger">Seat Number</label>
-                      <select
-                        {...register('seat')}
-                        className={`w-full bg-bg-input border ${errors.seat ? 'border-danger focus:ring-danger' : 'border-border focus:ring-primary'} rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2`}
-                      >
-                        {SEATS.map((s: unknown) => <option key={s} value={s}>{s}</option>)}
-                      </select>
+                      <ManagerSearchableDropdown
+                        value={watchedSeat}
+                        onChange={(v) => setValue('seat', v)}
+                        options={[
+                          { label: 'Select seat...', value: '' },
+                          ...SEATS.map((s: string) => ({ label: s, value: s }))
+                        ]}
+                      />
                       {errors.seat && <p className="text-[11px] text-danger mt-1.5 font-medium">{errors.seat.message}</p>}
                     </div>
 
@@ -213,17 +218,18 @@ export default function ManagerStudentsAdmissionForm() {
                       <label className="block text-[13px] font-medium text-text-secondary mb-1.5 after:content-['*'] after:ml-1 after:text-danger">Subscription Plan</label>
                       <div className="relative">
                         <FileText size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-text-secondary" />
-                        <select
-                          {...register('plan')}
-                          className="w-full bg-bg-input border border-border rounded-lg pl-9 pr-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary appearance-none"
-                          onChange={e => {
-                            setValue('plan', e.target.value);
-                            const p = PLANS.find((p: unknown) => p.value === e.target.value);
+                        <ManagerSearchableDropdown
+                          value={watchedPlan}
+                          onChange={(v) => {
+                            setValue('plan', v);
+                            const p = PLANS.find((plan) => plan.value === v);
                             if (p) setValue('amountPaid', String(p.amount - discount));
                           }}
-                        >
-                          {PLANS.map((p: unknown) => <option key={p.value} value={p.value}>{p.label}</option>)}
-                        </select>
+                          options={[
+                            { label: 'Select plan...', value: '' },
+                            ...PLANS.map((p) => ({ label: p.label, value: p.value }))
+                          ]}
+                        />
                       </div>
                     </div>
 

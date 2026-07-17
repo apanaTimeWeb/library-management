@@ -1,16 +1,7 @@
 import { create } from 'zustand';
 import { fetchApi } from '@/lib/api';
 import { logger } from '@/lib/logger';
-import type { FetchState, ReportsData } from '@/app/manager/manager_student-reports/manager_student_reports_types/manager_student_reports_types';
-
-// DATA FLOW: API -> Store -> Hook -> Component
-
-interface ManagerStudentReportsState {
-  reports: ReportsData | null;
-  reportsStatus: FetchState;
-  reportsError: string | null;
-  fetchReports: (dateRange: string) => Promise<void>;
-}
+import type { FetchState, ReportsData, ManagerStudentReportsState } from '@/app/manager/manager_student-reports/manager_student_reports_types/manager_student_reports_types';
 
 export const useManagerStudentReportsStore = create<ManagerStudentReportsState>((set) => ({
   reports: null,

@@ -1,4 +1,5 @@
 import React from 'react';
+import { ManagerSearchableDropdown } from '@/app/manager/manager_shared_components/ManagerSearchableDropdown';
 
 // RESPONSIBILITY: Renders the filter controls (Date Range, Branch) and triggers state updates.
 
@@ -14,27 +15,28 @@ export function ManagerReportsFilterBar({ dateRange, onDateRangeChange }: Manage
         <label className="text-xs font-semibold text-text-secondary uppercase tracking-wider">
           Date Range
         </label>
-        <select
-          className="bg-bg-input border border-border rounded-[var(--radius-md)] px-3 py-2 text-sm text-text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--primary)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--bg-page)] transition-all duration-200 ease-in-out cursor-pointer"
+        <ManagerSearchableDropdown
           value={dateRange}
-          onChange={(e) => onDateRangeChange(e.target.value)}
-        >
-          <option>This Week</option>
-          <option>This Month</option>
-          <option>Last 30 Days</option>
-        </select>
+          onChange={(v) => onDateRangeChange(v)}
+          options={[
+            { label: 'This Week', value: 'This Week' },
+            { label: 'This Month', value: 'This Month' },
+            { label: 'Last 30 Days', value: 'Last 30 Days' },
+          ]}
+        />
       </div>
       
       <div className="flex flex-col gap-1 w-full sm:w-auto">
         <label className="text-xs font-semibold text-text-secondary uppercase tracking-wider">
           Branch
         </label>
-        <select
-          className="bg-bg-input border border-border rounded-[var(--radius-md)] px-3 py-2 text-sm text-text-primary opacity-50 cursor-not-allowed"
-          disabled
-        >
-          <option>HQ Branch</option>
-        </select>
+        <div className="opacity-50 pointer-events-none">
+          <ManagerSearchableDropdown
+            value="HQ Branch"
+            onChange={() => {}}
+            options={[{ label: 'HQ Branch', value: 'HQ Branch' }]}
+          />
+        </div>
       </div>
     </div>
   );

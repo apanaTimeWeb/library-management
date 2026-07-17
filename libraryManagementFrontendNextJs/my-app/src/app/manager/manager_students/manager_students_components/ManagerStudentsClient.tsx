@@ -11,6 +11,7 @@ import { useStudentsList } from '@/app/manager/manager_students/manager_students
 import { STUDENT_STATUS_OPTIONS, STUDENT_SHIFT_OPTIONS } from '@/app/manager/manager_students/manager_students_constants';
 import { MANAGER_ROUTES } from '@/app/manager/manager_url_config';
 import { NameCell, ShiftCell, StatusCell, DueCell, ActionsCell } from '@/app/manager/manager_students/manager_students_components/ManagerStudentsTableCells';
+import { ManagerSearchableDropdown } from '@/app/manager/manager_shared_components/ManagerSearchableDropdown';
 import { ManagerStudentsEmptyState } from '@/app/manager/manager_students/manager_students_components/ManagerStudentsEmptyState';
 
 ModuleRegistry.registerModules([AllCommunityModule]);
@@ -93,16 +94,20 @@ export function ManagerStudentsClient() {
           value={search}
           onChange={e => setSearch(e.target.value)}
         />
-        <select className="bg-bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary appearance-none" style={{ width: 'auto' }} value={statusFilter} onChange={e => setStatusFilter(e.target.value)}>
-          {STUDENT_STATUS_OPTIONS.map(opt => (
-            <option key={opt.value} value={opt.value}>{opt.label}</option>
-          ))}
-        </select>
-        <select className="bg-bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary appearance-none" style={{ width: 'auto' }} value={shiftFilter} onChange={e => setShiftFilter(e.target.value)}>
-          {STUDENT_SHIFT_OPTIONS.map(opt => (
-            <option key={opt.value} value={opt.value}>{opt.label}</option>
-          ))}
-        </select>
+        <div style={{ width: 200 }}>
+          <ManagerSearchableDropdown
+            value={statusFilter}
+            onChange={setStatusFilter}
+            options={STUDENT_STATUS_OPTIONS}
+          />
+        </div>
+        <div style={{ width: 200 }}>
+          <ManagerSearchableDropdown
+            value={shiftFilter}
+            onChange={setShiftFilter}
+            options={STUDENT_SHIFT_OPTIONS}
+          />
+        </div>
       </div>
 
       {/* Grid */}

@@ -1,14 +1,10 @@
 import React from 'react';
 import { Users, CalendarCheck, UserPlus, Phone } from 'lucide-react';
-import { ManagerReportsKpiCard } from '@/app/manager/manager_reports/manager_reports_types/ManagerReportsTypes';
+import type { ManagerReportsKpiCard, ManagerReportsKpiGridProps } from '@/app/manager/manager_reports/manager_reports_types/ManagerReportsTypes';
 
 // RESPONSIBILITY: Renders the row of KPI stat cards for the manager reports.
 
 const iconMap: Record<string, React.ElementType> = { Users, CalendarCheck, UserPlus, Phone };
-
-interface ManagerReportsKpiGridProps {
-  cards: ManagerReportsKpiCard[];
-}
 
 export function ManagerReportsKpiGrid({ cards }: ManagerReportsKpiGridProps) {
   return (

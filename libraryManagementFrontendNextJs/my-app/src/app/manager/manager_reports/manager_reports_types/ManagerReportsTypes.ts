@@ -82,3 +82,21 @@ export interface ManagerReportsData {
   lockerRows: ManagerReportsLockerRow[];
   maintenanceRows: ManagerReportsMaintenanceRow[];
 }
+
+export interface ManagerReportsFilterBarProps {
+  dateRange: string;
+  onDateRangeChange: (range: string) => void;
+}
+
+export interface ManagerReportsKpiGridProps {
+  cards: ManagerReportsKpiCard[];
+  isLoading?: boolean;
+}
+
+export interface ManagerReportsChartsGridProps {
+  data: ManagerReportsData;
+}
+
+export interface ManagerReportsTablesGridProps {
+  data: ManagerReportsData;
+}

@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { ChevronRight, ChevronLeft, Plus, X, Trash2, CalendarDays } from 'lucide-react';
 import { Holiday } from '@/app/manager/manager_engagement/manager_engagement_types/ManagerEngagementTypes';
 import { INIT_HOLIDAYS } from '@/app/manager/manager_engagement/manager_engagement_constants/ManagerEngagementConstants';
+import { ManagerSearchableDropdown } from '@/app/manager/manager_shared_components/ManagerSearchableDropdown';
 
 const WEEK_DAYS = ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
 
@@ -95,12 +96,15 @@ export function ManagerEngagementHolidayCalendarClient() {
             </div>
             <div className="flex flex-col mb-4">
               <label className="block text-[13px] font-medium text-text-secondary mb-1.5">Type</label>
-              <select className="w-full bg-bg-input border border-border rounded-lg px-3.5 py-2 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary appearance-none" value={form.type}
-                onChange={e => setForm(f=>({...f, type:e.target.value}))}>
-                <option>National</option>
-                <option>Religious</option>
-                <option>Library</option>
-              </select>
+              <ManagerSearchableDropdown
+                value={form.type}
+                onChange={v => setForm(f=>({...f, type:v}))}
+                options={[
+                  { label: 'National', value: 'National' },
+                  { label: 'Religious', value: 'Religious' },
+                  { label: 'Library', value: 'Library' },
+                ]}
+              />
             </div>
 
             <div className="flex justify-end gap-3 mt-6 pt-4 border-t border-border">

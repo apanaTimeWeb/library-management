@@ -7,6 +7,7 @@ import { ArrowLeft, Search, LogOut, AlertTriangle } from 'lucide-react';
 import { fetchStudents } from '@/app/manager/manager_students/manager_students_api/manager_students_api';
 import type { Student } from '@/app/manager/manager_students/manager_students_types';
 import { useManagerDebounce } from '@/app/manager/manager_shared_hooks/useManagerDebounce';
+import { ManagerSearchableDropdown } from '@/app/manager/manager_shared_components/ManagerSearchableDropdown';
 
 export function ManagerStudentsExitClient() {
   const [students, setStudents] = useState<Student[]>([]);
@@ -125,14 +126,18 @@ export function ManagerStudentsExitClient() {
 
                 <div className="flex flex-col gap-1.5" style={{ marginTop: 8 }}>
                   <label className="block text-sm font-medium text-text-secondary mb-1.5 after:content-['*'] after:ml-0.5 after:text-danger">Reason for Exit</label>
-                  <select className="w-full bg-bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" value={reason} onChange={e => setReason(e.target.value)}>
-                    <option value="">Select reason…</option>
-                    <option>Exam completed</option>
-                    <option>Moved to another city</option>
-                    <option>Fee non-payment</option>
-                    <option>Personal reasons</option>
-                    <option>Other</option>
-                  </select>
+                  <ManagerSearchableDropdown
+                    value={reason}
+                    onChange={v => setReason(v)}
+                    options={[
+                      { label: 'Select reason…', value: '' },
+                      { label: 'Exam completed', value: 'Exam completed' },
+                      { label: 'Moved to another city', value: 'Moved to another city' },
+                      { label: 'Fee non-payment', value: 'Fee non-payment' },
+                      { label: 'Personal reasons', value: 'Personal reasons' },
+                      { label: 'Other', value: 'Other' },
+                    ]}
+                  />
                 </div>
 
                 {student.due > 0 && (

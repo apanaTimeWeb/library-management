@@ -5,7 +5,7 @@ import { z } from 'zod';
 import { useSearchParams } from 'next/navigation';
 import toast from 'react-hot-toast';
 import { calcExpiryDate, formatDateIN } from '@/lib/whatsappUtils';
-import type { IdCardData } from '@/app/manager/manager_students/manager_students_components/ManagerStudentsIdCard';
+import type { IdCardData } from '@/app/manager/manager_students/manager_students_types';
 import { createStudent } from '@/app/manager/manager_students/manager_students_api/manager_students_api';
 import { PLANS, SHIFTS, SEATS } from '@/app/manager/manager_students/manager_students_constants';
 
@@ -31,15 +31,7 @@ export type FormValues = z.infer<typeof schema>;
 
 const SMART_ID = 'LIB003'; // simulated auto-generated
 
-export type AdmittedData = IdCardData & {
-  phone: string;
-  parentPhone?: string;
-  amountPaid: number;
-  totalPayable: number;
-  discount: number;
-  paymentMode: string;
-  transactionId?: string;
-};
+import { AdmittedData } from '@/app/manager/manager_students/manager_students_types';
 
 export function useManagerStudentsAdmissionForm() {
   const searchParams = useSearchParams();

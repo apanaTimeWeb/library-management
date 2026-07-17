@@ -6,8 +6,9 @@ import dynamic from 'next/dynamic';
 import { useRouter, useSearchParams, usePathname } from 'next/navigation';
 import { Users, CalendarCheck, UserPlus, Phone } from 'lucide-react';
 import { useStudentReports } from '@/app/manager/manager_student-reports/manager_student_reports_hooks/useStudentReports';
+import { ManagerSearchableDropdown } from '@/app/manager/manager_shared_components/ManagerSearchableDropdown';
 
-const Chart = dynamic(() => import('react-apexcharts'), { ssr: false }) as any;
+const Chart = dynamic(() => import('react-apexcharts'), { ssr: false }) as React.ComponentType<Record<string, unknown>>;
 
 const iconMap: Record<string, React.ElementType> = { Users, CalendarCheck, UserPlus, Phone };
 
@@ -40,14 +41,24 @@ export function ManagerStudentReportsClient() {
 
       {/* Filters */}
       <div className="flex flex-wrap items-center gap-4 mb-8">
-        <select className="bg-bg-input border border-border rounded-lg px-3 py-1.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary disabled:opacity-50 appearance-none" value={dateRange} onChange={e => setDateRange(e.target.value)}>
-          <option>This Week</option>
-          <option>This Month</option>
-          <option>Last 30 Days</option>
-        </select>
-        <select className="bg-bg-input border border-border rounded-lg px-3 py-1.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary disabled:opacity-50 appearance-none" disabled>
-          <option>Main Branch (read-only)</option>
-        </select>
+        <div style={{ width: 200 }}>
+          <ManagerSearchableDropdown
+            value={dateRange}
+            onChange={(v) => setDateRange(v)}
+            options={[
+              { label: 'This Week', value: 'This Week' },
+              { label: 'This Month', value: 'This Month' },
+              { label: 'Last 30 Days', value: 'Last 30 Days' },
+            ]}
+          />
+        </div>
+        <div style={{ width: 200 }}>
+          <ManagerSearchableDropdown
+            value="Main Branch (read-only)"
+            onChange={() => {}}
+            options={[{ label: 'Main Branch (read-only)', value: 'Main Branch (read-only)' }]}
+          />
+        </div>
       </div>
 
       {/* KPI Cards */}

@@ -15,7 +15,7 @@ export async function fetchStudents(): Promise<Student[]> {
   }
 }
 
-export async function fetchStudentById(id: string): Promise<unknown> {
+export async function fetchStudentById(id: string): Promise<Student> {
   try {
     return await fetchApi(`/students/${id}`);
   } catch (error) {
@@ -36,7 +36,7 @@ export async function fetchStudentById(id: string): Promise<unknown> {
   }
 }
 
-export async function createStudent(payload: Record<string, unknown>): Promise<unknown> {
+export async function createStudent(payload: Record<string, unknown>): Promise<{ success: boolean; smartId?: string }> {
   try {
     return await fetchApi('/students', {
       method: 'POST',

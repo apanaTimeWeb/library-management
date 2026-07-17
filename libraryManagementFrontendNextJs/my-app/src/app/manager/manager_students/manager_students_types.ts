@@ -19,3 +19,64 @@ export interface Student {
 }
 
 export type FetchState = 'idle' | 'loading' | 'success' | 'error';
+
+export interface IdCardData {
+  name: string;
+  smartId: string;
+  phone: string;
+  shift: string;
+  seat: string;
+  locker: string;
+  plan: string;
+  joinDate: string;
+  expiryDate: string;
+  branch?: string;
+  college?: string;
+  id?: string; avatar?: string; bloodGroup?: string; emergencyContact?: string; validTill?: string; qrCode?: string;
+}
+
+export type AdmittedData = IdCardData & {
+  phone: string;
+  parentPhone?: string;
+  amountPaid: number;
+  totalPayable: number;
+  discount: number;
+  paymentMode: string;
+  transactionId?: string;
+};
+
+export interface ManagerStudentsErrorBoundaryProps {
+  children: React.ReactNode;
+}
+
+export interface ManagerStudentsErrorBoundaryState {
+  hasError: boolean;
+  error?: Error;
+}
+
+export interface StudentsState {
+  students: Student[];
+  status: FetchState;
+  error: string | null;
+  fetchData: () => Promise<void>;
+}
+
+export interface ReferralData {
+  id: string;
+  referrer: string;
+  referred: string;
+  date: string;
+  status: 'Claimed' | 'Pending' | 'Approved';
+  bonus: string;
+  method: string;
+}
+
+export interface AlumniData {
+  id: string;
+  name: string;
+  phone: string;
+  leftDate: string;
+  duration: string;
+  exam: string;
+  currentStatus: string;
+}

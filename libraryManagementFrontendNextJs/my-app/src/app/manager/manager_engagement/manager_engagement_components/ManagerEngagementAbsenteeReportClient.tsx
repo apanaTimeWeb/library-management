@@ -7,6 +7,7 @@ import { ChevronRight, Send, Mail, Phone } from 'lucide-react';
 import { gridTheme , ManagerRecord } from '@/app/manager/manager_reusable/gridTheme';
 import { AbsenteeRow } from '@/app/manager/manager_engagement/manager_engagement_types/ManagerEngagementTypes';
 import { useManagerEngagementAbsentee } from '@/app/manager/manager_engagement/manager_engagement_hooks/useManagerEngagementAbsentee';
+import { ManagerSearchableDropdown } from '@/app/manager/manager_shared_components/ManagerSearchableDropdown';
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
@@ -145,23 +146,33 @@ export function ManagerEngagementAbsenteeReportClient() {
           <div className="flex gap-6 items-center">
             <div className="flex flex-col">
               <span className="block text-[13px] font-medium text-text-secondary mb-1.5">Days Threshold</span>
-              <select className="bg-bg-input border border-border rounded-lg px-3 py-1.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary appearance-none" value={threshold}
-                onChange={e => setThreshold(e.target.value)}>
-                <option value="3">3+ Days</option>
-                <option value="5">5+ Days</option>
-                <option value="7">7+ Days (Critical)</option>
-                <option value="all">Show All</option>
-              </select>
+              <div style={{ width: 180 }}>
+                <ManagerSearchableDropdown
+                  value={threshold}
+                  onChange={v => setThreshold(v)}
+                  options={[
+                    { label: '3+ Days', value: '3' },
+                    { label: '5+ Days', value: '5' },
+                    { label: '7+ Days (Critical)', value: '7' },
+                    { label: 'Show All', value: 'all' },
+                  ]}
+                />
+              </div>
             </div>
             <div className="flex flex-col">
               <span className="block text-[13px] font-medium text-text-secondary mb-1.5">Shift</span>
-              <select className="bg-bg-input border border-border rounded-lg px-3 py-1.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary appearance-none" value={shift}
-                onChange={e => setShift(e.target.value)}>
-                <option>All</option>
-                <option>Morning</option>
-                <option>Afternoon</option>
-                <option>Evening</option>
-              </select>
+              <div style={{ width: 150 }}>
+                <ManagerSearchableDropdown
+                  value={shift}
+                  onChange={v => setShift(v)}
+                  options={[
+                    { label: 'All', value: 'All' },
+                    { label: 'Morning', value: 'Morning' },
+                    { label: 'Afternoon', value: 'Afternoon' },
+                    { label: 'Evening', value: 'Evening' },
+                  ]}
+                />
+              </div>
             </div>
           </div>
           <div className="flex gap-2">

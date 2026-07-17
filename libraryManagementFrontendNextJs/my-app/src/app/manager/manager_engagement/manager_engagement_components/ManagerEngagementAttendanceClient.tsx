@@ -7,6 +7,7 @@ import { useRouter, useSearchParams, usePathname } from 'next/navigation';
 import { ChevronRight, Save, FileBarChart2, Bell, CheckCircle, Clock, Calendar, XCircle, AlertTriangle } from 'lucide-react';
 import { useAttendance } from '@/app/manager/manager_engagement/manager_engagement_hooks/useAttendance';
 import type { AttStatus } from '@/app/manager/manager_engagement/manager_engagement_types/manager_engagement_types';
+import { ManagerSearchableDropdown } from '@/app/manager/manager_shared_components/ManagerSearchableDropdown';
 
 export function ManagerEngagementAttendanceClient() {
   const router = useRouter();
@@ -104,13 +105,18 @@ export function ManagerEngagementAttendanceClient() {
           </div>
           <div className="flex items-center gap-3">
             <label className="text-[13px] font-medium text-text-secondary">Shift</label>
-            <select className="bg-bg-input border border-border rounded-lg px-3 py-1.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary appearance-none" value={shift}
-              onChange={e => setFilter('shift', e.target.value)}>
-              <option>All</option>
-              <option>Morning</option>
-              <option>Afternoon</option>
-              <option>Evening</option>
-            </select>
+            <div style={{ width: 150 }}>
+              <ManagerSearchableDropdown
+                value={shift}
+                onChange={v => setFilter('shift', v)}
+                options={[
+                  { label: 'All', value: 'All' },
+                  { label: 'Morning', value: 'Morning' },
+                  { label: 'Afternoon', value: 'Afternoon' },
+                  { label: 'Evening', value: 'Evening' },
+                ]}
+              />
+            </div>
           </div>
           <div className="flex gap-2 items-center flex-wrap">
             <span className="rounded-full px-2.5 py-0.5 text-[11px] font-semibold bg-success-bg text-success inline-flex items-center gap-1"><CheckCircle size={12}/> {present} Present</span>

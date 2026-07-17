@@ -5,7 +5,8 @@ import { useManagerDebounce } from '@/app/manager/manager_shared_hooks/useManage
 import { useState, useMemo, useEffect } from 'react';
 import Link from 'next/link';
 import { ArrowLeft, Search, Printer, MessageSquare, IdCard, CheckCircle2 } from 'lucide-react';
-import ManagerStudentsIdCard, { type IdCardData } from '@/app/manager/manager_students/manager_students_components/ManagerStudentsIdCard';
+import ManagerStudentsIdCard from '@/app/manager/manager_students/manager_students_components/ManagerStudentsIdCard';
+import type { Student, IdCardData } from '@/app/manager/manager_students/manager_students_types';
 import {
   formatIdCardMessage,
   openWhatsApp,
@@ -15,7 +16,7 @@ import {
 } from '@/lib/whatsappUtils';
 import { printThermal } from '@/lib/thermalPrint';
 import { fetchStudents } from '@/app/manager/manager_students/manager_students_api/manager_students_api';
-import type { Student } from '@/app/manager/manager_students/manager_students_types';
+
 
 export function ManagerStudentsIdCardClient() {
   const [students, setStudents] = useState<Student[]>([]);
