@@ -1,5 +1,6 @@
-import { AllocationsClient } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_components/AllocationsClient';
+import { ManagerSeatsAllocationsClient } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_components/ManagerSeatsAllocationsClient';
 
 export default function AllocationsPage() {
-  return <AllocationsClient />;
+  return <ManagerSeatsAllocationsClient />;
 }
+

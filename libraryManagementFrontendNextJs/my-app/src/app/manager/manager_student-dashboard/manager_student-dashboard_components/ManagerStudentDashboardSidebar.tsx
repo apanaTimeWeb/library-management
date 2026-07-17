@@ -113,10 +113,12 @@
 
  import React from 'react'
  
- const sidebar = () => {
+ const ManagerStudentDashboardSidebar = () => {
    return (
      <div>sidebar</div>
    )
  }
  
- export default sidebar
+ export function ManagerStudentDashboardSidebarComponent() {
+   return <ManagerStudentDashboardSidebar />;
+ }

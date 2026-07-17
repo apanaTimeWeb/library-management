@@ -33,7 +33,7 @@ function ReasonCell(props: { value: string }) {
   return <span className={REASON_CLASS[props.value] ?? 'ss-badge ss-badge--inactive'}>{props.value}</span>;
 }
 
-export function SeatHistoryClient() {
+export function ManagerSeatsSeatHistoryClient() {
   const [seatFilter, setSeatFilter] = useState('All Seats');
   const [search, setSearch] = useState('');
   const [dateFrom, setDateFrom] = useState('');
@@ -112,3 +112,4 @@ export function SeatHistoryClient() {
     </div>
   );
 }
+

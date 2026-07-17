@@ -1,5 +1,6 @@
-import { SeatManagementClient } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_components/SeatManagementClient';
+import { ManagerSeatsSeatManagementClient } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_components/ManagerSeatsSeatManagementClient';
 
 export default function SeatManagementPage() {
-  return <SeatManagementClient />;
+  return <ManagerSeatsSeatManagementClient />;
 }
+

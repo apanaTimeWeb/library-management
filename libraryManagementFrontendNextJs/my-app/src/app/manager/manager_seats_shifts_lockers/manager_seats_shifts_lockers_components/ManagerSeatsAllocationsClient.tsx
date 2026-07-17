@@ -58,7 +58,7 @@ function ActionsCell(props: { data: Allocation }) {
   );
 }
 
-export function AllocationsClient() {
+export function ManagerSeatsAllocationsClient() {
   const [shiftFilter, setShiftFilter] = useState('All Shifts');
   const [statusFilter, setStatusFilter] = useState('All Statuses');
   const [dateFrom, setDateFrom] = useState('');
@@ -147,3 +147,4 @@ export function AllocationsClient() {
     </>
   );
 }
+

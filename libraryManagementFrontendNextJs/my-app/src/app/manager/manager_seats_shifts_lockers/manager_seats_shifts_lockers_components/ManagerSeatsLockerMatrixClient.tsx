@@ -32,7 +32,7 @@ const ACTIVITY: ActivityItem[] = [
 import { useSeatsStore } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_context/manager_seats_shifts_lockers_store';
 
 // RESPONSIBILITY: Render locker matrix UI using mocked data
-export function LockerMatrixClient() {
+export function ManagerSeatsLockerMatrixClient() {
   const [assignTarget, setAssignTarget] = useState<string | null>(null);
   const { lockerData, status, fetchLockers } = useSeatsStore();
 
@@ -140,3 +140,4 @@ export function LockerMatrixClient() {
     </>
   );
 }
+

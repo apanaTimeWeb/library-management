@@ -56,7 +56,7 @@ function AssignedToCell(props: { data: Locker }) {
   );
 }
 
-export function LockersClient() {
+export function ManagerSeatsLockersClient() {
   const [lockers, setLockers] = useState<Locker[]>(INITIAL_LOCKERS);
   const [statusFilter, setStatusFilter] = useState('All Statuses');
   const [showAssign, setShowAssign] = useState<Locker | null>(null);
@@ -239,3 +239,4 @@ export function LockersClient() {
     </>
   );
 }
+

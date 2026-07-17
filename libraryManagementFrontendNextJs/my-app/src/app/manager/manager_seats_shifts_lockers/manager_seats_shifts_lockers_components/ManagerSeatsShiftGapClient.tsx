@@ -48,7 +48,7 @@ function fmtH(h: number) {
   return `${display}:00 ${suffix}`;
 }
 
-export function ShiftGapClient() {
+export function ManagerSeatsShiftGapClient() {
   const [shiftFilter, setShiftFilter] = useState('All');
   const [period, setPeriod]           = useState('Today');
 
@@ -159,3 +159,4 @@ export function ShiftGapClient() {
     </>
   );
 }
+

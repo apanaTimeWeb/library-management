@@ -21,7 +21,7 @@ const INITIAL_SHIFTS: Shift[] = [
 
 const EMPTY_FORM = { name: '', startTime: '', endTime: '', active: true };
 
-export function ShiftManagementClient() {
+export function ManagerSeatsShiftManagementClient() {
   const [shifts, setShifts]             = useState<Shift[]>(INITIAL_SHIFTS);
   const [showModal, setShowModal]       = useState(false);
   const [editShift, setEditShift]       = useState<Shift | null>(null);
@@ -204,3 +204,4 @@ export function ShiftManagementClient() {
     </>
   );
 }
+

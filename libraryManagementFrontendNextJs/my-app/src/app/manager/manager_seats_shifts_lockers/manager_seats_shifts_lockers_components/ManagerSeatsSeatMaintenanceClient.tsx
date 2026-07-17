@@ -57,7 +57,7 @@ function StatusBadge(props: { value: string }) {
   return <span className={STATUS_CLASS[props.value as SeatStatus] ?? 'ss-badge ss-badge--inactive'}>{props.value}</span>;
 }
 
-export function SeatMaintenanceClient() {
+export function ManagerSeatsSeatMaintenanceClient() {
   const [selectedSeat, setSelectedSeat] = useState('S-006');
   const [logs, setLogs] = useState(SEAT_LOGS);
   const [form, setForm] = useState(EMPTY_FORM);
@@ -191,3 +191,4 @@ export function SeatMaintenanceClient() {
     </>
   );
 }
+

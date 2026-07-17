@@ -1,5 +1,6 @@
-import { ShiftManagementClient } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_components/ShiftManagementClient';
+import { ManagerSeatsShiftManagementClient } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_components/ManagerSeatsShiftManagementClient';
 
 export default function ShiftManagementPage() {
-  return <ShiftManagementClient />;
+  return <ManagerSeatsShiftManagementClient />;
 }
+

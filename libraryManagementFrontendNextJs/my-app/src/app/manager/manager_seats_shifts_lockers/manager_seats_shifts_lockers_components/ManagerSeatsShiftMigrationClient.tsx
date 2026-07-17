@@ -28,7 +28,7 @@ function daysRemaining(validTill: string): number {
   return Math.max(0, Math.ceil(diff / 86_400_000));
 }
 
-export function ShiftMigrationClient() {
+export function ManagerSeatsShiftMigrationClient() {
   const [step, setStep]                         = useState(1);
   const [search, setSearch]                     = useState('');
   const [selectedStudent, setSelectedStudent]   = useState<Student | null>(null);
@@ -357,3 +357,4 @@ export function ShiftMigrationClient() {
     </>
   );
 }
+

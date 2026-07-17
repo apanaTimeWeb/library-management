@@ -4,12 +4,12 @@ import { SHIFT_BADGE } from '@/app/manager/manager_seats_shifts_lockers/manager_
 
 // RESPONSIBILITY: Renders the seat detail modal popover.
 
-interface SeatMatrixModalProps {
+interface ManagerSeatsSeatMatrixModalProps {
   selectedSeat: SeatData | null;
   onClose: () => void;
 }
 
-export function SeatMatrixModal({ selectedSeat, onClose }: SeatMatrixModalProps) {
+export function ManagerSeatsSeatMatrixModal({ selectedSeat, onClose }: ManagerSeatsSeatMatrixModalProps) {
   if (!selectedSeat) return null;
 
   return (
@@ -81,3 +81,4 @@ export function SeatMatrixModal({ selectedSeat, onClose }: SeatMatrixModalProps)
     </div>
   );
 }
+

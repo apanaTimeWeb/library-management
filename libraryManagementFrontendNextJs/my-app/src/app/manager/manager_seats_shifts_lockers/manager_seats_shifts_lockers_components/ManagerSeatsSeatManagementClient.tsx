@@ -50,7 +50,7 @@ function SeatStatusCell(props: { value: string }) {
   );
 }
 
-export function SeatManagementClient() {
+export function ManagerSeatsSeatManagementClient() {
   const [seats, setSeats] = useState<Seat[]>(INITIAL_SEATS);
   const [search, setSearch] = useState('');
   const [statusFilter, setStatusFilter] = useState('All Statuses');
@@ -240,3 +240,4 @@ export function SeatManagementClient() {
     </>
   );
 }
+
