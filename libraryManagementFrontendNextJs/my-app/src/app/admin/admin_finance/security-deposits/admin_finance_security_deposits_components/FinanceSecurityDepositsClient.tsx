@@ -2,7 +2,7 @@
 
 import { Undo2, Minus, X } from 'lucide-react';
 import { formatCurrency } from '@/app/admin/admin_finance/admin_finance_utils/format';
-import { useFinanceSecurityDeposits } from '@/app/admin/admin_finance/security-deposits/admin_finance_security_deposits_components/admin_finance_security_deposits_hooks/useFinanceSecurityDeposits';
+import { useFinanceSecurityDeposits } from '@/app/admin/admin_finance/security-deposits/admin_finance_security_deposits_hooks/useFinanceSecurityDeposits';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';

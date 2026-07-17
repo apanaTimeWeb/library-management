@@ -3,7 +3,7 @@
 import { useRouter } from 'next/navigation';
 import { Settings, AlertTriangle, Save, MessageSquare } from 'lucide-react';
 import { formatCurrency } from '@/app/admin/admin_finance/admin_finance_utils/format';
-import { useFinanceLateFees } from '@/app/admin/admin_finance/late-fees/admin_finance_late_fees_components/admin_finance_late_fees_hooks/useFinanceLateFees';
+import { useFinanceLateFees } from '@/app/admin/admin_finance/late-fees/admin_finance_late_fees_hooks/useFinanceLateFees';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';

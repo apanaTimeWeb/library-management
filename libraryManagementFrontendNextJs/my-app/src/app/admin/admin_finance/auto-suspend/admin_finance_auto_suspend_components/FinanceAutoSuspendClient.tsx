@@ -2,7 +2,7 @@
 
 import toast from 'react-hot-toast';
 import { Settings, Ban, RotateCcw, Bell, Save, UserCheck, ShieldAlert, X } from 'lucide-react';
-import { useFinanceAutoSuspend } from '@/app/admin/admin_finance/auto-suspend/admin_finance_auto_suspend_components/admin_finance_auto_suspend_hooks/useFinanceAutoSuspend';
+import { useFinanceAutoSuspend } from '@/app/admin/admin_finance/auto-suspend/admin_finance_auto_suspend_hooks/useFinanceAutoSuspend';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';

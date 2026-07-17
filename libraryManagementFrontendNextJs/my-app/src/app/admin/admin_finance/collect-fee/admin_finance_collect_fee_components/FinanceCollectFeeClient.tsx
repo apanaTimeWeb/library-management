@@ -4,7 +4,7 @@ import { Toaster } from 'react-hot-toast';
 import { Search, CheckCircle, IndianRupee, BookOpen, MessageSquare, Printer, X } from 'lucide-react';
 import { formatCurrency } from '@/app/admin/admin_finance/admin_finance_utils/format';
 import { ADMIN_FINANCE_MODES } from '@/app/admin/admin_finance/admin_finance_constants/AdminFinanceConstants';
-import { useFinanceCollectFee, MODE_LABELS, maskPhone } from '@/app/admin/admin_finance/collect-fee/admin_finance_collect_fee_components/admin_finance_collect_fee_hooks/useFinanceCollectFee';
+import { useFinanceCollectFee, MODE_LABELS, maskPhone } from '@/app/admin/admin_finance/collect-fee/admin_finance_collect_fee_hooks/useFinanceCollectFee';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';

@@ -2,7 +2,7 @@
 
 import { Users, Trophy, IndianRupee } from 'lucide-react';
 import { formatCurrency } from '@/app/admin/admin_finance/admin_finance_utils/format';
-import { useFinanceReferrals } from '@/app/admin/admin_finance/referrals/admin_finance_referrals_components/admin_finance_referrals_hooks/useFinanceReferrals';
+import { useFinanceReferrals } from '@/app/admin/admin_finance/referrals/admin_finance_referrals_hooks/useFinanceReferrals';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';

@@ -2,7 +2,7 @@
 
 import { RefreshCw, Send, X } from 'lucide-react';
 import { formatCurrency } from '@/app/admin/admin_finance/admin_finance_utils/format';
-import { useFinanceRenewals } from '@/app/admin/admin_finance/renewals/admin_finance_renewals_components/admin_finance_renewals_hooks/useFinanceRenewals';
+import { useFinanceRenewals } from '@/app/admin/admin_finance/renewals/admin_finance_renewals_hooks/useFinanceRenewals';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';

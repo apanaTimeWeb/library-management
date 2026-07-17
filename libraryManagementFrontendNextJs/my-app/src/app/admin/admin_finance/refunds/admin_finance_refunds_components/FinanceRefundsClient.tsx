@@ -2,7 +2,7 @@
 
 import { Undo2, X } from 'lucide-react';
 import { formatCurrency } from '@/app/admin/admin_finance/admin_finance_utils/format';
-import { useFinanceRefunds } from '@/app/admin/admin_finance/refunds/admin_finance_refunds_components/admin_finance_refunds_hooks/useFinanceRefunds';
+import { useFinanceRefunds } from '@/app/admin/admin_finance/refunds/admin_finance_refunds_hooks/useFinanceRefunds';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';

@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { Search, FileText, Printer, Eye, Send } from 'lucide-react';
 import { formatCurrency, formatDate } from '@/app/admin/admin_finance/admin_finance_utils/format';
-import { useFinanceInvoice, type FilterStatus } from '@/app/admin/admin_finance/invoice/admin_finance_invoice_components/admin_finance_invoice_hooks/useFinanceInvoice';
+import { useFinanceInvoice, type FilterStatus } from '@/app/admin/admin_finance/invoice/admin_finance_invoice_hooks/useFinanceInvoice';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';

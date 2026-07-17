@@ -2,7 +2,7 @@
 
 import { RefreshCw, Eye } from 'lucide-react';
 import { formatCurrency } from '@/app/admin/admin_finance/admin_finance_utils/format';
-import { useFinanceSubscriptions } from '@/app/admin/admin_finance/subscriptions/admin_finance_subscriptions_components/admin_finance_subscriptions_hooks/useFinanceSubscriptions';
+import { useFinanceSubscriptions } from '@/app/admin/admin_finance/subscriptions/admin_finance_subscriptions_hooks/useFinanceSubscriptions';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
