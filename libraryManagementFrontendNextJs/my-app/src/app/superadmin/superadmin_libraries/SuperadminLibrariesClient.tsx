@@ -7,6 +7,7 @@ import { SuperadminLibrariesGrid } from '@/app/superadmin/superadmin_libraries/s
 import { SuperadminLibrariesPanel } from '@/app/superadmin/superadmin_libraries/superadmin_libraries_components/SuperadminLibrariesPanel';
 import type { SuperadminLibrary, SuperadminLibraryPanelMode } from '@/app/superadmin/superadmin_libraries/superadmin_libraries_types/SuperadminLibrariesTypes';
 import { SUPERADMIN_LIBRARIES_TOASTS } from '@/app/superadmin/superadmin_libraries/superadmin_libraries_constants/SuperadminLibrariesConstants';
+import { CheckCircle } from 'lucide-react';
 
 export function SuperadminLibrariesClient() {
   const { libraries, fetchState, updateLibrary, toggleStatus } = superadmin_useSuperadminLibraries();

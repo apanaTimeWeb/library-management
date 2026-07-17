@@ -75,7 +75,7 @@ export function SuperadminLibrariesPanel({ lib, mode, onClose, onSave, onSuspend
                   className={`w-full bg-bg-input border ${errors.name ? 'border-danger focus:border-danger' : 'border-border focus:border-primary'} rounded-[var(--radius-md)] py-2 px-3 text-sm text-text-primary focus:outline-none transition-colors`}
                   {...register('name')}
                 />
-                {errors.name && <p className="text-danger text-[11px] mt-1">{errors.name.message}</p>}
+                {errors.name && <p className="text-danger text-xs mt-1">{errors.name.message}</p>}
               </div>
 
               <div>
@@ -84,7 +84,7 @@ export function SuperadminLibrariesPanel({ lib, mode, onClose, onSave, onSuspend
                   className={`w-full bg-bg-input border ${errors.owner ? 'border-danger focus:border-danger' : 'border-border focus:border-primary'} rounded-[var(--radius-md)] py-2 px-3 text-sm text-text-primary focus:outline-none transition-colors`}
                   {...register('owner')}
                 />
-                {errors.owner && <p className="text-danger text-[11px] mt-1">{errors.owner.message}</p>}
+                {errors.owner && <p className="text-danger text-xs mt-1">{errors.owner.message}</p>}
               </div>
 
               <div>
@@ -93,7 +93,7 @@ export function SuperadminLibrariesPanel({ lib, mode, onClose, onSave, onSuspend
                   className={`w-full bg-bg-input border ${errors.phone ? 'border-danger focus:border-danger' : 'border-border focus:border-primary'} rounded-[var(--radius-md)] py-2 px-3 text-sm text-text-primary focus:outline-none transition-colors`}
                   {...register('phone')}
                 />
-                {errors.phone && <p className="text-danger text-[11px] mt-1">{errors.phone.message}</p>}
+                {errors.phone && <p className="text-danger text-xs mt-1">{errors.phone.message}</p>}
               </div>
 
               <div>
@@ -102,7 +102,7 @@ export function SuperadminLibrariesPanel({ lib, mode, onClose, onSave, onSuspend
                   className={`w-full bg-bg-input border ${errors.location ? 'border-danger focus:border-danger' : 'border-border focus:border-primary'} rounded-[var(--radius-md)] py-2 px-3 text-sm text-text-primary focus:outline-none transition-colors`}
                   {...register('location')}
                 />
-                {errors.location && <p className="text-danger text-[11px] mt-1">{errors.location.message}</p>}
+                {errors.location && <p className="text-danger text-xs mt-1">{errors.location.message}</p>}
               </div>
 
               <div>
@@ -118,25 +118,25 @@ export function SuperadminLibrariesPanel({ lib, mode, onClose, onSave, onSuspend
                     />
                   )}
                 />
-                {errors.plan && <p className="text-danger text-[11px] mt-1">{errors.plan.message}</p>}
+                {errors.plan && <p className="text-danger text-xs mt-1">{errors.plan.message}</p>}
               </div>
             </form>
           ) : (
             <div className="grid grid-cols-2 gap-4 bg-bg-page rounded-[var(--radius-md)] p-4 border border-border">
               <div className="flex flex-col gap-1">
-                <p className="text-[11px] font-semibold text-text-disabled uppercase tracking-wider">Owner</p>
+                <p className="text-xs font-semibold text-text-disabled uppercase tracking-wider">Owner</p>
                 <p className="text-sm font-medium text-text-primary">{lib.owner}</p>
               </div>
               <div className="flex flex-col gap-1">
-                <p className="text-[11px] font-semibold text-text-disabled uppercase tracking-wider">Phone</p>
+                <p className="text-xs font-semibold text-text-disabled uppercase tracking-wider">Phone</p>
                 <p className="text-sm font-medium text-text-primary">{maskSuperadminLibraryPhone(lib.phone)}</p>
               </div>
               <div className="flex flex-col gap-1">
-                <p className="text-[11px] font-semibold text-text-disabled uppercase tracking-wider">Plan</p>
+                <p className="text-xs font-semibold text-text-disabled uppercase tracking-wider">Plan</p>
                 <p className="text-sm font-medium text-text-primary">{lib.plan}</p>
               </div>
               <div className="flex flex-col gap-1">
-                <p className="text-[11px] font-semibold text-text-disabled uppercase tracking-wider">Joined</p>
+                <p className="text-xs font-semibold text-text-disabled uppercase tracking-wider">Joined</p>
                 <p className="text-sm font-medium text-text-primary">{lib.joined}</p>
               </div>
             </div>

@@ -1,5 +1,5 @@
 import { Users, CalendarCheck, Phone, Armchair } from 'lucide-react';
-import type { DashboardKpiData, DashboardKpiGridProps } from '@/app/manager/manager_dashboard/manager_dashboard_types';
+import type { DashboardKpiGridProps } from '@/app/manager/manager_dashboard/manager_dashboard_types';
 
 // RESPONSIBILITY: Renders the read-only grid of KPI cards. Receives data via props. No API calls.
 
@@ -15,12 +15,12 @@ export function ManagerDashboardKpiGrid({ kpiData }: DashboardKpiGridProps) {
       {kpiData.map((kpi) => {
         const Icon = iconMap[kpi.icon];
         return (
-          <div key={kpi.title} className="bg-bg-card border border-border rounded-xl p-5 flex flex-col justify-between h-[120px]">
+          <div key={kpi.title} className="bg-bg-card border border-border rounded-xl p-5 flex flex-col justify-between h-32">
             <div className="flex items-center justify-between mb-3">
               <div className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 ${kpi.iconClass}`}>
                 {Icon && <Icon size={18} />}
               </div>
-              <span className="rounded-full px-2 py-0.5 text-[11px] font-bold bg-success-bg text-success">{kpi.trend}</span>
+              <span className="rounded-full px-2 py-0.5 text-xs font-bold bg-success-bg text-success">{kpi.trend}</span>
             </div>
             <div>
               <p className="text-xs font-semibold text-text-secondary uppercase tracking-wider mb-1">{kpi.title}</p>

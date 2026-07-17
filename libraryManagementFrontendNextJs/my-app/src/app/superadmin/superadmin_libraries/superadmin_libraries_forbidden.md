@@ -7,8 +7,8 @@ This file explicitly lists patterns that are **NOT ALLOWED** in the `superadmin_
 - ✅ **Use FetchState Enum**: Always use `SuperadminLibrariesFetchState` (`'idle' | 'loading' | 'success' | 'error'`).
 
 ## UI & CSS
-- ❌ **No Hardcoded Tailwind Values**: Do not use arbitrary values like `w-[325px]` or `bg-[#1A1A2E]`.
-- ✅ **Use Design System Tokens**: Always use semantic variables like `bg-bg-card` or framework scales like `w-72`.
+- ❌ **No Hardcoded Tailwind Values**: Do not use arbitrary values like `w-[325px]`, `bg-[#1A1A2E]`, `text-[10px]`, or `text-[11px]`.
+- ✅ **Use Design System Tokens**: Always use semantic variables like `bg-bg-card` and strict framework scales like `w-72`, `text-xs`, or `text-sm`.
 
 ## Component Responsibilities
 - ❌ **No Inline Interfaces**: Do not define `interface Props` in `.tsx` files.

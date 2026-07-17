@@ -64,3 +64,7 @@ export interface DashboardErrorBoundaryState {
   hasError: boolean;
   error: Error | null;
 }
+
+export interface CellRendererProps {
+  value: string;
+}

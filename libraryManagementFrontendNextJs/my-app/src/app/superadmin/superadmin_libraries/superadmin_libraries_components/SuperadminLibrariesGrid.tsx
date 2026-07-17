@@ -25,7 +25,7 @@ export function SuperadminLibrariesGrid({ libraries, onRowClick, onSuspend }: Pr
       cellRenderer: (p: ICellRendererParams<Library>) => (
         <div className="h-full flex flex-col justify-center">
           <p className="font-medium text-text-primary leading-tight">{p.data?.name}</p>
-          <p className="text-[11px] font-semibold text-text-disabled uppercase tracking-wide mt-0.5">{p.data?.plan} Plan</p>
+          <p className="text-xs font-semibold text-text-disabled uppercase tracking-wide mt-0.5">{p.data?.plan} Plan</p>
         </div>
       ),
     },
@@ -55,8 +55,8 @@ export function SuperadminLibrariesGrid({ libraries, onRowClick, onSuspend }: Pr
       headerName: 'Status', field: 'status', flex: 1, minWidth: 120,
       cellRenderer: (p: ICellRendererParams<Library>) => (
         p.data?.status === 'Active'
-          ? <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-success-bg text-success"><CheckCircle size={12} /> Active</span>
-          : <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-warning-bg text-warning"><AlertTriangle size={12} /> Maintenance</span>
+          ? <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full text-[0.65rem] font-bold uppercase tracking-wider bg-success-bg text-success"><CheckCircle size={12} /> Active</span>
+          : <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full text-[0.65rem] font-bold uppercase tracking-wider bg-warning-bg text-warning"><AlertTriangle size={12} /> Maintenance</span>
       ),
     },
     {
