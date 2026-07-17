@@ -14,7 +14,7 @@ export function SelectTrigger({ className, children, ...props }: React.Component
     <SelectPrimitive.Trigger className={cn('sys-select-trigger', className)} {...props}>
       {children}
       <SelectPrimitive.Icon>
-        <ChevronDown size={16} className="text-text-secondary" />
+        <ChevronDown size={16} className="text-secondary" />
       </SelectPrimitive.Icon>
     </SelectPrimitive.Trigger>
   );

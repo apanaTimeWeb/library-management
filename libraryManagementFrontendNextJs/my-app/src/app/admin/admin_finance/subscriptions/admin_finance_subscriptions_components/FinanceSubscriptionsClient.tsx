@@ -84,7 +84,7 @@ export function FinanceSubscriptionsClient() {
       </div>
 
       {/* Table */}
-      <Card className="flex-1 shadow-none border-border bg-bg-card overflow-hidden flex flex-col">
+      <Card className="flex-1 shadow-none border-border bg-card overflow-hidden flex flex-col">
         <div className="w-full overflow-x-auto flex-1">
           <table className="w-full text-sm text-left whitespace-nowrap min-w-max">
             <thead className="bg-muted/30 border-b text-muted-foreground text-[11px] font-bold uppercase tracking-wider sticky top-0 z-10">
@@ -127,9 +127,9 @@ export function FinanceSubscriptionsClient() {
               ) : (
                 rows.map((s) => (
                   <tr key={s.id} className="hover:bg-muted/10 transition-colors">
-                    <td className="px-5 py-3 font-bold text-[13px] text-text-primary">{s.studentName}</td>
+                    <td className="px-5 py-3 font-bold text-[13px] text-primary">{s.studentName}</td>
                     <td className="px-5 py-3 text-[12px] font-mono text-muted-foreground">{s.smartId}</td>
-                    <td className="px-5 py-3 text-[13px] font-medium text-text-primary">{s.plan}</td>
+                    <td className="px-5 py-3 text-[13px] font-medium text-primary">{s.plan}</td>
                     <td className="px-5 py-3 text-[13px] text-muted-foreground">{s.startDate}</td>
                     <td className="px-5 py-3 text-[13px] text-muted-foreground">{s.endDate}</td>
                     <td className="px-5 py-3">
@@ -137,11 +137,11 @@ export function FinanceSubscriptionsClient() {
                         {s.daysLeft < 0 ? `${Math.abs(s.daysLeft)}d ago` : `${s.daysLeft}d`}
                       </span>
                     </td>
-                    <td className="px-5 py-3 text-right text-[13px] font-medium text-text-primary">{formatCurrency(s.base)}</td>
+                    <td className="px-5 py-3 text-right text-[13px] font-medium text-primary">{formatCurrency(s.base)}</td>
                     <td className="px-5 py-3 text-right text-[13px] font-bold text-success">{formatCurrency(s.discount)}</td>
-                    <td className="px-5 py-3 text-right text-[13px] font-bold text-text-primary">{formatCurrency(s.total)}</td>
+                    <td className="px-5 py-3 text-right text-[13px] font-bold text-primary">{formatCurrency(s.total)}</td>
                     <td className="px-5 py-3 text-right text-[13px] font-bold text-success">{formatCurrency(s.paid)}</td>
-                    <td className={`px-5 py-3 text-right text-[13px] font-bold ${s.due > 0 ? 'text-danger' : 'text-text-primary'}`}>
+                    <td className={`px-5 py-3 text-right text-[13px] font-bold ${s.due > 0 ? 'text-danger' : 'text-primary'}`}>
                       {formatCurrency(s.due)}
                     </td>
                     <td className="px-5 py-3">
@@ -162,7 +162,7 @@ export function FinanceSubscriptionsClient() {
                         <Button 
                           variant="secondary" 
                           size="sm" 
-                          className="bg-muted text-text-primary hover:bg-muted/80 border-none font-bold text-xs h-7 px-2 gap-1"
+                          className="bg-muted text-primary hover:bg-muted/80 border-none font-bold text-xs h-7 px-2 gap-1"
                           onClick={() => handleView(s.studentName)}
                         >
                           <Eye size={12} /> View

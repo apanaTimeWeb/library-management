@@ -13,7 +13,7 @@ export interface AdminDashboardKpiCardProps {
 
 export function AdminDashboardKpiCard({ label, value, icon: Icon, iconColor, iconBg, trend, sub }: AdminDashboardKpiCardProps) {
   return (
-    <Card className="border-border bg-bg-card shadow-none flex flex-col justify-between p-5 h-full">
+    <Card className="border-border bg-card shadow-none flex flex-col justify-between p-5 h-full">
       <div className="flex items-start justify-between mb-4">
         <div className="flex h-10 w-10 items-center justify-center rounded-xl" style={{ background: iconBg }}>
           <Icon size={18} style={{ color: iconColor }} />
@@ -28,7 +28,7 @@ export function AdminDashboardKpiCard({ label, value, icon: Icon, iconColor, ico
 
       <div>
         <p className="text-[13px] font-semibold text-muted-foreground uppercase tracking-wider">{label}</p>
-        <p className="text-2xl font-bold text-text-primary mt-1">{value}</p>
+        <p className="text-2xl font-bold text-primary mt-1">{value}</p>
         {sub && <p className="text-[12px] text-muted-foreground mt-1">{sub}</p>}
       </div>
     </Card>

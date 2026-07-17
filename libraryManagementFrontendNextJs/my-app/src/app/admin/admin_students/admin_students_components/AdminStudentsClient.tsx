@@ -41,7 +41,7 @@ export function AdminStudentsClient({ initialStudents }: AdminStudentsClientProp
         </div>
       </div>
 
-      <Card className="flex-1 shadow-none border-border bg-bg-card overflow-hidden flex flex-col">
+      <Card className="flex-1 shadow-none border-border bg-card overflow-hidden flex flex-col">
         <div className="w-full overflow-x-auto flex-1">
           <table className="w-full text-sm text-left">
             <thead className="bg-muted/30 border-y text-muted-foreground text-xs font-medium uppercase tracking-wider sticky top-0 z-10">
@@ -60,17 +60,17 @@ export function AdminStudentsClient({ initialStudents }: AdminStudentsClientProp
                   key={student.id} 
                   className="hover:bg-muted/10 transition-colors group cursor-pointer"
                 >
-                  <td className="px-4 py-4 font-bold text-xs text-text-primary">
+                  <td className="px-4 py-4 font-bold text-xs text-primary">
                     {student.id}
                   </td>
                   <td className="px-4 py-4">
-                    <span className="font-semibold text-sm text-text-primary group-hover:text-primary transition-colors">{student.name}</span>
+                    <span className="font-semibold text-sm text-primary group-hover:text-primary transition-colors">{student.name}</span>
                   </td>
                   <td className="px-4 py-4 text-sm text-muted-foreground font-medium">
                     {student.shift}
                   </td>
                   <td className="px-4 py-4">
-                    <span className="font-bold text-sm text-text-primary">{student.seat}</span>
+                    <span className="font-bold text-sm text-primary">{student.seat}</span>
                   </td>
                   <td className="px-4 py-4 text-sm text-muted-foreground font-medium">
                     {student.plan}

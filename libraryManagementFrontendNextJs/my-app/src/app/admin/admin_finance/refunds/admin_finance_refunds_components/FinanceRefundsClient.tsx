@@ -63,9 +63,9 @@ export function FinanceRefundsClient() {
           <p className="text-xl font-bold text-warning">{isLoading ? '—' : kpiData.pendingCount}</p>
         </Card>
         
-        <Card className="p-4 shadow-none border-border bg-bg-card flex flex-col justify-center">
+        <Card className="p-4 shadow-none border-border bg-card flex flex-col justify-center">
           <p className="text-[11px] font-bold tracking-wider uppercase text-muted-foreground mb-1">Approved</p>
-          <p className="text-xl font-bold text-text-primary">{isLoading ? '—' : kpiData.approvedCount}</p>
+          <p className="text-xl font-bold text-primary">{isLoading ? '—' : kpiData.approvedCount}</p>
         </Card>
         
         <Card className="p-4 shadow-none border-danger/30 bg-danger/5 flex flex-col justify-center">
@@ -90,7 +90,7 @@ export function FinanceRefundsClient() {
       </div>
 
       {/* Refunds Table */}
-      <Card className="flex-1 shadow-none border-border bg-bg-card overflow-hidden flex flex-col">
+      <Card className="flex-1 shadow-none border-border bg-card overflow-hidden flex flex-col">
         <div className="w-full overflow-x-auto flex-1">
           <table className="w-full text-sm text-left">
             <thead className="bg-muted/30 border-b text-muted-foreground text-[11px] font-bold uppercase tracking-wider sticky top-0 z-10">
@@ -128,14 +128,14 @@ export function FinanceRefundsClient() {
                 filteredRefunds.map((r) => (
                   <tr key={r.id} className="hover:bg-muted/10 transition-colors">
                     <td className="px-5 py-4">
-                      <div className="font-bold text-[13px] text-text-primary">{r.studentName}</div>
+                      <div className="font-bold text-[13px] text-primary">{r.studentName}</div>
                       <div className="text-[11px] text-muted-foreground font-medium mt-0.5">{r.smartId}</div>
                     </td>
                     <td className="px-5 py-4 text-[13px] text-muted-foreground font-medium">
                       {r.exitDate || '—'}
                     </td>
                     <td className="px-5 py-4 text-right">
-                      <span className="font-bold text-[13px] text-text-primary">{formatCurrency(r.depositHeld)}</span>
+                      <span className="font-bold text-[13px] text-primary">{formatCurrency(r.depositHeld)}</span>
                     </td>
                     <td className="px-5 py-4 text-right">
                       <span className={`font-bold text-[13px] ${r.deductionAmount > 0 ? 'text-danger' : 'text-muted-foreground'}`}>
@@ -207,7 +207,7 @@ export function FinanceRefundsClient() {
       {/* Process Refund Modal */}
       {processDialog && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-background/80 backdrop-blur-sm" onClick={() => setProcessDialog(null)}>
-          <Card className="w-full max-w-sm shadow-lg border-success/20 bg-bg-card p-6 flex flex-col gap-5" onClick={e => e.stopPropagation()}>
+          <Card className="w-full max-w-sm shadow-lg border-success/20 bg-card p-6 flex flex-col gap-5" onClick={e => e.stopPropagation()}>
             <div className="flex items-center justify-between">
               <h2 className="text-lg font-bold flex items-center gap-2 text-success tracking-tight">
                 💸 Process Refund
@@ -218,7 +218,7 @@ export function FinanceRefundsClient() {
             </div>
             
             <div>
-              <p className="text-sm font-bold text-text-primary mb-1">{processDialog.name}</p>
+              <p className="text-sm font-bold text-primary mb-1">{processDialog.name}</p>
               <p className="text-sm text-muted-foreground leading-relaxed">
                 Processing refund of <strong className="text-success">{formatCurrency(processDialog.amount)}</strong>
               </p>
@@ -256,7 +256,7 @@ export function FinanceRefundsClient() {
       {/* Add Deduction Modal */}
       {deductDialog && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-background/80 backdrop-blur-sm" onClick={() => setDeductDialog(null)}>
-          <Card className="w-full max-w-sm shadow-lg border-warning/20 bg-bg-card p-6 flex flex-col gap-5" onClick={e => e.stopPropagation()}>
+          <Card className="w-full max-w-sm shadow-lg border-warning/20 bg-card p-6 flex flex-col gap-5" onClick={e => e.stopPropagation()}>
             <div className="flex items-center justify-between">
               <h2 className="text-lg font-bold flex items-center gap-2 text-warning tracking-tight">
                 ➕ Add Deduction
@@ -266,7 +266,7 @@ export function FinanceRefundsClient() {
               </Button>
             </div>
             
-            <p className="text-sm font-bold text-text-primary">{deductDialog.name}</p>
+            <p className="text-sm font-bold text-primary">{deductDialog.name}</p>
 
             <div className="space-y-4">
               <div className="space-y-2">

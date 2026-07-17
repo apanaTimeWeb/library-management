@@ -77,7 +77,7 @@ export default function AdminReusableSeatMatrixGrid({ seats, shifts }: Props) {
   }
 
   return (
-    <Card className="flex flex-col overflow-hidden h-full border-border bg-bg-card shadow-none">
+    <Card className="flex flex-col overflow-hidden h-full border-border bg-card shadow-none">
       
       {/* Header + shift tabs */}
       <CardHeader className="pb-3 border-b">

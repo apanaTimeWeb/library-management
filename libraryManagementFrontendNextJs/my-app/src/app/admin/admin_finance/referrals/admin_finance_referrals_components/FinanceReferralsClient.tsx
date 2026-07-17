@@ -31,12 +31,12 @@ export function FinanceReferralsClient() {
 
       {/* KPI Cards */}
       <div className="grid gap-4 md:grid-cols-3">
-        <Card className="p-4 shadow-none flex flex-col justify-center border-border bg-bg-card">
+        <Card className="p-4 shadow-none flex flex-col justify-center border-border bg-card">
           <div className="flex items-center justify-between mb-1">
             <span className="text-[11px] font-bold tracking-wider uppercase text-muted-foreground">Total Referrals Made</span>
             <Users size={16} className="text-muted-foreground" />
           </div>
-          <p className="text-2xl font-bold text-text-primary">{totalReferrals}</p>
+          <p className="text-2xl font-bold text-primary">{totalReferrals}</p>
         </Card>
         
         <Card className="p-4 shadow-none flex flex-col justify-center border-success/30 bg-success/5">
@@ -52,13 +52,13 @@ export function FinanceReferralsClient() {
             <span className="text-[11px] font-bold tracking-wider uppercase text-warning">Top Referrer</span>
             <Trophy size={16} className="text-warning" />
           </div>
-          <p className="text-xl font-bold text-text-primary truncate">{topReferrer?.name || '—'}</p>
+          <p className="text-xl font-bold text-primary truncate">{topReferrer?.name || '—'}</p>
           <p className="text-xs text-muted-foreground font-medium">{topReferrer?.referredCount || 0} referrals</p>
         </Card>
       </div>
 
       {/* Table */}
-      <Card className="flex-1 shadow-none border-border bg-bg-card overflow-hidden flex flex-col min-h-[450px]">
+      <Card className="flex-1 shadow-none border-border bg-card overflow-hidden flex flex-col min-h-[450px]">
         <div className="w-full overflow-x-auto flex-1">
           <table className="w-full text-sm text-left whitespace-nowrap min-w-max">
             <thead className="bg-muted/30 border-b text-muted-foreground text-[11px] font-bold uppercase tracking-wider sticky top-0 z-10">
@@ -98,14 +98,14 @@ export function FinanceReferralsClient() {
                       <span className={`text-[13px] ${idx === 0 ? 'text-warning font-black text-lg' : 'text-muted-foreground font-bold'}`}>#{idx + 1}</span>
                     </td>
                     <td className="px-5 py-4">
-                      <div className="font-bold text-[13px] text-text-primary">{r.name}</div>
+                      <div className="font-bold text-[13px] text-primary">{r.name}</div>
                       <div className="text-[11px] font-mono text-muted-foreground">{r.smartId}</div>
                     </td>
                     <td className="px-5 py-4 max-w-[250px] whitespace-normal">
                       <Button
                         variant="secondary"
                         size="sm"
-                        className="bg-muted text-text-primary hover:bg-muted/80 border-none font-bold text-xs h-7 px-3 gap-1"
+                        className="bg-muted text-primary hover:bg-muted/80 border-none font-bold text-xs h-7 px-3 gap-1"
                         onClick={() => setExpanded(expanded === r.id ? null : r.id)}
                       >
                         {expanded === r.id ? '▲' : '▼'} {r.referredCount} students
@@ -120,10 +120,10 @@ export function FinanceReferralsClient() {
                         </div>
                       )}
                     </td>
-                    <td className="px-5 py-4 text-center font-bold text-[14px] text-text-primary">{r.referredCount}</td>
+                    <td className="px-5 py-4 text-center font-bold text-[14px] text-primary">{r.referredCount}</td>
                     <td className="px-5 py-4 text-right text-[13px] font-bold text-success">{formatCurrency(r.bonusEarned)}</td>
-                    <td className="px-5 py-4 text-right text-[13px] font-medium text-text-primary">{formatCurrency(r.redeemed)}</td>
-                    <td className="px-5 py-4 text-right text-[14px] font-bold text-text-primary">{formatCurrency(r.balance)}</td>
+                    <td className="px-5 py-4 text-right text-[13px] font-medium text-primary">{formatCurrency(r.redeemed)}</td>
+                    <td className="px-5 py-4 text-right text-[14px] font-bold text-primary">{formatCurrency(r.balance)}</td>
                   </tr>
                 ))
               )}

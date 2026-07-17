@@ -60,8 +60,8 @@ export function SeatMatrixClient() {
               onClick={() => setActiveTab(tab)}
               className={`px-4 py-1.5 text-sm font-bold rounded-md whitespace-nowrap transition-all ${
                 activeTab === tab 
-                  ? 'bg-background text-text-primary shadow-sm' 
-                  : 'text-muted-foreground hover:text-text-primary'
+                  ? 'bg-background text-primary shadow-sm' 
+                  : 'text-muted-foreground hover:text-primary'
               }`}
             >
               {tab}
@@ -81,19 +81,19 @@ export function SeatMatrixClient() {
       </div>
 
       {/* Legend */}
-      <Card className="flex flex-wrap items-center gap-4 sm:gap-6 p-4 shadow-sm border-border bg-bg-card">
+      <Card className="flex flex-wrap items-center gap-4 sm:gap-6 p-4 shadow-sm border-border bg-card">
         {ADMIN_SEATS_MOCK_LEGEND_ITEMS.map(({ cls, label }) => (
           <div key={label} className="flex items-center gap-2">
             <span className={`w-3 h-3 rounded-full ${getLegendColor(cls)}`} />
-            <span className="text-sm font-medium text-text-primary">{label}</span>
+            <span className="text-sm font-medium text-primary">{label}</span>
           </div>
         ))}
       </Card>
 
       {/* Grid Container */}
-      <Card className="flex-1 shadow-sm border-border bg-bg-card flex flex-col min-h-[500px]">
+      <Card className="flex-1 shadow-sm border-border bg-card flex flex-col min-h-[500px]">
         <div className="flex items-center justify-between p-5 border-b border-border">
-          <h2 className="text-lg font-bold tracking-tight text-text-primary">A-Wing Floor Plan</h2>
+          <h2 className="text-lg font-bold tracking-tight text-primary">A-Wing Floor Plan</h2>
           <Badge variant="secondary" className="bg-success/10 text-success border-none uppercase tracking-wider font-bold">
             {freeSeatsCount} seats free
           </Badge>
@@ -132,13 +132,13 @@ export function SeatMatrixClient() {
       {/* Seat Details Modal */}
       {selectedSeat && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-background/80 backdrop-blur-sm" onClick={() => setSelectedSeat(null)}>
-          <Card className="w-full max-w-sm shadow-lg border-border bg-bg-card p-0 flex flex-col overflow-hidden animate-in zoom-in-95 duration-200" onClick={e => e.stopPropagation()}>
+          <Card className="w-full max-w-sm shadow-lg border-border bg-card p-0 flex flex-col overflow-hidden animate-in zoom-in-95 duration-200" onClick={e => e.stopPropagation()}>
             {selectedSeat.status === 'free' ? (
               <div className="p-6 flex flex-col gap-6">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-3">
                     <Badge variant="secondary" className="bg-success/10 text-success border-none uppercase tracking-wider font-bold">Free</Badge>
-                    <span className="text-xl font-bold tracking-tight text-text-primary">Seat {selectedSeat.id}</span>
+                    <span className="text-xl font-bold tracking-tight text-primary">Seat {selectedSeat.id}</span>
                   </div>
                   <Button variant="ghost" size="icon" className="h-8 w-8 rounded-full" onClick={() => setSelectedSeat(null)}>
                     <X size={16} />
@@ -161,7 +161,7 @@ export function SeatMatrixClient() {
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-3">
                     <Badge variant="secondary" className="bg-danger/10 text-danger border-none uppercase tracking-wider font-bold">Maintenance</Badge>
-                    <span className="text-xl font-bold tracking-tight text-text-primary">Seat {selectedSeat.id}</span>
+                    <span className="text-xl font-bold tracking-tight text-primary">Seat {selectedSeat.id}</span>
                   </div>
                   <Button variant="ghost" size="icon" className="h-8 w-8 rounded-full" onClick={() => setSelectedSeat(null)}>
                     <X size={16} />
@@ -187,7 +187,7 @@ export function SeatMatrixClient() {
                     <Badge variant="secondary" className={`${selectedSeat.status === 'expiring' ? 'bg-warning text-white' : 'bg-primary text-white'} border-none uppercase tracking-wider font-bold`}>
                       {selectedSeat.status === 'expiring' ? 'Expiring Soon' : 'Occupied'}
                     </Badge>
-                    <span className="text-xl font-bold tracking-tight text-text-primary">Seat {selectedSeat.id}</span>
+                    <span className="text-xl font-bold tracking-tight text-primary">Seat {selectedSeat.id}</span>
                   </div>
                   
                   <div className="flex flex-col items-center justify-center text-center gap-2">
@@ -195,7 +195,7 @@ export function SeatMatrixClient() {
                       <User size={32} />
                     </div>
                     <div>
-                      <h3 className="text-lg font-bold text-text-primary">{selectedSeat.student}</h3>
+                      <h3 className="text-lg font-bold text-primary">{selectedSeat.student}</h3>
                       <p className="text-sm font-mono text-muted-foreground">{selectedSeat.smartId}</p>
                     </div>
                   </div>
@@ -205,11 +205,11 @@ export function SeatMatrixClient() {
                   <div className="grid grid-cols-2 gap-4">
                     <div className="bg-muted/30 p-3 rounded-md border border-border flex flex-col gap-1">
                       <span className="text-[10px] font-bold text-muted-foreground uppercase tracking-wider">Shift</span>
-                      <span className="text-sm font-bold text-text-primary">{selectedSeat.shift || '—'}</span>
+                      <span className="text-sm font-bold text-primary">{selectedSeat.shift || '—'}</span>
                     </div>
                     <div className={`p-3 rounded-md border flex flex-col gap-1 ${selectedSeat.status === 'expiring' ? 'bg-warning/10 border-warning/30' : 'bg-muted/30 border-border'}`}>
                       <span className="text-[10px] font-bold text-muted-foreground uppercase tracking-wider">Expires</span>
-                      <span className={`text-sm font-bold ${selectedSeat.status === 'expiring' ? 'text-warning' : 'text-text-primary'}`}>
+                      <span className={`text-sm font-bold ${selectedSeat.status === 'expiring' ? 'text-warning' : 'text-primary'}`}>
                         {selectedSeat.expiry || '—'}
                       </span>
                     </div>

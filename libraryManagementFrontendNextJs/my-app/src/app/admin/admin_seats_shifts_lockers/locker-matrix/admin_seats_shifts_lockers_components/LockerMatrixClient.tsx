@@ -45,11 +45,11 @@ export function LockerMatrixClient() {
         </div>
         
         {/* Compact Legend */}
-        <Card className="flex items-center gap-4 px-4 py-2 shadow-sm border-border bg-bg-card h-fit">
+        <Card className="flex items-center gap-4 px-4 py-2 shadow-sm border-border bg-card h-fit">
           {ADMIN_SEATS_MOCK_LOCKER_LEGEND.map(({ cls, label }) => (
             <div key={label} className="flex items-center gap-2">
               <span className={`w-2.5 h-2.5 rounded-full ${getLegendColor(cls)}`} />
-              <span className="text-xs font-bold text-text-primary uppercase tracking-wider">{label}</span>
+              <span className="text-xs font-bold text-primary uppercase tracking-wider">{label}</span>
             </div>
           ))}
         </Card>
@@ -58,9 +58,9 @@ export function LockerMatrixClient() {
       {/* Stats */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
         {ADMIN_SEATS_MOCK_LOCKER_STATS.map(({ label, value, border, valueClass }) => (
-          <Card key={label} className={`p-4 shadow-sm border-border bg-bg-card flex flex-col gap-1 border-l-4 ${border.replace('border-l-', 'border-l-')}`}>
+          <Card key={label} className={`p-4 shadow-sm border-border bg-card flex flex-col gap-1 border-l-4 ${border.replace('border-l-', 'border-l-')}`}>
             <span className="text-xs font-bold text-muted-foreground uppercase tracking-wider">{label}</span>
-            <span className={`text-2xl font-black ${valueClass.includes('success') ? 'text-success' : valueClass.includes('danger') ? 'text-danger' : valueClass.includes('warning') ? 'text-warning' : 'text-text-primary'}`}>
+            <span className={`text-2xl font-black ${valueClass.includes('success') ? 'text-success' : valueClass.includes('danger') ? 'text-danger' : valueClass.includes('warning') ? 'text-warning' : 'text-primary'}`}>
               {value}
             </span>
           </Card>
@@ -68,7 +68,7 @@ export function LockerMatrixClient() {
       </div>
 
       {/* Grid Container */}
-      <Card className="flex-1 shadow-sm border-border bg-bg-card flex flex-col min-h-[400px]">
+      <Card className="flex-1 shadow-sm border-border bg-card flex flex-col min-h-[400px]">
         <div className="p-5 overflow-auto flex-1 bg-muted/5 flex flex-col">
           {isLoading ? (
             <div className="flex-1 flex flex-col items-center justify-center gap-4 min-h-[300px]">
@@ -99,9 +99,9 @@ export function LockerMatrixClient() {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         
         {/* Recent Assignments */}
-        <Card className="lg:col-span-2 shadow-sm border-border bg-bg-card flex flex-col">
+        <Card className="lg:col-span-2 shadow-sm border-border bg-card flex flex-col">
           <div className="flex items-center justify-between p-4 border-b border-border">
-            <h3 className="text-base font-bold text-text-primary">Recent Assignments</h3>
+            <h3 className="text-base font-bold text-primary">Recent Assignments</h3>
             <Button variant="ghost" size="sm" className="h-8 text-xs font-bold text-primary">View All</Button>
           </div>
           <div className="flex flex-col p-2">
@@ -112,7 +112,7 @@ export function LockerMatrixClient() {
                     {a.icon}
                   </div>
                   <div className="flex flex-col">
-                    <p className="text-sm font-bold text-text-primary">{a.text}</p>
+                    <p className="text-sm font-bold text-primary">{a.text}</p>
                     <p className="text-xs text-muted-foreground font-medium">{a.sub}</p>
                   </div>
                 </div>
@@ -133,7 +133,7 @@ export function LockerMatrixClient() {
           
           <div className="relative z-10">
             <h3 className="text-lg font-black text-primary tracking-tight mb-2">Management Toolkit</h3>
-            <p className="text-sm font-medium text-text-primary/70 leading-relaxed">
+            <p className="text-sm font-medium text-primary/70 leading-relaxed">
               Bulk manage lockers, schedule maintenance windows, or update digital lock firmware.
             </p>
           </div>
@@ -159,9 +159,9 @@ export function LockerMatrixClient() {
       {/* Assign Modal */}
       {assignTarget && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-background/80 backdrop-blur-sm" onClick={() => setAssignTarget(null)}>
-          <Card className="w-full max-w-sm shadow-lg border-border bg-bg-card p-6 flex flex-col gap-4" onClick={e => e.stopPropagation()}>
+          <Card className="w-full max-w-sm shadow-lg border-border bg-card p-6 flex flex-col gap-4" onClick={e => e.stopPropagation()}>
             <div className="flex items-center justify-between">
-              <h2 className="text-lg font-bold flex items-center gap-2 text-text-primary">
+              <h2 className="text-lg font-bold flex items-center gap-2 text-primary">
                 <Zap size={20} className="text-primary" /> Assign Locker {assignTarget}
               </h2>
               <Button variant="ghost" size="icon" className="h-8 w-8 rounded-full" onClick={() => setAssignTarget(null)}>
@@ -170,7 +170,7 @@ export function LockerMatrixClient() {
             </div>
             
             <p className="text-sm text-muted-foreground font-medium bg-muted/30 p-4 rounded-md border border-border">
-              Locker <strong className="text-text-primary">{assignTarget}</strong> is available. Assign it to a student.
+              Locker <strong className="text-primary">{assignTarget}</strong> is available. Assign it to a student.
             </p>
             
             <div className="flex items-center justify-end gap-3 pt-4 border-t border-border mt-2">

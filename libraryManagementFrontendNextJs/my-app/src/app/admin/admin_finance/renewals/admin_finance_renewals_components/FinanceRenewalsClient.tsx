@@ -35,7 +35,7 @@ export function FinanceRenewalsClient() {
   const getDaysLeftStyle = (days: number) => {
     if (days < 0) return 'text-danger font-bold';
     if (days <= 7) return 'text-warning font-bold';
-    return 'text-text-primary font-bold';
+    return 'text-primary font-bold';
   };
 
   return (
@@ -67,7 +67,7 @@ export function FinanceRenewalsClient() {
       </div>
 
       {/* Table */}
-      <Card className="flex-1 shadow-none border-border bg-bg-card overflow-hidden flex flex-col min-h-[450px]">
+      <Card className="flex-1 shadow-none border-border bg-card overflow-hidden flex flex-col min-h-[450px]">
         <div className="w-full overflow-x-auto flex-1">
           <table className="w-full text-sm text-left whitespace-nowrap min-w-max">
             <thead className="bg-muted/30 border-b text-muted-foreground text-[11px] font-bold uppercase tracking-wider sticky top-0 z-10">
@@ -97,14 +97,14 @@ export function FinanceRenewalsClient() {
               ) : (
                 visible.map((r) => (
                   <tr key={r.id} className="hover:bg-muted/10 transition-colors">
-                    <td className="px-5 py-4 font-bold text-[13px] text-text-primary">{r.studentName}</td>
+                    <td className="px-5 py-4 font-bold text-[13px] text-primary">{r.studentName}</td>
                     <td className="px-5 py-4 text-[12px] font-mono text-muted-foreground">{r.smartId}</td>
                     <td className="px-5 py-4">
                       <Badge variant="secondary" className="bg-muted text-muted-foreground border-none font-bold text-[10px]">
                         {r.shift}
                       </Badge>
                     </td>
-                    <td className="px-5 py-4 text-[13px] font-medium text-text-primary">{r.plan}</td>
+                    <td className="px-5 py-4 text-[13px] font-medium text-primary">{r.plan}</td>
                     <td className="px-5 py-4 text-[13px] text-muted-foreground">{r.expiryDate}</td>
                     <td className="px-5 py-4">
                       <span className={getDaysLeftStyle(r.daysLeft)}>
@@ -112,7 +112,7 @@ export function FinanceRenewalsClient() {
                       </span>
                     </td>
                     <td className="px-5 py-4 text-[13px] text-muted-foreground">{r.lastPaymentDate}</td>
-                    <td className={`px-5 py-4 text-right text-[13px] font-bold ${r.due > 0 ? 'text-danger' : 'text-text-primary'}`}>
+                    <td className={`px-5 py-4 text-right text-[13px] font-bold ${r.due > 0 ? 'text-danger' : 'text-primary'}`}>
                       {formatCurrency(r.due)}
                     </td>
                     <td className="px-5 py-4 text-right">
@@ -128,7 +128,7 @@ export function FinanceRenewalsClient() {
                         <Button 
                           variant="secondary" 
                           size="sm" 
-                          className="bg-muted text-text-primary hover:bg-muted/80 border-none font-bold text-xs h-7 px-2 gap-1"
+                          className="bg-muted text-primary hover:bg-muted/80 border-none font-bold text-xs h-7 px-2 gap-1"
                           onClick={() => handleRemind(r.studentName)}
                         >
                           <Send size={12} /> Remind
@@ -146,9 +146,9 @@ export function FinanceRenewalsClient() {
       {/* Renew Dialog */}
       {renewDialog && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-background/80 backdrop-blur-sm" onClick={() => setRenewDialog(null)}>
-          <Card className="w-full max-w-sm shadow-lg border-border bg-bg-card p-6 flex flex-col gap-5" onClick={e => e.stopPropagation()}>
+          <Card className="w-full max-w-sm shadow-lg border-border bg-card p-6 flex flex-col gap-5" onClick={e => e.stopPropagation()}>
             <div className="flex items-center justify-between">
-              <h2 className="text-lg font-bold flex items-center gap-2 text-text-primary tracking-tight">
+              <h2 className="text-lg font-bold flex items-center gap-2 text-primary tracking-tight">
                 Renew Subscription
               </h2>
               <Button variant="ghost" size="icon" className="h-8 w-8 rounded-full" onClick={() => setRenewDialog(null)}>
@@ -156,13 +156,13 @@ export function FinanceRenewalsClient() {
               </Button>
             </div>
             
-            <p className="text-sm font-medium text-text-primary bg-muted/50 p-2 rounded text-center">
+            <p className="text-sm font-medium text-primary bg-muted/50 p-2 rounded text-center">
               Student: <span className="font-bold">{renewDialog.name}</span>
             </p>
 
             <div className="space-y-4">
               <div className="space-y-1.5">
-                <label className="text-sm font-medium text-text-primary">Plan</label>
+                <label className="text-sm font-medium text-primary">Plan</label>
                 <select
                   className="w-full h-10 px-3 rounded-md border border-input bg-background text-sm font-medium focus:outline-none focus:ring-2 focus:ring-ring"
                   value={renewPlanId}
@@ -181,11 +181,11 @@ export function FinanceRenewalsClient() {
                 </select>
               </div>
               <div className="space-y-1.5">
-                <label className="text-sm font-medium text-text-primary">Amount</label>
+                <label className="text-sm font-medium text-primary">Amount</label>
                 <Input type="number" value={renewAmount} onChange={(e) => setRenewAmount(e.target.value)} />
               </div>
               <div className="space-y-1.5">
-                <label className="text-sm font-medium text-text-primary">Payment Mode</label>
+                <label className="text-sm font-medium text-primary">Payment Mode</label>
                 <select 
                   className="w-full h-10 px-3 rounded-md border border-input bg-background text-sm font-medium focus:outline-none focus:ring-2 focus:ring-ring"
                   value={renewMode} 
@@ -199,7 +199,7 @@ export function FinanceRenewalsClient() {
               </div>
               {renewMode !== 'cash' && (
                 <div className="space-y-1.5 animate-in fade-in slide-in-from-top-1">
-                  <label className="text-sm font-medium text-text-primary">Transaction ID</label>
+                  <label className="text-sm font-medium text-primary">Transaction ID</label>
                   <Input value={renewTxnId} onChange={(e) => setRenewTxnId(e.target.value)} placeholder="Enter transaction reference" />
                 </div>
               )}

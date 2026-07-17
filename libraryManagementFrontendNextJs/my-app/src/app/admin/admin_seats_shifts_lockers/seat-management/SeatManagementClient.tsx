@@ -94,7 +94,7 @@ export function SeatManagementClient({ initialSeats }: SeatManagementClientProps
           </Button>
         </Card>
       ) : (
-        <Card className="flex-1 shadow-none border-border bg-bg-card overflow-hidden flex flex-col">
+        <Card className="flex-1 shadow-none border-border bg-card overflow-hidden flex flex-col">
           <div className="w-full overflow-x-auto flex-1">
             <table className="w-full text-sm text-left">
               <thead className="bg-muted/30 border-y text-muted-foreground text-xs font-medium uppercase tracking-wider sticky top-0 z-10">
@@ -110,7 +110,7 @@ export function SeatManagementClient({ initialSeats }: SeatManagementClientProps
               <tbody className="divide-y divide-border">
                 {filtered.map((seat) => (
                   <tr key={seat.id} className="hover:bg-muted/10 transition-colors group">
-                    <td className="px-4 py-3 font-bold text-sm text-text-primary">
+                    <td className="px-4 py-3 font-bold text-sm text-primary">
                       {seat.seatNo}
                     </td>
                     <td className="px-4 py-3 font-medium text-primary text-sm">
@@ -182,7 +182,7 @@ export function SeatManagementClient({ initialSeats }: SeatManagementClientProps
       {/* Add / Edit Modal */}
       {showModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-background/80 backdrop-blur-sm" onClick={() => setShowModal(false)}>
-          <Card className="w-full max-w-sm shadow-lg border-border bg-bg-card p-6 flex flex-col gap-6" onClick={e => e.stopPropagation()}>
+          <Card className="w-full max-w-sm shadow-lg border-border bg-card p-6 flex flex-col gap-6" onClick={e => e.stopPropagation()}>
             <div className="flex items-center justify-between">
               <h2 className="text-xl font-bold tracking-tight flex items-center gap-2">
                 {editSeat ? <><Edit size={18}/> Edit Seat</> : <><Plus size={18}/> Add Seat</>}
@@ -238,12 +238,12 @@ export function SeatManagementClient({ initialSeats }: SeatManagementClientProps
       {/* Mark Broken Confirm */}
       {confirmBroken && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-background/80 backdrop-blur-sm" onClick={() => setConfirmBroken(null)}>
-          <Card className="w-full max-w-sm shadow-lg border-warning/20 bg-bg-card p-6 flex flex-col gap-4" onClick={e => e.stopPropagation()}>
+          <Card className="w-full max-w-sm shadow-lg border-warning/20 bg-card p-6 flex flex-col gap-4" onClick={e => e.stopPropagation()}>
             <h2 className="text-lg font-bold flex items-center gap-2 text-warning">
               <AlertTriangle size={20} /> Mark Seat as Broken
             </h2>
             <p className="text-sm text-muted-foreground leading-relaxed">
-              Mark Seat <strong className="text-text-primary">{confirmBroken.seatNo}</strong> as broken? It will be unavailable for assignment.
+              Mark Seat <strong className="text-primary">{confirmBroken.seatNo}</strong> as broken? It will be unavailable for assignment.
             </p>
             <div className="flex items-center justify-end gap-3 pt-4 border-t mt-2">
               <Button variant="ghost" onClick={() => setConfirmBroken(null)}>Cancel</Button>

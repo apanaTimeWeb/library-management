@@ -41,7 +41,7 @@ export function FinanceDashboardClient() {
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {isLoading
           ? Array.from({ length: 8 }).map((_, i) => (
-              <Card key={i} className="p-5 shadow-none border-border bg-bg-card space-y-3">
+              <Card key={i} className="p-5 shadow-none border-border bg-card space-y-3">
                 <div className="animate-pulse bg-muted h-4 w-28 rounded" />
                 <div className="animate-pulse bg-muted h-8 w-20 rounded" />
                 <div className="animate-pulse bg-muted h-3 w-24 rounded" />
@@ -50,7 +50,7 @@ export function FinanceDashboardClient() {
           : statCards.map(({ label, value, icon: Icon, sub, variant }) => (
               <Card
                 key={label}
-                className={`p-5 shadow-none border-border bg-bg-card flex flex-col gap-3 hover:shadow-md transition-shadow ${
+                className={`p-5 shadow-none border-border bg-card flex flex-col gap-3 hover:shadow-md transition-shadow ${
                   variant === 'warning' ? 'border-warning/30 bg-warning/5' : 
                   variant === 'danger' ? 'border-danger/30 bg-danger/5' : ''
                 }`}
@@ -71,7 +71,7 @@ export function FinanceDashboardClient() {
                 </div>
                 <p className={`text-2xl font-bold leading-none tracking-tight ${
                   variant === 'warning' ? 'text-warning' : 
-                  variant === 'danger' ? 'text-danger' : 'text-text-primary'
+                  variant === 'danger' ? 'text-danger' : 'text-primary'
                 }`}>
                   {value}
                 </p>
@@ -81,10 +81,10 @@ export function FinanceDashboardClient() {
       </div>
 
       {/* Recent Payments */}
-      <Card className="shadow-none border-border bg-bg-card overflow-hidden">
+      <Card className="shadow-none border-border bg-card overflow-hidden">
         <div className="flex items-center gap-2 p-5 border-b border-border">
           <Receipt size={18} className="text-muted-foreground" />
-          <h3 className="font-bold text-base text-text-primary">Recent Payments</h3>
+          <h3 className="font-bold text-base text-primary">Recent Payments</h3>
         </div>
         <div className="w-full overflow-x-auto flex-1">
           <table className="w-full text-sm text-left">
@@ -116,7 +116,7 @@ export function FinanceDashboardClient() {
                 : recentPayments.map((p) => (
                     <tr key={p.id} className="hover:bg-muted/10 transition-colors">
                       <td className="px-5 py-4">
-                        <div className="font-bold text-sm text-text-primary">{p.studentName}</div>
+                        <div className="font-bold text-sm text-primary">{p.studentName}</div>
                         <div className="text-xs text-muted-foreground font-medium mt-0.5">{p.studentSmartId} · {p.date}</div>
                       </td>
                       <td className="px-5 py-4">
@@ -128,7 +128,7 @@ export function FinanceDashboardClient() {
                         </Badge>
                       </td>
                       <td className="px-5 py-4 text-right">
-                        <span className="font-bold text-sm text-text-primary">{formatCurrency(p.amount)}</span>
+                        <span className="font-bold text-sm text-primary">{formatCurrency(p.amount)}</span>
                       </td>
                     </tr>
                   ))}

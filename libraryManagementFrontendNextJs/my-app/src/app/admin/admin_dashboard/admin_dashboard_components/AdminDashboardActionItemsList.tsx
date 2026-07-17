@@ -30,7 +30,7 @@ export function AdminDashboardActionItemsList({ items }: { items: AdminDashboard
                 size={16}
                 className={isDanger ? 'text-danger' : 'text-warning'}
               />
-              <span className="text-sm font-medium text-text-primary">
+              <span className="text-sm font-medium text-primary">
                 <span className={`font-bold mr-1 ${isDanger ? 'text-danger' : 'text-warning'}`}>
                   {item.count}
                 </span>{' '}

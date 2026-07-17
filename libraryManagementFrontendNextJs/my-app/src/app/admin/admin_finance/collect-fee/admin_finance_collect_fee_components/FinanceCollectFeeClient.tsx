@@ -57,11 +57,11 @@ export function FinanceCollectFeeClient() {
       {/* Receipt Modal */}
       {receiptData && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-background/80 backdrop-blur-sm overflow-y-auto" onClick={() => setReceiptData(null)}>
-          <div className="w-full max-w-md bg-bg-card rounded-xl shadow-2xl border border-border flex flex-col my-auto" onClick={e => e.stopPropagation()}>
+          <div className="w-full max-w-md bg-card rounded-xl shadow-2xl border border-border flex flex-col my-auto" onClick={e => e.stopPropagation()}>
             {/* Modal Header */}
             <div className="flex items-center justify-between p-4 border-b border-border bg-muted/20 rounded-t-xl">
               <div>
-                <h2 className="text-lg font-bold flex items-center gap-2 text-text-primary">
+                <h2 className="text-lg font-bold flex items-center gap-2 text-primary">
                   🎉 Payment Collected!
                 </h2>
                 <Badge variant="secondary" className="mt-1 bg-success/10 text-success border-none font-bold text-xs gap-1">
@@ -173,7 +173,7 @@ export function FinanceCollectFeeClient() {
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
           {/* Left — Form */}
           <div className="lg:col-span-3 space-y-4">
-            <Card className="p-6 shadow-none border-border bg-bg-card space-y-4">
+            <Card className="p-6 shadow-none border-border bg-card space-y-4">
               <h3 className="font-bold text-sm tracking-widest uppercase text-muted-foreground mb-4">Student <span className="text-danger">*</span></h3>
               <div className="relative">
                 <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
@@ -186,7 +186,7 @@ export function FinanceCollectFeeClient() {
                 />
               </div>
               {showDropdown && search.length >= 2 && !selectedStudent && (
-                <div className="absolute z-20 w-[calc(100%-3rem)] max-w-md mt-1 bg-bg-card border border-border rounded-md shadow-xl max-h-60 overflow-y-auto">
+                <div className="absolute z-20 w-[calc(100%-3rem)] max-w-md mt-1 bg-card border border-border rounded-md shadow-xl max-h-60 overflow-y-auto">
                   {filteredStudents.length === 0 ? (
                     <div className="p-4 text-sm text-muted-foreground text-center">No students found</div>
                   ) : filteredStudents.map(s => (
@@ -196,7 +196,7 @@ export function FinanceCollectFeeClient() {
                       onClick={() => handleStudentSelect(s)}
                     >
                       <div>
-                        <div className="font-bold text-sm text-text-primary">{s.name}</div>
+                        <div className="font-bold text-sm text-primary">{s.name}</div>
                         <div className="text-xs text-muted-foreground mt-0.5">{s.smartId} · {s.plan} · +91-{maskPhone(s.phone)}</div>
                       </div>
                       <Badge variant="secondary" className={`${s.status === 'active' ? 'bg-success/10 text-success' : s.status === 'suspended' ? 'bg-danger/10 text-danger' : 'bg-warning/10 text-warning'} border-none uppercase tracking-wider font-bold text-[10px]`}>
@@ -221,11 +221,11 @@ export function FinanceCollectFeeClient() {
               )}
             </Card>
 
-            <Card className="p-6 shadow-none border-border bg-bg-card space-y-5">
+            <Card className="p-6 shadow-none border-border bg-card space-y-5">
               <h3 className="font-bold text-sm tracking-widest uppercase text-muted-foreground mb-4">Payment Details</h3>
               
               <div className="space-y-1.5">
-                <label className="text-sm font-medium text-text-primary">Amount <span className="text-danger">*</span></label>
+                <label className="text-sm font-medium text-primary">Amount <span className="text-danger">*</span></label>
                 <div className="relative">
                   <IndianRupee size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
                   <Input 
@@ -239,7 +239,7 @@ export function FinanceCollectFeeClient() {
               </div>
               
               <div className="space-y-2">
-                <label className="text-sm font-medium text-text-primary">Payment Mode</label>
+                <label className="text-sm font-medium text-primary">Payment Mode</label>
                 <div className="flex gap-2 flex-wrap">
                   {ADMIN_FINANCE_MODES.map((m) => (
                     <Badge 
@@ -256,7 +256,7 @@ export function FinanceCollectFeeClient() {
               
               {mode !== 'cash' && (
                 <div className="space-y-1.5 animate-in fade-in slide-in-from-top-1">
-                  <label className="text-sm font-medium text-text-primary">Transaction ID <span className="text-danger">*</span></label>
+                  <label className="text-sm font-medium text-primary">Transaction ID <span className="text-danger">*</span></label>
                   <Input 
                     className="h-10" 
                     placeholder="Enter transaction reference" 
@@ -267,7 +267,7 @@ export function FinanceCollectFeeClient() {
               )}
               
               <div className="space-y-1.5">
-                <label className="text-sm font-medium text-text-primary">Coupon Code</label>
+                <label className="text-sm font-medium text-primary">Coupon Code</label>
                 <div className="flex gap-2">
                   <Input 
                     className="flex-1 h-10 uppercase" 
@@ -283,8 +283,8 @@ export function FinanceCollectFeeClient() {
               
               <div className="space-y-1.5">
                 <div className="flex items-center justify-between">
-                  <label className="text-sm font-medium text-text-primary">Late Fee</label>
-                  <label className="flex items-center gap-1.5 text-xs text-muted-foreground cursor-pointer hover:text-text-primary">
+                  <label className="text-sm font-medium text-primary">Late Fee</label>
+                  <label className="flex items-center gap-1.5 text-xs text-muted-foreground cursor-pointer hover:text-primary">
                     <input type="checkbox" checked={lateFeeOverride} onChange={e => setLateFeeOverride(e.target.checked)} className="rounded border-input" /> Override
                   </label>
                 </div>
@@ -298,7 +298,7 @@ export function FinanceCollectFeeClient() {
               </div>
               
               <div className="space-y-1.5">
-                <label className="text-sm font-medium text-text-primary">Remark (optional)</label>
+                <label className="text-sm font-medium text-primary">Remark (optional)</label>
                 <Textarea 
                   className="resize-none" 
                   rows={2} 

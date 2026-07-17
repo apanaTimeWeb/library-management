@@ -57,7 +57,7 @@ export function AdminStaffUsersClient({ initialStaff }: AdminStaffUsersClientPro
       {/* Stats Row */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         {stats.map(s => (
-          <Card key={s.label} className="p-4 flex items-center gap-4 shadow-none border-border bg-bg-card">
+          <Card key={s.label} className="p-4 flex items-center gap-4 shadow-none border-border bg-card">
             <div 
               className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0" 
               style={{ backgroundColor: `color-mix(in srgb, ${s.color} 12%, transparent)` }}
@@ -66,7 +66,7 @@ export function AdminStaffUsersClient({ initialStaff }: AdminStaffUsersClientPro
             </div>
             <div>
               <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-0.5">{s.label}</p>
-              <p className="text-2xl font-bold text-text-primary leading-none">{s.count}</p>
+              <p className="text-2xl font-bold text-primary leading-none">{s.count}</p>
             </div>
           </Card>
         ))}
@@ -84,7 +84,7 @@ export function AdminStaffUsersClient({ initialStaff }: AdminStaffUsersClientPro
       </div>
 
       {/* Tailwind Native Table */}
-      <Card className="flex-1 shadow-none border-border bg-bg-card overflow-hidden flex flex-col">
+      <Card className="flex-1 shadow-none border-border bg-card overflow-hidden flex flex-col">
         <div className="w-full overflow-x-auto flex-1">
           <table className="w-full text-sm text-left">
             <thead className="bg-muted/30 border-y text-muted-foreground text-xs font-medium uppercase tracking-wider sticky top-0 z-10">
@@ -105,7 +105,7 @@ export function AdminStaffUsersClient({ initialStaff }: AdminStaffUsersClientPro
                   key={staff.id} 
                   className="hover:bg-muted/10 transition-colors group"
                 >
-                  <td className="px-4 py-4 font-bold text-sm text-text-primary">
+                  <td className="px-4 py-4 font-bold text-sm text-primary">
                     {staff.name}
                   </td>
                   <td className="px-4 py-4 text-sm text-muted-foreground">
@@ -157,7 +157,7 @@ export function AdminStaffUsersClient({ initialStaff }: AdminStaffUsersClientPro
       {/* Add / Edit Modal Overlay */}
       {showForm && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-background/80 backdrop-blur-sm" onClick={() => setShowForm(false)}>
-          <Card className="w-full max-w-lg shadow-lg border-border bg-bg-card p-6 flex flex-col gap-6" onClick={e => e.stopPropagation()}>
+          <Card className="w-full max-w-lg shadow-lg border-border bg-card p-6 flex flex-col gap-6" onClick={e => e.stopPropagation()}>
             <div className="flex items-center justify-between">
               <h2 className="text-xl font-bold tracking-tight">{editId ? 'Edit Staff Member' : 'Add Staff Member'}</h2>
               <Button variant="ghost" size="icon" className="h-8 w-8 rounded-full" onClick={() => setShowForm(false)}>
@@ -230,12 +230,12 @@ export function AdminStaffUsersClient({ initialStaff }: AdminStaffUsersClientPro
       {/* Delete Confirm Modal */}
       {deleteId && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-background/80 backdrop-blur-sm" onClick={() => setDeleteId(null)}>
-          <Card className="w-full max-w-sm shadow-lg border-danger/20 bg-bg-card p-6 flex flex-col gap-4" onClick={e => e.stopPropagation()}>
+          <Card className="w-full max-w-sm shadow-lg border-danger/20 bg-card p-6 flex flex-col gap-4" onClick={e => e.stopPropagation()}>
             <h2 className="text-lg font-bold flex items-center gap-2 text-danger">
               <Trash2 size={20} /> Remove Staff Member
             </h2>
             <p className="text-sm text-muted-foreground leading-relaxed">
-              Are you sure you want to remove <strong className="text-text-primary">{staff.find(s => s.id === deleteId)?.name}</strong>? Their account will be deactivated and they will lose access.
+              Are you sure you want to remove <strong className="text-primary">{staff.find(s => s.id === deleteId)?.name}</strong>? Their account will be deactivated and they will lose access.
             </p>
             <div className="flex items-center justify-end gap-3 pt-4 border-t mt-2">
               <Button variant="ghost" onClick={() => setDeleteId(null)}>Cancel</Button>

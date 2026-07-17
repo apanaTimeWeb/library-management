@@ -44,12 +44,12 @@ export function FinanceReceiptClient() {
 
       {/* KPI Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-        <Card className="p-5 shadow-none border-border bg-bg-card flex flex-col gap-3">
+        <Card className="p-5 shadow-none border-border bg-card flex flex-col gap-3">
           <div className="flex items-center justify-between">
             <span className="text-[11px] font-bold tracking-wider uppercase text-muted-foreground">TOTAL RECEIPTS</span>
             <Receipt size={16} className="text-muted-foreground" />
           </div>
-          <p className="text-2xl font-bold leading-none tracking-tight text-text-primary">{kpiData.totalReceipts}</p>
+          <p className="text-2xl font-bold leading-none tracking-tight text-primary">{kpiData.totalReceipts}</p>
         </Card>
         
         <Card className="p-5 shadow-none border-success/30 bg-success/5 flex flex-col gap-3">
@@ -60,12 +60,12 @@ export function FinanceReceiptClient() {
           <p className="text-2xl font-bold leading-none tracking-tight text-success">{formatCurrency(kpiData.totalCollected)}</p>
         </Card>
         
-        <Card className="p-5 shadow-none border-border bg-bg-card flex flex-col gap-3">
+        <Card className="p-5 shadow-none border-border bg-card flex flex-col gap-3">
           <div className="flex items-center justify-between">
             <span className="text-[11px] font-bold tracking-wider uppercase text-muted-foreground">THIS MONTH</span>
             <Receipt size={16} className="text-muted-foreground" />
           </div>
-          <p className="text-2xl font-bold leading-none tracking-tight text-text-primary">{kpiData.thisMonth}</p>
+          <p className="text-2xl font-bold leading-none tracking-tight text-primary">{kpiData.thisMonth}</p>
         </Card>
       </div>
 
@@ -94,7 +94,7 @@ export function FinanceReceiptClient() {
       </div>
 
       {/* Receipts Table */}
-      <Card className="flex-1 shadow-none border-border bg-bg-card overflow-hidden flex flex-col">
+      <Card className="flex-1 shadow-none border-border bg-card overflow-hidden flex flex-col">
         <div className="w-full overflow-x-auto flex-1">
           <table className="w-full text-sm text-left">
             <thead className="bg-muted/30 border-b text-muted-foreground text-[11px] font-bold uppercase tracking-wider sticky top-0 z-10">
@@ -123,10 +123,10 @@ export function FinanceReceiptClient() {
                 filteredReceipts.map((r) => (
                   <tr key={r.id} className="hover:bg-muted/10 transition-colors">
                     <td className="px-5 py-4">
-                      <span className="font-mono text-[13px] font-medium text-text-primary">{r.receiptNumber}</span>
+                      <span className="font-mono text-[13px] font-medium text-primary">{r.receiptNumber}</span>
                     </td>
                     <td className="px-5 py-4">
-                      <div className="font-bold text-[13px] text-text-primary">{r.studentName}</div>
+                      <div className="font-bold text-[13px] text-primary">{r.studentName}</div>
                       <div className="text-[11px] text-muted-foreground font-medium mt-0.5">{r.studentId}</div>
                     </td>
                     <td className="px-5 py-4 text-[13px] text-muted-foreground font-medium max-w-[180px] truncate">
@@ -136,7 +136,7 @@ export function FinanceReceiptClient() {
                       {formatDate(r.date)}
                     </td>
                     <td className="px-5 py-4 text-right">
-                      <span className="font-bold text-[13px] text-text-primary">{formatCurrency(r.amount)}</span>
+                      <span className="font-bold text-[13px] text-primary">{formatCurrency(r.amount)}</span>
                     </td>
                     <td className="px-5 py-4">
                       <Badge variant="secondary" className={`${getModeBadge(r.paymentMode)} border-none uppercase tracking-wider font-bold text-[10px]`}>

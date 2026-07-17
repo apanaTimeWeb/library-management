@@ -72,7 +72,7 @@ export function LockersClient() {
       </div>
 
       {/* Table */}
-      <Card className="flex-1 shadow-none border-border bg-bg-card overflow-hidden flex flex-col min-h-[450px]">
+      <Card className="flex-1 shadow-none border-border bg-card overflow-hidden flex flex-col min-h-[450px]">
         <div className="w-full overflow-x-auto flex-1">
           <table className="w-full text-sm text-left whitespace-nowrap min-w-max">
             <thead className="bg-muted/30 border-b text-muted-foreground text-[11px] font-bold uppercase tracking-wider sticky top-0 z-10">
@@ -104,7 +104,7 @@ export function LockersClient() {
               ) : (
                 filtered.map((l, i) => (
                   <tr key={i} className="hover:bg-muted/10 transition-colors">
-                    <td className="px-5 py-4 text-[15px] font-black text-text-primary tracking-tight">{l.lockerId}</td>
+                    <td className="px-5 py-4 text-[15px] font-black text-primary tracking-tight">{l.lockerId}</td>
                     <td className="px-5 py-4">
                       <Badge variant="secondary" className={`${getStatusBadge(l.status)} uppercase tracking-wider font-bold text-[10px]`}>
                         <span className="w-1.5 h-1.5 rounded-full bg-current mr-1.5 opacity-70" />
@@ -135,7 +135,7 @@ export function LockersClient() {
                           </Button>
                         )}
                         {l.status !== 'Maintenance' && (
-                          <Button variant="ghost" size="icon" className="h-8 w-8 text-muted-foreground hover:text-text-primary hover:bg-muted" title="Mark Maintenance" onClick={() => handleMarkMaintenance(l)}>
+                          <Button variant="ghost" size="icon" className="h-8 w-8 text-muted-foreground hover:text-primary hover:bg-muted" title="Mark Maintenance" onClick={() => handleMarkMaintenance(l)}>
                             <Wrench size={14} />
                           </Button>
                         )}
@@ -152,9 +152,9 @@ export function LockersClient() {
       {/* Add Locker Modal */}
       {showAddModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-background/80 backdrop-blur-sm" onClick={() => setShowAddModal(false)}>
-          <Card className="w-full max-w-sm shadow-lg border-border bg-bg-card p-6 flex flex-col gap-6" onClick={e => e.stopPropagation()}>
+          <Card className="w-full max-w-sm shadow-lg border-border bg-card p-6 flex flex-col gap-6" onClick={e => e.stopPropagation()}>
             <div className="flex items-center justify-between">
-              <h2 className="text-xl font-bold tracking-tight flex items-center gap-2 text-text-primary">
+              <h2 className="text-xl font-bold tracking-tight flex items-center gap-2 text-primary">
                 <Plus size={20} /> Add Locker
               </h2>
               <Button variant="ghost" size="icon" className="h-8 w-8 rounded-full" onClick={() => setShowAddModal(false)}>
@@ -185,9 +185,9 @@ export function LockersClient() {
       {/* Assign Modal */}
       {showAssign && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-background/80 backdrop-blur-sm" onClick={() => setShowAssign(null)}>
-          <Card className="w-full max-w-md shadow-lg border-border bg-bg-card p-6 flex flex-col gap-6" onClick={e => e.stopPropagation()}>
+          <Card className="w-full max-w-md shadow-lg border-border bg-card p-6 flex flex-col gap-6" onClick={e => e.stopPropagation()}>
             <div className="flex items-center justify-between">
-              <h2 className="text-xl font-bold tracking-tight flex items-center gap-2 text-text-primary">
+              <h2 className="text-xl font-bold tracking-tight flex items-center gap-2 text-primary">
                 <UserPlus size={20} className="text-success" /> Assign Locker {showAssign.lockerId}
               </h2>
               <Button variant="ghost" size="icon" className="h-8 w-8 rounded-full" onClick={() => setShowAssign(null)}>
@@ -222,11 +222,11 @@ export function LockersClient() {
       {/* Free Locker Confirm Modal */}
       {freeTarget && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-background/80 backdrop-blur-sm" onClick={() => setFreeTarget(null)}>
-          <Card className="w-full max-w-sm shadow-lg border-warning/20 bg-bg-card p-6 flex flex-col gap-4" onClick={e => e.stopPropagation()}>
+          <Card className="w-full max-w-sm shadow-lg border-warning/20 bg-card p-6 flex flex-col gap-4" onClick={e => e.stopPropagation()}>
             <h2 className="text-lg font-bold flex items-center gap-2 text-warning">
               <Unlock size={20} /> Free Locker {freeTarget.lockerId}
             </h2>
-            <p className="text-sm text-text-primary leading-relaxed bg-warning/5 p-4 rounded-md border border-warning/20">
+            <p className="text-sm text-primary leading-relaxed bg-warning/5 p-4 rounded-md border border-warning/20">
               Free Locker <strong>{freeTarget.lockerId}</strong> from <strong>{freeTarget.assignedTo}</strong>? Locker becomes available immediately.
             </p>
             <div className="flex items-center justify-end gap-3 pt-2">

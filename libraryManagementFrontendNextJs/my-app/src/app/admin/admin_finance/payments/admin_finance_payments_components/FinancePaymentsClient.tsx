@@ -78,7 +78,7 @@ export function FinancePaymentsClient() {
       </div>
 
       {/* Ledger Table */}
-      <Card className="flex-1 shadow-none border-border bg-bg-card overflow-hidden flex flex-col">
+      <Card className="flex-1 shadow-none border-border bg-card overflow-hidden flex flex-col">
         <div className="w-full overflow-x-auto flex-1">
           <table className="w-full text-sm text-left">
             <thead className="bg-muted/30 border-b text-muted-foreground text-[11px] font-bold uppercase tracking-wider sticky top-0 z-10">
@@ -116,7 +116,7 @@ export function FinancePaymentsClient() {
                   return (
                     <tr key={p.id} className={`hover:bg-muted/10 transition-colors ${isDeleted ? 'bg-danger/5' : ''}`}>
                       <td className="px-4 py-3">
-                        <span className={`font-mono text-[13px] font-medium ${isDeleted ? 'line-through opacity-50 text-muted-foreground' : 'text-text-primary'}`}>
+                        <span className={`font-mono text-[13px] font-medium ${isDeleted ? 'line-through opacity-50 text-muted-foreground' : 'text-primary'}`}>
                           {p.receiptNumber}
                         </span>
                       </td>
@@ -124,11 +124,11 @@ export function FinancePaymentsClient() {
                         {formatDate(p.date)}
                       </td>
                       <td className={`px-4 py-3 ${isDeleted ? 'opacity-50' : ''}`}>
-                        <div className="font-bold text-[13px] text-text-primary">{p.studentName}</div>
+                        <div className="font-bold text-[13px] text-primary">{p.studentName}</div>
                         <div className="text-[11px] text-muted-foreground font-medium">{p.smartId}</div>
                       </td>
                       <td className="px-4 py-3 text-right">
-                        <span className="font-bold text-[13px] text-text-primary">
+                        <span className="font-bold text-[13px] text-primary">
                           {formatCurrency(p.amount)}
                         </span>
                       </td>
@@ -208,7 +208,7 @@ export function FinancePaymentsClient() {
       {/* Delete Confirmation Modal */}
       {deleteDialog && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-background/80 backdrop-blur-sm" onClick={() => setDeleteDialog(null)}>
-          <Card className="w-full max-w-sm shadow-lg border-danger/20 bg-bg-card p-6 flex flex-col gap-5" onClick={e => e.stopPropagation()}>
+          <Card className="w-full max-w-sm shadow-lg border-danger/20 bg-card p-6 flex flex-col gap-5" onClick={e => e.stopPropagation()}>
             <div className="flex items-center justify-between">
               <h2 className="text-lg font-bold flex items-center gap-2 text-danger tracking-tight">
                 <Trash2 size={18} /> Delete Payment
@@ -219,7 +219,7 @@ export function FinancePaymentsClient() {
             </div>
             
             <div>
-              <p className="text-sm font-bold text-text-primary mb-1">{deleteDialog.receipt}</p>
+              <p className="text-sm font-bold text-primary mb-1">{deleteDialog.receipt}</p>
               <p className="text-sm text-muted-foreground leading-relaxed">
                 Soft-delete this payment? This action is permanent and logged in Audit Logs.
               </p>

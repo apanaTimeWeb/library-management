@@ -67,7 +67,7 @@ export function FinanceSecurityDepositsClient() {
       </div>
 
       {/* Table */}
-      <Card className="flex-1 shadow-none border-border bg-bg-card overflow-hidden flex flex-col min-h-[450px]">
+      <Card className="flex-1 shadow-none border-border bg-card overflow-hidden flex flex-col min-h-[450px]">
         <div className="w-full overflow-x-auto flex-1">
           <table className="w-full text-sm text-left whitespace-nowrap min-w-max">
             <thead className="bg-muted/30 border-b text-muted-foreground text-[11px] font-bold uppercase tracking-wider sticky top-0 z-10">
@@ -107,16 +107,16 @@ export function FinanceSecurityDepositsClient() {
                 filtered.map((d) => (
                   <tr key={d.id} className="hover:bg-muted/10 transition-colors">
                     <td className="px-5 py-4">
-                      <div className="font-bold text-[13px] text-text-primary">{d.studentName}</div>
+                      <div className="font-bold text-[13px] text-primary">{d.studentName}</div>
                       <div className="text-[11px] font-mono text-muted-foreground">{d.smartId}</div>
                     </td>
-                    <td className="px-5 py-4 text-right text-[13px] font-bold text-text-primary">{formatCurrency(d.depositAmount)}</td>
+                    <td className="px-5 py-4 text-right text-[13px] font-bold text-primary">{formatCurrency(d.depositAmount)}</td>
                     <td className="px-5 py-4">
                       <Badge variant="secondary" className={`${getStatusBadge(d.status)} uppercase tracking-wider font-bold text-[10px]`}>
                         {d.status}
                       </Badge>
                     </td>
-                    <td className="px-5 py-4 text-[13px] font-medium text-text-primary">{d.collectedBy}</td>
+                    <td className="px-5 py-4 text-[13px] font-medium text-primary">{d.collectedBy}</td>
                     <td className="px-5 py-4 text-[13px] text-muted-foreground">{d.collectedDate}</td>
                     <td className={`px-5 py-4 text-right text-[13px] font-bold ${d.deductionAmount > 0 ? 'text-danger' : 'text-muted-foreground font-medium'}`}>
                       {d.deductionAmount > 0 ? formatCurrency(d.deductionAmount) : '—'}
@@ -162,9 +162,9 @@ export function FinanceSecurityDepositsClient() {
       {/* Process Refund Dialog */}
       {refundDialog && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-background/80 backdrop-blur-sm" onClick={() => setRefundDialog(null)}>
-          <Card className="w-full max-w-sm shadow-lg border-border bg-bg-card p-6 flex flex-col gap-5" onClick={e => e.stopPropagation()}>
+          <Card className="w-full max-w-sm shadow-lg border-border bg-card p-6 flex flex-col gap-5" onClick={e => e.stopPropagation()}>
             <div className="flex items-center justify-between">
-              <h2 className="text-lg font-bold flex items-center gap-2 text-text-primary tracking-tight">
+              <h2 className="text-lg font-bold flex items-center gap-2 text-primary tracking-tight">
                 💸 Process Refund
               </h2>
               <Button variant="ghost" size="icon" className="h-8 w-8 rounded-full" onClick={() => setRefundDialog(null)}>
@@ -172,21 +172,21 @@ export function FinanceSecurityDepositsClient() {
               </Button>
             </div>
             
-            <p className="text-sm font-medium text-text-primary bg-muted/50 p-2 rounded text-center">
+            <p className="text-sm font-medium text-primary bg-muted/50 p-2 rounded text-center">
               Student: <span className="font-bold">{refundDialog.name}</span>
             </p>
 
             <div className="space-y-4">
               <div className="space-y-1.5">
-                <label className="text-sm font-medium text-text-primary">Refund Amount</label>
+                <label className="text-sm font-medium text-primary">Refund Amount</label>
                 <Input type="number" value={refundAmount} onChange={(e) => setRefundAmount(e.target.value)} />
               </div>
               <div className="space-y-1.5">
-                <label className="text-sm font-medium text-text-primary">Deduction Amount</label>
+                <label className="text-sm font-medium text-primary">Deduction Amount</label>
                 <Input type="number" value={deductionAmount} onChange={(e) => setDeductionAmount(e.target.value)} placeholder="0" />
               </div>
               <div className="space-y-1.5">
-                <label className="text-sm font-medium text-text-primary">Deduction Reason {parseFloat(deductionAmount) > 0 && <span className="text-danger">*</span>}</label>
+                <label className="text-sm font-medium text-primary">Deduction Reason {parseFloat(deductionAmount) > 0 && <span className="text-danger">*</span>}</label>
                 <Input value={deductionReason} onChange={(e) => setDeductionReason(e.target.value)} placeholder="Reason..." />
               </div>
             </div>
@@ -208,9 +208,9 @@ export function FinanceSecurityDepositsClient() {
       {/* Add Deduction Dialog */}
       {deductDialog && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-background/80 backdrop-blur-sm" onClick={() => setDeductDialog(null)}>
-          <Card className="w-full max-w-sm shadow-lg border-border bg-bg-card p-6 flex flex-col gap-5" onClick={e => e.stopPropagation()}>
+          <Card className="w-full max-w-sm shadow-lg border-border bg-card p-6 flex flex-col gap-5" onClick={e => e.stopPropagation()}>
             <div className="flex items-center justify-between">
-              <h2 className="text-lg font-bold flex items-center gap-2 text-text-primary tracking-tight">
+              <h2 className="text-lg font-bold flex items-center gap-2 text-primary tracking-tight">
                 ➕ Add Deduction
               </h2>
               <Button variant="ghost" size="icon" className="h-8 w-8 rounded-full" onClick={() => setDeductDialog(null)}>
@@ -218,17 +218,17 @@ export function FinanceSecurityDepositsClient() {
               </Button>
             </div>
             
-            <p className="text-sm font-medium text-text-primary bg-muted/50 p-2 rounded text-center">
+            <p className="text-sm font-medium text-primary bg-muted/50 p-2 rounded text-center">
               Student: <span className="font-bold">{deductDialog.name}</span>
             </p>
 
             <div className="space-y-4">
               <div className="space-y-1.5">
-                <label className="text-sm font-medium text-text-primary">Amount <span className="text-danger">*</span></label>
+                <label className="text-sm font-medium text-primary">Amount <span className="text-danger">*</span></label>
                 <Input type="number" value={deductAmt} onChange={(e) => setDeductAmt(e.target.value)} />
               </div>
               <div className="space-y-1.5">
-                <label className="text-sm font-medium text-text-primary">Reason <span className="text-danger">*</span></label>
+                <label className="text-sm font-medium text-primary">Reason <span className="text-danger">*</span></label>
                 <Input value={deductReason} onChange={(e) => setDeductReason(e.target.value)} placeholder="Reason for deduction" />
               </div>
             </div>

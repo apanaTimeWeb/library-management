@@ -41,7 +41,7 @@ interface AdminReportsClientProps {
 
 function AdminReportsKpiCard({ label, value, icon: Icon, iconColor, iconBg, trend, sub }: any) {
   return (
-    <Card className="p-5 flex flex-col gap-4 shadow-none border-border bg-bg-card hover:shadow-md transition-shadow">
+    <Card className="p-5 flex flex-col gap-4 shadow-none border-border bg-card hover:shadow-md transition-shadow">
       <div className="flex items-center justify-between">
         <div className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0" style={{ backgroundColor: iconBg }}>
           <Icon size={20} style={{ color: iconColor }} />
@@ -54,7 +54,7 @@ function AdminReportsKpiCard({ label, value, icon: Icon, iconColor, iconBg, tren
       </div>
       <div>
         <h3 className="text-sm font-semibold text-muted-foreground">{label}</h3>
-        <p className="text-2xl font-bold text-text-primary mt-1">{value}</p>
+        <p className="text-2xl font-bold text-primary mt-1">{value}</p>
         {sub && <p className="text-xs text-muted-foreground mt-1.5">{sub}</p>}
       </div>
     </Card>
@@ -95,7 +95,7 @@ export function AdminReportsClient({ initialData }: AdminReportsClientProps) {
         <div className="flex flex-col xl:flex-row xl:items-end justify-between gap-4 border-b border-border pb-5">
           <div>
             <p className="text-xs text-muted-foreground mb-1 tracking-widest uppercase font-medium">Smart Library 360 › Admin › Reports</p>
-            <h1 className="text-2xl font-bold tracking-tight text-text-primary">Analytics & Reports</h1>
+            <h1 className="text-2xl font-bold tracking-tight text-primary">Analytics & Reports</h1>
             <p className="text-sm text-muted-foreground mt-1">Financial health and operational overview across branches</p>
           </div>
 
@@ -155,13 +155,13 @@ export function AdminReportsClient({ initialData }: AdminReportsClientProps) {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
 
           {/* Chart 1: Income vs Expenses */}
-          <Card className="p-5 shadow-none border-border bg-bg-card">
+          <Card className="p-5 shadow-none border-border bg-card">
             <div className="flex items-center justify-between mb-5">
               <div className="flex items-center gap-2">
                 <div className="w-8 h-8 rounded-lg flex items-center justify-center bg-primary/10">
                   <BarChart2 size={16} className="text-primary" />
                 </div>
-                <h3 className="font-bold text-sm text-text-primary">Income vs Expenses</h3>
+                <h3 className="font-bold text-sm text-primary">Income vs Expenses</h3>
               </div>
               <div className="flex items-center gap-4">
                 <div className="flex items-center gap-1.5">
@@ -195,12 +195,12 @@ export function AdminReportsClient({ initialData }: AdminReportsClientProps) {
           </Card>
 
           {/* Chart 2: Shift-wise Occupancy Donut */}
-          <Card className="p-5 shadow-none border-border bg-bg-card">
+          <Card className="p-5 shadow-none border-border bg-card">
             <div className="flex items-center gap-2 mb-5">
               <div className="w-8 h-8 rounded-lg flex items-center justify-center bg-warning/10">
                 <PieIcon size={16} className="text-warning" />
               </div>
-              <h3 className="font-bold text-sm text-text-primary">Shift-wise Occupancy %</h3>
+              <h3 className="font-bold text-sm text-primary">Shift-wise Occupancy %</h3>
             </div>
             <ResponsiveContainer width="100%" height={260}>
               <PieChart>
@@ -231,13 +231,13 @@ export function AdminReportsClient({ initialData }: AdminReportsClientProps) {
           </Card>
 
           {/* Chart 3: Monthly Revenue Trend — Area */}
-          <Card className="p-5 shadow-none border-border bg-bg-card">
+          <Card className="p-5 shadow-none border-border bg-card">
             <div className="flex items-center justify-between mb-5">
               <div className="flex items-center gap-2">
                 <div className="w-8 h-8 rounded-lg flex items-center justify-center bg-success/10">
                   <Activity size={16} className="text-success" />
                 </div>
-                <h3 className="font-bold text-sm text-text-primary">Monthly Revenue Trend</h3>
+                <h3 className="font-bold text-sm text-primary">Monthly Revenue Trend</h3>
               </div>
               <Badge variant="secondary" className="bg-success/10 text-success border-none font-bold">
                 {rangeOptions.find(o => o.key === range)?.label}
@@ -277,13 +277,13 @@ export function AdminReportsClient({ initialData }: AdminReportsClientProps) {
           </Card>
 
           {/* Chart 4: Student Growth */}
-          <Card className="p-5 shadow-none border-border bg-bg-card">
+          <Card className="p-5 shadow-none border-border bg-card">
             <div className="flex items-center justify-between mb-5">
               <div className="flex items-center gap-2">
                 <div className="w-8 h-8 rounded-lg flex items-center justify-center bg-purple-500/10">
                   <Users size={16} className="text-purple-500" />
                 </div>
-                <h3 className="font-bold text-sm text-text-primary">Student Growth</h3>
+                <h3 className="font-bold text-sm text-primary">Student Growth</h3>
               </div>
               <div className="flex items-center gap-4">
                 <div className="flex items-center gap-1.5">
@@ -314,9 +314,9 @@ export function AdminReportsClient({ initialData }: AdminReportsClientProps) {
         </div>
 
         {/* Branch Summary Table */}
-        <Card className="shadow-none border-border bg-bg-card overflow-hidden">
+        <Card className="shadow-none border-border bg-card overflow-hidden">
           <div className="p-5 border-b border-border flex items-center justify-between">
-            <h3 className="font-bold text-base text-text-primary">Branch-wise Summary</h3>
+            <h3 className="font-bold text-base text-primary">Branch-wise Summary</h3>
             <Badge variant="secondary" className="bg-primary/10 text-primary border-none font-bold">
               {rangeOptions.find(o => o.key === range)?.label}
             </Badge>
@@ -338,11 +338,11 @@ export function AdminReportsClient({ initialData }: AdminReportsClientProps) {
                   { branch: 'Nashik Branch',  revenue: '₹14,000', expense: '₹5,000',  profit: '₹9,000',  students: 42,  occ: 60 },
                 ].map((row, i) => (
                   <tr key={i} className="hover:bg-muted/10 transition-colors">
-                    <td className="px-4 py-3 font-bold text-[13px] text-text-primary">{row.branch}</td>
+                    <td className="px-4 py-3 font-bold text-[13px] text-primary">{row.branch}</td>
                     <td className="px-4 py-3 font-bold text-[13px] text-primary">{row.revenue}</td>
                     <td className="px-4 py-3 font-bold text-[13px] text-danger">{row.expense}</td>
                     <td className="px-4 py-3 font-bold text-[13px] text-success">{row.profit}</td>
-                    <td className="px-4 py-3 font-medium text-[13px] text-text-primary">{row.students}</td>
+                    <td className="px-4 py-3 font-medium text-[13px] text-primary">{row.students}</td>
                     <td className="px-4 py-3">
                       <div className="flex items-center gap-2">
                         <div className="flex-1 h-1.5 bg-muted rounded-full overflow-hidden">

@@ -20,7 +20,7 @@ export default async function AdminReportsPage() {
     return (
       <div className="flex flex-col items-center justify-center h-[50vh] gap-4">
         <div className="w-12 h-12 rounded-full border-4 border-danger/30 border-t-danger animate-spin" />
-        <p className="text-xl font-bold text-text-primary">Failed to load reports data</p>
+        <p className="text-xl font-bold text-primary">Failed to load reports data</p>
         <p className="text-sm text-muted-foreground">Check your backend connection and try again.</p>
       </div>
     );

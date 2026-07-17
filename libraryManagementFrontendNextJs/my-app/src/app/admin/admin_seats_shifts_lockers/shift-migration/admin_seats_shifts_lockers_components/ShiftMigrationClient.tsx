@@ -70,7 +70,7 @@ export function ShiftMigrationClient() {
 
           {/* ── STEP 1 ── */}
           {step === 1 && (
-            <Card className="p-6 shadow-sm border-border bg-bg-card flex flex-col gap-6">
+            <Card className="p-6 shadow-sm border-border bg-card flex flex-col gap-6">
               <h3 className="text-lg font-bold flex items-center gap-2 border-b pb-3">
                 <Search size={18} className="text-primary" /> Select Student
               </h3>
@@ -103,7 +103,7 @@ export function ShiftMigrationClient() {
                         setNewSeat(s.currentSeat);
                       }}
                     >
-                      <p className="font-bold text-text-primary text-base">{s.name}</p>
+                      <p className="font-bold text-primary text-base">{s.name}</p>
                       <p className="text-xs font-medium text-muted-foreground mt-1">{s.smartId} <span className="mx-2">•</span> {s.currentShift}</p>
                     </button>
                   ))}
@@ -113,7 +113,7 @@ export function ShiftMigrationClient() {
               {selectedStudent && (
                 <div className="bg-primary/5 border border-primary/20 rounded-md p-5 flex flex-col gap-2">
                   <p className="text-xs font-bold text-primary uppercase tracking-wider">Current Details — {selectedStudent.name}</p>
-                  <p className="text-sm font-medium text-text-primary leading-relaxed">
+                  <p className="text-sm font-medium text-primary leading-relaxed">
                     Shift: <strong>{selectedStudent.currentShift}</strong> <span className="mx-2 text-muted-foreground">•</span> 
                     Seat: <strong>{selectedStudent.currentSeat}</strong> <span className="mx-2 text-muted-foreground">•</span> 
                     Valid Till: <strong>{selectedStudent.validTill}</strong> <span className="mx-2 text-muted-foreground">•</span> 
@@ -127,14 +127,14 @@ export function ShiftMigrationClient() {
 
           {/* ── STEP 2 ── */}
           {step === 2 && (
-            <Card className="p-6 shadow-sm border-border bg-bg-card flex flex-col gap-6">
+            <Card className="p-6 shadow-sm border-border bg-card flex flex-col gap-6">
               <h3 className="text-lg font-bold flex items-center gap-2 border-b pb-3">
                 <ChevronDown size={18} className="text-primary" /> Choose New Slot
               </h3>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="space-y-1.5">
-                  <label className="text-sm font-medium text-text-primary">New Shift <span className="text-danger">*</span></label>
+                  <label className="text-sm font-medium text-primary">New Shift <span className="text-danger">*</span></label>
                   <select 
                     className="flex h-11 w-full items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
                     value={newShift} 
@@ -147,7 +147,7 @@ export function ShiftMigrationClient() {
                   </select>
                 </div>
                 <div className="space-y-1.5">
-                  <label className="text-sm font-medium text-text-primary">New Seat <span className="text-danger">*</span></label>
+                  <label className="text-sm font-medium text-primary">New Seat <span className="text-danger">*</span></label>
                   <select 
                     className="flex h-11 w-full items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed"
                     value={newSeat} 
@@ -191,7 +191,7 @@ export function ShiftMigrationClient() {
               {newShift && (
                 <div className="bg-success/5 border border-success/20 rounded-md p-5 mt-2 flex flex-col gap-2">
                   <p className="text-xs font-bold text-success uppercase tracking-wider">Availability</p>
-                  <p className="text-sm font-medium text-text-primary leading-relaxed">
+                  <p className="text-sm font-medium text-primary leading-relaxed">
                     <strong>{selectedShiftData?.seats}</strong> seats available in <strong>{newShift}</strong> shift. 
                     Rate: <strong>₹{newRate}/day</strong>.
                     {showCustomSlot && customStart && customEnd && (
@@ -206,7 +206,7 @@ export function ShiftMigrationClient() {
           {/* ── STEP 3 ── */}
           {step === 3 && (
             <>
-              <Card className="p-6 shadow-sm border-border bg-bg-card flex flex-col gap-6">
+              <Card className="p-6 shadow-sm border-border bg-card flex flex-col gap-6">
                 <h3 className="text-lg font-bold flex items-center gap-2 border-b pb-3">
                   <CheckCircle size={18} className="text-primary" /> Fee Adjustment
                 </h3>
@@ -226,7 +226,7 @@ export function ShiftMigrationClient() {
                   </div>
                   <div className="h-px bg-border my-2" />
                   <div className="flex justify-between items-center">
-                    <span className="text-base font-bold text-text-primary">Fee Adjustment</span>
+                    <span className="text-base font-bold text-primary">Fee Adjustment</span>
                     <span className={`text-xl font-black font-mono tracking-tighter ${isPaying ? 'text-danger' : 'text-success'}`}>
                       {isPaying ? '+' : ''}₹{Math.abs(adjustment)}
                     </span>
@@ -245,7 +245,7 @@ export function ShiftMigrationClient() {
               </Card>
 
               {isPaying && (
-                <Card className="p-6 shadow-sm border-border bg-bg-card flex flex-col gap-6">
+                <Card className="p-6 shadow-sm border-border bg-card flex flex-col gap-6">
                   <h3 className="text-lg font-bold border-b pb-3">Payment</h3>
                   <div className="grid grid-cols-3 gap-3">
                     {(['Cash', 'UPI', 'Card'] as PayMode[]).map(m => (
@@ -262,15 +262,15 @@ export function ShiftMigrationClient() {
                   </div>
                   {payMode !== 'Cash' && (
                     <div className="space-y-1.5 mt-2">
-                      <label className="text-sm font-medium text-text-primary">Transaction ID</label>
+                      <label className="text-sm font-medium text-primary">Transaction ID</label>
                       <Input className="h-11" placeholder="Enter transaction reference" value={txnId} onChange={e => setTxnId(e.target.value)} />
                     </div>
                   )}
                 </Card>
               )}
 
-              <Card className="p-6 shadow-sm border-border bg-bg-card flex flex-col gap-3">
-                <label className="text-sm font-medium text-text-primary">Remark (optional)</label>
+              <Card className="p-6 shadow-sm border-border bg-card flex flex-col gap-3">
+                <label className="text-sm font-medium text-primary">Remark (optional)</label>
                 <textarea 
                   className="flex min-h-[80px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2" 
                   placeholder="Any notes about this migration..." 
@@ -286,8 +286,8 @@ export function ShiftMigrationClient() {
         {/* Sidebar summary */}
         {selectedStudent && (
           <div className="w-full lg:w-[320px] shrink-0">
-            <Card className="p-6 shadow-sm border-border bg-bg-card sticky top-6">
-              <h4 className="text-lg font-black text-text-primary">{selectedStudent.name}</h4>
+            <Card className="p-6 shadow-sm border-border bg-card sticky top-6">
+              <h4 className="text-lg font-black text-primary">{selectedStudent.name}</h4>
               <p className="text-xs font-mono text-muted-foreground mb-6">{selectedStudent.smartId}</p>
               
               <div className="space-y-4">
@@ -302,7 +302,7 @@ export function ShiftMigrationClient() {
                 ].map(({ label, value, highlight }) => (
                   <div key={label} className={`flex flex-col gap-1 pb-3 border-b border-border last:border-0 last:pb-0 ${highlight ? 'text-primary' : ''}`}>
                     <p className={`text-[10px] font-bold uppercase tracking-wider ${highlight ? 'text-primary/70' : 'text-muted-foreground'}`}>{label}</p>
-                    <p className={`text-sm font-bold ${highlight ? 'text-primary' : 'text-text-primary'}`}>{value}</p>
+                    <p className={`text-sm font-bold ${highlight ? 'text-primary' : 'text-primary'}`}>{value}</p>
                   </div>
                 ))}
               </div>
@@ -349,11 +349,11 @@ export function ShiftMigrationClient() {
       {/* Confirm Modal */}
       {showConfirm && selectedStudent && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-background/80 backdrop-blur-sm" onClick={() => setShowConfirm(false)}>
-          <Card className="w-full max-w-md shadow-lg border-border bg-bg-card p-6 flex flex-col gap-6" onClick={e => e.stopPropagation()}>
+          <Card className="w-full max-w-md shadow-lg border-border bg-card p-6 flex flex-col gap-6" onClick={e => e.stopPropagation()}>
             <h2 className="text-xl font-bold flex items-center gap-2 text-primary">
               <CheckCircle size={24} /> Confirm Migration
             </h2>
-            <p className="text-sm text-text-primary leading-relaxed bg-muted/30 p-4 rounded-md border border-border">
+            <p className="text-sm text-primary leading-relaxed bg-muted/30 p-4 rounded-md border border-border">
               Old Seat <strong>{selectedStudent.currentSeat}</strong> ({selectedStudent.currentShift}) will be freed.<br/>
               New Seat <strong>{newSeat}</strong> ({newShift}) assigned.<br/>
               {showCustomSlot && customStart && customEnd && <span className="block mt-2">Custom slot: <strong>{customStart} – {customEnd}</strong>.<br/></span>}

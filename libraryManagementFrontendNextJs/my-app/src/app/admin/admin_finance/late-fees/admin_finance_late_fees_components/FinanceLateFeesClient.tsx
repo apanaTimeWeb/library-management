@@ -38,9 +38,9 @@ export function FinanceLateFeesClient() {
       </div>
 
       {/* Config Card */}
-      <Card className="p-6 shadow-none border-border bg-bg-card">
+      <Card className="p-6 shadow-none border-border bg-card">
         <div className="flex items-center justify-between mb-6">
-          <div className="flex items-center gap-2 font-bold text-text-primary">
+          <div className="flex items-center gap-2 font-bold text-primary">
             <Settings size={18} className="text-muted-foreground" />
             Late Fee Settings
           </div>
@@ -57,7 +57,7 @@ export function FinanceLateFeesClient() {
         ) : editing ? (
           <div className="space-y-5 max-w-md">
             <div className="space-y-1.5">
-              <label className="text-sm font-medium text-text-primary">Grace Period (days)</label>
+              <label className="text-sm font-medium text-primary">Grace Period (days)</label>
               <Input 
                 type="number" 
                 value={graceDays} 
@@ -67,7 +67,7 @@ export function FinanceLateFeesClient() {
               <p className="text-xs text-muted-foreground">Days after due date before penalties apply</p>
             </div>
             <div className="space-y-1.5">
-              <label className="text-sm font-medium text-text-primary">Penalty Per Day (₹)</label>
+              <label className="text-sm font-medium text-primary">Penalty Per Day (₹)</label>
               <Input 
                 type="number" 
                 value={penaltyRate} 
@@ -87,21 +87,21 @@ export function FinanceLateFeesClient() {
           <div className="grid grid-cols-2 gap-6 max-w-md">
             <div className="space-y-1">
               <p className="text-sm font-medium text-muted-foreground">Grace Period</p>
-              <p className="text-2xl font-bold text-text-primary">{config?.gracePeriodDays} days</p>
+              <p className="text-2xl font-bold text-primary">{config?.gracePeriodDays} days</p>
             </div>
             <div className="space-y-1">
               <p className="text-sm font-medium text-muted-foreground">Penalty Per Day</p>
-              <p className="text-2xl font-bold text-text-primary">{formatCurrency(config?.penaltyPerDay || 0)}</p>
+              <p className="text-2xl font-bold text-primary">{formatCurrency(config?.penaltyPerDay || 0)}</p>
             </div>
           </div>
         )}
       </Card>
 
       {/* Overdue Table */}
-      <Card className="flex-1 shadow-none border-border bg-bg-card overflow-hidden flex flex-col">
+      <Card className="flex-1 shadow-none border-border bg-card overflow-hidden flex flex-col">
         <div className="flex items-center gap-2 p-5 border-b border-border">
           <AlertTriangle size={18} className="text-warning" />
-          <h3 className="font-bold text-base text-text-primary">Overdue Students</h3>
+          <h3 className="font-bold text-base text-primary">Overdue Students</h3>
         </div>
         
         <div className="w-full overflow-x-auto flex-1">
@@ -140,7 +140,7 @@ export function FinanceLateFeesClient() {
                 overdue.map((s) => (
                   <tr key={s.studentId} className="hover:bg-muted/10 transition-colors">
                     <td className="px-5 py-4">
-                      <div className="font-bold text-[13px] text-text-primary">{s.studentName}</div>
+                      <div className="font-bold text-[13px] text-primary">{s.studentName}</div>
                       <div className="text-[11px] text-muted-foreground font-medium mt-0.5">{s.smartId}</div>
                     </td>
                     <td className="px-5 py-4 text-[13px] text-muted-foreground font-medium">

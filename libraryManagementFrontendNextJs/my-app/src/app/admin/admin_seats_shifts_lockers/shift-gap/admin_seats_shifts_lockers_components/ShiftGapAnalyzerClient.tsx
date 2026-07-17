@@ -55,11 +55,11 @@ export function ShiftGapAnalyzerClient() {
           const utilPct = Math.round((shift.occupied / shift.capacity) * 100);
           
           return (
-            <Card key={shift.id} className="p-5 shadow-sm border-border bg-bg-card flex flex-col gap-6">
+            <Card key={shift.id} className="p-5 shadow-sm border-border bg-card flex flex-col gap-6">
               
               <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
                 <div>
-                  <h2 className="text-lg font-bold tracking-tight text-text-primary">{shift.name} Shift</h2>
+                  <h2 className="text-lg font-bold tracking-tight text-primary">{shift.name} Shift</h2>
                   <p className="text-sm text-muted-foreground font-medium mt-1">{shift.occupied} / {shift.capacity} seats occupied</p>
                 </div>
                 
@@ -127,7 +127,7 @@ export function ShiftGapAnalyzerClient() {
                           🕳️ Gap
                         </Badge>
                         <div>
-                          <p className="text-sm font-bold text-text-primary mb-1">
+                          <p className="text-sm font-bold text-primary mb-1">
                             {fmtH(g.startH)} – {fmtH(g.endH)} <span className="text-muted-foreground font-medium mx-1">·</span> {g.seats} seats free
                           </p>
                           <p className="text-xs font-medium text-danger">

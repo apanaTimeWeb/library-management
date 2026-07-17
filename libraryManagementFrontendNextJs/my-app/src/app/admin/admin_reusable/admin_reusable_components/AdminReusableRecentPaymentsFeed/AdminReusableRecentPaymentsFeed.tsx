@@ -1,20 +1,11 @@
-// RESPONSIBILITY: Renders the recent payments transaction feed using AG Grid with payment mode badges and quick navigation.
-// DATA FLOW: AdminDashboardPage / Finance -> AdminReusableRecentPaymentsFeed -> AG Grid
-
 'use client';
 
-import { useMemo, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { ExternalLink } from 'lucide-react';
-import { AgGridReact } from 'ag-grid-react';
-import { AllCommunityModule, ModuleRegistry, type ColDef, type RowClickedEvent } from 'ag-grid-community';
-import { gridTheme } from '@/app/admin/admin_reusable/admin_reusable_utils/AdminReusableGridTheme';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { ADMIN_ROUTES } from '@/app/admin/admin_url_config';
-
-ModuleRegistry.registerModules([AllCommunityModule]);
 
 export interface AdminReusablePayment {
   name: string;
@@ -25,86 +16,29 @@ export interface AdminReusablePayment {
   studentId?: string;
 }
 
-function NameCell({ value, data }: { value?: string; data?: AdminReusablePayment }) {
-  if (!data || !value) return null;
-  return (
-    <div className="flex items-center gap-3 h-full">
-      <div className="flex items-center justify-center h-7 w-7 rounded-full bg-primary text-white text-[10px] font-bold">
-        {data.initials}
-      </div>
-      <span className="font-semibold text-sm text-text-primary">{value}</span>
-    </div>
-  );
-}
-
-function AmountCell({ value }: { value?: string }) {
-  if (!value) return null;
-  return <span className="font-bold text-sm text-text-primary">{value}</span>;
-}
-
-function ModeCell({ value }: { value?: string }) {
-  if (!value) return null;
-  let badgeClass = 'bg-muted text-muted-foreground';
-  if (value === 'UPI') badgeClass = 'bg-info/10 text-info hover:bg-info/20';
-  if (value === 'Cash') badgeClass = 'bg-success/10 text-success hover:bg-success/20';
-  if (value === 'Card') badgeClass = 'bg-primary/10 text-primary hover:bg-primary/20';
-  if (value === 'Bank Transfer') badgeClass = 'bg-warning/10 text-warning hover:bg-warning/20';
-  
-  return <Badge variant="secondary" className={`${badgeClass} text-[10px] uppercase font-bold tracking-wider rounded-md border-none`}>{value}</Badge>;
-}
-
-function TimeCell({ value }: { value?: string }) {
-  if (!value) return null;
-  return <span className="text-xs text-muted-foreground font-medium">{value}</span>;
-}
-
 export default function AdminReusableRecentPaymentsFeed({ payments }: { payments: AdminReusablePayment[] }) {
   const router = useRouter();
 
-  const colDefs = useMemo<ColDef<AdminReusablePayment>[]>(() => [
-    {
-      field: 'name',
-      headerName: 'STUDENT NAME',
-      flex: 2,
-      sortable: true,
-      cellRenderer: NameCell,
-    },
-    {
-      field: 'amount',
-      headerName: 'AMOUNT',
-      flex: 1,
-      sortable: true,
-      cellRenderer: AmountCell,
-    },
-    {
-      field: 'mode',
-      headerName: 'MODE',
-      flex: 1,
-      sortable: true,
-      filter: true,
-      cellRenderer: ModeCell,
-    },
-    {
-      field: 'timeAgo',
-      headerName: 'TIME',
-      flex: 1,
-      cellRenderer: TimeCell,
-    },
-  ], []);
-
-  const onRowClicked = useCallback((e: RowClickedEvent<AdminReusablePayment>) => {
-    const studentId = e.data?.studentId;
+  const handleRowClick = (studentId?: string) => {
     if (studentId) {
       router.push(`${ADMIN_ROUTES.STUDENTS}/${studentId}`);
     }
-  }, [router]);
+  };
+
+  const getModeBadgeClass = (mode: string) => {
+    if (mode === 'UPI') return 'bg-info/10 text-info hover:bg-info/20';
+    if (mode === 'Cash') return 'bg-success/10 text-success hover:bg-success/20';
+    if (mode === 'Card') return 'bg-primary/10 text-primary hover:bg-primary/20';
+    if (mode === 'Bank Transfer') return 'bg-warning/10 text-warning hover:bg-warning/20';
+    return 'bg-muted text-muted-foreground';
+  };
 
   return (
-    <Card className="overflow-hidden border-border bg-bg-card shadow-none flex flex-col h-full">
-      <CardHeader className="pb-4 flex flex-row items-center justify-between space-y-0">
+    <Card className="overflow-hidden border-border bg-card shadow-none flex flex-col h-full">
+      <CardHeader className="pb-4 flex flex-row items-center justify-between space-y-0 border-b">
         <div>
-          <CardTitle className="text-base">Recent Payments</CardTitle>
-          <CardDescription className="text-xs mt-1">
+          <CardTitle className="text-base font-bold">Recent Payments</CardTitle>
+          <CardDescription className="text-xs mt-1 font-medium">
             Last {payments.length} transactions today — click row to view student
           </CardDescription>
         </div>
@@ -116,24 +50,54 @@ export default function AdminReusableRecentPaymentsFeed({ payments }: { payments
         </Link>
       </CardHeader>
 
-      <CardContent className="p-0 flex-1">
-        <div style={{ height: 300, width: '100%' }}>
-          <AgGridReact<AdminReusablePayment>
-            theme={gridTheme}
-            rowData={payments}
-            columnDefs={colDefs}
-            rowHeight={48}
-            headerHeight={38}
-            suppressMovableColumns
-            suppressCellFocus
-            onRowClicked={onRowClicked}
-            rowStyle={{ cursor: 'pointer' }}
-            pagination={false}
-            defaultColDef={{ resizable: false }}
-          />
-        </div>
+      <CardContent className="p-0 flex-1 overflow-x-auto">
+        <table className="w-full text-sm text-left">
+          <thead className="bg-muted/30 border-b text-muted-foreground text-xs font-medium uppercase tracking-wider sticky top-0 z-10">
+            <tr>
+              <th className="px-4 py-3">Student Name</th>
+              <th className="px-4 py-3">Amount</th>
+              <th className="px-4 py-3">Mode</th>
+              <th className="px-4 py-3">Time</th>
+            </tr>
+          </thead>
+          <tbody className="divide-y divide-border">
+            {payments.map((payment, index) => (
+              <tr 
+                key={index}
+                className="hover:bg-muted/10 transition-colors cursor-pointer"
+                onClick={() => handleRowClick(payment.studentId)}
+              >
+                <td className="px-4 py-3">
+                  <div className="flex items-center gap-3">
+                    <div className="flex items-center justify-center h-7 w-7 rounded-full bg-primary text-primary-foreground text-[10px] font-bold">
+                      {payment.initials}
+                    </div>
+                    <span className="font-semibold text-sm text-foreground">{payment.name}</span>
+                  </div>
+                </td>
+                <td className="px-4 py-3">
+                  <span className="font-bold text-sm text-foreground">{payment.amount}</span>
+                </td>
+                <td className="px-4 py-3">
+                  <Badge variant="secondary" className={`${getModeBadgeClass(payment.mode)} text-[10px] uppercase font-bold tracking-wider rounded-md border-none`}>
+                    {payment.mode}
+                  </Badge>
+                </td>
+                <td className="px-4 py-3">
+                  <span className="text-xs text-muted-foreground font-medium">{payment.timeAgo}</span>
+                </td>
+              </tr>
+            ))}
+            {payments.length === 0 && (
+              <tr>
+                <td colSpan={4} className="px-4 py-8 text-center text-muted-foreground">
+                  No recent transactions.
+                </td>
+              </tr>
+            )}
+          </tbody>
+        </table>
       </CardContent>
     </Card>
   );
 }
-

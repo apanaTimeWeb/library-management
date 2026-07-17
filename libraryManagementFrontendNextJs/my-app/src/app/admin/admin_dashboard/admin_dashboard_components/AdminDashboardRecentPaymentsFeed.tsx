@@ -34,7 +34,7 @@ export function AdminDashboardRecentPaymentsFeed({ payments }: { payments: Admin
   };
 
   return (
-    <Card className="overflow-hidden border-border bg-bg-card shadow-none flex flex-col h-full">
+    <Card className="overflow-hidden border-border bg-card shadow-none flex flex-col h-full">
       <CardHeader className="pb-4 flex flex-row items-center justify-between space-y-0">
         <div>
           <CardTitle className="text-base">Recent Payments</CardTitle>
@@ -73,10 +73,10 @@ export function AdminDashboardRecentPaymentsFeed({ payments }: { payments: Admin
                       <div className="flex items-center justify-center h-8 w-8 rounded-full bg-primary text-white text-[10px] font-bold shadow-sm">
                         {payment.initials}
                       </div>
-                      <span className="font-semibold text-sm text-text-primary group-hover:text-primary transition-colors">{payment.name}</span>
+                      <span className="font-semibold text-sm text-primary group-hover:text-primary transition-colors">{payment.name}</span>
                     </div>
                   </td>
-                  <td className="px-4 py-3 font-bold text-sm text-text-primary">
+                  <td className="px-4 py-3 font-bold text-sm text-primary">
                     {payment.amount}
                   </td>
                   <td className="px-4 py-3">

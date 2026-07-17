@@ -49,20 +49,20 @@ export function FinanceAutoSuspendClient() {
       {/* KPI Cards */}
       <div className="grid gap-4 md:grid-cols-4">
         {KPI_CARDS.map(({ label, value, icon: Icon, variant }) => (
-          <Card key={label} className={`p-4 shadow-none flex flex-col justify-center ${variant === 'danger' ? 'border-danger/30 bg-danger/5' : 'border-border bg-bg-card'}`}>
+          <Card key={label} className={`p-4 shadow-none flex flex-col justify-center ${variant === 'danger' ? 'border-danger/30 bg-danger/5' : 'border-border bg-card'}`}>
             <div className="flex items-center justify-between mb-1">
               <span className={`text-[11px] font-bold tracking-wider uppercase ${variant === 'danger' ? 'text-danger' : 'text-muted-foreground'}`}>{label}</span>
               <Icon size={16} className={variant === 'danger' ? 'text-danger' : 'text-muted-foreground'} />
             </div>
-            <p className={`text-2xl font-bold ${variant === 'danger' ? 'text-danger' : 'text-text-primary'}`}>{value}</p>
+            <p className={`text-2xl font-bold ${variant === 'danger' ? 'text-danger' : 'text-primary'}`}>{value}</p>
           </Card>
         ))}
       </div>
 
       {/* Policy Config */}
-      <Card className="p-6 shadow-none border-border bg-bg-card">
+      <Card className="p-6 shadow-none border-border bg-card">
         <div className="flex items-center justify-between mb-4">
-          <div className="flex items-center gap-2 font-bold text-text-primary">
+          <div className="flex items-center gap-2 font-bold text-primary">
             <ShieldAlert size={18} className="text-muted-foreground" />
             Policy Configuration
           </div>
@@ -78,7 +78,7 @@ export function FinanceAutoSuspendClient() {
         ) : editing ? (
           <div className="space-y-4 max-w-md bg-muted/20 p-4 rounded-lg border border-border">
             <div className="space-y-1.5">
-              <label className="text-sm font-medium text-text-primary">Days before auto-suspend</label>
+              <label className="text-sm font-medium text-primary">Days before auto-suspend</label>
               <Input 
                 type="number" 
                 value={days} 
@@ -96,7 +96,7 @@ export function FinanceAutoSuspendClient() {
           </div>
         ) : (
           <div className="bg-muted/30 p-4 rounded-lg border border-border">
-            <p className="text-sm text-text-primary leading-relaxed">
+            <p className="text-sm text-primary leading-relaxed">
               Students are automatically suspended after <strong className="font-bold text-danger text-lg">{config?.daysBeforeSuspend}</strong> days of non-payment past due date.
             </p>
           </div>
@@ -104,10 +104,10 @@ export function FinanceAutoSuspendClient() {
       </Card>
 
       {/* Suspended Students Table */}
-      <Card className="flex-1 shadow-none border-border bg-bg-card overflow-hidden flex flex-col">
+      <Card className="flex-1 shadow-none border-border bg-card overflow-hidden flex flex-col">
         <div className="flex items-center gap-2 p-5 border-b border-border">
           <Ban size={18} className="text-danger" />
-          <h3 className="font-bold text-base text-text-primary">Suspended Students</h3>
+          <h3 className="font-bold text-base text-primary">Suspended Students</h3>
         </div>
         
         <div className="w-full overflow-x-auto flex-1">
@@ -147,10 +147,10 @@ export function FinanceAutoSuspendClient() {
                 suspended.map((s) => (
                   <tr key={s.id} className="hover:bg-muted/10 transition-colors">
                     <td className="px-5 py-4">
-                      <div className="font-bold text-[13px] text-text-primary">{s.studentName}</div>
+                      <div className="font-bold text-[13px] text-primary">{s.studentName}</div>
                       <div className="text-[11px] text-muted-foreground font-medium mt-0.5">{s.smartId}</div>
                     </td>
-                    <td className="px-5 py-4 text-[13px] font-medium text-text-primary">{s.seat}</td>
+                    <td className="px-5 py-4 text-[13px] font-medium text-primary">{s.seat}</td>
                     <td className="px-5 py-4">
                       <Badge variant="secondary" className="bg-muted text-muted-foreground border-none font-bold text-[10px]">
                         {s.shift}
@@ -166,7 +166,7 @@ export function FinanceAutoSuspendClient() {
                         <Button 
                           variant="secondary" 
                           size="sm" 
-                          className="bg-muted text-text-primary hover:bg-muted/80 border-none font-bold text-xs gap-1"
+                          className="bg-muted text-primary hover:bg-muted/80 border-none font-bold text-xs gap-1"
                           onClick={() => toast.success(`📱 WhatsApp reminder sent to ${s.studentName}.`)}
                         >
                           <Bell size={13} /> 📱 Send Reminder
@@ -192,7 +192,7 @@ export function FinanceAutoSuspendClient() {
       {/* Manual Restore Modal */}
       {restoreDialog && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-background/80 backdrop-blur-sm" onClick={() => setRestoreDialog(null)}>
-          <Card className="w-full max-w-sm shadow-lg border-success/20 bg-bg-card p-6 flex flex-col gap-5" onClick={e => e.stopPropagation()}>
+          <Card className="w-full max-w-sm shadow-lg border-success/20 bg-card p-6 flex flex-col gap-5" onClick={e => e.stopPropagation()}>
             <div className="flex items-center justify-between">
               <h2 className="text-lg font-bold flex items-center gap-2 text-success tracking-tight">
                 ✅ Restore Student
@@ -203,7 +203,7 @@ export function FinanceAutoSuspendClient() {
             </div>
             
             <div>
-              <p className="text-sm font-bold text-text-primary">{restoreDialog.name}</p>
+              <p className="text-sm font-bold text-primary">{restoreDialog.name}</p>
               <p className="text-sm text-muted-foreground mt-1">Manually restore seat access?</p>
             </div>
 

@@ -51,9 +51,9 @@ export function ShiftManagementClient() {
       ) : (
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           {shifts.map((shift) => (
-            <Card key={shift.id} className={`flex flex-col p-5 shadow-sm border-border bg-bg-card transition-all ${!shift.active ? 'opacity-70 bg-muted/30' : ''}`}>
+            <Card key={shift.id} className={`flex flex-col p-5 shadow-sm border-border bg-card transition-all ${!shift.active ? 'opacity-70 bg-muted/30' : ''}`}>
               <div className="flex justify-between items-start mb-4">
-                <h3 className="text-lg font-bold text-text-primary tracking-tight">{shift.name}</h3>
+                <h3 className="text-lg font-bold text-primary tracking-tight">{shift.name}</h3>
                 <Badge variant="secondary" className={`${shift.active ? 'bg-success/10 text-success' : 'bg-muted text-muted-foreground'} border-none uppercase tracking-wider font-bold text-[10px]`}>
                   {shift.active ? 'Active' : 'Inactive'}
                 </Badge>
@@ -68,7 +68,7 @@ export function ShiftManagementClient() {
               <div className="mb-6 space-y-2">
                 <div className="flex justify-between items-center text-sm">
                   <span className="font-medium text-muted-foreground">Occupancy</span>
-                  <span className="font-bold text-text-primary">
+                  <span className="font-bold text-primary">
                     {shift.occupancy} <span className="text-muted-foreground font-medium">/ {shift.capacity}</span>
                   </span>
                 </div>
@@ -84,7 +84,7 @@ export function ShiftManagementClient() {
                 <Button 
                   variant="ghost" 
                   size="sm" 
-                  className="text-muted-foreground hover:text-text-primary h-8 px-2"
+                  className="text-muted-foreground hover:text-primary h-8 px-2"
                   onClick={() => openEdit(shift)}
                 >
                   <Edit size={14} className="mr-1.5" /> Edit
@@ -117,7 +117,7 @@ export function ShiftManagementClient() {
       {/* Add / Edit Modal */}
       {showModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-background/80 backdrop-blur-sm" onClick={() => setShowModal(false)}>
-          <Card className="w-full max-w-sm shadow-lg border-border bg-bg-card p-6 flex flex-col gap-6" onClick={e => e.stopPropagation()}>
+          <Card className="w-full max-w-sm shadow-lg border-border bg-card p-6 flex flex-col gap-6" onClick={e => e.stopPropagation()}>
             <div className="flex items-center justify-between">
               <h2 className="text-xl font-bold tracking-tight flex items-center gap-2">
                 {editShift ? <><Edit size={18}/> Edit Shift</> : <><Plus size={18}/> Add Shift</>}
@@ -184,12 +184,12 @@ export function ShiftManagementClient() {
       {/* Deactivate Confirm Modal */}
       {deactivateTarget && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-background/80 backdrop-blur-sm" onClick={() => setDeactivateTarget(null)}>
-          <Card className="w-full max-w-sm shadow-lg border-warning/20 bg-bg-card p-6 flex flex-col gap-4" onClick={e => e.stopPropagation()}>
+          <Card className="w-full max-w-sm shadow-lg border-warning/20 bg-card p-6 flex flex-col gap-4" onClick={e => e.stopPropagation()}>
             <h2 className="text-lg font-bold flex items-center gap-2 text-warning">
               <AlertTriangle size={20} /> Deactivate Shift
             </h2>
             <p className="text-sm text-muted-foreground leading-relaxed">
-              Deactivate <strong className="text-text-primary">{deactivateTarget.name}</strong>? Existing students are unaffected but new admissions cannot be assigned to this shift.
+              Deactivate <strong className="text-primary">{deactivateTarget.name}</strong>? Existing students are unaffected but new admissions cannot be assigned to this shift.
             </p>
             <div className="flex items-center justify-end gap-3 pt-4 border-t mt-2">
               <Button variant="ghost" onClick={() => setDeactivateTarget(null)}>Cancel</Button>

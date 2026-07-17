@@ -57,7 +57,7 @@ export function AdminDashboardSeatMatrixGrid({ seats, shifts, state }: Props) {
   };
 
   return (
-    <Card className="flex flex-col overflow-hidden h-full border-border bg-bg-card shadow-none">
+    <Card className="flex flex-col overflow-hidden h-full border-border bg-card shadow-none">
       <CardHeader className="pb-3 border-b">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div>

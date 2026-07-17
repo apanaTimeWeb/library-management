@@ -50,14 +50,14 @@ const DOT_CLASS: Record<EnquiryStatus, string> = {
 function KanbanCard({ enq, onClick }: { enq: Enquiry; onClick: () => void }) {
   return (
     <Card
-      className="p-3 shadow-sm border-border bg-bg-card hover:shadow-md hover:border-primary/30 transition-all cursor-pointer flex flex-col gap-3 group"
+      className="p-3 shadow-sm border-border bg-card hover:shadow-md hover:border-primary/30 transition-all cursor-pointer flex flex-col gap-3 group"
       onClick={onClick}
       role="button"
       tabIndex={0}
       onKeyDown={(e) => e.key === 'Enter' && onClick()}
     >
       <div className="flex flex-col gap-0.5">
-        <p className="font-bold text-sm text-text-primary group-hover:text-primary transition-colors">{enq.name}</p>
+        <p className="font-bold text-sm text-primary group-hover:text-primary transition-colors">{enq.name}</p>
         <p className="text-xs text-muted-foreground flex items-center gap-1"><Phone size={11} />{maskPhone(enq.phone)}</p>
       </div>
       <div className="flex flex-wrap gap-2">
@@ -103,7 +103,7 @@ export default function AdminCrmEnquiriesClient() {
     return (
       <div className="flex flex-col items-center justify-center h-[50vh] gap-4">
         <XCircle size={40} className="text-danger" />
-        <p className="text-xl font-bold text-text-primary">Failed to load enquiries</p>
+        <p className="text-xl font-bold text-primary">Failed to load enquiries</p>
         <p className="text-sm text-muted-foreground">Check your backend connection and try again.</p>
       </div>
     );
@@ -223,7 +223,7 @@ export default function AdminCrmEnquiriesClient() {
 
       {/* Table View */}
       {viewParam === 'table' && (
-        <Card className="flex-1 shadow-none border-border bg-bg-card overflow-hidden flex flex-col">
+        <Card className="flex-1 shadow-none border-border bg-card overflow-hidden flex flex-col">
           {filtered.length === 0 ? (
              <div className="flex flex-col items-center justify-center py-20 gap-3">
                <PhoneCall size={40} className="text-muted-foreground opacity-20" />
@@ -262,7 +262,7 @@ export default function AdminCrmEnquiriesClient() {
                           <div className="w-8 h-8 rounded-full bg-primary/10 text-primary flex items-center justify-center font-bold text-xs shrink-0">
                             {enq.avatar}
                           </div>
-                          <span className="font-bold text-sm text-text-primary group-hover:text-primary transition-colors">{enq.name}</span>
+                          <span className="font-bold text-sm text-primary group-hover:text-primary transition-colors">{enq.name}</span>
                         </div>
                       </td>
                       <td className="px-4 py-3 text-sm font-medium">{maskPhone(enq.phone)}</td>
