@@ -92,7 +92,7 @@ export function FinanceReferralsClient() {
                   </td>
                 </tr>
               ) : (
-                referrers.map((r, idx) => (
+                referrers.map((r: any, idx: number) => (
                   <tr key={r.id} className="hover:bg-muted/10 transition-colors">
                     <td className="px-5 py-4">
                       <span className={`text-[13px] ${idx === 0 ? 'text-warning font-black text-lg' : 'text-muted-foreground font-bold'}`}>#{idx + 1}</span>
@@ -112,7 +112,7 @@ export function FinanceReferralsClient() {
                       </Button>
                       {expanded === r.id && (
                         <div className="flex flex-wrap gap-1 mt-3 animate-in fade-in slide-in-from-top-1">
-                          {r.referredNames.map((name, i) => (
+                          {r.referredNames.map((name: any, i: number) => (
                             <Badge key={i} variant="secondary" className="bg-primary/10 text-primary border-none text-xs uppercase tracking-wider font-bold">
                               {name}
                             </Badge>

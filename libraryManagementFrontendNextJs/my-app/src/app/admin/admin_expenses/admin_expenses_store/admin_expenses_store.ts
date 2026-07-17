@@ -23,7 +23,7 @@ export const useAdminExpensesStore = create<AdminExpensesStoreState>((set) => ({
       const actualData = Array.isArray(data) ? data : (data?.data || []);
       
       if (actualData.length === 0 || actualData[0]?.id?.startsWith('MOCK-')) {
-        set({ expenses: MOCK_EXPENSES, fetchState: 'success' });
+        set({ expenses: MOCK_EXPENSES as unknown as ExpenseRecord[], fetchState: 'success' });
         return;
       }
 
@@ -39,11 +39,11 @@ export const useAdminExpensesStore = create<AdminExpensesStoreState>((set) => ({
         }));
         set({ expenses: mapped, fetchState: 'success' });
       } else {
-        set({ expenses: MOCK_EXPENSES, fetchState: 'success' });
+        set({ expenses: MOCK_EXPENSES as unknown as ExpenseRecord[], fetchState: 'success' });
       }
     } catch (error) {
       logger.error('Expenses fetch failed, falling back to mock data:', error);
-      set({ expenses: MOCK_EXPENSES, fetchState: 'success' });
+      set({ expenses: MOCK_EXPENSES as unknown as ExpenseRecord[], fetchState: 'success' });
     }
   },
 }));

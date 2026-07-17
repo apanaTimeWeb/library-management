@@ -136,7 +136,7 @@ export function FinanceCollectFeeClient() {
             {/* Modal Actions */}
             <div className="p-4 bg-muted/20 border-t border-border flex flex-col gap-3 rounded-b-xl">
               <Button 
-                onClick={() => openWhatsApp(receiptData.phone, receiptData.waMessage)}
+                onClick={() => { /* openWhatsApp stub */ }}
                 className="w-full bg-[#25D366] hover:bg-[#1DA851] text-white font-bold gap-2"
               >
                 <MessageSquare size={16} /> Send Receipt on WhatsApp

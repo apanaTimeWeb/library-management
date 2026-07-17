@@ -6,7 +6,7 @@ import { fetchApi } from '@/lib/api';
 import { ADMIN_API_ROUTES } from '@/app/admin/admin_url_config';
 import { logger } from '@/lib/logger';
 import { AdminPlansStoreState, PlanRecord, AdminPlanFormData } from '@/app/admin/admin_plans/admin_plans_types/admin_plans_types';
-import { MOCK_PLANS, PLAN_DEFAULT_FEATURES } from '@/app/admin/admin_plans/admin_plans_constants/admin_plans_constants';
+import { MOCK_PLANS, PLAN_DEFAULT_FEATURES /* default */ } from '@/app/admin/admin_plans/admin_plans_constants/admin_plans_constants';
 
 export const useAdminPlansStore = create<AdminPlansStoreState>((set, get) => ({
   plans: [],
@@ -34,7 +34,7 @@ export const useAdminPlansStore = create<AdminPlansStoreState>((set, get) => ({
           price: Number(p.price || 1000),
           duration: String(p.durationInDays || p.duration || '30') + (String(p.duration || '').includes('Month') ? '' : ' Days'),
           durationDays: Number(p.durationInDays || p.durationDays || 30),
-          features: Array.isArray(p.features) ? p.features.map(String) : PLAN_DEFAULT_FEATURES,
+          features: Array.isArray(p.features) ? p.features.map(String) : PLAN_DEFAULT_FEATURES /* default */,
           status: (p.isActive || p.status === 'Active' ? 'Active' : 'Inactive') as PlanRecord['status'],
           subscribers: Number(p.subscribers || 0),
         }));

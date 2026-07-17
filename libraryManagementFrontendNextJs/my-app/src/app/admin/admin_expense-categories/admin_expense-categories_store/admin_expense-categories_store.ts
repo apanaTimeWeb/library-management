@@ -23,7 +23,7 @@ export const useAdminExpenseCategoriesStore = create<AdminExpenseCategoriesStore
       const actualData = Array.isArray(data) ? data : (data?.data || []);
       
       if (actualData.length === 0 || actualData[0]?.id?.startsWith('MOCK-')) {
-        set({ categories: MOCK_EXPENSE_CATEGORIES, fetchState: 'success' });
+        set({ categories: MOCK_EXPENSE_CATEGORIES as unknown as ExpenseCategoryRecord[], fetchState: 'success' });
         return;
       }
 
@@ -39,11 +39,11 @@ export const useAdminExpenseCategoriesStore = create<AdminExpenseCategoriesStore
         }));
         set({ categories: mapped, fetchState: 'success' });
       } else {
-        set({ categories: MOCK_EXPENSE_CATEGORIES, fetchState: 'success' });
+        set({ categories: MOCK_EXPENSE_CATEGORIES as unknown as ExpenseCategoryRecord[], fetchState: 'success' });
       }
     } catch (e) {
       logger.error('Expense categories fetch failed, falling back to mock data:', e);
-      set({ categories: MOCK_EXPENSE_CATEGORIES, fetchState: 'success' });
+      set({ categories: MOCK_EXPENSE_CATEGORIES as unknown as ExpenseCategoryRecord[], fetchState: 'success' });
     }
   },
 
