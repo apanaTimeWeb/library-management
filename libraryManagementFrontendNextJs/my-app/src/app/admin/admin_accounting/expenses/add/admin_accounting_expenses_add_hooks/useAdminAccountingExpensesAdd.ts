@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import toast from 'react-hot-toast';
 import { ADMIN_ACCOUNTING_EXPENSES_CATEGORIES } from '@/app/admin/admin_accounting/admin_accounting_constants/AdminAccountingConstants';
-import { AdminAccountingExpenseForm } from '../admin_accounting_expenses_add_types/admin_accounting_expenses_add_types';
+import { AdminAccountingExpenseForm } from '@/app/admin/admin_accounting/expenses/add/admin_accounting_expenses_add_types/admin_accounting_expenses_add_types';
 
 export function useAdminAccountingExpensesAdd() {
   const router = useRouter();

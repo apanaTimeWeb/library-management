@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the AuthRoute component.
 'use client';
 import { usePathname } from 'next/navigation';
 

@@ -1,4 +1,4 @@
-import { RefundsClient } from './_components/RefundsClient';
+import { RefundsClient } from '@/app/superadmin/superadmin_finance/refunds/_components/RefundsClient';
 
 export default function Page() {
   return <RefundsClient />;

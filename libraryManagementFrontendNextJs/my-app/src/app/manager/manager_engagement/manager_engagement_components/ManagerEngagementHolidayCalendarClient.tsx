@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the ManagerEngagementHolidayCalendarClient component.
 'use client';
 import { useState } from 'react';
 import Link from 'next/link';

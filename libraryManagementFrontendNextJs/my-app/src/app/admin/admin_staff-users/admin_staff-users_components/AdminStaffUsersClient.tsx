@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the AdminStaffUsersClient component.
 'use client';
 
 import { UserPlus, Pencil, Trash2, CheckCircle, Search, Users, X } from 'lucide-react';

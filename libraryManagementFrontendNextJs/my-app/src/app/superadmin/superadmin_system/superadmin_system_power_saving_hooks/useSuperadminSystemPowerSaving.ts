@@ -1,6 +1,6 @@
 import { useState, useCallback } from 'react';
 import { SUPERADMIN_SYSTEM_MOCK_POWER_ZONES, SUPERADMIN_SYSTEM_MOCK_POWER_ALERTS } from '@/app/superadmin/superadmin_system/superadmin_system_data/SuperadminSystemMockData';
-import { SuperadminSystemPowerZone, SuperadminSystemPowerAlert } from '../superadmin_system_types/SuperadminSystemPowerSavingTypes';
+import { SuperadminSystemPowerZone, SuperadminSystemPowerAlert } from '@/app/superadmin/superadmin_system/superadmin_system_types/SuperadminSystemPowerSavingTypes';
 
 export function useSuperadminSystemPowerSaving() {
   const [threshold, setThreshold] = useState(30);

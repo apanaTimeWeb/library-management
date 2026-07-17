@@ -6,7 +6,7 @@ import { SuperadminCard, CardHeader, CardTitle, CardDescription, CardContent } f
 import { SuperadminBadge } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminBadge';
 import { SuperadminButton } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminButton';
 import { Wrench, Package, Lock, ChevronRight } from 'lucide-react';
-import { useSuperadminSystemMaintenance } from '../superadmin_system_maintenance_hooks/useSuperadminSystemMaintenance';
+import { useSuperadminSystemMaintenance } from '@/app/superadmin/superadmin_system/superadmin_system_maintenance_hooks/useSuperadminSystemMaintenance';
 
 export function SuperadminSystemMaintenanceClient() {
   const { seatsNeedingAttention, assetsOverdue, lockerIssues, seats, assets, lockers } = useSuperadminSystemMaintenance();

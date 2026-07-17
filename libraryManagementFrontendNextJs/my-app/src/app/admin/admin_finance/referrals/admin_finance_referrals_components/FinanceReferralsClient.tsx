@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the FinanceReferralsClient component.
 'use client';
 
 import { Users, Trophy, IndianRupee } from 'lucide-react';

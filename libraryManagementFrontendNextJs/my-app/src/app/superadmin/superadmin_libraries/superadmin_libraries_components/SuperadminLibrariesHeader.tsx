@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the SuperadminLibrariesHeader component.
 import React from 'react';
 import Link from 'next/link';
 import { Plus } from 'lucide-react';

@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the SuperadminSelect component.
 'use client';
 import * as SelectPrimitive from '@radix-ui/react-select';
 import { ChevronDown, Check } from 'lucide-react';

@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the SuperadminSubscriptionsHeader component.
 import React from 'react';
 
 export function SuperadminSubscriptionsHeader() {

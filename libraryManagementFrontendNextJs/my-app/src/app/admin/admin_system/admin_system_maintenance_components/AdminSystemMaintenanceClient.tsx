@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the AdminSystemMaintenanceClient component.
 'use client';
 import { KpiCard } from '@/app/admin/admin_system/admin_system_components/AdminSystemKpiCard/AdminSystemKpiCard';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/app/admin/admin_system/admin_system_components/AdminSystemCard/AdminSystemCard';

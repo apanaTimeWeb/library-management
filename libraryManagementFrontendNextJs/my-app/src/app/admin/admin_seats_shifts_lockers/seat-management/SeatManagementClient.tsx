@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the SeatManagementClient component.
 'use client';
 
 import { Plus, Search, Wrench, Edit, AlertTriangle, CheckCircle, X } from 'lucide-react';

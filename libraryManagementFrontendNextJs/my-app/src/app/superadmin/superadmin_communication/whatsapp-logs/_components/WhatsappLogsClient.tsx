@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the WhatsappLogsClient component.
 'use client';
 
 import type { ICellRendererParams } from 'ag-grid-community';

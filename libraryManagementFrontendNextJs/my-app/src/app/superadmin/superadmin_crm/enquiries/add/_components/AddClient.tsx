@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the AddClient component.
 'use client';
 
 

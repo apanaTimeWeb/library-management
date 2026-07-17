@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the ShiftMigrationClient component.
 'use client';
 
 import { useState } from 'react';

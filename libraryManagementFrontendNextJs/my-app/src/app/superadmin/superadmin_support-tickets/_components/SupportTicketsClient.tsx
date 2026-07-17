@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the SupportTicketsClient component.
 'use client';
 
 import { useState, useRef, useCallback, useMemo } from 'react';
@@ -115,7 +116,7 @@ export function SupportTicketsClient() {
       ),
     },
     { headerName: 'Tenant', field: 'tenant', flex: 1.5, minWidth: 150,
-      cellRenderer: (p: any) => <span className="font-medium text-text-primary">{p.value}</span> },
+      cellRenderer: (p: unknown) => <span className="font-medium text-text-primary">{p.value}</span> },
     {
       headerName: 'Priority', field: 'priority', flex: 0.8, minWidth: 100,
       cellRenderer: (p: ICellRendererParams<Ticket>) => (

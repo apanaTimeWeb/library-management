@@ -9,7 +9,7 @@ import {
   SuperadminSystemMaintenanceSeat,
   SuperadminSystemMaintenanceAsset,
   SuperadminSystemMaintenanceLocker
-} from '../superadmin_system_types/SuperadminSystemMaintenanceTypes';
+} from '@/app/superadmin/superadmin_system/superadmin_system_types/SuperadminSystemMaintenanceTypes';
 
 /**
  * Custom hook to manage the state and data for the Maintenance Dashboard.

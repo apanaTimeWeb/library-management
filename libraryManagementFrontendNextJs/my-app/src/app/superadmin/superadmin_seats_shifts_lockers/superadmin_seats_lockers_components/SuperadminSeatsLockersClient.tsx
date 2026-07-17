@@ -7,7 +7,7 @@ import { SuperadminBadge } from '@/app/superadmin/superadmin_system/superadmin_s
 import { SuperadminInput } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminInput';
 import { SuperadminSelect, SuperadminSelectTrigger, SuperadminSelectValue, SuperadminSelectContent, SuperadminSelectItem } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminSelect';
 import { Plus, ChevronRight, Inbox, Search, UserPlus, Unlock, Wrench } from 'lucide-react';
-import { useSuperadminSeatsLockers } from '../superadmin_seats_lockers_hooks/useSuperadminSeatsLockers';
+import { useSuperadminSeatsLockers } from '@/app/superadmin/superadmin_seats_shifts_lockers/superadmin_seats_lockers_hooks/useSuperadminSeatsLockers';
 
 export function SuperadminSeatsLockersClient() {
   const {

@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the SuperadminShiftGapAnalyzerHeader component.
 import React from 'react';
 
 export function SuperadminShiftGapAnalyzerHeader() {

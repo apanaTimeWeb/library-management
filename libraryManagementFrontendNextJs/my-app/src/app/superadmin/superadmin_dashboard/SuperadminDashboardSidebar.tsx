@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the SuperadminDashboardSidebar component.
 'use client';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';

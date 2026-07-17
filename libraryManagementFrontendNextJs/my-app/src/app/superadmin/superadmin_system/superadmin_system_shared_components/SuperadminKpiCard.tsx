@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the SuperadminKpiCard component.
 import { cn } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/superadmin_utils';
 import { TrendingUp, TrendingDown, Minus } from 'lucide-react';
 

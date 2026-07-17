@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the AdminDashboardKpiCard component.
 import { TrendingUp, TrendingDown, type LucideIcon } from 'lucide-react';
 import { Card } from '@/components/ui/card';
 

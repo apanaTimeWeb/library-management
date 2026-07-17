@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the SuperadminSystemWaitlistAutomationClient component.
 'use client';
 import { SuperadminCard, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminCard';
 import { SuperadminButton } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminButton';
@@ -8,7 +9,7 @@ import { SuperadminTextarea } from '@/app/superadmin/superadmin_system/superadmi
 import { SuperadminBadge } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminBadge';
 import { ListOrdered, ChevronRight } from 'lucide-react';
 import { SUPERADMIN_SYSTEM_MOCK_WAITLIST } from '@/app/superadmin/superadmin_system/superadmin_system_data/SuperadminSystemMockData';
-import { useSuperadminSystemWaitlistAutomation } from '../superadmin_system_waitlist_automation_hooks/useSuperadminSystemWaitlistAutomation';
+import { useSuperadminSystemWaitlistAutomation } from '@/app/superadmin/superadmin_system/superadmin_system_waitlist_automation_hooks/useSuperadminSystemWaitlistAutomation';
 
 export function SuperadminSystemWaitlistAutomationClient() {
   const { enabled, setEnabled, delay, setDelay, template, setTemplate } = useSuperadminSystemWaitlistAutomation();

@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the SuperadminDashboardKpiCard component.
 import React from 'react';
 import { TrendingUp, AlertTriangle, Building, Users, IndianRupee, Hourglass, BarChart2 } from 'lucide-react';
 import type { SuperadminDashboardKpiCard as KpiCardProps } from '@/app/superadmin/superadmin_dashboard/superadmin_dashboard_types/SuperadminDashboardTypes';

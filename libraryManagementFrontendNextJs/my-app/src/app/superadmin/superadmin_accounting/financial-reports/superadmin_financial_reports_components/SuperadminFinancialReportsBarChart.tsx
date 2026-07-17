@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the SuperadminFinancialReportsBarChart component.
 import React from 'react';
 import type { SuperadminMonthlyReport } from '@/app/superadmin/superadmin_accounting/financial-reports/superadmin_financial_reports_types/SuperadminFinancialReportsTypes';
 

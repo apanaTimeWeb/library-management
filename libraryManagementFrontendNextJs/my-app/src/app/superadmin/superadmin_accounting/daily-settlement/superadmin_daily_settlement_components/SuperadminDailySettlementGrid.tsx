@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the SuperadminDailySettlementGrid component.
 'use client';
 import React, { useMemo } from 'react';
 import { AgGridReact } from 'ag-grid-react';

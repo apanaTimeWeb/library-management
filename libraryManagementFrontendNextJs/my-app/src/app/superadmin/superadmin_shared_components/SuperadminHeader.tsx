@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the SuperadminHeader component.
 'use client';
 
 import { Building2, Bell, Menu } from 'lucide-react';

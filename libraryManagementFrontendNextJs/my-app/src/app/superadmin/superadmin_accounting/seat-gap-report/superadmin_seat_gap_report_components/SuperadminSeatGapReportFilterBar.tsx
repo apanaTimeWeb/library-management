@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the SuperadminSeatGapReportFilterBar component.
 import React, { useState } from 'react';
 import { Download, Loader } from 'lucide-react';
 

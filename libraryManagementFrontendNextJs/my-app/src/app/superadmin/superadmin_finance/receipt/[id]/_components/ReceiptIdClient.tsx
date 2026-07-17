@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the ReceiptIdClient component.
 'use client';
 
 import { useParams, useRouter } from 'next/navigation';

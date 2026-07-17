@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the SuperadminSystemWhatsappClient component.
 'use client';
 import { SuperadminCard, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminCard';
 import { SuperadminButton } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminButton';
@@ -6,8 +7,8 @@ import { SuperadminInput } from '@/app/superadmin/superadmin_system/superadmin_s
 import { SuperadminLabel } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminLabel';
 import { SuperadminKpiCard } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminKpiCard';
 import { MessageSquare, ChevronRight, Eye, EyeOff, Copy, CheckCircle, XCircle, Phone, Zap, BarChart3, Loader2, Radio, Send, Banknote, Globe, Settings } from 'lucide-react';
-import { useSuperadminSystemWhatsapp } from '../superadmin_system_whatsapp_hooks/useSuperadminSystemWhatsapp';
-import { SUPERADMIN_SYSTEM_WHATSAPP_PROVIDERS, SUPERADMIN_SYSTEM_WHATSAPP_STATUS_CFG } from '../superadmin_system_constants/SuperadminSystemWhatsappConstants';
+import { useSuperadminSystemWhatsapp } from '@/app/superadmin/superadmin_system/superadmin_system_whatsapp_hooks/useSuperadminSystemWhatsapp';
+import { SUPERADMIN_SYSTEM_WHATSAPP_PROVIDERS, SUPERADMIN_SYSTEM_WHATSAPP_STATUS_CFG } from '@/app/superadmin/superadmin_system/superadmin_system_constants/SuperadminSystemWhatsappConstants';
 
 const PROVIDER_LOGOS: Record<string, React.ReactNode> = {
   twilio: <Globe size={16} className="text-blue-500" />,

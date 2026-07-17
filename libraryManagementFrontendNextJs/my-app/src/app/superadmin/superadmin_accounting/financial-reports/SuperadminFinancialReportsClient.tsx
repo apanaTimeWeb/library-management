@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the SuperadminFinancialReportsClient component.
 'use client';
 import React from 'react';
 import { superadmin_useSuperadminFinancialReports as useSuperadminFinancialReports } from '@/app/superadmin/superadmin_accounting/financial-reports/superadmin_financial_reports_hooks/superadmin_useSuperadminFinancialReports';

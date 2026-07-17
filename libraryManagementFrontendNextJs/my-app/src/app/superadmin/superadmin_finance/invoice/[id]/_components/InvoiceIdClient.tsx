@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the InvoiceIdClient component.
 'use client';
 
 import { useRouter } from 'next/navigation';

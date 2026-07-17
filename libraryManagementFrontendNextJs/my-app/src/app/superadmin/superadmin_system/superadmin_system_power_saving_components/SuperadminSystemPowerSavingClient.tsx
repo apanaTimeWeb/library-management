@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the SuperadminSystemPowerSavingClient component.
 'use client';
 import { SuperadminCard, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminCard';
 import { SuperadminButton } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminButton';
@@ -7,7 +8,7 @@ import { SuperadminSwitch } from '@/app/superadmin/superadmin_system/superadmin_
 import { SuperadminBadge } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminBadge';
 import { SuperadminProgress } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminProgress';
 import { Zap, ChevronRight, ZapOff, CheckCircle } from 'lucide-react';
-import { useSuperadminSystemPowerSaving } from '../superadmin_system_power_saving_hooks/useSuperadminSystemPowerSaving';
+import { useSuperadminSystemPowerSaving } from '@/app/superadmin/superadmin_system/superadmin_system_power_saving_hooks/useSuperadminSystemPowerSaving';
 
 export function SuperadminSystemPowerSavingClient() {
   const {

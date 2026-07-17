@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the FinanceRefundsClient component.
 'use client';
 
 import { Undo2, X } from 'lucide-react';

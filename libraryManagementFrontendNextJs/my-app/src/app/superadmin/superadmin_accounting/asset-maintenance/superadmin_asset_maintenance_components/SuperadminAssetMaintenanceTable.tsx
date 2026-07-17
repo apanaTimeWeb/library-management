@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the SuperadminAssetMaintenanceTable component.
 import React from 'react';
 import { Wrench, CheckCircle } from 'lucide-react';
 import type { SuperadminMaintenanceLog } from '@/app/superadmin/superadmin_accounting/asset-maintenance/superadmin_asset_maintenance_types/SuperadminAssetMaintenanceTypes';

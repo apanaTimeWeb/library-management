@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the AbsenteeReportClient component.
 'use client';
 
 import type { ICellRendererParams } from 'ag-grid-community';
@@ -226,8 +227,8 @@ export function AbsenteeReportClient() {
                 resizable: true
               }}
               rowClassRules={{
-                'bg-[color-mix(in_srgb,var(--mgr-danger)_5%,transparent)]': (params: any) => params.data.daysAbsent >= 7,
-                'bg-[color-mix(in_srgb,var(--mgr-warning)_5%,transparent)]': (params: any) => params.data.daysAbsent >= 3 && params.data.daysAbsent < 7
+                'bg-[color-mix(in_srgb,var(--mgr-danger)_5%,transparent)]': (params: unknown) => params.data.daysAbsent >= 7,
+                'bg-[color-mix(in_srgb,var(--mgr-warning)_5%,transparent)]': (params: unknown) => params.data.daysAbsent >= 3 && params.data.daysAbsent < 7
               }}
             />
           </div>

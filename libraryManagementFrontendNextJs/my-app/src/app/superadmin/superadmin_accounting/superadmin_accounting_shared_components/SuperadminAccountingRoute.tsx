@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the SuperadminAccountingRoute component.
 'use client';
 import { Toaster } from 'react-hot-toast';
 import { usePathname } from 'next/navigation';

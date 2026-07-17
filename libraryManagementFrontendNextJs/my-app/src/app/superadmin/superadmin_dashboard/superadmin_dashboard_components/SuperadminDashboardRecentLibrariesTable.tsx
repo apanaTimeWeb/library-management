@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the SuperadminDashboardRecentLibrariesTable component.
 'use client';
 import React, { useRef, useCallback, useMemo } from 'react';
 import Link from 'next/link';

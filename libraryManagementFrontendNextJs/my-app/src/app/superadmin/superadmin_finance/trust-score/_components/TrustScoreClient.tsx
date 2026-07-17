@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the TrustScoreClient component.
 'use client';
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
@@ -97,13 +98,13 @@ export function TrustScoreClient() {
       </div>
 
       <div className="fin-filter-bar">
-        <select className="fin-select w-40" value={levelFilter} onChange={( e: any ) => setLevelFilter(e.target.value)}>
+        <select className="fin-select w-40" value={levelFilter} onChange={( e: unknown ) => setLevelFilter(e.target.value)}>
           <option value="all">All Levels</option>
           <option value="reliable">Reliable</option>
           <option value="moderate">Moderate</option>
           <option value="low">Low Trust</option>
         </select>
-        <select className="fin-select w-40" value={shiftFilter} onChange={( e: any ) => setShiftFilter(e.target.value)}>
+        <select className="fin-select w-40" value={shiftFilter} onChange={( e: unknown ) => setShiftFilter(e.target.value)}>
           <option value="all">All Shifts</option>
           <option value="Morning">Morning</option>
           <option value="Evening">Evening</option>

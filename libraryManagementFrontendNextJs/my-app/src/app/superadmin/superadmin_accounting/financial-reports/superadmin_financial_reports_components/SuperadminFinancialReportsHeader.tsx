@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the SuperadminFinancialReportsHeader component.
 import React from 'react';
 
 interface Props {

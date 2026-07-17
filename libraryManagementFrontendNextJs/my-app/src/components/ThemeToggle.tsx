@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the ThemeToggle component.
 'use client';
 
 import { useTheme } from 'next-themes';

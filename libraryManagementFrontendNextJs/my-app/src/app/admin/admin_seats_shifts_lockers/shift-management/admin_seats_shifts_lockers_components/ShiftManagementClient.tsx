@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the ShiftManagementClient component.
 'use client';
 
 import { Plus, Edit, PowerOff, Zap, AlertTriangle, X } from 'lucide-react';

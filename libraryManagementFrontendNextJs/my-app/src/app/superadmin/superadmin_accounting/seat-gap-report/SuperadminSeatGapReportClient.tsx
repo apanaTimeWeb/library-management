@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the SuperadminSeatGapReportClient component.
 'use client';
 import React, { useState } from 'react';
 import { superadmin_useSuperadminSeatGapReport as useSuperadminSeatGapReport } from '@/app/superadmin/superadmin_accounting/seat-gap-report/superadmin_seat_gap_report_hooks/superadmin_useSuperadminSeatGapReport';

@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the FinanceCollectFeeClient component.
 'use client';
 
 import { Toaster } from 'react-hot-toast';

@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the FinanceInvoiceClient component.
 'use client';
 
 import Link from 'next/link';

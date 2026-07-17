@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the SuperadminSystemHealthHeader component.
 import React from 'react';
 import { RefreshCw } from 'lucide-react';
 

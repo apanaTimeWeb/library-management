@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the AdminDashboardActionItemsList component.
 import Link from 'next/link';
 import { ChevronRight, type LucideIcon } from 'lucide-react';
 

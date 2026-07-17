@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the ShiftManagementClient component.
 'use client';
 
 import { useState } from 'react';

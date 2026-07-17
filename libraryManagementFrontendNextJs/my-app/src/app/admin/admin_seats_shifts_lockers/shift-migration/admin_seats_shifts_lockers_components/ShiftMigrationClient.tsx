@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the ShiftMigrationClient component.
 'use client';
 
 import { ArrowLeft, Search, ChevronDown, CreditCard, QrCode, Banknote, CheckCircle, Clock } from 'lucide-react';

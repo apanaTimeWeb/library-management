@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the SuperadminDailySettlementKpiGrid component.
 import React from 'react';
 
 interface Props {

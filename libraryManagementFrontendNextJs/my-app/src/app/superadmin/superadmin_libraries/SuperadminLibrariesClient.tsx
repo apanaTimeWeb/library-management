@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the SuperadminLibrariesClient component.
 'use client';
 import React, { useState } from 'react';
 import { superadmin_useSuperadminLibraries } from '@/app/superadmin/superadmin_libraries/superadmin_libraries_hooks/superadmin_useSuperadminLibraries';

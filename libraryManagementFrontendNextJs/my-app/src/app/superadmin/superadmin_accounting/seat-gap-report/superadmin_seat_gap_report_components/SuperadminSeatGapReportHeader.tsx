@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the SuperadminSeatGapReportHeader component.
 import React from 'react';
 
 export function SuperadminSeatGapReportHeader() {

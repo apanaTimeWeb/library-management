@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the AdminStudentsClient component.
 'use client';
 
 import { Download, Search } from 'lucide-react';

@@ -5,8 +5,8 @@ import { SuperadminCard, CardHeader, CardTitle, CardDescription, CardContent, Ca
 import { SuperadminButton } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminButton';
 import { SuperadminBadge } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminBadge';
 import { Download, FileSpreadsheet, ChevronRight, CheckCircle, Loader2 } from 'lucide-react';
-import { SUPERADMIN_SYSTEM_QUICK_EXPORTS } from '../superadmin_system_constants/SuperadminSystemDataExportConstants';
-import { useSuperadminSystemDataExport } from '../superadmin_system_data_export_hooks/useSuperadminSystemDataExport';
+import { SUPERADMIN_SYSTEM_QUICK_EXPORTS } from '@/app/superadmin/superadmin_system/superadmin_system_constants/SuperadminSystemDataExportConstants';
+import { useSuperadminSystemDataExport } from '@/app/superadmin/superadmin_system/superadmin_system_data_export_hooks/useSuperadminSystemDataExport';
 // Lucide icons mapped dynamically for mock modules if needed.
 import * as LucideIcons from 'lucide-react';
 

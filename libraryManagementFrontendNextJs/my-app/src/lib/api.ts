@@ -10,8 +10,8 @@
  * Sending it as a request header causes CORS preflight to fail.
  */
 
-import { getAccessToken, refreshAccessToken, clearAuthState } from './auth';
-import { mockRegistry } from './mockRegistry';
+import { getAccessToken, refreshAccessToken, clearAuthState } from '@/lib/auth';
+import { mockRegistry } from '@/lib/mockRegistry';
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001/api/v1';
 
@@ -126,7 +126,7 @@ export async function fetchApi<T = any>(endpoint: string, options: RequestInit =
     });
 
     console.warn(`[Mock Mode] No specific mock found for '${normalizedEndpoint}'. Returning safe generic fallback.`);
-    let safeData: any;
+    let safeData: unknown;
 
     if (opts.method && ['POST', 'PUT', 'PATCH'].includes(opts.method.toUpperCase())) {
       // Return a single populated record so new/edited rows aren't blank in the UI

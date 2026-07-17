@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the SuperadminExpensesKpiGrid component.
 import React from 'react';
 import type { SuperadminExpense } from '@/app/superadmin/superadmin_accounting/expenses/superadmin_expenses_types/SuperadminExpensesTypes';
 

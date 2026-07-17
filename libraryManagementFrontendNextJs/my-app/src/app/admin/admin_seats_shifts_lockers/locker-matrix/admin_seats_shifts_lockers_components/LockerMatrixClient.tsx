@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the LockerMatrixClient component.
 'use client';
 
 import { LockKeyhole, Settings, Zap, X } from 'lucide-react';

@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the SuperadminSystemProfileClient component.
 'use client';
 import { SuperadminCard, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminCard';
 import { SuperadminButton } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminButton';
@@ -5,7 +6,7 @@ import { SuperadminInput } from '@/app/superadmin/superadmin_system/superadmin_s
 import { SuperadminLabel } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminLabel';
 import { SuperadminProgress } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminProgress';
 import { User, Lock, Camera, Eye, EyeOff, ChevronRight } from 'lucide-react';
-import { useSuperadminSystemProfile } from '../superadmin_system_profile_hooks/useSuperadminSystemProfile';
+import { useSuperadminSystemProfile } from '@/app/superadmin/superadmin_system/superadmin_system_profile_hooks/useSuperadminSystemProfile';
 
 export function SuperadminSystemProfileClient() {
   const {

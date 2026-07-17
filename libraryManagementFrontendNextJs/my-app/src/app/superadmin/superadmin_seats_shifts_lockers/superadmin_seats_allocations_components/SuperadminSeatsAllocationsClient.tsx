@@ -7,8 +7,8 @@ import { SuperadminBadge } from '@/app/superadmin/superadmin_system/superadmin_s
 import { SuperadminInput } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminInput';
 import { SuperadminSelect, SuperadminSelectTrigger, SuperadminSelectValue, SuperadminSelectContent, SuperadminSelectItem } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminSelect';
 import { Download, ChevronRight, Inbox } from 'lucide-react';
-import { useSuperadminSeatsAllocations } from '../superadmin_seats_allocations_hooks/useSuperadminSeatsAllocations';
-import { SuperadminSeatsAllocation } from '../superadmin_seats_types/SuperadminSeatsAllocationsTypes';
+import { useSuperadminSeatsAllocations } from '@/app/superadmin/superadmin_seats_shifts_lockers/superadmin_seats_allocations_hooks/useSuperadminSeatsAllocations';
+import { SuperadminSeatsAllocation } from '@/app/superadmin/superadmin_seats_shifts_lockers/superadmin_seats_types/SuperadminSeatsAllocationsTypes';
 
 export function SuperadminSeatsAllocationsClient() {
   const {

@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the AllocationsClient component.
 'use client';
 
 import { Download, Eye } from 'lucide-react';

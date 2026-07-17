@@ -217,7 +217,7 @@ export function PaymentsClient() {
       </div>
 
       <div className="fin-filter-bar">
-        <select className="fin-select w-40" value={modeFilter} onChange={( e: any ) => setModeFilter(e.target.value)}>
+        <select className="fin-select w-40" value={modeFilter} onChange={( e: unknown ) => setModeFilter(e.target.value)}>
           <option value="all">All Modes</option>
           <option value="cash">Cash</option>
           <option value="upi">UPI</option>
@@ -267,7 +267,7 @@ export function PaymentsClient() {
               <textarea
                 className="fin-textarea"
                 value={deleteReason}
-                onChange={( e: any ) => setDeleteReason(e.target.value)}
+                onChange={( e: unknown ) => setDeleteReason(e.target.value)}
                 placeholder="Enter reason for deletion..."
                 rows={2}
               />

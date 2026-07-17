@@ -1,7 +1,8 @@
+// RESPONSIBILITY: Renders the SuperadminSystemOfflineClient component.
 'use client';
 import { WifiOff, RefreshCw, CheckCircle, XCircle } from 'lucide-react';
 import { SUPERADMIN_SYSTEM_MOCK_OFFLINE_FEATURES } from '@/app/superadmin/superadmin_system/superadmin_system_data/SuperadminSystemMockData';
-import { useSuperadminSystemOffline } from '../superadmin_system_offline_hooks/useSuperadminSystemOffline';
+import { useSuperadminSystemOffline } from '@/app/superadmin/superadmin_system/superadmin_system_offline_hooks/useSuperadminSystemOffline';
 
 export function SuperadminSystemOfflineClient() {
   const { dots, online, checking, handleRetry } = useSuperadminSystemOffline();
@@ -53,7 +54,7 @@ export function SuperadminSystemOfflineClient() {
                 Available Offline
               </h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {SUPERADMIN_SYSTEM_MOCK_OFFLINE_FEATURES.map((feat: any) => (
+                {SUPERADMIN_SYSTEM_MOCK_OFFLINE_FEATURES.map((feat: unknown) => (
                   <div key={feat.title} className="flex items-start gap-3 p-3 rounded-xl bg-surface hover:bg-surface-container-high transition-colors">
                     <CheckCircle size={18} className="text-success mt-0.5 shrink-0" />
                     <div>

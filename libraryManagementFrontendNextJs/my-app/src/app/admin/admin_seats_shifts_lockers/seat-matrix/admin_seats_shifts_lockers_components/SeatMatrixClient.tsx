@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the SeatMatrixClient component.
 'use client';
 
 import { CalendarDays, UserPlus, User, X } from 'lucide-react';

@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the LockersClient component.
 'use client';
 
 import { Plus, UserPlus, Unlock, Wrench, Search, X } from 'lucide-react';

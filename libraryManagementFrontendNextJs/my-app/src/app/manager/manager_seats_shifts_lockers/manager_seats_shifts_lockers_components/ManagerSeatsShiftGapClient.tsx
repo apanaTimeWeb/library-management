@@ -30,7 +30,7 @@ export function ManagerSeatsShiftGapClient() {
   const [shiftFilter, setShiftFilter] = useState('All');
   const [period, setPeriod]           = useState('Today');
 
-  const visible = shiftFilter === 'All' ? SHIFTS_DATA : SHIFTS_DATA.filter((s: any) => s.name === shiftFilter);
+  const visible = shiftFilter === 'All' ? SHIFTS_DATA : SHIFTS_DATA.filter((s: unknown) => s.name === shiftFilter);
 
   return (
     <>
@@ -46,7 +46,7 @@ export function ManagerSeatsShiftGapClient() {
           <div className="ss-filter-bar__select-wrap">
             <select className="ss-select" value={shiftFilter} onChange={e => setShiftFilter(e.target.value)}>
               <option value="All">All SHIFTS_DATA</option>
-              {SHIFTS_DATA.map((s: any) => <option key={s.id}>{s.name}</option>)}
+              {SHIFTS_DATA.map((s: unknown) => <option key={s.id}>{s.name}</option>)}
             </select>
             <ChevronDown size={14} className="ss-select-icon" />
           </div>
@@ -58,7 +58,7 @@ export function ManagerSeatsShiftGapClient() {
           </div>
         </div>
 
-        {visible.map((shift: any) => {
+        {visible.map((shift: unknown) => {
           const utilPct = Math.round((shift.occupied / shift.capacity) * 100);
           return (
             <div key={shift.id} className="ss-gap-card">
@@ -78,7 +78,7 @@ export function ManagerSeatsShiftGapClient() {
 
               <div className="ss-gap-card__body">
                 <div className="ss-timebar">
-                  {shift.booked.map((b: any, i: number) => (
+                  {shift.booked.map((b: unknown, i: number) => (
                     <div
                       key={i}
                       className="ss-timebar__block ss-timebar__block--booked"
@@ -88,7 +88,7 @@ export function ManagerSeatsShiftGapClient() {
                       {b.label}
                     </div>
                   ))}
-                  {shift.gaps.map((g: any, i: number) => (
+                  {shift.gaps.map((g: unknown, i: number) => (
                     <div
                       key={i}
                       className="ss-timebar__block ss-timebar__block--gap"
@@ -110,7 +110,7 @@ export function ManagerSeatsShiftGapClient() {
                   <p className="ss-text-secondary ss-text-caption">No gaps detected — fully utilized.</p>
                 ) : (
                   <div className="ss-gap-list">
-                    {shift.gaps.map((g: any, i: number) => (
+                    {shift.gaps.map((g: unknown, i: number) => (
                       <div key={i} className="ss-gap-row">
                         <div className="ss-gap-row__left">
                           <span className="ss-badge ss-badge--warning">🕳️ Gap</span>

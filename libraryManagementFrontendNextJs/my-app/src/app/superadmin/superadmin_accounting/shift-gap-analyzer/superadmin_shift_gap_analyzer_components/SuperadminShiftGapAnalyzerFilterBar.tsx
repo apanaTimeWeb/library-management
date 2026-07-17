@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the SuperadminShiftGapAnalyzerFilterBar component.
 import React from 'react';
 
 interface Props {

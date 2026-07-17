@@ -1,4 +1,4 @@
-import { NoticesClient } from './_components/NoticesClient';
+import { NoticesClient } from '@/app/superadmin/superadmin_communication/notices/_components/NoticesClient';
 
 export default function Page() {
   return <NoticesClient />;

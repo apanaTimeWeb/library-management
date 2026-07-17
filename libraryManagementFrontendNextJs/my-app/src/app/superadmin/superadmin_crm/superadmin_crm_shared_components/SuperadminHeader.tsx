@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the SuperadminHeader component.
 'use client';
 import { BellRing, Building2, Menu } from 'lucide-react';
 

@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the SuperadminAuditLogsHeader component.
 import React from 'react';
 
 export function SuperadminAuditLogsHeader() {

@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the not-found component.
 'use client';
 import Link from 'next/link';
 

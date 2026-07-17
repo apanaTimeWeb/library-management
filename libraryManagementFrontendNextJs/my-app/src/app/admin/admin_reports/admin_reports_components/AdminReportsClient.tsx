@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the AdminReportsClient component.
 'use client';
 
 import { Download, FileText, IndianRupee, Users, Wallet, TrendingUp, BarChart2, PieChart as PieIcon, Activity } from 'lucide-react';

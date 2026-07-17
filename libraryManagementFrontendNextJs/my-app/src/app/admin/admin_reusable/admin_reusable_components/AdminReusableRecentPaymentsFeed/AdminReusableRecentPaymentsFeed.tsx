@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the AdminReusableRecentPaymentsFeed component.
 'use client';
 
 import { useRouter } from 'next/navigation';

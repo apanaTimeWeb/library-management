@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the SuperadminDashboardSystemHealthPanel component.
 import React from 'react';
 import Link from 'next/link';
 import { CheckCircle, Users, Zap, HardDrive, ExternalLink } from 'lucide-react';

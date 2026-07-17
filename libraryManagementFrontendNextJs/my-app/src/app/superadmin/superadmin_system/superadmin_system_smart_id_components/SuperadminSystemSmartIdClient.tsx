@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the SuperadminSystemSmartIdClient component.
 'use client';
 import { SuperadminCard, CardHeader, CardTitle, CardDescription, CardContent } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminCard';
 import { SuperadminButton } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminButton';
@@ -7,7 +8,7 @@ import {
   SuperadminDialogTitle, SuperadminDialogDescription, SuperadminDialogClose
 } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminDialog';
 import { Hash, ChevronRight, ArrowRight, AlertTriangle, LogOut, Search, Target, CheckCircle } from 'lucide-react';
-import { useSuperadminSystemSmartId } from '../superadmin_system_smart_id_hooks/useSuperadminSystemSmartId';
+import { useSuperadminSystemSmartId } from '@/app/superadmin/superadmin_system/superadmin_system_smart_id_hooks/useSuperadminSystemSmartId';
 
 const FLOW_STEPS = [
   { step: '1', icon: <LogOut size={24} className="text-on-surface-variant" />, title: 'Student Exits', desc: 'ID freed — student moved to alumni archive' },

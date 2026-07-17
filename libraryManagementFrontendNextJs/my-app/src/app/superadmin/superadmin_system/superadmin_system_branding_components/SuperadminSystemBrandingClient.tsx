@@ -1,10 +1,11 @@
+// RESPONSIBILITY: Renders the SuperadminSystemBrandingClient component.
 'use client';
 import { SuperadminCard, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminCard';
 import { SuperadminButton } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminButton';
 import { SuperadminInput } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminInput';
 import { SuperadminLabel } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminLabel';
 import { Palette, ChevronRight, Upload, RotateCcw, Save } from 'lucide-react';
-import { useSuperadminSystemBranding } from '../superadmin_system_branding_hooks/useSuperadminSystemBranding';
+import { useSuperadminSystemBranding } from '@/app/superadmin/superadmin_system/superadmin_system_branding_hooks/useSuperadminSystemBranding';
 
 export function SuperadminSystemBrandingClient() {
   const { form, setForm, containerRef, handleReset } = useSuperadminSystemBranding();

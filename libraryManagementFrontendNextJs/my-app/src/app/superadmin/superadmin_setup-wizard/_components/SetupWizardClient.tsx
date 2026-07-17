@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the SetupWizardClient component.
 'use client';
 
 import { useForm, useFieldArray } from 'react-hook-form';

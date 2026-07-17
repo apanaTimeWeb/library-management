@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the LateFeesClient component.
 'use client';
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
@@ -110,12 +111,12 @@ export function LateFeesClient() {
           <div className="space-y-4">
             <div>
               <label className="fin-label">Grace Period (days)</label>
-              <input type="number" className="fin-input" value={graceDays} onChange={( e: any ) => setGraceDays(e.target.value)} />
+              <input type="number" className="fin-input" value={graceDays} onChange={( e: unknown ) => setGraceDays(e.target.value)} />
               <p className="fin-input-hint">Days after due date before penalties apply</p>
             </div>
             <div>
               <label className="fin-label">Penalty Per Day (₹)</label>
-              <input type="number" className="fin-input" value={penaltyRate} onChange={( e: any ) => setPenaltyRate(e.target.value)} />
+              <input type="number" className="fin-input" value={penaltyRate} onChange={( e: unknown ) => setPenaltyRate(e.target.value)} />
               <p className="fin-input-hint">Daily late fee amount after grace period</p>
             </div>
             <div className="flex gap-2">

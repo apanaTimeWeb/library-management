@@ -257,7 +257,7 @@ export function EnquiriesClient() {
             className="crm-search-input"
             placeholder="Search by name or phone…"
             value={search}
-            onChange={( e: any ) => setSearch(e.target.value)}
+            onChange={( e: unknown ) => setSearch(e.target.value)}
           />
         </div>
 
@@ -265,7 +265,7 @@ export function EnquiriesClient() {
         <select
           className="crm-select crm-status-filter"
           value={statusFilter}
-          onChange={( e: any ) => setStatusFilter(e.target.value)}
+          onChange={( e: unknown ) => setStatusFilter(e.target.value)}
         >
           <option value="All">All Statuses</option>
           <option value="New">New</option>

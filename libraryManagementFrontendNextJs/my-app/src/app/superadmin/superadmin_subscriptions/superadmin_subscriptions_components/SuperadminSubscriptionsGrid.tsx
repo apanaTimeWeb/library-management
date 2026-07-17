@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the SuperadminSubscriptionsGrid component.
 'use client';
 import React, { useRef, useCallback, useMemo } from 'react';
 import { AgGridReact } from 'ag-grid-react';

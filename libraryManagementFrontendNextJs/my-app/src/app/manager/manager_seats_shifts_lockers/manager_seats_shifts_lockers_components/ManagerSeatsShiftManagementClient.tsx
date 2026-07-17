@@ -28,7 +28,7 @@ export function ManagerSeatsShiftManagementClient() {
     setShowModal(true);
   }
 
-  function openEdit(shift: any) {
+  function openEdit(shift: unknown) {
     setEditShift(shift);
     setForm({ name: shift.name, startTime: shift.startTime, endTime: shift.endTime, active: shift.active });
     setErrors({});
@@ -47,7 +47,7 @@ export function ManagerSeatsShiftManagementClient() {
   function handleSave() {
     if (!validate()) return;
     if (editShift) {
-      setShifts(prev => prev.map((s: any) => s.id === editShift.id ? { ...s, ...form } : s));
+      setShifts(prev => prev.map((s: unknown) => s.id === editShift.id ? { ...s, ...form } : s));
       toast.success('Shift updated.');
     } else {
       setShifts(prev => [...prev, { id: Date.now().toString(), ...form, occupancy: 0, capacity: 40 }]);
@@ -58,13 +58,13 @@ export function ManagerSeatsShiftManagementClient() {
 
   function handleDeactivate() {
     if (!deactivateTarget) return;
-    setShifts(prev => prev.map((s: any) => s.id === deactivateTarget.id ? { ...s, active: false } : s));
+    setShifts(prev => prev.map((s: unknown) => s.id === deactivateTarget.id ? { ...s, active: false } : s));
     toast.success(`${deactivateTarget.name} shift deactivated.`);
     setDeactivateTarget(null);
   }
 
   function handleActivate(shift: Shift) {
-    setShifts(prev => prev.map((s: any) => s.id === shift.id ? { ...s, active: true } : s));
+    setShifts(prev => prev.map((s: unknown) => s.id === shift.id ? { ...s, active: true } : s));
     toast.success(`${shift.name} shift activated.`);
   }
 

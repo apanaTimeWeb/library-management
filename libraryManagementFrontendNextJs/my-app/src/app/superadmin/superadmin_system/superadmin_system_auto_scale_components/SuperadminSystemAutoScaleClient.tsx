@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the SuperadminSystemAutoScaleClient component.
 'use client';
 import { SuperadminKpiCard } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminKpiCard';
 import { SuperadminCard, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminCard';
@@ -7,7 +8,7 @@ import { SuperadminLabel } from '@/app/superadmin/superadmin_system/superadmin_s
 import { SuperadminSwitch } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminSwitch';
 import { SuperadminBadge } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminBadge';
 import { BarChart3, ChevronRight, Zap, ArrowRight } from 'lucide-react';
-import { useSuperadminSystemAutoScale } from '../superadmin_system_auto_scale_hooks/useSuperadminSystemAutoScale';
+import { useSuperadminSystemAutoScale } from '@/app/superadmin/superadmin_system/superadmin_system_auto_scale_hooks/useSuperadminSystemAutoScale';
 
 export function SuperadminSystemAutoScaleClient() {
   const {

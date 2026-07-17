@@ -45,7 +45,7 @@ export const useManagerCommunicationStore = create<ManagerCommunicationState>((s
         set({ notices: MOCK_NOTICES, noticesStatus: 'success' });
         return;
       }
-      const mapped = actualData.map((n: any) => ({
+      const mapped = actualData.map((n: unknown) => ({
         id: n.id,
         title: n.title,
         message: n.message,
@@ -108,7 +108,7 @@ export const useManagerCommunicationStore = create<ManagerCommunicationState>((s
         set({ complaints: MOCK_COMPLAINTS, complaintsStatus: 'success' });
         return;
       }
-      const mapped = actualData.map((c: any) => ({
+      const mapped = actualData.map((c: unknown) => ({
         id: c.id,
         title: c.subject || 'Complaint',
         desc: c.description || '',

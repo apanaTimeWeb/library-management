@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the error component.
 'use client';
 
 import { AuthErrorBoundary } from '@/app/auth/auth_shared_components/AuthErrorBoundary';

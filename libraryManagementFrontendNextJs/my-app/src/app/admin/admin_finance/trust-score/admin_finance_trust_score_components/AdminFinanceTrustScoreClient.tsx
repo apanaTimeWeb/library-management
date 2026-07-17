@@ -1,6 +1,7 @@
+// RESPONSIBILITY: Renders the AdminFinanceTrustScoreClient component.
 'use client';
 import { ShieldCheck, ShieldAlert, ShieldX, Users } from 'lucide-react';
-import { useAdminFinanceTrustScore } from '../admin_finance_trust_score_hooks/useAdminFinanceTrustScore';
+import { useAdminFinanceTrustScore } from '@/app/admin/admin_finance/trust-score/admin_finance_trust_score_hooks/useAdminFinanceTrustScore';
 
 const BADGE_CLASS: Record<string, string> = {
   reliable: 'fin-badge fin-badge--success',

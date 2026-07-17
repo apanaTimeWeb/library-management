@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the SuperadminShiftGapAnalyzerClient component.
 'use client';
 import React from 'react';
 import { superadmin_useSuperadminShiftGapAnalyzer as useSuperadminShiftGapAnalyzer } from '@/app/superadmin/superadmin_accounting/shift-gap-analyzer/superadmin_shift_gap_analyzer_hooks/superadmin_useSuperadminShiftGapAnalyzer';

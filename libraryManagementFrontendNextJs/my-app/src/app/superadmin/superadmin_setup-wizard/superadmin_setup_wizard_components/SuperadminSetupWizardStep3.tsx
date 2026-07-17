@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the SuperadminSetupWizardStep3 component.
 'use client';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';

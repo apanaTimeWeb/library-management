@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the ThemeProvider component.
 'use client';
 
 import { ThemeProvider as NextThemesProvider } from 'next-themes';

@@ -8,31 +8,31 @@ import { ManagerReportsData } from '@/app/manager/manager_reports/manager_report
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
-function SmartIdCell(props: any) {
+function SmartIdCell(props: unknown) {
   return <span className="font-mono text-xs text-primary">{props.value}</span>;
 }
-function ShiftBadgeCell(props: any) {
+function ShiftBadgeCell(props: unknown) {
   return <span className="px-2 py-0.5 rounded-full text-[11px] font-semibold bg-[var(--info-bg,rgba(96,165,250,0.1))] text-info border border-info/20">{props.value}</span>;
 }
-function ShiftPrimaryCell(props: any) {
+function ShiftPrimaryCell(props: unknown) {
   return <span className="px-2 py-0.5 rounded-full text-[11px] font-semibold bg-primary-subtle text-primary border border-primary/20">{props.value}</span>;
 }
-function DaysAbsentCell(props: any) {
+function DaysAbsentCell(props: unknown) {
   return <span className="text-danger font-bold">{props.value}</span>;
 }
-function LastPresentCell(props: any) {
+function LastPresentCell(props: unknown) {
   return <span className="text-text-secondary">{props.value}</span>;
 }
-function RateCell(props: any) {
+function RateCell(props: unknown) {
   return <span className="text-success font-semibold">{props.value}</span>;
 }
-function PctCell(props: any) {
+function PctCell(props: unknown) {
   return <span className="text-success font-semibold">{props.value}</span>;
 }
-function SecondaryCell(props: any) {
+function SecondaryCell(props: unknown) {
   return <span className="text-text-secondary">{props.value}</span>;
 }
-function PriorityCell(props: any) {
+function PriorityCell(props: unknown) {
   const cls = props.value === 'High' ? 'bg-[var(--danger-bg,rgba(248,113,113,0.1))] text-danger border-danger/20' 
             : props.value === 'Medium' ? 'bg-[var(--warning-bg,rgba(251,191,36,0.1))] text-warning border-warning/20' 
             : 'bg-[var(--info-bg,rgba(96,165,250,0.1))] text-info border-info/20';

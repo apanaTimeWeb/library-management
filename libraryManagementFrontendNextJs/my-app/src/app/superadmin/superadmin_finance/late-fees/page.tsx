@@ -1,4 +1,4 @@
-import { LateFeesClient } from './_components/LateFeesClient';
+import { LateFeesClient } from '@/app/superadmin/superadmin_finance/late-fees/_components/LateFeesClient';
 
 export default function Page() {
   return <LateFeesClient />;

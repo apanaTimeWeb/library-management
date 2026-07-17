@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the CollectFeeClient component.
 'use client';
 
 
@@ -224,7 +225,7 @@ export function CollectFeeClient() {
                     { l: 'Receipt', v: receiptData.receiptNo },
                     { l: 'Amount',  v: formatCurrency(receiptData.total), color: 'var(--success)' },
                     { l: 'Mode',    v: MODE_LABELS[receiptData.mode] },
-                  ].map(( r: any ) => (
+                  ].map(( r: unknown ) => (
                     <div key={r.l} className="fin-receipt-modal-info-row">
                       <span className="fin-cell-subtext">{r.l}</span>
                       <span className="fin-cell-name" style={{ color: r.color }}>{r.v}</span>

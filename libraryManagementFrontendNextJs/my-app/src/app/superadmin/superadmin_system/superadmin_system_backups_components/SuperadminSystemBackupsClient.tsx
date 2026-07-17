@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the SuperadminSystemBackupsClient component.
 'use client';
 import { SuperadminCard, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminCard';
 import { SuperadminButton } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminButton';
@@ -8,7 +9,7 @@ import {
   Database, ChevronRight, Download, RefreshCw, CheckCircle, Clock,
   AlertTriangle, HardDrive, Shield, Cloud, Loader2, Archive, XCircle
 } from 'lucide-react';
-import { useSuperadminSystemBackups } from '../superadmin_system_backups_hooks/useSuperadminSystemBackups';
+import { useSuperadminSystemBackups } from '@/app/superadmin/superadmin_system/superadmin_system_backups_hooks/useSuperadminSystemBackups';
 import React from 'react';
 
 const STATUS_CFG: Record<string, { label: string; variant: 'success' | 'danger' | 'warning'; icon: React.ElementType }> = {

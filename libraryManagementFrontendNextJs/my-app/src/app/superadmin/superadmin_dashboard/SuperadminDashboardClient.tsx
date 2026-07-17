@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the SuperadminDashboardClient component.
 'use client';
 import React from 'react';
 import type { SuperadminDashboardDataResponse } from '@/app/superadmin/superadmin_dashboard/superadmin_dashboard_types/SuperadminDashboardTypes';

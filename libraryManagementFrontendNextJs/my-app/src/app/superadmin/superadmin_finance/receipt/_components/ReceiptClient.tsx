@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the ReceiptClient component.
 'use client';
 
 import { useState } from 'react';

@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the SuperadminLibrariesGrid component.
 'use client';
 import React, { useRef, useCallback, useMemo } from 'react';
 import { AgGridReact } from 'ag-grid-react';

@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the SuperadminShiftGapAnalyzerSummaryCards component.
 import React from 'react';
 import type { SuperadminShiftGap } from '@/app/superadmin/superadmin_accounting/shift-gap-analyzer/superadmin_shift_gap_analyzer_types/SuperadminShiftGapAnalyzerTypes';
 

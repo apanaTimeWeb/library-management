@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the ShiftGapClient component.
 'use client';
 
 import { useState } from 'react';

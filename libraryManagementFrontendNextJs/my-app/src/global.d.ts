@@ -1,5 +1,5 @@
 export {};
 declare global {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  export type FlexRecord = { [key: string]: any };
+  export type FlexRecord = { [key: string]: unknown };
 }

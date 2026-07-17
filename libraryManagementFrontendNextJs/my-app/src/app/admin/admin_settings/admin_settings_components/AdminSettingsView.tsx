@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the AdminSettingsView component.
 'use client';
 
 import { Save, CheckCircle, Settings } from 'lucide-react';

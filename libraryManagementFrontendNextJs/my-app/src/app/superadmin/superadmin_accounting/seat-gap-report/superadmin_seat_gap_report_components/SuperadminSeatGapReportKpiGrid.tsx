@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the SuperadminSeatGapReportKpiGrid component.
 import React from 'react';
 
 interface Props {

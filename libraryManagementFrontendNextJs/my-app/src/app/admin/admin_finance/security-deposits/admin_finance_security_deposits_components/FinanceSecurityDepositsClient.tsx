@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the FinanceSecurityDepositsClient component.
 'use client';
 
 import { Undo2, Minus, X } from 'lucide-react';

@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the FinanceSubscriptionsClient component.
 'use client';
 
 import { RefreshCw, Eye } from 'lucide-react';

@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the AdminAccountingExpensesClient component.
 'use client';
 
 import { useState } from 'react';

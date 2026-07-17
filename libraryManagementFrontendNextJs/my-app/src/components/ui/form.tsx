@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the form component.
 "use client"
 
 import * as React from "react"

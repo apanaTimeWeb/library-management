@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the SuperadminAssetsKpiGrid component.
 import React from 'react';
 
 interface Props {

@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the SuperadminSubscriptionsClient component.
 'use client';
 import React, { useState } from 'react';
 import { superadmin_useSuperadminSubscriptions } from '@/app/superadmin/superadmin_subscriptions/superadmin_subscriptions_hooks/superadmin_useSuperadminSubscriptions';

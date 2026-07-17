@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the SuperadminAssetsFilterBar component.
 import React from 'react';
 
 interface Props {

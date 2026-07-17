@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the SuperadminFinancialReportsKpiCards component.
 import React from 'react';
 import { BarChart2, TrendingUp, TrendingDown } from 'lucide-react';
 

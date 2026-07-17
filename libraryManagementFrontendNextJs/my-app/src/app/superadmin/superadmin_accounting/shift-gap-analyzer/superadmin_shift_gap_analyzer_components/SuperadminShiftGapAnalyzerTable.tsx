@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the SuperadminShiftGapAnalyzerTable component.
 import React from 'react';
 import { CalendarX2 } from 'lucide-react';
 import type { SuperadminDayGap } from '@/app/superadmin/superadmin_accounting/shift-gap-analyzer/superadmin_shift_gap_analyzer_types/SuperadminShiftGapAnalyzerTypes';

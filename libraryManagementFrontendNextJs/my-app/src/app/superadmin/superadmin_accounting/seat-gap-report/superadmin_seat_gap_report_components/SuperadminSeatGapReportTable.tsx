@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the SuperadminSeatGapReportTable component.
 import React from 'react';
 import { Armchair } from 'lucide-react';
 import type { SuperadminGapRow } from '@/app/superadmin/superadmin_accounting/seat-gap-report/superadmin_seat_gap_report_types/SuperadminSeatGapReportTypes';

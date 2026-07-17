@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the AttendanceClient component.
 'use client';
 
 import { useState } from 'react';

@@ -36,22 +36,22 @@ export function ManagerCommunicationWhatsappLogsClient() {
   const [dateTo,       setDateTo]       = useState('');
   const [viewLog,      setViewLog]      = useState<any | null>(null);
 
-  const filtered = WA_LOGS_DATA.filter((l: any) => {
+  const filtered = WA_LOGS_DATA.filter((l: unknown) => {
     if (typeFilter !== 'All' && l.type !== typeFilter) return false;
     if (statusFilter !== 'All' && l.status !== statusFilter) return false;
     if (search && !l.student.toLowerCase().includes(search.toLowerCase()) && !l.phone.includes(search)) return false;
     return true;
   });
 
-  const colDefs: any[] = [
-    { field: 'dateTime', headerName: 'Date / Time', width: 160, cellRenderer: (p: any) => <span className="text-text-secondary text-sm">{p.value}</span> },
-    { field: 'phone', headerName: 'Phone', width: 130, cellRenderer: (p: any) => <span className="font-mono text-[12px] text-text-primary tracking-tight">{p.value}</span> },
-    { field: 'student', headerName: 'Student', flex: 1, minWidth: 150, cellRenderer: (p: any) => <span className="text-sm font-semibold text-text-primary">{p.value}</span> },
+  const colDefs: unknown[] = [
+    { field: 'dateTime', headerName: 'Date / Time', width: 160, cellRenderer: (p: unknown) => <span className="text-text-secondary text-sm">{p.value}</span> },
+    { field: 'phone', headerName: 'Phone', width: 130, cellRenderer: (p: unknown) => <span className="font-mono text-[12px] text-text-primary tracking-tight">{p.value}</span> },
+    { field: 'student', headerName: 'Student', flex: 1, minWidth: 150, cellRenderer: (p: unknown) => <span className="text-sm font-semibold text-text-primary">{p.value}</span> },
     { 
       field: 'type', 
       headerName: 'Type', 
       width: 130,
-      cellRenderer: (p: any) => (
+      cellRenderer: (p: unknown) => (
         <span className={`rounded-full px-2.5 py-0.5 text-[11px] font-semibold ${TYPE_BADGE[String(p.value)] || 'bg-info-bg text-info'} inline-block mt-2`}>
           {TYPE_LABEL[String(p.value)] || p.value}
         </span>
@@ -61,18 +61,18 @@ export function ManagerCommunicationWhatsappLogsClient() {
       field: 'status', 
       headerName: 'Status', 
       width: 120,
-      cellRenderer: (p: any) => (
+      cellRenderer: (p: unknown) => (
         <span className={`rounded-full px-2.5 py-0.5 text-[11px] font-semibold ${STATUS_BADGE[String(p.value)] || 'bg-info-bg text-info'} inline-block mt-2`}>
           {p.value}
         </span>
       )
     },
-    { field: 'error', headerName: 'Error', width: 180, cellRenderer: (p: any) => <span className="text-danger text-xs truncate max-w-[160px] inline-block" title={p.value}>{p.value || '—'}</span> },
+    { field: 'error', headerName: 'Error', width: 180, cellRenderer: (p: unknown) => <span className="text-danger text-xs truncate max-w-[160px] inline-block" title={p.value}>{p.value || '—'}</span> },
     {
       headerName: 'Actions',
       width: 100,
       sortable: false,
-      cellRenderer: (params: any) => (
+      cellRenderer: (params: unknown) => (
         <div className="h-full flex items-center">
           <button onClick={() => setViewLog(params?.data)} className="w-8 h-8 flex items-center justify-center rounded-lg border border-border text-text-secondary bg-transparent hover:bg-primary hover:text-white transition-colors" title="View Message">
             <Eye size={16} />

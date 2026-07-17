@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the error component.
 'use client';
 
 import { SuperadminErrorBoundary } from '@/app/superadmin/superadmin_shared_components/SuperadminErrorBoundary';

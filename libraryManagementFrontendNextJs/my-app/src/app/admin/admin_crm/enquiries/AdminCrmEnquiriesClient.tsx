@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the AdminCrmEnquiriesClient component.
 'use client';
 
 import {

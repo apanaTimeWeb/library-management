@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the SuperadminSwitch component.
 'use client';
 import * as SwitchPrimitive from '@radix-ui/react-switch';
 import { cn } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/superadmin_utils';

@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the SeatManagementClient component.
 'use client';
 
 import { useState, useMemo } from 'react';

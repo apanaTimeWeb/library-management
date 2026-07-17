@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the SuperadminAssetsHeader component.
 import React from 'react';
 import { Plus } from 'lucide-react';
 

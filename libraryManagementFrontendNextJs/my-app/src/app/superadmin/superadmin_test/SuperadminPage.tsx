@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the SuperadminPage component.
 import React from 'react'
 
 function SuperadminPage() {

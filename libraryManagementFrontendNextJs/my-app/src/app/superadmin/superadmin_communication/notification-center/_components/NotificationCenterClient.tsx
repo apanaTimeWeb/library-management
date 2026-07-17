@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the NotificationCenterClient component.
 'use client';
 
 import { useState } from 'react';

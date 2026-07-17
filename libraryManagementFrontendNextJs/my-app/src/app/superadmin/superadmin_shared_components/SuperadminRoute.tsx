@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the SuperadminRoute component.
 'use client';
 import { useState, useEffect } from 'react';
 import { usePathname, useRouter } from 'next/navigation';

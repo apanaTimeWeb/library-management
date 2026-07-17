@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the FinanceAutoSuspendClient component.
 'use client';
 
 import toast from 'react-hot-toast';

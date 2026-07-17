@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the ShiftGapAnalyzerClient component.
 'use client';
 
 import { Zap } from 'lucide-react';

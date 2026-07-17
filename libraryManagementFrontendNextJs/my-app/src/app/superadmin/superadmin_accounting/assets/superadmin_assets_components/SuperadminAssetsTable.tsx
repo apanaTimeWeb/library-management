@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the SuperadminAssetsTable component.
 import React from 'react';
 import { PackageOpen } from 'lucide-react';
 import type { SuperadminAsset } from '@/app/superadmin/superadmin_accounting/assets/superadmin_assets_types/SuperadminAssetsTypes';

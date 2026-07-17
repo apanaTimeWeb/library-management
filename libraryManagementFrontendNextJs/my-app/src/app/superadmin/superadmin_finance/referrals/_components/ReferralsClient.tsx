@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the ReferralsClient component.
 'use client';
 
 

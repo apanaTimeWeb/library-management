@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the SettingsClient component.
 'use client';
 
 import { useState } from 'react';

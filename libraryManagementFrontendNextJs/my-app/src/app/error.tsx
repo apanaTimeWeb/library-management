@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the error component.
 'use client';
 import { useEffect } from 'react';
 

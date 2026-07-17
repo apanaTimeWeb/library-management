@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the SuperadminSystemHealthMetricCard component.
 import React from 'react';
 import type { SuperadminSystemHealthMetric } from '@/app/superadmin/superadmin_system-health/superadmin_system_health_types/SuperadminSystemHealthTypes';
 

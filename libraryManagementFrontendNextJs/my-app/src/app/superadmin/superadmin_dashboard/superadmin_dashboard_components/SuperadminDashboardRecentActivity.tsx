@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the SuperadminDashboardRecentActivity component.
 import React from 'react';
 import Link from 'next/link';
 import { Clock } from 'lucide-react';

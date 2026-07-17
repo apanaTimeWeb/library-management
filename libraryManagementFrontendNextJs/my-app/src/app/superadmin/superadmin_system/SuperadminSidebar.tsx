@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the SuperadminSidebar component.
 'use client';
 
 import Link from 'next/link';

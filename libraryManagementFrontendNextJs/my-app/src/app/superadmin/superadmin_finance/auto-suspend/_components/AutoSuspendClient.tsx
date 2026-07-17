@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the AutoSuspendClient component.
 'use client';
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
@@ -99,7 +100,7 @@ export function AutoSuspendClient() {
           <div className="space-y-4">
             <div>
               <label className="fin-label">Days before auto-suspend</label>
-              <input type="number" className="fin-input" value={days} onChange={( e: any ) => setDays(e.target.value)} />
+              <input type="number" className="fin-input" value={days} onChange={( e: unknown ) => setDays(e.target.value)} />
               <p className="fin-input-hint">Students overdue beyond this period are automatically suspended.</p>
             </div>
             <div className="flex gap-2">
@@ -201,7 +202,7 @@ export function AutoSuspendClient() {
             <p className="fin-dialog-helper">Manually restore access for {restoreDialog.name}?</p>
             <div className="mt-2">
               <label className="fin-label">Override reason <span className="fin-text-danger">*</span></label>
-              <input className="fin-input mt-1" value={restoreReason} onChange={( e: any ) => setRestoreReason(e.target.value)} placeholder="Enter reason..." />
+              <input className="fin-input mt-1" value={restoreReason} onChange={( e: unknown ) => setRestoreReason(e.target.value)} placeholder="Enter reason..." />
             </div>
             <div className="fin-dialog__footer">
               <button className="fin-badge fin-badge--neutral cursor-pointer" onClick={() => setRestoreDialog(null)}>Cancel</button>

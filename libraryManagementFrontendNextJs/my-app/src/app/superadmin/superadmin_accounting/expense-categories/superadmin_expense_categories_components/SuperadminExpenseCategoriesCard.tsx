@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the SuperadminExpenseCategoriesCard component.
 import React from 'react';
 import { Trash2 } from 'lucide-react';
 import type { SuperadminExpenseCategory } from '@/app/superadmin/superadmin_accounting/expense-categories/superadmin_expense_categories_types/SuperadminExpenseCategoriesTypes';

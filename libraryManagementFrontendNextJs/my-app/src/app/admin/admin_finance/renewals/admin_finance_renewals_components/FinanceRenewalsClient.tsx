@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the FinanceRenewalsClient component.
 'use client';
 
 import { RefreshCw, Send, X } from 'lucide-react';

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { ADMIN_FINANCE_MOCK_TRUST_SCORE } from '@/app/admin/admin_finance/admin_finance_constants/AdminFinanceConstants';
-import { AdminFinanceTrustScoreStudent } from '../admin_finance_trust_score_types/admin_finance_trust_score_types';
+import { AdminFinanceTrustScoreStudent } from '@/app/admin/admin_finance/trust-score/admin_finance_trust_score_types/admin_finance_trust_score_types';
 
 export function useAdminFinanceTrustScore() {
   const [levelFilter, setLevelFilter] = useState('all');

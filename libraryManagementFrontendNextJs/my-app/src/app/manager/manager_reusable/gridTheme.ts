@@ -22,5 +22,5 @@ export const gridTheme = themeQuartz.withParams({
   wrapperBorderRadius:   0,
 });
 
-export interface ManagerRecord { [key: string]: any; }
-export interface ManagerGridCell { value: any; data: ManagerRecord; }
+export interface ManagerRecord { [key: string]: unknown; }
+export interface ManagerGridCell { value: unknown; data: ManagerRecord; }

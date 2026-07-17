@@ -1,4 +1,4 @@
-import { ReferralsClient } from './_components/ReferralsClient';
+import { ReferralsClient } from '@/app/superadmin/superadmin_finance/referrals/_components/ReferralsClient';
 
 export default function Page() {
   return <ReferralsClient />;

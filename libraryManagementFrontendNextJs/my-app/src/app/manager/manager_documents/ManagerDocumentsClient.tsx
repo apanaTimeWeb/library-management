@@ -47,7 +47,7 @@ export function ManagerDocumentsClient() {
       field: 'name', 
       headerName: 'File Name', 
       flex: 1,
-      cellRenderer: (params: any) => (
+      cellRenderer: (params: unknown) => (
         <div className="flex items-center gap-3 h-full">
           {getFileIcon(params?.data?.type)}
           <span className="font-medium text-text-primary">{params.value}</span>
@@ -62,7 +62,7 @@ export function ManagerDocumentsClient() {
       headerName: 'Actions',
       width: 120,
       sortable: false,
-      cellRenderer: (params: any) => (
+      cellRenderer: (params: unknown) => (
         <div className="flex gap-2 items-center h-full">
           <button className="bg-transparent border border-border text-text-primary rounded-lg h-8 px-3 text-xs font-medium hover:bg-primary-subtle hover:border-primary transition-colors inline-flex items-center justify-center gap-1" title="Download">
             <Download size={14} />

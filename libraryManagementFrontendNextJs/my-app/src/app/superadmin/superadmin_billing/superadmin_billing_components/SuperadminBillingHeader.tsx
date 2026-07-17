@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the SuperadminBillingHeader component.
 import React from 'react';
 
 export function SuperadminBillingHeader() {

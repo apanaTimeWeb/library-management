@@ -1,4 +1,4 @@
-import { SuperadminSystemOfflineClient } from '../superadmin_system_offline_components/SuperadminSystemOfflineClient';
+import { SuperadminSystemOfflineClient } from '@/app/superadmin/superadmin_system/superadmin_system_offline_components/SuperadminSystemOfflineClient';
 
 export default function SuperadminSystemOfflinePage() {
   return <SuperadminSystemOfflineClient />;

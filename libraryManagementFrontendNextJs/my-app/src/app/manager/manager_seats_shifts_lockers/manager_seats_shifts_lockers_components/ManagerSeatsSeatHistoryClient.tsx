@@ -20,7 +20,7 @@ const REASON_CLASS: Record<string, string> = {
   'Seat Change': 'ss-badge ss-badge--warning',
 };
 
-function StudentCell(props: { data: any }) {
+function StudentCell(props: { data: unknown }) {
   return <span className="ss-cell-name">{props.data.studentName}</span>;
 }
 

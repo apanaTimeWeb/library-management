@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the switch component.
 "use client"
 
 import * as React from "react"

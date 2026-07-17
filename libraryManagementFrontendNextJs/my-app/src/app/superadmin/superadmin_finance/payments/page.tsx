@@ -1,4 +1,4 @@
-import { PaymentsClient } from './_components/PaymentsClient';
+import { PaymentsClient } from '@/app/superadmin/superadmin_finance/payments/_components/PaymentsClient';
 
 export default function Page() {
   return <PaymentsClient />;

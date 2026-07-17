@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the SuperadminReportsCharts component.
 'use client';
 import React from 'react';
 import {

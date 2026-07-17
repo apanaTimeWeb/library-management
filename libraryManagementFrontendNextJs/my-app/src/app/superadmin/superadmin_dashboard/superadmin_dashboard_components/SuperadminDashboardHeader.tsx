@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the SuperadminDashboardHeader component.
 import React from 'react';
 import Link from 'next/link';
 import { Activity } from 'lucide-react';

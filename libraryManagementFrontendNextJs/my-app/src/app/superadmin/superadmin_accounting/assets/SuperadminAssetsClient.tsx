@@ -28,7 +28,7 @@ export function SuperadminAssetsClient() {
 
   const showToast = (msg: string) => { setToast(msg); setTimeout(() => setToast(''), 2500); };
 
-  const onSaveAsset = async (assetData: any) => {
+  const onSaveAsset = async (assetData: unknown) => {
     await handleAddAsset(assetData);
     showToast('✅ Asset added successfully');
   };

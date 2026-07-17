@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the SuperadminExpensesHeader component.
 import React from 'react';
 import { Plus } from 'lucide-react';
 

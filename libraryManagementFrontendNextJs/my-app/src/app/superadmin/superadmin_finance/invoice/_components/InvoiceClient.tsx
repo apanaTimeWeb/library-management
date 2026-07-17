@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the InvoiceClient component.
 'use client';
 
 import { useState } from 'react';
@@ -86,7 +87,7 @@ export function InvoiceClient() {
           { label: 'TOTAL INVOICES',    value: SUPERADMIN_FINANCE_MOCK_INVOICES.length.toString() },
           { label: 'TOTAL BILLED',      value: formatCurrency(SUPERADMIN_FINANCE_MOCK_INVOICES.reduce((s, i) => s + i.grandTotal, 0)), success: true },
           { label: 'PENDING / OVERDUE', value: SUPERADMIN_FINANCE_MOCK_INVOICES.filter(i => i.paymentStatus !== 'paid').length.toString(), warning: true },
-        ].map(( k: any ) => (
+        ].map(( k: unknown ) => (
           <div key={k.label} className={`fin-kpi-card${k.warning ? ' fin-kpi-card--warning' : ''}`}>
             <div className="fin-kpi-card__header"><p className={`fin-kpi-label${k.warning ? ' fin-kpi-label--warning' : ''}`}>{k.label}</p><FileText size={18} className={k.warning ? 'fin-text-warning' : 'fin-icon-muted'} /></div>
             <p className={`fin-kpi-value${k.success ? ' fin-text-success' : k.warning ? ' fin-kpi-value--warning' : ''}`}>{k.value}</p>

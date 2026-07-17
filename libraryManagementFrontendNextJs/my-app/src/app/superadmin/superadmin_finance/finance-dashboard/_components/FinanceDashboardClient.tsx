@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the FinanceDashboardClient component.
 'use client';
 
 

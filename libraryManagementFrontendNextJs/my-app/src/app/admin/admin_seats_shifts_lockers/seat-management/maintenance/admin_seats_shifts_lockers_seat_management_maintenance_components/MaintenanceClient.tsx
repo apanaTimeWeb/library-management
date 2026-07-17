@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the MaintenanceClient component.
 'use client';
 
 import { ChevronDown, AlertTriangle, Plus } from 'lucide-react';

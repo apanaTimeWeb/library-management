@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the SuperadminDashboardLayout component.
 // src/app/superadmin/dashboard/Layout.tsx
 // Note: This wrapper is imported by pages inside superadmin/dashboard/
 import Sidebar from '@/app/superadmin/superadmin_dashboard/SuperadminDashboardSidebar';

@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the dialog component.
 "use client"
 
 import * as React from "react"

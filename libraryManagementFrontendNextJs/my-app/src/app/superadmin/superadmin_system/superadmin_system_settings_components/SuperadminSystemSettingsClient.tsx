@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the SuperadminSystemSettingsClient component.
 'use client';
 import { SuperadminCard, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminCard';
 import { SuperadminButton } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminButton';
@@ -5,8 +6,8 @@ import { SuperadminInput } from '@/app/superadmin/superadmin_system/superadmin_s
 import { SuperadminLabel } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminLabel';
 import { SuperadminSwitch } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminSwitch';
 import { Settings, Upload, Eye, EyeOff, Save, ChevronRight } from 'lucide-react';
-import { useSuperadminSystemSettings } from '../superadmin_system_settings_hooks/useSuperadminSystemSettings';
-import { SUPERADMIN_SYSTEM_SETTINGS_CATEGORIES } from '../superadmin_system_constants/SuperadminSystemSettingsConstants';
+import { useSuperadminSystemSettings } from '@/app/superadmin/superadmin_system/superadmin_system_settings_hooks/useSuperadminSystemSettings';
+import { SUPERADMIN_SYSTEM_SETTINGS_CATEGORIES } from '@/app/superadmin/superadmin_system/superadmin_system_constants/SuperadminSystemSettingsConstants';
 
 export function SuperadminSystemSettingsClient() {
   const { active, setActive, showApiKey, setShowApiKey, saved, form, setForm, handleSave } = useSuperadminSystemSettings();

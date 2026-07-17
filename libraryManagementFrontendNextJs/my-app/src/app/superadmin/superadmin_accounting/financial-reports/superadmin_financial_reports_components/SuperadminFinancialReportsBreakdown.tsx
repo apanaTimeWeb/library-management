@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the SuperadminFinancialReportsBreakdown component.
 import React from 'react';
 import type { SuperadminCategoryBreakdown } from '@/app/superadmin/superadmin_accounting/financial-reports/superadmin_financial_reports_types/SuperadminFinancialReportsTypes';
 

@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the SuperadminSeatsRoute component.
 'use client';
 import { Toaster } from 'react-hot-toast';
 import { usePathname } from 'next/navigation';

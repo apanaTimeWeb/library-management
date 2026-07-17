@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the AdminDashboardSeatCell component.
 'use client';
 
 export interface AdminDashboardSeatCellProps {

@@ -52,7 +52,7 @@ export function ManagerSeatsSeatManagementClient() {
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [confirmBroken, setConfirmBroken] = useState<any | null>(null);
 
-  const filtered = seats.filter((s: any) => {
+  const filtered = seats.filter((s: unknown) => {
     const matchSearch = s.seatNo.toLowerCase().includes(search.toLowerCase()) ||
       s.branch.toLowerCase().includes(search.toLowerCase()) ||
       s.assignedTo.toLowerCase().includes(search.toLowerCase());
@@ -67,7 +67,7 @@ export function ManagerSeatsSeatManagementClient() {
     setShowModal(true);
   }
 
-  function openEdit(seat: any) {
+  function openEdit(seat: unknown) {
     setEditSeat(seat);
     setForm({ seatNo: seat.seatNo, branch: seat.branch, status: seat.status });
     setErrors({});
@@ -85,7 +85,7 @@ export function ManagerSeatsSeatManagementClient() {
   function handleSave() {
     if (!validate()) return;
     if (editSeat) {
-      setSeats(prev => prev.map((s: any) => s.id === editSeat.id ? { ...s, ...form } : s));
+      setSeats(prev => prev.map((s: unknown) => s.id === editSeat.id ? { ...s, ...form } : s));
       toast.success('Seat updated.');
     } else {
       setSeats(prev => [...prev, { id: Date.now().toString(), ...form, assignedTo: '—', lastMaintenance: '—' }]);
@@ -95,13 +95,13 @@ export function ManagerSeatsSeatManagementClient() {
   }
 
   function handleMarkFixed(seat: Seat) {
-    setSeats(prev => prev.map((s: any) => s.id === seat.id ? { ...s, status: 'Working' } : s));
+    setSeats(prev => prev.map((s: unknown) => s.id === seat.id ? { ...s, status: 'Working' } : s));
     toast.success(`Seat ${seat.seatNo} marked as Working.`);
   }
 
   function confirmMarkBroken() {
     if (!confirmBroken) return;
-    setSeats(prev => prev.map((s: any) => s.id === confirmBroken.id ? { ...s, status: 'Broken' } : s));
+    setSeats(prev => prev.map((s: unknown) => s.id === confirmBroken.id ? { ...s, status: 'Broken' } : s));
     toast.success(`Seat ${confirmBroken.seatNo} marked as Broken.`);
     setConfirmBroken(null);
   }

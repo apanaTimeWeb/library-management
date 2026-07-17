@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the SuperadminReportsHeader component.
 import React, { useState } from 'react';
 import { Download, FileSpreadsheet, CheckCircle } from 'lucide-react';
 import { SUPERADMIN_REPORTS_DATE_RANGES } from '@/app/superadmin/superadmin_reports/superadmin_reports_constants/SuperadminReportsConstants';

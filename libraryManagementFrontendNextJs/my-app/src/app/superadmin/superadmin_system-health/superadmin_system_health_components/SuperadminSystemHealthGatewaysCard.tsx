@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the SuperadminSystemHealthGatewaysCard component.
 import React from 'react';
 import { Globe } from 'lucide-react';
 import type { SuperadminSystemHealthGateway } from '@/app/superadmin/superadmin_system-health/superadmin_system_health_types/SuperadminSystemHealthTypes';

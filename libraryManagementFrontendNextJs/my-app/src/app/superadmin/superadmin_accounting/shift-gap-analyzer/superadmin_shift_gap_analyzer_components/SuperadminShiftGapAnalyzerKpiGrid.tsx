@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the SuperadminShiftGapAnalyzerKpiGrid component.
 import React from 'react';
 
 interface Props {

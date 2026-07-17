@@ -179,7 +179,7 @@ export default function ManagerStudentsAdmissionForm() {
                           {...register('shift')}
                           className={`w-full bg-bg-input border ${errors.shift ? 'border-danger focus:ring-danger' : 'border-border focus:ring-primary'} rounded-lg pl-9 pr-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 appearance-none`}
                         >
-                          {SHIFTS.map((s: any) => <option key={s} value={s}>{s}</option>)}
+                          {SHIFTS.map((s: unknown) => <option key={s} value={s}>{s}</option>)}
                         </select>
                       </div>
                       {errors.shift && <p className="text-[11px] text-danger mt-1.5 font-medium">{errors.shift.message}</p>}
@@ -191,7 +191,7 @@ export default function ManagerStudentsAdmissionForm() {
                         {...register('seat')}
                         className={`w-full bg-bg-input border ${errors.seat ? 'border-danger focus:ring-danger' : 'border-border focus:ring-primary'} rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2`}
                       >
-                        {SEATS.map((s: any) => <option key={s} value={s}>{s}</option>)}
+                        {SEATS.map((s: unknown) => <option key={s} value={s}>{s}</option>)}
                       </select>
                       {errors.seat && <p className="text-[11px] text-danger mt-1.5 font-medium">{errors.seat.message}</p>}
                     </div>
@@ -218,11 +218,11 @@ export default function ManagerStudentsAdmissionForm() {
                           className="w-full bg-bg-input border border-border rounded-lg pl-9 pr-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary appearance-none"
                           onChange={e => {
                             setValue('plan', e.target.value);
-                            const p = PLANS.find((p: any) => p.value === e.target.value);
+                            const p = PLANS.find((p: unknown) => p.value === e.target.value);
                             if (p) setValue('amountPaid', String(p.amount - discount));
                           }}
                         >
-                          {PLANS.map((p: any) => <option key={p.value} value={p.value}>{p.label}</option>)}
+                          {PLANS.map((p: unknown) => <option key={p.value} value={p.value}>{p.label}</option>)}
                         </select>
                       </div>
                     </div>

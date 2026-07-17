@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the AdminAssetsClient component.
 'use client';
 
 import { useState } from 'react';

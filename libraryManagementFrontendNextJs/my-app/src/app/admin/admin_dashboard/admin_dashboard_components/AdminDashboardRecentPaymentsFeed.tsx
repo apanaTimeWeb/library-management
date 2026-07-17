@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the AdminDashboardRecentPaymentsFeed component.
 'use client';
 
 import Link from 'next/link';

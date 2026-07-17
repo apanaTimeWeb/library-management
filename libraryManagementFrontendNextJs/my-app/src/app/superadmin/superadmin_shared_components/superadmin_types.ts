@@ -84,7 +84,7 @@ export interface ApiResponse<T> {
   success: boolean;
   message: string;
   data: T | null;
-  meta?: any;
+  meta?: unknown;
   error?: string;
   statusCode?: number;
 }

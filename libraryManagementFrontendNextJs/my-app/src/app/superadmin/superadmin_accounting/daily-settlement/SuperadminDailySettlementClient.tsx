@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the SuperadminDailySettlementClient component.
 'use client';
 import React, { useState } from 'react';
 import { superadmin_useSuperadminDailySettlement as useSuperadminDailySettlement } from '@/app/superadmin/superadmin_accounting/daily-settlement/superadmin_daily_settlement_hooks/superadmin_useSuperadminDailySettlement';

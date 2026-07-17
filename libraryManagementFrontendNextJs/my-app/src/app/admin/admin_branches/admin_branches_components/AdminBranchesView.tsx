@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the AdminBranchesView component.
 'use client';
 
 import { Plus, Pencil, Trash2, CheckCircle, Search, AlertTriangle } from 'lucide-react';

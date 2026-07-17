@@ -5,8 +5,8 @@ import { SuperadminCard, CardHeader, CardTitle, CardDescription, CardContent, Ca
 import { SuperadminButton } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminButton';
 import { SuperadminBadge } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminBadge';
 import { Upload, FileSpreadsheet, ChevronRight, CheckCircle, XCircle, AlertTriangle, Download, RefreshCw, Users } from 'lucide-react';
-import { useSuperadminSystemBulkImport } from '../superadmin_system_bulk_import_hooks/useSuperadminSystemBulkImport';
-import { SUPERADMIN_SYSTEM_BULK_IMPORT_STATUS_CONFIG } from '../superadmin_system_constants/SuperadminSystemBulkImportConstants';
+import { useSuperadminSystemBulkImport } from '@/app/superadmin/superadmin_system/superadmin_system_bulk_import_hooks/useSuperadminSystemBulkImport';
+import { SUPERADMIN_SYSTEM_BULK_IMPORT_STATUS_CONFIG } from '@/app/superadmin/superadmin_system/superadmin_system_constants/SuperadminSystemBulkImportConstants';
 
 export function SuperadminSystemBulkImportClient() {
   const {

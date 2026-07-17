@@ -1,6 +1,6 @@
 import { useState, useMemo, useCallback } from 'react';
 import { SUPERADMIN_SYSTEM_MOCK_BACKUP_HISTORY } from '@/app/superadmin/superadmin_system/superadmin_system_data/SuperadminSystemMockData';
-import { SuperadminSystemBackupRecord } from '../superadmin_system_types/SuperadminSystemBackupsTypes';
+import { SuperadminSystemBackupRecord } from '@/app/superadmin/superadmin_system/superadmin_system_types/SuperadminSystemBackupsTypes';
 
 export function useSuperadminSystemBackups() {
   const [autoBackup, setAutoBackup] = useState(true);

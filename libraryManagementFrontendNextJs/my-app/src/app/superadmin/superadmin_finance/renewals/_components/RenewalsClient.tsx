@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the RenewalsClient component.
 'use client';
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
@@ -198,7 +199,7 @@ export function RenewalsClient() {
                 <select
                   className="fin-select"
                   value={renewPlanId}
-                  onChange={( e: any ) => {
+                  onChange={( e: unknown ) => {
                     const id = e.target.value;
                     setRenewPlanId(id);
                     const selectedPlan = PLANS.find((p) => String(p.id) === id);
@@ -214,11 +215,11 @@ export function RenewalsClient() {
               </div>
               <div>
                 <label className="fin-label">Amount</label>
-                <input type="number" className="fin-input" value={renewAmount} onChange={( e: any ) => setRenewAmount(e.target.value)} />
+                <input type="number" className="fin-input" value={renewAmount} onChange={( e: unknown ) => setRenewAmount(e.target.value)} />
               </div>
               <div>
                 <label className="fin-label">Payment Mode</label>
-                <select className="fin-select" value={renewMode} onChange={( e: any ) => setRenewMode(e.target.value)}>
+                <select className="fin-select" value={renewMode} onChange={( e: unknown ) => setRenewMode(e.target.value)}>
                   <option value="cash">Cash</option>
                   <option value="upi">UPI</option>
                   <option value="card">Card</option>
@@ -228,7 +229,7 @@ export function RenewalsClient() {
               {renewMode !== 'cash' && (
                 <div>
                   <label className="fin-label">Transaction ID</label>
-                  <input className="fin-input" value={renewTxnId} onChange={( e: any ) => setRenewTxnId(e.target.value)} placeholder="Enter transaction reference" />
+                  <input className="fin-input" value={renewTxnId} onChange={( e: unknown ) => setRenewTxnId(e.target.value)} placeholder="Enter transaction reference" />
                 </div>
               )}
             </div>
