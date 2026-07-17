@@ -5,7 +5,7 @@ import { ChevronRight, Eye, X, MessageCircle, AlertTriangle } from 'lucide-react
 import { AgGridReact } from 'ag-grid-react';
 import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community';
 import { superadmin_gridTheme } from '@/app/superadmin/superadmin_shared_components/superadmin_gridTheme';
-import { SUPERADMIN_COMMUNICATION_MOCK_WA_LOGS } from '@/app/superadmin/superadmin_communication/superadmin_communication_data/SuperadminCommunicationMockData';
+import { SUPERADMIN_COMMUNICATION_MOCK_WA_LOGS } from '@superadmin/superadmin_communication/superadmin_communication_data/SuperadminCommunicationMockData';
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 

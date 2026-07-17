@@ -19,7 +19,7 @@
       }
     ],
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"], "@admin/*": ["./src/app/admin/*"], "@superadmin/*": ["./src/app/superadmin/*"]
     }
   },
   "include": [

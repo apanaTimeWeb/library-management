@@ -5,7 +5,7 @@
 import { useState } from 'react';
 import { Plus, Edit, PowerOff, Zap, ChevronDown } from 'lucide-react';
 import toast from 'react-hot-toast';
-import { ADMIN_SEATS_MOCK_SHIFTS } from '@/app/admin/admin_seats_shifts_lockers/admin_seats_data/AdminSeatsMockData';
+import { ADMIN_SEATS_MOCK_SHIFTS } from '@admin/admin_seats_shifts_lockers/admin_seats_data/AdminSeatsMockData';
 
 interface Shift {
   id: string;

@@ -7,7 +7,7 @@ import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter }
 import { Button } from '@/app/admin/admin_system/admin_system_components/AdminSystemButton/AdminSystemButton';
 import { Badge } from '@/app/admin/admin_system/admin_system_components/AdminSystemBadge/AdminSystemBadge';
 import { Upload, FileSpreadsheet, ChevronRight, CheckCircle, XCircle, AlertTriangle, Download, RefreshCw } from 'lucide-react';
-import { ADMIN_SYSTEM_MOCK_PREVIEW, ADMIN_SYSTEM_TEMPLATE_HEADERS } from '@/app/admin/admin_system/admin_system_data/AdminSystemMockData';
+import { ADMIN_SYSTEM_MOCK_PREVIEW, ADMIN_SYSTEM_TEMPLATE_HEADERS } from '@admin/admin_system/admin_system_data/AdminSystemMockData2';
 
 type RowStatus = 'ok' | 'error' | 'warning';
 

@@ -14,7 +14,7 @@ import {
   MessageSquare, ChevronRight, Eye, EyeOff, Copy, CheckCircle,
   XCircle, Phone, Zap, BarChart3, Clock, Loader2
 } from 'lucide-react';
-import { ADMIN_SYSTEM_WHATSAPP_PROVIDERS, ADMIN_SYSTEM_WHATSAPP_MESSAGE_LOGS } from '@/app/admin/admin_system/admin_system_data/AdminSystemMockData';
+import { ADMIN_SYSTEM_WHATSAPP_PROVIDERS, ADMIN_SYSTEM_WHATSAPP_MESSAGE_LOGS } from '@admin/admin_system/admin_system_data/AdminSystemMockData2';
 
 
 

@@ -9,7 +9,7 @@ import {
   Database, ChevronRight, Download, RefreshCw, CheckCircle, Clock,
   AlertTriangle, HardDrive, Shield, Cloud, Loader2, Archive, XCircle
 } from 'lucide-react';
-import { SUPERADMIN_SYSTEM_MOCK_BACKUP_HISTORY } from '@/app/superadmin/superadmin_system/superadmin_system_data/SuperadminSystemMockData';
+import { SUPERADMIN_SYSTEM_MOCK_BACKUP_HISTORY } from '@superadmin/superadmin_system/superadmin_system_data/SuperadminSystemMockData';
 
 interface BackupRecord {
   id: string;

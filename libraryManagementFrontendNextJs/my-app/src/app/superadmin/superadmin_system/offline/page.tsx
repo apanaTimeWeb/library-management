@@ -1,7 +1,7 @@
 'use client';
 import { useEffect, useState } from 'react';
 import { WifiOff, RefreshCw, CheckCircle, XCircle } from 'lucide-react';
-import { SUPERADMIN_SYSTEM_MOCK_OFFLINE_FEATURES } from '@/app/superadmin/superadmin_system/superadmin_system_data/SuperadminSystemMockData';
+import { SUPERADMIN_SYSTEM_MOCK_OFFLINE_FEATURES } from '@superadmin/superadmin_system/superadmin_system_data/SuperadminSystemMockData';
 
 
 

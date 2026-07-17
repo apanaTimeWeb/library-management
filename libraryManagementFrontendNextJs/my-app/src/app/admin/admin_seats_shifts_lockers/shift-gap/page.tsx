@@ -5,7 +5,7 @@
 import { useState } from 'react';
 import { ChevronDown, Zap } from 'lucide-react';
 import toast from 'react-hot-toast';
-import { ADMIN_SEATS_MOCK_SHIFT_GAPS, ADMIN_SEATS_MOCK_VIEW_PERIODS } from '@/app/admin/admin_seats_shifts_lockers/admin_seats_data/AdminSeatsMockData';
+import { ADMIN_SEATS_MOCK_SHIFT_GAPS, ADMIN_SEATS_MOCK_VIEW_PERIODS } from '@admin/admin_seats_shifts_lockers/admin_seats_data/AdminSeatsMockData';
 
 const DAY_START_H = 6;
 const DAY_END_H   = 23;

@@ -7,7 +7,7 @@ import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/app
 import { Badge } from '@/app/admin/admin_system/admin_system_components/AdminSystemBadge/AdminSystemBadge';
 import { Button } from '@/app/admin/admin_system/admin_system_components/AdminSystemButton/AdminSystemButton';
 import { Wrench, Package, Lock, ChevronRight } from 'lucide-react';
-import { ADMIN_SYSTEM_MOCK_MAINTENANCE_SEATS, ADMIN_SYSTEM_MOCK_MAINTENANCE_ASSETS, ADMIN_SYSTEM_MOCK_MAINTENANCE_LOCKERS } from '@/app/admin/admin_system/admin_system_data/AdminSystemMockData';
+import { ADMIN_SYSTEM_MOCK_MAINTENANCE_SEATS, ADMIN_SYSTEM_MOCK_MAINTENANCE_ASSETS, ADMIN_SYSTEM_MOCK_MAINTENANCE_LOCKERS } from '@admin/admin_system/admin_system_data/AdminSystemMockData2';
 
 
 

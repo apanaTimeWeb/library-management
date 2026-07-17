@@ -6,7 +6,7 @@ import { AgGridReact } from 'ag-grid-react';
 import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community';
 import { ChevronRight, Send, Mail, Phone, CheckCircle } from 'lucide-react';
 import { superadmin_gridTheme } from '@/app/superadmin/superadmin_shared_components/superadmin_gridTheme';
-import { SUPERADMIN_ENGAGEMENT_MOCK_ABSENTEES } from '@/app/superadmin/superadmin_engagement/superadmin_engagement_data/SuperadminEngagementMockData';
+import { SUPERADMIN_ENGAGEMENT_MOCK_ABSENTEES } from '@superadmin/superadmin_engagement/superadmin_engagement_data/SuperadminEngagementMockData';
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 

@@ -8,7 +8,7 @@ import { AgGridReact } from 'ag-grid-react';
 import { AllCommunityModule, ModuleRegistry, type ColDef } from 'ag-grid-community';
 import { gridTheme } from '@/app/admin/admin_seats_shifts_lockers/admin_seats_shifts_lockers_components/AdminSeatsShiftsLockersgridTheme/AdminSeatsShiftsLockersgridTheme';
 import { AdminGridCell } from '@/app/admin/admin_reusable/admin_reusable_utils/AdminReusableGridTheme';
-import { ADMIN_SEATS_MOCK_HISTORY } from '@/app/admin/admin_seats_shifts_lockers/admin_seats_data/AdminSeatsMockData';
+import { ADMIN_SEATS_MOCK_HISTORY } from '@admin/admin_seats_shifts_lockers/admin_seats_data/AdminSeatsMockData';
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 

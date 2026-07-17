@@ -5,7 +5,7 @@ import { AgGridReact } from 'ag-grid-react';
 import { AllCommunityModule, ModuleRegistry, type ColDef } from 'ag-grid-community';
 import { superadmin_gridTheme } from '@/app/superadmin/superadmin_seats_shifts_lockers/superadmin_seats_shared_components/superadmin_gridTheme';
 import toast from 'react-hot-toast';
-import { SUPERADMIN_SEATS_MOCK_SEATS } from '@/app/superadmin/superadmin_seats_shifts_lockers/superadmin_seats_data/SuperadminSeatsMockData';
+import { SUPERADMIN_SEATS_MOCK_SEATS } from '@superadmin/superadmin_seats_shifts_lockers/superadmin_seats_data/SuperadminSeatsMockData';
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 

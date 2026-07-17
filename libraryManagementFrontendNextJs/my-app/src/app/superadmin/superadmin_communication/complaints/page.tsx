@@ -6,7 +6,7 @@ import { useState, useEffect } from 'react';
 import { fetchApi } from '@/lib/api';
 import { logger } from '@/lib/logger';
 import { ChevronRight, Plus, X, Eye, RefreshCw, CheckCircle, MessageSquare, Circle, Smile } from 'lucide-react';
-import { SUPERADMIN_COMMUNICATION_MOCK_COMPLAINTS } from '@/app/superadmin/superadmin_communication/superadmin_communication_data/SuperadminCommunicationMockData';
+import { SUPERADMIN_COMMUNICATION_MOCK_COMPLAINTS } from '@superadmin/superadmin_communication/superadmin_communication_data/SuperadminCommunicationMockData';
 
 type CStatus = 'Open' | 'In-Progress' | 'Resolved';
 

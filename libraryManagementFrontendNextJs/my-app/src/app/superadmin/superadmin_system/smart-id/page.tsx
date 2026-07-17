@@ -8,7 +8,7 @@ import {
   SuperadminDialogTitle, SuperadminDialogDescription, SuperadminDialogClose
 } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminDialog';
 import { Hash, ChevronRight, ArrowRight, AlertTriangle, LogOut, Search, Target, CheckCircle } from 'lucide-react';
-import { SUPERADMIN_SYSTEM_MOCK_SMART_IDS_ACTIVE } from '@/app/superadmin/superadmin_system/superadmin_system_data/SuperadminSystemMockData';
+import { SUPERADMIN_SYSTEM_MOCK_SMART_IDS_ACTIVE } from '@superadmin/superadmin_system/superadmin_system_data/SuperadminSystemMockData';
 
 const ACTIVE_IDS = SUPERADMIN_SYSTEM_MOCK_SMART_IDS_ACTIVE;
 const ALL_IDS = Array.from({ length: 20 }, (_, i) => i + 1);

@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import { ChevronRight, ArrowRight, CheckCheck, DollarSign, Phone, Handshake, Armchair, Calendar, Clock, Lock, Bell, AlertCircle, Circle } from 'lucide-react';
 
-import { SUPERADMIN_COMMUNICATION_MOCK_NOTIFICATIONS } from '@/app/superadmin/superadmin_communication/superadmin_communication_data/SuperadminCommunicationMockData';
+import { SUPERADMIN_COMMUNICATION_MOCK_NOTIFICATIONS } from '@superadmin/superadmin_communication/superadmin_communication_data/SuperadminCommunicationMockData';
 
 type Category = 'All' | 'Finance' | 'CRM' | 'Operations' | 'Attendance' | 'High Only';
 

@@ -12,7 +12,7 @@ import {
   Settings, Palette, AlertCircle, Zap, CreditCard, Bell, Globe,
   Upload, Eye, EyeOff, Save, ChevronRight
 } from 'lucide-react';
-import { ADMIN_SYSTEM_SETTINGS_CATEGORIES } from '@/app/admin/admin_system/admin_system_data/AdminSystemMockData';
+import { ADMIN_SYSTEM_SETTINGS_CATEGORIES } from '@admin/admin_system/admin_system_data/AdminSystemMockData2';
 
 
 

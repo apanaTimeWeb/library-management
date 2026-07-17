@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { ChevronRight, CheckCircle, X, RefreshCw, LogOut } from 'lucide-react';
-import { SUPERADMIN_ENGAGEMENT_MOCK_QR_STUDENT } from '@/app/superadmin/superadmin_engagement/superadmin_engagement_data/SuperadminEngagementMockData';
+import { SUPERADMIN_ENGAGEMENT_MOCK_QR_STUDENT } from '@superadmin/superadmin_engagement/superadmin_engagement_data/SuperadminEngagementMockData';
 
 interface ScanResult {
   name: string; initials: string; smartId: string;

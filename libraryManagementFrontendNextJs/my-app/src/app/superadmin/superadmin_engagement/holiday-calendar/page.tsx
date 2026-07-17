@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { ChevronRight, ChevronLeft, Plus, X, Trash2, CalendarDays } from 'lucide-react';
-import { SUPERADMIN_ENGAGEMENT_MOCK_HOLIDAYS } from '@/app/superadmin/superadmin_engagement/superadmin_engagement_data/SuperadminEngagementMockData';
+import { SUPERADMIN_ENGAGEMENT_MOCK_HOLIDAYS } from '@superadmin/superadmin_engagement/superadmin_engagement_data/SuperadminEngagementMockData';
 
 interface Holiday { id: string; date: string; name: string; type: string; }
 

@@ -7,7 +7,7 @@ import { SuperadminLabel } from '@/app/superadmin/superadmin_system/superadmin_s
 import { SuperadminBadge } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminBadge';
 import { SuperadminSelect, SuperadminSelectTrigger, SuperadminSelectValue, SuperadminSelectContent, SuperadminSelectItem } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminSelect';
 import { GitBranch, ChevronRight, Zap, CheckCircle } from 'lucide-react';
-import { SUPERADMIN_SYSTEM_MOCK_SEAT_GAPS } from '@/app/superadmin/superadmin_system/superadmin_system_data/SuperadminSystemMockData';
+import { SUPERADMIN_SYSTEM_MOCK_SEAT_GAPS } from '@superadmin/superadmin_system/superadmin_system_data/SuperadminSystemMockData';
 
 interface GapInterval { start: number; end: number; }
 interface GapDetail extends GapInterval { label: string; hours: number; }

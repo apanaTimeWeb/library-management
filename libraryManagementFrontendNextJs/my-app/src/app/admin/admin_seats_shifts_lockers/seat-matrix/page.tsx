@@ -7,7 +7,7 @@ import { fetchApi } from '@/lib/api';
 import { CalendarDays, UserPlus, User } from 'lucide-react';
 import { AdminRecord } from '@/app/admin/admin_reusable/admin_reusable_utils/AdminReusableGridTheme';
 import { logger } from '@/lib/logger';
-import { ADMIN_SEATS_MOCK_SHIFT_TABS, ADMIN_SEATS_MOCK_LEGEND_ITEMS } from '@/app/admin/admin_seats_shifts_lockers/admin_seats_data/AdminSeatsMockData';
+import { ADMIN_SEATS_MOCK_SHIFT_TABS, ADMIN_SEATS_MOCK_LEGEND_ITEMS } from '@admin/admin_seats_shifts_lockers/admin_seats_data/AdminSeatsMockData';
 
 interface SeatData {
   uuid?: string;
