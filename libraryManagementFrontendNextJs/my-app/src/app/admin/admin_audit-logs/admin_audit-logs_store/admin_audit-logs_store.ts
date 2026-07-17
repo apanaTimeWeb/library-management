@@ -20,8 +20,9 @@ export const useAdminAuditLogsStore = create<AdminAuditLogsStoreState>((set) => 
     set({ fetchState: 'loading', errorMessage: null });
     try {
       const data = await fetchApi(ADMIN_API_ROUTES.AUDIT_LOGS);
-      if (Array.isArray(data) && data.length > 0) {
-        const mapped: AuditLogRecord[] = data.map((l: Record<string, unknown>) => ({
+      const actualData = Array.isArray(data) ? data : (data?.data || []);
+      if (Array.isArray(actualData) && actualData.length > 0) {
+        const mapped: AuditLogRecord[] = actualData.map((l: Record<string, unknown>) => ({
           id: String(l.id || `LOG-${Math.random().toString(36).substring(2, 9)}`),
           action: String(l.action || 'System Action'),
           module: String(l.entity || l.module || 'System'),

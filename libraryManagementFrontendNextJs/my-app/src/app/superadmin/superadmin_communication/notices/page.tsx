@@ -32,8 +32,9 @@ export default function NoticesPage() {
 
   useEffect(() => {
     fetchApi('/communication/notices').then(( data: unknown ) => {
-      if (!Array.isArray(data)) return;
-      const mapped: Notice[] = data.map(( n: Record<string, unknown> ) => ({
+      const actualData = Array.isArray(data) ? data : (data as any)?.data;
+      if (!Array.isArray(actualData)) return;
+      const mapped: Notice[] = actualData.map(( n: Record<string, unknown> ) => ({
         id: String(n.id || ''),
         title: String(n.title || 'Notice'),
         message: String(n.message || ''),

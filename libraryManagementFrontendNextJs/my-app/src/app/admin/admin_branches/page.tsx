@@ -14,15 +14,15 @@ async function getBranchesData(): Promise<Branch[]> {
   
   const data = (response.data as Record<string, unknown>[]) || [];
   return data.map((b) => ({
-    id: b.id as string,
-    name: b.name as string,
-    address: b.address as string,
-    city: (b.city as string) || 'N/A',
-    phone: b.contactPhone as string,
-    manager: 'Manager Name',
-    students: 0,
-    seats: 50,
-    status: b.isActive ? 'Active' : 'Inactive',
+    id: (b.id || b.branchId || `B-${Math.random().toString(36).substr(2, 5)}`) as string,
+    name: (b.name || b.branchName || b.branch || 'Unknown Branch') as string,
+    address: (b.address || '123 Branch St') as string,
+    city: (b.city || 'N/A') as string,
+    phone: (b.contactPhone || b.phone || '9999999999') as string,
+    manager: (b.manager || 'Manager Name') as string,
+    students: Number(b.students || 0),
+    seats: Number(b.seats || 50),
+    status: (b.isActive === undefined ? (b.status === 'Active' || b.status === 'Inactive' ? b.status : 'Active') : (b.isActive ? 'Active' : 'Inactive')) as 'Active' | 'Inactive',
   }));
 }
 

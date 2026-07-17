@@ -20,8 +20,9 @@ export const useAdminBlacklistStore = create<AdminBlacklistStoreState>((set, get
     set({ fetchState: 'loading', errorMessage: null });
     try {
       const data = await fetchApi(ADMIN_API_ROUTES.BLACKLIST);
-      if (Array.isArray(data) && data.length > 0) {
-        const mapped: BlacklistedStudentRecord[] = data.map((b: Record<string, unknown>) => ({
+      const actualData = Array.isArray(data) ? data : (data?.data || []);
+      if (Array.isArray(actualData) && actualData.length > 0) {
+        const mapped: BlacklistedStudentRecord[] = actualData.map((b: Record<string, unknown>) => ({
           id: String(b.id || `BL-${Math.random().toString(36).substring(2, 8)}`),
           name: String(b.name || 'Blacklisted Student'),
           phone: String(b.phone || '9999999999'),

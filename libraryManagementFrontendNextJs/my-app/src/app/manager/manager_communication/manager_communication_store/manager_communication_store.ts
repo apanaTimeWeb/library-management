@@ -37,7 +37,8 @@ export const useManagerCommunicationStore = create<ManagerCommunicationState>((s
     set({ noticesStatus: 'loading', noticesError: null });
     try {
       const data = await fetchApi<any[]>('/communication/notices');
-      const mapped = data.map((n) => ({
+      const actualData = Array.isArray(data) ? data : (data?.data || []);
+      const mapped = actualData.map((n: any) => ({
         id: n.id,
         title: n.title,
         message: n.message,
@@ -92,7 +93,8 @@ export const useManagerCommunicationStore = create<ManagerCommunicationState>((s
     set({ complaintsStatus: 'loading', complaintsError: null });
     try {
       const data = await fetchApi<any[]>('/communication/complaints');
-      const mapped = data.map((c) => ({
+      const actualData = Array.isArray(data) ? data : (data?.data || []);
+      const mapped = actualData.map((c: any) => ({
         id: c.id,
         title: c.subject || 'Complaint',
         desc: c.description || '',

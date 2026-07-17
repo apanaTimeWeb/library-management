@@ -11,14 +11,14 @@ async function getStudentsData() {
     return [];
   }
   
-  return response.data.map((s) => ({
-    id: s.id,
-    name: s.fullName,
-    shift: 'Morning', // Placeholder until shift logic is handled
-    seat: s.seatId || 'N/A',
-    plan: s.currentPlanId || 'Monthly',
-    status: s.status === 'ACTIVE' ? 'Active' : 'Inactive',
-    branch: s.branchId || 'Main Branch'
+  return response.data.map((s: any) => ({
+    id: s.id || s.smartId || s._id || `STU-${Math.random().toString(36).substr(2, 5)}`,
+    name: s.fullName || s.name || 'Unknown Student',
+    shift: s.shift || 'Morning',
+    seat: s.seatId || s.seat || 'N/A',
+    plan: s.currentPlanId || s.plan || 'Monthly',
+    status: (s.status === 'ACTIVE' || s.status === 'Active') ? 'Active' : 'Inactive',
+    branch: s.branchId || s.branch || 'Main Branch'
   }));
 }
 

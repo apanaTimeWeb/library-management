@@ -20,8 +20,9 @@ export const useAdminCouponsStore = create<AdminCouponsStoreState>((set, get) =>
     set({ fetchState: 'loading', errorMessage: null });
     try {
       const data = await fetchApi(ADMIN_API_ROUTES.COUPONS);
-      if (Array.isArray(data) && data.length > 0) {
-        const mapped: CouponRecord[] = data.map((c: Record<string, unknown>) => ({
+      const actualData = Array.isArray(data) ? data : (data?.data || []);
+      if (Array.isArray(actualData) && actualData.length > 0) {
+        const mapped: CouponRecord[] = actualData.map((c: Record<string, unknown>) => ({
           id: String(c.id || `C-${Math.random().toString(36).substring(2, 8)}`),
           code: String(c.code || 'COUPON').toUpperCase(),
           discount: Number(c.discountValue || c.discount || 0),

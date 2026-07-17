@@ -52,8 +52,9 @@ export default function Refunds() {
 
   useEffect(() => {
     fetchApi('/finance/refunds').then(( data: unknown ) => {
-      if (!Array.isArray(data)) { setIsLoading(false); return; }
-      const mapped: Refund[] = data.map(( r: Record<string, unknown> ) => ({
+      const actualData = Array.isArray(data) ? data : (data as any)?.data;
+      if (!Array.isArray(actualData)) { setIsLoading(false); return; }
+      const mapped: Refund[] = actualData.map(( r: Record<string, unknown> ) => ({
         id: parseInt(String(r.id || '0'), 10),
         studentName: String(r.name || 'Student'),
         smartId: 'S-001',

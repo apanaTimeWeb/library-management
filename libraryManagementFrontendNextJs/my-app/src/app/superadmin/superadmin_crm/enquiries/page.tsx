@@ -143,8 +143,9 @@ export default function EnquiriesPage() {
 
   useEffect(() => {
     fetchApi('/crm/enquiries').then(( data: unknown ) => {
-      if (!Array.isArray(data)) return;
-      const mapped: Enquiry[] = data.map(( e: Record<string, unknown> ) => ({
+      const actualData = Array.isArray(data) ? data : (data as any)?.data;
+      if (!Array.isArray(actualData)) return;
+      const mapped: Enquiry[] = actualData.map(( e: Record<string, unknown> ) => ({
         id: String(e.id || ''),
         name: String(e.name || ''),
         phone: String(e.phone || ''),

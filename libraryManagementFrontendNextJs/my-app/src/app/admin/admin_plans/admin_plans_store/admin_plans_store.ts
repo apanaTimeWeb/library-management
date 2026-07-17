@@ -20,8 +20,9 @@ export const useAdminPlansStore = create<AdminPlansStoreState>((set, get) => ({
     set({ fetchState: 'loading', errorMessage: null });
     try {
       const data = await fetchApi(ADMIN_API_ROUTES.PLANS);
-      if (Array.isArray(data) && data.length > 0) {
-        const mapped: PlanRecord[] = data.map((p: Record<string, unknown>) => ({
+      const actualData = Array.isArray(data) ? data : (data?.data || []);
+      if (Array.isArray(actualData) && actualData.length > 0) {
+        const mapped: PlanRecord[] = actualData.map((p: Record<string, unknown>) => ({
           id: String(p.id || `P-${Math.random().toString(36).substring(2, 8)}`),
           name: String(p.name || 'Standard Plan'),
           price: Number(p.price || 1000),

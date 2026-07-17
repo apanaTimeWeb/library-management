@@ -38,12 +38,13 @@ const ACTIVITY: ActivityItem[] = [
 
 export default function LockerMatrixPage() {
   const [assignTarget, setAssignTarget] = useState<string | null>(null);
-  const [lockerData, setLockerData] = useState<{ uuid?: string; id: string; status: 'free' | 'occupied' | 'maintenance' }[]>([]);
+  const [lockerData, setLockerData] = useState<LockerData[]>([]);
 
   useEffect(() => {
     fetchApi('/seats_shifts_lockers/lockers').then(( data: unknown ) => {
-      if (!Array.isArray(data)) return;
-      const mapped = data.map(( l: Record<string, unknown> ) => ({
+      const actualData = Array.isArray(data) ? data : (data as any)?.data;
+      if (!Array.isArray(actualData)) return;
+      const mapped: LockerData[] = actualData.map(( l: Record<string, unknown> ) => ({
         uuid: String(l.id || ''),
         id: String(l.lockerNumber || '').replace('L-', ''),
         status: (l.isActive ? 'free' : 'maintenance') as 'free' | 'occupied' | 'maintenance',

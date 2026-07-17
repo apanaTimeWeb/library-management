@@ -20,8 +20,9 @@ export const useAdminExpensesStore = create<AdminExpensesStoreState>((set) => ({
     set({ fetchState: 'loading', errorMessage: null });
     try {
       const data = await fetchApi(ADMIN_API_ROUTES.EXPENSES);
-      if (Array.isArray(data) && data.length > 0) {
-        const mapped: ExpenseRecord[] = data.map((e: Record<string, unknown>) => ({
+      const actualData = Array.isArray(data) ? data : (data?.data || []);
+      if (Array.isArray(actualData) && actualData.length > 0) {
+        const mapped: ExpenseRecord[] = actualData.map((e: Record<string, unknown>) => ({
           id: String(e.id || `E-${Math.random().toString(36).substring(2, 8)}`),
           date: e.expenseDate ? new Date(String(e.expenseDate)).toLocaleDateString() : String(e.date || '01/01/2026'),
           category: String(e.category || 'Monthly Expense'),

@@ -60,8 +60,9 @@ export default function Payments() {
 
   useEffect(() => {
     fetchApi('/finance/payments').then(( data: unknown ) => {
-      if (!Array.isArray(data)) return;
-      const mapped: Payment[] = data.map(( p: Record<string, unknown> ) => ({
+      const actualData = Array.isArray(data) ? data : (data as any)?.data;
+      if (!Array.isArray(actualData)) return;
+      const mapped: Payment[] = actualData.map(( p: Record<string, unknown> ) => ({
         id: typeof p.id === 'number' ? p.id : parseInt(String(p.id || '0'), 10),
         receiptNumber: 'REC-' + String(p.id || '').substring(0, 8),
         date: p.date ? new Date(String(p.date)).toISOString().split('T')[0] : new Date().toISOString().split('T')[0],

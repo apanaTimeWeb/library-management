@@ -41,8 +41,9 @@ export default function SeatMatrixPage() {
 
   useEffect(() => {
     fetchApi('/seats_shifts_lockers/seat-matrix').then(( data: unknown ) => {
-      if (!Array.isArray(data)) return;
-      const mapped: SeatData[] = data.map(( s: Record<string, unknown> ) => ({
+      const actualData = Array.isArray(data) ? data : (data as any)?.data;
+      if (!Array.isArray(actualData)) return;
+      const mapped: SeatData[] = actualData.map(( s: Record<string, unknown> ) => ({
         uuid: String(s.id || ''),
         id: String(s.seatNumber || '').replace('S-', ''),
         status: (s.isActive ? 'free' : 'maintenance') as SeatData['status'],

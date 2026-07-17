@@ -34,8 +34,9 @@ export default function ComplaintsPage() {
 
   useEffect(() => {
     fetchApi('/communication/complaints').then(( data: unknown ) => {
-      if (!Array.isArray(data)) return;
-      const mapped: Complaint[] = data.map(( c: Record<string, any> ) => ({
+      const actualData = Array.isArray(data) ? data : (data as any)?.data;
+      if (!Array.isArray(actualData)) return;
+      const mapped: Complaint[] = actualData.map(( c: Record<string, unknown> ) => ({
         id: String(c.id || Math.random()),
         title: String(c.subject || c.title || 'Complaint'),
         student: String(c.student || c.studentName || 'Mock Student'),

@@ -20,8 +20,9 @@ export const useAdminExpenseCategoriesStore = create<AdminExpenseCategoriesStore
     set({ fetchState: 'loading', errorMessage: null });
     try {
       const data = await fetchApi(ADMIN_API_ROUTES.EXPENSE_CATEGORIES);
-      if (Array.isArray(data) && data.length > 0) {
-        const mapped: ExpenseCategoryRecord[] = data.map((c: Record<string, unknown>) => ({
+      const actualData = Array.isArray(data) ? data : (data?.data || []);
+      if (Array.isArray(actualData) && actualData.length > 0) {
+        const mapped: ExpenseCategoryRecord[] = actualData.map((c: Record<string, unknown>) => ({
           id: String(c.id || `C-${Math.random().toString(36).substring(2, 8)}`),
           name: String(c.name || 'Unnamed Category'),
           description: String(c.description || ''),
