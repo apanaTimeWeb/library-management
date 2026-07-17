@@ -13,24 +13,10 @@ import toast from 'react-hot-toast';
 import { formatCurrency } from '@/app/superadmin/superadmin_finance/superadmin_finance_utils/superadmin_format';
 import { RefreshCw, Send } from 'lucide-react';
 import { superadmin_gridTheme } from '@/app/superadmin/superadmin_finance/superadmin_finance_shared_components/superadmin_gridTheme';
+import { SuperadminSearchableDropdown } from '@/app/superadmin/superadmin_shared_components/SuperadminSearchableDropdown';
+import type { SuperadminFinanceRenewalsFilterType, SuperadminFinanceRenewal } from '@/app/superadmin/superadmin_finance/superadmin_finance_types/SuperadminFinanceTypes';
 
 ModuleRegistry.registerModules([AllCommunityModule]);
-
-type FilterType = 'expired' | 'expiring_7' | 'expiring_15';
-
-type Renewal = {
-  id: number;
-  studentName: string;
-  smartId: string;
-  shift: string;
-  plan: string;
-  planId: number;
-  expiryDate: string;
-  daysLeft: number;
-  lastPaymentDate: string;
-  due: number;
-  total: number;
-};
 
 import { SUPERADMIN_FINANCE_MOCK_RENEWALS } from '@/app/superadmin/superadmin_finance/superadmin_finance_constants/SuperadminFinanceConstants';
 
@@ -40,7 +26,7 @@ const PLANS = [
   { id: 3, name: 'Elite',   price: 2499 },
 ];
 
-const FILTERS: { label: string; value: FilterType; emoji: string }[] = [
+const FILTERS: { label: string; value: SuperadminFinanceRenewalsFilterType; emoji: string }[] = [
   { label: 'Expired',            value: 'expired',     emoji: '🔴' },
   { label: 'Expiring in 7 days', value: 'expiring_7',  emoji: '🟠' },
   { label: 'Expiring in 15 days',value: 'expiring_15', emoji: '🟡' },
@@ -48,8 +34,8 @@ const FILTERS: { label: string; value: FilterType; emoji: string }[] = [
 
 export function RenewalsClient() {
   const router = useRouter();
-  const [filter, setFilter] = useState<FilterType>('expiring_7');
-  const [allRenewals, setAllRenewals] = useState(SUPERADMIN_FINANCE_MOCK_RENEWALS);
+  const [filter, setFilter] = useState<SuperadminFinanceRenewalsFilterType>('expiring_7');
+  const [allRenewals, setAllRenewals] = useState<SuperadminFinanceRenewal[]>(SUPERADMIN_FINANCE_MOCK_RENEWALS);
   const [renewDialog, setRenewDialog] = useState<{ id: number; name: string } | null>(null);
   const [renewPlanId, setRenewPlanId] = useState('');
   const [renewAmount, setRenewAmount] = useState('');
@@ -72,7 +58,7 @@ export function RenewalsClient() {
     toast.success(`Reminder sent to ${name}`);
   };
 
-  const openRenew = (r: Renewal) => {
+  const openRenew = (r: SuperadminFinanceRenewal) => {
     setRenewDialog({ id: r.id, name: r.studentName });
     setRenewPlanId(String(r.planId));
     setRenewAmount(String(r.total));
@@ -158,7 +144,7 @@ export function RenewalsClient() {
 
       {/* Filter tabs */}
       <div className="flex gap-2">
-        {FILTERS.map(( f: FlexRecord ) => (
+        {FILTERS.map(( f: any ) => (
           <button
             key={f.value}
             onClick={() => setFilter(f.value)}
@@ -196,40 +182,39 @@ export function RenewalsClient() {
             <div className="space-y-4">
               <div>
                 <label className="fin-label">Plan</label>
-                <select
-                  className="fin-select"
+                <SuperadminSearchableDropdown
+                  options={PLANS.map(p => ({ label: `${p.name} — ${formatCurrency(p.price)}`, value: String(p.id) }))}
                   value={renewPlanId}
-                  onChange={( e: unknown ) => {
-                    const id = e.target.value;
+                  onChange={(id: string) => {
                     setRenewPlanId(id);
                     const selectedPlan = PLANS.find((p) => String(p.id) === id);
                     if (selectedPlan) {
                       setRenewAmount(String(selectedPlan.price));
                     }
                   }}
-                >
-                  {PLANS.map(( p: FlexRecord ) => (
-                    <option key={p.id} value={String(p.id)}>{p.name} — {formatCurrency(p.price)}</option>
-                  ))}
-                </select>
+                />
               </div>
               <div>
                 <label className="fin-label">Amount</label>
-                <input type="number" className="fin-input" value={renewAmount} onChange={( e: unknown ) => setRenewAmount(e.target.value)} />
+                <input type="number" className="fin-input" value={renewAmount} onChange={( e: any ) => setRenewAmount(e.target.value)} />
               </div>
               <div>
                 <label className="fin-label">Payment Mode</label>
-                <select className="fin-select" value={renewMode} onChange={( e: unknown ) => setRenewMode(e.target.value)}>
-                  <option value="cash">Cash</option>
-                  <option value="upi">UPI</option>
-                  <option value="card">Card</option>
-                  <option value="bank">Bank Transfer</option>
-                </select>
+                <SuperadminSearchableDropdown
+                  options={[
+                    { label: 'Cash', value: 'cash' },
+                    { label: 'UPI', value: 'upi' },
+                    { label: 'Card', value: 'card' },
+                    { label: 'Bank Transfer', value: 'bank' }
+                  ]}
+                  value={renewMode}
+                  onChange={setRenewMode}
+                />
               </div>
               {renewMode !== 'cash' && (
                 <div>
                   <label className="fin-label">Transaction ID</label>
-                  <input className="fin-input" value={renewTxnId} onChange={( e: unknown ) => setRenewTxnId(e.target.value)} placeholder="Enter transaction reference" />
+                  <input className="fin-input" value={renewTxnId} onChange={( e: any ) => setRenewTxnId(e.target.value)} placeholder="Enter transaction reference" />
                 </div>
               )}
             </div>
@@ -249,6 +234,3 @@ export function RenewalsClient() {
     </div>
   );
 }
-
-
-

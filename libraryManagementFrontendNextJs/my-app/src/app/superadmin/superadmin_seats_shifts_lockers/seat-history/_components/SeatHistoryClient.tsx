@@ -2,26 +2,15 @@
 'use client';
 
 import { useMemo, useState } from 'react';
-import { ChevronDown, Search } from 'lucide-react';
+import { Search } from 'lucide-react';
 import { AgGridReact } from 'ag-grid-react';
-import { AllCommunityModule, ModuleRegistry, type ColDef } from 'ag-grid-community';
+import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community';
 import { superadmin_gridTheme } from '@/app/superadmin/superadmin_seats_shifts_lockers/superadmin_seats_shared_components/superadmin_gridTheme';
 import { SUPERADMIN_SEATS_MOCK_HISTORY } from '@superadmin/superadmin_seats_shifts_lockers/superadmin_seats_data/SuperadminSeatsMockData';
+import { SuperadminSearchableDropdown } from '@/app/superadmin/superadmin_shared_components/SuperadminSearchableDropdown';
+import type { SuperadminSeatsHistoryEntry } from '@/app/superadmin/superadmin_seats_shifts_lockers/superadmin_seats_types/SuperadminSeatsShiftsLockersTypes';
 
 ModuleRegistry.registerModules([AllCommunityModule]);
-
-interface SeatHistoryEntry {
-  seatNo: string;
-  studentName: string;
-  smartId: string;
-  shift: string;
-  occupiedFrom: string;
-  occupiedTill: string;
-  duration: string;
-  reason: 'Admission' | 'Shift Change' | 'Seat Change';
-}
-
-
 
 const REASON_CLASS: Record<string, string> = {
   Admission: 'ss-badge ss-badge--success',
@@ -29,7 +18,7 @@ const REASON_CLASS: Record<string, string> = {
   'Seat Change': 'ss-badge ss-badge--warning',
 };
 
-function StudentCell({ data }: { data: SeatHistoryEntry }) {
+function StudentCell({ data }: { data: SuperadminSeatsHistoryEntry }) {
   return <span className="ss-cell-name">{data.studentName}</span>;
 }
 
@@ -43,7 +32,7 @@ export function SeatHistoryClient() {
   const [dateFrom, setDateFrom] = useState('');
   const [dateTo, setDateTo] = useState('');
 
-  const filtered = (SUPERADMIN_SEATS_MOCK_HISTORY as SeatHistoryEntry[]).filter(h => {
+  const filtered = (SUPERADMIN_SEATS_MOCK_HISTORY as SuperadminSeatsHistoryEntry[]).filter(h => {
     const matchSeat = seatFilter === 'All Seats' || h.seatNo === seatFilter;
     const matchSearch = !search ||
       h.studentName.toLowerCase().includes(search.toLowerCase()) ||
@@ -52,6 +41,7 @@ export function SeatHistoryClient() {
     const matchTo = !dateTo || h.occupiedTill <= dateTo;
     return matchSeat && matchSearch && matchFrom && matchTo;
   });
+
   const colDefs = useMemo<any[]>(() => [
     { field: 'seatNo', headerName: 'SEAT #', flex: 0.8, cellClass: 'ss-table__seat-no' },
     { field: 'studentName', headerName: 'STUDENT', flex: 1.5, cellRenderer: StudentCell },
@@ -74,14 +64,17 @@ export function SeatHistoryClient() {
       </div>
 
       <div className="ss-filter-bar">
-        <div className="ss-filter-bar__select-wrap">
-          <select className="ss-select" value={seatFilter} onChange={e => setSeatFilter(e.target.value)}>
-            <option>All Seats</option>
-            <option>S-07</option>
-            <option>S-12</option>
-            <option>S-31</option>
-          </select>
-          <ChevronDown size={14} className="ss-select-icon" />
+        <div style={{ minWidth: 200 }}>
+          <SuperadminSearchableDropdown
+            options={[
+              { label: 'All Seats', value: 'All Seats' },
+              { label: 'S-07', value: 'S-07' },
+              { label: 'S-12', value: 'S-12' },
+              { label: 'S-31', value: 'S-31' }
+            ]}
+            value={seatFilter}
+            onChange={setSeatFilter}
+          />
         </div>
         <div className="ss-filter-bar__input-wrap">
           <Search size={14} className="ss-input-icon" />

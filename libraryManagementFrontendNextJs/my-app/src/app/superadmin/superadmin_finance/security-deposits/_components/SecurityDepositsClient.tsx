@@ -3,12 +3,13 @@
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-
 import { useState, useEffect } from 'react';
-
 import toast from 'react-hot-toast';
 import { formatCurrency } from '@/app/superadmin/superadmin_finance/superadmin_finance_utils/superadmin_format';
 import { Undo2, Minus } from 'lucide-react';
+import { SuperadminSearchableDropdown } from '@/app/superadmin/superadmin_shared_components/SuperadminSearchableDropdown';
+import type { SuperadminFinanceSecurityDeposit } from '@/app/superadmin/superadmin_finance/superadmin_finance_types/SuperadminFinanceTypes';
+import { SUPERADMIN_FINANCE_MOCK_DEPOSITS } from '@/app/superadmin/superadmin_finance/superadmin_finance_constants/SuperadminFinanceConstants';
 
 const STATUS_BADGE: Record<string, string> = {
   held:      'fin-badge fin-badge--info',
@@ -16,24 +17,9 @@ const STATUS_BADGE: Record<string, string> = {
   forfeited: 'fin-badge fin-badge--danger',
 };
 
-type Deposit = {
-  id: number;
-  studentName: string;
-  smartId: string;
-  depositAmount: number;
-  collectedBy: string;
-  collectedDate: string;
-  deductionAmount: number;
-  deductionReason?: string;
-  status: 'held' | 'refunded' | 'forfeited';
-  refundedDate?: string;
-};
-
-import { SUPERADMIN_FINANCE_MOCK_DEPOSITS } from '@/app/superadmin/superadmin_finance/superadmin_finance_constants/SuperadminFinanceConstants';
-
 export function SecurityDepositsClient() {
   const [statusFilter, setStatusFilter] = useState('all');
-  const [deposits, setDeposits] = useState<Deposit[]>([]);
+  const [deposits, setDeposits] = useState<SuperadminFinanceSecurityDeposit[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [refundDialog, setRefundDialog] = useState<{ id: number; name: string; amount: number } | null>(null);
   const [refundAmount, setRefundAmount] = useState('');
@@ -44,7 +30,7 @@ export function SecurityDepositsClient() {
   const [deductReason, setDeductReason] = useState('');
 
   useEffect(() => {
-    const t = setTimeout(() => { setDeposits(SUPERADMIN_FINANCE_MOCK_DEPOSITS as any); setIsLoading(false); }, 700);
+    const t = setTimeout(() => { setDeposits(SUPERADMIN_FINANCE_MOCK_DEPOSITS as SuperadminFinanceSecurityDeposit[]); setIsLoading(false); }, 700);
     return () => clearTimeout(t);
   }, []);
 
@@ -82,12 +68,18 @@ export function SecurityDepositsClient() {
       </div>
 
       <div className="fin-filter-bar">
-        <select className="fin-select w-40" value={statusFilter} onChange={( e: unknown ) => setStatusFilter(e.target.value)}>
-          <option value="all">All Status</option>
-          <option value="held">Held</option>
-          <option value="refunded">Refunded</option>
-          <option value="forfeited">Forfeited</option>
-        </select>
+        <div className="w-40">
+          <SuperadminSearchableDropdown
+            options={[
+              { label: 'All Status', value: 'all' },
+              { label: 'Held', value: 'held' },
+              { label: 'Refunded', value: 'refunded' },
+              { label: 'Forfeited', value: 'forfeited' }
+            ]}
+            value={statusFilter}
+            onChange={setStatusFilter}
+          />
+        </div>
       </div>
 
       <div className="fin-card overflow-x-auto">
@@ -179,15 +171,15 @@ export function SecurityDepositsClient() {
             <div className="space-y-4">
               <div>
                 <label className="fin-label">Refund Amount</label>
-                <input type="number" className="fin-input" value={refundAmount} onChange={( e: unknown ) => setRefundAmount(e.target.value)} />
+                <input type="number" className="fin-input" value={refundAmount} onChange={( e: unknown ) => setRefundAmount(e.target.value as string)} />
               </div>
               <div>
                 <label className="fin-label">Deduction Amount</label>
-                <input type="number" className="fin-input" value={deductionAmount} onChange={( e: unknown ) => setDeductionAmount(e.target.value)} placeholder="0" />
+                <input type="number" className="fin-input" value={deductionAmount} onChange={( e: unknown ) => setDeductionAmount(e.target.value as string)} placeholder="0" />
               </div>
               <div>
                 <label className="fin-label">Deduction Reason {parseFloat(deductionAmount) > 0 && <span className="fin-text-danger">*</span>}</label>
-                <input className="fin-input" value={deductionReason} onChange={( e: unknown ) => setDeductionReason(e.target.value)} placeholder="Reason..." />
+                <input className="fin-input" value={deductionReason} onChange={( e: unknown ) => setDeductionReason(e.target.value as string)} placeholder="Reason..." />
               </div>
             </div>
             <div className="fin-dialog__footer">
@@ -206,11 +198,11 @@ export function SecurityDepositsClient() {
             <div className="space-y-4">
               <div>
                 <label className="fin-label">Amount <span className="fin-text-danger">*</span></label>
-                <input type="number" className="fin-input" value={deductAmt} onChange={( e: unknown ) => setDeductAmt(e.target.value)} />
+                <input type="number" className="fin-input" value={deductAmt} onChange={( e: unknown ) => setDeductAmt(e.target.value as string)} />
               </div>
               <div>
                 <label className="fin-label">Reason <span className="fin-text-danger">*</span></label>
-                <input className="fin-input" value={deductReason} onChange={( e: unknown ) => setDeductReason(e.target.value)} placeholder="Reason for deduction" />
+                <input className="fin-input" value={deductReason} onChange={( e: unknown ) => setDeductReason(e.target.value as string)} placeholder="Reason for deduction" />
               </div>
             </div>
             <div className="fin-dialog__footer">
@@ -229,5 +221,3 @@ export function SecurityDepositsClient() {
     </div>
   );
 }
-
-

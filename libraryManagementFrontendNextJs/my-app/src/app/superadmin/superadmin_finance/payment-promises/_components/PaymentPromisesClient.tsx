@@ -8,27 +8,16 @@ import { useState, useEffect } from 'react';
 
 import toast from 'react-hot-toast';
 import { formatCurrency } from '@/app/superadmin/superadmin_finance/superadmin_finance_utils/superadmin_format';
-import { CheckCircle, CalendarPlus, Eye } from 'lucide-react';
+import { CheckCircle, CalendarPlus } from 'lucide-react';
+import { SuperadminSearchableDropdown } from '@/app/superadmin/superadmin_shared_components/SuperadminSearchableDropdown';
+import type { SuperadminFinancePromiseItem } from '@/app/superadmin/superadmin_finance/superadmin_finance_types/SuperadminFinanceTypes';
+import { SUPERADMIN_FINANCE_MOCK_PROMISES } from '@/app/superadmin/superadmin_finance/superadmin_finance_constants/SuperadminFinanceConstants';
 
 const STATUS_BADGE: Record<string, string> = {
   pending:   'fin-badge fin-badge--warning',
   fulfilled: 'fin-badge fin-badge--success',
   overdue:   'fin-badge fin-badge--danger',
 };
-
-type PromiseItem = {
-  id: number;
-  studentName: string;
-  smartId: string;
-  promisedAmount: number;
-  expectedDate: string;
-  daysUntilDue: number;
-  timesChanged: number;
-  status: 'pending' | 'fulfilled' | 'overdue';
-  fulfilledDate?: string;
-};
-
-import { SUPERADMIN_FINANCE_MOCK_PROMISES } from '@/app/superadmin/superadmin_finance/superadmin_finance_constants/SuperadminFinanceConstants';
 
 function calcDays(dateStr: string) {
   const today = new Date(); today.setHours(0,0,0,0);
@@ -37,14 +26,14 @@ function calcDays(dateStr: string) {
 
 export function PaymentPromisesClient() {
   const [statusFilter, setStatusFilter] = useState('all');
-  const [promises, setPromises] = useState<PromiseItem[]>([]);
+  const [promises, setPromises] = useState<SuperadminFinancePromiseItem[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [extendDialog, setExtendDialog] = useState<{ id: number; name: string } | null>(null);
   const [newDate, setNewDate] = useState('');
   const [extendReason, setExtendReason] = useState('');
 
   useEffect(() => {
-    const t = setTimeout(() => { setPromises(SUPERADMIN_FINANCE_MOCK_PROMISES as any); setIsLoading(false); }, 600);
+    const t = setTimeout(() => { setPromises(SUPERADMIN_FINANCE_MOCK_PROMISES as SuperadminFinancePromiseItem[]); setIsLoading(false); }, 600);
     return () => clearTimeout(t);
   }, []);
 
@@ -77,13 +66,19 @@ export function PaymentPromisesClient() {
         <p className="fin-page-subtitle">Track and manage student payment commitments.</p>
       </div>
 
-      <div className="fin-filter-bar">
-        <select className="fin-select w-40" value={statusFilter} onChange={( e: unknown ) => setStatusFilter(e.target.value)}>
-          <option value="all">All Status</option>
-          <option value="pending">Pending</option>
-          <option value="fulfilled">Fulfilled</option>
-          <option value="overdue">Overdue</option>
-        </select>
+      <div className="fin-filter-bar flex gap-2">
+        <div className="w-40">
+          <SuperadminSearchableDropdown
+            options={[
+              { label: 'All Status', value: 'all' },
+              { label: 'Pending', value: 'pending' },
+              { label: 'Fulfilled', value: 'fulfilled' },
+              { label: 'Overdue', value: 'overdue' }
+            ]}
+            value={statusFilter}
+            onChange={setStatusFilter}
+          />
+        </div>
       </div>
 
       <div className="fin-card overflow-x-auto">
@@ -180,17 +175,17 @@ export function PaymentPromisesClient() {
             <div className="space-y-4">
               <div>
                 <label className="fin-label">New Expected Date <span className="fin-text-danger">*</span></label>
-                <input type="date" className="fin-input" value={newDate} onChange={( e: unknown ) => setNewDate(e.target.value)} />
+                <input type="date" className="fin-input" value={newDate} onChange={( e: any ) => setNewDate(e.target.value)} />
               </div>
               <div>
                 <label className="fin-label">Reason <span className="fin-text-danger">*</span></label>
-                <textarea className="fin-textarea" value={extendReason} onChange={( e: unknown ) => setExtendReason(e.target.value)} placeholder="Reason for extension..." rows={2} />
+                <textarea className="fin-textarea" value={extendReason} onChange={( e: any ) => setExtendReason(e.target.value)} placeholder="Reason for extension..." rows={2} />
               </div>
               <div className="fin-badge fin-badge--warning w-full justify-center py-2">
                  This will decrease the student's Trust Score.
               </div>
             </div>
-            <div className="fin-dialog__footer">
+            <div className="fin-dialog__footer mt-6">
               <button className="fin-badge fin-badge--neutral cursor-pointer" onClick={() => setExtendDialog(null)}>Cancel</button>
               <button
                 className="fin-badge fin-badge--warning cursor-pointer"
@@ -206,6 +201,3 @@ export function PaymentPromisesClient() {
     </div>
   );
 }
-
-
-

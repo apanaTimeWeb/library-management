@@ -5,6 +5,7 @@ import React, { useState } from 'react';
 import { X, Loader } from 'lucide-react';
 import type { SuperadminAsset } from '@/app/superadmin/superadmin_accounting/assets/superadmin_assets_types/SuperadminAssetsTypes';
 import { logger } from '@/lib/logger';
+import { SuperadminSearchableDropdown } from '@/app/superadmin/superadmin_shared_components/SuperadminSearchableDropdown';
 
 interface Props {
   categories: string[];
@@ -52,7 +53,7 @@ export function SuperadminAssetsAddDialog({ categories, onClose, onSave }: Props
         <div className="p-5 border-b border-border bg-bg-page/50 flex items-center justify-between">
           <h2 className="text-lg font-bold text-text-primary">➕ Add Asset</h2>
           <button 
-            className="w-8 h-8 flex items-center justify-center rounded-[var(--radius-md)] text-text-secondary hover:text-danger hover:bg-danger-bg transition-colors"
+            className="w-8 h-8 flex items-center justify-center rounded-[var(--radius-md)] text-text-secondary hover:text-danger hover:bg-danger-bg transition-colors cursor-pointer"
             onClick={onClose}
           >
             <X size={18} />
@@ -71,13 +72,11 @@ export function SuperadminAssetsAddDialog({ categories, onClose, onSave }: Props
           </div>
           <div>
             <label className="text-[11px] font-bold text-text-secondary uppercase tracking-wider block mb-1.5">Category</label>
-            <select 
-              className="w-full bg-bg-input border border-border rounded-[var(--radius-md)] py-2 px-3 text-sm font-medium text-text-primary focus:outline-none focus:border-primary transition-colors shadow-inner" 
-              value={form.category} 
-              onChange={e => setForm(p => ({...p, category: e.target.value}))}
-            >
-              {allCategories.map(c => <option key={c} value={c}>{c}</option>)}
-            </select>
+            <SuperadminSearchableDropdown
+              options={allCategories.map(c => ({ label: c, value: c }))}
+              value={form.category}
+              onChange={val => setForm(p => ({...p, category: val}))}
+            />
           </div>
           <div>
             <label className="text-[11px] font-bold text-text-secondary uppercase tracking-wider block mb-1.5">Purchase Date <span className="text-danger">*</span></label>
@@ -111,14 +110,14 @@ export function SuperadminAssetsAddDialog({ categories, onClose, onSave }: Props
 
         <div className="p-5 border-t border-border bg-bg-page/50 flex justify-end gap-3">
           <button 
-            className="px-4 py-2 bg-transparent border border-border text-text-primary text-sm font-bold rounded-[var(--radius-md)] hover:bg-bg-input transition-colors" 
+            className="px-4 py-2 bg-transparent border border-border text-text-primary text-sm font-bold rounded-[var(--radius-md)] hover:bg-bg-input transition-colors cursor-pointer" 
             onClick={onClose}
             disabled={saving}
           >
             Cancel
           </button>
           <button 
-            className="flex items-center gap-2 px-4 py-2 bg-success text-white text-sm font-bold rounded-[var(--radius-md)] hover:bg-success-hover transition-colors disabled:opacity-50 shadow-sm" 
+            className="flex items-center gap-2 px-4 py-2 bg-success text-white text-sm font-bold rounded-[var(--radius-md)] hover:bg-success-hover transition-colors disabled:opacity-50 shadow-sm cursor-pointer" 
             onClick={handleSave}
             disabled={!isFormValid || saving}
           >
@@ -129,4 +128,3 @@ export function SuperadminAssetsAddDialog({ categories, onClose, onSave }: Props
     </div>
   );
 }
-

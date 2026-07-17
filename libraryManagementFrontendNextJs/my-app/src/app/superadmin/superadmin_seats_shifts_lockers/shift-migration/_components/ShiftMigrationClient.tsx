@@ -5,11 +5,8 @@ import { useState } from 'react';
 import { ArrowLeft, Search, ChevronDown, CreditCard, QrCode, Banknote, CheckCircle, Clock } from 'lucide-react';
 import toast from 'react-hot-toast';
 import { SUPERADMIN_SEATS_MOCK_MIGRATION_STUDENTS } from '@superadmin/superadmin_seats_shifts_lockers/superadmin_seats_data/SuperadminSeatsMockData';
-
-interface Student {
-  id: string; name: string; smartId: string;
-  currentShift: string; currentSeat: string; validTill: string; plan: string; dailyRate: number;
-}
+import { SuperadminSearchableDropdown } from '@/app/superadmin/superadmin_shared_components/SuperadminSearchableDropdown';
+import type { SuperadminSeatsStudent } from '@/app/superadmin/superadmin_seats_shifts_lockers/superadmin_seats_types/SuperadminSeatsShiftsLockersTypes';
 
 const SHIFTS = [
   { name: 'Morning',   seats: 4, rate: 33 },
@@ -28,8 +25,8 @@ function daysRemaining(validTill: string): number {
 export function ShiftMigrationClient() {
   const [step, setStep]                         = useState(1);
   const [search, setSearch]                     = useState('');
-  const [students] = useState<Student[]>(SUPERADMIN_SEATS_MOCK_MIGRATION_STUDENTS as Student[]);
-  const [selectedStudent, setSelectedStudent]   = useState<Student | null>(null);
+  const [students] = useState<SuperadminSeatsStudent[]>(SUPERADMIN_SEATS_MOCK_MIGRATION_STUDENTS as SuperadminSeatsStudent[]);
+  const [selectedStudent, setSelectedStudent]   = useState<SuperadminSeatsStudent | null>(null);
   const [newShift, setNewShift]                 = useState('');
   const [newSeat, setNewSeat]                   = useState('');
   const [showCustomSlot, setShowCustomSlot]     = useState(false);
@@ -68,9 +65,7 @@ export function ShiftMigrationClient() {
 
   return (
     <>
-
       <div className="ss-page ss-page--with-footer">
-
         <div className="ss-page-header-center">
           <h1 className="ss-page-title ss-page-title--lg">Shift Migration Wizard</h1>
           <p className="ss-page-subtitle ss-page-subtitle--mt">Move a student to a different shift with automatic fee adjustment.</p>
@@ -79,7 +74,6 @@ export function ShiftMigrationClient() {
         {/* Stepper */}
         <div className="ss-stepper">
           <div className="ss-stepper__track" />
-          {/* dynamic computed width — allowed inline style */}
           <div className="ss-stepper__progress" style={{ width: `${((step - 1) / 2) * 100}%` }} />
           <div className="ss-stepper__steps">
             {STEPS.map(( s ) => (
@@ -157,27 +151,19 @@ export function ShiftMigrationClient() {
                 <div className="ss-migration-form-grid">
                   <div>
                     <label className="ss-label">New Shift <span className="ss-text-danger">*</span></label>
-                    <div className="ss-select-wrap">
-                      <select className="ss-select" value={newShift} onChange={e => { setNewShift(e.target.value); setNewSeat(''); }}>
-                        <option value="">Select shift...</option>
-                        {SHIFTS.map(( s ) => (
-                          <option key={s.name} value={s.name}>{s.name} ({s.seats} seats free)</option>
-                        ))}
-                      </select>
-                      <ChevronDown size={14} className="ss-select-icon" />
-                    </div>
+                    <SuperadminSearchableDropdown
+                      options={[{ label: 'Select shift...', value: '' }, ...SHIFTS.map((s) => ({ label: `${s.name} (${s.seats} seats free)`, value: s.name }))]}
+                      value={newShift}
+                      onChange={(val) => { setNewShift(val); setNewSeat(''); }}
+                    />
                   </div>
                   <div>
                     <label className="ss-label">New Seat <span className="ss-text-danger">*</span></label>
-                    <div className="ss-select-wrap">
-                      <select className="ss-select" value={newSeat} onChange={e => setNewSeat(e.target.value)} disabled={!newShift}>
-                        <option value="">Select seat...</option>
-                        {newShift && ['B-01', 'B-02', 'B-03', 'B-04'].map(( seat ) => (
-                          <option key={seat}>{seat}</option>
-                        ))}
-                      </select>
-                      <ChevronDown size={14} className="ss-select-icon" />
-                    </div>
+                    <SuperadminSearchableDropdown
+                      options={[{ label: 'Select seat...', value: '' }, ...(newShift ? ['B-01', 'B-02', 'B-03', 'B-04'].map((seat) => ({ label: seat, value: seat })) : [])]}
+                      value={newSeat}
+                      onChange={setNewSeat}
+                    />
                   </div>
                 </div>
 

@@ -1,7 +1,6 @@
-'use client';
-
 // RESPONSIBILITY: Renders library student fee payment records with receipt generation and voiding/reconciliation controls.
 // DATA FLOW: API /finance/payments -> Payments State -> AG Grid / Receipt Action
+'use client';
 
 import type { ICellRendererParams } from 'ag-grid-community';
 import React, { useState, useEffect } from 'react';
@@ -9,31 +8,17 @@ import { useRouter } from 'next/navigation';
 import { fetchApi } from '@/lib/api';
 import { logger } from '@/lib/logger';
 import { AgGridReact } from 'ag-grid-react';
-import { AllCommunityModule, ModuleRegistry, themeQuartz } from 'ag-grid-community';
+import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community';
 
 import toast from 'react-hot-toast';
 import { formatCurrency, formatDate } from '@/app/superadmin/superadmin_finance/superadmin_finance_utils/superadmin_format';
 import { Receipt, Trash2, FileText } from 'lucide-react';
+import { SuperadminSearchableDropdown } from '@/app/superadmin/superadmin_shared_components/SuperadminSearchableDropdown';
+import type { SuperadminFinancePayment } from '@/app/superadmin/superadmin_finance/superadmin_finance_types/SuperadminFinanceTypes';
+import { SUPERADMIN_FINANCE_MOCK_PAYMENTS } from '@/app/superadmin/superadmin_finance/superadmin_finance_constants/SuperadminFinanceConstants';
+import { superadmin_gridTheme } from '@/app/superadmin/superadmin_finance/superadmin_finance_shared_components/superadmin_gridTheme';
 
 ModuleRegistry.registerModules([AllCommunityModule]);
-
-type Payment = {
-  id: number;
-  receiptNumber: string;
-  date: string;
-  studentName: string;
-  smartId: string;
-  amount: number;
-  mode: 'cash' | 'upi' | 'card' | 'bank';
-  txnId?: string;
-  lateFee: number;
-  receivedBy: string;
-  remark?: string;
-  status: 'valid' | 'deleted';
-  deletionReason?: string;
-};
-
-import { SUPERADMIN_FINANCE_MOCK_PAYMENTS } from '@/app/superadmin/superadmin_finance/superadmin_finance_constants/SuperadminFinanceConstants';
 
 const MODE_BADGE: Record<string, string> = {
   cash: 'fin-badge fin-badge--cash',
@@ -42,7 +27,6 @@ const MODE_BADGE: Record<string, string> = {
   bank: 'fin-badge fin-badge--bank',
 };
 
-import { superadmin_gridTheme } from '@/app/superadmin/superadmin_finance/superadmin_finance_shared_components/superadmin_gridTheme';
 export function PaymentsClient() {
   const router = useRouter();
   const [modeFilter, setModeFilter] = useState('all');
@@ -50,16 +34,16 @@ export function PaymentsClient() {
   const [deleteDialog, setDeleteDialog] = useState<{ id: number; receipt: string } | null>(null);
   const [deleteReason, setDeleteReason] = useState('');
   const [isDeleting, setIsDeleting] = useState(false);
-  const [allPayments, setAllPayments] = useState<Payment[]>([]);
+  const [allPayments, setAllPayments] = useState<SuperadminFinancePayment[]>([]);
 
   useEffect(() => {
-    fetchApi('/finance/payments').then(( data: unknown ) => {
-      const actualData = Array.isArray(data) ? data : (data as any)?.data;
+    fetchApi('/finance/payments').then(( data: any ) => {
+      const actualData = Array.isArray(data) ? data : data?.data;
       if (!Array.isArray(actualData) || actualData.length === 0 || String(actualData[0]?.id).startsWith('MOCK-')) {
-        setAllPayments(SUPERADMIN_FINANCE_MOCK_PAYMENTS as any);
+        setAllPayments(SUPERADMIN_FINANCE_MOCK_PAYMENTS as SuperadminFinancePayment[]);
         return;
       }
-      const mapped: Payment[] = actualData.map(( p: Record<string, unknown> ) => ({
+      const mapped: SuperadminFinancePayment[] = actualData.map(( p: Record<string, any> ) => ({
         id: typeof p.id === 'number' ? p.id : parseInt(String(p.id || '0'), 10),
         receiptNumber: 'REC-' + String(p.id || '').substring(0, 8),
         date: p.date ? new Date(String(p.date)).toISOString().split('T')[0] : new Date().toISOString().split('T')[0],
@@ -217,17 +201,23 @@ export function PaymentsClient() {
       </div>
 
       <div className="fin-filter-bar">
-        <select className="fin-select w-40" value={modeFilter} onChange={( e: unknown ) => setModeFilter(e.target.value)}>
-          <option value="all">All Modes</option>
-          <option value="cash">Cash</option>
-          <option value="upi">UPI</option>
-          <option value="card">Card</option>
-          <option value="bank">Bank Transfer</option>
-        </select>
+        <div className="w-40">
+          <SuperadminSearchableDropdown
+            options={[
+              { label: 'All Modes', value: 'all' },
+              { label: 'Cash', value: 'cash' },
+              { label: 'UPI', value: 'upi' },
+              { label: 'Card', value: 'card' },
+              { label: 'Bank Transfer', value: 'bank' }
+            ]}
+            value={modeFilter}
+            onChange={setModeFilter}
+          />
+        </div>
         <div className="flex items-center gap-2">
           <button
             className={`fin-switch ${showDeleted ? 'fin-switch--on' : 'fin-switch--off'}`}
-            onClick={() => setShowDeleted((v: unknown) => !v)}
+            onClick={() => setShowDeleted((v: any) => !v)}
             type="button"
           >
             <span className="fin-switch__thumb" />
@@ -262,17 +252,17 @@ export function PaymentsClient() {
             <h2 className="fin-dialog__title">🗑️ Delete Payment — {deleteDialog.receipt}</h2>
             <button className="fin-dialog__close" onClick={() => setDeleteDialog(null)}>✕</button>
             <p className="fin-dialog-helper">Soft-delete this payment? This action is permanent and logged in Audit Logs.</p>
-            <div className="space-y-2">
+            <div className="space-y-2 mt-4">
               <label className="fin-label">Deletion reason <span className="fin-text-danger">*</span></label>
               <textarea
                 className="fin-textarea"
                 value={deleteReason}
-                onChange={( e: unknown ) => setDeleteReason(e.target.value)}
+                onChange={( e: any ) => setDeleteReason(e.target.value)}
                 placeholder="Enter reason for deletion..."
                 rows={2}
               />
             </div>
-            <div className="fin-dialog__footer">
+            <div className="fin-dialog__footer mt-6">
               <button className="fin-badge fin-badge--neutral cursor-pointer" onClick={() => setDeleteDialog(null)}>Cancel</button>
               <button
                 className="fin-badge fin-badge--danger cursor-pointer"
@@ -288,5 +278,3 @@ export function PaymentsClient() {
     </div>
   );
 }
-
-

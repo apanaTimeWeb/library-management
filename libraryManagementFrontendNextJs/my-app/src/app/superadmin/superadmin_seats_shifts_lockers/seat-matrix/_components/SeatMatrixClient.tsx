@@ -7,16 +7,7 @@ import { useState, useEffect } from 'react';
 import { fetchApi } from '@/lib/api';
 import { logger } from '@/lib/logger';
 import { CalendarDays, UserPlus, User } from 'lucide-react';
-
-interface SeatData {
-  uuid?: string;
-  id: string;
-  status: 'free' | 'occupied' | 'expiring' | 'maintenance';
-  student?: string;
-  smartId?: string;
-  shift?: string;
-  expiry?: string;
-}
+import type { SuperadminSeatsSeatData } from '@/app/superadmin/superadmin_seats_shifts_lockers/superadmin_seats_types/SuperadminSeatsShiftsLockersTypes';
 
 
 const SHIFT_TABS = ['All', 'Morning', 'Evening', 'Full Day'];
@@ -36,18 +27,18 @@ const SHIFT_BADGE: Record<string, string> = {
 
 export function SeatMatrixClient() {
   const [activeTab, setActiveTab]       = useState('All');
-  const [selectedSeat, setSelectedSeat] = useState<SeatData | null>(null);
+  const [selectedSeat, setSelectedSeat] = useState<SuperadminSeatsSeatData | null>(null);
   const [date, setDate]                 = useState(() => new Date().toISOString().slice(0, 10));
-  const [seatsData, setSeatsData]       = useState<SeatData[]>([]);
+  const [seatsData, setSeatsData]       = useState<SuperadminSeatsSeatData[]>([]);
 
   useEffect(() => {
     fetchApi('/seats_shifts_lockers/seat-matrix').then(( data: unknown ) => {
       const actualData = Array.isArray(data) ? data : (data as any)?.data;
       if (!Array.isArray(actualData) || actualData.length === 0 || actualData[0]?.id?.startsWith('MOCK-')) {
-        const mockSeats: SeatData[] = Array.from({ length: 60 }).map((_, i) => ({
+        const mockSeats: SuperadminSeatsSeatData[] = Array.from({ length: 60 }).map((_, i) => ({
           uuid: `S-${i}`,
           id: String(i + 1).padStart(2, '0'),
-          status: (i % 7 === 0) ? 'maintenance' : (i % 3 === 0 ? 'occupied' : (i % 5 === 0 ? 'expiring' : 'free')) as SeatData['status'],
+          status: (i % 7 === 0) ? 'maintenance' : (i % 3 === 0 ? 'occupied' : (i % 5 === 0 ? 'expiring' : 'free')) as SuperadminSeatsSeatData['status'],
           student: (i % 3 === 0 || i % 5 === 0) ? `Student ${i+1}` : undefined,
           smartId: (i % 3 === 0 || i % 5 === 0) ? `ID-${1000 + i}` : undefined,
           shift: i % 2 === 0 ? 'Morning' : 'Evening',
@@ -56,10 +47,10 @@ export function SeatMatrixClient() {
         setSeatsData(mockSeats);
         return;
       }
-      const mapped: SeatData[] = actualData.map(( s: Record<string, unknown> ) => ({
+      const mapped: SuperadminSeatsSeatData[] = actualData.map(( s: Record<string, unknown> ) => ({
         uuid: String(s.id || ''),
         id: String(s.seatNumber || '').replace('S-', ''),
-        status: (s.isActive ? 'free' : 'maintenance') as SeatData['status'],
+        status: (s.isActive ? 'free' : 'maintenance') as SuperadminSeatsSeatData['status'],
       }));
       setSeatsData(mapped);
     }).catch(err => logger.error('Failed to load seat matrix', err));

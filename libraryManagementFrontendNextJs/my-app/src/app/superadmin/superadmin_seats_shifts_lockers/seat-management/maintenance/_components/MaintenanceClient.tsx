@@ -2,28 +2,17 @@
 'use client';
 
 import { useState, useMemo } from 'react';
-import { ChevronDown, AlertTriangle, Plus } from 'lucide-react';
+import { AlertTriangle, Plus } from 'lucide-react';
 import { AgGridReact } from 'ag-grid-react';
-import { AllCommunityModule, ModuleRegistry, type ColDef } from 'ag-grid-community';
+import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community';
 import { superadmin_gridTheme } from '@/app/superadmin/superadmin_seats_shifts_lockers/superadmin_seats_shared_components/superadmin_gridTheme';
 import toast from 'react-hot-toast';
+import { SuperadminSearchableDropdown } from '@/app/superadmin/superadmin_shared_components/SuperadminSearchableDropdown';
+import type { SuperadminSeatsLogEntry, SuperadminSeatsSeatStatus } from '@/app/superadmin/superadmin_seats_shifts_lockers/superadmin_seats_types/SuperadminSeatsShiftsLockersTypes';
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
-type SeatStatus = 'Working' | 'Maintenance' | 'Broken';
-
-interface LogEntry {
-  id: string;
-  num: number;
-  date: string;
-  remark: string;
-  doneBy: string;
-  statusBefore: SeatStatus;
-  statusAfter: SeatStatus;
-  cost: string;
-}
-
-const SEAT_LOGS: Record<string, LogEntry[]> = {
+const SEAT_LOGS: Record<string, SuperadminSeatsLogEntry[]> = {
   'S-006': [
     { id: '1', num: 1, date: '10 Oct 2024', remark: 'Chair leg repaired', doneBy: 'Ramesh K.', statusBefore: 'Broken', statusAfter: 'Working', cost: '₹350' },
     { id: '2', num: 2, date: '15 Aug 2024', remark: 'Routine inspection', doneBy: 'Suresh M.', statusBefore: 'Working', statusAfter: 'Working', cost: '—' },
@@ -40,23 +29,22 @@ const SEAT_LOGS: Record<string, LogEntry[]> = {
 
 const SEATS = Object.keys(SEAT_LOGS);
 
-// Days since last log (hardcoded for demo)
 const DAYS_SINCE: Record<string, number> = { 'S-006': 14, 'S-017': 9, 'S-029': 62, 'S-043': 19 };
 
-const STATUS_CLASS: Record<SeatStatus, string> = {
+const STATUS_CLASS: Record<SuperadminSeatsSeatStatus, string> = {
   Working: 'ss-badge ss-badge--success',
   Maintenance: 'ss-badge ss-badge--warning',
   Broken: 'ss-badge ss-badge--danger',
 };
 
-const CURRENT_STATUS: Record<string, SeatStatus> = {
+const CURRENT_STATUS: Record<string, SuperadminSeatsSeatStatus> = {
   'S-006': 'Working', 'S-017': 'Maintenance', 'S-029': 'Broken', 'S-043': 'Working',
 };
 
-const EMPTY_FORM = { date: '', remark: '', doneBy: '', newStatus: 'Working' as SeatStatus, cost: '' };
+const EMPTY_FORM = { date: '', remark: '', doneBy: '', newStatus: 'Working' as SuperadminSeatsSeatStatus, cost: '' };
 
 function StatusBadge({ value }: { value: string }) {
-  return <span className={STATUS_CLASS[value as SeatStatus] ?? 'ss-badge ss-badge--inactive'}>{value}</span>;
+  return <span className={STATUS_CLASS[value as SuperadminSeatsSeatStatus] ?? 'ss-badge ss-badge--inactive'}>{value}</span>;
 }
 
 export function MaintenanceClient() {
@@ -82,7 +70,7 @@ export function MaintenanceClient() {
   function handleAddEntry() {
     if (!validate()) return;
     const prevStatus = currentLogs.length > 0 ? currentLogs[currentLogs.length - 1].statusAfter : currentStatus;
-    const newEntry: LogEntry = {
+    const newEntry: SuperadminSeatsLogEntry = {
       id: Date.now().toString(),
       num: currentLogs.length + 1,
       date: form.date,
@@ -109,7 +97,6 @@ export function MaintenanceClient() {
 
   return (
     <>
-
       <div className="ss-page">
         <div className="ss-page-header">
           <div>
@@ -118,18 +105,17 @@ export function MaintenanceClient() {
           </div>
         </div>
 
-        {/* Seat selector + status */}
         <div className="ss-filter-bar">
-          <div className="ss-filter-bar__select-wrap">
-            <select className="ss-select" value={selectedSeat} onChange={e => setSelectedSeat(e.target.value)}>
-              {SEATS.map(( s ) => <option key={s}>{s}</option>)}
-            </select>
-            <ChevronDown size={14} className="ss-select-icon" />
+          <div style={{ minWidth: 200 }}>
+            <SuperadminSearchableDropdown
+              options={SEATS.map(s => ({ label: s, value: s }))}
+              value={selectedSeat}
+              onChange={setSelectedSeat}
+            />
           </div>
           <span className={STATUS_CLASS[currentStatus]}>{currentStatus}</span>
         </div>
 
-        {/* Overdue alert */}
         {showOverdue && (
           <div className="ss-alert-banner">
             <AlertTriangle size={16} className="ss-text-warning" />
@@ -137,7 +123,6 @@ export function MaintenanceClient() {
           </div>
         )}
 
-        {/* History table */}
         {currentLogs.length === 0 ? (
           <div className="ss-empty-state">
             <p className="ss-empty-state__icon">🔧</p>
@@ -149,7 +134,6 @@ export function MaintenanceClient() {
           </div>
         )}
 
-        {/* Add New Entry form */}
         <div className="ss-card ss-form-card">
           <h3 className="ss-section-heading ss-form-card__title">Add New Entry</h3>
           <div className="ss-form-grid">
@@ -164,14 +148,15 @@ export function MaintenanceClient() {
             </div>
             <div className="ss-form-field">
               <label className="ss-label">New Seat Status <span className="ss-text-danger">*</span></label>
-              <div className="ss-select-wrap">
-                <select className="ss-select" value={form.newStatus} onChange={e => setForm(p => ({ ...p, newStatus: e.target.value as SeatStatus }))}>
-                  <option>Working</option>
-                  <option>Maintenance</option>
-                  <option>Broken</option>
-                </select>
-                <ChevronDown size={14} className="ss-select-icon" />
-              </div>
+              <SuperadminSearchableDropdown
+                options={[
+                  { label: 'Working', value: 'Working' },
+                  { label: 'Maintenance', value: 'Maintenance' },
+                  { label: 'Broken', value: 'Broken' }
+                ]}
+                value={form.newStatus}
+                onChange={val => setForm(p => ({ ...p, newStatus: val as SuperadminSeatsSeatStatus }))}
+              />
             </div>
             <div className="ss-form-field">
               <label className="ss-label">Cost (₹)</label>

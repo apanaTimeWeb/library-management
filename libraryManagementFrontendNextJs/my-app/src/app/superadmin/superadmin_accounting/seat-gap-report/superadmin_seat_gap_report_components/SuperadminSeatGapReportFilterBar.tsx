@@ -1,6 +1,7 @@
 // RESPONSIBILITY: Renders the SuperadminSeatGapReportFilterBar component.
 import React, { useState } from 'react';
 import { Download, Loader } from 'lucide-react';
+import { SuperadminSearchableDropdown } from '@/app/superadmin/superadmin_shared_components/SuperadminSearchableDropdown';
 
 interface Props {
   shiftFilter: string;
@@ -22,29 +23,33 @@ export function SuperadminSeatGapReportFilterBar({ shiftFilter, setShiftFilter, 
   return (
     <div className="bg-bg-card border border-border rounded-[var(--radius-lg)] p-4 shadow-sm mb-6 flex flex-wrap items-center gap-3">
       <label className="text-xs font-bold text-text-secondary uppercase tracking-wider mr-1">Filters:</label>
-      <select 
-        className="bg-bg-input border border-border rounded-[var(--radius-md)] py-1.5 px-3 text-sm font-medium text-text-primary focus:outline-none focus:border-primary transition-colors shadow-inner min-w-36" 
-        value={shiftFilter} 
-        onChange={e => setShiftFilter(e.target.value)}
-      >
-        <option value="all">All Shifts</option>
-        <option value="Morning">Morning</option>
-        <option value="Afternoon">Afternoon</option>
-        <option value="Night">Night</option>
-      </select>
+      <div className="min-w-36">
+        <SuperadminSearchableDropdown
+          options={[
+            { label: 'All Shifts', value: 'all' },
+            { label: 'Morning', value: 'Morning' },
+            { label: 'Afternoon', value: 'Afternoon' },
+            { label: 'Night', value: 'Night' }
+          ]}
+          value={shiftFilter}
+          onChange={setShiftFilter}
+        />
+      </div>
       
-      <select 
-        className="bg-bg-input border border-border rounded-[var(--radius-md)] py-1.5 px-3 text-sm font-medium text-text-primary focus:outline-none focus:border-primary transition-colors shadow-inner min-w-36" 
-        value={statusFilter} 
-        onChange={e => setStatusFilter(e.target.value)}
-      >
-        <option value="all">All Status</option>
-        <option value="vacant">Vacant</option>
-        <option value="maintenance">Maintenance</option>
-      </select>
+      <div className="min-w-36">
+        <SuperadminSearchableDropdown
+          options={[
+            { label: 'All Status', value: 'all' },
+            { label: 'Vacant', value: 'vacant' },
+            { label: 'Maintenance', value: 'maintenance' }
+          ]}
+          value={statusFilter}
+          onChange={setStatusFilter}
+        />
+      </div>
 
       <button 
-        className="ml-auto flex items-center gap-2 bg-bg-input hover:bg-border border border-border text-text-primary text-xs font-bold py-1.5 px-3 rounded-[var(--radius-sm)] transition-colors shadow-sm disabled:opacity-50"
+        className="ml-auto flex items-center gap-2 bg-bg-input hover:bg-border border border-border text-text-primary text-xs font-bold py-1.5 px-3 rounded-[var(--radius-sm)] transition-colors shadow-sm disabled:opacity-50 cursor-pointer"
         onClick={handleExportClick}
         disabled={exporting}
       >

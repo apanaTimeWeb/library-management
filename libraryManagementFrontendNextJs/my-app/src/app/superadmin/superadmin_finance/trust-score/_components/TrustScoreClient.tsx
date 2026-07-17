@@ -3,10 +3,11 @@
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-
 import { useState, useEffect } from 'react';
-
 import { ShieldCheck, ShieldAlert, ShieldX, Users } from 'lucide-react';
+import { SuperadminSearchableDropdown } from '@/app/superadmin/superadmin_shared_components/SuperadminSearchableDropdown';
+import type { SuperadminFinanceTrustScoreStudent } from '@/app/superadmin/superadmin_finance/superadmin_finance_types/SuperadminFinanceTypes';
+import { SUPERADMIN_FINANCE_MOCK_STUDENTS_TRUST } from '@/app/superadmin/superadmin_finance/superadmin_finance_constants/SuperadminFinanceConstants';
 
 const BADGE_CLASS: Record<string, string> = {
   reliable: 'fin-badge fin-badge--success',
@@ -19,20 +20,6 @@ const BADGE_ICON: Record<string, typeof ShieldCheck> = {
   moderate: ShieldAlert,
   low:      ShieldX,
 };
-
-type Student = {
-  rank: number;
-  studentName: string;
-  smartId: string;
-  shift: 'Morning' | 'Evening' | 'Full Day';
-  trustScore: number;
-  totalPromises: number;
-  timesChanged: number;
-  fulfilledCount: number;
-  badge: 'reliable' | 'moderate' | 'low';
-};
-
-import { SUPERADMIN_FINANCE_MOCK_STUDENTS_TRUST } from '@/app/superadmin/superadmin_finance/superadmin_finance_constants/SuperadminFinanceConstants';
 
 function TrustGauge({ score }: { score: number }) {
   const color = score >= 70 ? 'var(--success)' : score >= 40 ? 'var(--warning)' : 'var(--danger)';
@@ -56,7 +43,7 @@ export function TrustScoreClient() {
     return () => clearTimeout(t);
   }, []);
 
-  const filtered = SUPERADMIN_FINANCE_MOCK_STUDENTS_TRUST.filter((s) => {
+  const filtered = (SUPERADMIN_FINANCE_MOCK_STUDENTS_TRUST as SuperadminFinanceTrustScoreStudent[]).filter((s) => {
     const lm = levelFilter === 'all' || s.badge === levelFilter;
     const sm = shiftFilter === 'all' || s.shift === shiftFilter;
     return lm && sm;
@@ -97,19 +84,31 @@ export function TrustScoreClient() {
         </div>
       </div>
 
-      <div className="fin-filter-bar">
-        <select className="fin-select w-40" value={levelFilter} onChange={( e: unknown ) => setLevelFilter(e.target.value)}>
-          <option value="all">All Levels</option>
-          <option value="reliable">Reliable</option>
-          <option value="moderate">Moderate</option>
-          <option value="low">Low Trust</option>
-        </select>
-        <select className="fin-select w-40" value={shiftFilter} onChange={( e: unknown ) => setShiftFilter(e.target.value)}>
-          <option value="all">All Shifts</option>
-          <option value="Morning">Morning</option>
-          <option value="Evening">Evening</option>
-          <option value="Full Day">Full Day</option>
-        </select>
+      <div className="fin-filter-bar flex gap-2">
+        <div className="w-40">
+          <SuperadminSearchableDropdown
+            options={[
+              { label: 'All Levels', value: 'all' },
+              { label: 'Reliable', value: 'reliable' },
+              { label: 'Moderate', value: 'moderate' },
+              { label: 'Low Trust', value: 'low' }
+            ]}
+            value={levelFilter}
+            onChange={setLevelFilter}
+          />
+        </div>
+        <div className="w-40">
+          <SuperadminSearchableDropdown
+            options={[
+              { label: 'All Shifts', value: 'all' },
+              { label: 'Morning', value: 'Morning' },
+              { label: 'Evening', value: 'Evening' },
+              { label: 'Full Day', value: 'Full Day' }
+            ]}
+            value={shiftFilter}
+            onChange={setShiftFilter}
+          />
+        </div>
       </div>
 
       <div className="fin-card overflow-x-auto">
@@ -147,7 +146,7 @@ export function TrustScoreClient() {
                 </td>
               </tr>
             ) : (
-              filtered.map(( s: FlexRecord ) => {
+              filtered.map(( s: SuperadminFinanceTrustScoreStudent ) => {
                 const Icon = BADGE_ICON[s.badge] || ShieldCheck;
                 return (
                   <tr key={s.smartId} className="fin-table-hover-row fin-table-row">
@@ -187,5 +186,3 @@ export function TrustScoreClient() {
     </div>
   );
 }
-
-

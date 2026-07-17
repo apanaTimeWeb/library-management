@@ -9,7 +9,8 @@ import { useRouter } from 'next/navigation';
 
 import toast from 'react-hot-toast';
 import { formatCurrency } from '@/app/superadmin/superadmin_finance/superadmin_finance_utils/superadmin_format';
-import { RefreshCw, Eye } from 'lucide-react';
+import { RefreshCw } from 'lucide-react';
+import { SuperadminSearchableDropdown } from '@/app/superadmin/superadmin_shared_components/SuperadminSearchableDropdown';
 
 import { SUPERADMIN_FINANCE_MOCK_SUBSCRIPTIONS } from '@/app/superadmin/superadmin_finance/superadmin_finance_constants/SuperadminFinanceConstants';
 
@@ -58,25 +59,43 @@ export function SubscriptionsClient() {
         <p className="fin-page-subtitle">Manage all student subscriptions.</p>
       </div>
 
-      <div className="fin-filter-bar">
-        <select className="fin-select w-40" value={statusFilter} onChange={( e: unknown ) => setStatusFilter(e.target.value)}>
-          <option value="all">All Status</option>
-          <option value="active">Active</option>
-          <option value="expired">Expired</option>
-          <option value="suspended">Suspended</option>
-          <option value="cancelled">Cancelled</option>
-        </select>
-        <select className="fin-select w-40" value={planFilter} onChange={( e: unknown ) => setPlanFilter(e.target.value)}>
-          <option value="all">All Plans</option>
-          <option value="Basic Plan">Basic Plan</option>
-          <option value="Premium Plan">Premium Plan</option>
-        </select>
-        <select className="fin-select w-40" value={shiftFilter} onChange={( e: unknown ) => setShiftFilter(e.target.value)}>
-          <option value="all">All Shifts</option>
-          <option value="Morning">Morning</option>
-          <option value="Evening">Evening</option>
-          <option value="Full Day">Full Day</option>
-        </select>
+      <div className="fin-filter-bar flex gap-2">
+        <div className="w-40">
+          <SuperadminSearchableDropdown
+            options={[
+              { label: 'All Status', value: 'all' },
+              { label: 'Active', value: 'active' },
+              { label: 'Expired', value: 'expired' },
+              { label: 'Suspended', value: 'suspended' },
+              { label: 'Cancelled', value: 'cancelled' }
+            ]}
+            value={statusFilter}
+            onChange={setStatusFilter}
+          />
+        </div>
+        <div className="w-40">
+          <SuperadminSearchableDropdown
+            options={[
+              { label: 'All Plans', value: 'all' },
+              { label: 'Basic Plan', value: 'Basic Plan' },
+              { label: 'Premium Plan', value: 'Premium Plan' }
+            ]}
+            value={planFilter}
+            onChange={setPlanFilter}
+          />
+        </div>
+        <div className="w-40">
+          <SuperadminSearchableDropdown
+            options={[
+              { label: 'All Shifts', value: 'all' },
+              { label: 'Morning', value: 'Morning' },
+              { label: 'Evening', value: 'Evening' },
+              { label: 'Full Day', value: 'Full Day' }
+            ]}
+            value={shiftFilter}
+            onChange={setShiftFilter}
+          />
+        </div>
       </div>
 
       <div className="fin-card overflow-x-auto">
@@ -119,7 +138,7 @@ export function SubscriptionsClient() {
                 </td>
               </tr>
             ) : (
-              rows.map(( s: FlexRecord ) => (
+              rows.map(( s: any ) => (
                 <tr key={s.id} className="fin-table-hover-row fin-table-row cursor-pointer" onClick={() => toast.success(`Viewing subscription for ${s.studentName}`)}>
                   <td className="py-3 px-4 fin-cell-name">{s.studentName}</td>
                   <td className="py-3 px-4 fin-mono">{s.smartId}</td>
@@ -160,5 +179,3 @@ export function SubscriptionsClient() {
     </div>
   );
 }
-
-

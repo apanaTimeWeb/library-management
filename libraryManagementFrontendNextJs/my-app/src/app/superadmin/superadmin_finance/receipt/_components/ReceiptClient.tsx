@@ -4,10 +4,11 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { formatCurrency, formatDate } from '@/app/superadmin/superadmin_finance/superadmin_finance_utils/superadmin_format';
-import { Search, Receipt, Eye, Printer, Send } from 'lucide-react';
+import { Search, Receipt, Printer, Send } from 'lucide-react';
 import { openWhatsApp } from '@/lib/whatsappUtils';
 import { printThermal } from '@/lib/thermalPrint';
-
+import { SuperadminSearchableDropdown } from '@/app/superadmin/superadmin_shared_components/SuperadminSearchableDropdown';
+import type { SuperadminFinanceReceiptFilterMode } from '@/app/superadmin/superadmin_finance/superadmin_finance_types/SuperadminFinanceTypes';
 import { SUPERADMIN_FINANCE_MOCK_RECEIPTS } from '@/app/superadmin/superadmin_finance/superadmin_finance_constants/SuperadminFinanceConstants';
 
 const MODE_BADGE: Record<string, string> = {
@@ -15,14 +16,12 @@ const MODE_BADGE: Record<string, string> = {
   card: 'fin-badge fin-badge--card', 'bank transfer': 'fin-badge fin-badge--bank',
 };
 
-type FilterMode = 'all' | 'upi' | 'cash' | 'card' | 'bank transfer';
-
 import { useRouter } from 'next/navigation';
 
 export function ReceiptClient() {
   const router = useRouter();
   const [search, setSearch]           = useState('');
-  const [modeFilter, setModeFilter]   = useState<FilterMode>('all');
+  const [modeFilter, setModeFilter]   = useState<SuperadminFinanceReceiptFilterMode>('all');
 
   const filtered = SUPERADMIN_FINANCE_MOCK_RECEIPTS.filter(r => {
     const ms = !search || r.studentName.toLowerCase().includes(search.toLowerCase()) ||
@@ -100,13 +99,19 @@ export function ReceiptClient() {
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 fin-icon-muted" />
           <input className="fin-input fin-input--pl9" placeholder="Search by receipt no., student name or ID..." value={search} onChange={e => setSearch(e.target.value)} />
         </div>
-        <select className="fin-select w-40" value={modeFilter} onChange={e => setModeFilter(e.target.value as FilterMode)}>
-          <option value="all">All Modes</option>
-          <option value="upi">UPI</option>
-          <option value="cash">Cash</option>
-          <option value="card">Card</option>
-          <option value="bank transfer">Bank Transfer</option>
-        </select>
+        <div className="w-40">
+          <SuperadminSearchableDropdown
+            options={[
+              { label: 'All Modes', value: 'all' },
+              { label: 'UPI', value: 'upi' },
+              { label: 'Cash', value: 'cash' },
+              { label: 'Card', value: 'card' },
+              { label: 'Bank Transfer', value: 'bank transfer' }
+            ]}
+            value={modeFilter}
+            onChange={(val) => setModeFilter(val as SuperadminFinanceReceiptFilterMode)}
+          />
+        </div>
       </div>
 
       <div className="fin-card overflow-x-auto">
@@ -157,4 +162,3 @@ export function ReceiptClient() {
     </div>
   );
 }
-

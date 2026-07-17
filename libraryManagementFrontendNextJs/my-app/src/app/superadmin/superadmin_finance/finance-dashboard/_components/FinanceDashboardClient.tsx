@@ -1,7 +1,6 @@
 // RESPONSIBILITY: Renders the FinanceDashboardClient component.
 'use client';
 
-
 import { useState, useEffect } from 'react';
 import {
   PiggyBank, Users, Clock, Ban, UsersRound, ShieldAlert,
@@ -9,26 +8,16 @@ import {
 } from 'lucide-react';
 import { formatCurrency } from '@/app/superadmin/superadmin_finance/superadmin_finance_utils/superadmin_format';
 
-interface DashboardStats {
-  totalCollections: number; collectionsGrowth: number; activeStudents: number;
-  expiringSoon: number; suspended: number; totalReferrals: number;
-  depositsHeld: number; pendingPromises: number; overdueStudents: number;
-  pendingRefunds: number; renewalsDue: number; lateFeeAccrued: number;
-}
-interface RecentPayment {
-  id: number; studentName: string; studentSmartId: string;
-  amount: number; mode: string; date: string;
-}
-
+import type { SuperadminFinanceDashboardStats, SuperadminFinanceRecentPayment } from '@/app/superadmin/superadmin_finance/superadmin_finance_types/SuperadminFinanceTypes';
 import { SUPERADMIN_FINANCE_DASHBOARD_MOCK_STATS, SUPERADMIN_FINANCE_RECENT_PAYMENTS } from '@/app/superadmin/superadmin_finance/superadmin_finance_constants/SuperadminFinanceConstants';
 
 export function FinanceDashboardClient() {
-  const [stats, setStats] = useState<DashboardStats | null>(null);
-  const [recentPayments, setRecentPayments] = useState<RecentPayment[]>([]);
+  const [stats, setStats] = useState<SuperadminFinanceDashboardStats | null>(null);
+  const [recentPayments, setRecentPayments] = useState<SuperadminFinanceRecentPayment[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const t = setTimeout(() => { setStats(SUPERADMIN_FINANCE_DASHBOARD_MOCK_STATS); setRecentPayments(SUPERADMIN_FINANCE_RECENT_PAYMENTS as any); setIsLoading(false); }, 600);
+    const t = setTimeout(() => { setStats(SUPERADMIN_FINANCE_DASHBOARD_MOCK_STATS); setRecentPayments(SUPERADMIN_FINANCE_RECENT_PAYMENTS as SuperadminFinanceRecentPayment[]); setIsLoading(false); }, 600);
     return () => clearTimeout(t);
   }, []);
 
@@ -102,7 +91,7 @@ export function FinanceDashboardClient() {
                   </div>
                 </div>
               ))
-            : recentPayments.map(( p: FlexRecord ) => (
+            : recentPayments.map(( p: SuperadminFinanceRecentPayment ) => (
                 <div key={p.id} className="fin-payment-row">
                   <div>
                     <div className="fin-cell-name">{p.studentName}</div>

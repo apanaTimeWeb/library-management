@@ -2,31 +2,21 @@
 'use client';
 
 import { useState } from 'react';
-import { Plus, Edit, PowerOff, Zap, ChevronDown } from 'lucide-react';
+import { Plus, Edit, PowerOff, Zap } from 'lucide-react';
 import toast from 'react-hot-toast';
 import { SUPERADMIN_SEATS_MOCK_SHIFTS } from '@superadmin/superadmin_seats_shifts_lockers/superadmin_seats_data/SuperadminSeatsMockData';
-
-interface Shift {
-  id: string;
-  name: string;
-  startTime: string;
-  endTime: string;
-  occupancy: number;
-  capacity: number;
-  active: boolean;
-}
-
-
+import { SuperadminSearchableDropdown } from '@/app/superadmin/superadmin_shared_components/SuperadminSearchableDropdown';
+import type { SuperadminSeatsShift } from '@/app/superadmin/superadmin_seats_shifts_lockers/superadmin_seats_types/SuperadminSeatsShiftsLockersTypes';
 
 const EMPTY_FORM = { name: '', startTime: '', endTime: '', active: true };
 
 export function ShiftManagementClient() {
-  const [shifts, setShifts]             = useState<Shift[]>(SUPERADMIN_SEATS_MOCK_SHIFTS as Shift[]);
+  const [shifts, setShifts]             = useState<SuperadminSeatsShift[]>(SUPERADMIN_SEATS_MOCK_SHIFTS as SuperadminSeatsShift[]);
   const [showModal, setShowModal]       = useState(false);
-  const [editShift, setEditShift]       = useState<Shift | null>(null);
+  const [editShift, setEditShift]       = useState<SuperadminSeatsShift | null>(null);
   const [form, setForm]                 = useState(EMPTY_FORM);
   const [errors, setErrors]             = useState<Record<string, string>>({});
-  const [deactivateTarget, setDeactivateTarget] = useState<Shift | null>(null);
+  const [deactivateTarget, setDeactivateTarget] = useState<SuperadminSeatsShift | null>(null);
 
   function openAdd() {
     setEditShift(null);
@@ -35,7 +25,7 @@ export function ShiftManagementClient() {
     setShowModal(true);
   }
 
-  function openEdit(shift: Shift) {
+  function openEdit(shift: SuperadminSeatsShift) {
     setEditShift(shift);
     setForm({ name: shift.name, startTime: shift.startTime, endTime: shift.endTime, active: shift.active });
     setErrors({});
@@ -70,7 +60,7 @@ export function ShiftManagementClient() {
     setDeactivateTarget(null);
   }
 
-  function handleActivate(shift: Shift) {
+  function handleActivate(shift: SuperadminSeatsShift) {
     setShifts(prev => prev.map(( s ) => s.id === shift.id ? { ...s, active: true } : s));
     toast.success(`${shift.name} shift activated.`);
   }
@@ -173,13 +163,11 @@ export function ShiftManagementClient() {
               </div>
               <div className="ss-form-field ss-form-field--full">
                 <label className="ss-label">Active</label>
-                <div className="ss-select-wrap">
-                  <select className="ss-select" value={form.active ? 'yes' : 'no'} onChange={e => setForm(p => ({ ...p, active: e.target.value === 'yes' }))}>
-                    <option value="yes">Yes</option>
-                    <option value="no">No</option>
-                  </select>
-                  <ChevronDown size={14} className="ss-select-icon" />
-                </div>
+                <SuperadminSearchableDropdown
+                  options={[{ label: 'Yes', value: 'yes' }, { label: 'No', value: 'no' }]}
+                  value={form.active ? 'yes' : 'no'}
+                  onChange={val => setForm(p => ({ ...p, active: val === 'yes' }))}
+                />
               </div>
             </div>
             <div className="ss-modal-footer">

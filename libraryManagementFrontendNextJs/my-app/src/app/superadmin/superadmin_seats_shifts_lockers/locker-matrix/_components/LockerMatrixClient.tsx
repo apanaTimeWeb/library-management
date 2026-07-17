@@ -5,18 +5,11 @@
 
 import { useState, useEffect } from 'react';
 import { User, KeyRound, LockKeyhole, Settings } from 'lucide-react';
-import type { ReactNode } from 'react';
 import toast from 'react-hot-toast';
 import { fetchApi } from '@/lib/api';
 import { logger } from '@/lib/logger';
+import type { SuperadminSeatsLockerData, SuperadminSeatsActivityItem } from '@/app/superadmin/superadmin_seats_shifts_lockers/superadmin_seats_types/SuperadminSeatsShiftsLockersTypes';
 
-
-
-interface LockerData {
-  uuid: string;
-  id: string;
-  status: 'free' | 'occupied' | 'maintenance';
-}
 
 const STATS: { label: string; value: string; border: string; valueClass: string }[] = [
   { label: 'Total Capacity',   value: '120', border: 'ss-kpi-card__border-primary', valueClass: 'ss-kpi-card__value--primary' },
@@ -31,21 +24,15 @@ const LEGEND_ITEMS = [
   { cls: 'ss-legend-dot--warning', label: 'Maintenance' },
 ];
 
-interface ActivityItem {
-  icon: ReactNode;
-  text: string;
-  sub: string;
-  id: string;
-}
 
-const ACTIVITY: ActivityItem[] = [
+const ACTIVITY: SuperadminSeatsActivityItem[] = [
   { icon: <User size={16} />,     text: 'Locker C10 assigned to Alex Chen',  sub: '2 mins ago • Monthly Plan', id: '#99201' },
   { icon: <KeyRound size={16} />, text: 'Locker B08 released by Maria V.',   sub: '15 mins ago • Session End', id: '#99198' },
 ];
 
 export function LockerMatrixClient() {
   const [assignTarget, setAssignTarget] = useState<string | null>(null);
-  const [lockerData, setLockerData] = useState<LockerData[]>([]);
+  const [lockerData, setLockerData] = useState<SuperadminSeatsLockerData[]>([]);
 
   useEffect(() => {
     fetchApi('/seats_shifts_lockers/lockers').then(( data: unknown ) => {
@@ -59,7 +46,7 @@ export function LockerMatrixClient() {
         setLockerData(mockLockers);
         return;
       }
-      const mapped: LockerData[] = actualData.map(( l: Record<string, unknown> ) => ({
+      const mapped: SuperadminSeatsLockerData[] = actualData.map(( l: Record<string, unknown> ) => ({
         uuid: String(l.id || ''),
         id: String(l.lockerNumber || '').replace('L-', ''),
         status: (l.isActive ? 'free' : 'maintenance') as 'free' | 'occupied' | 'maintenance',

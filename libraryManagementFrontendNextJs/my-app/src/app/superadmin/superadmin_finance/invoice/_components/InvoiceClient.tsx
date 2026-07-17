@@ -4,24 +4,23 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { formatCurrency, formatDate } from '@/app/superadmin/superadmin_finance/superadmin_finance_utils/superadmin_format';
-import { Search, FileText, Printer, Download, Eye, Send } from 'lucide-react';
+import { Search, FileText, Printer, Send } from 'lucide-react';
 import { openWhatsApp } from '@/lib/whatsappUtils';
 import { printThermal } from '@/lib/thermalPrint';
-
+import { SuperadminSearchableDropdown } from '@/app/superadmin/superadmin_shared_components/SuperadminSearchableDropdown';
+import type { SuperadminFinanceInvoiceFilterStatus } from '@/app/superadmin/superadmin_finance/superadmin_finance_types/SuperadminFinanceTypes';
 import { SUPERADMIN_FINANCE_MOCK_INVOICES } from '@/app/superadmin/superadmin_finance/superadmin_finance_constants/SuperadminFinanceConstants';
 
 const STATUS_BADGE: Record<string, string> = {
   paid: 'fin-badge fin-badge--success', pending: 'fin-badge fin-badge--warning', overdue: 'fin-badge fin-badge--danger',
 };
 
-type FilterStatus = 'all' | 'paid' | 'pending' | 'overdue';
-
 import { useRouter } from 'next/navigation';
 
 export function InvoiceClient() {
   const router = useRouter();
   const [search, setSearch]           = useState('');
-  const [statusFilter, setStatusFilter] = useState<FilterStatus>('all');
+  const [statusFilter, setStatusFilter] = useState<SuperadminFinanceInvoiceFilterStatus>('all');
 
   const filtered = SUPERADMIN_FINANCE_MOCK_INVOICES.filter(inv => {
     const ms = !search || inv.studentName.toLowerCase().includes(search.toLowerCase()) ||
@@ -87,7 +86,7 @@ export function InvoiceClient() {
           { label: 'TOTAL INVOICES',    value: SUPERADMIN_FINANCE_MOCK_INVOICES.length.toString() },
           { label: 'TOTAL BILLED',      value: formatCurrency(SUPERADMIN_FINANCE_MOCK_INVOICES.reduce((s, i) => s + i.grandTotal, 0)), success: true },
           { label: 'PENDING / OVERDUE', value: SUPERADMIN_FINANCE_MOCK_INVOICES.filter(i => i.paymentStatus !== 'paid').length.toString(), warning: true },
-        ].map(( k: unknown ) => (
+        ].map(( k: any ) => (
           <div key={k.label} className={`fin-kpi-card${k.warning ? ' fin-kpi-card--warning' : ''}`}>
             <div className="fin-kpi-card__header"><p className={`fin-kpi-label${k.warning ? ' fin-kpi-label--warning' : ''}`}>{k.label}</p><FileText size={18} className={k.warning ? 'fin-text-warning' : 'fin-icon-muted'} /></div>
             <p className={`fin-kpi-value${k.success ? ' fin-text-success' : k.warning ? ' fin-kpi-value--warning' : ''}`}>{k.value}</p>
@@ -95,17 +94,23 @@ export function InvoiceClient() {
         ))}
       </div>
 
-      <div className="fin-filter-bar">
+      <div className="fin-filter-bar flex gap-2">
         <div className="relative flex-1 min-w-52">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 fin-icon-muted" />
           <input className="fin-input fin-input--pl9" placeholder="Search by invoice no., student name or ID..." value={search} onChange={e => setSearch(e.target.value)} />
         </div>
-        <select className="fin-select w-40" value={statusFilter} onChange={e => setStatusFilter(e.target.value as FilterStatus)}>
-          <option value="all">All Status</option>
-          <option value="paid">Paid</option>
-          <option value="pending">Pending</option>
-          <option value="overdue">Overdue</option>
-        </select>
+        <div className="w-40">
+          <SuperadminSearchableDropdown
+            options={[
+              { label: 'All Status', value: 'all' },
+              { label: 'Paid', value: 'paid' },
+              { label: 'Pending', value: 'pending' },
+              { label: 'Overdue', value: 'overdue' }
+            ]}
+            value={statusFilter}
+            onChange={(val) => setStatusFilter(val as SuperadminFinanceInvoiceFilterStatus)}
+          />
+        </div>
       </div>
 
       <div className="fin-card overflow-x-auto">
@@ -160,4 +165,3 @@ export function InvoiceClient() {
     </div>
   );
 }
-

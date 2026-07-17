@@ -1,22 +1,10 @@
 // RESPONSIBILITY: Renders the ReferralsClient component.
 'use client';
 
-
 import { useState, useEffect } from 'react';
 import { formatCurrency } from '@/app/superadmin/superadmin_finance/superadmin_finance_utils/superadmin_format';
-import { Users, Trophy, Gift, IndianRupee } from 'lucide-react';
-
-type Referrer = {
-  id: number;
-  name: string;
-  smartId: string;
-  referredNames: string[];
-  referredCount: number;
-  bonusEarned: number;
-  redeemed: number;
-  balance: number;
-};
-
+import { Users, Trophy, IndianRupee } from 'lucide-react';
+import type { SuperadminFinanceReferrer } from '@/app/superadmin/superadmin_finance/superadmin_finance_types/SuperadminFinanceTypes';
 import { SUPERADMIN_FINANCE_MOCK_REFERRERS } from '@/app/superadmin/superadmin_finance/superadmin_finance_constants/SuperadminFinanceConstants';
 
 const totalReferrals = SUPERADMIN_FINANCE_MOCK_REFERRERS.reduce((a, r) => a + r.referredCount, 0);
@@ -99,7 +87,7 @@ export function ReferralsClient() {
                 </td>
               </tr>
             ) : (
-              SUPERADMIN_FINANCE_MOCK_REFERRERS.map((r, idx) => (
+              SUPERADMIN_FINANCE_MOCK_REFERRERS.map((r: SuperadminFinanceReferrer, idx) => (
                 <tr key={r.id} className="fin-table-hover-row fin-table-row">
                     <td className="py-3 px-4">
                       <span className={idx === 0 ? 'fin-text-warning font-bold' : 'fin-text-muted'}>#{idx + 1}</span>
@@ -136,5 +124,3 @@ export function ReferralsClient() {
     </div>
   );
 }
-
-

@@ -9,11 +9,11 @@ import { Search, CheckCircle, IndianRupee, BookOpen, MessageSquare, Printer, X }
 import { openWhatsApp } from '@/lib/whatsappUtils';
 import { printThermal } from '@/lib/thermalPrint';
 
+import type { SuperadminFinanceCollectFeeMode, SuperadminFinanceReceiptData } from '@/app/superadmin/superadmin_finance/superadmin_finance_types/SuperadminFinanceTypes';
 import { SUPERADMIN_FINANCE_MOCK_STUDENTS_COLLECT_FEE } from '@/app/superadmin/superadmin_finance/superadmin_finance_constants/SuperadminFinanceConstants';
 
 const MODES = ['cash', 'upi', 'card', 'bank'] as const;
-type Mode = typeof MODES[number];
-const MODE_LABELS: Record<Mode, string> = { cash: 'Cash', upi: 'UPI', card: 'Card', bank: 'Bank Transfer' };
+const MODE_LABELS: Record<SuperadminFinanceCollectFeeMode, string> = { cash: 'Cash', upi: 'UPI', card: 'Card', bank: 'Bank Transfer' };
 
 let receiptCounter = 124;
 
@@ -24,7 +24,7 @@ function maskPhone(phone: string): string {
 
 function buildWhatsAppReceipt(params: {
   receiptNo: string; student: typeof SUPERADMIN_FINANCE_MOCK_STUDENTS_COLLECT_FEE[0];
-  amount: number; mode: Mode; txnId: string;
+  amount: number; mode: SuperadminFinanceCollectFeeMode; txnId: string;
   lateFee: number; couponDiscount: number; total: number;
   remark: string; date: string;
 }): string {
@@ -69,19 +69,12 @@ function buildWhatsAppReceipt(params: {
   return lines.join('\n');
 }
 
-interface ReceiptData {
-  receiptNo: string; studentName: string; studentId: string;
-  phone: string; total: number; mode: Mode; date: string; waMessage: string;
-  student: typeof SUPERADMIN_FINANCE_MOCK_STUDENTS_COLLECT_FEE[0]; amount: number; lateFee: number;
-  couponDiscount: number; txnId: string; remark: string;
-}
-
 export function CollectFeeClient() {
   const [search, setSearch]             = useState('');
   const [showDropdown, setShowDropdown] = useState(false);
   const [selectedStudent, setSelectedStudent] = useState<typeof SUPERADMIN_FINANCE_MOCK_STUDENTS_COLLECT_FEE[0] | null>(null);
   const [amount, setAmount]             = useState('');
-  const [mode, setMode]                 = useState<Mode>('cash');
+  const [mode, setMode]                 = useState<SuperadminFinanceCollectFeeMode>('cash');
   const [txnId, setTxnId]               = useState('');
   const [couponCode, setCouponCode]     = useState('');
   const [couponDiscount, setCouponDiscount] = useState(0);
@@ -90,7 +83,7 @@ export function CollectFeeClient() {
   const [lateFeeOverride, setLateFeeOverride] = useState(false);
   const [remark, setRemark]             = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [receiptData, setReceiptData]   = useState<ReceiptData | null>(null);
+  const [receiptData, setReceiptData]   = useState<SuperadminFinanceReceiptData | null>(null);
 
   const filteredStudents = SUPERADMIN_FINANCE_MOCK_STUDENTS_COLLECT_FEE.filter(s =>
     search.length >= 2 &&
@@ -225,7 +218,7 @@ export function CollectFeeClient() {
                     { l: 'Receipt', v: receiptData.receiptNo },
                     { l: 'Amount',  v: formatCurrency(receiptData.total), color: 'var(--success)' },
                     { l: 'Mode',    v: MODE_LABELS[receiptData.mode] },
-                  ].map(( r: unknown ) => (
+                  ].map(( r: any ) => (
                     <div key={r.l} className="fin-receipt-modal-info-row">
                       <span className="fin-cell-subtext">{r.l}</span>
                       <span className="fin-cell-name" style={{ color: r.color }}>{r.v}</span>
@@ -408,5 +401,3 @@ export function CollectFeeClient() {
     </>
   );
 }
-
-

@@ -11,26 +11,15 @@ import toast from 'react-hot-toast';
 import { formatCurrency } from '@/app/superadmin/superadmin_finance/superadmin_finance_utils/superadmin_format';
 import { Settings, AlertTriangle, Save, MessageSquare } from 'lucide-react';
 import { openWhatsApp } from '@/lib/whatsappUtils';
-
-type Config = { gracePeriodDays: number; penaltyPerDay: number };
-type OverdueStudent = {
-  studentId: string;
-  studentName: string;
-  smartId: string;
-  phone: string;
-  dueDate: string;
-  daysOverdue: number;
-  accruedFee: number;
-  totalDue: number;
-};
+import type { SuperadminFinanceLateFeesConfig, SuperadminFinanceOverdueStudent } from '@/app/superadmin/superadmin_finance/superadmin_finance_types/SuperadminFinanceTypes';
 
 import { SUPERADMIN_FINANCE_MOCK_CONFIG_LATE_FEES, SUPERADMIN_FINANCE_MOCK_OVERDUE_STUDENTS } from '@/app/superadmin/superadmin_finance/superadmin_finance_constants/SuperadminFinanceConstants';
 
 
 export function LateFeesClient() {
   const router = useRouter();
-  const [config, setConfig] = useState<Config | null>(null);
-  const [overdue, setOverdue] = useState<OverdueStudent[]>([]);
+  const [config, setConfig] = useState<SuperadminFinanceLateFeesConfig | null>(null);
+  const [overdue, setOverdue] = useState<SuperadminFinanceOverdueStudent[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [editing, setEditing] = useState(false);
   const [graceDays, setGraceDays] = useState('');
@@ -57,7 +46,7 @@ export function LateFeesClient() {
     }, 600);
   };
 
-  const sendWhatsAppReminder = (s: OverdueStudent) => {
+  const sendWhatsAppReminder = (s: SuperadminFinanceOverdueStudent) => {
     const lines = [
       `━━━━━━━━━━━━━━━━━━━━━━`,
       `📚 *SMART LIBRARY 360*`,
@@ -79,7 +68,7 @@ export function LateFeesClient() {
       `🎓 Keep studying hard!`,
       `📚 Smart Library 360`
     ];
-    const message = lines.join('\\n');
+    const message = lines.join('\n');
     openWhatsApp(s.phone, message);
   };
 
@@ -111,12 +100,12 @@ export function LateFeesClient() {
           <div className="space-y-4">
             <div>
               <label className="fin-label">Grace Period (days)</label>
-              <input type="number" className="fin-input" value={graceDays} onChange={( e: unknown ) => setGraceDays(e.target.value)} />
+              <input type="number" className="fin-input" value={graceDays} onChange={( e: any ) => setGraceDays(e.target.value)} />
               <p className="fin-input-hint">Days after due date before penalties apply</p>
             </div>
             <div>
               <label className="fin-label">Penalty Per Day (₹)</label>
-              <input type="number" className="fin-input" value={penaltyRate} onChange={( e: unknown ) => setPenaltyRate(e.target.value)} />
+              <input type="number" className="fin-input" value={penaltyRate} onChange={( e: any ) => setPenaltyRate(e.target.value)} />
               <p className="fin-input-hint">Daily late fee amount after grace period</p>
             </div>
             <div className="flex gap-2">
@@ -216,5 +205,3 @@ export function LateFeesClient() {
     </div>
   );
 }
-
-

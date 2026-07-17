@@ -2,17 +2,15 @@
 'use client';
 
 import { useState } from 'react';
-import { ChevronDown, Zap } from 'lucide-react';
+import { Zap } from 'lucide-react';
 import toast from 'react-hot-toast';
 import { SUPERADMIN_SEATS_MOCK_SHIFT_GAPS } from '@superadmin/superadmin_seats_shifts_lockers/superadmin_seats_data/SuperadminSeatsMockData';
+import { SuperadminSearchableDropdown } from '@/app/superadmin/superadmin_shared_components/SuperadminSearchableDropdown';
+import type { SuperadminSeatsShiftGapData, SuperadminSeatsBookedBlock, SuperadminSeatsGapBlock } from '@/app/superadmin/superadmin_seats_shifts_lockers/superadmin_seats_types/SuperadminSeatsShiftsLockersTypes';
 
 const DAY_START_H = 6;
 const DAY_END_H   = 23;
 const TOTAL_HOURS = DAY_END_H - DAY_START_H;
-
-interface BookedBlock { startH: number; endH: number; label: string; }
-interface GapBlock    { startH: number; endH: number; seats: number; revLoss: number; }
-interface ShiftData   { id: string; name: string; occupied: number; capacity: number; booked: BookedBlock[]; gaps: GapBlock[]; }
 
 const VIEW_PERIODS = ['Today', 'This Week', 'This Month'];
 
@@ -25,7 +23,7 @@ function fmtH(h: number) {
 }
 
 export function ShiftGapClient() {
-  const [shifts] = useState<ShiftData[]>(SUPERADMIN_SEATS_MOCK_SHIFT_GAPS as ShiftData[]);
+  const [shifts] = useState<SuperadminSeatsShiftGapData[]>(SUPERADMIN_SEATS_MOCK_SHIFT_GAPS as SuperadminSeatsShiftGapData[]);
   const [shiftFilter, setShiftFilter] = useState('All');
   const [period, setPeriod]           = useState('Today');
 
@@ -33,7 +31,6 @@ export function ShiftGapClient() {
 
   return (
     <>
-
       <div className="ss-page">
         <div className="ss-page-header">
           <div>
@@ -43,18 +40,22 @@ export function ShiftGapClient() {
         </div>
 
         <div className="ss-filter-bar">
-          <div className="ss-filter-bar__select-wrap">
-            <select className="ss-select" value={shiftFilter} onChange={e => setShiftFilter(e.target.value)}>
-              <option value="All">All Shifts</option>
-              {SUPERADMIN_SEATS_MOCK_SHIFT_GAPS.map((s) => <option key={s.id}>{s.name}</option>)}
-            </select>
-            <ChevronDown size={14} className="ss-select-icon" />
+          <div style={{ minWidth: 200 }}>
+            <SuperadminSearchableDropdown
+              options={[
+                { label: 'All Shifts', value: 'All' },
+                ...SUPERADMIN_SEATS_MOCK_SHIFT_GAPS.map((s) => ({ label: s.name, value: s.name }))
+              ]}
+              value={shiftFilter}
+              onChange={setShiftFilter}
+            />
           </div>
-          <div className="ss-filter-bar__select-wrap">
-            <select className="ss-select" value={period} onChange={e => setPeriod(e.target.value)}>
-              {VIEW_PERIODS.map(( p ) => <option key={p}>{p}</option>)}
-            </select>
-            <ChevronDown size={14} className="ss-select-icon" />
+          <div style={{ minWidth: 200 }}>
+            <SuperadminSearchableDropdown
+              options={VIEW_PERIODS.map(p => ({ label: p, value: p }))}
+              value={period}
+              onChange={setPeriod}
+            />
           </div>
         </div>
 
@@ -72,17 +73,14 @@ export function ShiftGapClient() {
                   <span className="ss-kpi-card__label">Utilization</span>
                   <span className="ss-gap-card__util">{utilPct}%</span>
                   <div className="ss-progress-track">
-                    {/* dynamic computed width — only allowed inline style */}
                     <div className="ss-progress-fill" style={{ width: `${utilPct}%` }} />
                   </div>
                 </div>
               </div>
 
               <div className="ss-gap-card__body">
-
-                {/* Time-slot bar — left/width are runtime-computed positions */}
                 <div className="ss-timebar">
-                  {shift.booked.map((b: BookedBlock, i: number) => (
+                  {shift.booked.map((b: SuperadminSeatsBookedBlock, i: number) => (
                     <div
                       key={i}
                       className="ss-timebar__block ss-timebar__block--booked"
@@ -92,7 +90,7 @@ export function ShiftGapClient() {
                       {b.label}
                     </div>
                   ))}
-                  {shift.gaps.map((g: GapBlock, i: number) => (
+                  {shift.gaps.map((g: SuperadminSeatsGapBlock, i: number) => (
                     <div
                       key={i}
                       className="ss-timebar__block ss-timebar__block--gap"
@@ -104,7 +102,6 @@ export function ShiftGapClient() {
                   ))}
                 </div>
 
-                {/* Time axis labels */}
                 <div className="ss-timebar-axis">
                   <span className="ss-text-caption">{fmtH(DAY_START_H)}</span>
                   <span className="ss-text-caption">{fmtH(Math.round((DAY_START_H + DAY_END_H) / 2))}</span>
@@ -115,7 +112,7 @@ export function ShiftGapClient() {
                   <p className="ss-text-secondary ss-text-caption">No gaps detected — fully utilized.</p>
                 ) : (
                   <div className="ss-gap-list">
-                    {shift.gaps.map((g: GapBlock, i: number) => (
+                    {shift.gaps.map((g: SuperadminSeatsGapBlock, i: number) => (
                       <div key={i} className="ss-gap-row">
                         <div className="ss-gap-row__left">
                           <span className="ss-badge ss-badge--warning">🕳️ Gap</span>

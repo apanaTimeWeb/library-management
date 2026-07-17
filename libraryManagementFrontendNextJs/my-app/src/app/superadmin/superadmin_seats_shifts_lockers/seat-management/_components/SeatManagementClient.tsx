@@ -2,61 +2,50 @@
 'use client';
 
 import { useState, useMemo } from 'react';
-import { Plus, Search, ChevronDown, Wrench, Edit, AlertTriangle, CheckCircle } from 'lucide-react';
+import { Plus, Search, Wrench, Edit, AlertTriangle, CheckCircle } from 'lucide-react';
 import { AgGridReact } from 'ag-grid-react';
-import { AllCommunityModule, ModuleRegistry, type ColDef } from 'ag-grid-community';
+import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community';
 import { superadmin_gridTheme } from '@/app/superadmin/superadmin_seats_shifts_lockers/superadmin_seats_shared_components/superadmin_gridTheme';
 import toast from 'react-hot-toast';
 import { SUPERADMIN_SEATS_MOCK_SEATS } from '@superadmin/superadmin_seats_shifts_lockers/superadmin_seats_data/SuperadminSeatsMockData';
+import { SuperadminSearchableDropdown } from '@/app/superadmin/superadmin_shared_components/SuperadminSearchableDropdown';
+import type { SuperadminSeatsSeat, SuperadminSeatsSeatStatus } from '@/app/superadmin/superadmin_seats_shifts_lockers/superadmin_seats_types/SuperadminSeatsShiftsLockersTypes';
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
-type SeatStatus = 'Working' | 'Maintenance' | 'Broken';
-
-interface Seat {
-  id: string;
-  seatNo: string;
-  branch: string;
-  status: SeatStatus;
-  assignedTo: string;
-  lastMaintenance: string;
-}
-
-
-
-const STATUS_CLASS: Record<SeatStatus, string> = {
+const STATUS_CLASS: Record<SuperadminSeatsSeatStatus, string> = {
   Working: 'ss-badge ss-badge--success',
   Maintenance: 'ss-badge ss-badge--warning',
   Broken: 'ss-badge ss-badge--danger',
 };
 
-const EMPTY_FORM = { seatNo: '', branch: '', status: 'Working' as SeatStatus };
+const EMPTY_FORM = { seatNo: '', branch: '', status: 'Working' as SuperadminSeatsSeatStatus };
 
 function SeatNoCell({ value }: { value: string }) {
   return <span className="ss-table__seat-no">{value}</span>;
 }
 
-function BranchCell({ data }: { data: Seat }) {
+function BranchCell({ data }: { data: SuperadminSeatsSeat }) {
   return <span className="ss-cell-primary">{data.branch}</span>;
 }
 
 function SeatStatusCell({ value }: { value: string }) {
   return (
-    <span className={STATUS_CLASS[value as SeatStatus] ?? 'ss-badge ss-badge--inactive'}>
+    <span className={STATUS_CLASS[value as SuperadminSeatsSeatStatus] ?? 'ss-badge ss-badge--inactive'}>
       <span className="ss-badge__dot" />{value}
     </span>
   );
 }
 
 export function SeatManagementClient() {
-  const [seats, setSeats] = useState<Seat[]>(SUPERADMIN_SEATS_MOCK_SEATS as Seat[]);
+  const [seats, setSeats] = useState<SuperadminSeatsSeat[]>(SUPERADMIN_SEATS_MOCK_SEATS as SuperadminSeatsSeat[]);
   const [search, setSearch] = useState('');
   const [statusFilter, setStatusFilter] = useState('All Statuses');
   const [showModal, setShowModal] = useState(false);
-  const [editSeat, setEditSeat] = useState<Seat | null>(null);
+  const [editSeat, setEditSeat] = useState<SuperadminSeatsSeat | null>(null);
   const [form, setForm] = useState(EMPTY_FORM);
   const [errors, setErrors] = useState<Record<string, string>>({});
-  const [confirmBroken, setConfirmBroken] = useState<Seat | null>(null);
+  const [confirmBroken, setConfirmBroken] = useState<SuperadminSeatsSeat | null>(null);
 
   const filtered = seats.filter(s => {
     const matchSearch = s.seatNo.toLowerCase().includes(search.toLowerCase()) ||
@@ -73,7 +62,7 @@ export function SeatManagementClient() {
     setShowModal(true);
   }
 
-  function openEdit(seat: Seat) {
+  function openEdit(seat: SuperadminSeatsSeat) {
     setEditSeat(seat);
     setForm({ seatNo: seat.seatNo, branch: seat.branch, status: seat.status });
     setErrors({});
@@ -100,7 +89,7 @@ export function SeatManagementClient() {
     setShowModal(false);
   }
 
-  function handleMarkFixed(seat: Seat) {
+  function handleMarkFixed(seat: SuperadminSeatsSeat) {
     setSeats(prev => prev.map(( s ) => s.id === seat.id ? { ...s, status: 'Working' } : s));
     toast.success(`Seat ${seat.seatNo} marked as Working.`);
   }
@@ -120,7 +109,7 @@ export function SeatManagementClient() {
     { field: 'lastMaintenance', headerName: 'LAST MAINTENANCE', flex: 1.5, cellClass: 'ss-cell-secondary' },
     {
       headerName: 'ACTIONS', flex: 1.5, sortable: false,
-      cellRenderer: ({ data }: { data: Seat }) => (
+      cellRenderer: ({ data }: { data: SuperadminSeatsSeat }) => (
         <div className="ss-cell-actions">
           <button className="ss-btn-icon" title="View Maintenance Log" onClick={() => toast.success(`Opening log for ${data.seatNo}`)}>
             <Wrench size={13} />
@@ -145,7 +134,6 @@ export function SeatManagementClient() {
 
   return (
     <>
-
       <div className="ss-page">
         <div className="ss-page-header">
           <div>
@@ -162,14 +150,17 @@ export function SeatManagementClient() {
             <Search size={14} className="ss-input-icon" />
             <input type="text" placeholder="Search by seat #, branch or student..." className="ss-input" value={search} onChange={e => setSearch(e.target.value)} />
           </div>
-          <div className="ss-filter-bar__select-wrap">
-            <select className="ss-select" value={statusFilter} onChange={e => setStatusFilter(e.target.value)}>
-              <option>All Statuses</option>
-              <option>Working</option>
-              <option>Maintenance</option>
-              <option>Broken</option>
-            </select>
-            <ChevronDown size={14} className="ss-select-icon" />
+          <div style={{ minWidth: 200 }}>
+            <SuperadminSearchableDropdown
+              options={[
+                { label: 'All Statuses', value: 'All Statuses' },
+                { label: 'Working', value: 'Working' },
+                { label: 'Maintenance', value: 'Maintenance' },
+                { label: 'Broken', value: 'Broken' }
+              ]}
+              value={statusFilter}
+              onChange={setStatusFilter}
+            />
           </div>
         </div>
 
@@ -205,14 +196,15 @@ export function SeatManagementClient() {
               </div>
               <div className="ss-form-field ss-form-field--full">
                 <label className="ss-label">Status</label>
-                <div className="ss-select-wrap">
-                  <select className="ss-select" value={form.status} onChange={e => setForm(p => ({ ...p, status: e.target.value as SeatStatus }))}>
-                    <option>Working</option>
-                    <option>Maintenance</option>
-                    <option>Broken</option>
-                  </select>
-                  <ChevronDown size={14} className="ss-select-icon" />
-                </div>
+                <SuperadminSearchableDropdown
+                  options={[
+                    { label: 'Working', value: 'Working' },
+                    { label: 'Maintenance', value: 'Maintenance' },
+                    { label: 'Broken', value: 'Broken' }
+                  ]}
+                  value={form.status}
+                  onChange={val => setForm(p => ({ ...p, status: val as SuperadminSeatsSeatStatus }))}
+                />
               </div>
             </div>
             <div className="ss-modal-footer">

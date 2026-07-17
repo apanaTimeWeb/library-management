@@ -1,5 +1,6 @@
 // RESPONSIBILITY: Renders the SuperadminAssetsFilterBar component.
 import React from 'react';
+import { SuperadminSearchableDropdown } from '@/app/superadmin/superadmin_shared_components/SuperadminSearchableDropdown';
 
 interface Props {
   categories: string[];
@@ -11,14 +12,16 @@ export function SuperadminAssetsFilterBar({ categories, catFilter, setCatFilter 
   return (
     <div className="bg-bg-card border border-border rounded-[var(--radius-lg)] p-4 shadow-sm mb-6 flex items-center gap-3">
       <label className="text-xs font-bold text-text-secondary uppercase tracking-wider">Filter Category:</label>
-      <select 
-        className="bg-bg-input border border-border rounded-[var(--radius-md)] py-1.5 px-3 text-sm font-medium text-text-primary focus:outline-none focus:border-primary transition-colors shadow-inner" 
-        value={catFilter} 
-        onChange={e => setCatFilter(e.target.value)}
-      >
-        <option value="all">All Categories</option>
-        {categories.map(c => <option key={c} value={c}>{c}</option>)}
-      </select>
+      <div className="min-w-40">
+        <SuperadminSearchableDropdown
+          options={[
+            { label: 'All Categories', value: 'all' },
+            ...categories.map(c => ({ label: c, value: c }))
+          ]}
+          value={catFilter}
+          onChange={setCatFilter}
+        />
+      </div>
     </div>
   );
 }

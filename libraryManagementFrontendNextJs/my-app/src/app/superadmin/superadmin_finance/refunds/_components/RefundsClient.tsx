@@ -1,14 +1,16 @@
-'use client';
-
 // RESPONSIBILITY: Renders student security deposit refund processing pipeline with deduction calculation and payout tracking.
 // DATA FLOW: API /finance/refunds -> Refunds State -> Process / Deduct Modals
+'use client';
 
 import { useState, useEffect } from 'react';
 import { fetchApi } from '@/lib/api';
 import { logger } from '@/lib/logger';
 import toast from 'react-hot-toast';
 import { formatCurrency } from '@/app/superadmin/superadmin_finance/superadmin_finance_utils/superadmin_format';
-import { CheckCircle, XCircle, Undo2 } from 'lucide-react';
+import { Undo2 } from 'lucide-react';
+import { SuperadminSearchableDropdown } from '@/app/superadmin/superadmin_shared_components/SuperadminSearchableDropdown';
+import type { SuperadminFinanceRefund } from '@/app/superadmin/superadmin_finance/superadmin_finance_types/SuperadminFinanceTypes';
+import { SUPERADMIN_FINANCE_MOCK_REFUNDS } from '@/app/superadmin/superadmin_finance/superadmin_finance_constants/SuperadminFinanceConstants';
 
 const STATUS_BADGE: Record<string, string> = {
   pending:   'fin-badge fin-badge--warning',
@@ -17,26 +19,9 @@ const STATUS_BADGE: Record<string, string> = {
   processed: 'fin-badge fin-badge--info',
 };
 
-type Refund = {
-  id: number;
-  studentName: string;
-  smartId: string;
-  exitDate?: string;
-  depositHeld: number;
-  deductionAmount: number;
-  netRefund: number;
-  status: 'pending' | 'approved' | 'rejected' | 'processed';
-  requestedDate: string;
-  processedDate?: string;
-  paymentMethod?: string;
-  rejectionReason?: string;
-};
-
-import { SUPERADMIN_FINANCE_MOCK_REFUNDS } from '@/app/superadmin/superadmin_finance/superadmin_finance_constants/SuperadminFinanceConstants';
-
 export function RefundsClient() {
   const [statusFilter, setStatusFilter] = useState('all');
-  const [allRefunds, setAllRefunds] = useState<Refund[]>([]);
+  const [allRefunds, setAllRefunds] = useState<SuperadminFinanceRefund[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [processDialog, setProcessDialog] = useState<{ id: number; name: string; amount: number } | null>(null);
@@ -46,21 +31,21 @@ export function RefundsClient() {
   const [deductReason, setDeductReason] = useState('');
 
   useEffect(() => {
-    fetchApi('/finance/refunds').then(( data: unknown ) => {
-      const actualData = Array.isArray(data) ? data : (data as any)?.data;
+    fetchApi('/finance/refunds').then(( data: any ) => {
+      const actualData = Array.isArray(data) ? data : data?.data;
       if (!Array.isArray(actualData) || actualData.length === 0 || String(actualData[0]?.id).startsWith('MOCK-')) {
-        setAllRefunds(SUPERADMIN_FINANCE_MOCK_REFUNDS as any);
+        setAllRefunds(SUPERADMIN_FINANCE_MOCK_REFUNDS as SuperadminFinanceRefund[]);
         setIsLoading(false);
         return;
       }
-      const mapped: Refund[] = actualData.map(( r: Record<string, unknown> ) => ({
+      const mapped: SuperadminFinanceRefund[] = actualData.map(( r: Record<string, any> ) => ({
         id: parseInt(String(r.id || '0'), 10),
         studentName: String(r.name || 'Student'),
         smartId: 'S-001',
         depositHeld: 1000,
         deductionAmount: 0,
         netRefund: Number(r.amount) || 0,
-        status: (r.status || 'pending') as Refund['status'],
+        status: (r.status || 'pending') as SuperadminFinanceRefund['status'],
         requestedDate: r.date ? new Date(String(r.date)).toISOString().split('T')[0] : new Date().toISOString().split('T')[0],
       }));
       setAllRefunds(mapped);
@@ -134,14 +119,20 @@ export function RefundsClient() {
         </div>
       </div>
 
-      <div className="fin-filter-bar">
-        <select className="fin-select w-40" value={statusFilter} onChange={( e: unknown ) => setStatusFilter(e.target.value)}>
-          <option value="all">All Status</option>
-          <option value="pending">Pending</option>
-          <option value="approved">Approved</option>
-          <option value="processed">Processed</option>
-          <option value="rejected">Rejected</option>
-        </select>
+      <div className="fin-filter-bar flex gap-2">
+        <div className="w-40">
+          <SuperadminSearchableDropdown
+            options={[
+              { label: 'All Status', value: 'all' },
+              { label: 'Pending', value: 'pending' },
+              { label: 'Approved', value: 'approved' },
+              { label: 'Processed', value: 'processed' },
+              { label: 'Rejected', value: 'rejected' }
+            ]}
+            value={statusFilter}
+            onChange={setStatusFilter}
+          />
+        </div>
       </div>
 
       <div className="fin-card overflow-x-auto">
@@ -240,16 +231,20 @@ export function RefundsClient() {
             <h2 className="fin-dialog__title">💸 Process Refund — {processDialog.name}</h2>
             <button className="fin-dialog__close" onClick={() => setProcessDialog(null)}>✕</button>
             <p className="fin-dialog-helper">Processing refund of <span className="font-semibold fin-text-success">{formatCurrency(processDialog.amount)}</span></p>
-            <div>
+            <div className="mt-4">
               <label className="fin-label">Payment Method</label>
-              <select className="fin-select mt-1" value={paymentMethod} onChange={( e: unknown ) => setPaymentMethod(e.target.value)}>
-                <option value="upi">UPI</option>
-                <option value="bank">Bank Transfer</option>
-                <option value="cash">Cash</option>
-                <option value="cheque">Cheque</option>
-              </select>
+              <SuperadminSearchableDropdown
+                options={[
+                  { label: 'UPI', value: 'upi' },
+                  { label: 'Bank Transfer', value: 'bank' },
+                  { label: 'Cash', value: 'cash' },
+                  { label: 'Cheque', value: 'cheque' }
+                ]}
+                value={paymentMethod}
+                onChange={setPaymentMethod}
+              />
             </div>
-            <div className="fin-dialog__footer">
+            <div className="fin-dialog__footer mt-6">
               <button className="fin-badge fin-badge--neutral cursor-pointer" onClick={() => setProcessDialog(null)}>Cancel</button>
               <button className="fin-badge fin-badge--success cursor-pointer" onClick={handleProcess} disabled={isSubmitting}>
                 {isSubmitting ? 'Processing...' : 'Mark as Processed'}
@@ -267,14 +262,14 @@ export function RefundsClient() {
             <div className="space-y-4">
               <div>
                 <label className="fin-label">Deduction Amount <span className="fin-text-danger">*</span></label>
-                <input type="number" className="fin-input" value={deductAmt} onChange={( e: unknown ) => setDeductAmt(e.target.value)} />
+                <input type="number" className="fin-input" value={deductAmt} onChange={( e: any ) => setDeductAmt(e.target.value)} />
               </div>
               <div>
                 <label className="fin-label">Reason <span className="fin-text-danger">*</span></label>
-                <input className="fin-input" value={deductReason} onChange={( e: unknown ) => setDeductReason(e.target.value)} placeholder="Reason for deduction" />
+                <input className="fin-input" value={deductReason} onChange={( e: any ) => setDeductReason(e.target.value)} placeholder="Reason for deduction" />
               </div>
             </div>
-            <div className="fin-dialog__footer">
+            <div className="fin-dialog__footer mt-6">
               <button className="fin-badge fin-badge--neutral cursor-pointer" onClick={() => setDeductDialog(null)}>Cancel</button>
               <button
                 className="fin-badge fin-badge--warning cursor-pointer"
@@ -290,6 +285,3 @@ export function RefundsClient() {
     </div>
   );
 }
-
-
-

@@ -2,6 +2,7 @@
 import React from 'react';
 import { TrendingUp } from 'lucide-react';
 import { useRouter } from 'next/navigation';
+import { SuperadminSearchableDropdown } from '@/app/superadmin/superadmin_shared_components/SuperadminSearchableDropdown';
 
 interface Props {
   categories: string[];
@@ -14,19 +15,19 @@ export function SuperadminExpensesFilterBar({ categories, catFilter, setCatFilte
 
   return (
     <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-4 bg-bg-card border border-border rounded-[var(--radius-lg)] shadow-sm mb-6">
-      <div className="flex flex-col gap-1.5">
+      <div className="flex flex-col gap-1.5 w-full sm:w-48">
         <label className="text-[11px] font-bold text-text-disabled uppercase tracking-wider">Filter by Category</label>
-        <select 
-          className="w-full sm:w-48 bg-bg-input border border-border rounded-[var(--radius-md)] py-2 px-3 text-sm font-medium text-text-primary focus:outline-none focus:border-primary transition-colors shadow-inner" 
-          value={catFilter} 
-          onChange={e => setCatFilter(e.target.value)}
-        >
-          <option value="all">All Categories</option>
-          {categories.map(c => <option key={c} value={c}>{c}</option>)}
-        </select>
+        <SuperadminSearchableDropdown
+          options={[
+            { label: 'All Categories', value: 'all' },
+            ...categories.map(c => ({ label: c, value: c }))
+          ]}
+          value={catFilter}
+          onChange={setCatFilter}
+        />
       </div>
       <button 
-        className="flex items-center justify-center gap-2 bg-bg-page border border-border hover:bg-bg-input hover:border-primary text-text-primary text-sm font-bold py-2 px-4 rounded-[var(--radius-md)] transition-colors shadow-sm mt-auto" 
+        className="flex items-center justify-center gap-2 bg-bg-page border border-border hover:bg-bg-input hover:border-primary text-text-primary text-sm font-bold py-2 px-4 rounded-[var(--radius-md)] transition-colors shadow-sm mt-auto cursor-pointer" 
         onClick={() => router.push('/superadmin/superadmin_accounting/expense-categories')}
       >
         <TrendingUp size={14} className="text-primary" /> View Categories
