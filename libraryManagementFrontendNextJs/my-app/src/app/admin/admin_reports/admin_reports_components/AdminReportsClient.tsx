@@ -1,5 +1,4 @@
 'use client';
-import { type AdminRecord } from '@/app/admin/admin_reusable/admin_reusable_utils/AdminReusableGridTheme';
 
 import { Download, FileText, IndianRupee, Users, Wallet, TrendingUp, BarChart2, PieChart as PieIcon, Activity } from 'lucide-react';
 import toast, { Toaster } from 'react-hot-toast';
@@ -8,9 +7,10 @@ import {
   PieChart, Pie, Cell, Legend,
   AreaChart, Area,
 } from 'recharts';
-import AdminReusableKpiCard from '@/app/admin/admin_reusable/admin_reusable_components/AdminReusableKpiCard/AdminReusableKpiCard';
-import { useAdminReports } from '@/app/admin/admin_reports/admin_reports_hooks/useAdminReports';
-import { type AdminGridCell } from '@/app/admin/admin_reusable/admin_reusable_utils/AdminReusableGridTheme';
+import { useAdminReports } from '../admin_reports_hooks/useAdminReports';
+import { Card } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
 
 const KPI_META = [
   { icon: IndianRupee, iconColor: 'var(--primary)', iconBg: 'var(--icon-bg-primary)' },
@@ -35,11 +35,33 @@ const TOOLTIP_STYLE = {
   cursor:      { fill: 'rgba(99,102,241,0.06)'  },
 } as const;
 
-interface AdminReportsViewProps {
+interface AdminReportsClientProps {
   initialData: any;
 }
 
-export function AdminReportsView({ initialData }: AdminReportsViewProps) {
+function AdminReportsKpiCard({ label, value, icon: Icon, iconColor, iconBg, trend, sub }: any) {
+  return (
+    <Card className="p-5 flex flex-col gap-4 shadow-none border-border bg-bg-card hover:shadow-md transition-shadow">
+      <div className="flex items-center justify-between">
+        <div className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0" style={{ backgroundColor: iconBg }}>
+          <Icon size={20} style={{ color: iconColor }} />
+        </div>
+        {trend && (
+          <Badge variant="secondary" className={`${trend.up ? 'bg-success/10 text-success' : 'bg-danger/10 text-danger'} border-none font-bold text-xs`}>
+            {trend.up ? '+' : '-'}{trend.value}
+          </Badge>
+        )}
+      </div>
+      <div>
+        <h3 className="text-sm font-semibold text-muted-foreground">{label}</h3>
+        <p className="text-2xl font-bold text-text-primary mt-1">{value}</p>
+        {sub && <p className="text-xs text-muted-foreground mt-1.5">{sub}</p>}
+      </div>
+    </Card>
+  );
+}
+
+export function AdminReportsClient({ initialData }: AdminReportsClientProps) {
   const {
     range,
     setRange,
@@ -68,23 +90,23 @@ export function AdminReportsView({ initialData }: AdminReportsViewProps) {
         }}
       />
 
-      <div className="space-y-6 pb-10">
+      <div className="space-y-6 pb-10 h-full flex flex-col">
         {/* Header */}
-        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-4 border-b border-border pb-5">
+        <div className="flex flex-col xl:flex-row xl:items-end justify-between gap-4 border-b border-border pb-5">
           <div>
-            <p className="text-xs text-text-secondary mb-1 tracking-widest uppercase font-medium">Smart Library 360 › Admin › Reports</p>
+            <p className="text-xs text-muted-foreground mb-1 tracking-widest uppercase font-medium">Smart Library 360 › Admin › Reports</p>
             <h1 className="text-2xl font-bold tracking-tight text-text-primary">Analytics & Reports</h1>
-            <p className="text-sm text-text-secondary mt-1">Financial health and operational overview across branches</p>
+            <p className="text-sm text-muted-foreground mt-1">Financial health and operational overview across branches</p>
           </div>
 
           <div className="flex flex-wrap items-center gap-3">
             {/* Range filter */}
-            <div className="admin-tab-bar">
+            <div className="flex bg-muted/50 p-1 rounded-lg">
               {rangeOptions.map(o => (
                 <button
                   key={o.key}
                   onClick={() => setRange(o.key)}
-                  className={`admin-tab${range === o.key ? ' active' : ''}`}
+                  className={`px-4 py-1.5 text-sm font-medium rounded-md transition-all ${range === o.key ? 'bg-background text-primary shadow-sm' : 'text-muted-foreground hover:text-foreground hover:bg-background/50'}`}
                 >
                   {o.label}
                 </button>
@@ -95,7 +117,7 @@ export function AdminReportsView({ initialData }: AdminReportsViewProps) {
             <select
               value={branch}
               onChange={e => setBranch(e.target.value)}
-              className="admin-select admin-select-sm"
+              className="flex h-9 w-[180px] items-center justify-between rounded-md border border-input bg-background px-3 py-1 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
             >
               <option>All Branches</option>
               <option>Main Branch</option>
@@ -104,58 +126,55 @@ export function AdminReportsView({ initialData }: AdminReportsViewProps) {
               <option>Nashik Branch</option>
             </select>
 
-            <button onClick={() => handleExport('PDF')} className="admin-btn-ghost admin-btn-sm">
+            <Button onClick={() => handleExport('PDF')} variant="outline" size="sm" className="gap-2 h-9">
               <FileText size={14} /> Export PDF
-            </button>
-            <button onClick={() => handleExport('Excel')} className="admin-btn-primary admin-btn-sm">
+            </Button>
+            <Button onClick={() => handleExport('Excel')} variant="default" size="sm" className="gap-2 h-9">
               <Download size={14} /> Export Excel
-            </button>
+            </Button>
           </div>
         </div>
 
         {/* KPI Cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          {kpiCards.map((card: unknown, i: number) => {
-            const c = card as Record<string, unknown>;
-            return (
-              <AdminReusableKpiCard
-                key={i}
-                label={String(c.label || '')}
-                value={String(c.value || '')}
-                icon={KPI_META[i].icon}
-                iconColor={KPI_META[i].iconColor}
-                iconBg={KPI_META[i].iconBg}
-                trend={c.trend as { value: string; up: boolean }}
-                sub={String(c.sub || '')}
-              />
-            );
-          })}
+          {kpiCards.map((card: any, i: number) => (
+            <AdminReportsKpiCard
+              key={i}
+              label={card.label}
+              value={card.value}
+              icon={KPI_META[i].icon}
+              iconColor={KPI_META[i].iconColor}
+              iconBg={KPI_META[i].iconBg}
+              trend={card.trend}
+              sub={card.sub}
+            />
+          ))}
         </div>
 
-        {/* Charts 2×2 Grid */}
+        {/* Charts 2x2 Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
 
           {/* Chart 1: Income vs Expenses */}
-          <div className="admin-card p-5">
+          <Card className="p-5 shadow-none border-border bg-bg-card">
             <div className="flex items-center justify-between mb-5">
               <div className="flex items-center gap-2">
-                <div className="w-7 h-7 rounded-lg flex items-center justify-center" style={{ background: 'var(--icon-bg-primary)' }}>
-                  <BarChart2 size={14} style={{ color: 'var(--primary)' }} />
+                <div className="w-8 h-8 rounded-lg flex items-center justify-center bg-primary/10">
+                  <BarChart2 size={16} className="text-primary" />
                 </div>
-                <h3 className="font-semibold text-sm text-text-primary">Income vs Expenses</h3>
+                <h3 className="font-bold text-sm text-text-primary">Income vs Expenses</h3>
               </div>
               <div className="flex items-center gap-4">
                 <div className="flex items-center gap-1.5">
                   <span className="w-2.5 h-2.5 rounded-full" style={{ background: 'var(--chart-indigo)' }} />
-                  <span className="text-xs text-text-secondary">Income</span>
+                  <span className="text-xs text-muted-foreground font-medium">Income</span>
                 </div>
                 <div className="flex items-center gap-1.5">
                   <span className="w-2.5 h-2.5 rounded-full" style={{ background: 'var(--chart-red)' }} />
-                  <span className="text-xs text-text-secondary">Expense</span>
+                  <span className="text-xs text-muted-foreground font-medium">Expense</span>
                 </div>
               </div>
             </div>
-            <ResponsiveContainer width="100%" height={240}>
+            <ResponsiveContainer width="100%" height={260}>
               <BarChart data={incomeData} barCategoryGap="30%" barGap={4}>
                 <CartesianGrid strokeDasharray="3 3" stroke="var(--chart-grid-line)" vertical={false} />
                 <XAxis dataKey="month" tick={AXIS_TICK} axisLine={false} tickLine={false} />
@@ -169,28 +188,28 @@ export function AdminReportsView({ initialData }: AdminReportsViewProps) {
                   {...TOOLTIP_STYLE}
                   formatter={((v: unknown, name: string) => [`₹${Number(v).toLocaleString('en-IN')}`, name]) as never}
                 />
-                <Bar dataKey="income"  fill="var(--chart-indigo)" radius={[5,5,0,0]} name="Income"  maxBarSize={28} />
-                <Bar dataKey="expense" fill="var(--chart-red)"    radius={[5,5,0,0]} name="Expense" maxBarSize={28} />
+                <Bar dataKey="income"  fill="var(--chart-indigo)" radius={[5,5,0,0]} name="Income"  maxBarSize={32} />
+                <Bar dataKey="expense" fill="var(--chart-red)"    radius={[5,5,0,0]} name="Expense" maxBarSize={32} />
               </BarChart>
             </ResponsiveContainer>
-          </div>
+          </Card>
 
           {/* Chart 2: Shift-wise Occupancy Donut */}
-          <div className="admin-card p-5">
+          <Card className="p-5 shadow-none border-border bg-bg-card">
             <div className="flex items-center gap-2 mb-5">
-              <div className="w-7 h-7 rounded-lg flex items-center justify-center" style={{ background: 'var(--icon-bg-warning)' }}>
-                <PieIcon size={14} style={{ color: 'var(--warning)' }} />
+              <div className="w-8 h-8 rounded-lg flex items-center justify-center bg-warning/10">
+                <PieIcon size={16} className="text-warning" />
               </div>
-              <h3 className="font-semibold text-sm text-text-primary">Shift-wise Occupancy %</h3>
+              <h3 className="font-bold text-sm text-text-primary">Shift-wise Occupancy %</h3>
             </div>
-            <ResponsiveContainer width="100%" height={240}>
+            <ResponsiveContainer width="100%" height={260}>
               <PieChart>
                 <Pie
                   data={shiftOccupancy}
                   cx="50%"
                   cy="50%"
-                  innerRadius={58}
-                  outerRadius={88}
+                  innerRadius={65}
+                  outerRadius={95}
                   paddingAngle={4}
                   dataKey="value"
                   nameKey="name"
@@ -209,22 +228,22 @@ export function AdminReportsView({ initialData }: AdminReportsViewProps) {
                 />
               </PieChart>
             </ResponsiveContainer>
-          </div>
+          </Card>
 
           {/* Chart 3: Monthly Revenue Trend — Area */}
-          <div className="admin-card p-5">
+          <Card className="p-5 shadow-none border-border bg-bg-card">
             <div className="flex items-center justify-between mb-5">
               <div className="flex items-center gap-2">
-                <div className="w-7 h-7 rounded-lg flex items-center justify-center" style={{ background: 'var(--icon-bg-success)' }}>
-                  <Activity size={14} style={{ color: 'var(--success)' }} />
+                <div className="w-8 h-8 rounded-lg flex items-center justify-center bg-success/10">
+                  <Activity size={16} className="text-success" />
                 </div>
-                <h3 className="font-semibold text-sm text-text-primary">Monthly Revenue Trend</h3>
+                <h3 className="font-bold text-sm text-text-primary">Monthly Revenue Trend</h3>
               </div>
-              <span className="text-xs font-bold px-2.5 py-0.5 rounded-full" style={{ background: 'var(--success-bg)', color: 'var(--success)' }}>
+              <Badge variant="secondary" className="bg-success/10 text-success border-none font-bold">
                 {rangeOptions.find(o => o.key === range)?.label}
-              </span>
+              </Badge>
             </div>
-            <ResponsiveContainer width="100%" height={240}>
+            <ResponsiveContainer width="100%" height={260}>
               <AreaChart data={revenueData}>
                 <defs>
                   <linearGradient id="revGradAdmin" x1="0" y1="0" x2="0" y2="1">
@@ -255,29 +274,29 @@ export function AdminReportsView({ initialData }: AdminReportsViewProps) {
                 />
               </AreaChart>
             </ResponsiveContainer>
-          </div>
+          </Card>
 
           {/* Chart 4: Student Growth */}
-          <div className="admin-card p-5">
+          <Card className="p-5 shadow-none border-border bg-bg-card">
             <div className="flex items-center justify-between mb-5">
               <div className="flex items-center gap-2">
-                <div className="w-7 h-7 rounded-lg flex items-center justify-center" style={{ background: 'var(--icon-bg-purple)' }}>
-                  <Users size={14} style={{ color: 'var(--purple)' }} />
+                <div className="w-8 h-8 rounded-lg flex items-center justify-center bg-purple-500/10">
+                  <Users size={16} className="text-purple-500" />
                 </div>
-                <h3 className="font-semibold text-sm text-text-primary">Student Growth</h3>
+                <h3 className="font-bold text-sm text-text-primary">Student Growth</h3>
               </div>
               <div className="flex items-center gap-4">
                 <div className="flex items-center gap-1.5">
                   <span className="w-2.5 h-2.5 rounded-full" style={{ background: 'var(--chart-indigo)' }} />
-                  <span className="text-xs text-text-secondary">Joined</span>
+                  <span className="text-xs text-muted-foreground font-medium">Joined</span>
                 </div>
                 <div className="flex items-center gap-1.5">
                   <span className="w-2.5 h-2.5 rounded-full" style={{ background: 'var(--chart-red)' }} />
-                  <span className="text-xs text-text-secondary">Exited</span>
+                  <span className="text-xs text-muted-foreground font-medium">Exited</span>
                 </div>
               </div>
             </div>
-            <ResponsiveContainer width="100%" height={240}>
+            <ResponsiveContainer width="100%" height={260}>
               <BarChart data={growthData} barCategoryGap="30%" barGap={4}>
                 <CartesianGrid strokeDasharray="3 3" stroke="var(--chart-grid-line)" vertical={false} />
                 <XAxis dataKey="month" tick={AXIS_TICK} axisLine={false} tickLine={false} />
@@ -286,48 +305,61 @@ export function AdminReportsView({ initialData }: AdminReportsViewProps) {
                   {...TOOLTIP_STYLE}
                   formatter={((v: unknown, name: string) => [v, name]) as never}
                 />
-                <Bar dataKey="joined" fill="var(--chart-indigo)" radius={[5,5,0,0]} name="Joined" maxBarSize={28} />
-                <Bar dataKey="exited" fill="var(--chart-red)"    radius={[5,5,0,0]} name="Exited" maxBarSize={28} />
+                <Bar dataKey="joined" fill="var(--chart-indigo)" radius={[5,5,0,0]} name="Joined" maxBarSize={32} />
+                <Bar dataKey="exited" fill="var(--chart-red)"    radius={[5,5,0,0]} name="Exited" maxBarSize={32} />
               </BarChart>
             </ResponsiveContainer>
-          </div>
+          </Card>
 
         </div>
 
         {/* Branch Summary Table */}
-        <div className="admin-card">
-          <div className="admin-card-header">
-            <h3 className="admin-section-title">Branch-wise Summary</h3>
-            <span className="admin-badge admin-badge-primary">{rangeOptions.find(o => o.key === range)?.label}</span>
+        <Card className="shadow-none border-border bg-bg-card overflow-hidden">
+          <div className="p-5 border-b border-border flex items-center justify-between">
+            <h3 className="font-bold text-base text-text-primary">Branch-wise Summary</h3>
+            <Badge variant="secondary" className="bg-primary/10 text-primary border-none font-bold">
+              {rangeOptions.find(o => o.key === range)?.label}
+            </Badge>
           </div>
-          <div className="admin-card-body-flush">
-            <table style={{ width: '100%', borderCollapse: 'collapse' }}>
-              <thead>
-                <tr style={{ borderBottom: '1px solid var(--border)', background: 'rgba(255,255,255,0.02)' }}>
+          <div className="w-full overflow-x-auto">
+            <table className="w-full text-sm text-left">
+              <thead className="bg-muted/30 text-muted-foreground text-xs font-medium uppercase tracking-wider">
+                <tr>
                   {['Branch', 'Revenue', 'Expenses', 'Net Profit', 'Students', 'Occupancy'].map(h => (
-                    <th key={h} style={{ padding: '10px 16px', textAlign: 'left', fontSize: 11, fontWeight: 600, color: 'var(--text-secondary)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>{h}</th>
+                    <th key={h} className="px-4 py-3">{h}</th>
                   ))}
                 </tr>
               </thead>
-              <tbody>
+              <tbody className="divide-y divide-border">
                 {[
                   { branch: 'Main Branch',    revenue: '₹62,000', expense: '₹18,000', profit: '₹44,000', students: 248, occ: 92 },
                   { branch: 'Branch 2',       revenue: '₹48,000', expense: '₹14,500', profit: '₹33,500', students: 180, occ: 85 },
                   { branch: 'Kothrud Center', revenue: '₹28,000', expense: '₹9,000',  profit: '₹19,000', students: 95,  occ: 78 },
                   { branch: 'Nashik Branch',  revenue: '₹14,000', expense: '₹5,000',  profit: '₹9,000',  students: 42,  occ: 60 },
                 ].map((row, i) => (
-                  <tr key={i} style={{ borderBottom: '1px solid var(--border)' }}>
-                    <td style={{ padding: '12px 16px', fontWeight: 600, color: 'var(--text-primary)', fontSize: 13 }}>{row.branch}</td>
-                    <td style={{ padding: '12px 16px', color: 'var(--primary)', fontWeight: 600, fontSize: 13 }}>{row.revenue}</td>
-                    <td style={{ padding: '12px 16px', color: 'var(--danger)', fontWeight: 600, fontSize: 13 }}>{row.expense}</td>
-                    <td style={{ padding: '12px 16px', color: 'var(--success)', fontWeight: 600, fontSize: 13 }}>{row.profit}</td>
-                    <td style={{ padding: '12px 16px', color: 'var(--text-primary)', fontSize: 13 }}>{row.students}</td>
-                    <td style={{ padding: '12px 16px' }}>
-                      <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                        <div style={{ flex: 1, height: 6, background: 'var(--border)', borderRadius: 9999, overflow: 'hidden' }}>
-                          <div style={{ width: `${row.occ}%`, height: '100%', borderRadius: 9999, background: row.occ >= 85 ? 'var(--chart-green)' : row.occ >= 70 ? 'var(--chart-amber)' : 'var(--chart-red)' }} />
+                  <tr key={i} className="hover:bg-muted/10 transition-colors">
+                    <td className="px-4 py-3 font-bold text-[13px] text-text-primary">{row.branch}</td>
+                    <td className="px-4 py-3 font-bold text-[13px] text-primary">{row.revenue}</td>
+                    <td className="px-4 py-3 font-bold text-[13px] text-danger">{row.expense}</td>
+                    <td className="px-4 py-3 font-bold text-[13px] text-success">{row.profit}</td>
+                    <td className="px-4 py-3 font-medium text-[13px] text-text-primary">{row.students}</td>
+                    <td className="px-4 py-3">
+                      <div className="flex items-center gap-2">
+                        <div className="flex-1 h-1.5 bg-muted rounded-full overflow-hidden">
+                          <div 
+                            className="h-full rounded-full transition-all duration-500" 
+                            style={{ 
+                              width: `${row.occ}%`, 
+                              backgroundColor: row.occ >= 85 ? 'var(--chart-green)' : row.occ >= 70 ? 'var(--chart-amber)' : 'var(--chart-red)' 
+                            }} 
+                          />
                         </div>
-                        <span style={{ fontSize: 12, fontWeight: 600, color: row.occ >= 85 ? 'var(--success)' : row.occ >= 70 ? 'var(--warning)' : 'var(--danger)', minWidth: 32 }}>{row.occ}%</span>
+                        <span 
+                          className="text-[12px] font-bold min-w-[32px]"
+                          style={{ color: row.occ >= 85 ? 'var(--success)' : row.occ >= 70 ? 'var(--warning)' : 'var(--danger)' }}
+                        >
+                          {row.occ}%
+                        </span>
                       </div>
                     </td>
                   </tr>
@@ -335,9 +367,8 @@ export function AdminReportsView({ initialData }: AdminReportsViewProps) {
               </tbody>
             </table>
           </div>
-        </div>
+        </Card>
       </div>
     </>
   );
 }
-
