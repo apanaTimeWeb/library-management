@@ -50,7 +50,7 @@ export function SeatHistoryClient() {
 
       {/* Filter Bar */}
       <div className="flex flex-wrap items-center gap-3">
-        <div className="relative flex-1 min-w-[200px] max-w-sm">
+        <div className="relative flex-1 min-w-48 max-w-sm">
           <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
           <Input 
             className="pl-9 h-10"
@@ -70,20 +70,20 @@ export function SeatHistoryClient() {
         </select>
         <Input 
           type="date" 
-          className="h-10 w-[140px]" 
+          className="h-10 w-36" 
           value={dateFrom} 
           onChange={e => setDateFrom(e.target.value)} 
         />
         <Input 
           type="date" 
-          className="h-10 w-[140px]" 
+          className="h-10 w-36" 
           value={dateTo} 
           onChange={e => setDateTo(e.target.value)} 
         />
       </div>
 
       {/* Table */}
-      <Card className="flex-1 shadow-none border-border bg-card overflow-hidden flex flex-col min-h-[450px]">
+      <Card className="flex-1 shadow-none border-border bg-card overflow-hidden flex flex-col min-h-96">
         <div className="w-full overflow-x-auto flex-1">
           <table className="w-full text-sm text-left whitespace-nowrap min-w-max">
             <thead className="bg-muted/30 border-b text-muted-foreground text-xs font-bold uppercase tracking-wider sticky top-0 z-10">

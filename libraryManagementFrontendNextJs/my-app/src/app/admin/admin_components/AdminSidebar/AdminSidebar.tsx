@@ -119,7 +119,7 @@ export default function AdminSidebar({ collapsed, onToggle, mobileOpen, onMobile
       </aside>
 
       <Dialog open={showLogout} onOpenChange={setShowLogout}>
-        <DialogContent className="max-w-[360px]">
+        <DialogContent className="max-w-sm">
           <DialogHeader>
             <DialogTitle>Log out?</DialogTitle>
             <DialogDescription>

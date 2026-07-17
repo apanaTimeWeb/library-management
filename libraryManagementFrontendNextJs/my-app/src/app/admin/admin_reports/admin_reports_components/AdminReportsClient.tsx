@@ -127,7 +127,7 @@ export function AdminReportsClient({ initialData }: AdminReportsClientProps) {
             <select
               value={branch}
               onChange={e => setBranch(e.target.value)}
-              className="flex h-9 w-[180px] items-center justify-between rounded-md border border-input bg-background px-3 py-1 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
+              className="flex h-9 w-44 items-center justify-between rounded-md border border-input bg-background px-3 py-1 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
             >
               <option>All Branches</option>
               <option>Main Branch</option>
@@ -365,7 +365,7 @@ export function AdminReportsClient({ initialData }: AdminReportsClientProps) {
                           />
                         </div>
                         <span 
-                          className="text-xs font-bold min-w-[32px]"
+                          className="text-xs font-bold min-w-8"
                           style={{ color: row.occ >= 85 ? 'var(--success)' : row.occ >= 70 ? 'var(--warning)' : 'var(--danger)' }}
                         >
                           {row.occ}%

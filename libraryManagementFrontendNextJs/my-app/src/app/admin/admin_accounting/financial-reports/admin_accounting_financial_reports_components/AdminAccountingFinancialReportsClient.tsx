@@ -89,7 +89,7 @@ export function AdminAccountingFinancialReportsClient() {
         <p className="text-sm font-bold text-foreground mb-6 uppercase tracking-wider">Monthly Income vs Expense</p>
         <div className="flex items-end gap-3 h-52 overflow-x-auto pb-2">
           {MONTHLY.map((m) => (
-            <div key={`chart-col-${m.month}`} className="flex flex-col items-center gap-2 flex-1 min-w-[50px]">
+            <div key={`chart-col-${m.month}`} className="flex flex-col items-center gap-2 flex-1 min-w-12">
               <div className="flex items-end gap-1.5 w-full justify-center h-40">
                 <div
                   className="rounded-t w-6 transition-all bg-success hover:brightness-110"

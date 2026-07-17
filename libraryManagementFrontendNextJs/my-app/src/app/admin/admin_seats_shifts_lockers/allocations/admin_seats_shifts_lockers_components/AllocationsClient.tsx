@@ -81,20 +81,20 @@ export function AllocationsClient() {
 
         <Input 
           type="date" 
-          className="h-10 w-[140px]" 
+          className="h-10 w-36" 
           value={dateFrom} 
           onChange={e => setDateFrom(e.target.value)} 
         />
         <Input 
           type="date" 
-          className="h-10 w-[140px]" 
+          className="h-10 w-36" 
           value={dateTo} 
           onChange={e => setDateTo(e.target.value)} 
         />
       </div>
 
       {/* Table */}
-      <Card className="flex-1 shadow-none border-border bg-card overflow-hidden flex flex-col min-h-[450px]">
+      <Card className="flex-1 shadow-none border-border bg-card overflow-hidden flex flex-col min-h-96">
         <div className="w-full overflow-x-auto flex-1">
           <table className="w-full text-sm text-left whitespace-nowrap min-w-max">
             <thead className="bg-muted/30 border-b text-muted-foreground text-xs font-bold uppercase tracking-wider sticky top-0 z-10">

@@ -42,7 +42,7 @@ export default function AdminReusableSeatCell({ id, status, occupant, shift, exp
       <span className="font-bold text-xs">{id}</span>
 
       {/* Tooltip — Name + Shift badge + Expires */}
-      <div className="absolute bottom-[4.5rem] left-1/2 -translate-x-1/2 flex flex-col gap-1 p-2 rounded-lg pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity z-30 min-w-[140px] bg-card border border-border shadow-xl">
+      <div className="absolute bottom-16 left-1/2 -translate-x-1/2 flex flex-col gap-1 p-2 rounded-lg pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity z-30 min-w-36 bg-card border border-border shadow-xl">
         {occupant ? (
           <>
             <span className="text-xs font-semibold text-foreground truncate">{occupant}</span>

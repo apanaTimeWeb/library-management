@@ -140,7 +140,7 @@ export default function WhatsappTemplatesPage() {
             <Button variant="outline" onClick={() => setShowTest(true)} className="gap-2">
               <Send size={14} /> Send Test Message
             </Button>
-            <Button onClick={handleSave} className="gap-2 bg-success hover:bg-success/90 text-white min-w-[140px]">
+            <Button onClick={handleSave} className="gap-2 bg-success hover:bg-success/90 text-white min-w-36">
               {saved ? '✅ Saved!' : <><Save size={14} /> Save Template</>}
             </Button>
           </CardFooter>

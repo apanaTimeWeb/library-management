@@ -73,7 +73,7 @@ export function SeatMatrixClient() {
           <CalendarDays size={15} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground pointer-events-none" />
           <Input
             type="date"
-            className="pl-9 h-10 w-[180px] font-medium"
+            className="pl-9 h-10 w-44 font-medium"
             value={date}
             onChange={e => setDate(e.target.value)}
           />
@@ -91,7 +91,7 @@ export function SeatMatrixClient() {
       </Card>
 
       {/* Grid Container */}
-      <Card className="flex-1 shadow-sm border-border bg-card flex flex-col min-h-[500px]">
+      <Card className="flex-1 shadow-sm border-border bg-card flex flex-col min-h-96">
         <div className="flex items-center justify-between p-5 border-b border-border">
           <h2 className="text-lg font-bold tracking-tight text-primary">A-Wing Floor Plan</h2>
           <Badge variant="secondary" className="bg-success/10 text-success border-none uppercase tracking-wider font-bold">
@@ -101,7 +101,7 @@ export function SeatMatrixClient() {
         
         <div className="p-5 overflow-auto flex-1 bg-muted/5 flex flex-col">
           {isLoading ? (
-            <div className="flex-1 flex flex-col items-center justify-center gap-4 min-h-[300px]">
+            <div className="flex-1 flex flex-col items-center justify-center gap-4 min-h-72">
               <div className="h-8 w-8 rounded-full border-4 border-primary border-t-transparent animate-spin" />
               <p className="text-muted-foreground font-medium">Loading floor plan...</p>
             </div>

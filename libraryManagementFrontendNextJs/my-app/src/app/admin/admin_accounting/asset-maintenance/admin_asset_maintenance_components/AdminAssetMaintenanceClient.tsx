@@ -91,7 +91,7 @@ export function AdminAssetMaintenanceClient() {
         <div className="flex items-center gap-2">
           <Filter size={16} className="text-muted-foreground" />
           <select
-            className="flex h-10 w-[180px] items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+            className="flex h-10 w-44 items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
             value={typeFilter}
             onChange={(e) => setTypeFilter(e.target.value)}
           >
@@ -110,7 +110,7 @@ export function AdminAssetMaintenanceClient() {
       </div>
 
       {/* Grid */}
-      <Card className="flex-1 shadow-none border-border overflow-hidden flex flex-col min-h-[450px]">
+      <Card className="flex-1 shadow-none border-border overflow-hidden flex flex-col min-h-96">
         {fetchState === 'loading' && maintenance.length === 0 ? (
           <div className="flex items-center justify-center h-full text-muted-foreground">Loading maintenance tasks…</div>
         ) : (

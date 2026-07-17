@@ -60,7 +60,7 @@ export function AdminBranchesView({ initialBranches }: AdminBranchesViewProps) {
       </div>
 
       {/* Table */}
-      <div className="flex-1 min-h-[400px] border border-border rounded-lg bg-card overflow-hidden flex flex-col shadow-sm">
+      <div className="flex-1 min-h-96 border border-border rounded-lg bg-card overflow-hidden flex flex-col shadow-sm">
         <div className="overflow-x-auto flex-1">
           <table className="w-full text-sm text-left">
             <thead className="text-xs text-muted-foreground uppercase bg-muted/50 sticky top-0 z-10">
@@ -129,7 +129,7 @@ export function AdminBranchesView({ initialBranches }: AdminBranchesViewProps) {
 
       {/* Add / Edit Modal */}
       <Dialog open={showForm} onOpenChange={setShowForm}>
-        <DialogContent className="sm:max-w-[600px]">
+        <DialogContent className="sm:max-w-2xl">
           <DialogHeader>
             <DialogTitle>{editId ? 'Edit Branch' : 'Add New Branch'}</DialogTitle>
             <DialogDescription>
@@ -219,7 +219,7 @@ export function AdminBranchesView({ initialBranches }: AdminBranchesViewProps) {
 
       {/* Delete Confirm Modal */}
       <Dialog open={!!deleteId} onOpenChange={(open) => !open && setDeleteId(null)}>
-        <DialogContent className="sm:max-w-[400px]">
+        <DialogContent className="sm:max-w-md">
           <DialogHeader>
             <div className="flex items-center gap-3">
               <div className="bg-danger/10 text-danger p-2 rounded-full shrink-0">

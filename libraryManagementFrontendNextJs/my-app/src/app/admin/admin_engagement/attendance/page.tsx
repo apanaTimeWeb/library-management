@@ -103,7 +103,7 @@ export default function AttendancePage() {
           </div>
           <div className="flex flex-col">
             <label className="text-xs mb-1 font-semibold text-muted-foreground uppercase tracking-wider">Shift</label>
-            <select value={shift} onChange={e => setShift(e.target.value)} className="flex h-9 w-[140px] items-center justify-between rounded-md border border-input bg-background px-3 py-1 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50">
+            <select value={shift} onChange={e => setShift(e.target.value)} className="flex h-9 w-36 items-center justify-between rounded-md border border-input bg-background px-3 py-1 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50">
               <option>All</option>
               <option>Morning</option>
               <option>Afternoon</option>
@@ -134,7 +134,7 @@ export default function AttendancePage() {
               <div key={s.id} className={`p-4 flex flex-col lg:flex-row lg:items-center gap-4 transition-colors ${isAlert ? 'bg-danger/5' : 'hover:bg-muted/30'}`}>
 
                 {/* Avatar & Info */}
-                <div className="flex items-center gap-4 flex-1 min-w-[250px]">
+                <div className="flex items-center gap-4 flex-1 min-w-64">
                   <div className="h-10 w-10 shrink-0 rounded-full bg-primary/10 text-primary flex items-center justify-center font-bold text-sm">
                     {s.initials}
                   </div>
@@ -207,7 +207,7 @@ export default function AttendancePage() {
       </Card>
 
       {/* ── Sticky Save Bar ── */}
-      <div className="fixed bottom-0 left-0 right-0 lg:left-[280px] p-4 bg-background/80 backdrop-blur-md border-t border-border flex items-center justify-between z-50 shadow-[0_-4px_12px_rgba(0,0,0,0.05)]">
+      <div className="fixed bottom-0 left-0 right-0 lg:left-72 p-4 bg-background/80 backdrop-blur-md border-t border-border flex items-center justify-between z-50 shadow-[0_-4px_12px_rgba(0,0,0,0.05)]">
         <p className="text-sm text-foreground">
           <strong className="text-primary">{marked}</strong> of <strong>{filtered.length}</strong> marked for <strong className="font-mono">{date}</strong>
         </p>

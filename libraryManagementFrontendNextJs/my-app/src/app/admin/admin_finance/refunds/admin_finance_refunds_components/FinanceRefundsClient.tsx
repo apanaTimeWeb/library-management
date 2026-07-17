@@ -77,7 +77,7 @@ export function FinanceRefundsClient() {
       {/* Filter Bar */}
       <div className="flex items-center gap-4 bg-muted/30 p-3 rounded-lg border border-border">
         <select 
-          className="flex h-9 w-[200px] items-center justify-between rounded-md border border-input bg-background px-3 py-1 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
+          className="flex h-9 w-48 items-center justify-between rounded-md border border-input bg-background px-3 py-1 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
           value={statusFilter} 
           onChange={(e) => setStatusFilter(e.target.value)}
         >

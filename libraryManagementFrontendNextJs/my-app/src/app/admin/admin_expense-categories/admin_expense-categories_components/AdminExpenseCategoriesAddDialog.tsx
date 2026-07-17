@@ -78,7 +78,7 @@ export function AdminExpenseCategoriesAddDialog({ isOpen, onClose, onSubmit }: A
 
   return (
     <Dialog open={isOpen} onOpenChange={handleModalClose}>
-      <DialogContent className="sm:max-w-[425px]">
+      <DialogContent className="sm:max-w-md">
         <DialogHeader>
           <div className="flex items-center gap-2 text-primary font-semibold text-lg mb-1">
             <Tag size={20} />

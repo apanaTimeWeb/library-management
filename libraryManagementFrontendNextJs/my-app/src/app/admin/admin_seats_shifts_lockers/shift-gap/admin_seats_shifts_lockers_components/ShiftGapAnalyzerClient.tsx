@@ -32,7 +32,7 @@ export function ShiftGapAnalyzerClient() {
       {/* Filter Bar */}
       <div className="flex flex-wrap gap-3">
         <select 
-          className="h-10 px-3 rounded-md border border-input bg-background text-sm font-medium focus:outline-none focus:ring-2 focus:ring-ring min-w-[150px]"
+          className="h-10 px-3 rounded-md border border-input bg-background text-sm font-medium focus:outline-none focus:ring-2 focus:ring-ring min-w-36"
           value={shiftFilter} 
           onChange={(e) => setShiftFilter(e.target.value)}
         >
@@ -41,7 +41,7 @@ export function ShiftGapAnalyzerClient() {
         </select>
         
         <select 
-          className="h-10 px-3 rounded-md border border-input bg-background text-sm font-medium focus:outline-none focus:ring-2 focus:ring-ring min-w-[150px]"
+          className="h-10 px-3 rounded-md border border-input bg-background text-sm font-medium focus:outline-none focus:ring-2 focus:ring-ring min-w-36"
           value={period} 
           onChange={(e) => setPeriod(e.target.value)}
         >
@@ -63,7 +63,7 @@ export function ShiftGapAnalyzerClient() {
                   <p className="text-sm text-muted-foreground font-medium mt-1">{shift.occupied} / {shift.capacity} seats occupied</p>
                 </div>
                 
-                <div className="flex flex-col bg-muted/20 p-3 rounded-md border border-border min-w-[200px]">
+                <div className="flex flex-col bg-muted/20 p-3 rounded-md border border-border min-w-48">
                   <div className="flex justify-between items-center text-xs font-bold text-muted-foreground uppercase tracking-wider mb-2">
                     <span>Utilization</span>
                     <span className={utilPct < 50 ? 'text-danger' : utilPct < 80 ? 'text-warning' : 'text-success'}>

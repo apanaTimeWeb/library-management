@@ -60,7 +60,7 @@ export function LockersClient() {
       {/* Filter Bar */}
       <div className="flex flex-wrap items-center gap-3">
         <select 
-          className="h-10 px-3 rounded-md border border-input bg-background text-sm font-medium focus:outline-none focus:ring-2 focus:ring-ring min-w-[150px]"
+          className="h-10 px-3 rounded-md border border-input bg-background text-sm font-medium focus:outline-none focus:ring-2 focus:ring-ring min-w-36"
           value={statusFilter} 
           onChange={(e) => setStatusFilter(e.target.value)}
         >
@@ -72,7 +72,7 @@ export function LockersClient() {
       </div>
 
       {/* Table */}
-      <Card className="flex-1 shadow-none border-border bg-card overflow-hidden flex flex-col min-h-[450px]">
+      <Card className="flex-1 shadow-none border-border bg-card overflow-hidden flex flex-col min-h-96">
         <div className="w-full overflow-x-auto flex-1">
           <table className="w-full text-sm text-left whitespace-nowrap min-w-max">
             <thead className="bg-muted/30 border-b text-muted-foreground text-xs font-bold uppercase tracking-wider sticky top-0 z-10">

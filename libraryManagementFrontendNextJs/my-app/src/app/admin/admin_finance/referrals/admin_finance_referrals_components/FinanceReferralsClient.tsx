@@ -58,7 +58,7 @@ export function FinanceReferralsClient() {
       </div>
 
       {/* Table */}
-      <Card className="flex-1 shadow-none border-border bg-card overflow-hidden flex flex-col min-h-[450px]">
+      <Card className="flex-1 shadow-none border-border bg-card overflow-hidden flex flex-col min-h-96">
         <div className="w-full overflow-x-auto flex-1">
           <table className="w-full text-sm text-left whitespace-nowrap min-w-max">
             <thead className="bg-muted/30 border-b text-muted-foreground text-xs font-bold uppercase tracking-wider sticky top-0 z-10">
@@ -98,17 +98,17 @@ export function FinanceReferralsClient() {
                       <span className={`text-sm ${idx === 0 ? 'text-warning font-black text-lg' : 'text-muted-foreground font-bold'}`}>#{idx + 1}</span>
                     </td>
                     <td className="px-5 py-4">
-                      <div className="font-bold text-sm text-primary">{r.name}</div>
-                      <div className="text-xs font-mono text-muted-foreground">{r.smartId}</div>
+                      <div className="font-bold text-sm text-primary">{r.name as string}</div>
+                      <div className="text-xs font-mono text-muted-foreground">{r.smartId as string}</div>
                     </td>
-                    <td className="px-5 py-4 max-w-[250px] whitespace-normal">
+                    <td className="px-5 py-4 max-w-xs whitespace-normal">
                       <Button
                         variant="secondary"
                         size="sm"
                         className="bg-muted text-primary hover:bg-muted/80 border-none font-bold text-xs h-7 px-3 gap-1"
-                        onClick={() => setExpanded(expanded === r.id ? null : r.id)}
+                        onClick={() => setExpanded(expanded === r.id ? null : (r.id as string))}
                       >
-                        {expanded === r.id ? '▲' : '▼'} {r.referredCount} students
+                        {expanded === r.id ? '▲' : '▼'} {r.referredCount as number} students
                       </Button>
                       {expanded === r.id && (
                         <div className="flex flex-wrap gap-1 mt-3 animate-in fade-in slide-in-from-top-1">
@@ -120,10 +120,10 @@ export function FinanceReferralsClient() {
                         </div>
                       )}
                     </td>
-                    <td className="px-5 py-4 text-center font-bold text-sm text-primary">{r.referredCount}</td>
-                    <td className="px-5 py-4 text-right text-sm font-bold text-success">{formatCurrency(r.bonusEarned)}</td>
-                    <td className="px-5 py-4 text-right text-sm font-medium text-primary">{formatCurrency(r.redeemed)}</td>
-                    <td className="px-5 py-4 text-right text-sm font-bold text-primary">{formatCurrency(r.balance)}</td>
+                    <td className="px-5 py-4 text-center font-bold text-sm text-primary">{r.referredCount as number}</td>
+                    <td className="px-5 py-4 text-right text-sm font-bold text-success">{formatCurrency(r.bonusEarned as number)}</td>
+                    <td className="px-5 py-4 text-right text-sm font-medium text-primary">{formatCurrency(r.redeemed as number)}</td>
+                    <td className="px-5 py-4 text-right text-sm font-bold text-primary">{formatCurrency(r.balance as number)}</td>
                   </tr>
                 ))
               )}

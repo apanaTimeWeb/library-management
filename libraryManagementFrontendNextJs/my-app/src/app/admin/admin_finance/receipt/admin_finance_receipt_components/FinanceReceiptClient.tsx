@@ -129,7 +129,7 @@ export function FinanceReceiptClient() {
                       <div className="font-bold text-sm text-primary">{r.studentName}</div>
                       <div className="text-xs text-muted-foreground font-medium mt-0.5">{r.studentId}</div>
                     </td>
-                    <td className="px-5 py-4 text-sm text-muted-foreground font-medium max-w-[180px] truncate">
+                    <td className="px-5 py-4 text-sm text-muted-foreground font-medium max-w-xs truncate">
                       {r.planName}
                     </td>
                     <td className="px-5 py-4 text-sm text-muted-foreground font-medium">

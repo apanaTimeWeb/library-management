@@ -79,7 +79,7 @@ export function FinanceCollectFeeClient() {
                 {/* Top Zigzag */}
                 <div className="absolute top-0 left-0 right-0 h-2 flex overflow-hidden">
                   {Array.from({ length: 20 }).map((_, i) => (
-                    <div key={i} className="flex-1 border-t-[8px] border-l-[8px] border-r-[8px] border-t-bg-card border-l-transparent border-r-transparent -mt-1" />
+                    <div key={i} className="flex-1 border-t-8 border-l-8 border-r-8 border-t-bg-card border-l-transparent border-r-transparent -mt-1" />
                   ))}
                 </div>
 
@@ -127,7 +127,7 @@ export function FinanceCollectFeeClient() {
                 {/* Bottom Zigzag */}
                 <div className="absolute bottom-0 left-0 right-0 h-2 flex overflow-hidden">
                   {Array.from({ length: 20 }).map((_, i) => (
-                    <div key={i} className="flex-1 border-b-[8px] border-l-[8px] border-r-[8px] border-b-bg-card border-l-transparent border-r-transparent -mb-1" />
+                    <div key={i} className="flex-1 border-b-8 border-l-8 border-r-8 border-b-bg-card border-l-transparent border-r-transparent -mb-1" />
                   ))}
                 </div>
               </div>

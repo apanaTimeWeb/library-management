@@ -110,9 +110,9 @@ export default function AdminReusableSeatMatrixGrid({ seats, shifts }: Props) {
       </CardHeader>
 
       {/* Seat grid */}
-      <CardContent className="flex-1 p-4 overflow-y-auto bg-muted/10 min-h-[300px]">
+      <CardContent className="flex-1 p-4 overflow-y-auto bg-muted/10 min-h-72">
         {filtered.length === 0 ? (
-          <div className="flex items-center justify-center h-full min-h-[200px]">
+          <div className="flex items-center justify-center h-full min-h-48">
             <p className="text-muted-foreground text-sm font-medium">
               No seats match the selected filters.
             </p>
@@ -149,7 +149,7 @@ export default function AdminReusableSeatMatrixGrid({ seats, shifts }: Props) {
         <span className="text-xs font-semibold text-muted-foreground">Filter:</span>
 
         <Select value={appliedShift} onValueChange={setAppliedShift}>
-          <SelectTrigger className="w-[140px] h-8 text-xs">
+          <SelectTrigger className="w-36 h-8 text-xs">
             <SelectValue placeholder="All Shifts" />
           </SelectTrigger>
           <SelectContent>
@@ -159,7 +159,7 @@ export default function AdminReusableSeatMatrixGrid({ seats, shifts }: Props) {
         </Select>
 
         <Select value={feeFilter} onValueChange={setFeeFilter}>
-          <SelectTrigger className="w-[140px] h-8 text-xs">
+          <SelectTrigger className="w-36 h-8 text-xs">
             <SelectValue placeholder="All Fee Status" />
           </SelectTrigger>
           <SelectContent>

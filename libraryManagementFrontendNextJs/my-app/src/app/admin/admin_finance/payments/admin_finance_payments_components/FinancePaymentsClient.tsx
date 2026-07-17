@@ -50,7 +50,7 @@ export function FinancePaymentsClient() {
       {/* Filter Bar */}
       <div className="flex flex-col sm:flex-row items-center gap-4 bg-muted/30 p-3 rounded-lg border border-border">
         <select 
-          className="flex h-9 w-[180px] items-center justify-between rounded-md border border-input bg-background px-3 py-1 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
+          className="flex h-9 w-44 items-center justify-between rounded-md border border-input bg-background px-3 py-1 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
           value={modeFilter} 
           onChange={(e) => setModeFilter(e.target.value)}
         >

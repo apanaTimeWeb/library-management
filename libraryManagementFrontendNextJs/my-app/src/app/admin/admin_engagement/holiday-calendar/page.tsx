@@ -172,7 +172,7 @@ export default function HolidayCalendarPage() {
         </div>
 
         {/* Right: Holiday List */}
-        <div className="w-full lg:w-[400px] shrink-0">
+        <div className="w-full lg:w-96 shrink-0">
           <Card className="shadow-sm border-border">
             <CardHeader className="flex flex-row items-center justify-between pb-4 border-b border-border bg-muted/20">
               <div>

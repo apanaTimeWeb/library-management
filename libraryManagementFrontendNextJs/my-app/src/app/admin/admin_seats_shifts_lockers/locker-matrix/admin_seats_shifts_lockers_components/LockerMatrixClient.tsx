@@ -68,10 +68,10 @@ export function LockerMatrixClient() {
       </div>
 
       {/* Grid Container */}
-      <Card className="flex-1 shadow-sm border-border bg-card flex flex-col min-h-[400px]">
+      <Card className="flex-1 shadow-sm border-border bg-card flex flex-col min-h-96">
         <div className="p-5 overflow-auto flex-1 bg-muted/5 flex flex-col">
           {isLoading ? (
-            <div className="flex-1 flex flex-col items-center justify-center gap-4 min-h-[300px]">
+            <div className="flex-1 flex flex-col items-center justify-center gap-4 min-h-72">
               <div className="h-8 w-8 rounded-full border-4 border-primary border-t-transparent animate-spin" />
               <p className="text-muted-foreground font-medium">Loading locker grid...</p>
             </div>

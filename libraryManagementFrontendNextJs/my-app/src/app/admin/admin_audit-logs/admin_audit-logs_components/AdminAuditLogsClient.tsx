@@ -180,7 +180,7 @@ export function AdminAuditLogsClient() {
                     <td className="px-6 py-3">
                       <UserCell data={log} />
                     </td>
-                    <td className="px-6 py-3 text-xs text-muted-foreground truncate max-w-[260px]">
+                    <td className="px-6 py-3 text-xs text-muted-foreground truncate max-w-xs">
                       {log.details}
                     </td>
                     <td className="px-6 py-3">

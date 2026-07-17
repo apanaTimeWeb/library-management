@@ -26,5 +26,5 @@ export default async function AdminReportsPage() {
     );
   }
 
-  return <AdminReportsClient initialData={data} />;
+  return <AdminReportsClient initialData={data as Record<string, Record<string, unknown[]>>} />;
 }

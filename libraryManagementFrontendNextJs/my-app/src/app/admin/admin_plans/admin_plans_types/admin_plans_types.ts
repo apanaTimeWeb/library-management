@@ -20,10 +20,10 @@ export interface PlanRecord {
 
 export const adminPlanFormSchema = z.object({
   name: z.string().min(2, 'Plan name must be at least 2 characters').max(60, 'Plan name too long'),
-  price: z.number({ required_error: 'Price is required', invalid_type_error: 'Must be a valid number' })
+  price: z.number({ invalid_type_error: 'Must be a valid number' })
     .positive('Price must be greater than 0'),
   duration: z.string().min(2, 'Duration label required (e.g. 1 Month)'),
-  durationDays: z.number({ required_error: 'Duration in days required', invalid_type_error: 'Must be a valid number' })
+  durationDays: z.number({ invalid_type_error: 'Must be a valid number' })
     .int('Must be a whole number of days')
     .positive('Must be at least 1 day'),
   featuresText: z.string().min(3, 'At least one feature required (one per line)'),

@@ -77,7 +77,7 @@ export function AdminAccountingDailySettlementClient() {
         </Card>
       </div>
 
-      <Card className="flex-1 shadow-none border-border overflow-hidden flex flex-col min-h-[400px]">
+      <Card className="flex-1 shadow-none border-border overflow-hidden flex flex-col min-h-96">
         <div className="w-full overflow-x-auto">
           <table className="w-full text-sm text-left">
             <thead className="bg-muted/30 border-y text-muted-foreground text-xs font-medium uppercase tracking-wider sticky top-0 z-10">

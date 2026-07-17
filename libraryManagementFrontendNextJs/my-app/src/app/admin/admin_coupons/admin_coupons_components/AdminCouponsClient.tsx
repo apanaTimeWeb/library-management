@@ -57,7 +57,7 @@ function UsageCell({ data }: { data: CouponRecord }) {
   if (!data || !data.maxUses) return null;
   const pct = Math.min(100, Math.round((data.usedCount / data.maxUses) * 100));
   return (
-    <div className="flex items-center gap-2.5 w-full max-w-[180px]">
+    <div className="flex items-center gap-2.5 w-full max-w-xs">
       <span className="text-xs font-mono text-muted-foreground w-12 text-right shrink-0">
         {data.usedCount}/{data.maxUses}
       </span>
@@ -168,7 +168,7 @@ export function AdminCouponsClient() {
       {coupons.length === 0 ? (
         <AdminCouponsEmptyState onResetSearch={handleResetSearch} isSearching={Boolean(searchInput.trim())} />
       ) : (
-        <Card className="flex-1 min-h-[450px] shadow-sm border-border bg-card overflow-hidden flex flex-col">
+        <Card className="flex-1 min-h-96 shadow-sm border-border bg-card overflow-hidden flex flex-col">
           <div className="overflow-x-auto flex-1">
             <table className="w-full text-sm text-left">
               <thead className="text-xs text-muted-foreground uppercase bg-muted/50 sticky top-0 z-10">
@@ -236,7 +236,7 @@ export function AdminCouponsClient() {
 
       {/* Detail Drawer Modal (`Rule 19`) */}
       <Dialog open={!!selectedCoupon} onOpenChange={(open) => !open && setSelectedCoupon(null)}>
-        <DialogContent className="sm:max-w-[425px]">
+        <DialogContent className="sm:max-w-md">
           {selectedCoupon && (
             <>
               <DialogHeader>

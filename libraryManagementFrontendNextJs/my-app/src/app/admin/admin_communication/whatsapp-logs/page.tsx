@@ -69,7 +69,7 @@ export default function WhatsappLogsPage() {
         <div className="flex flex-wrap gap-4 items-end">
           <div className="flex flex-col">
             <label className="text-xs mb-1 font-semibold text-muted-foreground uppercase tracking-wider">Message Type</label>
-            <select value={typeFilter} onChange={e => setTypeFilter(e.target.value)} className="flex h-10 w-[140px] items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50">
+            <select value={typeFilter} onChange={e => setTypeFilter(e.target.value)} className="flex h-10 w-36 items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50">
               <option value="All">All Types</option>
               <option value="welcome">Welcome</option>
               <option value="fee_reminder">Fee Reminder</option>
@@ -80,7 +80,7 @@ export default function WhatsappLogsPage() {
           </div>
           <div className="flex flex-col">
             <label className="text-xs mb-1 font-semibold text-muted-foreground uppercase tracking-wider">Status</label>
-            <select value={statusFilter} onChange={e => setStatusFilter(e.target.value)} className="flex h-10 w-[120px] items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50">
+            <select value={statusFilter} onChange={e => setStatusFilter(e.target.value)} className="flex h-10 w-28 items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50">
               <option value="All">All</option>
               <option>Pending</option><option>Sent</option>
               <option>Delivered</option><option>Failed</option>
@@ -94,7 +94,7 @@ export default function WhatsappLogsPage() {
             <label className="text-xs mb-1 font-semibold text-muted-foreground uppercase tracking-wider">To</label>
             <Input type="date" value={dateTo} onChange={e => setDateTo(e.target.value)} className="w-auto" />
           </div>
-          <div className="flex flex-col flex-grow min-w-[200px]">
+          <div className="flex flex-col flex-grow min-w-48">
             <label className="text-xs mb-1 font-semibold text-muted-foreground uppercase tracking-wider">Search</label>
             <Input placeholder="Student name or phone..." value={search} onChange={e => setSearch(e.target.value)} />
           </div>

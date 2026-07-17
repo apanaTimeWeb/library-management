@@ -369,7 +369,7 @@ export default function AdminCrmEnquiryDetailPage({ params }: { params: Promise<
                   <div className="relative border-l-2 border-border/50 ml-3 md:ml-4 space-y-6">
                     {enquiry.followUps.map((fu: FollowUp) => (
                       <div className="relative pl-6 md:pl-8 group" key={fu.id}>
-                        <div className={`absolute -left-[9px] top-1.5 w-4 h-4 rounded-full border-4 border-background ${timelineDotClass(fu.by)} shadow-sm group-hover:scale-110 transition-transform`} />
+                        <div className={`absolute -left-2 top-1.5 w-4 h-4 rounded-full border-4 border-background ${timelineDotClass(fu.by)} shadow-sm group-hover:scale-110 transition-transform`} />
                         <Card className="shadow-none border-border/50 bg-muted/10 hover:bg-muted/30 transition-colors">
                           <CardContent className="p-4">
                             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-2">
@@ -392,7 +392,7 @@ export default function AdminCrmEnquiryDetailPage({ params }: { params: Promise<
           </div>
 
           {/* RIGHT COLUMN */}
-          <div className="w-full lg:w-[350px] shrink-0 space-y-6">
+          <div className="w-full lg:w-80 shrink-0 space-y-6">
 
             {/* Status Card */}
             <Card className="shadow-sm border-border">

@@ -79,7 +79,7 @@ export default function TrustScores() {
             <span className="fin-kpi-label">Scored Students</span>
             <Users size={16} className="fin-icon-muted" />
           </div>
-          <p className="fin-kpi-value">{MOCK_STUDENTS.length}</p>
+          <p className="fin-kpi-value">{ADMIN_FINANCE_MOCK_TRUST_SCORE.length}</p>
         </div>
         <div className="fin-kpi-card fin-kpi-card--danger">
           <div className="fin-kpi-card__header">

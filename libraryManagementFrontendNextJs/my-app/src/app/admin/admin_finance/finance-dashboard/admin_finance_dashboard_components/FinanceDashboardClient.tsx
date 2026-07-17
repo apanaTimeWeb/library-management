@@ -75,7 +75,7 @@ export function FinanceDashboardClient() {
                 }`}>
                   {value}
                 </p>
-                {sub && <div className="mt-1 h-[16px] flex items-center">{sub}</div>}
+                {sub && <div className="mt-1 h-4 flex items-center">{sub}</div>}
               </Card>
             ))}
       </div>

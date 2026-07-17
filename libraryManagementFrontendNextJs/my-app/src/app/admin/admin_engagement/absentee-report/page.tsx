@@ -93,7 +93,7 @@ export default function AbsenteeReportPage() {
         <div className="flex flex-wrap gap-4 items-center">
           <div className="flex flex-col">
             <label className="text-xs mb-1 font-semibold text-muted-foreground uppercase tracking-wider">Days Threshold</label>
-            <select value={threshold} onChange={e => setThreshold(e.target.value)} className="flex h-9 w-[180px] items-center justify-between rounded-md border border-input bg-background px-3 py-1 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50">
+            <select value={threshold} onChange={e => setThreshold(e.target.value)} className="flex h-9 w-44 items-center justify-between rounded-md border border-input bg-background px-3 py-1 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50">
               <option value="3">3+ Days</option>
               <option value="5">5+ Days</option>
               <option value="7">7+ Days (Critical)</option>
@@ -102,7 +102,7 @@ export default function AbsenteeReportPage() {
           </div>
           <div className="flex flex-col">
             <label className="text-xs mb-1 font-semibold text-muted-foreground uppercase tracking-wider">Shift</label>
-            <select value={shift} onChange={e => setShift(e.target.value)} className="flex h-9 w-[140px] items-center justify-between rounded-md border border-input bg-background px-3 py-1 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50">
+            <select value={shift} onChange={e => setShift(e.target.value)} className="flex h-9 w-36 items-center justify-between rounded-md border border-input bg-background px-3 py-1 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50">
               <option>All</option>
               <option>Morning</option>
               <option>Afternoon</option>

@@ -46,7 +46,7 @@ export function useFinanceRefunds() {
           deductionAmount: Number(r.deductionAmount || 0),
           netRefund: Number(r.amount || r.netRefund || 0),
           status: r.status || 'pending',
-          requestedDate: (r.date || r.requestedDate) ? new Date(r.date || r.requestedDate).toISOString().split('T')[0] : new Date().toISOString().split('T')[0],
+          requestedDate: (r.date || r.requestedDate) ? new Date((r.date || r.requestedDate) as string).toISOString().split('T')[0] : new Date().toISOString().split('T')[0],
         }));
         setAllRefunds(mapped);
       })

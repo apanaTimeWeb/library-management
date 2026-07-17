@@ -67,7 +67,7 @@ export function FinanceRenewalsClient() {
       </div>
 
       {/* Table */}
-      <Card className="flex-1 shadow-none border-border bg-card overflow-hidden flex flex-col min-h-[450px]">
+      <Card className="flex-1 shadow-none border-border bg-card overflow-hidden flex flex-col min-h-96">
         <div className="w-full overflow-x-auto flex-1">
           <table className="w-full text-sm text-left whitespace-nowrap min-w-max">
             <thead className="bg-muted/30 border-b text-muted-foreground text-xs font-bold uppercase tracking-wider sticky top-0 z-10">

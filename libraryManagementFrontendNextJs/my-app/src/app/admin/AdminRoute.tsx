@@ -44,7 +44,7 @@ export function AdminRoute({ children }: { children: React.ReactNode }) {
           sidebarWidth={sidebarWidth}
           onMobileOpen={() => setMobileOpen(true)}
         />
-        <main className="flex-1 p-4 md:p-6 lg:p-8 pt-[72px] md:pt-[88px] overflow-y-auto">
+        <main className="flex-1 p-4 md:p-6 lg:p-8 pt-16 md:pt-20 overflow-y-auto">
           {children}
         </main>
       </div>

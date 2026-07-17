@@ -91,7 +91,7 @@ export default function NotificationCenterPage() {
                     </div>
                     <p className={`text-sm ${n.read ? 'text-muted-foreground/80' : 'text-muted-foreground'}`}>{n.description}</p>
                   </div>
-                  <div className="flex md:flex-col items-center md:items-end justify-between md:justify-center gap-2 shrink-0 md:min-w-[120px]">
+                  <div className="flex md:flex-col items-center md:items-end justify-between md:justify-center gap-2 shrink-0 md:min-w-28">
                     <span className="text-xs font-semibold text-muted-foreground">{n.time}</span>
                     <Link href={n.link} className="text-xs font-semibold text-info hover:text-info/80 flex items-center gap-1 group">
                       Go to page <ArrowRight size={12} className="group-hover:translate-x-1 transition-transform" />

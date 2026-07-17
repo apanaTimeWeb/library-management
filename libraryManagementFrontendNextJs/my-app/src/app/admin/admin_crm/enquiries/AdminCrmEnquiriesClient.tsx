@@ -182,11 +182,11 @@ export default function AdminCrmEnquiriesClient() {
               </Button>
             </div>
           ) : (
-            <div className="flex overflow-x-auto gap-4 pb-4 h-[calc(100vh-250px)] min-h-[500px]">
+            <div className="flex overflow-x-auto gap-4 pb-4 h-[calc(100vh-250px)] min-h-96">
               {KANBAN_COLUMNS.map((col) => {
                 const cards = colEnquiries(col.id);
                 return (
-                  <div key={col.id} className="flex flex-col w-[300px] shrink-0 bg-muted/20 rounded-xl border border-border/50">
+                  <div key={col.id} className="flex flex-col w-72 shrink-0 bg-muted/20 rounded-xl border border-border/50">
                     <div className="flex items-center justify-between p-3 border-b border-border/50 bg-muted/10 rounded-t-xl">
                       <div className="flex items-center gap-2">
                         <span className={`w-2.5 h-2.5 rounded-full ${DOT_CLASS[col.id]}`} />
