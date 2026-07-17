@@ -1,21 +1,21 @@
 'use client';
 
-// RESPONSIBILITY: Client view component rendering audit logs AG Grid table, filters, copy IDs, and detail drawer (`Rule 1`, `Rule 8`, `Rule 19`, `Rule 49`).
-// DATA FLOW: useAdminAuditLogs -> AdminAuditLogsClient -> AG Grid / Detail Drawer (`Rule 39`).
+// RESPONSIBILITY: Client view component rendering audit logs table, filters, copy IDs, and detail drawer (`Rule 1`, `Rule 8`, `Rule 19`, `Rule 49`).
+// DATA FLOW: useAdminAuditLogs -> AdminAuditLogsClient -> Table / Detail Drawer (`Rule 39`).
 
-import { useState, useMemo, useCallback } from 'react';
+import { useState, useCallback } from 'react';
 import { Search, ShieldAlert, ShieldCheck, Shield, AlertTriangle, Info, Copy, Check, X } from 'lucide-react';
-import { AgGridReact } from 'ag-grid-react';
-import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community';
-import { gridTheme } from '@/app/admin/admin_reusable/admin_reusable_utils/AdminReusableGridTheme';
 import { useAdminAuditLogs } from '@/app/admin/admin_audit-logs/admin_audit-logs_hooks/useAdminAuditLogs';
 import { AdminAuditLogsSkeleton } from '@/app/admin/admin_audit-logs/admin_audit-logs_components/AdminAuditLogsSkeleton';
 import { AdminAuditLogsEmptyState } from '@/app/admin/admin_audit-logs/admin_audit-logs_components/AdminAuditLogsEmptyState';
 import { AUDIT_LOG_TABS, SEVERITY_BADGE_CLASSES } from '@/app/admin/admin_audit-logs/admin_audit-logs_constants/admin_audit-logs_constants';
 import { AuditLogRecord } from '@/app/admin/admin_audit-logs/admin_audit-logs_types/admin_audit-logs_types';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Badge } from '@/components/ui/badge';
+import { Card } from '@/components/ui/card';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from '@/components/ui/dialog';
 import toast from 'react-hot-toast';
-
-ModuleRegistry.registerModules([AllCommunityModule]);
 
 const SEVERITY_ICONS: Record<string, React.ReactNode> = {
   danger:  <ShieldAlert size={12} />,
@@ -27,9 +27,12 @@ const SEVERITY_ICONS: Record<string, React.ReactNode> = {
 function SeverityCell({ data }: { data: AuditLogRecord }) {
   if (!data || !data.severity) return null;
   return (
-    <span className={SEVERITY_BADGE_CLASSES[data.severity] || 'admin-badge admin-badge-info'}>
+    <Badge 
+      variant="secondary" 
+      className={`gap-1 h-6 px-2.5 ${SEVERITY_BADGE_CLASSES[data.severity] || 'bg-info/10 text-info border-none'}`}
+    >
       {SEVERITY_ICONS[data.severity]} {data.severity.charAt(0).toUpperCase() + data.severity.slice(1)}
-    </span>
+    </Badge>
   );
 }
 
@@ -87,20 +90,8 @@ export function AdminAuditLogsClient() {
     handleResetFilters,
   } = useAdminAuditLogs();
 
-  const colDefs = useMemo(() => [
-    { field: 'id',          headerName: 'LOG ID',       width: 110, cellRenderer: IdCell },
-    { field: 'timestamp',   headerName: 'TIME',         flex: 1.2,  minWidth: 130, cellClass: 'text-xs text-muted-foreground' },
-    { field: 'action',      headerName: 'ACTION',       flex: 2,    minWidth: 180, cellRenderer: ActionCell },
-    { field: 'module',      headerName: 'MODULE',       flex: 1,    minWidth: 110, cellClass: 'text-xs text-muted-foreground font-medium' },
-    { field: 'performedBy', headerName: 'PERFORMED BY', flex: 1.5,  minWidth: 160, cellRenderer: UserCell },
-    { field: 'details',     headerName: 'DETAILS',      flex: 2.5,  minWidth: 260, cellClass: 'text-xs text-muted-foreground truncate' },
-    { field: 'severity',    headerName: 'SEVERITY',     flex: 1,    minWidth: 130, cellRenderer: SeverityCell },
-  ], []);
-
-  const handleRowClick = useCallback((event: { data?: AuditLogRecord }) => {
-    if (event.data) {
-      setSelectedLog(event.data);
-    }
+  const handleRowClick = useCallback((log: AuditLogRecord) => {
+    setSelectedLog(log);
   }, [setSelectedLog]);
 
   if (fetchState === 'loading' && logs.length === 0) {
@@ -110,31 +101,37 @@ export function AdminAuditLogsClient() {
   return (
     <div className="h-full flex flex-col pb-10 space-y-6">
       {/* Page Header */}
-      <div className="admin-page-header border-b border-border pb-4">
+      <div className="border-b border-border pb-4">
         <div>
-          <p className="admin-breadcrumb">Smart Library 360 › Admin › Audit Logs</p>
-          <h1 className="admin-page-title">Audit Logs</h1>
-          <p className="admin-page-subtitle">Track all sensitive actions performed in the system.</p>
+          <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-1">
+            Smart Library 360 <span className="opacity-50">›</span> Admin <span className="opacity-50">›</span> Audit Logs
+          </p>
+          <h1 className="text-2xl font-bold tracking-tight text-foreground">Audit Logs</h1>
+          <p className="text-sm text-muted-foreground mt-1">Track all sensitive actions performed in the system.</p>
         </div>
       </div>
 
       {/* Filters & Search */}
-      <div className="flex flex-wrap items-center gap-3">
+      <div className="flex flex-wrap items-center gap-4">
         <div className="relative max-w-xs w-full">
           <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
-          <input
-            className="admin-input pl-9"
+          <Input
+            className="pl-9"
             placeholder="Search action, module, or user…"
             value={searchInput}
             onChange={(e) => setSearchInput(e.target.value)}
           />
         </div>
-        <div className="admin-tab-bar">
+        <div className="flex items-center p-1 rounded-lg bg-muted/30 border border-border">
           {AUDIT_LOG_TABS.map((tab) => (
             <button
               key={tab}
               type="button"
-              className={`admin-tab${activeTab === tab ? ' active' : ''}`}
+              className={`px-3 py-1.5 text-sm font-medium rounded-md transition-colors ${
+                activeTab === tab 
+                  ? 'bg-background text-foreground shadow-sm' 
+                  : 'text-muted-foreground hover:text-foreground hover:bg-muted/50'
+              }`}
               onClick={() => setActiveTab(tab)}
             >
               {tab === 'all' ? 'All' : tab.charAt(0).toUpperCase() + tab.slice(1)}
@@ -143,96 +140,123 @@ export function AdminAuditLogsClient() {
         </div>
       </div>
 
-      {/* AG Grid Table or Empty State */}
+      {/* Table or Empty State */}
       {logs.length === 0 ? (
         <AdminAuditLogsEmptyState onResetFilters={handleResetFilters} />
       ) : (
-        <div className="admin-table-wrapper flex-1 min-h-[450px]">
-          <AgGridReact
-            theme={gridTheme}
-            rowData={logs}
-            columnDefs={colDefs as never}
-            rowHeight={54}
-            headerHeight={40}
-            suppressMovableColumns
-            suppressCellFocus
-            defaultColDef={{ resizable: false, sortable: true }}
-            onRowClicked={handleRowClick}
-            rowClass="cursor-pointer hover:bg-muted/30 transition-colors"
-          />
-        </div>
+        <Card className="flex-1 min-h-[450px] shadow-sm border-border bg-card overflow-hidden flex flex-col">
+          <div className="overflow-x-auto flex-1">
+            <table className="w-full text-sm text-left">
+              <thead className="text-xs text-muted-foreground uppercase bg-muted/50 sticky top-0 z-10">
+                <tr>
+                  <th className="px-6 py-3 font-semibold">Log ID</th>
+                  <th className="px-6 py-3 font-semibold">Time</th>
+                  <th className="px-6 py-3 font-semibold">Action</th>
+                  <th className="px-6 py-3 font-semibold">Module</th>
+                  <th className="px-6 py-3 font-semibold">Performed By</th>
+                  <th className="px-6 py-3 font-semibold">Details</th>
+                  <th className="px-6 py-3 font-semibold">Severity</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-border">
+                {logs.map((log) => (
+                  <tr 
+                    key={log.id} 
+                    className="hover:bg-muted/30 transition-colors cursor-pointer group"
+                    onClick={() => handleRowClick(log)}
+                  >
+                    <td className="px-6 py-3">
+                      <IdCell value={log.id} />
+                    </td>
+                    <td className="px-6 py-3 text-xs text-muted-foreground whitespace-nowrap">
+                      {log.timestamp}
+                    </td>
+                    <td className="px-6 py-3">
+                      <ActionCell value={log.action} />
+                    </td>
+                    <td className="px-6 py-3 text-xs text-muted-foreground font-medium">
+                      {log.module}
+                    </td>
+                    <td className="px-6 py-3">
+                      <UserCell data={log} />
+                    </td>
+                    <td className="px-6 py-3 text-xs text-muted-foreground truncate max-w-[260px]">
+                      {log.details}
+                    </td>
+                    <td className="px-6 py-3">
+                      <SeverityCell data={log} />
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </Card>
       )}
 
       {/* Info Tip */}
-      <div className="flex items-start gap-3 p-4 rounded-lg bg-info/10 border border-info/30 text-info">
+      <div className="flex items-start gap-3 p-4 rounded-lg bg-info/10 border border-info/30 text-info shadow-sm">
         <Shield size={18} className="shrink-0 mt-0.5" />
-        <p className="text-xs leading-relaxed text-muted-foreground m-0">
+        <p className="text-xs leading-relaxed text-info m-0 font-medium">
           Audit logs are retained for 90 days. Use the severity filter to quickly identify suspicious activity like deleted receipts or unauthorized access attempts. Click any row to inspect complete diagnostic details (`Rule 19`).
         </p>
       </div>
 
       {/* Detail Modal / Drawer (`Rule 19`) */}
-      {selectedLog && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4 animate-in fade-in-50">
-          <div className="bg-card border border-border rounded-xl shadow-2xl max-w-lg w-full p-6 space-y-4">
-            <div className="flex items-center justify-between border-b border-border pb-3">
-              <div className="flex items-center gap-2">
-                <span className="font-mono text-xs text-muted-foreground">#{selectedLog.id}</span>
-                <h3 className="font-semibold text-lg text-foreground">{selectedLog.action}</h3>
-              </div>
-              <button
-                type="button"
-                onClick={() => setSelectedLog(null)}
-                aria-label="Close modal"
-                className="p-1.5 rounded-md hover:bg-muted text-muted-foreground hover:text-foreground transition-colors"
-              >
-                <X size={18} />
-              </button>
-            </div>
+      <Dialog open={!!selectedLog} onOpenChange={(open) => !open && setSelectedLog(null)}>
+        <DialogContent className="sm:max-w-[550px]">
+          {selectedLog && (
+            <>
+              <DialogHeader>
+                <div className="flex items-center gap-2">
+                  <span className="font-mono text-xs text-muted-foreground">#{selectedLog.id}</span>
+                  <DialogTitle>{selectedLog.action}</DialogTitle>
+                </div>
+              </DialogHeader>
 
-            <div className="grid grid-cols-2 gap-4 text-sm">
-              <div>
-                <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Module</span>
-                <p className="font-medium text-foreground mt-0.5">{selectedLog.module}</p>
-              </div>
-              <div>
-                <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Severity</span>
-                <div className="mt-0.5">
-                  <SeverityCell data={selectedLog} />
+              <div className="grid grid-cols-2 gap-4 text-sm py-4">
+                <div>
+                  <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Module</span>
+                  <p className="font-medium text-foreground mt-0.5">{selectedLog.module}</p>
+                </div>
+                <div>
+                  <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Severity</span>
+                  <div className="mt-1">
+                    <SeverityCell data={selectedLog} />
+                  </div>
+                </div>
+                <div>
+                  <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Performed By</span>
+                  <p className="font-medium text-foreground mt-0.5">{selectedLog.performedBy} ({selectedLog.role})</p>
+                </div>
+                <div>
+                  <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">IP Address</span>
+                  <p className="font-mono text-xs text-muted-foreground mt-0.5">{selectedLog.ip}</p>
+                </div>
+                <div className="col-span-2">
+                  <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Timestamp</span>
+                  <p className="font-medium text-foreground mt-0.5">{selectedLog.timestamp}</p>
+                </div>
+                <div className="col-span-2 border-t border-border pt-3">
+                  <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Event Details</span>
+                  <p className="text-sm text-foreground bg-muted/40 p-3 rounded-md mt-1 font-mono break-all shadow-inner">
+                    {selectedLog.details}
+                  </p>
                 </div>
               </div>
-              <div>
-                <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Performed By</span>
-                <p className="font-medium text-foreground mt-0.5">{selectedLog.performedBy} ({selectedLog.role})</p>
-              </div>
-              <div>
-                <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">IP Address</span>
-                <p className="font-mono text-xs text-muted-foreground mt-0.5">{selectedLog.ip}</p>
-              </div>
-              <div className="col-span-2">
-                <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Timestamp</span>
-                <p className="font-medium text-foreground mt-0.5">{selectedLog.timestamp}</p>
-              </div>
-              <div className="col-span-2 border-t border-border pt-3">
-                <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Event Details</span>
-                <p className="text-sm text-foreground bg-muted/40 p-3 rounded-md mt-1 font-mono break-all">
-                  {selectedLog.details}
-                </p>
-              </div>
-            </div>
 
-            <div className="flex justify-end pt-2">
-              <button
-                type="button"
-                onClick={() => setSelectedLog(null)}
-                className="px-4 py-2 text-sm font-medium rounded-md bg-muted text-foreground hover:bg-muted/80 transition-colors"
-              >
-                Close
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
+              <DialogFooter className="border-t border-border pt-4">
+                <Button
+                  variant="outline"
+                  onClick={() => setSelectedLog(null)}
+                >
+                  Close
+                </Button>
+              </DialogFooter>
+            </>
+          )}
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
