@@ -25,10 +25,10 @@ export function PublicEnquiryClient() {
       <div className="absolute top-0 right-0 w-64 h-64 bg-primary/10 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-0 left-0 w-64 h-64 bg-primary/10 rounded-full blur-3xl pointer-events-none" />
 
-      <div className="w-full max-w-[440px] space-y-5 pb-8 relative z-10">
+      <div className="w-full max-w-md space-y-5 pb-8 relative z-10">
         <PublicEnquiryHeader />
 
-        <div className="bg-card rounded-[var(--radius-xl)] shadow-2xl shadow-black/50 border border-border p-6 sm:p-8 relative overflow-hidden">
+        <div className="bg-card rounded-xl shadow-2xl shadow-black/50 border border-border p-6 sm:p-8 relative overflow-hidden">
           {!submitted ? (
             <PublicEnquiryForm formMethods={formMethods} onSubmit={onSubmit} />
           ) : (

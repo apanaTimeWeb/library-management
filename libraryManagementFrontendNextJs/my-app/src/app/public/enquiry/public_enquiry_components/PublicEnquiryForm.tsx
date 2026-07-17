@@ -36,10 +36,10 @@ export function PublicEnquiryForm({ formMethods, onSubmit }: PublicEnquiryFormPr
               type="text"
               placeholder="Your Full Name"
               {...register('name')}
-              className={`w-full bg-input border ${errors.name ? 'border-danger' : 'border-border'} rounded-[var(--radius-md)] py-2 pl-9 pr-3 text-text-primary text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--primary)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--bg-page)] transition-all duration-200`}
+              className={`w-full bg-input border ${errors.name ? 'border-danger' : 'border-border'} rounded-md py-2 pl-9 pr-3 text-text-primary text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background transition-all duration-200`}
             />
           </div>
-          {errors.name && <p className="text-[12px] text-danger mt-1">{errors.name.message}</p>}
+          {errors.name && <p className="text-xs text-danger mt-1">{errors.name.message}</p>}
         </div>
 
 
@@ -48,7 +48,7 @@ export function PublicEnquiryForm({ formMethods, onSubmit }: PublicEnquiryFormPr
           id="submit-enquiry-btn"
           type="submit"
           disabled={isSubmitting}
-          className="w-full mt-4 flex items-center justify-center gap-2 bg-primary hover:bg-primary-hover text-white text-sm font-medium py-3 px-4 rounded-[var(--radius-md)] transition-all duration-200 disabled:opacity-70 disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--primary)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--bg-page)] active:scale-95"
+          className="w-full mt-4 flex items-center justify-center gap-2 bg-primary hover:bg-primary-hover text-white text-sm font-medium py-3 px-4 rounded-md transition-all duration-200 disabled:opacity-70 disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background active:scale-95"
         >
           {isSubmitting ? (
             <>

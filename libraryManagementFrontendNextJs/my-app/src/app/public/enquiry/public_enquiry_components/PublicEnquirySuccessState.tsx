@@ -13,7 +13,7 @@ export function PublicEnquirySuccessState({ submittedName, onReset }: PublicEnqu
   return (
     <div className="py-6 text-center animate-in fade-in slide-in-from-bottom-4 duration-500">
       <div className="flex justify-center mb-6">
-        <div className="w-16 h-16 rounded-full bg-[var(--success-bg,rgba(52,211,153,0.1))] flex items-center justify-center text-success shadow-[0_0_20px_rgba(52,211,153,0.2)]">
+        <div className="w-16 h-16 rounded-full bg-green-100 flex items-center justify-center text-success shadow-lg">
           <CheckCircle size={32} />
         </div>
       </div>
@@ -25,8 +25,8 @@ export function PublicEnquirySuccessState({ submittedName, onReset }: PublicEnqu
         We&apos;ll contact you shortly to confirm your seat. 🎉
       </p>
 
-      <div className="text-left bg-input border border-border rounded-[var(--radius-lg)] p-5 space-y-3 shadow-inner">
-        <p className="text-[11px] font-semibold uppercase tracking-widest text-text-secondary mb-2">
+      <div className="text-left bg-input border border-border rounded-lg p-5 space-y-3 shadow-inner">
+        <p className="text-xs font-semibold uppercase tracking-widest text-text-secondary mb-2">
           What Happens Next
         </p>
         {[
@@ -45,7 +45,7 @@ export function PublicEnquirySuccessState({ submittedName, onReset }: PublicEnqu
         id="submit-another-btn"
         type="button"
         onClick={onReset}
-        className="w-full mt-8 flex items-center justify-center text-text-primary bg-transparent border border-border hover:bg-input text-sm font-medium py-3 px-4 rounded-[var(--radius-md)] transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--primary)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--bg-page)] active:scale-95"
+        className="w-full mt-8 flex items-center justify-center text-text-primary bg-transparent border border-border hover:bg-input text-sm font-medium py-3 px-4 rounded-md transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background active:scale-95"
       >
         Submit Another Enquiry
       </button>

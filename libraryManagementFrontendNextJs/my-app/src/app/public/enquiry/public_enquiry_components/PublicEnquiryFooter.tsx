@@ -15,7 +15,7 @@ export function PublicEnquiryFooter() {
       >
         {PUBLIC_ENQUIRY_LIBRARY.phone}
       </a>
-      <p className="text-[10px] text-text-disabled pt-1">
+      <p className="text-xs text-text-disabled pt-1">
         © 2026 {PUBLIC_ENQUIRY_LIBRARY.name} · Powered by Smart Library 360
       </p>
     </div>
