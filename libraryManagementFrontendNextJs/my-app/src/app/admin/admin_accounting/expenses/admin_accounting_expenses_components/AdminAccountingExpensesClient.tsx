@@ -1,35 +1,27 @@
 'use client';
 
-// RESPONSIBILITY: Client view rendering accounting expenses table, search, category filters, and total value stats (`Rule 1`, `Rule 8`).
-// DATA FLOW: useAdminAccountingExpenses -> AdminAccountingExpensesClient -> AG Grid / Add Dialog (`Rule 39`).
-
-import { useState, useMemo } from 'react';
+import { useState } from 'react';
 import { Search, Plus, Filter, IndianRupee, TrendingUp } from 'lucide-react';
-import { AgGridReact } from 'ag-grid-react';
-import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community';
-import { gridTheme } from '@/app/admin/admin_reusable/admin_reusable_utils/AdminReusableGridTheme';
 import { useAdminAccountingExpenses } from '@/app/admin/admin_accounting/expenses/admin_accounting_expenses_hooks/useAdminAccountingExpenses';
 import { AdminAccountingExpensesAddDialog } from '@/app/admin/admin_accounting/expenses/admin_accounting_expenses_components/AdminAccountingExpensesAddDialog';
-
-ModuleRegistry.registerModules([AllCommunityModule]);
+import { Card } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
 
 function ModeBadge({ value }: { value: string }) {
   if (!value) return null;
-  const modeColors: Record<string, string> = {
-    cash: 'admin-badge-success',
-    upi: 'admin-badge-info',
-    card: 'admin-badge-primary',
-    bank: 'admin-badge-warning',
+  const modeClasses: Record<string, string> = {
+    cash: 'bg-success/10 text-success hover:bg-success/20',
+    upi: 'bg-info/10 text-info hover:bg-info/20',
+    card: 'bg-primary/10 text-primary hover:bg-primary/20',
+    bank: 'bg-warning/10 text-warning hover:bg-warning/20',
   };
   return (
-    <span className={`admin-badge ${modeColors[value] || 'admin-badge-neutral'}`}>
+    <Badge variant="secondary" className={`${modeClasses[value] || 'bg-muted text-muted-foreground'} border-none font-bold tracking-wide`}>
       {value.toUpperCase()}
-    </span>
+    </Badge>
   );
-}
-
-function CurrencyCell({ value }: { value: number }) {
-  return <span className="font-semibold text-foreground flex items-center gap-0.5"><IndianRupee size={12} /> {value.toLocaleString('en-IN')}</span>;
 }
 
 export function AdminAccountingExpensesClient() {
@@ -48,33 +40,24 @@ export function AdminAccountingExpensesClient() {
 
   const [isAddOpen, setIsAddOpen] = useState(false);
 
-  const colDefs = useMemo(() => [
-    { field: 'date', headerName: 'Date', flex: 1, minWidth: 120, cellClass: 'text-xs text-muted-foreground' },
-    { field: 'category', headerName: 'Category', flex: 1.5, minWidth: 150, cellClass: 'font-semibold text-foreground' },
-    { field: 'description', headerName: 'Description', flex: 2, minWidth: 200 },
-    { field: 'amount', headerName: 'Amount', flex: 1, minWidth: 120, cellRenderer: CurrencyCell },
-    { field: 'paidBy', headerName: 'Paid By', flex: 1, minWidth: 130 },
-    { field: 'mode', headerName: 'Mode', flex: 1, minWidth: 100, cellRenderer: ModeBadge },
-  ], []);
-
   return (
     <div className="h-full flex flex-col pb-10 space-y-6">
       {/* Page Header */}
-      <div className="admin-page-header border-b border-border pb-4 flex flex-wrap items-center justify-between gap-4">
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b pb-4">
         <div>
-          <h1 className="admin-page-title text-2xl font-extrabold tracking-tight">Manual Expenses</h1>
-          <p className="admin-page-subtitle text-muted-foreground mt-1">Log and track miscellaneous accounting expenses.</p>
+          <h1 className="text-2xl font-bold tracking-tight">Manual Expenses</h1>
+          <p className="text-sm text-muted-foreground mt-1">Log and track miscellaneous accounting expenses.</p>
         </div>
-        <button type="button" onClick={() => setIsAddOpen(true)} className="admin-btn-primary flex items-center gap-2">
+        <Button onClick={() => setIsAddOpen(true)} className="gap-2">
           <Plus size={16} /> Log Expense
-        </button>
+        </Button>
       </div>
 
       {/* Overview Stat */}
-      <div className="bg-card border border-border rounded-xl p-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+      <Card className="p-6 shadow-none border-border flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
-          <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-1">Total (Filtered)</h3>
-          <p className="text-3xl font-extrabold text-foreground flex items-center tracking-tighter">
+          <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-1">Total (Filtered)</h3>
+          <p className="text-3xl font-bold text-foreground flex items-center">
             <IndianRupee size={24} className="mr-1 text-danger" />
             {totalValue.toLocaleString('en-IN')}
           </p>
@@ -82,14 +65,14 @@ export function AdminAccountingExpensesClient() {
         <div className="p-3 bg-danger/10 text-danger rounded-full">
           <TrendingUp size={24} />
         </div>
-      </div>
+      </Card>
 
       {/* Search & Filters */}
       <div className="flex flex-wrap items-center gap-4">
         <div className="relative max-w-sm w-full">
           <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
-          <input
-            className="admin-input pl-9 w-full"
+          <Input
+            className="pl-9 w-full"
             placeholder="Search description or paid by…"
             value={searchInput}
             onChange={(e) => setSearchInput(e.target.value)}
@@ -99,7 +82,7 @@ export function AdminAccountingExpensesClient() {
         <div className="flex items-center gap-2">
           <Filter size={16} className="text-muted-foreground" />
           <select
-            className="admin-input"
+            className="flex h-10 w-[180px] items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
             value={categoryFilter}
             onChange={(e) => setCategoryFilter(e.target.value)}
           >
@@ -111,30 +94,56 @@ export function AdminAccountingExpensesClient() {
         </div>
 
         {(searchInput || categoryFilter !== 'all') && (
-          <button onClick={handleResetFilters} className="text-xs text-info hover:underline font-medium">
+          <Button variant="ghost" size="sm" onClick={handleResetFilters} className="text-info hover:text-info/80 hover:bg-info/10">
             Clear Filters
-          </button>
+          </Button>
         )}
       </div>
 
       {/* Grid */}
-      <div className="admin-table-wrapper flex-1 min-h-[450px]">
+      <Card className="flex-1 shadow-none border-border overflow-hidden flex flex-col min-h-[450px]">
         {fetchState === 'loading' && expenses.length === 0 ? (
           <div className="flex items-center justify-center h-full text-muted-foreground">Loading expenses…</div>
         ) : (
-          <AgGridReact
-            theme={gridTheme}
-            rowData={expenses}
-            columnDefs={colDefs}
-            rowHeight={52}
-            headerHeight={40}
-            suppressMovableColumns
-            suppressCellFocus
-            defaultColDef={{ resizable: false, sortable: true }}
-            rowClass="hover:bg-muted/30 transition-colors"
-          />
+          <div className="w-full overflow-x-auto">
+            <table className="w-full text-sm text-left">
+              <thead className="bg-muted/30 border-y text-muted-foreground text-xs font-medium uppercase tracking-wider sticky top-0 z-10">
+                <tr>
+                  <th className="px-4 py-3">Date</th>
+                  <th className="px-4 py-3">Category</th>
+                  <th className="px-4 py-3">Description</th>
+                  <th className="px-4 py-3">Amount</th>
+                  <th className="px-4 py-3">Paid By</th>
+                  <th className="px-4 py-3">Mode</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-border">
+                {expenses.map((expense, index) => (
+                  <tr key={index} className="hover:bg-muted/10 transition-colors">
+                    <td className="px-4 py-4 text-muted-foreground text-xs">{expense.date}</td>
+                    <td className="px-4 py-4 font-semibold text-foreground">{expense.category}</td>
+                    <td className="px-4 py-4 text-muted-foreground font-medium">{expense.description}</td>
+                    <td className="px-4 py-4 font-semibold text-foreground flex items-center gap-0.5 mt-2">
+                      <IndianRupee size={12} /> {expense.amount.toLocaleString('en-IN')}
+                    </td>
+                    <td className="px-4 py-4 text-muted-foreground">{expense.paidBy}</td>
+                    <td className="px-4 py-4">
+                      <ModeBadge value={expense.mode} />
+                    </td>
+                  </tr>
+                ))}
+                {expenses.length === 0 && (
+                  <tr>
+                    <td colSpan={6} className="px-4 py-12 text-center text-muted-foreground">
+                      No expenses found.
+                    </td>
+                  </tr>
+                )}
+              </tbody>
+            </table>
+          </div>
         )}
-      </div>
+      </Card>
 
       <AdminAccountingExpensesAddDialog
         isOpen={isAddOpen}

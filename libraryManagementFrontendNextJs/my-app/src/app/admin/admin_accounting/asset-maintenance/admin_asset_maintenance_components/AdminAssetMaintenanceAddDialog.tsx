@@ -1,11 +1,10 @@
-// RESPONSIBILITY: Modal dialog for recording an asset maintenance task with React Hook Form + Zod (`Rule 16`, `Rule 38`).
-// DATA FLOW: Dialog Form -> useAdminAssetMaintenance -> Store -> Backend API (`Rule 39`).
-
 import { useEffect, useState } from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm as useReactHookForm } from 'react-hook-form';
 import { Wrench, X, Loader2 } from 'lucide-react';
 import { adminAssetMaintenanceFormSchema, AdminAssetMaintenanceFormData } from '@/app/admin/admin_accounting/admin_accounting_types/admin_accounting_types';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
 
 interface AdminAssetMaintenanceAddDialogProps {
   isOpen: boolean;
@@ -33,7 +32,6 @@ export function AdminAssetMaintenanceAddDialog({ isOpen, onClose, onSubmit }: Ad
     },
   });
 
-  // Intercept beforeunload (`Rule 48`)
   useEffect(() => {
     const handleBeforeUnload = (e: BeforeUnloadEvent) => {
       if (isDirty) {
@@ -64,7 +62,7 @@ export function AdminAssetMaintenanceAddDialog({ isOpen, onClose, onSubmit }: Ad
 
   const handleModalClose = () => {
     if (isDirty) {
-      if (window.confirm('You have unsaved changes. Discard? (`Rule 48`)')) {
+      if (window.confirm('You have unsaved changes. Discard?')) {
         reset();
         onClose();
       }
@@ -82,27 +80,27 @@ export function AdminAssetMaintenanceAddDialog({ isOpen, onClose, onSubmit }: Ad
             <Wrench size={20} />
             <h2>Schedule Maintenance</h2>
           </div>
-          <button type="button" onClick={handleModalClose} className="p-1.5 rounded-md hover:bg-muted text-muted-foreground transition-colors">
+          <Button variant="ghost" size="icon" onClick={handleModalClose} className="h-8 w-8 text-muted-foreground hover:text-foreground">
             <X size={18} />
-          </button>
+          </Button>
         </div>
 
         <form onSubmit={handleSubmit(onFormSubmit)} className="space-y-4">
           <div>
             <label className="block text-xs font-semibold text-foreground uppercase tracking-wider mb-1">Asset ID *</label>
-            <input type="text" {...register('assetId')} placeholder="e.g. A1" className="admin-input w-full" disabled={isSubmitting} />
+            <Input type="text" {...register('assetId')} placeholder="e.g. A1" className="w-full" disabled={isSubmitting} />
             {errors.assetId && <p className="text-xs text-danger mt-1 font-medium">{errors.assetId.message}</p>}
           </div>
 
           <div className="grid grid-cols-2 gap-3">
             <div>
               <label className="block text-xs font-semibold text-foreground uppercase tracking-wider mb-1">Date *</label>
-              <input type="date" {...register('date')} className="admin-input w-full" disabled={isSubmitting} />
+              <Input type="date" {...register('date')} className="w-full" disabled={isSubmitting} />
               {errors.date && <p className="text-xs text-danger mt-1 font-medium">{errors.date.message}</p>}
             </div>
             <div>
               <label className="block text-xs font-semibold text-foreground uppercase tracking-wider mb-1">Type *</label>
-              <select {...register('type')} className="admin-input w-full" disabled={isSubmitting}>
+              <select {...register('type')} className="flex h-10 w-full items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" disabled={isSubmitting}>
                 <option value="routine">Routine</option>
                 <option value="repair">Repair</option>
                 <option value="upgrade">Upgrade</option>
@@ -113,12 +111,12 @@ export function AdminAssetMaintenanceAddDialog({ isOpen, onClose, onSubmit }: Ad
           <div className="grid grid-cols-2 gap-3">
             <div>
               <label className="block text-xs font-semibold text-foreground uppercase tracking-wider mb-1">Cost (₹) *</label>
-              <input type="number" {...register('cost', { valueAsNumber: true })} placeholder="1200" className="admin-input w-full font-bold" disabled={isSubmitting} />
+              <Input type="number" {...register('cost', { valueAsNumber: true })} placeholder="1200" className="w-full font-bold" disabled={isSubmitting} />
               {errors.cost && <p className="text-xs text-danger mt-1 font-medium">{errors.cost.message}</p>}
             </div>
             <div>
               <label className="block text-xs font-semibold text-foreground uppercase tracking-wider mb-1">Status *</label>
-              <select {...register('status')} className="admin-input w-full" disabled={isSubmitting}>
+              <select {...register('status')} className="flex h-10 w-full items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" disabled={isSubmitting}>
                 <option value="scheduled">Scheduled</option>
                 <option value="completed">Completed</option>
                 <option value="pending">Pending</option>
@@ -128,18 +126,18 @@ export function AdminAssetMaintenanceAddDialog({ isOpen, onClose, onSubmit }: Ad
 
           <div>
             <label className="block text-xs font-semibold text-foreground uppercase tracking-wider mb-1">Vendor *</label>
-            <input type="text" {...register('vendor')} placeholder="e.g. Cooling Experts" className="admin-input w-full" disabled={isSubmitting} />
+            <Input type="text" {...register('vendor')} placeholder="e.g. Cooling Experts" className="w-full" disabled={isSubmitting} />
             {errors.vendor && <p className="text-xs text-danger mt-1 font-medium">{errors.vendor.message}</p>}
           </div>
 
           <div className="flex items-center justify-end gap-3 pt-3 border-t border-border">
-            <button type="button" onClick={handleModalClose} disabled={isSubmitting} className="px-4 py-2 text-sm font-medium rounded-md bg-muted text-foreground hover:bg-muted/80 transition-colors disabled:opacity-50">
+            <Button variant="ghost" type="button" onClick={handleModalClose} disabled={isSubmitting}>
               Cancel
-            </button>
-            <button type="submit" disabled={isSubmitting} className="px-4 py-2 text-sm font-medium rounded-md bg-primary text-primary-foreground hover:bg-primary/90 transition-colors flex items-center gap-2 disabled:opacity-50">
+            </Button>
+            <Button type="submit" disabled={isSubmitting} className="gap-2">
               {isSubmitting && <Loader2 size={15} className="animate-spin" />}
               {isSubmitting ? 'Saving…' : 'Schedule'}
-            </button>
+            </Button>
           </div>
         </form>
       </div>

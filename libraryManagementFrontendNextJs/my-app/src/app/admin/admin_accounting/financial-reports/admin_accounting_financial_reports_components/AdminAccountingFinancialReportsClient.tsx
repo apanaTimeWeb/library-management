@@ -5,6 +5,8 @@
 
 import { useState } from 'react';
 import { BarChart2, TrendingUp, TrendingDown } from 'lucide-react';
+import { Card } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
 
 const MONTHLY = [
   { month: 'Oct', income: 42000, expense: 18000 },
@@ -35,47 +37,44 @@ export function AdminAccountingFinancialReportsClient() {
 
   return (
     <div className="space-y-6 pb-10">
-      <div className="admin-page-header border-b border-border pb-4 flex items-center justify-between">
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b pb-4">
         <div>
-          <p className="admin-breadcrumb">Smart Library 360 › Admin › Accounting › Financial Reports</p>
-          <h1 className="admin-page-title text-2xl font-extrabold tracking-tight">Financial Reports</h1>
-          <p className="admin-page-subtitle text-muted-foreground mt-1">Income vs expense overview and category breakdown.</p>
+          <h1 className="text-2xl font-bold tracking-tight">Financial Reports</h1>
+          <p className="text-sm text-muted-foreground mt-1">Income vs expense overview and category breakdown.</p>
         </div>
-        <div className="flex gap-2">
+        <div className="flex gap-2 bg-muted/50 p-1 rounded-lg border border-border">
           {['monthly', 'quarterly', 'yearly'].map(p => (
-            <button
+            <Button
               key={`period-${p}`}
+              variant={period === p ? 'secondary' : 'ghost'}
+              size="sm"
               onClick={() => setPeriod(p)}
-              className={`px-3 py-1.5 text-xs font-semibold rounded-md border transition-colors ${
-                period === p 
-                  ? 'bg-info/10 text-info border-info/20' 
-                  : 'bg-card text-muted-foreground border-border hover:bg-muted'
-              }`}
+              className={`text-xs font-semibold capitalize ${period === p ? 'bg-background shadow-sm' : ''}`}
             >
-              {p.charAt(0).toUpperCase() + p.slice(1)}
-            </button>
+              {p}
+            </Button>
           ))}
         </div>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-        <div className="bg-card border border-success/20 rounded-xl p-5 shadow-sm">
+        <Card className="p-5 shadow-sm border-success/20">
           <div className="flex items-center gap-2 mb-2">
             <TrendingUp size={16} className="text-success" />
             <p className="text-xs font-bold uppercase tracking-wider text-success">Total Income</p>
           </div>
           <p className="text-3xl font-extrabold text-success tracking-tighter">₹{totalIncome.toLocaleString()}</p>
-        </div>
+        </Card>
         
-        <div className="bg-card border border-danger/20 rounded-xl p-5 shadow-sm">
+        <Card className="p-5 shadow-sm border-danger/20">
           <div className="flex items-center gap-2 mb-2">
             <TrendingDown size={16} className="text-danger" />
             <p className="text-xs font-bold uppercase tracking-wider text-danger">Total Expenses</p>
           </div>
           <p className="text-3xl font-extrabold text-danger tracking-tighter">₹{totalExpense.toLocaleString()}</p>
-        </div>
+        </Card>
         
-        <div className="bg-card border border-border rounded-xl p-5 shadow-sm">
+        <Card className="p-5 shadow-sm border-border">
           <div className="flex items-center gap-2 mb-2">
             <BarChart2 size={16} className="text-muted-foreground" />
             <p className="text-xs font-bold uppercase tracking-wider text-muted-foreground">Net Profit</p>
@@ -83,11 +82,10 @@ export function AdminAccountingFinancialReportsClient() {
           <p className={`text-3xl font-extrabold tracking-tighter ${netProfit >= 0 ? 'text-foreground' : 'text-danger'}`}>
             ₹{netProfit.toLocaleString()}
           </p>
-        </div>
+        </Card>
       </div>
 
-      {/* Bar Chart (`Rule 36: No inline styles where tailwind works, but height needs inline`) */}
-      <div className="bg-card border border-border rounded-xl p-6 shadow-sm">
+      <Card className="p-6 shadow-sm border-border">
         <p className="text-sm font-bold text-foreground mb-6 uppercase tracking-wider">Monthly Income vs Expense</p>
         <div className="flex items-end gap-3 h-52 overflow-x-auto pb-2">
           {MONTHLY.map((m) => (
@@ -118,10 +116,9 @@ export function AdminAccountingFinancialReportsClient() {
             <span className="text-xs font-semibold text-foreground">Expense</span>
           </div>
         </div>
-      </div>
+      </Card>
 
-      {/* Category Breakdown (`Rule 57: Fixed keys`) */}
-      <div className="bg-card border border-border rounded-xl p-6 shadow-sm">
+      <Card className="p-6 shadow-sm border-border">
         <p className="text-sm font-bold text-foreground mb-5 uppercase tracking-wider">Expense Category Breakdown</p>
         <div className="space-y-4">
           {CATEGORY_BREAKDOWN.map(c => (
@@ -136,7 +133,7 @@ export function AdminAccountingFinancialReportsClient() {
             </div>
           ))}
         </div>
-      </div>
+      </Card>
     </div>
   );
 }

@@ -5,6 +5,8 @@
 
 import { useState } from 'react';
 import { Plus, Trash2 } from 'lucide-react';
+import { Card } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
 
 type Category = { id: number; name: string; budget: number; spent: number; color: string };
 
@@ -22,30 +24,29 @@ export function AdminAccountingExpenseCategoriesClient() {
 
   return (
     <div className="space-y-6 pb-10">
-      <div className="admin-page-header border-b border-border pb-4 flex items-center justify-between">
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b pb-4">
         <div>
-          <p className="admin-breadcrumb">Smart Library 360 › Admin › Accounting › Expense Categories</p>
-          <h1 className="admin-page-title text-2xl font-extrabold tracking-tight">Accounting Categories</h1>
-          <p className="admin-page-subtitle text-muted-foreground mt-1">Manage budget caps for various expense types.</p>
+          <h1 className="text-2xl font-bold tracking-tight">Accounting Categories</h1>
+          <p className="text-sm text-muted-foreground mt-1">Manage budget caps for various expense types.</p>
         </div>
-        <button className="admin-btn-primary flex items-center gap-2">
+        <Button className="gap-2">
           <Plus size={16} /> Add Category
-        </button>
+        </Button>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
         {categories.map(cat => {
           const pct = Math.min((cat.spent / cat.budget) * 100, 100);
           return (
-            <div key={`cat-${cat.id}`} className="bg-card border border-border rounded-xl p-5 shadow-sm hover:shadow-md transition-shadow">
+            <Card key={`cat-${cat.id}`} className="p-5 shadow-sm hover:shadow-md transition-shadow border-border">
               <div className="flex justify-between items-start mb-4">
                 <h2 className="text-lg font-bold text-foreground flex items-center gap-2">
                   <div className={`w-3 h-3 rounded-sm ${cat.color}`} />
                   {cat.name}
                 </h2>
-                <button className="p-1.5 rounded-md text-danger hover:bg-danger/10 transition-colors" title="Delete">
+                <Button variant="ghost" size="icon" className="text-danger hover:text-danger hover:bg-danger/10 h-8 w-8" title="Delete">
                   <Trash2 size={16} />
-                </button>
+                </Button>
               </div>
 
               <div className="space-y-2">
@@ -60,7 +61,7 @@ export function AdminAccountingExpenseCategoriesClient() {
                   {pct.toFixed(0)}% Used
                 </p>
               </div>
-            </div>
+            </Card>
           );
         })}
       </div>

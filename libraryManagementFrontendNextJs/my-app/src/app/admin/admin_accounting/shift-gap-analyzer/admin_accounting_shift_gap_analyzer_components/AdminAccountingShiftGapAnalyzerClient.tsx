@@ -4,6 +4,8 @@
 // DATA FLOW: Static Mock -> AdminAccountingShiftGapAnalyzerClient (`Rule 39`).
 
 import { useState } from 'react';
+import { Card } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
 
 type ShiftGap = {
   shift: string;
@@ -40,42 +42,41 @@ export function AdminAccountingShiftGapAnalyzerClient() {
 
   return (
     <div className="space-y-6 pb-10">
-      <div className="admin-page-header border-b border-border pb-4 flex items-center justify-between">
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b pb-4">
         <div>
-          <p className="admin-breadcrumb">Smart Library 360 › Admin › Accounting › Shift Gap Analyzer</p>
-          <h1 className="admin-page-title text-2xl font-extrabold tracking-tight">Shift Gap Analyzer</h1>
-          <p className="admin-page-subtitle text-muted-foreground mt-1">Analyze occupancy gaps and revenue loss per shift.</p>
+          <h1 className="text-2xl font-bold tracking-tight">Shift Gap Analyzer</h1>
+          <p className="text-sm text-muted-foreground mt-1">Analyze occupancy gaps and revenue loss per shift.</p>
         </div>
       </div>
 
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-        <div className="bg-card border border-danger/20 rounded-xl p-5">
+        <Card className="p-5 shadow-sm border-danger/20">
           <p className="text-xs font-bold uppercase tracking-wider text-danger mb-1">Total Revenue Loss</p>
           <p className="text-2xl font-extrabold text-danger">₹{totalLoss.toLocaleString()}</p>
-        </div>
-        <div className="bg-card border border-warning/20 rounded-xl p-5">
+        </Card>
+        <Card className="p-5 shadow-sm border-warning/20">
           <p className="text-xs font-bold uppercase tracking-wider text-warning mb-1">Total Vacant Seats</p>
           <p className="text-2xl font-extrabold text-warning">{MOCK.reduce((s,m)=>s+m.vacant,0)}</p>
-        </div>
-        <div className="bg-card border border-border rounded-xl p-5">
+        </Card>
+        <Card className="p-5 shadow-sm border-border">
           <p className="text-xs font-bold uppercase tracking-wider text-muted-foreground mb-1">Avg Occupancy</p>
           <p className="text-2xl font-extrabold text-foreground">{Math.round(MOCK.reduce((s,m)=>s+m.occupancyPct,0)/MOCK.length)}%</p>
-        </div>
-        <div className="bg-card border border-border rounded-xl p-5">
+        </Card>
+        <Card className="p-5 shadow-sm border-border">
           <p className="text-xs font-bold uppercase tracking-wider text-muted-foreground mb-1">Shifts Analyzed</p>
           <p className="text-2xl font-extrabold text-foreground">{MOCK.length}</p>
-        </div>
+        </Card>
       </div>
 
       {/* Shift Summary Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
         {MOCK.map(m => (
-          <div key={m.shift} className="bg-card border border-border rounded-xl p-5 space-y-4 shadow-sm hover:shadow-md transition-shadow">
+          <Card key={m.shift} className="p-5 space-y-4 shadow-sm hover:shadow-md transition-shadow border-border">
             <div className="flex items-center justify-between">
               <p className="font-bold text-foreground text-lg">{m.shift}</p>
-              <span className={`admin-badge ${m.occupancyPct >= 90 ? 'admin-badge-success' : m.occupancyPct >= 70 ? 'admin-badge-warning' : 'admin-badge-danger'}`}>
+              <Badge variant="secondary" className={`${m.occupancyPct >= 90 ? 'bg-success/10 text-success hover:bg-success/20' : m.occupancyPct >= 70 ? 'bg-warning/10 text-warning hover:bg-warning/20' : 'bg-danger/10 text-danger hover:bg-danger/20'} border-none font-bold tracking-wide`}>
                 {m.occupancyPct}% full
-              </span>
+              </Badge>
             </div>
             <div className="h-2 w-full bg-muted rounded-full overflow-hidden">
               <div 
@@ -97,14 +98,14 @@ export function AdminAccountingShiftGapAnalyzerClient() {
                 <p className="text-warning font-bold text-lg mt-1">₹{m.revenueLoss.toLocaleString()}</p>
               </div>
             </div>
-          </div>
+          </Card>
         ))}
       </div>
 
       {/* Day-wise Gap Table */}
       <div className="flex items-center justify-between pt-4 border-t border-border">
         <p className="text-sm font-bold uppercase tracking-wider text-foreground">Day-wise Gap Log</p>
-        <select className="admin-input max-w-[160px]" value={shiftFilter} onChange={e => setShiftFilter(e.target.value)}>
+        <select className="flex h-10 w-[160px] items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" value={shiftFilter} onChange={e => setShiftFilter(e.target.value)}>
           <option value="all">All Shifts</option>
           <option value="Morning">Morning</option>
           <option value="Afternoon">Afternoon</option>
@@ -112,7 +113,7 @@ export function AdminAccountingShiftGapAnalyzerClient() {
         </select>
       </div>
 
-      <div className="bg-card border border-border rounded-xl overflow-x-auto shadow-sm">
+      <Card className="overflow-x-auto shadow-sm border-border">
         <table className="w-full text-sm text-left">
           <thead className="bg-muted text-muted-foreground text-xs font-semibold uppercase tracking-wider">
             <tr>
@@ -126,16 +127,16 @@ export function AdminAccountingShiftGapAnalyzerClient() {
           <tbody className="divide-y divide-border">
             {visibleDays.map((d) => (
               <tr key={`daygap-${d.date}-${d.seatNo}-${d.shift}`} className="hover:bg-muted/30 transition-colors">
-                <td className="py-3 px-4 text-muted-foreground font-medium">{d.date}</td>
-                <td className="py-3 px-4 text-foreground">{d.shift}</td>
-                <td className="py-3 px-4 font-bold text-foreground">{d.seatNo}</td>
-                <td className={`py-3 px-4 text-right font-semibold ${d.gapDays > 20 ? 'text-danger' : 'text-warning'}`}>{d.gapDays}d</td>
-                <td className="py-3 px-4 text-right text-danger font-semibold">₹{d.loss.toLocaleString()}</td>
+                <td className="py-4 px-4 text-muted-foreground font-medium">{d.date}</td>
+                <td className="py-4 px-4 text-foreground">{d.shift}</td>
+                <td className="py-4 px-4 font-bold text-foreground">{d.seatNo}</td>
+                <td className={`py-4 px-4 text-right font-semibold ${d.gapDays > 20 ? 'text-danger' : 'text-warning'}`}>{d.gapDays}d</td>
+                <td className="py-4 px-4 text-right text-danger font-semibold">₹{d.loss.toLocaleString()}</td>
               </tr>
             ))}
           </tbody>
         </table>
-      </div>
+      </Card>
     </div>
   );
 }
