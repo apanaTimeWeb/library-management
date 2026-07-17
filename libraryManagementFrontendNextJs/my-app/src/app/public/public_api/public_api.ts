@@ -1,6 +1,6 @@
 import { StatusCodes } from 'http-status-codes';
 
-import type { PublicEnquiryFormData } from '@/app/public/enquiry/_types/PublicEnquiryValidation';
+import type { PublicEnquiryFormData } from '@/app/public/enquiry/public_enquiry_types/PublicEnquiryValidation';
 
 export type FetchState = 'idle' | 'loading' | 'success' | 'error';
 

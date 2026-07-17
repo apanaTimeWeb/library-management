@@ -13,7 +13,7 @@ export function PublicEnquirySuccessState({ submittedName, onReset }: PublicEnqu
   return (
     <div className="py-6 text-center animate-in fade-in slide-in-from-bottom-4 duration-500">
       <div className="flex justify-center mb-6">
-        <div className="w-16 h-16 rounded-full bg-green-100 flex items-center justify-center text-success shadow-lg">
+        <div className="w-16 h-16 rounded-full bg-success/10 flex items-center justify-center text-success shadow-lg">
           <CheckCircle size={32} />
         </div>
       </div>

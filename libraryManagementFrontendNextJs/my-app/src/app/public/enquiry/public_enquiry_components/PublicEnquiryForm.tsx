@@ -1,7 +1,7 @@
 import React from 'react';
 import { User, Send, Loader2 } from 'lucide-react';
 import { UseFormReturn } from 'react-hook-form';
-import { PublicEnquiryFormData } from '@/app/public/enquiry/_types/PublicEnquiryValidation';
+import { PublicEnquiryFormData } from '@/app/public/enquiry/public_enquiry_types/PublicEnquiryValidation';
 
 
 // RESPONSIBILITY: Renders the enquiry form input fields and handles user interaction.
