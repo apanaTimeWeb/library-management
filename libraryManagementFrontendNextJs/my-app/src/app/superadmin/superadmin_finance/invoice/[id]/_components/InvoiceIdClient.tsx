@@ -107,36 +107,33 @@ export function InvoiceIdClient() {
             { l: 'GST',      v: formatCurrency(INV.totalGst) },
           ].map(( r ) => (
             <div key={r.l} className="flex justify-between w-64 px-4">
-              <span className="text-[13px] font-medium text-gray-500">{r.l}</span>
-              <span className="text-[13px] font-semibold text-gray-800">{r.v}</span>
+              <span className="text-[13px] font-medium text-on-surface-variant">{r.l}</span>
+              <span className="text-[13px] font-semibold text-on-surface">{r.v}</span>
             </div>
           ))}
-          <div className="w-64 h-[1px] bg-gray-200 my-2" />
-          <div className="flex justify-between w-64 px-4 bg-gray-50 py-3 rounded-[var(--radius-md)]">
-            <span className="text-[14px] font-bold text-gray-800 uppercase">Grand Total</span>
-            <span className="text-[16px] font-black text-green-600">{formatCurrency(INV.grandTotal)}</span>
+          <div className="w-64 h-[1px] bg-outline-variant my-2" />
+          <div className="flex justify-between items-center border-t border-outline-variant pt-3 mt-3 w-64 px-4">
+            <span className="text-[16px] font-bold text-on-surface">Total Amount Paid</span>
+            <span className="text-[16px] font-black text-success">{formatCurrency(INV.grandTotal)}</span>
           </div>
         </div>
 
-        <div className="grid grid-cols-3 gap-4 mb-10 bg-gray-50 p-6 rounded-[var(--radius-md)] border border-gray-100">
+        <div className="grid grid-cols-3 gap-4 mb-10 bg-surface-variant p-6 rounded-[var(--radius-md)] border border-outline-variant">
           <div>
-            <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-2">Payment Mode</p>
-            <p className="text-[14px] font-bold text-gray-800">{INV.paymentMode}</p>
+            <p className="text-[10px] font-bold text-on-surface-variant uppercase tracking-wider mb-2">Payment Mode</p>
+            <p className="text-[14px] font-bold text-on-surface">{INV.paymentMode}</p>
           </div>
           <div>
-            <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-2">Transaction ID</p>
-            <p className="text-[14px] font-mono font-medium text-gray-700">{INV.paymentTransactionId}</p>
+            <p className="text-[10px] font-bold text-on-surface-variant uppercase tracking-wider mb-2">Transaction ID</p>
+            <p className="text-[14px] font-mono font-medium text-on-surface">{INV.paymentTransactionId}</p>
           </div>
-          <div>
-            <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-2">Status</p>
-            <span className="bg-green-100 text-green-700 px-3 py-1 rounded-[var(--radius-full)] text-[12px] font-bold uppercase tracking-wider">
+          <div className="flex items-center gap-2 mt-2">
+            <span className="bg-success/10 text-success px-3 py-1 rounded-[var(--radius-full)] text-[12px] font-bold uppercase tracking-wider">
               {INV.paymentStatus}
             </span>
           </div>
         </div>
 
-        <div className="text-center mt-12 pt-8 border-t border-gray-200">
-          <p className="text-gray-400 mb-2">_________________________</p>
           <p className="text-[12px] font-bold text-gray-500 uppercase tracking-widest">Authorized Signature</p>
           <p className="text-[13px] text-gray-400 mt-6 italic">Thank you for choosing {INV.libraryName}</p>
         </div>

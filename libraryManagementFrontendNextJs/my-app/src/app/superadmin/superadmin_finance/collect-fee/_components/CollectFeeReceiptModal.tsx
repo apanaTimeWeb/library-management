@@ -57,17 +57,17 @@ export function CollectFeeReceiptModal({ receiptData, onClose, onPrint }: Props)
                 ))}
               </div>
               
-              <div className="w-full border-t border-dashed border-gray-400 pt-3 pb-3 mb-4 flex justify-between items-center">
-                <p className="text-sm font-bold text-gray-600">Total Paid</p>
+              <div className="w-full border-t border-dashed border-border-secondary pt-3 pb-3 mb-4 flex justify-between items-center">
+                <p className="text-sm font-bold text-text-secondary">Total Paid</p>
                 <p className="text-xl font-bold">₹{receiptData.total.toFixed(0)}</p>
               </div>
               
-              <div className="flex items-center gap-2 bg-green-50 text-green-700 px-3 py-1 rounded-full mb-4">
+              <div className="flex items-center gap-2 bg-success-subtle text-success px-3 py-1 rounded-full mb-4">
                 <CheckCircle size={14} />
                 <span className="text-xs font-bold uppercase">Payment Received</span>
               </div>
               
-              <p className="text-[10px] italic text-gray-500">&quot;Knowledge is the best investment.&quot;</p>
+              <p className="text-[10px] italic text-text-secondary">&quot;Knowledge is the best investment.&quot;</p>
               <p className="text-[10px] font-bold mt-1">Thank you! Keep studying 😊</p>
             </div>
             

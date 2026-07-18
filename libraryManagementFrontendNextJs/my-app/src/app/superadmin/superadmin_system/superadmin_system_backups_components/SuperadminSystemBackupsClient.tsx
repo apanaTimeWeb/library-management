@@ -152,14 +152,16 @@ export function SuperadminSystemBackupsClient() {
                     value={cloudProvider}
                     onChange={setCloudProvider}
                   />
-                </div>
-                <div className="flex items-center gap-3 p-3 rounded-xl bg-green-500/10 border border-green-500/20">
-                  <div className="h-8 w-8 rounded-full bg-green-500/20 flex items-center justify-center">
-                    <Shield size={16} className="text-green-400" />
-                  </div>
-                  <div>
-                    <p className="text-xs font-semibold text-green-400">Connected — Google Drive</p>
-                    <p className="text-xs text-on-surface-variant">Last synced: 2026-04-12 at 02:03 AM</p>
+                  <div className="mt-6 pt-6 border-t border-outline-variant">
+                    <div className="flex items-center gap-3 p-3 rounded-xl bg-success-subtle border border-success/30">
+                      <div className="h-8 w-8 rounded-full bg-success-subtle flex items-center justify-center">
+                        <Shield size={16} className="text-success" />
+                      </div>
+                      <div>
+                        <p className="text-xs font-semibold text-success">Connected — Google Drive</p>
+                        <p className="text-[11px] text-on-surface-variant">Last synced: 2026-04-12 at 02:03 AM</p>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </>

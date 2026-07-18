@@ -84,25 +84,6 @@ export function SuperadminSystemPowerSavingClient() {
                   <div>
                     <p className="text-sm font-semibold text-on-surface">{zone.name}</p>
                     <p className="text-xs text-on-surface-variant">{zone.current} / {zone.capacity} seats occupied</p>
-                  </div>
-                  <SuperadminBadge variant={status.variant}>
-                    {status.isLow ? <><ZapOff size={14} className="inline mr-1" /> Low — Consolidation Suggested</> : <><CheckCircle size={14} className="inline mr-1" /> Normal</>}
-                  </SuperadminBadge>
-                </div>
-                <div className="space-y-1.5">
-                  <div className="flex justify-between text-xs text-on-surface-variant">
-                    <span>Occupancy</span>
-                    <span className={status.isLow ? 'text-tertiary font-semibold' : 'text-green-400 font-semibold'}>{zone.occupancy}%</span>
-                  </div>
-                  <SuperadminProgress value={zone.occupancy} barClassName={status.isLow ? 'bg-tertiary' : 'bg-green-500'} />
-                </div>
-                {status.isLow && (
-                  <div className="mt-3 p-2.5 rounded-lg bg-tertiary/10 border border-tertiary/20 text-xs text-tertiary">
-                    💡 Suggested: Move students to Zone A → Turn off {zone.name} AC
-                  </div>
-                )}
-              </CardContent>
-            </SuperadminCard>
           );
         })}
       </div>
