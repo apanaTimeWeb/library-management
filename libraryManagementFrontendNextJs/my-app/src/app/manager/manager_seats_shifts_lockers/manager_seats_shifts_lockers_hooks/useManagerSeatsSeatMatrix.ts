@@ -15,6 +15,7 @@ export function useManagerSeatsSeatMatrix() {
   const [date, setDate] = useState(() => new Date().toISOString().slice(0, 10));
 
   // Fetch data on mount if idle, dependencies included to satisfy linter
+  // DEPENDENCY AUDIT: Executed on mount or when key dependencies (like search terms, filters, IDs) change.
   useEffect(() => {
     if (status === 'idle') {
       fetchData();

@@ -6,6 +6,7 @@ import { useManagerCommunicationStore } from '@/app/manager/manager_communicatio
 export function useComplaints() {
   const { complaints, complaintsStatus, complaintsError, fetchComplaints, addComplaint, updateComplaintStatus } = useManagerCommunicationStore();
 
+  // DEPENDENCY AUDIT: Executed on mount or when key dependencies (like search terms, filters, IDs) change.
   useEffect(() => {
     if (complaintsStatus === 'idle') {
       fetchComplaints();

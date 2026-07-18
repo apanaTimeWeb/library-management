@@ -10,6 +10,7 @@ export function useDashboardData() {
   const { data, status, error, fetchData } = useDashboardStore();
 
   // Fetch data on mount if idle, dependencies included to satisfy linter
+  // DEPENDENCY AUDIT: Executed on mount or when key dependencies (like search terms, filters, IDs) change.
   useEffect(() => {
     if (status === 'idle') {
       fetchData();

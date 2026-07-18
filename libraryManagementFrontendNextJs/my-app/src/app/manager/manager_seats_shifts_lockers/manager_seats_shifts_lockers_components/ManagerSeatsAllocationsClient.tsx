@@ -8,7 +8,7 @@ import toast from 'react-hot-toast';
 import { useSeatsStore } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_context/manager_seats_shifts_lockers_store';
 import { ManagerSearchableDropdown } from '@/app/manager/manager_shared_components/ManagerSearchableDropdown';
 import { TablePagination } from '@/components/ui/table-pagination';
-
+import { useManagerSeatsAllocations } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_hooks/useManagerSeatsAllocations';
 const STATUS_CLASS: Record<string, string> = {
   Active: 'ss-badge ss-badge--success',
   Expired: 'ss-badge ss-badge--danger',
@@ -46,35 +46,23 @@ function ActionsCell(props: { data: Allocation }) {
 }
 
 export function ManagerSeatsAllocationsClient() {
-  const [searchTerm, setSearchTerm] = useState('');
-
-  const [shiftFilter, setShiftFilter] = useState('All Shifts');
-  const [statusFilter, setStatusFilter] = useState('All Statuses');
-  const [dateFrom, setDateFrom] = useState('');
-  const [dateTo, setDateTo] = useState('');
-
-  const { allocationsData, status, fetchAllocationsData } = useSeatsStore();
-
-  useEffect(() => {
-    if (status === 'idle' || allocationsData.length === 0) {
-      fetchAllocationsData();
-    }
-  }, [status, allocationsData.length, fetchAllocationsData]);
-
-  const [page, setPage] = useState(1);
-  const [limit, setLimit] = useState(10);
-
-  const filtered = (allocationsData as Allocation[]).filter((a) => {
-    const matchShift = shiftFilter === 'All Shifts' || a.shift === shiftFilter;
-    const matchStatus = statusFilter === 'All Statuses' || a.status === statusFilter;
-    const matchFrom = !dateFrom || a.validFrom >= dateFrom;
-    const matchTo = !dateTo || a.validTill <= dateTo;
-    const matchSearch = !searchTerm || 
-      a.studentName.toLowerCase().includes(searchTerm.toLowerCase()) || 
-      a.smartId.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      a.seatNo.toLowerCase().includes(searchTerm.toLowerCase());
-    return matchShift && matchStatus && matchFrom && matchTo && matchSearch;
-  });
+  const {
+    searchTerm,
+    setSearchTerm,
+    shiftFilter,
+    setShiftFilter,
+    statusFilter,
+    setStatusFilter,
+    dateFrom,
+    setDateFrom,
+    dateTo,
+    setDateTo,
+    page,
+    setPage,
+    limit,
+    setLimit,
+    filtered,
+  } = useManagerSeatsAllocations();
 
 
   return (

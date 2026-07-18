@@ -2,9 +2,11 @@ import { useState, useEffect, useMemo } from 'react';
 import { useCrmStore } from '@/app/manager/manager_crm/manager_crm_context/manager_crm_store';
 import type { EnquiryStatus } from '@/app/manager/manager_crm/manager_crm_types';
 
+// DATA FLOW: Hook -> useManagerCrmEnquiries -> Consuming UI Component
 // Use debounce to prevent excessive renders during search (Rule 15)
 function useDebounce<T>(value: T, delay: number): T {
   const [debouncedValue, setDebouncedValue] = useState<T>(value);
+  // DEPENDENCY AUDIT: Executed on mount or when key dependencies (like search terms, filters, IDs) change.
   useEffect(() => {
     const handler = setTimeout(() => setDebouncedValue(value), delay);
     return () => clearTimeout(handler);
@@ -24,6 +26,7 @@ export function useManagerCrmEnquiries() {
   const [statusFilter, setStatusFilter] = useState<string>('All');
 
   // Fetch data on mount if idle, dependencies included to satisfy linter
+  // DEPENDENCY AUDIT: Executed on mount or when key dependencies (like search terms, filters, IDs) change.
   useEffect(() => {
     if (status === 'idle') {
       fetchData();

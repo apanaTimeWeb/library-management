@@ -1,4 +1,5 @@
 'use client';
+// RESPONSIBILITY: Renders the Add Enquiry drawer.
 
 import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
@@ -7,11 +8,9 @@ import { X, Save, PhoneCall } from 'lucide-react';
 import toast, { Toaster } from 'react-hot-toast';
 import { addEnquirySchema, type AddEnquiryFormData } from '@/app/manager/manager_crm/manager_crm_shared_components/manager_crm_schema';
 import { MANAGER_CRM_URLS } from '@/app/manager/manager_crm/manager_crm_url_config';
+import { ManagerCrmEnquiriesAddClientProps } from '@/app/manager/manager_crm/manager_crm_types';
 
-// RESPONSIBILITY: Renders the Add Enquiry drawer.
-
-export interface ManagerCrmEnquiriesAddClientProps { onClose?: () => void; }
-export function ManagerCrmEnquiriesAddClient({ onClose }: ManagerCrmEnquiriesAddClientProps = {}) {
+export function ManagerCrmEnquiriesAddClient({ onClose }: ManagerCrmEnquiriesAddClientProps) {
   const router = useRouter();
 
   const {
@@ -22,12 +21,12 @@ export function ManagerCrmEnquiriesAddClient({ onClose }: ManagerCrmEnquiriesAdd
     resolver: zodResolver(addEnquirySchema),
     defaultValues: {
       name: '',
+      phone: '',
     },
   });
 
   const onSubmit = async (formData: AddEnquiryFormData) => {
     await new Promise((r) => setTimeout(r, 800));
-    // Handle form submission
     toast.success('Lead saved successfully!', { className: 'crm-toast crm-toast--success' });
     setTimeout(() => { if (onClose) onClose(); else router.push(MANAGER_CRM_URLS.ENQUIRIES); }, 600);
   };

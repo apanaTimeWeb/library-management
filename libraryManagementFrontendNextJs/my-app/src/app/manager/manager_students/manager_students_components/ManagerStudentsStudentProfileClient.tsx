@@ -3,26 +3,12 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { ArrowLeft, Phone, Armchair, Calendar, CreditCard, Shield } from 'lucide-react';
-import { logger } from '@/lib/logger';
-import { calcExpiryDate, formatDateIN } from '@/lib/whatsappUtils';
-import { fetchStudentById } from '@/app/manager/manager_students/manager_students_api/manager_students_api';
-import type { Student } from '@/app/manager/manager_students/manager_students_types';
+import { useManagerStudentsStudentProfile } from '@/app/manager/manager_students/manager_students_hooks/useManagerStudentsStudentProfile';
 import { MANAGER_ROUTES } from '@/app/manager/manager_url_config';
-export function ManagerStudentsStudentProfileClient({ id }: { id: string }) {
-  const [student, setStudent] = useState<Student | null>(null);
-  const [loading, setLoading] = useState(true);
+import { formatDateIN } from '@/lib/whatsappUtils';
 
-  useEffect(() => {
-    fetchStudentById(id)
-      .then(data => {
-        setStudent(data as Student);
-        setLoading(false);
-      })
-      .catch(err => {
-        logger.error('Failed to load student profile', { id, message: err instanceof Error ? err.message : String(err) });
-        setLoading(false);
-      });
-  }, [id]);
+export function ManagerStudentsStudentProfileClient({ id }: { id: string }) {
+  const { student, loading, expiryDate } = useManagerStudentsStudentProfile(id);
 
   if (loading) {
     return <div className="p-6 min-h-screen"><div className="bg-bg-card rounded-xl border border-border p-6" style={{ padding: 20 }}>Loading...</div></div>;
@@ -42,9 +28,7 @@ export function ManagerStudentsStudentProfileClient({ id }: { id: string }) {
     );
   }
 
-  const [dd, mm, yyyy] = student.joined.split('/');
-  const joinDate = new Date(`${yyyy}-${mm}-${dd}`);
-  const expiryDate = calcExpiryDate(joinDate, student.plan);
+
 
   return (
     <div className="p-6 min-h-screen">

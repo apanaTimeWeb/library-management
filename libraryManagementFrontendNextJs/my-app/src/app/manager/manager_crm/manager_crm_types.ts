@@ -20,6 +20,16 @@ export interface FollowUp {
   remark: string;
 }
 
+export interface MarkLostModalProps {
+  onConfirm: (reason: string) => void;
+  onCancel: () => void;
+  isSubmitting: boolean;
+}
+
+export interface ManagerCrmEnquiriesAddClientProps {
+  onClose?: () => void;
+}
+
 export interface Enquiry {
   id: string;
   name: string;

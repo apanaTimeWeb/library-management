@@ -14,6 +14,7 @@ export function useAttendance() {
     saveAttendance 
   } = useManagerEngagementStore();
 
+  // DEPENDENCY AUDIT: Executed on mount or when key dependencies (like search terms, filters, IDs) change.
   useEffect(() => {
     if (attendanceStatus === 'idle') {
       fetchAttendance();

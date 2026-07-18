@@ -7,7 +7,7 @@ import { ChevronDown, Search } from 'lucide-react';
 import { useSeatsStore } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_context/manager_seats_shifts_lockers_store';
 import { ManagerSearchableDropdown } from '@/app/manager/manager_shared_components/ManagerSearchableDropdown';
 import { TablePagination } from '@/components/ui/table-pagination';
-
+import { useManagerSeatsSeatHistory } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_hooks/useManagerSeatsSeatHistory';
 const REASON_CLASS: Record<string, string> = {
   Admission: 'ss-badge ss-badge--success',
   'Shift Change': 'ss-badge ss-badge--info',
@@ -23,32 +23,23 @@ function ReasonCell(props: { value: string }) {
 }
 
 export function ManagerSeatsSeatHistoryClient() {
-  const [searchTerm, setSearchTerm] = useState('');
-
-  const [seatFilter, setSeatFilter] = useState('All Seats');
-  const [search, setSearch] = useState('');
-  const [dateFrom, setDateFrom] = useState('');
-  const [dateTo, setDateTo] = useState('');
-
-  const [page, setPage] = useState(1);
-  const [limit, setLimit] = useState(10);
-  const { seatHistoryData, status, fetchSeatHistoryData } = useSeatsStore();
-
-  useEffect(() => {
-    if (status === 'idle' || seatHistoryData.length === 0) {
-      fetchSeatHistoryData();
-    }
-  }, [status, seatHistoryData.length, fetchSeatHistoryData]);
-
-  const filtered = (seatHistoryData as SeatHistoryEntry[]).filter((h) => {
-    const matchSeat = seatFilter === 'All Seats' || h.seatNo === seatFilter;
-    const matchSearch = !search ||
-      h.studentName.toLowerCase().includes(search.toLowerCase()) ||
-      h.smartId.toLowerCase().includes(search.toLowerCase());
-    const matchFrom = !dateFrom || h.occupiedFrom >= dateFrom;
-    const matchTo = !dateTo || h.occupiedTill <= dateTo;
-    return matchSeat && matchSearch && matchFrom && matchTo;
-  });
+  const {
+    searchTerm,
+    setSearchTerm,
+    seatFilter,
+    setSeatFilter,
+    search,
+    setSearch,
+    dateFrom,
+    setDateFrom,
+    dateTo,
+    setDateTo,
+    page,
+    setPage,
+    limit,
+    setLimit,
+    filtered,
+  } = useManagerSeatsSeatHistory();
 
 
   return (

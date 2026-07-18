@@ -10,6 +10,7 @@ export function useManagerReports() {
   const [fetchState, setFetchState] = useState<FetchState>('idle');
   const [dateRange, setDateRange] = useState('This Month');
 
+  // DEPENDENCY AUDIT: Executed on mount or when key dependencies (like search terms, filters, IDs) change.
   useEffect(() => {
     let isMounted = true;
     setFetchState('loading');

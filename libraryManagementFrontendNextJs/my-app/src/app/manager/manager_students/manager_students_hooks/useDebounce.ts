@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 
+// DATA FLOW: Hook -> useDebounce -> Consuming UI Component
 // RESPONSIBILITY: Provides a debounced value for search inputs to prevent excessive re-renders/API calls.
 
 export function useDebounce<T>(value: T, delay: number): T {

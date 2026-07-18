@@ -5,7 +5,7 @@ import type { ReactNode } from 'react';
 import { User, KeyRound, LockKeyhole, Settings } from 'lucide-react';
 import toast from 'react-hot-toast';
 
-import { useSeatsStore } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_context/manager_seats_shifts_lockers_store';
+import { useManagerSeatsLockerMatrix } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_hooks/useManagerSeatsLockerMatrix';
 import { Allocation, ActivityItem, Locker, SeatHistoryEntry, LogEntry, Seat, ManagerSeatsSeatMatrixModalProps, ShiftData, Shift, Student } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_types/ManagerSeatsTypes';
 import { ACTIVITY_DATA, INITIAL_LOCKERS, INITIAL_SEATS, SHIFTS_DATA, INITIAL_SHIFTS, STUDENTS_DATA } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_constants/ManagerSeatsConstants';
 
@@ -24,20 +24,7 @@ const LEGEND_ITEMS = [
 
 // RESPONSIBILITY: Render locker matrix UI using mocked data
 export function ManagerSeatsLockerMatrixClient() {
-  const [assignTarget, setAssignTarget] = useState<string | null>(null);
-  const { lockerData, status, fetchLockers } = useSeatsStore();
-
-  // Fetch lockers on mount
-  useEffect(() => {
-    if (status === 'idle' || lockerData.length === 0) {
-      fetchLockers();
-    }
-  }, [status, lockerData.length, fetchLockers]);
-
-  function handleCellClick(id: string, status: string) {
-    if (status === 'free')     { setAssignTarget(id); }
-    if (status === 'occupied') { toast.success(`Navigating to student profile for Locker ${id}`); }
-  }
+  const { assignTarget, setAssignTarget, lockerData, handleCellClick } = useManagerSeatsLockerMatrix();
 
   return (
     <>

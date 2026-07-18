@@ -3,35 +3,23 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { ArrowLeft, Search, LogOut, AlertTriangle } from 'lucide-react';
-import { fetchStudents } from '@/app/manager/manager_students/manager_students_api/manager_students_api';
-import type { Student } from '@/app/manager/manager_students/manager_students_types';
-import { useManagerDebounce } from '@/app/manager/manager_shared_hooks/useManagerDebounce';
+import { useManagerStudentsExit } from '@/app/manager/manager_students/manager_students_hooks/useManagerStudentsExit';
 import { ManagerSearchableDropdown } from '@/app/manager/manager_shared_components/ManagerSearchableDropdown';
 import { MANAGER_ROUTES } from '@/app/manager/manager_url_config';
 export function ManagerStudentsExitClient() {
-  const [students, setStudents] = useState<Student[]>([]);
-  const [search, setSearch] = useState('');
-  const debouncedSearch = useManagerDebounce(search, 300);
-  const [selected, setSelected] = useState('');
-  const [reason, setReason] = useState('');
-  const [confirmed, setConfirmed] = useState(false);
-
-  useEffect(() => {
-    fetchStudents().then(setStudents).catch(console.error);
-  }, []);
-
-  const filtered = students.filter(s =>
-    !search ||
-    s.name.toLowerCase().includes(debouncedSearch.toLowerCase()) ||
-    s.smartId.toLowerCase().includes(debouncedSearch.toLowerCase())
-  );
-
-  const student = students.find(s => s.smartId === selected);
-
-  function handleExit() {
-    if (!selected || !reason) return;
-    setConfirmed(true);
-  }
+  const {
+    search,
+    setSearch,
+    selected,
+    setSelected,
+    reason,
+    setReason,
+    confirmed,
+    filtered,
+    student,
+    handleExit,
+    reset,
+  } = useManagerStudentsExit();
 
   if (confirmed && student) {
     return (
@@ -43,7 +31,7 @@ export function ManagerStudentsExitClient() {
             <p className="text-sm text-text-secondary">{student.name} ({student.smartId}) has been marked as exited.</p>
             <div style={{ marginTop: 20, display: 'flex', gap: 10 }}>
               <Link href={MANAGER_ROUTES.STUDENTS} className="bg-primary text-white rounded-lg px-5 py-2.5 text-sm font-medium hover:bg-primary-hover transition-colors inline-flex items-center gap-2">Back to Students</Link>
-              <button className="bg-transparent border border-border text-text-primary rounded-lg px-5 py-2.5 text-sm font-medium hover:bg-primary-subtle hover:border-primary transition-colors inline-flex items-center gap-2" onClick={() => { setConfirmed(false); setSelected(''); setReason(''); }}>
+              <button className="bg-transparent border border-border text-text-primary rounded-lg px-5 py-2.5 text-sm font-medium hover:bg-primary-subtle hover:border-primary transition-colors inline-flex items-center gap-2" onClick={reset}>
                 Process Another
               </button>
             </div>

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import toast from 'react-hot-toast';
 import { AbsenteeRow } from '@/app/manager/manager_engagement/manager_engagement_types/ManagerEngagementTypes';
 
+// DATA FLOW: Hook -> useManagerEngagementAbsentee -> Consuming UI Component
 export function useManagerEngagementAbsentee() {
   const [data, setData] = useState<any[]>([
     { id: '1', name: 'John Doe', initials: 'JD', smartId: 'S-101', shift: 'Morning', daysAbsent: 8, lastSeen: '2026-07-10', parentPhone: '9876543210', parentEmail: 'john@example.com', notified: false },

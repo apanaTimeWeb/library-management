@@ -1,7 +1,5 @@
 'use client';
 // RESPONSIBILITY: Renders detailed CRM enquiry page, including timelines and follow-up updates.
-// RESPONSIBILITY: Renders detailed CRM enquiry page, including timelines and follow-up updates.
-// RESPONSIBILITY: Renders the detail view for a specific enquiry, handling status updates and follow-ups.
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
@@ -31,6 +29,7 @@ import {
   type Enquiry,
   type EnquiryStatus,
   type FollowUp,
+  type MarkLostModalProps,
 } from '@/app/manager/manager_crm/manager_crm_types';
 import { type EnquiryDetail } from '@/app/manager/manager_crm/manager_crm_types/ManagerCrmTypes';
 import { STATUS_BADGE } from '@/app/manager/manager_crm/manager_crm_constants';
@@ -56,11 +55,6 @@ function timelineDotClass(by: string): string {
 }
 
 /* ── MarkLostModal ─────────────────────────────────────── */
-interface MarkLostModalProps {
-  onConfirm: (reason: string) => void;
-  onCancel: () => void;
-  isSubmitting: boolean;
-}
 
 function MarkLostModal({ onConfirm, onCancel, isSubmitting }: MarkLostModalProps) {
   const { register, handleSubmit } = useForm<MarkLostFormData>({
@@ -120,63 +114,25 @@ function InfoItem({ icon, label, value }: { icon: React.ReactNode, label: string
 
 /* ── Main Page ─────────────────────────────────────────── */
 export function ManagerCrmEnquiriesDetailClient({ id }: { id: string }) {
-  const router = useRouter();
-
-  // ── Local state ──
-  const [enquiry, setEnquiry] = useState<EnquiryDetail | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [currentStatus, setCurrentStatus] = useState<EnquiryStatus>('New');
-  const [showLostModal, setShowLostModal] = useState(false);
-  const [lostSubmitting, setLostSubmitting] = useState(false);
-  const [statusUpdating, setStatusUpdating] = useState(false);
-
-  useEffect(() => {
-    import('@/lib/api').then(({ fetchApi }) => {
-      fetchApi<{id: string, name: string, phone: string, email?: string, preferredShift: string, status: string, handledBy: {name: string}, createdAt: string, source: string, preferredBranch: string}>(`/crm/enquiries/${id}`)
-        .then((e) => {
-          if (!e) {
-            setLoading(false);
-            return;
-          }
-          const mapped: EnquiryDetail = {
-            id: e.id,
-            name: e.name,
-            phone: e.phone || '',
-            email: e.email || '',
-            shift: e.preferredShift,
-            status: e.status ? (e.status.charAt(0).toUpperCase() + e.status.slice(1)) : 'New',
-            handledBy: e.handledBy?.name || 'Unassigned',
-            addedDate: e.createdAt,
-            avatar: String(e.name || 'U').substring(0, 2).toUpperCase(),
-            source: e.source || 'Walk-in',
-            preferredBranch: e.preferredBranch || 'Main Branch',
-            enquiryDate: new Date(e.createdAt).toLocaleDateString(),
-            followUps: [],
-            isOverdue: false,
-            isToday: true,
-            isUpcoming: false,
-          } as EnquiryDetail;
-          setEnquiry(mapped);
-          setCurrentStatus(mapped.status as EnquiryStatus);
-          setLoading(false);
-        })
-        .catch((err) => {
-          logger.error('Failed to load enquiry detail', { id, message: err instanceof Error ? err.message : String(err) });
-          setLoading(false);
-        });
-    });
-  }, [id]);
-
-  // ── Follow-up form ──
   const {
-    register: registerFU,
-    handleSubmit: handleSubmitFU,
-    reset: resetFU,
-    formState: { errors: fuErrors, isSubmitting: fuSubmitting },
-  } = useForm<FollowUpFormData>({
-    resolver: zodResolver(followUpSchema),
-    defaultValues: { date: '', remark: '' },
-  });
+    router,
+    enquiry,
+    loading,
+    currentStatus,
+    setCurrentStatus,
+    showLostModal,
+    setShowLostModal,
+    lostSubmitting,
+    statusUpdating,
+    registerFU,
+    handleSubmitFU,
+    fuErrors,
+    fuSubmitting,
+    handleStatusUpdate,
+    onSubmitFU,
+    handleConvert,
+    handleMarkLostConfirm,
+  } = useManagerCrmEnquiriesDetail(id);
 
   /* ── Loading / Not found ── */
   if (loading) {
@@ -202,108 +158,7 @@ export function ManagerCrmEnquiriesDetailClient({ id }: { id: string }) {
     );
   }
 
-  /* ── Handlers ── */
-  const handleStatusUpdate = async () => {
-    setStatusUpdating(true);
-    try {
-      const { fetchApi } = await import('@/lib/api');
-      await fetchApi(`/crm/enquiries/${id}/status`, {
-        method: 'PATCH',
-        body: JSON.stringify({ status: currentStatus })
-      });
-      setEnquiry((prev) => (prev ? { ...prev, status: currentStatus } : prev));
-      toast.success(`Status updated to "${currentStatus}"`, {
-        className: 'crm-toast crm-toast--success',
-      });
-    } catch (err) {
-      logger.error('Failed to update enquiry status', { id, message: err instanceof Error ? err.message : String(err) });
-      toast.error('Failed to update status');
-    } finally {
-      setStatusUpdating(false);
-    }
-  };
 
-  const onSubmitFU = async (formData: FollowUpFormData) => {
-    try {
-      const { fetchApi } = await import('@/lib/api');
-      const payload = {
-        date: new Date(formData.date).toISOString(),
-        remark: formData.remark,
-        by: 'Admin'
-      };
-      await fetchApi(`/crm/enquiries/${id}/follow-ups`, {
-        method: 'POST',
-        body: JSON.stringify(payload)
-      });
-      
-      const newEntry: FollowUp = {
-        id: `fu_${Date.now()}`,
-        date: new Date(formData.date).toLocaleDateString('en-IN', {
-          day: 'numeric',
-          month: 'long',
-          year: 'numeric',
-        }),
-        time: new Date().toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' }),
-        by: 'Admin',
-        remark: formData.remark,
-      };
-      setEnquiry((prev) =>
-        prev ? { ...prev, followUps: [newEntry as any, ...prev.followUps] } : prev
-      );
-      resetFU();
-      toast.success('Follow-up added!', {
-        className: 'crm-toast crm-toast--success',
-      });
-    } catch (err) {
-      logger.error('Failed to add follow-up', { id, message: err instanceof Error ? err.message : String(err) });
-      toast.error('Failed to add follow-up');
-    }
-  };
-
-  const handleConvert = () => {
-    router.push(
-      MANAGER_CRM_URLS.QUICK_CONVERT(enquiry.name, enquiry.phone)
-    );
-  };
-
-  const handleMarkLostConfirm = async (reason: string) => {
-    setLostSubmitting(true);
-    try {
-      const { fetchApi } = await import('@/lib/api');
-      await fetchApi(`/crm/enquiries/${id}/status`, {
-        method: 'PATCH',
-        body: JSON.stringify({ status: 'Lost', reason: reason })
-      });
-
-      const lostEntry: FollowUp = {
-        id: `fu_${Date.now()}`,
-        date: new Date().toLocaleDateString('en-IN', {
-          day: 'numeric',
-          month: 'long',
-          year: 'numeric',
-        }),
-        time: new Date().toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' }),
-        by: 'Admin',
-        remark: reason ? `Marked as Lost - ${reason}` : 'Marked as Lost.',
-      };
-      setEnquiry((prev) =>
-        prev
-          ? { ...prev, status: 'Lost', followUps: [lostEntry as any, ...prev.followUps] }
-          : prev
-      );
-      setCurrentStatus('Lost');
-      setShowLostModal(false);
-      toast('Enquiry marked as lost.', {
-        icon: '❌',
-        className: 'crm-toast crm-toast--danger',
-      });
-    } catch (err) {
-      logger.error('Failed to mark enquiry as lost', { id, message: err instanceof Error ? err.message : String(err) });
-      toast.error('Failed to mark as lost');
-    } finally {
-      setLostSubmitting(false);
-    }
-  };
 
   /* ── Status badge class ── */
   const statusBadgeCls = STATUS_BADGE[enquiry.status as keyof typeof STATUS_BADGE] || STATUS_BADGE['New'];

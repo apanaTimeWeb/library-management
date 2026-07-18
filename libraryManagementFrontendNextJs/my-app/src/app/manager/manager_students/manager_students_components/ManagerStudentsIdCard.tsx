@@ -3,19 +3,7 @@
 import React from 'react';
 import { Phone, Shield, Wifi } from 'lucide-react';
 
-export interface IdCardData {
-  name: string;
-  smartId: string;
-  phone: string;
-  shift: string;
-  seat: string;
-  locker: string;
-  plan: string;
-  joinDate: string;
-  expiryDate: string;
-  branch?: string;
-  college?: string;
-}
+import { IdCardData } from '@/app/manager/manager_students/manager_students_types';
 
 /* ── Barcode SVG stripes — deterministic from ID ── */
 function BarcodeStripes({ id }: { id: string }) {

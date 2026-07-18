@@ -1,11 +1,6 @@
-'use client';
-// RESPONSIBILITY: Renders the page.tsx component.
-import { useEffect } from 'react';
-import { useRouter } from 'next/navigation';
+// RESPONSIBILITY: Redirect to manager dashboard.
+import { redirect } from 'next/navigation';
 
 export default function StudentDashboardRedirect() {
-  const router = useRouter();
-  useEffect(() => { router.replace('/manager/manager_dashboard'); }, [router]);
-  return null;
+  redirect('/manager/manager_dashboard');
 }
-

@@ -6,6 +6,7 @@ import { useManagerCommunicationStore } from '@/app/manager/manager_communicatio
 export function useNotices() {
   const { notices, noticesStatus, noticesError, fetchNotices, addNotice, updateNotice, deleteNotice } = useManagerCommunicationStore();
 
+  // DEPENDENCY AUDIT: Executed on mount or when key dependencies (like search terms, filters, IDs) change.
   useEffect(() => {
     if (noticesStatus === 'idle') {
       fetchNotices();

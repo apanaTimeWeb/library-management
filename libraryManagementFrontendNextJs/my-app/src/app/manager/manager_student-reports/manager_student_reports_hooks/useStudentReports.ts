@@ -6,6 +6,7 @@ import { useManagerStudentReportsStore } from '@/app/manager/manager_student-rep
 export function useStudentReports(dateRange: string) {
   const { reports, reportsStatus, reportsError, fetchReports } = useManagerStudentReportsStore();
 
+  // DEPENDENCY AUDIT: Executed on mount or when key dependencies (like search terms, filters, IDs) change.
   useEffect(() => {
     fetchReports(dateRange);
   }, [dateRange, fetchReports]);
