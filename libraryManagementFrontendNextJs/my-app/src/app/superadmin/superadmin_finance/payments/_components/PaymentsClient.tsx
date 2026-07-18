@@ -2,206 +2,37 @@
 // DATA FLOW: API /finance/payments -> Payments State -> AG Grid / Receipt Action
 'use client';
 
-import type { ICellRendererParams } from 'ag-grid-community';
-import React, { useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
-import { fetchApi } from '@/lib/api';
-import { logger } from '@/lib/logger';
+import React from 'react';
 import { AgGridReact } from 'ag-grid-react';
 import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community';
 
-import toast from 'react-hot-toast';
-import { formatCurrency, formatDate } from '@/app/superadmin/superadmin_finance/superadmin_finance_utils/superadmin_format';
-import { Receipt, Trash2, FileText } from 'lucide-react';
 import { SuperadminSearchableDropdown } from '@/app/superadmin/superadmin_shared_components/SuperadminSearchableDropdown';
-import type { SuperadminFinancePayment } from '@/app/superadmin/superadmin_finance/superadmin_finance_types/SuperadminFinanceTypes';
-import { SUPERADMIN_FINANCE_MOCK_PAYMENTS } from '@/app/superadmin/superadmin_finance/superadmin_finance_constants/SuperadminFinanceConstants';
 import { superadmin_gridTheme } from '@/app/superadmin/superadmin_finance/superadmin_finance_shared_components/superadmin_gridTheme';
+import { usePaymentsClient } from './usePaymentsClient';
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
-const MODE_BADGE: Record<string, string> = {
-  cash: 'fin-badge fin-badge--cash',
-  upi:  'fin-badge fin-badge--upi',
-  card: 'fin-badge fin-badge--card',
-  bank: 'fin-badge fin-badge--bank',
-};
-
 export function PaymentsClient() {
-  const router = useRouter();
-  const [modeFilter, setModeFilter] = useState('all');
-  const [showDeleted, setShowDeleted] = useState(false);
-  const [deleteDialog, setDeleteDialog] = useState<{ id: number; receipt: string } | null>(null);
-  const [deleteReason, setDeleteReason] = useState('');
-  const [isDeleting, setIsDeleting] = useState(false);
-  const [allPayments, setAllPayments] = useState<SuperadminFinancePayment[]>([]);
-
-  useEffect(() => {
-    fetchApi('/finance/payments').then(( data: any ) => {
-      const actualData = Array.isArray(data) ? data : data?.data;
-      if (!Array.isArray(actualData) || actualData.length === 0 || String(actualData[0]?.id).startsWith('MOCK-')) {
-        setAllPayments(SUPERADMIN_FINANCE_MOCK_PAYMENTS as SuperadminFinancePayment[]);
-        return;
-      }
-      const mapped: SuperadminFinancePayment[] = actualData.map(( p: Record<string, any> ) => ({
-        id: typeof p.id === 'number' ? p.id : parseInt(String(p.id || '0'), 10),
-        receiptNumber: 'REC-' + String(p.id || '').substring(0, 8),
-        date: p.date ? new Date(String(p.date)).toISOString().split('T')[0] : new Date().toISOString().split('T')[0],
-        studentName: String(p.studentName || 'Student'),
-        smartId: 'S-001',
-        amount: Number(p.amount) || 0,
-        mode: 'cash' as const,
-        lateFee: 0,
-        receivedBy: 'Admin',
-        status: p.status === 'completed' ? 'valid' : 'deleted',
-      }));
-      setAllPayments(mapped);
-    }).catch(err => logger.error('Failed to load payments data', err));
-  }, []);
-
-  const visible = allPayments.filter((p) => {
-    const modeMatch = modeFilter === 'all' || p.mode === modeFilter;
-    const deletedMatch = showDeleted || p.status !== 'deleted';
-    return modeMatch && deletedMatch;
-  });
-
-  const handleDelete = () => {
-    if (!deleteDialog || !deleteReason.trim()) return;
-    setIsDeleting(true);
-    setTimeout(() => {
-      setAllPayments((prev) =>
-        prev.map(( p ) =>
-          p.id === deleteDialog.id ? { ...p, status: 'deleted', deletionReason: deleteReason } : p
-        )
-      );
-      toast.success(`Payment ${deleteDialog.receipt} has been voided.`);
-      setDeleteDialog(null);
-      setDeleteReason('');
-      setIsDeleting(false);
-    }, 700);
-  };
-
-  const colDefs = [
-    { 
-      field: 'receiptNumber', 
-      headerName: 'Receipt #', 
-      width: 150,
-      cellRenderer: (params: ICellRendererParams) => (
-        <span className={`fin-mono font-medium ${params.data.status === 'deleted' ? 'line-through opacity-50' : ''}`}>
-          {params.value}
-        </span>
-      )
-    },
-    { 
-      field: 'date', 
-      headerName: 'Date', 
-      width: 120,
-      valueFormatter: (p: ICellRendererParams) => formatDate(p.value)
-    },
-    { 
-      field: 'studentName', 
-      headerName: 'Student', 
-      flex: 1,
-      minWidth: 180,
-      cellRenderer: (params: ICellRendererParams) => (
-        <div className={`py-1 ${params.data.status === 'deleted' ? 'opacity-50' : ''}`}>
-          <div className="fin-cell-name">{params.value}</div>
-          <div className="fin-cell-subtext">{params.data.smartId}</div>
-        </div>
-      )
-    },
-    { 
-      field: 'amount', 
-      headerName: 'Amount', 
-      width: 120,
-      cellStyle: { textAlign: 'right', fontWeight: 600 },
-      valueFormatter: (p: ICellRendererParams) => formatCurrency(p.value)
-    },
-    { 
-      field: 'mode', 
-      headerName: 'Mode', 
-      width: 110,
-      cellRenderer: (params: ICellRendererParams) => (
-        <div className={`h-full flex items-center ${params.data.status === 'deleted' ? 'opacity-50' : ''}`}>
-          <span className={MODE_BADGE[params.value] || 'fin-badge fin-badge--neutral'}>{params.value}</span>
-        </div>
-      )
-    },
-    { field: 'txnId', headerName: 'Txn ID', width: 130, cellRenderer: (p: ICellRendererParams) => <span className="fin-mono">{p.value || '—'}</span> },
-    { 
-      field: 'lateFee', 
-      headerName: 'Late Fee', 
-      width: 110,
-      cellStyle: { textAlign: 'right' },
-      cellRenderer: (p: ICellRendererParams) => (
-        <span className={p.value > 0 ? 'fin-text-warning' : 'fin-text-muted'}>
-          {formatCurrency(p.value)}
-        </span>
-      )
-    },
-    { 
-      field: 'status', 
-      headerName: 'Status', 
-      width: 130,
-      cellRenderer: (params: ICellRendererParams) => (
-        <div className="h-full flex flex-col justify-center py-1">
-          {params.value === 'valid' ? (
-            <span className="fin-badge fin-badge--success self-start">Valid</span>
-          ) : (
-            <span className="fin-badge fin-badge--neutral self-start">DELETED</span>
-          )}
-          {params.value === 'deleted' && params.data.deletionReason && (
-            <div className="fin-cell-subtext mt-1 text-xs leading-tight" title={params.data.deletionReason}>
-              {params.data.deletionReason.length > 15 ? params.data.deletionReason.substring(0, 15) + '...' : params.data.deletionReason}
-            </div>
-          )}
-        </div>
-      )
-    },
-    {
-      headerName: 'Actions',
-      width: 140,
-      sortable: false,
-      cellRenderer: (params: ICellRendererParams) => {
-        if (params.data.status !== 'valid') return null;
-        return (
-          <div className="flex items-center gap-2 h-full">
-            <button
-              className="fin-badge fin-badge--neutral cursor-pointer hover:border-mgr-primary"
-              onClick={() => router.push(`/superadmin/superadmin_finance/receipt/${params.data.id}`)}
-              title="View Receipt"
-            >
-              <Receipt size={14} />
-            </button>
-            <button
-              className="fin-badge fin-badge--neutral cursor-pointer hover:border-mgr-primary"
-              onClick={() => router.push(`/superadmin/superadmin_finance/invoice/${params.data.id}`)}
-              title="View Invoice"
-            >
-              <FileText size={14} />
-            </button>
-            <button
-              className="fin-badge fin-badge--danger cursor-pointer"
-              onClick={() => setDeleteDialog({ id: params.data.id, receipt: params.data.receiptNumber })}
-              title="Delete"
-            >
-              <Trash2 size={14} />
-            </button>
-          </div>
-        );
-      }
-    }
-  ];
+  const {
+    modeFilter, setModeFilter,
+    showDeleted, setShowDeleted,
+    deleteDialog, setDeleteDialog,
+    deleteReason, setDeleteReason,
+    isDeleting,
+    visible,
+    handleDelete,
+    colDefs,
+  } = usePaymentsClient();
 
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="fin-page-title">Payment History</h1>
-        <p className="fin-page-subtitle">Complete payment ledger with audit trail.</p>
+        <h1 className="text-[22px] font-bold text-text-primary">Payment History</h1>
+        <p className="text-[12px] text-text-secondary">Complete payment ledger with audit trail.</p>
       </div>
 
-      <div className="fin-filter-bar">
-        <div className="w-40">
+      <div className="flex items-center gap-3 bg-card p-3 rounded-[var(--radius-lg)] border border-border">
+        <div className="w-48">
           <SuperadminSearchableDropdown
             options={[
               { label: 'All Modes', value: 'all' },
@@ -216,19 +47,21 @@ export function PaymentsClient() {
         </div>
         <div className="flex items-center gap-2">
           <button
-            className={`fin-switch ${showDeleted ? 'fin-switch--on' : 'fin-switch--off'}`}
-            onClick={() => setShowDeleted((v: any) => !v)}
+            className={`relative inline-flex h-5 w-9 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 ${showDeleted ? 'bg-primary' : 'bg-input border border-border'}`}
+            onClick={() => setShowDeleted((v: boolean) => !v)}
             type="button"
           >
-            <span className="fin-switch__thumb" />
+            <span className={`inline-block h-3.5 w-3.5 transform rounded-full bg-white transition-transform ${showDeleted ? 'translate-x-4' : 'translate-x-1'}`} />
           </button>
-          <span className="fin-text-muted">Show Deleted</span>
+          <span className="text-[14px] font-medium text-text-secondary">Show Deleted</span>
         </div>
-        <button className="fin-badge fin-badge--neutral cursor-pointer ml-auto">📤 Export</button>
+        <button className="ml-auto bg-input text-text-primary border border-border px-3 py-1.5 rounded-[var(--radius-md)] text-[12px] font-bold hover:bg-primary/10 hover:text-primary transition-colors cursor-pointer">
+          📤 Export
+        </button>
       </div>
 
-      <div className="fin-card p-4">
-        <div className="mgr-table-wrapper h-96">
+      <div className="bg-card rounded-[var(--radius-lg)] border border-border p-4">
+        <div className="h-96 w-full" style={{ width: '100%', height: '400px' }}>
           <AgGridReact
             theme={superadmin_gridTheme}
             rowData={visible}
@@ -247,25 +80,25 @@ export function PaymentsClient() {
       </div>
 
       {deleteDialog && (
-        <div className="fin-dialog-overlay">
-          <div className="fin-dialog">
-            <h2 className="fin-dialog__title">🗑️ Delete Payment — {deleteDialog.receipt}</h2>
-            <button className="fin-dialog__close" onClick={() => setDeleteDialog(null)}>✕</button>
-            <p className="fin-dialog-helper">Soft-delete this payment? This action is permanent and logged in Audit Logs.</p>
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm">
+          <div className="bg-card w-full max-w-md rounded-[var(--radius-xl)] shadow-2xl border border-border p-6 animate-in fade-in zoom-in duration-200">
+            <h2 className="text-[18px] font-bold text-text-primary mb-2 flex items-center gap-2">🗑️ Delete Payment — {deleteDialog.receipt}</h2>
+            <button className="absolute top-4 right-4 text-text-secondary hover:text-text-primary" onClick={() => setDeleteDialog(null)}>✕</button>
+            <p className="text-[13px] text-text-secondary mb-4">Soft-delete this payment? This action is permanent and logged in Audit Logs.</p>
             <div className="space-y-2 mt-4">
-              <label className="fin-label">Deletion reason <span className="fin-text-danger">*</span></label>
+              <label className="block text-[12px] font-bold text-text-secondary uppercase tracking-wider">Deletion reason <span className="text-danger">*</span></label>
               <textarea
-                className="fin-textarea"
+                className="w-full bg-input border border-border rounded-[var(--radius-md)] p-3 text-[14px] text-text-primary focus:outline-none focus:border-primary transition-colors"
                 value={deleteReason}
-                onChange={( e: any ) => setDeleteReason(e.target.value)}
+                onChange={( e: React.ChangeEvent<HTMLTextAreaElement> ) => setDeleteReason(e.target.value)}
                 placeholder="Enter reason for deletion..."
                 rows={2}
               />
             </div>
-            <div className="fin-dialog__footer mt-6">
-              <button className="fin-badge fin-badge--neutral cursor-pointer" onClick={() => setDeleteDialog(null)}>Cancel</button>
+            <div className="flex items-center justify-end gap-3 mt-6">
+              <button className="bg-input text-text-primary border border-border px-4 py-2 rounded-[var(--radius-md)] text-[13px] font-bold hover:bg-primary/5 transition-colors cursor-pointer" onClick={() => setDeleteDialog(null)}>Cancel</button>
               <button
-                className="fin-badge fin-badge--danger cursor-pointer"
+                className="bg-danger/10 text-danger border border-danger/20 px-4 py-2 rounded-[var(--radius-md)] text-[13px] font-bold hover:bg-danger hover:text-danger-foreground transition-colors cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
                 onClick={handleDelete}
                 disabled={isDeleting || !deleteReason.trim()}
               >
