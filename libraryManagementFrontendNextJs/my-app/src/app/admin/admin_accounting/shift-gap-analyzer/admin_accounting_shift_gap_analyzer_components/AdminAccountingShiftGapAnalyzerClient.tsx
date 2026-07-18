@@ -10,6 +10,8 @@ import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { TablePagination } from '@/components/ui/table-pagination';
 import { ShiftGap, DayGap } from "./AdminAccountingShiftGapAnalyzerClient_types";
+import { TableToolbar } from '@/components/ui/table-toolbar';
+import { useClientTable } from '@/components/ui/use-client-table';
 
 const MOCK: ShiftGap[] = [
   { shift: 'Morning (6AM–2PM)',   totalSeats: 40, occupied: 34, vacant: 6,  occupancyPct: 85, avgGapDays: 12, revenueLoss: 3600  },
@@ -26,6 +28,7 @@ const DAY_GAPS: DayGap[] = [
 ];
 
 export function AdminAccountingShiftGapAnalyzerClient() {
+
     const [searchTerm, setSearchTerm] = useState('');
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(10);
@@ -33,7 +36,7 @@ export function AdminAccountingShiftGapAnalyzerClient() {
 
   const visibleDays = shiftFilter === 'all' ? DAY_GAPS : DAY_GAPS.filter(d => d.shift === shiftFilter);
   const totalLoss = MOCK.reduce((s, m) => s + m.revenueLoss, 0);
-
+    const table = useClientTable(visibleDays, 10);
   return (
     <div className="space-y-6 pb-10">
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b pb-4">
@@ -115,7 +118,13 @@ export function AdminAccountingShiftGapAnalyzerClient() {
         </div>
       </div>
 
-<table className="w-full text-sm text-left">
+<div className="mb-4">
+        <TableToolbar 
+          searchTerm={table.searchTerm} 
+          onSearchChange={table.setSearchChange || table.setSearchTerm} 
+        />
+      </div>
+      <table className="w-full text-sm text-left">
           <thead className="bg-muted text-muted-foreground text-xs font-semibold uppercase tracking-wider">
             <tr>
               <th className="py-3 px-4">Date</th>
@@ -136,7 +145,13 @@ export function AdminAccountingShiftGapAnalyzerClient() {
               </tr>
             ))}
           </tbody>
-        </table>
+        </table> 
+      <TablePagination 
+        totalItems={table.totalItems} 
+        page={table.page} 
+        limit={table.limit} 
+        onPageChange={table.setPage} 
+      />
 
       <TablePagination 
         totalItems={100} 

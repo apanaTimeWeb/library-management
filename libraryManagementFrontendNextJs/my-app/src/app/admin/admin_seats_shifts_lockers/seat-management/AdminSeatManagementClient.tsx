@@ -11,8 +11,11 @@ import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
 import { TablePagination } from '@/components/ui/table-pagination';
 import { SeatManagementClientProps } from "./AdminSeatManagementClient_types";
+import { TableToolbar } from '@/components/ui/table-toolbar';
+import { useClientTable } from '@/components/ui/use-client-table';
 
 export function AdminSeatManagementClient({ initialSeats }: SeatManagementClientProps) {
+
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(10);
 
@@ -45,7 +48,7 @@ export function AdminSeatManagementClient({ initialSeats }: SeatManagementClient
       default: return 'bg-muted text-muted-foreground';
     }
   };
-
+    const table = useClientTable(filtered, 10);
   return (
     <div className="h-full flex flex-col pb-10 space-y-6 relative">
       <Toaster position="bottom-right" />
@@ -98,7 +101,13 @@ export function AdminSeatManagementClient({ initialSeats }: SeatManagementClient
         </Card>
       ) : (
         <Card className="flex-1 shadow-none border-border bg-card overflow-hidden flex flex-col">
-          <div className="w-full overflow-x-auto flex-1">
+          <div className="mb-4">
+        <TableToolbar 
+          searchTerm={table.searchTerm} 
+          onSearchChange={table.setSearchChange || table.setSearchTerm} 
+        />
+      </div>
+      <div className="w-full overflow-x-auto flex-1">
             <table className="w-full text-sm text-left">
               <thead className="bg-muted/30 border-y text-muted-foreground text-xs font-medium uppercase tracking-wider sticky top-0 z-10">
                 <tr>
@@ -178,7 +187,13 @@ export function AdminSeatManagementClient({ initialSeats }: SeatManagementClient
                 ))}
               </tbody>
             </table>
-          </div>
+          </div> 
+      <TablePagination 
+        totalItems={table.totalItems} 
+        page={table.page} 
+        limit={table.limit} 
+        onPageChange={table.setPage} 
+      />
           <TablePagination
             page={page}
             limit={limit}

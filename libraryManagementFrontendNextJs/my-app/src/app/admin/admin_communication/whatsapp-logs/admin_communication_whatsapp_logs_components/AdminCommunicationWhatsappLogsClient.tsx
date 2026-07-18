@@ -12,6 +12,8 @@ import { Input } from '@/components/ui/input';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from '@/components/ui/dialog';
 import { TablePagination } from '@/components/ui/table-pagination';
 import { WaLog } from "./AdminCommunicationWhatsappLogsClient_types";
+import { TableToolbar } from '@/components/ui/table-toolbar';
+import { useClientTable } from '@/components/ui/use-client-table';
 
 const TYPE_BADGE: Record<string, string> = {
   welcome: 'bg-info/10 text-info hover:bg-info/20', 
@@ -31,6 +33,7 @@ const STATUS_BADGE: Record<string, string> = {
 };
 
 export function AdminCommunicationWhatsappLogsClient() {
+
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(10);
   const [typeFilter,   setTypeFilter]   = useState('All');
@@ -48,7 +51,7 @@ export function AdminCommunicationWhatsappLogsClient() {
     if (dateTo && l.dateTime.split(' ')[0] > dateTo) return false;
     return true;
   });
-
+    const table = useClientTable(filtered, 10);
   return (
     <div className="space-y-6 pb-10">
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b pb-4">
@@ -107,7 +110,13 @@ export function AdminCommunicationWhatsappLogsClient() {
           </div>
         ) : (
           <>
-          <table className="w-full text-sm text-left">
+          <div className="mb-4">
+        <TableToolbar 
+          searchTerm={table.searchTerm} 
+          onSearchChange={table.setSearchTerm} 
+        />
+      </div>
+      <table className="w-full text-sm text-left">
             <thead className="bg-muted text-muted-foreground text-xs font-semibold uppercase tracking-wider sticky top-0 z-10">
               <tr>
                 <th className="py-3 px-4">Date / Time</th>
@@ -120,7 +129,7 @@ export function AdminCommunicationWhatsappLogsClient() {
               </tr>
             </thead>
             <tbody className="divide-y divide-border">
-              {filtered.slice((page - 1) * limit, page * limit).map((l) => (
+              {table.paginatedData.map((l) => (
                 <tr key={l.id} className="hover:bg-muted/30 transition-colors">
                   <td className="py-4 px-4 text-muted-foreground text-xs">{l.dateTime}</td>
                   <td className="py-4 px-4 font-mono font-medium text-foreground">{l.phone}</td>
@@ -148,7 +157,13 @@ export function AdminCommunicationWhatsappLogsClient() {
                 </tr>
               ))}
             </tbody>
-          </table>
+          </table> 
+      <TablePagination 
+        totalItems={table.totalItems} 
+        page={table.page} 
+        limit={table.limit} 
+        onPageChange={table.setPage} 
+      />
 
       <TablePagination 
         totalItems={100} 

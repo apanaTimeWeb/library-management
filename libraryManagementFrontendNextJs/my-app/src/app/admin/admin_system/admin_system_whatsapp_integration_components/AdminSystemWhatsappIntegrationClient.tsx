@@ -13,6 +13,8 @@ import {
 } from 'lucide-react';
 import { useAdminSystemWhatsappIntegration } from '@/app/admin/admin_system/admin_system_whatsapp_integration_hooks/useAdminSystemWhatsappIntegration';
 import { TablePagination } from '@/components/ui/table-pagination';
+import { TableToolbar } from '@/components/ui/table-toolbar';
+import { useClientTable } from '@/components/ui/use-client-table';
 
 const STATUS_CFG = {
   delivered: { variant: 'success' as const, icon: CheckCircle },
@@ -21,6 +23,7 @@ const STATUS_CFG = {
 };
 
 export function AdminSystemWhatsappIntegrationClient() {
+
   const {
     provider, setProvider,
     apiKey, setApiKey,
@@ -37,7 +40,7 @@ export function AdminSystemWhatsappIntegrationClient() {
 
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(10);
-
+    const table = useClientTable(logs, 10);
   return (
     <div>
       <div className="mb-8">
@@ -279,7 +282,13 @@ export function AdminSystemWhatsappIntegrationClient() {
           <CardDescription>Last 30 days of outbound WhatsApp messages.</CardDescription>
         </CardHeader>
         <CardContent>
-          <div className="overflow-x-auto">
+          <div className="mb-4">
+        <TableToolbar 
+          searchTerm={table.searchTerm} 
+          onSearchChange={table.setSearchChange || table.setSearchTerm} 
+        />
+      </div>
+      <div className="overflow-x-auto">
             <table className="w-full text-sm">
               <thead>
                 <tr className="border-b border-border text-text-secondary text-xs uppercase tracking-wide">
@@ -291,7 +300,7 @@ export function AdminSystemWhatsappIntegrationClient() {
                 </tr>
               </thead>
               <tbody className="divide-y divide-outline-variant/30">
-                {logs.map(log => {
+                {table.paginatedData.map(log => {
                   const cfg = STATUS_CFG[log.status as keyof typeof STATUS_CFG];
                   const Icon = cfg.icon;
                   return (
@@ -314,7 +323,13 @@ export function AdminSystemWhatsappIntegrationClient() {
                 })}
               </tbody>
             </table>
-          </div>
+          </div> 
+      <TablePagination 
+        totalItems={table.totalItems} 
+        page={table.page} 
+        limit={table.limit} 
+        onPageChange={table.setPage} 
+      />
           <TablePagination
             page={page}
             limit={limit}

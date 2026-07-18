@@ -8,6 +8,8 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
 import { TablePagination } from '@/components/ui/table-pagination';
+import { TableToolbar } from '@/components/ui/table-toolbar';
+import { useClientTable } from '@/components/ui/use-client-table';
 
 const STATUS_CLASS: Record<SeatStatus, string> = {
   Working: 'bg-success/10 text-success hover:bg-success/20',
@@ -16,6 +18,7 @@ const STATUS_CLASS: Record<SeatStatus, string> = {
 };
 
 export function AdminMaintenanceClient() {
+
   const {
     selectedSeat,
     setSelectedSeat,
@@ -32,7 +35,7 @@ export function AdminMaintenanceClient() {
 
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(10);
-
+    const table = useClientTable(currentLogs, 10);
   return (
     <div className="h-full flex flex-col pb-10 space-y-6">
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b pb-4">
@@ -75,7 +78,13 @@ export function AdminMaintenanceClient() {
         </Card>
       ) : (
         <Card className="flex-1 shadow-none border-border overflow-hidden flex flex-col">
-          <div className="w-full overflow-x-auto">
+          <div className="mb-4">
+        <TableToolbar 
+          searchTerm={table.searchTerm} 
+          onSearchChange={table.setSearchTerm} 
+        />
+      </div>
+      <div className="w-full overflow-x-auto">
             <table className="w-full text-sm text-left">
               <thead className="bg-muted/30 border-y text-muted-foreground text-xs font-medium uppercase tracking-wider sticky top-0 z-10">
                 <tr>
@@ -89,7 +98,7 @@ export function AdminMaintenanceClient() {
                 </tr>
               </thead>
               <tbody className="divide-y divide-border">
-                {currentLogs.slice((page - 1) * limit, page * limit).map((log) => (
+                {table.paginatedData.map((log) => (
                   <tr key={log.id} className="hover:bg-muted/10 transition-colors">
                     <td className="px-4 py-4 text-muted-foreground font-medium">{log.num}</td>
                     <td className="px-4 py-4 text-muted-foreground">{log.date}</td>
@@ -110,7 +119,13 @@ export function AdminMaintenanceClient() {
                 ))}
               </tbody>
             </table>
-          </div>
+          </div> 
+      <TablePagination 
+        totalItems={table.totalItems} 
+        page={table.page} 
+        limit={table.limit} 
+        onPageChange={table.setPage} 
+      />
           <TablePagination
             page={page}
             limit={limit}

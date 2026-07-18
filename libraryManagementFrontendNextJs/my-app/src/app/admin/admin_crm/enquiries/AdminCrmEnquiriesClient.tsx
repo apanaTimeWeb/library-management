@@ -20,6 +20,8 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
 import { TablePagination } from '@/components/ui/table-pagination';
+import { TableToolbar } from '@/components/ui/table-toolbar';
+import { useClientTable } from '@/components/ui/use-client-table';
 
 function StatusBadge({ status }: { status: EnquiryStatus }) {
   const getBadgeClass = (s: EnquiryStatus) => {
@@ -80,6 +82,7 @@ function KanbanCard({ enq, onClick }: { enq: Enquiry; onClick: () => void }) {
 }
 
 export default function AdminCrmEnquiriesClient() {
+
   const {
     viewParam,
     searchParam,
@@ -115,6 +118,7 @@ export default function AdminCrmEnquiriesClient() {
       </div>
     );
   }
+    const table = useClientTable(KANBAN_COLUMNS, 10);
 
   return (
     <div className="flex flex-col h-full pb-10 space-y-6">
@@ -190,7 +194,7 @@ export default function AdminCrmEnquiriesClient() {
             </div>
           ) : (
             <div className="flex overflow-x-auto gap-4 pb-4 h-full min-h-96 min-h-96">
-              {KANBAN_COLUMNS.map((col) => {
+              {table.paginatedData.map((col) => {
                 const cards = colEnquiries(col.id);
                 return (
                   <div key={col.id} className="flex flex-col w-72 shrink-0 bg-muted/20 rounded-xl border border-border/50">
@@ -241,7 +245,13 @@ export default function AdminCrmEnquiriesClient() {
                </Button>
              </div>
           ) : (<>
-            <div className="w-full overflow-x-auto flex-1">
+            <div className="mb-4">
+        <TableToolbar 
+          searchTerm={table.searchTerm} 
+          onSearchChange={table.setSearchTerm} 
+        />
+      </div>
+      <div className="w-full overflow-x-auto flex-1">
               <table className="w-full text-sm text-left">
                 <thead className="bg-muted/30 border-b text-muted-foreground text-xs font-medium uppercase tracking-wider sticky top-0 z-10">
                   <tr>
@@ -308,7 +318,13 @@ export default function AdminCrmEnquiriesClient() {
                   ))}
                 </tbody>
               </table>
-          </div>
+          </div> 
+      <TablePagination 
+        totalItems={table.totalItems} 
+        page={table.page} 
+        limit={table.limit} 
+        onPageChange={table.setPage} 
+      />
           <TablePagination
             page={page}
             limit={limit}

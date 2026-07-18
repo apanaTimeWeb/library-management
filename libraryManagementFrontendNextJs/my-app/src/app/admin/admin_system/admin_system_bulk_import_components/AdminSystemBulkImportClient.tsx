@@ -8,6 +8,8 @@ import { Upload, FileSpreadsheet, ChevronRight, CheckCircle, XCircle, AlertTrian
 import { ADMIN_SYSTEM_MOCK_PREVIEW } from '@/app/admin/admin_system/admin_system_utils/AdminSystemMockData2';
 import { useAdminSystemBulkImport } from '@/app/admin/admin_system/admin_system_bulk_import_hooks/useAdminSystemBulkImport';
 import { TablePagination } from '@/components/ui/table-pagination';
+import { TableToolbar } from '@/components/ui/table-toolbar';
+import { useClientTable } from '@/components/ui/use-client-table';
 
 const STATUS_CONFIG = {
   ok: { label: 'OK', variant: 'success' as const, icon: CheckCircle },
@@ -16,6 +18,7 @@ const STATUS_CONFIG = {
 };
 
 export function AdminSystemBulkImportClient() {
+
   const {
     step, isDragging, setIsDragging, fileName, filter, setFilter, importProgress, fileInputRef,
     errorCount, warningCount, okCount, filteredRows,
@@ -24,7 +27,7 @@ export function AdminSystemBulkImportClient() {
 
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(10);
-
+    const table = useClientTable(filteredRows, 10);
   return (
     <div>
       {/* page Header */}
@@ -137,7 +140,13 @@ export function AdminSystemBulkImportClient() {
               <CardDescription>Make sure your file follows this column structure.</CardDescription>
             </CardHeader>
             <CardContent>
-              <div className="overflow-x-auto">
+              <div className="mb-4">
+        <TableToolbar 
+          searchTerm={table.searchTerm} 
+          onSearchChange={table.setSearchChange || table.setSearchTerm} 
+        />
+      </div>
+      <div className="overflow-x-auto">
                 <table className="w-full text-sm">
                   <thead>
                     <tr className="border-b border-border text-text-secondary text-xs uppercase tracking-wide">
@@ -169,7 +178,13 @@ export function AdminSystemBulkImportClient() {
                     ))}
                   </tbody>
                 </table>
-          </div>
+          </div> 
+      <TablePagination 
+        totalItems={table.totalItems} 
+        page={table.page} 
+        limit={table.limit} 
+        onPageChange={table.setPage} 
+      />
           <TablePagination
             page={page}
             limit={limit}
@@ -245,7 +260,13 @@ export function AdminSystemBulkImportClient() {
               </div>
             </CardHeader>
             <CardContent>
-              <div className="overflow-x-auto">
+              <div className="mb-4">
+        <TableToolbar 
+          searchTerm={table.searchTerm} 
+          onSearchChange={table.setSearchChange || table.setSearchTerm} 
+        />
+      </div>
+      <div className="overflow-x-auto">
                 <table className="w-full text-sm">
                   <thead>
                     <tr className="border-b border-border text-text-secondary text-xs uppercase tracking-wide">
@@ -260,7 +281,7 @@ export function AdminSystemBulkImportClient() {
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-outline-variant/30">
-                    {filteredRows.map(row => {
+                    {table.paginatedData.map(row => {
                       const cfg = STATUS_CONFIG[row.status];
                       const Icon = cfg.icon;
                       return (
@@ -285,7 +306,13 @@ export function AdminSystemBulkImportClient() {
                     })}
                   </tbody>
                 </table>
-              </div>
+              </div> 
+      <TablePagination 
+        totalItems={table.totalItems} 
+        page={table.page} 
+        limit={table.limit} 
+        onPageChange={table.setPage} 
+      />
             </CardContent>
             <CardFooter>
               <Button id="start-import-btn" variant="primary" onClick={handleImport}>

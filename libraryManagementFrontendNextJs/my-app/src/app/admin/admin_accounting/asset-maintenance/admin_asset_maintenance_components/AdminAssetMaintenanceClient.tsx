@@ -9,6 +9,8 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { TablePagination } from '@/components/ui/table-pagination';
+import { TableToolbar } from '@/components/ui/table-toolbar';
+import { useClientTable } from '@/components/ui/use-client-table';
 
 function StatusBadge({ value }: { value: string }) {
   if (!value) return null;
@@ -39,6 +41,7 @@ function TypeBadge({ value }: { value: string }) {
 }
 
 export function AdminAssetMaintenanceClient() {
+
   const {
     maintenance,
     totalCost,
@@ -55,6 +58,7 @@ export function AdminAssetMaintenanceClient() {
   const [limit, setLimit] = useState(10);
 
   const [isAddOpen, setIsAddOpen] = useState(false);
+    const table = useClientTable(maintenance, 10);
 
   return (
     <div className="h-full flex flex-col pb-10 space-y-6">
@@ -118,7 +122,13 @@ export function AdminAssetMaintenanceClient() {
         {fetchState === 'loading' && maintenance.length === 0 ? (
           <div className="flex items-center justify-center h-full text-muted-foreground">Loading maintenance tasks…</div>
         ) : (<>
-            <div className="w-full overflow-x-auto">
+            <div className="mb-4">
+        <TableToolbar 
+          searchTerm={table.searchTerm} 
+          onSearchChange={table.setSearchTerm} 
+        />
+      </div>
+      <div className="w-full overflow-x-auto">
             <table className="w-full text-sm text-left">
               <thead className="bg-muted/30 border-y text-muted-foreground text-xs font-medium uppercase tracking-wider sticky top-0 z-10">
                 <tr>
@@ -131,7 +141,7 @@ export function AdminAssetMaintenanceClient() {
                 </tr>
               </thead>
               <tbody className="divide-y divide-border">
-                {maintenance.slice((page - 1) * limit, page * limit).map((task, index) => (
+                {table.paginatedData.map((task, index) => (
                   <tr key={index} className="hover:bg-muted/10 transition-colors">
                     <td className="px-4 py-4 text-muted-foreground text-xs">{task.date}</td>
                     <td className="px-4 py-4 font-semibold text-foreground">{task.assetName}</td>
@@ -156,7 +166,13 @@ export function AdminAssetMaintenanceClient() {
                 )}
               </tbody>
             </table>
-          </div>
+          </div> 
+      <TablePagination 
+        totalItems={table.totalItems} 
+        page={table.page} 
+        limit={table.limit} 
+        onPageChange={table.setPage} 
+      />
           <TablePagination
             page={page}
             limit={limit}

@@ -16,8 +16,11 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, Di
 import toast from 'react-hot-toast';
 import { TablePagination } from '@/components/ui/table-pagination';
 import { Complaint, CStatus } from "./AdminCommunicationComplaintsClient_types";
+import { TableToolbar } from '@/components/ui/table-toolbar';
+import { useClientTable } from '@/components/ui/use-client-table';
 
 export function AdminCommunicationComplaintsClient() {
+
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(10);
   const [tab, setTab]                   = useState<CStatus | 'All'>('All');
@@ -29,7 +32,7 @@ export function AdminCommunicationComplaintsClient() {
 
   useEffect(() => {
     fetchApi('/communication/complaints').then(data => {
-      const mapped = data.map(( c: Record<string, unknown> ) => ({
+      const mapped = table.paginatedData.map(( c: Record<string, unknown> ) => ({
         id: String(c.id || Math.random()),
         title: String(c.subject || c.title || 'Complaint'),
         desc: String(c.description || ''),
@@ -86,7 +89,7 @@ export function AdminCommunicationComplaintsClient() {
 
   const toggleDesc = (id: string) =>
     setExpandedDesc(prev => prev.includes(id) ? prev.filter(x => x !== id) : [...prev, id]);
-
+    const table = useClientTable(data, 10);
   return (
     <div className="space-y-6 pb-10">
       {/* Header */}
@@ -128,7 +131,13 @@ export function AdminCommunicationComplaintsClient() {
           </div>
         ) : (
           <>
-          <table className="w-full text-sm text-left">
+          <div className="mb-4">
+        <TableToolbar 
+          searchTerm={table.searchTerm} 
+          onSearchChange={table.setSearchTerm} 
+        />
+      </div>
+      <table className="w-full text-sm text-left">
             <thead className="bg-muted text-muted-foreground text-xs font-semibold uppercase tracking-wider">
               <tr>
                 <th className="py-3 px-4">#</th>
@@ -184,7 +193,13 @@ export function AdminCommunicationComplaintsClient() {
                 );
               })}
             </tbody>
-          </table>
+          </table> 
+      <TablePagination 
+        totalItems={table.totalItems} 
+        page={table.page} 
+        limit={table.limit} 
+        onPageChange={table.setPage} 
+      />
 
       <TablePagination 
         totalItems={100} 

@@ -9,8 +9,11 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { TablePagination } from '@/components/ui/table-pagination';
+import { TableToolbar } from '@/components/ui/table-toolbar';
+import { useClientTable } from '@/components/ui/use-client-table';
 
 export function AdminLockersClient() {
+
   const {
     statusFilter,
     setStatusFilter,
@@ -44,7 +47,7 @@ export function AdminLockersClient() {
       default: return 'bg-muted text-muted-foreground border-none';
     }
   };
-
+    const table = useClientTable(filtered, 10);
   return (
     <div className="h-full flex flex-col pb-10 space-y-6 relative">
       {/* page Header */}
@@ -79,7 +82,13 @@ export function AdminLockersClient() {
 
       {/* Table */}
       <Card className="flex-1 shadow-none border-border bg-card overflow-hidden flex flex-col min-h-96">
-        <div className="w-full overflow-x-auto flex-1">
+        <div className="mb-4">
+        <TableToolbar 
+          searchTerm={table.searchTerm} 
+          onSearchChange={table.setSearchTerm} 
+        />
+      </div>
+      <div className="w-full overflow-x-auto flex-1">
           <table className="w-full text-sm text-left whitespace-nowrap min-w-max">
             <thead className="bg-muted/30 border-b text-muted-foreground text-xs font-bold uppercase tracking-wider sticky top-0 z-10">
               <tr>
@@ -91,7 +100,7 @@ export function AdminLockersClient() {
               </tr>
             </thead>
             <tbody className="divide-y divide-border">
-              {filtered.length === 0 ? (
+              {table.paginatedData.length === 0 ? (
                 <tr>
                   <td colSpan={5} className="px-5 py-20 text-center">
                     <div className="flex flex-col items-center justify-center gap-3">
@@ -108,7 +117,7 @@ export function AdminLockersClient() {
                   </td>
                 </tr>
               ) : (
-                filtered.slice((page - 1) * limit, page * limit).map((l, i) => (
+                table.paginatedData.map((l, i) => (
                   <tr key={i} className="hover:bg-muted/10 transition-colors">
                     <td className="px-5 py-4 text-base font-black text-primary tracking-tight">{l.lockerId}</td>
                     <td className="px-5 py-4">
@@ -152,7 +161,13 @@ export function AdminLockersClient() {
               )}
             </tbody>
           </table>
-          </div>
+          </div> 
+      <TablePagination 
+        totalItems={table.totalItems} 
+        page={table.page} 
+        limit={table.limit} 
+        onPageChange={table.setPage} 
+      />
           <TablePagination
             page={page}
             limit={limit}

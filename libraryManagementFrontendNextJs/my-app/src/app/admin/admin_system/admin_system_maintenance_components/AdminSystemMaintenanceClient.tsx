@@ -9,14 +9,17 @@ import { Button } from '@/app/admin/admin_system/admin_system_components/AdminSy
 import { Wrench, Package, Lock, ChevronRight , Search} from 'lucide-react';
 import { useAdminSystemMaintenance } from '@/app/admin/admin_system/admin_system_maintenance_hooks/useAdminSystemMaintenance';
 import { TablePagination } from '@/components/ui/table-pagination';
+import { TableToolbar } from '@/components/ui/table-toolbar';
+import { useClientTable } from '@/components/ui/use-client-table';
 
 export function AdminSystemMaintenanceClient() {
+
   const { seatsNeedingAttention, assetsOverdue, lockerIssues, seats, assets, lockers } = useAdminSystemMaintenance();
 
     const [searchTerm, setSearchTerm] = useState('');
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(10);
-
+    const table = useClientTable(assets, 10);
   return (
     <div>
       <div className="mb-8">
@@ -85,7 +88,13 @@ export function AdminSystemMaintenanceClient() {
                 ))}
               </tbody>
             </table>
-          </div>
+          </div> 
+      <TablePagination 
+        totalItems={table.totalItems} 
+        page={table.page} 
+        limit={table.limit} 
+        onPageChange={table.setPage} 
+      />
           <TablePagination
             page={page}
             limit={limit}
@@ -103,7 +112,13 @@ export function AdminSystemMaintenanceClient() {
           <CardDescription>Equipment and inventory maintenance tracking.</CardDescription>
         </CardHeader>
         <CardContent>
-          <div className="overflow-x-auto">
+          <div className="mb-4">
+        <TableToolbar 
+          searchTerm={table.searchTerm} 
+          onSearchChange={table.setSearchTerm} 
+        />
+      </div>
+      <div className="overflow-x-auto">
             <table className="w-full text-sm">
               <thead>
                 <tr className="border-b border-border text-text-secondary text-xs uppercase tracking-wide">
@@ -118,7 +133,7 @@ export function AdminSystemMaintenanceClient() {
               </thead>
               <tbody className="divide-y divide-outline-variant/30">
                 {/* eslint-disable-next-line @typescript-eslint/no-unused-vars */}
-                {assets.map((asset, i) => (
+                {table.paginatedData.map((asset, i) => (
                   <tr key={asset.name} className="hover:bg-bg-card transition-colors">
                     <td className="py-3 pr-4 font-medium text-text-primary">{asset.name}</td>
                     <td className="py-3 pr-4 text-center text-text-secondary">{asset.qty}</td>
@@ -143,7 +158,13 @@ export function AdminSystemMaintenanceClient() {
                 ))}
               </tbody>
             </table>
-          </div>
+          </div> 
+      <TablePagination 
+        totalItems={table.totalItems} 
+        page={table.page} 
+        limit={table.limit} 
+        onPageChange={table.setPage} 
+      />
         </CardContent>
       </Card>
 
@@ -154,7 +175,13 @@ export function AdminSystemMaintenanceClient() {
           <CardDescription>Locker issue reports and status updates.</CardDescription>
         </CardHeader>
         <CardContent>
-          <div className="overflow-x-auto">
+          <div className="mb-4">
+        <TableToolbar 
+          searchTerm={table.searchTerm} 
+          onSearchChange={table.setSearchTerm} 
+        />
+      </div>
+      <div className="overflow-x-auto">
             <table className="w-full text-sm">
               <thead>
                 <tr className="border-b border-border text-text-secondary text-xs uppercase tracking-wide">
@@ -179,7 +206,13 @@ export function AdminSystemMaintenanceClient() {
                 ))}
               </tbody>
             </table>
-          </div>
+          </div> 
+      <TablePagination 
+        totalItems={table.totalItems} 
+        page={table.page} 
+        limit={table.limit} 
+        onPageChange={table.setPage} 
+      />
         </CardContent>
       </Card>
     </div>

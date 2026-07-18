@@ -9,6 +9,8 @@ import { Printer, ArrowLeft, Send } from 'lucide-react';
 import { openWhatsApp } from '@/lib/whatsappUtils';
 import { printThermal } from '@/lib/thermalPrint';
 import { TablePagination } from '@/components/ui/table-pagination';
+import { TableToolbar } from '@/components/ui/table-toolbar';
+import { useClientTable } from '@/components/ui/use-client-table';
 
 const INV = {
   invoiceNumber:        'INV-20260411-001',
@@ -37,6 +39,7 @@ const INV = {
 };
 
 export function AdminFinanceInvoiceIdClient() {
+
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(10);
   const router = useRouter();
@@ -92,6 +95,7 @@ export function AdminFinanceInvoiceIdClient() {
       transactionId: INV.paymentTransactionId,
     });
   }
+    const table = useClientTable(INV.items.slice, 10);
 
   return (
     <div className="space-y-4">
@@ -146,7 +150,13 @@ export function AdminFinanceInvoiceIdClient() {
 
         <div className="fin-divider" />
 
-        <table className="w-full text-sm mb-4">
+        <div className="mb-4">
+        <TableToolbar 
+          searchTerm={table.searchTerm} 
+          onSearchChange={table.setSearchChange || table.setSearchTerm} 
+        />
+      </div>
+      <table className="w-full text-sm mb-4">
           <thead>
             <tr className="fin-table-header-row">
               <th className="text-left py-2 px-3">Description</th>
@@ -171,7 +181,13 @@ export function AdminFinanceInvoiceIdClient() {
               </tr>
             ))}
           </tbody>
-        </table>
+        </table> 
+      <TablePagination 
+        totalItems={table.totalItems} 
+        page={table.page} 
+        limit={table.limit} 
+        onPageChange={table.setPage} 
+      />
 
         <div className="flex flex-col items-end gap-1 mb-6">
           {[

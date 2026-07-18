@@ -12,8 +12,11 @@ import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
 import { Card } from '@/components/ui/card';
 import { TablePagination } from '@/components/ui/table-pagination';
+import { TableToolbar } from '@/components/ui/table-toolbar';
+import { useClientTable } from '@/components/ui/use-client-table';
 
 export function AdminExpensesClient() {
+
   const {
     expenses,
     totalCount,
@@ -32,7 +35,7 @@ export function AdminExpensesClient() {
   }
 
   const showBranchColumn = selectedBranch === 'All Branches';
-
+    const table = useClientTable(expenses, 10);
   return (
     <div className="h-full flex flex-col pb-10 space-y-6">
       {/* page Header */}
@@ -75,7 +78,13 @@ export function AdminExpensesClient() {
         <AdminExpensesEmptyState onResetSearch={handleResetSearch} isSearching={Boolean(searchInput.trim())} />
       ) : (
         <Card className="flex-1 min-h-96 shadow-sm border-border bg-card overflow-hidden flex flex-col">
-          <div className="overflow-x-auto flex-1">
+          <div className="mb-4">
+        <TableToolbar 
+          searchTerm={table.searchTerm} 
+          onSearchChange={table.setSearchChange || table.setSearchTerm} 
+        />
+      </div>
+      <div className="overflow-x-auto flex-1">
             <table className="w-full text-sm text-left">
               <thead className="text-xs text-muted-foreground uppercase bg-muted/50 sticky top-0 z-10">
                 <tr>
@@ -117,7 +126,13 @@ export function AdminExpensesClient() {
                 ))}
               </tbody>
             </table>
-          </div>
+          </div> 
+      <TablePagination 
+        totalItems={table.totalItems} 
+        page={table.page} 
+        limit={table.limit} 
+        onPageChange={table.setPage} 
+      />
           <TablePagination
             page={page}
             limit={limit}

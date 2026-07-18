@@ -15,6 +15,8 @@ import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { AdminReportsClientProps, KpiCardProps } from "./AdminReportsClient_types";
+import { TableToolbar } from '@/components/ui/table-toolbar';
+import { useClientTable } from '@/components/ui/use-client-table';
 
 const KPI_META = [
   { icon: IndianRupee, iconColor: 'var(--primary)', iconBg: 'var(--icon-bg-primary)' },
@@ -62,6 +64,7 @@ function AdminReportsKpiCard({ label, value, icon: Icon, iconColor, iconBg, tren
 }
 
 export function AdminReportsClient({ initialData }: AdminReportsClientProps) {
+
   const {
     range,
     setRange,
@@ -86,6 +89,7 @@ export function AdminReportsClient({ initialData }: AdminReportsClientProps) {
     { branch: 'Kothrud Center', revenue: '₹28,000', expense: '₹9,000',  profit: '₹19,000', students: 95,  occ: 78 },
     { branch: 'Nashik Branch',  revenue: '₹14,000', expense: '₹5,000',  profit: '₹9,000',  students: 42,  occ: 60 },
   ];
+    const table = useClientTable(kpiCards, 10);
 
   return (
     <>
@@ -148,7 +152,7 @@ export function AdminReportsClient({ initialData }: AdminReportsClientProps) {
 
         {/* KPI Cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          {kpiCards.map((card: Record<string, unknown>, i: number) => (
+          {table.paginatedData.map((card: Record<string, unknown>, i: number) => (
             <AdminReportsKpiCard
               key={i}
               label={card.label as string}
@@ -341,7 +345,13 @@ export function AdminReportsClient({ initialData }: AdminReportsClientProps) {
         </div>
       </div>
 
-<table className="w-full text-sm text-left">
+<div className="mb-4">
+        <TableToolbar 
+          searchTerm={table.searchTerm} 
+          onSearchChange={table.setSearchTerm} 
+        />
+      </div>
+      <table className="w-full text-sm text-left">
               <thead className="bg-muted/30 text-muted-foreground text-xs font-medium uppercase tracking-wider">
                 <tr>
                   {['Branch', 'Revenue', 'Expenses', 'Net Profit', 'Students', 'Occupancy'].map(h => (
@@ -379,7 +389,13 @@ export function AdminReportsClient({ initialData }: AdminReportsClientProps) {
                 ))}
               </tbody>
             </table>
-          </div>
+          </div> 
+      <TablePagination 
+        totalItems={table.totalItems} 
+        page={table.page} 
+        limit={table.limit} 
+        onPageChange={table.setPage} 
+      />
           <TablePagination
             page={page}
             limit={limit}

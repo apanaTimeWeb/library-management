@@ -15,10 +15,13 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, Di
 import toast from 'react-hot-toast';
 import { TablePagination } from '@/components/ui/table-pagination';
 import { Notice } from "./AdminCommunicationNoticesClient_types";
+import { TableToolbar } from '@/components/ui/table-toolbar';
+import { useClientTable } from '@/components/ui/use-client-table';
 
 const today = new Date().toISOString().split('T')[0];
 
 export function AdminCommunicationNoticesClient() {
+
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(10);
   const [notices, setNotices]             = useState<Notice[]>([]);
@@ -30,7 +33,7 @@ export function AdminCommunicationNoticesClient() {
 
   useEffect(() => {
     fetchApi('/communication/notices').then(data => {
-      const mapped = data.map(( n: Record<string, unknown> ) => ({
+      const mapped = table.paginatedData.map(( n: Record<string, unknown> ) => ({
         id: String(n.id || Math.random()),
         title: String(n.title || n.name || 'Notice'),
         message: String(n.message || n.details || ''),
@@ -70,7 +73,7 @@ export function AdminCommunicationNoticesClient() {
     setBroadcastItem(null);
     toast.success('Notice broadcast to all active students via WhatsApp');
   };
-
+    const table = useClientTable(data, 10);
   return (
     <div className="space-y-6 pb-10">
       {/* Header */}
@@ -98,7 +101,13 @@ export function AdminCommunicationNoticesClient() {
           </div>
         ) : (
           <>
-          <table className="w-full text-sm text-left">
+          <div className="mb-4">
+        <TableToolbar 
+          searchTerm={table.searchTerm} 
+          onSearchChange={table.setSearchTerm} 
+        />
+      </div>
+      <table className="w-full text-sm text-left">
             <thead className="bg-muted text-muted-foreground text-xs font-semibold uppercase tracking-wider sticky top-0 z-10">
               <tr>
                 <th className="py-3 px-4">Title</th>
@@ -139,7 +148,13 @@ export function AdminCommunicationNoticesClient() {
                 </tr>
               ))}
             </tbody>
-          </table>
+          </table> 
+      <TablePagination 
+        totalItems={table.totalItems} 
+        page={table.page} 
+        limit={table.limit} 
+        onPageChange={table.setPage} 
+      />
 
       <TablePagination 
         totalItems={100} 

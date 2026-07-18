@@ -11,8 +11,11 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Switch } from '@/components/ui/switch';
 import { TablePagination } from '@/components/ui/table-pagination';
+import { TableToolbar } from '@/components/ui/table-toolbar';
+import { useClientTable } from '@/components/ui/use-client-table';
 
 export function AdminFinancePaymentsClient() {
+
   const router = useRouter();
   const {
     visible,
@@ -42,7 +45,7 @@ export function AdminFinancePaymentsClient() {
       default: return 'bg-muted text-muted-foreground';
     }
   };
-
+    const table = useClientTable(visible, 10);
   return (
     <div className="h-full flex flex-col pb-10 space-y-6 relative">
       {/* page Header */}
@@ -95,7 +98,13 @@ export function AdminFinancePaymentsClient() {
         </div>
       </div>
 
-<table className="w-full text-sm text-left">
+<div className="mb-4">
+        <TableToolbar 
+          searchTerm={table.searchTerm} 
+          onSearchChange={table.setSearchTerm} 
+        />
+      </div>
+      <table className="w-full text-sm text-left">
             <thead className="bg-muted/30 border-b text-muted-foreground text-xs font-bold uppercase tracking-wider sticky top-0 z-10">
               <tr>
                 <th className="px-4 py-3">Receipt #</th>
@@ -119,14 +128,14 @@ export function AdminFinancePaymentsClient() {
                     </div>
                   </td>
                 </tr>
-              ) : visible.length === 0 ? (
+              ) : table.paginatedData.length === 0 ? (
                 <tr>
                   <td colSpan={9} className="px-4 py-20 text-center text-muted-foreground">
                     No payments found matching your criteria.
                   </td>
                 </tr>
               ) : (
-                visible.filter(row => JSON.stringify(row).toLowerCase().includes(searchTerm.toLowerCase())).slice((page - 1) * limit, page * limit).map((p) => {
+                table.paginatedData.map((p) => {
                   const isDeleted = p.status === 'deleted';
                   return (
                     <tr key={p.id} className={`hover:bg-muted/10 transition-colors ${isDeleted ? 'bg-danger/5' : ''}`}>
@@ -217,7 +226,13 @@ export function AdminFinancePaymentsClient() {
               )}
             </tbody>
           </table>
-          </div>
+          </div> 
+      <TablePagination 
+        totalItems={table.totalItems} 
+        page={table.page} 
+        limit={table.limit} 
+        onPageChange={table.setPage} 
+      />
           <TablePagination
             page={page}
             limit={limit}

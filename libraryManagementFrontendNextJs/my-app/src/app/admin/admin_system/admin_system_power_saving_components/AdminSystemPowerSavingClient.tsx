@@ -11,13 +11,16 @@ import { Progress } from '@/app/admin/admin_system/admin_system_components/Admin
 import { Zap, ChevronRight } from 'lucide-react';
 import { useAdminSystemPowerSaving } from '@/app/admin/admin_system/admin_system_power_saving_hooks/useAdminSystemPowerSaving';
 import { TablePagination } from '@/components/ui/table-pagination';
+import { TableToolbar } from '@/components/ui/table-toolbar';
+import { useClientTable } from '@/components/ui/use-client-table';
 
 export function AdminSystemPowerSavingClient() {
+
   const { threshold, setThreshold, alertsEnabled, setAlertsEnabled, getZoneStatus, zones, alerts } = useAdminSystemPowerSaving();
 
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(10);
-
+    const table = useClientTable(zones, 10);
   return (
     <div>
       <div className="mb-8">
@@ -73,7 +76,7 @@ export function AdminSystemPowerSavingClient() {
       {/* Zone Status Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
         {/* eslint-disable-next-line @typescript-eslint/no-unused-vars */}
-        {zones.map((zone, i) => {
+        {table.paginatedData.map((zone, i) => {
           const status = getZoneStatus(zone.occupancy);
           const isLow = zone.occupancy < threshold;
           return (
@@ -111,7 +114,13 @@ export function AdminSystemPowerSavingClient() {
           <CardDescription>History of power saving threshold breaches and actions taken.</CardDescription>
         </CardHeader>
         <CardContent>
-          <div className="overflow-x-auto">
+          <div className="mb-4">
+        <TableToolbar 
+          searchTerm={table.searchTerm} 
+          onSearchChange={table.setSearchTerm} 
+        />
+      </div>
+      <div className="overflow-x-auto">
             <table className="w-full text-sm">
               <thead>
                 <tr className="border-b border-border text-text-secondary text-xs uppercase tracking-wide">
@@ -134,7 +143,13 @@ export function AdminSystemPowerSavingClient() {
                 ))}
               </tbody>
             </table>
-          </div>
+          </div> 
+      <TablePagination 
+        totalItems={table.totalItems} 
+        page={table.page} 
+        limit={table.limit} 
+        onPageChange={table.setPage} 
+      />
           <TablePagination
             page={page}
             limit={limit}

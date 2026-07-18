@@ -11,6 +11,8 @@ import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
 import { TablePagination } from '@/components/ui/table-pagination';
 import { Entry } from "./AdminAccountingDailySettlementClient_types";
+import { TableToolbar } from '@/components/ui/table-toolbar';
+import { useClientTable } from '@/components/ui/use-client-table';
 
 const TODAY = new Date().toISOString().split('T')[0];
 
@@ -21,6 +23,7 @@ const MOCK: Entry[] = [
 ];
 
 export function AdminAccountingDailySettlementClient() {
+
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(10);
   const [date, setDate] = useState(TODAY);
@@ -34,7 +37,7 @@ export function AdminAccountingDailySettlementClient() {
   const totalCash = entries.reduce((s, e) => s + e.cashCollected, 0);
   const totalUpi  = entries.reduce((s, e) => s + e.upiCollected, 0);
   const totalExp  = entries.reduce((s, e) => s + e.expenses, 0);
-
+    const table = useClientTable(entries, 10);
   return (
     <div className="h-full flex flex-col pb-10 space-y-6">
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b pb-4">
@@ -69,7 +72,13 @@ export function AdminAccountingDailySettlementClient() {
       </div>
 
       <Card className="flex-1 shadow-none border-border overflow-hidden flex flex-col min-h-96">
-        <div className="w-full overflow-x-auto">
+        <div className="mb-4">
+        <TableToolbar 
+          searchTerm={table.searchTerm} 
+          onSearchChange={table.setSearchChange || table.setSearchTerm} 
+        />
+      </div>
+      <div className="w-full overflow-x-auto">
           <table className="w-full text-sm text-left">
             <thead className="bg-muted/30 border-y text-muted-foreground text-xs font-medium uppercase tracking-wider sticky top-0 z-10">
               <tr>
@@ -115,7 +124,13 @@ export function AdminAccountingDailySettlementClient() {
               )}
             </tbody>
           </table>
-          </div>
+          </div> 
+      <TablePagination 
+        totalItems={table.totalItems} 
+        page={table.page} 
+        limit={table.limit} 
+        onPageChange={table.setPage} 
+      />
           <TablePagination
             page={page}
             limit={limit}

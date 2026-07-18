@@ -12,6 +12,8 @@ import {
 } from 'lucide-react';
 import { useAdminSystemBackups } from '@/app/admin/admin_system/admin_system_backups_hooks/useAdminSystemBackups';
 import { TablePagination } from '@/components/ui/table-pagination';
+import { TableToolbar } from '@/components/ui/table-toolbar';
+import { useClientTable } from '@/components/ui/use-client-table';
 
 const STATUS_CFG = {
   success: { label: 'Success', variant: 'success' as const, icon: CheckCircle },
@@ -20,6 +22,7 @@ const STATUS_CFG = {
 };
 
 export function AdminSystemBackupsClient() {
+
   const {
     autoBackup, setAutoBackup,
     cloudSync, setCloudSync,
@@ -32,7 +35,7 @@ export function AdminSystemBackupsClient() {
 
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(10);
-
+    const table = useClientTable(backups, 10);
   return (
     <div>
       <div className="mb-8">
@@ -198,7 +201,13 @@ export function AdminSystemBackupsClient() {
           </div>
         </CardHeader>
         <CardContent>
-          <div className="overflow-x-auto">
+          <div className="mb-4">
+        <TableToolbar 
+          searchTerm={table.searchTerm} 
+          onSearchChange={table.setSearchTerm} 
+        />
+      </div>
+      <div className="overflow-x-auto">
             <table className="w-full text-sm">
               <thead>
                 <tr className="border-b border-border text-text-secondary text-xs uppercase tracking-wide">
@@ -212,7 +221,7 @@ export function AdminSystemBackupsClient() {
                 </tr>
               </thead>
               <tbody className="divide-y divide-outline-variant/30">
-                {backups.slice((page - 1) * limit, page * limit).map((backup) => {
+                {table.paginatedData.map((backup) => {
                   const cfg = STATUS_CFG[backup.status as keyof typeof STATUS_CFG];
                   const Icon = cfg.icon;
                   return (
@@ -277,7 +286,13 @@ export function AdminSystemBackupsClient() {
                 })}
               </tbody>
             </table>
-          </div>
+          </div> 
+      <TablePagination 
+        totalItems={table.totalItems} 
+        page={table.page} 
+        limit={table.limit} 
+        onPageChange={table.setPage} 
+      />
           <TablePagination
             page={page}
             limit={limit}

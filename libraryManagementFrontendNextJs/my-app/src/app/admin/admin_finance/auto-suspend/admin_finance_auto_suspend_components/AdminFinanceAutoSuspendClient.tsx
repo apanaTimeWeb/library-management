@@ -9,8 +9,11 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Input } from '@/components/ui/input';
 import { TablePagination } from '@/components/ui/table-pagination';
+import { TableToolbar } from '@/components/ui/table-toolbar';
+import { useClientTable } from '@/components/ui/use-client-table';
 
 export function AdminFinanceAutoSuspendClient() {
+
   const {
     config,
     suspended,
@@ -39,7 +42,7 @@ export function AdminFinanceAutoSuspendClient() {
     { label: 'Auto-Restored (Month)', value: configLoading ? '—' : config?.autoRestoredThisMonth ?? 0, icon: RotateCcw, variant: 'default' },
     { label: 'Manual Restores', value: configLoading ? '—' : config?.manualRestores ?? 0, icon: UserCheck, variant: 'default' },
   ] as const;
-
+    const table = useClientTable(KPI_CARDS, 10);
   return (
     <div className="h-full flex flex-col pb-10 space-y-6 relative">
       {/* page Header */}
@@ -53,7 +56,7 @@ export function AdminFinanceAutoSuspendClient() {
 
       {/* KPI Cards */}
       <div className="grid gap-4 md:grid-cols-4">
-        {KPI_CARDS.map(({ label, value, icon: Icon, variant }) => (
+        {table.paginatedData.map(({ label, value, icon: Icon, variant }) => (
           <Card key={label} className={`p-4 shadow-none flex flex-col justify-center ${variant === 'danger' ? 'border-danger/30 bg-danger/5' : 'border-border bg-card'}`}>
             <div className="flex items-center justify-between mb-1">
               <span className={`text-xs font-bold tracking-wider uppercase ${variant === 'danger' ? 'text-danger' : 'text-muted-foreground'}`}>{label}</span>
@@ -115,7 +118,13 @@ export function AdminFinanceAutoSuspendClient() {
           <h3 className="font-bold text-base text-primary">Suspended Students</h3>
         </div>
         
-        <div className="w-full overflow-x-auto flex-1">
+        <div className="mb-4">
+        <TableToolbar 
+          searchTerm={table.searchTerm} 
+          onSearchChange={table.setSearchTerm} 
+        />
+      </div>
+      <div className="w-full overflow-x-auto flex-1">
           <table className="w-full text-sm text-left">
             <thead className="bg-muted/30 border-b text-muted-foreground text-xs font-bold uppercase tracking-wider sticky top-0 z-10">
               <tr>
@@ -191,7 +200,13 @@ export function AdminFinanceAutoSuspendClient() {
               )}
             </tbody>
           </table>
-          </div>
+          </div> 
+      <TablePagination 
+        totalItems={table.totalItems} 
+        page={table.page} 
+        limit={table.limit} 
+        onPageChange={table.setPage} 
+      />
           <TablePagination
             page={page}
             limit={limit}

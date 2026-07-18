@@ -11,14 +11,17 @@ import { Badge } from '@/components/ui/badge';
 import { Card } from '@/components/ui/card';
 import { TablePagination } from '@/components/ui/table-pagination';
 import { AdminPermissionsViewProps } from "./AdminPermissionsView_types";
+import { TableToolbar } from '@/components/ui/table-toolbar';
+import { useClientTable } from '@/components/ui/use-client-table';
 
 export function AdminPermissionsView({ initialPermissions }: AdminPermissionsViewProps) {
+
     const [searchTerm, setSearchTerm] = useState('');
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(10);
 
   const { perms, toggle, handleSave, roles } = useAdminPermissions(initialPermissions);
-
+    const table = useClientTable(module.actions, 10);
   return (
     <>
       <Toaster
@@ -59,7 +62,13 @@ export function AdminPermissionsView({ initialPermissions }: AdminPermissionsVie
         </div>
       </div>
 
-<table className="w-full text-sm text-left">
+<div className="mb-4">
+        <TableToolbar 
+          searchTerm={table.searchTerm} 
+          onSearchChange={table.setSearchTerm} 
+        />
+      </div>
+      <table className="w-full text-sm text-left">
               <thead className="bg-muted/50 text-muted-foreground sticky top-0 z-10 border-b border-border">
                 <tr>
                   <th className="px-6 py-3 font-semibold uppercase text-xs tracking-wider w-72">Permission Module &amp; Action</th>
@@ -83,7 +92,7 @@ export function AdminPermissionsView({ initialPermissions }: AdminPermissionsVie
                       </td>
                     </tr>
                     {/* Action rows */}
-                    {module.actions.map((action, aIdx) => (
+                    {table.paginatedData.map((action, aIdx) => (
                       <tr key={action.key} className="hover:bg-muted/30 transition-colors">
                         <td className="px-6 py-3 pl-10 text-muted-foreground font-medium text-sm border-r border-border/50">
                           {action.label}
@@ -112,7 +121,13 @@ export function AdminPermissionsView({ initialPermissions }: AdminPermissionsVie
                 ))}
               </tbody>
             </table>
-          </div>
+          </div> 
+      <TablePagination 
+        totalItems={table.totalItems} 
+        page={table.page} 
+        limit={table.limit} 
+        onPageChange={table.setPage} 
+      />
           <TablePagination
             page={page}
             limit={limit}

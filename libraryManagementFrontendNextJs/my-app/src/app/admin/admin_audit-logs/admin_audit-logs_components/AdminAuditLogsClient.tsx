@@ -16,6 +16,8 @@ import { Card } from '@/components/ui/card';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from '@/components/ui/dialog';
 import toast from 'react-hot-toast';
 import { TablePagination } from '@/components/ui/table-pagination';
+import { TableToolbar } from '@/components/ui/table-toolbar';
+import { useClientTable } from '@/components/ui/use-client-table';
 
 const SEVERITY_ICONS: Record<string, React.ReactNode> = {
   danger:  <ShieldAlert size={12} />,
@@ -78,6 +80,7 @@ function IdCell({ value }: { value: string }) {
 }
 
 export function AdminAuditLogsClient() {
+
   const {
     logs,
     fetchState,
@@ -100,6 +103,7 @@ export function AdminAuditLogsClient() {
   if (fetchState === 'loading' && logs.length === 0) {
     return <AdminAuditLogsSkeleton />;
   }
+    const table = useClientTable(logs, 10);
 
   return (
     <div className="h-full flex flex-col pb-10 space-y-6">
@@ -148,7 +152,13 @@ export function AdminAuditLogsClient() {
         <AdminAuditLogsEmptyState onResetFilters={handleResetFilters} />
       ) : (
         <Card className="flex-1 min-h-96 shadow-sm border-border bg-card overflow-hidden flex flex-col">
-          <div className="overflow-x-auto flex-1">
+          <div className="mb-4">
+        <TableToolbar 
+          searchTerm={table.searchTerm} 
+          onSearchChange={table.setSearchTerm} 
+        />
+      </div>
+      <div className="overflow-x-auto flex-1">
             <table className="w-full text-sm text-left">
               <thead className="text-xs text-muted-foreground uppercase bg-muted/50 sticky top-0 z-10">
                 <tr>
@@ -162,8 +172,7 @@ export function AdminAuditLogsClient() {
                 </tr>
               </thead>
               <tbody className="divide-y divide-border">
-                {logs.map((log) => (
-                  <tr 
+                {table.paginatedData.map((log) => ( <tr 
                     key={log.id} 
                     className="hover:bg-muted/30 transition-colors cursor-pointer group"
                     onClick={() => handleRowClick(log)}
@@ -193,7 +202,13 @@ export function AdminAuditLogsClient() {
                 ))}
               </tbody>
             </table>
-          </div>
+          </div> 
+      <TablePagination 
+        totalItems={table.totalItems} 
+        page={table.page} 
+        limit={table.limit} 
+        onPageChange={table.setPage} 
+      />
           <TablePagination
             page={page}
             limit={limit}

@@ -10,6 +10,8 @@ import { CheckCircle, CalendarPlus, Eye } from 'lucide-react';
 import { ADMIN_FINANCE_MOCK_PAYMENT_PROMISES } from '@/app/admin/admin_finance/admin_finance_constants/AdminFinanceConstants';
 import { TablePagination } from '@/components/ui/table-pagination';
 import { PromiseItem } from "./AdminFinancePaymentPromisesClient_types";
+import { TableToolbar } from '@/components/ui/table-toolbar';
+import { useClientTable } from '@/components/ui/use-client-table';
 
 const STATUS_BADGE: Record<string, string> = {
   pending:   'fin-badge fin-badge--warning',
@@ -23,6 +25,7 @@ function calcDays(dateStr: string) {
 }
 
 export function AdminFinancePaymentPromisesClient() {
+
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(10);
   const [statusFilter, setStatusFilter] = useState('all');
@@ -41,7 +44,7 @@ export function AdminFinancePaymentPromisesClient() {
 
   const handleFulfill = (id: number, name: string) => {
     setPromises((prev) =>
-      prev.map((p) => p.id === id ? { ...p, status: 'fulfilled', fulfilledDate: new Date().toISOString().split('T')[0] } : p)
+      table.paginatedData.map((p) => p.id === id ? { ...p, status: 'fulfilled', fulfilledDate: new Date().toISOString().split('T')[0] } : p)
     );
     toast.success(`✅ ${name}'s promise marked as paid.`);
   };
@@ -49,7 +52,7 @@ export function AdminFinancePaymentPromisesClient() {
   const handleExtend = () => {
     if (!extendDialog || !newDate || !extendReason) return;
     setPromises((prev) =>
-      prev.map((p) =>
+      table.paginatedData.map((p) =>
         p.id === extendDialog.id
           ? { ...p, expectedDate: newDate, timesChanged: p.timesChanged + 1, daysUntilDue: calcDays(newDate) }
           : p
@@ -58,7 +61,7 @@ export function AdminFinancePaymentPromisesClient() {
     toast.success(`📅 ${extendDialog.name}'s promise date extended.`);
     setExtendDialog(null); setNewDate(''); setExtendReason('');
   };
-
+    const table = useClientTable(prev, 10);
   return (
     <div className="space-y-6">
       <div>
@@ -75,6 +78,12 @@ export function AdminFinancePaymentPromisesClient() {
         </select>
       </div>
 
+      <div className="mb-4">
+        <TableToolbar 
+          searchTerm={table.searchTerm} 
+          onSearchChange={table.setSearchTerm} 
+        />
+      </div>
       <div className="fin-card overflow-x-auto">
         <table className="w-full">
           <thead>
@@ -162,7 +171,13 @@ export function AdminFinancePaymentPromisesClient() {
             )}
           </tbody>
         </table>
-          </div>
+          </div> 
+      <TablePagination 
+        totalItems={table.totalItems} 
+        page={table.page} 
+        limit={table.limit} 
+        onPageChange={table.setPage} 
+      />
           <TablePagination
             page={page}
             limit={limit}

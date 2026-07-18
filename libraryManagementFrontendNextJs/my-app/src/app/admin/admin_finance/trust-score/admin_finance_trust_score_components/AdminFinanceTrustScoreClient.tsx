@@ -5,6 +5,8 @@ import { Input } from '@/components/ui/input';
 import { ShieldCheck, ShieldAlert, ShieldX, Users , Search} from 'lucide-react';
 import { useAdminFinanceTrustScore } from '@/app/admin/admin_finance/trust-score/admin_finance_trust_score_hooks/useAdminFinanceTrustScore';
 import { TablePagination } from '@/components/ui/table-pagination';
+import { TableToolbar } from '@/components/ui/table-toolbar';
+import { useClientTable } from '@/components/ui/use-client-table';
 
 const BADGE_CLASS: Record<string, string> = {
   reliable: 'fin-badge fin-badge--success',
@@ -31,6 +33,7 @@ function TrustGauge({ score }: { score: number }) {
 }
 
 export function AdminFinanceTrustScoreClient() {
+
   const {
     levelFilter, setLevelFilter,
     shiftFilter, setShiftFilter,
@@ -41,6 +44,7 @@ export function AdminFinanceTrustScoreClient() {
     const [searchTerm, setSearchTerm] = useState('');
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(10);
+    const table = useClientTable(length, 10);
 
   return (
     <div className="space-y-6">
@@ -97,7 +101,13 @@ export function AdminFinanceTrustScoreClient() {
         </div>
       </div>
 
-<table className="w-full">
+<div className="mb-4">
+        <TableToolbar 
+          searchTerm={table.searchTerm} 
+          onSearchChange={table.setSearchTerm} 
+        />
+      </div>
+      <table className="w-full">
           <thead>
             <tr className="fin-table-header-row">
               <th className="text-left py-3 px-4">Rank</th>
@@ -121,7 +131,7 @@ export function AdminFinanceTrustScoreClient() {
                   ))}
                 </tr>
               ))
-            ) : filtered.length === 0 ? (
+            ) : table.paginatedData.length === 0 ? (
               <tr>
                 <td colSpan={8}>
                   <div className="fin-empty-state">
@@ -131,7 +141,7 @@ export function AdminFinanceTrustScoreClient() {
                 </td>
               </tr>
             ) : (
-              filtered.filter(row => JSON.stringify(row).toLowerCase().includes(searchTerm.toLowerCase())).slice((page - 1) * limit, page * limit).map((s) => {
+              table.paginatedData.map((s) => {
                 const Icon = BADGE_ICON[s.badge] || ShieldCheck;
                 return (
                   <tr key={s.smartId} className="fin-table-hover-row fin-table-row">
@@ -167,7 +177,13 @@ export function AdminFinanceTrustScoreClient() {
             )}
           </tbody>
         </table>
-          </div>
+          </div> 
+      <TablePagination 
+        totalItems={table.totalItems} 
+        page={table.page} 
+        limit={table.limit} 
+        onPageChange={table.setPage} 
+      />
           <TablePagination
             page={page}
             limit={limit}

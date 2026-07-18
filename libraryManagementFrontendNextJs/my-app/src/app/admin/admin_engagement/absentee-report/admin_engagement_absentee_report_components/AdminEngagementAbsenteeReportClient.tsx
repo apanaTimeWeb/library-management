@@ -13,8 +13,11 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import toast from 'react-hot-toast';
 import { AbsenteeRow } from "./AdminEngagementAbsenteeReportClient_types";
+import { TableToolbar } from '@/components/ui/table-toolbar';
+import { useClientTable } from '@/components/ui/use-client-table';
 
 export function AdminEngagementAbsenteeReportClient() {
+
   const [searchTerm, setSearchTerm] = useState('');
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(10);
@@ -47,7 +50,7 @@ export function AdminEngagementAbsenteeReportClient() {
 
   const badgeClass = (d: number) => d >= 7 ? 'bg-danger/10 text-danger hover:bg-danger/20' : 'bg-warning/10 text-warning hover:bg-warning/20';
   const rowClass = (d: number) => d >= 7 ? 'bg-danger/5 hover:bg-danger/10' : d >= 3 ? 'bg-warning/5 hover:bg-warning/10' : 'hover:bg-muted/30';
-  
+    const table = useClientTable(filtered, 10);
   return (
     <div className="space-y-6 pb-10">
       {/* ── Header ── */}
@@ -133,7 +136,13 @@ export function AdminEngagementAbsenteeReportClient() {
               <Input placeholder="Search..." className="pl-8" value={searchTerm} onChange={e => setSearchTerm(e.target.value)} />
             </div>
           </div>
-          <table className="w-full text-sm text-left">
+          <div className="mb-4">
+        <TableToolbar 
+          searchTerm={table.searchTerm} 
+          onSearchChange={table.setSearchChange || table.setSearchTerm} 
+        />
+      </div>
+      <table className="w-full text-sm text-left">
             <thead className="bg-muted text-muted-foreground text-xs font-semibold uppercase tracking-wider sticky top-0 z-10">
               <tr>
                 <th className="py-3 px-4">Student</th>
@@ -192,7 +201,13 @@ export function AdminEngagementAbsenteeReportClient() {
                 </tr>
               ))}
             </tbody>
-          </table>
+          </table> 
+      <TablePagination 
+        totalItems={table.totalItems} 
+        page={table.page} 
+        limit={table.limit} 
+        onPageChange={table.setPage} 
+      />
           <TablePagination 
             totalItems={100} 
             page={page} 

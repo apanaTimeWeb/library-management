@@ -10,8 +10,11 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Input } from '@/components/ui/input';
 import { TablePagination } from '@/components/ui/table-pagination';
+import { TableToolbar } from '@/components/ui/table-toolbar';
+import { useClientTable } from '@/components/ui/use-client-table';
 
 export function AdminFinanceReceiptClient() {
+
   const {
     search,
     setSearch,
@@ -35,7 +38,7 @@ export function AdminFinanceReceiptClient() {
       default: return 'bg-muted text-muted-foreground';
     }
   };
-
+    const table = useClientTable(filteredReceipts, 10);
   return (
     <div className="h-full flex flex-col pb-10 space-y-6 relative">
       {/* page Header */}
@@ -100,7 +103,13 @@ export function AdminFinanceReceiptClient() {
 
       {/* Receipts Table */}
       <Card className="flex-1 shadow-none border-border bg-card overflow-hidden flex flex-col">
-        <div className="w-full overflow-x-auto flex-1">
+        <div className="mb-4">
+        <TableToolbar 
+          searchTerm={table.searchTerm} 
+          onSearchChange={table.setSearchTerm} 
+        />
+      </div>
+      <div className="w-full overflow-x-auto flex-1">
           <table className="w-full text-sm text-left">
             <thead className="bg-muted/30 border-b text-muted-foreground text-xs font-bold uppercase tracking-wider sticky top-0 z-10">
               <tr>
@@ -114,7 +123,7 @@ export function AdminFinanceReceiptClient() {
               </tr>
             </thead>
             <tbody className="divide-y divide-border">
-              {filteredReceipts.length === 0 ? (
+              {table.paginatedData.length === 0 ? (
                 <tr>
                   <td colSpan={7} className="px-5 py-20 text-center">
                     <div className="flex flex-col items-center justify-center gap-3">
@@ -125,7 +134,7 @@ export function AdminFinanceReceiptClient() {
                   </td>
                 </tr>
               ) : (
-                filteredReceipts.slice((page - 1) * limit, page * limit).map((r) => (
+                table.paginatedData.map((r) => (
                   <tr key={r.id} className="hover:bg-muted/10 transition-colors">
                     <td className="px-5 py-4">
                       <span className="font-mono text-sm font-medium text-primary">{r.receiptNumber}</span>
@@ -180,7 +189,13 @@ export function AdminFinanceReceiptClient() {
               )}
             </tbody>
           </table>
-          </div>
+          </div> 
+      <TablePagination 
+        totalItems={table.totalItems} 
+        page={table.page} 
+        limit={table.limit} 
+        onPageChange={table.setPage} 
+      />
           <TablePagination
             page={page}
             limit={limit}

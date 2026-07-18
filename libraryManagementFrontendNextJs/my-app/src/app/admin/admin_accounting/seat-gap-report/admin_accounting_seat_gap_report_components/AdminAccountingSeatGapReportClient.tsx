@@ -10,6 +10,8 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { TablePagination } from '@/components/ui/table-pagination';
 import { GapRow } from "./AdminAccountingSeatGapReportClient_types";
+import { TableToolbar } from '@/components/ui/table-toolbar';
+import { useClientTable } from '@/components/ui/use-client-table';
 
 const MOCK: GapRow[] = [
   { seatNo: 'A-04', shift: 'Morning',   floor: 'Ground', lastOccupied: '2026-03-28', gapDays: 14, revenueLoss: 700,  status: 'vacant'      },
@@ -21,6 +23,7 @@ const MOCK: GapRow[] = [
 ];
 
 export function AdminAccountingSeatGapReportClient() {
+
     const [searchTerm, setSearchTerm] = useState('');
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(10);
@@ -33,7 +36,7 @@ export function AdminAccountingSeatGapReportClient() {
   );
 
   const totalLoss = visible.reduce((s, r) => s + r.revenueLoss, 0);
-
+    const table = useClientTable(visible, 10);
   return (
     <div className="space-y-6 pb-10">
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b pb-4">
@@ -88,7 +91,13 @@ export function AdminAccountingSeatGapReportClient() {
         </div>
       </div>
 
-<table className="w-full text-sm text-left">
+<div className="mb-4">
+        <TableToolbar 
+          searchTerm={table.searchTerm} 
+          onSearchChange={table.setSearchTerm} 
+        />
+      </div>
+      <table className="w-full text-sm text-left">
           <thead className="bg-muted text-muted-foreground text-xs font-semibold uppercase tracking-wider">
             <tr>
               <th className="py-3 px-4">Seat No</th>
@@ -101,9 +110,9 @@ export function AdminAccountingSeatGapReportClient() {
             </tr>
           </thead>
           <tbody className="divide-y divide-border">
-            {visible.length === 0 ? (
+            {table.paginatedData.length === 0 ? (
               <tr><td colSpan={7} className="py-12 text-center text-muted-foreground">No gap seats found.</td></tr>
-            ) : visible.filter(row => JSON.stringify(row).toLowerCase().includes(searchTerm.toLowerCase())).slice((page - 1) * limit, page * limit).map(r => (
+            ) : table.paginatedData.map(r => (
               <tr key={`${r.seatNo}-${r.shift}`} className="hover:bg-muted/30 transition-colors">
                 <td className="py-4 px-4 font-bold text-foreground">{r.seatNo}</td>
                 <td className="py-4 px-4 text-muted-foreground">{r.shift}</td>
@@ -119,7 +128,13 @@ export function AdminAccountingSeatGapReportClient() {
               </tr>
             ))}
           </tbody>
-        </table>
+        </table> 
+      <TablePagination 
+        totalItems={table.totalItems} 
+        page={table.page} 
+        limit={table.limit} 
+        onPageChange={table.setPage} 
+      />
 
       <TablePagination 
         totalItems={100} 
