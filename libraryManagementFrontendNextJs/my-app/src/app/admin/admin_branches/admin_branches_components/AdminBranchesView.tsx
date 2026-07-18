@@ -37,7 +37,7 @@ export function AdminBranchesView({ initialBranches }: AdminBranchesViewProps) {
     handleDelete,
     handleFieldChange
   } = useAdminBranches(initialBranches);
-    const table = useClientTable(filtered.length, 10);
+    const table = useClientTable(filtered, 10);
   return (
     <div className="h-full flex flex-col pb-10 space-y-6">
       {/* page Header */}
