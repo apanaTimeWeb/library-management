@@ -2,7 +2,13 @@
 // DATA FLOW: CSS variables -> AdminReusableGridTheme -> AG Grid components
 
 import { themeQuartz } from 'ag-grid-community';
-import { AdminGridCell, AdminRecord } from "./AdminReusableGridTheme_types";
+
+
+export interface AdminGridCell<TValue = unknown, TData = unknown> {
+  value: TValue;
+  data?: TData;
+}
+export type AdminRecord = Record<string, unknown>;
 
 export const gridTheme = themeQuartz.withParams({
   backgroundColor:       'var(--bg-card)',

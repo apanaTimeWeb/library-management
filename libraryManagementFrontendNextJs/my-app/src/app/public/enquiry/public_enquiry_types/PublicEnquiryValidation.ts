@@ -1,5 +1,7 @@
 import { z } from 'zod';
-import { PublicEnquiryFormData } from "./PublicEnquiryValidation_types";
+
+
+export type PublicEnquiryFormData = z.infer<typeof publicEnquirySchema>;
 
 export const publicEnquirySchema = z.object({
   name:    z.string().min(2, 'Full name is required (min 2 characters)'),

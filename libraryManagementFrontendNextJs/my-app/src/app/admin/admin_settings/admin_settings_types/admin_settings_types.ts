@@ -1,4 +1,6 @@
-import { AdminSettingsData } from "./admin_settings_types_types";
+
+
+export interface AdminSettingsData {}
 
 // RESPONSIBILITY: Renders the admin_settings_types.ts component/hook.
 // Types for admin_settings

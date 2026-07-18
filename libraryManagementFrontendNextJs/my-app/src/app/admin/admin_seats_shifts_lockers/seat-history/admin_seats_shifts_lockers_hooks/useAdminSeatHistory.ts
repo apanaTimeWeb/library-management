@@ -1,7 +1,18 @@
 // RESPONSIBILITY: Renders the useAdminSeatHistory.ts component/hook.
 import { useState, useMemo } from 'react';
 import { ADMIN_SEATS_MOCK_HISTORY } from '@/app/admin/admin_seats_shifts_lockers/admin_seats_data/AdminSeatsMockData';
-import { SeatHistoryEntry } from "./useAdminSeatHistory_types";
+
+
+export interface SeatHistoryEntry {
+  seatNo: string;
+  studentName: string;
+  smartId: string;
+  shift: string;
+  occupiedFrom: string;
+  occupiedTill: string;
+  duration: string;
+  reason: 'Admission' | 'Shift Change' | 'Seat Change';
+}
 
 export function useAdminSeatHistory() {
   const [seatFilter, setSeatFilter] = useState('All Seats');

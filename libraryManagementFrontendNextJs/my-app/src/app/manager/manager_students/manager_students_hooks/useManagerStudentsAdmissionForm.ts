@@ -29,7 +29,9 @@ const schema = z.object({
 const SMART_ID = 'LIB003'; // simulated auto-generated
 
 import { AdmittedData } from '@/app/manager/manager_students/manager_students_types';
-import { FormValues } from "./useManagerStudentsAdmissionForm_types";
+
+
+export type FormValues = z.infer<typeof schema>;
 
 export function useManagerStudentsAdmissionForm() {
   const searchParams = useSearchParams();

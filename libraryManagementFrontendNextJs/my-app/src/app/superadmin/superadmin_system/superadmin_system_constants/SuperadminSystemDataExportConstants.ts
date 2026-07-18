@@ -1,6 +1,14 @@
 import { CreditCard, CalendarDays, Users, Database } from 'lucide-react';
 import React from 'react';
-import { SuperadminSystemQuickExport } from "./SuperadminSystemDataExportConstants_types";
+
+
+export interface SuperadminSystemQuickExport {
+  id: string;
+  label: string;
+  description: string;
+  icon: React.ElementType;
+  format: string;
+}
 
 export const SUPERADMIN_SYSTEM_QUICK_EXPORTS: SuperadminSystemQuickExport[] = [
   { id: 'due-fees',     label: 'Fee Due Report',        description: 'Students with pending fee payments',  icon: CreditCard,  format: 'CSV' },

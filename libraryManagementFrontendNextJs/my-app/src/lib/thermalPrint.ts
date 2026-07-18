@@ -1,4 +1,27 @@
-import { ThermalBillData } from "./thermalPrint_types";
+
+
+export interface ThermalBillData {
+  type: 'idcard' | 'receipt' | 'dues';
+  shopName?: string;
+  branch?: string;
+  studentName: string;
+  smartId: string;
+  phone: string;
+  shift?: string;
+  seat?: string;
+  locker?: string;
+  plan?: string;
+  joinDate?: string;
+  expiryDate?: string;
+  billNumber?: string;
+  date?: string;
+  totalPayable?: number;
+  amountPaid?: number;
+  discount?: number;
+  balance?: number;
+  paymentMode?: string;
+  transactionId?: string;
+}
 
 const W = 42; // character width for 80mm thermal
 

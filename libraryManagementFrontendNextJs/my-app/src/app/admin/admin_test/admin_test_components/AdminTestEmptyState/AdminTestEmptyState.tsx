@@ -1,4 +1,9 @@
-import { Props } from "./AdminTestEmptyState_types";
+
+
+export interface Props {
+  title?: string;
+  description?: string;
+}
 
 // RESPONSIBILITY: Standardized empty state component for lists/tables in the admin_test module.
 'use client';

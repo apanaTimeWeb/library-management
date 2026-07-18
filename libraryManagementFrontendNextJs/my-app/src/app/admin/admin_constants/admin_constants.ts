@@ -6,7 +6,11 @@ import {
   TrendingUp, Clock, AlertCircle, AlertTriangle
 } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
-import { NavItem } from "./admin_constants_types";
+
+
+export type NavItem =
+  | { group: string }
+  | { href: string; icon: LucideIcon; label: string };
 
 export const ADMIN_SIDEBAR_NAV: NavItem[] = [
   { href: ADMIN_ROUTES.DASHBOARD, icon: LayoutDashboard, label: 'Dashboard' },

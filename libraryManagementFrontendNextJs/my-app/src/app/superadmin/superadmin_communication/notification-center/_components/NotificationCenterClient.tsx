@@ -34,6 +34,8 @@ const ICON_CLS: Record<string, string> = {
   Attendance: 'bg-primary/10 text-primary',
 };
 
+export type Category = 'All'|'System'|'Billing'|'Security'|'Updates';
+
 export function NotificationCenterClient() {
   const { cat, setCat, filtered, unread, markAllRead } = useNotificationCenterClient();
 

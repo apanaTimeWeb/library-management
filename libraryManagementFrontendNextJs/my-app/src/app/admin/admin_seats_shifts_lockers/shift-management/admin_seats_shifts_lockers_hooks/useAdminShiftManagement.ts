@@ -2,7 +2,17 @@
 import { useState } from 'react';
 import toast from 'react-hot-toast';
 import { ADMIN_SEATS_MOCK_SHIFTS } from '@/app/admin/admin_seats_shifts_lockers/admin_seats_data/AdminSeatsMockData';
-import { Shift } from "./useAdminShiftManagement_types";
+
+
+export interface Shift {
+  id: string;
+  name: string;
+  startTime: string;
+  endTime: string;
+  occupancy: number;
+  capacity: number;
+  active: boolean;
+}
 
 const EMPTY_FORM = { name: '', startTime: '', endTime: '', active: true };
 

@@ -2,7 +2,29 @@
 // DATA FLOW: Types imported by Store, Hooks, Dialog, and Client Component.
 
 import { z } from 'zod';
-import { BlacklistedStudentRecord, AdminBlacklistStoreState, FetchState, AdminBlacklistFormData } from "./admin_blacklist_types_types";
+
+
+export interface BlacklistedStudentRecord {
+  id: string;
+  name: string;
+  phone: string;
+  reason: string;
+  blacklistedBy: string;
+  blacklistedOn: string;
+  previousSeat: string;
+}
+export interface AdminBlacklistStoreState {
+  list: BlacklistedStudentRecord[];
+  fetchState: FetchState;
+  errorMessage: string | null;
+  fetchBlacklist: () => Promise<void>;
+  addToBlacklist: (data: AdminBlacklistFormData) => Promise<{ success: boolean; message: string }>;
+  removeFromBlacklist: (id: string) => Promise<{ success: boolean; message: string }>;
+  setList: (list: BlacklistedStudentRecord[]) => void;
+  setFetchState: (state: FetchState) => void;
+}
+export type FetchState = 'idle' | 'loading' | 'success' | 'error';
+export type AdminBlacklistFormData = z.infer<typeof adminBlacklistFormSchema>;
 
 export const adminBlacklistFormSchema = z.object({
   name: z.string().min(2, 'Name must be at least 2 characters').max(100, 'Name too long'),

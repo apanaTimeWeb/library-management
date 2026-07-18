@@ -1,6 +1,26 @@
 // RESPONSIBILITY: Renders the useAdminBranches.ts component/hook.
 import { useState, useMemo } from 'react';
-import { Branch, FormState } from "./useAdminBranches_types";
+
+
+export interface Branch {
+  id: string;
+  name: string;
+  address: string;
+  city: string;
+  phone: string;
+  manager: string;
+  students: number;
+  seats: number;
+  status: 'Active' | 'Inactive';
+}
+export interface FormState {
+  name: string;
+  address: string;
+  city: string;
+  phone: string;
+  manager: string;
+  seats: string;
+}
 
 const EMPTY_FORM: FormState = { name: '', address: '', city: '', phone: '', manager: '', seats: '' };
 

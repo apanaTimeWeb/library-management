@@ -1,1 +1,12 @@
-import { SuperadminExpense, SuperadminExpenseMode } from "./SuperadminExpensesTypes_types";
+
+
+export interface SuperadminExpense {
+  id: number;
+  date: string;
+  category: string;
+  description: string;
+  amount: number;
+  paidBy: string;
+  mode: SuperadminExpenseMode;
+}
+export type SuperadminExpenseMode = 'cash' | 'upi' | 'card' | 'bank';

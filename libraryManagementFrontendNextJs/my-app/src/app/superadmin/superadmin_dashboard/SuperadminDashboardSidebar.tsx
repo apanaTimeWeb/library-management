@@ -80,7 +80,7 @@ export default function Sidebar({ open }: SidebarProps) {
 
       {showLogout && (
         <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4" onClick={() => setShowLogout(false)}>
-          <div className="bg-bg-card max-w-md w-full rounded-2xl shadow-2xl p-6 relative border border-border flex flex-col items-center text-center animate-in zoom-in-95 duration-200" className="max-w-[360px]" onClick={e => e.stopPropagation()}>
+          <div className="bg-bg-card max-w-[360px] w-full rounded-2xl shadow-2xl p-6 relative border border-border flex flex-col items-center text-center animate-in zoom-in-95 duration-200" onClick={e => e.stopPropagation()}>
             <div className="w-12 h-12 rounded-full bg-warning-bg/50 flex items-center justify-center mb-4">
               <LogOut size={20} className="text-warning" />
             </div>

@@ -1,7 +1,18 @@
 // RESPONSIBILITY: Renders the useAdminSettings.ts component/hook.
 import { useState } from 'react';
 import toast from 'react-hot-toast';
-import { SettingsState } from "./useAdminSettings_types";
+
+
+export interface SettingsState {
+  libraryName: string;
+  address: string;
+  contactEmail: string;
+  contactPhone: string;
+  gstin: string;
+  receiptPrefix: string;
+  taxPercentage: string;
+  termsAndConditions: string;
+}
 
 // DATA FLOW: API → useAdminSettings.ts → AdminSettingsComponent
 export function useAdminSettings(initialSettings: SettingsState) {

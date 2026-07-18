@@ -11,7 +11,9 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from '@/components/ui/dialog';
 import toast from 'react-hot-toast';
-import { Template } from "./AdminCommunicationWhatsappTemplatesClient_types";
+
+
+export interface Template { id: string; label: string; icon: string; body: string; }
 
 const MAX_CHARS = 1024;
 

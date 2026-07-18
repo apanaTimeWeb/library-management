@@ -1,3 +1,13 @@
-import { AdminAccountingExpenseForm } from "./admin_accounting_expenses_add_types_types";
+
+
+export type AdminAccountingExpenseForm = {
+  date: string;
+  category: string;
+  description: string;
+  amount: string;
+  paidBy: string;
+  mode: string;
+  notes: string;
+};
 
 // RESPONSIBILITY: Renders the admin_accounting_expenses_add_types.ts component/hook.

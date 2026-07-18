@@ -9,7 +9,10 @@ import * as z from 'zod';
 
 import type { SuperadminFinanceAutoSuspendConfig, SuperadminFinanceSuspendedStudent, SuperadminFinanceDialogState } from '@/app/superadmin/superadmin_finance/superadmin_finance_types/SuperadminFinanceTypes';
 import { SUPERADMIN_FINANCE_MOCK_CONFIG_AUTO_SUSPEND, SUPERADMIN_FINANCE_MOCK_SUSPENDED_STUDENTS } from '@/app/superadmin/superadmin_finance/superadmin_finance_constants/SuperadminFinanceConstants';
-import { AutoSuspendConfigFormData, ManualRestoreFormData } from "./useAutoSuspendClient_types";
+
+
+export type AutoSuspendConfigFormData = z.infer<typeof autoSuspendConfigSchema>;
+export type ManualRestoreFormData = z.infer<typeof manualRestoreSchema>;
 
 export const autoSuspendConfigSchema = z.object({
   daysBeforeSuspend: z.number().min(1, 'Must be at least 1 day'),

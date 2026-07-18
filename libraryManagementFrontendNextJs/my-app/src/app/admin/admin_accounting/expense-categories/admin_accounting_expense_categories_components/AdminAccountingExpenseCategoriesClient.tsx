@@ -6,7 +6,9 @@ import { useState } from 'react';
 import { Plus, Trash2 } from 'lucide-react';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Category } from "./AdminAccountingExpenseCategoriesClient_types";
+
+
+export type Category = { id: number; name: string; budget: number; spent: number; color: string };
 
 const MOCK: Category[] = [
   { id: 1, name: 'Electricity',   budget: 5000,  spent: 4200,  color: 'bg-warning' },

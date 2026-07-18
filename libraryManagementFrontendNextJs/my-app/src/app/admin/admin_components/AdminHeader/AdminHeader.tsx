@@ -7,7 +7,12 @@ import { ThemeToggle } from '@/components/ThemeToggle';
 import { useAdmin } from '@/app/admin/admin_context/AdminContext';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Button } from '@/components/ui/button';
-import { AdminHeaderProps } from "./AdminHeader_types";
+
+
+export interface AdminHeaderProps {
+  sidebarWidth: number;
+  onMobileOpen: () => void;
+}
 
 export default function AdminHeader({ sidebarWidth, onMobileOpen }: AdminHeaderProps) {
   const { selectedBranch, setSelectedBranch } = useAdmin();

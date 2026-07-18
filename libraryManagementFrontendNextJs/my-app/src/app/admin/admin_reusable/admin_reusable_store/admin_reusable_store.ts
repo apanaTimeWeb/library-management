@@ -2,7 +2,12 @@
 // DATA FLOW: API / Components -> Store -> Components
 
 import { create } from 'zustand';
-import { AdminReusableState } from "./admin_reusable_store_types";
+
+
+export interface AdminReusableState {
+  data: unknown[];
+  setData: (data: unknown[]) => void;
+}
 
 export const useAdminReusableStore = create<AdminReusableState>((set) => ({
   data: [],

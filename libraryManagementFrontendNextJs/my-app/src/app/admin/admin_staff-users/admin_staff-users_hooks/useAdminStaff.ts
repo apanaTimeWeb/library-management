@@ -4,7 +4,26 @@
  * form handling, and statistics calculation.
  */
 import { useState, useMemo } from 'react';
-import { StaffMember, FormState } from "./useAdminStaff_types";
+
+
+export interface StaffMember {
+  id: string;
+  name: string;
+  email: string;
+  phone: string;
+  role: 'Admin' | 'Manager' | 'Staff';
+  branch: string;
+  status: 'Active' | 'Inactive';
+  joinedDate: string;
+}
+export interface FormState {
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone: string;
+  roleId: string;
+  branchId: string;
+}
 
 const EMPTY: FormState = { firstName: '', lastName: '', email: '', phone: '', roleId: 'role-staff-id', branchId: 'main-branch-id' };
 

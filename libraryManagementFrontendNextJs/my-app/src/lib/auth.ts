@@ -1,4 +1,20 @@
-import { AuthUser, LoginResponse } from "./auth_types";
+
+
+export interface AuthUser {
+  id: string;
+  name: string;
+  phone: string;
+  email?: string;
+  role: string;
+  tenantId?: string;
+  branchId?: string;
+  lastLoginAt?: string;
+}
+export interface LoginResponse {
+  accessToken: string;
+  refreshToken: string;
+  user: AuthUser;
+}
 
 /**
  * Auth Utility — Client Side

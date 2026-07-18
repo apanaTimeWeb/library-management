@@ -1,4 +1,9 @@
-import { Props } from "./AdminBlacklistEmptyState_types";
+
+
+export interface Props {
+  title?: string;
+  description?: string;
+}
 
 // RESPONSIBILITY: Standardized empty state component for lists/tables in the admin_blacklist module.
 'use client';

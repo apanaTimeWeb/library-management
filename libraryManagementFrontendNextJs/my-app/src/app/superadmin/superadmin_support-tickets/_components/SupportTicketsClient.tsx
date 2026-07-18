@@ -83,6 +83,8 @@ function TicketPanel({ tkt, onClose, onSave }: { tkt: Ticket; onClose: () => voi
   );
 }
 
+export interface Ticket { id: string; subject: string; status: "Open"|"In Progress"|"Resolved"; priority: "Low"|"Medium"|"High"; user: string; branch: string; date: string; }
+
 export function SupportTicketsClient() {
   const [tickets, setTickets] = useState<Ticket[]>(SUPERADMIN_SUPPORT_MOCK_TICKETS);
   const [filter, setFilter]   = useState('All');

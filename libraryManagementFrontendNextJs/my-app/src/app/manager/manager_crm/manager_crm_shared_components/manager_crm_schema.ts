@@ -1,5 +1,10 @@
 import { z } from 'zod';
-import { AddEnquiryFormData, FollowUpFormData, UpdateStatusFormData, MarkLostFormData } from "./manager_crm_schema_types";
+
+
+export type AddEnquiryFormData = z.infer<typeof addEnquirySchema>;
+export type FollowUpFormData = z.infer<typeof followUpSchema>;
+export type UpdateStatusFormData = z.infer<typeof updateStatusSchema>;
+export type MarkLostFormData = z.infer<typeof markLostSchema>;
 
 // ─── Add Enquiry ──────────────────────────────────────────────────────────────
 export const addEnquirySchema = z.object({

@@ -10,7 +10,14 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, Di
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import { AdminPlansAddDialogProps } from "./AdminPlansAddDialog_types";
+
+
+export interface AdminPlansAddDialogProps {
+  isOpen: boolean;
+  onClose: () => void;
+  onSubmit: (data: AdminPlanFormData, editingId?: string | null) => Promise<{ success: boolean; message: string }>;
+  editingPlan?: PlanRecord | null;
+}
 
 export function AdminPlansAddDialog({ isOpen, onClose, onSubmit, editingPlan }: AdminPlansAddDialogProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);

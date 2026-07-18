@@ -8,7 +8,14 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
 import { logger } from '@/lib/logger';
 import type { SuperadminAsset } from '@/app/superadmin/superadmin_accounting/assets/superadmin_assets_types/SuperadminAssetsTypes';
-import { UseSuperadminAssetsAddDialogProps, SuperadminAssetFormData } from "./useSuperadminAssetsAddDialog_types";
+
+
+export interface UseSuperadminAssetsAddDialogProps {
+  categories: string[];
+  onSave: (data: Omit<SuperadminAsset, 'id' | 'status'>) => Promise<void>;
+  onClose: () => void;
+}
+export type SuperadminAssetFormData = z.infer<typeof superadminAssetSchema>;
 
 export const superadminAssetSchema = z.object({
   name: z.string().min(1, 'Asset name is required'),

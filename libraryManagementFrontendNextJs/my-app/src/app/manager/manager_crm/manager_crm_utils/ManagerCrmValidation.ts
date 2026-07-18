@@ -1,5 +1,8 @@
 import { z } from 'zod';
-import { ManagerCrmFollowUpFormData, ManagerCrmMarkLostFormData } from "./ManagerCrmValidation_types";
+
+
+export type ManagerCrmFollowUpFormData = z.infer<typeof ManagerCrmFollowUpSchema>;
+export type ManagerCrmMarkLostFormData = z.infer<typeof ManagerCrmMarkLostSchema>;
 
 export const ManagerCrmFollowUpSchema = z.object({
   date: z.string().min(1, 'Date is required'),

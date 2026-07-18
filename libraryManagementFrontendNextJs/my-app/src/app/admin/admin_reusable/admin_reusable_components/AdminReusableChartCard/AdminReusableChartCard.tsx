@@ -3,7 +3,16 @@
 
 import { Card } from '@/components/ui/card';
 import React from 'react';
-import { AdminReusableChartCardProps } from "./AdminReusableChartCard_types";
+
+
+export interface AdminReusableChartCardProps {
+  title: string;
+  badge?: string;
+  /** Dynamic color value — must be a CSS token string like 'var(--success)' */
+  badgeColor?: string;
+  legend?: { label: string; color: string }[];
+  children: React.ReactNode;
+}
 
 export default function AdminReusableChartCard({ title, badge, badgeColor, legend, children }: AdminReusableChartCardProps) {
   return (

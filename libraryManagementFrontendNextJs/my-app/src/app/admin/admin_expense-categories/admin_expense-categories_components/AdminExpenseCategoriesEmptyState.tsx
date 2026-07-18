@@ -2,7 +2,12 @@
 // DATA FLOW: Parent Client Component -> AdminExpenseCategoriesEmptyState
 
 import { Tag } from 'lucide-react';
-import { AdminExpenseCategoriesEmptyStateProps } from "./AdminExpenseCategoriesEmptyState_types";
+
+
+export interface AdminExpenseCategoriesEmptyStateProps {
+  onResetSearch?: () => void;
+  isSearching: boolean;
+}
 
 export function AdminExpenseCategoriesEmptyState({ onResetSearch, isSearching }: AdminExpenseCategoriesEmptyStateProps) {
   return (

@@ -9,7 +9,17 @@ import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { TablePagination } from '@/components/ui/table-pagination';
-import { GapRow } from "./AdminAccountingSeatGapReportClient_types";
+
+
+export type GapRow = {
+  seatNo: string;
+  shift: string;
+  floor: string;
+  lastOccupied: string;
+  gapDays: number;
+  revenueLoss: number;
+  status: 'vacant' | 'maintenance';
+};
 
 const MOCK: GapRow[] = [
   { seatNo: 'A-04', shift: 'Morning',   floor: 'Ground', lastOccupied: '2026-03-28', gapDays: 14, revenueLoss: 700,  status: 'vacant'      },

@@ -2,7 +2,19 @@
 import { useState, useMemo } from 'react';
 import toast from 'react-hot-toast';
 import { ADMIN_SEATS_MOCK_STUDENTS, ADMIN_SEATS_MOCK_SHIFT_RATES, ADMIN_SEATS_STEPS } from '@/app/admin/admin_seats_shifts_lockers/admin_seats_data/AdminSeatsMockData';
-import { Student, PayMode } from "./useAdminShiftMigration_types";
+
+
+export interface Student {
+  id: string; 
+  name: string; 
+  smartId: string;
+  currentShift: string; 
+  currentSeat: string; 
+  validTill: string; 
+  plan: string; 
+  dailyRate: number;
+}
+export type PayMode = 'Cash' | 'UPI' | 'Card';
 
 export function daysRemaining(validTill: string): number {
   const diff = new Date(validTill).getTime() - Date.now();

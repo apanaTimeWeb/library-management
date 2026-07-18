@@ -1,1 +1,9 @@
-import { SuperadminExpenseCategory } from "./SuperadminExpenseCategoriesTypes_types";
+
+
+export interface SuperadminExpenseCategory {
+  id: number;
+  name: string;
+  budget: number;
+  spent: number;
+  color: string;
+}

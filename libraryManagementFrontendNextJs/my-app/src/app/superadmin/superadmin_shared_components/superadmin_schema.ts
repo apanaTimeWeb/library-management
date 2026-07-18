@@ -1,5 +1,10 @@
 import { z } from 'zod';
-import { BranchDetailsData, ShiftsData, SeatsData, PlansData } from "./superadmin_schema_types";
+
+
+export type BranchDetailsData = z.infer<typeof branchDetailsSchema>;
+export type ShiftsData = z.infer<typeof shiftsSchema>;
+export type SeatsData = z.infer<typeof seatsSchema>;
+export type PlansData = z.infer<typeof plansSchema>;
 
 // ─── Step 1: Branch Details ────────────────────────────────────────────────────
 export const branchDetailsSchema = z.object({

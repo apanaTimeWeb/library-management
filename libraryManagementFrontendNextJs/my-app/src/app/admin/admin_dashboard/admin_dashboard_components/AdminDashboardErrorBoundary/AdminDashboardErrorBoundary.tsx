@@ -3,7 +3,15 @@
 // DATA FLOW: Error -> AdminDashboardErrorBoundary -> Fallback UI
 
 import React from 'react';
-import { AdminDashboardErrorBoundaryProps, AdminDashboardErrorBoundaryState } from "./AdminDashboardErrorBoundary_types";
+
+
+export interface AdminDashboardErrorBoundaryProps {
+  children: React.ReactNode;
+  reset?: () => void;
+}
+export interface AdminDashboardErrorBoundaryState {
+  hasError: boolean;
+}
 
 export class AdminDashboardErrorBoundary extends React.Component<
   AdminDashboardErrorBoundaryProps,

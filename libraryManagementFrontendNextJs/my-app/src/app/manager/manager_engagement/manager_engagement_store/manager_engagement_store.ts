@@ -1,7 +1,17 @@
 import { create } from 'zustand';
 import type { FetchState, StudentAttendance, AttStatus } from '@/app/manager/manager_engagement/manager_engagement_types/manager_engagement_types';
 import { INIT_STUDENTS } from '@/app/manager/manager_engagement/manager_engagement_constants/manager_engagement_constants';
-import { ManagerEngagementState } from "./manager_engagement_store_types";
+
+
+export interface ManagerEngagementState {
+  attendance: StudentAttendance[];
+  attendanceStatus: FetchState;
+  attendanceError: string | null;
+  fetchAttendance: () => Promise<void>;
+  updateAttendanceStatus: (id: string, status: AttStatus) => void;
+  updateAttendanceTime: (id: string, field: 'inTime'|'outTime', val: string) => void;
+  saveAttendance: () => Promise<void>;
+}
 
 // DATA FLOW: API -> Store -> Hook -> Component
 export const useManagerEngagementStore = create<ManagerEngagementState>((set, get) => ({

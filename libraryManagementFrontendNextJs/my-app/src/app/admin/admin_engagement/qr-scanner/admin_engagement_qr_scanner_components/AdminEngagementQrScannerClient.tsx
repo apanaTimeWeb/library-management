@@ -9,7 +9,13 @@ import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/com
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Input } from '@/components/ui/input';
-import { ScanResult, ScanState } from "./AdminEngagementQrScannerClient_types";
+
+
+export interface ScanResult {
+  name: string; initials: string; smartId: string;
+  shift: string; validTill: string; plan: string;
+}
+export type ScanState = 'idle' | 'scanning' | 'detected' | 'success';
 
 const MOCK_STUDENT: ScanResult = {
   name: 'Rahul Sharma', initials: 'RS',

@@ -22,6 +22,8 @@ function daysRemaining(validTill: string): number {
   return Math.max(0, Math.ceil(diff / 86_400_000));
 }
 
+export type PayMode = 'cash'|'upi'|'card'|'bank';
+
 export function ShiftMigrationClient() {
   const [step, setStep]                         = useState(1);
   const [search, setSearch]                     = useState('');

@@ -1,7 +1,19 @@
 // RESPONSIBILITY: Renders the useAdminMaintenance.ts component/hook.
 import { useState, useMemo } from 'react';
 import toast from 'react-hot-toast';
-import { LogEntry, SeatStatus } from "./useAdminMaintenance_types";
+
+
+export interface LogEntry {
+  id: string;
+  num: number;
+  date: string;
+  remark: string;
+  doneBy: string;
+  statusBefore: SeatStatus;
+  statusAfter: SeatStatus;
+  cost: string;
+}
+export type SeatStatus = 'Working' | 'Maintenance' | 'Broken';
 
 export const SEAT_LOGS: Record<string, LogEntry[]> = {
   'S-006': [

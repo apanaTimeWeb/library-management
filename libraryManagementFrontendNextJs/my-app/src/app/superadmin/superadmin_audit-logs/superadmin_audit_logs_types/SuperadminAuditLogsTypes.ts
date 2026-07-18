@@ -1,1 +1,23 @@
-import { SuperadminAuditLog, SuperadminAuditLogsGridProps, SuperadminAuditLogsPanelProps, SuperadminAuditLogAction } from "./SuperadminAuditLogsTypes_types";
+
+
+export interface SuperadminAuditLog {
+  id: string;
+  time: string;
+  user: string;
+  entity: string;
+  target: string;
+  action: SuperadminAuditLogAction;
+  ip: string;
+  detail: string;
+}
+export interface SuperadminAuditLogsGridProps {
+  logs: SuperadminAuditLog[];
+  onRowClick: (log: SuperadminAuditLog) => void;
+  actionFilter: string;
+  onFilterChange: (val: string) => void;
+}
+export interface SuperadminAuditLogsPanelProps {
+  log: SuperadminAuditLog;
+  onClose: () => void;
+}
+export type SuperadminAuditLogAction = 'Created' | 'Updated' | 'Deleted' | 'Fee_Collected' | string;

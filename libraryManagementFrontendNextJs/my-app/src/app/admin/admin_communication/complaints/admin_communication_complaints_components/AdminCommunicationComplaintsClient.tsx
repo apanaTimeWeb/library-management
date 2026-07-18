@@ -15,7 +15,14 @@ import { Textarea } from '@/components/ui/textarea';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from '@/components/ui/dialog';
 import toast from 'react-hot-toast';
 import { TablePagination } from '@/components/ui/table-pagination';
-import { Complaint, CStatus } from "./AdminCommunicationComplaintsClient_types";
+
+
+export interface Complaint {
+  id: string; title: string; student: string; isAnonymous: boolean;
+  description: string; status: CStatus; date: string;
+  resolvedBy: string; resolvedDate: string; resolvedNote: string;
+}
+export type CStatus = 'Open' | 'In-Progress' | 'Resolved';
 
 export function AdminCommunicationComplaintsClient() {
   const [page, setPage] = useState(1);

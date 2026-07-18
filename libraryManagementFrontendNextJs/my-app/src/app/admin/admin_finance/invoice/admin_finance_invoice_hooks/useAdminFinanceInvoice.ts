@@ -4,7 +4,9 @@ import { formatCurrency, formatDate } from '@/app/admin/admin_finance/admin_fina
 import { openWhatsApp } from '@/lib/whatsappUtils';
 import { printThermal } from '@/lib/thermalPrint';
 import { ADMIN_FINANCE_MOCK_INVOICES } from '@/app/admin/admin_finance/admin_finance_constants/AdminFinanceConstants';
-import { FilterStatus } from "./useAdminFinanceInvoice_types";
+
+
+export type FilterStatus = 'all' | 'paid' | 'pending' | 'overdue';
 
 export function useAdminFinanceInvoice() {
   const [search, setSearch] = useState('');

@@ -2,7 +2,12 @@
 // DATA FLOW: API / Components -> Store -> Components
 
 import { create } from 'zustand';
-import { AdminSeatsShiftsLockersState } from "./admin_seats_shifts_lockers_store_types";
+
+
+export interface AdminSeatsShiftsLockersState {
+  data: unknown[];
+  setData: (data: unknown[]) => void;
+}
 
 export const useAdminSeatsShiftsLockersStore = create<AdminSeatsShiftsLockersState>((set) => ({
   data: [],

@@ -17,7 +17,14 @@ import {
 } from '@/components/ui/dialog';
 import { ADMIN_SIDEBAR_NAV } from '@/app/admin/admin_constants/admin_constants';
 import { logout } from '@/lib/auth';
-import { AdminSidebarProps } from "./AdminSidebar_types";
+
+
+export interface AdminSidebarProps {
+  collapsed: boolean;
+  onToggle: () => void;
+  mobileOpen: boolean;
+  onMobileClose: () => void;
+}
 
 export default function AdminSidebar({ collapsed, onToggle, mobileOpen, onMobileClose }: AdminSidebarProps) {
   const pathname = usePathname();

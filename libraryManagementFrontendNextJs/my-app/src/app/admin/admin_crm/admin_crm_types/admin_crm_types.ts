@@ -1,4 +1,6 @@
-import { AdminCrmFetchState } from "./admin_crm_types_types";
+
+
+export type AdminCrmFetchState = 'idle' | 'loading' | 'success' | 'error';
 
 // RESPONSIBILITY: Module-level TypeScript types for admin_crm. All component props and API shapes live here.
 // DATA FLOW: Types only — no runtime logic

@@ -6,7 +6,13 @@ import { Package, X, Loader2 } from 'lucide-react';
 import { adminAssetFormSchema, AdminAssetFormData } from '@/app/admin/admin_accounting/admin_accounting_types/admin_accounting_types';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { AdminAssetsAddDialogProps } from "./AdminAssetsAddDialog_types";
+
+
+export interface AdminAssetsAddDialogProps {
+  isOpen: boolean;
+  onClose: () => void;
+  onSubmit: (data: AdminAssetFormData) => Promise<{ success: boolean; message: string }>;
+}
 
 export function AdminAssetsAddDialog({ isOpen, onClose, onSubmit }: AdminAssetsAddDialogProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);

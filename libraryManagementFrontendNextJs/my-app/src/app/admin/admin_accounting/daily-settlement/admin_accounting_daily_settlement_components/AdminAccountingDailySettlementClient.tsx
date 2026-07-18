@@ -10,7 +10,19 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
 import { TablePagination } from '@/components/ui/table-pagination';
-import { Entry } from "./AdminAccountingDailySettlementClient_types";
+
+
+export type Entry = {
+  id: number;
+  shift: string;
+  openingBalance: number;
+  cashCollected: number;
+  upiCollected: number;
+  expenses: number;
+  closingBalance: number;
+  settledBy: string;
+  status: 'pending' | 'settled';
+};
 
 const TODAY = new Date().toISOString().split('T')[0];
 

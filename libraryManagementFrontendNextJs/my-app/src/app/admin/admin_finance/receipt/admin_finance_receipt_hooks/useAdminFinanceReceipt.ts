@@ -4,7 +4,9 @@ import { formatCurrency, formatDate } from '@/app/admin/admin_finance/admin_fina
 import { openWhatsApp } from '@/lib/whatsappUtils';
 import { printThermal } from '@/lib/thermalPrint';
 import { ADMIN_FINANCE_MOCK_RECEIPTS } from '@/app/admin/admin_finance/admin_finance_constants/AdminFinanceConstants';
-import { FilterMode } from "./useAdminFinanceReceipt_types";
+
+
+export type FilterMode = 'all' | 'upi' | 'cash' | 'card' | 'bank transfer';
 
 export function useAdminFinanceReceipt() {
   const [search, setSearch] = useState('');

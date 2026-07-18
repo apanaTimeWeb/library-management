@@ -9,7 +9,9 @@ import * as z from 'zod';
 import toast from 'react-hot-toast';
 import type { SuperadminFinanceCollectFeeMode, SuperadminFinanceReceiptData } from '@/app/superadmin/superadmin_finance/superadmin_finance_types/SuperadminFinanceTypes';
 import { SUPERADMIN_FINANCE_MOCK_STUDENTS_COLLECT_FEE } from '@/app/superadmin/superadmin_finance/superadmin_finance_constants/SuperadminFinanceConstants';
-import { CollectFeeFormData } from "./useCollectFeeClient_types";
+
+
+export type CollectFeeFormData = z.infer<typeof collectFeeSchema>;
 
 const MODE_LABELS: Record<SuperadminFinanceCollectFeeMode, string> = { cash: 'Cash', upi: 'UPI', card: 'Card', bank: 'Bank Transfer' };
 let receiptCounter = 124;

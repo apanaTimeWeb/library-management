@@ -2,7 +2,12 @@
 // DATA FLOW: API / Components -> Store -> Components
 
 import { create } from 'zustand';
-import { AdminCommunicationState } from "./admin_communication_store_types";
+
+
+export interface AdminCommunicationState {
+  data: unknown[];
+  setData: (data: unknown[]) => void;
+}
 
 export const useAdminCommunicationStore = create<AdminCommunicationState>((set) => ({
   data: [],

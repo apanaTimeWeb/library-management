@@ -7,7 +7,17 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { formatCurrency } from '@/app/superadmin/superadmin_finance/superadmin_finance_utils/superadmin_format';
 import { SuperadminSearchableDropdown } from '@/app/superadmin/superadmin_shared_components/SuperadminSearchableDropdown';
-import { RefundProcessModalProps, ProcessFormData } from "./RefundProcessModal_types";
+
+
+export interface RefundProcessModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+  onSubmit: (data: ProcessFormData) => void;
+  studentName: string;
+  amount: number;
+  isSubmitting: boolean;
+}
+export type ProcessFormData = z.infer<typeof processSchema>;
 
 const processSchema = z.object({
   paymentMethod: z.enum(['upi', 'bank', 'cash', 'cheque']),

@@ -1,4 +1,6 @@
-import { AdminSystemData } from "./admin_system_types_types";
+
+
+export interface AdminSystemData {}
 
 // RESPONSIBILITY: Renders the admin_system_types.ts component/hook.
 // Types for admin_system

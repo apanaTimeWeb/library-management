@@ -6,7 +6,13 @@ import { BookOpen, CheckCircle, MessageSquare, Printer, X } from 'lucide-react';
 import { openWhatsApp } from '@/lib/whatsappUtils';
 import { formatCurrency } from '@/app/superadmin/superadmin_finance/superadmin_finance_utils/superadmin_format';
 import type { SuperadminFinanceReceiptData, SuperadminFinanceCollectFeeMode } from '@/app/superadmin/superadmin_finance/superadmin_finance_types/SuperadminFinanceTypes';
-import { Props } from "./CollectFeeReceiptModal_types";
+
+
+export interface Props {
+  receiptData: SuperadminFinanceReceiptData;
+  onClose: () => void;
+}
+const MODE_LABELS: Record<any, string> = { cash: 'Cash', upi: 'UPI', card: 'Card', bank: 'Bank Transfer' };
 
 function maskPhone(phone: string): string {
   const d = phone.replace(/\D/g, '').slice(-10);

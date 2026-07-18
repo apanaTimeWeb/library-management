@@ -5,7 +5,23 @@ import { fetchApi } from '@/lib/api';
 import { logger } from '@/lib/logger';
 import { formatCurrency } from '@/app/admin/admin_finance/admin_finance_utils/format';
 import { ADMIN_FINANCE_MOCK_REFUNDS } from '@/app/admin/admin_finance/admin_finance_constants/AdminFinanceConstants';
-import { RefundStatus, Refund } from "./useAdminFinanceRefunds_types";
+
+
+export type RefundStatus = 'pending' | 'approved' | 'rejected' | 'processed';
+export type Refund = {
+  id: number;
+  studentName: string;
+  smartId: string;
+  exitDate?: string;
+  depositHeld: number;
+  deductionAmount: number;
+  netRefund: number;
+  status: RefundStatus;
+  requestedDate: string;
+  processedDate?: string;
+  paymentMethod?: string;
+  rejectionReason?: string;
+};
 
 export function useAdminFinanceRefunds() {
   const [statusFilter, setStatusFilter] = useState('all');

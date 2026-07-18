@@ -4,7 +4,25 @@ import toast from 'react-hot-toast';
 import { openWhatsApp } from '@/lib/whatsappUtils';
 import { printThermal } from '@/lib/thermalPrint';
 import { ADMIN_FINANCE_MOCK_STUDENTS, ADMIN_FINANCE_MODES } from '@/app/admin/admin_finance/admin_finance_constants/AdminFinanceConstants';
-import { ReceiptData, Mode } from "./useAdminFinanceCollectFee_types";
+
+
+export interface ReceiptData {
+  receiptNo: string; 
+  studentName: string; 
+  studentId: string;
+  phone: string; 
+  total: number; 
+  mode: Mode; 
+  date: string; 
+  waMessage: string;
+  student: typeof ADMIN_FINANCE_MOCK_STUDENTS[0]; 
+  amount: number; 
+  lateFee: number;
+  couponDiscount: number; 
+  txnId: string; 
+  remark: string;
+}
+export type Mode = typeof ADMIN_FINANCE_MODES[number];
 
 export const MODE_LABELS: Record<Mode, string> = { 
   cash: 'Cash', 

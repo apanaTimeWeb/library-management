@@ -10,7 +10,11 @@ import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from '@/components/ui/dialog';
 import { TablePagination } from '@/components/ui/table-pagination';
-import { AdminBranchesViewProps } from "./AdminBranchesView_types";
+
+
+export interface AdminBranchesViewProps {
+  initialBranches: Branch[];
+}
 
 export function AdminBranchesView({ initialBranches }: AdminBranchesViewProps) {
   const [page, setPage] = useState(1);

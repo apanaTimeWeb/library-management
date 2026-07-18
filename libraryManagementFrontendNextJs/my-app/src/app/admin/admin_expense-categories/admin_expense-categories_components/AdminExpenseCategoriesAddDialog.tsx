@@ -10,7 +10,13 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, Di
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import { AdminExpenseCategoriesAddDialogProps } from "./AdminExpenseCategoriesAddDialog_types";
+
+
+export interface AdminExpenseCategoriesAddDialogProps {
+  isOpen: boolean;
+  onClose: () => void;
+  onSubmit: (data: AdminExpenseCategoryFormData) => Promise<{ success: boolean; message: string }>;
+}
 
 export function AdminExpenseCategoriesAddDialog({ isOpen, onClose, onSubmit }: AdminExpenseCategoriesAddDialogProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);

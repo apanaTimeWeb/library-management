@@ -1,4 +1,6 @@
-import { AdminCommunicationData } from "./admin_communication_types_types";
+
+
+export interface AdminCommunicationData {}
 
 // RESPONSIBILITY: Renders the admin_communication_types.ts component/hook.
 // Types for admin_communication

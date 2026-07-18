@@ -2,7 +2,12 @@
 // DATA FLOW: API / Components -> Store -> Components
 
 import { create } from 'zustand';
-import { AdminPermissionsState } from "./admin_permissions_store_types";
+
+
+export interface AdminPermissionsState {
+  data: unknown[];
+  setData: (data: unknown[]) => void;
+}
 
 export const useAdminPermissionsStore = create<AdminPermissionsState>((set) => ({
   data: [],

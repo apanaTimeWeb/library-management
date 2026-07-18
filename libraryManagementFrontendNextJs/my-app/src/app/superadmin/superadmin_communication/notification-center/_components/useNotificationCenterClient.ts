@@ -2,7 +2,9 @@
 import { useState } from 'react';
 import { SUPERADMIN_COMMUNICATION_MOCK_NOTIFICATIONS } from '@/app/superadmin/superadmin_communication/superadmin_communication_data/SuperadminCommunicationMockData';
 import type { SuperadminCommunicationNotification as Notification } from '@/app/superadmin/superadmin_communication/superadmin_communication_types/SuperadminCommunicationTypes';
-import { Category } from "./useNotificationCenterClient_types";
+
+
+export type Category = 'All' | 'Finance' | 'CRM' | 'Operations' | 'Attendance' | 'High Only';
 
 export function useNotificationCenterClient() {
   const [cat, setCat]       = useState<Category>('All');

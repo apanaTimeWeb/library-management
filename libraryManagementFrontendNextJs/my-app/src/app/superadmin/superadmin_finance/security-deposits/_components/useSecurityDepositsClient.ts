@@ -8,7 +8,10 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
 import type { SuperadminFinanceSecurityDeposit } from '@/app/superadmin/superadmin_finance/superadmin_finance_types/SuperadminFinanceTypes';
 import { SUPERADMIN_FINANCE_MOCK_DEPOSITS } from '@/app/superadmin/superadmin_finance/superadmin_finance_constants/SuperadminFinanceConstants';
-import { RefundFormData, DeductFormData } from "./useSecurityDepositsClient_types";
+
+
+export type RefundFormData = z.infer<typeof refundSchema>;
+export type DeductFormData = z.infer<typeof deductSchema>;
 
 export const refundSchema = z.object({
   refundAmount: z.number().min(0, 'Cannot be negative'),

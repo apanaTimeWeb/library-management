@@ -2,7 +2,32 @@
 // DATA FLOW: Types imported by Store, Hooks, Dialog, and Client Component.
 
 import { z } from 'zod';
-import { PlanRecord, AdminPlansStoreState, FetchState, PlanStatus, AdminPlanFormData } from "./admin_plans_types_types";
+
+
+export interface PlanRecord {
+  id: string;
+  name: string;
+  price: number;
+  duration: string;
+  durationDays: number;
+  features: string[];
+  status: PlanStatus;
+  subscribers: number;
+}
+export interface AdminPlansStoreState {
+  plans: PlanRecord[];
+  fetchState: FetchState;
+  errorMessage: string | null;
+  fetchPlans: () => Promise<void>;
+  savePlan: (data: AdminPlanFormData, editingId?: string | null) => Promise<{ success: boolean; message: string }>;
+  togglePlanStatus: (id: string) => Promise<{ success: boolean; message: string }>;
+  deletePlan: (id: string) => Promise<{ success: boolean; message: string }>;
+  setPlans: (plans: PlanRecord[]) => void;
+  setFetchState: (state: FetchState) => void;
+}
+export type FetchState = 'idle' | 'loading' | 'success' | 'error';
+export type PlanStatus = 'Active' | 'Inactive';
+export type AdminPlanFormData = z.infer<typeof adminPlanFormSchema>;
 
 export const adminPlanFormSchema = z.object({
   name: z.string().min(2, 'Plan name must be at least 2 characters').max(60, 'Plan name too long'),

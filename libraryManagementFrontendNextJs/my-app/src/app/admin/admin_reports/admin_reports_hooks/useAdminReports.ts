@@ -9,7 +9,9 @@ import {
   ADMIN_REPORTS_STUDENT_GROWTH,
 } from '@/app/admin/admin_reports/admin_reports_constants/admin_reports_constants';
 import toast from 'react-hot-toast';
-import { Range } from "./useAdminReports_types";
+
+
+export type Range = 'thisMonth' | 'last3Months' | 'thisYear';
 
 export const RANGE_OPTIONS: { label: string; key: Range }[] = [
   { label: 'This Month',    key: 'thisMonth'    },

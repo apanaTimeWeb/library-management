@@ -4,7 +4,10 @@ import { useRouter, useSearchParams, usePathname } from 'next/navigation';
 import { fetchApi } from '@/lib/api';
 import { ADMIN_ROUTES, ADMIN_API_ROUTES } from '@/app/admin/admin_url_config';
 import { type Enquiry, type EnquiryStatus } from '@/app/admin/admin_crm/admin_crm_components/AdminCrmtypes/AdminCrmtypes';
-import { FetchState, ViewMode } from "./useAdminCrmEnquiries_types";
+
+
+export type FetchState = 'idle' | 'loading' | 'success' | 'error';
+export type ViewMode = 'kanban' | 'table';
 
 export function useAdminCrmEnquiries() {
   const router = useRouter();

@@ -1,4 +1,9 @@
-import { Props } from "./AdminExpenseCategoriesEmptyState_types";
+
+
+export interface Props {
+  title?: string;
+  description?: string;
+}
 
 // RESPONSIBILITY: Standardized empty state component for lists/tables in the admin_expense-categories module.
 'use client';

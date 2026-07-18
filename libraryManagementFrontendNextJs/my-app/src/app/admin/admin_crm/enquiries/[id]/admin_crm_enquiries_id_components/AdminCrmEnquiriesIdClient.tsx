@@ -34,7 +34,15 @@ import { Badge } from '@/components/ui/badge';
 import { Input } from '@/components/ui/input';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from '@/components/ui/dialog';
 import { Textarea } from '@/components/ui/textarea';
-import { MarkLostModalProps, FetchState } from "./AdminCrmEnquiriesIdClient_types";
+
+
+export interface MarkLostModalProps {
+  onConfirm: (reason: string) => void;
+  onCancel: () => void;
+  isSubmitting: boolean;
+  isOpen: boolean;
+}
+export type FetchState = 'idle' | 'loading' | 'success' | 'error';
 
 // Rule 44: FetchState enum — no boolean loading flags
 

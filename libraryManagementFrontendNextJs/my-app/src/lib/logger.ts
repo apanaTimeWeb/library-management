@@ -1,4 +1,6 @@
-import { LogLevel } from "./logger_types";
+
+
+export type LogLevel = 'info' | 'warn' | 'error' | 'debug';
 
 // RESPONSIBILITY: Centralized logging utility providing sanitized, environment-aware log handling to prevent Log Injection vulnerabilities.
 // DATA FLOW: Application Components -> logger -> Console / Monitoring Service

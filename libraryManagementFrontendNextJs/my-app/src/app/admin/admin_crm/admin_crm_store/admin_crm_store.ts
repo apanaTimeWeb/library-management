@@ -2,7 +2,12 @@
 // DATA FLOW: API / Components -> Store -> Components
 
 import { create } from 'zustand';
-import { AdminCrmState } from "./admin_crm_store_types";
+
+
+export interface AdminCrmState {
+  data: unknown[];
+  setData: (data: unknown[]) => void;
+}
 
 export const useAdminCrmStore = create<AdminCrmState>((set) => ({
   data: [],
