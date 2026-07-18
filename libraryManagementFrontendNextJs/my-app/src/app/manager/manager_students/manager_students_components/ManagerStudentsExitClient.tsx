@@ -106,7 +106,7 @@ export function ManagerStudentsExitClient() {
                 </div>
                 <div className="flex items-center justify-between py-3 border-b border-border last:border-0">
                   <span className="text-sm font-medium text-text-secondary flex items-center">Dues</span>
-                  <span className={student.due > 0 ? 'text-danger font-bold' : 'text-success font-bold'} className="font-bold">
+                  <span className={`${student.due > 0 ? 'text-danger font-bold' : 'text-success font-bold'} font-bold`}>
                     {student.due > 0 ? `⚠️ ₹${student.due} pending` : '✅ Clear'}
                   </span>
                 </div>
