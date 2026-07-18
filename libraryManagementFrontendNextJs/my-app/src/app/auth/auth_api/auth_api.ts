@@ -35,7 +35,7 @@ export const authApi = {
       }
 
       // Based on Rule 28, response should already be shaped correctly, but we adapt gracefully
-      const payload = response.data !== undefined ? (response.data as AuthLoginResponse) : (response as AuthLoginResponse);
+      const payload = response.data ? (response.data as AuthLoginResponse) : (response as unknown as AuthLoginResponse);
 
       // Store tokens for client-side use if successful
       if (typeof window !== 'undefined' && payload) {
@@ -51,7 +51,7 @@ export const authApi = {
       
       return {
         success: true,
-        message: response.message || 'Login successful',
+        message: (response as any).message || 'Login successful',
         data: payload,
         statusCode: StatusCodes.OK
       };

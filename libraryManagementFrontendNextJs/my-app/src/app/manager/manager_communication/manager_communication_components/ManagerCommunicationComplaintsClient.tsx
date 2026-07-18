@@ -12,7 +12,6 @@ import { useClientTable } from "@/components/ui/use-client-table";
 const TABS: (Complaint['status'] | 'All')[] = ['All', 'New', 'In-Progress', 'Resolved'];
 
 export function ManagerCommunicationComplaintsClient() {
-    const table = useClientTable(filtered);
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(10);
   const [searchTerm, setSearchTerm] = useState('');
@@ -35,6 +34,7 @@ export function ManagerCommunicationComplaintsClient() {
   const showToast = (msg: string) => { setToast(msg); setTimeout(() => setToast(''), 3000); };
 
   const filtered = currentTab === 'All' ? complaints : complaints.filter(c => c.status === currentTab);
+  const table = useClientTable(filtered, 10);
 
   const setTab = (t: string) => {
     const params = new URLSearchParams(searchParams.toString());

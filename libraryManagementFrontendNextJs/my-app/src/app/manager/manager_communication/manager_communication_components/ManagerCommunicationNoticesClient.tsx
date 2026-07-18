@@ -9,7 +9,6 @@ import { TableToolbar } from "@/components/ui/table-toolbar";
 import { useClientTable } from "@/components/ui/use-client-table";
 
 export function ManagerCommunicationNoticesClient() {
-    const table = useClientTable(searchedFiltered.slice((page - 1) * limit, page * limit));
   const [searchTerm, setSearchTerm] = useState('');
 
   const { notices, status, addNotice, updateNotice, deleteNotice } = useManagerNotices();
@@ -28,6 +27,8 @@ export function ManagerCommunicationNoticesClient() {
     item.title.toLowerCase().includes(searchTerm.toLowerCase()) || 
     item.message.toLowerCase().includes(searchTerm.toLowerCase())
   );
+
+  const table = useClientTable(searchedFiltered, 10);
 
   const showToast = (msg: string) => { setToast(msg); setTimeout(() => setToast(''), 3000); };
 
