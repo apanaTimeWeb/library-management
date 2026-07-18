@@ -20,7 +20,7 @@ export function ManagerDocumentsClient() {
   const table = useClientTable(documents);
 
   if (status === 'loading') {
-    return <div className="p-6 min-h-screen"><div className="animate-pulse space-y-4"><div className="h-8 bg-gray-300 rounded w-1/4"></div><div className="h-32 bg-gray-300 rounded w-full"></div><div className="h-64 bg-gray-300 rounded w-full"></div></div></div>;
+    return <div className="p-6 min-h-screen"><div className="animate-pulse space-y-4"><div className="h-8 bg-skeleton-base rounded w-1/4"></div><div className="h-32 bg-skeleton-base rounded w-full"></div><div className="h-64 bg-skeleton-base rounded w-full"></div></div></div>;
   }
 
   return (
@@ -95,10 +95,10 @@ export function ManagerDocumentsClient() {
                     <td className="px-4 py-4 text-text-secondary">{row.date}</td>
                     <td className="px-4 py-4 text-right">
                       <div className="flex gap-2 items-center justify-end">
-                        <button className="bg-transparent border border-border text-text-primary rounded-lg h-8 px-3 text-xs font-medium hover:bg-primary-subtle hover:border-primary transition-colors inline-flex items-center justify-center gap-1" title="Download">
+                        <button className="bg-transparent border border-border text-text-primary rounded-lg h-8 px-3 text-xs font-medium hover:bg-primary-subtle hover:border-primary transition-colors inline-flex items-center justify-center gap-1" aria-label="Download" title="Download">
                           <Download size={14} />
                         </button>
-                        <button onClick={() => deleteDocument(row.id)} className="bg-transparent border border-border text-danger rounded-lg h-8 px-3 text-xs font-medium hover:bg-danger-bg hover:border-danger transition-colors inline-flex items-center justify-center gap-1" title="Delete">
+                        <button onClick={() => deleteDocument(row.id)} className="bg-transparent border border-border text-danger rounded-lg h-8 px-3 text-xs font-medium hover:bg-danger-bg hover:border-danger transition-colors inline-flex items-center justify-center gap-1" aria-label="Delete" title="Delete">
                           <Trash2 size={14} />
                         </button>
                       </div>

@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Server component entry point for this route.
 export default function Page() {
   return (
     <div className="p-6 min-h-screen bg-bg-page">

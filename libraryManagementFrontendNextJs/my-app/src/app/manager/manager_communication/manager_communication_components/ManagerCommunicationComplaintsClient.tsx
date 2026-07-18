@@ -63,6 +63,35 @@ export function ManagerCommunicationComplaintsClient() {
 
   const handleResolve = async () => {
     if (!resolveItem || !resolveNote) return;
+  const table = useClientTable(filtered, 10);
+
+  const setTab = (t: string) => {
+    const params = new URLSearchParams(searchParams.toString());
+    if (t === 'All') params.delete('tab');
+    else params.set('tab', t);
+    router.replace(`${pathname}?${params.toString()}`, { scroll: false });
+  };
+
+  const handleAdd = async () => {
+    if (!addForm.title || !addForm.desc) return;
+    await addComplaint({
+      title: addForm.title,
+      studentName: addForm.isAnonymous ? 'Anonymous' : addForm.studentName,
+      desc: addForm.desc,
+      phone: addForm.phone,
+    });
+    setAddForm({ studentName: '', isAnonymous: false, title: '', desc: '', phone: '' });
+    setShowAdd(false);
+    showToast('Complaint submitted successfully');
+  };
+
+  const markInProgress = async (id: string) => {
+    await updateComplaintStatus(id, 'In-Progress');
+    showToast('Marked In-Progress');
+  };
+
+  const handleResolve = async () => {
+    if (!resolveItem || !resolveNote) return;
     await updateComplaintStatus(resolveItem.id, 'Resolved', resolveNote);
     setResolveItem(null); 
     setResolveNote('');
@@ -70,8 +99,8 @@ export function ManagerCommunicationComplaintsClient() {
   };
 
   const statusBadge = (s: Complaint['status']) => {
-    if (s === 'New') return <span className="eng-badge eng-badge--danger inline-flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-red-500"></span> New</span>;
-    if (s === 'In-Progress') return <span className="eng-badge eng-badge--warning inline-flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-yellow-500"></span> In-Progress</span>;
+    if (s === 'New') return <span className="eng-badge eng-badge--danger inline-flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-danger"></span> New</span>;
+    if (s === 'In-Progress') return <span className="eng-badge eng-badge--warning inline-flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-warning"></span> In-Progress</span>;
     return <span className="eng-badge eng-badge--success inline-flex items-center gap-1"><CheckCircle size={12}/> Resolved</span>;
   };
 
@@ -79,7 +108,7 @@ export function ManagerCommunicationComplaintsClient() {
     setExpandedDesc(prev => prev.includes(id) ? prev.filter(x => x !== id) : [...prev, id]);
 
   if (status === 'loading') {
-    return <div className="eng-page"><div className="animate-pulse space-y-4"><div className="h-8 bg-gray-300 rounded w-1/4"></div><div className="h-64 bg-gray-300 rounded w-full"></div></div></div>;
+    return <div className="eng-page"><div className="animate-pulse space-y-4"><div className="h-8 bg-skeleton-base rounded w-1/4"></div><div className="h-64 bg-skeleton-base rounded w-full"></div></div></div>;
   }
 
   return (
@@ -90,7 +119,7 @@ export function ManagerCommunicationComplaintsClient() {
       {showAdd && (
         <div className="eng-overlay">
           <div className="eng-modal eng-modal--md">
-            <button onClick={() => setShowAdd(false)} className="eng-modal-close"><X size={16} /></button>
+            <button onClick={() => setShowAdd(false)} className="eng-modal-close" aria-label="Close"><X size={16} /></button>
             <p className="eng-modal-title flex items-center gap-2"><Plus size={18}/> Add Complaint</p>
             <p className="eng-modal-desc">Staff raises complaint on student&apos;s behalf.</p>
             <div className="eng-form-stack">
@@ -128,7 +157,7 @@ export function ManagerCommunicationComplaintsClient() {
       {viewItem && (
         <div className="eng-overlay">
           <div className="eng-modal eng-modal--md">
-            <button onClick={() => setViewItem(null)} className="eng-modal-close"><X size={16} /></button>
+            <button onClick={() => setViewItem(null)} className="eng-modal-close" aria-label="Close"><X size={16} /></button>
             <p className="eng-modal-title">{viewItem.title}</p>
             <div className="eng-modal-badge-row">
               {statusBadge(viewItem.status)}
@@ -156,7 +185,7 @@ export function ManagerCommunicationComplaintsClient() {
       {resolveItem && (
         <div className="eng-overlay">
           <div className="eng-modal eng-modal--md">
-            <button onClick={() => setResolveItem(null)} className="eng-modal-close"><X size={16} /></button>
+            <button onClick={() => setResolveItem(null)} className="eng-modal-close" aria-label="Close"><X size={16} /></button>
             <p className="eng-modal-title flex items-center gap-2"><CheckCircle size={18}/> Resolve Complaint</p>
             <p className="eng-modal-desc">&quot;{resolveItem.title}&quot;</p>
             <div>
@@ -248,16 +277,16 @@ export function ManagerCommunicationComplaintsClient() {
                       <td className="eng-td-muted">{c.resolvedOn || '—'}</td>
                       <td>
                         <div className="flex items-center gap-1">
-                          <button onClick={() => setViewItem(c)} className="eng-btn-icon" title="View">
+                          <button onClick={() => setViewItem(c)} className="eng-btn-icon" aria-label="View" title="View">
                             <Eye size={14} />
                           </button>
                           {c.status === 'New' && (
-                            <button onClick={() => markInProgress(c.id)} className="eng-btn-icon" title="Mark In-Progress">
+                            <button onClick={() => markInProgress(c.id)} className="eng-btn-icon" aria-label="Mark In-Progress" title="Mark In-Progress">
                               <RefreshCw size={14} />
                             </button>
                           )}
                           {c.status !== 'Resolved' && (
-                            <button onClick={() => setResolveItem(c)} className="eng-btn-icon" title="Resolve">
+                            <button onClick={() => setResolveItem(c)} className="eng-btn-icon" aria-label="Resolve" title="Resolve">
                               <CheckCircle size={14} />
                             </button>
                           )}

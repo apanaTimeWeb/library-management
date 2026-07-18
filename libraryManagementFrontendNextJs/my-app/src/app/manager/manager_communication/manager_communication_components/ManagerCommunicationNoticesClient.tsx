@@ -61,7 +61,7 @@ export function ManagerCommunicationNoticesClient() {
 
 
   if (status === 'loading') {
-    return <div className="p-6 min-h-screen"><div className="animate-pulse flex space-x-4"><div className="flex-1 space-y-4 py-1"><div className="h-4 bg-gray-400 rounded w-3/4"></div><div className="space-y-2"><div className="h-4 bg-gray-400 rounded"></div><div className="h-4 bg-gray-400 rounded w-5/6"></div></div></div></div></div>;
+    return <div className="p-6 min-h-screen"><div className="animate-pulse flex space-x-4"><div className="flex-1 space-y-4 py-1"><div className="h-4 bg-skeleton-base rounded w-3/4"></div><div className="space-y-2"><div className="h-4 bg-skeleton-base rounded"></div><div className="h-4 bg-skeleton-base rounded w-5/6"></div></div></div></div></div>;
   }
 
   return (
@@ -76,7 +76,7 @@ export function ManagerCommunicationNoticesClient() {
       {showAdd && (
         <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 overflow-y-auto">
           <div className="bg-bg-card w-full rounded-2xl shadow-2xl flex flex-col p-6 max-w-lg relative border border-border">
-            <button onClick={() => setShowAdd(false)} className="absolute top-4 right-4 w-8 h-8 flex items-center justify-center rounded-full hover:bg-danger-bg text-text-secondary hover:text-danger transition-colors"><X size={16} /></button>
+            <button onClick={() => setShowAdd(false)} className="absolute top-4 right-4 w-8 h-8 flex items-center justify-center rounded-full hover:bg-danger-bg text-text-secondary hover:text-danger transition-colors" aria-label="Close"><X size={16} /></button>
             <p className="text-lg font-bold text-text-primary mb-4 flex items-center gap-2">
               {editItem ? <Edit2 size={18} /> : <Megaphone size={18} />} {editItem ? 'Edit Notice' : 'Post Notice'}
             </p>
@@ -199,9 +199,9 @@ export function ManagerCommunicationNoticesClient() {
                     <td className="px-4 py-4"><span className="font-mono text-[12px] text-text-primary tracking-tight">{row.postedDate}</span></td>
                     <td className="px-4 py-4 text-right">
                       <div className="flex gap-2 items-center justify-end">
-                        <button onClick={() => openEdit(row)} className="w-8 h-8 flex items-center justify-center rounded-md hover:bg-muted/50 text-muted-foreground hover:text-primary transition-colors" title="Edit"><Edit2 size={14} /></button>
-                        <button onClick={() => setBroadcastItem(row)} className="w-8 h-8 flex items-center justify-center rounded-md hover:bg-muted/50 text-muted-foreground hover:text-info transition-colors" title="Broadcast"><Send size={14} /></button>
-                        <button onClick={() => setDeleteItem(row)} className="w-8 h-8 flex items-center justify-center rounded-md hover:bg-muted/50 text-muted-foreground hover:text-danger transition-colors" title="Delete"><Trash2 size={14} /></button>
+                        <button onClick={() => openEdit(row)} className="w-8 h-8 flex items-center justify-center rounded-md hover:bg-muted/50 text-muted-foreground hover:text-primary transition-colors" aria-label="Edit" title="Edit"><Edit2 size={14} /></button>
+                        <button onClick={() => setBroadcastItem(row)} className="w-8 h-8 flex items-center justify-center rounded-md hover:bg-muted/50 text-muted-foreground hover:text-info transition-colors" aria-label="Broadcast" title="Broadcast"><Send size={14} /></button>
+                        <button onClick={() => setDeleteItem(row)} className="w-8 h-8 flex items-center justify-center rounded-md hover:bg-muted/50 text-muted-foreground hover:text-danger transition-colors" aria-label="Delete" title="Delete"><Trash2 size={14} /></button>
                       </div>
                     </td>
                   </tr>

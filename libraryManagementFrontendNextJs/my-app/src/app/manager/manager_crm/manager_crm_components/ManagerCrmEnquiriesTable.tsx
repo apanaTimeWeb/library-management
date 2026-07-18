@@ -83,13 +83,13 @@ const table = useClientTable(filtered, 10);
                 <td className="p-3 text-text-secondary">{enq.addedDate}</td>
                 <td className="p-3">
                   <div className="flex items-center gap-2">
-                    <button className="w-8 h-8 rounded-lg border border-border text-text-secondary inline-flex items-center justify-center hover:bg-primary-subtle hover:text-primary transition-colors" title="View details" onClick={(e) => { e.stopPropagation(); router.push(MANAGER_CRM_URLS.ENQUIRY_DETAIL(enq.id)); }}>
+                    <button className="w-8 h-8 rounded-lg border border-border text-text-secondary inline-flex items-center justify-center hover:bg-primary-subtle hover:text-primary transition-colors" aria-label="View details" title="View details" onClick={(e) => { e.stopPropagation(); router.push(MANAGER_CRM_URLS.ENQUIRY_DETAIL(enq.id)); }}>
                       <Eye size={14} />
                     </button>
-                    <button className="w-8 h-8 rounded-lg border border-border text-text-secondary inline-flex items-center justify-center hover:bg-primary-subtle hover:text-primary transition-colors text-success" title="Convert to Admission" onClick={(e) => handleQuickConvert(e, enq.id, enq.name, enq.phone)}>
+                    <button className="w-8 h-8 rounded-lg border border-border text-text-secondary inline-flex items-center justify-center hover:bg-primary-subtle hover:text-primary transition-colors text-success" aria-label="Convert to Admission" title="Convert to Admission" onClick={(e) => handleQuickConvert(e, enq.id, enq.name, enq.phone)}>
                       <CheckCircle size={14} />
                     </button>
-                    <button className="w-8 h-8 rounded-lg border border-border text-text-secondary inline-flex items-center justify-center hover:bg-primary-subtle hover:text-primary transition-colors text-danger" title="Mark as Lost" onClick={(e) => handleQuickLost(e, enq.id)}>
+                    <button className="w-8 h-8 rounded-lg border border-border text-text-secondary inline-flex items-center justify-center hover:bg-primary-subtle hover:text-primary transition-colors text-danger" aria-label="Mark as Lost" title="Mark as Lost" onClick={(e) => handleQuickLost(e, enq.id)}>
                       <XCircle size={14} />
                     </button>
                   </div>

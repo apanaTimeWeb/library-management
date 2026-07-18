@@ -2,7 +2,7 @@
 // @ts-nocheck
 import { CalendarDays } from 'lucide-react';
 import { useManagerSeatsSeatMatrix } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_hooks/useManagerSeatsSeatMatrix';
-import { SHIFT_TABS, LEGEND_ITEMS } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_constants';
+import { SHIFT_TABS, LEGEND_ITEMS, SEAT_MATRIX_STATUS_STYLES } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_constants';
 import { ManagerSeatsSeatMatrixModal } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_components/ManagerSeatsSeatMatrixModal';
 
 // RESPONSIBILITY: Main Client view for Seat Matrix. Glues data hook to UI.
@@ -71,10 +71,7 @@ export function ManagerSeatsSeatMatrixClient() {
               <button
                 key={seat.uuid || seat.id + '-' + index}
                 className={`h-12 rounded-lg text-sm font-semibold flex items-center justify-center transition-transform hover:scale-105 active:scale-95 shadow-sm ${
-                  seat.status === 'free' ? 'bg-bg-elevated border border-success text-success hover:bg-success hover:text-white' :
-                  seat.status === 'occupied' ? 'bg-danger text-white border-transparent opacity-90' :
-                  seat.status === 'expiring' ? 'bg-warning text-white border-transparent' :
-                  'bg-bg-elevated text-text-secondary border-transparent opacity-50 cursor-not-allowed shadow-none'
+                  SEAT_MATRIX_STATUS_STYLES[seat.status] || SEAT_MATRIX_STATUS_STYLES['maintenance']
                 }`}
                 onClick={() => setSelectedSeat(seat as any)}
                 title={

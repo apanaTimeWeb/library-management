@@ -43,7 +43,7 @@ export function ManagerEngagementAttendanceClient() {
   };
 
   if (status === 'loading') {
-    return <div className="p-6 min-h-screen relative pb-24"><div className="animate-pulse flex space-x-4"><div className="flex-1 space-y-4 py-1"><div className="h-4 bg-gray-400 rounded w-3/4"></div><div className="space-y-2"><div className="h-4 bg-gray-400 rounded"></div><div className="h-4 bg-gray-400 rounded w-5/6"></div></div></div></div></div>;
+    return <div className="p-6 min-h-screen relative pb-24"><div className="animate-pulse flex space-x-4"><div className="flex-1 space-y-4 py-1"><div className="h-4 bg-skeleton-base rounded w-3/4"></div><div className="space-y-2"><div className="h-4 bg-skeleton-base rounded"></div><div className="h-4 bg-skeleton-base rounded w-5/6"></div></div></div></div></div>;
   }
 
   return (
@@ -104,7 +104,7 @@ export function ManagerEngagementAttendanceClient() {
           </div>
           <div className="flex items-center gap-3">
             <label className="text-[13px] font-medium text-text-secondary">Shift</label>
-            <div className="w-[150px]">
+            <div className="w-40">
               <ManagerSearchableDropdown
                 value={shift}
                 onChange={v => setFilter('shift', v)}

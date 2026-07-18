@@ -37,9 +37,9 @@ function QrPattern({ id }: { id: string }) {
   }
   [0, 1, 5, 6, 4, 9, 20, 21, 24, 19, 15].forEach(idx => { pattern[idx] = true; });
   return (
-    <div className="grid grid-cols-5 gap-0.5 p-1 bg-white w-[52px] h-[52px]" aria-label={`QR code for ${id}`}>
+    <div className="grid grid-cols-5 gap-0.5 p-1 bg-white w-14 h-14" aria-label={`QR code for ${id}`}>
       {pattern.map((on, i) => (
-        <div key={i} className={`w-2 h-2 ${on ? 'bg-black' : 'bg-gray-100'}`} />
+        <div key={i} className={`w-2 h-2 ${on ? 'bg-black' : 'bg-bg-page'}`} />
       ))}
     </div>
   );
@@ -64,7 +64,7 @@ export default function ManagerStudentsIdCard({ data }: ManagerStudentsIdCardPro
   return (
     <div className="flex items-center justify-center p-4">
       {/* ── FRONT of ID card ── */}
-      <div className="relative w-[340px] bg-white rounded-2xl overflow-hidden shadow-xl border border-gray-200 text-gray-900 font-sans" id="student-id-card-print">
+      <div className="relative w-84 bg-white rounded-2xl overflow-hidden shadow-xl border border-border text-text-primary font-sans" id="student-id-card-print">
 
         {/* Holographic diagonal lines overlay */}
         <div className="absolute inset-0 pointer-events-none opacity-20 bg-[linear-gradient(45deg,transparent_25%,var(--border)_50%,transparent_75%,transparent_100%)] bg-[length:20px_20px]" aria-hidden="true" />
@@ -75,12 +75,12 @@ export default function ManagerStudentsIdCard({ data }: ManagerStudentsIdCardPro
             <div className="text-2xl">📚</div>
             <div>
               <div className="text-sm font-bold tracking-wider leading-tight">SMART LIBRARY 360</div>
-              <div className="text-[9px] font-semibold text-gray-400 tracking-widest uppercase">{data.branch ?? 'MAIN BRANCH'}</div>
+              <div className="font-semibold text-text-secondary tracking-widest uppercase" style={{ fontSize: '9px' }}>{data.branch ?? 'MAIN BRANCH'}</div>
             </div>
           </div>
           <div className="flex flex-col items-end gap-1">
             <Wifi size={14} color="rgba(255,255,255,0.7)" />
-            <div className="text-[8px] font-bold tracking-widest border border-white/30 rounded px-1.5 py-0.5">STUDENT ID</div>
+            <div className="font-bold tracking-widest border border-white/30 rounded px-1.5 py-0.5" style={{ fontSize: '8px' }}>STUDENT ID</div>
           </div>
         </div>
 
@@ -101,9 +101,9 @@ export default function ManagerStudentsIdCard({ data }: ManagerStudentsIdCardPro
             </div>
 
             <div className="flex-1 min-w-0">
-              <p className="text-lg font-bold text-gray-900 truncate leading-tight">{data.name}</p>
-              {data.college && <p className="text-[10px] text-text-secondary truncate mt-1">🎓 {data.college}</p>}
-              <p className="flex items-center gap-1 text-[11px] font-medium text-text-secondary mt-1.5">
+              <p className="text-lg font-bold text-text-primary truncate leading-tight">{data.name}</p>
+              {data.college && <p className="text-text-secondary truncate mt-1" style={{ fontSize: '10px' }}>🎓 {data.college}</p>}
+              <p className="flex items-center gap-1 font-medium text-text-secondary mt-1.5" style={{ fontSize: '11px' }}>
                 <Phone size={10} /> {data.phone}
               </p>
             </div>
@@ -120,54 +120,54 @@ export default function ManagerStudentsIdCard({ data }: ManagerStudentsIdCardPro
           {/* Details grid — 4 boxes */}
           <div className="grid grid-cols-4 gap-2 mb-5">
             <div className="border-t-2 pt-1.5 border-t-[#6366F1]">
-              <div className="text-[8px] font-bold text-gray-500 tracking-widest">⏰ SHIFT</div>
-              <div className="text-[11px] font-bold text-gray-900 mt-0.5 truncate">{shiftLabel}</div>
+              <div className="font-bold text-text-secondary tracking-widest" style={{ fontSize: '8px' }}>⏰ SHIFT</div>
+              <div className="font-bold text-text-primary mt-0.5 truncate" style={{ fontSize: '11px' }}>{shiftLabel}</div>
             </div>
             <div className="border-t-2 pt-1.5 border-t-[#8B5CF6]">
-              <div className="text-[8px] font-bold text-gray-500 tracking-widest">💺 SEAT</div>
-              <div className="text-[11px] font-bold text-gray-900 mt-0.5 truncate">{data.seat}</div>
+              <div className="font-bold text-text-secondary tracking-widest" style={{ fontSize: '8px' }}>💺 SEAT</div>
+              <div className="font-bold text-text-primary mt-0.5 truncate" style={{ fontSize: '11px' }}>{data.seat}</div>
             </div>
             <div className="border-t-2 pt-1.5 border-t-[#3B82F6]">
-              <div className="text-[8px] font-bold text-text-secondary tracking-widest">📋 PLAN</div>
-              <div className="text-[11px] font-bold text-text-primary mt-0.5 truncate">{data.plan.split(' ')[0]}</div>
+              <div className="font-bold text-text-secondary tracking-widest" style={{ fontSize: '8px' }}>📋 PLAN</div>
+              <div className="font-bold text-text-primary mt-0.5 truncate" style={{ fontSize: '11px' }}>{data.plan.split(' ')[0]}</div>
             </div>
             <div>
-              <div className="text-[8px] font-bold text-text-secondary tracking-widest">🔐 LOCKER</div>
-              <div className="text-[11px] font-bold text-text-primary mt-0.5 truncate">{data.locker === 'None' ? 'N/A' : data.locker.split(' ')[0]}</div>
+              <div className="font-bold text-text-secondary tracking-widest" style={{ fontSize: '8px' }}>🔐 LOCKER</div>
+              <div className="font-bold text-text-primary mt-0.5 truncate" style={{ fontSize: '11px' }}>{data.locker === 'None' ? 'N/A' : data.locker.split(' ')[0]}</div>
             </div>
           </div>
 
           {/* Validity row */}
-          <div className="flex items-center justify-between bg-gray-50 rounded-lg p-2.5 mb-5 border border-gray-100">
+          <div className="flex items-center justify-between bg-bg-elevated rounded-lg p-2.5 mb-5 border border-border">
             <div>
-              <div className="text-[8px] font-bold text-text-secondary tracking-widest mb-0.5">VALID FROM</div>
-              <div className="text-[10px] font-bold text-text-primary">{data.joinDate}</div>
+              <div className="font-bold text-text-secondary tracking-widest mb-0.5" style={{ fontSize: '8px' }}>VALID FROM</div>
+              <div className="font-bold text-text-primary" style={{ fontSize: '10px' }}>{data.joinDate}</div>
             </div>
-            <div className="text-border text-[10px]">▶</div>
+            <div className="text-border" style={{ fontSize: '10px' }}>▶</div>
             <div className="text-right">
-              <div className="text-[8px] font-bold text-text-secondary tracking-widest mb-0.5">EXPIRES</div>
-              <div className="text-[10px] font-bold text-danger">{data.expiryDate}</div>
+              <div className="font-bold text-text-secondary tracking-widest mb-0.5" style={{ fontSize: '8px' }}>EXPIRES</div>
+              <div className="font-bold text-danger" style={{ fontSize: '10px' }}>{data.expiryDate}</div>
             </div>
           </div>
 
           {/* QR + Barcode row */}
-          <div className="flex items-end justify-between pt-4 border-t border-gray-100">
+          <div className="flex items-end justify-between pt-4 border-t border-border">
             <div className="flex flex-col items-center gap-1">
               <QrPattern id={data.smartId} />
-              <span className="text-[7px] font-bold text-gray-400 uppercase tracking-widest">Scan to Verify</span>
+              <span className="font-bold text-text-secondary uppercase tracking-widest" style={{ fontSize: '7px' }}>Scan to Verify</span>
             </div>
 
             <div className="flex flex-col items-center flex-1 mx-4">
               <BarcodeStripes id={data.smartId} />
-              <span className="text-[9px] font-mono font-bold tracking-widest mt-1">{data.smartId}</span>
-              <span className="text-[7px] font-bold text-text-secondary uppercase tracking-widest">Member ID</span>
+              <span className="font-mono font-bold tracking-widest mt-1" style={{ fontSize: '9px' }}>{data.smartId}</span>
+              <span className="font-bold text-text-secondary uppercase tracking-widest" style={{ fontSize: '7px' }}>Member ID</span>
             </div>
           </div>
           
           <div className="flex flex-col items-end justify-center">
             <div className="flex flex-col items-center border border-success/30 bg-success-bg px-2 py-1 rounded">
-              <span className="text-[8px] font-bold text-success tracking-widest">VERIFIED</span>
-              <span className="text-[6px] font-semibold text-success/70 uppercase tracking-wider">Tamper Evident</span>
+              <span className="font-bold text-success tracking-widest" style={{ fontSize: '8px' }}>VERIFIED</span>
+              <span className="font-semibold text-success/70 uppercase tracking-wider" style={{ fontSize: '6px' }}>Tamper Evident</span>
             </div>
           </div>
         </div>
