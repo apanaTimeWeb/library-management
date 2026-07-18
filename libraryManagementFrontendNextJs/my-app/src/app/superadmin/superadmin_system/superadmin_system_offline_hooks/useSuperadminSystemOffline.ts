@@ -1,4 +1,6 @@
 import { useEffect, useState } from 'react';
+import { logger } from '@/lib/logger';
+import { SUPERADMIN_ROUTES } from '@/app/superadmin/superadmin_url_config';
 
 export function useSuperadminSystemOffline() {
   const [dots, setDots] = useState('');
@@ -32,7 +34,7 @@ export function useSuperadminSystemOffline() {
   /* Auto-redirect when connection is restored */
   useEffect(() => {
     if (!online) return;
-    const t = setTimeout(() => { window.location.href = '/superadmin/superadmin_dashboard'; }, 1500);
+    const t = setTimeout(() => { window.location.href = SUPERADMIN_ROUTES.DASHBOARD; }, 1500);
     return () => clearTimeout(t);
   }, [online]);
 

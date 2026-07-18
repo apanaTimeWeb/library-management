@@ -1,5 +1,6 @@
 // RESPONSIBILITY: Renders the SuperadminSidebar component.
 'use client';
+import { SUPERADMIN_ROUTES } from '@/app/superadmin/superadmin_url_config';
 
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
@@ -23,17 +24,17 @@ type NavItem =
   | { href: string; icon: LucideIcon; label: string };
 
 const NAV: NavItem[] = [
-  { href: '/superadmin/superadmin_dashboard', icon: LayoutDashboard, label: 'Dashboard' },
-  { href: '/superadmin/superadmin_libraries', icon: Building2, label: 'Libraries' },
-  { href: '/superadmin/superadmin_subscriptions', icon: FileText, label: 'Subscriptions' },
-  { href: '/superadmin/superadmin_billing', icon: IndianRupee, label: 'Billing' },
-  { href: '/superadmin/superadmin_reports', icon: BarChart2, label: 'Reports' },
+  { href: SUPERADMIN_ROUTES.DASHBOARD, icon: LayoutDashboard, label: 'Dashboard' },
+  { href: SUPERADMIN_ROUTES.LIBRARIES, icon: Building2, label: 'Libraries' },
+  { href: SUPERADMIN_ROUTES.SUBSCRIPTIONS, icon: FileText, label: 'Subscriptions' },
+  { href: SUPERADMIN_ROUTES.BILLING, icon: IndianRupee, label: 'Billing' },
+  { href: SUPERADMIN_ROUTES.REPORTS, icon: BarChart2, label: 'Reports' },
   { group: 'Monitoring & Support' },
-  { href: '/superadmin/superadmin_system-health', icon: Activity, label: 'System Health' },
-  { href: '/superadmin/superadmin_audit-logs', icon: History, label: 'Audit Logs' },
-  { href: '/superadmin/superadmin_support-tickets', icon: LifeBuoy, label: 'Support Tickets' },
+  { href: SUPERADMIN_ROUTES.SYSTEM_HEALTH, icon: Activity, label: 'System Health' },
+  { href: SUPERADMIN_ROUTES.AUDIT_LOGS, icon: History, label: 'Audit Logs' },
+  { href: SUPERADMIN_ROUTES.SUPPORT_TICKETS, icon: LifeBuoy, label: 'Support Tickets' },
   { group: 'System' },
-  { href: '/superadmin/superadmin_settings', icon: Settings, label: 'Settings' },
+  { href: SUPERADMIN_ROUTES.SETTINGS, icon: Settings, label: 'Settings' },
 ];
 
 import { SuperadminSidebarProps } from '@/app/superadmin/superadmin_shared_components/superadmin_shared_types';
@@ -134,7 +135,7 @@ export default function SuperadminSidebar({ collapsed, onToggle, mobileOpen, onM
           </SuperadminDialogHeader>
           <div className="flex justify-end gap-3 mt-4">
             <SuperadminButton className="bg-transparent border border-border text-text-primary hover:bg-bg-page" onClick={() => setShowLogout(false)}>Cancel</SuperadminButton>
-            <SuperadminButton className="bg-danger text-white hover:opacity-90" onClick={() => router.push('/auth/login')}>Log out</SuperadminButton>
+            <SuperadminButton className="bg-danger text-white hover:opacity-90" onClick={() => router.push(SUPERADMIN_ROUTES.AUTH_LOGIN)}>Log out</SuperadminButton>
           </div>
         </SuperadminDialogContent>
       </SuperadminDialog>

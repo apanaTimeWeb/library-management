@@ -1,6 +1,7 @@
 /**
  * RESPONSIBILITY: Logic and state management for the LateFeesClient component.
  */
+import { SUPERADMIN_ROUTES } from '@/app/superadmin/superadmin_url_config';
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import toast from 'react-hot-toast';
@@ -96,7 +97,7 @@ export function useLateFeesClient() {
   };
 
   const navigateToCollect = (studentId: string) => {
-    router.push(`/superadmin/superadmin_finance/collect-fee?studentId=${studentId}`);
+    router.push(`${SUPERADMIN_ROUTES.FINANCE_COLLECT_FEE}?studentId=${studentId}`);
   };
 
   return {

@@ -3,6 +3,8 @@
 
 import { useForm, useFieldArray } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { Toaster } from 'react-hot-toast';
+import { SUPERADMIN_ROUTES } from '@/app/superadmin/superadmin_url_config';
 import { useState } from 'react';
 import {
   BookOpen, Check, Plus, Trash2, ChevronRight, ChevronLeft,
@@ -52,11 +54,11 @@ export function SetupWizardClient() {
     setLaunching(true);
     await new Promise(res => setTimeout(res, 2000));
     setLaunched(true);
-    setTimeout(() => { window.location.href = '/superadmin/superadmin_dashboard'; }, 1000);
+    setTimeout(() => { window.location.href = SUPERADMIN_ROUTES.DASHBOARD; }, 1000);
   };
 
   const handleSkipToDashboard = () => {
-    window.location.href = '/superadmin/superadmin_dashboard';
+    window.location.href = SUPERADMIN_ROUTES.DASHBOARD;
   };
 
   return (

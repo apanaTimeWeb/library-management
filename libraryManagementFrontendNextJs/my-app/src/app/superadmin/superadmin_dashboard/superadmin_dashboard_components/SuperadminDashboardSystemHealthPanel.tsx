@@ -1,6 +1,7 @@
 // RESPONSIBILITY: Renders the SuperadminDashboardSystemHealthPanel component.
 import React from 'react';
 import Link from 'next/link';
+import { SUPERADMIN_ROUTES } from '@/app/superadmin/superadmin_url_config';
 import { CheckCircle, Users, Zap, HardDrive, ExternalLink } from 'lucide-react';
 import type { SuperadminDashboardSystemHealth as SystemHealth, SuperadminDashboardSystemHealthPanelProps as Props } from '@/app/superadmin/superadmin_dashboard/superadmin_dashboard_types/SuperadminDashboardTypes';
 
@@ -33,7 +34,7 @@ export function SuperadminDashboardSystemHealthPanel({ data }: Props) {
       </div>
 
       <div className="mt-auto p-4 border-t border-border bg-bg-page/30">
-        <Link href="/superadmin/superadmin_system-health" className="flex items-center justify-center gap-1.5 text-xs font-semibold text-primary hover:text-primary-hover transition-colors">
+        <Link href={SUPERADMIN_ROUTES.SYSTEM_HEALTH} className="flex items-center justify-center gap-1.5 text-xs font-semibold text-primary hover:text-primary-hover transition-colors">
           <ExternalLink size={13} /> View Full System Report
         </Link>
       </div>

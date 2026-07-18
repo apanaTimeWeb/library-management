@@ -2,6 +2,7 @@
 'use client';
 import React, { useRef, useCallback, useMemo } from 'react';
 import Link from 'next/link';
+import { SUPERADMIN_ROUTES } from '@/app/superadmin/superadmin_url_config';
 import { AgGridReact } from 'ag-grid-react';
 import type { ICellRendererParams, GridReadyEvent } from 'ag-grid-community';
 import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community';
@@ -76,7 +77,7 @@ export function SuperadminDashboardRecentLibrariesTable({ data }: Props) {
     <div className="bg-bg-card border border-border rounded-[var(--radius-lg)] overflow-hidden shadow-sm">
       <div className="p-6 flex items-center justify-between border-b border-border bg-bg-page/30">
         <h2 className="text-base font-bold text-text-primary">Recently Registered Libraries</h2>
-        <Link href="/superadmin/superadmin_libraries" className="text-primary text-xs font-bold flex items-center gap-1 hover:text-primary-hover transition-colors">
+        <Link href={SUPERADMIN_ROUTES.LIBRARIES} className="text-primary text-xs font-bold flex items-center gap-1 hover:text-primary-hover transition-colors">
           View All <ExternalLink size={12} />
         </Link>
       </div>

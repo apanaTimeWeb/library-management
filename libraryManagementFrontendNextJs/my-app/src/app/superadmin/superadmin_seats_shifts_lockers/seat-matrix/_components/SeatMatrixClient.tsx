@@ -6,6 +6,7 @@
 import { useState, useEffect } from 'react';
 import { fetchApi } from '@/lib/api';
 import { logger } from '@/lib/logger';
+import { SUPERADMIN_API_ROUTES } from '@/app/superadmin/superadmin_url_config';
 import { CalendarDays, UserPlus, User } from 'lucide-react';
 import type { SuperadminSeatsSeatData } from '@/app/superadmin/superadmin_seats_shifts_lockers/superadmin_seats_types/SuperadminSeatsShiftsLockersTypes';
 
@@ -32,7 +33,7 @@ export function SeatMatrixClient() {
   const [seatsData, setSeatsData]       = useState<SuperadminSeatsSeatData[]>([]);
 
   useEffect(() => {
-    fetchApi('/seats_shifts_lockers/seat-matrix').then(( data: unknown ) => {
+    fetchApi(SUPERADMIN_API_ROUTES.SEATS_SEAT_MATRIX).then(( data: unknown ) => {
       const actualData = Array.isArray(data) ? data : (data as any)?.data;
       if (!Array.isArray(actualData) || actualData.length === 0 || actualData[0]?.id?.startsWith('MOCK-')) {
         const mockSeats: SuperadminSeatsSeatData[] = Array.from({ length: 60 }).map((_, i) => ({

@@ -1,5 +1,7 @@
 // RESPONSIBILITY: Renders CRM pipeline board / list view with status columns and quick conversion actions.
+// RESPONSIBILITY: Renders CRM pipeline board / list view with status columns and quick conversion actions.
 'use client';
+import { SUPERADMIN_ROUTES } from '@/app/superadmin/superadmin_url_config';
 
 import { useRouter } from 'next/navigation';
 import {
@@ -71,7 +73,7 @@ export function EnquiriesClient() {
               <button className={`w-8 h-8 flex items-center justify-center rounded-[var(--radius-md)] transition-colors cursor-pointer ${view === 'kanban' ? 'bg-card shadow-sm text-text-primary' : 'text-text-secondary hover:text-text-primary'}`} onClick={() => setView('kanban')} title="Kanban view"><LayoutGrid size={16} /></button>
               <button className={`w-8 h-8 flex items-center justify-center rounded-[var(--radius-md)] transition-colors cursor-pointer ${view === 'table' ? 'bg-card shadow-sm text-text-primary' : 'text-text-secondary hover:text-text-primary'}`} onClick={() => setView('table')} title="Table view"><List size={16} /></button>
             </div>
-            <button className="flex items-center justify-center gap-1.5 bg-primary hover:brightness-95 text-primary-foreground text-[14px] font-bold py-2 px-4 rounded-[var(--radius-md)] transition-all shadow-sm cursor-pointer" onClick={() => router.push('/superadmin/superadmin_crm/enquiries/add')}>
+            <button className="flex items-center justify-center gap-1.5 bg-primary hover:brightness-95 text-primary-foreground text-[14px] font-bold py-2 px-4 rounded-[var(--radius-md)] transition-all shadow-sm cursor-pointer" onClick={() => router.push(SUPERADMIN_ROUTES.CRM_ENQUIRIES_ADD)}>
               <Plus size={16} /> Add Enquiry
             </button>
           </div>
@@ -105,7 +107,7 @@ export function EnquiriesClient() {
             <PhoneCall size={48} className="text-text-secondary opacity-50 mb-4" />
             <p className="text-[18px] font-bold text-text-primary">No enquiries yet</p>
             <p className="text-[14px] text-text-secondary mt-1">Add your first lead to start the pipeline</p>
-            <button className="flex items-center justify-center gap-1.5 bg-primary hover:brightness-95 text-primary-foreground text-[14px] font-bold py-2 px-4 rounded-[var(--radius-md)] transition-all shadow-sm cursor-pointer mt-6" onClick={() => router.push('/superadmin/superadmin_crm/enquiries/add')}>
+            <button className="flex items-center justify-center gap-1.5 bg-primary hover:brightness-95 text-primary-foreground text-[14px] font-bold py-2 px-4 rounded-[var(--radius-md)] transition-all shadow-sm cursor-pointer mt-6" onClick={() => router.push(SUPERADMIN_ROUTES.CRM_ENQUIRIES_ADD)}>
               <Plus size={15} /> Add Enquiry
             </button>
           </div>
@@ -134,7 +136,7 @@ export function EnquiriesClient() {
                       </div>
                     ) : (
                       cards.map((enq) => (
-                        <KanbanCard key={enq.id} enq={enq} colClass={col.cardClass} onClick={() => router.push(`/superadmin/superadmin_crm/enquiries/${enq.id}`)} />
+                        <KanbanCard key={enq.id} enq={enq} colClass={col.cardClass} onClick={() => router.push(SUPERADMIN_ROUTES.CRM_ENQUIRIES_ID(enq.id))} />
                       ))
                     )}
                   </div>
@@ -171,7 +173,7 @@ export function EnquiriesClient() {
                 </thead>
                 <tbody className="divide-y divide-border">
                   {filtered.map((enq, idx) => (
-                    <tr key={enq.id} onClick={() => router.push(`/superadmin/superadmin_crm/enquiries/${enq.id}`)} className="hover:bg-muted/50 transition-colors cursor-pointer group">
+                    <tr key={enq.id} onClick={() => router.push(SUPERADMIN_ROUTES.CRM_ENQUIRIES_ID(enq.id))} className="hover:bg-muted/50 transition-colors cursor-pointer group">
                       <td className="py-4 px-4 text-[14px] text-text-secondary font-mono">{idx + 1}</td>
                       <td className="py-4 px-4">
                         <div className="flex items-center gap-3">

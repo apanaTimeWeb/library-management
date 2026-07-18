@@ -1,4 +1,5 @@
 'use client';
+import { SUPERADMIN_ROUTES } from '@/app/superadmin/superadmin_url_config';
 
 // RESPONSIBILITY: Renders detailed CRM enquiry view, follow-up timeline, and status transitions.
 import { Toaster } from 'react-hot-toast';
@@ -82,7 +83,7 @@ export function EnquiriesIdClient({ params }: { params: Promise<{ id: string }> 
         <XCircle size={48} className="text-danger opacity-80 mb-4" />
         <p className="text-[22px] font-bold text-text-primary">Enquiry Not Found</p>
         <p className="text-[14px] text-text-secondary mt-2 max-w-md">The enquiry with ID &ldquo;{id}&rdquo; does not exist.</p>
-        <button className="flex items-center gap-2 px-4 py-2 bg-transparent border border-border text-text-primary text-[14px] font-bold rounded-[var(--radius-md)] hover:bg-input transition-colors mt-8 cursor-pointer" onClick={() => router.push('/superadmin/superadmin_crm/enquiries')}>
+        <button className="flex items-center gap-2 px-4 py-2 bg-transparent border border-border text-text-primary text-[14px] font-bold rounded-[var(--radius-md)] hover:bg-input transition-colors mt-8 cursor-pointer" onClick={() => router.push(SUPERADMIN_ROUTES.CRM_ENQUIRIES)}>
           <ArrowLeft size={16} /> Back to Pipeline
         </button>
       </div>
@@ -101,7 +102,7 @@ export function EnquiriesIdClient({ params }: { params: Promise<{ id: string }> 
       <div className="relative p-2 sm:p-4">
         {/* Breadcrumb + Back */}
         <div className="flex items-center gap-4 mb-6">
-          <button className="w-8 h-8 flex items-center justify-center rounded-[var(--radius-md)] border border-border bg-card text-text-secondary hover:text-text-primary hover:bg-input transition-colors shadow-sm cursor-pointer" onClick={() => router.push('/superadmin/superadmin_crm/enquiries')} title="Back to Pipeline">
+          <button className="w-8 h-8 flex items-center justify-center rounded-[var(--radius-md)] border border-border bg-card text-text-secondary hover:text-text-primary hover:bg-input transition-colors shadow-sm cursor-pointer" onClick={() => router.push(SUPERADMIN_ROUTES.CRM_ENQUIRIES)} title="Back to Pipeline">
             <ArrowLeft size={16} />
           </button>
           <nav className="text-[12px] font-bold text-text-secondary flex items-center gap-2">

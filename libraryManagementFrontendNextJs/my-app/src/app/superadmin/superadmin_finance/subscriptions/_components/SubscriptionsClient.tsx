@@ -1,5 +1,6 @@
 // RESPONSIBILITY: Renders the SubscriptionsClient component.
 'use client';
+import { SUPERADMIN_ROUTES } from '@/app/superadmin/superadmin_url_config';
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
@@ -148,7 +149,7 @@ export function SubscriptionsClient() {
                     <div className="flex items-center justify-end gap-2">
                       <button
                         className="flex items-center bg-info/10 text-info border border-info/20 px-2 py-1 rounded-[var(--radius-md)] text-[11px] font-bold hover:bg-info hover:text-info-foreground transition-colors cursor-pointer"
-                        onClick={(e) => { e.stopPropagation(); router.push(`/superadmin/superadmin_finance/collect-fee?studentId=${s.id}&renew=true`); }}
+                        onClick={(e) => { e.stopPropagation(); router.push(`${SUPERADMIN_ROUTES.FINANCE_COLLECT_FEE}?studentId=${s.id}&renew=true`); }}
                       >
                         <RefreshCw size={11} className="mr-1" /> Renew
                       </button>

@@ -1,6 +1,7 @@
 /**
  * RESPONSIBILITY: Logic and state management for the RefundsClient component.
  */
+import { SUPERADMIN_API_ROUTES } from '@/app/superadmin/superadmin_url_config';
 import { useState, useEffect } from 'react';
 import { fetchApi } from '@/lib/api';
 import { logger } from '@/lib/logger';
@@ -21,7 +22,7 @@ export function useRefundsClient() {
   const [deductDialog, setDeductDialog] = useState<{ id: number; name: string } | null>(null);
 
   useEffect(() => {
-    fetchApi('/finance/refunds').then(( data: any ) => {
+    fetchApi(SUPERADMIN_API_ROUTES.FINANCE_REFUNDS).then(( data: any ) => {
       const actualData = Array.isArray(data) ? data : data?.data;
       if (!Array.isArray(actualData) || actualData.length === 0 || String(actualData[0]?.id).startsWith('MOCK-')) {
         setAllRefunds(SUPERADMIN_FINANCE_MOCK_REFUNDS as SuperadminFinanceRefund[]);

@@ -3,6 +3,7 @@
 
 import type { ICellRendererParams } from 'ag-grid-community';
 import Link from 'next/link';
+import { SUPERADMIN_ROUTES } from '@/app/superadmin/superadmin_url_config';
 import { AgGridReact } from 'ag-grid-react';
 import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community';
 import { ChevronRight, Send, Mail, Phone, CheckCircle } from 'lucide-react';
@@ -92,7 +93,7 @@ export function AbsenteeReportClient() {
 
       {/* ── Breadcrumb ── */}
       <div className="flex items-center text-[12px] font-bold text-text-secondary mb-2 space-x-2">
-        <Link href="/superadmin/superadmin_engagement/attendance" className="hover:text-primary transition-colors">Engagement</Link>
+        <Link href={SUPERADMIN_ROUTES.ENGAGEMENT_ATTENDANCE} className="hover:text-primary transition-colors">Engagement</Link>
         <ChevronRight size={12} />
         <span className="text-primary">Absentee Report</span>
       </div>

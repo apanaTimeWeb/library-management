@@ -1,5 +1,6 @@
 // RESPONSIBILITY: Renders the InvoiceIdClient component.
 'use client';
+import { SUPERADMIN_ROUTES } from '@/app/superadmin/superadmin_url_config';
 
 import { formatCurrency, formatDate } from '@/app/superadmin/superadmin_finance/superadmin_finance_utils/superadmin_format';
 import { Printer, ArrowLeft, Send } from 'lucide-react';
@@ -19,7 +20,7 @@ export function InvoiceIdClient() {
       <div className="flex items-center justify-between">
         <button 
           className="flex items-center gap-2 bg-input text-text-primary border border-border px-3 py-1.5 rounded-[var(--radius-md)] text-[12px] font-bold hover:bg-primary/10 hover:text-primary transition-colors cursor-pointer" 
-          onClick={() => router.push('/superadmin/superadmin_finance/invoice')}
+          onClick={() => router.push(SUPERADMIN_ROUTES.FINANCE_INVOICE)}
         >
           <ArrowLeft size={14} /> Back to Invoices
         </button>

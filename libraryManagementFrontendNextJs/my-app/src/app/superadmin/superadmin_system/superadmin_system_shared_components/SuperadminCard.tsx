@@ -5,17 +5,17 @@ import { cn } from '@/app/superadmin/superadmin_system/superadmin_system_shared_
 import { SuperadminCardProps } from '@/app/superadmin/superadmin_system/superadmin_system_types/SuperadminSystemSharedComponentsTypes';
 
 export function SuperadminCard({ children, className, ...props }: SuperadminCardProps) {
-  return <div className={cn('sys-card', className)} {...props}>{children}</div>;
+  return <div className={cn('rounded-[var(--radius-xl)] border border-border bg-card text-card-foreground shadow-sm', className)} {...props}>{children}</div>;
 }
 
 export function CardHeader({ children, className }: SuperadminCardProps) {
-  return <div className={cn('sys-card-header', className)}>{children}</div>;
+  return <div className={cn('flex flex-col space-y-1.5 p-6', className)}>{children}</div>;
 }
 
 export function CardTitle({ children, className }: SuperadminCardProps) {
-  return <h3 className={cn('sys-card-title', className)}>{children}</h3>;
+  return <h3 className={cn('text-[18px] font-extrabold leading-none tracking-tight text-text-primary', className)}>{children}</h3>;
 }
 
 export function CardContent({ children, className }: SuperadminCardProps) {
-  return <div className={cn('sys-card-content', className)}>{children}</div>;
+  return <div className={cn('p-6 pt-0', className)}>{children}</div>;
 }

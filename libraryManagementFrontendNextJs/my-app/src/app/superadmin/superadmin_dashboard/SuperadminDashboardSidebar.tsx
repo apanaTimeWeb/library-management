@@ -1,5 +1,6 @@
 // RESPONSIBILITY: Renders the SuperadminDashboardSidebar component.
 'use client';
+import { SUPERADMIN_ROUTES } from '@/app/superadmin/superadmin_url_config';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useRouter } from 'next/navigation';
@@ -11,16 +12,16 @@ import {
 import type { SuperadminDashboardSidebarProps as SidebarProps } from '@/app/superadmin/superadmin_dashboard/superadmin_dashboard_types/SuperadminDashboardTypes';
 
 const NAV_ITEMS = [
-  { href: '/superadmin/superadmin_dashboard',       icon: LayoutDashboard, label: 'Dashboard'         },
-  { href: '/superadmin/superadmin_setup-wizard',    icon: Wand2,           label: 'Setup Wizard'      },
-  { href: '/superadmin/superadmin_libraries',       icon: Building2,       label: 'Libraries'         },
-  { href: '/superadmin/superadmin_subscriptions',   icon: CreditCard,      label: 'Subscriptions'     },
-  { href: '/superadmin/superadmin_billing',         icon: Receipt,         label: 'Billing'           },
-  { href: '/superadmin/superadmin_support-tickets', icon: HeadphonesIcon,  label: 'Support Tickets'   },
-  { href: '/superadmin/superadmin_audit-logs',      icon: ScrollText,      label: 'Audit Logs'        },
-  { href: '/superadmin/superadmin_system-health',   icon: Activity,        label: 'System Health'     },
-  { href: '/superadmin/superadmin_reports',         icon: BarChart2,       label: 'Reports'           },
-  { href: '/superadmin/superadmin_settings',        icon: Settings,        label: 'Platform Settings' },
+  { href: SUPERADMIN_ROUTES.PREFIX + '_dashboard',       icon: LayoutDashboard, label: 'Dashboard'         },
+  { href: SUPERADMIN_ROUTES.PREFIX + '_setup-wizard',    icon: Wand2,           label: 'Setup Wizard'      },
+  { href: SUPERADMIN_ROUTES.LIBRARIES,       icon: Building2,       label: 'Libraries'         },
+  { href: SUPERADMIN_ROUTES.SUBSCRIPTIONS,   icon: CreditCard,      label: 'Subscriptions'     },
+  { href: SUPERADMIN_ROUTES.BILLING,         icon: Receipt,         label: 'Billing'           },
+  { href: SUPERADMIN_ROUTES.PREFIX + '_support-tickets', icon: HeadphonesIcon,  label: 'Support Tickets'   },
+  { href: SUPERADMIN_ROUTES.AUDIT_LOGS,      icon: ScrollText,      label: 'Audit Logs'        },
+  { href: SUPERADMIN_ROUTES.SYSTEM_HEALTH,   icon: Activity,        label: 'System Health'     },
+  { href: SUPERADMIN_ROUTES.REPORTS,         icon: BarChart2,       label: 'Reports'           },
+  { href: SUPERADMIN_ROUTES.PREFIX + '_settings',        icon: Settings,        label: 'Platform Settings' },
 ];
 
 export default function Sidebar({ open }: SidebarProps) {
@@ -87,7 +88,7 @@ export default function Sidebar({ open }: SidebarProps) {
             <p className="text-sm text-text-secondary leading-relaxed mb-4">Are you sure you want to log out of the Super Admin panel?</p>
             <div className="flex gap-3 mt-4 w-full">
               <button className="px-3 py-1.5 text-[13px] rounded-lg font-medium transition-colors border border-border text-text-secondary bg-transparent hover:bg-bg-elevated hover:text-text-primary flex-1" onClick={() => setShowLogout(false)}>Cancel</button>
-              <button className="px-3 py-1.5 text-[13px] rounded-lg font-medium transition-colors border border-border text-danger bg-transparent hover:bg-danger hover:text-white flex-1" onClick={() => router.push('/auth/login')}>Log out</button>
+              <button className="px-3 py-1.5 text-[13px] rounded-lg font-medium transition-colors border border-border text-danger bg-transparent hover:bg-danger hover:text-white flex-1" onClick={() => router.push(SUPERADMIN_ROUTES.AUTH_LOGIN)}>Log out</button>
             </div>
           </div>
         </div>

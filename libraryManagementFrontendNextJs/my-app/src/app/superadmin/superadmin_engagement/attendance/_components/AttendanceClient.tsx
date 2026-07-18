@@ -1,22 +1,17 @@
 // RESPONSIBILITY: Renders the AttendanceClient component.
 'use client';
-
-import { useState } from 'react';
 import Link from 'next/link';
+import { SUPERADMIN_ROUTES } from '@/app/superadmin/superadmin_url_config';
 import { ChevronRight, Save, FileBarChart2, Bell, CheckCircle, Clock } from 'lucide-react';
-import { SUPERADMIN_ENGAGEMENT_MOCK_ATTENDANCE } from '@superadmin/superadmin_engagement/superadmin_engagement_data/SuperadminEngagementMockData';
 import { SuperadminSearchableDropdown } from '@/app/superadmin/superadmin_shared_components/SuperadminSearchableDropdown';
-import type { SuperadminEngagementStudent as Student, SuperadminEngagementAttStatus as AttStatus } from '@/app/superadmin/superadmin_engagement/superadmin_engagement_types/SuperadminEngagementTypes';
-
-const today = new Date().toISOString().split('T')[0];
+import { useAttendanceClient } from '@/app/superadmin/superadmin_engagement/attendance/_components/useAttendanceClient';
+import type { SuperadminEngagementAttStatus as AttStatus } from '@/app/superadmin/superadmin_engagement/superadmin_engagement_types/SuperadminEngagementTypes';
 
 export function AttendanceClient() {
-
-  const [date, setDate]         = useState(today);
-  const [shift, setShift]       = useState('All');
-  const [students, setStudents] = useState<Student[]>(SUPERADMIN_ENGAGEMENT_MOCK_ATTENDANCE as Student[]);
-  const [saved, setSaved]       = useState(false);
-  const [alerted, setAlerted]   = useState<Set<string>>(new Set());
+  const {
+    date, setDate, shift, setShift, students, saved, alerted,
+    setStatus, setField, handleAlert, handleSave
+  } = useAttendanceClient();
 
   const filtered = shift === 'All' ? students : students.filter(s => s.shift === shift);
   const marked   = filtered.filter(s => s.status !== null).length;
@@ -24,77 +19,60 @@ export function AttendanceClient() {
   const absent   = filtered.filter(s => s.status === 'absent').length;
   const late     = filtered.filter(s => s.status === 'late').length;
 
-  const setStatus = (id: string, status: AttStatus) =>
-    setStudents(p => p.map(( s ) => s.id === id ? { ...s, status } : s));
-
-  const setField = (id: string, field: 'inTime'|'outTime', val: string) =>
-    setStudents(p => p.map(( s ) => s.id === id ? { ...s, [field]: val } : s));
-
-  const handleAlert = (id: string) => setAlerted(p => new Set(p).add(id));
-
-  const handleSave = () => {
-    setSaved(true);
-    setTimeout(() => setSaved(false), 2500);
-  };
-
   return (
-    <div className="eng-page">
+    <div className="p-4 sm:p-6 min-h-screen bg-bg-page animate-in fade-in duration-200 pb-24">
       {/* ── Breadcrumb ── */}
-      <div className="eng-breadcrumb">
-        <Link href="/superadmin/superadmin_engagement/attendance">Engagement</Link>
-        <ChevronRight size={12} className="eng-breadcrumb-sep" />
-        <span>Attendance</span>
+      <div className="flex items-center gap-2 text-text-secondary text-[12px] font-bold tracking-wide mb-6">
+        <Link href={SUPERADMIN_ROUTES.ENGAGEMENT_ATTENDANCE} className="hover:text-primary transition-colors">Engagement</Link>
+        <ChevronRight size={12} className="opacity-50" />
+        <span className="text-text-primary">Attendance</span>
       </div>
 
       {/* ── Page Header ── */}
-      <div className="eng-page-header">
-        <div className="eng-page-title-row">
-          <div>
-            <h1 className="eng-page-title">📅 Daily Attendance</h1>
-            <p className="eng-page-subtitle">Mark attendance for all enrolled students by shift.</p>
-          </div>
-          <div className="eng-page-actions">
-            <Link href="/superadmin/superadmin_engagement/absentee-report" className="eng-btn eng-btn--ghost eng-btn--sm">
-              <FileBarChart2 size={14} /> Absentee Report
-            </Link>
-          </div>
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
+        <div>
+          <h1 className="text-[28px] font-extrabold text-text-primary tracking-tight">📅 Daily Attendance</h1>
+          <p className="text-[14px] text-text-secondary mt-1">Mark attendance for all enrolled students by shift.</p>
         </div>
+        <Link href={SUPERADMIN_ROUTES.ENGAGEMENT_ABSENTEE_REPORT} className="flex items-center justify-center gap-2 px-4 py-2 bg-input text-text-primary text-[14px] font-bold rounded-[var(--radius-md)] hover:bg-input/80 border border-border shadow-sm transition-all cursor-pointer">
+          <FileBarChart2 size={16} /> Absentee Report
+        </Link>
       </div>
 
       {/* ── KPI Stats ── */}
-      <div className="eng-stats-row">
-        <div className="eng-stat-card">
-          <div className="eng-stat-label">Total Students</div>
-          <div className="eng-stat-value">{filtered.length}</div>
-          <div className="eng-stat-sub">{shift} shift</div>
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+        <div className="bg-card border border-border rounded-[var(--radius-lg)] p-4 shadow-sm">
+          <div className="text-[12px] font-bold text-text-secondary uppercase tracking-wider">Total Students</div>
+          <div className="text-[28px] font-extrabold text-text-primary mt-2 leading-none">{filtered.length}</div>
+          <div className="text-[12px] text-text-secondary mt-2">{shift} shift</div>
         </div>
-        <div className="eng-stat-card">
-          <div className="eng-stat-label">Present</div>
-          <div className="eng-stat-value eng-stat-value--success">{present}</div>
-          <div className="eng-stat-sub">{filtered.length ? Math.round(present/filtered.length*100) : 0}% rate</div>
+        <div className="bg-card border border-border rounded-[var(--radius-lg)] p-4 shadow-sm">
+          <div className="text-[12px] font-bold text-text-secondary uppercase tracking-wider">Present</div>
+          <div className="text-[28px] font-extrabold text-success mt-2 leading-none">{present}</div>
+          <div className="text-[12px] text-text-secondary mt-2">{filtered.length ? Math.round(present/filtered.length*100) : 0}% rate</div>
         </div>
-        <div className="eng-stat-card">
-          <div className="eng-stat-label">Absent</div>
-          <div className="eng-stat-value eng-stat-value--danger">{absent}</div>
-          <div className="eng-stat-sub">{filtered.filter(s=>s.consecutiveAbsent>=3).length} need alerts</div>
+        <div className="bg-card border border-border rounded-[var(--radius-lg)] p-4 shadow-sm">
+          <div className="text-[12px] font-bold text-text-secondary uppercase tracking-wider">Absent</div>
+          <div className="text-[28px] font-extrabold text-danger mt-2 leading-none">{absent}</div>
+          <div className="text-[12px] text-text-secondary mt-2">{filtered.filter(s=>s.consecutiveAbsent>=3).length} need alerts</div>
         </div>
-        <div className="eng-stat-card">
-          <div className="eng-stat-label">Late</div>
-          <div className="eng-stat-value eng-stat-value--warning">{late}</div>
-          <div className="eng-stat-sub">{marked}/{filtered.length} marked</div>
+        <div className="bg-card border border-border rounded-[var(--radius-lg)] p-4 shadow-sm">
+          <div className="text-[12px] font-bold text-text-secondary uppercase tracking-wider">Late</div>
+          <div className="text-[28px] font-extrabold text-warning mt-2 leading-none">{late}</div>
+          <div className="text-[12px] text-text-secondary mt-2">{marked}/{filtered.length} marked</div>
         </div>
       </div>
 
       {/* ── Filters ── */}
-      <div className="eng-card eng-card--flush eng-mb-6">
-        <div className="eng-filter-row">
-          <div className="eng-filter-field">
-            <label className="eng-label">Date</label>
-            <input type="date" className="eng-input" value={date}
+      <div className="bg-card border border-border rounded-[var(--radius-xl)] shadow-sm p-4 mb-6">
+        <div className="flex flex-col md:flex-row md:items-end gap-4 lg:gap-6">
+          <div className="space-y-1.5 flex-1 max-w-[200px]">
+            <label className="text-[12px] font-bold text-text-secondary uppercase tracking-wider">Date</label>
+            <input type="date" className="w-full h-10 px-3 bg-input border border-border rounded-[var(--radius-md)] text-[14px] font-medium text-text-primary focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all" value={date}
               onChange={e => setDate(e.target.value)} />
           </div>
-          <div className="eng-filter-field w-40">
-            <label className="eng-label">Shift</label>
+          <div className="space-y-1.5 flex-1 max-w-[200px]">
+            <label className="text-[12px] font-bold text-text-secondary uppercase tracking-wider">Shift</label>
             <SuperadminSearchableDropdown
               options={[
                 { label: 'All', value: 'All' },
@@ -106,84 +84,103 @@ export function AttendanceClient() {
               onChange={setShift}
             />
           </div>
-          <div className="eng-filter-badges">
-            <span className="eng-badge eng-badge--success">{present} Present</span>
-            <span className="eng-badge eng-badge--danger">{absent} Absent</span>
-            <span className="eng-badge eng-badge--warning">{late} Late</span>
+          <div className="flex-1 flex flex-wrap items-center gap-2 md:justify-end pb-2">
+            <span className="px-2.5 py-1 text-[12px] font-bold rounded bg-success/10 text-success">{present} Present</span>
+            <span className="px-2.5 py-1 text-[12px] font-bold rounded bg-danger/10 text-danger">{absent} Absent</span>
+            <span className="px-2.5 py-1 text-[12px] font-bold rounded bg-warning/10 text-warning">{late} Late</span>
           </div>
         </div>
       </div>
 
       {/* ── Student List ── */}
-      <div className="eng-card eng-card--flush">
-        <div className="eng-att-list">
+      <div className="bg-card border border-border rounded-[var(--radius-xl)] shadow-sm overflow-hidden">
+        <div className="divide-y divide-border">
           {filtered.length === 0 ? (
-            <div className="eng-empty">
-              <div className="eng-empty-icon">📅</div>
-              <p className="eng-empty-title">No students in this shift</p>
-              <p className="eng-empty-sub">Try selecting a different shift or date.</p>
+            <div className="p-12 flex flex-col items-center justify-center text-center">
+              <div className="text-4xl mb-4 opacity-50">📅</div>
+              <p className="text-[16px] font-extrabold text-text-primary">No students in this shift</p>
+              <p className="text-[14px] text-text-secondary mt-1">Try selecting a different shift or date.</p>
             </div>
           ) : filtered.map(( s ) => {
             const isAlert = s.consecutiveAbsent >= 3;
             const hasAlerted = alerted.has(s.id);
             return (
-              <div key={s.id} className={`eng-att-row${isAlert ? ' eng-att-row--alert' : ''}`}>
+              <div key={s.id} className={`p-4 md:p-5 flex flex-col xl:flex-row xl:items-center gap-4 transition-colors hover:bg-input/30 ${isAlert ? 'bg-warning/5 border-l-4 border-l-warning' : 'border-l-4 border-l-transparent'}`}>
 
-                {/* Avatar */}
-                <div className="eng-att-avatar">{s.initials}</div>
-
-                {/* Info */}
-                <div className="eng-att-info">
-                  <div className="eng-att-name">{s.name}</div>
-                  <div className="eng-att-meta">{s.smartId} · {s.shift} shift</div>
-                </div>
-
-                {/* Status buttons */}
-                <div className="eng-seg-group">
-                  {(['present', 'absent', 'late'] as AttStatus[]).map(( st ) => (
-                    <button key={st} onClick={() => setStatus(s.id, st)}
-                      className={`eng-seg-btn${s.status === st ? ` eng-seg-btn--${st}` : ''} cursor-pointer`}>
-                      {st === 'present' ? <><CheckCircle size={12}/> Present</>
-                       : st === 'absent' ? '✕ Absent'
-                       : <><Clock size={12}/> Late</>}
-                    </button>
-                  ))}
-                </div>
-
-                {/* Time inputs */}
-                {(s.status === 'present' || s.status === 'late') && (
-                  <div className="eng-time-pair">
-                    <div className="eng-time-field">
-                      <span className="eng-label eng-label--no-margin">In</span>
-                      <input type="time" className="eng-time-input" value={s.inTime}
-                        onChange={e => setField(s.id, 'inTime', e.target.value)} />
+                {/* Left side: Avatar + Info */}
+                <div className="flex items-center gap-4 flex-1">
+                  <div className="h-10 w-10 sm:h-12 sm:w-12 shrink-0 rounded-full bg-primary/10 text-primary flex items-center justify-center text-[14px] sm:text-[16px] font-extrabold">
+                    {s.initials}
+                  </div>
+                  <div>
+                    <div className="text-[15px] font-extrabold text-text-primary">{s.name}</div>
+                    <div className="text-[12px] text-text-secondary mt-0.5 font-medium flex items-center gap-2">
+                      <span className="font-mono">{s.smartId}</span>
+                      <span className="w-1 h-1 rounded-full bg-text-secondary/50" />
+                      <span>{s.shift} shift</span>
                     </div>
-                    {s.status === 'present' && (
-                      <div className="eng-time-field">
-                        <span className="eng-label eng-label--no-margin">Out</span>
-                        <input type="time" className="eng-time-input" value={s.outTime}
-                          onChange={e => setField(s.id, 'outTime', e.target.value)} />
-                      </div>
-                    )}
                   </div>
-                )}
+                </div>
 
-                {/* Absent alert */}
-                {isAlert && (
-                  <div className="eng-att-alert">
-                    <span className="eng-badge eng-badge--warning">
-                      ⚠️ {s.consecutiveAbsent} days consecutive
-                    </span>
-                    {!hasAlerted ? (
-                      <button onClick={() => handleAlert(s.id)} className="eng-btn eng-btn--ghost eng-btn--sm cursor-pointer">
-                        <Bell size={12} /> Alert Parents
+                {/* Right side: Actions */}
+                <div className="flex flex-col sm:flex-row sm:items-center gap-4 xl:w-auto w-full">
+                  
+                  {/* Status buttons */}
+                  <div className="flex items-center rounded-[var(--radius-md)] border border-border p-1 bg-input self-start sm:self-auto shrink-0 overflow-x-auto max-w-full">
+                    {(['present', 'absent', 'late'] as AttStatus[]).map(( st ) => (
+                      <button key={st} onClick={() => setStatus(s.id, st)}
+                        className={`flex items-center gap-1.5 px-3 py-1.5 text-[12px] font-bold rounded-[var(--radius-sm)] transition-all cursor-pointer whitespace-nowrap ${
+                          s.status === st 
+                            ? (st === 'present' ? 'bg-success text-white shadow-sm' : st === 'absent' ? 'bg-danger text-white shadow-sm' : 'bg-warning text-white shadow-sm')
+                            : 'text-text-secondary hover:text-text-primary hover:bg-white/50'
+                        }`}>
+                        {st === 'present' ? <><CheckCircle size={14}/> Present</>
+                         : st === 'absent' ? '✕ Absent'
+                         : <><Clock size={14}/> Late</>}
                       </button>
-                    ) : (
-                      <span className="eng-badge eng-badge--success"><CheckCircle size={12} /> Parents Alerted</span>
-                    )}
+                    ))}
                   </div>
-                )}
 
+                  {/* Time inputs */}
+                  {(s.status === 'present' || s.status === 'late') && (
+                    <div className="flex items-center gap-3 animate-in fade-in zoom-in-95 shrink-0 bg-bg-card border border-border rounded-[var(--radius-md)] p-1.5 px-3 shadow-sm">
+                      <div className="flex items-center gap-2">
+                        <span className="text-[11px] font-bold text-text-secondary uppercase">In</span>
+                        <input type="time" className="bg-transparent text-[13px] font-bold text-text-primary outline-none cursor-pointer w-[75px]" value={s.inTime}
+                          onChange={e => setField(s.id, 'inTime', e.target.value)} />
+                      </div>
+                      {s.status === 'present' && (
+                        <>
+                          <div className="w-px h-4 bg-border" />
+                          <div className="flex items-center gap-2">
+                            <span className="text-[11px] font-bold text-text-secondary uppercase">Out</span>
+                            <input type="time" className="bg-transparent text-[13px] font-bold text-text-primary outline-none cursor-pointer w-[75px]" value={s.outTime}
+                              onChange={e => setField(s.id, 'outTime', e.target.value)} />
+                          </div>
+                        </>
+                      )}
+                    </div>
+                  )}
+
+                  {/* Absent alert */}
+                  {isAlert && (
+                    <div className="flex flex-col sm:items-end gap-1.5 shrink-0 animate-in fade-in">
+                      <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-warning/20 text-warning-foreground border border-warning/30 flex items-center gap-1 w-fit">
+                        ⚠️ {s.consecutiveAbsent} days consecutive
+                      </span>
+                      {!hasAlerted ? (
+                        <button onClick={() => handleAlert(s.id)} className="flex items-center gap-1.5 px-3 py-1.5 text-[11px] font-bold text-text-primary bg-bg-card border border-border rounded-[var(--radius-sm)] hover:bg-input transition-colors cursor-pointer shadow-sm w-fit">
+                          <Bell size={12} /> Alert Parents
+                        </button>
+                      ) : (
+                        <span className="flex items-center gap-1 px-3 py-1.5 text-[11px] font-bold text-success bg-success/10 rounded-[var(--radius-sm)] w-fit">
+                          <CheckCircle size={12} /> Parents Alerted
+                        </span>
+                      )}
+                    </div>
+                  )}
+
+                </div>
               </div>
             );
           })}
@@ -191,12 +188,12 @@ export function AttendanceClient() {
       </div>
 
       {/* ── Sticky Save Bar ── */}
-      <div className="eng-save-bar">
-        <p className="eng-save-bar-info">
-          <strong>{marked}</strong> of <strong>{filtered.length}</strong> marked for <strong>{date}</strong>
+      <div className="fixed bottom-0 left-0 right-0 lg:left-64 z-40 bg-card border-t border-border p-4 shadow-[0_-4px_10px_rgba(0,0,0,0.05)] flex items-center justify-between animate-in slide-in-from-bottom-full">
+        <p className="text-[14px] text-text-secondary">
+          <strong className="text-text-primary">{marked}</strong> of <strong className="text-text-primary">{filtered.length}</strong> marked for <strong className="text-text-primary font-mono">{date}</strong>
         </p>
-        <button onClick={handleSave} className="eng-btn eng-btn--primary cursor-pointer">
-          {saved ? <><CheckCircle size={15}/> Saved!</> : <><Save size={15}/> Save Attendance</>}
+        <button onClick={handleSave} className="flex items-center gap-2 px-6 py-2.5 bg-primary text-primary-foreground text-[14px] font-bold rounded-[var(--radius-md)] shadow-sm hover:bg-primary/90 transition-all active:scale-95 cursor-pointer">
+          {saved ? <><CheckCircle size={18}/> Saved!</> : <><Save size={18}/> Save Attendance</>}
         </button>
       </div>
     </div>

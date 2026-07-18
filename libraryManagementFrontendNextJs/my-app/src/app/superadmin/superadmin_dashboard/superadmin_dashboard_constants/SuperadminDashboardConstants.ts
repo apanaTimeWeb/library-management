@@ -1,38 +1,40 @@
+import { SUPERADMIN_ROUTES } from '@/app/superadmin/superadmin_url_config';
+
 export const SUPERADMIN_DASHBOARD_RECENT_ACTIVITY = [
   {
     type: 'success',
     title: 'New Library Registered',
     desc: 'StudyNest Patna — Pro Plan',
     time: '2 hours ago',
-    href: '/superadmin/superadmin_libraries',
+    href: SUPERADMIN_ROUTES.LIBRARIES,
   },
   {
     type: 'danger',
     title: 'Subscription Overdue',
     desc: 'Scholar Spaces — ₹999 due',
     time: '5 hours ago',
-    href: '/superadmin/superadmin_subscriptions',
+    href: SUPERADMIN_ROUTES.SUBSCRIPTIONS,
   },
   {
     type: 'warning',
     title: 'Support Ticket Opened',
     desc: 'TKT-991 — Payment Gateway Failing',
     time: '1 day ago',
-    href: '/superadmin/superadmin_support-tickets',
+    href: SUPERADMIN_ROUTES.SUPPORT_TICKETS,
   },
   {
     type: 'info',
     title: 'Automated Backup Completed',
     desc: 'DB Snapshot — AWS S3',
     time: '2 days ago',
-    href: '/superadmin/superadmin_system-health',
+    href: SUPERADMIN_ROUTES.SYSTEM_HEALTH,
   },
   {
     type: 'success',
     title: 'Plan Renewed',
     desc: 'The Alexandria Modern — Enterprise Annual',
     time: '3 days ago',
-    href: '/superadmin/superadmin_billing',
+    href: SUPERADMIN_ROUTES.BILLING,
   },
 ];
 

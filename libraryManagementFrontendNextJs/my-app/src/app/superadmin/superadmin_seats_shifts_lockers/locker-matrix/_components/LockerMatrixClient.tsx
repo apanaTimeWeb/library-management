@@ -8,6 +8,7 @@ import { User, KeyRound, LockKeyhole, Settings } from 'lucide-react';
 import toast from 'react-hot-toast';
 import { fetchApi } from '@/lib/api';
 import { logger } from '@/lib/logger';
+import { SUPERADMIN_API_ROUTES } from '@/app/superadmin/superadmin_url_config';
 import type { SuperadminSeatsLockerData, SuperadminSeatsActivityItem } from '@/app/superadmin/superadmin_seats_shifts_lockers/superadmin_seats_types/SuperadminSeatsShiftsLockersTypes';
 
 
@@ -35,7 +36,7 @@ export function LockerMatrixClient() {
   const [lockerData, setLockerData] = useState<SuperadminSeatsLockerData[]>([]);
 
   useEffect(() => {
-    fetchApi('/seats_shifts_lockers/lockers').then(( data: unknown ) => {
+    fetchApi(SUPERADMIN_API_ROUTES.SEATS_LOCKERS).then(( data: unknown ) => {
       const actualData = Array.isArray(data) ? data : (data as any)?.data;
       if (!Array.isArray(actualData) || actualData.length === 0 || actualData[0]?.id?.startsWith('MOCK-')) {
         const mockLockers = Array.from({ length: 120 }).map((_, i) => ({

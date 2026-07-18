@@ -2,6 +2,7 @@
 import React from 'react';
 import { TrendingUp } from 'lucide-react';
 import { useRouter } from 'next/navigation';
+import { SUPERADMIN_ROUTES } from '@/app/superadmin/superadmin_url_config';
 import { SuperadminSearchableDropdown } from '@/app/superadmin/superadmin_shared_components/SuperadminSearchableDropdown';
 
 import type { SuperadminExpensesFilterBarProps as Props } from '@/app/superadmin/superadmin_accounting/superadmin_accounting_types/SuperadminAccountingTypes';
@@ -24,7 +25,7 @@ export function SuperadminExpensesFilterBar({ categories, catFilter, setCatFilte
       </div>
       <button 
         className="flex items-center justify-center gap-2 bg-bg-page border border-border hover:bg-bg-input hover:border-primary text-text-primary text-sm font-bold py-2 px-4 rounded-[var(--radius-md)] transition-colors shadow-sm mt-auto cursor-pointer" 
-        onClick={() => router.push('/superadmin/superadmin_accounting/expense-categories')}
+        onClick={() => router.push(SUPERADMIN_ROUTES.ACCOUNTING_EXPENSE_CATEGORIES)}
       >
         <TrendingUp size={14} className="text-primary" /> View Categories
       </button>

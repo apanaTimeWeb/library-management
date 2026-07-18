@@ -1,6 +1,7 @@
 // RESPONSIBILITY: Renders the SuperadminDashboardActionItemsPanel component.
 import React from 'react';
 import Link from 'next/link';
+import { SUPERADMIN_ROUTES } from '@/app/superadmin/superadmin_url_config';
 import { AlertTriangle, CreditCard, Headphones, CloudUpload, ChevronRight, Lightbulb, ExternalLink } from 'lucide-react';
 import type { SuperadminDashboardActionItem, SuperadminDashboardActionItemsPanelProps as Props } from '@/app/superadmin/superadmin_dashboard/superadmin_dashboard_types/SuperadminDashboardTypes';
 
@@ -12,10 +13,10 @@ const ICON_MAP: Record<string, React.ElementType> = {
 };
 
 const ACTION_LINKS: Record<string, string> = {
-  'warning':         '/superadmin/superadmin_libraries',
-  'credit_card_off': '/superadmin/superadmin_subscriptions',
-  'support_agent':   '/superadmin/superadmin_support-tickets',
-  'cloud_upload':    '/superadmin/superadmin_system-health',
+  'warning':         SUPERADMIN_ROUTES.LIBRARIES,
+  'credit_card_off': SUPERADMIN_ROUTES.SUBSCRIPTIONS,
+  'support_agent':   SUPERADMIN_ROUTES.PREFIX + '_support-tickets',
+  'cloud_upload':    SUPERADMIN_ROUTES.SYSTEM_HEALTH,
 };
 
 export function SuperadminDashboardActionItemsPanel({ data }: Props) {
@@ -29,7 +30,7 @@ export function SuperadminDashboardActionItemsPanel({ data }: Props) {
         {data.map((item, i) => {
           const isError = item.type === 'error';
           const Icon = ICON_MAP[item.icon] ?? AlertTriangle;
-          const href = ACTION_LINKS[item.icon] ?? '/superadmin/superadmin_dashboard';
+          const href = ACTION_LINKS[item.icon] ?? (SUPERADMIN_ROUTES.PREFIX + '_dashboard');
           return (
             <Link key={i} href={href}
               className={`flex items-center justify-between p-4 rounded-[var(--radius-md)] border hover:-translate-y-0.5 transition-all duration-200 ${
@@ -56,7 +57,7 @@ export function SuperadminDashboardActionItemsPanel({ data }: Props) {
             5 newly registered libraries are yet to complete their initial setup wizard.
           </p>
         </div>
-        <Link href="/superadmin/superadmin_libraries" className="flex items-center justify-center gap-1.5 text-xs font-semibold text-primary hover:text-primary-hover transition-colors">
+        <Link href={SUPERADMIN_ROUTES.LIBRARIES} className="flex items-center justify-center gap-1.5 text-xs font-semibold text-primary hover:text-primary-hover transition-colors">
           <ExternalLink size={13} /> View All Activities
         </Link>
       </div>

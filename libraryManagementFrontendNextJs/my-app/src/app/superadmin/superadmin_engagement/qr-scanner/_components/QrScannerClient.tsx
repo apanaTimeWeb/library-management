@@ -1,62 +1,38 @@
 // RESPONSIBILITY: Renders the QrScannerClient component.
 'use client';
-  const [showManual, setShowManual] = useState(false);
+import Link from 'next/link';
+import { SUPERADMIN_ROUTES } from '@/app/superadmin/superadmin_url_config';
+import { ChevronRight, RefreshCw, CheckCircle, LogOut, X } from 'lucide-react';
+import { useQrScannerClient } from '@/app/superadmin/superadmin_engagement/qr-scanner/_components/useQrScannerClient';
 
-  const startScan = () => setScanState('scanning');
-
-  const simulateScan = () => {
-    if (scanState !== 'scanning') return;
-    setScanState('detected');
-    setResult(SUPERADMIN_ENGAGEMENT_MOCK_QR_STUDENT as ScanResult);
-  };
-
-  const markAttendance = (type: 'IN' | 'OUT') => {
-    const student = result;
-    if (!student) return;
-    const time = new Date().toLocaleTimeString('en-IN', { hour:'2-digit', minute:'2-digit' });
-    setSuccessMsg(`${student.name} marked ${type} at ${time}`);
-    setHistory(h => [{
-      name: student.name, type, time,
-      id: student.smartId + '-' + Date.now(),
-    }, ...h.slice(0, 4)]);
-    setScanState('success');
-    setTimeout(() => { setScanState('idle'); setResult(null); setSuccessMsg(''); }, 3000);
-  };
-
-  const handleManual = (type: 'IN' | 'OUT') => {
-    if (!manualId.trim()) return;
-    const time = new Date().toLocaleTimeString('en-IN', { hour:'2-digit', minute:'2-digit' });
-    setSuccessMsg(`Smart ID ${manualId} marked ${type} at ${time}`);
-    setHistory(h => [{ name: `#${manualId}`, type, time, id: manualId + Date.now() }, ...h.slice(0,4)]);
-    setScanState('success');
-    setManualId(''); setShowManual(false);
-    setTimeout(() => { setScanState('idle'); setSuccessMsg(''); }, 3000);
-  };
-
-  const reset = () => { setScanState('idle'); setResult(null); setSuccessMsg(''); };
+export default function QrScannerClient() {
+  const {
+    scanState, result, history, successMsg, manualId, setManualId, showManual, setShowManual,
+    startScan, simulateScan, markAttendance, handleManual, reset
+  } = useQrScannerClient();
 
   return (
-    <div className="eng-page">
+    <div className="p-4 sm:p-6 min-h-screen bg-bg-page animate-in fade-in zoom-in-95 duration-200">
       {/* ── Breadcrumb ── */}
-      <div className="eng-breadcrumb">
-        <Link href="/superadmin/superadmin_engagement/attendance">Engagement</Link>
-        <ChevronRight size={12} className="eng-breadcrumb-sep"/>
-        <span>QR Scanner</span>
+      <div className="flex items-center gap-2 text-text-secondary text-[12px] font-bold tracking-wide mb-6">
+        <Link href={SUPERADMIN_ROUTES.ENGAGEMENT_ATTENDANCE} className="hover:text-primary transition-colors">Engagement</Link>
+        <ChevronRight size={12} className="opacity-50" />
+        <span className="text-text-primary">QR Scanner</span>
       </div>
 
-      <div className="eng-page-header">
-        <h1 className="eng-page-title">📷 QR Scanner</h1>
-        <p className="eng-page-subtitle">Scan student ID cards to instantly mark attendance.</p>
+      <div className="mb-8">
+        <h1 className="text-[28px] font-extrabold text-text-primary tracking-tight">📷 QR Scanner</h1>
+        <p className="text-[14px] text-text-secondary mt-1">Scan student ID cards to instantly mark attendance.</p>
       </div>
 
-      <div className="eng-qr-page">
+      <div className="max-w-3xl mx-auto space-y-6">
 
         {/* ── Camera Viewport ── */}
-        <div className="eng-card eng-mb-4">
-          <div className="eng-card-header">
+        <div className="bg-card border border-border rounded-[var(--radius-xl)] shadow-sm overflow-hidden flex flex-col">
+          <div className="px-6 py-4 border-b border-border flex items-center justify-between bg-muted/30">
             <div>
-              <div className="eng-card-title">Camera Feed</div>
-              <div className="eng-card-desc">
+              <div className="text-[16px] font-extrabold text-text-primary">Camera Feed</div>
+              <div className="text-[12px] text-text-secondary mt-0.5">
                 {scanState === 'idle'     && 'Click Start Scan to activate camera'}
                 {scanState === 'scanning' && 'Point camera at student ID card QR code'}
                 {scanState === 'detected' && 'QR code detected — confirm attendance below'}
@@ -64,86 +40,89 @@
               </div>
             </div>
             {scanState !== 'idle' && (
-              <button onClick={reset} className="eng-btn eng-btn--ghost eng-btn--sm">
+              <button onClick={reset} className="flex items-center gap-2 px-3 py-1.5 text-[12px] font-bold text-text-secondary hover:text-text-primary hover:bg-input rounded-[var(--radius-md)] transition-colors cursor-pointer">
                 <RefreshCw size={13}/> Reset
               </button>
             )}
           </div>
 
           <div
-            className="eng-qr-viewport"
-            data-scanning={scanState === 'scanning' ? 'true' : undefined}
+            className={`relative bg-black aspect-video flex items-center justify-center overflow-hidden transition-all duration-300 ${scanState === 'scanning' ? 'cursor-pointer hover:bg-black/90' : ''}`}
             onClick={scanState === 'scanning' ? simulateScan : undefined}
           >
-            <div className="eng-qr-feed">
+            <div className="flex flex-col items-center justify-center text-center p-6 z-10">
               {scanState === 'success' ? (
-                <div className="eng-qr-success-anim">
-                  <CheckCircle size={72} className="eng-qr-success-icon"/>
-                  <p className="eng-qr-success-msg">{successMsg}</p>
+                <div className="flex flex-col items-center text-success animate-in zoom-in duration-300">
+                  <CheckCircle size={72} className="drop-shadow-lg" />
+                  <p className="mt-4 text-[18px] font-extrabold text-white drop-shadow-md">{successMsg}</p>
                 </div>
               ) : scanState === 'detected' ? (
-                <div className="eng-qr-success-anim">
-                  <div className="eng-qr-detected-icon">
+                <div className="flex flex-col items-center text-success animate-in zoom-in duration-300">
+                  <div className="bg-white rounded-full p-2 mb-4 shadow-[0_0_30px_rgba(34,197,94,0.5)]">
                     <CheckCircle size={48} className="text-success" />
                   </div>
-                  <p className="eng-qr-success-msg">QR Code Detected!</p>
+                  <p className="text-[18px] font-extrabold text-white drop-shadow-md">QR Code Detected!</p>
                 </div>
               ) : (
                 <>
-                  <div className="eng-qr-feed-icon">
+                  <div className={`text-5xl drop-shadow-lg transition-transform duration-500 ${scanState === 'scanning' ? 'scale-110' : 'opacity-50'}`}>
                     {scanState === 'scanning' ? '📷' : '🔲'}
                   </div>
-                  <p className="eng-qr-feed-label">
+                  <p className="text-[14px] font-bold text-white/80 mt-4 tracking-wide uppercase">
                     {scanState === 'idle' ? 'Camera inactive' : 'Tap to simulate scan'}
                   </p>
                   {scanState === 'scanning' && (
-                    <p className="eng-qr-feed-hint">Click anywhere in this area</p>
+                    <p className="text-[12px] text-white/50 mt-2 font-medium">Click anywhere in this area</p>
                   )}
                 </>
               )}
             </div>
 
             {/* Corner guides */}
-            <div className="eng-corner eng-corner--tl"/>
-            <div className="eng-corner eng-corner--tr"/>
-            <div className="eng-corner eng-corner--bl"/>
-            <div className="eng-corner eng-corner--br"/>
+            <div className="absolute top-8 left-8 w-12 h-12 border-t-4 border-l-4 border-primary rounded-tl-[var(--radius-lg)] opacity-50" />
+            <div className="absolute top-8 right-8 w-12 h-12 border-t-4 border-r-4 border-primary rounded-tr-[var(--radius-lg)] opacity-50" />
+            <div className="absolute bottom-8 left-8 w-12 h-12 border-b-4 border-l-4 border-primary rounded-bl-[var(--radius-lg)] opacity-50" />
+            <div className="absolute bottom-8 right-8 w-12 h-12 border-b-4 border-r-4 border-primary rounded-br-[var(--radius-lg)] opacity-50" />
 
             {/* Scan animation line */}
-            {scanState === 'scanning' && <div className="eng-scan-line"/>}
+            {scanState === 'scanning' && <div className="absolute left-0 right-0 h-0.5 bg-primary/70 shadow-[0_0_15px_rgba(var(--color-primary),0.8)] animate-[scan_2.5s_ease-in-out_infinite] pointer-events-none" />}
           </div>
 
           {/* Start button */}
           {scanState === 'idle' && (
-            <button onClick={startScan} className="eng-btn eng-btn--primary eng-qr-start-btn">
-              📷 Start Scanning
-            </button>
+            <div className="p-4 border-t border-border flex justify-center bg-muted/20">
+              <button onClick={startScan} className="flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground text-[14px] font-bold rounded-[var(--radius-full)] hover:bg-primary/90 hover:scale-105 hover:shadow-lg transition-all active:scale-95 cursor-pointer">
+                📷 Start Scanning
+              </button>
+            </div>
           )}
         </div>
 
         {/* ── Detected Student Card ── */}
         {scanState === 'detected' && result && (
-          <div className="eng-result-card">
-            <div className="eng-result-header">
-              <div className="eng-result-avatar">{result.initials}</div>
-              <div className="eng-result-info">
-                <div className="eng-result-name">{result.name}</div>
-                <div className="eng-result-meta">
-                  <span className="eng-result-id">{result.smartId}</span>
-                  <span className="eng-badge eng-badge--primary">{result.shift}</span>
-                  <span className="eng-badge eng-badge--success">{result.plan}</span>
+          <div className="bg-card border-2 border-primary rounded-[var(--radius-xl)] shadow-lg overflow-hidden animate-in slide-in-from-bottom-4 duration-300">
+            <div className="p-5 flex items-center justify-between border-b border-border bg-primary/5">
+              <div className="flex items-center gap-4">
+                <div className="h-12 w-12 rounded-full bg-primary/20 flex items-center justify-center text-[18px] font-extrabold text-primary shadow-inner">{result.initials}</div>
+                <div>
+                  <div className="text-[18px] font-extrabold text-text-primary">{result.name}</div>
+                  <div className="flex items-center gap-2 mt-1 flex-wrap">
+                    <span className="text-[12px] font-bold text-text-secondary font-mono">{result.smartId}</span>
+                    <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-primary/10 text-primary uppercase tracking-wider">{result.shift}</span>
+                    <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-success/10 text-success uppercase tracking-wider">{result.plan}</span>
+                  </div>
+                  <div className="text-[11px] text-text-secondary mt-1">Valid till: <span className="font-medium text-text-primary">{result.validTill}</span></div>
                 </div>
-                <div className="eng-result-valid">Valid till: {result.validTill}</div>
               </div>
-              <button onClick={reset} className="eng-btn eng-btn--icon">
-                <X size={15}/>
+              <button onClick={reset} className="h-8 w-8 rounded-full hover:bg-input flex items-center justify-center text-text-secondary hover:text-text-primary transition-colors cursor-pointer self-start">
+                <X size={16}/>
               </button>
             </div>
-            <div className="eng-result-actions">
-              <button onClick={() => markAttendance('IN')} className="eng-btn eng-btn--success">
+            <div className="p-4 bg-muted/30 flex items-center gap-3 justify-end">
+              <button onClick={() => markAttendance('IN')} className="flex items-center gap-2 px-5 py-2.5 bg-success text-white text-[13px] font-bold rounded-[var(--radius-md)] hover:bg-success/90 hover:shadow-md transition-all active:scale-95 cursor-pointer">
                 <CheckCircle size={16} /> Mark IN
               </button>
-              <button onClick={() => markAttendance('OUT')} className="eng-btn eng-btn--danger">
+              <button onClick={() => markAttendance('OUT')} className="flex items-center gap-2 px-5 py-2.5 bg-danger text-white text-[13px] font-bold rounded-[var(--radius-md)] hover:bg-danger/90 hover:shadow-md transition-all active:scale-95 cursor-pointer">
                 <LogOut size={16} /> Mark OUT
               </button>
             </div>
@@ -152,46 +131,60 @@
 
         {/* ── Recent History ── */}
         {history.length > 0 && (
-          <div className="eng-card eng-mt-4">
-            <div className="eng-card-title eng-mb-4">Recent Scans</div>
-            {history.map(( h: unknown ) => (
-              <div key={h.id} className="eng-scan-history-row">
-                <span className={`eng-badge ${h.type==='IN' ? 'eng-badge--success' : 'eng-badge--danger'}`}>
-                  {h.type}
-                </span>
-                <span className="eng-flex-1">{h.name}</span>
-                <span className="eng-td-muted">{h.time}</span>
-              </div>
-            ))}
+          <div className="bg-card border border-border rounded-[var(--radius-lg)] p-5 shadow-sm">
+            <div className="text-[14px] font-extrabold text-text-primary mb-4 flex items-center gap-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-primary" />
+              Recent Scans
+            </div>
+            <div className="space-y-2">
+              {history.map((h: any) => (
+                <div key={h.id} className="flex items-center gap-4 p-3 rounded-[var(--radius-md)] border border-border/50 bg-input/30 hover:bg-input transition-colors">
+                  <span className={`px-2.5 py-1 rounded-[var(--radius-sm)] text-[10px] font-bold uppercase tracking-wider w-14 text-center ${h.type==='IN' ? 'bg-success/10 text-success' : 'bg-danger/10 text-danger'}`}>
+                    {h.type}
+                  </span>
+                  <span className="flex-1 text-[13px] font-bold text-text-primary truncate">{h.name}</span>
+                  <span className="text-[11px] font-medium text-text-secondary">{h.time}</span>
+                </div>
+              ))}
+            </div>
           </div>
         )}
 
         {/* ── Manual Fallback ── */}
-        <div className="eng-manual-toggle">
+        <div className="flex justify-center pt-2">
           {!showManual ? (
-            <button onClick={() => setShowManual(true)} className="eng-link-btn">
+            <button onClick={() => setShowManual(true)} className="text-[12px] font-bold text-primary hover:text-primary/80 transition-colors cursor-pointer hover:underline underline-offset-4">
               Can't scan? Enter Smart ID manually →
             </button>
           ) : (
-            <div className="eng-card eng-manual-card">
-              <div className="eng-card-title--manual">Manual Entry</div>
-              <div className="eng-field">
-                <label className="eng-label">Smart ID <span className="eng-required">*</span></label>
-                <input className="eng-input" placeholder="e.g. SL-001"
-                  value={manualId} onChange={e => setManualId(e.target.value)}
-                  onKeyDown={e => e.key === 'Enter' && handleManual('IN')} />
+            <div className="w-full bg-card border border-border rounded-[var(--radius-lg)] p-5 shadow-sm animate-in zoom-in-95 duration-200">
+              <div className="text-[14px] font-extrabold text-text-primary mb-4 border-b border-border pb-3">Manual Entry</div>
+              <div className="space-y-2 mb-5">
+                <label className="text-[12px] font-bold text-text-primary flex gap-1">Smart ID <span className="text-danger">*</span></label>
+                <input 
+                  className="w-full h-10 px-3 bg-input border border-border rounded-[var(--radius-md)] text-[14px] text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition-all placeholder:text-text-secondary" 
+                  placeholder="e.g. SL-001"
+                  value={manualId} 
+                  onChange={e => setManualId(e.target.value)}
+                  onKeyDown={e => e.key === 'Enter' && handleManual('IN')} 
+                />
               </div>
-              <div className="eng-manual-actions">
+              <div className="flex items-center gap-3">
                 <button onClick={() => handleManual('IN')} disabled={!manualId.trim()}
-                  className="eng-btn eng-btn--success"><CheckCircle size={14} /> Mark IN</button>
+                  className="flex-1 flex items-center justify-center gap-2 px-4 py-2 bg-success text-white text-[13px] font-bold rounded-[var(--radius-md)] hover:bg-success/90 hover:shadow-md transition-all active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer">
+                  <CheckCircle size={16} /> Mark IN
+                </button>
                 <button onClick={() => handleManual('OUT')} disabled={!manualId.trim()}
-                  className="eng-btn eng-btn--danger"><LogOut size={14} /> Mark OUT</button>
-                <button onClick={() => setShowManual(false)} className="eng-btn eng-btn--ghost">Cancel</button>
+                  className="flex-1 flex items-center justify-center gap-2 px-4 py-2 bg-danger text-white text-[13px] font-bold rounded-[var(--radius-md)] hover:bg-danger/90 hover:shadow-md transition-all active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer">
+                  <LogOut size={16} /> Mark OUT
+                </button>
+                <button onClick={() => setShowManual(false)} className="px-4 py-2 text-[13px] font-bold text-text-secondary hover:text-text-primary hover:bg-input border border-transparent hover:border-border rounded-[var(--radius-md)] transition-colors cursor-pointer">
+                  Cancel
+                </button>
               </div>
             </div>
           )}
         </div>
-
       </div>
     </div>
   );

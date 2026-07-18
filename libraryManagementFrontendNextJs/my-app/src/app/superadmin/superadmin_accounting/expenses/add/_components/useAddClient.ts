@@ -3,6 +3,7 @@
  */
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { SUPERADMIN_ROUTES } from '@/app/superadmin/superadmin_url_config';
 import toast from 'react-hot-toast';
 
 export const CATEGORIES = ['Electricity', 'Maintenance', 'Stationery', 'Internet', 'Cleaning', 'Salary', 'Rent', 'Miscellaneous'];
@@ -20,12 +21,12 @@ export function useAddClient() {
     setSaving(true);
     setTimeout(() => {
       toast.success('Expense recorded successfully.');
-      router.push('/superadmin/superadmin_accounting/expenses');
+      router.push(SUPERADMIN_ROUTES.ACCOUNTING_EXPENSES);
     }, 700);
   };
 
   const handleCancel = () => {
-    router.push('/superadmin/superadmin_accounting/expenses');
+    router.push(SUPERADMIN_ROUTES.ACCOUNTING_EXPENSES);
   };
 
   return {

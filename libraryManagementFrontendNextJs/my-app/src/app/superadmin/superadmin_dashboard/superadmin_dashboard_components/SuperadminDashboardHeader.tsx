@@ -1,6 +1,7 @@
 // RESPONSIBILITY: Renders the SuperadminDashboardHeader component.
 import React from 'react';
 import Link from 'next/link';
+import { SUPERADMIN_ROUTES } from '@/app/superadmin/superadmin_url_config';
 import { Activity } from 'lucide-react';
 
 export function SuperadminDashboardHeader() {
@@ -11,7 +12,7 @@ export function SuperadminDashboardHeader() {
       </div>
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <h1 className="text-2xl font-extrabold text-text-primary tracking-tight">Platform Overview</h1>
-        <Link href="/superadmin/superadmin_audit-logs" className="inline-flex items-center gap-2 bg-bg-card border border-border hover:bg-bg-input hover:border-primary text-text-primary text-sm font-semibold px-4 py-2.5 rounded-[var(--radius-md)] transition-all duration-200">
+        <Link href={SUPERADMIN_ROUTES.AUDIT_LOGS} className="inline-flex items-center gap-2 bg-bg-card border border-border hover:bg-bg-input hover:border-primary text-text-primary text-sm font-semibold px-4 py-2.5 rounded-[var(--radius-md)] transition-all duration-200">
           <Activity size={16} className="text-primary" /> View Audit Logs
         </Link>
       </div>

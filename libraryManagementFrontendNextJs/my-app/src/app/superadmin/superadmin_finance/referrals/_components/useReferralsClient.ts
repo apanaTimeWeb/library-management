@@ -1,6 +1,7 @@
 /**
  * RESPONSIBILITY: Logic and state management for the ReferralsClient component.
  */
+import { SUPERADMIN_API_ROUTES } from '@/app/superadmin/superadmin_url_config';
 import { useState, useEffect } from 'react';
 import { fetchApi } from '@/lib/api';
 import { logger } from '@/lib/logger';
@@ -18,7 +19,7 @@ export function useReferralsClient() {
   const [payoutDialog, setPayoutDialog] = useState<{ id: number; name: string; amount: number } | null>(null);
 
   useEffect(() => {
-    fetchApi('/finance/referrals').then(( data: any ) => {
+    fetchApi(SUPERADMIN_API_ROUTES.FINANCE_REFERRALS).then(( data: any ) => {
       const actualData = Array.isArray(data) ? data : data?.data;
       if (!Array.isArray(actualData) || actualData.length === 0 || String(actualData[0]?.id).startsWith('MOCK-')) {
         setAllReferrals(SUPERADMIN_FINANCE_MOCK_REFERRALS as SuperadminFinanceReferral[]);

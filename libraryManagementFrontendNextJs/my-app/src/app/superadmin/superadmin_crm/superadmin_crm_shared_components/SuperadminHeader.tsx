@@ -5,12 +5,12 @@ import type { SuperadminCrmHeaderProps as HeaderProps } from '@/app/superadmin/s
 
 export default function SuperadminHeader({ onMenuClick }: HeaderProps) {
   return (
-    <header className="crm-header">
+    <header className="fixed top-0 left-0 right-0 h-16 bg-primary text-primary-foreground z-40 flex items-center justify-between px-4 shadow-md lg:ml-64 transition-all">
       {/* ── Brand ── */}
-      <div className="crm-header-brand">
+      <div className="flex items-center gap-3">
         {/* Hamburger (mobile only) */}
         <button
-          className="crm-hamburger"
+          className="lg:hidden p-2 hover:bg-white/10 rounded-full transition-colors cursor-pointer focus:outline-none focus:ring-2 focus:ring-white/50"
           onClick={onMenuClick}
           title="Toggle sidebar"
           aria-label="Toggle sidebar"
@@ -18,7 +18,7 @@ export default function SuperadminHeader({ onMenuClick }: HeaderProps) {
           <Menu size={20} />
         </button>
 
-        <div className="crm-header-logo">
+        <div className="h-8 w-8 rounded-[var(--radius-md)] bg-white/20 flex items-center justify-center backdrop-blur-sm border border-white/10 shadow-inner">
           <svg
             width="18"
             height="18"
@@ -34,27 +34,27 @@ export default function SuperadminHeader({ onMenuClick }: HeaderProps) {
           </svg>
         </div>
 
-        <span className="crm-header-title">Smart Library 360</span>
+        <span className="text-[18px] font-extrabold tracking-tight hidden sm:block">Smart Library 360</span>
       </div>
 
       {/* ── Right section ── */}
-      <div className="crm-header-right">
+      <div className="flex items-center gap-4">
         {/* Branch chip */}
-        <div className="crm-header-branch">
-          <Building2 size={14} />
+        <div className="hidden md:flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/10 text-[12px] font-bold border border-white/10 backdrop-blur-sm">
+          <Building2 size={14} className="opacity-80" />
           <span>Downtown Hub</span>
         </div>
 
         {/* Bell */}
-        <button className="crm-header-bell" title="Notifications" aria-label="Notifications">
+        <button className="relative p-2 hover:bg-white/10 rounded-full transition-colors cursor-pointer focus:outline-none focus:ring-2 focus:ring-white/50" title="Notifications" aria-label="Notifications">
           <BellRing size={18} />
-          <span className="crm-header-bell-dot" />
+          <span className="absolute top-2 right-2 h-2.5 w-2.5 rounded-full bg-danger border-2 border-primary" />
         </button>
 
         {/* Avatar + name */}
-        <div className="crm-header-user">
-          <div className="crm-header-avatar">LA</div>
-          <span className="crm-header-username">Library Admin</span>
+        <div className="flex items-center gap-3 pl-4 border-l border-white/20">
+          <div className="h-8 w-8 rounded-full bg-white/20 flex items-center justify-center text-[12px] font-bold border border-white/30">LA</div>
+          <span className="text-[14px] font-bold hidden sm:block">Library Admin</span>
         </div>
       </div>
     </header>

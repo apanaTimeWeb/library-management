@@ -2,6 +2,7 @@
  * RESPONSIBILITY: Logic and state management for Enquiries add form.
  */
 import { useRouter } from 'next/navigation';
+import { SUPERADMIN_ROUTES } from '@/app/superadmin/superadmin_url_config';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import toast from 'react-hot-toast';
@@ -25,10 +26,10 @@ export function useAddClient() {
     await new Promise((r) => setTimeout(r, 800));
 
     toast.success('Lead saved successfully!');
-    setTimeout(() => router.push('/superadmin/superadmin_crm/enquiries'), 600);
+    setTimeout(() => router.push(SUPERADMIN_ROUTES.CRM_ENQUIRIES), 600);
   };
 
-  const handleClose = () => router.push('/superadmin/superadmin_crm/enquiries');
+  const handleClose = () => router.push(SUPERADMIN_ROUTES.CRM_ENQUIRIES);
 
   return {
     register,

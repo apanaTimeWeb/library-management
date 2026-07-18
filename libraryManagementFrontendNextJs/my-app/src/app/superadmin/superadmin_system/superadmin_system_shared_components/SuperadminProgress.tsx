@@ -6,9 +6,9 @@ import { SuperadminProgressProps } from '@/app/superadmin/superadmin_system/supe
 export function SuperadminProgress({ value, max = 100, className, barClassName }: SuperadminProgressProps & { max?: number; className?: string; barClassName?: string }) {
   const pct = Math.min(100, Math.max(0, (value / max) * 100));
   return (
-    <div className={cn('sys-progress-track', className)}>
+    <div className={cn('relative h-2 w-full overflow-hidden rounded-full bg-secondary/30', className)}>
       <div
-        className={cn('sys-progress-fill', barClassName)}
+        className={cn('h-full w-full flex-1 bg-primary transition-all duration-500 ease-in-out', barClassName)}
         style={{ width: `${pct}%` }}
       />
     </div>

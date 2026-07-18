@@ -1,12 +1,11 @@
 // RESPONSIBILITY: Renders the HolidayCalendarClient component.
 'use client';
 
-import { useState } from 'react';
 import Link from 'next/link';
+import { SUPERADMIN_ROUTES } from '@/app/superadmin/superadmin_url_config';
 import { ChevronRight, ChevronLeft, Plus, X, Trash2, CalendarDays } from 'lucide-react';
-import { SUPERADMIN_ENGAGEMENT_MOCK_HOLIDAYS } from '@superadmin/superadmin_engagement/superadmin_engagement_data/SuperadminEngagementMockData';
 import { SuperadminSearchableDropdown } from '@/app/superadmin/superadmin_shared_components/SuperadminSearchableDropdown';
-import type { SuperadminEngagementHoliday as Holiday } from '@/app/superadmin/superadmin_engagement/superadmin_engagement_types/SuperadminEngagementTypes';
+import { useHolidayCalendarClient } from '@/app/superadmin/superadmin_engagement/holiday-calendar/_components/useHolidayCalendarClient';
 
 const WEEK_DAYS = ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
 
@@ -14,30 +13,23 @@ function getDays(y:number, m:number) { return new Date(y, m+1, 0).getDate(); }
 function getFirstDayIdx(y:number, m:number) { const d=new Date(y,m,1).getDay(); return d===0?6:d-1; }
 
 const TYPE_BADGE: Record<string, string> = {
-  National:  'eng-badge--primary',
-  Religious: 'eng-badge--warning',
-  Library:   'eng-badge--info',
+  National:  'bg-primary/10 text-primary',
+  Religious: 'bg-warning/10 text-warning',
+  Library:   'bg-info/10 text-info',
 };
 
 export function HolidayCalendarClient() {
+  const {
+    year, month, holidays, showAdd, setShowAdd, form, setForm, toast,
+    prevMonth, nextMonth, addHoliday, removeHoliday
+  } = useHolidayCalendarClient();
+
   const now = new Date();
-  const [year, setYear]         = useState(now.getFullYear());
-  const [month, setMonth]       = useState(now.getMonth());
-  const [holidays, setHolidays] = useState<Holiday[]>(SUPERADMIN_ENGAGEMENT_MOCK_HOLIDAYS as Holiday[]);
-  const [showAdd, setShowAdd]   = useState(false);
-  const [form, setForm]         = useState({ date:'', name:'', type:'National' });
-  const [toast, setToast]       = useState('');
-
-  const showToast = (m: string) => { setToast(m); setTimeout(() => setToast(''), 2500); };
-
-  const prevMonth = () => month===0 ? (setYear(y=>y-1), setMonth(11)) : setMonth(m=>m-1);
-  const nextMonth = () => month===11 ? (setYear(y=>y+1), setMonth(0))  : setMonth(m=>m+1);
-
   const daysInMonth = getDays(year, month);
   const firstDayIdx = getFirstDayIdx(year, month);
   const todayStr = now.toISOString().split('T')[0];
 
-  const holidayMap = new Map<number, Holiday>();
+  const holidayMap = new Map();
   holidays.forEach(h => {
     const d = new Date(h.date);
     if (d.getFullYear()===year && d.getMonth()===month) holidayMap.set(d.getDate(), h);
@@ -49,19 +41,6 @@ export function HolidayCalendarClient() {
   ];
   while (cells.length % 7 !== 0) cells.push(null);
 
-  const addHoliday = () => {
-    if (!form.date || !form.name) return;
-    setHolidays(p => [...p, { id: Date.now().toString(), ...form }]);
-    setForm({ date:'', name:'', type:'National' });
-    setShowAdd(false);
-    showToast('📅 Holiday added successfully');
-  };
-
-  const removeHoliday = (id: string) => {
-    setHolidays(p => p.filter(h => h.id !== id));
-    showToast('🗑️ Holiday removed');
-  };
-
   const monthLabel = new Date(year, month).toLocaleDateString('en-IN', { month:'long', year:'numeric' });
 
   const thisMonthHolidays = holidays
@@ -69,49 +48,55 @@ export function HolidayCalendarClient() {
     .sort((a,b) => a.date.localeCompare(b.date));
 
   return (
-    <div className="eng-page">
+    <div className="p-4 sm:p-6 min-h-screen bg-bg-page animate-in fade-in duration-200">
       {/* ── Toast ── */}
       {toast && (
-        <div className="eng-toast-wrap">
-          <div className="eng-toast">{toast}</div>
+        <div className="fixed bottom-4 left-1/2 -translate-x-1/2 z-50 animate-in slide-in-from-bottom-5">
+          <div className="bg-text-primary text-bg-card px-4 py-2 rounded-[var(--radius-full)] text-[14px] font-bold shadow-lg flex items-center gap-2">
+            {toast}
+          </div>
         </div>
       )}
 
       {/* ── Add Holiday Modal ── */}
       {showAdd && (
-        <div className="eng-overlay">
-          <div className="eng-modal eng-modal--sm">
-            <button onClick={()=>setShowAdd(false)} className="eng-modal-close cursor-pointer"><X size={16}/></button>
-            <p className="eng-modal-title">📅 Add Holiday</p>
-            <p className="eng-modal-sub">Mark a library closure or holiday in the calendar.</p>
-
-            <div className="eng-field">
-              <label className="eng-label">Date <span className="eng-required">*</span></label>
-              <input type="date" className="eng-input" value={form.date}
-                onChange={e => setForm(f=>({...f, date:e.target.value}))} />
-            </div>
-            <div className="eng-field">
-              <label className="eng-label">Event Name <span className="eng-required">*</span></label>
-              <input className="eng-input" placeholder="e.g. Diwali" value={form.name}
-                onChange={e => setForm(f=>({...f, name:e.target.value}))} />
-            </div>
-            <div className="eng-field">
-              <label className="eng-label">Type</label>
-              <SuperadminSearchableDropdown
-                options={[
-                  { label: 'National', value: 'National' },
-                  { label: 'Religious', value: 'Religious' },
-                  { label: 'Library', value: 'Library' }
-                ]}
-                value={form.type}
-                onChange={val => setForm(f=>({...f, type:val}))}
-              />
+        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 animate-in fade-in duration-200">
+          <div className="bg-card border border-border w-full max-w-sm rounded-[var(--radius-xl)] shadow-2xl overflow-hidden relative">
+            <button onClick={()=>setShowAdd(false)} className="absolute top-4 right-4 text-text-secondary hover:text-text-primary transition-colors cursor-pointer"><X size={16}/></button>
+            <div className="p-5 border-b border-border bg-muted/30">
+              <p className="text-[18px] font-extrabold text-text-primary">📅 Add Holiday</p>
+              <p className="text-[12px] text-text-secondary mt-1">Mark a library closure or holiday.</p>
             </div>
 
-            <div className="eng-modal-footer">
-              <button onClick={()=>setShowAdd(false)} className="eng-btn eng-btn--ghost cursor-pointer">Cancel</button>
+            <div className="p-5 space-y-4">
+              <div className="space-y-1.5">
+                <label className="text-[12px] font-bold text-text-primary flex gap-1">Date <span className="text-danger">*</span></label>
+                <input type="date" className="w-full h-10 px-3 rounded-[var(--radius-md)] border border-border bg-input text-text-primary text-[14px] focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all" value={form.date}
+                  onChange={e => setForm(f=>({...f, date:e.target.value}))} />
+              </div>
+              <div className="space-y-1.5">
+                <label className="text-[12px] font-bold text-text-primary flex gap-1">Event Name <span className="text-danger">*</span></label>
+                <input className="w-full h-10 px-3 rounded-[var(--radius-md)] border border-border bg-input text-text-primary text-[14px] focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all placeholder:text-text-secondary" placeholder="e.g. Diwali" value={form.name}
+                  onChange={e => setForm(f=>({...f, name:e.target.value}))} />
+              </div>
+              <div className="space-y-1.5">
+                <label className="text-[12px] font-bold text-text-primary">Type</label>
+                <SuperadminSearchableDropdown
+                  options={[
+                    { label: 'National', value: 'National' },
+                    { label: 'Religious', value: 'Religious' },
+                    { label: 'Library', value: 'Library' }
+                  ]}
+                  value={form.type}
+                  onChange={val => setForm(f=>({...f, type:val}))}
+                />
+              </div>
+            </div>
+
+            <div className="p-4 border-t border-border flex justify-end gap-3 bg-muted/30">
+              <button onClick={()=>setShowAdd(false)} className="px-4 py-2 text-[13px] font-bold text-text-secondary hover:text-text-primary hover:bg-input border border-transparent rounded-[var(--radius-md)] transition-colors cursor-pointer">Cancel</button>
               <button onClick={addHoliday} disabled={!form.date||!form.name}
-                className="eng-btn eng-btn--primary cursor-pointer">
+                className="flex items-center gap-2 px-4 py-2 bg-primary text-primary-foreground text-[13px] font-bold rounded-[var(--radius-md)] hover:bg-primary/90 transition-all disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer">
                 <CalendarDays size={14}/> Add Holiday
               </button>
             </div>
@@ -120,105 +105,103 @@ export function HolidayCalendarClient() {
       )}
 
       {/* ── Breadcrumb ── */}
-      <div className="eng-breadcrumb">
-        <Link href="/superadmin/superadmin_engagement/attendance">Engagement</Link>
-        <ChevronRight size={12} className="eng-breadcrumb-sep"/>
-        <span>Holiday Calendar</span>
+      <div className="flex items-center gap-2 text-text-secondary text-[12px] font-bold tracking-wide mb-6">
+        <Link href={SUPERADMIN_ROUTES.ENGAGEMENT_ATTENDANCE} className="hover:text-primary transition-colors">Engagement</Link>
+        <ChevronRight size={12} className="opacity-50" />
+        <span className="text-text-primary">Holiday Calendar</span>
       </div>
 
       {/* ── Page Header ── */}
-      <div className="eng-page-header">
-        <div className="eng-page-title-row">
-          <div>
-            <h1 className="eng-page-title">📅 Holiday Calendar</h1>
-            <p className="eng-page-subtitle">Manage library holidays, closures, and special events.</p>
-          </div>
-          <div className="eng-page-actions">
-            <button onClick={()=>setShowAdd(true)} className="eng-btn eng-btn--primary cursor-pointer">
-              <Plus size={14}/> Add Holiday
-            </button>
-          </div>
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
+        <div>
+          <h1 className="text-[28px] font-extrabold text-text-primary tracking-tight">📅 Holiday Calendar</h1>
+          <p className="text-[14px] text-text-secondary mt-1">Manage library holidays, closures, and special events.</p>
         </div>
+        <button onClick={()=>setShowAdd(true)} className="flex items-center justify-center gap-2 px-4 py-2 bg-primary text-primary-foreground text-[14px] font-bold rounded-[var(--radius-md)] hover:bg-primary/90 shadow-sm transition-all cursor-pointer">
+          <Plus size={16}/> Add Holiday
+        </button>
       </div>
 
       {/* ── Stats ── */}
-      <div className="eng-stats-row">
-        <div className="eng-stat-card">
-          <div className="eng-stat-label">Total Holidays</div>
-          <div className="eng-stat-value">{holidays.length}</div>
-          <div className="eng-stat-sub">This year</div>
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+        <div className="bg-card border border-border rounded-[var(--radius-lg)] p-4 shadow-sm">
+          <div className="text-[12px] font-bold text-text-secondary uppercase tracking-wider">Total Holidays</div>
+          <div className="text-[28px] font-extrabold text-text-primary mt-2 leading-none">{holidays.length}</div>
+          <div className="text-[12px] text-text-secondary mt-2">This year</div>
         </div>
-        <div className="eng-stat-card">
-          <div className="eng-stat-label">This Month</div>
-          <div className="eng-stat-value">{thisMonthHolidays.length}</div>
-          <div className="eng-stat-sub">{monthLabel}</div>
+        <div className="bg-card border border-border rounded-[var(--radius-lg)] p-4 shadow-sm">
+          <div className="text-[12px] font-bold text-text-secondary uppercase tracking-wider">This Month</div>
+          <div className="text-[28px] font-extrabold text-text-primary mt-2 leading-none">{thisMonthHolidays.length}</div>
+          <div className="text-[12px] text-text-secondary mt-2">{monthLabel}</div>
         </div>
-        <div className="eng-stat-card">
-          <div className="eng-stat-label">National</div>
-          <div className="eng-stat-value">{holidays.filter(h=>h.type==='National').length}</div>
-          <div className="eng-stat-sub">National holidays</div>
+        <div className="bg-card border border-border rounded-[var(--radius-lg)] p-4 shadow-sm">
+          <div className="text-[12px] font-bold text-text-secondary uppercase tracking-wider">National</div>
+          <div className="text-[28px] font-extrabold text-text-primary mt-2 leading-none">{holidays.filter(h=>h.type==='National').length}</div>
+          <div className="text-[12px] text-text-secondary mt-2">National holidays</div>
         </div>
-        <div className="eng-stat-card">
-          <div className="eng-stat-label">Religious</div>
-          <div className="eng-stat-value">{holidays.filter(h=>h.type==='Religious').length}</div>
-          <div className="eng-stat-sub">Religious observances</div>
+        <div className="bg-card border border-border rounded-[var(--radius-lg)] p-4 shadow-sm">
+          <div className="text-[12px] font-bold text-text-secondary uppercase tracking-wider">Religious</div>
+          <div className="text-[28px] font-extrabold text-text-primary mt-2 leading-none">{holidays.filter(h=>h.type==='Religious').length}</div>
+          <div className="text-[12px] text-text-secondary mt-2">Religious observances</div>
         </div>
       </div>
 
       {/* ── Two-column Layout ── */}
-      <div className="eng-cal-layout">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
 
         {/* Left: Calendar Grid */}
-        <div className="eng-cal-main">
-          <div className="eng-card">
+        <div className="lg:col-span-2 flex flex-col gap-6">
+          <div className="bg-card border border-border rounded-[var(--radius-xl)] shadow-sm overflow-hidden p-6 flex flex-col items-center">
             {/* Month navigation */}
-            <div className="eng-cal-nav">
-              <button onClick={prevMonth} className="eng-btn eng-btn--icon cursor-pointer">
+            <div className="w-full flex items-center justify-between mb-6 pb-4 border-b border-border">
+              <button onClick={prevMonth} className="h-8 w-8 rounded-[var(--radius-md)] flex items-center justify-center hover:bg-input text-text-secondary hover:text-text-primary transition-colors cursor-pointer">
                 <ChevronLeft size={18}/>
               </button>
-              <span className="eng-cal-month">{monthLabel}</span>
-              <button onClick={nextMonth} className="eng-btn eng-btn--icon cursor-pointer">
+              <span className="text-[18px] font-extrabold text-text-primary">{monthLabel}</span>
+              <button onClick={nextMonth} className="h-8 w-8 rounded-[var(--radius-md)] flex items-center justify-center hover:bg-input text-text-secondary hover:text-text-primary transition-colors cursor-pointer">
                 <ChevronRight size={18}/>
               </button>
             </div>
 
             {/* Day headers */}
-            <div className="eng-cal-grid eng-cal-mb-2">
+            <div className="w-full grid grid-cols-7 gap-2 mb-2">
               {WEEK_DAYS.map(( d ) => (
-                <div key={d} className="eng-cal-day-hdr">{d}</div>
+                <div key={d} className="text-center text-[12px] font-bold text-text-secondary uppercase">{d}</div>
               ))}
             </div>
 
             {/* Day cells */}
-            <div className="eng-cal-grid">
+            <div className="w-full grid grid-cols-7 gap-2">
               {cells.map((day, i) => {
-                if (!day) return <div key={i} className="eng-cal-cell eng-cal-cell--empty"/>;
+                if (!day) return <div key={i} className="aspect-square rounded-[var(--radius-md)] bg-transparent"/>;
                 const ds = `${year}-${String(month+1).padStart(2,'0')}-${String(day).padStart(2,'0')}`;
                 const isToday   = ds === todayStr;
                 const hol       = holidayMap.get(day);
+                
                 return (
                   <div key={i}
-                    className={[
-                      'eng-cal-cell',
-                      isToday  ? 'eng-cal-cell--today'   : '',
-                      hol      ? 'eng-cal-cell--holiday' : '',
-                    ].filter(Boolean).join(' ')}
+                    className={`aspect-square flex flex-col items-center justify-center rounded-[var(--radius-md)] text-[14px] font-bold transition-all relative ${
+                      isToday ? 'bg-primary text-primary-foreground shadow-md ring-2 ring-primary ring-offset-2 ring-offset-bg-card' : 
+                      hol ? 'bg-danger/10 text-danger border border-danger/20 cursor-pointer hover:bg-danger/20' : 
+                      'bg-input/50 text-text-primary hover:bg-input cursor-pointer border border-transparent'
+                    }`}
                     title={hol?.name}
                   >
                     {day}
+                    {hol && !isToday && <div className="absolute bottom-1.5 w-1.5 h-1.5 rounded-full bg-danger" />}
                   </div>
                 );
               })}
             </div>
 
             {/* Legend */}
-            <div className="eng-cal-legend">
-              <div className="eng-cal-legend-item">
-                <div className="eng-cal-dot eng-cal-dot--holiday"/>
+            <div className="w-full flex justify-center gap-6 mt-8 pt-4 border-t border-border">
+              <div className="flex items-center gap-2 text-[12px] font-bold text-text-secondary">
+                <div className="w-2.5 h-2.5 rounded-full bg-danger/50 border border-danger" />
                 <span>Holiday</span>
               </div>
-              <div className="eng-cal-legend-item">
-                <div className="eng-cal-dot eng-cal-dot--today"/>
+              <div className="flex items-center gap-2 text-[12px] font-bold text-text-secondary">
+                <div className="w-2.5 h-2.5 rounded-full bg-primary" />
                 <span>Today</span>
               </div>
             </div>
@@ -226,71 +209,74 @@ export function HolidayCalendarClient() {
         </div>
 
         {/* Right: Holiday List */}
-        <div className="eng-cal-panel">
-          <div className="eng-card">
-            <div className="eng-holiday-header">
+        <div className="flex flex-col gap-6">
+          <div className="bg-card border border-border rounded-[var(--radius-xl)] shadow-sm overflow-hidden flex flex-col h-[500px]">
+            <div className="p-4 border-b border-border bg-muted/30 flex items-center justify-between shrink-0">
               <div>
-                <div className="eng-card-title">
+                <div className="text-[16px] font-extrabold text-text-primary">
                   {monthLabel} Holidays
                 </div>
-                <div className="eng-card-desc">{thisMonthHolidays.length} this month</div>
+                <div className="text-[12px] text-text-secondary mt-0.5">{thisMonthHolidays.length} this month</div>
               </div>
-              <button onClick={()=>setShowAdd(true)} className="eng-btn eng-btn--primary eng-btn--sm cursor-pointer">
-                <Plus size={13}/> Add
+              <button onClick={()=>setShowAdd(true)} className="h-8 w-8 rounded-[var(--radius-md)] bg-primary text-primary-foreground hover:bg-primary/90 flex items-center justify-center transition-colors shadow-sm cursor-pointer">
+                <Plus size={16}/>
               </button>
             </div>
 
-            {thisMonthHolidays.length === 0 ? (
-              <div className="eng-holiday-empty">
-                No holidays in {monthLabel} 🎉
-              </div>
-            ) : (
-              <div className="eng-holiday-list">
-                {thisMonthHolidays.map(( h ) => (
-                  <div key={h.id} className="eng-holiday-item">
-                    <div>
-                      <div className="eng-holiday-name">{h.name}</div>
-                      <div className="eng-holiday-date-row">
-                        <div className="eng-holiday-date">{h.date}</div>
-                        <span className={`eng-badge ${TYPE_BADGE[h.type]||'eng-badge--ghost'} eng-badge--micro`}>
-                          {h.type}
-                        </span>
-                      </div>
-                    </div>
-                    <button onClick={()=>removeHoliday(h.id)}
-                      className="eng-btn eng-btn--icon eng-btn--icon-danger cursor-pointer">
-                      <Trash2 size={13}/>
-                    </button>
-                  </div>
-                ))}
-              </div>
-            )}
-
-            {/* All holidays summary */}
-            {holidays.length > 0 && (
-              <>
-                <div className="eng-divider" />
-                <div className="eng-card-title--sm">
-                  All Holidays ({holidays.length})
+            <div className="flex-1 overflow-y-auto p-4 scrollbar-thin scrollbar-thumb-border">
+              {thisMonthHolidays.length === 0 ? (
+                <div className="flex flex-col items-center justify-center h-full text-center p-6 text-text-secondary">
+                  <div className="text-4xl mb-3 opacity-50">🎉</div>
+                  <p className="text-[14px] font-bold">No holidays in {monthLabel}</p>
                 </div>
-                <div className="eng-holiday-list">
-                  {holidays
-                    .sort((a,b)=>a.date.localeCompare(b.date))
-                    .map(( h ) => (
-                    <div key={h.id} className="eng-holiday-item">
+              ) : (
+                <div className="space-y-3">
+                  {thisMonthHolidays.map(( h ) => (
+                    <div key={h.id} className="flex items-center justify-between p-3 rounded-[var(--radius-md)] border border-border bg-bg-page hover:border-danger/30 transition-colors group">
                       <div>
-                        <div className="eng-holiday-name--sm">{h.name}</div>
-                        <div className="eng-holiday-date">{h.date}</div>
+                        <div className="text-[14px] font-bold text-text-primary">{h.name}</div>
+                        <div className="flex items-center gap-2 mt-1">
+                          <div className="text-[12px] text-text-secondary font-mono">{h.date}</div>
+                          <span className={`px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider ${TYPE_BADGE[h.type]||'bg-muted text-text-secondary'}`}>
+                            {h.type}
+                          </span>
+                        </div>
                       </div>
                       <button onClick={()=>removeHoliday(h.id)}
-                        className="eng-btn eng-btn--icon eng-btn--icon-danger cursor-pointer">
-                        <Trash2 size={11}/>
+                        className="h-7 w-7 rounded-[var(--radius-md)] flex items-center justify-center text-text-secondary hover:text-danger hover:bg-danger/10 opacity-0 group-hover:opacity-100 transition-all cursor-pointer">
+                        <Trash2 size={14}/>
                       </button>
                     </div>
                   ))}
                 </div>
-              </>
-            )}
+              )}
+
+              {/* All holidays summary */}
+              {holidays.length > 0 && (
+                <>
+                  <div className="h-px bg-border my-6" />
+                  <div className="text-[12px] font-bold text-text-secondary uppercase tracking-wider mb-3 px-1">
+                    All Holidays ({holidays.length})
+                  </div>
+                  <div className="space-y-2">
+                    {holidays
+                      .sort((a,b)=>a.date.localeCompare(b.date))
+                      .map(( h ) => (
+                      <div key={h.id} className="flex items-center justify-between p-2 rounded-[var(--radius-sm)] hover:bg-input transition-colors group">
+                        <div className="flex items-center gap-3">
+                          <div className="text-[12px] font-mono text-text-secondary w-20 shrink-0">{h.date}</div>
+                          <div className="text-[13px] font-bold text-text-primary truncate">{h.name}</div>
+                        </div>
+                        <button onClick={()=>removeHoliday(h.id)}
+                          className="text-text-secondary hover:text-danger opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer px-2">
+                          <Trash2 size={12}/>
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+                </>
+              )}
+            </div>
           </div>
         </div>
 

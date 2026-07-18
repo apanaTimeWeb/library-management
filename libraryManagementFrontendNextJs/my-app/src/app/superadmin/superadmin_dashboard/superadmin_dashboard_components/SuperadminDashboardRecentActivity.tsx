@@ -1,6 +1,7 @@
 // RESPONSIBILITY: Renders the SuperadminDashboardRecentActivity component.
 import React from 'react';
 import Link from 'next/link';
+import { SUPERADMIN_ROUTES } from '@/app/superadmin/superadmin_url_config';
 import { Clock } from 'lucide-react';
 import { SUPERADMIN_DASHBOARD_RECENT_ACTIVITY } from '@/app/superadmin/superadmin_dashboard/superadmin_dashboard_constants/SuperadminDashboardConstants';
 
@@ -11,7 +12,7 @@ export function SuperadminDashboardRecentActivity() {
         <h2 className="text-base font-bold text-text-primary flex items-center gap-2">
           <Clock size={16} className="text-primary" /> Recent Platform Activity
         </h2>
-        <Link href="/superadmin/superadmin_audit-logs" className="text-primary text-xs font-bold flex items-center gap-1 hover:text-primary-hover transition-colors">
+        <Link href={SUPERADMIN_ROUTES.AUDIT_LOGS} className="text-primary text-xs font-bold flex items-center gap-1 hover:text-primary-hover transition-colors">
           View All Logs
         </Link>
       </div>

@@ -7,7 +7,7 @@ import { SuperadminLabelProps } from '@/app/superadmin/superadmin_system/superad
 
 const SuperadminLabel = forwardRef<HTMLLabelElement, SuperadminLabelProps>(
   ({ className, ...props }, ref) => (
-    <label ref={ref} className={cn('sys-label', className)} {...props} />
+    <label ref={ref} className={cn('text-[13px] font-bold text-text-primary leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70', className)} {...props} />
   )
 );
 

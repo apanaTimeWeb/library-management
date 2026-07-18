@@ -1,5 +1,7 @@
 /**
  * RESPONSIBILITY: Logic, state management, and AG Grid configuration for the PaymentsClient component.
+ */
+import { SUPERADMIN_ROUTES, SUPERADMIN_API_ROUTES } from '@/app/superadmin/superadmin_url_config';
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { Receipt, FileText, Trash2 } from 'lucide-react';
@@ -20,7 +22,7 @@ export function usePaymentsClient() {
   const [allPayments, setAllPayments] = useState<SuperadminFinancePayment[]>([]);
 
   useEffect(() => {
-    fetchApi('/finance/payments').then(( data: any ) => {
+    fetchApi(SUPERADMIN_API_ROUTES.FINANCE_PAYMENTS).then(( data: any ) => {
       const actualData = Array.isArray(data) ? data : data?.data;
       if (!Array.isArray(actualData) || actualData.length === 0 || String(actualData[0]?.id).startsWith('MOCK-')) {
         setAllPayments(SUPERADMIN_FINANCE_MOCK_PAYMENTS as SuperadminFinancePayment[]);
@@ -162,14 +164,14 @@ export function usePaymentsClient() {
           <div className="flex items-center gap-2 h-full">
             <button
               className="w-7 h-7 flex items-center justify-center rounded-[var(--radius-md)] bg-input text-text-primary border border-border hover:bg-primary/10 hover:text-primary transition-colors cursor-pointer"
-              onClick={() => router.push(`/superadmin/superadmin_finance/receipt/${params.data.id}`)}
+              onClick={() => router.push(SUPERADMIN_ROUTES.FINANCE_RECEIPT_ID(params.data.id))}
               title="View Receipt"
             >
               <Receipt size={14} />
             </button>
             <button
               className="w-7 h-7 flex items-center justify-center rounded-[var(--radius-md)] bg-input text-text-primary border border-border hover:bg-primary/10 hover:text-primary transition-colors cursor-pointer"
-              onClick={() => router.push(`/superadmin/superadmin_finance/invoice/${params.data.id}`)}
+              onClick={() => router.push(SUPERADMIN_ROUTES.FINANCE_INVOICE_ID(params.data.id))}
               title="View Invoice"
             >
               <FileText size={14} />

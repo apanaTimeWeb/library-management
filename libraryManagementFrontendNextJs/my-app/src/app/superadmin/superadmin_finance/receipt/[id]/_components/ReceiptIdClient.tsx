@@ -1,5 +1,6 @@
 // RESPONSIBILITY: Renders the ReceiptIdClient component.
 'use client';
+import { SUPERADMIN_ROUTES } from '@/app/superadmin/superadmin_url_config';
 
 import { ArrowLeft, BookOpen, CheckCircle, Printer, Send } from 'lucide-react';
 import { useReceiptIdClient } from './useReceiptIdClient';
@@ -18,7 +19,7 @@ export function ReceiptIdClient() {
       <div className="flex items-center justify-between">
         <button 
           className="flex items-center gap-2 bg-input text-text-primary border border-border px-3 py-1.5 rounded-[var(--radius-md)] text-[12px] font-bold hover:bg-primary/10 hover:text-primary transition-colors cursor-pointer" 
-          onClick={() => router.push('/superadmin/superadmin_finance/receipt')}
+          onClick={() => router.push(SUPERADMIN_ROUTES.FINANCE_RECEIPT)}
         >
           <ArrowLeft size={14} /> Back to Receipts
         </button>

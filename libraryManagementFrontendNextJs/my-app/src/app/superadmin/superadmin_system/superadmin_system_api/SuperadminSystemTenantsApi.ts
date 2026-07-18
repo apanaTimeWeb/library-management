@@ -1,4 +1,5 @@
 import { fetchApi } from '@/lib/api';
+import { SUPERADMIN_API_ROUTES } from '@/app/superadmin/superadmin_url_config';
 import type {
   CreateTenantPayload,
   UpdateTenantPayload,
@@ -6,7 +7,7 @@ import type {
   SuperadminSystemTenant,
 } from '@/app/superadmin/superadmin_system/superadmin_system_types/SuperadminSystemTenantsTypes';
 
-const TENANTS_ENDPOINT = '/superadmin/system/tenants';
+const TENANTS_ENDPOINT = SUPERADMIN_API_ROUTES.TENANTS;
 
 export async function fetchTenants(page = 1, limit = 10): Promise<TenantsPaginatedResponse> {
   const response = await fetchApi(`${TENANTS_ENDPOINT}?page=${page}&limit=${limit}`);

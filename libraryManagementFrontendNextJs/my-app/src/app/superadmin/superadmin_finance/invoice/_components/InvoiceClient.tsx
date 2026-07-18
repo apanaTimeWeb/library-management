@@ -1,5 +1,6 @@
 // RESPONSIBILITY: Renders the InvoiceClient component.
 'use client';
+import { SUPERADMIN_ROUTES } from '@/app/superadmin/superadmin_url_config';
 
 import { useRouter } from 'next/navigation';
 import { Search, FileText, Printer, Send } from 'lucide-react';
@@ -100,7 +101,7 @@ export function InvoiceClient() {
               <tr 
                 key={inv.id} 
                 className="border-b border-border last:border-0 hover:bg-primary/5 transition-colors cursor-pointer group" 
-                onClick={() => router.push(`/superadmin/superadmin_finance/invoice/${inv.id}`)}
+                onClick={() => router.push(SUPERADMIN_ROUTES.FINANCE_INVOICE_ID(inv.id))}
               >
                 <td className="py-3 px-4">
                   <span className="font-mono text-[14px] font-bold text-text-primary">{inv.invoiceNumber}</span>

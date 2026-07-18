@@ -5,25 +5,30 @@ import { cn } from '@/app/superadmin/superadmin_system/superadmin_system_shared_
 import { SuperadminButtonProps } from '@/app/superadmin/superadmin_system/superadmin_system_types/SuperadminSystemSharedComponentsTypes';
 
 const VARIANT: Record<string, string> = {
-  primary:     'sys-btn-primary',
-  ghost:       'sys-btn-ghost',
-  destructive: 'sys-btn-danger',
-  secondary:   'sys-btn-ghost',
-  link:        'sys-btn-link',
+  primary:     'bg-primary text-primary-foreground hover:bg-primary/90',
+  ghost:       'hover:bg-accent hover:text-accent-foreground',
+  destructive: 'bg-destructive text-destructive-foreground hover:bg-destructive/90',
+  secondary:   'bg-secondary text-secondary-foreground hover:bg-secondary/80',
+  link:        'text-primary underline-offset-4 hover:underline',
 };
 
 const SIZE: Record<string, string> = {
-  sm:   'sys-btn--sm',
-  md:   '',
-  lg:   'sys-btn--lg',
-  icon: 'sys-btn--icon',
+  sm:   'h-9 rounded-md px-3',
+  md:   'h-10 px-4 py-2',
+  lg:   'h-11 rounded-md px-8',
+  icon: 'h-10 w-10',
 };
 
 const SuperadminButton = forwardRef<HTMLButtonElement, SuperadminButtonProps>(
   ({ className, variant = 'primary', size = 'md', ...props }, ref) => (
     <button
       ref={ref}
-      className={cn(VARIANT[variant], SIZE[size], className)}
+      className={cn(
+        'inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 cursor-pointer',
+        VARIANT[variant], 
+        SIZE[size], 
+        className
+      )}
       {...props}
     />
   )
