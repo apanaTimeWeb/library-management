@@ -44,7 +44,7 @@ export function AdminFinanceTrustScoreClient() {
     const [searchTerm, setSearchTerm] = useState('');
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(10);
-    const table = useClientTable(length, 10);
+    const table = useClientTable(filtered || [], 10);
 
   return (
     <div className="space-y-6">

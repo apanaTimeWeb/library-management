@@ -196,7 +196,7 @@ export function AdminFinancePaymentsClient() {
                               size="icon" 
                               className="h-7 w-7 text-muted-foreground hover:text-primary hover:bg-primary/10" 
                               title="View Receipt"
-                              onClick={() => router.push(ADMIN_ROUTES.FINANCE_RECEIPT_ID(p.id))}
+                              onClick={() => router.push(ADMIN_ROUTES.FINANCE_RECEIPT_ID(String(p.id)))}
                             >
                               <Receipt size={14} />
                             </Button>
@@ -205,7 +205,7 @@ export function AdminFinancePaymentsClient() {
                               size="icon" 
                               className="h-7 w-7 text-muted-foreground hover:text-primary hover:bg-primary/10" 
                               title="View Invoice"
-                              onClick={() => router.push(ADMIN_ROUTES.FINANCE_INVOICE_ID(p.id))}
+                              onClick={() => router.push(ADMIN_ROUTES.FINANCE_INVOICE_ID(String(p.id)))}
                             >
                               <FileText size={14} />
                             </Button>
