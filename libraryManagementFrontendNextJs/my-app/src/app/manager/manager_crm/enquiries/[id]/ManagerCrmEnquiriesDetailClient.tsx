@@ -29,10 +29,10 @@ import { useManagerCrmEnquiriesDetail } from '@/app/manager/manager_crm/manager_
 import { MANAGER_CRM_URLS } from '@/app/manager/manager_crm/manager_crm_url_config';
 import {
   type Enquiry,
-  type EnquiryDetail,
   type EnquiryStatus,
   type FollowUp,
 } from '@/app/manager/manager_crm/manager_crm_types';
+import { type EnquiryDetail } from '@/app/manager/manager_crm/manager_crm_types/ManagerCrmTypes';
 import { STATUS_BADGE } from '@/app/manager/manager_crm/manager_crm_constants';
 import { maskPhone, getInitials } from '@/app/manager/manager_crm/manager_crm_utils';
 import {
