@@ -1,4 +1,6 @@
 'use client';
+import { AdminSearchableDropdown } from '@/app/admin/admin_shared_components/AdminSearchableDropdown';
+
 // RESPONSIBILITY: Renders the AdminShiftManagementClient component.
 import { Plus, Edit, PowerOff, Zap, AlertTriangle, X } from 'lucide-react';
 import { useAdminShiftManagement } from '@/app/admin/admin_seats_shifts_lockers/shift-management/admin_seats_shifts_lockers_hooks/useAdminShiftManagement';
@@ -161,14 +163,14 @@ export function AdminShiftManagementClient() {
               </div>
               <div className="space-y-1.5">
                 <label className="text-sm font-medium">Active</label>
-                <select 
+                <AdminSearchableDropdown 
                   className="flex h-10 w-full items-center justify-between rounded-md border border-border bg-bg-pageg-input px-3 py-2 text-sm ring-offset-bg-page placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:ring-offset-2"
                   value={form.active ? 'yes' : 'no'} 
                   onChange={e => setForm(p => ({ ...p, active: e.target.value === 'yes' }))}
                 >
                   <option value="yes">Yes</option>
                   <option value="no">No</option>
-                </select>
+                </AdminSearchableDropdown>
               </div>
             </div>
             

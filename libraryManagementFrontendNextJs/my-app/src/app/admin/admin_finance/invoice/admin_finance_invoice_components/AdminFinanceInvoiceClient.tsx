@@ -1,4 +1,6 @@
 'use client';
+import { AdminSearchableDropdown } from '@/app/admin/admin_shared_components/AdminSearchableDropdown';
+
 // RESPONSIBILITY: Renders the AdminFinanceInvoiceClient component.
 import { useState } from 'react';
 import Link from 'next/link';
@@ -87,7 +89,7 @@ export function AdminFinanceInvoiceClient() {
             onChange={e => setSearch(e.target.value)} 
           />
         </div>
-        <select 
+        <AdminSearchableDropdown 
           className="flex h-10 w-full max-w-52 items-center justify-between rounded-md border border-border bg-bg-pageg-input px-3 py-2 text-sm ring-offset-bg-page placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:ring-offset-2"
           value={statusFilter} 
           onChange={e => setStatusFilter(e.target.value as FilterStatus)}
@@ -96,7 +98,7 @@ export function AdminFinanceInvoiceClient() {
           <option value="paid">Paid</option>
           <option value="pending">Pending</option>
           <option value="overdue">Overdue</option>
-        </select>
+        </AdminSearchableDropdown>
       </div>
 
       {/* Invoices Table */}

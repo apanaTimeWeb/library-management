@@ -1,4 +1,6 @@
 'use client';
+import { AdminSearchableDropdown } from '@/app/admin/admin_shared_components/AdminSearchableDropdown';
+
 // RESPONSIBILITY: Renders the AdminShiftGapAnalyzerClient component.
 import { Zap } from 'lucide-react';
 import { useAdminShiftGapAnalyzer, pct, fmtH, DAY_START_H, DAY_END_H } from '@/app/admin/admin_seats_shifts_lockers/shift-gap/admin_seats_shifts_lockers_hooks/useAdminShiftGapAnalyzer';
@@ -31,22 +33,22 @@ export function AdminShiftGapAnalyzerClient() {
 
       {/* Filter Bar */}
       <div className="flex flex-wrap gap-3">
-        <select 
+        <AdminSearchableDropdown 
           className="h-10 px-3 rounded-md border border-border bg-bg-pageg-input text-sm font-medium focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary min-w-36"
           value={shiftFilter} 
           onChange={(e) => setShiftFilter(e.target.value)}
         >
           <option value="All">All Shifts</option>
           {ADMIN_SEATS_MOCK_SHIFT_GAPS.map(s => <option key={s.id} value={s.name}>{s.name}</option>)}
-        </select>
+        </AdminSearchableDropdown>
         
-        <select 
+        <AdminSearchableDropdown 
           className="h-10 px-3 rounded-md border border-border bg-bg-pageg-input text-sm font-medium focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary min-w-36"
           value={period} 
           onChange={(e) => setPeriod(e.target.value)}
         >
           {ADMIN_SEATS_MOCK_VIEW_PERIODS.map(p => <option key={p} value={p}>{p}</option>)}
-        </select>
+        </AdminSearchableDropdown>
       </div>
 
       {/* Main Content */}

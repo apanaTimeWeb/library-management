@@ -1,4 +1,6 @@
 'use client';
+import { AdminSearchableDropdown } from '@/app/admin/admin_shared_components/AdminSearchableDropdown';
+
 // RESPONSIBILITY: Renders the CRM Enquiry detail page with status updates, follow-up timeline, and action buttons.
 // DATA FLOW: Next.js Router -> AdminCrmEnquiryDetailPage -> (MarkLostModal, InfoItem, timeline, status card)
 
@@ -393,13 +395,13 @@ export function AdminCrmEnquiriesIdClient({ params }: { params: Promise<{ id: st
               </CardHeader>
               <CardContent className="p-4">
                 <div className="flex gap-2">
-                  <select
+                  <AdminSearchableDropdown
                     className="flex h-10 w-full items-center justify-between rounded-md border border-border bg-bg-pageg-input px-3 py-2 text-sm ring-offset-bg-page focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:ring-offset-2 flex-1 font-semibold"
                     value={currentStatus}
                     onChange={(e) => setCurrentStatus(e.target.value as EnquiryStatus)}
                   >
                     {ADMIN_CRM_ENQUIRIES_STATUS_OPTIONS.map(opt => (<option key={opt} value={opt}>{opt}</option>))}
-                  </select>
+                  </AdminSearchableDropdown>
                   <Button
                     onClick={handleStatusUpdate}
                     disabled={statusUpdating || currentStatus === enquiry.status}

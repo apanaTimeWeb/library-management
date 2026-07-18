@@ -1,4 +1,6 @@
 'use client';
+import { AdminSearchableDropdown } from '@/app/admin/admin_shared_components/AdminSearchableDropdown';
+
 // RESPONSIBILITY: Renders the AdminMaintenanceClient component.
 import { useState } from 'react';
 import { ChevronDown, AlertTriangle, Plus } from 'lucide-react';
@@ -47,13 +49,13 @@ export function AdminMaintenanceClient() {
 
       <div className="flex flex-wrap items-center gap-4 bg-muted/30 p-3 rounded-xl border border-border">
         <div className="relative">
-          <select 
+          <AdminSearchableDropdown 
             className="flex h-10 w-40 items-center justify-between rounded-md border border-border bg-bg-pageg-input px-3 py-2 text-sm ring-offset-bg-page placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 appearance-none"
             value={selectedSeat} 
             onChange={e => setSelectedSeat(e.target.value)}
           >
             {SEATS.map(s => <option key={s} value={s}>{s}</option>)}
-          </select>
+          </AdminSearchableDropdown>
           <ChevronDown size={14} className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground pointer-events-none" />
         </div>
         <Badge variant="secondary" className={`${STATUS_CLASS[currentStatus]} border-none font-bold px-3 py-1`}>
@@ -151,11 +153,11 @@ export function AdminMaintenanceClient() {
           <div className="space-y-2">
             <label className="text-sm font-medium">New Seat Status <span className="text-danger">*</span></label>
             <div className="relative">
-              <select className="flex h-10 w-full items-center justify-between rounded-md border border-border bg-bg-pageg-input px-3 py-2 text-sm ring-offset-bg-page placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 appearance-none" value={form.newStatus} onChange={e => setForm(p => ({ ...p, newStatus: e.target.value as SeatStatus }))}>
+              <AdminSearchableDropdown className="flex h-10 w-full items-center justify-between rounded-md border border-border bg-bg-pageg-input px-3 py-2 text-sm ring-offset-bg-page placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 appearance-none" value={form.newStatus} onChange={e => setForm(p => ({ ...p, newStatus: e.target.value as SeatStatus }))}>
                 <option value="Working">Working</option>
                 <option value="Maintenance">Maintenance</option>
                 <option value="Broken">Broken</option>
-              </select>
+              </AdminSearchableDropdown>
               <ChevronDown size={14} className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground pointer-events-none" />
             </div>
           </div>

@@ -1,4 +1,6 @@
 'use client';
+import { AdminSearchableDropdown } from '@/app/admin/admin_shared_components/AdminSearchableDropdown';
+
 // RESPONSIBILITY: Renders the AdminShiftMigrationClient component.
 import { ArrowLeft, Search, ChevronDown, CreditCard, QrCode, Banknote, CheckCircle, Clock } from 'lucide-react';
 import { useAdminShiftMigration, PayMode } from '@/app/admin/admin_seats_shifts_lockers/shift-migration/admin_seats_shifts_lockers_hooks/useAdminShiftMigration';
@@ -135,7 +137,7 @@ export function AdminShiftMigrationClient() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="space-y-1.5">
                   <label className="text-sm font-medium text-primary">New Shift <span className="text-danger">*</span></label>
-                  <select 
+                  <AdminSearchableDropdown 
                     className="flex h-11 w-full items-center justify-between rounded-md border border-border bg-bg-pageg-input px-3 py-2 text-sm ring-offset-bg-page placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:ring-offset-2"
                     value={newShift} 
                     onChange={e => { setNewShift(e.target.value); setNewSeat(''); }}
@@ -144,11 +146,11 @@ export function AdminShiftMigrationClient() {
                     {ADMIN_SEATS_MOCK_SHIFT_RATES.map(sh => (
                       <option key={sh.name} value={sh.name}>{sh.name} ({sh.seats} seats free)</option>
                     ))}
-                  </select>
+                  </AdminSearchableDropdown>
                 </div>
                 <div className="space-y-1.5">
                   <label className="text-sm font-medium text-primary">New Seat <span className="text-danger">*</span></label>
-                  <select 
+                  <AdminSearchableDropdown 
                     className="flex h-11 w-full items-center justify-between rounded-md border border-border bg-bg-pageg-input px-3 py-2 text-sm ring-offset-bg-page placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed"
                     value={newSeat} 
                     onChange={e => setNewSeat(e.target.value)} 
@@ -158,7 +160,7 @@ export function AdminShiftMigrationClient() {
                     {newShift && ['B-01', 'B-02', 'B-03', 'B-04'].map(seat => (
                       <option key={seat}>{seat}</option>
                     ))}
-                  </select>
+                  </AdminSearchableDropdown>
                 </div>
               </div>
 

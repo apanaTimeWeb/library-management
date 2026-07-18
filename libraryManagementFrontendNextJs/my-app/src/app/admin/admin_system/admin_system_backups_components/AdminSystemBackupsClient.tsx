@@ -1,4 +1,6 @@
 'use client';
+import { AdminSearchableDropdown } from '@/app/admin/admin_shared_components/AdminSearchableDropdown';
+
 // RESPONSIBILITY: Renders the AdminSystemBackupsClient component.
 import { useState } from 'react';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/app/admin/admin_system/admin_system_components/AdminSystemCard/AdminSystemCard';
@@ -149,12 +151,12 @@ export function AdminSystemBackupsClient() {
               <>
                 <div className="space-y-2">
                   <label className="text-sm font-medium text-text-secondary">Cloud Provider</label>
-                  <select className="w-full px-3 py-2 rounded-lg bg-bg-pageg-input border border-border text-sm text-text-primary focus:outline-none focus:border-primary">
+                  <AdminSearchableDropdown className="w-full px-3 py-2 rounded-lg bg-bg-pageg-input border border-border text-sm text-text-primary focus:outline-none focus:border-primary">
                     <option>Google Drive</option>
                     <option>AWS S3</option>
                     <option>Dropbox</option>
                     <option>Custom S3-Compatible</option>
-                  </select>
+                  </AdminSearchableDropdown>
                 </div>
                 <div className="flex items-center gap-3 p-3 rounded-xl bg-success/10 border border-success/20">
                   <div className="h-8 w-8 rounded-full bg-success/20 flex items-center justify-center">

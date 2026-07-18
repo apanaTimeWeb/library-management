@@ -1,4 +1,6 @@
 'use client';
+import { AdminSearchableDropdown } from '@/app/admin/admin_shared_components/AdminSearchableDropdown';
+
 // RESPONSIBILITY: Entry page for the admin_engagement module.
 // DATA FLOW: Next.js Router -> page -> Components
 
@@ -255,11 +257,11 @@ export function AdminEngagementHolidayCalendarClient() {
             </div>
             <div className="space-y-2">
               <label className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Type</label>
-              <select value={form.type} onChange={e => setForm(f=>({...f, type:e.target.value}))} className="flex h-10 w-full items-center justify-between rounded-md border border-border bg-bg-pageg-input px-3 py-2 text-sm ring-offset-bg-page placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50">
+              <AdminSearchableDropdown value={form.type} onChange={e => setForm(f=>({...f, type:e.target.value}))} className="flex h-10 w-full items-center justify-between rounded-md border border-border bg-bg-pageg-input px-3 py-2 text-sm ring-offset-bg-page placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50">
                 <option>National</option>
                 <option>Religious</option>
                 <option>Library</option>
-              </select>
+              </AdminSearchableDropdown>
             </div>
           </div>
           <DialogFooter>

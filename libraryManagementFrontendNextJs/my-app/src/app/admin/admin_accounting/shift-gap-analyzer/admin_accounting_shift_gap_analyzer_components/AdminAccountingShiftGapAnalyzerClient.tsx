@@ -1,3 +1,4 @@
+import { AdminSearchableDropdown } from '@/app/admin/admin_shared_components/AdminSearchableDropdown';
 // @ts-nocheck
 'use client';
 // RESPONSIBILITY: Client view rendering shift gap analysis (`Rule 1`, `Rule 36`, `Rule 57`).
@@ -101,12 +102,12 @@ export function AdminAccountingShiftGapAnalyzerClient() {
       {/* Day-wise Gap Table */}
       <div className="flex items-center justify-between pt-4 border-t border-border">
         <p className="text-sm font-bold uppercase tracking-wider text-foreground">Day-wise Gap Log</p>
-        <select className="flex h-10 w-40 items-center justify-between rounded-md border border-border bg-bg-pageg-input px-3 py-2 text-sm ring-offset-bg-page placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" value={shiftFilter} onChange={e => setShiftFilter(e.target.value)}>
+        <AdminSearchableDropdown className="flex h-10 w-40 items-center justify-between rounded-md border border-border bg-bg-pageg-input px-3 py-2 text-sm ring-offset-bg-page placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" value={shiftFilter} onChange={e => setShiftFilter(e.target.value)}>
           <option value="all">All Shifts</option>
           <option value="Morning">Morning</option>
           <option value="Afternoon">Afternoon</option>
           <option value="Night">Night</option>
-        </select>
+        </AdminSearchableDropdown>
       </div>
 
       <Card className="overflow-x-auto shadow-sm border-border">

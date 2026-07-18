@@ -1,4 +1,6 @@
 'use client';
+import { AdminSearchableDropdown } from '@/app/admin/admin_shared_components/AdminSearchableDropdown';
+
 // RESPONSIBILITY: Renders the AdminFinanceTrustScoreClient component.
 import { useState } from 'react';
 import { Input } from '@/components/ui/input';
@@ -78,18 +80,18 @@ export function AdminFinanceTrustScoreClient() {
       </div>
 
       <div className="fin-filter-bar">
-        <select className="fin-select w-40" value={levelFilter} onChange={(e) => setLevelFilter(e.target.value)}>
+        <AdminSearchableDropdown className="fin-select w-40" value={levelFilter} onChange={(e) => setLevelFilter(e.target.value)}>
           <option value="all">All Levels</option>
           <option value="reliable">Reliable</option>
           <option value="moderate">Moderate</option>
           <option value="low">Low Trust</option>
-        </select>
-        <select className="fin-select w-40" value={shiftFilter} onChange={(e) => setShiftFilter(e.target.value)}>
+        </AdminSearchableDropdown>
+        <AdminSearchableDropdown className="fin-select w-40" value={shiftFilter} onChange={(e) => setShiftFilter(e.target.value)}>
           <option value="all">All Shifts</option>
           <option value="Morning">Morning</option>
           <option value="Evening">Evening</option>
           <option value="Full Day">Full Day</option>
-        </select>
+        </AdminSearchableDropdown>
       </div>
 
       <div className="fin-card overflow-x-auto">

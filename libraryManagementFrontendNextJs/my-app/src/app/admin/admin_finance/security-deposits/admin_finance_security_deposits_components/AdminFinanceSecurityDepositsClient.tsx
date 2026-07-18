@@ -1,4 +1,6 @@
 'use client';
+import { AdminSearchableDropdown } from '@/app/admin/admin_shared_components/AdminSearchableDropdown';
+
 // RESPONSIBILITY: Renders the AdminFinanceSecurityDepositsClient component.
 import { useState } from 'react';
 import { Undo2, Minus, X } from 'lucide-react';
@@ -62,7 +64,7 @@ export function AdminFinanceSecurityDepositsClient() {
 
       {/* Filter Bar */}
       <div className="flex flex-wrap gap-3">
-        <select 
+        <AdminSearchableDropdown 
           className="h-10 px-3 rounded-md border border-border bg-bg-pageg-input text-sm font-medium focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary"
           value={statusFilter} 
           onChange={(e) => setStatusFilter(e.target.value)}
@@ -71,7 +73,7 @@ export function AdminFinanceSecurityDepositsClient() {
           <option value="held">Held</option>
           <option value="refunded">Refunded</option>
           <option value="forfeited">Forfeited</option>
-        </select>
+        </AdminSearchableDropdown>
       </div>
 
       {/* Table */}

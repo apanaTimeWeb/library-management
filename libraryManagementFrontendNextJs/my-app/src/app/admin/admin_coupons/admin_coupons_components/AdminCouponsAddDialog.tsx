@@ -1,3 +1,4 @@
+import { AdminSearchableDropdown } from '@/app/admin/admin_shared_components/AdminSearchableDropdown';
 // RESPONSIBILITY: Modal dialog for creating a promotional discount coupon using React Hook Form + Zod (`Rule 16`, `Rule 38`).
 // DATA FLOW: Dialog Form -> useAdminCoupons -> Store -> Backend API (`Rule 39`).
 
@@ -114,7 +115,7 @@ export function AdminCouponsAddDialog({ isOpen, onClose, onSubmit }: AdminCoupon
               <label htmlFor="coupon-type" className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">
                 Discount Type <span className="text-danger">*</span>
               </label>
-              <select
+              <AdminSearchableDropdown
                 id="coupon-type"
                 {...register('type')}
                 className="flex h-10 w-full items-center justify-between rounded-md border border-border bg-bg-pageg-input px-3 py-2 text-sm font-medium ring-offset-bg-page placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
@@ -122,7 +123,7 @@ export function AdminCouponsAddDialog({ isOpen, onClose, onSubmit }: AdminCoupon
               >
                 <option value="Flat">Flat (₹ INR)</option>
                 <option value="Percent">Percentage (%)</option>
-              </select>
+              </AdminSearchableDropdown>
             </div>
 
             <div className="space-y-1.5">

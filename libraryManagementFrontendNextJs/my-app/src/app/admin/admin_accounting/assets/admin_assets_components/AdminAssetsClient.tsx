@@ -1,4 +1,6 @@
 'use client';
+import { AdminSearchableDropdown } from '@/app/admin/admin_shared_components/AdminSearchableDropdown';
+
 // RESPONSIBILITY: Renders the AdminAssetsClient component.
 import { useState } from 'react';
 import { Search, Plus, Filter, IndianRupee } from 'lucide-react';
@@ -85,7 +87,7 @@ export function AdminAssetsClient() {
         
         <div className="flex items-center gap-2">
           <Filter size={16} className="text-muted-foreground" />
-          <select
+          <AdminSearchableDropdown
             className="flex h-10 w-44 items-center justify-between rounded-md border border-border bg-bg-pageg-input px-3 py-2 text-sm ring-offset-bg-page placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
             value={categoryFilter}
             onChange={(e) => setCategoryFilter(e.target.value)}
@@ -94,7 +96,7 @@ export function AdminAssetsClient() {
             {categories.map(c => (
               <option key={c} value={c}>{c}</option>
             ))}
-          </select>
+          </AdminSearchableDropdown>
         </div>
 
         {(searchInput || categoryFilter !== 'all') && (

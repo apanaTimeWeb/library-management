@@ -1,4 +1,6 @@
 'use client';
+import { AdminSearchableDropdown } from '@/app/admin/admin_shared_components/AdminSearchableDropdown';
+
 // RESPONSIBILITY: Renders the AdminCrmEnquiriesClient component.
 import { useState } from 'react';
 import { AdminCrmAddClient } from '@/app/admin/admin_crm/enquiries/add/admin_crm_add_components/AdminCrmAddClient';
@@ -166,7 +168,7 @@ export default function AdminCrmEnquiriesClient() {
             onChange={(e) => pushParams({ q: e.target.value })}
           />
         </div>
-        <select
+        <AdminSearchableDropdown
           className="flex h-10 w-full max-w-52 items-center justify-between rounded-md border border-border bg-bg-pageg-input px-3 py-2 text-sm ring-offset-bg-page placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:ring-offset-2"
           value={statusParam}
           onChange={(e) => pushParams({ status: e.target.value })}
@@ -177,7 +179,7 @@ export default function AdminCrmEnquiriesClient() {
           <option value="Interested">Interested</option>
           <option value="Converted">Converted</option>
           <option value="Lost">Lost</option>
-        </select>
+        </AdminSearchableDropdown>
       </div>
 
       {/* Kanban View */}

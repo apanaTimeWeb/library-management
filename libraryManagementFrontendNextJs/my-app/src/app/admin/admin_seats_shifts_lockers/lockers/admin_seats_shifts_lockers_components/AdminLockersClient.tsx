@@ -1,4 +1,6 @@
 'use client';
+import { AdminSearchableDropdown } from '@/app/admin/admin_shared_components/AdminSearchableDropdown';
+
 // RESPONSIBILITY: Renders the AdminLockersClient component.
 import { useState } from 'react';
 import { Plus, UserPlus, Unlock, Wrench, Search, X } from 'lucide-react';
@@ -68,7 +70,7 @@ export function AdminLockersClient() {
 
       {/* Filter Bar */}
       <div className="flex flex-wrap items-center gap-3">
-        <select 
+        <AdminSearchableDropdown 
           className="h-10 px-3 rounded-md border border-border bg-bg-pageg-input text-sm font-medium focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary min-w-36"
           value={statusFilter} 
           onChange={(e) => setStatusFilter(e.target.value)}
@@ -77,7 +79,7 @@ export function AdminLockersClient() {
           <option value="Free">Free</option>
           <option value="Occupied">Occupied</option>
           <option value="Maintenance">Maintenance</option>
-        </select>
+        </AdminSearchableDropdown>
       </div>
 
       {/* Table */}

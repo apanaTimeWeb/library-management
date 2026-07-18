@@ -1,4 +1,6 @@
 'use client';
+import { AdminSearchableDropdown } from '@/app/admin/admin_shared_components/AdminSearchableDropdown';
+
 // RESPONSIBILITY: Renders the AdminFinancePaymentsClient component.
 import { useState } from 'react';
 import { Input } from '@/components/ui/input';
@@ -60,7 +62,7 @@ export function AdminFinancePaymentsClient() {
 
       {/* Filter Bar */}
       <div className="flex flex-col sm:flex-row items-center gap-4 bg-muted/30 p-3 rounded-lg border border-border">
-        <select 
+        <AdminSearchableDropdown 
           className="flex h-9 w-44 items-center justify-between rounded-md border border-border bg-bg-pageg-input px-3 py-1 text-sm ring-offset-bg-page placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:ring-offset-2"
           value={modeFilter} 
           onChange={(e) => setModeFilter(e.target.value)}
@@ -70,7 +72,7 @@ export function AdminFinancePaymentsClient() {
           <option value="upi">UPI</option>
           <option value="card">Card</option>
           <option value="bank">Bank Transfer</option>
-        </select>
+        </AdminSearchableDropdown>
         
         <div className="flex items-center gap-2">
           <Switch 

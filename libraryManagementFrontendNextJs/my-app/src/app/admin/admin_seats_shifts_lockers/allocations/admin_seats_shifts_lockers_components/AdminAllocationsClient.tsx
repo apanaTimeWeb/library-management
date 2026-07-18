@@ -1,4 +1,6 @@
 'use client';
+import { AdminSearchableDropdown } from '@/app/admin/admin_shared_components/AdminSearchableDropdown';
+
 // RESPONSIBILITY: Renders the AdminAllocationsClient component.
 import { useState } from 'react';
 import { Download, Eye } from 'lucide-react';
@@ -65,7 +67,7 @@ export function AdminAllocationsClient() {
 
       {/* Filter Bar */}
       <div className="flex flex-wrap items-center gap-3">
-        <select 
+        <AdminSearchableDropdown 
           className="h-10 px-3 rounded-md border border-border bg-bg-pageg-input text-sm font-medium focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary"
           value={shiftFilter} 
           onChange={(e) => setShiftFilter(e.target.value)}
@@ -74,9 +76,9 @@ export function AdminAllocationsClient() {
           <option value="Morning">Morning</option>
           <option value="Evening">Evening</option>
           <option value="Full Day">Full Day</option>
-        </select>
+        </AdminSearchableDropdown>
         
-        <select 
+        <AdminSearchableDropdown 
           className="h-10 px-3 rounded-md border border-border bg-bg-pageg-input text-sm font-medium focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary"
           value={statusFilter} 
           onChange={(e) => setStatusFilter(e.target.value)}
@@ -85,7 +87,7 @@ export function AdminAllocationsClient() {
           <option value="Active">Active</option>
           <option value="Expired">Expired</option>
           <option value="Suspended">Suspended</option>
-        </select>
+        </AdminSearchableDropdown>
 
         <Input 
           type="date" 

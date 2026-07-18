@@ -1,4 +1,6 @@
 'use client';
+import { AdminSearchableDropdown } from '@/app/admin/admin_shared_components/AdminSearchableDropdown';
+
 // RESPONSIBILITY: Renders the AdminFinanceRefundsClient component.
 import { useState } from 'react';
 import { Undo2, X } from 'lucide-react';
@@ -84,7 +86,7 @@ export function AdminFinanceRefundsClient() {
 
       {/* Filter Bar */}
       <div className="flex items-center gap-4 bg-muted/30 p-3 rounded-lg border border-border">
-        <select 
+        <AdminSearchableDropdown 
           className="flex h-9 w-48 items-center justify-between rounded-md border border-border bg-bg-pageg-input px-3 py-1 text-sm ring-offset-bg-page placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:ring-offset-2"
           value={statusFilter} 
           onChange={(e) => setStatusFilter(e.target.value)}
@@ -94,7 +96,7 @@ export function AdminFinanceRefundsClient() {
           <option value="approved">Approved</option>
           <option value="processed">Processed</option>
           <option value="rejected">Rejected</option>
-        </select>
+        </AdminSearchableDropdown>
       </div>
 
       {/* Refunds Table */}
@@ -253,7 +255,7 @@ export function AdminFinanceRefundsClient() {
 
             <div className="space-y-2">
               <label className="text-sm font-medium">Payment Method</label>
-              <select 
+              <AdminSearchableDropdown 
                 className="flex h-10 w-full items-center justify-between rounded-md border border-border bg-bg-pageg-input px-3 py-2 text-sm ring-offset-bg-page placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:ring-offset-2"
                 value={paymentMethod} 
                 onChange={(e) => setPaymentMethod(e.target.value)}
@@ -262,7 +264,7 @@ export function AdminFinanceRefundsClient() {
                 <option value="bank">Bank Transfer</option>
                 <option value="cash">Cash</option>
                 <option value="cheque">Cheque</option>
-              </select>
+              </AdminSearchableDropdown>
             </div>
             
             <div className="flex items-center justify-end gap-3 pt-4 border-t">

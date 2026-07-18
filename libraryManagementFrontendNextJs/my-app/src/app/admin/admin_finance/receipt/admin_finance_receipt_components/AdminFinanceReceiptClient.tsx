@@ -1,4 +1,6 @@
 'use client';
+import { AdminSearchableDropdown } from '@/app/admin/admin_shared_components/AdminSearchableDropdown';
+
 // RESPONSIBILITY: Renders the AdminFinanceReceiptClient component.
 import { useState } from 'react';
 import Link from 'next/link';
@@ -88,7 +90,7 @@ export function AdminFinanceReceiptClient() {
             onChange={e => setSearch(e.target.value)} 
           />
         </div>
-        <select 
+        <AdminSearchableDropdown 
           className="flex h-10 w-full max-w-52 items-center justify-between rounded-md border border-border bg-bg-pageg-input px-3 py-2 text-sm ring-offset-bg-page placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:ring-offset-2"
           value={modeFilter} 
           onChange={e => setModeFilter(e.target.value as FilterMode)}
@@ -98,7 +100,7 @@ export function AdminFinanceReceiptClient() {
           <option value="cash">Cash</option>
           <option value="card">Card</option>
           <option value="bank transfer">Bank Transfer</option>
-        </select>
+        </AdminSearchableDropdown>
       </div>
 
       {/* Receipts Table */}

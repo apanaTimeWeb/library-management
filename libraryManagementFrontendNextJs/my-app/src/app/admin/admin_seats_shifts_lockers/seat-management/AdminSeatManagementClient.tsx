@@ -1,4 +1,6 @@
 'use client';
+import { AdminSearchableDropdown } from '@/app/admin/admin_shared_components/AdminSearchableDropdown';
+
 import { useState } from 'react';
 // RESPONSIBILITY: Renders the AdminSeatManagementClient component.
 
@@ -77,7 +79,7 @@ export function AdminSeatManagementClient({ initialSeats }: SeatManagementClient
             onChange={e => setSearch(e.target.value)} 
           />
         </div>
-        <select 
+        <AdminSearchableDropdown 
           className="flex h-10 w-full max-w-52 items-center justify-between rounded-md border border-border bg-bg-pageg-input px-3 py-2 text-sm ring-offset-bg-page placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:ring-offset-2"
           value={statusFilter} 
           onChange={e => setStatusFilter(e.target.value)}
@@ -86,7 +88,7 @@ export function AdminSeatManagementClient({ initialSeats }: SeatManagementClient
           <option>Working</option>
           <option>Maintenance</option>
           <option>Broken</option>
-        </select>
+        </AdminSearchableDropdown>
       </div>
 
       {/* Main Content */}
@@ -240,7 +242,7 @@ export function AdminSeatManagementClient({ initialSeats }: SeatManagementClient
               </div>
               <div className="space-y-2">
                 <label className="text-sm font-medium">Status</label>
-                <select 
+                <AdminSearchableDropdown 
                   className="flex h-10 w-full items-center justify-between rounded-md border border-border bg-bg-pageg-input px-3 py-2 text-sm ring-offset-bg-page placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:ring-offset-2"
                   value={form.status} 
                   onChange={e => setForm(p => ({ ...p, status: e.target.value as SeatStatus }))}
@@ -248,7 +250,7 @@ export function AdminSeatManagementClient({ initialSeats }: SeatManagementClient
                   <option>Working</option>
                   <option>Maintenance</option>
                   <option>Broken</option>
-                </select>
+                </AdminSearchableDropdown>
               </div>
             </div>
             

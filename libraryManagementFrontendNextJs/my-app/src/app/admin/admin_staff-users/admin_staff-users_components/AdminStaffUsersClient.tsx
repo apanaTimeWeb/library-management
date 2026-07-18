@@ -1,4 +1,6 @@
 'use client';
+import { AdminSearchableDropdown } from '@/app/admin/admin_shared_components/AdminSearchableDropdown';
+
 import { useState } from 'react';
 // RESPONSIBILITY: Renders the AdminStaffUsersClient component.
 
@@ -215,7 +217,7 @@ export function AdminStaffUsersClient({ initialStaff }: AdminStaffUsersClientPro
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-2">
                   <label className="text-sm font-medium">Role</label>
-                  <select 
+                  <AdminSearchableDropdown 
                     className="flex h-10 w-full items-center justify-between rounded-md border border-border bg-bg-pageg-input px-3 py-2 text-sm ring-offset-bg-page placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
                     value={form.roleId} 
                     onChange={handleFieldChange('roleId')}
@@ -223,11 +225,11 @@ export function AdminStaffUsersClient({ initialStaff }: AdminStaffUsersClientPro
                     <option value="role-admin-id">Admin</option>
                     <option value="role-manager-id">Manager</option>
                     <option value="role-staff-id">Staff</option>
-                  </select>
+                  </AdminSearchableDropdown>
                 </div>
                 <div className="space-y-2">
                   <label className="text-sm font-medium">Branch</label>
-                  <select 
+                  <AdminSearchableDropdown 
                     className="flex h-10 w-full items-center justify-between rounded-md border border-border bg-bg-pageg-input px-3 py-2 text-sm ring-offset-bg-page placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
                     value={form.branchId} 
                     onChange={handleFieldChange('branchId')}
@@ -236,7 +238,7 @@ export function AdminStaffUsersClient({ initialStaff }: AdminStaffUsersClientPro
                     <option value="branch-2-id">Branch 2</option>
                     <option value="kothrud-center-id">Kothrud Center</option>
                     <option value="nashik-branch-id">Nashik Branch</option>
-                  </select>
+                  </AdminSearchableDropdown>
                 </div>
               </div>
             </div>

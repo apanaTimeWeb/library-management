@@ -1,4 +1,6 @@
 'use client';
+import { AdminSearchableDropdown } from '@/app/admin/admin_shared_components/AdminSearchableDropdown';
+
 // RESPONSIBILITY: Renders the AdminFinanceRenewalsClient component.
 import { useState } from 'react';
 import { RefreshCw, Send, X } from 'lucide-react';
@@ -189,7 +191,7 @@ export function AdminFinanceRenewalsClient() {
             <div className="space-y-4">
               <div className="space-y-1.5">
                 <label className="text-sm font-medium text-primary">Plan</label>
-                <select
+                <AdminSearchableDropdown
                   className="w-full h-10 px-3 rounded-md border border-border bg-bg-pageg-input text-sm font-medium focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary"
                   value={renewPlanId}
                   onChange={(e) => {
@@ -204,7 +206,7 @@ export function AdminFinanceRenewalsClient() {
                   {ADMIN_FINANCE_MOCK_PLANS.map((p) => (
                     <option key={p.id} value={String(p.id)}>{p.name} — {formatCurrency(p.price)}</option>
                   ))}
-                </select>
+                </AdminSearchableDropdown>
               </div>
               <div className="space-y-1.5">
                 <label className="text-sm font-medium text-primary">Amount</label>
@@ -212,7 +214,7 @@ export function AdminFinanceRenewalsClient() {
               </div>
               <div className="space-y-1.5">
                 <label className="text-sm font-medium text-primary">Payment Mode</label>
-                <select 
+                <AdminSearchableDropdown 
                   className="w-full h-10 px-3 rounded-md border border-border bg-bg-pageg-input text-sm font-medium focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary"
                   value={renewMode} 
                   onChange={(e) => setRenewMode(e.target.value)}
@@ -221,7 +223,7 @@ export function AdminFinanceRenewalsClient() {
                   <option value="upi">UPI</option>
                   <option value="card">Card</option>
                   <option value="bank">Bank Transfer</option>
-                </select>
+                </AdminSearchableDropdown>
               </div>
               {renewMode !== 'cash' && (
                 <div className="space-y-1.5 animate-in fade-in slide-in-from-top-1">

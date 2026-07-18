@@ -1,4 +1,6 @@
 'use client';
+import { AdminSearchableDropdown } from '@/app/admin/admin_shared_components/AdminSearchableDropdown';
+
 // RESPONSIBILITY: Renders the AdminAccountingExpensesAddClient component.
 import { useAdminAccountingExpensesAdd } from '@/app/admin/admin_accounting/expenses/add/admin_accounting_expenses_add_hooks/useAdminAccountingExpensesAdd';
 
@@ -14,14 +16,14 @@ export function AdminAccountingExpensesAddClient() {
 
       <div className="fin-card p-6 space-y-4">
         <div><label className="fin-label">Date <span className="fin-text-danger">*</span></label><input type="date" className="fin-input" value={form.date} onChange={e => setForm(p=>({...p,date:e.target.value}))} /></div>
-        <div><label className="fin-label">Category</label><select className="fin-select" value={form.category} onChange={e => setForm(p=>({...p,category:e.target.value}))}>{categories.map(c=><option key={c}>{c}</option>)}</select></div>
+        <div><label className="fin-label">Category</label><AdminSearchableDropdown className="fin-select" value={form.category} onChange={e => setForm(p=>({...p,category:e.target.value}))}>{categories.map(c=><option key={c}>{c}</option>)}</AdminSearchableDropdown></div>
         <div><label className="fin-label">Description <span className="fin-text-danger">*</span></label><input className="fin-input" placeholder="Enter description" value={form.description} onChange={e => setForm(p=>({...p,description:e.target.value}))} /></div>
         <div><label className="fin-label">Amount ₹ <span className="fin-text-danger">*</span></label><input type="number" className="fin-input" placeholder="0" value={form.amount} onChange={e => setForm(p=>({...p,amount:e.target.value}))} /></div>
         <div><label className="fin-label">Paid By <span className="fin-text-danger">*</span></label><input className="fin-input" placeholder="Name" value={form.paidBy} onChange={e => setForm(p=>({...p,paidBy:e.target.value}))} /></div>
         <div><label className="fin-label">Payment Mode</label>
-          <select className="fin-select" value={form.mode} onChange={e => setForm(p=>({...p,mode:e.target.value}))}>
+          <AdminSearchableDropdown className="fin-select" value={form.mode} onChange={e => setForm(p=>({...p,mode:e.target.value}))}>
             <option value="cash">Cash</option><option value="upi">UPI</option><option value="card">Card</option><option value="bank">Bank Transfer</option>
-          </select>
+          </AdminSearchableDropdown>
         </div>
         <div><label className="fin-label">Notes</label><textarea className="fin-textarea" rows={2} placeholder="Optional notes..." value={form.notes} onChange={e => setForm(p=>({...p,notes:e.target.value}))} /></div>
       </div>

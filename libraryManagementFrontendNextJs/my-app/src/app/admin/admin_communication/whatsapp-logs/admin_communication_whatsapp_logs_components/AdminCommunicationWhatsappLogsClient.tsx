@@ -1,4 +1,6 @@
 'use client';
+import { AdminSearchableDropdown } from '@/app/admin/admin_shared_components/AdminSearchableDropdown';
+
 // RESPONSIBILITY: Entry page for the admin_communication module.
 // DATA FLOW: Next.js Router -> page -> Components
 
@@ -69,22 +71,22 @@ export function AdminCommunicationWhatsappLogsClient() {
         <div className="flex flex-wrap gap-4 items-end">
           <div className="flex flex-col">
             <label className="text-xs mb-1 font-semibold text-muted-foreground uppercase tracking-wider">Message Type</label>
-            <select value={typeFilter} onChange={e => setTypeFilter(e.target.value)} className="flex h-10 w-36 items-center justify-between rounded-md border border-border bg-bg-pageg-input px-3 py-2 text-sm ring-offset-bg-page placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50">
+            <AdminSearchableDropdown value={typeFilter} onChange={e => setTypeFilter(e.target.value)} className="flex h-10 w-36 items-center justify-between rounded-md border border-border bg-bg-pageg-input px-3 py-2 text-sm ring-offset-bg-page placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50">
               <option value="All">All Types</option>
               <option value="welcome">Welcome</option>
               <option value="fee_reminder">Fee Reminder</option>
               <option value="receipt">Receipt</option>
               <option value="notice">Notice</option>
               <option value="renewal">Renewal</option>
-            </select>
+            </AdminSearchableDropdown>
           </div>
           <div className="flex flex-col">
             <label className="text-xs mb-1 font-semibold text-muted-foreground uppercase tracking-wider">Status</label>
-            <select value={statusFilter} onChange={e => setStatusFilter(e.target.value)} className="flex h-10 w-28 items-center justify-between rounded-md border border-border bg-bg-pageg-input px-3 py-2 text-sm ring-offset-bg-page placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50">
+            <AdminSearchableDropdown value={statusFilter} onChange={e => setStatusFilter(e.target.value)} className="flex h-10 w-28 items-center justify-between rounded-md border border-border bg-bg-pageg-input px-3 py-2 text-sm ring-offset-bg-page placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50">
               <option value="All">All</option>
               <option>Pending</option><option>Sent</option>
               <option>Delivered</option><option>Failed</option>
-            </select>
+            </AdminSearchableDropdown>
           </div>
           <div className="flex flex-col">
             <label className="text-xs mb-1 font-semibold text-muted-foreground uppercase tracking-wider">From</label>

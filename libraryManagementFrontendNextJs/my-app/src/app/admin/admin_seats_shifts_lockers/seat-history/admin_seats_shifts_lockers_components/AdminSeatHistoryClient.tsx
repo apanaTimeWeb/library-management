@@ -1,4 +1,6 @@
 'use client';
+import { AdminSearchableDropdown } from '@/app/admin/admin_shared_components/AdminSearchableDropdown';
+
 // RESPONSIBILITY: Renders the AdminSeatHistoryClient component.
 import { useState } from 'react';
 import { Download, Search } from 'lucide-react';
@@ -67,7 +69,7 @@ export function AdminSeatHistoryClient() {
             onChange={e => setSearch(e.target.value)} 
           />
         </div>
-        <select 
+        <AdminSearchableDropdown 
           className="h-10 px-3 rounded-md border border-border bg-bg-pageg-input text-sm font-medium focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary"
           value={seatFilter} 
           onChange={(e) => setSeatFilter(e.target.value)}
@@ -75,7 +77,7 @@ export function AdminSeatHistoryClient() {
           <option value="All Seats">All Seats</option>
           <option value="S-12">S-12</option>
           <option value="S-45">S-45</option>
-        </select>
+        </AdminSearchableDropdown>
         <Input 
           type="date" 
           className="h-10 w-36" 

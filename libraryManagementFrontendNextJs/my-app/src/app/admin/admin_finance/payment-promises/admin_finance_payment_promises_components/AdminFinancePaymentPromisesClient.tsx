@@ -1,4 +1,6 @@
 'use client';
+import { AdminSearchableDropdown } from '@/app/admin/admin_shared_components/AdminSearchableDropdown';
+
 // RESPONSIBILITY: Entry page for the admin_finance module.
 // DATA FLOW: Next.js Router -> page -> Components
 
@@ -70,12 +72,12 @@ export function AdminFinancePaymentPromisesClient() {
       </div>
 
       <div className="fin-filter-bar">
-        <select className="fin-select w-40" value={statusFilter} onChange={(e) => setStatusFilter(e.target.value)}>
+        <AdminSearchableDropdown className="fin-select w-40" value={statusFilter} onChange={(e) => setStatusFilter(e.target.value)}>
           <option value="all">All Status</option>
           <option value="pending">Pending</option>
           <option value="fulfilled">Fulfilled</option>
           <option value="overdue">Overdue</option>
-        </select>
+        </AdminSearchableDropdown>
       </div>
 
       <div className="mb-4">

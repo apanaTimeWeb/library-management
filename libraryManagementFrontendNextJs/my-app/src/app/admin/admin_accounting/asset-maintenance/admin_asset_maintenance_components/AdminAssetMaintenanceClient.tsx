@@ -1,4 +1,6 @@
 'use client';
+import { AdminSearchableDropdown } from '@/app/admin/admin_shared_components/AdminSearchableDropdown';
+
 // RESPONSIBILITY: Renders the AdminAssetMaintenanceClient component.
 import { useState } from 'react';
 import { Search, Plus, Filter, IndianRupee } from 'lucide-react';
@@ -98,7 +100,7 @@ export function AdminAssetMaintenanceClient() {
         
         <div className="flex items-center gap-2">
           <Filter size={16} className="text-muted-foreground" />
-          <select
+          <AdminSearchableDropdown
             className="flex h-10 w-44 items-center justify-between rounded-md border border-border bg-bg-pageg-input px-3 py-2 text-sm ring-offset-bg-page placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
             value={typeFilter}
             onChange={(e) => setTypeFilter(e.target.value)}
@@ -107,7 +109,7 @@ export function AdminAssetMaintenanceClient() {
             <option value="routine">Routine</option>
             <option value="repair">Repair</option>
             <option value="upgrade">Upgrade</option>
-          </select>
+          </AdminSearchableDropdown>
         </div>
 
         {(searchInput || typeFilter !== 'all') && (
