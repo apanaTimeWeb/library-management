@@ -133,6 +133,7 @@ const NAV: NavGroup[] = [
 ];
 
 import type { SuperadminCrmSidebarProps as SidebarProps } from '@/app/superadmin/superadmin_crm/superadmin_crm_types/SuperadminCrmTypes';
+import { ADMIN_ROUTES } from '@/app/admin/admin_url_config';
 
 export default function SuperadminSidebar({ isOpen, onClose }: SidebarProps) {
   const pathname = usePathname();

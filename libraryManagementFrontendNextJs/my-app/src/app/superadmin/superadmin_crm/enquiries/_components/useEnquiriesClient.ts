@@ -8,6 +8,7 @@ import { SUPERADMIN_ROUTES, SUPERADMIN_API_ROUTES } from '@/app/superadmin/super
 import { fetchApi } from '@/lib/api';
 import { SUPERADMIN_CRM_MOCK_ENQUIRIES } from '@/app/superadmin/superadmin_crm/superadmin_crm_constants/SuperadminCrmConstants';
 import type { Enquiry, EnquiryStatus } from '@/app/superadmin/superadmin_crm/superadmin_crm_shared_components/superadmin_types';
+import { ADMIN_ROUTES } from '@/app/admin/admin_url_config';
 
 export function useEnquiriesClient() {
   const router = useRouter();

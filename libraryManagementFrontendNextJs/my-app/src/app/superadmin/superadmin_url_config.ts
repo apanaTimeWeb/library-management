@@ -1,3 +1,4 @@
+import { ADMIN_ROUTES } from '@/app/admin/admin_url_config';
 /**
  * URL Configuration for the Superadmin Module
  * Contains all internal routes and external API endpoints.

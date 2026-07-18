@@ -35,6 +35,7 @@ import { Input } from '@/components/ui/input';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from '@/components/ui/dialog';
 import { Textarea } from '@/components/ui/textarea';
 import { MarkLostModalProps, FetchState } from "./AdminCrmEnquiriesIdClient_types";
+import { ADMIN_ROUTES } from '@/app/admin/admin_url_config';
 
 // Rule 44: FetchState enum — no boolean loading flags
 

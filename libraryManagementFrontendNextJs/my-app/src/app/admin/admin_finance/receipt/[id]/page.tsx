@@ -6,6 +6,7 @@ import { useParams, useRouter } from 'next/navigation';
 import { ArrowLeft, BookOpen, CheckCircle, Printer, Send } from 'lucide-react';
 import { openWhatsApp } from '@/lib/whatsappUtils';
 import { printThermal } from '@/lib/thermalPrint';
+import { ADMIN_ROUTES } from '@/app/admin/admin_url_config';
 
 const RECEIPT_DATA = {
   id:          'SL360-TRX-99421-X',

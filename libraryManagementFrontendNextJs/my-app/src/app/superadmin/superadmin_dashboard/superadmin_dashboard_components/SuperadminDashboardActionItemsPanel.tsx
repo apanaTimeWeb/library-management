@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { SUPERADMIN_ROUTES } from '@/app/superadmin/superadmin_url_config';
 import { AlertTriangle, CreditCard, Headphones, CloudUpload, ChevronRight, Lightbulb, ExternalLink } from 'lucide-react';
 import type { SuperadminDashboardActionItem, SuperadminDashboardActionItemsPanelProps as Props } from '@/app/superadmin/superadmin_dashboard/superadmin_dashboard_types/SuperadminDashboardTypes';
+import { ADMIN_ROUTES } from '@/app/admin/admin_url_config';
 
 const ICON_MAP: Record<string, React.ElementType> = {
   warning:         AlertTriangle,

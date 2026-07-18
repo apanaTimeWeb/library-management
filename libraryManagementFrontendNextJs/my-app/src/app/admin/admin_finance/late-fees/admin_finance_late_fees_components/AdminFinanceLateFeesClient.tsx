@@ -11,6 +11,7 @@ import { Input } from '@/components/ui/input';
 import { TablePagination } from '@/components/ui/table-pagination';
 import { TableToolbar } from '@/components/ui/table-toolbar';
 import { useClientTable } from '@/components/ui/use-client-table';
+import { ADMIN_ROUTES } from '@/app/admin/admin_url_config';
 
 export function AdminFinanceLateFeesClient() {
 

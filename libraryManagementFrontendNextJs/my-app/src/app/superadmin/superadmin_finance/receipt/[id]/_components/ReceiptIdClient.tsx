@@ -4,6 +4,7 @@ import { SUPERADMIN_ROUTES } from '@/app/superadmin/superadmin_url_config';
 
 import { ArrowLeft, BookOpen, CheckCircle, Printer, Send } from 'lucide-react';
 import { useReceiptIdClient } from '@/app/superadmin/superadmin_finance/receipt/[id]/_components/useReceiptIdClient';
+import { ADMIN_ROUTES } from '@/app/admin/admin_url_config';
 
 export function ReceiptIdClient() {
   const {

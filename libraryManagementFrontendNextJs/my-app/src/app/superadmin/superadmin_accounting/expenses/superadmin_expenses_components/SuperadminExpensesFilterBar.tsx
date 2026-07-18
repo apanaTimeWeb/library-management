@@ -6,6 +6,7 @@ import { SUPERADMIN_ROUTES } from '@/app/superadmin/superadmin_url_config';
 import { SuperadminSearchableDropdown } from '@/app/superadmin/superadmin_shared_components/SuperadminSearchableDropdown';
 
 import type { SuperadminExpensesFilterBarProps as Props } from '@/app/superadmin/superadmin_accounting/superadmin_accounting_types/SuperadminAccountingTypes';
+import { ADMIN_ROUTES } from '@/app/admin/admin_url_config';
 
 export function SuperadminExpensesFilterBar({ categories, catFilter, setCatFilter }: Props) {
   const router = useRouter();

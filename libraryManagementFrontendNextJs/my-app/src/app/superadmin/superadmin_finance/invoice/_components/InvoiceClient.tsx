@@ -11,6 +11,7 @@ import type { SuperadminFinanceInvoiceFilterStatus } from '@/app/superadmin/supe
 import { TableToolbar } from "@/components/ui/table-toolbar";
 import { useClientTable } from "@/components/ui/use-client-table";
 import { TablePagination } from "@/components/ui/table-pagination";
+import { ADMIN_ROUTES } from '@/app/admin/admin_url_config';
 
 const STATUS_BADGE: Record<string, string> = {
   paid: 'bg-success/10 text-success border-success/20', 

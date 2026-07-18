@@ -29,6 +29,7 @@ import { SuperadminSetupWizardStep1 } from '@/app/superadmin/superadmin_setup-wi
 import { SuperadminSetupWizardStep2 } from '@/app/superadmin/superadmin_setup-wizard/superadmin_setup_wizard_components/SuperadminSetupWizardStep2';
 import { SuperadminSetupWizardStep3 } from '@/app/superadmin/superadmin_setup-wizard/superadmin_setup_wizard_components/SuperadminSetupWizardStep3';
 import { SuperadminSetupWizardStep4 } from '@/app/superadmin/superadmin_setup-wizard/superadmin_setup_wizard_components/SuperadminSetupWizardStep4';
+import { ADMIN_ROUTES } from '@/app/admin/admin_url_config';
 
 // ──── Main Wizard ─────────────────────────────────────────────────────────────
 export function SetupWizardClient() {

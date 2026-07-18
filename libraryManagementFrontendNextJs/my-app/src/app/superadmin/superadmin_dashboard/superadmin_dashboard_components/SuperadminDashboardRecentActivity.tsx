@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { SUPERADMIN_ROUTES } from '@/app/superadmin/superadmin_url_config';
 import { Clock } from 'lucide-react';
 import { SUPERADMIN_DASHBOARD_RECENT_ACTIVITY } from '@/app/superadmin/superadmin_dashboard/superadmin_dashboard_constants/SuperadminDashboardConstants';
+import { ADMIN_ROUTES } from '@/app/admin/admin_url_config';
 
 export function SuperadminDashboardRecentActivity() {
   return (

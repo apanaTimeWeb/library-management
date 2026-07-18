@@ -36,6 +36,7 @@ const NAV: any[] = [
 ];
 
 import { SuperadminSidebarProps } from '@/app/superadmin/superadmin_shared_components/superadmin_shared_types';
+import { ADMIN_ROUTES } from '@/app/admin/admin_url_config';
 
 export default function SuperadminSidebar({ collapsed, onToggle, mobileOpen, onMobileClose }: SuperadminSidebarProps) {
   const pathname = usePathname();
