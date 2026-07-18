@@ -12,7 +12,7 @@ export async function fetchInvoices(): Promise<ApiResponse<SuperadminBillingInvo
 }
 
 export async function markInvoicePaidApi(id: string): Promise<ApiResponse<null>> {
-  const response = await fetchApi(`${BILLING_ENDPOINT}/${id}/mark-paid`, {
+  const response = await fetchApi(SUPERADMIN_API_ROUTES.BILLING_INVOICES_MARK_PAID(id), {
     method: 'PATCH',
   });
   return response as ApiResponse<null>;

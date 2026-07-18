@@ -125,6 +125,7 @@ export const mockRegistry: Record<string, any> = {
   '/superadmin/accounting/day-gaps': SUPERADMIN_DAY_GAPS_MOCK,
   '/superadmin/audit-logs': SUPERADMIN_AUDIT_LOGS_MOCK_DATA,
   '/superadmin/accounting/billing-invoices': SUPERADMIN_BILLING_MOCK_INVOICES,
+  '/superadmin/billing/invoices': SUPERADMIN_BILLING_MOCK_INVOICES,
   '/superadmin/dashboard': SUPERADMIN_DASHBOARD_MOCK_DATA,
   '/superadmin/libraries': SUPERADMIN_LIBRARIES_MOCK_DATA,
   '/superadmin/reports': SUPERADMIN_REPORTS_MOCK_DATA,

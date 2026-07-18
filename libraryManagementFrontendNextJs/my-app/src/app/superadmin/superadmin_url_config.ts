@@ -59,6 +59,7 @@ export const SUPERADMIN_API_ROUTES = {
   EXPENSES: '/superadmin/expenses',
   BILLING: '/superadmin/billing',
   BILLING_INVOICES: '/superadmin/billing/invoices',
+  BILLING_INVOICES_MARK_PAID: (id: string) => `/superadmin/billing/invoices/${id}/mark-paid`,
   AUDIT_LOGS: '/superadmin/audit-logs',
   ENGAGEMENT: '/superadmin/engagement',
   COMMUNICATION: '/superadmin/communication',
