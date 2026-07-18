@@ -2,7 +2,6 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { ChevronRight, Send, Mail, Phone } from 'lucide-react';
-import { ManagerRecord } from '@/app/manager/manager_reusable/gridTheme';
 import { AbsenteeRow } from '@/app/manager/manager_engagement/manager_engagement_types/ManagerEngagementTypes';
 import { useManagerEngagementAbsentee } from '@/app/manager/manager_engagement/manager_engagement_hooks/useManagerEngagementAbsentee';
 import { ManagerSearchableDropdown } from '@/app/manager/manager_shared_components/ManagerSearchableDropdown';

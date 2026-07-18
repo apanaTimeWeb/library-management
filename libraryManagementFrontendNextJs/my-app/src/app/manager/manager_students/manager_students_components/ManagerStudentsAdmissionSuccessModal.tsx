@@ -6,7 +6,7 @@ import ManagerStudentsIdCard from '@/app/manager/manager_students/manager_studen
 import { AdmittedData, ManagerStudentsAdmissionSuccessModalProps } from '@/app/manager/manager_students/manager_students_types';
 import { formatIdCardMessage, openWhatsApp, type StudentWhatsAppData } from '@/lib/whatsappUtils';
 import { printThermal } from '@/lib/thermalPrint';
-import { ManagerRecord } from '@/app/manager/manager_reusable/gridTheme';
+
 
 export default function ManagerStudentsAdmissionSuccessModal({ data, onClose }: ManagerStudentsAdmissionSuccessModalProps) {
   const router  = useRouter();
