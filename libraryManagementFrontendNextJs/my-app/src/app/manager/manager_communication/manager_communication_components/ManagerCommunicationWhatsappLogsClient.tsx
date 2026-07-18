@@ -77,7 +77,7 @@ export function ManagerCommunicationWhatsappLogsClient() {
       sortable: false,
       cellRenderer: (params: CellParams) => (
         <div className="h-full flex items-center">
-          <button onClick={() => setViewLog(params?.data)} className="w-8 h-8 flex items-center justify-center rounded-lg border border-border text-text-secondary bg-transparent hover:bg-primary hover:text-white transition-colors" title="View Message">
+          <button onClick={() => setViewLog(params?.data as WaLog)} className="w-8 h-8 flex items-center justify-center rounded-lg border border-border text-text-secondary bg-transparent hover:bg-primary hover:text-white transition-colors" title="View Message">
             <Eye size={16} />
           </button>
         </div>
