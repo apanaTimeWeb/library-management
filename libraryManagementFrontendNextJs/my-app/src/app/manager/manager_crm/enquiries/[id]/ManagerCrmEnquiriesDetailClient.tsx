@@ -29,6 +29,7 @@ import { useManagerCrmEnquiriesDetail } from '@/app/manager/manager_crm/manager_
 import { MANAGER_CRM_URLS } from '@/app/manager/manager_crm/manager_crm_url_config';
 import {
   type Enquiry,
+  type EnquiryDetail,
   type EnquiryStatus,
   type FollowUp,
 } from '@/app/manager/manager_crm/manager_crm_types';

@@ -96,7 +96,7 @@ while(MOCK_NOTICES.length < 50 && base_MOCK_NOTICES.length > 0) {
         set({ complaints: MOCK_COMPLAINTS, complaintsStatus: 'success' });
         return;
       }
-      const mapped = actualData.map((c: unknown) => ({
+      const mapped = actualData.map((c: any) => ({
         id: c.id,
         title: c.subject || 'Complaint',
         desc: c.description || '',
