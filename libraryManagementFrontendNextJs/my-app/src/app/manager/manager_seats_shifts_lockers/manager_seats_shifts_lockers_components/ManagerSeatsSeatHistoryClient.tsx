@@ -1,5 +1,5 @@
-// RESPONSIBILITY: Renders the ManagerSeatsSeatHistoryClient.tsx component UI.
 'use client';
+// RESPONSIBILITY: Renders the ManagerSeatsSeatHistoryClient.tsx component UI.
 import { Allocation, ActivityItem, Locker, SeatHistoryEntry, LogEntry, Seat, ManagerSeatsSeatMatrixModalProps, ShiftData, Shift, Student } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_types';
 import { ACTIVITY_DATA, INITIAL_LOCKERS, INITIAL_SEATS, SHIFTS_DATA, INITIAL_SHIFTS, STUDENTS_DATA } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_constants/ManagerSeatsConstants';
 import { useMemo, useState, useEffect } from 'react';
@@ -27,6 +27,8 @@ function ReasonCell(props: { value: string }) {
 }
 
 export function ManagerSeatsSeatHistoryClient() {
+  const [searchTerm, setSearchTerm] = useState('');
+
   const [seatFilter, setSeatFilter] = useState('All Seats');
   const [search, setSearch] = useState('');
   const [dateFrom, setDateFrom] = useState('');
@@ -102,7 +104,10 @@ export function ManagerSeatsSeatHistoryClient() {
         </div>
       ) : (
         <div className="ss-table-wrapper ss-grid-h-400">
-          <AgGridReact theme={gridTheme} rowData={filtered} columnDefs={colDefs} rowHeight={52} headerHeight={40} suppressMovableColumns suppressCellFocus defaultColDef={{ resizable: false, sortable: true }} />
+          <AgGridReact
+              quickFilterText={search}
+              pagination={true}
+              paginationPageSize={10} theme={gridTheme} rowData={filtered} columnDefs={colDefs} rowHeight={52} headerHeight={40} suppressMovableColumns suppressCellFocus defaultColDef={{ resizable: false, sortable: true }} />
         </div>
       )}
     </div>

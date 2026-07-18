@@ -1,5 +1,5 @@
-// RESPONSIBILITY: Renders the notification center for manager alerts.
 'use client';
+// RESPONSIBILITY: Renders the notification center for manager alerts.
 import { useState } from 'react';
 import { ChevronRight, ArrowRight, CheckCheck } from 'lucide-react';
 import { Notification, Category } from '@/app/manager/manager_communication/manager_communication_types/ManagerCommunicationTypes';

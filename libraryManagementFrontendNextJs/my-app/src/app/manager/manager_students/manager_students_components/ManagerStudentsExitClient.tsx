@@ -1,6 +1,5 @@
-// RESPONSIBILITY: Renders the ManagerStudentsExitClient.tsx component.
 'use client';
-
+// RESPONSIBILITY: Renders the ManagerStudentsExitClient.tsx component.
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { ArrowLeft, Search, LogOut, AlertTriangle } from 'lucide-react';

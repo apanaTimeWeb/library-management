@@ -1,5 +1,5 @@
-// RESPONSIBILITY: Renders the EngagementRoute.tsx component.
 'use client';
+// RESPONSIBILITY: Renders the EngagementRoute.tsx component.
 import { usePathname } from 'next/navigation';
 
 

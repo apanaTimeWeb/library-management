@@ -1,5 +1,5 @@
-// RESPONSIBILITY: Renders the SeatsRoute.tsx component.
 'use client';
+// RESPONSIBILITY: Renders the SeatsRoute.tsx component.
 import { Toaster } from 'react-hot-toast';
 import { usePathname } from 'next/navigation';
 

@@ -1,6 +1,5 @@
-// RESPONSIBILITY: Renders the ManagerStudentsIdCard.tsx component.
 'use client';
-
+// RESPONSIBILITY: Renders the ManagerStudentsIdCard.tsx component.
 import React from 'react';
 import { Phone, Shield, Wifi } from 'lucide-react';
 

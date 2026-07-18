@@ -14,6 +14,8 @@ type CellParams = { value: string; data?: Notice };
 ModuleRegistry.registerModules([AllCommunityModule]);
 
 export function ManagerCommunicationNoticesClient() {
+  const [searchTerm, setSearchTerm] = useState('');
+
   const { notices, status, addNotice, updateNotice, deleteNotice } = useNotices();
 
   const [showAdd, setShowAdd]             = useState(false);
@@ -181,8 +183,20 @@ export function ManagerCommunicationNoticesClient() {
             </button>
           </div>
         ) : (
-          <div className="w-full overflow-hidden border border-border rounded-xl h-[500px]">
+<>
+<div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: '16px' }}>
+          <input 
+            type="text" 
+            placeholder="Search in table..." 
+            className="px-3 py-2 border border-border rounded-md text-sm bg-bg-input text-text-primary focus:outline-none focus:ring-2 focus:ring-primary w-64"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+        </div>
+        
+<div className="w-full overflow-hidden border border-border rounded-xl h-[500px]">
             <AgGridReact
+              quickFilterText={searchTerm}
               theme={gridTheme}
               rowData={notices}
               columnDefs={colDefs as never}
@@ -197,7 +211,8 @@ export function ManagerCommunicationNoticesClient() {
               }}
             />
           </div>
-        )}
+        </>
+)}
       </div>
     </div>
   );

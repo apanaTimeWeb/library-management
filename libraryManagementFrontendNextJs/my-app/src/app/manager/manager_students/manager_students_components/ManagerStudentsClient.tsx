@@ -1,5 +1,6 @@
 'use client';
 
+import { useState } from 'react';
 import { useMemo, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
@@ -19,6 +20,8 @@ ModuleRegistry.registerModules([AllCommunityModule]);
 // RESPONSIBILITY: Main Client view for the Manager Students directory.
 
 export function ManagerStudentsClient() {
+  const [searchTerm, setSearchTerm] = useState('');
+
   const {
     students,
     filtered,
@@ -121,6 +124,9 @@ export function ManagerStudentsClient() {
              </div>
           ) : (
             <AgGridReact
+              quickFilterText={searchTerm}
+              pagination={true}
+              paginationPageSize={10}
               theme={gridTheme}
               rowData={filtered}
               columnDefs={colDefs}

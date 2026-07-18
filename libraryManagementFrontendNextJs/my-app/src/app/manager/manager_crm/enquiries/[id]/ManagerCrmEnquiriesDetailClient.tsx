@@ -1,7 +1,6 @@
-// RESPONSIBILITY: Renders detailed CRM enquiry page, including timelines and follow-up updates.
-// RESPONSIBILITY: Renders detailed CRM enquiry page, including timelines and follow-up updates.
 'use client';
-
+// RESPONSIBILITY: Renders detailed CRM enquiry page, including timelines and follow-up updates.
+// RESPONSIBILITY: Renders detailed CRM enquiry page, including timelines and follow-up updates.
 // RESPONSIBILITY: Renders the detail view for a specific enquiry, handling status updates and follow-ups.
 
 import { useState, useEffect } from 'react';

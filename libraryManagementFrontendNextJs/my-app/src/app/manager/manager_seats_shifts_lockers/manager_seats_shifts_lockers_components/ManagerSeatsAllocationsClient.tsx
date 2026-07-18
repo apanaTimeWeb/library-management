@@ -1,5 +1,5 @@
-// RESPONSIBILITY: Renders the ManagerSeatsAllocationsClient.tsx component UI.
 'use client';
+// RESPONSIBILITY: Renders the ManagerSeatsAllocationsClient.tsx component UI.
 import { useMemo, useState, useEffect } from 'react';
 import { Allocation, ActivityItem, Locker, SeatHistoryEntry, LogEntry, Seat, ManagerSeatsSeatMatrixModalProps, ShiftData, Shift, Student } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_types';
 import { ACTIVITY_DATA, INITIAL_LOCKERS, INITIAL_SEATS, SHIFTS_DATA, INITIAL_SHIFTS, STUDENTS_DATA } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_constants/ManagerSeatsConstants';
@@ -50,6 +50,8 @@ function ActionsCell(props: { data: Allocation }) {
 }
 
 export function ManagerSeatsAllocationsClient() {
+  const [searchTerm, setSearchTerm] = useState('');
+
   const [shiftFilter, setShiftFilter] = useState('All Shifts');
   const [statusFilter, setStatusFilter] = useState('All Statuses');
   const [dateFrom, setDateFrom] = useState('');
@@ -136,10 +138,25 @@ export function ManagerSeatsAllocationsClient() {
             <p className="ss-empty-state__title">No allocations found.</p>
           </div>
         ) : (
-          <div className="ss-table-wrapper ss-grid-h-400">
-            <AgGridReact theme={gridTheme} rowData={filtered} columnDefs={colDefs} rowHeight={52} headerHeight={40} suppressMovableColumns suppressCellFocus defaultColDef={{ resizable: false, sortable: true }} />
+<>
+<div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: '16px' }}>
+          <input 
+            type="text" 
+            placeholder="Search in table..." 
+            className="px-3 py-2 border border-border rounded-md text-sm bg-bg-input text-text-primary focus:outline-none focus:ring-2 focus:ring-primary w-64"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+        </div>
+        
+<div className="ss-table-wrapper ss-grid-h-400">
+            <AgGridReact
+              quickFilterText={searchTerm}
+              pagination={true}
+              paginationPageSize={10} theme={gridTheme} rowData={filtered} columnDefs={colDefs} rowHeight={52} headerHeight={40} suppressMovableColumns suppressCellFocus defaultColDef={{ resizable: false, sortable: true }} />
           </div>
-        )}
+        </>
+)}
       </div>
     </>
   );

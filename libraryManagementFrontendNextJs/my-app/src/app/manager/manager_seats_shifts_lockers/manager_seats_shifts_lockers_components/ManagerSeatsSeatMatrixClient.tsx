@@ -1,6 +1,5 @@
-// @ts-nocheck
 'use client';
-
+// @ts-nocheck
 import { CalendarDays } from 'lucide-react';
 import { useManagerSeatsSeatMatrix } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_hooks/useManagerSeatsSeatMatrix';
 import { SHIFT_TABS, LEGEND_ITEMS } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_constants';

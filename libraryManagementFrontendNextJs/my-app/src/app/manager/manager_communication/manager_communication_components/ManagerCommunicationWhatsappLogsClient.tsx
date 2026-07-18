@@ -1,5 +1,5 @@
-// RESPONSIBILITY: Renders the WhatsApp communication logs grid with filtering.
 'use client';
+// RESPONSIBILITY: Renders the WhatsApp communication logs grid with filtering.
 import { useState } from 'react';
 import { ChevronRight, Eye, X } from 'lucide-react';
 import { AgGridReact } from 'ag-grid-react';
@@ -32,6 +32,8 @@ const STATUS_BADGE: Record<string, string> = {
 };
 
 export function ManagerCommunicationWhatsappLogsClient() {
+  const [searchTerm, setSearchTerm] = useState('');
+
   const [typeFilter,   setTypeFilter]   = useState('All');
   const [statusFilter, setStatusFilter] = useState('All');
   const [search,       setSearch]       = useState('');
@@ -186,6 +188,7 @@ export function ManagerCommunicationWhatsappLogsClient() {
         ) : (
           <div className="w-full overflow-hidden border border-border rounded-xl h-[450px]">
             <AgGridReact
+              quickFilterText={searchTerm}
               theme={gridTheme}
               rowData={filtered}
               columnDefs={colDefs as never}

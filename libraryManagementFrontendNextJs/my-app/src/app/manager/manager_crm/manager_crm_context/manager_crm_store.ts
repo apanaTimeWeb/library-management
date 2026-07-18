@@ -23,6 +23,13 @@ export const useCrmStore = create<ManagerCrmState>((set, get) => ({
           { id: 'E3', name: 'Amit Patel', phone: '7654321098', shift: 'Full Day', status: 'Converted' as const, handledBy: 'Admin', addedDate: '2026-04-08', avatar: 'AP' },
           { id: 'E4', name: 'Sneha Gupta', phone: '6543210987', shift: 'Night', status: 'Lost' as const, handledBy: 'Staff', addedDate: '2026-04-07', avatar: 'SG' },
         ];
+
+// MULTIPLIED
+const base_MOCK_ENQUIRIES = [...MOCK_ENQUIRIES];
+while(MOCK_ENQUIRIES.length < 50 && base_MOCK_ENQUIRIES.length > 0) {
+  MOCK_ENQUIRIES.push({ ...base_MOCK_ENQUIRIES[MOCK_ENQUIRIES.length % base_MOCK_ENQUIRIES.length], id: Math.random().toString() + 'm' });
+}
+
         set({ enquiries: MOCK_ENQUIRIES as import('@/app/manager/manager_crm/manager_crm_types').Enquiry[], status: 'success' });
         return;
       }

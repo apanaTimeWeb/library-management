@@ -23,10 +23,17 @@ export const useManagerCommunicationStore = create<ManagerCommunicationState>((s
           { id: 'N1', title: 'Library Closed for Maintenance', message: 'The library will be closed on Sunday due to scheduled maintenance.', postedBy: 'Admin', postedDate: '2026-04-10', validTill: '2026-04-15', status: 'Active' },
           { id: 'N2', title: 'New AC Installed', message: 'We have installed a new AC in the quiet zone.', postedBy: 'Manager', postedDate: '2026-04-08', validTill: '2026-04-30', status: 'Active' },
         ];
+
+// MULTIPLIED
+const base_MOCK_NOTICES = [...MOCK_NOTICES];
+while(MOCK_NOTICES.length < 50 && base_MOCK_NOTICES.length > 0) {
+  MOCK_NOTICES.push({ ...base_MOCK_NOTICES[MOCK_NOTICES.length % base_MOCK_NOTICES.length], id: Math.random().toString() + 'm' });
+}
+
         set({ notices: MOCK_NOTICES, noticesStatus: 'success' });
         return;
       }
-      const mapped = actualData.map((n: unknown) => ({
+      const mapped = actualData.map((n: any) => ({
         id: n.id,
         title: n.title,
         message: n.message,

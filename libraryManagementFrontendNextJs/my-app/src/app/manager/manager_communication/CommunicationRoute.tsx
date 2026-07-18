@@ -1,5 +1,5 @@
-// RESPONSIBILITY: Renders the CommunicationRoute.tsx component.
 'use client';
+// RESPONSIBILITY: Renders the CommunicationRoute.tsx component.
 import { usePathname } from 'next/navigation';
 
 

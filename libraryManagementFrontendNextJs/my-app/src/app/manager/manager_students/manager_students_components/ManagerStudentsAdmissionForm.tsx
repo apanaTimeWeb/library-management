@@ -1,6 +1,5 @@
-// RESPONSIBILITY: Renders the ManagerStudentsAdmissionForm.tsx component.
 'use client';
-
+// RESPONSIBILITY: Renders the ManagerStudentsAdmissionForm.tsx component.
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';

@@ -1,5 +1,6 @@
 'use client';
 
+import { useState } from 'react';
 import { useMemo } from 'react';
 import Link from 'next/link';
 import { ChevronRight, TrendingUp } from 'lucide-react';
@@ -32,6 +33,8 @@ function PhoneCell({ value }: CellRendererProps) {
 }
 
 export function ManagerDashboardClient() {
+  const [searchTerm, setSearchTerm] = useState('');
+
   const { data, status, error } = useDashboardData();
 
   const admissionCols: ColDef[] = useMemo(() => [
@@ -101,8 +104,22 @@ export function ManagerDashboardClient() {
             <h2 className="text-base font-semibold text-text-primary">Recent New Admissions</h2>
             <Link href={MANAGER_ROUTES.STUDENTS} className="text-sm font-semibold text-primary hover:text-primary-hover transition-colors inline-flex items-center gap-1">View all</Link>
           </div>
-          <div className="h-72 w-full">
+          
+        <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: '16px' }}>
+          <input 
+            type="text" 
+            placeholder="Search in table..." 
+            className="px-3 py-2 border border-border rounded-md text-sm bg-bg-input text-text-primary focus:outline-none focus:ring-2 focus:ring-primary w-64"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+        </div>
+        
+<div className="h-72 w-full">
             <AgGridReact
+              quickFilterText={searchTerm}
+              pagination={true}
+              paginationPageSize={10}
               theme={gridTheme}
               rowData={data.recentAdmissions || []}
               columnDefs={admissionCols}
@@ -122,6 +139,9 @@ export function ManagerDashboardClient() {
           </div>
           <div className="h-72 w-full">
             <AgGridReact
+              quickFilterText={searchTerm}
+              pagination={true}
+              paginationPageSize={10}
               theme={gridTheme}
               rowData={data.recentEnquiries || []}
               columnDefs={enquiryCols}

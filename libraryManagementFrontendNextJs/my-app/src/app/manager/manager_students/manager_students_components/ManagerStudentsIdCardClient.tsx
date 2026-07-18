@@ -1,6 +1,5 @@
-// RESPONSIBILITY: Renders the ManagerStudentsIdCardClient.tsx component.
 'use client';
-
+// RESPONSIBILITY: Renders the ManagerStudentsIdCardClient.tsx component.
 import { useState, useMemo, useEffect } from 'react';
 import Link from 'next/link';
 import { ArrowLeft, Search, Printer, MessageSquare, IdCard, CheckCircle2 } from 'lucide-react';

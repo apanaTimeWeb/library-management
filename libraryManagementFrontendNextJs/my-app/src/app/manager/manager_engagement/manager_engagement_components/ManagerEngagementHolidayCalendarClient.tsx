@@ -1,5 +1,5 @@
-// RESPONSIBILITY: Renders the ManagerEngagementHolidayCalendarClient component.
 'use client';
+// RESPONSIBILITY: Renders the ManagerEngagementHolidayCalendarClient component.
 import { useState } from 'react';
 import Link from 'next/link';
 import { ChevronRight, ChevronLeft, Plus, X, Trash2, CalendarDays } from 'lucide-react';

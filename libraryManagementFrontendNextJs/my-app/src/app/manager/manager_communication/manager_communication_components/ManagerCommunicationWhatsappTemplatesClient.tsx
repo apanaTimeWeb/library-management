@@ -1,5 +1,5 @@
-// RESPONSIBILITY: Renders WhatsApp message templates and allows editing and testing.
 'use client';
+// RESPONSIBILITY: Renders WhatsApp message templates and allows editing and testing.
 import { useState, useRef } from 'react';
 import { Template } from '@/app/manager/manager_communication/manager_communication_types/ManagerCommunicationTypes';
 import { INIT_TEMPLATES } from '@/app/manager/manager_communication/manager_communication_constants/ManagerCommunicationConstants';

@@ -1,6 +1,5 @@
-// RESPONSIBILITY: Renders the ManagerStudentsStudentProfileClient.tsx component.
 'use client';
-
+// RESPONSIBILITY: Renders the ManagerStudentsStudentProfileClient.tsx component.
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { ArrowLeft, Phone, Armchair, Calendar, CreditCard, Shield } from 'lucide-react';

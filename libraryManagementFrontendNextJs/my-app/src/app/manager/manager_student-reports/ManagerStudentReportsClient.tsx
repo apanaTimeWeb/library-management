@@ -2,6 +2,7 @@
 
 // RESPONSIBILITY: Renders the Student Reports UI and renders data visualization using ApexCharts.
 import { useState } from 'react';
+import { TablePagination } from '@/components/ui/table-pagination';
 import dynamic from 'next/dynamic';
 import { useRouter, useSearchParams, usePathname } from 'next/navigation';
 import { Users, CalendarCheck, UserPlus, Phone } from 'lucide-react';
@@ -13,6 +14,10 @@ const Chart = dynamic(() => import('react-apexcharts'), { ssr: false }) as React
 const iconMap: Record<string, React.ElementType> = { Users, CalendarCheck, UserPlus, Phone };
 
 export function ManagerStudentReportsClient() {
+  const [page, setPage] = useState(1);
+  const [limit, setLimit] = useState(10);
+  const [searchTerm, setSearchTerm] = useState('');
+
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -164,7 +169,17 @@ export function ManagerStudentReportsClient() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-8">
         <div className="bg-bg-card rounded-xl border border-border p-6">
           <h3 className="font-semibold mb-4">Absentee Report</h3>
-          <table className="w-full text-sm text-left">
+          
+        <div className="flex justify-end mb-4">
+            <input 
+              type="text" 
+              placeholder="Search in table..." 
+              className="px-3 py-2 border rounded-md text-sm w-64"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+            />
+        </div>
+        <table className="w-full text-sm text-left">
             <thead><tr className="bg-primary-subtle text-xs uppercase font-semibold text-text-secondary text-left">
               <th className="p-3">Name</th>
               <th className="p-3">Absent Days</th>
@@ -180,6 +195,8 @@ export function ManagerStudentReportsClient() {
               ))}
             </tbody>
           </table>
+      <TablePagination page={page} limit={limit} totalItems={100} onPageChange={setPage} onLimitChange={setLimit} />
+
         </div>
 
         <div className="bg-bg-card rounded-xl border border-border p-6">

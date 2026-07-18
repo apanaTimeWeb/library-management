@@ -1,6 +1,5 @@
-// RESPONSIBILITY: Renders the ManagerStudentsGroupClient.tsx component.
 'use client';
-
+// RESPONSIBILITY: Renders the ManagerStudentsGroupClient.tsx component.
 import React from 'react';
 import { Users2, Plus, Upload, Download } from 'lucide-react';
 import Link from 'next/link';

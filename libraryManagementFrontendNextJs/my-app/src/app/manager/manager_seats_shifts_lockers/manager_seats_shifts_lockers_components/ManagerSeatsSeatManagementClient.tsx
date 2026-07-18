@@ -1,5 +1,5 @@
-// RESPONSIBILITY: Renders the ManagerSeatsSeatManagementClient.tsx component UI.
 'use client';
+// RESPONSIBILITY: Renders the ManagerSeatsSeatManagementClient.tsx component UI.
 import { Allocation, ActivityItem, Locker, SeatHistoryEntry, LogEntry, Seat, ManagerSeatsSeatMatrixModalProps, ShiftData, Shift, Student, SeatStatus } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_types';
 import { ACTIVITY_DATA, INITIAL_LOCKERS, INITIAL_SEATS, SHIFTS_DATA, INITIAL_SHIFTS, STUDENTS_DATA } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_constants/ManagerSeatsConstants';
 import { useState, useMemo } from 'react';
@@ -37,6 +37,8 @@ function SeatStatusCell(props: { value: string }) {
 }
 
 export function ManagerSeatsSeatManagementClient() {
+  const [searchTerm, setSearchTerm] = useState('');
+
   const [seats, setSeats] = useState<Seat[]>(INITIAL_SEATS);
   const [search, setSearch] = useState('');
   const [statusFilter, setStatusFilter] = useState('All Statuses');
@@ -174,7 +176,10 @@ export function ManagerSeatsSeatManagementClient() {
           </div>
         ) : (
           <div className="ss-table-wrapper ss-grid-h-400">
-            <AgGridReact theme={gridTheme} rowData={filtered} columnDefs={colDefs} rowHeight={52} headerHeight={40} suppressMovableColumns suppressCellFocus defaultColDef={{ resizable: false, sortable: true }} />
+            <AgGridReact
+              quickFilterText={search}
+              pagination={true}
+              paginationPageSize={10} theme={gridTheme} rowData={filtered} columnDefs={colDefs} rowHeight={52} headerHeight={40} suppressMovableColumns suppressCellFocus defaultColDef={{ resizable: false, sortable: true }} />
           </div>
         )}
       </div>

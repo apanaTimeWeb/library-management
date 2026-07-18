@@ -1,5 +1,5 @@
-// RESPONSIBILITY: Renders the ManagerSeatsShiftManagementClient.tsx component UI.
 'use client';
+// RESPONSIBILITY: Renders the ManagerSeatsShiftManagementClient.tsx component UI.
 import { useState } from 'react';
 import { Allocation, ActivityItem, Locker, SeatHistoryEntry, LogEntry, Seat, ManagerSeatsSeatMatrixModalProps, ShiftData, Shift, Student } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_types';
 import { ACTIVITY_DATA, INITIAL_LOCKERS, INITIAL_SEATS, SHIFTS_DATA, INITIAL_SHIFTS, STUDENTS_DATA } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_constants/ManagerSeatsConstants';

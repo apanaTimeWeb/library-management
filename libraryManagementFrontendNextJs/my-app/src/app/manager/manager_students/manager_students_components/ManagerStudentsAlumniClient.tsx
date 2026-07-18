@@ -1,6 +1,5 @@
-// RESPONSIBILITY: Renders the ManagerStudentsAlumniClient.tsx component.
 'use client';
-
+// RESPONSIBILITY: Renders the ManagerStudentsAlumniClient.tsx component.
 import React, { useState } from 'react';
 import { AgGridReact } from 'ag-grid-react';
 import { AllCommunityModule, ModuleRegistry, type ColDef } from 'ag-grid-community';
@@ -17,6 +16,8 @@ const ALUMNI_DATA: AlumniData[] = [
 ];
 
 export function ManagerStudentsAlumniClient() {
+  const [searchTerm, setSearchTerm] = useState('');
+
   const [rowData] = useState<AlumniData[]>(ALUMNI_DATA);
 
   const colDefs: ColDef<AlumniData>[] = [
@@ -79,8 +80,22 @@ export function ManagerStudentsAlumniClient() {
           </div>
           <button className="bg-transparent border border-border text-text-primary rounded-lg px-5 py-2.5 text-sm font-medium hover:bg-primary-subtle hover:border-primary transition-colors inline-flex items-center gap-2"><Filter size={14} /> Filters</button>
         </div>
-        <div className="w-full overflow-hidden border border-border rounded-xl mt-4" style={{ height: 500 }}>
+        
+        <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: '16px' }}>
+          <input 
+            type="text" 
+            placeholder="Search in table..." 
+            className="px-3 py-2 border border-border rounded-md text-sm bg-bg-input text-text-primary focus:outline-none focus:ring-2 focus:ring-primary w-64"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+        </div>
+        
+<div className="w-full overflow-hidden border border-border rounded-xl mt-4" style={{ height: 500 }}>
           <AgGridReact
+              quickFilterText={searchTerm}
+              pagination={true}
+              paginationPageSize={10}
             theme={gridTheme}
             rowData={rowData}
             columnDefs={colDefs}

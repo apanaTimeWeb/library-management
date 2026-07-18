@@ -1,6 +1,5 @@
-// RESPONSIBILITY: Renders the ManagerStudentsAdmissionSuccessModal.tsx component.
 'use client';
-
+// RESPONSIBILITY: Renders the ManagerStudentsAdmissionSuccessModal.tsx component.
 import { useRouter } from 'next/navigation';
 import { X, Printer, MessageSquare, Users, CheckCircle } from 'lucide-react';
 import ManagerStudentsIdCard from '@/app/manager/manager_students/manager_students_components/ManagerStudentsIdCard';

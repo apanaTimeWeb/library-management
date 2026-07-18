@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import React, { useMemo } from 'react';
 import { AgGridReact } from 'ag-grid-react';
 import { type ColDef, AllCommunityModule, ModuleRegistry } from 'ag-grid-community';
@@ -41,6 +42,8 @@ function PriorityCell(props: unknown) {
 
 
 export function ManagerReportsTablesGrid({ data }: ManagerReportsTablesGridProps) {
+  const [searchTerm, setSearchTerm] = useState('');
+
   const absenteeCols = useMemo<ColDef[]>(() => [
     { field: 'name', headerName: 'NAME', flex: 2, sortable: true },
     { field: 'smartId', headerName: 'SMART ID', flex: 1, cellRenderer: SmartIdCell },
@@ -80,36 +83,62 @@ export function ManagerReportsTablesGrid({ data }: ManagerReportsTablesGridProps
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
       <div className="bg-bg-card border border-border rounded-[var(--radius-lg)] p-5 hover:shadow-lg transition-all duration-200">
         <h3 className="text-sm font-semibold text-text-primary mb-4">Absentee Report</h3>
-        <div style={{ height: 280 }}>
-          <AgGridReact theme={gridTheme} rowData={data.absenteeRows} columnDefs={absenteeCols} rowHeight={48} headerHeight={38} suppressMovableColumns suppressCellFocus defaultColDef={{ resizable: false }} />
+        
+        <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: '16px' }}>
+          <input 
+            type="text" 
+            placeholder="Search in table..." 
+            className="px-3 py-2 border border-border rounded-md text-sm bg-bg-input text-text-primary focus:outline-none focus:ring-2 focus:ring-primary w-64"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+        </div>
+        
+<div style={{ height: 280 }}>
+          <AgGridReact
+              quickFilterText={searchTerm}
+              pagination={true}
+              paginationPageSize={10} theme={gridTheme} rowData={data.absenteeRows} columnDefs={absenteeCols} rowHeight={48} headerHeight={38} suppressMovableColumns suppressCellFocus defaultColDef={{ resizable: false }} />
         </div>
       </div>
 
       <div className="bg-bg-card border border-border rounded-[var(--radius-lg)] p-5 hover:shadow-lg transition-all duration-200">
         <h3 className="text-sm font-semibold text-text-primary mb-4">Enquiry Conversion Rate</h3>
         <div style={{ height: 280 }}>
-          <AgGridReact theme={gridTheme} rowData={data.conversionRows} columnDefs={conversionCols} rowHeight={48} headerHeight={38} suppressMovableColumns suppressCellFocus defaultColDef={{ resizable: false }} />
+          <AgGridReact
+              quickFilterText={searchTerm}
+              pagination={true}
+              paginationPageSize={10} theme={gridTheme} rowData={data.conversionRows} columnDefs={conversionCols} rowHeight={48} headerHeight={38} suppressMovableColumns suppressCellFocus defaultColDef={{ resizable: false }} />
         </div>
       </div>
 
       <div className="bg-bg-card border border-border rounded-[var(--radius-lg)] p-5 hover:shadow-lg transition-all duration-200">
         <h3 className="text-sm font-semibold text-text-primary mb-4">Seat Utilization Report</h3>
         <div style={{ height: 260 }}>
-          <AgGridReact theme={gridTheme} rowData={data.seatRows} columnDefs={seatCols} rowHeight={48} headerHeight={38} suppressMovableColumns suppressCellFocus defaultColDef={{ resizable: false }} />
+          <AgGridReact
+              quickFilterText={searchTerm}
+              pagination={true}
+              paginationPageSize={10} theme={gridTheme} rowData={data.seatRows} columnDefs={seatCols} rowHeight={48} headerHeight={38} suppressMovableColumns suppressCellFocus defaultColDef={{ resizable: false }} />
         </div>
       </div>
 
       <div className="bg-bg-card border border-border rounded-[var(--radius-lg)] p-5 hover:shadow-lg transition-all duration-200">
         <h3 className="text-sm font-semibold text-text-primary mb-4">Locker Utilization Report</h3>
         <div style={{ height: 228 }}>
-          <AgGridReact theme={gridTheme} rowData={data.lockerRows} columnDefs={lockerCols} rowHeight={48} headerHeight={38} suppressMovableColumns suppressCellFocus defaultColDef={{ resizable: false }} />
+          <AgGridReact
+              quickFilterText={searchTerm}
+              pagination={true}
+              paginationPageSize={10} theme={gridTheme} rowData={data.lockerRows} columnDefs={lockerCols} rowHeight={48} headerHeight={38} suppressMovableColumns suppressCellFocus defaultColDef={{ resizable: false }} />
         </div>
       </div>
 
       <div className="lg:col-span-2 bg-bg-card border border-border rounded-[var(--radius-lg)] p-5 hover:shadow-lg transition-all duration-200">
         <h3 className="text-sm font-semibold text-text-primary mb-4">Pending Maintenance</h3>
         <div style={{ height: 260 }}>
-          <AgGridReact theme={gridTheme} rowData={data.maintenanceRows} columnDefs={maintenanceCols} rowHeight={48} headerHeight={38} suppressMovableColumns suppressCellFocus defaultColDef={{ resizable: false }} />
+          <AgGridReact
+              quickFilterText={searchTerm}
+              pagination={true}
+              paginationPageSize={10} theme={gridTheme} rowData={data.maintenanceRows} columnDefs={maintenanceCols} rowHeight={48} headerHeight={38} suppressMovableColumns suppressCellFocus defaultColDef={{ resizable: false }} />
         </div>
       </div>
     </div>

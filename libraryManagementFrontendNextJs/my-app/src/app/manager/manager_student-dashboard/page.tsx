@@ -1,5 +1,5 @@
-// RESPONSIBILITY: Renders the page.tsx component.
 'use client';
+// RESPONSIBILITY: Renders the page.tsx component.
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 

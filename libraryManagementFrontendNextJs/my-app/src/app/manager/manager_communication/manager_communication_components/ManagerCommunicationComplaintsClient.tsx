@@ -2,6 +2,7 @@
 
 // RESPONSIBILITY: Renders the Complaints UI and handles status filtering and resolution.
 import { useState } from 'react';
+import { TablePagination } from '@/components/ui/table-pagination';
 import { useRouter, useSearchParams, usePathname } from 'next/navigation';
 import { ChevronRight, Plus, X, Eye, RefreshCw, CheckCircle, Smile, MessageCircle } from 'lucide-react';
 import { useComplaints } from '@/app/manager/manager_communication/manager_communication_hooks/useComplaints';
@@ -10,6 +11,10 @@ import type { Complaint } from '@/app/manager/manager_communication/manager_comm
 const TABS: (Complaint['status'] | 'All')[] = ['All', 'New', 'In-Progress', 'Resolved'];
 
 export function ManagerCommunicationComplaintsClient() {
+  const [page, setPage] = useState(1);
+  const [limit, setLimit] = useState(10);
+  const [searchTerm, setSearchTerm] = useState('');
+
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -201,7 +206,17 @@ export function ManagerCommunicationComplaintsClient() {
           </div>
         ) : (
           <div className="eng-scroll-x">
-            <table className="eng-table">
+            
+        <div className="flex justify-end mb-4">
+            <input 
+              type="text" 
+              placeholder="Search in table..." 
+              className="px-3 py-2 border rounded-md text-sm w-64"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+            />
+        </div>
+        <table className="eng-table">
               <thead>
                 <tr>
                   <th>#</th><th>Title</th><th>Student</th><th>Description</th>
@@ -250,6 +265,8 @@ export function ManagerCommunicationComplaintsClient() {
                 })}
               </tbody>
             </table>
+      <TablePagination page={page} limit={limit} totalItems={TABS.length} onPageChange={setPage} onLimitChange={setLimit} />
+
           </div>
         )}
       </div>

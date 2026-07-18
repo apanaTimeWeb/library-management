@@ -1,5 +1,5 @@
-// @ts-nocheck
 'use client';
+// @ts-nocheck
 import { useState, useEffect } from 'react';
 import type { ReactNode } from 'react';
 import { User, KeyRound, LockKeyhole, Settings } from 'lucide-react';

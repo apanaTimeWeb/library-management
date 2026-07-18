@@ -1,5 +1,5 @@
-// RESPONSIBILITY: Renders the ManagerSeatsSeatMaintenanceClient.tsx component UI.
 'use client';
+// RESPONSIBILITY: Renders the ManagerSeatsSeatMaintenanceClient.tsx component UI.
 import { Allocation, ActivityItem, Locker, SeatHistoryEntry, LogEntry, Seat, ManagerSeatsSeatMatrixModalProps, ShiftData, Shift, Student, SeatStatus } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_types';
 import { ACTIVITY_DATA, INITIAL_LOCKERS, INITIAL_SEATS, SHIFTS_DATA, INITIAL_SHIFTS, STUDENTS_DATA } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_constants/ManagerSeatsConstants';
 import { useState, useMemo } from 'react';
@@ -49,6 +49,8 @@ function StatusBadge(props: { value: string }) {
 }
 
 export function ManagerSeatsSeatMaintenanceClient() {
+  const [searchTerm, setSearchTerm] = useState('');
+
   const [selectedSeat, setSelectedSeat] = useState('S-006');
   const [logs, setLogs] = useState(SEAT_LOGS);
   const [form, setForm] = useState(EMPTY_FORM);
@@ -133,10 +135,25 @@ export function ManagerSeatsSeatMaintenanceClient() {
             <p className="ss-empty-state__title">No maintenance history for this seat.</p>
           </div>
         ) : (
-          <div className="ss-table-wrapper ss-grid-h-320">
-            <AgGridReact theme={gridTheme} rowData={currentLogs} columnDefs={colDefs} rowHeight={52} headerHeight={40} suppressMovableColumns suppressCellFocus defaultColDef={{ resizable: false, sortable: true }} />
+<>
+<div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: '16px' }}>
+          <input 
+            type="text" 
+            placeholder="Search in table..." 
+            className="px-3 py-2 border border-border rounded-md text-sm bg-bg-input text-text-primary focus:outline-none focus:ring-2 focus:ring-primary w-64"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+        </div>
+        
+<div className="ss-table-wrapper ss-grid-h-320">
+            <AgGridReact
+              quickFilterText={searchTerm}
+              pagination={true}
+              paginationPageSize={10} theme={gridTheme} rowData={currentLogs} columnDefs={colDefs} rowHeight={52} headerHeight={40} suppressMovableColumns suppressCellFocus defaultColDef={{ resizable: false, sortable: true }} />
           </div>
-        )}
+        </>
+)}
 
         {/* Add New Entry form */}
         <div className="ss-card ss-form-card">
