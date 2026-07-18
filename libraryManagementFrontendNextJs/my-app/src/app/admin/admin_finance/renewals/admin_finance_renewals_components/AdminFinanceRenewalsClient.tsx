@@ -2,7 +2,7 @@
 // RESPONSIBILITY: Renders the AdminFinanceRenewalsClient component.
 import { useState } from 'react';
 import { RefreshCw, Send, X } from 'lucide-react';
-import { formatCurrency } from '@/app/admin/admin_finance/admin_finance_utils/format';
+import { formatCurrency } from '@/app/admin/admin_finance/admin_finance_utils/AdminFinanceFormat';
 import { useAdminFinanceRenewals } from '@/app/admin/admin_finance/renewals/admin_finance_renewals_hooks/useAdminFinanceRenewals';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';

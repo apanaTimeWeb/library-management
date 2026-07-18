@@ -5,7 +5,7 @@ import {
   PiggyBank, Users, Clock, Ban, UsersRound, ShieldAlert,
   TrendingUp, TrendingDown, IndianRupee, Receipt, AlertTriangle, RefreshCw,
 } from 'lucide-react';
-import { formatCurrency } from '@/app/admin/admin_finance/admin_finance_utils/format';
+import { formatCurrency } from '@/app/admin/admin_finance/admin_finance_utils/AdminFinanceFormat';
 import { useAdminFinanceDashboard } from '@/app/admin/admin_finance/finance-dashboard/admin_finance_dashboard_hooks/useAdminFinanceDashboard';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';

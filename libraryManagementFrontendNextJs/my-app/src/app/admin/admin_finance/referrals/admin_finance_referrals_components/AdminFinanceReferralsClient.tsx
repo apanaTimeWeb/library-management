@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { Input } from '@/components/ui/input';
 import { Users, Trophy, IndianRupee , Search} from 'lucide-react';
-import { formatCurrency } from '@/app/admin/admin_finance/admin_finance_utils/format';
+import { formatCurrency } from '@/app/admin/admin_finance/admin_finance_utils/AdminFinanceFormat';
 import { useAdminFinanceReferrals } from '@/app/admin/admin_finance/referrals/admin_finance_referrals_hooks/useAdminFinanceReferrals';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';

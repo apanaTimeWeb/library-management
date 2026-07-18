@@ -2,7 +2,7 @@
 // RESPONSIBILITY: Renders the AdminFinanceRefundsClient component.
 import { useState } from 'react';
 import { Undo2, X } from 'lucide-react';
-import { formatCurrency } from '@/app/admin/admin_finance/admin_finance_utils/format';
+import { formatCurrency } from '@/app/admin/admin_finance/admin_finance_utils/AdminFinanceFormat';
 import { useAdminFinanceRefunds } from '@/app/admin/admin_finance/refunds/admin_finance_refunds_hooks/useAdminFinanceRefunds';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';

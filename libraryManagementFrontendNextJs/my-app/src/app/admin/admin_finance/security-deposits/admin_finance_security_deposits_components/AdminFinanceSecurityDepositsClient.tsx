@@ -2,7 +2,7 @@
 // RESPONSIBILITY: Renders the AdminFinanceSecurityDepositsClient component.
 import { useState } from 'react';
 import { Undo2, Minus, X } from 'lucide-react';
-import { formatCurrency } from '@/app/admin/admin_finance/admin_finance_utils/format';
+import { formatCurrency } from '@/app/admin/admin_finance/admin_finance_utils/AdminFinanceFormat';
 import { useAdminFinanceSecurityDeposits } from '@/app/admin/admin_finance/security-deposits/admin_finance_security_deposits_hooks/useAdminFinanceSecurityDeposits';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';

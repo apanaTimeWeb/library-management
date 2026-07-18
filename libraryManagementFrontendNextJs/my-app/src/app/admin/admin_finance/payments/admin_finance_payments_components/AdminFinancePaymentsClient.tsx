@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { Input } from '@/components/ui/input';
 import { useRouter } from 'next/navigation';
 import { Receipt, Trash2, FileText, Download, X , Search} from 'lucide-react';
-import { formatCurrency, formatDate } from '@/app/admin/admin_finance/admin_finance_utils/format';
+import { formatCurrency, formatDate } from '@/app/admin/admin_finance/admin_finance_utils/AdminFinanceFormat';
 import { useAdminFinancePayments } from '@/app/admin/admin_finance/payments/admin_finance_payments_hooks/useAdminFinancePayments';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';

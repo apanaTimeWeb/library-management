@@ -4,7 +4,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { formatCurrency, formatDate } from '@/app/admin/admin_finance/admin_finance_utils/format';
+import { formatCurrency, formatDate } from '@/app/admin/admin_finance/admin_finance_utils/AdminFinanceFormat';
 import { ArrowLeft, Printer, Send } from 'lucide-react';
 import { ADMIN_ROUTES } from '@/app/admin/admin_url_config';
 import { openWhatsApp } from '@/lib/whatsappUtils';

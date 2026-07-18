@@ -2,7 +2,7 @@
 // RESPONSIBILITY: Renders the AdminFinanceCollectFeeClient component.
 import { Toaster } from 'react-hot-toast';
 import { Search, CheckCircle, IndianRupee, BookOpen, MessageSquare, Printer, X } from 'lucide-react';
-import { formatCurrency } from '@/app/admin/admin_finance/admin_finance_utils/format';
+import { formatCurrency } from '@/app/admin/admin_finance/admin_finance_utils/AdminFinanceFormat';
 import { ADMIN_FINANCE_MODES } from '@/app/admin/admin_finance/admin_finance_constants/AdminFinanceConstants';
 import { useAdminFinanceCollectFee, MODE_LABELS, maskPhone } from '@/app/admin/admin_finance/collect-fee/admin_finance_collect_fee_hooks/useAdminFinanceCollectFee';
 import { Card } from '@/components/ui/card';

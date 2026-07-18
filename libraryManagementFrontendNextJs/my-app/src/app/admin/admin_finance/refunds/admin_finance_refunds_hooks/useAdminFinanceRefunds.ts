@@ -3,7 +3,7 @@ import { useState, useEffect, useMemo } from 'react';
 import toast from 'react-hot-toast';
 import { fetchApi } from '@/lib/api';
 import { logger } from '@/lib/logger';
-import { formatCurrency } from '@/app/admin/admin_finance/admin_finance_utils/format';
+import { formatCurrency } from '@/app/admin/admin_finance/admin_finance_utils/AdminFinanceFormat';
 import { ADMIN_FINANCE_MOCK_REFUNDS } from '@/app/admin/admin_finance/admin_finance_constants/AdminFinanceConstants';
 
 

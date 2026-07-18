@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { Input } from '@/components/ui/input';
 import { RefreshCw, Eye , Search} from 'lucide-react';
-import { formatCurrency } from '@/app/admin/admin_finance/admin_finance_utils/format';
+import { formatCurrency } from '@/app/admin/admin_finance/admin_finance_utils/AdminFinanceFormat';
 import { useAdminFinanceSubscriptions } from '@/app/admin/admin_finance/subscriptions/admin_finance_subscriptions_hooks/useAdminFinanceSubscriptions';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';

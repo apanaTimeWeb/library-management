@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { Search, Receipt, Eye, Printer, Send } from 'lucide-react';
-import { formatCurrency, formatDate } from '@/app/admin/admin_finance/admin_finance_utils/format';
+import { formatCurrency, formatDate } from '@/app/admin/admin_finance/admin_finance_utils/AdminFinanceFormat';
 import { useAdminFinanceReceipt, type FilterMode } from '@/app/admin/admin_finance/receipt/admin_finance_receipt_hooks/useAdminFinanceReceipt';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';

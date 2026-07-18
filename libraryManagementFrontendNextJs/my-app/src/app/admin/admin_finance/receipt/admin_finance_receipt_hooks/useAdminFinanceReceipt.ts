@@ -1,6 +1,6 @@
 // RESPONSIBILITY: Renders the useAdminFinanceReceipt.ts component/hook.
 import { useState, useMemo } from 'react';
-import { formatCurrency, formatDate } from '@/app/admin/admin_finance/admin_finance_utils/format';
+import { formatCurrency, formatDate } from '@/app/admin/admin_finance/admin_finance_utils/AdminFinanceFormat';
 import { openWhatsApp } from '@/lib/whatsappUtils';
 import { printThermal } from '@/lib/thermalPrint';
 import { ADMIN_FINANCE_MOCK_RECEIPTS } from '@/app/admin/admin_finance/admin_finance_constants/AdminFinanceConstants';
