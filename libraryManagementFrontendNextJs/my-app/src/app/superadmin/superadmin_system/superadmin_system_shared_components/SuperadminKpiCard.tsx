@@ -6,24 +6,24 @@ import { SuperadminKpiCardProps } from '@/app/superadmin/superadmin_system/super
 
 export function SuperadminKpiCard({ title, value, subtitle, icon, trend, trendLabel, className }: SuperadminKpiCardProps & { subtitle?: string; trend?: 'up' | 'down' | 'neutral'; trendLabel?: string; className?: string }) {
   const TrendIcon = trend === 'up' ? TrendingUp : trend === 'down' ? TrendingDown : Minus;
-  const trendCls  = trend === 'up' ? 'sys-kpi-card__trend--up' : trend === 'down' ? 'sys-kpi-card__trend--down' : '';
+  const trendCls  = trend === 'up' ? 'text-success' : trend === 'down' ? 'text-danger' : 'text-text-secondary';
 
   return (
-    <div className={cn('sys-kpi-card', className)}>
+    <div className={cn('bg-card border border-border rounded-[var(--radius-lg)] p-4 shadow-sm flex flex-col', className)}>
       <div className="flex items-center justify-between">
-        <span className="sys-kpi-card__label">{title}</span>
-        {icon && <span className="text-on-surface-variant flex items-center justify-center">{icon}</span>}
+        <span className="text-[12px] font-bold text-text-secondary uppercase tracking-wider">{title}</span>
+        {icon && <span className="text-text-secondary flex items-center justify-center opacity-70">{icon}</span>}
       </div>
-      <div className="sys-kpi-card__val mt-2">{value}</div>
+      <div className="text-[28px] font-extrabold text-text-primary leading-none mt-3">{value}</div>
       {(subtitle || trend) && (
-        <div className="sys-kpi-card__sub mt-2">
+        <div className="flex items-center gap-2 mt-3 text-[12px]">
           {trend && (
-            <span className={cn('flex items-center gap-1 font-medium', trendCls)}>
+            <span className={cn('flex items-center gap-1 font-bold', trendCls)}>
               <TrendIcon size={14} />
               {trendLabel}
             </span>
           )}
-          {subtitle && <span className="text-on-surface-variant ml-2">{subtitle}</span>}
+          {subtitle && <span className="text-text-secondary">{subtitle}</span>}
         </div>
       )}
     </div>

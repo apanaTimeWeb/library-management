@@ -1,52 +1,47 @@
 // RESPONSIBILITY: Renders the AddClient component.
 'use client';
 
-import { useState } from 'react';
-import { useRouter } from 'next/navigation';
-import toast from 'react-hot-toast';
+import React from 'react';
 import { SuperadminSearchableDropdown } from '@/app/superadmin/superadmin_shared_components/SuperadminSearchableDropdown';
-
-const CATEGORIES = ['Electricity', 'Maintenance', 'Stationery', 'Internet', 'Cleaning', 'Salary', 'Rent', 'Miscellaneous'];
+import { useAddClient, CATEGORIES } from './useAddClient';
 
 export function AddClient() {
-  const router = useRouter();
-  const [form, setForm] = useState({ date: '', category: CATEGORIES[0], description: '', amount: '', paidBy: '', mode: 'cash', notes: '' });
-  const [saving, setSaving] = useState(false);
-
-  const handleSave = () => {
-    if (!form.date || !form.description || !form.amount || !form.paidBy) {
-      toast.error('Please fill all required fields.');
-      return;
-    }
-    setSaving(true);
-    setTimeout(() => {
-      toast.success('Expense recorded successfully.');
-      router.push('/superadmin/superadmin_accounting/expenses');
-    }, 700);
-  };
+  const { form, setForm, saving, handleSave, handleCancel } = useAddClient();
 
   return (
     <div className="space-y-6 max-w-xl">
       <div>
-        <h1 className="fin-page-title">Add Expense</h1>
-        <p className="fin-page-subtitle">Record a new operational expense.</p>
+        <h1 className="text-[22px] font-bold text-text-primary">Add Expense</h1>
+        <p className="text-[12px] text-text-secondary">Record a new operational expense.</p>
       </div>
 
-      <div className="fin-card p-6 space-y-4">
-        <div><label className="fin-label">Date <span className="fin-text-danger">*</span></label><input type="date" className="fin-input" value={form.date} onChange={e => setForm(p=>({...p,date:e.target.value}))} /></div>
+      <div className="bg-card border border-border rounded-[var(--radius-lg)] p-6 space-y-4">
         <div>
-          <label className="fin-label">Category</label>
+          <label className="text-[12px] font-bold text-text-secondary block mb-1">Date <span className="text-danger">*</span></label>
+          <input type="date" className="w-full bg-input border border-border rounded-[var(--radius-md)] py-2.5 px-3 text-[14px] font-medium text-text-primary focus:outline-none focus:border-primary transition-colors" value={form.date} onChange={e => setForm(p=>({...p,date:e.target.value}))} />
+        </div>
+        <div>
+          <label className="text-[12px] font-bold text-text-secondary block mb-1">Category</label>
           <SuperadminSearchableDropdown
             options={CATEGORIES.map(c => ({ label: c, value: c }))}
             value={form.category}
             onChange={val => setForm(p=>({...p,category:val}))}
           />
         </div>
-        <div><label className="fin-label">Description <span className="fin-text-danger">*</span></label><input className="fin-input" placeholder="Enter description" value={form.description} onChange={e => setForm(p=>({...p,description:e.target.value}))} /></div>
-        <div><label className="fin-label">Amount ₹ <span className="fin-text-danger">*</span></label><input type="number" className="fin-input" placeholder="0" value={form.amount} onChange={e => setForm(p=>({...p,amount:e.target.value}))} /></div>
-        <div><label className="fin-label">Paid By <span className="fin-text-danger">*</span></label><input className="fin-input" placeholder="Name" value={form.paidBy} onChange={e => setForm(p=>({...p,paidBy:e.target.value}))} /></div>
         <div>
-          <label className="fin-label">Payment Mode</label>
+          <label className="text-[12px] font-bold text-text-secondary block mb-1">Description <span className="text-danger">*</span></label>
+          <input className="w-full bg-input border border-border rounded-[var(--radius-md)] py-2.5 px-3 text-[14px] font-medium text-text-primary focus:outline-none focus:border-primary transition-colors" placeholder="Enter description" value={form.description} onChange={e => setForm(p=>({...p,description:e.target.value}))} />
+        </div>
+        <div>
+          <label className="text-[12px] font-bold text-text-secondary block mb-1">Amount ₹ <span className="text-danger">*</span></label>
+          <input type="number" className="w-full bg-input border border-border rounded-[var(--radius-md)] py-2.5 px-3 text-[14px] font-medium text-text-primary focus:outline-none focus:border-primary transition-colors" placeholder="0" value={form.amount} onChange={e => setForm(p=>({...p,amount:e.target.value}))} />
+        </div>
+        <div>
+          <label className="text-[12px] font-bold text-text-secondary block mb-1">Paid By <span className="text-danger">*</span></label>
+          <input className="w-full bg-input border border-border rounded-[var(--radius-md)] py-2.5 px-3 text-[14px] font-medium text-text-primary focus:outline-none focus:border-primary transition-colors" placeholder="Name" value={form.paidBy} onChange={e => setForm(p=>({...p,paidBy:e.target.value}))} />
+        </div>
+        <div>
+          <label className="text-[12px] font-bold text-text-secondary block mb-1">Payment Mode</label>
           <SuperadminSearchableDropdown
             options={[
               { label: 'Cash', value: 'cash' },
@@ -58,12 +53,15 @@ export function AddClient() {
             onChange={val => setForm(p=>({...p,mode:val}))}
           />
         </div>
-        <div><label className="fin-label">Notes</label><textarea className="fin-textarea" rows={2} placeholder="Optional notes..." value={form.notes} onChange={e => setForm(p=>({...p,notes:e.target.value}))} /></div>
+        <div>
+          <label className="text-[12px] font-bold text-text-secondary block mb-1">Notes</label>
+          <textarea className="w-full bg-input border border-border rounded-[var(--radius-md)] py-2.5 px-3 text-[14px] font-medium text-text-primary focus:outline-none focus:border-primary transition-colors" rows={2} placeholder="Optional notes..." value={form.notes} onChange={e => setForm(p=>({...p,notes:e.target.value}))} />
+        </div>
       </div>
 
       <div className="flex gap-3">
-        <button className="fin-badge fin-badge--neutral cursor-pointer" onClick={() => router.push('/superadmin/superadmin_accounting/expenses')}>Cancel</button>
-        <button className="fin-badge fin-badge--success cursor-pointer" onClick={handleSave} disabled={saving}>{saving ? 'Saving...' : 'Save Expense'}</button>
+        <button className="px-4 py-2 bg-transparent border border-border text-text-primary text-[14px] font-bold rounded-[var(--radius-md)] hover:bg-input transition-colors duration-200 cursor-pointer" onClick={handleCancel}>Cancel</button>
+        <button className="px-4 py-2 bg-success text-success-foreground text-[14px] font-bold rounded-[var(--radius-md)] hover:brightness-95 transition-all duration-200 disabled:opacity-50 cursor-pointer" onClick={handleSave} disabled={saving}>{saving ? 'Saving...' : 'Save Expense'}</button>
       </div>
     </div>
   );

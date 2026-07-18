@@ -34,4 +34,9 @@ export const SUPERADMIN_API_ROUTES = {
   EXPENSES: '/superadmin/expenses',
   BILLING: '/superadmin/billing',
   AUDIT_LOGS: '/superadmin/audit-logs',
+  CRM_ENQUIRIES: '/crm/enquiries',
+  CRM_ENQUIRIES_STATUS: (id: string) => `/crm/enquiries/${id}/status`,
+  CRM_ENQUIRIES_FOLLOW_UPS: (id: string) => `/crm/enquiries/${id}/follow-ups`,
+  COMMUNICATION_NOTICES: '/communication/notices',
+  COMMUNICATION_WHATSAPP_LOGS: '/communication/whatsapp-logs',
 } as const;

@@ -2,53 +2,42 @@
 'use client';
 
 import type { ICellRendererParams } from 'ag-grid-community';
-import { useState } from 'react';
-import { ChevronRight, Eye, X, MessageCircle, AlertTriangle } from 'lucide-react';
+import { ChevronRight, X, MessageCircle, AlertTriangle } from 'lucide-react';
 import { AgGridReact } from 'ag-grid-react';
 import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community';
 import { superadmin_gridTheme } from '@/app/superadmin/superadmin_shared_components/superadmin_gridTheme';
-import { SUPERADMIN_COMMUNICATION_MOCK_WA_LOGS } from '@superadmin/superadmin_communication/superadmin_communication_data/SuperadminCommunicationMockData';
 import { SuperadminSearchableDropdown } from '@/app/superadmin/superadmin_shared_components/SuperadminSearchableDropdown';
-import type { SuperadminCommunicationWhatsappLog as WaLog } from '@/app/superadmin/superadmin_communication/superadmin_communication_types/SuperadminCommunicationTypes';
+import { useWhatsappLogsClient } from './useWhatsappLogsClient';
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
 const TYPE_BADGE: Record<string, string> = {
-  welcome: 'eng-badge--info', fee_reminder: 'eng-badge--warning',
-  receipt: 'eng-badge--success', notice: 'eng-badge--purple', renewal: 'eng-badge--primary',
+  welcome: 'bg-info/10 text-info', fee_reminder: 'bg-warning/10 text-warning',
+  receipt: 'bg-success/10 text-success', notice: 'bg-primary/10 text-primary', renewal: 'bg-primary/10 text-primary',
 };
 const TYPE_LABEL: Record<string, string> = {
   welcome: 'Welcome', fee_reminder: 'Fee Reminder', receipt: 'Receipt', notice: 'Notice', renewal: 'Renewal',
 };
 const STATUS_BADGE: Record<string, string> = {
-  Pending: 'eng-badge--warning', Sent: 'eng-badge--info', Delivered: 'eng-badge--success', Failed: 'eng-badge--danger',
+  Pending: 'bg-warning/10 text-warning', Sent: 'bg-info/10 text-info', Delivered: 'bg-success/10 text-success', Failed: 'bg-danger/10 text-danger',
 };
 
 export function WhatsappLogsClient() {
-  const [typeFilter,   setTypeFilter]   = useState('All');
-  const [statusFilter, setStatusFilter] = useState('All');
-  const [search,       setSearch]       = useState('');
-  const [dateFrom,     setDateFrom]     = useState('');
-  const [dateTo,       setDateTo]       = useState('');
-  const [viewLog,      setViewLog]      = useState<WaLog | null>(null);
-
-  const filtered = (SUPERADMIN_COMMUNICATION_MOCK_WA_LOGS as WaLog[]).filter(l => {
-    if (typeFilter !== 'All' && l.type !== typeFilter) return false;
-    if (statusFilter !== 'All' && l.status !== statusFilter) return false;
-    if (search && !l.student.toLowerCase().includes(search.toLowerCase()) && !l.phone.includes(search)) return false;
-    return true;
-  });
+  const {
+    typeFilter, setTypeFilter, statusFilter, setStatusFilter, search, setSearch,
+    dateFrom, setDateFrom, dateTo, setDateTo, viewLog, setViewLog, filteredLogs
+  } = useWhatsappLogsClient();
 
   const colDefs = [
-    { field: 'dateTime', headerName: 'Date / Time', width: 160, cellRenderer: (p: ICellRendererParams) => <span className="eng-td-muted text-sm">{p.value}</span> },
-    { field: 'phone', headerName: 'Phone', width: 130, cellRenderer: (p: ICellRendererParams) => <span className="eng-td-mono font-medium">{p.value}</span> },
-    { field: 'student', headerName: 'Student', flex: 1, minWidth: 150, cellRenderer: (p: ICellRendererParams) => <span className="eng-td-bold">{p.value}</span> },
+    { field: 'dateTime', headerName: 'Date / Time', width: 160, cellRenderer: (p: ICellRendererParams) => <span className="text-text-secondary text-[14px]">{p.value}</span> },
+    { field: 'phone', headerName: 'Phone', width: 130, cellRenderer: (p: ICellRendererParams) => <span className="font-mono font-medium text-[14px] text-text-primary">{p.value}</span> },
+    { field: 'student', headerName: 'Student', flex: 1, minWidth: 150, cellRenderer: (p: ICellRendererParams) => <span className="font-bold text-text-primary">{p.value}</span> },
     { 
       field: 'type', 
       headerName: 'Type', 
       width: 130,
       cellRenderer: (p: ICellRendererParams) => (
-        <span className={`eng-badge ${TYPE_BADGE[p.value]} inline-block mt-2 text-xs`}>
+        <span className={`inline-flex items-center px-2 py-0.5 rounded-[var(--radius-full)] text-[12px] font-bold ${TYPE_BADGE[p.value] || 'bg-input text-text-secondary'} mt-2 inline-block`}>
           {TYPE_LABEL[p.value]}
         </span>
       )
@@ -58,61 +47,65 @@ export function WhatsappLogsClient() {
       headerName: 'Status', 
       width: 120,
       cellRenderer: (p: ICellRendererParams) => (
-        <span className={`eng-badge ${STATUS_BADGE[p.value]} inline-block mt-2 text-xs`}>
+        <span className={`inline-flex items-center px-2 py-0.5 rounded-[var(--radius-full)] text-[12px] font-bold ${STATUS_BADGE[p.value] || 'bg-input text-text-secondary'} mt-2 inline-block`}>
           {p.value}
         </span>
       )
     },
-    { field: 'error', headerName: 'Error', width: 180, cellRenderer: (p: ICellRendererParams) => <span className="eng-td-danger text-xs truncate max-w-xs inline-block" title={p.value}>{p.value || '—'}</span> }
+    { field: 'error', headerName: 'Error', width: 180, cellRenderer: (p: ICellRendererParams) => <span className="text-danger font-medium text-[12px] truncate max-w-xs inline-block" title={p.value}>{p.value || '—'}</span> }
   ];
 
   return (
-    <div className="eng-page">
+    <div className="relative p-2 sm:p-4">
       {/* View Message Modal */}
       {viewLog && (
-        <div className="eng-overlay">
-          <div className="eng-modal eng-modal--lg bg-card">
-            <button onClick={() => setViewLog(null)} className="eng-modal-close hover:text-red-500 cursor-pointer"><X size={16} /></button>
-            <p className="eng-modal-title mb-4 font-bold text-primary flex items-center gap-2"><MessageCircle size={16} /> Message Details</p>
-            <div className="eng-modal-badge-row mb-6 flex gap-2">
-              <span className={`eng-badge ${TYPE_BADGE[viewLog.type]}`}>{TYPE_LABEL[viewLog.type]}</span>
-              <span className={`eng-badge ${STATUS_BADGE[viewLog.status]}`}>{viewLog.status}</span>
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm animate-in fade-in duration-200">
+          <div className="bg-card w-full max-w-lg rounded-[var(--radius-xl)] shadow-2xl border border-border flex flex-col relative overflow-hidden">
+            <button onClick={() => setViewLog(null)} className="absolute top-4 right-4 text-text-secondary hover:text-danger cursor-pointer"><X size={16} /></button>
+            <div className="px-6 py-5 border-b border-border">
+              <p className="text-[18px] font-bold text-primary flex items-center gap-2"><MessageCircle size={16} /> Message Details</p>
             </div>
-            <div className="eng-msg-detail-grid grid grid-cols-2 gap-4 mb-6 bg-input p-4 rounded-lg">
-              {([['To', viewLog.phone], ['Student', viewLog.student], ['Sent At', viewLog.dateTime]] as [string, string][]).map(([k, v]) => (
-                <div key={k} className="eng-msg-detail-item">
-                  <p className="eng-msg-detail-key text-xs font-semibold text-secondary uppercase tracking-wider">{k}</p>
-                  <p className="eng-msg-detail-val text-primary font-medium mt-1">{v}</p>
-                </div>
-              ))}
+            <div className="p-6">
+              <div className="mb-6 flex gap-2">
+                <span className={`inline-flex items-center px-2 py-0.5 rounded-[var(--radius-full)] text-[12px] font-bold ${TYPE_BADGE[viewLog.type]}`}>{TYPE_LABEL[viewLog.type]}</span>
+                <span className={`inline-flex items-center px-2 py-0.5 rounded-[var(--radius-full)] text-[12px] font-bold ${STATUS_BADGE[viewLog.status]}`}>{viewLog.status}</span>
+              </div>
+              <div className="grid grid-cols-2 gap-4 mb-6 bg-input p-4 rounded-[var(--radius-lg)]">
+                {([['To', viewLog.phone], ['Student', viewLog.student], ['Sent At', viewLog.dateTime]] as [string, string][]).map(([k, v]) => (
+                  <div key={k} className="flex flex-col">
+                    <p className="text-[10px] font-bold text-text-secondary uppercase tracking-wider">{k}</p>
+                    <p className="text-[14px] font-bold text-text-primary mt-1">{v}</p>
+                  </div>
+                ))}
+              </div>
+              <div>
+                <label className="text-[12px] font-bold text-text-secondary mb-2 block">Message Content</label>
+                <div className="bg-input p-4 rounded-[var(--radius-lg)] border border-border text-[14px] leading-relaxed text-text-primary whitespace-pre-wrap">{viewLog.message}</div>
+              </div>
+              {viewLog.error && (
+                <div className="mt-4 p-3 bg-danger/10 text-danger rounded-[var(--radius-lg)] border border-danger/20 text-[14px] font-bold flex items-center gap-2"><AlertTriangle size={14} /> Error: {viewLog.error}</div>
+              )}
             </div>
-            <div>
-              <label className="eng-label text-sm font-semibold mb-2 block">Message Content</label>
-              <div className="eng-msg-body-box bg-input p-4 rounded-lg border border-border text-sm leading-relaxed text-primary whitespace-pre-wrap">{viewLog.message}</div>
-            </div>
-            {viewLog.error && (
-              <div className="eng-warn-box mt-4 p-3 bg-red-50 text-red-600 rounded-lg border border-red-200 text-sm font-medium flex items-center gap-2"><AlertTriangle size={14} /> Error: {viewLog.error}</div>
-            )}
-            <div className="eng-modal-footer mt-6 flex justify-end">
-              <button onClick={() => setViewLog(null)} className="px-4 py-2 bg-input border border-border text-primary rounded hover:bg-border transition-colors cursor-pointer">Close</button>
+            <div className="px-6 py-4 bg-muted border-t border-border flex justify-end">
+              <button onClick={() => setViewLog(null)} className="px-4 py-2 border border-border text-text-primary text-[14px] font-bold rounded-[var(--radius-md)] hover:bg-input transition-colors cursor-pointer">Close</button>
             </div>
           </div>
         </div>
       )}
 
       <div className="mb-8">
-        <div className="eng-breadcrumb">
+        <div className="flex items-center text-[12px] font-bold text-text-secondary mb-2 space-x-2">
           <span>Communication</span><ChevronRight size={12} /><span>WhatsApp Logs</span>
         </div>
-        <h1 className="eng-page-title flex items-center gap-2"><MessageCircle size={24} /> WhatsApp Logs</h1>
-        <p className="eng-page-subtitle">All outbound WhatsApp messages sent from the system.</p>
+        <h1 className="text-[28px] font-extrabold text-text-primary flex items-center gap-2 tracking-tight"><MessageCircle size={24} /> WhatsApp Logs</h1>
+        <p className="text-[14px] text-text-secondary mt-1">All outbound WhatsApp messages sent from the system.</p>
       </div>
 
       {/* Filter Bar */}
-      <div className="eng-card mb-6 p-4 border border-mgr-border rounded-lg">
-        <div className="eng-filter-row flex flex-wrap gap-4 items-end">
+      <div className="bg-card border border-border rounded-[var(--radius-lg)] p-4 shadow-sm mb-6">
+        <div className="flex flex-wrap gap-4 items-end">
           <div className="flex flex-col w-40">
-            <label className="eng-label text-xs mb-1 font-semibold text-mgr-text-secondary">Message Type</label>
+            <label className="text-[12px] font-bold text-text-secondary mb-1">Message Type</label>
             <SuperadminSearchableDropdown
               options={[
                 { label: 'All Types', value: 'All' },
@@ -127,7 +120,7 @@ export function WhatsappLogsClient() {
             />
           </div>
           <div className="flex flex-col w-40">
-            <label className="eng-label text-xs mb-1 font-semibold text-mgr-text-secondary">Status</label>
+            <label className="text-[12px] font-bold text-text-secondary mb-1">Status</label>
             <SuperadminSearchableDropdown
               options={[
                 { label: 'All', value: 'All' },
@@ -141,32 +134,32 @@ export function WhatsappLogsClient() {
             />
           </div>
           <div className="flex flex-col">
-            <label className="eng-label text-xs mb-1 font-semibold text-mgr-text-secondary">From</label>
-            <input type="date" className="eng-input py-2 px-3 border rounded" value={dateFrom} onChange={e => setDateFrom(e.target.value)} />
+            <label className="text-[12px] font-bold text-text-secondary mb-1">From</label>
+            <input type="date" className="bg-input border border-border rounded-[var(--radius-md)] py-2 px-3 text-[14px] font-medium text-text-primary focus:outline-none focus:border-primary transition-colors h-10" value={dateFrom} onChange={e => setDateFrom(e.target.value)} />
           </div>
           <div className="flex flex-col">
-            <label className="eng-label text-xs mb-1 font-semibold text-mgr-text-secondary">To</label>
-            <input type="date" className="eng-input py-2 px-3 border rounded" value={dateTo} onChange={e => setDateTo(e.target.value)} />
+            <label className="text-[12px] font-bold text-text-secondary mb-1">To</label>
+            <input type="date" className="bg-input border border-border rounded-[var(--radius-md)] py-2 px-3 text-[14px] font-medium text-text-primary focus:outline-none focus:border-primary transition-colors h-10" value={dateTo} onChange={e => setDateTo(e.target.value)} />
           </div>
-          <div className="eng-flex-1 flex flex-col flex-grow min-w-48">
-            <label className="eng-label text-xs mb-1 font-semibold text-mgr-text-secondary">Search</label>
-            <input className="eng-input py-2 px-3 border rounded w-full" placeholder="Student name or phone..." value={search} onChange={e => setSearch(e.target.value)} />
+          <div className="flex-1 min-w-[200px] flex flex-col">
+            <label className="text-[12px] font-bold text-text-secondary mb-1">Search</label>
+            <input className="w-full bg-input border border-border rounded-[var(--radius-md)] py-2 px-3 text-[14px] font-medium text-text-primary focus:outline-none focus:border-primary transition-colors h-10" placeholder="Student name or phone..." value={search} onChange={e => setSearch(e.target.value)} />
           </div>
         </div>
       </div>
 
       {/* Table */}
-      <div className="eng-card eng-card--flush p-4">
-        {filtered.length === 0 ? (
-          <div className="eng-empty py-12 flex flex-col items-center justify-center text-center">
-            <div className="eng-empty__icon mb-4"><MessageCircle size={48} className="text-secondary" /></div>
-            <p className="eng-empty__title text-lg font-semibold text-primary">No WhatsApp messages found.</p>
+      <div className="bg-card border border-border rounded-[var(--radius-lg)] p-4 shadow-sm">
+        {filteredLogs.length === 0 ? (
+          <div className="py-12 flex flex-col items-center justify-center text-center">
+            <div className="mb-4"><MessageCircle size={48} className="text-text-secondary opacity-50" /></div>
+            <p className="text-[16px] font-bold text-text-primary">No WhatsApp messages found.</p>
           </div>
         ) : (
-          <div className="mgr-table-wrapper h-96">
+          <div className="h-96 w-full">
             <AgGridReact
               theme={superadmin_gridTheme}
-              rowData={filtered}
+              rowData={filteredLogs}
               columnDefs={colDefs as any}
               rowHeight={56}
               headerHeight={48}
