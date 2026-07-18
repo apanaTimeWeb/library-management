@@ -10,8 +10,7 @@ export function Progress({ value, max = 100, className, barClassName }: Progress
   return (
     <div className={cn('sys-progress-track', className)}>
       <div
-        className={cn('sys-progress-fill', barClassName)}
-        className="w-[length:var(--w)]" style={{ '--w': `${pct}%` } as React.CSSProperties}
+        className={cn('sys-progress-fill', barClassName, 'w-[length:var(--w)]')} style={{ '--w': `${pct}%` } as React.CSSProperties}
       />
     </div>
   );

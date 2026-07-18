@@ -72,8 +72,7 @@ export function AdminShiftGapAnalyzerClient() {
                   </div>
                   <div className="h-2 w-full bg-muted rounded-full overflow-hidden">
                     <div 
-                      className={`h-full rounded-full transition-all ${utilPct < 50 ? 'bg-danger' : utilPct < 80 ? 'bg-warning' : 'bg-success'}`}
-                      className="w-[length:var(--w)]" style={{ '--w': `${utilPct}%` } as React.CSSProperties} 
+                      className={`h-full rounded-full transition-all ${utilPct < 50 ? 'bg-danger' : utilPct < 80 ? 'bg-warning' : 'bg-success'} w-[length:var(--w)]`} style={{ '--w': `${utilPct}%` } as React.CSSProperties} 
                     />
                   </div>
                 </div>

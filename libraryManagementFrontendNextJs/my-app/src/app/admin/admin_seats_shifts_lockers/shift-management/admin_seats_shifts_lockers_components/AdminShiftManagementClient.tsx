@@ -74,8 +74,7 @@ export function AdminShiftManagementClient() {
                 </div>
                 <div className="h-2 w-full bg-muted rounded-full overflow-hidden">
                   <div 
-                    className={`h-full rounded-full transition-all ${!shift.active ? 'bg-muted-foreground/30' : 'bg-primary'}`} 
-                    className="w-[length:var(--w)]" style={{ '--w': `${Math.round((shift.occupancy / shift.capacity) * 100)}%` } as React.CSSProperties} 
+                    className={`h-full rounded-full transition-all ${!shift.active ? 'bg-muted-foreground/30' : 'bg-primary'} w-[length:var(--w)]`} style={{ '--w': `${Math.round((shift.occupancy / shift.capacity) * 100)}%` } as React.CSSProperties} 
                   />
                 </div>
               </div>

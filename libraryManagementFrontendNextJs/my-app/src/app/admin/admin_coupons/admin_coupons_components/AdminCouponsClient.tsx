@@ -68,8 +68,7 @@ function UsageCell({ data }: { data: CouponRecord }) {
         <div
           className={`h-full transition-all duration-300 ${
             pct >= 100 ? 'bg-danger' : pct >= 75 ? 'bg-warning' : 'bg-primary'
-          }`}
-          className="w-[length:var(--w)]" style={{ '--w': `${pct}%` } as React.CSSProperties}
+          } w-[length:var(--w)]`} style={{ '--w': `${pct}%` } as React.CSSProperties}
         />
       </div>
     </div>
