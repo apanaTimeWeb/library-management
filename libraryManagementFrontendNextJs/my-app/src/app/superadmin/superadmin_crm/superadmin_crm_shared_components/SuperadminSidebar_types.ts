@@ -1,0 +1,1 @@
+export type NavGroup = { group: string }; export type NavItem = { icon: any, label: string, href: string, active?: boolean };

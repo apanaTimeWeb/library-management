@@ -1,9 +1,4 @@
-
-
-export interface Props {
-  title?: string;
-  description?: string;
-}
+import { Props } from "./AdminStudentsEmptyState_types";
 
 // RESPONSIBILITY: Standardized empty state component for lists/tables in the admin_students module.
 'use client';

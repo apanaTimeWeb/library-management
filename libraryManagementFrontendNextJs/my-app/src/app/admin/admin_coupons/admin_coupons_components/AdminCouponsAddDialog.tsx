@@ -9,13 +9,7 @@ import { adminCouponFormSchema, AdminCouponFormData } from '@/app/admin/admin_co
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-
-
-export interface AdminCouponsAddDialogProps {
-  isOpen: boolean;
-  onClose: () => void;
-  onSubmit: (data: AdminCouponFormData) => Promise<{ success: boolean; message: string }>;
-}
+import { AdminCouponsAddDialogProps } from "./AdminCouponsAddDialog_types";
 
 export function AdminCouponsAddDialog({ isOpen, onClose, onSubmit }: AdminCouponsAddDialogProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);

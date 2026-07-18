@@ -2,12 +2,7 @@
 // DATA FLOW: Parent Client Component -> AdminBlacklistEmptyState
 
 import { AlertOctagon } from 'lucide-react';
-
-
-export interface AdminBlacklistEmptyStateProps {
-  onResetSearch?: () => void;
-  isSearching: boolean;
-}
+import { AdminBlacklistEmptyStateProps } from "./AdminBlacklistEmptyState_types";
 
 export function AdminBlacklistEmptyState({ onResetSearch, isSearching }: AdminBlacklistEmptyStateProps) {
   return (

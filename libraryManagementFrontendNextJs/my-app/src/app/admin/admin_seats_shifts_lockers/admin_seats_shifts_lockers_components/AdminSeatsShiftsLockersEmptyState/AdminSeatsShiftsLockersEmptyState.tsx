@@ -1,9 +1,4 @@
-
-
-export interface Props {
-  title?: string;
-  description?: string;
-}
+import { Props } from "./AdminSeatsShiftsLockersEmptyState_types";
 
 // RESPONSIBILITY: Standardized empty state component for lists/tables in the admin_seats_shifts_lockers module.
 'use client';

@@ -1,3 +1,4 @@
+import { NavGroup, NavItem } from './SuperadminSidebar_types';
 // RESPONSIBILITY: Renders the SuperadminSidebar component.
 'use client';
 

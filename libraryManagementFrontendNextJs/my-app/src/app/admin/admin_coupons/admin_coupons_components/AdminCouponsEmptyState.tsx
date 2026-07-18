@@ -2,12 +2,7 @@
 // DATA FLOW: Parent Client Component -> AdminCouponsEmptyState
 
 import { Tag } from 'lucide-react';
-
-
-export interface AdminCouponsEmptyStateProps {
-  onResetSearch?: () => void;
-  isSearching: boolean;
-}
+import { AdminCouponsEmptyStateProps } from "./AdminCouponsEmptyState_types";
 
 export function AdminCouponsEmptyState({ onResetSearch, isSearching }: AdminCouponsEmptyStateProps) {
   return (

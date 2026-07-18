@@ -8,6 +8,7 @@ import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community';
 import { superadmin_gridTheme } from '@/app/superadmin/superadmin_shared_components/superadmin_gridTheme';
 import { Eye, Clock, MessageSquare, AlertTriangle, X, CheckCircle, Loader, Send } from 'lucide-react';
 import { SUPERADMIN_SUPPORT_MOCK_TICKETS } from '@/app/superadmin/superadmin_support-tickets/superadmin_support_constants/SuperadminSupportConstants';
+import { Ticket } from "./SupportTicketsClient_types";
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
@@ -82,8 +83,6 @@ function TicketPanel({ tkt, onClose, onSave }: { tkt: Ticket; onClose: () => voi
     </div>
   );
 }
-
-export interface Ticket { id: string; subject: string; status: "Open"|"In Progress"|"Resolved"; priority: "Low"|"Medium"|"High"; user: string; branch: string; date: string; }
 
 export function SupportTicketsClient() {
   const [tickets, setTickets] = useState<Ticket[]>(SUPERADMIN_SUPPORT_MOCK_TICKETS);

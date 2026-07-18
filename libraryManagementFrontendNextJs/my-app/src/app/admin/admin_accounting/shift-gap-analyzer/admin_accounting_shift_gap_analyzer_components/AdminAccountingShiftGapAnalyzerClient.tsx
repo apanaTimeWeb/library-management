@@ -8,18 +8,7 @@ import { Input } from '@/components/ui/input';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { TablePagination } from '@/components/ui/table-pagination';
-
-
-export type ShiftGap = {
-  shift: string;
-  totalSeats: number;
-  occupied: number;
-  vacant: number;
-  occupancyPct: number;
-  avgGapDays: number;
-  revenueLoss: number;
-};
-export type DayGap = { date: string; shift: string; seatNo: string; gapDays: number; loss: number };
+import { ShiftGap, DayGap } from "./AdminAccountingShiftGapAnalyzerClient_types";
 
 const MOCK: ShiftGap[] = [
   { shift: 'Morning (6AM–2PM)',   totalSeats: 40, occupied: 34, vacant: 6,  occupancyPct: 85, avgGapDays: 12, revenueLoss: 3600  },

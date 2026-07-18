@@ -5,8 +5,7 @@ import React from 'react';
 import { ChevronRight, ArrowRight, CheckCheck, DollarSign, Phone, Handshake, Armchair, Calendar, Clock, Lock, Bell, AlertCircle, Circle } from 'lucide-react';
 import { useNotificationCenterClient } from '@/app/superadmin/superadmin_communication/notification-center/_components/useNotificationCenterClient';
 import type { SuperadminCommunicationNotification as Notification } from '@/app/superadmin/superadmin_communication/superadmin_communication_types/SuperadminCommunicationTypes';
-
-
+import { Category } from "./NotificationCenterClient_types";
 
 const ICON_MAP: Record<string, React.ReactNode> = {
   DollarSign: <DollarSign size={20}/>,
@@ -33,8 +32,6 @@ const ICON_CLS: Record<string, string> = {
   Operations: 'bg-warning/10 text-warning',  
   Attendance: 'bg-primary/10 text-primary',
 };
-
-export type Category = 'All'|'System'|'Billing'|'Security'|'Updates';
 
 export function NotificationCenterClient() {
   const { cat, setCat, filtered, unread, markAllRead } = useNotificationCenterClient();

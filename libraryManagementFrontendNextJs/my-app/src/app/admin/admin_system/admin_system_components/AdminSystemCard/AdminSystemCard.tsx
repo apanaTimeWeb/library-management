@@ -3,9 +3,7 @@
 // DATA FLOW: Parent -> AdminSystemCard -> DOM
 
 import { cn } from '@/app/admin/admin_system/admin_system_components/AdminSystemutils/AdminSystemutils';
-
-
-export interface CardProps { children: React.ReactNode; className?: string; }
+import { CardProps } from "./AdminSystemCard_types";
 
 export function Card({ children, className }: CardProps) {
   return <div className={cn('sys-card', className)}>{children}</div>;

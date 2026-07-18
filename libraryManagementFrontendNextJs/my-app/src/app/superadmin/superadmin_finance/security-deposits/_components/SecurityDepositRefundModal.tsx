@@ -5,14 +5,7 @@ import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { refundSchema, RefundFormData } from '@/app/superadmin/superadmin_finance/security-deposits/_components/useSecurityDepositsClient';
-
-
-export interface SecurityDepositRefundModalProps {
-  target: { id: number; name: string; amount: number } | null;
-  onClose: () => void;
-  onSubmit: (data: RefundFormData) => void;
-  isProcessing: boolean;
-}
+import { SecurityDepositRefundModalProps } from "./SecurityDepositRefundModal_types";
 
 export function SecurityDepositRefundModal({ target, onClose, onSubmit, isProcessing }: SecurityDepositRefundModalProps) {
   const form = useForm<RefundFormData>({

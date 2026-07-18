@@ -15,17 +15,7 @@ import {
 
 import { cn } from "@/lib/utils"
 import { Label } from "@/components/ui/label"
-
-
-export type FormFieldContextValue<
-  TFieldValues extends FieldValues = FieldValues,
-  TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
-> = {
-  name: TName
-}
-export type FormItemContextValue = {
-  id: string
-}
+import { FormFieldContextValue, FormItemContextValue } from "./form_types";
 
 const Form = FormProvider
 const FormFieldContext = React.createContext<FormFieldContextValue | null>(null)

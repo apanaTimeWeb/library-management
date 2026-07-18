@@ -3,11 +3,7 @@
 // DATA FLOW: Parent -> AdminSystemBadge -> DOM
 
 import { cn } from '@/app/admin/admin_system/admin_system_components/AdminSystemutils/AdminSystemutils';
-
-
-export interface BadgeProps extends React.HTMLAttributes<HTMLSpanElement> {
-  variant?: keyof typeof VARIANT_CLASS;
-}
+import { BadgeProps } from "./AdminSystemBadge_types";
 
 const VARIANT_CLASS: Record<string, string> = {
   default:  'sys-badge--outline',

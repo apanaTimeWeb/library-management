@@ -163,7 +163,7 @@ export function ManagerSeatsLockersClient() {
                   <tr key={row.id} className="hover:bg-bg-page transition-colors">
                     <td className="px-4 py-4"><span className="ss-table__seat-no">{row.number}</span></td>
     // @ts-ignore
-                    <td className="px-4 py-4"><anyCell value={row.status} /></td>
+                    <td className="px-4 py-4"><div value={row.status} /></td>
                     <td className="px-4 py-4"><AssignedToCell data={row} /></td>
                     <td className="px-4 py-4 text-text-secondary">{row.assignedSince}</td>
                     <td className="px-4 py-4 text-right">

@@ -11,14 +11,7 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Input } from '@/components/ui/input';
 import toast from 'react-hot-toast';
-
-
-export interface Student {
-  id: string; smartId: string; name: string; initials: string;
-  shift: string; consecutiveAbsent: number;
-  status: AttStatus; inTime: string; outTime: string;
-}
-export type AttStatus = 'present' | 'absent' | 'late' | null;
+import { Student, AttStatus } from "./AdminEngagementAttendanceClient_types";
 
 const today = new Date().toISOString().split('T')[0];
 

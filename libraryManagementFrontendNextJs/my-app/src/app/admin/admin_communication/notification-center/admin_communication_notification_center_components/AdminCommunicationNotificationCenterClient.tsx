@@ -9,14 +9,7 @@ import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import Link from 'next/link';
-
-
-export interface Notification {
-  id: string; category: 'Finance' | 'CRM' | 'Operations' | 'Attendance';
-  icon: string; title: string; description: string;
-  time: string; priority: 'High' | 'Medium'; link: string; read: boolean;
-}
-export type Category = 'All' | 'Finance' | 'CRM' | 'Operations' | 'Attendance' | 'High Only';
+import { Notification, Category } from "./AdminCommunicationNotificationCenterClient_types";
 
 const ICON_CLS: Record<string, string> = {
   Finance: 'bg-success/10 text-success', CRM: 'bg-primary/10 text-primary',

@@ -12,9 +12,7 @@ import { Badge } from '@/components/ui/badge';
 import { Input } from '@/components/ui/input';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from '@/components/ui/dialog';
 import toast from 'react-hot-toast';
-
-
-export interface Holiday { id: string; date: string; name: string; type: string; }
+import { Holiday } from "./AdminEngagementHolidayCalendarClient_types";
 
 function getDays(y:number, m:number) { return new Date(y, m+1, 0).getDate(); }
 function getFirstDayIdx(y:number, m:number) { const d=new Date(y,m,1).getDay(); return d===0?6:d-1; }

@@ -14,13 +14,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from '@/components/ui/dialog';
 import toast from 'react-hot-toast';
 import { TablePagination } from '@/components/ui/table-pagination';
-
-
-export interface Notice {
-  id: string; title: string; message: string;
-  validTill: string; postedBy: string; postedDate: string;
-  status: 'Active' | 'Expired';
-}
+import { Notice } from "./AdminCommunicationNoticesClient_types";
 
 const today = new Date().toISOString().split('T')[0];
 

@@ -2,12 +2,7 @@
 // DATA FLOW: Parent Client Component -> AdminPlansEmptyState
 
 import { IndianRupee } from 'lucide-react';
-
-
-export interface AdminPlansEmptyStateProps {
-  onResetSearch?: () => void;
-  isSearching: boolean;
-}
+import { AdminPlansEmptyStateProps } from "./AdminPlansEmptyState_types";
 
 export function AdminPlansEmptyState({ onResetSearch, isSearching }: AdminPlansEmptyStateProps) {
   return (

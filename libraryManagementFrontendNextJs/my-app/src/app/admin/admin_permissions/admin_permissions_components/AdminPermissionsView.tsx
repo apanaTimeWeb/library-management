@@ -12,11 +12,7 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Card } from '@/components/ui/card';
 import { TablePagination } from '@/components/ui/table-pagination';
-
-
-export interface AdminPermissionsViewProps {
-  initialPermissions: Permission[];
-}
+import { AdminPermissionsViewProps } from "./AdminPermissionsView_types";
 
 export function AdminPermissionsView({ initialPermissions }: AdminPermissionsViewProps) {
     const [searchTerm, setSearchTerm] = useState('');

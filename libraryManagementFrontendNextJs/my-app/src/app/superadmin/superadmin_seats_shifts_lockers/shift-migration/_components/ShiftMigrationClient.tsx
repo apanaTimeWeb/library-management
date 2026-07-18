@@ -7,6 +7,7 @@ import toast from 'react-hot-toast';
 import { SUPERADMIN_SEATS_MOCK_MIGRATION_STUDENTS } from '@superadmin/superadmin_seats_shifts_lockers/superadmin_seats_data/SuperadminSeatsMockData';
 import { SuperadminSearchableDropdown } from '@/app/superadmin/superadmin_shared_components/SuperadminSearchableDropdown';
 import type { SuperadminSeatsStudent } from '@/app/superadmin/superadmin_seats_shifts_lockers/superadmin_seats_types/SuperadminSeatsShiftsLockersTypes';
+import { PayMode } from "./ShiftMigrationClient_types";
 
 const SHIFTS = [
   { name: 'Morning',   seats: 4, rate: 33 },
@@ -21,8 +22,6 @@ function daysRemaining(validTill: string): number {
   const diff = new Date(validTill).getTime() - Date.now();
   return Math.max(0, Math.ceil(diff / 86_400_000));
 }
-
-export type PayMode = 'cash'|'upi'|'card'|'bank';
 
 export function ShiftMigrationClient() {
   const [step, setStep]                         = useState(1);
