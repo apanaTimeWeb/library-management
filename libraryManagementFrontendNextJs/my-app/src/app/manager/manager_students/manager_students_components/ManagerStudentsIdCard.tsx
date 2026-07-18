@@ -39,7 +39,7 @@ function QrPattern({ id }: { id: string }) {
   return (
     <div className="grid grid-cols-5 gap-0.5 p-1 bg-white w-14 h-14" aria-label={`QR code for ${id}`}>
       {pattern.map((on, i) => (
-        <div key={i} className={`w-2 h-2 ${on ? 'bg-black' : 'bg-bg-page'}`} />
+        <div key={i} className={`w-2 h-2 ${on ? 'bg-bg-pagelack' : 'bg-bg-pageg-page'}`} />
       ))}
     </div>
   );
@@ -70,9 +70,9 @@ export default function ManagerStudentsIdCard({ data }: ManagerStudentsIdCardPro
         <div className="absolute inset-0 pointer-events-none opacity-20 bg-[linear-gradient(45deg,transparent_25%,var(--border)_50%,transparent_75%,transparent_100%)] bg-[length:20px_20px]" aria-hidden="true" />
 
         {/* ── Header band ── */}
-        <div className="bg-bg-elevated text-white p-4 flex justify-between items-start relative z-10">
+        <div className="bg-bg-pageg-elevated text-white p-4 flex justify-between items-start relative z-10">
           <div className="flex items-center gap-3">
-            <div className="text-2xl">📚</div>
+            <div className="text-text-primaryxl">📚</div>
             <div>
               <div className="text-sm font-bold tracking-wider leading-tight">SMART LIBRARY 360</div>
               <div className="font-semibold text-text-secondary tracking-widest uppercase" style={{ fontSize: '9px' }}>{data.branch ?? 'MAIN BRANCH'}</div>
@@ -94,9 +94,9 @@ export default function ManagerStudentsIdCard({ data }: ManagerStudentsIdCardPro
               <span className={`text-xl font-bold ${avatarClass.text}`}>{initials}</span>
               {/* Chip icon on avatar */}
               <div className="absolute -right-2 top-1/2 -translate-y-1/2 w-4 h-6 bg-yellow-400 rounded-sm border border-yellow-500 flex flex-col justify-evenly p-0.5 shadow-sm">
-                <div className="w-full h-[1px] bg-yellow-600/50" />
-                <div className="w-full h-[1px] bg-yellow-600/50" />
-                <div className="w-full h-[1px] bg-yellow-600/50" />
+                <div className="w-full h-px bg-yellow-600/50" />
+                <div className="w-full h-px bg-yellow-600/50" />
+                <div className="w-full h-px bg-yellow-600/50" />
               </div>
             </div>
 
@@ -113,7 +113,7 @@ export default function ManagerStudentsIdCard({ data }: ManagerStudentsIdCardPro
           <div className="flex w-full h-1 rounded-full overflow-hidden mb-5">
             <div className="flex-1 bg-indigo-500" />
             <div className="flex-1 bg-purple-500" />
-            <div className="flex-1 bg-blue-500" />
+            <div className="flex-1 bg-bg-pagelue-500" />
             <div className="flex-1 bg-emerald-500" />
           </div>
 
@@ -138,7 +138,7 @@ export default function ManagerStudentsIdCard({ data }: ManagerStudentsIdCardPro
           </div>
 
           {/* Validity row */}
-          <div className="flex items-center justify-between bg-bg-elevated rounded-lg p-2.5 mb-5 border border-border">
+          <div className="flex items-center justify-between bg-bg-pageg-elevated rounded-lg p-2.5 mb-5 border border-border">
             <div>
               <div className="font-bold text-text-secondary tracking-widest mb-0.5" style={{ fontSize: '8px' }}>VALID FROM</div>
               <div className="font-bold text-text-primary" style={{ fontSize: '10px' }}>{data.joinDate}</div>

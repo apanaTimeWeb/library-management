@@ -55,7 +55,7 @@ export function AdminFinanceSecurityDepositsClient() {
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b pb-4">
         <div>
           <nav className="text-xs text-muted-foreground font-medium mb-1 tracking-wide uppercase">Smart Library 360 › Admin › Finance</nav>
-          <h1 className="text-2xl font-bold tracking-tight">Security Deposits</h1>
+          <h1 className="text-text-primaryxl font-bold tracking-tight">Security Deposits</h1>
           <p className="text-sm text-muted-foreground mt-1">Manage student security deposit records.</p>
         </div>
       </div>
@@ -63,7 +63,7 @@ export function AdminFinanceSecurityDepositsClient() {
       {/* Filter Bar */}
       <div className="flex flex-wrap gap-3">
         <select 
-          className="h-10 px-3 rounded-md border border-border bg-bg-input text-sm font-medium focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary"
+          className="h-10 px-3 rounded-md border border-border bg-bg-pageg-input text-sm font-medium focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary"
           value={statusFilter} 
           onChange={(e) => setStatusFilter(e.target.value)}
         >
@@ -188,7 +188,7 @@ export function AdminFinanceSecurityDepositsClient() {
 
       {/* Process Refund Dialog */}
       {refundDialog && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm" onClick={() => setRefundDialog(null)}>
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-bg-pagelack/60 backdrop-blur-sm" onClick={() => setRefundDialog(null)}>
           <Card className="w-full max-w-sm shadow-lg border-border bg-card p-6 flex flex-col gap-5" onClick={e => e.stopPropagation()}>
             <div className="flex items-center justify-between">
               <h2 className="text-lg font-bold flex items-center gap-2 text-primary tracking-tight">
@@ -234,7 +234,7 @@ export function AdminFinanceSecurityDepositsClient() {
 
       {/* Add Deduction Dialog */}
       {deductDialog && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm" onClick={() => setDeductDialog(null)}>
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-bg-pagelack/60 backdrop-blur-sm" onClick={() => setDeductDialog(null)}>
           <Card className="w-full max-w-sm shadow-lg border-border bg-card p-6 flex flex-col gap-5" onClick={e => e.stopPropagation()}>
             <div className="flex items-center justify-between">
               <h2 className="text-lg font-bold flex items-center gap-2 text-primary tracking-tight">

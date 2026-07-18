@@ -24,7 +24,7 @@ export function AdminStudentsClient({ initialStudents }: AdminStudentsClientProp
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-border pb-4">
         <div>
           <p className="text-sm text-text-secondary mb-1">Smart Library 360 › Admin › Students</p>
-          <h1 className="text-2xl font-bold tracking-tight text-text-primary">{selectedBranch} - Students</h1>
+          <h1 className="text-text-primaryxl font-bold tracking-tight text-text-primary">{selectedBranch} - Students</h1>
           <p className="text-sm text-text-secondary mt-1">Overview of students enrolled in the currently selected branch.</p>
         </div>
         <div className="flex items-center gap-3">
@@ -38,7 +38,7 @@ export function AdminStudentsClient({ initialStudents }: AdminStudentsClientProp
         <div className="relative flex-1">
           <Search size={15} className="absolute left-3 top-1/2 -translate-y-1/2 text-text-secondary" />
           <Input
-            className="pl-9 h-10 border-border bg-bg-input text-text-primary placeholder:text-text-secondary"
+            className="pl-9 h-10 border-border bg-bg-pageg-input text-text-primary placeholder:text-text-secondary"
             placeholder="Search by student name..."
             value={search}
             onChange={e => setSearch(e.target.value)}
@@ -46,7 +46,7 @@ export function AdminStudentsClient({ initialStudents }: AdminStudentsClientProp
         </div>
       </div>
 
-      <div className="flex-1 border border-border bg-bg-card rounded-[var(--radius-lg)] overflow-hidden flex flex-col shadow-sm">
+      <div className="flex-1 border border-border bg-bg-pageg-card rounded-lg overflow-hidden flex flex-col shadow-sm">
         <div className="mb-4">
         <TableToolbar 
           search={table.searchTerm} 
@@ -55,7 +55,7 @@ export function AdminStudentsClient({ initialStudents }: AdminStudentsClientProp
       </div>
       <div className="w-full overflow-x-auto flex-1">
           <table className="w-full text-sm text-left">
-            <thead className="bg-bg-page border-b border-border text-text-secondary text-xs font-medium uppercase tracking-wider sticky top-0 z-10">
+            <thead className="bg-bg-pageg-page border-b border-border text-text-secondary text-xs font-medium uppercase tracking-wider sticky top-0 z-10">
               <tr>
                 <th className="px-4 py-3">ID</th>
                 <th className="px-4 py-3">Student Name</th>
@@ -69,7 +69,7 @@ export function AdminStudentsClient({ initialStudents }: AdminStudentsClientProp
               {filteredStudents.slice((page - 1) * limit, page * limit).map((student) => (
                 <tr 
                   key={student.id} 
-                  className="hover:bg-bg-page transition-colors group cursor-pointer"
+                  className="hover:bg-bg-pageg-page transition-colors group cursor-pointer"
                 >
                   <td className="px-4 py-4 font-bold text-xs text-primary">
                     {student.id}

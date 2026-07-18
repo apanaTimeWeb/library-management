@@ -60,7 +60,7 @@ export function SuperadminSeatsAllocationsClient() {
         </SuperadminButton>
       </div>
 
-      <SuperadminCard className="mb-6 bg-bg-card border-none">
+      <SuperadminCard className="mb-6 bg-bg-pageg-card border-none">
         <CardContent className="p-4 flex flex-wrap items-center gap-4">
           <div className="w-40">
             <SuperadminSelect value={shiftFilter} onValueChange={setShiftFilter}>
@@ -97,7 +97,7 @@ export function SuperadminSeatsAllocationsClient() {
         <CardContent className="p-0">
           {filteredAllocations.length === 0 ? (
             <div className="py-20 flex flex-col items-center justify-center text-center">
-              <div className="h-16 w-16 bg-bg-input rounded-full flex items-center justify-center text-text-secondary mb-3">
+              <div className="h-16 w-16 bg-bg-pageg-input rounded-full flex items-center justify-center text-text-secondary mb-3">
                 <Inbox size={32} />
               </div>
               <p className="text-text-primary font-semibold text-lg">No allocations found</p>
@@ -125,7 +125,7 @@ export function SuperadminSeatsAllocationsClient() {
                     <tr
                       key={`${alloc.smartId}-${idx}`}
                       onClick={() => handleRowClick(alloc.studentName)}
-                      className="hover:bg-bg-input transition-colors cursor-pointer group"
+                      className="hover:bg-bg-pageg-input transition-colors cursor-pointer group"
                     >
                       <td className="py-3 pl-4 pr-3">
                         <p className="font-semibold text-text-primary">{alloc.studentName}</p>

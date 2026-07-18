@@ -46,7 +46,7 @@ export function AdminSeatMatrixClient() {
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b pb-4">
         <div>
           <nav className="text-xs text-muted-foreground font-medium mb-1 tracking-wide uppercase">Smart Library 360 › Admin › Seats & Shifts</nav>
-          <h1 className="text-2xl font-bold tracking-tight">Seat Matrix</h1>
+          <h1 className="text-text-primaryxl font-bold tracking-tight">Seat Matrix</h1>
           <p className="text-sm text-muted-foreground mt-1">Interactive floor plan and real-time availability.</p>
         </div>
       </div>
@@ -60,7 +60,7 @@ export function AdminSeatMatrixClient() {
               onClick={() => setActiveTab(tab)}
               className={`px-4 py-1.5 text-sm font-bold rounded-md whitespace-nowrap transition-all ${
                 activeTab === tab 
-                  ? 'bg-bg-card text-primary shadow-sm' 
+                  ? 'bg-bg-pageg-card text-primary shadow-sm' 
                   : 'text-muted-foreground hover:text-primary'
               }`}
             >
@@ -131,7 +131,7 @@ export function AdminSeatMatrixClient() {
 
       {/* Seat Details Modal */}
       {selectedSeat && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm" onClick={() => setSelectedSeat(null)}>
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-bg-pagelack/60 backdrop-blur-sm" onClick={() => setSelectedSeat(null)}>
           <Card className="w-full max-w-sm shadow-lg border-border bg-card p-0 flex flex-col overflow-hidden animate-in zoom-in-95 duration-200" onClick={e => e.stopPropagation()}>
             {selectedSeat.status === 'free' ? (
               <div className="p-6 flex flex-col gap-6">
@@ -179,7 +179,7 @@ export function AdminSeatMatrixClient() {
             ) : (
               <div className="flex flex-col">
                 <div className={`p-6 pb-8 ${selectedSeat.status === 'expiring' ? 'bg-warning/10' : 'bg-primary/5'} border-b border-border relative`}>
-                  <Button variant="ghost" size="icon" className="absolute top-4 right-4 h-8 w-8 rounded-full bg-bg-card/50 hover:bg-black/60" onClick={() => setSelectedSeat(null)}>
+                  <Button variant="ghost" size="icon" className="absolute top-4 right-4 h-8 w-8 rounded-full bg-bg-pageg-card/50 hover:bg-bg-pagelack/60" onClick={() => setSelectedSeat(null)}>
                     <X size={16} />
                   </Button>
                   

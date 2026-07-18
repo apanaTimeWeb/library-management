@@ -9,10 +9,10 @@ import { ManagerHeaderProps } from '@/app/manager/manager_types/manager_types';
 export default function ManagerHeader({ collapsed, onMobileOpen }: ManagerHeaderProps) {
   const leftClass = collapsed ? 'left-[60px]' : 'left-[240px]';
   return (
-    <header className={`fixed top-0 right-0 h-16 bg-bg-header border-b border-border z-40 flex items-center justify-between px-6 transition-all duration-300 ${leftClass}`}>
+    <header className={`fixed top-0 right-0 h-16 bg-bg-pageg-header border-b border-border z-40 flex items-center justify-between px-6 transition-all duration-300 ${leftClass}`}>
 
       <div className="flex items-center gap-4">
-        <button className="md:hidden p-2 -ml-2 text-text-secondary hover:text-text-primary rounded-lg hover:bg-bg-sidebar transition-colors" onClick={onMobileOpen} aria-label="Open menu">
+        <button className="md:hidden p-2 -ml-2 text-text-secondary hover:text-text-primary rounded-lg hover:bg-bg-pageg-sidebar transition-colors" onClick={onMobileOpen} aria-label="Open menu">
           <Menu size={20} />
         </button>
         <BookOpen size={16} className="text-primary hidden md:block" />
@@ -23,7 +23,7 @@ export default function ManagerHeader({ collapsed, onMobileOpen }: ManagerHeader
 
       <div className="flex items-center gap-4">
         <ThemeToggle />
-        <button className="relative p-2 text-text-secondary hover:text-text-primary rounded-full hover:bg-bg-sidebar transition-colors" aria-label="Notifications">
+        <button className="relative p-2 text-text-secondary hover:text-text-primary rounded-full hover:bg-bg-pageg-sidebar transition-colors" aria-label="Notifications">
           <Bell size={17} />
           <span className="absolute top-2 right-2.5 w-2 h-2 bg-danger rounded-full border-2 border-bg-header" />
         </button>

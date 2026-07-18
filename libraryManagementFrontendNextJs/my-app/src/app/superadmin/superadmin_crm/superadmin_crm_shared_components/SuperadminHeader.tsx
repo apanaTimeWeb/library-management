@@ -18,7 +18,7 @@ export default function SuperadminHeader({ onMenuClick }: HeaderProps) {
           <Menu size={20} />
         </button>
 
-        <div className="h-8 w-8 rounded-[var(--radius-md)] bg-white/20 flex items-center justify-center backdrop-blur-sm border border-white/10 shadow-inner">
+        <div className="h-8 w-8 rounded-md bg-white/20 flex items-center justify-center backdrop-blur-sm border border-white/10 shadow-inner">
           <svg
             width="18"
             height="18"
@@ -34,13 +34,13 @@ export default function SuperadminHeader({ onMenuClick }: HeaderProps) {
           </svg>
         </div>
 
-        <span className="text-[18px] font-extrabold tracking-tight hidden sm:block">Smart Library 360</span>
+        <span className="text-lg font-extrabold tracking-tight hidden sm:block">Smart Library 360</span>
       </div>
 
       {/* ── Right section ── */}
       <div className="flex items-center gap-4">
         {/* Branch chip */}
-        <div className="hidden md:flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/10 text-[12px] font-bold border border-white/10 backdrop-blur-sm">
+        <div className="hidden md:flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/10 text-xs font-bold border border-white/10 backdrop-blur-sm">
           <Building2 size={14} className="opacity-80" />
           <span>Downtown Hub</span>
         </div>
@@ -53,8 +53,8 @@ export default function SuperadminHeader({ onMenuClick }: HeaderProps) {
 
         {/* Avatar + name */}
         <div className="flex items-center gap-3 pl-4 border-l border-white/20">
-          <div className="h-8 w-8 rounded-full bg-white/20 flex items-center justify-center text-[12px] font-bold border border-white/30">LA</div>
-          <span className="text-[14px] font-bold hidden sm:block">Library Admin</span>
+          <div className="h-8 w-8 rounded-full bg-white/20 flex items-center justify-center text-xs font-bold border border-white/30">LA</div>
+          <span className="text-sm font-bold hidden sm:block">Library Admin</span>
         </div>
       </div>
     </header>

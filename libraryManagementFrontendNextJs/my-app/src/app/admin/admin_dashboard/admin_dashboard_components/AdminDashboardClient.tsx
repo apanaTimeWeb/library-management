@@ -29,7 +29,7 @@ export function AdminDashboardClient({ initialData }: { initialData: AdminDashbo
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-border pb-4">
         <div>
           <p className="text-sm text-text-secondary mb-1">Smart Library 360 › Admin › Dashboard</p>
-          <h1 className="text-2xl font-bold tracking-tight text-text-primary">Dashboard</h1>
+          <h1 className="text-text-primaryxl font-bold tracking-tight text-text-primary">Dashboard</h1>
           <p className="text-sm text-text-secondary mt-1">Welcome back — here's what's happening today.</p>
         </div>
         <Link href={ADMIN_ROUTES.REPORTS}>
@@ -66,7 +66,7 @@ export function AdminDashboardClient({ initialData }: { initialData: AdminDashbo
         </div>
 
         <div className="lg:col-span-5 xl:col-span-4 flex flex-col h-full">
-          <Card className="flex flex-col h-full border-border bg-bg-card shadow-none">
+          <Card className="flex flex-col h-full border-border bg-bg-pageg-card shadow-none">
             <CardHeader className="pb-3 border-b border-border">
               <CardTitle className="text-base text-text-primary">Action Items</CardTitle>
               <CardDescription className="text-xs text-text-secondary">

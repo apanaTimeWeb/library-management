@@ -30,15 +30,15 @@ export function SecurityDepositsClient() {
   return (
     <div className="space-y-6">
       <Toaster position="bottom-right" toastOptions={{
-        className: 'bg-card text-text-primary border border-border text-[13px]'
+        className: 'bg-card text-text-primary border border-border text-sm'
       }} />
 
       <div>
-        <h1 className="text-[22px] font-bold text-text-primary">Security Deposits</h1>
-        <p className="text-[12px] text-text-secondary">Manage student security deposit records.</p>
+        <h1 className="text-xl font-bold text-text-primary">Security Deposits</h1>
+        <p className="text-xs text-text-secondary">Manage student security deposit records.</p>
       </div>
 
-      <div className="flex items-center gap-3 bg-card p-3 rounded-[var(--radius-lg)] border border-border w-fit">
+      <div className="flex items-center gap-3 bg-card p-3 rounded-lg border border-border w-fit">
         <div className="w-48">
           <SuperadminSearchableDropdown
             options={[
@@ -53,11 +53,11 @@ export function SecurityDepositsClient() {
         </div>
       </div>
 
-      <div className="bg-card rounded-[var(--radius-lg)] border border-border overflow-x-auto">
+      <div className="bg-card rounded-lg border border-border overflow-x-auto">
         <TableToolbar search={table.searchTerm} onSearch={table.setSearchTerm} />
       <table className="w-full text-left border-collapse">
           <thead>
-            <tr className="bg-primary/5 uppercase text-[12px] font-semibold text-text-secondary border-b border-border">
+            <tr className="bg-primary/5 uppercase text-xs font-semibold text-text-secondary border-b border-border">
               <th className="py-3 px-4">Student</th>
               <th className="text-right py-3 px-4">Deposit ₹</th>
               <th className="py-3 px-4">Status</th>
@@ -85,7 +85,7 @@ export function SecurityDepositsClient() {
                 <td colSpan={9}>
                   <div className="flex flex-col items-center justify-center p-8 text-center space-y-3">
                     <div className="text-4xl text-text-secondary"><Briefcase size={40} /></div>
-                    <p className="text-[16px] text-text-secondary">No security deposits recorded.</p>
+                    <p className="text-base text-text-secondary">No security deposits recorded.</p>
                   </div>
                 </td>
               </tr>
@@ -93,33 +93,33 @@ export function SecurityDepositsClient() {
               filtered.map((d) => (
                 <tr key={d.id} className="border-b border-border last:border-0 hover:bg-primary/5 transition-colors">
                   <td className="py-3 px-4">
-                    <div className="font-medium text-text-primary text-[14px]">{d.studentName}</div>
-                    <div className="text-[12px] text-text-secondary">{d.smartId}</div>
+                    <div className="font-medium text-text-primary text-sm">{d.studentName}</div>
+                    <div className="text-xs text-text-secondary">{d.smartId}</div>
                   </td>
-                  <td className="py-3 px-4 text-right font-semibold text-[14px] text-text-primary">{formatCurrency(d.depositAmount)}</td>
+                  <td className="py-3 px-4 text-right font-semibold text-sm text-text-primary">{formatCurrency(d.depositAmount)}</td>
                   <td className="py-3 px-4">
-                    <span className={`${STATUS_BADGE[d.status] || 'bg-input text-text-primary border border-border'} px-2 py-0.5 rounded-[var(--radius-full)] text-[11px] font-bold border capitalize`}>
+                    <span className={`${STATUS_BADGE[d.status] || 'bg-input text-text-primary border border-border'} px-2 py-0.5 rounded-full text-xs font-bold border capitalize`}>
                       {d.status}
                     </span>
                   </td>
-                  <td className="py-3 px-4 text-[14px] font-medium text-text-primary">{d.collectedBy}</td>
-                  <td className="py-3 px-4 text-[12px] text-text-secondary">{d.collectedDate}</td>
-                  <td className={`py-3 px-4 text-right text-[14px] font-semibold ${d.deductionAmount > 0 ? 'text-danger' : 'text-text-secondary'}`}>
+                  <td className="py-3 px-4 text-sm font-medium text-text-primary">{d.collectedBy}</td>
+                  <td className="py-3 px-4 text-xs text-text-secondary">{d.collectedDate}</td>
+                  <td className={`py-3 px-4 text-right text-sm font-semibold ${d.deductionAmount > 0 ? 'text-danger' : 'text-text-secondary'}`}>
                     {d.deductionAmount > 0 ? formatCurrency(d.deductionAmount) : '—'}
                   </td>
-                  <td className="py-3 px-4 text-[12px] text-text-secondary">{d.deductionReason || '—'}</td>
-                  <td className="py-3 px-4 text-[12px] text-text-secondary">{d.refundedDate || '—'}</td>
+                  <td className="py-3 px-4 text-xs text-text-secondary">{d.deductionReason || '—'}</td>
+                  <td className="py-3 px-4 text-xs text-text-secondary">{d.refundedDate || '—'}</td>
                   <td className="py-3 px-4">
                     {d.status === 'held' && (
                       <div className="flex items-center justify-end gap-2">
                         <button
-                          className="bg-success/10 text-success border border-success/20 px-2 py-1 rounded-[var(--radius-md)] text-[11px] font-bold hover:bg-success hover:text-success-foreground transition-colors cursor-pointer flex items-center gap-1"
+                          className="bg-success/10 text-success border border-success/20 px-2 py-1 rounded-md text-xs font-bold hover:bg-success hover:text-success-foreground transition-colors cursor-pointer flex items-center gap-1"
                           onClick={() => openRefund(d)}
                         >
                           <Undo2 size={11} /> Process Refund
                         </button>
                         <button
-                          className="bg-warning/10 text-warning border border-warning/20 px-2 py-1 rounded-[var(--radius-md)] text-[11px] font-bold hover:bg-warning hover:text-warning-foreground transition-colors cursor-pointer flex items-center gap-1"
+                          className="bg-warning/10 text-warning border border-warning/20 px-2 py-1 rounded-md text-xs font-bold hover:bg-warning hover:text-warning-foreground transition-colors cursor-pointer flex items-center gap-1"
                           onClick={() => openDeduct(d)}
                         >
                           <Minus size={11} /> Add Deduction
@@ -127,7 +127,7 @@ export function SecurityDepositsClient() {
                       </div>
                     )}
                     {d.status === 'refunded' && d.refundedDate && (
-                      <span className="text-[12px] text-text-secondary flex justify-end">Refunded {d.refundedDate}</span>
+                      <span className="text-xs text-text-secondary flex justify-end">Refunded {d.refundedDate}</span>
                     )}
                   </td>
                 </tr>

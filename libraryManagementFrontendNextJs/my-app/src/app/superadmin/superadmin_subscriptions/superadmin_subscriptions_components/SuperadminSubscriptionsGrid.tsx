@@ -34,7 +34,7 @@ export function SuperadminSubscriptionsGrid({ subs, filteredSubs, filter, setFil
       cellRenderer: (p: ICellRendererParams<SuperadminSubscription>) => (
         <div className="flex flex-col justify-center h-full">
           <p className="text-sm font-bold text-primary">₹{p.data?.mrr.toLocaleString()}</p>
-          <p className="text-[11px] font-semibold text-text-disabled uppercase tracking-wider">{p.data?.cycle}</p>
+          <p className="text-xs font-semibold text-text-disabled uppercase tracking-wider">{p.data?.cycle}</p>
         </div>
       ),
     },
@@ -47,9 +47,9 @@ export function SuperadminSubscriptionsGrid({ subs, filteredSubs, filter, setFil
       headerName: 'Status', field: 'status', flex: 1, minWidth: 120,
       cellRenderer: (p: ICellRendererParams<SuperadminSubscription>) => (
         <div className="flex items-center h-full gap-1.5">
-          {p.data?.status === 'Paid'     && <span className="inline-flex items-center px-2 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-success-bg text-success"><CheckCircle size={10} className="mr-1"/> Paid</span>}
-          {p.data?.status === 'Due Soon' && <span className="inline-flex items-center px-2 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-info-bg text-info"><Circle size={10} className="mr-1"/> Due Soon</span>}
-          {p.data?.status === 'Overdue'  && <span className="inline-flex items-center px-2 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-danger-bg text-danger"><AlertCircle size={10} className="mr-1"/> Overdue</span>}
+          {p.data?.status === 'Paid'     && <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-success-bg text-success"><CheckCircle size={10} className="mr-1"/> Paid</span>}
+          {p.data?.status === 'Due Soon' && <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-info-bg text-info"><Circle size={10} className="mr-1"/> Due Soon</span>}
+          {p.data?.status === 'Overdue'  && <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-danger-bg text-danger"><AlertCircle size={10} className="mr-1"/> Overdue</span>}
         </div>
       ),
     },
@@ -58,15 +58,15 @@ export function SuperadminSubscriptionsGrid({ subs, filteredSubs, filter, setFil
   const onGridReady = useCallback((e: GridReadyEvent) => { e.api.sizeColumnsToFit(); }, []);
 
   return (
-    <div className="bg-bg-card border border-border rounded-[var(--radius-lg)] overflow-hidden shadow-sm">
-      <div className="p-4 border-b border-border bg-bg-page/30 flex items-center justify-between gap-4 flex-wrap">
-        <div className="flex items-center gap-1.5 bg-bg-input border border-border rounded-[var(--radius-md)] p-1">
+    <div className="bg-bg-pageg-card border border-border rounded-lg overflow-hidden shadow-sm">
+      <div className="p-4 border-b border-border bg-bg-pageg-page/30 flex items-center justify-between gap-4 flex-wrap">
+        <div className="flex items-center gap-1.5 bg-bg-pageg-input border border-border rounded-md p-1">
           {FILTERS.map((f: string) => (
             <button key={f} onClick={() => setFilter(f)}
-              className={`px-3 py-1.5 text-xs font-bold rounded-[var(--radius-sm)] transition-all ${
+              className={`px-3 py-1.5 text-xs font-bold rounded-sm transition-all ${
                 filter === f 
-                  ? 'bg-bg-card text-primary shadow-sm' 
-                  : 'text-text-secondary hover:text-text-primary hover:bg-bg-card/50'
+                  ? 'bg-bg-pageg-card text-primary shadow-sm' 
+                  : 'text-text-secondary hover:text-text-primary hover:bg-bg-pageg-card/50'
               }`}>
               {f}
             </button>
@@ -95,7 +95,7 @@ export function SuperadminSubscriptionsGrid({ subs, filteredSubs, filter, setFil
         />
       </div>
 </div>
-      <div className="p-4 border-t border-border text-center bg-bg-page/30">
+      <div className="p-4 border-t border-border text-center bg-bg-pageg-page/30">
         <span className="text-sm font-semibold text-text-secondary">Showing {filteredSubs.length} of {subs.length} subscriptions</span>
       </div>
     </div>

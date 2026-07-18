@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Component or Page.
 /**
  * RESPONSIBILITY: Logic, state management, and AG Grid configuration for the PaymentsClient component.
  */
@@ -81,7 +82,7 @@ export function usePaymentsClient() {
       headerName: 'Receipt #', 
       width: 150,
       cellRenderer: (params: ICellRendererParams) => (
-        <span className={`font-mono text-[14px] font-medium ${params.data.status === 'deleted' ? 'line-through opacity-50 text-text-secondary' : 'text-text-primary'}`}>
+        <span className={`font-mono text-sm font-medium ${params.data.status === 'deleted' ? 'line-through opacity-50 text-text-secondary' : 'text-text-primary'}`}>
           {params.value}
         </span>
       )
@@ -99,8 +100,8 @@ export function usePaymentsClient() {
       minWidth: 180,
       cellRenderer: (params: ICellRendererParams) => (
         <div className={`py-1 ${params.data.status === 'deleted' ? 'opacity-50' : ''}`}>
-          <div className="font-medium text-[14px] text-text-primary">{params.value}</div>
-          <div className="text-[12px] text-text-secondary">{params.data.smartId}</div>
+          <div className="font-medium text-sm text-text-primary">{params.value}</div>
+          <div className="text-xs text-text-secondary">{params.data.smartId}</div>
         </div>
       )
     },
@@ -117,13 +118,13 @@ export function usePaymentsClient() {
       width: 110,
       cellRenderer: (params: ICellRendererParams) => (
         <div className={`h-full flex items-center ${params.data.status === 'deleted' ? 'opacity-50' : ''}`}>
-          <span className={`${MODE_BADGE[params.value] || 'bg-input text-text-primary border border-border'} px-2 py-0.5 rounded-[var(--radius-full)] text-[11px] font-bold capitalize`}>
+          <span className={`${MODE_BADGE[params.value] || 'bg-input text-text-primary border border-border'} px-2 py-0.5 rounded-full text-xs font-bold capitalize`}>
             {params.value}
           </span>
         </div>
       )
     },
-    { field: 'txnId', headerName: 'Txn ID', width: 130, cellRenderer: (p: ICellRendererParams) => <span className="font-mono text-[14px] text-text-secondary">{p.value || '—'}</span> },
+    { field: 'txnId', headerName: 'Txn ID', width: 130, cellRenderer: (p: ICellRendererParams) => <span className="font-mono text-sm text-text-secondary">{p.value || '—'}</span> },
     { 
       field: 'lateFee', 
       headerName: 'Late Fee', 
@@ -142,12 +143,12 @@ export function usePaymentsClient() {
       cellRenderer: (params: ICellRendererParams) => (
         <div className="h-full flex flex-col justify-center py-1">
           {params.value === 'valid' ? (
-            <span className="bg-success/10 text-success border border-success/20 px-2 py-0.5 rounded-[var(--radius-full)] text-[11px] font-bold self-start uppercase tracking-wider">Valid</span>
+            <span className="bg-success/10 text-success border border-success/20 px-2 py-0.5 rounded-full text-xs font-bold self-start uppercase tracking-wider">Valid</span>
           ) : (
-            <span className="bg-danger/10 text-danger border border-danger/20 px-2 py-0.5 rounded-[var(--radius-full)] text-[11px] font-bold self-start uppercase tracking-wider">DELETED</span>
+            <span className="bg-danger/10 text-danger border border-danger/20 px-2 py-0.5 rounded-full text-xs font-bold self-start uppercase tracking-wider">DELETED</span>
           )}
           {params.value === 'deleted' && params.data.deletionReason && (
-            <div className="text-[11px] text-text-secondary mt-1 leading-tight" title={params.data.deletionReason}>
+            <div className="text-xs text-text-secondary mt-1 leading-tight" title={params.data.deletionReason}>
               {params.data.deletionReason.length > 15 ? params.data.deletionReason.substring(0, 15) + '...' : params.data.deletionReason}
             </div>
           )}
@@ -163,21 +164,21 @@ export function usePaymentsClient() {
         return (
           <div className="flex items-center gap-2 h-full">
             <button
-              className="w-7 h-7 flex items-center justify-center rounded-[var(--radius-md)] bg-input text-text-primary border border-border hover:bg-primary/10 hover:text-primary transition-colors cursor-pointer"
+              className="w-7 h-7 flex items-center justify-center rounded-md bg-input text-text-primary border border-border hover:bg-primary/10 hover:text-primary transition-colors cursor-pointer"
               onClick={() => router.push(SUPERADMIN_ROUTES.FINANCE_RECEIPT_ID(params.data.id))}
               title="View Receipt"
             >
               <Receipt size={14} />
             </button>
             <button
-              className="w-7 h-7 flex items-center justify-center rounded-[var(--radius-md)] bg-input text-text-primary border border-border hover:bg-primary/10 hover:text-primary transition-colors cursor-pointer"
+              className="w-7 h-7 flex items-center justify-center rounded-md bg-input text-text-primary border border-border hover:bg-primary/10 hover:text-primary transition-colors cursor-pointer"
               onClick={() => router.push(SUPERADMIN_ROUTES.FINANCE_INVOICE_ID(params.data.id))}
               title="View Invoice"
             >
               <FileText size={14} />
             </button>
             <button
-              className="w-7 h-7 flex items-center justify-center rounded-[var(--radius-md)] bg-danger/10 text-danger border border-danger/20 hover:bg-danger hover:text-danger-foreground transition-colors cursor-pointer"
+              className="w-7 h-7 flex items-center justify-center rounded-md bg-danger/10 text-danger border border-danger/20 hover:bg-danger hover:text-danger-foreground transition-colors cursor-pointer"
               onClick={() => setDeleteDialog({ id: params.data.id, receipt: params.data.receiptNumber })}
               title="Delete"
             >

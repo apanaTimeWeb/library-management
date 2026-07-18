@@ -52,7 +52,7 @@ export function AdminFinanceRenewalsClient() {
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b pb-4">
         <div>
           <nav className="text-xs text-muted-foreground font-medium mb-1 tracking-wide uppercase">Smart Library 360 › Admin › Finance</nav>
-          <h1 className="text-2xl font-bold tracking-tight">Renewals</h1>
+          <h1 className="text-text-primaryxl font-bold tracking-tight">Renewals</h1>
           <p className="text-sm text-muted-foreground mt-1">Subscriptions needing renewal attention.</p>
         </div>
         <Button onClick={handleRemindAll} variant="secondary" className="bg-primary/10 text-primary hover:bg-primary/20 border-none font-bold gap-2">
@@ -171,7 +171,7 @@ export function AdminFinanceRenewalsClient() {
 
       {/* Renew Dialog */}
       {renewDialog && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm" onClick={() => setRenewDialog(null)}>
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-bg-pagelack/60 backdrop-blur-sm" onClick={() => setRenewDialog(null)}>
           <Card className="w-full max-w-sm shadow-lg border-border bg-card p-6 flex flex-col gap-5" onClick={e => e.stopPropagation()}>
             <div className="flex items-center justify-between">
               <h2 className="text-lg font-bold flex items-center gap-2 text-primary tracking-tight">
@@ -190,7 +190,7 @@ export function AdminFinanceRenewalsClient() {
               <div className="space-y-1.5">
                 <label className="text-sm font-medium text-primary">Plan</label>
                 <select
-                  className="w-full h-10 px-3 rounded-md border border-border bg-bg-input text-sm font-medium focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary"
+                  className="w-full h-10 px-3 rounded-md border border-border bg-bg-pageg-input text-sm font-medium focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary"
                   value={renewPlanId}
                   onChange={(e) => {
                     const id = e.target.value;
@@ -213,7 +213,7 @@ export function AdminFinanceRenewalsClient() {
               <div className="space-y-1.5">
                 <label className="text-sm font-medium text-primary">Payment Mode</label>
                 <select 
-                  className="w-full h-10 px-3 rounded-md border border-border bg-bg-input text-sm font-medium focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary"
+                  className="w-full h-10 px-3 rounded-md border border-border bg-bg-pageg-input text-sm font-medium focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary"
                   value={renewMode} 
                   onChange={(e) => setRenewMode(e.target.value)}
                 >

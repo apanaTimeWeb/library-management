@@ -18,20 +18,20 @@ export function ReceiptIdClient() {
       {/* Back + actions */}
       <div className="flex items-center justify-between">
         <button 
-          className="flex items-center gap-2 bg-input text-text-primary border border-border px-3 py-1.5 rounded-[var(--radius-md)] text-[12px] font-bold hover:bg-primary/10 hover:text-primary transition-colors cursor-pointer" 
+          className="flex items-center gap-2 bg-input text-text-primary border border-border px-3 py-1.5 rounded-md text-xs font-bold hover:bg-primary/10 hover:text-primary transition-colors cursor-pointer" 
           onClick={() => router.push(SUPERADMIN_ROUTES.FINANCE_RECEIPT)}
         >
           <ArrowLeft size={14} /> Back to Receipts
         </button>
         <div className="flex gap-2">
           <button 
-            className="flex items-center gap-2 bg-input text-text-primary border border-border px-3 py-1.5 rounded-[var(--radius-md)] text-[12px] font-bold hover:bg-primary/10 hover:text-primary transition-colors cursor-pointer" 
+            className="flex items-center gap-2 bg-input text-text-primary border border-border px-3 py-1.5 rounded-md text-xs font-bold hover:bg-primary/10 hover:text-primary transition-colors cursor-pointer" 
             onClick={handlePrint}
           >
             <Printer size={14} /> Print (Thermal)
           </button>
           <button 
-            className="flex items-center gap-2 bg-success/10 text-success border border-success/20 px-3 py-1.5 rounded-[var(--radius-md)] text-[12px] font-bold hover:bg-success hover:text-success-foreground transition-colors cursor-pointer" 
+            className="flex items-center gap-2 bg-success/10 text-success border border-success/20 px-3 py-1.5 rounded-md text-xs font-bold hover:bg-success hover:text-success-foreground transition-colors cursor-pointer" 
             onClick={handleWhatsApp}
           >
             <Send size={14} /> WhatsApp
@@ -53,15 +53,15 @@ export function ReceiptIdClient() {
               <BookOpen size={24} />
             </div>
             
-            <p className="text-[16px] font-black tracking-widest uppercase mb-1">Smart Library</p>
-            <h2 className="text-[12px] font-bold text-gray-500 uppercase tracking-widest border-b border-gray-300 pb-2 mb-4 w-full text-center">Payment Receipt</h2>
+            <p className="text-base font-black tracking-widest uppercase mb-1">Smart Library</p>
+            <h2 className="text-xs font-bold text-text-secondary uppercase tracking-widest border-b border-border pb-2 mb-4 w-full text-center">Payment Receipt</h2>
             
-            <div className="w-full flex justify-between items-center mb-6 bg-gray-100 p-2 rounded">
-              <p className="text-[10px] font-bold text-gray-500 uppercase">Receipt No.</p>
-              <p className="text-[14px] font-black">{receiptData.receiptNo}</p>
+            <div className="w-full flex justify-between items-center mb-6 bg-bg-pageg-card p-2 rounded">
+              <p className="text-xs font-bold text-text-secondary uppercase">Receipt No.</p>
+              <p className="text-sm font-black">{receiptData.receiptNo}</p>
             </div>
 
-            <div className="space-y-2 text-left mb-6 w-full text-[12px]">
+            <div className="space-y-2 text-left mb-6 w-full text-xs">
               {[
                 ['Date',       receiptData.date],
                 ['Student',    receiptData.studentName],
@@ -73,34 +73,34 @@ export function ReceiptIdClient() {
                 ['Mode',       receiptData.paymentMode],
                 ['Txn ID',     receiptData.txnId],
               ].map(([l, v]) => (
-                <div key={l} className="flex justify-between border-b border-gray-200 border-dashed pb-1">
-                  <span className="text-gray-500 font-medium">{l}</span>
+                <div key={l} className="flex justify-between border-b border-border border-dashed pb-1">
+                  <span className="text-text-secondary font-medium">{l}</span>
                   <span className="font-bold">{v}</span>
                 </div>
               ))}
             </div>
             
             {/* Items */}
-            <div className="text-left mb-4 w-full space-y-1 text-[12px]">
+            <div className="text-left mb-4 w-full space-y-1 text-xs">
               {receiptData.items.map((item: { label: string; amount: number }) => (
                 <div key={item.label} className="flex justify-between font-medium">
-                  <span className="text-gray-600">{item.label}</span>
+                  <span className="text-text-secondary">{item.label}</span>
                   <span>Rs.{item.amount.toLocaleString('en-IN')}</span>
                 </div>
               ))}
             </div>
             
             <div className="w-full border-t-2 border-dashed border-border py-3 mt-2 flex justify-between items-center">
-              <p className="text-[14px] font-bold text-text-primary-subtle uppercase">Total Paid</p>
-              <h2 className="text-[32px] font-black text-text-primary mt-1 tracking-tight">Rs.{receiptData.total.toLocaleString('en-IN')}</h2>
+              <p className="text-sm font-bold text-text-primary-subtle uppercase">Total Paid</p>
+              <h2 className="text-3xl font-black text-text-primary mt-1 tracking-tight">Rs.{receiptData.total.toLocaleString('en-IN')}</h2>
             </div>
             <div className="flex items-center gap-2 mt-2 mb-6 bg-success-bg text-success px-3 py-1.5 rounded-full border border-success-subtle shadow-sm">
               <CheckCircle size={14} className="text-success" />
-              <span className="text-[12px] font-bold uppercase tracking-wider">Payment Successful</span>
+              <span className="text-xs font-bold uppercase tracking-wider">Payment Successful</span>
             </div>
             
-            <p className="text-[11px] italic text-text-primary-subtle text-center mb-1">&quot;Knowledge is the best investment.&quot;</p>
-            <p className="text-[12px] font-bold text-text-primary-subtle text-center">Thank you! Keep studying 😊</p>
+            <p className="text-xs italic text-text-primary-subtle text-center mb-1">&quot;Knowledge is the best investment.&quot;</p>
+            <p className="text-xs font-bold text-text-primary-subtle text-center">Thank you! Keep studying 😊</p>
           </div>
 
           {/* Bottom Zigzag */}
@@ -110,13 +110,13 @@ export function ReceiptIdClient() {
         {/* Action buttons below card */}
         <div className="w-full max-w-xs mt-6 flex flex-col gap-3">
           <button 
-            className="flex items-center justify-center gap-2 bg-[#25D366] text-white hover:bg-[#128C7E] rounded-[var(--radius-lg)] py-3 px-4 font-bold text-[14px] transition-colors shadow-lg shadow-[#25D366]/20 cursor-pointer" 
+            className="flex items-center justify-center gap-2 bg-[#25D366] text-white hover:bg-[#128C7E] rounded-lg py-3 px-4 font-bold text-sm transition-colors shadow-lg shadow-[#25D366]/20 cursor-pointer" 
             onClick={handleWhatsApp}
           >
             <Send size={18} /> Send via WhatsApp
           </button>
           <button 
-            className="flex items-center justify-center gap-2 bg-input text-text-primary border border-border hover:bg-primary/10 hover:text-primary rounded-[var(--radius-lg)] py-3 px-4 font-bold text-[14px] transition-colors cursor-pointer" 
+            className="flex items-center justify-center gap-2 bg-input text-text-primary border border-border hover:bg-primary/10 hover:text-primary rounded-lg py-3 px-4 font-bold text-sm transition-colors cursor-pointer" 
             onClick={handlePrint}
           >
             <Printer size={18} /> Print (80mm Thermal)

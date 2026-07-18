@@ -41,7 +41,7 @@ export function AdminSystemSmartIdClient() {
             {flowSteps.map((step, i) => (
               <div key={step.step} className="flex items-center gap-4 flex-1">
                 <div className="flex flex-col items-center gap-2 flex-1">
-                  <div className="h-14 w-14 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center text-2xl">
+                  <div className="h-14 w-14 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center text-text-primaryxl">
                     {step.icon}
                   </div>
                   <div className="text-center">

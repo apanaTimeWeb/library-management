@@ -46,7 +46,7 @@ export function SuperadminLibrariesGrid({ libraries, onRowClick, onSuspend }: Pr
             <span className="text-sm font-medium text-text-primary">
               {p.data.occupied}<span className="text-text-disabled">/{p.data.seats}</span>
             </span>
-            <div className="h-1.5 w-20 bg-bg-input rounded-full overflow-hidden">
+            <div className="h-1.5 w-20 bg-bg-pageg-input rounded-full overflow-hidden">
               <div className={`h-full rounded-full ${pct > 90 ? 'bg-danger' : 'bg-success'}`} style={{ width: `${pct}%` }} />
             </div>
           </div>
@@ -67,8 +67,8 @@ export function SuperadminLibrariesGrid({ libraries, onRowClick, onSuspend }: Pr
       minWidth: 100,
       cellRenderer: (p: ICellRendererParams<Library>) => (
         <div className="flex items-center gap-2 h-full">
-          <button className="w-8 h-8 flex items-center justify-center rounded-[var(--radius-md)] text-text-secondary hover:text-success hover:bg-success-bg transition-colors" title="Edit" onClick={e => { e.stopPropagation(); onRowClick(p.data!, 'edit'); }}><Edit2 size={15} /></button>
-          <button className="w-8 h-8 flex items-center justify-center rounded-[var(--radius-md)] text-text-secondary hover:text-danger hover:bg-danger-bg transition-colors" title="Suspend" onClick={e => { e.stopPropagation(); onSuspend(p.data!.id); }}><ShieldAlert size={15} /></button>
+          <button className="w-8 h-8 flex items-center justify-center rounded-md text-text-secondary hover:text-success hover:bg-success-bg transition-colors" title="Edit" onClick={e => { e.stopPropagation(); onRowClick(p.data!, 'edit'); }}><Edit2 size={15} /></button>
+          <button className="w-8 h-8 flex items-center justify-center rounded-md text-text-secondary hover:text-danger hover:bg-danger-bg transition-colors" title="Suspend" onClick={e => { e.stopPropagation(); onSuspend(p.data!.id); }}><ShieldAlert size={15} /></button>
         </div>
       ),
     },
@@ -87,12 +87,12 @@ export function SuperadminLibrariesGrid({ libraries, onRowClick, onSuspend }: Pr
   };
 
   return (
-    <div className="bg-bg-card border border-border rounded-[var(--radius-lg)] overflow-hidden shadow-sm">
-      <div className="p-4 border-b border-border bg-bg-page/30 flex items-center justify-between">
+    <div className="bg-bg-pageg-card border border-border rounded-lg overflow-hidden shadow-sm">
+      <div className="p-4 border-b border-border bg-bg-pageg-page/30 flex items-center justify-between">
         <input 
           type="text" 
           placeholder="Search by name or location..." 
-          className="w-72 bg-bg-input border border-border rounded-[var(--radius-md)] py-2 px-3 text-sm text-text-primary focus:outline-none focus:border-primary transition-colors"
+          className="w-72 bg-bg-pageg-input border border-border rounded-md py-2 px-3 text-sm text-text-primary focus:outline-none focus:border-primary transition-colors"
           onChange={handleSearch} 
         />
         <span className="text-xs font-semibold text-text-disabled uppercase tracking-wider">{libraries.length} libraries</span>

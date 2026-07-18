@@ -21,8 +21,8 @@ const ACTION_LINKS: Record<string, string> = {
 
 export function SuperadminDashboardActionItemsPanel({ data }: Props) {
   return (
-    <div className="col-span-12 lg:col-span-5 bg-bg-card border border-border rounded-[var(--radius-lg)] flex flex-col overflow-hidden shadow-sm">
-      <div className="p-6 border-b border-border bg-bg-page/30">
+    <div className="col-span-12 lg:col-span-5 bg-bg-pageg-card border border-border rounded-lg flex flex-col overflow-hidden shadow-sm">
+      <div className="p-6 border-b border-border bg-bg-pageg-page/30">
         <h2 className="text-base font-bold text-text-primary">Action Items</h2>
       </div>
 
@@ -33,7 +33,7 @@ export function SuperadminDashboardActionItemsPanel({ data }: Props) {
           const href = ACTION_LINKS[item.icon] ?? (SUPERADMIN_ROUTES.PREFIX + '_dashboard');
           return (
             <Link key={i} href={href}
-              className={`flex items-center justify-between p-4 rounded-[var(--radius-md)] border hover:-translate-y-0.5 transition-all duration-200 ${
+              className={`flex items-center justify-between p-4 rounded-md border hover:-translate-y-0.5 transition-all duration-200 ${
                 isError 
                   ? 'bg-danger-bg border-danger/20 hover:border-danger/50' 
                   : 'bg-info-bg border-info/20 hover:border-info/50'
@@ -48,8 +48,8 @@ export function SuperadminDashboardActionItemsPanel({ data }: Props) {
         })}
       </div>
 
-      <div className="mt-auto p-6 border-t border-border bg-bg-page/30">
-        <div className="flex items-start gap-3 mb-4 p-3 rounded-[var(--radius-md)] bg-primary-subtle border border-primary/20">
+      <div className="mt-auto p-6 border-t border-border bg-bg-pageg-page/30">
+        <div className="flex items-start gap-3 mb-4 p-3 rounded-md bg-primary-subtle border border-primary/20">
           <div className="bg-primary text-white p-1 rounded-full shrink-0 mt-0.5">
             <Lightbulb size={12} />
           </div>

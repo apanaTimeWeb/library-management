@@ -69,7 +69,7 @@ export function AdminAssetMaintenanceAddDialog({ isOpen, onClose, onSubmit }: Ad
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4 animate-in fade-in-50">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-bg-pagelack/60 backdrop-blur-sm p-4 animate-in fade-in-50">
       <div className="bg-card border border-border rounded-xl shadow-2xl max-w-md w-full p-6 space-y-5">
         <div className="flex items-center justify-between border-b border-border pb-3">
           <div className="flex items-center gap-2.5 text-primary font-semibold text-lg">
@@ -96,7 +96,7 @@ export function AdminAssetMaintenanceAddDialog({ isOpen, onClose, onSubmit }: Ad
             </div>
             <div>
               <label className="block text-xs font-semibold text-foreground uppercase tracking-wider mb-1">Type *</label>
-              <select {...register('type')} className="flex h-10 w-full items-center justify-between rounded-md border border-border bg-bg-input px-3 py-2 text-sm ring-offset-bg-page placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" disabled={isSubmitting}>
+              <select {...register('type')} className="flex h-10 w-full items-center justify-between rounded-md border border-border bg-bg-pageg-input px-3 py-2 text-sm ring-offset-bg-page placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" disabled={isSubmitting}>
                 <option value="routine">Routine</option>
                 <option value="repair">Repair</option>
                 <option value="upgrade">Upgrade</option>
@@ -112,7 +112,7 @@ export function AdminAssetMaintenanceAddDialog({ isOpen, onClose, onSubmit }: Ad
             </div>
             <div>
               <label className="block text-xs font-semibold text-foreground uppercase tracking-wider mb-1">Status *</label>
-              <select {...register('status')} className="flex h-10 w-full items-center justify-between rounded-md border border-border bg-bg-input px-3 py-2 text-sm ring-offset-bg-page placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" disabled={isSubmitting}>
+              <select {...register('status')} className="flex h-10 w-full items-center justify-between rounded-md border border-border bg-bg-pageg-input px-3 py-2 text-sm ring-offset-bg-page placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" disabled={isSubmitting}>
                 <option value="scheduled">Scheduled</option>
                 <option value="completed">Completed</option>
                 <option value="pending">Pending</option>

@@ -76,8 +76,8 @@ export function SuperadminDashboardRecentLibrariesTable({ data }: Props) {
   const onGridReady = useCallback((e: GridReadyEvent) => { e.api.sizeColumnsToFit(); }, []);
 
   return (
-    <div className="bg-bg-card border border-border rounded-[var(--radius-lg)] overflow-hidden shadow-sm">
-      <div className="p-6 flex items-center justify-between border-b border-border bg-bg-page/30">
+    <div className="bg-bg-pageg-card border border-border rounded-lg overflow-hidden shadow-sm">
+      <div className="p-6 flex items-center justify-between border-b border-border bg-bg-pageg-page/30">
         <h2 className="text-base font-bold text-text-primary">Recently Registered Libraries</h2>
         <Link href={SUPERADMIN_ROUTES.LIBRARIES} className="text-primary text-xs font-bold flex items-center gap-1 hover:text-primary-hover transition-colors">
           View All <ExternalLink size={12} />

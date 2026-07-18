@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Component or Page.
 /**
  * RESPONSIBILITY: Renders the thermal receipt modal and handles printing/sharing.
  */
@@ -17,8 +18,8 @@ function maskPhone(phone: string): string {
 
 export function CollectFeeReceiptModal({ receiptData, onClose, onPrint }: { receiptData: SuperadminFinanceReceiptData; onClose: () => void; onPrint: () => void; }) {
   return (
-    <div className="fixed inset-0 z-40 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm transition-opacity" onClick={onClose} role="dialog" aria-modal="true">
-      <div className="relative w-full max-w-2xl bg-card rounded-[var(--radius-xl)] shadow-2xl flex flex-col md:flex-row overflow-hidden animate-in fade-in zoom-in-95 duration-200" onClick={e => e.stopPropagation()}>
+    <div className="fixed inset-0 z-40 flex items-center justify-center p-4 bg-bg-pagelack/60 backdrop-blur-sm transition-opacity" onClick={onClose} role="dialog" aria-modal="true">
+      <div className="relative w-full max-w-2xl bg-card rounded-xl shadow-2xl flex flex-col md:flex-row overflow-hidden animate-in fade-in zoom-in-95 duration-200" onClick={e => e.stopPropagation()}>
         
         {/* Left Side: Thermal Receipt Preview */}
         <div className="flex-1 bg-page p-6 md:p-8 border-r border-border flex flex-col items-center justify-center">
@@ -32,8 +33,8 @@ export function CollectFeeReceiptModal({ receiptData, onClose, onPrint }: { rece
               <p className="font-bold text-lg">Smart Library 360</p>
               <p className="text-sm font-medium mb-4">Payment Receipt</p>
               
-              <div className="border border-dashed border-gray-400 p-2 w-full mb-4">
-                <p className="text-xs text-gray-500">Receipt Number</p>
+              <div className="border border-dashed border-border p-2 w-full mb-4">
+                <p className="text-xs text-text-secondary">Receipt Number</p>
                 <p className="font-bold">{receiptData.receiptNo}</p>
               </div>
               
@@ -46,7 +47,7 @@ export function CollectFeeReceiptModal({ receiptData, onClose, onPrint }: { rece
                   ['Mode',    MODE_LABELS[receiptData.mode]],
                 ].map(([l, v]) => (
                   <div key={l} className="flex justify-between">
-                    <span className="text-gray-600">{l}</span>
+                    <span className="text-text-secondary">{l}</span>
                     <span className="font-semibold">{v}</span>
                   </div>
                 ))}
@@ -62,8 +63,8 @@ export function CollectFeeReceiptModal({ receiptData, onClose, onPrint }: { rece
                 <span className="text-xs font-bold uppercase">Payment Received</span>
               </div>
               
-              <p className="text-[10px] italic text-text-secondary">&quot;Knowledge is the best investment.&quot;</p>
-              <p className="text-[10px] font-bold mt-1">Thank you! Keep studying 😊</p>
+              <p className="text-xs italic text-text-secondary">&quot;Knowledge is the best investment.&quot;</p>
+              <p className="text-xs font-bold mt-1">Thank you! Keep studying 😊</p>
             </div>
             
             <div className="h-2 w-full flex space-x-1 absolute bottom-0">
@@ -80,21 +81,21 @@ export function CollectFeeReceiptModal({ receiptData, onClose, onPrint }: { rece
               <button className="text-text-secondary hover:text-danger transition-colors cursor-pointer" onClick={onClose} aria-label="Close"><X size={18} /></button>
             </div>
             
-            <p className="text-[12px] font-bold text-text-secondary uppercase tracking-wider mb-3">Send / Print Receipt</p>
+            <p className="text-xs font-bold text-text-secondary uppercase tracking-wider mb-3">Send / Print Receipt</p>
             
             <div className="space-y-3">
               <button 
-                className="w-full bg-success text-white px-4 py-2.5 rounded-[var(--radius-md)] text-[14px] font-bold flex items-center justify-center gap-2 hover:brightness-105 transition-all shadow-sm cursor-pointer"
+                className="w-full bg-success text-white px-4 py-2.5 rounded-md text-sm font-bold flex items-center justify-center gap-2 hover:brightness-105 transition-all shadow-sm cursor-pointer"
                 onClick={() => openWhatsApp(receiptData.phone, receiptData.waMessage)}
               >
                 <MessageSquare size={16} /> Send WhatsApp Receipt
               </button>
-              <p className="text-[11px] text-text-secondary text-center">📱 +91-{maskPhone(receiptData.phone)}</p>
+              <p className="text-xs text-text-secondary text-center">📱 +91-{maskPhone(receiptData.phone)}</p>
               
-              <div className="h-px w-full bg-border my-4" />
+              <div className="h-px w-full bg-bg-pageorder my-4" />
               
               <button 
-                className="w-full bg-transparent border-2 border-border text-text-primary px-4 py-2.5 rounded-[var(--radius-md)] text-[14px] font-bold flex items-center justify-center gap-2 hover:bg-input transition-all cursor-pointer"
+                className="w-full bg-transparent border-2 border-border text-text-primary px-4 py-2.5 rounded-md text-sm font-bold flex items-center justify-center gap-2 hover:bg-input transition-all cursor-pointer"
                 onClick={onPrint}
               >
                 <Printer size={15} /> Print Thermal (80mm)
@@ -103,13 +104,13 @@ export function CollectFeeReceiptModal({ receiptData, onClose, onPrint }: { rece
           </div>
           
           <div className="mt-8 space-y-4">
-            <div className="bg-input rounded-[var(--radius-md)] p-3 text-[12px] space-y-2">
+            <div className="bg-input rounded-md p-3 text-xs space-y-2">
               <div className="flex justify-between"><span className="text-text-secondary">Receipt</span><span className="font-semibold text-text-primary">{receiptData.receiptNo}</span></div>
               <div className="flex justify-between"><span className="text-text-secondary">Amount</span><span className="font-bold text-success">{formatCurrency(receiptData.total)}</span></div>
               <div className="flex justify-between"><span className="text-text-secondary">Mode</span><span className="font-semibold text-text-primary">{MODE_LABELS[receiptData.mode]}</span></div>
             </div>
             <button 
-              className="w-full bg-border text-text-primary px-4 py-2 rounded-[var(--radius-md)] text-[14px] font-bold hover:bg-border-focus transition-all cursor-pointer"
+              className="w-full bg-bg-pageorder text-text-primary px-4 py-2 rounded-md text-sm font-bold hover:bg-bg-pageorder-focus transition-all cursor-pointer"
               onClick={onClose}
             >
               Done

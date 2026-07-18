@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Component or Page.
 import { Inter } from 'next/font/google';
 import "./globals.css";
 import type { Metadata } from "next";
@@ -15,7 +16,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" suppressHydrationWarning>
       <head />
-      <body className={`bg-background text-on-background ${inter.variable} font-sans`} suppressHydrationWarning>
+      <body className={`bg-bg-pageackground text-on-background ${inter.variable} font-sans`} suppressHydrationWarning>
         <ThemeProvider attribute="data-theme" defaultTheme="dark" enableSystem={false}>
           {children}
           <GlobalCommandPalette />

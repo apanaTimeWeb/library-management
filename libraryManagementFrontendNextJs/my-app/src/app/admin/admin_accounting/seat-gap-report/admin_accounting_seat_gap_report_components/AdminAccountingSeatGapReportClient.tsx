@@ -41,7 +41,7 @@ export function AdminAccountingSeatGapReportClient() {
     <div className="space-y-6 pb-10">
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b pb-4">
         <div>
-          <h1 className="text-2xl font-bold tracking-tight">Seat Gap Report</h1>
+          <h1 className="text-text-primaryxl font-bold tracking-tight">Seat Gap Report</h1>
           <p className="text-sm text-muted-foreground mt-1">Identify vacant seats and estimated revenue loss.</p>
         </div>
       </div>
@@ -49,30 +49,30 @@ export function AdminAccountingSeatGapReportClient() {
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         <Card className="p-5 shadow-sm border-danger/20">
           <p className="text-xs font-bold uppercase tracking-wider text-danger mb-1">Total Gap Seats</p>
-          <p className="text-2xl font-extrabold text-danger">{MOCK.length}</p>
+          <p className="text-text-primaryxl font-extrabold text-danger">{MOCK.length}</p>
         </Card>
         <Card className="p-5 shadow-sm border-warning/20">
           <p className="text-xs font-bold uppercase tracking-wider text-warning mb-1">Revenue Loss</p>
-          <p className="text-2xl font-extrabold text-warning">₹{totalLoss.toLocaleString()}</p>
+          <p className="text-text-primaryxl font-extrabold text-warning">₹{totalLoss.toLocaleString()}</p>
         </Card>
         <Card className="p-5 shadow-sm border-border">
           <p className="text-xs font-bold uppercase tracking-wider text-muted-foreground mb-1">Avg Gap Days</p>
-          <p className="text-2xl font-extrabold text-foreground">{Math.round(MOCK.reduce((s,r)=>s+r.gapDays,0)/MOCK.length)}</p>
+          <p className="text-text-primaryxl font-extrabold text-foreground">{Math.round(MOCK.reduce((s,r)=>s+r.gapDays,0)/MOCK.length)}</p>
         </Card>
         <Card className="p-5 shadow-sm border-border">
           <p className="text-xs font-bold uppercase tracking-wider text-muted-foreground mb-1">Under Maintenance</p>
-          <p className="text-2xl font-extrabold text-foreground">{MOCK.filter(r=>r.status==='maintenance').length}</p>
+          <p className="text-text-primaryxl font-extrabold text-foreground">{MOCK.filter(r=>r.status==='maintenance').length}</p>
         </Card>
       </div>
 
       <div className="flex flex-wrap items-center gap-4">
-        <select className="flex h-10 w-40 items-center justify-between rounded-md border border-border bg-bg-input px-3 py-2 text-sm ring-offset-bg-page placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" value={shiftFilter} onChange={e => setShiftFilter(e.target.value)}>
+        <select className="flex h-10 w-40 items-center justify-between rounded-md border border-border bg-bg-pageg-input px-3 py-2 text-sm ring-offset-bg-page placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" value={shiftFilter} onChange={e => setShiftFilter(e.target.value)}>
           <option value="all">All Shifts</option>
           <option value="Morning">Morning</option>
           <option value="Afternoon">Afternoon</option>
           <option value="Night">Night</option>
         </select>
-        <select className="flex h-10 w-40 items-center justify-between rounded-md border border-border bg-bg-input px-3 py-2 text-sm ring-offset-bg-page placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" value={statusFilter} onChange={e => setStatusFilter(e.target.value)}>
+        <select className="flex h-10 w-40 items-center justify-between rounded-md border border-border bg-bg-pageg-input px-3 py-2 text-sm ring-offset-bg-page placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" value={statusFilter} onChange={e => setStatusFilter(e.target.value)}>
           <option value="all">All Status</option>
           <option value="vacant">Vacant</option>
           <option value="maintenance">Maintenance</option>

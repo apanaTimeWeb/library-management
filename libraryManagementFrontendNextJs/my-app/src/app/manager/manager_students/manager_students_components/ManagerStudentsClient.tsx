@@ -61,9 +61,9 @@ const [searchTerm, setSearchTerm] = useState('');
           { label: 'Suspended', value: students.filter(s => s.status === 'Suspended').length },
           { label: 'Fee Due',   value: students.filter(s => s.due > 0).length },
         ].map(k => (
-          <div key={k.label} className="bg-bg-card border border-border rounded-xl p-5 flex flex-col justify-center">
+          <div key={k.label} className="bg-bg-pageg-card border border-border rounded-xl p-5 flex flex-col justify-center">
             <p className="text-[13px] font-medium text-text-secondary mb-1.5">{k.label}</p>
-            <p className="text-2xl font-bold text-text-primary">{status === 'loading' ? '...' : k.value}</p>
+            <p className="text-text-primaryxl font-bold text-text-primary">{status === 'loading' ? '...' : k.value}</p>
           </div>
         ))}
       </div>
@@ -71,7 +71,7 @@ const [searchTerm, setSearchTerm] = useState('');
       {/* Filters */}
       <div className="flex flex-wrap gap-[10px] mb-[16px]">
         <input
-          className="w-full max-w-sm bg-bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+          className="w-full max-w-sm bg-bg-pageg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
           placeholder="Search name, phone, Smart ID…"
           value={search}
           onChange={e => setSearch(e.target.value)}
@@ -93,7 +93,7 @@ const [searchTerm, setSearchTerm] = useState('');
       </div>
 
       {/* Grid */}
-      <div className="border border-border rounded-xl overflow-hidden bg-bg-card">
+      <div className="border border-border rounded-xl overflow-hidden bg-bg-pageg-card">
         {status === 'loading' ? (
           <div className="flex items-center justify-center h-64 text-text-secondary">Loading table...</div>
         ) : filtered.length === 0 ? (
@@ -105,7 +105,7 @@ const [searchTerm, setSearchTerm] = useState('');
             <div className="w-full overflow-x-auto">
               <TableToolbar search={table.searchTerm} onSearch={table.setSearchTerm} />
       <table className="w-full text-left text-sm whitespace-nowrap">
-                <thead className="bg-bg-elevated border-b border-border">
+                <thead className="bg-bg-pageg-elevated border-b border-border">
                   <tr className="text-text-secondary text-xs uppercase tracking-wider">
                     <th className="px-4 py-3 font-semibold">Smart ID</th>
                     <th className="px-4 py-3 font-semibold">Student</th>
@@ -121,7 +121,7 @@ const [searchTerm, setSearchTerm] = useState('');
                   {table.paginatedData.map((row) => (
                     <tr 
                       key={row.id} 
-                      className="hover:bg-bg-page transition-colors cursor-pointer group"
+                      className="hover:bg-bg-pageg-page transition-colors cursor-pointer group"
                       onClick={() => router.push(`${MANAGER_ROUTES.STUDENTS}/${row.id}`)}
                     >
                       <td className="px-4 py-4"><span className="text-primary font-mono text-xs font-semibold">{row.smartId}</span></td>

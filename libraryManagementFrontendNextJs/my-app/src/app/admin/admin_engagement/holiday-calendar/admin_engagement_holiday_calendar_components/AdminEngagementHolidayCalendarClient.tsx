@@ -77,7 +77,7 @@ export function AdminEngagementHolidayCalendarClient() {
           <p className="text-xs font-semibold text-muted-foreground flex items-center gap-1 uppercase tracking-wider mb-1">
             Engagement <ChevronRight size={12} /> Holiday Calendar
           </p>
-          <h1 className="text-2xl font-bold tracking-tight">📅 Holiday Calendar</h1>
+          <h1 className="text-text-primaryxl font-bold tracking-tight">📅 Holiday Calendar</h1>
           <p className="text-sm text-muted-foreground mt-1">Manage library holidays, closures, and special events.</p>
         </div>
         <Button onClick={()=>setShowAdd(true)} className="gap-2">
@@ -147,7 +147,7 @@ export function AdminEngagementHolidayCalendarClient() {
                   <div key={i} className={`aspect-square rounded-md flex flex-col items-center justify-center relative transition-colors cursor-default select-none border ${
                     hol ? 'bg-danger/10 border-danger/20 text-danger' : 
                     isToday ? 'bg-primary border-primary text-primary-foreground font-bold shadow-md' : 
-                    'bg-bg-card border-transparent text-foreground hover:bg-muted/50'
+                    'bg-bg-pageg-card border-transparent text-foreground hover:bg-muted/50'
                   }`} title={hol?.name}>
                     <span className={`text-sm sm:text-base font-semibold ${isToday ? 'text-primary-foreground' : ''}`}>{day}</span>
                     {hol && <div className="absolute bottom-1 sm:bottom-2 w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-danger"></div>}
@@ -255,7 +255,7 @@ export function AdminEngagementHolidayCalendarClient() {
             </div>
             <div className="space-y-2">
               <label className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Type</label>
-              <select value={form.type} onChange={e => setForm(f=>({...f, type:e.target.value}))} className="flex h-10 w-full items-center justify-between rounded-md border border-border bg-bg-input px-3 py-2 text-sm ring-offset-bg-page placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50">
+              <select value={form.type} onChange={e => setForm(f=>({...f, type:e.target.value}))} className="flex h-10 w-full items-center justify-between rounded-md border border-border bg-bg-pageg-input px-3 py-2 text-sm ring-offset-bg-page placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50">
                 <option>National</option>
                 <option>Religious</option>
                 <option>Library</option>

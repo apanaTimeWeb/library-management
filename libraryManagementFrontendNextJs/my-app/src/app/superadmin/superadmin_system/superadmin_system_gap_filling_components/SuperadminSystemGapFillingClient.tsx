@@ -86,7 +86,7 @@ export function SuperadminSystemGapFillingClient() {
                     <span className="text-sm font-mono font-bold text-text-primary">{seat.seat}</span>
                   </div>
                   {/* Time bar — left/width are computed values, style is correct here */}
-                  <div className="flex-1 relative h-8 rounded-lg overflow-hidden bg-bg-input">
+                  <div className="flex-1 relative h-8 rounded-lg overflow-hidden bg-bg-pageg-input">
                     {seat.booked.map((b, i) => (
                       <div key={i} className="absolute top-0 h-full bg-primary/70 flex items-center justify-center transition-all duration-300"
                         style={{ left: `${b.start}%`, width: `${b.end - b.start}%` }}>

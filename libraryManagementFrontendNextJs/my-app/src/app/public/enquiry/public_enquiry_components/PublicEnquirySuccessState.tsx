@@ -15,7 +15,7 @@ export function PublicEnquirySuccessState({ submittedName, onReset }: {
         </div>
       </div>
       
-      <h2 className="text-2xl font-bold text-text-primary mb-2">
+      <h2 className="text-text-primaryxl font-bold text-text-primary mb-2">
         Thank you, {submittedName}!
       </h2>
       <p className="text-sm text-text-secondary leading-relaxed max-w-xs mx-auto mb-8">

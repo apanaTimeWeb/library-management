@@ -31,31 +31,31 @@ function TicketPanel({ tkt, onClose, onSave }: { tkt: Ticket; onClose: () => voi
 
   return (
     <div className="fixed inset-0 z-50 flex items-stretch justify-end">
-      <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={onClose} />
-      <div className="relative w-full max-w-md bg-bg-card h-full shadow-2xl flex flex-col p-6 animate-in slide-in-from-right duration-300 border-l border-border overflow-y-auto" onClick={e => e.stopPropagation()}>
+      <div className="absolute inset-0 bg-bg-pagelack/60 backdrop-blur-sm" onClick={onClose} />
+      <div className="relative w-full max-w-md bg-bg-pageg-card h-full shadow-2xl flex flex-col p-6 animate-in slide-in-from-right duration-300 border-l border-border overflow-y-auto" onClick={e => e.stopPropagation()}>
         <div className="flex items-start justify-between">
           <div>
             <span className="font-mono text-xs text-text-secondary">{tkt.id}</span>
             <h2 className="text-base font-bold text-text-primary mt-1 leading-snug">{tkt.subject}</h2>
           </div>
-          <button className="w-8 h-8 flex items-center justify-center rounded-lg border border-border text-text-secondary bg-transparent hover:bg-bg-elevated hover:text-text-primary transition-colors shrink-0" onClick={onClose}><X size={16} /></button>
+          <button className="w-8 h-8 flex items-center justify-center rounded-lg border border-border text-text-secondary bg-transparent hover:bg-bg-pageg-elevated hover:text-text-primary transition-colors shrink-0" onClick={onClose}><X size={16} /></button>
         </div>
 
-        <div className="bg-bg-card rounded-xl border border-border shadow-sm p-4 mt-6">
+        <div className="bg-bg-pageg-card rounded-xl border border-border shadow-sm p-4 mt-6">
           <p className="text-sm text-text-secondary leading-relaxed">{tkt.desc}</p>
         </div>
 
         <div className="grid grid-cols-2 gap-3 mt-6">
           {[['Tenant',tkt.tenant],['Priority',tkt.priority],['Age',`${tkt.age} ago`],['Replies',`${tkt.replies} replies`]].map(([label,val]) => (
-            <div key={label} className="bg-bg-elevated p-3 rounded-lg border border-border">
-              <p className="text-[11px] font-semibold text-text-secondary uppercase tracking-wider mb-1">{label}</p>
+            <div key={label} className="bg-bg-pageg-elevated p-3 rounded-lg border border-border">
+              <p className="text-xs font-semibold text-text-secondary uppercase tracking-wider mb-1">{label}</p>
               <p className="text-sm font-medium text-text-primary">{val}</p>
             </div>
           ))}
         </div>
 
         <div className="mt-8">
-          <p className="text-[13px] font-medium text-text-secondary mb-2">Update Status</p>
+          <p className="text-sm font-medium text-text-secondary mb-2">Update Status</p>
           <div className="flex gap-2">
             {(['Open', 'In-Progress', 'Resolved'] as const).map(( s ) => (
               <button key={s} type="button" onClick={() => setStatus(s)}
@@ -64,7 +64,7 @@ function TicketPanel({ tkt, onClose, onSave }: { tkt: Ticket; onClose: () => voi
                     ? s === 'Resolved'    ? 'bg-success-bg border-success text-success ring-1 ring-success'
                     : s === 'In-Progress' ? 'bg-info-bg border-info text-info ring-1 ring-info'
                     :                       'bg-danger-bg border-danger text-danger ring-1 ring-danger'
-                    : 'border-border text-text-secondary bg-transparent hover:bg-bg-elevated'
+                    : 'border-border text-text-secondary bg-transparent hover:bg-bg-pageg-elevated'
                 }`}>
                 {s === 'Resolved'    ? <><CheckCircle size={11} className="inline mr-1" />{s}</>
                  : s === 'In-Progress' ? <><Loader size={11} className="inline mr-1" />{s}</>
@@ -108,9 +108,9 @@ export function SupportTicketsClient() {
         <div className="flex flex-col justify-center h-full">
           <p className="font-medium text-text-primary leading-tight">{p.data?.subject}</p>
           <div className="flex items-center gap-2 mt-1">
-            <span className="text-[11px] font-mono text-text-secondary">{p.data?.id}</span>
-            <span className="w-1 h-1 rounded-full bg-border" />
-            <span className="flex items-center gap-1 text-[11px] text-text-secondary">
+            <span className="text-xs font-mono text-text-secondary">{p.data?.id}</span>
+            <span className="w-1 h-1 rounded-full bg-bg-pageorder" />
+            <span className="flex items-center gap-1 text-xs text-text-secondary">
               <MessageSquare size={10} /> {p.data?.replies} replies
             </span>
           </div>
@@ -123,9 +123,9 @@ export function SupportTicketsClient() {
       headerName: 'Priority', field: 'priority', flex: 0.8, minWidth: 100,
       cellRenderer: (p: ICellRendererParams<typeof SUPERADMIN_SUPPORT_MOCK_TICKETS[0]>) => (
         <div className="flex items-center h-full">
-          {p.data?.priority === 'High'   && <span className="inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-[11px] font-semibold mt-1 bg-danger-bg text-danger"><AlertTriangle size={10} /> HIGH</span>}
-          {p.data?.priority === 'Medium' && <span className="inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-[11px] font-semibold mt-1 bg-warning-bg text-warning">MEDIUM</span>}
-          {p.data?.priority === 'Low'    && <span className="inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-[11px] font-semibold mt-1 bg-bg-elevated text-text-secondary border border-border">LOW</span>}
+          {p.data?.priority === 'High'   && <span className="inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-xs font-semibold mt-1 bg-danger-bg text-danger"><AlertTriangle size={10} /> HIGH</span>}
+          {p.data?.priority === 'Medium' && <span className="inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-xs font-semibold mt-1 bg-warning-bg text-warning">MEDIUM</span>}
+          {p.data?.priority === 'Low'    && <span className="inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-xs font-semibold mt-1 bg-bg-pageg-elevated text-text-secondary border border-border">LOW</span>}
         </div>
       ),
     },
@@ -134,10 +134,10 @@ export function SupportTicketsClient() {
       cellRenderer: (p: ICellRendererParams<typeof SUPERADMIN_SUPPORT_MOCK_TICKETS[0]>) => (
         <div className="flex flex-col justify-center h-full">
           <p className={`${
-            p.data?.status === 'Resolved' ? 'text-[11px] font-semibold text-success' :
-            p.data?.status === 'Open'     ? 'text-[11px] font-semibold text-danger' : 'text-[11px] font-semibold text-info'
+            p.data?.status === 'Resolved' ? 'text-xs font-semibold text-success' :
+            p.data?.status === 'Open'     ? 'text-xs font-semibold text-danger' : 'text-xs font-semibold text-info'
           }`}>{p.data?.status}</p>
-          <p className="flex items-center gap-1 text-[11px] text-text-secondary mt-0.5">
+          <p className="flex items-center gap-1 text-xs text-text-secondary mt-0.5">
             <Clock size={10} /> {p.data?.age} ago
           </p>
         </div>
@@ -149,21 +149,21 @@ export function SupportTicketsClient() {
 
   return (
     <div className="p-6 max-w-7xl mx-auto space-y-6 min-h-screen">
-      {toast && <div className="fixed top-4 right-4 z-50 bg-bg-card border border-border shadow-lg rounded-lg px-4 py-3 text-sm font-medium text-text-primary flex items-center gap-2">{toast}</div>}
+      {toast && <div className="fixed top-4 right-4 z-50 bg-bg-pageg-card border border-border shadow-lg rounded-lg px-4 py-3 text-sm font-medium text-text-primary flex items-center gap-2">{toast}</div>}
       {selected && <TicketPanel tkt={selected} onClose={() => setSelected(null)} onSave={handleSave} />}
 
       <div className="flex flex-col gap-1 mb-8">
         <div className="text-xs font-medium text-text-secondary flex items-center gap-2 mb-2 uppercase tracking-wider">
           <span>Nexus 360</span><span>/</span><span>Super Admin</span><span>/</span><span>Support Tickets</span>
         </div>
-        <h1 className="text-[22px] font-bold text-text-primary">Support Escalations</h1>
+        <h1 className="text-xl font-bold text-text-primary">Support Escalations</h1>
       </div>
 
-      <div className="bg-bg-card rounded-xl border border-border shadow-sm overflow-hidden flex flex-col">
-        <div className="flex items-center p-4 border-b border-border bg-bg-card gap-2">
+      <div className="bg-bg-pageg-card rounded-xl border border-border shadow-sm overflow-hidden flex flex-col">
+        <div className="flex items-center p-4 border-b border-border bg-bg-pageg-card gap-2">
           {['All', 'Open', 'In-Progress', 'Resolved'].map(( f ) => (
             <button key={f} onClick={() => setFilter(f)}
-              className={`px-4 py-1.5 rounded-md text-sm font-medium transition-colors ${filter === f ? 'bg-bg-elevated text-text-primary shadow-sm ring-1 ring-border' : 'text-text-secondary hover:text-text-primary hover:bg-bg-elevated'}`}>{f}</button>
+              className={`px-4 py-1.5 rounded-md text-sm font-medium transition-colors ${filter === f ? 'bg-bg-pageg-elevated text-text-primary shadow-sm ring-1 ring-border' : 'text-text-secondary hover:text-text-primary hover:bg-bg-pageg-elevated'}`}>{f}</button>
           ))}
           <span className="ml-auto text-xs text-text-secondary font-medium">{filtered.length} tickets</span>
         </div>

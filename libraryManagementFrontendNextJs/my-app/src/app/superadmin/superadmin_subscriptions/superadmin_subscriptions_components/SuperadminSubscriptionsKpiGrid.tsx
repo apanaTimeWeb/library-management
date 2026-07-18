@@ -25,15 +25,15 @@ export function SuperadminSubscriptionsKpiGrid({ kpis }: SuperadminSubscriptions
         const trendColor = k.trendType === 'success' ? 'text-success' : k.trendType === 'warning' ? 'text-warning' : 'text-danger';
 
         return (
-          <div key={i} className="bg-bg-card border border-border rounded-[var(--radius-lg)] p-5 shadow-sm hover:shadow-md transition-shadow">
+          <div key={i} className="bg-bg-pageg-card border border-border rounded-lg p-5 shadow-sm hover:shadow-md transition-shadow">
             <div className="flex items-start justify-between mb-4">
-              <div className={`w-10 h-10 rounded-[var(--radius-md)] flex items-center justify-center shrink-0 ${style.bg} ${style.text}`}>
+              <div className={`w-10 h-10 rounded-md flex items-center justify-center shrink-0 ${style.bg} ${style.text}`}>
                 <Icon size={18} />
               </div>
-              <p className="text-[11px] font-bold text-text-secondary uppercase tracking-widest text-right max-w-3/5">{k.label}</p>
+              <p className="text-xs font-bold text-text-secondary uppercase tracking-widest text-right max-w-3/5">{k.label}</p>
             </div>
             <div>
-              <h2 className="text-2xl font-extrabold text-text-primary leading-tight tracking-tight">{k.val}</h2>
+              <h2 className="text-text-primaryxl font-extrabold text-text-primary leading-tight tracking-tight">{k.val}</h2>
               <p className={`text-xs mt-1.5 font-bold ${trendColor}`}>{k.trend}</p>
             </div>
           </div>

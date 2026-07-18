@@ -20,9 +20,9 @@ export function AttendanceClient() {
   const late     = filtered.filter(s => s.status === 'late').length;
 
   return (
-    <div className="p-4 sm:p-6 min-h-screen bg-bg-page animate-in fade-in duration-200 pb-24">
+    <div className="p-4 sm:p-6 min-h-screen bg-bg-pageg-page animate-in fade-in duration-200 pb-24">
       {/* ── Breadcrumb ── */}
-      <div className="flex items-center gap-2 text-text-secondary text-[12px] font-bold tracking-wide mb-6">
+      <div className="flex items-center gap-2 text-text-secondary text-xs font-bold tracking-wide mb-6">
         <Link href={SUPERADMIN_ROUTES.ENGAGEMENT_ATTENDANCE} className="hover:text-primary transition-colors">Engagement</Link>
         <ChevronRight size={12} className="opacity-50" />
         <span className="text-text-primary">Attendance</span>
@@ -31,48 +31,48 @@ export function AttendanceClient() {
       {/* ── Page Header ── */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
         <div>
-          <h1 className="text-[28px] font-extrabold text-text-primary tracking-tight">📅 Daily Attendance</h1>
-          <p className="text-[14px] text-text-secondary mt-1">Mark attendance for all enrolled students by shift.</p>
+          <h1 className="text-3xl font-extrabold text-text-primary tracking-tight">📅 Daily Attendance</h1>
+          <p className="text-sm text-text-secondary mt-1">Mark attendance for all enrolled students by shift.</p>
         </div>
-        <Link href={SUPERADMIN_ROUTES.ENGAGEMENT_ABSENTEE_REPORT} className="flex items-center justify-center gap-2 px-4 py-2 bg-input text-text-primary text-[14px] font-bold rounded-[var(--radius-md)] hover:bg-input/80 border border-border shadow-sm transition-all cursor-pointer">
+        <Link href={SUPERADMIN_ROUTES.ENGAGEMENT_ABSENTEE_REPORT} className="flex items-center justify-center gap-2 px-4 py-2 bg-input text-text-primary text-sm font-bold rounded-md hover:bg-input/80 border border-border shadow-sm transition-all cursor-pointer">
           <FileBarChart2 size={16} /> Absentee Report
         </Link>
       </div>
 
       {/* ── KPI Stats ── */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-        <div className="bg-card border border-border rounded-[var(--radius-lg)] p-4 shadow-sm">
-          <div className="text-[12px] font-bold text-text-secondary uppercase tracking-wider">Total Students</div>
-          <div className="text-[28px] font-extrabold text-text-primary mt-2 leading-none">{filtered.length}</div>
-          <div className="text-[12px] text-text-secondary mt-2">{shift} shift</div>
+        <div className="bg-card border border-border rounded-lg p-4 shadow-sm">
+          <div className="text-xs font-bold text-text-secondary uppercase tracking-wider">Total Students</div>
+          <div className="text-3xl font-extrabold text-text-primary mt-2 leading-none">{filtered.length}</div>
+          <div className="text-xs text-text-secondary mt-2">{shift} shift</div>
         </div>
-        <div className="bg-card border border-border rounded-[var(--radius-lg)] p-4 shadow-sm">
-          <div className="text-[12px] font-bold text-text-secondary uppercase tracking-wider">Present</div>
-          <div className="text-[28px] font-extrabold text-success mt-2 leading-none">{present}</div>
-          <div className="text-[12px] text-text-secondary mt-2">{filtered.length ? Math.round(present/filtered.length*100) : 0}% rate</div>
+        <div className="bg-card border border-border rounded-lg p-4 shadow-sm">
+          <div className="text-xs font-bold text-text-secondary uppercase tracking-wider">Present</div>
+          <div className="text-3xl font-extrabold text-success mt-2 leading-none">{present}</div>
+          <div className="text-xs text-text-secondary mt-2">{filtered.length ? Math.round(present/filtered.length*100) : 0}% rate</div>
         </div>
-        <div className="bg-card border border-border rounded-[var(--radius-lg)] p-4 shadow-sm">
-          <div className="text-[12px] font-bold text-text-secondary uppercase tracking-wider">Absent</div>
-          <div className="text-[28px] font-extrabold text-danger mt-2 leading-none">{absent}</div>
-          <div className="text-[12px] text-text-secondary mt-2">{filtered.filter(s=>s.consecutiveAbsent>=3).length} need alerts</div>
+        <div className="bg-card border border-border rounded-lg p-4 shadow-sm">
+          <div className="text-xs font-bold text-text-secondary uppercase tracking-wider">Absent</div>
+          <div className="text-3xl font-extrabold text-danger mt-2 leading-none">{absent}</div>
+          <div className="text-xs text-text-secondary mt-2">{filtered.filter(s=>s.consecutiveAbsent>=3).length} need alerts</div>
         </div>
-        <div className="bg-card border border-border rounded-[var(--radius-lg)] p-4 shadow-sm">
-          <div className="text-[12px] font-bold text-text-secondary uppercase tracking-wider">Late</div>
-          <div className="text-[28px] font-extrabold text-warning mt-2 leading-none">{late}</div>
-          <div className="text-[12px] text-text-secondary mt-2">{marked}/{filtered.length} marked</div>
+        <div className="bg-card border border-border rounded-lg p-4 shadow-sm">
+          <div className="text-xs font-bold text-text-secondary uppercase tracking-wider">Late</div>
+          <div className="text-3xl font-extrabold text-warning mt-2 leading-none">{late}</div>
+          <div className="text-xs text-text-secondary mt-2">{marked}/{filtered.length} marked</div>
         </div>
       </div>
 
       {/* ── Filters ── */}
-      <div className="bg-card border border-border rounded-[var(--radius-xl)] shadow-sm p-4 mb-6">
+      <div className="bg-card border border-border rounded-xl shadow-sm p-4 mb-6">
         <div className="flex flex-col md:flex-row md:items-end gap-4 lg:gap-6">
           <div className="space-y-1.5 flex-1 max-w-[200px]">
-            <label className="text-[12px] font-bold text-text-secondary uppercase tracking-wider">Date</label>
-            <input type="date" className="w-full h-10 px-3 bg-input border border-border rounded-[var(--radius-md)] text-[14px] font-medium text-text-primary focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all" value={date}
+            <label className="text-xs font-bold text-text-secondary uppercase tracking-wider">Date</label>
+            <input type="date" className="w-full h-10 px-3 bg-input border border-border rounded-md text-sm font-medium text-text-primary focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all" value={date}
               onChange={e => setDate(e.target.value)} />
           </div>
           <div className="space-y-1.5 flex-1 max-w-[200px]">
-            <label className="text-[12px] font-bold text-text-secondary uppercase tracking-wider">Shift</label>
+            <label className="text-xs font-bold text-text-secondary uppercase tracking-wider">Shift</label>
             <SuperadminSearchableDropdown
               options={[
                 { label: 'All', value: 'All' },
@@ -85,21 +85,21 @@ export function AttendanceClient() {
             />
           </div>
           <div className="flex-1 flex flex-wrap items-center gap-2 md:justify-end pb-2">
-            <span className="px-2.5 py-1 text-[12px] font-bold rounded bg-success/10 text-success">{present} Present</span>
-            <span className="px-2.5 py-1 text-[12px] font-bold rounded bg-danger/10 text-danger">{absent} Absent</span>
-            <span className="px-2.5 py-1 text-[12px] font-bold rounded bg-warning/10 text-warning">{late} Late</span>
+            <span className="px-2.5 py-1 text-xs font-bold rounded bg-success/10 text-success">{present} Present</span>
+            <span className="px-2.5 py-1 text-xs font-bold rounded bg-danger/10 text-danger">{absent} Absent</span>
+            <span className="px-2.5 py-1 text-xs font-bold rounded bg-warning/10 text-warning">{late} Late</span>
           </div>
         </div>
       </div>
 
       {/* ── Student List ── */}
-      <div className="bg-card border border-border rounded-[var(--radius-xl)] shadow-sm overflow-hidden">
+      <div className="bg-card border border-border rounded-xl shadow-sm overflow-hidden">
         <div className="divide-y divide-border">
           {filtered.length === 0 ? (
             <div className="p-12 flex flex-col items-center justify-center text-center">
               <div className="text-4xl mb-4 opacity-50">📅</div>
-              <p className="text-[16px] font-extrabold text-text-primary">No students in this shift</p>
-              <p className="text-[14px] text-text-secondary mt-1">Try selecting a different shift or date.</p>
+              <p className="text-base font-extrabold text-text-primary">No students in this shift</p>
+              <p className="text-sm text-text-secondary mt-1">Try selecting a different shift or date.</p>
             </div>
           ) : filtered.map(( s ) => {
             const isAlert = s.consecutiveAbsent >= 3;
@@ -109,12 +109,12 @@ export function AttendanceClient() {
 
                 {/* Left side: Avatar + Info */}
                 <div className="flex items-center gap-4 flex-1">
-                  <div className="h-10 w-10 sm:h-12 sm:w-12 shrink-0 rounded-full bg-primary/10 text-primary flex items-center justify-center text-[14px] sm:text-[16px] font-extrabold">
+                  <div className="h-10 w-10 sm:h-12 sm:w-12 shrink-0 rounded-full bg-primary/10 text-primary flex items-center justify-center text-sm sm:text-base font-extrabold">
                     {s.initials}
                   </div>
                   <div>
-                    <div className="text-[15px] font-extrabold text-text-primary">{s.name}</div>
-                    <div className="text-[12px] text-text-secondary mt-0.5 font-medium flex items-center gap-2">
+                    <div className="text-base font-extrabold text-text-primary">{s.name}</div>
+                    <div className="text-xs text-text-secondary mt-0.5 font-medium flex items-center gap-2">
                       <span className="font-mono">{s.smartId}</span>
                       <span className="w-1 h-1 rounded-full bg-text-secondary/50" />
                       <span>{s.shift} shift</span>
@@ -126,10 +126,10 @@ export function AttendanceClient() {
                 <div className="flex flex-col sm:flex-row sm:items-center gap-4 xl:w-auto w-full">
                   
                   {/* Status buttons */}
-                  <div className="flex items-center rounded-[var(--radius-md)] border border-border p-1 bg-input self-start sm:self-auto shrink-0 overflow-x-auto max-w-full">
+                  <div className="flex items-center rounded-md border border-border p-1 bg-input self-start sm:self-auto shrink-0 overflow-x-auto max-w-full">
                     {(['present', 'absent', 'late'] as AttStatus[]).map(( st ) => (
                       <button key={st} onClick={() => setStatus(s.id, st)}
-                        className={`flex items-center gap-1.5 px-3 py-1.5 text-[12px] font-bold rounded-[var(--radius-sm)] transition-all cursor-pointer whitespace-nowrap ${
+                        className={`flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold rounded-sm transition-all cursor-pointer whitespace-nowrap ${
                           s.status === st 
                             ? (st === 'present' ? 'bg-success text-white shadow-sm' : st === 'absent' ? 'bg-danger text-white shadow-sm' : 'bg-warning text-white shadow-sm')
                             : 'text-text-secondary hover:text-text-primary hover:bg-white/50'
@@ -143,18 +143,18 @@ export function AttendanceClient() {
 
                   {/* Time inputs */}
                   {(s.status === 'present' || s.status === 'late') && (
-                    <div className="flex items-center gap-3 animate-in fade-in zoom-in-95 shrink-0 bg-bg-card border border-border rounded-[var(--radius-md)] p-1.5 px-3 shadow-sm">
+                    <div className="flex items-center gap-3 animate-in fade-in zoom-in-95 shrink-0 bg-bg-pageg-card border border-border rounded-md p-1.5 px-3 shadow-sm">
                       <div className="flex items-center gap-2">
-                        <span className="text-[11px] font-bold text-text-secondary uppercase">In</span>
-                        <input type="time" className="bg-transparent text-[13px] font-bold text-text-primary outline-none cursor-pointer w-[75px]" value={s.inTime}
+                        <span className="text-xs font-bold text-text-secondary uppercase">In</span>
+                        <input type="time" className="bg-transparent text-sm font-bold text-text-primary outline-none cursor-pointer w-20" value={s.inTime}
                           onChange={e => setField(s.id, 'inTime', e.target.value)} />
                       </div>
                       {s.status === 'present' && (
                         <>
-                          <div className="w-px h-4 bg-border" />
+                          <div className="w-px h-4 bg-bg-pageorder" />
                           <div className="flex items-center gap-2">
-                            <span className="text-[11px] font-bold text-text-secondary uppercase">Out</span>
-                            <input type="time" className="bg-transparent text-[13px] font-bold text-text-primary outline-none cursor-pointer w-[75px]" value={s.outTime}
+                            <span className="text-xs font-bold text-text-secondary uppercase">Out</span>
+                            <input type="time" className="bg-transparent text-sm font-bold text-text-primary outline-none cursor-pointer w-20" value={s.outTime}
                               onChange={e => setField(s.id, 'outTime', e.target.value)} />
                           </div>
                         </>
@@ -165,15 +165,15 @@ export function AttendanceClient() {
                   {/* Absent alert */}
                   {isAlert && (
                     <div className="flex flex-col sm:items-end gap-1.5 shrink-0 animate-in fade-in">
-                      <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-warning/20 text-warning-foreground border border-warning/30 flex items-center gap-1 w-fit">
+                      <span className="px-2 py-0.5 rounded text-xs font-bold bg-warning/20 text-warning-foreground border border-warning/30 flex items-center gap-1 w-fit">
                         ⚠️ {s.consecutiveAbsent} days consecutive
                       </span>
                       {!hasAlerted ? (
-                        <button onClick={() => handleAlert(s.id)} className="flex items-center gap-1.5 px-3 py-1.5 text-[11px] font-bold text-text-primary bg-bg-card border border-border rounded-[var(--radius-sm)] hover:bg-input transition-colors cursor-pointer shadow-sm w-fit">
+                        <button onClick={() => handleAlert(s.id)} className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold text-text-primary bg-bg-pageg-card border border-border rounded-sm hover:bg-input transition-colors cursor-pointer shadow-sm w-fit">
                           <Bell size={12} /> Alert Parents
                         </button>
                       ) : (
-                        <span className="flex items-center gap-1 px-3 py-1.5 text-[11px] font-bold text-success bg-success/10 rounded-[var(--radius-sm)] w-fit">
+                        <span className="flex items-center gap-1 px-3 py-1.5 text-xs font-bold text-success bg-success/10 rounded-sm w-fit">
                           <CheckCircle size={12} /> Parents Alerted
                         </span>
                       )}
@@ -189,10 +189,10 @@ export function AttendanceClient() {
 
       {/* ── Sticky Save Bar ── */}
       <div className="fixed bottom-0 left-0 right-0 lg:left-64 z-40 bg-card border-t border-border p-4 shadow-[0_-4px_10px_rgba(0,0,0,0.05)] flex items-center justify-between animate-in slide-in-from-bottom-full">
-        <p className="text-[14px] text-text-secondary">
+        <p className="text-sm text-text-secondary">
           <strong className="text-text-primary">{marked}</strong> of <strong className="text-text-primary">{filtered.length}</strong> marked for <strong className="text-text-primary font-mono">{date}</strong>
         </p>
-        <button onClick={handleSave} className="flex items-center gap-2 px-6 py-2.5 bg-primary text-primary-foreground text-[14px] font-bold rounded-[var(--radius-md)] shadow-sm hover:bg-primary/90 transition-all active:scale-95 cursor-pointer">
+        <button onClick={handleSave} className="flex items-center gap-2 px-6 py-2.5 bg-primary text-primary-foreground text-sm font-bold rounded-md shadow-sm hover:bg-primary/90 transition-all active:scale-95 cursor-pointer">
           {saved ? <><CheckCircle size={18}/> Saved!</> : <><Save size={18}/> Save Attendance</>}
         </button>
       </div>

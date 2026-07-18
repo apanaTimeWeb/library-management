@@ -58,7 +58,7 @@ export function SuperadminSystemMaintenanceClient() {
               </thead>
               <tbody className="divide-y divide-outline-variant/30">
                 {table.paginatedData.map((seat) => (
-                  <tr key={seat.id} className="hover:bg-bg-card transition-colors cursor-pointer group">
+                  <tr key={seat.id} className="hover:bg-bg-pageg-card transition-colors cursor-pointer group">
                     <td className="py-3 pr-4 font-mono font-medium text-text-primary">{seat.id}</td>
                     <td className="py-3 pr-4">
                       <SuperadminBadge variant={seat.status === 'OK' ? 'success' : 'danger'}>{seat.status}</SuperadminBadge>
@@ -108,7 +108,7 @@ export function SuperadminSystemMaintenanceClient() {
               </thead>
               <tbody className="divide-y divide-outline-variant/30">
                 {assets.map((asset) => (
-                  <tr key={asset.name} className="hover:bg-bg-card transition-colors cursor-pointer group">
+                  <tr key={asset.name} className="hover:bg-bg-pageg-card transition-colors cursor-pointer group">
                     <td className="py-3 pr-4 font-medium text-text-primary">{asset.name}</td>
                     <td className="py-3 pr-4 text-center text-text-secondary">{asset.qty}</td>
                     <td className="py-3 pr-4">
@@ -157,7 +157,7 @@ export function SuperadminSystemMaintenanceClient() {
               </thead>
               <tbody className="divide-y divide-outline-variant/30">
                 {lockers.map((locker) => (
-                  <tr key={locker.id} className="hover:bg-bg-card transition-colors cursor-pointer group">
+                  <tr key={locker.id} className="hover:bg-bg-pageg-card transition-colors cursor-pointer group">
                     <td className="py-3 pr-4 font-mono font-medium text-text-primary">{locker.id}</td>
                     <td className="py-3 pr-4">
                       <SuperadminBadge variant={locker.status === 'OK' ? 'success' : 'danger'}>{locker.status}</SuperadminBadge>

@@ -101,7 +101,7 @@ export function AdminBlacklistClient() {
           <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-1">
             Smart Library 360 <span className="opacity-50">›</span> Admin <span className="opacity-50">›</span> Blacklist
           </p>
-          <h1 className="text-2xl font-bold tracking-tight text-foreground">Blacklist</h1>
+          <h1 className="text-text-primaryxl font-bold tracking-tight text-foreground">Blacklist</h1>
           <p className="text-sm text-muted-foreground mt-1">Students permanently banned from re-joining the library.</p>
         </div>
         <Button variant="destructive" onClick={() => setIsAddOpen(true)} className="gap-2">

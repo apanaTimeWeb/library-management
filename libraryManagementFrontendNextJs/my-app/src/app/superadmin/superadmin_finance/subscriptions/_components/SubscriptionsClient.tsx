@@ -24,10 +24,10 @@ const STATUS_BADGE: Record<string, string> = {
 };
 
 function daysLeftBadgeClass(days: number) {
-  if (days < 0) return 'text-danger font-semibold text-[13px]';
-  if (days <= 7) return 'text-danger font-semibold text-[13px]';
-  if (days <= 15) return 'text-warning font-semibold text-[13px]';
-  return 'text-success font-semibold text-[13px]';
+  if (days < 0) return 'text-danger font-semibold text-sm';
+  if (days <= 7) return 'text-danger font-semibold text-sm';
+  if (days <= 15) return 'text-warning font-semibold text-sm';
+  return 'text-success font-semibold text-sm';
 }
 
 export function SubscriptionsClient() {
@@ -44,8 +44,8 @@ export function SubscriptionsClient() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-[22px] font-bold text-text-primary">Subscriptions</h1>
-        <p className="text-[12px] text-text-secondary">Manage all student subscriptions.</p>
+        <h1 className="text-xl font-bold text-text-primary">Subscriptions</h1>
+        <p className="text-xs text-text-secondary">Manage all student subscriptions.</p>
       </div>
 
       <div className="flex gap-2">
@@ -87,11 +87,11 @@ export function SubscriptionsClient() {
         </div>
       </div>
 
-      <div className="bg-card rounded-[var(--radius-lg)] border border-border overflow-x-auto">
+      <div className="bg-card rounded-lg border border-border overflow-x-auto">
         <TableToolbar search={table.searchTerm} onSearch={table.setSearchTerm} />
       <table className="w-full text-left border-collapse min-w-[1200px]">
           <thead>
-            <tr className="bg-primary/5 uppercase text-[12px] font-semibold text-text-secondary border-b border-border">
+            <tr className="bg-primary/5 uppercase text-xs font-semibold text-text-secondary border-b border-border">
               <th className="py-3 px-4">Student</th>
               <th className="py-3 px-4">Smart ID</th>
               <th className="py-3 px-4">Plan</th>
@@ -123,37 +123,37 @@ export function SubscriptionsClient() {
                 <td colSpan={13}>
                   <div className="flex flex-col items-center justify-center p-8 text-center space-y-3">
                     <div className="text-4xl">📋</div>
-                    <p className="text-[16px] text-text-secondary">No subscriptions found.</p>
+                    <p className="text-base text-text-secondary">No subscriptions found.</p>
                   </div>
                 </td>
               </tr>
             ) : (
               rows.map(( s: any ) => (
                 <tr key={s.id} className="border-b border-border last:border-0 hover:bg-primary/5 transition-colors cursor-pointer" onClick={() => toast.success(`Viewing subscription for ${s.studentName}`)}>
-                  <td className="py-3 px-4 font-medium text-[14px] text-text-primary">{s.studentName}</td>
-                  <td className="py-3 px-4 font-mono text-[12px] text-text-secondary">{s.smartId}</td>
-                  <td className="py-3 px-4 text-[13px] text-text-primary">{s.plan}</td>
-                  <td className="py-3 px-4 text-[12px] text-text-secondary">{s.startDate}</td>
-                  <td className="py-3 px-4 text-[12px] text-text-secondary">{s.endDate}</td>
+                  <td className="py-3 px-4 font-medium text-sm text-text-primary">{s.studentName}</td>
+                  <td className="py-3 px-4 font-mono text-xs text-text-secondary">{s.smartId}</td>
+                  <td className="py-3 px-4 text-sm text-text-primary">{s.plan}</td>
+                  <td className="py-3 px-4 text-xs text-text-secondary">{s.startDate}</td>
+                  <td className="py-3 px-4 text-xs text-text-secondary">{s.endDate}</td>
                   <td className="py-3 px-4">
                     <span className={daysLeftBadgeClass(s.daysLeft)}>
                       {s.daysLeft < 0 ? `${Math.abs(s.daysLeft)}d ago` : `${s.daysLeft}d`}
                     </span>
                   </td>
-                  <td className="py-3 px-4 text-right text-[13px] text-text-primary">{formatCurrency(s.base)}</td>
-                  <td className="py-3 px-4 text-right text-[13px] text-success">{formatCurrency(s.discount)}</td>
-                  <td className="py-3 px-4 text-right font-semibold text-[13px] text-text-primary">{formatCurrency(s.total)}</td>
-                  <td className="py-3 px-4 text-right text-[13px] text-success">{formatCurrency(s.paid)}</td>
-                  <td className={`py-3 px-4 text-right font-semibold text-[13px] ${s.due > 0 ? 'text-danger' : 'text-text-primary'}`}>
+                  <td className="py-3 px-4 text-right text-sm text-text-primary">{formatCurrency(s.base)}</td>
+                  <td className="py-3 px-4 text-right text-sm text-success">{formatCurrency(s.discount)}</td>
+                  <td className="py-3 px-4 text-right font-semibold text-sm text-text-primary">{formatCurrency(s.total)}</td>
+                  <td className="py-3 px-4 text-right text-sm text-success">{formatCurrency(s.paid)}</td>
+                  <td className={`py-3 px-4 text-right font-semibold text-sm ${s.due > 0 ? 'text-danger' : 'text-text-primary'}`}>
                     {formatCurrency(s.due)}
                   </td>
                   <td className="py-3 px-4">
-                    <span className={`${STATUS_BADGE[s.status] || 'bg-input text-text-primary border-border'} px-2 py-0.5 rounded-[var(--radius-full)] text-[11px] font-bold capitalize`}>{s.status}</span>
+                    <span className={`${STATUS_BADGE[s.status] || 'bg-input text-text-primary border-border'} px-2 py-0.5 rounded-full text-xs font-bold capitalize`}>{s.status}</span>
                   </td>
                   <td className="py-3 px-4">
                     <div className="flex items-center justify-end gap-2">
                       <button
-                        className="flex items-center bg-info/10 text-info border border-info/20 px-2 py-1 rounded-[var(--radius-md)] text-[11px] font-bold hover:bg-info hover:text-info-foreground transition-colors cursor-pointer"
+                        className="flex items-center bg-info/10 text-info border border-info/20 px-2 py-1 rounded-md text-xs font-bold hover:bg-info hover:text-info-foreground transition-colors cursor-pointer"
                         onClick={(e) => { e.stopPropagation(); router.push(`${SUPERADMIN_ROUTES.FINANCE_COLLECT_FEE}?studentId=${s.id}&renew=true`); }}
                       >
                         <RefreshCw size={11} className="mr-1" /> Renew

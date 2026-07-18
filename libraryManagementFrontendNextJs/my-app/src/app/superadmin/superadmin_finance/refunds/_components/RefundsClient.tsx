@@ -37,31 +37,31 @@ export function RefundsClient() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-[22px] font-bold text-text-primary">Refunds</h1>
-        <p className="text-[12px] text-text-secondary">Manage and process student deposit refund requests.</p>
+        <h1 className="text-xl font-bold text-text-primary">Refunds</h1>
+        <p className="text-xs text-text-secondary">Manage and process student deposit refund requests.</p>
       </div>
 
       {/* Summary Stats */}
       <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
-        <div className="bg-card rounded-[var(--radius-lg)] border border-border p-3">
-          <p className="text-[11px] font-bold uppercase tracking-wider text-text-secondary mb-1">Total Refunded</p>
-          <p className="text-[20px] font-black tracking-tight text-success">{isLoading ? '—' : formatCurrency(totalRefunded)}</p>
+        <div className="bg-card rounded-lg border border-border p-3">
+          <p className="text-xs font-bold uppercase tracking-wider text-text-secondary mb-1">Total Refunded</p>
+          <p className="text-xl font-black tracking-tight text-success">{isLoading ? '—' : formatCurrency(totalRefunded)}</p>
         </div>
-        <div className="bg-card rounded-[var(--radius-lg)] border border-border p-3">
-          <p className="text-[11px] font-bold uppercase tracking-wider text-text-secondary mb-1">Pending</p>
-          <p className="text-[20px] font-black tracking-tight text-warning">{isLoading ? '—' : pendingCount}</p>
+        <div className="bg-card rounded-lg border border-border p-3">
+          <p className="text-xs font-bold uppercase tracking-wider text-text-secondary mb-1">Pending</p>
+          <p className="text-xl font-black tracking-tight text-warning">{isLoading ? '—' : pendingCount}</p>
         </div>
-        <div className="bg-card rounded-[var(--radius-lg)] border border-border p-3">
-          <p className="text-[11px] font-bold uppercase tracking-wider text-text-secondary mb-1">Approved</p>
-          <p className="text-[20px] font-black tracking-tight text-text-primary">{isLoading ? '—' : approvedCount}</p>
+        <div className="bg-card rounded-lg border border-border p-3">
+          <p className="text-xs font-bold uppercase tracking-wider text-text-secondary mb-1">Approved</p>
+          <p className="text-xl font-black tracking-tight text-text-primary">{isLoading ? '—' : approvedCount}</p>
         </div>
-        <div className="bg-card rounded-[var(--radius-lg)] border border-border p-3">
-          <p className="text-[11px] font-bold uppercase tracking-wider text-text-secondary mb-1">Rejected</p>
-          <p className="text-[20px] font-black tracking-tight text-danger">{isLoading ? '—' : rejectedCount}</p>
+        <div className="bg-card rounded-lg border border-border p-3">
+          <p className="text-xs font-bold uppercase tracking-wider text-text-secondary mb-1">Rejected</p>
+          <p className="text-xl font-black tracking-tight text-danger">{isLoading ? '—' : rejectedCount}</p>
         </div>
       </div>
 
-      <div className="flex items-center gap-3 bg-card p-3 rounded-[var(--radius-lg)] border border-border w-fit">
+      <div className="flex items-center gap-3 bg-card p-3 rounded-lg border border-border w-fit">
         <div className="w-48">
           <SuperadminSearchableDropdown
             options={[
@@ -77,11 +77,11 @@ export function RefundsClient() {
         </div>
       </div>
 
-      <div className="bg-card rounded-[var(--radius-lg)] border border-border overflow-x-auto">
+      <div className="bg-card rounded-lg border border-border overflow-x-auto">
         <TableToolbar search={table.searchTerm} onSearch={table.setSearchTerm} />
       <table className="w-full text-left border-collapse">
           <thead>
-            <tr className="bg-primary/5 uppercase text-[12px] font-semibold text-text-secondary border-b border-border">
+            <tr className="bg-primary/5 uppercase text-xs font-semibold text-text-secondary border-b border-border">
               <th className="text-left py-3 px-4">Student</th>
               <th className="text-left py-3 px-4">Exit Date</th>
               <th className="text-right py-3 px-4">Deposit Held ₹</th>
@@ -107,7 +107,7 @@ export function RefundsClient() {
                 <td colSpan={7}>
                   <div className="flex flex-col items-center justify-center p-8 text-center space-y-3">
                     <div className="text-4xl text-text-secondary">💸</div>
-                    <p className="text-[16px] text-text-secondary">No pending refunds.</p>
+                    <p className="text-base text-text-secondary">No pending refunds.</p>
                   </div>
                 </td>
               </tr>
@@ -115,22 +115,22 @@ export function RefundsClient() {
               filtered.map(( r ) => (
                 <tr key={r.id} className="border-b border-border last:border-0 hover:bg-primary/5 transition-colors group">
                   <td className="py-3 px-4">
-                    <div className="font-medium text-[14px] text-text-primary">{r.studentName}</div>
-                    <div className="text-[12px] text-text-secondary">{r.smartId}</div>
+                    <div className="font-medium text-sm text-text-primary">{r.studentName}</div>
+                    <div className="text-xs text-text-secondary">{r.smartId}</div>
                   </td>
-                  <td className="py-3 px-4 text-[12px] text-text-secondary">{r.exitDate || '—'}</td>
-                  <td className="py-3 px-4 text-right font-semibold text-[14px] text-text-primary">{formatCurrency(r.depositHeld)}</td>
-                  <td className={`py-3 px-4 text-right text-[14px] ${r.deductionAmount > 0 ? 'text-danger font-medium' : 'text-text-muted'}`}>
+                  <td className="py-3 px-4 text-xs text-text-secondary">{r.exitDate || '—'}</td>
+                  <td className="py-3 px-4 text-right font-semibold text-sm text-text-primary">{formatCurrency(r.depositHeld)}</td>
+                  <td className={`py-3 px-4 text-right text-sm ${r.deductionAmount > 0 ? 'text-danger font-medium' : 'text-text-muted'}`}>
                     {r.deductionAmount > 0 ? `-${formatCurrency(r.deductionAmount)}` : 'None'}
                   </td>
-                  <td className="py-3 px-4 text-right font-semibold text-[14px] text-success">{formatCurrency(r.netRefund)}</td>
+                  <td className="py-3 px-4 text-right font-semibold text-sm text-success">{formatCurrency(r.netRefund)}</td>
                   <td className="py-3 px-4">
-                    <span className={`${STATUS_BADGE[r.status] || 'bg-input text-text-primary border-border'} px-2 py-0.5 rounded-[var(--radius-full)] text-[11px] font-bold border capitalize`}>{r.status}</span>
+                    <span className={`${STATUS_BADGE[r.status] || 'bg-input text-text-primary border-border'} px-2 py-0.5 rounded-full text-xs font-bold border capitalize`}>{r.status}</span>
                     {r.status === 'rejected' && r.rejectionReason && (
-                      <div className="text-[12px] text-text-secondary mt-1 max-w-32 truncate">{r.rejectionReason}</div>
+                      <div className="text-xs text-text-secondary mt-1 max-w-32 truncate">{r.rejectionReason}</div>
                     )}
                     {r.status === 'processed' && r.processedDate && (
-                      <div className="text-[12px] text-text-secondary mt-1">{r.processedDate} · {r.paymentMethod}</div>
+                      <div className="text-xs text-text-secondary mt-1">{r.processedDate} · {r.paymentMethod}</div>
                     )}
                   </td>
                   <td className="py-3 px-4">
@@ -138,13 +138,13 @@ export function RefundsClient() {
                       {r.status === 'pending' && (
                         <>
                           <button
-                            className="flex items-center gap-1.5 bg-success/10 text-success border border-success/20 px-3 py-1.5 rounded-[var(--radius-md)] text-[11px] font-bold hover:bg-success hover:text-success-foreground transition-colors cursor-pointer"
+                            className="flex items-center gap-1.5 bg-success/10 text-success border border-success/20 px-3 py-1.5 rounded-md text-xs font-bold hover:bg-success hover:text-success-foreground transition-colors cursor-pointer"
                             onClick={() => setProcessDialog({ id: r.id, name: r.studentName, amount: r.netRefund })}
                           >
                             <Undo2 size={11} /> 💸 Process Refund
                           </button>
                           <button
-                            className="flex items-center gap-1.5 bg-warning/10 text-warning border border-warning/20 px-3 py-1.5 rounded-[var(--radius-md)] text-[11px] font-bold hover:bg-warning hover:text-warning-foreground transition-colors cursor-pointer"
+                            className="flex items-center gap-1.5 bg-warning/10 text-warning border border-warning/20 px-3 py-1.5 rounded-md text-xs font-bold hover:bg-warning hover:text-warning-foreground transition-colors cursor-pointer"
                             onClick={() => setDeductDialog({ id: r.id, name: r.studentName })}
                           >
                             ➕ Add Deduction
@@ -153,7 +153,7 @@ export function RefundsClient() {
                       )}
                       {r.status === 'approved' && (
                         <button
-                          className="flex items-center gap-1.5 bg-info/10 text-info border border-info/20 px-3 py-1.5 rounded-[var(--radius-md)] text-[11px] font-bold hover:bg-info hover:text-info-foreground transition-colors cursor-pointer"
+                          className="flex items-center gap-1.5 bg-info/10 text-info border border-info/20 px-3 py-1.5 rounded-md text-xs font-bold hover:bg-info hover:text-info-foreground transition-colors cursor-pointer"
                           onClick={() => setProcessDialog({ id: r.id, name: r.studentName, amount: r.netRefund })}
                         >
                           <Undo2 size={11} /> Process

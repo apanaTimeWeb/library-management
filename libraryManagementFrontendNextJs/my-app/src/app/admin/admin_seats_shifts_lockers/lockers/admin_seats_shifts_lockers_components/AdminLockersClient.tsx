@@ -54,7 +54,7 @@ export function AdminLockersClient() {
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b pb-4">
         <div>
           <nav className="text-xs text-muted-foreground font-medium mb-1 tracking-wide uppercase">Smart Library 360 › Admin › Seats & Shifts</nav>
-          <h1 className="text-2xl font-bold tracking-tight">Lockers</h1>
+          <h1 className="text-text-primaryxl font-bold tracking-tight">Lockers</h1>
           <p className="text-sm text-muted-foreground mt-1">Manage locker assignments and availability.</p>
         </div>
         <Button 
@@ -69,7 +69,7 @@ export function AdminLockersClient() {
       {/* Filter Bar */}
       <div className="flex flex-wrap items-center gap-3">
         <select 
-          className="h-10 px-3 rounded-md border border-border bg-bg-input text-sm font-medium focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary min-w-36"
+          className="h-10 px-3 rounded-md border border-border bg-bg-pageg-input text-sm font-medium focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary min-w-36"
           value={statusFilter} 
           onChange={(e) => setStatusFilter(e.target.value)}
         >
@@ -179,7 +179,7 @@ export function AdminLockersClient() {
 
       {/* Add Locker Modal */}
       {showAddModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm" onClick={() => setShowAddModal(false)}>
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-bg-pagelack/60 backdrop-blur-sm" onClick={() => setShowAddModal(false)}>
           <Card className="w-full max-w-sm shadow-lg border-border bg-card p-6 flex flex-col gap-6" onClick={e => e.stopPropagation()}>
             <div className="flex items-center justify-between">
               <h2 className="text-xl font-bold tracking-tight flex items-center gap-2 text-primary">
@@ -212,7 +212,7 @@ export function AdminLockersClient() {
 
       {/* Assign Modal */}
       {showAssign && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm" onClick={() => setShowAssign(null)}>
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-bg-pagelack/60 backdrop-blur-sm" onClick={() => setShowAssign(null)}>
           <Card className="w-full max-w-md shadow-lg border-border bg-card p-6 flex flex-col gap-6" onClick={e => e.stopPropagation()}>
             <div className="flex items-center justify-between">
               <h2 className="text-xl font-bold tracking-tight flex items-center gap-2 text-primary">
@@ -249,7 +249,7 @@ export function AdminLockersClient() {
 
       {/* Free Locker Confirm Modal */}
       {freeTarget && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm" onClick={() => setFreeTarget(null)}>
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-bg-pagelack/60 backdrop-blur-sm" onClick={() => setFreeTarget(null)}>
           <Card className="w-full max-w-sm shadow-lg border-warning/20 bg-card p-6 flex flex-col gap-4" onClick={e => e.stopPropagation()}>
             <h2 className="text-lg font-bold flex items-center gap-2 text-warning">
               <Unlock size={20} /> Free Locker {freeTarget.lockerId}

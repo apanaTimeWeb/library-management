@@ -62,7 +62,7 @@ export function AuthLoginForm() {
 
           {/* Portal access info */}
           <div className="p-5 rounded-xl bg-card border border-border shadow-sm space-y-2 backdrop-blur-sm">
-            <p className="text-[11px] font-semibold text-text-secondary uppercase tracking-widest mb-3">Portal Access</p>
+            <p className="text-xs font-semibold text-text-secondary uppercase tracking-widest mb-3">Portal Access</p>
             {roles.map(r => (
               <div key={r.id} className="flex items-center gap-2.5">
                 <span className="text-base w-5 text-center shrink-0">{r.icon}</span>
@@ -104,7 +104,7 @@ export function AuthLoginForm() {
                   <BookOpen size={24} className="text-text-primary" />
                 </div>
               </div>
-              <h2 className="text-2xl font-bold text-text-primary tracking-tight">Smart Library 360</h2>
+              <h2 className="text-text-primaryxl font-bold text-text-primary tracking-tight">Smart Library 360</h2>
               <p className="text-sm text-text-secondary mt-1">Sign in to your account</p>
             </div>
 
@@ -134,13 +134,13 @@ export function AuthLoginForm() {
               </div>
             </div>
 
-            <div className="h-[1px] bg-border my-6" />
+            <div className="h-px bg-bg-pageorder my-6" />
 
             {/* Form */}
             <form onSubmit={handleSubmit} noValidate className="space-y-4">
               {/* Phone */}
               <div>
-                <label htmlFor="login-phone" className="block text-[13px] font-medium text-text-secondary mb-1.5">
+                <label htmlFor="login-phone" className="block text-xs font-medium text-text-secondary mb-1.5">
                   Phone Number <span className="text-danger">*</span>
                 </label>
                 <input
@@ -150,12 +150,12 @@ export function AuthLoginForm() {
                   {...register('phone')}
                   className={`w-full px-3.5 py-2.5 rounded-lg text-sm bg-input text-text-primary border outline-none transition-all focus:ring-2 focus:ring-primary/20 ${errors.phone ? 'border-danger focus:border-danger' : 'border-border focus:border-primary'}`}
                 />
-                {errors.phone && <p className="text-[12px] text-danger mt-1">{errors.phone.message}</p>}
+                {errors.phone && <p className="text-xs text-danger mt-1">{errors.phone.message}</p>}
               </div>
 
               {/* Password */}
               <div>
-                <label htmlFor="login-password" className="block text-[13px] font-medium text-text-secondary mb-1.5">
+                <label htmlFor="login-password" className="block text-xs font-medium text-text-secondary mb-1.5">
                   Password <span className="text-danger">*</span>
                 </label>
                 <div className="relative">
@@ -174,7 +174,7 @@ export function AuthLoginForm() {
                     {showPw ? <EyeOff size={17} /> : <Eye size={17} />}
                   </button>
                 </div>
-                {errors.password && <p className="text-[12px] text-danger mt-1">{errors.password.message}</p>}
+                {errors.password && <p className="text-xs text-danger mt-1">{errors.password.message}</p>}
               </div>
 
               {/* Credential error */}
@@ -202,7 +202,7 @@ export function AuthLoginForm() {
               <Link href={AUTH_ROUTES.FORGOT_PASSWORD} className="text-sm font-medium text-text-secondary hover:text-primary transition-colors">
                 Forgot Password?
               </Link>
-              <div className="h-[1px] bg-border" />
+              <div className="h-px bg-bg-pageorder" />
               <p className="text-sm text-text-secondary">
                 Don&apos;t have an account?{' '}
                 <Link href={AUTH_ROUTES.SIGNUP} className="text-primary font-semibold hover:underline">Sign Up</Link>

@@ -39,33 +39,33 @@ export function ManagerDocumentsClient() {
       </div>
 
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
-        <div className="bg-bg-card rounded-xl border border-border p-4 flex flex-col items-center justify-center cursor-pointer hover:border-primary transition-colors">
+        <div className="bg-bg-pageg-card rounded-xl border border-border p-4 flex flex-col items-center justify-center cursor-pointer hover:border-primary transition-colors">
           <FolderOpen size={32} className="text-primary mb-2" />
           <p className="font-medium text-text-primary">ID Proofs</p>
           <p className="text-xs text-text-secondary">124 Files</p>
         </div>
-        <div className="bg-bg-card rounded-xl border border-border p-4 flex flex-col items-center justify-center cursor-pointer hover:border-primary transition-colors">
+        <div className="bg-bg-pageg-card rounded-xl border border-border p-4 flex flex-col items-center justify-center cursor-pointer hover:border-primary transition-colors">
           <FolderOpen size={32} className="text-success mb-2" />
           <p className="font-medium text-text-primary">Finance</p>
           <p className="text-xs text-text-secondary">845 Files</p>
         </div>
-        <div className="bg-bg-card rounded-xl border border-border p-4 flex flex-col items-center justify-center cursor-pointer hover:border-primary transition-colors">
+        <div className="bg-bg-pageg-card rounded-xl border border-border p-4 flex flex-col items-center justify-center cursor-pointer hover:border-primary transition-colors">
           <FolderOpen size={32} className="text-warning mb-2" />
           <p className="font-medium text-text-primary">Study Material</p>
           <p className="text-xs text-text-secondary">42 Files</p>
         </div>
-        <div className="bg-bg-card rounded-xl border border-border p-4 flex flex-col items-center justify-center cursor-pointer hover:border-primary transition-colors">
+        <div className="bg-bg-pageg-card rounded-xl border border-border p-4 flex flex-col items-center justify-center cursor-pointer hover:border-primary transition-colors">
           <FolderOpen size={32} className="text-info mb-2" />
           <p className="font-medium text-text-primary">Other</p>
           <p className="text-xs text-text-secondary">19 Files</p>
         </div>
       </div>
 
-      <div className="bg-bg-card rounded-xl border border-border p-6 flex flex-col">
+      <div className="bg-bg-pageg-card rounded-xl border border-border p-6 flex flex-col">
         <div className="w-full overflow-x-auto border border-border rounded-xl">
           <TableToolbar search={table.searchTerm} onSearch={table.setSearchTerm} />
           <table className="w-full text-left text-sm whitespace-nowrap">
-            <thead className="bg-bg-elevated border-b border-border">
+            <thead className="bg-bg-pageg-elevated border-b border-border">
               <tr className="text-text-secondary text-xs uppercase tracking-wider">
                 <th className="px-4 py-3 font-semibold">File Name</th>
                 <th className="px-4 py-3 font-semibold">Category</th>
@@ -75,14 +75,14 @@ export function ManagerDocumentsClient() {
                 <th className="px-4 py-3 font-semibold text-right">Actions</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-border bg-bg-card">
+            <tbody className="divide-y divide-border bg-bg-pageg-card">
               {table.paginatedData.length === 0 ? (
                 <tr>
                   <td colSpan={6} className="px-4 py-8 text-center text-text-secondary">No documents found</td>
                 </tr>
               ) : (
                 table.paginatedData.map((row: any) => (
-                  <tr key={row.id} className="hover:bg-bg-page transition-colors">
+                  <tr key={row.id} className="hover:bg-bg-pageg-page transition-colors">
                     <td className="px-4 py-4">
                       <div className="flex items-center gap-3">
                         {getFileIcon(row.type)}

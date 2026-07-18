@@ -47,7 +47,7 @@ export function CollectFeeClient() {
   return (
     <>
       <Toaster position="bottom-right" toastOptions={{
-        className: 'bg-card text-text-primary border border-border text-[13px]'
+        className: 'bg-card text-text-primary border border-border text-sm'
       }} />
 
       {receiptData && (
@@ -60,19 +60,19 @@ export function CollectFeeClient() {
 
       <div className="space-y-6">
         <div>
-          <h1 className="text-[22px] font-bold text-text-primary">Collect Fee</h1>
-          <p className="text-[12px] text-text-secondary">Record a new payment from a student.</p>
+          <h1 className="text-xl font-bold text-text-primary">Collect Fee</h1>
+          <p className="text-xs text-text-secondary">Record a new payment from a student.</p>
         </div>
 
         <form onSubmit={onSubmit} className="grid grid-cols-1 lg:grid-cols-5 gap-6">
           {/* Left — Form */}
           <div className="lg:col-span-3 space-y-4">
-            <div className="bg-card rounded-[var(--radius-lg)] border border-border p-6 space-y-4">
-              <p className="text-[14px] font-bold text-text-secondary uppercase tracking-wider block mb-1">Student <span className="text-danger">*</span></p>
+            <div className="bg-card rounded-lg border border-border p-6 space-y-4">
+              <p className="text-sm font-bold text-text-secondary uppercase tracking-wider block mb-1">Student <span className="text-danger">*</span></p>
               <div className="relative">
                 <Search size={15} className="absolute left-3 top-1/2 -translate-y-1/2 text-text-secondary" />
                 <input 
-                  className="w-full bg-input border border-border rounded-[var(--radius-md)] py-2.5 pl-9 pr-3 text-[14px] font-medium text-text-primary focus:outline-none focus:border-primary transition-colors" 
+                  className="w-full bg-input border border-border rounded-md py-2.5 pl-9 pr-3 text-sm font-medium text-text-primary focus:outline-none focus:border-primary transition-colors" 
                   placeholder="Search by name or Smart ID..." 
                   value={search}
                   onChange={e => { setSearch(e.target.value); handleSelectStudent(null as any); setShowDropdown(true); }}
@@ -81,63 +81,63 @@ export function CollectFeeClient() {
               </div>
               
               {showDropdown && search.length >= 2 && !selectedStudent && (
-                <div className="absolute z-10 w-full max-w-md bg-card border border-border rounded-[var(--radius-md)] shadow-lg mt-1 max-h-60 overflow-y-auto">
+                <div className="absolute z-10 w-full max-w-md bg-card border border-border rounded-md shadow-lg mt-1 max-h-60 overflow-y-auto">
                   {filteredStudents.length === 0 ? (
-                    <div className="p-4 text-center text-[12px] text-text-secondary">No students found</div>
+                    <div className="p-4 text-center text-xs text-text-secondary">No students found</div>
                   ) : filteredStudents.map((s) => (
                     <button key={s.id} type="button" className="w-full text-left p-3 border-b border-border hover:bg-primary/5 transition-colors flex justify-between items-center" onClick={() => handleSelectStudent(s)}>
                       <div>
                         <div className="font-medium text-text-primary">{s.name}</div>
-                        <div className="text-[12px] text-text-secondary">{s.smartId} · {s.plan} · +91-{maskPhone(s.phone)}</div>
+                        <div className="text-xs text-text-secondary">{s.smartId} · {s.plan} · +91-{maskPhone(s.phone)}</div>
                       </div>
-                      <span className={`px-2.5 py-0.5 rounded-full text-[11px] font-semibold ${s.status === 'active' ? 'bg-success text-success-foreground' : s.status === 'suspended' ? 'bg-danger text-danger-foreground' : 'bg-warning text-warning-foreground'}`}>{s.status}</span>
+                      <span className={`px-2.5 py-0.5 rounded-full text-xs font-semibold ${s.status === 'active' ? 'bg-success text-success-foreground' : s.status === 'suspended' ? 'bg-danger text-danger-foreground' : 'bg-warning text-warning-foreground'}`}>{s.status}</span>
                     </button>
                   ))}
                 </div>
               )}
               
               {selectedStudent && (
-                <div className="flex items-center gap-2 bg-success/10 text-success border border-success/20 p-3 rounded-[var(--radius-md)]">
+                <div className="flex items-center gap-2 bg-success/10 text-success border border-success/20 p-3 rounded-md">
                   <CheckCircle size={16} />
-                  <span className="font-bold text-[14px]">{selectedStudent.name}</span>
-                  <span className="text-[12px]">({selectedStudent.smartId})</span>
-                  <span className="text-[12px]">· +91-{maskPhone(selectedStudent.phone)}</span>
+                  <span className="font-bold text-sm">{selectedStudent.name}</span>
+                  <span className="text-xs">({selectedStudent.smartId})</span>
+                  <span className="text-xs">· +91-{maskPhone(selectedStudent.phone)}</span>
                 </div>
               )}
               
               {selectedStudent != null && selectedStudent.dueAmount > 0 && (
-                <div className="bg-danger text-danger-foreground text-[12px] font-semibold p-2 rounded flex justify-center">
+                <div className="bg-danger text-danger-foreground text-xs font-semibold p-2 rounded flex justify-center">
                   🔴 Due Amount: {formatCurrency(selectedStudent.dueAmount)} pending
                 </div>
               )}
             </div>
 
-            <div className="bg-card rounded-[var(--radius-lg)] border border-border p-6 space-y-5">
-              <p className="text-[14px] font-bold text-text-secondary uppercase tracking-wider block border-b border-border pb-2">Payment Details</p>
+            <div className="bg-card rounded-lg border border-border p-6 space-y-5">
+              <p className="text-sm font-bold text-text-secondary uppercase tracking-wider block border-b border-border pb-2">Payment Details</p>
               
               <div>
-                <label className="text-[12px] font-bold text-text-secondary block mb-1">Amount <span className="text-danger">*</span></label>
+                <label className="text-xs font-bold text-text-secondary block mb-1">Amount <span className="text-danger">*</span></label>
                 <div className="relative mt-1">
                   <IndianRupee size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-text-secondary" />
                   <input 
                     type="number" 
                     {...register('amount', { valueAsNumber: true })}
-                    className={`w-full bg-input border ${errors.amount ? 'border-danger' : 'border-border'} rounded-[var(--radius-md)] py-2.5 pl-8 pr-3 text-[14px] font-medium text-text-primary focus:outline-none focus:border-primary transition-colors`} 
+                    className={`w-full bg-input border ${errors.amount ? 'border-danger' : 'border-border'} rounded-md py-2.5 pl-8 pr-3 text-sm font-medium text-text-primary focus:outline-none focus:border-primary transition-colors`} 
                     placeholder="0.00" 
                   />
                 </div>
-                {errors.amount && <p className="text-danger text-[11px] mt-1">{errors.amount.message}</p>}
+                {errors.amount && <p className="text-danger text-xs mt-1">{errors.amount.message}</p>}
               </div>
 
               <div>
-                <label className="text-[12px] font-bold text-text-secondary block mb-2">Payment Mode</label>
+                <label className="text-xs font-bold text-text-secondary block mb-2">Payment Mode</label>
                 <div className="flex gap-2 flex-wrap">
                   {MODES.map((m) => (
                     <button 
                       key={m} 
                       type="button"
                       onClick={() => setValue('mode', m, { shouldValidate: true })} 
-                      className={`px-3 py-1.5 rounded-full text-[12px] font-bold transition-all border ${currentMode === m ? 'bg-primary/10 text-primary border-primary ring-2 ring-primary/30' : 'bg-transparent text-text-secondary border-border hover:bg-input'}`}
+                      className={`px-3 py-1.5 rounded-full text-xs font-bold transition-all border ${currentMode === m ? 'bg-primary/10 text-primary border-primary ring-2 ring-primary/30' : 'bg-transparent text-text-secondary border-border hover:bg-input'}`}
                     >
                       {MODE_LABELS[m]}
                     </button>
@@ -147,52 +147,52 @@ export function CollectFeeClient() {
               
               {currentMode !== 'cash' && (
                 <div>
-                  <label className="text-[12px] font-bold text-text-secondary block mb-1">Transaction ID <span className="text-danger">*</span></label>
+                  <label className="text-xs font-bold text-text-secondary block mb-1">Transaction ID <span className="text-danger">*</span></label>
                   <input 
                     {...register('txnId')}
-                    className={`w-full bg-input border ${errors.txnId ? 'border-danger' : 'border-border'} rounded-[var(--radius-md)] py-2.5 px-3 text-[14px] font-medium text-text-primary focus:outline-none focus:border-primary transition-colors`} 
+                    className={`w-full bg-input border ${errors.txnId ? 'border-danger' : 'border-border'} rounded-md py-2.5 px-3 text-sm font-medium text-text-primary focus:outline-none focus:border-primary transition-colors`} 
                     placeholder="Enter transaction reference" 
                   />
-                  {errors.txnId && <p className="text-danger text-[11px] mt-1">{errors.txnId.message}</p>}
+                  {errors.txnId && <p className="text-danger text-xs mt-1">{errors.txnId.message}</p>}
                 </div>
               )}
               
               <div>
-                <label className="text-[12px] font-bold text-text-secondary block mb-1">Coupon Code</label>
+                <label className="text-xs font-bold text-text-secondary block mb-1">Coupon Code</label>
                 <div className="flex gap-2 mt-1">
                   <input 
                     {...register('couponCode')}
-                    className="flex-1 bg-input border border-border rounded-[var(--radius-md)] py-2 px-3 text-[14px] font-medium text-text-primary focus:outline-none focus:border-primary transition-colors" 
+                    className="flex-1 bg-input border border-border rounded-md py-2 px-3 text-sm font-medium text-text-primary focus:outline-none focus:border-primary transition-colors" 
                     placeholder="e.g. SAVE50" 
                     onChange={e => { setValue('couponCode', e.target.value); setCouponStatus('idle'); setCouponDiscount(0); }} 
                   />
-                  <button type="button" className="px-4 py-2 bg-input border border-border text-text-primary text-[12px] font-bold rounded-[var(--radius-md)] hover:bg-border transition-colors cursor-pointer" onClick={handleApplyCoupon}>Apply</button>
+                  <button type="button" className="px-4 py-2 bg-input border border-border text-text-primary text-xs font-bold rounded-md hover:bg-bg-pageorder transition-colors cursor-pointer" onClick={handleApplyCoupon}>Apply</button>
                 </div>
-                {couponStatus === 'valid' && <p className="text-success text-[11px] mt-1 font-semibold">{formatCurrency(watch('amount') ? watch('amount') * 0.1 : 0)} discount applied (assuming logic applies)</p>}
-                {couponStatus === 'invalid' && <p className="text-danger text-[11px] mt-1">❌ Invalid/expired code</p>}
+                {couponStatus === 'valid' && <p className="text-success text-xs mt-1 font-semibold">{formatCurrency(watch('amount') ? watch('amount') * 0.1 : 0)} discount applied (assuming logic applies)</p>}
+                {couponStatus === 'invalid' && <p className="text-danger text-xs mt-1">❌ Invalid/expired code</p>}
               </div>
 
               <div>
                 <div className="flex items-center justify-between">
-                  <label className="text-[12px] font-bold text-text-secondary block mb-1">Late Fee</label>
-                  <label className="flex items-center gap-1 text-[11px] font-semibold text-text-secondary cursor-pointer">
+                  <label className="text-xs font-bold text-text-secondary block mb-1">Late Fee</label>
+                  <label className="flex items-center gap-1 text-xs font-semibold text-text-secondary cursor-pointer">
                     <input type="checkbox" {...register('lateFeeOverride')} className="rounded border-border bg-input" /> Override
                   </label>
                 </div>
                 <input 
                   type="number" 
                   {...register('lateFee', { valueAsNumber: true })} 
-                  className={`w-full bg-input border ${errors.lateFee ? 'border-danger' : 'border-border'} rounded-[var(--radius-md)] py-2.5 px-3 text-[14px] font-medium text-text-primary focus:outline-none focus:border-primary transition-colors ${!lateFeeOverride ? 'opacity-60' : ''}`}
+                  className={`w-full bg-input border ${errors.lateFee ? 'border-danger' : 'border-border'} rounded-md py-2.5 px-3 text-sm font-medium text-text-primary focus:outline-none focus:border-primary transition-colors ${!lateFeeOverride ? 'opacity-60' : ''}`}
                   readOnly={!lateFeeOverride} 
                 />
-                {errors.lateFee && <p className="text-danger text-[11px] mt-1">{errors.lateFee.message}</p>}
+                {errors.lateFee && <p className="text-danger text-xs mt-1">{errors.lateFee.message}</p>}
               </div>
 
               <div>
-                <label className="text-[12px] font-bold text-text-secondary block mb-1">Remark (optional)</label>
+                <label className="text-xs font-bold text-text-secondary block mb-1">Remark (optional)</label>
                 <textarea 
                   {...register('remark')}
-                  className="w-full bg-input border border-border rounded-[var(--radius-md)] py-2.5 px-3 text-[14px] font-medium text-text-primary focus:outline-none focus:border-primary transition-colors" 
+                  className="w-full bg-input border border-border rounded-md py-2.5 px-3 text-sm font-medium text-text-primary focus:outline-none focus:border-primary transition-colors" 
                   rows={2} 
                   placeholder="Any notes..." 
                 />
@@ -203,7 +203,7 @@ export function CollectFeeClient() {
           {/* Right — Receipt Preview (Static Layout representation) */}
           <div className="lg:col-span-2">
             <div className="sticky top-6">
-              <div className="bg-white text-black rounded-[var(--radius-lg)] overflow-hidden shadow-md flex flex-col font-mono relative p-6 items-center">
+              <div className="bg-white text-black rounded-lg overflow-hidden shadow-md flex flex-col font-mono relative p-6 items-center">
                 
                 {/* Thermal receipt zig-zag top */}
                 <div className="h-2 w-full flex space-x-1 absolute top-0">
@@ -212,7 +212,7 @@ export function CollectFeeClient() {
 
                 <div className="w-12 h-12 rounded-full border-2 border-black flex items-center justify-center mb-2 mt-4"><BookOpen size={24} className="text-black" /></div>
                 <p className="font-bold text-lg text-center leading-tight">Smart Library 360</p>
-                <p className="text-sm font-medium mb-6 text-center text-gray-600">Payment Receipt</p>
+                <p className="text-sm font-medium mb-6 text-center text-text-secondary">Payment Receipt</p>
                 
                 <div className="w-full text-sm space-y-2 mb-6">
                   {[
@@ -222,28 +222,28 @@ export function CollectFeeClient() {
                     ['Phone',   selectedStudent ? `+91-${maskPhone(selectedStudent.phone)}` : '—'],
                     ['Mode',    MODE_LABELS[currentMode]],
                   ].map(([l, v]) => (
-                    <div key={l} className="flex justify-between border-b border-gray-100 pb-1">
-                      <span className="text-gray-500">{l}</span>
+                    <div key={l} className="flex justify-between border-b border-border pb-1">
+                      <span className="text-text-secondary">{l}</span>
                       <span className="font-semibold text-right">{v}</span>
                     </div>
                   ))}
                 </div>
                 
-                <div className="w-full border-t border-dashed border-gray-400 pt-4 pb-4 mb-4 flex justify-between items-center">
-                  <p className="text-sm font-bold text-gray-600">Total Amount</p>
+                <div className="w-full border-t border-dashed border-border pt-4 pb-4 mb-4 flex justify-between items-center">
+                  <p className="text-sm font-bold text-text-secondary">Total Amount</p>
                   <p className="text-xl font-bold">₹{total > 0 ? total.toFixed(0) : '0'}</p>
                 </div>
                 
                 <button
                   type="submit"
                   disabled={!selectedStudent || !currentAmount || currentAmount <= 0 || isSubmitting}
-                  className={`w-full flex items-center justify-center gap-2 py-3 rounded text-[14px] font-bold transition-all ${(!selectedStudent || !currentAmount || currentAmount <= 0 || isSubmitting) ? 'bg-gray-200 text-gray-400 cursor-not-allowed' : 'bg-green-600 text-white hover:bg-green-700 shadow-md cursor-pointer'}`}
+                  className={`w-full flex items-center justify-center gap-2 py-3 rounded text-sm font-bold transition-all ${(!selectedStudent || !currentAmount || currentAmount <= 0 || isSubmitting) ? 'bg-bg-pageorder text-text-secondary cursor-not-allowed' : 'bg-green-600 text-white hover:bg-green-700 shadow-md cursor-pointer'}`}
                 >
                   <CheckCircle size={18} />
                   <span>{isSubmitting ? 'Processing...' : 'Collect Payment'}</span>
                 </button>
                 
-                <p className="text-[10px] italic text-gray-500 mt-6 text-center">&quot;Knowledge is the best investment.&quot;</p>
+                <p className="text-xs italic text-text-secondary mt-6 text-center">&quot;Knowledge is the best investment.&quot;</p>
                 
                 {/* Thermal receipt zig-zag bottom */}
                 <div className="h-2 w-full flex space-x-1 absolute bottom-0">
@@ -252,7 +252,7 @@ export function CollectFeeClient() {
               </div>
               
               <div className="mt-4">
-                <button type="button" className="w-full bg-transparent border border-border text-text-primary px-4 py-2.5 rounded-[var(--radius-md)] text-[14px] font-bold hover:bg-input transition-all cursor-pointer" onClick={resetForm}>
+                <button type="button" className="w-full bg-transparent border border-border text-text-primary px-4 py-2.5 rounded-md text-sm font-bold hover:bg-input transition-all cursor-pointer" onClick={resetForm}>
                   🚫 Cancel
                 </button>
               </div>

@@ -59,18 +59,18 @@ function ReportTable<T extends Record<string, unknown>>({
   });
 
   return (
-    <div className="bg-bg-card border border-border rounded-[var(--radius-lg)] p-5 hover:shadow-lg transition-all duration-200 flex flex-col h-full">
+    <div className="bg-bg-pageg-card border border-border rounded-[var(--radius-lg)] p-5 hover:shadow-lg transition-all duration-200 flex flex-col h-full">
       <h3 className="text-sm font-semibold text-text-primary mb-4">{title}</h3>
       <div className="flex-1 w-full overflow-x-auto border border-border rounded-xl mb-4">
         <table className="w-full text-left text-sm whitespace-nowrap">
-          <thead className="bg-bg-elevated border-b border-border">
+          <thead className="bg-bg-pageg-elevated border-b border-border">
             <tr className="text-text-secondary text-xs uppercase tracking-wider">
               {headers.map(h => <th key={h} className="px-4 py-3 font-semibold">{h}</th>)}
             </tr>
           </thead>
-          <tbody className="divide-y divide-border bg-bg-card">
+          <tbody className="divide-y divide-border bg-bg-pageg-card">
             {filtered.slice((page - 1) * limit, page * limit).map((row, i) => (
-              <tr key={i} className="hover:bg-bg-page transition-colors">
+              <tr key={i} className="hover:bg-bg-pageg-page transition-colors">
                 {renderRow(row, i)}
               </tr>
             ))}
@@ -105,7 +105,7 @@ export function ManagerReportsTablesGrid({ data }: ManagerReportsTablesGridProps
         <input 
           type="text" 
           placeholder="Search all reports..." 
-          className="px-3 py-2 border border-border rounded-md text-sm bg-bg-input text-text-primary focus:outline-none focus:ring-2 focus:ring-primary w-64"
+          className="px-3 py-2 border border-border rounded-md text-sm bg-bg-pageg-input text-text-primary focus:outline-none focus:ring-2 focus:ring-primary w-64"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />

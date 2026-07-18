@@ -40,7 +40,7 @@ const [searchTerm, setSearchTerm] = useState('');
       {/* ── Toast ── */}
       {toast && (
         <div className="fixed bottom-4 right-4 z-50">
-          <div className={`bg-bg-card border border-border shadow-lg rounded-xl px-4 py-3 text-sm text-text-primary ${toastType === 'info' ? 'bg-info-bg border-info text-info' : ''}`}>{toast}</div>
+          <div className={`bg-bg-pageg-card border border-border shadow-lg rounded-xl px-4 py-3 text-sm text-text-primary ${toastType === 'info' ? 'bg-info-bg border-info text-info' : ''}`}>{toast}</div>
         </div>
       )}
 
@@ -68,30 +68,30 @@ const [searchTerm, setSearchTerm] = useState('');
 
       {/* ── KPI Stats ── */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-        <div className="bg-bg-card border border-border rounded-xl p-5 flex flex-col justify-center">
+        <div className="bg-bg-pageg-card border border-border rounded-xl p-5 flex flex-col justify-center">
           <div className="text-[13px] font-medium text-text-secondary mb-1.5">Total Absentees</div>
-          <div className="text-2xl font-bold text-text-primary">{filtered.length}</div>
+          <div className="text-text-primaryxl font-bold text-text-primary">{filtered.length}</div>
           <div className="text-[11px] font-medium text-text-secondary mt-1">above {threshold === 'all' ? '0' : threshold} day threshold</div>
         </div>
-        <div className="bg-bg-card border border-border rounded-xl p-5 flex flex-col justify-center">
+        <div className="bg-bg-pageg-card border border-border rounded-xl p-5 flex flex-col justify-center">
           <div className="text-[13px] font-medium text-text-secondary mb-1.5">Critical (7+ days)</div>
-          <div className="text-2xl font-bold text-danger">{critical.length}</div>
+          <div className="text-text-primaryxl font-bold text-danger">{critical.length}</div>
           <div className="text-[11px] font-medium text-text-secondary mt-1">Immediate action needed</div>
         </div>
-        <div className="bg-bg-card border border-border rounded-xl p-5 flex flex-col justify-center">
+        <div className="bg-bg-pageg-card border border-border rounded-xl p-5 flex flex-col justify-center">
           <div className="text-[13px] font-medium text-text-secondary mb-1.5">Moderate (3–6 days)</div>
-          <div className="text-2xl font-bold text-warning">{moderate.length}</div>
+          <div className="text-text-primaryxl font-bold text-warning">{moderate.length}</div>
           <div className="text-[11px] font-medium text-text-secondary mt-1">Monitoring required</div>
         </div>
-        <div className="bg-bg-card border border-border rounded-xl p-5 flex flex-col justify-center">
+        <div className="bg-bg-pageg-card border border-border rounded-xl p-5 flex flex-col justify-center">
           <div className="text-[13px] font-medium text-text-secondary mb-1.5">Parents Notified</div>
-          <div className="text-2xl font-bold text-success">{filtered.filter(r=>r.notified).length}</div>
+          <div className="text-text-primaryxl font-bold text-success">{filtered.filter(r=>r.notified).length}</div>
           <div className="text-[11px] font-medium text-text-secondary mt-1">of {filtered.length} total</div>
         </div>
       </div>
 
       {/* ── Filters ── */}
-      <div className="bg-bg-card rounded-xl border border-border mb-6 p-4">
+      <div className="bg-bg-pageg-card rounded-xl border border-border mb-6 p-4">
         <div className="flex items-center justify-between">
           <div className="flex gap-6 items-center">
             <div className="flex flex-col">
@@ -134,7 +134,7 @@ const [searchTerm, setSearchTerm] = useState('');
       </div>
 
       {/* ── Table ── */}
-      <div className="bg-bg-card rounded-xl border border-border p-4">
+      <div className="bg-bg-pageg-card rounded-xl border border-border p-4">
         {filtered.length === 0 ? (
           <div className="py-12 flex flex-col items-center justify-center text-center">
             <div className="text-4xl mb-4">🎉</div>
@@ -147,7 +147,7 @@ const [searchTerm, setSearchTerm] = useState('');
           <input 
             type="text" 
             placeholder="Search in table..." 
-            className="px-3 py-2 border border-border rounded-md text-sm bg-bg-input text-text-primary focus:outline-none focus:ring-2 focus:ring-primary w-64"
+            className="px-3 py-2 border border-border rounded-md text-sm bg-bg-pageg-input text-text-primary focus:outline-none focus:ring-2 focus:ring-primary w-64"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
@@ -156,7 +156,7 @@ const [searchTerm, setSearchTerm] = useState('');
           <div className="w-full overflow-x-auto border border-border rounded-xl">
             <TableToolbar search={table.searchTerm} onSearch={table.setSearchTerm} />
       <table className="w-full text-left text-sm whitespace-nowrap">
-              <thead className="bg-bg-elevated border-b border-border">
+              <thead className="bg-bg-pageg-elevated border-b border-border">
                 <tr className="text-text-secondary text-xs uppercase tracking-wider">
                   <th className="px-4 py-3 font-semibold">Student</th>
                   <th className="px-4 py-3 font-semibold">Smart ID</th>
@@ -167,9 +167,9 @@ const [searchTerm, setSearchTerm] = useState('');
                   <th className="px-4 py-3 font-semibold">Actions</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-border bg-bg-card">
+              <tbody className="divide-y divide-border bg-bg-pageg-card">
                 {table.paginatedData.map((row) => (
-                  <tr key={row.id} className={`hover:bg-bg-page transition-colors ${row.daysAbsent >= 7 ? 'bg-danger-bg' : row.daysAbsent >= 3 ? 'bg-warning-bg' : ''}`}>
+                  <tr key={row.id} className={`hover:bg-bg-pageg-page transition-colors ${row.daysAbsent >= 7 ? 'bg-danger-bg' : row.daysAbsent >= 3 ? 'bg-warning-bg' : ''}`}>
                     <td className="px-4 py-4">
                       <div className="flex items-center">
                         <div className="w-8 h-8 rounded-full bg-primary-subtle text-primary flex items-center justify-center text-xs font-bold shrink-0 mr-3">
@@ -179,7 +179,7 @@ const [searchTerm, setSearchTerm] = useState('');
                       </div>
                     </td>
                     <td className="px-4 py-4"><span className="font-mono text-[12px] text-text-primary tracking-tight">{row.smartId}</span></td>
-                    <td className="px-4 py-4"><span className="rounded-full px-2.5 py-0.5 text-[11px] font-semibold bg-bg-elevated text-text-secondary">{row.shift}</span></td>
+                    <td className="px-4 py-4"><span className="rounded-full px-2.5 py-0.5 text-[11px] font-semibold bg-bg-pageg-elevated text-text-secondary">{row.shift}</span></td>
                     <td className="px-4 py-4">
                       <span className={badgeClass(row.daysAbsent)}>{row.daysAbsent} days</span>
                     </td>

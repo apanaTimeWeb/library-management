@@ -45,13 +45,13 @@ export function AdminCrmAddClient({ onClose }: AdminCrmAddClientProps = {}) {
       {/* ── Overlay and Modal Container ── */}
       <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6">
         <div
-          className="absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity"
+          className="absolute inset-0 bg-bg-pagelack/60 backdrop-blur-sm transition-opacity"
           onClick={handleClose}
           aria-label="Close modal"
         />
 
         {/* ── Modal ── */}
-        <div className="relative z-50 w-full max-w-md bg-bg-card border border-border shadow-2xl rounded-xl flex flex-col animate-in zoom-in-95 duration-200 max-h-[90vh] overflow-hidden" role="dialog" aria-label="New Enquiry" aria-modal="true">
+        <div className="relative z-50 w-full max-w-md bg-bg-pageg-card border border-border shadow-2xl rounded-xl flex flex-col animate-in zoom-in-95 duration-200 max-h-[90vh] overflow-hidden" role="dialog" aria-label="New Enquiry" aria-modal="true">
 
           {/* Header */}
           <div className="flex items-center justify-between p-6 border-b border-border bg-muted/20 shrink-0">

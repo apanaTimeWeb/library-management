@@ -46,7 +46,7 @@ export function ManagerDashboardClient() {
       <div className="flex flex-col md:flex-row md:items-center justify-between p-6 gap-4">
         <div>
           <p className="text-xs font-medium text-text-secondary uppercase tracking-wider mb-2">Manager › Dashboard</p>
-          <h1 className="text-2xl font-bold text-text-primary">Manager Dashboard</h1>
+          <h1 className="text-text-primaryxl font-bold text-text-primary">Manager Dashboard</h1>
           <p className="text-sm text-text-secondary mt-1.5">Good morning, Manager — aaj ka quick overview</p>
         </div>
         <div className="flex items-center">
@@ -62,7 +62,7 @@ export function ManagerDashboardClient() {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-6">
         <ManagerDashboardSeatMatrix seatData={data.seatData} />
 
-        <div className="bg-bg-card rounded-xl border border-border p-6 flex flex-col h-full">
+        <div className="bg-bg-pageg-card rounded-xl border border-border p-6 flex flex-col h-full">
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-base font-semibold text-text-primary">My Action Items</h2>
           </div>
@@ -86,16 +86,16 @@ export function ManagerDashboardClient() {
 
       {/* Row 3 — Recent Activity */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-6">
-        <div className="bg-bg-card rounded-xl border border-border p-6 flex flex-col">
+        <div className="bg-bg-pageg-card rounded-xl border border-border p-6 flex flex-col">
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-base font-semibold text-text-primary">Recent New Admissions</h2>
             <Link href={MANAGER_ROUTES.STUDENTS} className="text-sm font-semibold text-primary hover:text-primary-hover transition-colors inline-flex items-center gap-1">View all</Link>
           </div>
 
-          <div className="w-full overflow-y-auto overflow-x-auto bg-bg-card rounded-lg border border-border">
+          <div className="w-full overflow-y-auto overflow-x-auto bg-bg-pageg-card rounded-lg border border-border">
             <TableToolbar search={admissionsTable.searchTerm} onSearch={admissionsTable.setSearchTerm} />
             <table className="w-full text-left text-sm whitespace-nowrap">
-              <thead className="bg-bg-elevated sticky top-0 z-10">
+              <thead className="bg-bg-pageg-elevated sticky top-0 z-10">
                 <tr className="border-b border-border text-text-secondary text-xs uppercase tracking-wider">
                   <th className="px-4 py-3 font-semibold">NAME</th>
                   <th className="px-4 py-3 font-semibold">SMART ID</th>
@@ -109,7 +109,7 @@ export function ManagerDashboardClient() {
                   </tr>
                 ) : (
                   admissionsTable.paginatedData.map((row: any) => (
-                    <tr key={row.id} className="hover:bg-bg-page transition-colors cursor-pointer">
+                    <tr key={row.id} className="hover:bg-bg-pageg-page transition-colors cursor-pointer">
                     <td className="px-4 py-3 text-text-primary font-medium">{row.name}</td>
                     <td className="px-4 py-3"><SmartIdCell value={row.smartId} /></td>
                     <td className="px-4 py-3"><ShiftCell value={row.shift} /></td>
@@ -125,15 +125,15 @@ export function ManagerDashboardClient() {
           </div>
         </div>
 
-        <div className="bg-bg-card rounded-xl border border-border p-6 flex flex-col">
+        <div className="bg-bg-pageg-card rounded-xl border border-border p-6 flex flex-col">
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-base font-semibold text-text-primary">Recent Enquiries</h2>
             <Link href={MANAGER_ROUTES.CRM_ENQUIRIES} className="text-sm font-semibold text-primary hover:text-primary-hover transition-colors inline-flex items-center gap-1">View all</Link>
           </div>
-          <div className="w-full overflow-y-auto overflow-x-auto bg-bg-card rounded-lg border border-border">
+          <div className="w-full overflow-y-auto overflow-x-auto bg-bg-pageg-card rounded-lg border border-border">
             <TableToolbar search={enquiriesTable.searchTerm} onSearch={enquiriesTable.setSearchTerm} />
             <table className="w-full text-left text-sm whitespace-nowrap">
-              <thead className="bg-bg-elevated sticky top-0 z-10">
+              <thead className="bg-bg-pageg-elevated sticky top-0 z-10">
                 <tr className="border-b border-border text-text-secondary text-xs uppercase tracking-wider">
                   <th className="px-4 py-3 font-semibold">NAME</th>
                   <th className="px-4 py-3 font-semibold">PHONE</th>
@@ -148,7 +148,7 @@ export function ManagerDashboardClient() {
                   </tr>
                 ) : (
                   enquiriesTable.paginatedData.map((row: any) => (
-                    <tr key={row.id} className="hover:bg-bg-page transition-colors cursor-pointer">
+                    <tr key={row.id} className="hover:bg-bg-pageg-page transition-colors cursor-pointer">
                     <td className="px-4 py-3 text-text-primary font-medium">{row.name}</td>
                     <td className="px-4 py-3"><PhoneCell value={row.phone} /></td>
                     <td className="px-4 py-3"><StatusCell value={row.status} /></td>
@@ -166,7 +166,7 @@ export function ManagerDashboardClient() {
       </div>
 
       {/* Quick Links */}
-      <div className="bg-bg-card rounded-xl border border-border p-6 mt-6">
+      <div className="bg-bg-pageg-card rounded-xl border border-border p-6 mt-6">
         <div className="flex items-center justify-between mb-4">
           <h2 className="text-base font-semibold text-text-primary">Quick Links</h2>
         </div>

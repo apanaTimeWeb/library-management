@@ -46,7 +46,7 @@ export function AdminBranchesView({ initialBranches }: AdminBranchesViewProps) {
           <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-1">
             Smart Library 360 <span className="opacity-50">›</span> Admin <span className="opacity-50">›</span> Branches
           </p>
-          <h1 className="text-2xl font-bold tracking-tight text-foreground">Branch Management</h1>
+          <h1 className="text-text-primaryxl font-bold tracking-tight text-foreground">Branch Management</h1>
           <p className="text-sm text-muted-foreground mt-1">Manage multiple branches and their managers.</p>
         </div>
         <Button onClick={openAdd} className="gap-2">

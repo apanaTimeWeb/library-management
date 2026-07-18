@@ -62,12 +62,12 @@ export function AdminSystemWhatsappIntegrationClient() {
           ? 'bg-success/10 border-success/25'
           : testStatus === 'error'
           ? 'bg-danger-bg/10 border-danger/20'
-          : 'bg-bg-card border-border'
+          : 'bg-bg-pageg-card border-border'
       }`}>
-        <div className={`h-12 w-12 rounded-xl flex items-center justify-center text-2xl ${
+        <div className={`h-12 w-12 rounded-xl flex items-center justify-center text-text-primaryxl ${
           testStatus === 'success' ? 'bg-success/20' :
           testStatus === 'error' ? 'bg-danger-bg/30' :
-          'bg-bg-card'
+          'bg-bg-pageg-card'
         }`}>
           {testStatus === 'success' ? '✅' : testStatus === 'error' ? '❌' : '📡'}
         </div>
@@ -206,7 +206,7 @@ export function AdminSystemWhatsappIntegrationClient() {
             <div className="space-y-2">
               <Label>Inbound Webhook URL</Label>
               <div className="flex items-center gap-2">
-                <div className="flex-1 px-3 py-2 rounded-lg bg-bg-input border border-border text-xs font-mono text-text-secondary truncate">
+                <div className="flex-1 px-3 py-2 rounded-lg bg-bg-pageg-input border border-border text-xs font-mono text-text-secondary truncate">
                   {webhookUrl}
                 </div>
                 <Button
@@ -256,7 +256,7 @@ export function AdminSystemWhatsappIntegrationClient() {
                 { id: 'trigger-waitlist', label: 'Waitlist Notification', desc: 'When seat becomes available for waitlisted', enabled: true },
                 { id: 'trigger-absentee', label: 'Absentee Alert', desc: 'When student absent for 3+ days', enabled: false },
               ].map(event => (
-                <div key={event.id} className="flex items-center justify-between p-3 rounded-xl bg-bg-card border border-border/50">
+                <div key={event.id} className="flex items-center justify-between p-3 rounded-xl bg-bg-pageg-card border border-border/50">
                   <div>
                     <p className="text-sm font-medium text-text-primary">{event.label}</p>
                     <p className="text-xs text-text-secondary">{event.desc}</p>
@@ -304,11 +304,11 @@ export function AdminSystemWhatsappIntegrationClient() {
                   const cfg = STATUS_CFG[log.status as keyof typeof STATUS_CFG];
                   const Icon = cfg.icon;
                   return (
-                    <tr key={log.id} className="hover:bg-bg-card transition-colors">
+                    <tr key={log.id} className="hover:bg-bg-pageg-card transition-colors">
                       <td className="py-3 pr-4 font-mono text-sm text-text-primary">{log.to}</td>
                       <td className="py-3 pr-4 text-text-primary">{log.type}</td>
                       <td className="py-3 pr-4">
-                        <code className="text-xs text-text-secondary bg-bg-input px-1.5 py-0.5 rounded">
+                        <code className="text-xs text-text-secondary bg-bg-pageg-input px-1.5 py-0.5 rounded">
                           {log.template}
                         </code>
                       </td>

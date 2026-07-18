@@ -36,7 +36,7 @@ export function SuperadminExpensesGrid({ expenses, onDelete }: Props) {
       headerName: 'Category', 
       width: 150,
       cellRenderer: (p: ICellRendererParams<SuperadminExpense>) => (
-        <span className="inline-flex items-center px-2 py-1 rounded-[var(--radius-sm)] text-[10px] font-bold uppercase tracking-wider bg-bg-input text-text-secondary border border-border mt-2">
+        <span className="inline-flex items-center px-2 py-1 rounded-sm text-xs font-bold uppercase tracking-wider bg-bg-pageg-input text-text-secondary border border-border mt-2">
           {p.data?.category}
         </span>
       )
@@ -56,7 +56,7 @@ export function SuperadminExpensesGrid({ expenses, onDelete }: Props) {
       width: 140,
       cellStyle: { textAlign: 'right' },
       cellRenderer: (p: ICellRendererParams<SuperadminExpense>) => (
-        <span className="text-[15px] font-extrabold text-danger tracking-tight">
+        <span className="text-base font-extrabold text-danger tracking-tight">
           ₹{p.data?.amount.toLocaleString()}
         </span>
       )
@@ -66,7 +66,7 @@ export function SuperadminExpensesGrid({ expenses, onDelete }: Props) {
       headerName: 'Mode', 
       width: 120,
       cellRenderer: (p: ICellRendererParams<SuperadminExpense>) => (
-        <span className={`inline-flex items-center px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider mt-2 ${MODE_BADGE[p.data?.mode ?? 'cash']}`}>
+        <span className={`inline-flex items-center px-2.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider mt-2 ${MODE_BADGE[p.data?.mode ?? 'cash']}`}>
           {p.data?.mode}
         </span>
       )
@@ -76,7 +76,7 @@ export function SuperadminExpensesGrid({ expenses, onDelete }: Props) {
       headerName: 'Paid By', 
       width: 140, 
       cellRenderer: (p: ICellRendererParams<SuperadminExpense>) => (
-        <span className="text-[13px] font-bold text-text-secondary">{p.data?.paidBy}</span>
+        <span className="text-sm font-bold text-text-secondary">{p.data?.paidBy}</span>
       )
     },
     {
@@ -88,7 +88,7 @@ export function SuperadminExpensesGrid({ expenses, onDelete }: Props) {
       cellRenderer: (p: ICellRendererParams<SuperadminExpense>) => (
         <div className="h-full flex justify-end items-center pr-2">
           <button 
-            className="w-8 h-8 flex items-center justify-center rounded-[var(--radius-md)] bg-danger-bg text-danger hover:bg-danger hover:text-white transition-colors duration-200" 
+            className="w-8 h-8 flex items-center justify-center rounded-md bg-danger-bg text-danger hover:bg-danger hover:text-white transition-colors duration-200" 
             onClick={() => p.data && onDelete(p.data.id)}
             title="Delete Expense"
           >
@@ -100,7 +100,7 @@ export function SuperadminExpensesGrid({ expenses, onDelete }: Props) {
   ], [onDelete]);
 
   return (
-    <div className="bg-bg-card border border-border rounded-[var(--radius-lg)] overflow-hidden shadow-sm">
+    <div className="bg-bg-pageg-card border border-border rounded-lg overflow-hidden shadow-sm">
       {expenses.length === 0 ? (
         <div className="flex flex-col items-center justify-center py-20 text-center">
           <FileWarning size={48} className="text-text-disabled mb-4 opacity-50" />

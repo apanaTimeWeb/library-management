@@ -32,8 +32,8 @@ export function InvoiceClient() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-[22px] font-bold text-text-primary">Invoices</h1>
-        <p className="text-[12px] text-text-secondary">View and download GST-compliant tax invoices.</p>
+        <h1 className="text-xl font-bold text-text-primary">Invoices</h1>
+        <p className="text-xs text-text-secondary">View and download GST-compliant tax invoices.</p>
       </div>
 
       <div className="grid grid-cols-3 gap-4">
@@ -42,23 +42,23 @@ export function InvoiceClient() {
           { label: 'TOTAL BILLED', value: formatCurrency(totalBilled), success: true },
           { label: 'PENDING / OVERDUE', value: pendingCount, warning: true },
         ].map((k) => (
-          <div key={k.label} className={`bg-card rounded-[var(--radius-lg)] border ${k.warning ? 'border-warning/30 bg-gradient-to-br from-warning/5 to-transparent' : 'border-border'} p-4 relative overflow-hidden group`}>
+          <div key={k.label} className={`bg-card rounded-lg border ${k.warning ? 'border-warning/30 bg-gradient-to-br from-warning/5 to-transparent' : 'border-border'} p-4 relative overflow-hidden group`}>
             <div className="flex items-center justify-between mb-2 relative z-10">
-              <span className={`text-[11px] font-bold uppercase tracking-wider ${k.warning ? 'text-warning' : 'text-text-secondary'}`}>{k.label}</span>
-              <div className={`w-8 h-8 rounded-[var(--radius-md)] flex items-center justify-center transition-transform duration-300 group-hover:scale-110 ${k.warning ? 'bg-warning/10 text-warning' : 'bg-primary/10 text-primary'}`}>
+              <span className={`text-xs font-bold uppercase tracking-wider ${k.warning ? 'text-warning' : 'text-text-secondary'}`}>{k.label}</span>
+              <div className={`w-8 h-8 rounded-md flex items-center justify-center transition-transform duration-300 group-hover:scale-110 ${k.warning ? 'bg-warning/10 text-warning' : 'bg-primary/10 text-primary'}`}>
                 <FileText size={16} />
               </div>
             </div>
-            <p className={`text-[28px] font-black tracking-tight relative z-10 ${k.success ? 'text-success' : k.warning ? 'text-warning' : 'text-text-primary'}`}>{k.value}</p>
+            <p className={`text-3xl font-black tracking-tight relative z-10 ${k.success ? 'text-success' : k.warning ? 'text-warning' : 'text-text-primary'}`}>{k.value}</p>
           </div>
         ))}
       </div>
 
-      <div className="flex items-center gap-3 bg-card p-3 rounded-[var(--radius-lg)] border border-border w-fit">
+      <div className="flex items-center gap-3 bg-card p-3 rounded-lg border border-border w-fit">
         <div className="relative flex-1 min-w-52">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-text-secondary" />
           <input 
-            className="w-full bg-input border border-border rounded-[var(--radius-md)] py-2 pl-9 pr-3 text-[14px] font-medium text-text-primary focus:outline-none focus:border-primary transition-colors" 
+            className="w-full bg-input border border-border rounded-md py-2 pl-9 pr-3 text-sm font-medium text-text-primary focus:outline-none focus:border-primary transition-colors" 
             placeholder="Search invoice no., name or ID..." 
             value={search} 
             onChange={e => setSearch(e.target.value)} 
@@ -78,11 +78,11 @@ export function InvoiceClient() {
         </div>
       </div>
 
-      <div className="bg-card rounded-[var(--radius-lg)] border border-border overflow-x-auto">
+      <div className="bg-card rounded-lg border border-border overflow-x-auto">
         <TableToolbar search={table.searchTerm} onSearch={table.setSearchTerm} />
       <table className="w-full text-left border-collapse">
           <thead>
-            <tr className="bg-primary/5 uppercase text-[12px] font-semibold text-text-secondary border-b border-border">
+            <tr className="bg-primary/5 uppercase text-xs font-semibold text-text-secondary border-b border-border">
               <th className="py-3 px-4">Invoice No.</th>
               <th className="py-3 px-4">Student</th>
               <th className="py-3 px-4">Date</th>
@@ -98,7 +98,7 @@ export function InvoiceClient() {
                 <td colSpan={7}>
                   <div className="flex flex-col items-center justify-center p-8 text-center space-y-3">
                     <div className="text-4xl text-text-secondary"><FileText size={40} /></div>
-                    <p className="text-[16px] text-text-secondary">No invoices found.</p>
+                    <p className="text-base text-text-secondary">No invoices found.</p>
                   </div>
                 </td>
               </tr>
@@ -109,35 +109,35 @@ export function InvoiceClient() {
                 onClick={() => router.push(SUPERADMIN_ROUTES.FINANCE_INVOICE_ID(inv.id))}
               >
                 <td className="py-3 px-4">
-                  <span className="font-mono text-[14px] font-bold text-text-primary">{inv.invoiceNumber}</span>
+                  <span className="font-mono text-sm font-bold text-text-primary">{inv.invoiceNumber}</span>
                 </td>
                 <td className="py-3 px-4">
-                  <div className="font-medium text-[14px] text-text-primary group-hover:text-primary transition-colors">{inv.studentName}</div>
-                  <div className="text-[12px] text-text-secondary">{inv.studentId}</div>
+                  <div className="font-medium text-sm text-text-primary group-hover:text-primary transition-colors">{inv.studentName}</div>
+                  <div className="text-xs text-text-secondary">{inv.studentId}</div>
                 </td>
-                <td className="py-3 px-4 text-[12px] text-text-secondary">{formatDate(inv.invoiceDate)}</td>
-                <td className="py-3 px-4 text-right font-semibold text-[14px] text-text-primary">{formatCurrency(inv.grandTotal)}</td>
+                <td className="py-3 px-4 text-xs text-text-secondary">{formatDate(inv.invoiceDate)}</td>
+                <td className="py-3 px-4 text-right font-semibold text-sm text-text-primary">{formatCurrency(inv.grandTotal)}</td>
                 <td className="py-3 px-4">
                   {inv.paymentMode
-                    ? <span className="bg-input text-text-primary border border-border px-2 py-0.5 rounded-[var(--radius-full)] text-[11px] font-bold border capitalize">{inv.paymentMode}</span>
-                    : <span className="text-[14px] text-text-secondary">—</span>}
+                    ? <span className="bg-input text-text-primary border border-border px-2 py-0.5 rounded-full text-xs font-bold border capitalize">{inv.paymentMode}</span>
+                    : <span className="text-sm text-text-secondary">—</span>}
                 </td>
                 <td className="py-3 px-4">
-                  <span className={`${STATUS_BADGE[inv.paymentStatus] || 'bg-info/10 text-info border-info/20'} px-2 py-0.5 rounded-[var(--radius-full)] text-[11px] font-bold border capitalize`}>
+                  <span className={`${STATUS_BADGE[inv.paymentStatus] || 'bg-info/10 text-info border-info/20'} px-2 py-0.5 rounded-full text-xs font-bold border capitalize`}>
                     {inv.paymentStatus}
                   </span>
                 </td>
                 <td className="py-3 px-4">
                   <div className="flex items-center justify-end gap-2">
                     <button 
-                      className="w-8 h-8 flex items-center justify-center rounded-[var(--radius-md)] bg-input text-text-primary border border-border hover:bg-primary/10 hover:text-primary hover:border-primary/20 transition-colors" 
+                      className="w-8 h-8 flex items-center justify-center rounded-md bg-input text-text-primary border border-border hover:bg-primary/10 hover:text-primary hover:border-primary/20 transition-colors" 
                       onClick={(e) => { e.stopPropagation(); handlePrint(inv); }} 
                       title="Print (Thermal)"
                     >
                       <Printer size={14} />
                     </button>
                     <button 
-                      className="w-8 h-8 flex items-center justify-center rounded-[var(--radius-md)] bg-success/10 text-success border border-success/20 hover:bg-success hover:text-success-foreground transition-colors" 
+                      className="w-8 h-8 flex items-center justify-center rounded-md bg-success/10 text-success border border-success/20 hover:bg-success hover:text-success-foreground transition-colors" 
                       onClick={(e) => { e.stopPropagation(); handleWhatsApp(inv); }} 
                       title="Send WhatsApp"
                     >

@@ -65,7 +65,7 @@ export function ManagerEngagementQrScannerClient() {
       <div className="max-w-md mx-auto">
 
         {/* ── Camera Viewport ── */}
-        <div className="bg-bg-card rounded-xl border border-border p-6 mb-4">
+        <div className="bg-bg-pageg-card rounded-xl border border-border p-6 mb-4">
           <div className="flex items-start justify-between mb-4">
             <div>
               <div className="text-base font-semibold text-text-primary">Camera Feed</div>
@@ -84,7 +84,7 @@ export function ManagerEngagementQrScannerClient() {
           </div>
 
           <div
-            className="aspect-square bg-black rounded-lg relative overflow-hidden flex items-center justify-center cursor-pointer border-2 border-transparent data-[scanning=true]:border-primary"
+            className="aspect-square bg-bg-pagelack rounded-lg relative overflow-hidden flex items-center justify-center cursor-pointer border-2 border-transparent data-[scanning=true]:border-primary"
             data-scanning={scanState === 'scanning' ? 'true' : undefined}
             onClick={scanState === 'scanning' ? simulateScan : undefined}
           >
@@ -92,12 +92,12 @@ export function ManagerEngagementQrScannerClient() {
               {scanState === 'success' ? (
                 <div className="animate-in zoom-in duration-300 flex flex-col items-center">
                   <CheckCircle size={72} className="text-success mb-2 drop-shadow-md"/>
-                  <p className="text-sm font-bold bg-black/60 px-3 py-1.5 rounded-full backdrop-blur-sm">{successMsg}</p>
+                  <p className="text-sm font-bold bg-bg-pagelack/60 px-3 py-1.5 rounded-full backdrop-blur-sm">{successMsg}</p>
                 </div>
               ) : scanState === 'detected' ? (
                 <div className="animate-in zoom-in duration-300 flex flex-col items-center">
                   <div className="text-5xl mb-2 drop-shadow-md">✅</div>
-                  <p className="text-sm font-bold bg-black/60 px-3 py-1.5 rounded-full backdrop-blur-sm">QR Code Detected!</p>
+                  <p className="text-sm font-bold bg-bg-pagelack/60 px-3 py-1.5 rounded-full backdrop-blur-sm">QR Code Detected!</p>
                 </div>
               ) : (
                 <>
@@ -134,19 +134,19 @@ export function ManagerEngagementQrScannerClient() {
 
         {/* ── Detected Student Card ── */}
         {scanState === 'detected' && result && (
-          <div className="bg-bg-card rounded-xl border border-border p-5 mb-4 shadow-lg animate-in slide-in-from-bottom-4 duration-300">
+          <div className="bg-bg-pageg-card rounded-xl border border-border p-5 mb-4 shadow-lg animate-in slide-in-from-bottom-4 duration-300">
             <div className="flex items-start gap-4 mb-5 relative">
               <div className="w-12 h-12 rounded-full bg-primary/10 text-primary flex items-center justify-center text-lg font-bold shrink-0">{result.initials}</div>
               <div className="flex-1 min-w-0 pr-8">
                 <div className="text-base font-bold text-text-primary truncate">{result.name}</div>
                 <div className="flex items-center gap-2 mt-1 mb-1.5 flex-wrap">
-                  <span className="font-mono text-xs font-bold text-text-secondary bg-bg-elevated px-1.5 py-0.5 rounded">{result.smartId}</span>
+                  <span className="font-mono text-xs font-bold text-text-secondary bg-bg-pageg-elevated px-1.5 py-0.5 rounded">{result.smartId}</span>
                   <span className="rounded-full px-2 py-0.5 text-[10px] font-bold bg-primary/10 text-primary">{result.shift}</span>
                   <span className="rounded-full px-2 py-0.5 text-[10px] font-bold bg-success-bg text-success">{result.plan}</span>
                 </div>
                 <div className="text-xs text-text-secondary">Valid till: {result.validTill}</div>
               </div>
-              <button onClick={reset} className="absolute top-0 right-0 w-8 h-8 rounded-lg border border-transparent text-text-secondary inline-flex items-center justify-center hover:bg-black/5 dark:hover:bg-white/10 transition-colors">
+              <button onClick={reset} className="absolute top-0 right-0 w-8 h-8 rounded-lg border border-transparent text-text-secondary inline-flex items-center justify-center hover:bg-bg-pagelack/5 dark:hover:bg-white/10 transition-colors">
                 <X size={15}/>
               </button>
             </div>
@@ -163,7 +163,7 @@ export function ManagerEngagementQrScannerClient() {
 
         {/* ── Recent History ── */}
         {history.length > 0 && (
-          <div className="bg-bg-card rounded-xl border border-border p-6 mb-4">
+          <div className="bg-bg-pageg-card rounded-xl border border-border p-6 mb-4">
             <div className="text-base font-semibold text-text-primary mb-4">Recent Scans</div>
             {history.map(h => (
               <div key={h.id} className="flex items-center gap-3 py-2 border-b border-border last:border-0">
@@ -184,11 +184,11 @@ export function ManagerEngagementQrScannerClient() {
               Can't scan? Enter Smart ID manually →
             </button>
           ) : (
-            <div className="bg-bg-card rounded-xl border border-border p-6 mt-4 text-left animate-in fade-in duration-200">
+            <div className="bg-bg-pageg-card rounded-xl border border-border p-6 mt-4 text-left animate-in fade-in duration-200">
               <div className="text-base font-bold text-text-primary mb-4">Manual Entry</div>
               <div className="flex flex-col mb-4">
                 <label className="block text-[13px] font-medium text-text-secondary mb-1.5">Smart ID <span className="text-danger ml-1">*</span></label>
-                <input className="w-full bg-bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary font-mono uppercase" placeholder="e.g. SL-001"
+                <input className="w-full bg-bg-pageg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary font-mono uppercase" placeholder="e.g. SL-001"
                   value={manualId} onChange={e => setManualId(e.target.value)}
                   onKeyDown={e => e.key === 'Enter' && handleManual('IN')} />
               </div>

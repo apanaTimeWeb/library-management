@@ -21,18 +21,18 @@ export function ManagerSeatsSeatMatrixClient() {
     <div className="p-6 min-h-screen">
       {/* ── Filter bar ── */}
       <div className="flex flex-wrap justify-between items-center gap-4 mb-6">
-        <div className="flex bg-bg-elevated p-1 rounded-lg border border-border">
+        <div className="flex bg-bg-pageg-elevated p-1 rounded-lg border border-border">
           {SHIFT_TABS.map(tab => (
             <button
               key={tab}
               onClick={() => setActiveTab(tab)}
-              className={`px-4 py-2 text-sm font-medium rounded-md transition-colors ${activeTab === tab ? 'bg-bg-card text-text-primary shadow-sm' : 'text-text-secondary hover:text-text-primary'}`}
+              className={`px-4 py-2 text-sm font-medium rounded-md transition-colors ${activeTab === tab ? 'bg-bg-pageg-card text-text-primary shadow-sm' : 'text-text-secondary hover:text-text-primary'}`}
             >
               {tab}
             </button>
           ))}
         </div>
-        <label className="flex items-center gap-2 bg-bg-card border border-border px-3 py-2 rounded-lg cursor-pointer hover:border-primary transition-colors focus-within:ring-2 focus-within:ring-primary focus-within:outline-none">
+        <label className="flex items-center gap-2 bg-bg-pageg-card border border-border px-3 py-2 rounded-lg cursor-pointer hover:border-primary transition-colors focus-within:ring-2 focus-within:ring-primary focus-within:outline-none">
           <CalendarDays size={15} className="text-text-secondary" />
           <input
             type="date"
@@ -44,7 +44,7 @@ export function ManagerSeatsSeatMatrixClient() {
       </div>
 
       {/* ── Legend ── */}
-      <div className="flex flex-wrap gap-6 mb-6 p-4 bg-bg-card border border-border rounded-lg shadow-sm">
+      <div className="flex flex-wrap gap-6 mb-6 p-4 bg-bg-pageg-card border border-border rounded-lg shadow-sm">
         {LEGEND_ITEMS.map(({ cls, label }) => (
           <div key={label} className="flex items-center gap-2">
             <span className={`w-3 h-3 rounded-full ${cls === 'ss-legend-dot--success' ? 'bg-success' : cls === 'ss-legend-dot--danger' ? 'bg-danger' : cls === 'ss-legend-dot--warning' ? 'bg-warning' : 'bg-text-secondary'}`} />
@@ -54,7 +54,7 @@ export function ManagerSeatsSeatMatrixClient() {
       </div>
 
       {/* ── Grid ── */}
-      <div className="bg-bg-card border border-border rounded-xl p-6 shadow-sm">
+      <div className="bg-bg-pageg-card border border-border rounded-xl p-6 shadow-sm">
         <div className="flex flex-col sm:flex-row justify-between sm:items-end mb-6 border-b border-border pb-4 gap-2">
           <h2 className="text-xl font-bold text-text-primary">A-Wing Floor Plan</h2>
           <span className="text-sm text-success font-semibold px-3 py-1 bg-success-bg rounded-full inline-block">{status === 'loading' ? '...' : freeCount} seats free</span>

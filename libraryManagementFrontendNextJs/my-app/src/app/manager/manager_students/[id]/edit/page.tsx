@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Component or Page.
 import { use } from 'react';
 
 export default function Page({ params }: { params: Promise<{ id: string }> }) {

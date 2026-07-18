@@ -127,7 +127,7 @@ export default function AdminCrmEnquiriesClient() {
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b pb-4">
         <div>
           <nav className="text-xs text-muted-foreground font-medium mb-1 tracking-wide">CRM › Enquiries</nav>
-          <h1 className="text-2xl font-bold tracking-tight">Enquiry Pipeline</h1>
+          <h1 className="text-text-primaryxl font-bold tracking-tight">Enquiry Pipeline</h1>
           <p className="text-sm text-muted-foreground mt-1">
             {filtered.length} lead{filtered.length !== 1 ? 's' : ''} • Track every prospect from enquiry to admission
           </p>
@@ -135,14 +135,14 @@ export default function AdminCrmEnquiriesClient() {
         <div className="flex items-center gap-3">
           <div className="flex bg-muted/50 p-1 rounded-md">
             <button
-              className={`p-1.5 rounded-sm transition-colors ${viewParam === 'kanban' ? 'bg-bg-card text-primary shadow-sm' : 'text-muted-foreground hover:text-foreground'}`}
+              className={`p-1.5 rounded-sm transition-colors ${viewParam === 'kanban' ? 'bg-bg-pageg-card text-primary shadow-sm' : 'text-muted-foreground hover:text-foreground'}`}
               onClick={() => pushParams({ view: 'kanban' })}
               title="Kanban view"
             >
               <LayoutGrid size={16} />
             </button>
             <button
-              className={`p-1.5 rounded-sm transition-colors ${viewParam === 'table' ? 'bg-bg-card text-primary shadow-sm' : 'text-muted-foreground hover:text-foreground'}`}
+              className={`p-1.5 rounded-sm transition-colors ${viewParam === 'table' ? 'bg-bg-pageg-card text-primary shadow-sm' : 'text-muted-foreground hover:text-foreground'}`}
               onClick={() => pushParams({ view: 'table' })}
               title="Table view"
             >
@@ -167,7 +167,7 @@ export default function AdminCrmEnquiriesClient() {
           />
         </div>
         <select
-          className="flex h-10 w-full max-w-52 items-center justify-between rounded-md border border-border bg-bg-input px-3 py-2 text-sm ring-offset-bg-page placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:ring-offset-2"
+          className="flex h-10 w-full max-w-52 items-center justify-between rounded-md border border-border bg-bg-pageg-input px-3 py-2 text-sm ring-offset-bg-page placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:ring-offset-2"
           value={statusParam}
           onChange={(e) => pushParams({ status: e.target.value })}
         >

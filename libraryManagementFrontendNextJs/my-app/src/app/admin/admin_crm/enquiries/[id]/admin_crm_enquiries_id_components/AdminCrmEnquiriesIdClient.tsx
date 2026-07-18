@@ -321,12 +321,12 @@ export function AdminCrmEnquiriesIdClient({ params }: { params: Promise<{ id: st
             <Card className="shadow-sm border-border">
               <CardContent className="p-6">
                 <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6 mb-8">
-                  <div className="h-16 w-16 rounded-full bg-primary/10 text-primary flex items-center justify-center font-bold text-2xl shrink-0">
+                  <div className="h-16 w-16 rounded-full bg-primary/10 text-primary flex items-center justify-center font-bold text-text-primaryxl shrink-0">
                     {getInitials(enquiry.name)}
                   </div>
                   <div className="flex-1">
                     <div className="flex flex-wrap items-center gap-3 mb-1">
-                      <h1 className="text-2xl font-bold tracking-tight">{enquiry.name}</h1>
+                      <h1 className="text-text-primaryxl font-bold tracking-tight">{enquiry.name}</h1>
                       <Badge variant="secondary" className={`${getBadgeClass(enquiry.status)} border-none uppercase tracking-wider px-2 py-0.5`}>
                         {enquiry.status}
                       </Badge>
@@ -367,7 +367,7 @@ export function AdminCrmEnquiriesIdClient({ params }: { params: Promise<{ id: st
                             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-2">
                               <p className="text-sm font-bold text-foreground flex items-center gap-2">
                                 {fu.date}
-                                <span className="text-xs font-mono font-normal text-muted-foreground bg-bg-card px-1.5 py-0.5 rounded-md border border-border">{fu.time}</span>
+                                <span className="text-xs font-mono font-normal text-muted-foreground bg-bg-pageg-card px-1.5 py-0.5 rounded-md border border-border">{fu.time}</span>
                               </p>
                               <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">by {fu.by}</p>
                             </div>
@@ -394,7 +394,7 @@ export function AdminCrmEnquiriesIdClient({ params }: { params: Promise<{ id: st
               <CardContent className="p-4">
                 <div className="flex gap-2">
                   <select
-                    className="flex h-10 w-full items-center justify-between rounded-md border border-border bg-bg-input px-3 py-2 text-sm ring-offset-bg-page focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:ring-offset-2 flex-1 font-semibold"
+                    className="flex h-10 w-full items-center justify-between rounded-md border border-border bg-bg-pageg-input px-3 py-2 text-sm ring-offset-bg-page focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:ring-offset-2 flex-1 font-semibold"
                     value={currentStatus}
                     onChange={(e) => setCurrentStatus(e.target.value as EnquiryStatus)}
                   >
@@ -454,7 +454,7 @@ export function AdminCrmEnquiriesIdClient({ params }: { params: Promise<{ id: st
 
                 {(enquiry.isToday || enquiry.isUpcoming || enquiry.isOverdue) && (
                   <>
-                    <div className="h-px bg-border my-5" />
+                    <div className="h-px bg-bg-pageorder my-5" />
                     <div className="flex items-center justify-between p-3 bg-muted/30 rounded-lg border border-border">
                       <div className="flex items-center gap-2 text-sm text-foreground font-medium">
                         <CalendarDays size={14} className="text-muted-foreground" />

@@ -42,7 +42,7 @@ export function AdminAccountingDailySettlementClient() {
     <div className="h-full flex flex-col pb-10 space-y-6">
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b pb-4">
         <div>
-          <h1 className="text-2xl font-bold tracking-tight">Daily Settlement</h1>
+          <h1 className="text-text-primaryxl font-bold tracking-tight">Daily Settlement</h1>
           <p className="text-sm text-muted-foreground mt-1">Review shift collections and expenses.</p>
         </div>
         <div className="flex items-center gap-2">
@@ -59,15 +59,15 @@ export function AdminAccountingDailySettlementClient() {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
         <Card className="p-5 shadow-none border-border">
           <p className="text-xs font-bold uppercase tracking-wider text-muted-foreground mb-1">Total Cash</p>
-          <p className="text-2xl font-extrabold text-foreground">₹{totalCash.toLocaleString()}</p>
+          <p className="text-text-primaryxl font-extrabold text-foreground">₹{totalCash.toLocaleString()}</p>
         </Card>
         <Card className="p-5 shadow-none border-border">
           <p className="text-xs font-bold uppercase tracking-wider text-muted-foreground mb-1">Total UPI</p>
-          <p className="text-2xl font-extrabold text-info">₹{totalUpi.toLocaleString()}</p>
+          <p className="text-text-primaryxl font-extrabold text-info">₹{totalUpi.toLocaleString()}</p>
         </Card>
         <Card className="p-5 shadow-none border-border">
           <p className="text-xs font-bold uppercase tracking-wider text-muted-foreground mb-1">Total Expenses</p>
-          <p className="text-2xl font-extrabold text-danger">₹{totalExp.toLocaleString()}</p>
+          <p className="text-text-primaryxl font-extrabold text-danger">₹{totalExp.toLocaleString()}</p>
         </Card>
       </div>
 

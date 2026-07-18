@@ -34,7 +34,7 @@ export function ManagerStudentsIdCardClient() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         {/* LEFT — selector */}
         <div>
-          <div className="bg-bg-card rounded-xl border border-border p-6">
+          <div className="bg-bg-pageg-card rounded-xl border border-border p-6">
             <div className="flex items-center justify-between mb-4">
               <h2 className="text-base font-semibold text-text-primary">
                 <IdCard size={16} className="inline mr-[6px] align-middle" />
@@ -47,10 +47,10 @@ export function ManagerStudentsIdCardClient() {
               )}
             </div>
             <div className="">
-              <div className="w-full bg-bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent-icon-wrap mb-[14px]">
-                <Search size={14} className="w-full bg-bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent-icon" />
+              <div className="w-full bg-bg-pageg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent-icon-wrap mb-[14px]">
+                <Search size={14} className="w-full bg-bg-pageg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent-icon" />
                 <input
-                  className="w-full bg-bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent w-full bg-bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent-with-icon"
+                  className="w-full bg-bg-pageg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent w-full bg-bg-pageg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent-with-icon"
                   placeholder="Search name, Smart ID, phone…"
                   value={search}
                   onChange={e => setSearch(e.target.value)}
@@ -69,7 +69,7 @@ export function ManagerStudentsIdCardClient() {
                     <button
                       key={s.smartId}
                       onClick={() => setSelectedId(s.smartId)}
-                      className={`w-full flex items-center gap-3 p-3 rounded-lg border border-transparent hover:bg-black/5 dark:hover:bg-white/5 transition-colors text-left ${s.smartId === selectedId ? 'bg-primary-subtle border-primary/20' : ''}`}
+                      className={`w-full flex items-center gap-3 p-3 rounded-lg border border-transparent hover:bg-bg-pagelack/5 dark:hover:bg-white/5 transition-colors text-left ${s.smartId === selectedId ? 'bg-primary-subtle border-primary/20' : ''}`}
                     >
                       <div className="w-8 h-8 rounded-full bg-primary/10 text-primary flex items-center justify-center text-xs font-bold shrink-0">{initials}</div>
                       <div className="flex-1 min-w-0">
@@ -89,7 +89,7 @@ export function ManagerStudentsIdCardClient() {
           </div>
 
           {selected && cardData && (
-            <div className="bg-bg-card rounded-xl border border-border p-6 mt-6">
+            <div className="bg-bg-pageg-card rounded-xl border border-border p-6 mt-6">
               <div className="flex items-center justify-between mb-4">
                 <h2 className="text-base font-semibold text-text-primary">Actions</h2>
               </div>
@@ -112,7 +112,7 @@ export function ManagerStudentsIdCardClient() {
         </div>
 
         {/* RIGHT — preview */}
-        <div className="flex flex-col items-center justify-center bg-bg-page border border-dashed border-border rounded-xl p-8 sticky top-24">
+        <div className="flex flex-col items-center justify-center bg-bg-pageg-page border border-dashed border-border rounded-xl p-8 sticky top-24">
           {cardData ? (
             <>
               <p className="text-[11px] font-bold uppercase tracking-wider text-text-secondary mb-6">
@@ -124,7 +124,7 @@ export function ManagerStudentsIdCardClient() {
               </p>
             </>
           ) : (
-            <div className="bg-bg-card rounded-xl border border-border p-6 w-full max-w-sm">
+            <div className="bg-bg-pageg-card rounded-xl border border-border p-6 w-full max-w-sm">
               <div className="flex flex-col items-center justify-center p-12 text-center h-full min-h-48">
                 <div className="text-4xl mb-4 opacity-50">🪪</div>
                 <p className="text-lg font-bold text-text-primary mb-1">No student selected</p>

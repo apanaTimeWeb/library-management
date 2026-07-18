@@ -7,28 +7,28 @@ import type { SuperadminFinancialReportsKpiCardsProps as Props } from '@/app/sup
 export function SuperadminFinancialReportsKpiCards({ totalIncome, totalExpense, netProfit }: Props) {
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-      <div className="bg-success-bg border border-success/20 rounded-[var(--radius-lg)] p-5 shadow-sm">
+      <div className="bg-success-bg border border-success/20 rounded-lg p-5 shadow-sm">
         <div className="flex items-center justify-between mb-2">
-          <p className="text-[11px] font-bold text-success uppercase tracking-wider">Total Income</p>
+          <p className="text-xs font-bold text-success uppercase tracking-wider">Total Income</p>
           <TrendingUp size={16} className="text-success" />
         </div>
-        <p className="text-2xl font-extrabold text-success tracking-tight">₹{totalIncome.toLocaleString()}</p>
+        <p className="text-text-primaryxl font-extrabold text-success tracking-tight">₹{totalIncome.toLocaleString()}</p>
       </div>
       
-      <div className="bg-danger-bg border border-danger/20 rounded-[var(--radius-lg)] p-5 shadow-sm">
+      <div className="bg-danger-bg border border-danger/20 rounded-lg p-5 shadow-sm">
         <div className="flex items-center justify-between mb-2">
-          <p className="text-[11px] font-bold text-danger uppercase tracking-wider">Total Expenses</p>
+          <p className="text-xs font-bold text-danger uppercase tracking-wider">Total Expenses</p>
           <TrendingDown size={16} className="text-danger" />
         </div>
-        <p className="text-2xl font-extrabold text-danger tracking-tight">₹{totalExpense.toLocaleString()}</p>
+        <p className="text-text-primaryxl font-extrabold text-danger tracking-tight">₹{totalExpense.toLocaleString()}</p>
       </div>
 
-      <div className="bg-bg-card border border-border rounded-[var(--radius-lg)] p-5 shadow-sm">
+      <div className="bg-bg-pageg-card border border-border rounded-lg p-5 shadow-sm">
         <div className="flex items-center justify-between mb-2">
-          <p className="text-[11px] font-bold text-text-disabled uppercase tracking-wider">Net Profit</p>
+          <p className="text-xs font-bold text-text-disabled uppercase tracking-wider">Net Profit</p>
           <BarChart2 size={16} className="text-text-disabled" />
         </div>
-        <p className={`text-2xl font-extrabold tracking-tight ${netProfit >= 0 ? 'text-success' : 'text-danger'}`}>
+        <p className={`text-text-primaryxl font-extrabold tracking-tight ${netProfit >= 0 ? 'text-success' : 'text-danger'}`}>
           ₹{netProfit.toLocaleString()}
         </p>
       </div>

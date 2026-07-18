@@ -40,11 +40,11 @@ const [searchTerm, setSearchTerm] = useState('');
         </div>
       </div>
 
-      <div className="bg-bg-card rounded-xl border border-border p-6">
+      <div className="bg-bg-pageg-card rounded-xl border border-border p-6">
         <div className="flex items-center justify-between mb-4">
-          <div className="w-full bg-bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent-icon-wrap max-w-[320px]">
-            <Search size={14} className="w-full bg-bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent-icon" />
-            <input type="text" placeholder="Search alumni by name or exam…" className="w-full bg-bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent w-full bg-bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent-with-icon" />
+          <div className="w-full bg-bg-pageg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent-icon-wrap max-w-[320px]">
+            <Search size={14} className="w-full bg-bg-pageg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent-icon" />
+            <input type="text" placeholder="Search alumni by name or exam…" className="w-full bg-bg-pageg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent w-full bg-bg-pageg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent-with-icon" />
           </div>
           <button className="bg-transparent border border-border text-text-primary rounded-lg px-5 py-2.5 text-sm font-medium hover:bg-primary-subtle hover:border-primary transition-colors inline-flex items-center gap-2"><Filter size={14} /> Filters</button>
         </div>
@@ -53,7 +53,7 @@ const [searchTerm, setSearchTerm] = useState('');
           <input 
             type="text" 
             placeholder="Search in table..." 
-            className="px-3 py-2 border border-border rounded-md text-sm bg-bg-input text-text-primary focus:outline-none focus:ring-2 focus:ring-primary w-64"
+            className="px-3 py-2 border border-border rounded-md text-sm bg-bg-pageg-input text-text-primary focus:outline-none focus:ring-2 focus:ring-primary w-64"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
@@ -62,7 +62,7 @@ const [searchTerm, setSearchTerm] = useState('');
         <div className="w-full overflow-x-auto border-t border-border mt-4">
             <TableToolbar search={table.searchTerm} onSearch={table.setSearchTerm} />
       <table className="w-full text-left text-sm whitespace-nowrap">
-              <thead className="bg-bg-elevated border-b border-border">
+              <thead className="bg-bg-pageg-elevated border-b border-border">
                 <tr className="text-text-secondary text-xs uppercase tracking-wider">
                   <th className="px-4 py-3 font-semibold">ID</th>
                   <th className="px-4 py-3 font-semibold">Alumni Name</th>
@@ -82,7 +82,7 @@ const [searchTerm, setSearchTerm] = useState('');
                   table.paginatedData.map((row) => {
                     const isSelected = row.currentStatus?.includes('Selected');
                     return (
-                      <tr key={row.id} className="hover:bg-bg-page transition-colors cursor-pointer group">
+                      <tr key={row.id} className="hover:bg-bg-pageg-page transition-colors cursor-pointer group">
                         <td className="px-4 py-4 font-medium text-text-primary">{row.id}</td>
                         <td className="px-4 py-4">
                           <div className="flex items-center gap-3">

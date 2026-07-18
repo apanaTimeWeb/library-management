@@ -75,8 +75,8 @@ export function SuperadminLibrariesClient() {
       <div className="p-8">
         <SuperadminLibrariesHeader />
         <div className="animate-pulse space-y-4">
-          <div className="h-16 bg-bg-card rounded-[var(--radius-lg)] border border-border" />
-          <div className="h-64 bg-bg-card rounded-[var(--radius-lg)] border border-border" />
+          <div className="h-16 bg-bg-pageg-card rounded-lg border border-border" />
+          <div className="h-64 bg-bg-pageg-card rounded-lg border border-border" />
         </div>
       </div>
     );
@@ -86,7 +86,7 @@ export function SuperadminLibrariesClient() {
     <div className="relative">
       {/* Toast Notification */}
       {toast && (
-        <div className="fixed top-24 right-8 z-50 bg-bg-card border border-border shadow-xl rounded-[var(--radius-md)] px-4 py-3 flex items-center gap-3 animate-in fade-in duration-300">
+        <div className="fixed top-24 right-8 z-50 bg-bg-pageg-card border border-border shadow-xl rounded-md px-4 py-3 flex items-center gap-3 animate-in fade-in duration-300">
           <div className="w-8 h-8 rounded-full bg-success-bg flex items-center justify-center text-success"><CheckCircle size={16} /></div>
           <span className="text-sm font-semibold text-text-primary">{toast}</span>
         </div>

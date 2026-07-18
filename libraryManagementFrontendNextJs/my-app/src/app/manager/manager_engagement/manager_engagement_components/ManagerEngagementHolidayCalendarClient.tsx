@@ -72,26 +72,26 @@ export function ManagerEngagementHolidayCalendarClient() {
       {/* ── Toast ── */}
       {toast && (
         <div className="fixed bottom-4 right-4 z-50">
-          <div className="bg-bg-card border border-border shadow-lg rounded-xl px-4 py-3 text-sm text-text-primary">{toast}</div>
+          <div className="bg-bg-pageg-card border border-border shadow-lg rounded-xl px-4 py-3 text-sm text-text-primary">{toast}</div>
         </div>
       )}
 
       {/* ── Add Holiday Modal ── */}
       {showAdd && (
-        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 overflow-y-auto">
-          <div className="bg-bg-page w-full rounded-2xl shadow-2xl flex flex-col p-6 max-w-sm relative">
-            <button onClick={()=>setShowAdd(false)} className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-black/5 dark:hover:bg-white/10 text-text-secondary transition-colors absolute top-4 right-4"><X size={16}/></button>
+        <div className="fixed inset-0 bg-bg-pagelack/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 overflow-y-auto">
+          <div className="bg-bg-pageg-page w-full rounded-2xl shadow-2xl flex flex-col p-6 max-w-sm relative">
+            <button onClick={()=>setShowAdd(false)} className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-bg-pagelack/5 dark:hover:bg-white/10 text-text-secondary transition-colors absolute top-4 right-4"><X size={16}/></button>
             <p className="text-lg font-bold text-text-primary">📅 Add Holiday</p>
             <p className="text-sm text-text-secondary mt-1 mb-6">Mark a library closure or holiday in the calendar.</p>
 
             <div className="flex flex-col mb-4">
               <label className="block text-[13px] font-medium text-text-secondary mb-1.5">Date <span className="text-danger ml-1">*</span></label>
-              <input type="date" className="w-full bg-bg-input border border-border rounded-lg px-3.5 py-2 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary" value={form.date}
+              <input type="date" className="w-full bg-bg-pageg-input border border-border rounded-lg px-3.5 py-2 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary" value={form.date}
                 onChange={e => setForm(f=>({...f, date:e.target.value}))} />
             </div>
             <div className="flex flex-col mb-4">
               <label className="block text-[13px] font-medium text-text-secondary mb-1.5">Event Name <span className="text-danger ml-1">*</span></label>
-              <input className="w-full bg-bg-input border border-border rounded-lg px-3.5 py-2 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary" placeholder="e.g. Diwali" value={form.name}
+              <input className="w-full bg-bg-pageg-input border border-border rounded-lg px-3.5 py-2 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary" placeholder="e.g. Diwali" value={form.name}
                 onChange={e => setForm(f=>({...f, name:e.target.value}))} />
             </div>
             <div className="flex flex-col mb-4">
@@ -142,24 +142,24 @@ export function ManagerEngagementHolidayCalendarClient() {
 
       {/* ── Stats ── */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-        <div className="bg-bg-card border border-border rounded-xl p-5 flex flex-col justify-center">
+        <div className="bg-bg-pageg-card border border-border rounded-xl p-5 flex flex-col justify-center">
           <div className="text-[13px] font-medium text-text-secondary mb-1.5">Total Holidays</div>
-          <div className="text-2xl font-bold text-text-primary">{holidays.length}</div>
+          <div className="text-text-primaryxl font-bold text-text-primary">{holidays.length}</div>
           <div className="text-[11px] font-medium text-text-secondary mt-1">This year</div>
         </div>
-        <div className="bg-bg-card border border-border rounded-xl p-5 flex flex-col justify-center">
+        <div className="bg-bg-pageg-card border border-border rounded-xl p-5 flex flex-col justify-center">
           <div className="text-[13px] font-medium text-text-secondary mb-1.5">This Month</div>
-          <div className="text-2xl font-bold text-text-primary">{thisMonthHolidays.length}</div>
+          <div className="text-text-primaryxl font-bold text-text-primary">{thisMonthHolidays.length}</div>
           <div className="text-[11px] font-medium text-text-secondary mt-1">{monthLabel}</div>
         </div>
-        <div className="bg-bg-card border border-border rounded-xl p-5 flex flex-col justify-center">
+        <div className="bg-bg-pageg-card border border-border rounded-xl p-5 flex flex-col justify-center">
           <div className="text-[13px] font-medium text-text-secondary mb-1.5">National</div>
-          <div className="text-2xl font-bold text-text-primary">{holidays.filter(h=>h.type==='National').length}</div>
+          <div className="text-text-primaryxl font-bold text-text-primary">{holidays.filter(h=>h.type==='National').length}</div>
           <div className="text-[11px] font-medium text-text-secondary mt-1">National holidays</div>
         </div>
-        <div className="bg-bg-card border border-border rounded-xl p-5 flex flex-col justify-center">
+        <div className="bg-bg-pageg-card border border-border rounded-xl p-5 flex flex-col justify-center">
           <div className="text-[13px] font-medium text-text-secondary mb-1.5">Religious</div>
-          <div className="text-2xl font-bold text-text-primary">{holidays.filter(h=>h.type==='Religious').length}</div>
+          <div className="text-text-primaryxl font-bold text-text-primary">{holidays.filter(h=>h.type==='Religious').length}</div>
           <div className="text-[11px] font-medium text-text-secondary mt-1">Religious observances</div>
         </div>
       </div>
@@ -169,7 +169,7 @@ export function ManagerEngagementHolidayCalendarClient() {
 
         {/* Left: Calendar Grid */}
         <div className="lg:col-span-2">
-          <div className="bg-bg-card border border-border rounded-xl p-6">
+          <div className="bg-bg-pageg-card border border-border rounded-xl p-6">
             {/* Month navigation */}
             <div className="flex items-center justify-between mb-6">
               <button onClick={prevMonth} className="w-8 h-8 rounded-lg border border-border text-text-secondary inline-flex items-center justify-center hover:bg-primary-subtle hover:text-primary transition-colors">
@@ -198,7 +198,7 @@ export function ManagerEngagementHolidayCalendarClient() {
                 return (
                   <div key={i}
                     className={[
-                      'aspect-square rounded-lg flex items-center justify-center text-sm font-semibold transition-all border border-border/50 cursor-default hover:bg-bg-elevated',
+                      'aspect-square rounded-lg flex items-center justify-center text-sm font-semibold transition-all border border-border/50 cursor-default hover:bg-bg-pageg-elevated',
                       isToday  ? 'border-primary bg-primary-subtle text-primary ring-1 ring-primary/20'   : '',
                       hol      ? 'bg-danger/10 text-danger border-danger/20 shadow-inner' : '',
                     ].filter(Boolean).join(' ')}
@@ -226,7 +226,7 @@ export function ManagerEngagementHolidayCalendarClient() {
 
         {/* Right: Holiday List */}
         <div className="flex flex-col gap-6">
-          <div className="bg-bg-card border border-border rounded-xl p-6">
+          <div className="bg-bg-pageg-card border border-border rounded-xl p-6">
             <div className="flex items-center justify-between mb-4">
               <div>
                 <div className="text-base font-semibold text-text-primary">
@@ -246,12 +246,12 @@ export function ManagerEngagementHolidayCalendarClient() {
             ) : (
               <div className="flex flex-col gap-3 max-h-72 overflow-y-auto pr-2">
                 {thisMonthHolidays.map(h => (
-                  <div key={h.id} className="flex items-center justify-between p-3 rounded-lg border border-border hover:bg-bg-elevated transition-colors">
+                  <div key={h.id} className="flex items-center justify-between p-3 rounded-lg border border-border hover:bg-bg-pageg-elevated transition-colors">
                     <div>
                       <div className="text-sm font-bold text-text-primary mb-1">{h.name}</div>
                       <div className="flex items-center gap-2">
                         <div className="text-xs text-text-secondary">{h.date}</div>
-                        <span className={`rounded-full px-2 py-0.5 text-[10px] font-bold ${TYPE_BADGE[h.type]||'bg-bg-elevated text-text-secondary'}`}>
+                        <span className={`rounded-full px-2 py-0.5 text-[10px] font-bold ${TYPE_BADGE[h.type]||'bg-bg-pageg-elevated text-text-secondary'}`}>
                           {h.type}
                         </span>
                       </div>
@@ -268,7 +268,7 @@ export function ManagerEngagementHolidayCalendarClient() {
             {/* All holidays summary */}
             {holidays.length > 0 && (
               <>
-                <div className="h-[1px] w-full bg-border my-4" />
+                <div className="h-px w-full bg-bg-pageorder my-4" />
                 <div className="text-sm font-bold text-text-primary uppercase tracking-wider mb-4">
                   All Holidays ({holidays.length})
                 </div>
@@ -276,7 +276,7 @@ export function ManagerEngagementHolidayCalendarClient() {
                   {holidays
                     .sort((a,b)=>a.date.localeCompare(b.date))
                     .map(h => (
-                    <div key={h.id} className="flex items-center justify-between p-3 rounded-lg border border-border hover:bg-bg-elevated transition-colors">
+                    <div key={h.id} className="flex items-center justify-between p-3 rounded-lg border border-border hover:bg-bg-pageg-elevated transition-colors">
                       <div>
                         <div className="text-[13px] font-bold text-text-primary mb-1">{h.name}</div>
                         <div className="text-xs text-text-secondary">{h.date}</div>

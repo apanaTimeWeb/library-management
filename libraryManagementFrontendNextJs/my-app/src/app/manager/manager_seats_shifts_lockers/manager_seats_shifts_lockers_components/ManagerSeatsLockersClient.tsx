@@ -143,7 +143,7 @@ const [searchTerm, setSearchTerm] = useState('');
           <input 
             type="text" 
             placeholder="Search in table..." 
-            className="px-3 py-2 border border-border rounded-md text-sm bg-bg-input text-text-primary focus:outline-none focus:ring-2 focus:ring-primary w-64"
+            className="px-3 py-2 border border-border rounded-md text-sm bg-bg-pageg-input text-text-primary focus:outline-none focus:ring-2 focus:ring-primary w-64"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
@@ -152,7 +152,7 @@ const [searchTerm, setSearchTerm] = useState('');
           <div className="w-full overflow-x-auto border border-border rounded-xl">
             <TableToolbar search={table.searchTerm} onSearch={table.setSearchTerm} />
       <table className="w-full text-left text-sm whitespace-nowrap">
-              <thead className="bg-bg-elevated border-b border-border">
+              <thead className="bg-bg-pageg-elevated border-b border-border">
                 <tr className="text-text-secondary text-xs uppercase tracking-wider">
                   <th className="px-4 py-3 font-semibold">LOCKER #</th>
                   <th className="px-4 py-3 font-semibold">STATUS</th>
@@ -161,9 +161,9 @@ const [searchTerm, setSearchTerm] = useState('');
                   <th className="px-4 py-3 font-semibold text-right">ACTIONS</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-border bg-bg-card">
+              <tbody className="divide-y divide-border bg-bg-pageg-card">
                 {table.paginatedData.map((row) => (
-                  <tr key={row.id} className="hover:bg-bg-page transition-colors">
+                  <tr key={row.id} className="hover:bg-bg-pageg-page transition-colors">
                     <td className="px-4 py-4"><span className="ss-table__seat-no">{row.number}</span></td>
     // @ts-ignore
                     <td className="px-4 py-4"><div value={row.status} /></td>

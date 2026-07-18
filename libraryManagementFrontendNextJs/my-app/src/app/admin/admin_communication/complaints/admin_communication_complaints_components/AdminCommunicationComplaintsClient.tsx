@@ -98,7 +98,7 @@ export function AdminCommunicationComplaintsClient() {
           <p className="text-xs font-semibold text-muted-foreground flex items-center gap-1 uppercase tracking-wider mb-1">
             Communication <ChevronRight size={12} /> Complaints
           </p>
-          <h1 className="text-2xl font-bold tracking-tight">💬 Complaints</h1>
+          <h1 className="text-text-primaryxl font-bold tracking-tight">💬 Complaints</h1>
           <p className="text-sm text-muted-foreground mt-1">Track and resolve student complaints.</p>
         </div>
         <Button onClick={() => setShowAdd(true)} className="gap-2">
@@ -114,7 +114,7 @@ export function AdminCommunicationComplaintsClient() {
             variant={tab === t ? 'secondary' : 'ghost'}
             size="sm"
             onClick={() => setTab(t as CStatus | 'All')}
-            className={`text-sm font-semibold capitalize ${tab === t ? 'bg-bg-card shadow-sm' : ''}`}
+            className={`text-sm font-semibold capitalize ${tab === t ? 'bg-bg-pageg-card shadow-sm' : ''}`}
           >
             {t}
           </Button>

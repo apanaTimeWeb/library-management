@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Component or Page.
 import React from 'react';
 import { SuperadminAssetMaintenanceClient } from '@/app/superadmin/superadmin_accounting/asset-maintenance/SuperadminAssetMaintenanceClient';
 

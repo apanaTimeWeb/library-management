@@ -13,7 +13,7 @@ export function KpiCard({ title, value, subtitle, icon, trend, trendLabel, class
     <div className={cn('sys-kpi-card', className)}>
       <div className="flex items-center justify-between">
         <span className="sys-kpi-card__label">{title}</span>
-        {icon && <span className="text-2xl">{icon}</span>}
+        {icon && <span className="text-text-primaryxl">{icon}</span>}
       </div>
       <div className="sys-kpi-card__value">{value}</div>
       {(subtitle || trend) && (

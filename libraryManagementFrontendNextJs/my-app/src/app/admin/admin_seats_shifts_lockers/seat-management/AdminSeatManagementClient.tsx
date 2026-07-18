@@ -56,7 +56,7 @@ export function AdminSeatManagementClient({ initialSeats }: SeatManagementClient
       {/* page Header */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b pb-4">
         <div>
-          <h1 className="text-2xl font-bold tracking-tight">Seats</h1>
+          <h1 className="text-text-primaryxl font-bold tracking-tight">Seats</h1>
           <p className="text-sm text-muted-foreground mt-1">Manage all library seats</p>
         </div>
         <div className="flex items-center gap-3">
@@ -78,7 +78,7 @@ export function AdminSeatManagementClient({ initialSeats }: SeatManagementClient
           />
         </div>
         <select 
-          className="flex h-10 w-full max-w-52 items-center justify-between rounded-md border border-border bg-bg-input px-3 py-2 text-sm ring-offset-bg-page placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:ring-offset-2"
+          className="flex h-10 w-full max-w-52 items-center justify-between rounded-md border border-border bg-bg-pageg-input px-3 py-2 text-sm ring-offset-bg-page placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:ring-offset-2"
           value={statusFilter} 
           onChange={e => setStatusFilter(e.target.value)}
         >
@@ -206,7 +206,7 @@ export function AdminSeatManagementClient({ initialSeats }: SeatManagementClient
 
       {/* Add / Edit Modal */}
       {showModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm" onClick={() => setShowModal(false)}>
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-bg-pagelack/60 backdrop-blur-sm" onClick={() => setShowModal(false)}>
           <Card className="w-full max-w-sm shadow-lg border-border bg-card p-6 flex flex-col gap-6" onClick={e => e.stopPropagation()}>
             <div className="flex items-center justify-between">
               <h2 className="text-xl font-bold tracking-tight flex items-center gap-2">
@@ -241,7 +241,7 @@ export function AdminSeatManagementClient({ initialSeats }: SeatManagementClient
               <div className="space-y-2">
                 <label className="text-sm font-medium">Status</label>
                 <select 
-                  className="flex h-10 w-full items-center justify-between rounded-md border border-border bg-bg-input px-3 py-2 text-sm ring-offset-bg-page placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:ring-offset-2"
+                  className="flex h-10 w-full items-center justify-between rounded-md border border-border bg-bg-pageg-input px-3 py-2 text-sm ring-offset-bg-page placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:ring-offset-2"
                   value={form.status} 
                   onChange={e => setForm(p => ({ ...p, status: e.target.value as SeatStatus }))}
                 >
@@ -262,7 +262,7 @@ export function AdminSeatManagementClient({ initialSeats }: SeatManagementClient
 
       {/* Mark Broken Confirm */}
       {confirmBroken && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm" onClick={() => setConfirmBroken(null)}>
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-bg-pagelack/60 backdrop-blur-sm" onClick={() => setConfirmBroken(null)}>
           <Card className="w-full max-w-sm shadow-lg border-warning/20 bg-card p-6 flex flex-col gap-4" onClick={e => e.stopPropagation()}>
             <h2 className="text-lg font-bold flex items-center gap-2 text-warning">
               <AlertTriangle size={20} /> Mark Seat as Broken

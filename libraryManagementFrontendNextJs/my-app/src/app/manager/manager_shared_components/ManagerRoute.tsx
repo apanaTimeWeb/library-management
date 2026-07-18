@@ -21,7 +21,7 @@ export function ManagerRoute({ children }: { children: React.ReactNode }) {
   const sidebarWidth = collapsed ? 60 : 240;
 
   return (
-    <div className="flex min-h-screen relative w-full bg-bg-page text-text-primary overflow-x-hidden">
+    <div className="flex min-h-screen relative w-full bg-bg-pageg-page text-text-primary overflow-x-hidden">
       <ManagerSidebar
         collapsed={collapsed}
         onToggle={() => setCollapsed(c => !c)}

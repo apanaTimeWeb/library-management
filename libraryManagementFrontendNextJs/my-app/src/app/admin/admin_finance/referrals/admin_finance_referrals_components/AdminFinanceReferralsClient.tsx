@@ -34,7 +34,7 @@ export function AdminFinanceReferralsClient() {
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b pb-4">
         <div>
           <nav className="text-xs text-muted-foreground font-medium mb-1 tracking-wide uppercase">Smart Library 360 › Admin › Finance</nav>
-          <h1 className="text-2xl font-bold tracking-tight">Referrals & Bonuses</h1>
+          <h1 className="text-text-primaryxl font-bold tracking-tight">Referrals & Bonuses</h1>
           <p className="text-sm text-muted-foreground mt-1">Student referral leaderboard and bonus tracking.</p>
         </div>
       </div>
@@ -46,7 +46,7 @@ export function AdminFinanceReferralsClient() {
             <span className="text-xs font-bold tracking-wider uppercase text-muted-foreground">Total Referrals Made</span>
             <Users size={16} className="text-muted-foreground" />
           </div>
-          <p className="text-2xl font-bold text-primary">{totalReferrals}</p>
+          <p className="text-text-primaryxl font-bold text-primary">{totalReferrals}</p>
         </Card>
         
         <Card className="p-4 shadow-none flex flex-col justify-center border-success/30 bg-success/5">
@@ -54,7 +54,7 @@ export function AdminFinanceReferralsClient() {
             <span className="text-xs font-bold tracking-wider uppercase text-success">Total Bonus Issued ₹</span>
             <IndianRupee size={16} className="text-success" />
           </div>
-          <p className="text-2xl font-bold text-success">{formatCurrency(totalBonus)}</p>
+          <p className="text-text-primaryxl font-bold text-success">{formatCurrency(totalBonus)}</p>
         </Card>
         
         <Card className="p-4 shadow-none flex flex-col justify-center border-warning/30 bg-warning/5">

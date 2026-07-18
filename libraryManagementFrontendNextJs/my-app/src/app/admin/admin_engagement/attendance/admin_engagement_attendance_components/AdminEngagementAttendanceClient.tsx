@@ -57,7 +57,7 @@ export function AdminEngagementAttendanceClient() {
           <p className="text-xs font-semibold text-muted-foreground flex items-center gap-1 uppercase tracking-wider mb-1">
             Engagement <ChevronRight size={12} /> Attendance
           </p>
-          <h1 className="text-2xl font-bold tracking-tight">📅 Daily Attendance</h1>
+          <h1 className="text-text-primaryxl font-bold tracking-tight">📅 Daily Attendance</h1>
           <p className="text-sm text-muted-foreground mt-1">Mark attendance for all enrolled students by shift.</p>
         </div>
         <Link href={ADMIN_ROUTES.ENGAGEMENT_ABSENTEE_REPORT}>
@@ -100,7 +100,7 @@ export function AdminEngagementAttendanceClient() {
           </div>
           <div className="flex flex-col">
             <label className="text-xs mb-1 font-semibold text-muted-foreground uppercase tracking-wider">Shift</label>
-            <select value={shift} onChange={e => setShift(e.target.value)} className="flex h-9 w-36 items-center justify-between rounded-md border border-border bg-bg-input px-3 py-1 text-sm ring-offset-bg-page placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50">
+            <select value={shift} onChange={e => setShift(e.target.value)} className="flex h-9 w-36 items-center justify-between rounded-md border border-border bg-bg-pageg-input px-3 py-1 text-sm ring-offset-bg-page placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50">
               <option>All</option>
               <option>Morning</option>
               <option>Afternoon</option>
@@ -171,12 +171,12 @@ export function AdminEngagementAttendanceClient() {
                   <div className="flex items-center gap-3 bg-muted/50 p-2 rounded-lg border border-border self-start lg:self-auto">
                     <div className="flex items-center gap-2">
                       <span className="text-xs font-bold text-muted-foreground uppercase tracking-wider">In</span>
-                      <Input type="time" value={s.inTime} onChange={e => setField(s.id, 'inTime', e.target.value)} className="h-8 w-28 text-xs bg-bg-card" />
+                      <Input type="time" value={s.inTime} onChange={e => setField(s.id, 'inTime', e.target.value)} className="h-8 w-28 text-xs bg-bg-pageg-card" />
                     </div>
                     {s.status === 'present' && (
                       <div className="flex items-center gap-2">
                         <span className="text-xs font-bold text-muted-foreground uppercase tracking-wider">Out</span>
-                        <Input type="time" value={s.outTime} onChange={e => setField(s.id, 'outTime', e.target.value)} className="h-8 w-28 text-xs bg-bg-card" />
+                        <Input type="time" value={s.outTime} onChange={e => setField(s.id, 'outTime', e.target.value)} className="h-8 w-28 text-xs bg-bg-pageg-card" />
                       </div>
                     )}
                   </div>
@@ -206,7 +206,7 @@ export function AdminEngagementAttendanceClient() {
       </Card>
 
       {/* ── Sticky Save Bar ── */}
-      <div className="fixed bottom-0 left-0 right-0 lg:left-72 p-4 bg-black/60 backdrop-blur-md border-t border-border flex items-center justify-between z-50 shadow-md shadow-black/5">
+      <div className="fixed bottom-0 left-0 right-0 lg:left-72 p-4 bg-bg-pagelack/60 backdrop-blur-md border-t border-border flex items-center justify-between z-50 shadow-md shadow-black/5">
         <p className="text-sm text-foreground">
           <strong className="text-primary">{marked}</strong> of <strong>{filtered.length}</strong> marked for <strong className="font-mono">{date}</strong>
         </p>

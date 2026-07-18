@@ -16,7 +16,7 @@ export function ManagerCrmEnquiriesKanban({ isEmpty, getCardsByStatus, onAddEnqu
 
   if (isEmpty) {
     return (
-      <div className="flex flex-col items-center justify-center bg-bg-card border border-border rounded-lg p-12 text-center mt-12">
+      <div className="flex flex-col items-center justify-center bg-bg-pageg-card border border-border rounded-lg p-12 text-center mt-12">
         <PhoneCall size={48} className="text-text-secondary mx-auto mb-4" />
         <p className="text-text-primary font-semibold text-lg mb-2">No enquiries yet</p>
         <p className="text-text-secondary text-sm mb-6">Add your first lead to start the pipeline</p>
@@ -40,9 +40,9 @@ export function ManagerCrmEnquiriesKanban({ isEmpty, getCardsByStatus, onAddEnqu
               <div className="flex items-center gap-2">
                 <span className={`w-2 h-2 rounded-full ${DOT_CLASS[col.id]}`} />
                 <span className="font-semibold text-sm text-text-primary uppercase tracking-wider">{col.label}</span>
-                <span className="bg-bg-elevated text-text-secondary text-xs font-medium px-2 py-0.5 rounded-full">{cards.length}</span>
+                <span className="bg-bg-pageg-elevated text-text-secondary text-xs font-medium px-2 py-0.5 rounded-full">{cards.length}</span>
               </div>
-              <button className="p-1 text-text-secondary hover:text-text-primary transition-colors rounded-md hover:bg-bg-elevated" title="More options" aria-label="Column options">
+              <button className="p-1 text-text-secondary hover:text-text-primary transition-colors rounded-md hover:bg-bg-pageg-elevated" title="More options" aria-label="Column options">
                 <MoreHorizontal size={15} />
               </button>
             </div>

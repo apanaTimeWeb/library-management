@@ -48,7 +48,7 @@ export function AdminSystemProfileClient() {
                 </div>
                 <button
                   id="change-photo-btn"
-                  className="absolute inset-0 rounded-full bg-black/50 flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer"
+                  className="absolute inset-0 rounded-full bg-bg-pagelack/50 flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer"
                 >
                   <Camera size={20} />
                 </button>

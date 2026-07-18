@@ -84,7 +84,7 @@ export default function ManagerStudentsAdmissionForm() {
             <div className="flex-1 space-y-8">
 
               {/* Section 1: Personal Info */}
-              <div className="bg-bg-card rounded-xl border border-border p-6">
+              <div className="bg-bg-pageg-card rounded-xl border border-border p-6">
                 <div className="flex items-center justify-between mb-4">
                   <div className="w-6 h-6 rounded-md bg-primary-subtle text-primary flex items-center justify-center text-xs font-bold">01</div>
                   <h2 className="text-base font-semibold text-text-primary">Personal Information</h2>
@@ -98,7 +98,7 @@ export default function ManagerStudentsAdmissionForm() {
                         <User size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-text-secondary" />
                         <input
                           {...register('fullName')}
-                          className={`w-full bg-bg-input border ${errors.fullName ? 'border-danger focus:ring-danger' : 'border-border focus:ring-primary'} rounded-lg pl-9 pr-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2`}
+                          className={`w-full bg-bg-pageg-input border ${errors.fullName ? 'border-danger focus:ring-danger' : 'border-border focus:ring-primary'} rounded-lg pl-9 pr-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2`}
                           placeholder="Enter student full name"
                         />
                       </div>
@@ -112,7 +112,7 @@ export default function ManagerStudentsAdmissionForm() {
                         <input
                           {...register('phone')}
                           type="tel"
-                          className={`w-full bg-bg-input border ${errors.phone ? 'border-danger focus:ring-danger' : 'border-border focus:ring-primary'} rounded-lg pl-9 pr-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2`}
+                          className={`w-full bg-bg-pageg-input border ${errors.phone ? 'border-danger focus:ring-danger' : 'border-border focus:ring-primary'} rounded-lg pl-9 pr-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2`}
                           placeholder="9876543210"
                         />
                       </div>
@@ -126,7 +126,7 @@ export default function ManagerStudentsAdmissionForm() {
                         <input
                           {...register('parentPhone')}
                           type="tel"
-                          className="w-full bg-bg-input border border-border rounded-lg pl-9 pr-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary"
+                          className="w-full bg-bg-pageg-input border border-border rounded-lg pl-9 pr-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary"
                           placeholder="Optional"
                         />
                       </div>
@@ -139,7 +139,7 @@ export default function ManagerStudentsAdmissionForm() {
                         <input
                           {...register('email')}
                           type="email"
-                          className={`w-full bg-bg-input border ${errors.email ? 'border-danger focus:ring-danger' : 'border-border focus:ring-primary'} rounded-lg pl-9 pr-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2`}
+                          className={`w-full bg-bg-pageg-input border ${errors.email ? 'border-danger focus:ring-danger' : 'border-border focus:ring-primary'} rounded-lg pl-9 pr-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2`}
                           placeholder="student@email.com"
                         />
                       </div>
@@ -152,7 +152,7 @@ export default function ManagerStudentsAdmissionForm() {
                         <GraduationCap size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-text-secondary" />
                         <input
                           {...register('college')}
-                          className="w-full bg-bg-input border border-border rounded-lg pl-9 pr-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary"
+                          className="w-full bg-bg-pageg-input border border-border rounded-lg pl-9 pr-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary"
                           placeholder="e.g. UPSC / IIT / Delhi University"
                         />
                       </div>
@@ -163,7 +163,7 @@ export default function ManagerStudentsAdmissionForm() {
               </div>
 
               {/* Section 2: Seat & Shift */}
-              <div className="bg-bg-card rounded-xl border border-border p-6">
+              <div className="bg-bg-pageg-card rounded-xl border border-border p-6">
                 <div className="flex items-center justify-between mb-4">
                   <div className="w-6 h-6 rounded-md bg-primary-subtle text-primary flex items-center justify-center text-xs font-bold">02</div>
                   <h2 className="text-base font-semibold text-text-primary">Seat & Shift Allocation</h2>
@@ -205,7 +205,7 @@ export default function ManagerStudentsAdmissionForm() {
               </div>
 
               {/* Section 3: Fee & Payment */}
-              <div className="bg-bg-card rounded-xl border border-border p-6">
+              <div className="bg-bg-pageg-card rounded-xl border border-border p-6">
                 <div className="flex items-center justify-between mb-4">
                   <div className="w-6 h-6 rounded-md bg-primary-subtle text-primary flex items-center justify-center text-xs font-bold">03</div>
                   <h2 className="text-base font-semibold text-text-primary">Fee & Payment</h2>
@@ -240,7 +240,7 @@ export default function ManagerStudentsAdmissionForm() {
                           {...register('manualDiscount')}
                           type="number"
                           min="0"
-                          className="w-full bg-bg-input border border-border rounded-lg pl-9 pr-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary"
+                          className="w-full bg-bg-pageg-input border border-border rounded-lg pl-9 pr-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary"
                           placeholder="0"
                         />
                       </div>
@@ -249,7 +249,7 @@ export default function ManagerStudentsAdmissionForm() {
                     <div className="flex flex-col">
                       <label className="block text-[13px] font-medium text-text-secondary mb-1.5">Coupon Code</label>
                       <div className="flex gap-2">
-                        <input className="w-full bg-bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary uppercase" placeholder="e.g. SUMMER50" />
+                        <input className="w-full bg-bg-pageg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary uppercase" placeholder="e.g. SUMMER50" />
                         <button type="button" className="bg-transparent border border-border text-text-primary rounded-lg px-4 py-2 text-[13px] font-medium hover:bg-primary-subtle hover:border-primary transition-colors inline-flex items-center gap-2">Apply</button>
                       </div>
                     </div>
@@ -261,7 +261,7 @@ export default function ManagerStudentsAdmissionForm() {
                         <input
                           {...register('amountPaid')}
                           type="number"
-                          className={`w-full bg-bg-input border ${errors.amountPaid ? 'border-danger focus:ring-danger' : 'border-border focus:ring-primary'} rounded-lg pl-9 pr-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2`}
+                          className={`w-full bg-bg-pageg-input border ${errors.amountPaid ? 'border-danger focus:ring-danger' : 'border-border focus:ring-primary'} rounded-lg pl-9 pr-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2`}
                         />
                       </div>
                       {errors.amountPaid && <p className="text-[11px] text-danger mt-1.5 font-medium">{errors.amountPaid.message}</p>}
@@ -275,7 +275,7 @@ export default function ManagerStudentsAdmissionForm() {
                             key={mode}
                             type="button"
                             onClick={() => setValue('paymentMode', mode, { shouldValidate: true })}
-                            className={`flex items-center justify-center gap-2 px-3 py-2.5 rounded-lg border text-[13px] font-medium transition-all duration-200 ${watchedMode === mode ? 'border-primary bg-primary-subtle text-primary ring-1 ring-primary/20' : 'border-border bg-bg-page text-text-secondary hover:border-primary/50 hover:bg-primary-subtle/30'}`}
+                            className={`flex items-center justify-center gap-2 px-3 py-2.5 rounded-lg border text-[13px] font-medium transition-all duration-200 ${watchedMode === mode ? 'border-primary bg-primary-subtle text-primary ring-1 ring-primary/20' : 'border-border bg-bg-pageg-page text-text-secondary hover:border-primary/50 hover:bg-primary-subtle/30'}`}
                           >
                             <CreditCard size={13} />
                             {mode}
@@ -288,7 +288,7 @@ export default function ManagerStudentsAdmissionForm() {
                       <label className="block text-[13px] font-medium text-text-secondary mb-1.5">Transaction ID / Reference</label>
                       <input
                         {...register('transactionId')}
-                        className="w-full bg-bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary"
+                        className="w-full bg-bg-pageg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary"
                         placeholder="e.g. 41220912…"
                       />
                     </div>
@@ -301,7 +301,7 @@ export default function ManagerStudentsAdmissionForm() {
 
             {/* ── RIGHT: Admission Summary ── */}
             <aside className="w-full lg:w-80 shrink-0">
-              <div className="bg-bg-card rounded-xl border border-border p-6 sticky top-24">
+              <div className="bg-bg-pageg-card rounded-xl border border-border p-6 sticky top-24">
                 <div className="flex items-center justify-between mb-4">
                   <h2 className="text-base font-semibold text-text-primary">Admission Summary</h2>
                 </div>
@@ -324,7 +324,7 @@ export default function ManagerStudentsAdmissionForm() {
                       <span className="font-semibold text-text-primary">{watchedSeat}</span>
                     </div>
 
-                    <div className="h-px bg-border my-4" />
+                    <div className="h-px bg-bg-pageorder my-4" />
                     
                     <div className="flex justify-between items-center text-[13.5px]">
                       <span className="text-text-secondary">Base Amount</span>

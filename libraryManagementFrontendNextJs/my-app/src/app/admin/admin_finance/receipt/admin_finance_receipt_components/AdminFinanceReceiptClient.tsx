@@ -45,7 +45,7 @@ export function AdminFinanceReceiptClient() {
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b pb-4">
         <div>
           <nav className="text-xs text-muted-foreground font-medium mb-1 tracking-wide uppercase">Smart Library 360 › Admin › Finance</nav>
-          <h1 className="text-2xl font-bold tracking-tight">Receipts</h1>
+          <h1 className="text-text-primaryxl font-bold tracking-tight">Receipts</h1>
           <p className="text-sm text-muted-foreground mt-1">View and share payment receipts for all transactions.</p>
         </div>
       </div>
@@ -57,7 +57,7 @@ export function AdminFinanceReceiptClient() {
             <span className="text-xs font-bold tracking-wider uppercase text-muted-foreground">TOTAL RECEIPTS</span>
             <Receipt size={16} className="text-muted-foreground" />
           </div>
-          <p className="text-2xl font-bold leading-none tracking-tight text-primary">{kpiData.totalReceipts}</p>
+          <p className="text-text-primaryxl font-bold leading-none tracking-tight text-primary">{kpiData.totalReceipts}</p>
         </Card>
         
         <Card className="p-5 shadow-none border-success/30 bg-success/5 flex flex-col gap-3">
@@ -65,7 +65,7 @@ export function AdminFinanceReceiptClient() {
             <span className="text-xs font-bold tracking-wider uppercase text-success">TOTAL COLLECTED</span>
             <Receipt size={16} className="text-success" />
           </div>
-          <p className="text-2xl font-bold leading-none tracking-tight text-success">{formatCurrency(kpiData.totalCollected)}</p>
+          <p className="text-text-primaryxl font-bold leading-none tracking-tight text-success">{formatCurrency(kpiData.totalCollected)}</p>
         </Card>
         
         <Card className="p-5 shadow-none border-border bg-card flex flex-col gap-3">
@@ -73,7 +73,7 @@ export function AdminFinanceReceiptClient() {
             <span className="text-xs font-bold tracking-wider uppercase text-muted-foreground">THIS MONTH</span>
             <Receipt size={16} className="text-muted-foreground" />
           </div>
-          <p className="text-2xl font-bold leading-none tracking-tight text-primary">{kpiData.thisMonth}</p>
+          <p className="text-text-primaryxl font-bold leading-none tracking-tight text-primary">{kpiData.thisMonth}</p>
         </Card>
       </div>
 
@@ -89,7 +89,7 @@ export function AdminFinanceReceiptClient() {
           />
         </div>
         <select 
-          className="flex h-10 w-full max-w-52 items-center justify-between rounded-md border border-border bg-bg-input px-3 py-2 text-sm ring-offset-bg-page placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:ring-offset-2"
+          className="flex h-10 w-full max-w-52 items-center justify-between rounded-md border border-border bg-bg-pageg-input px-3 py-2 text-sm ring-offset-bg-page placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:ring-offset-2"
           value={modeFilter} 
           onChange={e => setModeFilter(e.target.value as FilterMode)}
         >

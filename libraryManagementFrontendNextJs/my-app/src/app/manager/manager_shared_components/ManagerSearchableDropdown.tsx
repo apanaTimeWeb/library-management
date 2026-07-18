@@ -31,7 +31,7 @@ export function ManagerSearchableDropdown({ options, value, onChange, placeholde
   return (
     <div className={`relative ${className}`} ref={dropdownRef}>
       <div 
-        className="flex items-center justify-between bg-bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary cursor-pointer hover:border-primary transition-colors"
+        className="flex items-center justify-between bg-bg-pageg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary cursor-pointer hover:border-primary transition-colors"
         onClick={() => setIsOpen(!isOpen)}
       >
         <span className={selectedOption ? 'text-text-primary' : 'text-text-tertiary'}>
@@ -41,13 +41,13 @@ export function ManagerSearchableDropdown({ options, value, onChange, placeholde
       </div>
 
       {isOpen && (
-        <div className="absolute z-50 w-full mt-1 bg-bg-elevated border border-border rounded-lg shadow-lg max-h-60 overflow-hidden flex flex-col">
+        <div className="absolute z-50 w-full mt-1 bg-bg-pageg-elevated border border-border rounded-lg shadow-lg max-h-60 overflow-hidden flex flex-col">
           <div className="p-2 border-b border-border">
             <div className="relative">
               <Search size={14} className="absolute left-2.5 top-1/2 -translate-y-1/2 text-text-secondary" />
               <input
                 type="text"
-                className="w-full bg-bg-input border border-border rounded-md pl-8 pr-3 py-1.5 text-sm text-text-primary focus:outline-none focus:border-primary"
+                className="w-full bg-bg-pageg-input border border-border rounded-md pl-8 pr-3 py-1.5 text-sm text-text-primary focus:outline-none focus:border-primary"
                 placeholder="Search..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}

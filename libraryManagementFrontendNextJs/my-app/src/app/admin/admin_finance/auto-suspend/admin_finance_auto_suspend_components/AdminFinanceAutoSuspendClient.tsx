@@ -49,7 +49,7 @@ export function AdminFinanceAutoSuspendClient() {
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b pb-4">
         <div>
           <nav className="text-xs text-muted-foreground font-medium mb-1 tracking-wide uppercase">Smart Library 360 › Admin › Finance</nav>
-          <h1 className="text-2xl font-bold tracking-tight">Auto-Suspend Policy</h1>
+          <h1 className="text-text-primaryxl font-bold tracking-tight">Auto-Suspend Policy</h1>
           <p className="text-sm text-muted-foreground mt-1">Manage automatic suspension and student restoration.</p>
         </div>
       </div>
@@ -62,7 +62,7 @@ export function AdminFinanceAutoSuspendClient() {
               <span className={`text-xs font-bold tracking-wider uppercase ${variant === 'danger' ? 'text-danger' : 'text-muted-foreground'}`}>{label}</span>
               <Icon size={16} className={variant === 'danger' ? 'text-danger' : 'text-muted-foreground'} />
             </div>
-            <p className={`text-2xl font-bold ${variant === 'danger' ? 'text-danger' : 'text-primary'}`}>{value}</p>
+            <p className={`text-text-primaryxl font-bold ${variant === 'danger' ? 'text-danger' : 'text-primary'}`}>{value}</p>
           </Card>
         ))}
       </div>
@@ -218,7 +218,7 @@ export function AdminFinanceAutoSuspendClient() {
 
       {/* Manual Restore Modal */}
       {restoreDialog && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm" onClick={() => setRestoreDialog(null)}>
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-bg-pagelack/60 backdrop-blur-sm" onClick={() => setRestoreDialog(null)}>
           <Card className="w-full max-w-sm shadow-lg border-success/20 bg-card p-6 flex flex-col gap-5" onClick={e => e.stopPropagation()}>
             <div className="flex items-center justify-between">
               <h2 className="text-lg font-bold flex items-center gap-2 text-success tracking-tight">

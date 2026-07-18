@@ -61,7 +61,7 @@ export function SuperadminSeatsLockersClient() {
         </SuperadminButton>
       </div>
 
-      <SuperadminCard className="mb-6 bg-bg-card border-none">
+      <SuperadminCard className="mb-6 bg-bg-pageg-card border-none">
         <CardContent className="p-4 flex items-center gap-4">
           <div className="w-48">
             <SuperadminSelect value={statusFilter} onValueChange={setStatusFilter}>
@@ -81,7 +81,7 @@ export function SuperadminSeatsLockersClient() {
         <CardContent className="p-0">
           {filteredLockers.length === 0 ? (
             <div className="py-20 flex flex-col items-center justify-center text-center">
-              <div className="h-16 w-16 bg-bg-input rounded-full flex items-center justify-center text-text-secondary mb-3">
+              <div className="h-16 w-16 bg-bg-pageg-input rounded-full flex items-center justify-center text-text-secondary mb-3">
                 <Inbox size={32} />
               </div>
               <p className="text-text-primary font-semibold text-lg">No lockers found</p>
@@ -107,7 +107,7 @@ export function SuperadminSeatsLockersClient() {
                   {table.paginatedData.map((locker) => (
                     <tr
                       key={locker.id}
-                      className="hover:bg-bg-input transition-colors group"
+                      className="hover:bg-bg-pageg-input transition-colors group"
                     >
                       <td className="py-3 pl-4 pr-3 font-mono font-medium text-text-primary">{locker.lockerId}</td>
                       <td className="py-3 px-3">
@@ -160,7 +160,7 @@ export function SuperadminSeatsLockersClient() {
 
       {/* Add Locker Modal */}
       {showAddModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4" onClick={() => setShowAddModal(false)}>
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-bg-pagelack/50 p-4" onClick={() => setShowAddModal(false)}>
           <div className="bg-surface rounded-2xl p-6 w-full max-w-md shadow-xl" onClick={e => e.stopPropagation()}>
             <h2 className="text-xl font-bold text-text-primary mb-4">Add Locker</h2>
             <div className="space-y-2 mb-6">
@@ -186,7 +186,7 @@ export function SuperadminSeatsLockersClient() {
 
       {/* Assign Modal */}
       {showAssign && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4" onClick={() => setShowAssign(null)}>
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-bg-pagelack/50 p-4" onClick={() => setShowAssign(null)}>
           <div className="bg-surface rounded-2xl p-6 w-full max-w-md shadow-xl" onClick={e => e.stopPropagation()}>
             <h2 className="text-xl font-bold text-text-primary mb-4">Assign Locker {showAssign.lockerId}</h2>
             <div className="space-y-2 mb-6">
@@ -214,7 +214,7 @@ export function SuperadminSeatsLockersClient() {
 
       {/* Free Locker Confirm */}
       {freeTarget && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4" onClick={() => setFreeTarget(null)}>
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-bg-pagelack/50 p-4" onClick={() => setFreeTarget(null)}>
           <div className="bg-surface rounded-2xl p-6 w-full max-w-md shadow-xl" onClick={e => e.stopPropagation()}>
             <h2 className="text-xl font-bold text-text-primary mb-4">Free Locker {freeTarget.lockerId}</h2>
             <p className="text-sm text-text-secondary mb-6">

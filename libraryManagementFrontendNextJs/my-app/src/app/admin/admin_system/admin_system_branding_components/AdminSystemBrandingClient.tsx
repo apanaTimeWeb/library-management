@@ -39,9 +39,9 @@ export function AdminSystemBrandingClient() {
                 <Label>Library Logo</Label>
                 <div
                   id="branding-logo-upload"
-                  className="flex flex-col items-center justify-center border-2 border-dashed border-border rounded-xl p-6 cursor-pointer hover:bg-bg-card transition-colors"
+                  className="flex flex-col items-center justify-center border-2 border-dashed border-border rounded-xl p-6 cursor-pointer hover:bg-bg-pageg-card transition-colors"
                 >
-                  <div className="h-16 w-16 rounded-xl flex items-center justify-center text-2xl font-bold mb-2 bg-bg-card">
+                  <div className="h-16 w-16 rounded-xl flex items-center justify-center text-text-primaryxl font-bold mb-2 bg-bg-pageg-card">
                     📚
                   </div>
                   <button type="button" className="text-xs text-primary flex items-center gap-1">
@@ -142,8 +142,8 @@ export function AdminSystemBrandingClient() {
                     {form.tagline && <p className="text-xs text-text-secondary">{form.tagline}</p>}
                   </div>
                   <div className="space-y-2">
-                    <div className="h-7 rounded-lg bg-bg-input" />
-                    <div className="h-7 rounded-lg bg-bg-input" />
+                    <div className="h-7 rounded-lg bg-bg-pageg-input" />
+                    <div className="h-7 rounded-lg bg-bg-pageg-input" />
                     <div className="h-8 rounded-lg flex items-center justify-center text-xs font-bold shadow-sm transition-all hover:-translate-y-0.5 bg-[color:var(--bg)]" style={{ '--bg': 'var(--preview-primary, #6366f1)' } as React.CSSProperties}>Login</div>
                   </div>
                 </div>
@@ -161,7 +161,7 @@ export function AdminSystemBrandingClient() {
                     </div>
                   </div>
                   <div className="p-3 flex items-center gap-3 bg-surface">
-                    <div className="h-12 w-12 rounded-lg bg-bg-input flex items-center justify-center text-xl">👤</div>
+                    <div className="h-12 w-12 rounded-lg bg-bg-pageg-input flex items-center justify-center text-xl">👤</div>
                     <div>
                       <p className="text-xs font-bold text-text-primary">Rahul Sharma</p>
                       <p className="text-xs text-text-secondary">ID: #0042 | Morning Shift</p>

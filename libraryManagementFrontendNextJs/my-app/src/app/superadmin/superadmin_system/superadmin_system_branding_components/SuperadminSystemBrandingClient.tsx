@@ -13,14 +13,14 @@ export function SuperadminSystemBrandingClient() {
   return (
     <div className="relative p-2 sm:p-4">
       <div className="mb-8">
-        <div className="flex items-center gap-2 text-text-secondary text-[12px] font-bold tracking-wide mb-2">
+        <div className="flex items-center gap-2 text-text-secondary text-xs font-bold tracking-wide mb-2">
           <span>System</span><ChevronRight size={12} /><span>Branding</span>
         </div>
-        <h1 className="text-[28px] font-extrabold text-text-primary flex items-center gap-3 tracking-tight">
+        <h1 className="text-3xl font-extrabold text-text-primary flex items-center gap-3 tracking-tight">
           <Palette size={28} className="text-primary" />
           Branding & White-Label
         </h1>
-        <p className="text-text-secondary mt-1 text-[14px]">
+        <p className="text-text-secondary mt-1 text-sm">
           Customize your library's visual identity. Changes reflect across the entire app.
         </p>
       </div>
@@ -38,12 +38,12 @@ export function SuperadminSystemBrandingClient() {
                 <SuperadminLabel>Library Logo</SuperadminLabel>
                 <div
                   id="branding-logo-upload"
-                  className="flex flex-col items-center justify-center border-2 border-dashed border-border rounded-[var(--radius-lg)] p-6 cursor-pointer hover:bg-input transition-colors"
+                  className="flex flex-col items-center justify-center border-2 border-dashed border-border rounded-lg p-6 cursor-pointer hover:bg-input transition-colors"
                 >
-                  <div className="h-16 w-16 rounded-[var(--radius-md)] flex items-center justify-center text-[24px] font-bold mb-2 bg-bg-card border border-border shadow-sm">
+                  <div className="h-16 w-16 rounded-md flex items-center justify-center text-text-primaryxl font-bold mb-2 bg-bg-pageg-card border border-border shadow-sm">
                     📚
                   </div>
-                  <button type="button" className="text-[12px] text-primary font-bold flex items-center gap-1 cursor-pointer">
+                  <button type="button" className="text-xs text-primary font-bold flex items-center gap-1 cursor-pointer">
                     <Upload size={12} /> Upload Logo (200×200px)
                   </button>
                 </div>
@@ -57,7 +57,7 @@ export function SuperadminSystemBrandingClient() {
 
               <div className="space-y-2">
                 <SuperadminLabel htmlFor="branding-tagline">
-                  App Tagline <span className="text-text-secondary font-normal text-[10px]">(optional)</span>
+                  App Tagline <span className="text-text-secondary font-normal text-xs">(optional)</span>
                 </SuperadminLabel>
                 <SuperadminInput id="branding-tagline" placeholder="Your tagline here..."
                   value={form.tagline}
@@ -70,11 +70,11 @@ export function SuperadminSystemBrandingClient() {
                 <div className="flex items-center gap-2">
                   <input type="color" id="branding-primary-color" value={form.primaryColor}
                     onChange={e => setForm(f => ({ ...f, primaryColor: e.target.value }))}
-                    className="h-10 w-12 rounded-[var(--radius-md)] border border-border bg-transparent cursor-pointer p-0.5" />
+                    className="h-10 w-12 rounded-md border border-border bg-transparent cursor-pointer p-0.5" />
                   <SuperadminInput value={form.primaryColor}
                     onChange={e => setForm(f => ({ ...f, primaryColor: e.target.value }))}
-                    className="font-mono text-[12px]" />
-                  <div className="h-10 w-10 rounded-[var(--radius-md)] shrink-0 border border-border/50 shadow-inner" style={{ backgroundColor: form.primaryColor }} />
+                    className="font-mono text-xs" />
+                  <div className="h-10 w-10 rounded-md shrink-0 border border-border/50 shadow-inner" style={{ backgroundColor: form.primaryColor }} />
                 </div>
               </div>
 
@@ -83,11 +83,11 @@ export function SuperadminSystemBrandingClient() {
                 <div className="flex items-center gap-2">
                   <input type="color" id="branding-accent-color" value={form.accentColor}
                     onChange={e => setForm(f => ({ ...f, accentColor: e.target.value }))}
-                    className="h-10 w-12 rounded-[var(--radius-md)] border border-border bg-transparent cursor-pointer p-0.5" />
+                    className="h-10 w-12 rounded-md border border-border bg-transparent cursor-pointer p-0.5" />
                   <SuperadminInput value={form.accentColor}
                     onChange={e => setForm(f => ({ ...f, accentColor: e.target.value }))}
-                    className="font-mono text-[12px]" />
-                  <div className="h-10 w-10 rounded-[var(--radius-md)] shrink-0 border border-border/50 shadow-inner" style={{ backgroundColor: form.accentColor }} />
+                    className="font-mono text-xs" />
+                  <div className="h-10 w-10 rounded-md shrink-0 border border-border/50 shadow-inner" style={{ backgroundColor: form.accentColor }} />
                 </div>
               </div>
             </CardContent>
@@ -108,20 +108,20 @@ export function SuperadminSystemBrandingClient() {
             <CardContent className="space-y-6">
               {/* Mini Sidebar Preview */}
               <div>
-                <p className="text-[10px] font-bold text-text-secondary uppercase tracking-wider mb-2">Sidebar</p>
-                <div className="border border-border rounded-[var(--radius-lg)] bg-bg-card overflow-hidden shadow-sm" style={{ borderLeft: `4px solid ${form.primaryColor}` }}>
+                <p className="text-xs font-bold text-text-secondary uppercase tracking-wider mb-2">Sidebar</p>
+                <div className="border border-border rounded-lg bg-bg-pageg-card overflow-hidden shadow-sm" style={{ borderLeft: `4px solid ${form.primaryColor}` }}>
                   <div className="p-4 flex items-center gap-3 border-b border-border bg-muted/30">
-                    <div className="h-10 w-10 rounded-[var(--radius-md)] flex items-center justify-center text-[18px] font-bold bg-bg-card border border-border shadow-sm">
+                    <div className="h-10 w-10 rounded-md flex items-center justify-center text-lg font-bold bg-bg-pageg-card border border-border shadow-sm">
                       📚
                     </div>
                     <div>
-                      <p className="text-[14px] font-extrabold text-text-primary leading-tight truncate w-48">{form.libraryName || 'Library'}</p>
-                      {form.tagline && <p className="text-[12px] text-text-secondary leading-tight truncate w-48 mt-0.5">{form.tagline}</p>}
+                      <p className="text-sm font-extrabold text-text-primary leading-tight truncate w-48">{form.libraryName || 'Library'}</p>
+                      {form.tagline && <p className="text-xs text-text-secondary leading-tight truncate w-48 mt-0.5">{form.tagline}</p>}
                     </div>
                   </div>
                   <div className="p-2 space-y-1">
                     {['Dashboard', 'Students', 'Finance', 'Reports'].map((item, i) => (
-                      <div key={item} className={`px-3 py-2.5 text-[12px] font-bold rounded-[var(--radius-md)] flex items-center gap-2 ${i === 0 ? 'text-primary-foreground shadow-sm' : 'text-text-secondary hover:bg-input'}`} style={{ backgroundColor: i === 0 ? form.primaryColor : 'transparent' }}>
+                      <div key={item} className={`px-3 py-2.5 text-xs font-bold rounded-md flex items-center gap-2 ${i === 0 ? 'text-primary-foreground shadow-sm' : 'text-text-secondary hover:bg-input'}`} style={{ backgroundColor: i === 0 ? form.primaryColor : 'transparent' }}>
                         <div className={`h-1.5 w-1.5 rounded-full ${i === 0 ? 'bg-primary-foreground' : 'bg-text-secondary/50'}`} />
                         {item}
                       </div>
@@ -132,42 +132,42 @@ export function SuperadminSystemBrandingClient() {
 
               {/* Mini Login Preview */}
               <div>
-                <p className="text-[10px] font-bold text-text-secondary uppercase tracking-wider mb-2">Login Page</p>
-                <div className="rounded-[var(--radius-xl)] border border-border p-6 max-w-sm bg-bg-card shadow-sm mx-auto relative overflow-hidden">
+                <p className="text-xs font-bold text-text-secondary uppercase tracking-wider mb-2">Login Page</p>
+                <div className="rounded-xl border border-border p-6 max-w-sm bg-bg-pageg-card shadow-sm mx-auto relative overflow-hidden">
                   <div className="absolute top-0 left-0 right-0 h-1" style={{ backgroundColor: form.primaryColor }} />
                   <div className="flex flex-col items-center mb-6 gap-2 text-center mt-2">
-                    <div className="h-12 w-12 rounded-[var(--radius-md)] flex items-center justify-center text-[22px] font-bold bg-muted border border-border shadow-sm">
+                    <div className="h-12 w-12 rounded-md flex items-center justify-center text-xl font-bold bg-muted border border-border shadow-sm">
                       📚
                     </div>
-                    <p className="text-[18px] font-extrabold text-text-primary tracking-tight">{form.libraryName || 'Library'}</p>
-                    {form.tagline && <p className="text-[12px] text-text-secondary">{form.tagline}</p>}
+                    <p className="text-lg font-extrabold text-text-primary tracking-tight">{form.libraryName || 'Library'}</p>
+                    {form.tagline && <p className="text-xs text-text-secondary">{form.tagline}</p>}
                   </div>
                   <div className="space-y-3">
-                    <div className="h-10 rounded-[var(--radius-md)] bg-input border border-border" />
-                    <div className="h-10 rounded-[var(--radius-md)] bg-input border border-border" />
-                    <div className="h-10 rounded-[var(--radius-md)] flex items-center justify-center text-[14px] font-bold text-primary-foreground shadow-sm mt-4" style={{ backgroundColor: form.primaryColor }}>Login</div>
+                    <div className="h-10 rounded-md bg-input border border-border" />
+                    <div className="h-10 rounded-md bg-input border border-border" />
+                    <div className="h-10 rounded-md flex items-center justify-center text-sm font-bold text-primary-foreground shadow-sm mt-4" style={{ backgroundColor: form.primaryColor }}>Login</div>
                   </div>
                 </div>
               </div>
 
               {/* Mini ID Card Preview */}
               <div>
-                <p className="text-[10px] font-bold text-text-secondary uppercase tracking-wider mb-2">Student ID Card</p>
-                <div className="rounded-[var(--radius-lg)] border border-border overflow-hidden max-w-xs shadow-sm">
+                <p className="text-xs font-bold text-text-secondary uppercase tracking-wider mb-2">Student ID Card</p>
+                <div className="rounded-lg border border-border overflow-hidden max-w-xs shadow-sm">
                   <div className="p-4 flex items-center gap-3 text-primary-foreground relative overflow-hidden" style={{ backgroundColor: form.primaryColor }}>
                     <div className="absolute right-0 top-0 bottom-0 w-24 opacity-20" style={{ background: `linear-gradient(to right, transparent, ${form.accentColor})` }} />
-                    <div className="h-10 w-10 rounded-[var(--radius-md)] bg-white/20 flex items-center justify-center text-[20px] backdrop-blur-sm shadow-sm relative z-10 border border-white/20">📚</div>
+                    <div className="h-10 w-10 rounded-md bg-white/20 flex items-center justify-center text-xl backdrop-blur-sm shadow-sm relative z-10 border border-white/20">📚</div>
                     <div className="relative z-10">
-                      <p className="text-[16px] font-extrabold tracking-tight truncate w-40">{form.libraryName || 'Library'}</p>
-                      <p className="text-[10px] font-medium opacity-90 uppercase tracking-widest mt-0.5">Student ID</p>
+                      <p className="text-base font-extrabold tracking-tight truncate w-40">{form.libraryName || 'Library'}</p>
+                      <p className="text-xs font-medium opacity-90 uppercase tracking-widest mt-0.5">Student ID</p>
                     </div>
                   </div>
-                  <div className="p-4 flex items-center gap-4 bg-bg-card relative">
-                    <div className="h-16 w-16 rounded-[var(--radius-md)] bg-input flex items-center justify-center text-[28px] border border-border shadow-inner">👤</div>
+                  <div className="p-4 flex items-center gap-4 bg-bg-pageg-card relative">
+                    <div className="h-16 w-16 rounded-md bg-input flex items-center justify-center text-3xl border border-border shadow-inner">👤</div>
                     <div className="flex-1">
-                      <p className="text-[14px] font-extrabold text-text-primary">Rahul Sharma</p>
-                      <p className="text-[11px] font-mono text-text-secondary mt-1">ID: #0042</p>
-                      <p className="text-[11px] font-bold text-text-secondary mt-0.5 inline-flex items-center px-1.5 py-0.5 rounded bg-input">Morning</p>
+                      <p className="text-sm font-extrabold text-text-primary">Rahul Sharma</p>
+                      <p className="text-xs font-mono text-text-secondary mt-1">ID: #0042</p>
+                      <p className="text-xs font-bold text-text-secondary mt-0.5 inline-flex items-center px-1.5 py-0.5 rounded bg-input">Morning</p>
                     </div>
                   </div>
                 </div>

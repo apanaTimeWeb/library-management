@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Component or Page.
 // @ts-nocheck
 /**
  * RESPONSIBILITY: Logic and state management for the ReferralsClient component.

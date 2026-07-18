@@ -24,7 +24,7 @@ export function AdminShiftGapAnalyzerClient() {
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b pb-4">
         <div>
           <nav className="text-xs text-muted-foreground font-medium mb-1 tracking-wide uppercase">Smart Library 360 › Admin › Seats & Shifts</nav>
-          <h1 className="text-2xl font-bold tracking-tight">Shift Gap Analyzer</h1>
+          <h1 className="text-text-primaryxl font-bold tracking-tight">Shift Gap Analyzer</h1>
           <p className="text-sm text-muted-foreground mt-1">Identify revenue-loss gaps and fill empty time slots.</p>
         </div>
       </div>
@@ -32,7 +32,7 @@ export function AdminShiftGapAnalyzerClient() {
       {/* Filter Bar */}
       <div className="flex flex-wrap gap-3">
         <select 
-          className="h-10 px-3 rounded-md border border-border bg-bg-input text-sm font-medium focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary min-w-36"
+          className="h-10 px-3 rounded-md border border-border bg-bg-pageg-input text-sm font-medium focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary min-w-36"
           value={shiftFilter} 
           onChange={(e) => setShiftFilter(e.target.value)}
         >
@@ -41,7 +41,7 @@ export function AdminShiftGapAnalyzerClient() {
         </select>
         
         <select 
-          className="h-10 px-3 rounded-md border border-border bg-bg-input text-sm font-medium focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary min-w-36"
+          className="h-10 px-3 rounded-md border border-border bg-bg-pageg-input text-sm font-medium focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary min-w-36"
           value={period} 
           onChange={(e) => setPeriod(e.target.value)}
         >

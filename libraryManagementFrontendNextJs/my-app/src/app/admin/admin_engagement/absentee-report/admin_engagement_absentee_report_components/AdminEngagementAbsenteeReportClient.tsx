@@ -59,7 +59,7 @@ export function AdminEngagementAbsenteeReportClient() {
           <p className="text-xs font-semibold text-muted-foreground flex items-center gap-1 uppercase tracking-wider mb-1">
             Engagement <ChevronRight size={12} /> Absentee Report
           </p>
-          <h1 className="text-2xl font-bold tracking-tight">📋 Absentee Report</h1>
+          <h1 className="text-text-primaryxl font-bold tracking-tight">📋 Absentee Report</h1>
           <p className="text-sm text-muted-foreground mt-1">Students with consecutive absences requiring attention.</p>
         </div>
         <Button onClick={notifyAll} className="gap-2">
@@ -96,7 +96,7 @@ export function AdminEngagementAbsenteeReportClient() {
         <div className="flex flex-wrap gap-4 items-center">
           <div className="flex flex-col">
             <label className="text-xs mb-1 font-semibold text-muted-foreground uppercase tracking-wider">Days Threshold</label>
-            <select value={threshold} onChange={e => setThreshold(e.target.value)} className="flex h-9 w-44 items-center justify-between rounded-md border border-border bg-bg-input px-3 py-1 text-sm ring-offset-bg-page placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50">
+            <select value={threshold} onChange={e => setThreshold(e.target.value)} className="flex h-9 w-44 items-center justify-between rounded-md border border-border bg-bg-pageg-input px-3 py-1 text-sm ring-offset-bg-page placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50">
               <option value="3">3+ Days</option>
               <option value="5">5+ Days</option>
               <option value="7">7+ Days (Critical)</option>
@@ -105,7 +105,7 @@ export function AdminEngagementAbsenteeReportClient() {
           </div>
           <div className="flex flex-col">
             <label className="text-xs mb-1 font-semibold text-muted-foreground uppercase tracking-wider">Shift</label>
-            <select value={shift} onChange={e => setShift(e.target.value)} className="flex h-9 w-36 items-center justify-between rounded-md border border-border bg-bg-input px-3 py-1 text-sm ring-offset-bg-page placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50">
+            <select value={shift} onChange={e => setShift(e.target.value)} className="flex h-9 w-36 items-center justify-between rounded-md border border-border bg-bg-pageg-input px-3 py-1 text-sm ring-offset-bg-page placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50">
               <option>All</option>
               <option>Morning</option>
               <option>Afternoon</option>
@@ -167,7 +167,7 @@ export function AdminEngagementAbsenteeReportClient() {
                   </td>
                   <td className="py-4 px-4 font-mono font-medium text-muted-foreground">{r.smartId}</td>
                   <td className="py-4 px-4">
-                    <Badge variant="outline" className="font-medium bg-bg-card">{r.shift}</Badge>
+                    <Badge variant="outline" className="font-medium bg-bg-pageg-card">{r.shift}</Badge>
                   </td>
                   <td className="py-4 px-4">
                     <Badge variant="secondary" className={`${badgeClass(r.daysAbsent)} border-none font-bold tracking-wide px-3 py-1 text-sm`}>

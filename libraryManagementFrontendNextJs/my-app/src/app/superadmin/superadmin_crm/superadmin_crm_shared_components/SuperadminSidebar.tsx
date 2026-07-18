@@ -145,7 +145,7 @@ export default function SuperadminSidebar({ isOpen, onClose }: SidebarProps) {
       <div className="flex-1 overflow-y-auto py-6 px-3 space-y-8 scrollbar-thin scrollbar-thumb-border scrollbar-track-transparent">
         {NAV.map((group, gi) => (
           <div key={gi} className="space-y-1.5">
-            {group.group && <p className="px-3 text-[10px] font-bold text-text-secondary uppercase tracking-wider mb-2">{group.group}</p>}
+            {group.group && <p className="px-3 text-xs font-bold text-text-secondary uppercase tracking-wider mb-2">{group.group}</p>}
 
             {group.items.map(( item: NavItem ) => {
               const active =
@@ -157,7 +157,7 @@ export default function SuperadminSidebar({ isOpen, onClose }: SidebarProps) {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className={`flex items-center gap-3 px-3 py-2.5 rounded-[var(--radius-md)] text-[13px] transition-all cursor-pointer ${
+                  className={`flex items-center gap-3 px-3 py-2.5 rounded-md text-sm transition-all cursor-pointer ${
                     active 
                       ? 'bg-primary/10 text-primary font-bold shadow-sm' 
                       : 'text-text-secondary font-medium hover:bg-input hover:text-text-primary'

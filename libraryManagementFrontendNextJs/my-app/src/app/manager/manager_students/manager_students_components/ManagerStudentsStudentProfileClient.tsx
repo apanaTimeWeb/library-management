@@ -11,13 +11,13 @@ export function ManagerStudentsStudentProfileClient({ id }: { id: string }) {
   const { student, loading, expiryDate } = useManagerStudentsStudentProfile(id);
 
   if (loading) {
-    return <div className="p-6 min-h-screen"><div className="bg-bg-card rounded-xl border border-border p-6 p-[20px]">Loading...</div></div>;
+    return <div className="p-6 min-h-screen"><div className="bg-bg-pageg-card rounded-xl border border-border p-6 p-[20px]">Loading...</div></div>;
   }
 
   if (!student) {
     return (
       <div className="p-6 min-h-screen">
-        <div className="bg-bg-card rounded-xl border border-border p-6">
+        <div className="bg-bg-pageg-card rounded-xl border border-border p-6">
           <div className="flex flex-col items-center justify-center p-12 text-center h-full min-h-72">
             <div className="text-4xl mb-4 opacity-50">🔍</div>
             <p className="text-lg font-bold text-text-primary mb-1">Student not found</p>
@@ -48,7 +48,7 @@ export function ManagerStudentsStudentProfileClient({ id }: { id: string }) {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <div className="bg-bg-card rounded-xl border border-border p-6">
+        <div className="bg-bg-pageg-card rounded-xl border border-border p-6">
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-base font-semibold text-text-primary">Personal Details</h2>
             <span className={
@@ -109,7 +109,7 @@ export function ManagerStudentsStudentProfileClient({ id }: { id: string }) {
         </div>
 
         <div className="flex flex-col gap-6">
-          <div className="bg-bg-card rounded-xl border border-border p-6">
+          <div className="bg-bg-pageg-card rounded-xl border border-border p-6">
             <div className="flex items-center justify-between mb-4">
               <h2 className="text-base font-semibold text-text-primary">Validity</h2>
             </div>
@@ -131,7 +131,7 @@ export function ManagerStudentsStudentProfileClient({ id }: { id: string }) {
             </div>
           </div>
 
-          <div className="bg-bg-card rounded-xl border border-border p-6">
+          <div className="bg-bg-pageg-card rounded-xl border border-border p-6">
             <div className="flex items-center justify-between mb-4">
               <h2 className="text-base font-semibold text-text-primary">Quick Actions</h2>
             </div>

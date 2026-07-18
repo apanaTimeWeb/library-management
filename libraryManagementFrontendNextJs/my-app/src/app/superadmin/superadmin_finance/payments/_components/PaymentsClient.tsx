@@ -28,11 +28,11 @@ export function PaymentsClient() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-[22px] font-bold text-text-primary">Payment History</h1>
-        <p className="text-[12px] text-text-secondary">Complete payment ledger with audit trail.</p>
+        <h1 className="text-xl font-bold text-text-primary">Payment History</h1>
+        <p className="text-xs text-text-secondary">Complete payment ledger with audit trail.</p>
       </div>
 
-      <div className="flex items-center gap-3 bg-card p-3 rounded-[var(--radius-lg)] border border-border">
+      <div className="flex items-center gap-3 bg-card p-3 rounded-lg border border-border">
         <div className="w-48">
           <SuperadminSearchableDropdown
             options={[
@@ -54,14 +54,14 @@ export function PaymentsClient() {
           >
             <span className={`inline-block h-3.5 w-3.5 transform rounded-full bg-white transition-transform ${showDeleted ? 'translate-x-4' : 'translate-x-1'}`} />
           </button>
-          <span className="text-[14px] font-medium text-text-secondary">Show Deleted</span>
+          <span className="text-sm font-medium text-text-secondary">Show Deleted</span>
         </div>
-        <button className="ml-auto bg-input text-text-primary border border-border px-3 py-1.5 rounded-[var(--radius-md)] text-[12px] font-bold hover:bg-primary/10 hover:text-primary transition-colors cursor-pointer">
+        <button className="ml-auto bg-input text-text-primary border border-border px-3 py-1.5 rounded-md text-xs font-bold hover:bg-primary/10 hover:text-primary transition-colors cursor-pointer">
           📤 Export
         </button>
       </div>
 
-      <div className="bg-card rounded-[var(--radius-lg)] border border-border p-4">
+      <div className="bg-card rounded-lg border border-border p-4">
         <div className="flex flex-col gap-4 w-full">
 <TableToolbar search={searchTerm} onSearch={setSearchTerm} />
       <div className="h-96 w-full" style={{ width: '100%', height: '400px' }}>
@@ -87,15 +87,15 @@ export function PaymentsClient() {
       </div>
 
       {deleteDialog && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm">
-          <div className="bg-card w-full max-w-md rounded-[var(--radius-xl)] shadow-2xl border border-border p-6 animate-in fade-in zoom-in duration-200">
-            <h2 className="text-[18px] font-bold text-text-primary mb-2 flex items-center gap-2">🗑️ Delete Payment — {deleteDialog.receipt}</h2>
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-bg-pagelack/50 backdrop-blur-sm">
+          <div className="bg-card w-full max-w-md rounded-xl shadow-2xl border border-border p-6 animate-in fade-in zoom-in duration-200">
+            <h2 className="text-lg font-bold text-text-primary mb-2 flex items-center gap-2">🗑️ Delete Payment — {deleteDialog.receipt}</h2>
             <button className="absolute top-4 right-4 text-text-secondary hover:text-text-primary" onClick={() => setDeleteDialog(null)}>✕</button>
-            <p className="text-[13px] text-text-secondary mb-4">Soft-delete this payment? This action is permanent and logged in Audit Logs.</p>
+            <p className="text-sm text-text-secondary mb-4">Soft-delete this payment? This action is permanent and logged in Audit Logs.</p>
             <div className="space-y-2 mt-4">
-              <label className="block text-[12px] font-bold text-text-secondary uppercase tracking-wider">Deletion reason <span className="text-danger">*</span></label>
+              <label className="block text-xs font-bold text-text-secondary uppercase tracking-wider">Deletion reason <span className="text-danger">*</span></label>
               <textarea
-                className="w-full bg-input border border-border rounded-[var(--radius-md)] p-3 text-[14px] text-text-primary focus:outline-none focus:border-primary transition-colors"
+                className="w-full bg-input border border-border rounded-md p-3 text-sm text-text-primary focus:outline-none focus:border-primary transition-colors"
                 value={deleteReason}
                 onChange={( e: React.ChangeEvent<HTMLTextAreaElement> ) => setDeleteReason(e.target.value)}
                 placeholder="Enter reason for deletion..."
@@ -103,9 +103,9 @@ export function PaymentsClient() {
               />
             </div>
             <div className="flex items-center justify-end gap-3 mt-6">
-              <button className="bg-input text-text-primary border border-border px-4 py-2 rounded-[var(--radius-md)] text-[13px] font-bold hover:bg-primary/5 transition-colors cursor-pointer" onClick={() => setDeleteDialog(null)}>Cancel</button>
+              <button className="bg-input text-text-primary border border-border px-4 py-2 rounded-md text-sm font-bold hover:bg-primary/5 transition-colors cursor-pointer" onClick={() => setDeleteDialog(null)}>Cancel</button>
               <button
-                className="bg-danger/10 text-danger border border-danger/20 px-4 py-2 rounded-[var(--radius-md)] text-[13px] font-bold hover:bg-danger hover:text-danger-foreground transition-colors cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                className="bg-danger/10 text-danger border border-danger/20 px-4 py-2 rounded-md text-sm font-bold hover:bg-danger hover:text-danger-foreground transition-colors cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
                 onClick={handleDelete}
                 disabled={isDeleting || !deleteReason.trim()}
               >

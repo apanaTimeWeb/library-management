@@ -7,7 +7,7 @@ import { ManagerReportsFilterBarProps } from '@/app/manager/manager_reports/mana
 
 export function ManagerReportsFilterBar({ dateRange, onDateRangeChange }: ManagerReportsFilterBarProps) {
   return (
-    <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 mb-8 bg-bg-card p-4 rounded-[var(--radius-lg)] border border-border shadow-sm">
+    <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 mb-8 bg-bg-pageg-card p-4 rounded-[var(--radius-lg)] border border-border shadow-sm">
       <div className="flex flex-col gap-1 w-full sm:w-auto">
         <label className="text-xs font-semibold text-text-secondary uppercase tracking-wider">
           Date Range

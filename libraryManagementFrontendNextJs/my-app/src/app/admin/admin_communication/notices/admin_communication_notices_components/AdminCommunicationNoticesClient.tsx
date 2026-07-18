@@ -82,7 +82,7 @@ export function AdminCommunicationNoticesClient() {
           <p className="text-xs font-semibold text-muted-foreground flex items-center gap-1 uppercase tracking-wider mb-1">
             Communication <ChevronRight size={12} /> Notices
           </p>
-          <h1 className="text-2xl font-bold tracking-tight">📢 Notice Board</h1>
+          <h1 className="text-text-primaryxl font-bold tracking-tight">📢 Notice Board</h1>
           <p className="text-sm text-muted-foreground mt-1">Post and manage library notices for students.</p>
         </div>
         <Button onClick={openAdd} className="gap-2">

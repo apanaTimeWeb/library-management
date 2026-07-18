@@ -67,7 +67,7 @@ export function SuperadminDailySettlementGrid({ entries, onSettle }: Props) {
       width: 120,
       cellStyle: { textAlign: 'right' },
       cellRenderer: (p: ICellRendererParams<SuperadminDailySettlementEntry>) => (
-        <span className="text-[15px] font-extrabold text-text-primary tracking-tight">₹{p.data?.closingBalance.toLocaleString()}</span>
+        <span className="text-base font-extrabold text-text-primary tracking-tight">₹{p.data?.closingBalance.toLocaleString()}</span>
       )
     },
     { 
@@ -83,7 +83,7 @@ export function SuperadminDailySettlementGrid({ entries, onSettle }: Props) {
       headerName: 'Status', 
       width: 120,
       cellRenderer: (p: ICellRendererParams<SuperadminDailySettlementEntry>) => (
-        <span className={`inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider mt-2 ${p.data?.status === 'settled' ? 'bg-success-bg text-success' : 'bg-warning-bg text-warning'}`}>
+        <span className={`inline-flex items-center px-2 py-0.5 rounded text-xs font-bold uppercase tracking-wider mt-2 ${p.data?.status === 'settled' ? 'bg-success-bg text-success' : 'bg-warning-bg text-warning'}`}>
           {p.data?.status}
         </span>
       )
@@ -99,7 +99,7 @@ export function SuperadminDailySettlementGrid({ entries, onSettle }: Props) {
           return (
             <div className="h-full flex justify-end items-center pr-2">
               <button 
-                className="flex items-center gap-1.5 px-3 py-1 bg-success-bg text-success hover:bg-success hover:text-white text-xs font-bold rounded-[var(--radius-sm)] transition-colors duration-200" 
+                className="flex items-center gap-1.5 px-3 py-1 bg-success-bg text-success hover:bg-success hover:text-white text-xs font-bold rounded-sm transition-colors duration-200" 
                 onClick={() => onSettle(p.data!.id)}
               >
                 <CheckCircle size={14} /> Settle
@@ -113,7 +113,7 @@ export function SuperadminDailySettlementGrid({ entries, onSettle }: Props) {
   ], [onSettle]);
 
   return (
-    <div className="bg-bg-card border border-border rounded-[var(--radius-lg)] overflow-hidden shadow-sm">
+    <div className="bg-bg-pageg-card border border-border rounded-lg overflow-hidden shadow-sm">
       {entries.length === 0 ? (
         <div className="flex flex-col items-center justify-center py-20 text-center">
           <ClipboardList size={48} className="text-text-disabled mb-4 opacity-50" />

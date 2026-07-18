@@ -44,13 +44,13 @@ export function AdminExpensesClient() {
           <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-1">
             Smart Library 360 <span className="opacity-50">›</span> Admin <span className="opacity-50">›</span> Expenses
           </p>
-          <h1 className="text-2xl font-bold tracking-tight text-foreground">{selectedBranch} - Expenses</h1>
+          <h1 className="text-text-primaryxl font-bold tracking-tight text-foreground">{selectedBranch} - Expenses</h1>
           <p className="text-sm text-muted-foreground mt-1">Monitor expenses logged by managers during daily settlement for the selected branch.</p>
         </div>
         <Button
           type="button"
           variant="outline"
-          className="gap-2 bg-bg-card hover:bg-muted"
+          className="gap-2 bg-bg-pageg-card hover:bg-muted"
           title="Export table data to CSV"
         >
           <Download size={16} /> Export CSV

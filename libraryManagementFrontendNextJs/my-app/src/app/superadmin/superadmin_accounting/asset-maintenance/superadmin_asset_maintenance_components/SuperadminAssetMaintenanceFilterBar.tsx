@@ -6,7 +6,7 @@ import type { SuperadminAssetMaintenanceFilterBarProps as Props } from '@/app/su
 
 export function SuperadminAssetMaintenanceFilterBar({ statusFilter, setStatusFilter }: Props) {
   return (
-    <div className="bg-bg-card border border-border rounded-[var(--radius-lg)] p-4 shadow-sm mb-6 flex items-center gap-3">
+    <div className="bg-bg-pageg-card border border-border rounded-lg p-4 shadow-sm mb-6 flex items-center gap-3">
       <label className="text-xs font-bold text-text-secondary uppercase tracking-wider">Filter Status:</label>
       <div className="w-44">
         <SuperadminSearchableDropdown

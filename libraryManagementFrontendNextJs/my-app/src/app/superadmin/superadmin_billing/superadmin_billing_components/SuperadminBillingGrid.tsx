@@ -41,15 +41,15 @@ export function SuperadminBillingGrid({ invoices, onRowClick, onExport }: Props)
       headerName: 'Date & Method', field: 'date', flex: 1.2, minWidth: 140,
       cellRenderer: (p: ICellRendererParams<SuperadminBillingInvoice>) => (
         <div className="flex flex-col justify-center h-full">
-          <p className="text-[13px] font-bold text-text-secondary">{p.data?.date}</p>
-          <p className="text-[11px] font-semibold text-text-disabled uppercase tracking-wider">{p.data?.method}</p>
+          <p className="text-sm font-bold text-text-secondary">{p.data?.date}</p>
+          <p className="text-xs font-semibold text-text-disabled uppercase tracking-wider">{p.data?.method}</p>
         </div>
       ),
     },
     {
       headerName: 'Amount', field: 'amount', flex: 1, minWidth: 110,
       cellRenderer: (p: ICellRendererParams<SuperadminBillingInvoice>) => (
-        <span className="text-[15px] font-extrabold text-text-primary tracking-tight">₹{p.data?.amount.toLocaleString()}</span>
+        <span className="text-base font-extrabold text-text-primary tracking-tight">₹{p.data?.amount.toLocaleString()}</span>
       ),
     },
     {
@@ -57,8 +57,8 @@ export function SuperadminBillingGrid({ invoices, onRowClick, onExport }: Props)
       cellRenderer: (p: ICellRendererParams<SuperadminBillingInvoice>) => (
         <div className="flex items-center h-full">
           {p.data?.status === 'Paid'
-            ? <span className="inline-flex items-center px-2 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-success-bg text-success">✅ Paid</span>
-            : <span className="inline-flex items-center px-2 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-danger-bg text-danger">🔴 Overdue</span>}
+            ? <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-success-bg text-success">✅ Paid</span>
+            : <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-danger-bg text-danger">🔴 Overdue</span>}
         </div>
       ),
     },
@@ -67,16 +67,16 @@ export function SuperadminBillingGrid({ invoices, onRowClick, onExport }: Props)
   const onGridReady = useCallback((e: GridReadyEvent) => { e.api.sizeColumnsToFit(); }, []);
 
   return (
-    <div className="bg-bg-card border border-border rounded-[var(--radius-lg)] overflow-hidden shadow-sm">
-      <div className="p-4 border-b border-border bg-bg-page/30 flex items-center justify-between gap-4 flex-wrap">
+    <div className="bg-bg-pageg-card border border-border rounded-lg overflow-hidden shadow-sm">
+      <div className="p-4 border-b border-border bg-bg-pageg-page/30 flex items-center justify-between gap-4 flex-wrap">
         <input 
           type="text" 
           placeholder="Search Invoice ID or tenant..." 
-          className="w-full sm:w-64 bg-bg-input border border-border rounded-[var(--radius-md)] py-2 px-3 text-sm font-medium text-text-primary focus:outline-none focus:border-primary transition-colors placeholder-[var(--text-disabled)] shadow-inner"
+          className="w-full sm:w-64 bg-bg-pageg-input border border-border rounded-md py-2 px-3 text-sm font-medium text-text-primary focus:outline-none focus:border-primary transition-colors placeholder-[var(--text-disabled)] shadow-inner"
           onChange={e => gridRef.current?.api.setGridOption('quickFilterText', e.target.value)} 
         />
         <button 
-          className="flex items-center gap-2 bg-transparent border border-border hover:bg-bg-input text-text-primary text-[13px] font-bold py-2 px-3 rounded-[var(--radius-md)] transition-colors" 
+          className="flex items-center gap-2 bg-transparent border border-border hover:bg-bg-pageg-input text-text-primary text-sm font-bold py-2 px-3 rounded-md transition-colors" 
           onClick={handleExport}
         >
           {exported ? <><CheckCircle size={14} className="text-success" /> Exported!</> : <><Download size={14} /> Export CSV</>}

@@ -5,7 +5,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { seatsSchema, type SeatsData } from '@/app/superadmin/superadmin_shared_components/superadmin_schema';
 import { SETUP_WIZARD_DATA as d } from '@/app/superadmin/superadmin_setup-wizard/superadmin_setupWizard_constants';
 
-const inputCls = (hasErr?: boolean) => `w-full bg-bg-input border rounded-lg px-3.5 py-2.5 text-[15px] text-text-primary focus:outline-none focus:ring-2 transition-all placeholder:text-text-tertiary ${hasErr ? 'border-danger focus:ring-danger/20 focus:border-danger' : 'border-border focus:ring-primary/20 focus:border-primary'}`;
+const inputCls = (hasErr?: boolean) => `w-full bg-bg-pageg-input border rounded-lg px-3.5 py-2.5 text-base text-text-primary focus:outline-none focus:ring-2 transition-all placeholder:text-text-tertiary ${hasErr ? 'border-danger focus:ring-danger/20 focus:border-danger' : 'border-border focus:ring-primary/20 focus:border-primary'}`;
 
 import type { SuperadminSetupWizardStep3Props as Props } from '@/app/superadmin/superadmin_setup-wizard/superadmin_setup_wizard_types/SuperadminSetupWizardTypes';
 
@@ -23,17 +23,17 @@ export function SuperadminSetupWizardStep3({ onNext }: Props) {
     ).join(', ') + (count > 5 ? ` ... ${prefix}${String(count).padStart(2, '0')}` : '');
 
   const seatCellClass = (i: number) => {
-    const base = 'w-[50px] h-[50px] flex items-center justify-center rounded-lg text-xs font-bold font-mono transition-colors border';
+    const base = 'w-12 h-12 flex items-center justify-center rounded-lg text-xs font-bold font-mono transition-colors border';
     if (i === 0) return `${base} bg-danger-bg border-danger text-danger`;
     if (i === 1) return `${base} bg-warning-bg border-warning text-warning`;
-    return `${base} bg-bg-elevated border-border text-text-secondary`;
+    return `${base} bg-bg-pageg-elevated border-border text-text-secondary`;
   };
 
   return (
     <form id="step3-form" onSubmit={handleSubmit(onNext)} noValidate className="space-y-5">
       <div className="grid grid-cols-2 gap-4">
         <div className="space-y-1.5">
-          <label className="text-[13px] font-semibold text-text-secondary uppercase tracking-wider mb-2 block">
+          <label className="text-sm font-semibold text-text-secondary uppercase tracking-wider mb-2 block">
             Total Seats <span className="text-danger ml-1">*</span>
           </label>
           <input type="number" min={1}
@@ -42,7 +42,7 @@ export function SuperadminSetupWizardStep3({ onNext }: Props) {
           {errors.count && <p className="text-xs text-danger mt-1.5">{errors.count.message}</p>}
         </div>
         <div className="space-y-1.5">
-          <label className="text-[13px] font-semibold text-text-secondary uppercase tracking-wider mb-2 block">
+          <label className="text-sm font-semibold text-text-secondary uppercase tracking-wider mb-2 block">
             Seat Prefix <span className="text-text-tertiary font-normal text-xs ml-1 lowercase">(max 3)</span>
           </label>
           <input maxLength={3} {...register('prefix')} placeholder="e.g. SL-"
@@ -52,8 +52,8 @@ export function SuperadminSetupWizardStep3({ onNext }: Props) {
       </div>
 
       <div className="bg-info-bg/30 border border-info/20 rounded-xl p-5">
-        <p className="text-[13px] font-semibold text-info mb-1.5">💡 Seats will be generated as:</p>
-        <p className="text-[15px] font-mono text-text-primary tracking-wide mb-1">
+        <p className="text-sm font-semibold text-info mb-1.5">💡 Seats will be generated as:</p>
+        <p className="text-base font-mono text-text-primary tracking-wide mb-1">
           {prefix ? preview : '(enter prefix to preview)'}
         </p>
         <p className="text-xs text-text-secondary font-medium">
@@ -70,7 +70,7 @@ export function SuperadminSetupWizardStep3({ onNext }: Props) {
             </div>
           ))}
           {count > 20 && (
-            <div className="w-[50px] h-[50px] flex items-center justify-center rounded-lg text-xs font-bold font-mono transition-colors border bg-bg-input border-dashed border-border text-text-tertiary">
+            <div className="w-12 h-12 flex items-center justify-center rounded-lg text-xs font-bold font-mono transition-colors border bg-bg-pageg-input border-dashed border-border text-text-tertiary">
               +{count - 20}
             </div>
           )}

@@ -84,7 +84,7 @@ export function AdminSystemBackupsClient() {
             <CardDescription>Configure nightly backup schedule and retention period.</CardDescription>
           </CardHeader>
           <CardContent className="space-y-5">
-            <div className="flex items-center justify-between p-4 rounded-xl bg-bg-card border border-border">
+            <div className="flex items-center justify-between p-4 rounded-xl bg-bg-pageg-card border border-border">
               <div>
                 <p className="text-sm font-semibold text-text-primary">Enable Nightly Backups</p>
                 <p className="text-xs text-text-secondary">Automatically backs up all data every night</p>
@@ -101,7 +101,7 @@ export function AdminSystemBackupsClient() {
                   value={backupTime}
                   onChange={e => setBackupTime(e.target.value)}
                   disabled={!autoBackup}
-                  className="px-3 py-2 rounded-lg bg-bg-input border border-border text-sm text-text-primary focus:outline-none focus:border-primary disabled:opacity-40"
+                  className="px-3 py-2 rounded-lg bg-bg-pageg-input border border-border text-sm text-text-primary focus:outline-none focus:border-primary disabled:opacity-40"
                 />
                 <span className="text-sm text-text-secondary">Daily at {backupTime}</span>
               </div>
@@ -117,7 +117,7 @@ export function AdminSystemBackupsClient() {
                   onChange={e => setRetention(+e.target.value)}
                   min={7}
                   max={365}
-                  className="w-24 px-3 py-2 rounded-lg bg-bg-input border border-border text-sm text-text-primary focus:outline-none focus:border-primary"
+                  className="w-24 px-3 py-2 rounded-lg bg-bg-pageg-input border border-border text-sm text-text-primary focus:outline-none focus:border-primary"
                 />
                 <span className="text-sm text-text-secondary">Old backups deleted after {retention} days</span>
               </div>
@@ -137,7 +137,7 @@ export function AdminSystemBackupsClient() {
             <CardDescription>Sync backups to a secure cloud storage destination.</CardDescription>
           </CardHeader>
           <CardContent className="space-y-5">
-            <div className="flex items-center justify-between p-4 rounded-xl bg-bg-card border border-border">
+            <div className="flex items-center justify-between p-4 rounded-xl bg-bg-pageg-card border border-border">
               <div>
                 <p className="text-sm font-semibold text-text-primary">Enable Cloud Sync</p>
                 <p className="text-xs text-text-secondary">Automatically upload backups to cloud after creation</p>
@@ -149,7 +149,7 @@ export function AdminSystemBackupsClient() {
               <>
                 <div className="space-y-2">
                   <label className="text-sm font-medium text-text-secondary">Cloud Provider</label>
-                  <select className="w-full px-3 py-2 rounded-lg bg-bg-input border border-border text-sm text-text-primary focus:outline-none focus:border-primary">
+                  <select className="w-full px-3 py-2 rounded-lg bg-bg-pageg-input border border-border text-sm text-text-primary focus:outline-none focus:border-primary">
                     <option>Google Drive</option>
                     <option>AWS S3</option>
                     <option>Dropbox</option>
@@ -174,7 +174,7 @@ export function AdminSystemBackupsClient() {
                 <span className="flex items-center gap-1"><HardDrive size={12} /> Local Storage Used</span>
                 <span className="text-text-primary font-semibold">28.4 MB / 500 MB</span>
               </div>
-              <div className="h-2.5 rounded-full bg-bg-input overflow-hidden">
+              <div className="h-2.5 rounded-full bg-bg-pageg-input overflow-hidden">
                 <div className="h-full bg-primary w-[length:var(--w)]" style={{ '--w': '5.68%' } as React.CSSProperties} />
               </div>
               <p className="text-xs text-text-secondary">471.6 MB remaining</p>
@@ -225,7 +225,7 @@ export function AdminSystemBackupsClient() {
                   const cfg = STATUS_CFG[backup.status as keyof typeof STATUS_CFG];
                   const Icon = cfg.icon;
                   return (
-                    <tr key={backup.id} className="hover:bg-bg-card transition-colors group">
+                    <tr key={backup.id} className="hover:bg-bg-pageg-card transition-colors group">
                       <td className="py-3 pr-4">
                         <div className="flex items-center gap-2">
                           <Database size={14} className="text-text-secondary" />
@@ -248,10 +248,10 @@ export function AdminSystemBackupsClient() {
                       <td className="py-3 pr-4">
                         <div className="flex flex-wrap gap-1">
                           {backup.modules.slice(0, 3).map(m => (
-                            <span key={m} className="text-xs px-1.5 py-0.5 rounded bg-bg-input text-text-secondary">{m}</span>
+                            <span key={m} className="text-xs px-1.5 py-0.5 rounded bg-bg-pageg-input text-text-secondary">{m}</span>
                           ))}
                           {backup.modules.length > 3 && (
-                            <span className="text-xs px-1.5 py-0.5 rounded bg-bg-input text-text-secondary">+{backup.modules.length - 3}</span>
+                            <span className="text-xs px-1.5 py-0.5 rounded bg-bg-pageg-input text-text-secondary">+{backup.modules.length - 3}</span>
                           )}
                         </div>
                       </td>

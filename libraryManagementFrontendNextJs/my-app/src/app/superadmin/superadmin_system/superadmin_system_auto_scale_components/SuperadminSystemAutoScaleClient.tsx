@@ -78,7 +78,7 @@ export function SuperadminSystemAutoScaleClient() {
               </div>
             </div>
           </div>
-          <div className="flex items-center justify-between p-4 rounded-xl bg-bg-card border border-border">
+          <div className="flex items-center justify-between p-4 rounded-xl bg-bg-pageg-card border border-border">
             <div>
               <p className="text-sm font-medium text-text-primary">Alert me when occupancy exceeds threshold</p>
               <p className="text-xs text-text-secondary">Receive in-app notifications and dashboard badges</p>
@@ -105,7 +105,7 @@ export function SuperadminSystemAutoScaleClient() {
           <div className={`p-4 rounded-xl border ${
             seatRec.color === 'danger' ? 'bg-danger-bg/10 border-danger/20' :
             seatRec.color === 'warning' ? 'bg-tertiary/10 border-tertiary/20' :
-            'bg-green-500/10 border-green-500/20'
+            'bg-success/10 border-success/20'
           }`}>
             <div className="flex items-center justify-between">
               <div className="flex items-start gap-3">
@@ -126,7 +126,7 @@ export function SuperadminSystemAutoScaleClient() {
           <div className={`p-4 rounded-xl border ${
             lockerRec.color === 'danger' ? 'bg-danger-bg/10 border-danger/20' :
             lockerRec.color === 'warning' ? 'bg-tertiary/10 border-tertiary/20' :
-            'bg-green-500/10 border-green-500/20'
+            'bg-success/10 border-success/20'
           }`}>
             <div className="flex items-center justify-between">
               <div className="flex items-start gap-3">

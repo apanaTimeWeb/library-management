@@ -70,7 +70,7 @@ export function AdminSystemMaintenanceClient() {
               </thead>
               <tbody className="divide-y divide-outline-variant/30">
                 {seats.filter(row => JSON.stringify(row).toLowerCase().includes(searchTerm.toLowerCase())).slice((page - 1) * limit, page * limit).map((seat) => (
-                  <tr key={seat.id} className="hover:bg-bg-card transition-colors">
+                  <tr key={seat.id} className="hover:bg-bg-pageg-card transition-colors">
                     <td className="py-3 pr-4 font-mono font-medium text-text-primary">{seat.id}</td>
                     <td className="py-3 pr-4">
                       <Badge variant={seat.status === 'OK' ? 'success' : 'danger'}>{seat.status}</Badge>
@@ -134,7 +134,7 @@ export function AdminSystemMaintenanceClient() {
               <tbody className="divide-y divide-outline-variant/30">
                 {/* eslint-disable-next-line @typescript-eslint/no-unused-vars */}
                 {table.paginatedData.map((asset, i) => (
-                  <tr key={asset.name} className="hover:bg-bg-card transition-colors">
+                  <tr key={asset.name} className="hover:bg-bg-pageg-card transition-colors">
                     <td className="py-3 pr-4 font-medium text-text-primary">{asset.name}</td>
                     <td className="py-3 pr-4 text-center text-text-secondary">{asset.qty}</td>
                     <td className="py-3 pr-4">
@@ -193,7 +193,7 @@ export function AdminSystemMaintenanceClient() {
               </thead>
               <tbody className="divide-y divide-outline-variant/30">
                 {lockers.filter(row => JSON.stringify(row).toLowerCase().includes(searchTerm.toLowerCase())).map((locker) => (
-                  <tr key={locker.id} className="hover:bg-bg-card transition-colors">
+                  <tr key={locker.id} className="hover:bg-bg-pageg-card transition-colors">
                     <td className="py-3 pr-4 font-mono font-medium text-text-primary">{locker.id}</td>
                     <td className="py-3 pr-4">
                       <Badge variant={locker.status === 'OK' ? 'success' : 'danger'}>{locker.status}</Badge>

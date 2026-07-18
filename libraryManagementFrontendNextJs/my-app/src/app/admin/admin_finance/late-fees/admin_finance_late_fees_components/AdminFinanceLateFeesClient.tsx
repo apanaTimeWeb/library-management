@@ -41,7 +41,7 @@ export function AdminFinanceLateFeesClient() {
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b pb-4">
         <div>
           <nav className="text-xs text-muted-foreground font-medium mb-1 tracking-wide uppercase">Smart Library 360 › Admin › Finance</nav>
-          <h1 className="text-2xl font-bold tracking-tight">Late Fees</h1>
+          <h1 className="text-text-primaryxl font-bold tracking-tight">Late Fees</h1>
           <p className="text-sm text-muted-foreground mt-1">Configure late fee policies and view overdue students.</p>
         </div>
       </div>
@@ -96,11 +96,11 @@ export function AdminFinanceLateFeesClient() {
           <div className="grid grid-cols-2 gap-6 max-w-md">
             <div className="space-y-1">
               <p className="text-sm font-medium text-muted-foreground">Grace Period</p>
-              <p className="text-2xl font-bold text-primary">{config?.gracePeriodDays} days</p>
+              <p className="text-text-primaryxl font-bold text-primary">{config?.gracePeriodDays} days</p>
             </div>
             <div className="space-y-1">
               <p className="text-sm font-medium text-muted-foreground">Penalty Per Day</p>
-              <p className="text-2xl font-bold text-primary">{formatCurrency(config?.penaltyPerDay || 0)}</p>
+              <p className="text-text-primaryxl font-bold text-primary">{formatCurrency(config?.penaltyPerDay || 0)}</p>
             </div>
           </div>
         )}

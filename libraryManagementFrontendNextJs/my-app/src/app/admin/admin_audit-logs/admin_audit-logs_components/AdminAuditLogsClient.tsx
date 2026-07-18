@@ -113,7 +113,7 @@ export function AdminAuditLogsClient() {
           <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-1">
             Smart Library 360 <span className="opacity-50">›</span> Admin <span className="opacity-50">›</span> Audit Logs
           </p>
-          <h1 className="text-2xl font-bold tracking-tight text-foreground">Audit Logs</h1>
+          <h1 className="text-text-primaryxl font-bold tracking-tight text-foreground">Audit Logs</h1>
           <p className="text-sm text-muted-foreground mt-1">Track all sensitive actions performed in the system.</p>
         </div>
       </div>
@@ -136,7 +136,7 @@ export function AdminAuditLogsClient() {
               type="button"
               className={`px-3 py-1.5 text-sm font-medium rounded-md transition-colors ${
                 activeTab === tab 
-                  ? 'bg-bg-card text-foreground shadow-sm' 
+                  ? 'bg-bg-pageg-card text-foreground shadow-sm' 
                   : 'text-muted-foreground hover:text-foreground hover:bg-muted/50'
               }`}
               onClick={() => setActiveTab(tab)}
