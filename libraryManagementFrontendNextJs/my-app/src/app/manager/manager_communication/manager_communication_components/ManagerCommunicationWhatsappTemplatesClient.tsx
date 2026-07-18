@@ -17,6 +17,8 @@ const INIT: Template[] = [
   { id: 'ptp',          label: 'PTP Payment Reminder',  icon: '🤝', body: 'Hi {name}, this is a reminder that you had committed to pay ₹{amount} by {duedate}. Please complete your payment. — {libraryname}' },
 ];
 
+const VARS = ['{name}', '{amount}', '{duedate}', '{planname}', '{libraryname}', '{phone}', '{seat}'];
+
 const MAX_CHARS = 1024;
 
 export function ManagerCommunicationWhatsappTemplatesClient() {
