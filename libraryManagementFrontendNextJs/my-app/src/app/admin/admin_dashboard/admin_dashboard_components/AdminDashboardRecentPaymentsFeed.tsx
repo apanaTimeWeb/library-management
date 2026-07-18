@@ -64,9 +64,9 @@ export function AdminDashboardRecentPaymentsFeed({ payments }: { payments: Admin
                   <td className="px-4 py-3">
                     <div className="flex items-center gap-3">
                       <div className="flex items-center justify-center h-8 w-8 rounded-full bg-primary text-white text-xs font-bold shadow-sm">
-                        {payment.studentName.charAt(0)}
+                        {String(payment.studentName || 'U').charAt(0).toUpperCase()}
                       </div>
-                      <span className="font-semibold text-sm text-text-primary group-hover:text-primary transition-colors">{payment.studentName}</span>
+                      <span className="font-semibold text-sm text-text-primary group-hover:text-primary transition-colors">{payment.studentName || 'Unknown'}</span>
                     </div>
                   </td>
                   <td className="px-4 py-3 font-bold text-sm text-text-primary">
