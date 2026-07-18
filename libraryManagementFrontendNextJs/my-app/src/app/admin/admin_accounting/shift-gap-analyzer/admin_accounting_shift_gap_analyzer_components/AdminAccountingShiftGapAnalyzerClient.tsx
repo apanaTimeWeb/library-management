@@ -3,6 +3,8 @@
 // DATA FLOW: Static Mock -> AdminAccountingShiftGapAnalyzerClient (`Rule 39`).
 
 import { useState } from 'react';
+import { Search } from 'lucide-react';
+import { Input } from '@/components/ui/input';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { TablePagination } from '@/components/ui/table-pagination';
@@ -149,7 +151,7 @@ export function AdminAccountingShiftGapAnalyzerClient() {
         </table>
 
       <TablePagination 
-        total={100} 
+        totalItems={100} 
         page={page} 
         limit={limit} 
         onPageChange={setPage} 

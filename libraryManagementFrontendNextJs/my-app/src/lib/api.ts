@@ -159,6 +159,9 @@ export async function fetchApi<T = any>(endpoint: string, options: RequestInit =
     ) {
       // Dashboards, settings, or single item GET requests expect objects
       safeData = generateGenericRecord(0);
+    } else if (normalizedEndpoint.includes('/admin/permissions')) {
+      // Permissions matrix requires specific deep nesting, generic mocks break it.
+      safeData = [];
     } else {
       // Default GET for lists: Return an array of 5 heavily populated generic records
       safeData = Array.from({ length: 5 }).map((_, i) => generateGenericRecord(i));

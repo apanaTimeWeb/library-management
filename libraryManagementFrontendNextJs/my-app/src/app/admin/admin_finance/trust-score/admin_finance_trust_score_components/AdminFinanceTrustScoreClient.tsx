@@ -2,6 +2,7 @@
 'use client';
 
 import { useState } from 'react';
+import { Input } from '@/components/ui/input';
 import { ShieldCheck, ShieldAlert, ShieldX, Users , Search} from 'lucide-react';
 import { useAdminFinanceTrustScore } from '@/app/admin/admin_finance/trust-score/admin_finance_trust_score_hooks/useAdminFinanceTrustScore';
 import { TablePagination } from '@/components/ui/table-pagination';

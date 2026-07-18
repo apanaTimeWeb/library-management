@@ -3,6 +3,7 @@
 // DATA FLOW: Static Mock -> AdminAccountingSeatGapReportClient (`Rule 39`).
 
 import { useState } from 'react';
+import { Input } from '@/components/ui/input';
 import { Download , Search} from 'lucide-react';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -130,7 +131,7 @@ export function AdminAccountingSeatGapReportClient() {
         </table>
 
       <TablePagination 
-        total={100} 
+        totalItems={100} 
         page={page} 
         limit={limit} 
         onPageChange={setPage} 

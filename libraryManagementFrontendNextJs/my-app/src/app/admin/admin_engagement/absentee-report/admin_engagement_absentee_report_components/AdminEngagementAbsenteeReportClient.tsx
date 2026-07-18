@@ -3,14 +3,15 @@
 // DATA FLOW: Next.js Router -> Page -> Components
 
 import { useState } from 'react';
+import { TablePagination } from '@/components/ui/table-pagination';
+import { Input } from '@/components/ui/input';
 import Link from 'next/link';
-import { ChevronRight, Send, Mail, Phone, AlertCircle } from 'lucide-react';
+import { ChevronRight, Send, Mail, Phone, AlertCircle , Search} from 'lucide-react';
 import { ADMIN_ENGAGEMENT_MOCK_ABSENTEES } from '@/app/admin/admin_engagement/admin_engagement_constants/AdminEngagementConstants';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import toast from 'react-hot-toast';
-import { TablePagination } from '@/components/ui/table-pagination';
 
 interface AbsenteeRow {
   id: string; name: string; initials: string; smartId: string;
@@ -19,6 +20,7 @@ interface AbsenteeRow {
 }
 
 export function AdminEngagementAbsenteeReportClient() {
+  const [searchTerm, setSearchTerm] = useState('');
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(10);
   const [threshold, setThreshold] = useState('3');
@@ -27,7 +29,7 @@ export function AdminEngagementAbsenteeReportClient() {
 
   const filtered = rows.filter(r => {
     const thr = threshold === 'all' ? 0 : parseInt(threshold);
-    return r.daysAbsent >= thr && (shift === 'All' || r.shift === shift);
+    return r.daysAbsent >= thr && (shift === 'All' || r.shift === shift) && r.name.toLowerCase().includes(searchTerm.toLowerCase());
   });
 
   const critical  = filtered.filter(r => r.daysAbsent >= 7);
@@ -129,6 +131,13 @@ export function AdminEngagementAbsenteeReportClient() {
             <p className="text-sm">All students have great attendance above the selected threshold.</p>
           </div>
         ) : (
+          <>
+          <div className="flex justify-between items-center mb-4">
+            <div className="relative w-64">
+              <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
+              <Input placeholder="Search..." className="pl-8" value={searchTerm} onChange={e => setSearchTerm(e.target.value)} />
+            </div>
+          </div>
           <table className="w-full text-sm text-left">
             <thead className="bg-muted text-muted-foreground text-xs font-semibold uppercase tracking-wider sticky top-0 z-10">
               <tr>
@@ -189,6 +198,14 @@ export function AdminEngagementAbsenteeReportClient() {
               ))}
             </tbody>
           </table>
+          <TablePagination 
+            totalItems={100} 
+            page={page} 
+            limit={limit} 
+            onPageChange={setPage} 
+            onLimitChange={setLimit} 
+          />
+          </>
         )}
       </Card>
     </div>

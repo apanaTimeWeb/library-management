@@ -3,6 +3,7 @@
 
 
 import { Download, FileText, IndianRupee, Users, Wallet, TrendingUp, BarChart2, PieChart as PieIcon, Activity , Search} from 'lucide-react';
+import { Input } from '@/components/ui/input';
 import toast, { Toaster } from 'react-hot-toast';
 import {
   BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid,

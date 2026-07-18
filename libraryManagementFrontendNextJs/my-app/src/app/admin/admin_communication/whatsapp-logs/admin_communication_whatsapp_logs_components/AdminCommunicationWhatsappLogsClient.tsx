@@ -157,7 +157,7 @@ export function AdminCommunicationWhatsappLogsClient() {
           </table>
 
       <TablePagination 
-        total={100} 
+        totalItems={100} 
         page={page} 
         limit={limit} 
         onPageChange={setPage} 
