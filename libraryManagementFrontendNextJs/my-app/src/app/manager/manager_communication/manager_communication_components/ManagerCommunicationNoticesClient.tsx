@@ -74,9 +74,9 @@ export function ManagerCommunicationNoticesClient() {
       sortable: false,
       cellRenderer: (params: CellParams) => (
         <div className="h-full flex items-center gap-2">
-          <button onClick={() => openEdit(params?.data)} className="w-8 h-8 flex items-center justify-center rounded-lg border border-border text-text-secondary bg-transparent hover:bg-primary hover:text-white transition-colors" title="Edit"><Edit2 size={14} /></button>
-          <button onClick={() => setBroadcastItem(params?.data)} className="w-8 h-8 flex items-center justify-center rounded-lg border border-border text-text-secondary bg-transparent hover:bg-primary hover:text-white transition-colors" title="Broadcast"><Send size={14} /></button>
-          <button onClick={() => setDeleteItem(params?.data)} className="w-8 h-8 flex items-center justify-center rounded-lg border border-border text-danger bg-transparent hover:bg-danger hover:text-white transition-colors" title="Delete"><Trash2 size={14} /></button>
+          <button onClick={() => openEdit(params?.data as Notice)} className="w-8 h-8 flex items-center justify-center rounded-md hover:bg-muted/50 text-muted-foreground hover:text-primary transition-colors" title="Edit"><Edit2 size={14} /></button>
+          <button onClick={() => setBroadcastItem(params?.data as Notice)} className="w-8 h-8 flex items-center justify-center rounded-md hover:bg-muted/50 text-muted-foreground hover:text-info transition-colors" title="Broadcast"><Send size={14} /></button>
+          <button onClick={() => setDeleteItem(params?.data as Notice)} className="w-8 h-8 flex items-center justify-center rounded-md hover:bg-muted/50 text-muted-foreground hover:text-danger transition-colors" title="Delete"><Trash2 size={14} /></button>
         </div>
       )
     }

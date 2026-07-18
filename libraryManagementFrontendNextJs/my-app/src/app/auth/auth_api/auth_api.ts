@@ -10,7 +10,7 @@ import { fetchApi } from '@/lib/api';
 export const authApi = {
   login: async (identifier: string, password: string): Promise<ApiResponse<AuthLoginResponse>> => {
     try {
-      let response: unknown;
+      let response: any;
       try {
         // fetchApi automatically attaches tokens, intercepts errors, and handles the base URL
         response = await fetchApi(AUTH_API_ROUTES.LOGIN, {
