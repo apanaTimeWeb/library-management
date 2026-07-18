@@ -8,6 +8,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { MapPin, Edit2, X, Users, CheckCircle, AlertTriangle, Save, Loader, ShieldAlert } from 'lucide-react';
 import type { SuperadminLibrary, SuperadminLibrariesPanelProps as Props } from '@/app/superadmin/superadmin_libraries/superadmin_libraries_types/SuperadminLibrariesTypes';
 import { superadminLibrarySchema } from '@/app/superadmin/superadmin_libraries/superadmin_libraries_types/SuperadminLibrariesTypes';
+import { SUPERADMIN_LIBRARIES_PLANS } from '@/app/superadmin/superadmin_libraries/superadmin_libraries_constants/SuperadminLibrariesConstants';
 import { logger } from '@/lib/logger';
 import { SuperadminSearchableDropdown } from '@/app/superadmin/superadmin_shared_components/SuperadminSearchableDropdown';
 import { maskSuperadminLibraryPhone } from '@/app/superadmin/superadmin_libraries/superadmin_libraries_utils/superadmin_libraries_utils';
@@ -112,7 +113,7 @@ export function SuperadminLibrariesPanel({ lib, mode, onClose, onSave, onSuspend
                   control={control}
                   render={({ field }) => (
                     <SuperadminSearchableDropdown
-                      options={['Basic', 'Pro', 'Enterprise'].map((p: string) => ({ label: p, value: p }))}
+                      options={SUPERADMIN_LIBRARIES_PLANS.map((p: string) => ({ label: p, value: p }))}
                       value={field.value}
                       onChange={field.onChange}
                     />

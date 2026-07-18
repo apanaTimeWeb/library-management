@@ -1,5 +1,3 @@
-import type { SuperadminLibrary } from '@/app/superadmin/superadmin_libraries/superadmin_libraries_types/SuperadminLibrariesTypes';
-
 export const SUPERADMIN_LIBRARIES_TOASTS = {
   UPDATE_SUCCESS: (name: string) => `✅ ${name} updated successfully`,
   UPDATE_ERROR: '❌ Failed to update library',
@@ -7,7 +5,11 @@ export const SUPERADMIN_LIBRARIES_TOASTS = {
   STATUS_ERROR: '❌ Failed to update status',
 };
 
-export const SUPERADMIN_LIBRARIES_MOCK_DATA: SuperadminLibrary[] = [
+export const SUPERADMIN_LIBRARIES_PLANS = ['Basic', 'Pro', 'Enterprise'] as const;
+export const SUPERADMIN_LIBRARIES_STATUSES = ['Active', 'Maintenance'] as const;
+
+
+export const SUPERADMIN_LIBRARIES_MOCK_DATA: any[] = [
   {
     id: 'lib-001',
     name: 'StudyNest Patna',
