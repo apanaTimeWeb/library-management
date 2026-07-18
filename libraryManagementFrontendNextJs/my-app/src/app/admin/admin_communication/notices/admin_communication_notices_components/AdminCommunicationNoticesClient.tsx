@@ -73,7 +73,7 @@ export function AdminCommunicationNoticesClient() {
     setBroadcastItem(null);
     toast.success('Notice broadcast to all active students via WhatsApp');
   };
-    const table = useClientTable(data, 10);
+    const table = useClientTable(notices, 10);
   return (
     <div className="space-y-6 pb-10">
       {/* Header */}

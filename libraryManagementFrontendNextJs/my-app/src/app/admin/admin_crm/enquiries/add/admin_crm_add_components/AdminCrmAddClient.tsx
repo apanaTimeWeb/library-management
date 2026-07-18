@@ -12,6 +12,7 @@ import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter }
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { AdminCrmAddClientProps } from "./AdminCrmAddClient_types";
+import { ADMIN_ROUTES } from '@/app/admin/admin_url_config';
 
 export function AdminCrmAddClient({ onClose }: AdminCrmAddClientProps = {}) {
   const router = useRouter();

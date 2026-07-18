@@ -34,7 +34,10 @@ export function useAdminCrmEnquiries() {
     setFetchState('loading');
     fetchApi(ADMIN_API_ROUTES.CRM_ENQUIRIES)
       .then((data: unknown) => {
-        const rows = (((Array.isArray(data) ? data : (Array.isArray((data as Record<string, unknown>)?.data) ? (data as Record<string, unknown>).data : [])).length > 0) ? (Array.isArray(data) ? data : (Array.isArray((data as Record<string, unknown>)?.data) ? (data as Record<string, unknown>).data : [])) : (() => { throw new Error('Force Mock'); })()) as any[];
+        let rows: any[] = [];
+        if (Array.isArray(data)) rows = data;
+        else if (data && typeof data === 'object' && Array.isArray((data as Record<string, any>).data)) rows = (data as Record<string, any>).data;
+        if (rows.length === 0) throw new Error('Force Mock');
         const mapped: Enquiry[] = rows.map((e: Record<string, unknown>) => ({
           id:              String(e.id ?? ''),
           name:            String(e.name ?? ''),

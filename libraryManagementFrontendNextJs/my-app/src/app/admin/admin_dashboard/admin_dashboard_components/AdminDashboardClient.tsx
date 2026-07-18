@@ -21,7 +21,7 @@ export function AdminDashboardClient({ initialData }: { initialData: AdminDashbo
     icon: ADMIN_ACTION_ICONS[a.label as keyof typeof ADMIN_ACTION_ICONS] ?? AlertCircle,
     type: (a.type === 'danger' || a.type === 'warning') ? a.type : 'warning',
     href: a.href || '#',
-  })) || [];
+  } as AdminDashboardActionItem)) ?? [];
 
   return (
     <div className="space-y-6 pb-10">

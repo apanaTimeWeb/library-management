@@ -89,7 +89,7 @@ export function AdminCommunicationComplaintsClient() {
 
   const toggleDesc = (id: string) =>
     setExpandedDesc(prev => prev.includes(id) ? prev.filter(x => x !== id) : [...prev, id]);
-    const table = useClientTable(data, 10);
+    const table = useClientTable(complaints, 10);
   return (
     <div className="space-y-6 pb-10">
       {/* Header */}
