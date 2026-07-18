@@ -21,12 +21,12 @@ export function useAdminAccountingExpensesAdd() {
     setSaving(true);
     setTimeout(() => {
       toast.success('Expense recorded successfully.');
-      router.push(ADMIN_ROUTES.ACCOUNTING_EXPENSES);
+      router.push('/admin/admin_accounting/expenses');
     }, 700);
   };
 
   const handleCancel = () => {
-    router.push(ADMIN_ROUTES.ACCOUNTING_EXPENSES);
+    router.push('/admin/admin_accounting/expenses');
   };
 
   return { form, setForm, saving, handleSave, handleCancel, categories: ADMIN_ACCOUNTING_EXPENSES_CATEGORIES };
