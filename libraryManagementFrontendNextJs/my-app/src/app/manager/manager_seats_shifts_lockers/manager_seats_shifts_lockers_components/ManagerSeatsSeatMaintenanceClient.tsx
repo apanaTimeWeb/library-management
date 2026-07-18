@@ -8,6 +8,8 @@ import { ChevronDown, AlertTriangle, Plus } from 'lucide-react';
 import toast from 'react-hot-toast';
 import { ManagerSearchableDropdown } from '@/app/manager/manager_shared_components/ManagerSearchableDropdown';
 import { TablePagination } from '@/components/ui/table-pagination';
+import { TableToolbar } from "@/components/ui/table-toolbar";
+import { useClientTable } from "@/components/ui/use-client-table";
 
 const SEAT_LOGS: Record<string, LogEntry[]> = {
   'S-006': [
@@ -46,6 +48,7 @@ function StatusBadge(props: { value: string }) {
 }
 
 export function ManagerSeatsSeatMaintenanceClient() {
+    const table = useClientTable(filteredLogs.slice((page - 1) * limit, page * limit));
   const [searchTerm, setSearchTerm] = useState('');
 
   const [selectedSeat, setSelectedSeat] = useState('S-006');
@@ -143,7 +146,8 @@ export function ManagerSeatsSeatMaintenanceClient() {
             </div>
             
             <div className="w-full overflow-x-auto border border-border rounded-xl">
-              <table className="w-full text-left text-sm whitespace-nowrap">
+              <TableToolbar search={table.searchTerm} onSearch={table.setSearchTerm} />
+      <table className="w-full text-left text-sm whitespace-nowrap">
                 <thead className="bg-bg-elevated border-b border-border">
                   <tr className="text-text-secondary text-xs uppercase tracking-wider">
                     <th className="px-4 py-3 font-semibold">#</th>
@@ -156,7 +160,7 @@ export function ManagerSeatsSeatMaintenanceClient() {
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-border bg-bg-card">
-                  {filteredLogs.slice((page - 1) * limit, page * limit).map((row) => (
+                  {table.paginatedData.map((row) => (
                     <tr key={row.id} className="hover:bg-bg-page transition-colors">
                       <td className="px-4 py-4 text-text-secondary">{row.num}</td>
                       <td className="px-4 py-4 text-text-secondary">{row.date}</td>
@@ -171,6 +175,10 @@ export function ManagerSeatsSeatMaintenanceClient() {
                   ))}
                 </tbody>
               </table>
+      <TablePagination 
+        page={table.page} limit={table.limit} totalItems={table.totalItems} 
+        onPageChange={table.setPage} onLimitChange={table.setLimit} 
+      />
             </div>
             <TablePagination
               page={page}

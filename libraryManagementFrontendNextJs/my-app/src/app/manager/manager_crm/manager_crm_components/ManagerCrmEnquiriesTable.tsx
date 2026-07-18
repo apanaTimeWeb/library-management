@@ -6,12 +6,16 @@ import { STATUS_BADGE } from '@/app/manager/manager_crm/manager_crm_constants';
 import type { Enquiry, EnquiryStatus } from '@/app/manager/manager_crm/manager_crm_types';
 import { MANAGER_CRM_URLS } from '@/app/manager/manager_crm/manager_crm_url_config';
 import type { ManagerCrmEnquiriesTableProps } from '@/app/manager/manager_crm/manager_crm_types/ManagerCrmTypes';
+import { TableToolbar } from "@/components/ui/table-toolbar";
+import { useClientTable } from "@/components/ui/use-client-table";
+import { TablePagination } from "@/components/ui/table-pagination";
 
 // RESPONSIBILITY: Renders the Table view for CRM Enquiries.
 
 // Props interface centralized.
 
 export function ManagerCrmEnquiriesTable({ filtered, updateEnquiryStatus, onAddEnquiry }: ManagerCrmEnquiriesTableProps) {
+    const table = useClientTable(filtered);
   const router = useRouter();
 
   if (filtered.length === 0) {
@@ -42,7 +46,8 @@ export function ManagerCrmEnquiriesTable({ filtered, updateEnquiryStatus, onAddE
   return (
     <div className="bg-bg-card border border-border rounded-xl overflow-hidden">
       <div className="w-full overflow-x-auto">
-        <table className="w-full text-left border-collapse text-sm whitespace-nowrap">
+        <TableToolbar search={table.searchTerm} onSearch={table.setSearchTerm} />
+      <table className="w-full text-left border-collapse text-sm whitespace-nowrap">
           <thead>
             <tr className="border-b border-border text-text-secondary text-sm">
               <th className="p-3">#</th>
@@ -56,7 +61,7 @@ export function ManagerCrmEnquiriesTable({ filtered, updateEnquiryStatus, onAddE
             </tr>
           </thead>
           <tbody>
-            {filtered.map((enq, idx) => (
+            {table.paginatedData.map((enq, idx) => (
               <tr
                 key={enq.id}
                 onClick={() => router.push(MANAGER_CRM_URLS.ENQUIRY_DETAIL(enq.id))}
@@ -93,6 +98,10 @@ export function ManagerCrmEnquiriesTable({ filtered, updateEnquiryStatus, onAddE
             ))}
           </tbody>
         </table>
+      <TablePagination 
+        page={table.page} limit={table.limit} totalItems={table.totalItems} 
+        onPageChange={table.setPage} onLimitChange={table.setLimit} 
+      />
       </div>
     </div>
   );

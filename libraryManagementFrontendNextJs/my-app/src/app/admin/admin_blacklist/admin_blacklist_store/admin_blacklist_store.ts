@@ -20,7 +20,7 @@ export const useAdminBlacklistStore = create<AdminBlacklistStoreState>((set, get
     set({ fetchState: 'loading', errorMessage: null });
     try {
       const data = await fetchApi(ADMIN_API_ROUTES.BLACKLIST);
-      const actualData = Array.isArray(data) ? data : ((data as Record<string, unknown>)?.data || []);
+      const actualData = (Array.isArray(data) ? data : ((data as Record<string, unknown>)?.data || [])) as any[];
       
       // If array is empty or contains generic mock records, force fallback to rich mock data
       if (actualData.length === 0 || actualData[0]?.id?.startsWith('MOCK-')) {

@@ -5,8 +5,11 @@ import { ChevronRight, Plus, X, Edit2, Trash2, Send, Megaphone, CheckCircle, Sma
 import { useManagerNotices } from '@/app/manager/manager_communication/manager_communication_hooks/useManagerNotices';
 import type { Notice } from '@/app/manager/manager_communication/manager_communication_types/manager_communication_types';
 import { TablePagination } from '@/components/ui/table-pagination';
+import { TableToolbar } from "@/components/ui/table-toolbar";
+import { useClientTable } from "@/components/ui/use-client-table";
 
 export function ManagerCommunicationNoticesClient() {
+    const table = useClientTable(searchedFiltered.slice((page - 1) * limit, page * limit));
   const [searchTerm, setSearchTerm] = useState('');
 
   const { notices, status, addNotice, updateNotice, deleteNotice } = useManagerNotices();
@@ -167,7 +170,8 @@ export function ManagerCommunicationNoticesClient() {
         </div>
         
           <div className="w-full overflow-x-auto border border-border rounded-xl">
-            <table className="w-full text-left text-sm whitespace-nowrap">
+            <TableToolbar search={table.searchTerm} onSearch={table.setSearchTerm} />
+      <table className="w-full text-left text-sm whitespace-nowrap">
               <thead className="bg-bg-elevated border-b border-border">
                 <tr className="text-text-secondary text-xs uppercase tracking-wider">
                   <th className="px-4 py-3 font-semibold">Title</th>
@@ -180,7 +184,7 @@ export function ManagerCommunicationNoticesClient() {
                 </tr>
               </thead>
               <tbody className="divide-y divide-border bg-bg-card">
-                {searchedFiltered.slice((page - 1) * limit, page * limit).map((row) => (
+                {table.paginatedData.map((row) => (
                   <tr key={row.id} className="hover:bg-bg-page transition-colors">
                     <td className="px-4 py-4"><span className="text-sm font-semibold text-text-primary">{row.title}</span></td>
                     <td className="px-4 py-4"><span className="text-sm text-text-secondary truncate block w-full max-w-xs" title={row.message}>{row.message}</span></td>
@@ -203,6 +207,10 @@ export function ManagerCommunicationNoticesClient() {
                 ))}
               </tbody>
             </table>
+      <TablePagination 
+        page={table.page} limit={table.limit} totalItems={table.totalItems} 
+        onPageChange={table.setPage} onLimitChange={table.setLimit} 
+      />
           </div>
           {searchedFiltered.length > 0 && (
             <div className="mt-4">

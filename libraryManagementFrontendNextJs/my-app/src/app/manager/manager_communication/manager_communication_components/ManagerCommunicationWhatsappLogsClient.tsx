@@ -6,6 +6,8 @@ import { WaLog } from '@/app/manager/manager_communication/manager_communication
 import { WA_LOGS_DATA } from '@/app/manager/manager_communication/manager_communication_constants/ManagerCommunicationConstants';
 import { ManagerSearchableDropdown } from '@/app/manager/manager_shared_components/ManagerSearchableDropdown';
 import { TablePagination } from '@/components/ui/table-pagination';
+import { TableToolbar } from "@/components/ui/table-toolbar";
+import { useClientTable } from "@/components/ui/use-client-table";
 
 const TYPE_BADGE: Record<string, string> = {
   welcome: 'bg-info-bg text-info', 
@@ -25,6 +27,7 @@ const STATUS_BADGE: Record<string, string> = {
 };
 
 export function ManagerCommunicationWhatsappLogsClient() {
+    const table = useClientTable(filtered.slice((page - 1) * limit, page * limit));
   const [searchTerm, setSearchTerm] = useState('');
 
   const [typeFilter,   setTypeFilter]   = useState('All');
@@ -150,7 +153,8 @@ export function ManagerCommunicationWhatsappLogsClient() {
         ) : (
           <>
             <div className="w-full overflow-x-auto border border-border rounded-xl">
-              <table className="w-full text-left text-sm whitespace-nowrap">
+              <TableToolbar search={table.searchTerm} onSearch={table.setSearchTerm} />
+      <table className="w-full text-left text-sm whitespace-nowrap">
                 <thead className="bg-bg-elevated border-b border-border">
                   <tr className="text-text-secondary text-xs uppercase tracking-wider">
                     <th className="px-4 py-3 font-semibold">Date / Time</th>
@@ -163,7 +167,7 @@ export function ManagerCommunicationWhatsappLogsClient() {
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-border bg-bg-card">
-                  {filtered.slice((page - 1) * limit, page * limit).map((row) => (
+                  {table.paginatedData.map((row) => (
                     <tr key={row.id} className="hover:bg-bg-page transition-colors">
                       <td className="px-4 py-4 text-text-secondary">{row.dateTime}</td>
                       <td className="px-4 py-4"><span className="font-mono text-[12px] text-text-primary tracking-tight">{row.phone}</span></td>
@@ -192,6 +196,10 @@ export function ManagerCommunicationWhatsappLogsClient() {
                   ))}
                 </tbody>
               </table>
+      <TablePagination 
+        page={table.page} limit={table.limit} totalItems={table.totalItems} 
+        onPageChange={table.setPage} onLimitChange={table.setLimit} 
+      />
             </div>
             {filtered.length > 0 && (
               <div className="mt-4">

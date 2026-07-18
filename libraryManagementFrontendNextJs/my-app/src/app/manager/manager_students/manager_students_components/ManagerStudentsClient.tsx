@@ -12,10 +12,13 @@ import { NameCell, ShiftCell, StatusCell, DueCell, ActionsCell } from '@/app/man
 import { ManagerSearchableDropdown } from '@/app/manager/manager_shared_components/ManagerSearchableDropdown';
 import { ManagerStudentsEmptyState } from '@/app/manager/manager_students/manager_students_components/ManagerStudentsEmptyState';
 import { TablePagination } from '@/components/ui/table-pagination';
+import { TableToolbar } from "@/components/ui/table-toolbar";
+import { useClientTable } from "@/components/ui/use-client-table";
 
 // RESPONSIBILITY: Main Client view for the Manager Students directory.
 
 export function ManagerStudentsClient() {
+    const table = useClientTable(filtered.slice((page - 1) * limit, page * limit));
   const [searchTerm, setSearchTerm] = useState('');
 
   const {
@@ -103,7 +106,8 @@ export function ManagerStudentsClient() {
         ) : (
           <>
             <div className="w-full overflow-x-auto">
-              <table className="w-full text-left text-sm whitespace-nowrap">
+              <TableToolbar search={table.searchTerm} onSearch={table.setSearchTerm} />
+      <table className="w-full text-left text-sm whitespace-nowrap">
                 <thead className="bg-bg-elevated border-b border-border">
                   <tr className="text-text-secondary text-xs uppercase tracking-wider">
                     <th className="px-4 py-3 font-semibold">Smart ID</th>
@@ -117,7 +121,7 @@ export function ManagerStudentsClient() {
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-border">
-                  {filtered.slice((page - 1) * limit, page * limit).map((row) => (
+                  {table.paginatedData.map((row) => (
                     <tr 
                       key={row.id} 
                       className="hover:bg-bg-page transition-colors cursor-pointer group"
@@ -140,6 +144,10 @@ export function ManagerStudentsClient() {
                   ))}
                 </tbody>
               </table>
+      <TablePagination 
+        page={table.page} limit={table.limit} totalItems={table.totalItems} 
+        onPageChange={table.setPage} onLimitChange={table.setLimit} 
+      />
             </div>
             <TablePagination
               page={page}

@@ -6,10 +6,13 @@ import { useRouter, useSearchParams, usePathname } from 'next/navigation';
 import { ChevronRight, Plus, X, Eye, RefreshCw, CheckCircle, Smile, MessageCircle } from 'lucide-react';
 import { useManagerComplaints } from '@/app/manager/manager_communication/manager_communication_hooks/useManagerComplaints';
 import type { Complaint } from '@/app/manager/manager_communication/manager_communication_types/manager_communication_types';
+import { TableToolbar } from "@/components/ui/table-toolbar";
+import { useClientTable } from "@/components/ui/use-client-table";
 
 const TABS: (Complaint['status'] | 'All')[] = ['All', 'New', 'In-Progress', 'Resolved'];
 
 export function ManagerCommunicationComplaintsClient() {
+    const table = useClientTable(filtered);
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(10);
   const [searchTerm, setSearchTerm] = useState('');
@@ -215,7 +218,8 @@ export function ManagerCommunicationComplaintsClient() {
               onChange={(e) => setSearchTerm(e.target.value)}
             />
         </div>
-        <table className="eng-table">
+        <TableToolbar search={table.searchTerm} onSearch={table.setSearchTerm} />
+      <table className="eng-table">
               <thead>
                 <tr>
                   <th>#</th><th>Title</th><th>Student</th><th>Description</th>
@@ -223,7 +227,7 @@ export function ManagerCommunicationComplaintsClient() {
                 </tr>
               </thead>
               <tbody>
-                {filtered.map((c, i) => {
+                {table.paginatedData.map((c, i) => {
                   const isExpanded = expandedDesc.includes(c.id);
                   const isLong = c.desc.length > 60;
                   return (
@@ -264,6 +268,10 @@ export function ManagerCommunicationComplaintsClient() {
                 })}
               </tbody>
             </table>
+      <TablePagination 
+        page={table.page} limit={table.limit} totalItems={table.totalItems} 
+        onPageChange={table.setPage} onLimitChange={table.setLimit} 
+      />
       <TablePagination page={page} limit={limit} totalItems={TABS.length} onPageChange={setPage} onLimitChange={setLimit} />
 
           </div>

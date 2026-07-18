@@ -9,6 +9,9 @@ import { useSeatsStore } from '@/app/manager/manager_seats_shifts_lockers/manage
 import { ManagerSearchableDropdown } from '@/app/manager/manager_shared_components/ManagerSearchableDropdown';
 import { TablePagination } from '@/components/ui/table-pagination';
 import { useManagerSeatsSeatHistory } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_hooks/useManagerSeatsSeatHistory';
+import { TableToolbar } from "@/components/ui/table-toolbar";
+import { useClientTable } from "@/components/ui/use-client-table";
+
 const REASON_CLASS: Record<string, string> = {
   Admission: 'ss-badge ss-badge--success',
   'Shift Change': 'ss-badge ss-badge--info',
@@ -24,6 +27,7 @@ function ReasonCell(props: { value: string }) {
 }
 
 export function ManagerSeatsSeatHistoryClient() {
+    const table = useClientTable(filtered.slice((page - 1) * limit, page * limit));
   const {
     searchTerm,
     setSearchTerm,
@@ -85,7 +89,8 @@ export function ManagerSeatsSeatHistoryClient() {
       ) : (
         <>
           <div className="w-full overflow-x-auto border border-border rounded-xl">
-            <table className="w-full text-left text-sm whitespace-nowrap">
+            <TableToolbar search={table.searchTerm} onSearch={table.setSearchTerm} />
+      <table className="w-full text-left text-sm whitespace-nowrap">
               <thead className="bg-bg-elevated border-b border-border">
                 <tr className="text-text-secondary text-xs uppercase tracking-wider">
                   <th className="px-4 py-3 font-semibold">SEAT #</th>
@@ -99,7 +104,7 @@ export function ManagerSeatsSeatHistoryClient() {
                 </tr>
               </thead>
               <tbody className="divide-y divide-border bg-bg-card">
-                {filtered.slice((page - 1) * limit, page * limit).map((row, i) => (
+                {table.paginatedData.map((row, i) => (
                   <tr key={i} className="hover:bg-bg-page transition-colors">
                     <td className="px-4 py-4 font-semibold text-text-primary">{row.seatNo}</td>
                     <td className="px-4 py-4"><StudentCell data={row} /></td>
@@ -114,6 +119,10 @@ export function ManagerSeatsSeatHistoryClient() {
                 ))}
               </tbody>
             </table>
+      <TablePagination 
+        page={table.page} limit={table.limit} totalItems={table.totalItems} 
+        onPageChange={table.setPage} onLimitChange={table.setLimit} 
+      />
           </div>
           <TablePagination
             page={page}

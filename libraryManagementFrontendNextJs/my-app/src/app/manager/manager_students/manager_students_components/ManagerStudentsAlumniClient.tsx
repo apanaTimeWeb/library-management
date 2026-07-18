@@ -4,6 +4,8 @@ import React, { useState } from 'react';
 import { Search, Filter, Mail, Award } from 'lucide-react';
 import { AlumniData } from '@/app/manager/manager_students/manager_students_types';
 import { TablePagination } from '@/components/ui/table-pagination';
+import { TableToolbar } from "@/components/ui/table-toolbar";
+import { useClientTable } from "@/components/ui/use-client-table";
 
 const ALUMNI_DATA: AlumniData[] = [
   { id: 'AL-1001', name: 'Neha Reddy',  phone: '+91 9988776655', leftDate: '2025-12-01', duration: '12 Months', exam: 'UPSC CSE',  currentStatus: 'Selected (IAS)'      },
@@ -12,6 +14,7 @@ const ALUMNI_DATA: AlumniData[] = [
 ];
 
 export function ManagerStudentsAlumniClient() {
+    const table = useClientTable(filteredData.slice((page - 1) * limit, page * limit));
   const [searchTerm, setSearchTerm] = useState('');
 
   const [rowData] = useState<AlumniData[]>(ALUMNI_DATA);
@@ -58,7 +61,8 @@ export function ManagerStudentsAlumniClient() {
         </div>
         
         <div className="w-full overflow-x-auto border-t border-border mt-4">
-            <table className="w-full text-left text-sm whitespace-nowrap">
+            <TableToolbar search={table.searchTerm} onSearch={table.setSearchTerm} />
+      <table className="w-full text-left text-sm whitespace-nowrap">
               <thead className="bg-bg-elevated border-b border-border">
                 <tr className="text-text-secondary text-xs uppercase tracking-wider">
                   <th className="px-4 py-3 font-semibold">ID</th>
@@ -76,7 +80,7 @@ export function ManagerStudentsAlumniClient() {
                     <td colSpan={7} className="px-4 py-8 text-center text-text-secondary">No alumni found</td>
                   </tr>
                 ) : (
-                  filteredData.slice((page - 1) * limit, page * limit).map((row) => {
+                  table.paginatedData.map((row) => {
                     const isSelected = row.currentStatus?.includes('Selected');
                     return (
                       <tr key={row.id} className="hover:bg-bg-page transition-colors cursor-pointer group">
@@ -110,6 +114,10 @@ export function ManagerStudentsAlumniClient() {
                 )}
               </tbody>
             </table>
+      <TablePagination 
+        page={table.page} limit={table.limit} totalItems={table.totalItems} 
+        onPageChange={table.setPage} onLimitChange={table.setLimit} 
+      />
           </div>
           {filteredData.length > 0 && (
             <TablePagination

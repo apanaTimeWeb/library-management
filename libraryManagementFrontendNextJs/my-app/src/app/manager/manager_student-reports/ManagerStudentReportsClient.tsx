@@ -7,12 +7,15 @@ import { useRouter, useSearchParams, usePathname } from 'next/navigation';
 import { Users, CalendarCheck, UserPlus, Phone } from 'lucide-react';
 import { useManagerStudentReports } from '@/app/manager/manager_student-reports/manager_student_reports_hooks/useManagerStudentReports';
 import { ManagerSearchableDropdown } from '@/app/manager/manager_shared_components/ManagerSearchableDropdown';
+import { TableToolbar } from "@/components/ui/table-toolbar";
+import { useClientTable } from "@/components/ui/use-client-table";
 
 const Chart = dynamic(() => import('react-apexcharts'), { ssr: false }) as React.ComponentType<Record<string, unknown>>;
 
 const iconMap: Record<string, React.ElementType> = { Users, CalendarCheck, UserPlus, Phone };
 
 export function ManagerStudentReportsClient() {
+    const table = useClientTable(data.absenteeReportData);
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(10);
   const [searchTerm, setSearchTerm] = useState('');
@@ -178,7 +181,8 @@ export function ManagerStudentReportsClient() {
               onChange={(e) => setSearchTerm(e.target.value)}
             />
         </div>
-        <table className="w-full text-sm text-left">
+        <TableToolbar search={table.searchTerm} onSearch={table.setSearchTerm} />
+      <table className="w-full text-sm text-left">
             <thead><tr className="bg-primary-subtle text-xs uppercase font-semibold text-text-secondary text-left">
               <th className="p-3">Name</th>
               <th className="p-3">Absent Days</th>
@@ -194,6 +198,10 @@ export function ManagerStudentReportsClient() {
               ))}
             </tbody>
           </table>
+      <TablePagination 
+        page={table.page} limit={table.limit} totalItems={table.totalItems} 
+        onPageChange={table.setPage} onLimitChange={table.setLimit} 
+      />
       <TablePagination page={page} limit={limit} totalItems={100} onPageChange={setPage} onLimitChange={setLimit} />
 
         </div>

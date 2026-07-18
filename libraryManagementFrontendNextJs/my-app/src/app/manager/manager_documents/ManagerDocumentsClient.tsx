@@ -5,9 +5,11 @@ import { useRouter, useSearchParams, usePathname } from 'next/navigation';
 import { FolderOpen, Upload, Search, FileText, Download, Trash2, Image as ImageIcon, File } from 'lucide-react';
 import { useManagerDocuments } from '@/app/manager/manager_documents/manager_documents_hooks/useManagerDocuments';
 import { TablePagination } from '@/components/ui/table-pagination';
-
+import { TableToolbar } from "@/components/ui/table-toolbar";
+import { useClientTable } from "@/components/ui/use-client-table";
 
 export function ManagerDocumentsClient() {
+    const table = useClientTable(filteredDocuments.slice((page - 1) * limit, page * limit));
   const [searchTerm, setSearchTerm] = useState('');
 
   const router = useRouter();
@@ -124,7 +126,8 @@ export function ManagerDocumentsClient() {
         </div>
         
           <div className="w-full overflow-x-auto border border-border rounded-xl">
-            <table className="w-full text-left text-sm whitespace-nowrap">
+            <TableToolbar search={table.searchTerm} onSearch={table.setSearchTerm} />
+      <table className="w-full text-left text-sm whitespace-nowrap">
               <thead className="bg-bg-elevated border-b border-border">
                 <tr className="text-text-secondary text-xs uppercase tracking-wider">
                   <th className="px-4 py-3 font-semibold">File Name</th>
@@ -136,7 +139,7 @@ export function ManagerDocumentsClient() {
                 </tr>
               </thead>
               <tbody className="divide-y divide-border bg-bg-card">
-                {filteredDocuments.slice((page - 1) * limit, page * limit).map((row) => (
+                {table.paginatedData.map((row) => (
                   <tr key={row.id} className="hover:bg-bg-page transition-colors">
                     <td className="px-4 py-4">
                       <div className="flex items-center gap-3">
@@ -162,6 +165,10 @@ export function ManagerDocumentsClient() {
                 ))}
               </tbody>
             </table>
+      <TablePagination 
+        page={table.page} limit={table.limit} totalItems={table.totalItems} 
+        onPageChange={table.setPage} onLimitChange={table.setLimit} 
+      />
           </div>
           {filteredDocuments.length > 0 && (
             <div className="mt-4">

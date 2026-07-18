@@ -7,11 +7,13 @@ import { useManagerEngagementAbsentee } from '@/app/manager/manager_engagement/m
 import { ManagerSearchableDropdown } from '@/app/manager/manager_shared_components/ManagerSearchableDropdown';
 import { TablePagination } from '@/components/ui/table-pagination';
 import { MANAGER_ROUTES } from '@/app/manager/manager_url_config';
-
+import { TableToolbar } from "@/components/ui/table-toolbar";
+import { useClientTable } from "@/components/ui/use-client-table";
 
 // RESPONSIBILITY: Renders the absentee report grid with filtering and notification actions.
 
 export function ManagerEngagementAbsenteeReportClient() {
+    const table = useClientTable(searchedFiltered.slice((page - 1) * limit, page * limit));
   const [searchTerm, setSearchTerm] = useState('');
 
   const {
@@ -153,7 +155,8 @@ export function ManagerEngagementAbsenteeReportClient() {
         </div>
         
           <div className="w-full overflow-x-auto border border-border rounded-xl">
-            <table className="w-full text-left text-sm whitespace-nowrap">
+            <TableToolbar search={table.searchTerm} onSearch={table.setSearchTerm} />
+      <table className="w-full text-left text-sm whitespace-nowrap">
               <thead className="bg-bg-elevated border-b border-border">
                 <tr className="text-text-secondary text-xs uppercase tracking-wider">
                   <th className="px-4 py-3 font-semibold">Student</th>
@@ -166,7 +169,7 @@ export function ManagerEngagementAbsenteeReportClient() {
                 </tr>
               </thead>
               <tbody className="divide-y divide-border bg-bg-card">
-                {searchedFiltered.slice((page - 1) * limit, page * limit).map((row) => (
+                {table.paginatedData.map((row) => (
                   <tr key={row.id} className={`hover:bg-bg-page transition-colors ${row.daysAbsent >= 7 ? 'bg-danger-bg' : row.daysAbsent >= 3 ? 'bg-warning-bg' : ''}`}>
                     <td className="px-4 py-4">
                       <div className="flex items-center">
@@ -205,6 +208,10 @@ export function ManagerEngagementAbsenteeReportClient() {
                 ))}
               </tbody>
             </table>
+      <TablePagination 
+        page={table.page} limit={table.limit} totalItems={table.totalItems} 
+        onPageChange={table.setPage} onLimitChange={table.setLimit} 
+      />
           </div>
           {searchedFiltered.length > 0 && (
             <div className="mt-4">

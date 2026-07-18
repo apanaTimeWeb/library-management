@@ -10,6 +10,8 @@ import type { CellRendererProps } from '@/app/manager/manager_dashboard/manager_
 import { ManagerDashboardKpiGrid } from '@/app/manager/manager_dashboard/manager_dashboard_components/ManagerDashboardKpiGrid';
 import { ManagerDashboardSeatMatrix } from '@/app/manager/manager_dashboard/manager_dashboard_components/ManagerDashboardSeatMatrix';
 import { TablePagination } from '@/components/ui/table-pagination';
+import { TableToolbar } from "@/components/ui/table-toolbar";
+import { useClientTable } from "@/components/ui/use-client-table";
 
 // RESPONSIBILITY: Main Client view for the Manager Dashboard. Glues data and components together.
 
@@ -28,6 +30,7 @@ function PhoneCell({ value }: CellRendererProps) {
 }
 
 export function ManagerDashboardClient() {
+    const table = useClientTable(filteredAdmissions);
   const [searchTerm, setSearchTerm] = useState('');
 
   const { data, status, error } = useManagerDashboardData();
@@ -116,7 +119,8 @@ export function ManagerDashboardClient() {
           </div>
 
                     <div className="h-72 w-full overflow-y-auto overflow-x-auto bg-bg-card rounded-lg border border-border">
-            <table className="w-full text-left text-sm whitespace-nowrap">
+            <TableToolbar search={table.searchTerm} onSearch={table.setSearchTerm} />
+      <table className="w-full text-left text-sm whitespace-nowrap">
               <thead className="bg-bg-elevated sticky top-0 z-10">
                 <tr className="border-b border-border text-text-secondary text-xs uppercase tracking-wider">
                   <th className="px-4 py-3 font-semibold">NAME</th>
@@ -130,7 +134,7 @@ export function ManagerDashboardClient() {
                     <td colSpan={3} className="px-4 py-8 text-center text-text-secondary">No admissions found</td>
                   </tr>
                 ) : (
-                  filteredAdmissions.map((row, i: number) => (
+                  table.paginatedData.map((row, i: number) => (
                     <tr key={row.id} className="hover:bg-bg-page transition-colors cursor-pointer">
                     <td className="px-4 py-3 text-text-primary font-medium">{row.name}</td>
                     <td className="px-4 py-3"><SmartIdCell value={row.smartId} /></td>
@@ -140,6 +144,10 @@ export function ManagerDashboardClient() {
                 )}
               </tbody>
             </table>
+      <TablePagination 
+        page={table.page} limit={table.limit} totalItems={table.totalItems} 
+        onPageChange={table.setPage} onLimitChange={table.setLimit} 
+      />
           </div>
         </div>
 

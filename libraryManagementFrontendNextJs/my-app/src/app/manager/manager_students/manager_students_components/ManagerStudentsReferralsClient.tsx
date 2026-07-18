@@ -4,6 +4,8 @@ import React, { useState } from 'react';
 import { Award, Search, Filter, IndianRupee } from 'lucide-react';
 import { ReferralData } from '@/app/manager/manager_students/manager_students_types';
 import { TablePagination } from '@/components/ui/table-pagination';
+import { TableToolbar } from "@/components/ui/table-toolbar";
+import { useClientTable } from "@/components/ui/use-client-table";
 
 const REFERRALS_DATA: ReferralData[] = [
   { id: 'REF-001', referrer: 'Arjun Das',    referred: 'Riya Sen',    date: '2026-05-15', status: 'Claimed',  bonus: '₹500', method: 'Fee Discount' },
@@ -12,6 +14,7 @@ const REFERRALS_DATA: ReferralData[] = [
 ];
 
 export function ManagerStudentsReferralsClient() {
+    const table = useClientTable(filteredData.slice((page - 1) * limit, page * limit));
   const [searchTerm, setSearchTerm] = useState('');
 
   const [rowData] = useState<ReferralData[]>(REFERRALS_DATA);
@@ -81,7 +84,8 @@ export function ManagerStudentsReferralsClient() {
         </div>
         
           <div className="w-full overflow-x-auto">
-            <table className="w-full text-left text-sm whitespace-nowrap">
+            <TableToolbar search={table.searchTerm} onSearch={table.setSearchTerm} />
+      <table className="w-full text-left text-sm whitespace-nowrap">
               <thead className="bg-bg-elevated border-b border-border">
                 <tr className="text-text-secondary text-xs uppercase tracking-wider">
                   <th className="px-4 py-3 font-semibold">Ref ID</th>
@@ -100,7 +104,7 @@ export function ManagerStudentsReferralsClient() {
                     <td colSpan={8} className="px-4 py-8 text-center text-text-secondary">No referrals found</td>
                   </tr>
                 ) : (
-                  filteredData.slice((page - 1) * limit, page * limit).map((row) => {
+                  table.paginatedData.map((row) => {
                     const statusCls = row.status === 'Claimed' ? 'bg-success-bg text-success' : row.status === 'Approved' ? 'bg-info-bg text-info' : 'bg-warning-bg text-warning';
                     return (
                       <tr key={row.id} className="hover:bg-bg-page transition-colors cursor-pointer group">
@@ -124,6 +128,10 @@ export function ManagerStudentsReferralsClient() {
                 )}
               </tbody>
             </table>
+      <TablePagination 
+        page={table.page} limit={table.limit} totalItems={table.totalItems} 
+        onPageChange={table.setPage} onLimitChange={table.setLimit} 
+      />
           </div>
           {filteredData.length > 0 && (
             <TablePagination
