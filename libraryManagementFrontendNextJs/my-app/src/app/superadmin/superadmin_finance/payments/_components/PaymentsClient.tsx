@@ -8,7 +8,7 @@ import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community';
 
 import { SuperadminSearchableDropdown } from '@/app/superadmin/superadmin_shared_components/SuperadminSearchableDropdown';
 import { superadmin_gridTheme } from '@/app/superadmin/superadmin_finance/superadmin_finance_shared_components/superadmin_gridTheme';
-import { usePaymentsClient } from './usePaymentsClient';
+import { usePaymentsClient } from '@/app/superadmin/superadmin_finance/payments/_components/usePaymentsClient';
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 

@@ -9,8 +9,8 @@ import toast from 'react-hot-toast';
 import { formatCurrency } from '@/app/superadmin/superadmin_finance/superadmin_finance_utils/superadmin_format';
 import type { SuperadminFinanceRefund } from '@/app/superadmin/superadmin_finance/superadmin_finance_types/SuperadminFinanceTypes';
 import { SUPERADMIN_FINANCE_MOCK_REFUNDS } from '@/app/superadmin/superadmin_finance/superadmin_finance_constants/SuperadminFinanceConstants';
-import type { ProcessFormData } from './RefundProcessModal';
-import type { DeductFormData } from './RefundDeductModal';
+import type { ProcessFormData } from '@/app/superadmin/superadmin_finance/refunds/_components/RefundProcessModal';
+import type { DeductFormData } from '@/app/superadmin/superadmin_finance/refunds/_components/RefundDeductModal';
 
 export function useRefundsClient() {
   const [statusFilter, setStatusFilter] = useState('all');

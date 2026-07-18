@@ -12,7 +12,7 @@ import { formatCurrency } from '@/app/superadmin/superadmin_finance/superadmin_f
 import { RefreshCw, Send } from 'lucide-react';
 import { superadmin_gridTheme } from '@/app/superadmin/superadmin_finance/superadmin_finance_shared_components/superadmin_gridTheme';
 import { SuperadminSearchableDropdown } from '@/app/superadmin/superadmin_shared_components/SuperadminSearchableDropdown';
-import { useRenewalsClient, PLANS, FILTERS } from './useRenewalsClient';
+import { useRenewalsClient, PLANS, FILTERS } from '@/app/superadmin/superadmin_finance/renewals/_components/useRenewalsClient';
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 

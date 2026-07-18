@@ -9,7 +9,7 @@ import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community';
 import { ChevronRight, Send, Mail, Phone, CheckCircle } from 'lucide-react';
 import { superadmin_gridTheme } from '@/app/superadmin/superadmin_shared_components/superadmin_gridTheme';
 import { SuperadminSearchableDropdown } from '@/app/superadmin/superadmin_shared_components/SuperadminSearchableDropdown';
-import { useAbsenteeReportClient } from './useAbsenteeReportClient';
+import { useAbsenteeReportClient } from '@/app/superadmin/superadmin_engagement/absentee-report/_components/useAbsenteeReportClient';
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 

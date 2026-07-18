@@ -5,8 +5,8 @@
 import { Users, IndianRupee } from 'lucide-react';
 import { formatCurrency } from '@/app/superadmin/superadmin_finance/superadmin_finance_utils/superadmin_format';
 import { SuperadminSearchableDropdown } from '@/app/superadmin/superadmin_shared_components/SuperadminSearchableDropdown';
-import { useReferralsClient } from './useReferralsClient';
-import { ReferralPayoutModal } from './ReferralPayoutModal';
+import { useReferralsClient } from '@/app/superadmin/superadmin_finance/referrals/_components/useReferralsClient';
+import { ReferralPayoutModal } from '@/app/superadmin/superadmin_finance/referrals/_components/ReferralPayoutModal';
 
 const STATUS_BADGE: Record<string, string> = {
   pending: 'bg-warning/10 text-warning border border-warning/20',

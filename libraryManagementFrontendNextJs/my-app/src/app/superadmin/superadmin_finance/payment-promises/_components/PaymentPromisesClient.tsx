@@ -6,7 +6,7 @@ import { formatCurrency } from '@/app/superadmin/superadmin_finance/superadmin_f
 import { CheckCircle, CalendarPlus } from 'lucide-react';
 import { SuperadminSearchableDropdown } from '@/app/superadmin/superadmin_shared_components/SuperadminSearchableDropdown';
 import { SUPERADMIN_FINANCE_PROMISE_STATUS_BADGE } from '@/app/superadmin/superadmin_finance/superadmin_finance_constants/SuperadminFinanceConstants';
-import { usePaymentPromisesClient } from './usePaymentPromisesClient';
+import { usePaymentPromisesClient } from '@/app/superadmin/superadmin_finance/payment-promises/_components/usePaymentPromisesClient';
 
 export function PaymentPromisesClient() {
   const {

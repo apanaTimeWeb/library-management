@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation';
 import { Search, Receipt, Printer, Send } from 'lucide-react';
 import { formatCurrency, formatDate } from '@/app/superadmin/superadmin_finance/superadmin_finance_utils/superadmin_format';
 import { SuperadminSearchableDropdown } from '@/app/superadmin/superadmin_shared_components/SuperadminSearchableDropdown';
-import { useReceiptClient } from './useReceiptClient';
+import { useReceiptClient } from '@/app/superadmin/superadmin_finance/receipt/_components/useReceiptClient';
 import type { SuperadminFinanceReceiptFilterMode } from '@/app/superadmin/superadmin_finance/superadmin_finance_types/SuperadminFinanceTypes';
 
 const MODE_BADGE: Record<string, string> = {

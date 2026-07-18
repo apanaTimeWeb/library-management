@@ -11,7 +11,7 @@ import toast from 'react-hot-toast';
 import { formatCurrency } from '@/app/superadmin/superadmin_finance/superadmin_finance_utils/superadmin_format';
 import { RefreshCw } from 'lucide-react';
 import { SuperadminSearchableDropdown } from '@/app/superadmin/superadmin_shared_components/SuperadminSearchableDropdown';
-import { useSubscriptionsClient } from './useSubscriptionsClient';
+import { useSubscriptionsClient } from '@/app/superadmin/superadmin_finance/subscriptions/_components/useSubscriptionsClient';
 
 const STATUS_BADGE: Record<string, string> = {
   active:    'bg-success/10 text-success border border-success/20',

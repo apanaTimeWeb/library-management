@@ -4,7 +4,7 @@
 import React from 'react';
 import { Toaster } from 'react-hot-toast';
 import { Settings, Ban, RotateCcw, Bell, Save, UserCheck, ShieldAlert, X } from 'lucide-react';
-import { useAutoSuspendClient } from './useAutoSuspendClient';
+import { useAutoSuspendClient } from '@/app/superadmin/superadmin_finance/auto-suspend/_components/useAutoSuspendClient';
 
 export function AutoSuspendClient() {
   const {

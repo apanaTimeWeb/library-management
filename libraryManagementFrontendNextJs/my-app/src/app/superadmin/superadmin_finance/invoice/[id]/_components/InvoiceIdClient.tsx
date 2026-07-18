@@ -4,7 +4,7 @@ import { SUPERADMIN_ROUTES } from '@/app/superadmin/superadmin_url_config';
 
 import { formatCurrency, formatDate } from '@/app/superadmin/superadmin_finance/superadmin_finance_utils/superadmin_format';
 import { Printer, ArrowLeft, Send } from 'lucide-react';
-import { useInvoiceIdClient } from './useInvoiceIdClient';
+import { useInvoiceIdClient } from '@/app/superadmin/superadmin_finance/invoice/[id]/_components/useInvoiceIdClient';
 
 export function InvoiceIdClient() {
   const {

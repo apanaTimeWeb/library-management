@@ -5,7 +5,7 @@ import React from 'react';
 import { X, Loader } from 'lucide-react';
 import { SuperadminSearchableDropdown } from '@/app/superadmin/superadmin_shared_components/SuperadminSearchableDropdown';
 import type { SuperadminAssetsAddDialogProps as Props } from '@/app/superadmin/superadmin_accounting/superadmin_accounting_types/SuperadminAccountingTypes';
-import { useSuperadminAssetsAddDialog } from './useSuperadminAssetsAddDialog';
+import { useSuperadminAssetsAddDialog } from '@/app/superadmin/superadmin_accounting/assets/superadmin_assets_components/useSuperadminAssetsAddDialog';
 
 export function SuperadminAssetsAddDialog({ categories, onClose, onSave }: Props) {
   const { form, saving, onSubmit, allCategories } = useSuperadminAssetsAddDialog({ categories, onClose, onSave });

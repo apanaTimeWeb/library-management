@@ -3,7 +3,7 @@
 
 import React from 'react';
 import { SuperadminSearchableDropdown } from '@/app/superadmin/superadmin_shared_components/SuperadminSearchableDropdown';
-import { useAddClient, CATEGORIES } from './useAddClient';
+import { useAddClient, CATEGORIES } from '@/app/superadmin/superadmin_accounting/expenses/add/_components/useAddClient';
 
 export function AddClient() {
   const { form, setForm, saving, handleSave, handleCancel } = useAddClient();

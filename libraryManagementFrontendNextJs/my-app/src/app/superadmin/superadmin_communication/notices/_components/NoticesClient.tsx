@@ -6,7 +6,7 @@ import { ChevronRight, Plus, X, Edit2, Trash2, Send } from 'lucide-react';
 import { AgGridReact } from 'ag-grid-react';
 import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community';
 import { superadmin_gridTheme } from '@/app/superadmin/superadmin_shared_components/superadmin_gridTheme';
-import { useNoticesClient } from './useNoticesClient';
+import { useNoticesClient } from '@/app/superadmin/superadmin_communication/notices/_components/useNoticesClient';
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 

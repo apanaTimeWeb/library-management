@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation';
 import { Search, FileText, Printer, Send } from 'lucide-react';
 import { formatCurrency, formatDate } from '@/app/superadmin/superadmin_finance/superadmin_finance_utils/superadmin_format';
 import { SuperadminSearchableDropdown } from '@/app/superadmin/superadmin_shared_components/SuperadminSearchableDropdown';
-import { useInvoiceClient } from './useInvoiceClient';
+import { useInvoiceClient } from '@/app/superadmin/superadmin_finance/invoice/_components/useInvoiceClient';
 import type { SuperadminFinanceInvoiceFilterStatus } from '@/app/superadmin/superadmin_finance/superadmin_finance_types/SuperadminFinanceTypes';
 
 const STATUS_BADGE: Record<string, string> = {

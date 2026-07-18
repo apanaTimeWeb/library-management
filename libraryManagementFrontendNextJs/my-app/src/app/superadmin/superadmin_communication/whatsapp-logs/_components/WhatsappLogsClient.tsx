@@ -7,7 +7,7 @@ import { AgGridReact } from 'ag-grid-react';
 import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community';
 import { superadmin_gridTheme } from '@/app/superadmin/superadmin_shared_components/superadmin_gridTheme';
 import { SuperadminSearchableDropdown } from '@/app/superadmin/superadmin_shared_components/SuperadminSearchableDropdown';
-import { useWhatsappLogsClient } from './useWhatsappLogsClient';
+import { useWhatsappLogsClient } from '@/app/superadmin/superadmin_communication/whatsapp-logs/_components/useWhatsappLogsClient';
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 

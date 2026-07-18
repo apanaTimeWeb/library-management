@@ -5,7 +5,7 @@ import React from 'react';
 import { Toaster } from 'react-hot-toast';
 import { Settings, AlertTriangle, Save, MessageSquare } from 'lucide-react';
 import { formatCurrency } from '@/app/superadmin/superadmin_finance/superadmin_finance_utils/superadmin_format';
-import { useLateFeesClient } from './useLateFeesClient';
+import { useLateFeesClient } from '@/app/superadmin/superadmin_finance/late-fees/_components/useLateFeesClient';
 
 export function LateFeesClient() {
   const {

@@ -7,7 +7,7 @@ import {
   TrendingUp, TrendingDown, IndianRupee, Receipt, AlertTriangle, RefreshCw,
 } from 'lucide-react';
 import { formatCurrency } from '@/app/superadmin/superadmin_finance/superadmin_finance_utils/superadmin_format';
-import { useFinanceDashboardClient } from './useFinanceDashboardClient';
+import { useFinanceDashboardClient } from '@/app/superadmin/superadmin_finance/finance-dashboard/_components/useFinanceDashboardClient';
 
 const MODE_BADGE: Record<string, string> = {
   cash: 'bg-[#25D366]/10 text-[#128C7E] border border-[#25D366]/20',

@@ -11,7 +11,7 @@ import {
   type Enquiry, type EnquiryStatus, KANBAN_COLUMNS, STATUS_BADGE, maskPhone,
 } from '@/app/superadmin/superadmin_crm/superadmin_crm_shared_components/superadmin_types';
 import { SuperadminSearchableDropdown } from '@/app/superadmin/superadmin_shared_components/SuperadminSearchableDropdown';
-import { useEnquiriesClient } from './useEnquiriesClient';
+import { useEnquiriesClient } from '@/app/superadmin/superadmin_crm/enquiries/_components/useEnquiriesClient';
 
 /* ── Helpers ─────────────────────────────────────────────── */
 function StatusBadge({ status }: { status: EnquiryStatus }) {

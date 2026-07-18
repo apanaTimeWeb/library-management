@@ -4,7 +4,7 @@
 import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { refundSchema, RefundFormData } from './useSecurityDepositsClient';
+import { refundSchema, RefundFormData } from '@/app/superadmin/superadmin_finance/security-deposits/_components/useSecurityDepositsClient';
 
 interface SecurityDepositRefundModalProps {
   target: { id: string; name: string; amount: number } | null;

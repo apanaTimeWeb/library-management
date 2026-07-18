@@ -9,7 +9,7 @@ import toast from 'react-hot-toast';
 import { formatCurrency } from '@/app/superadmin/superadmin_finance/superadmin_finance_utils/superadmin_format';
 import type { SuperadminFinanceReferral } from '@/app/superadmin/superadmin_finance/superadmin_finance_types/SuperadminFinanceTypes';
 import { SUPERADMIN_FINANCE_MOCK_REFERRALS } from '@/app/superadmin/superadmin_finance/superadmin_finance_constants/SuperadminFinanceConstants';
-import type { PayoutFormData } from './ReferralPayoutModal';
+import type { PayoutFormData } from '@/app/superadmin/superadmin_finance/referrals/_components/ReferralPayoutModal';
 
 export function useReferralsClient() {
   const [statusFilter, setStatusFilter] = useState('all');

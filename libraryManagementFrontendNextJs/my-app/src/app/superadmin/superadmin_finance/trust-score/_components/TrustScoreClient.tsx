@@ -3,7 +3,7 @@
 
 import { ShieldCheck, ShieldAlert, ShieldX, Users } from 'lucide-react';
 import { SuperadminSearchableDropdown } from '@/app/superadmin/superadmin_shared_components/SuperadminSearchableDropdown';
-import { useTrustScoreClient } from './useTrustScoreClient';
+import { useTrustScoreClient } from '@/app/superadmin/superadmin_finance/trust-score/_components/useTrustScoreClient';
 import type { SuperadminFinanceTrustScoreStudent } from '@/app/superadmin/superadmin_finance/superadmin_finance_types/SuperadminFinanceTypes';
 
 const BADGE_CLASS: Record<string, string> = {

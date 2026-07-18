@@ -9,7 +9,7 @@ import {
 import { type EnquiryStatus, type FollowUp, STATUS_BADGE, maskPhone, getInitials } from '@/app/superadmin/superadmin_crm/superadmin_crm_shared_components/superadmin_types';
 import { SuperadminSearchableDropdown } from '@/app/superadmin/superadmin_shared_components/SuperadminSearchableDropdown';
 import type { SuperadminCrmMarkLostModalProps as MarkLostModalProps } from '@/app/superadmin/superadmin_crm/superadmin_crm_types/SuperadminCrmTypes';
-import { useEnquiriesIdClient } from './useEnquiriesIdClient';
+import { useEnquiriesIdClient } from '@/app/superadmin/superadmin_crm/enquiries/[id]/_components/useEnquiriesIdClient';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { markLostSchema, type MarkLostFormData } from '@/app/superadmin/superadmin_crm/superadmin_crm_shared_components/superadmin_schema';

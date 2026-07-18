@@ -3,7 +3,7 @@
 
 import { X, Save, PhoneCall, Loader2 } from 'lucide-react';
 import { Toaster } from 'react-hot-toast';
-import { useAddClient } from './useAddClient';
+import { useAddClient } from '@/app/superadmin/superadmin_crm/enquiries/add/_components/useAddClient';
 
 export function AddClient() {
   const { register, handleSubmit, errors, isSubmitting, onSubmit, handleClose } = useAddClient();

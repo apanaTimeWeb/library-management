@@ -7,8 +7,8 @@ import { formatCurrency } from '@/app/superadmin/superadmin_finance/superadmin_f
 import { Search, CheckCircle, IndianRupee, BookOpen } from 'lucide-react';
 import { printThermal } from '@/lib/thermalPrint';
 import type { SuperadminFinanceCollectFeeMode } from '@/app/superadmin/superadmin_finance/superadmin_finance_types/SuperadminFinanceTypes';
-import { useCollectFeeClient } from './useCollectFeeClient';
-import { CollectFeeReceiptModal } from './CollectFeeReceiptModal';
+import { useCollectFeeClient } from '@/app/superadmin/superadmin_finance/collect-fee/_components/useCollectFeeClient';
+import { CollectFeeReceiptModal } from '@/app/superadmin/superadmin_finance/collect-fee/_components/CollectFeeReceiptModal';
 
 const MODES = ['cash', 'upi', 'card', 'bank'] as const;
 const MODE_LABELS: Record<SuperadminFinanceCollectFeeMode, string> = { cash: 'Cash', upi: 'UPI', card: 'Card', bank: 'Bank Transfer' };

@@ -5,9 +5,9 @@
 import { Undo2 } from 'lucide-react';
 import { formatCurrency } from '@/app/superadmin/superadmin_finance/superadmin_finance_utils/superadmin_format';
 import { SuperadminSearchableDropdown } from '@/app/superadmin/superadmin_shared_components/SuperadminSearchableDropdown';
-import { useRefundsClient } from './useRefundsClient';
-import { RefundProcessModal } from './RefundProcessModal';
-import { RefundDeductModal } from './RefundDeductModal';
+import { useRefundsClient } from '@/app/superadmin/superadmin_finance/refunds/_components/useRefundsClient';
+import { RefundProcessModal } from '@/app/superadmin/superadmin_finance/refunds/_components/RefundProcessModal';
+import { RefundDeductModal } from '@/app/superadmin/superadmin_finance/refunds/_components/RefundDeductModal';
 
 const STATUS_BADGE: Record<string, string> = {
   pending:   'bg-warning/10 text-warning border-warning/20',

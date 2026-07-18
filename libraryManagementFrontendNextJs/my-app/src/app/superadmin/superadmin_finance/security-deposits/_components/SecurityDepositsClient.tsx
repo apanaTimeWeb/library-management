@@ -5,9 +5,9 @@ import { formatCurrency } from '@/app/superadmin/superadmin_finance/superadmin_f
 import { Undo2, Minus, Briefcase } from 'lucide-react';
 import { SuperadminSearchableDropdown } from '@/app/superadmin/superadmin_shared_components/SuperadminSearchableDropdown';
 import { Toaster } from 'react-hot-toast';
-import { useSecurityDepositsClient } from './useSecurityDepositsClient';
-import { SecurityDepositRefundModal } from './SecurityDepositRefundModal';
-import { SecurityDepositDeductModal } from './SecurityDepositDeductModal';
+import { useSecurityDepositsClient } from '@/app/superadmin/superadmin_finance/security-deposits/_components/useSecurityDepositsClient';
+import { SecurityDepositRefundModal } from '@/app/superadmin/superadmin_finance/security-deposits/_components/SecurityDepositRefundModal';
+import { SecurityDepositDeductModal } from '@/app/superadmin/superadmin_finance/security-deposits/_components/SecurityDepositDeductModal';
 
 const STATUS_BADGE: Record<string, string> = {
   held:      'bg-info/10 text-info border-info/20',
