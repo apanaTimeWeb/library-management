@@ -12,6 +12,9 @@ import {
 import { useSuperadminSystemBackups } from '@/app/superadmin/superadmin_system/superadmin_system_backups_hooks/useSuperadminSystemBackups';
 import React, { useState } from 'react';
 import { SuperadminSearchableDropdown } from '@/app/superadmin/superadmin_shared_components/SuperadminSearchableDropdown';
+import { TableToolbar } from "@/components/ui/table-toolbar";
+import { useClientTable } from "@/components/ui/use-client-table";
+import { TablePagination } from "@/components/ui/table-pagination";
 
 const STATUS_CFG: Record<string, { label: string; variant: 'success' | 'danger' | 'warning'; icon: React.ElementType }> = {
   success:     { label: 'Success',     variant: 'success', icon: CheckCircle  },
@@ -20,6 +23,7 @@ const STATUS_CFG: Record<string, { label: string; variant: 'success' | 'danger' 
 };
 
 export function SuperadminSystemBackupsClient() {
+    const table = useClientTable(backups);
   const {
     autoBackup, setAutoBackup, cloudSync, setCloudSync, backupTime, setBackupTime,
     retention, setRetention, creating, downloading, backups, stats,
@@ -201,7 +205,8 @@ export function SuperadminSystemBackupsClient() {
         </CardHeader>
         <CardContent>
           <div className="overflow-x-auto">
-            <table className="w-full text-sm">
+            <TableToolbar search={table.searchTerm} onSearch={table.setSearchTerm} />
+      <table className="w-full text-sm">
               <thead>
                 <tr className="border-b border-border text-text-secondary text-xs uppercase tracking-wide">
                   <th className="text-left py-3 pr-4">Backup Name</th>
@@ -214,7 +219,7 @@ export function SuperadminSystemBackupsClient() {
                 </tr>
               </thead>
               <tbody className="divide-y divide-border">
-                {backups.map((backup) => {
+                {table.paginatedData.map((backup) => {
                   const cfg  = STATUS_CFG[backup.status];
                   const Icon = cfg.icon;
                   return (
@@ -279,6 +284,10 @@ export function SuperadminSystemBackupsClient() {
                 })}
               </tbody>
             </table>
+      <TablePagination 
+        page={table.page} limit={table.limit} totalItems={table.totalItems} 
+        onPageChange={table.setPage} onLimitChange={table.setLimit} 
+      />
           </div>
         </CardContent>
       </SuperadminCard>

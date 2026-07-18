@@ -1,6 +1,6 @@
 'use client';
 // RESPONSIBILITY: Renders the SuperadminDailySettlementGrid component.
-import React, { useMemo } from 'react';
+import React, { useMemo, useState } from 'react';
 import { AgGridReact } from 'ag-grid-react';
 import type { ICellRendererParams } from 'ag-grid-community';
 import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community';
@@ -11,8 +11,10 @@ import type { SuperadminDailySettlementEntry } from '@/app/superadmin/superadmin
 ModuleRegistry.registerModules([AllCommunityModule]);
 
 import type { SuperadminDailySettlementGridProps as Props } from '@/app/superadmin/superadmin_accounting/superadmin_accounting_types/SuperadminAccountingTypes';
+import { TableToolbar } from "@/components/ui/table-toolbar";
 
 export function SuperadminDailySettlementGrid({ entries, onSettle }: Props) {
+    const [searchTerm, setSearchTerm] = useState('');
   const colDefs = useMemo<any[]>(() => [
     { 
       field: 'shift', 
@@ -118,8 +120,13 @@ export function SuperadminDailySettlementGrid({ entries, onSettle }: Props) {
           <p className="text-lg font-bold text-text-primary mb-1">No settlement entries for this date.</p>
         </div>
       ) : (
-        <div style={{ height: 350 }}>
+        <div className="flex flex-col gap-4 w-full">
+<TableToolbar search={searchTerm} onSearch={setSearchTerm} />
+      <div style={{ height: 350 }}>
           <AgGridReact
+          pagination={true}
+          paginationPageSize={10}
+          quickFilterText={searchTerm}
             theme={superadmin_gridTheme}
             rowData={entries}
             columnDefs={colDefs}
@@ -134,6 +141,7 @@ export function SuperadminDailySettlementGrid({ entries, onSettle }: Props) {
             }}
           />
         </div>
+</div>
       )}
     </div>
   );

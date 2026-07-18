@@ -12,6 +12,9 @@ import { formatCurrency } from '@/app/superadmin/superadmin_finance/superadmin_f
 import { RefreshCw } from 'lucide-react';
 import { SuperadminSearchableDropdown } from '@/app/superadmin/superadmin_shared_components/SuperadminSearchableDropdown';
 import { useSubscriptionsClient } from '@/app/superadmin/superadmin_finance/subscriptions/_components/useSubscriptionsClient';
+import { TableToolbar } from "@/components/ui/table-toolbar";
+import { useClientTable } from "@/components/ui/use-client-table";
+import { TablePagination } from "@/components/ui/table-pagination";
 
 const STATUS_BADGE: Record<string, string> = {
   active:    'bg-success/10 text-success border border-success/20',
@@ -28,6 +31,7 @@ function daysLeftBadgeClass(days: number) {
 }
 
 export function SubscriptionsClient() {
+    const table = useClientTable(Array.from({ length: 5 }));
   const router = useRouter();
   const {
     statusFilter, setStatusFilter,
@@ -84,7 +88,8 @@ export function SubscriptionsClient() {
       </div>
 
       <div className="bg-card rounded-[var(--radius-lg)] border border-border overflow-x-auto">
-        <table className="w-full text-left border-collapse min-w-[1200px]">
+        <TableToolbar search={table.searchTerm} onSearch={table.setSearchTerm} />
+      <table className="w-full text-left border-collapse min-w-[1200px]">
           <thead>
             <tr className="bg-primary/5 uppercase text-[12px] font-semibold text-text-secondary border-b border-border">
               <th className="py-3 px-4">Student</th>
@@ -104,7 +109,7 @@ export function SubscriptionsClient() {
           </thead>
           <tbody>
             {isLoading ? (
-              Array.from({ length: 5 }).map((_, i) => (
+              table.paginatedData.map((_, i) => (
                 <tr key={i} className="border-b border-border last:border-0">
                   {Array.from({ length: 13 }).map((_, j) => (
                     <td key={j} className="py-3 px-4">
@@ -160,6 +165,10 @@ export function SubscriptionsClient() {
             )}
           </tbody>
         </table>
+      <TablePagination 
+        page={table.page} limit={table.limit} totalItems={table.totalItems} 
+        onPageChange={table.setPage} onLimitChange={table.setLimit} 
+      />
       </div>
     </div>
   );

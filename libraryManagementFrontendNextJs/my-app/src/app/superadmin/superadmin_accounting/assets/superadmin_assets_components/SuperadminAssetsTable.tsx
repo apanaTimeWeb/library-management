@@ -5,8 +5,12 @@ import type { SuperadminAsset } from '@/app/superadmin/superadmin_accounting/ass
 import { SUPERADMIN_ASSETS_STATUS_STYLES } from '@/app/superadmin/superadmin_accounting/assets/superadmin_assets_constants/SuperadminAssetsConstants';
 
 import type { SuperadminAssetsTableProps as Props } from '@/app/superadmin/superadmin_accounting/superadmin_accounting_types/SuperadminAccountingTypes';
+import { TableToolbar } from "@/components/ui/table-toolbar";
+import { useClientTable } from "@/components/ui/use-client-table";
+import { TablePagination } from "@/components/ui/table-pagination";
 
 export function SuperadminAssetsTable({ assets }: Props) {
+    const table = useClientTable(assets);
   if (assets.length === 0) {
     return (
       <div className="bg-bg-card border border-border rounded-[var(--radius-lg)] shadow-sm flex flex-col items-center justify-center py-20 text-center">
@@ -18,6 +22,7 @@ export function SuperadminAssetsTable({ assets }: Props) {
 
   return (
     <div className="bg-bg-card border border-border rounded-[var(--radius-lg)] shadow-sm overflow-hidden overflow-x-auto">
+      <TableToolbar search={table.searchTerm} onSearch={table.setSearchTerm} />
       <table className="w-full text-left border-collapse">
         <thead>
           <tr className="bg-bg-page/50 border-b border-border">
@@ -31,7 +36,7 @@ export function SuperadminAssetsTable({ assets }: Props) {
           </tr>
         </thead>
         <tbody className="divide-y divide-[var(--border)]">
-          {assets.map(a => (
+          {table.paginatedData.map(a => (
             <tr key={a.id} className={`hover:bg-bg-page/30 transition-colors ${a.status === 'disposed' ? 'opacity-50 grayscale' : ''}`}>
               <td className="py-3.5 px-4 text-sm font-extrabold text-text-primary">{a.name}</td>
               <td className="py-3.5 px-4">
@@ -52,6 +57,10 @@ export function SuperadminAssetsTable({ assets }: Props) {
           ))}
         </tbody>
       </table>
+      <TablePagination 
+        page={table.page} limit={table.limit} totalItems={table.totalItems} 
+        onPageChange={table.setPage} onLimitChange={table.setLimit} 
+      />
     </div>
   );
 }

@@ -5,8 +5,12 @@ import type { SuperadminGapRow } from '@/app/superadmin/superadmin_accounting/se
 import { SUPERADMIN_SEAT_GAP_REPORT_STATUS_STYLES } from '@/app/superadmin/superadmin_accounting/seat-gap-report/superadmin_seat_gap_report_constants/SuperadminSeatGapReportConstants';
 
 import type { SuperadminSeatGapReportTableProps as Props } from '@/app/superadmin/superadmin_accounting/superadmin_accounting_types/SuperadminAccountingTypes';
+import { TableToolbar } from "@/components/ui/table-toolbar";
+import { useClientTable } from "@/components/ui/use-client-table";
+import { TablePagination } from "@/components/ui/table-pagination";
 
 export function SuperadminSeatGapReportTable({ rows }: Props) {
+    const table = useClientTable(rows);
   if (rows.length === 0) {
     return (
       <div className="bg-bg-card border border-border rounded-[var(--radius-lg)] shadow-sm flex flex-col items-center justify-center py-20 text-center">
@@ -19,6 +23,7 @@ export function SuperadminSeatGapReportTable({ rows }: Props) {
 
   return (
     <div className="bg-bg-card border border-border rounded-[var(--radius-lg)] shadow-sm overflow-hidden overflow-x-auto">
+      <TableToolbar search={table.searchTerm} onSearch={table.setSearchTerm} />
       <table className="w-full text-left border-collapse">
         <thead>
           <tr className="bg-bg-page/50 border-b border-border">
@@ -32,7 +37,7 @@ export function SuperadminSeatGapReportTable({ rows }: Props) {
           </tr>
         </thead>
         <tbody className="divide-y divide-[var(--border)]">
-          {rows.map((r, i) => (
+          {table.paginatedData.map((r, i) => (
             <tr key={`${r.seatNo}-${i}`} className="hover:bg-bg-page/30 transition-colors">
               <td className="py-3.5 px-4 text-sm font-extrabold text-text-primary">{r.seatNo}</td>
               <td className="py-3.5 px-4 text-sm font-medium text-text-secondary">{r.shift}</td>
@@ -51,6 +56,10 @@ export function SuperadminSeatGapReportTable({ rows }: Props) {
           ))}
         </tbody>
       </table>
+      <TablePagination 
+        page={table.page} limit={table.limit} totalItems={table.totalItems} 
+        onPageChange={table.setPage} onLimitChange={table.setLimit} 
+      />
     </div>
   );
 }

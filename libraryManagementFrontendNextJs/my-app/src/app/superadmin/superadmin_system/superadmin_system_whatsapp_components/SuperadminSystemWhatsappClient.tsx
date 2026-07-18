@@ -9,6 +9,9 @@ import { SuperadminKpiCard } from '@/app/superadmin/superadmin_system/superadmin
 import { MessageSquare, ChevronRight, Eye, EyeOff, Copy, CheckCircle, XCircle, Phone, Zap, BarChart3, Loader2, Radio, Send, Banknote, Globe, Settings } from 'lucide-react';
 import { useSuperadminSystemWhatsapp } from '@/app/superadmin/superadmin_system/superadmin_system_whatsapp_hooks/useSuperadminSystemWhatsapp';
 import { SUPERADMIN_SYSTEM_WHATSAPP_PROVIDERS, SUPERADMIN_SYSTEM_WHATSAPP_STATUS_CFG } from '@/app/superadmin/superadmin_system/superadmin_system_constants/SuperadminSystemWhatsappConstants';
+import { TableToolbar } from "@/components/ui/table-toolbar";
+import { useClientTable } from "@/components/ui/use-client-table";
+import { TablePagination } from "@/components/ui/table-pagination";
 
 const PROVIDER_LOGOS: Record<string, React.ReactNode> = {
   twilio: <Globe size={16} className="text-primary" />,
@@ -18,6 +21,7 @@ const PROVIDER_LOGOS: Record<string, React.ReactNode> = {
 };
 
 export function SuperadminSystemWhatsappClient() {
+    const table = useClientTable(logs);
   const {
     provider, setProvider, apiKey, setApiKey, apiSecret, setApiSecret,
     senderPhone, setSenderPhone, showApiKey, setShowApiKey, showSecret, setShowSecret,
@@ -250,7 +254,8 @@ export function SuperadminSystemWhatsappClient() {
         </CardHeader>
         <CardContent>
           <div className="overflow-x-auto">
-            <table className="w-full text-sm">
+            <TableToolbar search={table.searchTerm} onSearch={table.setSearchTerm} />
+      <table className="w-full text-sm">
               <thead>
                 <tr className="border-b border-border text-text-secondary text-xs uppercase tracking-wide">
                   <th className="text-left py-3 pr-4">Recipient</th>
@@ -261,7 +266,7 @@ export function SuperadminSystemWhatsappClient() {
                 </tr>
               </thead>
               <tbody className="divide-y divide-outline-variant/30">
-                  {logs.map((log) => {
+                  {table.paginatedData.map((log) => {
                   const cfg  = SUPERADMIN_SYSTEM_WHATSAPP_STATUS_CFG[log.status];
                   const Icon = cfg.icon;
                   return (
@@ -284,6 +289,10 @@ export function SuperadminSystemWhatsappClient() {
                 })}
               </tbody>
             </table>
+      <TablePagination 
+        page={table.page} limit={table.limit} totalItems={table.totalItems} 
+        onPageChange={table.setPage} onLimitChange={table.setLimit} 
+      />
           </div>
         </CardContent>
       </SuperadminCard>

@@ -9,10 +9,12 @@ import { ChevronRight, Send, Mail, Phone, CheckCircle } from 'lucide-react';
 import { superadmin_gridTheme } from '@/app/superadmin/superadmin_shared_components/superadmin_gridTheme';
 import { SuperadminSearchableDropdown } from '@/app/superadmin/superadmin_shared_components/SuperadminSearchableDropdown';
 import { useAbsenteeReportClient } from '@/app/superadmin/superadmin_engagement/absentee-report/_components/useAbsenteeReportClient';
+import { TableToolbar } from "@/components/ui/table-toolbar";
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
 export function AbsenteeReportClient() {
+    const [searchTerm, setSearchTerm] = useState('');
   const {
     threshold, setThreshold, shift, setShift, toast, toastType,
     filtered, critical, moderate, notify, notifyAll
@@ -180,8 +182,13 @@ export function AbsenteeReportClient() {
             <p className="text-[14px] text-text-secondary">All students have great attendance above the selected threshold.</p>
           </div>
         ) : (
-          <div className="h-96 w-full">
+          <div className="flex flex-col gap-4 w-full">
+<TableToolbar search={searchTerm} onSearch={setSearchTerm} />
+      <div className="h-96 w-full">
             <AgGridReact
+          pagination={true}
+          paginationPageSize={10}
+          quickFilterText={searchTerm}
               theme={superadmin_gridTheme}
               rowData={filtered}
               columnDefs={colDefs as any}
@@ -200,6 +207,7 @@ export function AbsenteeReportClient() {
               }}
             />
           </div>
+</div>
         )}
       </div>
     </div>

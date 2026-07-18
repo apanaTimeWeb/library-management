@@ -3,8 +3,12 @@
 import { ChevronRight, MessageSquare, Plus, X, Circle, CheckCircle, Smile, Eye, RefreshCw } from 'lucide-react';
 import { useComplaintsClient, TABS } from '@/app/superadmin/superadmin_communication/complaints/_components/useComplaintsClient';
 import type { SuperadminCommunicationComplaintStatus as CStatus } from '@/app/superadmin/superadmin_communication/superadmin_communication_types/SuperadminCommunicationTypes';
+import { TableToolbar } from "@/components/ui/table-toolbar";
+import { useClientTable } from "@/components/ui/use-client-table";
+import { TablePagination } from "@/components/ui/table-pagination";
 
 export function ComplaintsClient() {
+    const table = useClientTable(filtered);
   const {
     tab, setTab, showAdd, setShowAdd, viewItem, setViewItem, resolveItem, setResolveItem,
     resolveNote, setResolveNote, toast, addForm, setAddForm, expandedDesc,
@@ -168,7 +172,8 @@ export function ComplaintsClient() {
           </div>
         ) : (
           <div className="overflow-x-auto scrollbar-thin scrollbar-thumb-border">
-            <table className="w-full text-left border-collapse min-w-[800px]">
+            <TableToolbar search={table.searchTerm} onSearch={table.setSearchTerm} />
+      <table className="w-full text-left border-collapse min-w-[800px]">
               <thead>
                 <tr className="bg-muted/50 border-b border-border">
                   <th className="p-4 text-[12px] font-bold text-text-secondary uppercase tracking-wider">#</th>
@@ -181,7 +186,7 @@ export function ComplaintsClient() {
                 </tr>
               </thead>
               <tbody className="divide-y divide-border">
-                {filtered.map((c, i) => {
+                {table.paginatedData.map((c, i) => {
                   const isExpanded = expandedDesc.includes(c.id);
                   const isLong = c.description.length > 60;
                   return (
@@ -223,6 +228,10 @@ export function ComplaintsClient() {
                 })}
               </tbody>
             </table>
+      <TablePagination 
+        page={table.page} limit={table.limit} totalItems={table.totalItems} 
+        onPageChange={table.setPage} onLimitChange={table.setLimit} 
+      />
           </div>
         )}
       </div>

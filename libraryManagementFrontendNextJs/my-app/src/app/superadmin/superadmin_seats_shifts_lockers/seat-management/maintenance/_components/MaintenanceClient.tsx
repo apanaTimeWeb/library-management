@@ -8,6 +8,7 @@ import { superadmin_gridTheme } from '@/app/superadmin/superadmin_seats_shifts_l
 import toast from 'react-hot-toast';
 import { SuperadminSearchableDropdown } from '@/app/superadmin/superadmin_shared_components/SuperadminSearchableDropdown';
 import type { SuperadminSeatsLogEntry, SuperadminSeatsSeatStatus } from '@/app/superadmin/superadmin_seats_shifts_lockers/superadmin_seats_types/SuperadminSeatsShiftsLockersTypes';
+import { TableToolbar } from "@/components/ui/table-toolbar";
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
@@ -47,6 +48,7 @@ function StatusBadge({ value }: { value: string }) {
 }
 
 export function MaintenanceClient() {
+    const [searchTerm, setSearchTerm] = useState('');
   const [selectedSeat, setSelectedSeat] = useState('S-006');
   const [logs, setLogs] = useState(SEAT_LOGS);
   const [form, setForm] = useState(EMPTY_FORM);
@@ -128,9 +130,15 @@ export function MaintenanceClient() {
             <p className="ss-empty-state__title">No maintenance history for this seat.</p>
           </div>
         ) : (
-          <div className="ss-table-wrapper ss-grid-h-320">
-            <AgGridReact theme={superadmin_gridTheme} rowData={currentLogs} columnDefs={colDefs as any} rowHeight={52} headerHeight={40} suppressMovableColumns suppressCellFocus defaultColDef={{ resizable: false, sortable: true }} />
+          <div className="flex flex-col gap-4 w-full">
+<TableToolbar search={searchTerm} onSearch={setSearchTerm} />
+      <div className="ss-table-wrapper ss-grid-h-320">
+            <AgGridReact
+          pagination={true}
+          paginationPageSize={10}
+          quickFilterText={searchTerm} theme={superadmin_gridTheme} rowData={currentLogs} columnDefs={colDefs as any} rowHeight={52} headerHeight={40} suppressMovableColumns suppressCellFocus defaultColDef={{ resizable: false, sortable: true }} />
           </div>
+</div>
         )}
 
         <div className="ss-card ss-form-card">

@@ -7,10 +7,12 @@ import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community';
 import { superadmin_gridTheme } from '@/app/superadmin/superadmin_shared_components/superadmin_gridTheme';
 import { Download, FileText, CheckCircle } from 'lucide-react';
 import type { SuperadminBillingInvoice, SuperadminBillingGridProps as Props } from '@/app/superadmin/superadmin_billing/superadmin_billing_types/SuperadminBillingTypes';
+import { TableToolbar } from "@/components/ui/table-toolbar";
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
 export function SuperadminBillingGrid({ invoices, onRowClick, onExport }: Props) {
+    const [searchTerm, setSearchTerm] = useState('');
   const gridRef = useRef<AgGridReact>(null);
   const [exported, setExported] = useState(false);
 
@@ -80,8 +82,13 @@ export function SuperadminBillingGrid({ invoices, onRowClick, onExport }: Props)
           {exported ? <><CheckCircle size={14} className="text-success" /> Exported!</> : <><Download size={14} /> Export CSV</>}
         </button>
       </div>
+      <div className="flex flex-col gap-4 w-full">
+<TableToolbar search={searchTerm} onSearch={setSearchTerm} />
       <div style={{ height: 360 }}>
         <AgGridReact
+          pagination={true}
+          paginationPageSize={10}
+          quickFilterText={searchTerm}
           ref={gridRef}
           theme={superadmin_gridTheme}
           rowData={invoices}
@@ -95,6 +102,7 @@ export function SuperadminBillingGrid({ invoices, onRowClick, onExport }: Props)
           suppressCellFocus={true}
         />
       </div>
+</div>
     </div>
   );
 }

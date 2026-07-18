@@ -5,8 +5,12 @@ import { SUPERADMIN_ROUTES } from '@/app/superadmin/superadmin_url_config';
 import { formatCurrency, formatDate } from '@/app/superadmin/superadmin_finance/superadmin_finance_utils/superadmin_format';
 import { Printer, ArrowLeft, Send } from 'lucide-react';
 import { useInvoiceIdClient } from '@/app/superadmin/superadmin_finance/invoice/[id]/_components/useInvoiceIdClient';
+import { TableToolbar } from "@/components/ui/table-toolbar";
+import { useClientTable } from "@/components/ui/use-client-table";
+import { TablePagination } from "@/components/ui/table-pagination";
 
 export function InvoiceIdClient() {
+    const table = useClientTable(INV.items);
   const {
     router,
     invoiceData: INV,
@@ -74,7 +78,8 @@ export function InvoiceIdClient() {
           </div>
         </div>
 
-        <table className="w-full text-sm mb-6 border-collapse">
+        <TableToolbar search={table.searchTerm} onSearch={table.setSearchTerm} />
+      <table className="w-full text-sm mb-6 border-collapse">
           <thead>
             <tr className="bg-gray-100 text-gray-600 uppercase text-[11px] font-bold tracking-wider">
               <th className="text-left py-3 px-4 rounded-tl-[var(--radius-md)]">Description</th>
@@ -87,7 +92,7 @@ export function InvoiceIdClient() {
             </tr>
           </thead>
           <tbody>
-            {INV.items.map((item, i) => (
+            {table.paginatedData.map((item, i) => (
               <tr key={i} className="border-b border-gray-100 last:border-0">
                 <td className="py-4 px-4 text-[13px] font-medium text-gray-800">{item.description}</td>
                 <td className="py-4 px-4 text-[13px] font-mono text-gray-600">{item.hsnCode}</td>
@@ -100,6 +105,10 @@ export function InvoiceIdClient() {
             ))}
           </tbody>
         </table>
+      <TablePagination 
+        page={table.page} limit={table.limit} totalItems={table.totalItems} 
+        onPageChange={table.setPage} onLimitChange={table.setLimit} 
+      />
 
         <div className="flex flex-col items-end gap-2 mb-8">
           {[

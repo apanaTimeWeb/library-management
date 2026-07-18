@@ -6,6 +6,9 @@ import { formatCurrency } from '@/app/superadmin/superadmin_finance/superadmin_f
 import { SuperadminSearchableDropdown } from '@/app/superadmin/superadmin_shared_components/SuperadminSearchableDropdown';
 import { useReferralsClient } from '@/app/superadmin/superadmin_finance/referrals/_components/useReferralsClient';
 import { ReferralPayoutModal } from '@/app/superadmin/superadmin_finance/referrals/_components/ReferralPayoutModal';
+import { TableToolbar } from "@/components/ui/table-toolbar";
+import { useClientTable } from "@/components/ui/use-client-table";
+import { TablePagination } from "@/components/ui/table-pagination";
 
 const STATUS_BADGE: Record<string, string> = {
   pending: 'bg-warning/10 text-warning border border-warning/20',
@@ -13,6 +16,7 @@ const STATUS_BADGE: Record<string, string> = {
 };
 
 export function ReferralsClient() {
+    const table = useClientTable(Array.from({ length: 4 }));
   const {
     statusFilter, setStatusFilter,
     isLoading, isSubmitting,
@@ -57,7 +61,8 @@ export function ReferralsClient() {
       </div>
 
       <div className="bg-card rounded-[var(--radius-lg)] border border-border overflow-x-auto">
-        <table className="w-full text-left border-collapse">
+        <TableToolbar search={table.searchTerm} onSearch={table.setSearchTerm} />
+      <table className="w-full text-left border-collapse">
           <thead>
             <tr className="bg-primary/5 uppercase text-[12px] font-semibold text-text-secondary border-b border-border">
               <th className="text-left py-3 px-4">Date</th>
@@ -70,7 +75,7 @@ export function ReferralsClient() {
           </thead>
           <tbody>
             {isLoading ? (
-              Array.from({ length: 4 }).map((_, i) => (
+              table.paginatedData.map((_, i) => (
                 <tr key={i} className="border-b border-border last:border-0">
                   {Array.from({ length: 6 }).map((_, j) => (
                     <td key={j} className="py-3 px-4">
@@ -129,6 +134,10 @@ export function ReferralsClient() {
             )}
           </tbody>
         </table>
+      <TablePagination 
+        page={table.page} limit={table.limit} totalItems={table.totalItems} 
+        onPageChange={table.setPage} onLimitChange={table.setLimit} 
+      />
       </div>
 
       <ReferralPayoutModal

@@ -7,6 +7,7 @@ import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community';
 import { superadmin_gridTheme } from '@/app/superadmin/superadmin_shared_components/superadmin_gridTheme';
 import { SuperadminSearchableDropdown } from '@/app/superadmin/superadmin_shared_components/SuperadminSearchableDropdown';
 import { useWhatsappLogsClient } from '@/app/superadmin/superadmin_communication/whatsapp-logs/_components/useWhatsappLogsClient';
+import { TableToolbar } from "@/components/ui/table-toolbar";
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
@@ -22,6 +23,7 @@ const STATUS_BADGE: Record<string, string> = {
 };
 
 export function WhatsappLogsClient() {
+    const [searchTerm, setSearchTerm] = useState('');
   const {
     typeFilter, setTypeFilter, statusFilter, setStatusFilter, search, setSearch,
     dateFrom, setDateFrom, dateTo, setDateTo, viewLog, setViewLog, filteredLogs
@@ -155,8 +157,13 @@ export function WhatsappLogsClient() {
             <p className="text-[16px] font-bold text-text-primary">No WhatsApp messages found.</p>
           </div>
         ) : (
-          <div className="h-96 w-full">
+          <div className="flex flex-col gap-4 w-full">
+<TableToolbar search={searchTerm} onSearch={setSearchTerm} />
+      <div className="h-96 w-full">
             <AgGridReact
+          pagination={true}
+          paginationPageSize={10}
+          quickFilterText={searchTerm}
               theme={superadmin_gridTheme}
               rowData={filteredLogs}
               columnDefs={colDefs as any}
@@ -172,6 +179,7 @@ export function WhatsappLogsClient() {
               }}
             />
           </div>
+</div>
         )}
       </div>
     </div>

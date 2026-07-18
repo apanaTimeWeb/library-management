@@ -1,6 +1,6 @@
 'use client';
 // RESPONSIBILITY: Renders the SuperadminDashboardRecentLibrariesTable component.
-import React, { useRef, useCallback, useMemo } from 'react';
+import React, { useRef, useCallback, useMemo, useState } from 'react';
 import Link from 'next/link';
 import { SUPERADMIN_ROUTES } from '@/app/superadmin/superadmin_url_config';
 import { AgGridReact } from 'ag-grid-react';
@@ -9,6 +9,7 @@ import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community';
 import { superadmin_gridTheme } from '@/app/superadmin/superadmin_shared_components/superadmin_gridTheme';
 import { ExternalLink } from 'lucide-react';
 import type { SuperadminDashboardRecentLibrary as Library, SuperadminDashboardRecentLibrariesTableProps as Props } from '@/app/superadmin/superadmin_dashboard/superadmin_dashboard_types/SuperadminDashboardTypes';
+import { TableToolbar } from "@/components/ui/table-toolbar";
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
@@ -25,6 +26,7 @@ const PLAN_CLS: Record<string, { bg: string; text: string }> = {
 };
 
 export function SuperadminDashboardRecentLibrariesTable({ data }: Props) {
+    const [searchTerm, setSearchTerm] = useState('');
   const gridRef = useRef<AgGridReact>(null);
 
   const colDefs = useMemo<any[]>(() => [
@@ -81,6 +83,8 @@ export function SuperadminDashboardRecentLibrariesTable({ data }: Props) {
           View All <ExternalLink size={12} />
         </Link>
       </div>
+      <div className="flex flex-col gap-4 w-full">
+<TableToolbar search={searchTerm} onSearch={setSearchTerm} />
       <div style={{ height: 300 }}>
         <AgGridReact
           ref={gridRef}
@@ -91,9 +95,12 @@ export function SuperadminDashboardRecentLibrariesTable({ data }: Props) {
           headerHeight={44}
           onGridReady={onGridReady}
           suppressCellFocus={true}
-          suppressPaginationPanel={true}
+          pagination={true}
+          paginationPageSize={10}
+          quickFilterText={searchTerm}
         />
       </div>
+</div>
     </div>
   );
 }

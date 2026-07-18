@@ -5,8 +5,12 @@ import { Toaster } from 'react-hot-toast';
 import { Settings, AlertTriangle, Save, MessageSquare } from 'lucide-react';
 import { formatCurrency } from '@/app/superadmin/superadmin_finance/superadmin_finance_utils/superadmin_format';
 import { useLateFeesClient } from '@/app/superadmin/superadmin_finance/late-fees/_components/useLateFeesClient';
+import { TableToolbar } from "@/components/ui/table-toolbar";
+import { useClientTable } from "@/components/ui/use-client-table";
+import { TablePagination } from "@/components/ui/table-pagination";
 
 export function LateFeesClient() {
+    const table = useClientTable(Array.from({ length: 3 }));
   const {
     config, overdue, isLoading, editing, isSaving, form,
     startEdit, cancelEdit, onSubmit, sendWhatsAppReminder, navigateToCollect
@@ -91,7 +95,8 @@ export function LateFeesClient() {
           <AlertTriangle size={18} className="text-warning" />
           <span className="text-[14px] text-text-primary font-bold">Overdue Students</span>
         </div>
-        <table className="w-full text-left border-collapse">
+        <TableToolbar search={table.searchTerm} onSearch={table.setSearchTerm} />
+      <table className="w-full text-left border-collapse">
           <thead>
             <tr className="bg-primary/5 uppercase text-[12px] font-semibold text-text-secondary border-b border-border">
               <th className="py-3 px-4">Student</th>
@@ -104,7 +109,7 @@ export function LateFeesClient() {
           </thead>
           <tbody>
             {isLoading ? (
-              Array.from({ length: 3 }).map((_, i) => (
+              table.paginatedData.map((_, i) => (
                 <tr key={i} className="border-b border-border last:border-0">
                   {Array.from({ length: 6 }).map((_, j) => (
                     <td key={j} className="py-3 px-4">
@@ -157,6 +162,10 @@ export function LateFeesClient() {
             )}
           </tbody>
         </table>
+      <TablePagination 
+        page={table.page} limit={table.limit} totalItems={table.totalItems} 
+        onPageChange={table.setPage} onLimitChange={table.setLimit} 
+      />
       </div>
     </div>
   );

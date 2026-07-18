@@ -9,6 +9,7 @@ import toast from 'react-hot-toast';
 import { SUPERADMIN_SEATS_MOCK_SEATS } from '@superadmin/superadmin_seats_shifts_lockers/superadmin_seats_shifts_lockers_utils/SuperadminSeatsMockData';
 import { SuperadminSearchableDropdown } from '@/app/superadmin/superadmin_shared_components/SuperadminSearchableDropdown';
 import type { SuperadminSeatsSeat, SuperadminSeatsSeatStatus } from '@/app/superadmin/superadmin_seats_shifts_lockers/superadmin_seats_types/SuperadminSeatsShiftsLockersTypes';
+import { TableToolbar } from "@/components/ui/table-toolbar";
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
@@ -37,6 +38,7 @@ function SeatStatusCell({ value }: { value: string }) {
 }
 
 export function SeatManagementClient() {
+    const [searchTerm, setSearchTerm] = useState('');
   const [seats, setSeats] = useState<SuperadminSeatsSeat[]>(SUPERADMIN_SEATS_MOCK_SEATS as SuperadminSeatsSeat[]);
   const [search, setSearch] = useState('');
   const [statusFilter, setStatusFilter] = useState('All Statuses');
@@ -171,9 +173,15 @@ export function SeatManagementClient() {
             <button className="ss-btn-primary" onClick={openAdd}><Plus size={15} />Add Seat</button>
           </div>
         ) : (
-          <div className="ss-table-wrapper ss-grid-h-400">
-            <AgGridReact theme={superadmin_gridTheme} rowData={filtered} columnDefs={colDefs as any} rowHeight={52} headerHeight={40} suppressMovableColumns suppressCellFocus defaultColDef={{ resizable: false, sortable: true }} />
+          <div className="flex flex-col gap-4 w-full">
+<TableToolbar search={searchTerm} onSearch={setSearchTerm} />
+      <div className="ss-table-wrapper ss-grid-h-400">
+            <AgGridReact
+          pagination={true}
+          paginationPageSize={10}
+          quickFilterText={searchTerm} theme={superadmin_gridTheme} rowData={filtered} columnDefs={colDefs as any} rowHeight={52} headerHeight={40} suppressMovableColumns suppressCellFocus defaultColDef={{ resizable: false, sortable: true }} />
           </div>
+</div>
         )}
       </div>
 

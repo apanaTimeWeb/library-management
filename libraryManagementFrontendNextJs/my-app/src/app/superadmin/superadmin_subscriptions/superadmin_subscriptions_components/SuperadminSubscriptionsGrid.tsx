@@ -1,18 +1,20 @@
 'use client';
 // RESPONSIBILITY: Renders the SuperadminSubscriptionsGrid component.
-import React, { useRef, useCallback, useMemo } from 'react';
+import React, { useRef, useCallback, useMemo, useState } from 'react';
 import { AgGridReact } from 'ag-grid-react';
 import type { ICellRendererParams, GridReadyEvent } from 'ag-grid-community';
 import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community';
 import { superadmin_gridTheme } from '@/app/superadmin/superadmin_shared_components/superadmin_gridTheme';
 import { CheckCircle, Circle, AlertCircle } from 'lucide-react';
 import type { SuperadminSubscription, SuperadminSubscriptionsGridProps } from '@/app/superadmin/superadmin_subscriptions/superadmin_subscriptions_types/SuperadminSubscriptionsTypes';
+import { TableToolbar } from "@/components/ui/table-toolbar";
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
 const FILTERS = ['All', 'Paid', 'Due Soon', 'Overdue'];
 
 export function SuperadminSubscriptionsGrid({ subs, filteredSubs, filter, setFilter, onRowClick }: SuperadminSubscriptionsGridProps) {
+    const [searchTerm, setSearchTerm] = useState('');
   const gridRef = useRef<AgGridReact>(null);
 
   const colDefs = useMemo<any[]>(() => [
@@ -72,8 +74,13 @@ export function SuperadminSubscriptionsGrid({ subs, filteredSubs, filter, setFil
         </div>
         <span className="text-xs font-semibold text-text-disabled uppercase tracking-wider">{filteredSubs.length} records</span>
       </div>
+      <div className="flex flex-col gap-4 w-full">
+<TableToolbar search={searchTerm} onSearch={setSearchTerm} />
       <div style={{ height: 380 }}>
         <AgGridReact
+          pagination={true}
+          paginationPageSize={10}
+          quickFilterText={searchTerm}
           ref={gridRef}
           theme={superadmin_gridTheme}
           rowData={filteredSubs}
@@ -87,6 +94,7 @@ export function SuperadminSubscriptionsGrid({ subs, filteredSubs, filter, setFil
           suppressCellFocus={true}
         />
       </div>
+</div>
       <div className="p-4 border-t border-border text-center bg-bg-page/30">
         <span className="text-sm font-semibold text-text-secondary">Showing {filteredSubs.length} of {subs.length} subscriptions</span>
       </div>

@@ -12,6 +12,9 @@ import {
 } from '@/app/superadmin/superadmin_crm/superadmin_crm_shared_components/superadmin_types';
 import { SuperadminSearchableDropdown } from '@/app/superadmin/superadmin_shared_components/SuperadminSearchableDropdown';
 import { useEnquiriesClient } from '@/app/superadmin/superadmin_crm/enquiries/_components/useEnquiriesClient';
+import { TableToolbar } from "@/components/ui/table-toolbar";
+import { useClientTable } from "@/components/ui/use-client-table";
+import { TablePagination } from "@/components/ui/table-pagination";
 
 /* ── Helpers ─────────────────────────────────────────────── */
 function StatusBadge({ status }: { status: EnquiryStatus }) {
@@ -54,6 +57,7 @@ function KanbanCard({ enq, onClick }: { enq: Enquiry; colClass: string; onClick:
 }
 
 export function EnquiriesClient() {
+    const table = useClientTable(filtered);
   const {
     router, view, setView, search, setSearch, statusFilter, setStatusFilter,
     filtered, colEnquiries, handleQuickConvert, handleQuickLost
@@ -157,7 +161,8 @@ export function EnquiriesClient() {
             </div>
           ) : (
             <div className="overflow-x-auto w-full">
-              <table className="w-full text-left border-collapse">
+              <TableToolbar search={table.searchTerm} onSearch={table.setSearchTerm} />
+      <table className="w-full text-left border-collapse">
                 <thead>
                   <tr className="bg-muted border-b border-border">
                     <th className="py-3 px-4 text-[12px] font-bold text-text-secondary uppercase tracking-wider">#</th>
@@ -172,7 +177,7 @@ export function EnquiriesClient() {
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-border">
-                  {filtered.map((enq, idx) => (
+                  {table.paginatedData.map((enq, idx) => (
                     <tr key={enq.id} onClick={() => router.push(SUPERADMIN_ROUTES.CRM_ENQUIRIES_ID(enq.id))} className="hover:bg-muted/50 transition-colors cursor-pointer group">
                       <td className="py-4 px-4 text-[14px] text-text-secondary font-mono">{idx + 1}</td>
                       <td className="py-4 px-4">
@@ -197,6 +202,10 @@ export function EnquiriesClient() {
                   ))}
                 </tbody>
               </table>
+      <TablePagination 
+        page={table.page} limit={table.limit} totalItems={table.totalItems} 
+        onPageChange={table.setPage} onLimitChange={table.setLimit} 
+      />
             </div>
           )}
         </div>

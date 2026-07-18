@@ -9,8 +9,12 @@ import { SuperadminBadge } from '@/app/superadmin/superadmin_system/superadmin_s
 import { SuperadminProgress } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminProgress';
 import { Zap, ChevronRight, ZapOff, CheckCircle } from 'lucide-react';
 import { useSuperadminSystemPowerSaving } from '@/app/superadmin/superadmin_system/superadmin_system_power_saving_hooks/useSuperadminSystemPowerSaving';
+import { TableToolbar } from "@/components/ui/table-toolbar";
+import { useClientTable } from "@/components/ui/use-client-table";
+import { TablePagination } from "@/components/ui/table-pagination";
 
 export function SuperadminSystemPowerSavingClient() {
+    const table = useClientTable(alerts);
   const {
     threshold,
     setThreshold,
@@ -100,7 +104,8 @@ export function SuperadminSystemPowerSavingClient() {
         </CardHeader>
         <CardContent>
           <div className="overflow-x-auto">
-            <table className="w-full text-sm">
+            <TableToolbar search={table.searchTerm} onSearch={table.setSearchTerm} />
+      <table className="w-full text-sm">
               <thead>
                 <tr className="border-b border-border text-text-secondary text-xs uppercase tracking-wide">
                   <th className="text-left py-3 pr-4">Date</th>
@@ -111,7 +116,7 @@ export function SuperadminSystemPowerSavingClient() {
                 </tr>
               </thead>
               <tbody className="divide-y divide-outline-variant/30">
-                {alerts.map((log) => (
+                {table.paginatedData.map((log) => (
                   <tr key={log.date + log.zone} className="hover:bg-bg-card transition-colors">
                     <td className="py-3 pr-4 text-text-secondary">{log.date}</td>
                     <td className="py-3 pr-4 text-text-primary">{log.shift}</td>
@@ -122,6 +127,10 @@ export function SuperadminSystemPowerSavingClient() {
                 ))}
               </tbody>
             </table>
+      <TablePagination 
+        page={table.page} limit={table.limit} totalItems={table.totalItems} 
+        onPageChange={table.setPage} onLimitChange={table.setLimit} 
+      />
           </div>
         </CardContent>
       </SuperadminCard>

@@ -7,8 +7,12 @@ import { SuperadminBadge } from '@/app/superadmin/superadmin_system/superadmin_s
 import { SuperadminButton } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminButton';
 import { Wrench, Package, Lock, ChevronRight } from 'lucide-react';
 import { useSuperadminSystemMaintenance } from '@/app/superadmin/superadmin_system/superadmin_system_maintenance_hooks/useSuperadminSystemMaintenance';
+import { TableToolbar } from "@/components/ui/table-toolbar";
+import { useClientTable } from "@/components/ui/use-client-table";
+import { TablePagination } from "@/components/ui/table-pagination";
 
 export function SuperadminSystemMaintenanceClient() {
+    const table = useClientTable(seats);
   const { seatsNeedingAttention, assetsOverdue, lockerIssues, seats, assets, lockers } = useSuperadminSystemMaintenance();
 
   return (
@@ -41,7 +45,8 @@ export function SuperadminSystemMaintenanceClient() {
         </CardHeader>
         <CardContent>
           <div className="overflow-x-auto">
-            <table className="w-full text-sm">
+            <TableToolbar search={table.searchTerm} onSearch={table.setSearchTerm} />
+      <table className="w-full text-sm">
               <thead>
                 <tr className="border-b border-border text-text-secondary text-xs uppercase tracking-wide">
                   <th className="text-left py-3 pr-4">Seat #</th>
@@ -52,7 +57,7 @@ export function SuperadminSystemMaintenanceClient() {
                 </tr>
               </thead>
               <tbody className="divide-y divide-outline-variant/30">
-                {seats.map((seat) => (
+                {table.paginatedData.map((seat) => (
                   <tr key={seat.id} className="hover:bg-bg-card transition-colors cursor-pointer group">
                     <td className="py-3 pr-4 font-mono font-medium text-text-primary">{seat.id}</td>
                     <td className="py-3 pr-4">
@@ -73,6 +78,10 @@ export function SuperadminSystemMaintenanceClient() {
                 ))}
               </tbody>
             </table>
+      <TablePagination 
+        page={table.page} limit={table.limit} totalItems={table.totalItems} 
+        onPageChange={table.setPage} onLimitChange={table.setLimit} 
+      />
           </div>
         </CardContent>
       </SuperadminCard>

@@ -8,6 +8,7 @@ import { superadmin_gridTheme } from '@/app/superadmin/superadmin_seats_shifts_l
 import { SUPERADMIN_SEATS_MOCK_HISTORY } from '@superadmin/superadmin_seats_shifts_lockers/superadmin_seats_shifts_lockers_utils/SuperadminSeatsMockData';
 import { SuperadminSearchableDropdown } from '@/app/superadmin/superadmin_shared_components/SuperadminSearchableDropdown';
 import type { SuperadminSeatsHistoryEntry } from '@/app/superadmin/superadmin_seats_shifts_lockers/superadmin_seats_types/SuperadminSeatsShiftsLockersTypes';
+import { TableToolbar } from "@/components/ui/table-toolbar";
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
@@ -26,6 +27,7 @@ function ReasonCell({ value }: { value: string }) {
 }
 
 export function SeatHistoryClient() {
+    const [searchTerm, setSearchTerm] = useState('');
   const [seatFilter, setSeatFilter] = useState('All Seats');
   const [search, setSearch] = useState('');
   const [dateFrom, setDateFrom] = useState('');
@@ -93,9 +95,15 @@ export function SeatHistoryClient() {
           <p className="ss-empty-state__title">No seat history records found.</p>
         </div>
       ) : (
-        <div className="ss-table-wrapper ss-grid-h-400">
-          <AgGridReact theme={superadmin_gridTheme} rowData={filtered} columnDefs={colDefs as any} rowHeight={52} headerHeight={40} suppressMovableColumns suppressCellFocus defaultColDef={{ resizable: false, sortable: true }} />
+        <div className="flex flex-col gap-4 w-full">
+<TableToolbar search={searchTerm} onSearch={setSearchTerm} />
+      <div className="ss-table-wrapper ss-grid-h-400">
+          <AgGridReact
+          pagination={true}
+          paginationPageSize={10}
+          quickFilterText={searchTerm} theme={superadmin_gridTheme} rowData={filtered} columnDefs={colDefs as any} rowHeight={52} headerHeight={40} suppressMovableColumns suppressCellFocus defaultColDef={{ resizable: false, sortable: true }} />
         </div>
+</div>
       )}
 
     </div>

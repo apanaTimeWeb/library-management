@@ -1,6 +1,6 @@
 'use client';
 // RESPONSIBILITY: Renders the SuperadminLibrariesGrid component.
-import React, { useRef, useCallback, useMemo } from 'react';
+import React, { useRef, useCallback, useMemo, useState } from 'react';
 import { AgGridReact } from 'ag-grid-react';
 import type { ICellRendererParams, GridReadyEvent } from 'ag-grid-community';
 import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community';
@@ -9,10 +9,12 @@ import { Edit2, ShieldAlert, CheckCircle, AlertTriangle } from 'lucide-react';
 import type { SuperadminLibrary as Library, SuperadminLibrariesGridProps as Props } from '@/app/superadmin/superadmin_libraries/superadmin_libraries_types/SuperadminLibrariesTypes';
 import { SuperadminLibrariesEmptyState } from '@/app/superadmin/superadmin_libraries/superadmin_libraries_components/SuperadminLibrariesEmptyState';
 import type { ColDef } from 'ag-grid-community';
+import { TableToolbar } from "@/components/ui/table-toolbar";
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
 export function SuperadminLibrariesGrid({ libraries, onRowClick, onSuspend }: Props) {
+    const [searchTerm, setSearchTerm] = useState('');
   const gridRef = useRef<AgGridReact>(null);
   
   const components = useMemo(() => ({
@@ -95,8 +97,13 @@ export function SuperadminLibrariesGrid({ libraries, onRowClick, onSuspend }: Pr
         />
         <span className="text-xs font-semibold text-text-disabled uppercase tracking-wider">{libraries.length} libraries</span>
       </div>
+      <div className="flex flex-col gap-4 w-full">
+<TableToolbar search={searchTerm} onSearch={setSearchTerm} />
       <div style={{ height: 420 }}>
         <AgGridReact
+          pagination={true}
+          paginationPageSize={10}
+          quickFilterText={searchTerm}
           ref={gridRef}
           theme={superadmin_gridTheme}
           rowData={libraries}
@@ -113,6 +120,7 @@ export function SuperadminLibrariesGrid({ libraries, onRowClick, onSuspend }: Pr
           noRowsOverlayComponent="noRowsOverlayComponent"
         />
       </div>
+</div>
     </div>
   );
 }

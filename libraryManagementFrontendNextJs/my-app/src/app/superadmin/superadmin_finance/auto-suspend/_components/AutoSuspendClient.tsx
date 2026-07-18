@@ -4,8 +4,12 @@ import React from 'react';
 import { Toaster } from 'react-hot-toast';
 import { Settings, Ban, RotateCcw, Bell, Save, UserCheck, ShieldAlert, X } from 'lucide-react';
 import { useAutoSuspendClient } from '@/app/superadmin/superadmin_finance/auto-suspend/_components/useAutoSuspendClient';
+import { TableToolbar } from "@/components/ui/table-toolbar";
+import { useClientTable } from "@/components/ui/use-client-table";
+import { TablePagination } from "@/components/ui/table-pagination";
 
 export function AutoSuspendClient() {
+    const table = useClientTable(Array.from({ length: 3 }));
   const {
     config, suspended, configLoading, suspendedLoading,
     editing, updatePending, configForm, onSaveConfig, openEditConfig, cancelEditConfig,
@@ -91,7 +95,8 @@ export function AutoSuspendClient() {
           <Ban size={18} className="text-danger" />
           <span className="text-[14px] text-text-primary font-bold">Suspended Students</span>
         </div>
-        <table className="w-full text-left border-collapse">
+        <TableToolbar search={table.searchTerm} onSearch={table.setSearchTerm} />
+      <table className="w-full text-left border-collapse">
           <thead>
             <tr className="bg-primary/5 uppercase text-[12px] font-semibold text-text-secondary border-b border-border">
               <th className="py-3 px-4">Student</th>
@@ -105,7 +110,7 @@ export function AutoSuspendClient() {
           </thead>
           <tbody>
             {suspendedLoading ? (
-              Array.from({ length: 3 }).map((_, i) => (
+              table.paginatedData.map((_, i) => (
                 <tr key={i} className="border-b border-border last:border-0">
                   {Array.from({ length: 7 }).map((_, j) => (
                     <td key={j} className="py-3 px-4">
@@ -160,6 +165,10 @@ export function AutoSuspendClient() {
             )}
           </tbody>
         </table>
+      <TablePagination 
+        page={table.page} limit={table.limit} totalItems={table.totalItems} 
+        onPageChange={table.setPage} onLimitChange={table.setLimit} 
+      />
       </div>
 
       {restoreDialog && (

@@ -4,6 +4,9 @@ import { ShieldCheck, ShieldAlert, ShieldX, Users } from 'lucide-react';
 import { SuperadminSearchableDropdown } from '@/app/superadmin/superadmin_shared_components/SuperadminSearchableDropdown';
 import { useTrustScoreClient } from '@/app/superadmin/superadmin_finance/trust-score/_components/useTrustScoreClient';
 import type { SuperadminFinanceTrustScoreStudent } from '@/app/superadmin/superadmin_finance/superadmin_finance_types/SuperadminFinanceTypes';
+import { TableToolbar } from "@/components/ui/table-toolbar";
+import { useClientTable } from "@/components/ui/use-client-table";
+import { TablePagination } from "@/components/ui/table-pagination";
 
 const BADGE_CLASS: Record<string, string> = {
   reliable: 'bg-success/10 text-success border-success/20',
@@ -30,6 +33,7 @@ function TrustGauge({ score }: { score: number }) {
 }
 
 export function TrustScoreClient() {
+    const table = useClientTable(Array.from({ length: 5 }));
   const {
     levelFilter, setLevelFilter,
     shiftFilter, setShiftFilter,
@@ -104,7 +108,8 @@ export function TrustScoreClient() {
       </div>
 
       <div className="bg-card rounded-[var(--radius-lg)] border border-border overflow-x-auto">
-        <table className="w-full text-left border-collapse">
+        <TableToolbar search={table.searchTerm} onSearch={table.setSearchTerm} />
+      <table className="w-full text-left border-collapse">
           <thead>
             <tr className="bg-primary/5 uppercase text-[12px] font-semibold text-text-secondary border-b border-border">
               <th className="py-3 px-4 w-20">Rank</th>
@@ -119,7 +124,7 @@ export function TrustScoreClient() {
           </thead>
           <tbody>
             {isLoading ? (
-              Array.from({ length: 5 }).map((_, i) => (
+              table.paginatedData.map((_, i) => (
                 <tr key={i} className="border-b border-border last:border-0">
                   {Array.from({ length: 8 }).map((_, j) => (
                     <td key={j} className="py-3 px-4">
@@ -174,6 +179,10 @@ export function TrustScoreClient() {
             )}
           </tbody>
         </table>
+      <TablePagination 
+        page={table.page} limit={table.limit} totalItems={table.totalItems} 
+        onPageChange={table.setPage} onLimitChange={table.setLimit} 
+      />
       </div>
     </div>
   );

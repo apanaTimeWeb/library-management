@@ -1,6 +1,6 @@
 'use client';
 // RESPONSIBILITY: Renders the SuperadminExpensesGrid component.
-import React, { useMemo } from 'react';
+import React, { useMemo, useState } from 'react';
 import { AgGridReact } from 'ag-grid-react';
 import type { ICellRendererParams } from 'ag-grid-community';
 import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community';
@@ -11,6 +11,7 @@ import type { SuperadminExpense } from '@/app/superadmin/superadmin_accounting/e
 ModuleRegistry.registerModules([AllCommunityModule]);
 
 import type { SuperadminExpensesGridProps as Props } from '@/app/superadmin/superadmin_accounting/superadmin_accounting_types/SuperadminAccountingTypes';
+import { TableToolbar } from "@/components/ui/table-toolbar";
 
 const MODE_BADGE: Record<string, string> = {
   cash: 'bg-success-bg text-success',
@@ -20,6 +21,7 @@ const MODE_BADGE: Record<string, string> = {
 };
 
 export function SuperadminExpensesGrid({ expenses, onDelete }: Props) {
+    const [searchTerm, setSearchTerm] = useState('');
   const colDefs = useMemo<any[]>(() => [
     { 
       field: 'date', 
@@ -106,8 +108,13 @@ export function SuperadminExpensesGrid({ expenses, onDelete }: Props) {
           <p className="text-sm font-medium text-text-disabled">Try adjusting your category filter or add a new expense.</p>
         </div>
       ) : (
-        <div style={{ height: 450 }}>
+        <div className="flex flex-col gap-4 w-full">
+<TableToolbar search={searchTerm} onSearch={setSearchTerm} />
+      <div style={{ height: 450 }}>
           <AgGridReact
+          pagination={true}
+          paginationPageSize={10}
+          quickFilterText={searchTerm}
             theme={superadmin_gridTheme}
             rowData={expenses}
             columnDefs={colDefs}
@@ -123,6 +130,7 @@ export function SuperadminExpensesGrid({ expenses, onDelete }: Props) {
             }}
           />
         </div>
+</div>
       )}
     </div>
   );

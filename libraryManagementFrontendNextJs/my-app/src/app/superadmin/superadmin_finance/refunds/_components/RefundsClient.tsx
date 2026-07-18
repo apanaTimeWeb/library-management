@@ -7,6 +7,9 @@ import { SuperadminSearchableDropdown } from '@/app/superadmin/superadmin_shared
 import { useRefundsClient } from '@/app/superadmin/superadmin_finance/refunds/_components/useRefundsClient';
 import { RefundProcessModal } from '@/app/superadmin/superadmin_finance/refunds/_components/RefundProcessModal';
 import { RefundDeductModal } from '@/app/superadmin/superadmin_finance/refunds/_components/RefundDeductModal';
+import { TableToolbar } from "@/components/ui/table-toolbar";
+import { useClientTable } from "@/components/ui/use-client-table";
+import { TablePagination } from "@/components/ui/table-pagination";
 
 const STATUS_BADGE: Record<string, string> = {
   pending:   'bg-warning/10 text-warning border-warning/20',
@@ -16,6 +19,7 @@ const STATUS_BADGE: Record<string, string> = {
 };
 
 export function RefundsClient() {
+    const table = useClientTable(Array.from({ length: 5 }));
   const {
     statusFilter, setStatusFilter,
     isLoading, isSubmitting,
@@ -74,7 +78,8 @@ export function RefundsClient() {
       </div>
 
       <div className="bg-card rounded-[var(--radius-lg)] border border-border overflow-x-auto">
-        <table className="w-full text-left border-collapse">
+        <TableToolbar search={table.searchTerm} onSearch={table.setSearchTerm} />
+      <table className="w-full text-left border-collapse">
           <thead>
             <tr className="bg-primary/5 uppercase text-[12px] font-semibold text-text-secondary border-b border-border">
               <th className="text-left py-3 px-4">Student</th>
@@ -88,7 +93,7 @@ export function RefundsClient() {
           </thead>
           <tbody>
             {isLoading ? (
-              Array.from({ length: 5 }).map((_, i) => (
+              table.paginatedData.map((_, i) => (
                 <tr key={i} className="border-b border-border last:border-0">
                   {Array.from({ length: 7 }).map((_, j) => (
                     <td key={j} className="py-3 px-4">
@@ -161,6 +166,10 @@ export function RefundsClient() {
             )}
           </tbody>
         </table>
+      <TablePagination 
+        page={table.page} limit={table.limit} totalItems={table.totalItems} 
+        onPageChange={table.setPage} onLimitChange={table.setLimit} 
+      />
       </div>
 
       <RefundProcessModal

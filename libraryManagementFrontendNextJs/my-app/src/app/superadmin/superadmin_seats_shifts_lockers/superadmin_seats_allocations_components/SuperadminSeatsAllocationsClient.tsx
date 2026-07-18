@@ -9,8 +9,12 @@ import { SuperadminSelect, SuperadminSelectTrigger, SuperadminSelectValue, Super
 import { Download, ChevronRight, Inbox } from 'lucide-react';
 import { useSuperadminSeatsAllocations } from '@/app/superadmin/superadmin_seats_shifts_lockers/superadmin_seats_allocations_hooks/useSuperadminSeatsAllocations';
 import { SuperadminSeatsAllocation } from '@/app/superadmin/superadmin_seats_shifts_lockers/superadmin_seats_types/SuperadminSeatsAllocationsTypes';
+import { TableToolbar } from "@/components/ui/table-toolbar";
+import { useClientTable } from "@/components/ui/use-client-table";
+import { TablePagination } from "@/components/ui/table-pagination";
 
 export function SuperadminSeatsAllocationsClient() {
+    const table = useClientTable(filteredAllocations);
   const {
     shiftFilter,
     setShiftFilter,
@@ -101,7 +105,8 @@ export function SuperadminSeatsAllocationsClient() {
             </div>
           ) : (
             <div className="overflow-x-auto">
-              <table className="w-full text-sm text-left">
+              <TableToolbar search={table.searchTerm} onSearch={table.setSearchTerm} />
+      <table className="w-full text-sm text-left">
                 <thead>
                   <tr className="border-b border-border bg-surface text-text-secondary text-xs uppercase tracking-wider font-semibold">
                     <th className="py-4 pl-4 pr-3">Student</th>
@@ -116,7 +121,7 @@ export function SuperadminSeatsAllocationsClient() {
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-outline-variant/30 bg-surface">
-                  {filteredAllocations.map((alloc, idx) => (
+                  {table.paginatedData.map((alloc, idx) => (
                     <tr
                       key={`${alloc.smartId}-${idx}`}
                       onClick={() => handleRowClick(alloc.studentName)}
@@ -142,6 +147,10 @@ export function SuperadminSeatsAllocationsClient() {
                   ))}
                 </tbody>
               </table>
+      <TablePagination 
+        page={table.page} limit={table.limit} totalItems={table.totalItems} 
+        onPageChange={table.setPage} onLimitChange={table.setLimit} 
+      />
             </div>
           )}
         </CardContent>

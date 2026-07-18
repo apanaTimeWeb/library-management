@@ -7,6 +7,9 @@ import { Toaster } from 'react-hot-toast';
 import { useSecurityDepositsClient } from '@/app/superadmin/superadmin_finance/security-deposits/_components/useSecurityDepositsClient';
 import { SecurityDepositRefundModal } from '@/app/superadmin/superadmin_finance/security-deposits/_components/SecurityDepositRefundModal';
 import { SecurityDepositDeductModal } from '@/app/superadmin/superadmin_finance/security-deposits/_components/SecurityDepositDeductModal';
+import { TableToolbar } from "@/components/ui/table-toolbar";
+import { useClientTable } from "@/components/ui/use-client-table";
+import { TablePagination } from "@/components/ui/table-pagination";
 
 const STATUS_BADGE: Record<string, string> = {
   held:      'bg-info/10 text-info border-info/20',
@@ -15,6 +18,7 @@ const STATUS_BADGE: Record<string, string> = {
 };
 
 export function SecurityDepositsClient() {
+    const table = useClientTable(Array.from({ length: 5 }));
   const {
     statusFilter, setStatusFilter,
     filtered, isLoading,
@@ -50,7 +54,8 @@ export function SecurityDepositsClient() {
       </div>
 
       <div className="bg-card rounded-[var(--radius-lg)] border border-border overflow-x-auto">
-        <table className="w-full text-left border-collapse">
+        <TableToolbar search={table.searchTerm} onSearch={table.setSearchTerm} />
+      <table className="w-full text-left border-collapse">
           <thead>
             <tr className="bg-primary/5 uppercase text-[12px] font-semibold text-text-secondary border-b border-border">
               <th className="py-3 px-4">Student</th>
@@ -66,7 +71,7 @@ export function SecurityDepositsClient() {
           </thead>
           <tbody>
             {isLoading ? (
-              Array.from({ length: 5 }).map((_, i) => (
+              table.paginatedData.map((_, i) => (
                 <tr key={i} className="border-b border-border last:border-0">
                   {Array.from({ length: 9 }).map((_, j) => (
                     <td key={j} className="py-3 px-4">
@@ -130,6 +135,10 @@ export function SecurityDepositsClient() {
             )}
           </tbody>
         </table>
+      <TablePagination 
+        page={table.page} limit={table.limit} totalItems={table.totalItems} 
+        onPageChange={table.setPage} onLimitChange={table.setLimit} 
+      />
       </div>
 
       <SecurityDepositRefundModal 

@@ -6,10 +6,12 @@ import { AgGridReact } from 'ag-grid-react';
 import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community';
 import { superadmin_gridTheme } from '@/app/superadmin/superadmin_shared_components/superadmin_gridTheme';
 import { useNoticesClient } from '@/app/superadmin/superadmin_communication/notices/_components/useNoticesClient';
+import { TableToolbar } from "@/components/ui/table-toolbar";
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
 export function NoticesClient() {
+    const [searchTerm, setSearchTerm] = useState('');
   const {
     notices, showAdd, setShowAdd, editItem, deleteItem, setDeleteItem,
     broadcastItem, setBroadcastItem, toast, form, setForm, openAdd, openEdit,
@@ -141,8 +143,13 @@ export function NoticesClient() {
             </button>
           </div>
         ) : (
-          <div className="h-96 w-full">
+          <div className="flex flex-col gap-4 w-full">
+<TableToolbar search={searchTerm} onSearch={setSearchTerm} />
+      <div className="h-96 w-full">
             <AgGridReact
+          pagination={true}
+          paginationPageSize={10}
+          quickFilterText={searchTerm}
               theme={superadmin_gridTheme}
               rowData={notices}
               columnDefs={colDefs as any}
@@ -157,6 +164,7 @@ export function NoticesClient() {
               }}
             />
           </div>
+</div>
         )}
       </div>
     </div>

@@ -1,6 +1,6 @@
 'use client';
 // RESPONSIBILITY: Renders the SuperadminAuditLogsGrid component.
-import React, { useRef, useCallback, useMemo } from 'react';
+import React, { useRef, useCallback, useMemo, useState } from 'react';
 import { AgGridReact } from 'ag-grid-react';
 import type { ICellRendererParams, GridReadyEvent } from 'ag-grid-community';
 import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community';
@@ -8,6 +8,7 @@ import { superadmin_gridTheme } from '@/app/superadmin/superadmin_shared_compone
 import { Eye } from 'lucide-react';
 import type { SuperadminAuditLog, SuperadminAuditLogsGridProps as Props } from '@/app/superadmin/superadmin_audit-logs/superadmin_audit_logs_types/SuperadminAuditLogsTypes';
 import { SuperadminSearchableDropdown } from '@/app/superadmin/superadmin_shared_components/SuperadminSearchableDropdown';
+import { TableToolbar } from "@/components/ui/table-toolbar";
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
@@ -20,6 +21,7 @@ export function ActionBadge({ action }: { action: string }) {
 }
 
 export function SuperadminAuditLogsGrid({ logs, onRowClick, actionFilter, onFilterChange }: Props) {
+    const [searchTerm, setSearchTerm] = useState('');
   const gridRef = useRef<AgGridReact>(null);
 
   const colDefs = useMemo<any[]>(() => [
@@ -88,8 +90,13 @@ export function SuperadminAuditLogsGrid({ logs, onRowClick, actionFilter, onFilt
           <span className="text-[11px] font-bold text-text-disabled uppercase tracking-wider">{logs.length} entries</span>
         </div>
       </div>
+      <div className="flex flex-col gap-4 w-full">
+<TableToolbar search={searchTerm} onSearch={setSearchTerm} />
       <div style={{ height: 420 }}>
         <AgGridReact
+          pagination={true}
+          paginationPageSize={10}
+          quickFilterText={searchTerm}
           ref={gridRef}
           theme={superadmin_gridTheme}
           rowData={logs}
@@ -103,6 +110,7 @@ export function SuperadminAuditLogsGrid({ logs, onRowClick, actionFilter, onFilt
           suppressCellFocus={true}
         />
       </div>
+</div>
     </div>
   );
 }

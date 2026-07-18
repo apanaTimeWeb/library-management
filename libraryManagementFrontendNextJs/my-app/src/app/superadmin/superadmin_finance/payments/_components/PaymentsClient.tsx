@@ -1,17 +1,19 @@
 'use client';
 // RESPONSIBILITY: Renders library student fee payment records with receipt generation and voiding/reconciliation controls.
 // DATA FLOW: API /finance/payments -> Payments State -> AG Grid / Receipt Action
-import React from 'react';
+import React, { useState } from 'react';
 import { AgGridReact } from 'ag-grid-react';
 import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community';
 
 import { SuperadminSearchableDropdown } from '@/app/superadmin/superadmin_shared_components/SuperadminSearchableDropdown';
 import { superadmin_gridTheme } from '@/app/superadmin/superadmin_finance/superadmin_finance_shared_components/superadmin_gridTheme';
 import { usePaymentsClient } from '@/app/superadmin/superadmin_finance/payments/_components/usePaymentsClient';
+import { TableToolbar } from "@/components/ui/table-toolbar";
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
 export function PaymentsClient() {
+    const [searchTerm, setSearchTerm] = useState('');
   const {
     modeFilter, setModeFilter,
     showDeleted, setShowDeleted,
@@ -60,8 +62,13 @@ export function PaymentsClient() {
       </div>
 
       <div className="bg-card rounded-[var(--radius-lg)] border border-border p-4">
-        <div className="h-96 w-full" style={{ width: '100%', height: '400px' }}>
+        <div className="flex flex-col gap-4 w-full">
+<TableToolbar search={searchTerm} onSearch={setSearchTerm} />
+      <div className="h-96 w-full" style={{ width: '100%', height: '400px' }}>
           <AgGridReact
+          pagination={true}
+          paginationPageSize={10}
+          quickFilterText={searchTerm}
             theme={superadmin_gridTheme}
             rowData={visible}
             columnDefs={colDefs as any}
@@ -76,6 +83,7 @@ export function PaymentsClient() {
             }}
           />
         </div>
+</div>
       </div>
 
       {deleteDialog && (

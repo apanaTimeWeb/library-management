@@ -6,8 +6,12 @@ import { CheckCircle, CalendarPlus } from 'lucide-react';
 import { SuperadminSearchableDropdown } from '@/app/superadmin/superadmin_shared_components/SuperadminSearchableDropdown';
 import { SUPERADMIN_FINANCE_PROMISE_STATUS_BADGE } from '@/app/superadmin/superadmin_finance/superadmin_finance_constants/SuperadminFinanceConstants';
 import { usePaymentPromisesClient } from '@/app/superadmin/superadmin_finance/payment-promises/_components/usePaymentPromisesClient';
+import { TableToolbar } from "@/components/ui/table-toolbar";
+import { useClientTable } from "@/components/ui/use-client-table";
+import { TablePagination } from "@/components/ui/table-pagination";
 
 export function PaymentPromisesClient() {
+    const table = useClientTable(Array.from({ length: 4 }));
   const {
     statusFilter,
     setStatusFilter,
@@ -46,7 +50,8 @@ export function PaymentPromisesClient() {
       </div>
 
       <div className="bg-card rounded-[var(--radius-lg)] border border-border overflow-x-auto">
-        <table className="w-full text-left border-collapse">
+        <TableToolbar search={table.searchTerm} onSearch={table.setSearchTerm} />
+      <table className="w-full text-left border-collapse">
           <thead>
             <tr className="bg-primary/5 uppercase text-[12px] font-semibold text-text-secondary border-b border-border">
               <th className="py-3 px-4">Student</th>
@@ -60,7 +65,7 @@ export function PaymentPromisesClient() {
           </thead>
           <tbody>
             {isLoading ? (
-              Array.from({ length: 4 }).map((_, i) => (
+              table.paginatedData.map((_, i) => (
                 <tr key={i} className="border-b border-border last:border-0 hover:bg-primary/5">
                   {Array.from({ length: 7 }).map((_, j) => (
                     <td key={j} className="py-3 px-4">
@@ -129,6 +134,10 @@ export function PaymentPromisesClient() {
             )}
           </tbody>
         </table>
+      <TablePagination 
+        page={table.page} limit={table.limit} totalItems={table.totalItems} 
+        onPageChange={table.setPage} onLimitChange={table.setLimit} 
+      />
       </div>
 
       {extendDialog && (

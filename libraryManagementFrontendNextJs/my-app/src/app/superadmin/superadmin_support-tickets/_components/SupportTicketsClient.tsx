@@ -8,6 +8,7 @@ import { superadmin_gridTheme } from '@/app/superadmin/superadmin_shared_compone
 import { Eye, Clock, MessageSquare, AlertTriangle, X, CheckCircle, Loader, Send } from 'lucide-react';
 import { SUPERADMIN_SUPPORT_MOCK_TICKETS } from '@/app/superadmin/superadmin_support-tickets/superadmin_support_constants/SuperadminSupportConstants';
 import { Ticket } from "./SupportTicketsClient_types";
+import { TableToolbar } from "@/components/ui/table-toolbar";
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
@@ -84,6 +85,7 @@ function TicketPanel({ tkt, onClose, onSave }: { tkt: Ticket; onClose: () => voi
 }
 
 export function SupportTicketsClient() {
+    const [searchTerm, setSearchTerm] = useState('');
   const [tickets, setTickets] = useState<Ticket[]>(SUPERADMIN_SUPPORT_MOCK_TICKETS);
   const [filter, setFilter]   = useState('All');
   const [selected, setSelected] = useState<Ticket | null>(null);
@@ -165,8 +167,13 @@ export function SupportTicketsClient() {
           ))}
           <span className="ml-auto text-xs text-text-secondary font-medium">{filtered.length} tickets</span>
         </div>
-        <div className="w-full" style={{ height: 400 }}>
+        <div className="flex flex-col gap-4 w-full">
+<TableToolbar search={searchTerm} onSearch={setSearchTerm} />
+      <div className="w-full" style={{ height: 400 }}>
           <AgGridReact
+          pagination={true}
+          paginationPageSize={10}
+          quickFilterText={searchTerm}
             ref={gridRef}
             theme={superadmin_gridTheme}
             rowData={filtered}
@@ -180,6 +187,7 @@ export function SupportTicketsClient() {
             suppressCellFocus={true}
           />
         </div>
+</div>
       </div>
     </div>
   );

@@ -7,8 +7,21 @@ import { SuperadminBadge } from '@/app/superadmin/superadmin_system/superadmin_s
 import { Upload, FileSpreadsheet, ChevronRight, CheckCircle, XCircle, AlertTriangle, Download, RefreshCw, Users } from 'lucide-react';
 import { useSuperadminSystemBulkImport } from '@/app/superadmin/superadmin_system/superadmin_system_bulk_import_hooks/useSuperadminSystemBulkImport';
 import { SUPERADMIN_SYSTEM_BULK_IMPORT_STATUS_CONFIG } from '@/app/superadmin/superadmin_system/superadmin_system_constants/SuperadminSystemBulkImportConstants';
+import { TableToolbar } from "@/components/ui/table-toolbar";
+import { useClientTable } from "@/components/ui/use-client-table";
+import { TablePagination } from "@/components/ui/table-pagination";
 
 export function SuperadminSystemBulkImportClient() {
+    const table = useClientTable([
+                          ['Name',      true,  'Rahul Sharma'],
+                          ['Phone',     true,  '9876543210'],
+                          ['Email',     false, 'rahul@gmail.com'],
+                          ['Shift',     true,  'Morning / Afternoon / Evening'],
+                          ['Seat',      false, 'S-01 (auto-assigned if blank)'],
+                          ['Plan',      false, 'Monthly / Quarterly'],
+                          ['Fee Paid',  false, '1000'],
+                          ['Join Date', false, '2026-04-12'],
+                        ]);
   const {
     step,
     isDragging,
@@ -143,7 +156,8 @@ export function SuperadminSystemBulkImportClient() {
             </CardHeader>
             <CardContent>
               <div className="overflow-x-auto">
-                <table className="w-full text-sm">
+                <TableToolbar search={table.searchTerm} onSearch={table.setSearchTerm} />
+      <table className="w-full text-sm">
                   <thead>
                     <tr className="border-b border-border text-text-secondary text-xs uppercase tracking-wide">
                       <th className="text-left py-2 pr-4">Column</th>
@@ -152,16 +166,7 @@ export function SuperadminSystemBulkImportClient() {
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-outline-variant/30">
-                    {[
-                      ['Name',      true,  'Rahul Sharma'],
-                      ['Phone',     true,  '9876543210'],
-                      ['Email',     false, 'rahul@gmail.com'],
-                      ['Shift',     true,  'Morning / Afternoon / Evening'],
-                      ['Seat',      false, 'S-01 (auto-assigned if blank)'],
-                      ['Plan',      false, 'Monthly / Quarterly'],
-                      ['Fee Paid',  false, '1000'],
-                      ['Join Date', false, '2026-04-12'],
-                    ].map(([col, req, ex]) => (
+                    {table.paginatedData.map(([col, req, ex]) => (
                       <tr key={col as string} className="hover:bg-bg-card">
                         <td className="py-2.5 pr-4 font-medium text-text-primary">{col as string}</td>
                         <td className="py-2.5 pr-4">
@@ -174,6 +179,10 @@ export function SuperadminSystemBulkImportClient() {
                     ))}
                   </tbody>
                 </table>
+      <TablePagination 
+        page={table.page} limit={table.limit} totalItems={table.totalItems} 
+        onPageChange={table.setPage} onLimitChange={table.setLimit} 
+      />
               </div>
             </CardContent>
           </SuperadminCard>

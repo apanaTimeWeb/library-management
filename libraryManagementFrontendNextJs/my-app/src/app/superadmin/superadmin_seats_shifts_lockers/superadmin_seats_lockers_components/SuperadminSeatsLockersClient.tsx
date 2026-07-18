@@ -8,8 +8,12 @@ import { SuperadminInput } from '@/app/superadmin/superadmin_system/superadmin_s
 import { SuperadminSelect, SuperadminSelectTrigger, SuperadminSelectValue, SuperadminSelectContent, SuperadminSelectItem } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminSelect';
 import { Plus, ChevronRight, Inbox, Search, UserPlus, Unlock, Wrench } from 'lucide-react';
 import { useSuperadminSeatsLockers } from '@/app/superadmin/superadmin_seats_shifts_lockers/superadmin_seats_lockers_hooks/useSuperadminSeatsLockers';
+import { TableToolbar } from "@/components/ui/table-toolbar";
+import { useClientTable } from "@/components/ui/use-client-table";
+import { TablePagination } from "@/components/ui/table-pagination";
 
 export function SuperadminSeatsLockersClient() {
+    const table = useClientTable(filteredLockers);
   const {
     filteredLockers,
     statusFilter,
@@ -88,7 +92,8 @@ export function SuperadminSeatsLockersClient() {
             </div>
           ) : (
             <div className="overflow-x-auto">
-              <table className="w-full text-sm text-left">
+              <TableToolbar search={table.searchTerm} onSearch={table.setSearchTerm} />
+      <table className="w-full text-sm text-left">
                 <thead>
                   <tr className="border-b border-border bg-surface text-text-secondary text-xs uppercase tracking-wider font-semibold">
                     <th className="py-4 pl-4 pr-3">Locker #</th>
@@ -99,7 +104,7 @@ export function SuperadminSeatsLockersClient() {
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-outline-variant/30 bg-surface">
-                  {filteredLockers.map((locker) => (
+                  {table.paginatedData.map((locker) => (
                     <tr
                       key={locker.id}
                       className="hover:bg-bg-input transition-colors group"
@@ -144,6 +149,10 @@ export function SuperadminSeatsLockersClient() {
                   ))}
                 </tbody>
               </table>
+      <TablePagination 
+        page={table.page} limit={table.limit} totalItems={table.totalItems} 
+        onPageChange={table.setPage} onLimitChange={table.setLimit} 
+      />
             </div>
           )}
         </CardContent>

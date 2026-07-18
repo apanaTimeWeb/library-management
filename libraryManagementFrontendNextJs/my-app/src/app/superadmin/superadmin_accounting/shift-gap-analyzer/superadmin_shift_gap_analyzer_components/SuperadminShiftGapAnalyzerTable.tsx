@@ -4,8 +4,12 @@ import { CalendarX2 } from 'lucide-react';
 import type { SuperadminDayGap } from '@/app/superadmin/superadmin_accounting/shift-gap-analyzer/superadmin_shift_gap_analyzer_types/SuperadminShiftGapAnalyzerTypes';
 
 import type { SuperadminShiftGapAnalyzerTableProps as Props } from '@/app/superadmin/superadmin_accounting/superadmin_accounting_types/SuperadminAccountingTypes';
+import { TableToolbar } from "@/components/ui/table-toolbar";
+import { useClientTable } from "@/components/ui/use-client-table";
+import { TablePagination } from "@/components/ui/table-pagination";
 
 export function SuperadminShiftGapAnalyzerTable({ days }: Props) {
+    const table = useClientTable(days);
   if (days.length === 0) {
     return (
       <div className="bg-bg-card border border-border rounded-[var(--radius-lg)] shadow-sm flex flex-col items-center justify-center py-20 text-center">
@@ -18,6 +22,7 @@ export function SuperadminShiftGapAnalyzerTable({ days }: Props) {
 
   return (
     <div className="bg-bg-card border border-border rounded-[var(--radius-lg)] shadow-sm overflow-hidden overflow-x-auto">
+      <TableToolbar search={table.searchTerm} onSearch={table.setSearchTerm} />
       <table className="w-full text-left border-collapse">
         <thead>
           <tr className="bg-bg-page/50 border-b border-border">
@@ -29,7 +34,7 @@ export function SuperadminShiftGapAnalyzerTable({ days }: Props) {
           </tr>
         </thead>
         <tbody className="divide-y divide-[var(--border)]">
-          {days.map((d, i) => (
+          {table.paginatedData.map((d, i) => (
             <tr key={i} className="hover:bg-bg-page/30 transition-colors">
               <td className="py-3.5 px-4 text-sm font-medium text-text-secondary">{d.date}</td>
               <td className="py-3.5 px-4">
@@ -46,6 +51,10 @@ export function SuperadminShiftGapAnalyzerTable({ days }: Props) {
           ))}
         </tbody>
       </table>
+      <TablePagination 
+        page={table.page} limit={table.limit} totalItems={table.totalItems} 
+        onPageChange={table.setPage} onLimitChange={table.setLimit} 
+      />
     </div>
   );
 }

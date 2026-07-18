@@ -5,8 +5,12 @@ import type { SuperadminMaintenanceLog } from '@/app/superadmin/superadmin_accou
 import { SUPERADMIN_ASSET_MAINTENANCE_STATUS_STYLES } from '@/app/superadmin/superadmin_accounting/asset-maintenance/superadmin_asset_maintenance_constants/SuperadminAssetMaintenanceConstants';
 
 import type { SuperadminAssetMaintenanceTableProps as Props } from '@/app/superadmin/superadmin_accounting/superadmin_accounting_types/SuperadminAccountingTypes';
+import { TableToolbar } from "@/components/ui/table-toolbar";
+import { useClientTable } from "@/components/ui/use-client-table";
+import { TablePagination } from "@/components/ui/table-pagination";
 
 export function SuperadminAssetMaintenanceTable({ logs, onComplete }: Props) {
+    const table = useClientTable(logs);
   if (logs.length === 0) {
     return (
       <div className="bg-bg-card border border-border rounded-[var(--radius-lg)] shadow-sm flex flex-col items-center justify-center py-20 text-center">
@@ -18,6 +22,7 @@ export function SuperadminAssetMaintenanceTable({ logs, onComplete }: Props) {
 
   return (
     <div className="bg-bg-card border border-border rounded-[var(--radius-lg)] shadow-sm overflow-hidden overflow-x-auto">
+      <TableToolbar search={table.searchTerm} onSearch={table.setSearchTerm} />
       <table className="w-full text-left border-collapse">
         <thead>
           <tr className="bg-bg-page/50 border-b border-border">
@@ -32,7 +37,7 @@ export function SuperadminAssetMaintenanceTable({ logs, onComplete }: Props) {
           </tr>
         </thead>
         <tbody className="divide-y divide-[var(--border)]">
-          {logs.map(l => (
+          {table.paginatedData.map(l => (
             <tr key={l.id} className="hover:bg-bg-page/30 transition-colors">
               <td className="py-3.5 px-4 text-sm font-extrabold text-text-primary">{l.assetName}</td>
               <td className="py-3.5 px-4 text-sm font-medium text-text-primary max-w-xs truncate" title={l.issue}>{l.issue}</td>
@@ -59,6 +64,10 @@ export function SuperadminAssetMaintenanceTable({ logs, onComplete }: Props) {
           ))}
         </tbody>
       </table>
+      <TablePagination 
+        page={table.page} limit={table.limit} totalItems={table.totalItems} 
+        onPageChange={table.setPage} onLimitChange={table.setLimit} 
+      />
     </div>
   );
 }

@@ -8,6 +8,9 @@ import { formatCurrency, formatDate } from '@/app/superadmin/superadmin_finance/
 import { SuperadminSearchableDropdown } from '@/app/superadmin/superadmin_shared_components/SuperadminSearchableDropdown';
 import { useInvoiceClient } from '@/app/superadmin/superadmin_finance/invoice/_components/useInvoiceClient';
 import type { SuperadminFinanceInvoiceFilterStatus } from '@/app/superadmin/superadmin_finance/superadmin_finance_types/SuperadminFinanceTypes';
+import { TableToolbar } from "@/components/ui/table-toolbar";
+import { useClientTable } from "@/components/ui/use-client-table";
+import { TablePagination } from "@/components/ui/table-pagination";
 
 const STATUS_BADGE: Record<string, string> = {
   paid: 'bg-success/10 text-success border-success/20', 
@@ -16,6 +19,7 @@ const STATUS_BADGE: Record<string, string> = {
 };
 
 export function InvoiceClient() {
+    const table = useClientTable(filtered);
   const router = useRouter();
   const {
     search, setSearch,
@@ -75,7 +79,8 @@ export function InvoiceClient() {
       </div>
 
       <div className="bg-card rounded-[var(--radius-lg)] border border-border overflow-x-auto">
-        <table className="w-full text-left border-collapse">
+        <TableToolbar search={table.searchTerm} onSearch={table.setSearchTerm} />
+      <table className="w-full text-left border-collapse">
           <thead>
             <tr className="bg-primary/5 uppercase text-[12px] font-semibold text-text-secondary border-b border-border">
               <th className="py-3 px-4">Invoice No.</th>
@@ -97,7 +102,7 @@ export function InvoiceClient() {
                   </div>
                 </td>
               </tr>
-            ) : filtered.map((inv) => (
+            ) : table.paginatedData.map((inv) => (
               <tr 
                 key={inv.id} 
                 className="border-b border-border last:border-0 hover:bg-primary/5 transition-colors cursor-pointer group" 
@@ -144,6 +149,10 @@ export function InvoiceClient() {
             ))}
           </tbody>
         </table>
+      <TablePagination 
+        page={table.page} limit={table.limit} totalItems={table.totalItems} 
+        onPageChange={table.setPage} onLimitChange={table.setLimit} 
+      />
       </div>
     </div>
   );

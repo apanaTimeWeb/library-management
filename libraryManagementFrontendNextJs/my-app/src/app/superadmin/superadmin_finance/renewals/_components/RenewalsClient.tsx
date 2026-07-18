@@ -3,7 +3,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 import type { ICellRendererParams } from 'ag-grid-community';
-import React from 'react';
+import React, { useState } from 'react';
 import { AgGridReact } from 'ag-grid-react';
 import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community';
 
@@ -12,10 +12,12 @@ import { RefreshCw, Send } from 'lucide-react';
 import { superadmin_gridTheme } from '@/app/superadmin/superadmin_finance/superadmin_finance_shared_components/superadmin_gridTheme';
 import { SuperadminSearchableDropdown } from '@/app/superadmin/superadmin_shared_components/SuperadminSearchableDropdown';
 import { useRenewalsClient, PLANS, FILTERS } from '@/app/superadmin/superadmin_finance/renewals/_components/useRenewalsClient';
+import { TableToolbar } from "@/components/ui/table-toolbar";
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
 export function RenewalsClient() {
+    const [searchTerm, setSearchTerm] = useState('');
   const {
     filter, setFilter,
     visible,
@@ -110,8 +112,13 @@ export function RenewalsClient() {
       </div>
 
       <div className="bg-card rounded-[var(--radius-lg)] border border-border p-4">
-        <div className="h-96 w-full" style={{ '--ag-border-color': 'var(--color-border)', '--ag-background-color': 'var(--color-card)', '--ag-header-background-color': 'var(--color-input)', '--ag-row-hover-color': 'var(--color-page)' } as React.CSSProperties}>
+        <div className="flex flex-col gap-4 w-full">
+<TableToolbar search={searchTerm} onSearch={setSearchTerm} />
+      <div className="h-96 w-full" style={{ '--ag-border-color': 'var(--color-border)', '--ag-background-color': 'var(--color-card)', '--ag-header-background-color': 'var(--color-input)', '--ag-row-hover-color': 'var(--color-page)' } as React.CSSProperties}>
           <AgGridReact
+          pagination={true}
+          paginationPageSize={10}
+          quickFilterText={searchTerm}
             theme={superadmin_gridTheme}
             rowData={visible}
             columnDefs={colDefs as any}
@@ -126,6 +133,7 @@ export function RenewalsClient() {
             }}
           />
         </div>
+</div>
       </div>
 
       {renewDialog && (
