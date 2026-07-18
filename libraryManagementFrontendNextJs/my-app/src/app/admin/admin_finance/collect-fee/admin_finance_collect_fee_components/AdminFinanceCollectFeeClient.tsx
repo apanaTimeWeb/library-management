@@ -1,7 +1,5 @@
-// RESPONSIBILITY: Renders the AdminFinanceCollectFeeClient component.
 'use client';
-
-
+// RESPONSIBILITY: Renders the AdminFinanceCollectFeeClient component.
 import { Toaster } from 'react-hot-toast';
 import { Search, CheckCircle, IndianRupee, BookOpen, MessageSquare, Printer, X } from 'lucide-react';
 import { formatCurrency } from '@/app/admin/admin_finance/admin_finance_utils/format';

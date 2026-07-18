@@ -1,5 +1,5 @@
-// RESPONSIBILITY: Client view component rendering expense categories grid, search, status toggles, and add dialog (`Rule 1`, `Rule 8`).
 'use client';
+// RESPONSIBILITY: Client view component rendering expense categories grid, search, status toggles, and add dialog (`Rule 1`, `Rule 8`).
 // DATA FLOW: useAdminExpenseCategories -> AdminExpenseCategoriesClient -> Cards / Add Dialog (`Rule 39`).
 
 import { useState } from 'react';

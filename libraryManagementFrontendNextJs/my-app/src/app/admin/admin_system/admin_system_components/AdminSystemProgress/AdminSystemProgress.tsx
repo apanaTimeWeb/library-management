@@ -1,5 +1,5 @@
-// RESPONSIBILITY: Renders the Progress component for the admin_system module.
 'use client';
+// RESPONSIBILITY: Renders the Progress component for the admin_system module.
 // DATA FLOW: Parent -> AdminSystemProgress -> DOM
 
 import { cn } from '@/app/admin/admin_system/admin_system_components/AdminSystemutils/AdminSystemutils';

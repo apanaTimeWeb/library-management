@@ -1,7 +1,5 @@
-// RESPONSIBILITY: Renders the AdminFinanceDashboardClient component.
 'use client';
-
-
+// RESPONSIBILITY: Renders the AdminFinanceDashboardClient component.
 import { useState } from 'react';
 import {
   PiggyBank, Users, Clock, Ban, UsersRound, ShieldAlert,

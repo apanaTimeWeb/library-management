@@ -1,5 +1,5 @@
-// RESPONSIBILITY: Renders the SuperadminLabel component.
 'use client';
+// RESPONSIBILITY: Renders the SuperadminLabel component.
 import { type LabelHTMLAttributes, forwardRef } from 'react';
 import { cn } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/superadmin_utils';
 

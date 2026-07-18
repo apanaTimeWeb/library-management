@@ -1,6 +1,5 @@
-// RESPONSIBILITY: Renders the AdminAccountingExpensesAddClient component.
 'use client';
-
+// RESPONSIBILITY: Renders the AdminAccountingExpensesAddClient component.
 import { useAdminAccountingExpensesAdd } from '@/app/admin/admin_accounting/expenses/add/admin_accounting_expenses_add_hooks/useAdminAccountingExpensesAdd';
 
 export function AdminAccountingExpensesAddClient() {

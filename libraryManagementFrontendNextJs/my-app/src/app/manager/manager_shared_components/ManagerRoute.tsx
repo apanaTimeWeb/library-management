@@ -1,5 +1,4 @@
 'use client';
-
 // RESPONSIBILITY: Auth guard and shell wrapper for all /manager/* routes. Renders sidebar + header layout.
 
 import { useState } from 'react';

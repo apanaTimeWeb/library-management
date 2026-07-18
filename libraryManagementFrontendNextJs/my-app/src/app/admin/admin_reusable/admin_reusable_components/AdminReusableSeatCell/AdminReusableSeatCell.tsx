@@ -1,7 +1,7 @@
+'use client';
 import { AdminReusableSeatCellProps } from "./AdminReusableSeatCell_types";
 
 // RESPONSIBILITY: Renders an individual seat cell block with status coloring and hover tooltip details.
-'use client';
 // DATA FLOW: AdminReusableSeatMatrixGrid -> AdminReusableSeatCell
 
 /** Returns a CSS class name for the shift badge — using Tailwind */

@@ -1,5 +1,5 @@
-// RESPONSIBILITY: Client view rendering seat gap report (`Rule 1`, `Rule 36`).
 'use client';
+// RESPONSIBILITY: Client view rendering seat gap report (`Rule 1`, `Rule 36`).
 // DATA FLOW: Static Mock -> AdminAccountingSeatGapReportClient (`Rule 39`).
 
 import { useState } from 'react';

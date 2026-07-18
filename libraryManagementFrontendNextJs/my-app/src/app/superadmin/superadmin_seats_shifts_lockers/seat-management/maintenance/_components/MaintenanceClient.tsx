@@ -1,6 +1,5 @@
-// RESPONSIBILITY: Renders the MaintenanceClient component.
 'use client';
-
+// RESPONSIBILITY: Renders the MaintenanceClient component.
 import { useState, useMemo } from 'react';
 import { AlertTriangle, Plus } from 'lucide-react';
 import { AgGridReact } from 'ag-grid-react';

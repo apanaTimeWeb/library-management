@@ -1,7 +1,7 @@
+'use client';
 import { Props } from "./AdminReportsEmptyState_types";
 
 // RESPONSIBILITY: Standardized empty state component for lists/tables in the admin_reports module.
-'use client';
 // DATA FLOW: Parent -> AdminReportsEmptyState -> DOM
 
 export default function AdminReportsEmptyState({ title = 'No data found', description = 'Try adjusting your filters.' }: Props) {

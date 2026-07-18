@@ -1,5 +1,5 @@
-// RESPONSIBILITY: Renders the Dialog component for the admin_system module.
 'use client';
+// RESPONSIBILITY: Renders the Dialog component for the admin_system module.
 // DATA FLOW: Parent -> AdminSystemDialog -> DOM
 
 import * as DialogPrimitive from '@radix-ui/react-dialog';

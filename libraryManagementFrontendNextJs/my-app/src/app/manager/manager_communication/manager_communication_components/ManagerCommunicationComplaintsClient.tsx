@@ -1,5 +1,4 @@
 'use client';
-
 // RESPONSIBILITY: Renders the Complaints UI and handles status filtering and resolution.
 import { useState } from 'react';
 import { TablePagination } from '@/components/ui/table-pagination';

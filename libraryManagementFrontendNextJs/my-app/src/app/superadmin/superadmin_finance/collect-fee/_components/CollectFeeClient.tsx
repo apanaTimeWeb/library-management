@@ -1,6 +1,5 @@
-// RESPONSIBILITY: Renders the CollectFeeClient component.
 'use client';
-
+// RESPONSIBILITY: Renders the CollectFeeClient component.
 import React from 'react';
 import { Toaster } from 'react-hot-toast';
 import { formatCurrency } from '@/app/superadmin/superadmin_finance/superadmin_finance_utils/superadmin_format';

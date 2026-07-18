@@ -1,7 +1,5 @@
-// RESPONSIBILITY: Renders the AdminReportsClient component.
 'use client';
-
-
+// RESPONSIBILITY: Renders the AdminReportsClient component.
 import { Download, FileText, IndianRupee, Users, Wallet, TrendingUp, BarChart2, PieChart as PieIcon, Activity , Search} from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import toast, { Toaster } from 'react-hot-toast';

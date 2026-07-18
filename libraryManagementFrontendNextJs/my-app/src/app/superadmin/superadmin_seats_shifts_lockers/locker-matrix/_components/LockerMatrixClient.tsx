@@ -1,5 +1,4 @@
 'use client';
-
 // RESPONSIBILITY: Renders interactive locker assignment matrix showing capacity, occupancy, and release workflows.
 // DATA FLOW: API /seats_shifts_lockers/lockers -> LockerMatrixPage State -> Locker Cell Grid / Assignment Modal
 

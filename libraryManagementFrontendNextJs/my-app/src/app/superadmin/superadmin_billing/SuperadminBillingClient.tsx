@@ -1,5 +1,5 @@
-// RESPONSIBILITY: Renders the SuperadminBillingClient component.
 'use client';
+// RESPONSIBILITY: Renders the SuperadminBillingClient component.
 import React, { useState } from 'react';
 import { superadmin_useSuperadminBilling } from '@/app/superadmin/superadmin_billing/superadmin_billing_hooks/superadmin_useSuperadminBilling';
 import { SuperadminBillingHeader } from '@/app/superadmin/superadmin_billing/superadmin_billing_components/SuperadminBillingHeader';

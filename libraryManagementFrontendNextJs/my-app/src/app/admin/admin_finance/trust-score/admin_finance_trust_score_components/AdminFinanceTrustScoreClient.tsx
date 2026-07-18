@@ -1,6 +1,5 @@
-// RESPONSIBILITY: Renders the AdminFinanceTrustScoreClient component.
 'use client';
-
+// RESPONSIBILITY: Renders the AdminFinanceTrustScoreClient component.
 import { useState } from 'react';
 import { Input } from '@/components/ui/input';
 import { ShieldCheck, ShieldAlert, ShieldX, Users , Search} from 'lucide-react';

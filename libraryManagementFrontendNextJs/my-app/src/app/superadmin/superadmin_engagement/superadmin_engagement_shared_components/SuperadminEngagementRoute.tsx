@@ -1,5 +1,5 @@
-// RESPONSIBILITY: Renders the SuperadminEngagementRoute component.
 'use client';
+// RESPONSIBILITY: Renders the SuperadminEngagementRoute component.
 import { usePathname } from 'next/navigation';
 
 

@@ -1,7 +1,5 @@
-// RESPONSIBILITY: Renders the AdminShiftManagementClient component.
 'use client';
-
-
+// RESPONSIBILITY: Renders the AdminShiftManagementClient component.
 import { Plus, Edit, PowerOff, Zap, AlertTriangle, X } from 'lucide-react';
 import { useAdminShiftManagement } from '@/app/admin/admin_seats_shifts_lockers/shift-management/admin_seats_shifts_lockers_hooks/useAdminShiftManagement';
 import { Card } from '@/components/ui/card';

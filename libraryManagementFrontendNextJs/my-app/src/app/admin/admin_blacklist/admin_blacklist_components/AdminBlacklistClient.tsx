@@ -1,5 +1,5 @@
-// RESPONSIBILITY: Client view component rendering blacklist table, search filter, and detail drawer (`Rule 1`, `Rule 8`, `Rule 19`, `Rule 45`, `Rule 49`).
 'use client';
+// RESPONSIBILITY: Client view component rendering blacklist table, search filter, and detail drawer (`Rule 1`, `Rule 8`, `Rule 19`, `Rule 45`, `Rule 49`).
 // DATA FLOW: useAdminBlacklist -> AdminBlacklistClient -> Table / Add Dialog / Detail Drawer (`Rule 39`).
 
 import { useState, useCallback } from 'react';

@@ -1,5 +1,5 @@
-// RESPONSIBILITY: Client view rendering daily settlement grid (`Rule 1`, `Rule 8`).
 'use client';
+// RESPONSIBILITY: Client view rendering daily settlement grid (`Rule 1`, `Rule 8`).
 // DATA FLOW: Static Mock -> AdminAccountingDailySettlementClient (`Rule 39`).
 
 import { useState } from 'react';

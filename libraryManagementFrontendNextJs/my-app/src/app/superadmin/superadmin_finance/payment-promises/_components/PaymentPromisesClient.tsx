@@ -1,6 +1,5 @@
-// RESPONSIBILITY: Renders the PaymentPromisesClient component.
 'use client';
-
+// RESPONSIBILITY: Renders the PaymentPromisesClient component.
 import toast from 'react-hot-toast';
 import { formatCurrency } from '@/app/superadmin/superadmin_finance/superadmin_finance_utils/superadmin_format';
 import { CheckCircle, CalendarPlus } from 'lucide-react';

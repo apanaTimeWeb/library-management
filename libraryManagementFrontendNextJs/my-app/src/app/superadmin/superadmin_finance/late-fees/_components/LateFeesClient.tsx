@@ -1,6 +1,5 @@
-// RESPONSIBILITY: Renders the LateFeesClient component.
 'use client';
-
+// RESPONSIBILITY: Renders the LateFeesClient component.
 import React from 'react';
 import { Toaster } from 'react-hot-toast';
 import { Settings, AlertTriangle, Save, MessageSquare } from 'lucide-react';

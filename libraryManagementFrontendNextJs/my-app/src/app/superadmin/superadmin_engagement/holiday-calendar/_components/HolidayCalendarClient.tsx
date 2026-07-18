@@ -1,6 +1,5 @@
-// RESPONSIBILITY: Renders the HolidayCalendarClient component.
 'use client';
-
+// RESPONSIBILITY: Renders the HolidayCalendarClient component.
 import Link from 'next/link';
 import { SUPERADMIN_ROUTES } from '@/app/superadmin/superadmin_url_config';
 import { ChevronRight, ChevronLeft, Plus, X, Trash2, CalendarDays } from 'lucide-react';

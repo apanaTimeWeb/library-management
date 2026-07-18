@@ -1,6 +1,5 @@
-// RESPONSIBILITY: Renders the AdminSystemBrandingClient component.
 'use client';
-
+// RESPONSIBILITY: Renders the AdminSystemBrandingClient component.
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/app/admin/admin_system/admin_system_components/AdminSystemCard/AdminSystemCard';
 import { Button } from '@/app/admin/admin_system/admin_system_components/AdminSystemButton/AdminSystemButton';
 import { Input } from '@/app/admin/admin_system/admin_system_components/AdminSystemInput/AdminSystemInput';

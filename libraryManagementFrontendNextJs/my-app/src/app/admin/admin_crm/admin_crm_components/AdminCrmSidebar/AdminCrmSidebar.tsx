@@ -1,5 +1,5 @@
-// RESPONSIBILITY: Renders the Sidebar component for the admin_crm module.
 'use client';
+// RESPONSIBILITY: Renders the Sidebar component for the admin_crm module.
 // DATA FLOW: Parent -> AdminCrmSidebar -> DOM
 
 import Link from 'next/link';

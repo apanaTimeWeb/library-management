@@ -1,5 +1,5 @@
-// RESPONSIBILITY: Renders the SuperadminSetupWizardStep1 component.
 'use client';
+// RESPONSIBILITY: Renders the SuperadminSetupWizardStep1 component.
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { branchDetailsSchema, type BranchDetailsData } from '@/app/superadmin/superadmin_shared_components/superadmin_schema';

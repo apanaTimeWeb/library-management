@@ -1,5 +1,5 @@
-// RESPONSIBILITY: Renders the SuperadminReportsCharts component.
 'use client';
+// RESPONSIBILITY: Renders the SuperadminReportsCharts component.
 import React from 'react';
 import {
   BarChart, Bar, LineChart, Line, PieChart, Pie, Cell,

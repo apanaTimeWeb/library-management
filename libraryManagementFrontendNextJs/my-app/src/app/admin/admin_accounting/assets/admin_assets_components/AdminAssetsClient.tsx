@@ -1,7 +1,5 @@
-// RESPONSIBILITY: Renders the AdminAssetsClient component.
 'use client';
-
-
+// RESPONSIBILITY: Renders the AdminAssetsClient component.
 import { useState } from 'react';
 import { Search, Plus, Filter, IndianRupee } from 'lucide-react';
 import { useAdminAssets } from '@/app/admin/admin_accounting/assets/admin_assets_hooks/useAdminAssets';

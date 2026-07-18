@@ -1,5 +1,5 @@
-// RESPONSIBILITY: Renders the SuperadminRoute component.
 'use client';
+// RESPONSIBILITY: Renders the SuperadminRoute component.
 import { useState, useEffect } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 import Sidebar from '@/app/superadmin/superadmin_shared_components/SuperadminSidebar';

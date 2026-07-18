@@ -1,6 +1,5 @@
-// RESPONSIBILITY: Renders the SuperadminHeader component.
 'use client';
-
+// RESPONSIBILITY: Renders the SuperadminHeader component.
 import { Building2, Bell, Menu } from 'lucide-react';
 import { ThemeToggle } from '@/components/ThemeToggle';
 import { useAdmin } from '@/app/admin/admin_store/AdminContext';

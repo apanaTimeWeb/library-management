@@ -1,5 +1,5 @@
-// RESPONSIBILITY: Renders the SuperadminSystemBrandingClient component.
 'use client';
+// RESPONSIBILITY: Renders the SuperadminSystemBrandingClient component.
 import { SuperadminCard, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminCard';
 import { SuperadminButton } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminButton';
 import { SuperadminInput } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminInput';

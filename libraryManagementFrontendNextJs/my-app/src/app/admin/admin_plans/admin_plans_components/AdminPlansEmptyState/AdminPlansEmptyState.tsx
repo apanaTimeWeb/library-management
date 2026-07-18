@@ -1,7 +1,7 @@
+'use client';
 import { Props } from "./AdminPlansEmptyState_types";
 
 // RESPONSIBILITY: Standardized empty state component for lists/tables in the admin_plans module.
-'use client';
 // DATA FLOW: Parent -> AdminPlansEmptyState -> DOM
 
 export default function AdminPlansEmptyState({ title = 'No data found', description = 'Try adjusting your filters.' }: Props) {

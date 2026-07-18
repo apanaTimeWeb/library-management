@@ -1,5 +1,5 @@
-// RESPONSIBILITY: Entry page for the admin_communication module.
 'use client';
+// RESPONSIBILITY: Entry page for the admin_communication module.
 // DATA FLOW: Next.js Router -> page -> Components
 
 import { useState, useEffect } from 'react';

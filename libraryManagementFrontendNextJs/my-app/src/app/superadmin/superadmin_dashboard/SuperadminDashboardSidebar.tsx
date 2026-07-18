@@ -1,5 +1,5 @@
-// RESPONSIBILITY: Renders the SuperadminDashboardSidebar component.
 'use client';
+// RESPONSIBILITY: Renders the SuperadminDashboardSidebar component.
 import { SUPERADMIN_ROUTES } from '@/app/superadmin/superadmin_url_config';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';

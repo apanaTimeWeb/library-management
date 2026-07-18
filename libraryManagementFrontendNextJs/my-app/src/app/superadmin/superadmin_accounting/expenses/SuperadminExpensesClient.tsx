@@ -1,5 +1,5 @@
-// RESPONSIBILITY: Renders the SuperadminExpensesClient component.
 'use client';
+// RESPONSIBILITY: Renders the SuperadminExpensesClient component.
 import React, { useState } from 'react';
 import { superadmin_useSuperadminExpenses as useSuperadminExpenses } from '@/app/superadmin/superadmin_accounting/expenses/superadmin_expenses_hooks/superadmin_useSuperadminExpenses';
 import { SuperadminExpensesHeader } from '@/app/superadmin/superadmin_accounting/expenses/superadmin_expenses_components/SuperadminExpensesHeader';

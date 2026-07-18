@@ -1,5 +1,5 @@
-// RESPONSIBILITY: Renders the not-found component.
 'use client';
+// RESPONSIBILITY: Renders the not-found component.
 import Link from 'next/link';
 
 

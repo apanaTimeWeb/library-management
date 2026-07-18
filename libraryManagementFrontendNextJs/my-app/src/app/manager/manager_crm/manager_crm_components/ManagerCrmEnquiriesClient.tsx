@@ -1,5 +1,4 @@
 'use client';
-
 import { useRouter } from 'next/navigation';
 import { ManagerCrmEnquiriesAddClient } from '@/app/manager/manager_crm/manager_crm_components/ManagerCrmEnquiriesAddClient';
 import { useState } from 'react';

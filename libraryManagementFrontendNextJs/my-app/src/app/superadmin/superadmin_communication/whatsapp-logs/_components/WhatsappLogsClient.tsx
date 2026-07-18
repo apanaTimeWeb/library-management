@@ -1,6 +1,5 @@
-// RESPONSIBILITY: Renders the WhatsappLogsClient component.
 'use client';
-
+// RESPONSIBILITY: Renders the WhatsappLogsClient component.
 import type { ICellRendererParams } from 'ag-grid-community';
 import { ChevronRight, X, MessageCircle, AlertTriangle } from 'lucide-react';
 import { AgGridReact } from 'ag-grid-react';

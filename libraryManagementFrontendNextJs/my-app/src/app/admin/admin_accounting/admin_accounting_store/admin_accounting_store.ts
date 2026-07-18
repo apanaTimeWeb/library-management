@@ -17,7 +17,7 @@ export const useAdminAccountingStore = create<AdminAccountingStoreState>((set, g
     set({ fetchState: 'loading' });
     try {
       const data = await fetchApi('/admin/accounting/assets');
-      set({ assets: (((Array.isArray(data) ? data : (Array.isArray((data as Record<string, unknown>)?.data) ? (data as Record<string, unknown>).data : [])).length > 0) ? (Array.isArray(data) ? data : (Array.isArray((data as Record<string, unknown>)?.data) ? (data as Record<string, unknown>).data : [])) : (() => { throw new Error('Force Mock'); })()), fetchState: 'success' });
+      set({ assets: ((Array.isArray(data) ? data : (Array.isArray((data as Record<string, unknown>)?.data) ? (data as Record<string, unknown>).data : [])) as any), fetchState: 'success' });
     } catch (e) {
       logger.error('Assets fetch failed:', e);
       set({

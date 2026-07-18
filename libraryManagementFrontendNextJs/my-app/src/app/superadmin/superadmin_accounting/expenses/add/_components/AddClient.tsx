@@ -1,6 +1,5 @@
-// RESPONSIBILITY: Renders the AddClient component.
 'use client';
-
+// RESPONSIBILITY: Renders the AddClient component.
 import React from 'react';
 import { SuperadminSearchableDropdown } from '@/app/superadmin/superadmin_shared_components/SuperadminSearchableDropdown';
 import { useAddClient, CATEGORIES } from '@/app/superadmin/superadmin_accounting/expenses/add/_components/useAddClient';

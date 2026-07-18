@@ -1,5 +1,5 @@
-// RESPONSIBILITY: Renders the SuperadminDashboardRecentLibrariesTable component.
 'use client';
+// RESPONSIBILITY: Renders the SuperadminDashboardRecentLibrariesTable component.
 import React, { useRef, useCallback, useMemo } from 'react';
 import Link from 'next/link';
 import { SUPERADMIN_ROUTES } from '@/app/superadmin/superadmin_url_config';

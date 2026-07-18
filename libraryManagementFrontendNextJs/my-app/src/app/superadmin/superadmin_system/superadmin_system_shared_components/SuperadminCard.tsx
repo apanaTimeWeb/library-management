@@ -1,5 +1,5 @@
-// RESPONSIBILITY: Renders the SuperadminCard component.
 'use client';
+// RESPONSIBILITY: Renders the SuperadminCard component.
 import React from 'react';
 import { cn } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/superadmin_utils';
 import { SuperadminCardProps } from '@/app/superadmin/superadmin_system/superadmin_system_types/SuperadminSystemSharedComponentsTypes';

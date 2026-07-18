@@ -1,5 +1,5 @@
-// RESPONSIBILITY: Client view rendering accounting expense categories with budget bars (`Rule 1`, `Rule 36`).
 'use client';
+// RESPONSIBILITY: Client view rendering accounting expense categories with budget bars (`Rule 1`, `Rule 36`).
 // DATA FLOW: Static Mock -> AdminAccountingExpenseCategoriesClient (`Rule 39`).
 
 import { useState } from 'react';

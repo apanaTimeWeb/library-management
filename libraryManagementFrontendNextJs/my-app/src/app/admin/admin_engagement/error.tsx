@@ -1,5 +1,5 @@
-// RESPONSIBILITY: Renders the Next.js native error boundary for the admin_engagement module.
 'use client';
+// RESPONSIBILITY: Renders the Next.js native error boundary for the admin_engagement module.
 // DATA FLOW: Next.js Router -> error.tsx
 
 import { useEffect } from 'react';

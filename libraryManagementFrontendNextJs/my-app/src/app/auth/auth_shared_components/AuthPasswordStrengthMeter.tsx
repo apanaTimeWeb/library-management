@@ -1,5 +1,4 @@
 'use client';
-
 // RESPONSIBILITY: Visually indicates password strength.
 // DATA FLOW: Props -> AuthPasswordStrengthMeter (`Rule 39`).
 

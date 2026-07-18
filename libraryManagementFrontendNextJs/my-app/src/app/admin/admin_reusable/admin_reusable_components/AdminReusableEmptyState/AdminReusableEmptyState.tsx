@@ -1,7 +1,7 @@
+'use client';
 import { Props } from "./AdminReusableEmptyState_types";
 
 // RESPONSIBILITY: Standardized empty state component for lists/tables in the admin_reusable module.
-'use client';
 // DATA FLOW: Parent -> AdminReusableEmptyState -> DOM
 
 export default function AdminReusableEmptyState({ title = 'No data found', description = 'Try adjusting your filters.' }: Props) {

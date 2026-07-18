@@ -1,7 +1,5 @@
-// RESPONSIBILITY: Renders the AdminMaintenanceClient component.
 'use client';
-
-
+// RESPONSIBILITY: Renders the AdminMaintenanceClient component.
 import { useState } from 'react';
 import { ChevronDown, AlertTriangle, Plus } from 'lucide-react';
 import { useAdminMaintenance, type SeatStatus } from '@/app/admin/admin_seats_shifts_lockers/seat-management/maintenance/admin_maintenance_hooks/useAdminMaintenance';

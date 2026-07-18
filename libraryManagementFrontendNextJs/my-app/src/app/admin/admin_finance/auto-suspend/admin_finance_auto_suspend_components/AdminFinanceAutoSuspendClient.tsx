@@ -1,7 +1,5 @@
-// RESPONSIBILITY: Renders the AdminFinanceAutoSuspendClient component.
 'use client';
-
-
+// RESPONSIBILITY: Renders the AdminFinanceAutoSuspendClient component.
 import { useState } from 'react';
 import toast from 'react-hot-toast';
 import { Settings, Ban, RotateCcw, Bell, Save, UserCheck, ShieldAlert, X } from 'lucide-react';

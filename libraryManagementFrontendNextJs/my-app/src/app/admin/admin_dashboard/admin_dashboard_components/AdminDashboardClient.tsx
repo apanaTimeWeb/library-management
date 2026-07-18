@@ -1,6 +1,5 @@
-// RESPONSIBILITY: Renders the AdminDashboardClient component.
 'use client';
-
+// RESPONSIBILITY: Renders the AdminDashboardClient component.
 import Link from 'next/link';
 import { ChevronRight, AlertCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';

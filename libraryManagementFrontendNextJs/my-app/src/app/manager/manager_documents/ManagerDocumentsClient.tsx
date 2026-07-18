@@ -1,5 +1,4 @@
 'use client';
-
 // RESPONSIBILITY: Renders the Document Vault UI, managing file viewing and actions.
 import React, { useState, useMemo } from 'react';
 import { useRouter, useSearchParams, usePathname } from 'next/navigation';

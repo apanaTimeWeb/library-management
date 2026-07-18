@@ -1,5 +1,5 @@
-// RESPONSIBILITY: Renders the AttendanceClient component.
 'use client';
+// RESPONSIBILITY: Renders the AttendanceClient component.
 import Link from 'next/link';
 import { SUPERADMIN_ROUTES } from '@/app/superadmin/superadmin_url_config';
 import { ChevronRight, Save, FileBarChart2, Bell, CheckCircle, Clock } from 'lucide-react';

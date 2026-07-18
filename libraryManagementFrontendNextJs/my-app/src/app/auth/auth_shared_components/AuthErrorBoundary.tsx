@@ -1,6 +1,5 @@
-// RESPONSIBILITY: Renders the AuthErrorBoundary component.
 'use client';
-
+// RESPONSIBILITY: Renders the AuthErrorBoundary component.
 import React from 'react';
 import { AlertCircle } from 'lucide-react';
 

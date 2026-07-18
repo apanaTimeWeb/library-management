@@ -1,6 +1,5 @@
-// RESPONSIBILITY: Renders the AdminDashboardSeatCell component.
 'use client';
-
+// RESPONSIBILITY: Renders the AdminDashboardSeatCell component.
 import type { AdminDashboardSeatCellProps } from '@/app/admin/admin_dashboard/admin_dashboard_types/admin_dashboard_types';
 
 function getShiftClass(shift: string): string {

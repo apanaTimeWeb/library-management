@@ -1,5 +1,5 @@
-// RESPONSIBILITY: Renders the SuperadminButton component.
 'use client';
+// RESPONSIBILITY: Renders the SuperadminButton component.
 import { forwardRef } from 'react';
 import { cn } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/superadmin_utils';
 import { SuperadminButtonProps } from '@/app/superadmin/superadmin_system/superadmin_system_types/SuperadminSystemSharedComponentsTypes';

@@ -1,5 +1,5 @@
-// RESPONSIBILITY: Renders the SuperadminHeader component.
 'use client';
+// RESPONSIBILITY: Renders the SuperadminHeader component.
 import { BellRing, Building2, Menu } from 'lucide-react';
 import type { SuperadminCrmHeaderProps as HeaderProps } from '@/app/superadmin/superadmin_crm/superadmin_crm_types/SuperadminCrmTypes';
 

@@ -1,5 +1,5 @@
-// RESPONSIBILITY: Client view rendering shift gap analysis (`Rule 1`, `Rule 36`, `Rule 57`).
 'use client';
+// RESPONSIBILITY: Client view rendering shift gap analysis (`Rule 1`, `Rule 36`, `Rule 57`).
 // DATA FLOW: Static Mock -> AdminAccountingShiftGapAnalyzerClient (`Rule 39`).
 
 import { useState } from 'react';

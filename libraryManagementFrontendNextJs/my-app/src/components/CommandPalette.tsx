@@ -1,5 +1,5 @@
-// RESPONSIBILITY: Renders the CommandPalette component.
 'use client';
+// RESPONSIBILITY: Renders the CommandPalette component.
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Search, X } from 'lucide-react';

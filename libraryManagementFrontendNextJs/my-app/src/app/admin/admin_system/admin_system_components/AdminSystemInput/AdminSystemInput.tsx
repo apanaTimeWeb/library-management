@@ -1,5 +1,5 @@
-// RESPONSIBILITY: Renders the Input component for the admin_system module.
 'use client';
+// RESPONSIBILITY: Renders the Input component for the admin_system module.
 // DATA FLOW: Parent -> AdminSystemInput -> DOM
 
 import { type InputHTMLAttributes, forwardRef } from 'react';

@@ -1,6 +1,5 @@
-// RESPONSIBILITY: Renders the SeatManagementClient component.
 'use client';
-
+// RESPONSIBILITY: Renders the SeatManagementClient component.
 import { useState, useMemo } from 'react';
 import { Plus, Search, Wrench, Edit, AlertTriangle, CheckCircle } from 'lucide-react';
 import { AgGridReact } from 'ag-grid-react';

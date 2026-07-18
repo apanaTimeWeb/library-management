@@ -1,6 +1,5 @@
-// RESPONSIBILITY: Renders the SettingsClient component.
 'use client';
-
+// RESPONSIBILITY: Renders the SettingsClient component.
 import { useState } from 'react';
 import { Save, ShieldCheck, Mail, Building, CheckCircle } from 'lucide-react';
 import { SUPERADMIN_SETTINGS_MOCK_NOTIF_ITEMS } from '@/app/superadmin/superadmin_settings/superadmin_settings_constants/SuperadminSettingsConstants';

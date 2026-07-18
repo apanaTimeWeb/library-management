@@ -1,5 +1,5 @@
-// RESPONSIBILITY: Renders the AdminSystemBulkImportClient component.
 'use client';
+// RESPONSIBILITY: Renders the AdminSystemBulkImportClient component.
 import { useState } from 'react';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/app/admin/admin_system/admin_system_components/AdminSystemCard/AdminSystemCard';
 import { Button } from '@/app/admin/admin_system/admin_system_components/AdminSystemButton/AdminSystemButton';

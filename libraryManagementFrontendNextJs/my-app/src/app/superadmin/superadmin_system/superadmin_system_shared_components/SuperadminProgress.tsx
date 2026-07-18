@@ -1,5 +1,5 @@
-// RESPONSIBILITY: Renders the SuperadminProgress component.
 'use client';
+// RESPONSIBILITY: Renders the SuperadminProgress component.
 import { cn } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/superadmin_utils';
 import { SuperadminProgressProps } from '@/app/superadmin/superadmin_system/superadmin_system_types/SuperadminSystemSharedComponentsTypes';
 

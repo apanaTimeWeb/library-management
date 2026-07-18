@@ -1,6 +1,5 @@
-// RESPONSIBILITY: Renders the AutoSuspendClient component.
 'use client';
-
+// RESPONSIBILITY: Renders the AutoSuspendClient component.
 import React from 'react';
 import { Toaster } from 'react-hot-toast';
 import { Settings, Ban, RotateCcw, Bell, Save, UserCheck, ShieldAlert, X } from 'lucide-react';

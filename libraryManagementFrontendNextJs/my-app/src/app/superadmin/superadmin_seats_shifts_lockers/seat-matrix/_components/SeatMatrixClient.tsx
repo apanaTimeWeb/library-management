@@ -1,5 +1,4 @@
 'use client';
-
 // RESPONSIBILITY: Renders interactive real-time library seat matrix showing occupancy, shifts, and maintenance states.
 // DATA FLOW: API /seats_shifts_lockers/seat-matrix -> SeatMatrixPage State -> Seat Grid / Detail Drawer
 

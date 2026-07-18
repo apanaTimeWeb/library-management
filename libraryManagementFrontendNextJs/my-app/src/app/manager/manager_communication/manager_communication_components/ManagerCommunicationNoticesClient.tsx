@@ -1,5 +1,4 @@
 'use client';
-
 // RESPONSIBILITY: Renders the Notice Board UI and manages local form states.
 import { useState } from 'react';
 import { ChevronRight, Plus, X, Edit2, Trash2, Send, Megaphone, CheckCircle, Smartphone } from 'lucide-react';

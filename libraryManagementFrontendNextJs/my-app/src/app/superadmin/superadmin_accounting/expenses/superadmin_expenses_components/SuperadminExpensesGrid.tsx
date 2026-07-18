@@ -1,5 +1,5 @@
-// RESPONSIBILITY: Renders the SuperadminExpensesGrid component.
 'use client';
+// RESPONSIBILITY: Renders the SuperadminExpensesGrid component.
 import React, { useMemo } from 'react';
 import { AgGridReact } from 'ag-grid-react';
 import type { ICellRendererParams } from 'ag-grid-community';

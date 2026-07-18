@@ -1,7 +1,5 @@
-// RESPONSIBILITY: Renders the AdminFinanceSubscriptionsClient component.
 'use client';
-
-
+// RESPONSIBILITY: Renders the AdminFinanceSubscriptionsClient component.
 import { useState } from 'react';
 import { Input } from '@/components/ui/input';
 import { RefreshCw, Eye , Search} from 'lucide-react';

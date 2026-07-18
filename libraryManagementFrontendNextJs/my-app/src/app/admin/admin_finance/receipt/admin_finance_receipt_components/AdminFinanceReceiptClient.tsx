@@ -1,7 +1,5 @@
-// RESPONSIBILITY: Renders the AdminFinanceReceiptClient component.
 'use client';
-
-
+// RESPONSIBILITY: Renders the AdminFinanceReceiptClient component.
 import { useState } from 'react';
 import Link from 'next/link';
 import { Search, Receipt, Eye, Printer, Send } from 'lucide-react';

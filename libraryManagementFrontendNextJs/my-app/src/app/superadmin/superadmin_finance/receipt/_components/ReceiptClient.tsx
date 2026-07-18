@@ -1,5 +1,5 @@
-// RESPONSIBILITY: Renders the ReceiptClient component.
 'use client';
+// RESPONSIBILITY: Renders the ReceiptClient component.
 import { SUPERADMIN_ROUTES } from '@/app/superadmin/superadmin_url_config';
 
 import { useRouter } from 'next/navigation';

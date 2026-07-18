@@ -1,5 +1,5 @@
-// RESPONSIBILITY: The application shell for the admin module, wrapping children with the Sidebar and Header.
 'use client';
+// RESPONSIBILITY: The application shell for the admin module, wrapping children with the Sidebar and Header.
 // DATA FLOW: layout.tsx -> AdminRoute -> (AdminProvider, AdminSidebar, AdminHeader, children)
 
 import { useState } from 'react';

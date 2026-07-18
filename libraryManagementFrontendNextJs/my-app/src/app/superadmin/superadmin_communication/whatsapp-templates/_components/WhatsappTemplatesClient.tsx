@@ -1,5 +1,5 @@
-// RESPONSIBILITY: Renders the WhatsappTemplatesClient component.
 'use client';
+// RESPONSIBILITY: Renders the WhatsappTemplatesClient component.
 import { Handshake, FileText, BellRing, Smartphone, X, Send, Save, CheckCircle, ChevronRight, MessageSquare, AlertCircle } from 'lucide-react';
 import { useWhatsappTemplatesClient } from '@/app/superadmin/superadmin_communication/whatsapp-templates/_components/useWhatsappTemplatesClient';
 

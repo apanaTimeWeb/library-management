@@ -1,6 +1,5 @@
-// RESPONSIBILITY: Renders the SecurityDepositsClient component.
 'use client';
-
+// RESPONSIBILITY: Renders the SecurityDepositsClient component.
 import { formatCurrency } from '@/app/superadmin/superadmin_finance/superadmin_finance_utils/superadmin_format';
 import { Undo2, Minus, Briefcase } from 'lucide-react';
 import { SuperadminSearchableDropdown } from '@/app/superadmin/superadmin_shared_components/SuperadminSearchableDropdown';

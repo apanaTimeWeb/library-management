@@ -1,5 +1,5 @@
-// RESPONSIBILITY: Renders the SuperadminBillingGrid component.
 'use client';
+// RESPONSIBILITY: Renders the SuperadminBillingGrid component.
 import React, { useRef, useCallback, useMemo, useState } from 'react';
 import { AgGridReact } from 'ag-grid-react';
 import type { ICellRendererParams, GridReadyEvent } from 'ag-grid-community';

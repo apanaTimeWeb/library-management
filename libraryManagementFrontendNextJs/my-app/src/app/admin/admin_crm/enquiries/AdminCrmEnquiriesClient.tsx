@@ -1,7 +1,5 @@
-// RESPONSIBILITY: Renders the AdminCrmEnquiriesClient component.
 'use client';
-
-
+// RESPONSIBILITY: Renders the AdminCrmEnquiriesClient component.
 import { useState } from 'react';
 import { AdminCrmAddClient } from '@/app/admin/admin_crm/enquiries/add/admin_crm_add_components/AdminCrmAddClient';
 import {

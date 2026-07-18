@@ -1,6 +1,5 @@
-// RESPONSIBILITY: Renders the FinanceDashboardClient component.
 'use client';
-
+// RESPONSIBILITY: Renders the FinanceDashboardClient component.
 import React from 'react';
 import {
   PiggyBank, Users, Clock, Ban, UsersRound, ShieldAlert,

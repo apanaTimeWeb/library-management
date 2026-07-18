@@ -1,5 +1,5 @@
-// RESPONSIBILITY: Typed Error Boundary component specific to the admin_staff-users module.
 'use client';
+// RESPONSIBILITY: Typed Error Boundary component specific to the admin_staff-users module.
 // DATA FLOW: Error -> AdminStaffUsersErrorBoundary -> Fallback UI
 
 import React from 'react';

@@ -1,5 +1,4 @@
 'use client';
-
 import React from 'react';
 import { useManagerReports } from '@/app/manager/manager_reports/manager_reports_hooks/useManagerReports';
 import { ManagerReportsHeader } from '@/app/manager/manager_reports/manager_reports_components/ManagerReportsHeader';

@@ -1,5 +1,4 @@
 'use client';
-
 // RESPONSIBILITY: Fixed top header for the Manager shell. Receives sidebar width and mobile open handler via props.
 
 import { Bell, Menu, BookOpen } from 'lucide-react';

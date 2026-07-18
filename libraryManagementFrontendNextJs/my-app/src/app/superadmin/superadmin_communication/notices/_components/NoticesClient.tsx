@@ -1,6 +1,5 @@
-// RESPONSIBILITY: Renders communication notices dashboard, broadcast controls, and notice management modal.
 'use client';
-
+// RESPONSIBILITY: Renders communication notices dashboard, broadcast controls, and notice management modal.
 import type { ICellRendererParams } from 'ag-grid-community';
 import { ChevronRight, Plus, X, Edit2, Trash2, Send } from 'lucide-react';
 import { AgGridReact } from 'ag-grid-react';

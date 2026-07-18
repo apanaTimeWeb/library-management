@@ -1,7 +1,5 @@
-// RESPONSIBILITY: Renders the admin permissions matrix.
 'use client';
-
-
+// RESPONSIBILITY: Renders the admin permissions matrix.
 import { useState } from 'react';
 import { Input } from '@/components/ui/input';
 import React from 'react';

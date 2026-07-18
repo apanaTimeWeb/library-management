@@ -1,7 +1,7 @@
+'use client';
 import { Props } from "./AdminTestEmptyState_types";
 
 // RESPONSIBILITY: Standardized empty state component for lists/tables in the admin_test module.
-'use client';
 // DATA FLOW: Parent -> AdminTestEmptyState -> DOM
 
 export default function AdminTestEmptyState({ title = 'No data found', description = 'Try adjusting your filters.' }: Props) {

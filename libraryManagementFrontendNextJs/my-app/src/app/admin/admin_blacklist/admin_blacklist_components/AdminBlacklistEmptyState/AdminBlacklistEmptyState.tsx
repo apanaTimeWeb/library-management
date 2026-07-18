@@ -1,7 +1,7 @@
+'use client';
 import { Props } from "./AdminBlacklistEmptyState_types";
 
 // RESPONSIBILITY: Standardized empty state component for lists/tables in the admin_blacklist module.
-'use client';
 // DATA FLOW: Parent -> AdminBlacklistEmptyState -> DOM
 
 export default function AdminBlacklistEmptyState({ title = 'No data found', description = 'Try adjusting your filters.' }: Props) {

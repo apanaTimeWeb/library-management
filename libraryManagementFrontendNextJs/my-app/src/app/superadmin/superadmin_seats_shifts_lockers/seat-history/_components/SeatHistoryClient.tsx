@@ -1,6 +1,5 @@
-// RESPONSIBILITY: Renders the SeatHistoryClient component.
 'use client';
-
+// RESPONSIBILITY: Renders the SeatHistoryClient component.
 import { useMemo, useState } from 'react';
 import { Search } from 'lucide-react';
 import { AgGridReact } from 'ag-grid-react';

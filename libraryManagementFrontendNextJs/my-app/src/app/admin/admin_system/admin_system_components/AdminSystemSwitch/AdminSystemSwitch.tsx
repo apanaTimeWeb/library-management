@@ -1,5 +1,5 @@
-// RESPONSIBILITY: Renders the Switch component for the admin_system module.
 'use client';
+// RESPONSIBILITY: Renders the Switch component for the admin_system module.
 // DATA FLOW: Parent -> AdminSystemSwitch -> DOM
 
 import * as SwitchPrimitive from '@radix-ui/react-switch';

@@ -1,7 +1,6 @@
+'use client';
 import { NavGroup, NavItem } from './SuperadminSidebar_types';
 // RESPONSIBILITY: Renders the SuperadminSidebar component.
-'use client';
-
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { SUPERADMIN_ROUTES } from '@/app/superadmin/superadmin_url_config';

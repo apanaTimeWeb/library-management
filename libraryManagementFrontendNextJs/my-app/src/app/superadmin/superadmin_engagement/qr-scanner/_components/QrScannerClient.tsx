@@ -1,5 +1,5 @@
-// RESPONSIBILITY: Renders the QrScannerClient component.
 'use client';
+// RESPONSIBILITY: Renders the QrScannerClient component.
 import Link from 'next/link';
 import { SUPERADMIN_ROUTES } from '@/app/superadmin/superadmin_url_config';
 import { ChevronRight, RefreshCw, CheckCircle, LogOut, X } from 'lucide-react';

@@ -1,5 +1,4 @@
 'use client';
-
 // RESPONSIBILITY: Renders the login page UI, using Tailwind classes mapped to `globals.css` (`Rule 4`).
 // DATA FLOW: UI Component -> useAuthLogin -> useAuthStore (`Rule 39`).
 

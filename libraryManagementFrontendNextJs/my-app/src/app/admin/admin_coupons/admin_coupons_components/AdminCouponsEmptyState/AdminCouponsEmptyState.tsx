@@ -1,7 +1,7 @@
+'use client';
 import { Props } from "./AdminCouponsEmptyState_types";
 
 // RESPONSIBILITY: Standardized empty state component for lists/tables in the admin_coupons module.
-'use client';
 // DATA FLOW: Parent -> AdminCouponsEmptyState -> DOM
 
 export default function AdminCouponsEmptyState({ title = 'No data found', description = 'Try adjusting your filters.' }: Props) {

@@ -1,5 +1,4 @@
 'use client';
-
 import { useRouter } from 'next/navigation';
 import type { DashboardSeatMatrixProps } from '@/app/manager/manager_dashboard/manager_dashboard_types';
 import { SEAT_CLASS } from '@/app/manager/manager_dashboard/manager_dashboard_constants';

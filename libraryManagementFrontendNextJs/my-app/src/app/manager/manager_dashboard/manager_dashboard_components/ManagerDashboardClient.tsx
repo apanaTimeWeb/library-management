@@ -1,5 +1,4 @@
 'use client';
-
 import { useState } from 'react';
 import { useManagerDashboardData } from '@/app/manager/manager_dashboard/manager_dashboard_hooks/useManagerDashboardData';
 import { useMemo } from 'react';

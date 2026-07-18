@@ -1,5 +1,5 @@
-// RESPONSIBILITY: Renders the Button component for the admin_system module.
 'use client';
+// RESPONSIBILITY: Renders the Button component for the admin_system module.
 // DATA FLOW: Parent -> AdminSystemButton -> DOM
 
 import { type ButtonHTMLAttributes, forwardRef } from 'react';

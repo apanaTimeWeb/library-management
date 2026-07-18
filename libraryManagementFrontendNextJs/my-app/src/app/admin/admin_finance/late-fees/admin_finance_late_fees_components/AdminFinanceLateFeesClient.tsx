@@ -1,7 +1,5 @@
-// RESPONSIBILITY: Renders the AdminFinanceLateFeesClient component.
 'use client';
-
-
+// RESPONSIBILITY: Renders the AdminFinanceLateFeesClient component.
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Settings, AlertTriangle, Save, MessageSquare } from 'lucide-react';

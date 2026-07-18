@@ -1,7 +1,7 @@
+'use client';
 import { Props } from "./AdminBranchesEmptyState_types";
 
 // RESPONSIBILITY: Standardized empty state component for lists/tables in the admin_branches module.
-'use client';
 // DATA FLOW: Parent -> AdminBranchesEmptyState -> DOM
 
 export default function AdminBranchesEmptyState({ title = 'No data found', description = 'Try adjusting your filters.' }: Props) {

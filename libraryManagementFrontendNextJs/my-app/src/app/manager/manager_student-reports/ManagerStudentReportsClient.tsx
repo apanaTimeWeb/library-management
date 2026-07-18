@@ -1,7 +1,4 @@
 'use client';
-
-'use client';
-
 // RESPONSIBILITY: Renders the Student Reports UI and renders data visualization using ApexCharts.
 import { useState } from 'react';
 import { TablePagination } from '@/components/ui/table-pagination';

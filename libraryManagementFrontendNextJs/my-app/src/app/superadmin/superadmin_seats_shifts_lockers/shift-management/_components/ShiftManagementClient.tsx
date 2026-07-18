@@ -1,6 +1,5 @@
-// RESPONSIBILITY: Renders the ShiftManagementClient component.
 'use client';
-
+// RESPONSIBILITY: Renders the ShiftManagementClient component.
 import { useState } from 'react';
 import { Plus, Edit, PowerOff, Zap } from 'lucide-react';
 import toast from 'react-hot-toast';

@@ -1,5 +1,5 @@
-// RESPONSIBILITY: Client view component rendering membership plans grid, search, status toggles, and detail drawer (`Rule 1`, `Rule 8`, `Rule 19`, `Rule 49`, `Rule 57`).
 'use client';
+// RESPONSIBILITY: Client view component rendering membership plans grid, search, status toggles, and detail drawer (`Rule 1`, `Rule 8`, `Rule 19`, `Rule 49`, `Rule 57`).
 // DATA FLOW: useAdminPlans -> AdminPlansClient -> Cards / Add Dialog / Detail Drawer (`Rule 39`).
 
 import { useState } from 'react';

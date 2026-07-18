@@ -1,5 +1,5 @@
-// RESPONSIBILITY: Renders the Label component for the admin_system module.
 'use client';
+// RESPONSIBILITY: Renders the Label component for the admin_system module.
 // DATA FLOW: Parent -> AdminSystemLabel -> DOM
 
 import { type LabelHTMLAttributes, forwardRef } from 'react';

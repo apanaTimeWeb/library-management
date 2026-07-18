@@ -1,5 +1,5 @@
-// RESPONSIBILITY: Catches runtime UI errors within the Superadmin Libraries module and displays a fallback recovery interface without leaking sensitive stack traces.
 'use client';
+// RESPONSIBILITY: Catches runtime UI errors within the Superadmin Libraries module and displays a fallback recovery interface without leaking sensitive stack traces.
 import React from 'react';
 import { AlertTriangle, RefreshCw } from 'lucide-react';
 import type { SuperadminLibrariesErrorBoundaryProps as Props } from '@/app/superadmin/superadmin_libraries/superadmin_libraries_types/SuperadminLibrariesTypes';

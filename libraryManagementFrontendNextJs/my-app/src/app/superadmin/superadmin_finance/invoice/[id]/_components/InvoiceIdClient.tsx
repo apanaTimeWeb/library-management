@@ -1,5 +1,5 @@
-// RESPONSIBILITY: Renders the InvoiceIdClient component.
 'use client';
+// RESPONSIBILITY: Renders the InvoiceIdClient component.
 import { SUPERADMIN_ROUTES } from '@/app/superadmin/superadmin_url_config';
 
 import { formatCurrency, formatDate } from '@/app/superadmin/superadmin_finance/superadmin_finance_utils/superadmin_format';

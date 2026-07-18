@@ -1,6 +1,6 @@
-// RESPONSIBILITY: Renders CRM pipeline board / list view with status columns and quick conversion actions.
-// RESPONSIBILITY: Renders CRM pipeline board / list view with status columns and quick conversion actions.
 'use client';
+// RESPONSIBILITY: Renders CRM pipeline board / list view with status columns and quick conversion actions.
+// RESPONSIBILITY: Renders CRM pipeline board / list view with status columns and quick conversion actions.
 import { SUPERADMIN_ROUTES } from '@/app/superadmin/superadmin_url_config';
 
 import { useRouter } from 'next/navigation';

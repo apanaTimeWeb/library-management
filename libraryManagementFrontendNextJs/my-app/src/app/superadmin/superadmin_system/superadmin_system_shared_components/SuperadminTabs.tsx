@@ -1,5 +1,5 @@
-// RESPONSIBILITY: Renders the SuperadminTabs component.
 'use client';
+// RESPONSIBILITY: Renders the SuperadminTabs component.
 import * as TabsPrimitive from '@radix-ui/react-tabs';
 import { cn } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/superadmin_utils';
 

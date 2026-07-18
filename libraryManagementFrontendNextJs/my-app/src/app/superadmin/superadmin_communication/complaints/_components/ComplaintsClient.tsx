@@ -1,6 +1,5 @@
-// RESPONSIBILITY: Renders the ComplaintsClient component.
 'use client';
-
+// RESPONSIBILITY: Renders the ComplaintsClient component.
 import { ChevronRight, MessageSquare, Plus, X, Circle, CheckCircle, Smile, Eye, RefreshCw } from 'lucide-react';
 import { useComplaintsClient, TABS } from '@/app/superadmin/superadmin_communication/complaints/_components/useComplaintsClient';
 import type { SuperadminCommunicationComplaintStatus as CStatus } from '@/app/superadmin/superadmin_communication/superadmin_communication_types/SuperadminCommunicationTypes';

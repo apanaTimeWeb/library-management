@@ -1,7 +1,5 @@
-// RESPONSIBILITY: Renders the AdminFinanceInvoiceClient component.
 'use client';
-
-
+// RESPONSIBILITY: Renders the AdminFinanceInvoiceClient component.
 import { useState } from 'react';
 import Link from 'next/link';
 import { Search, FileText, Printer, Eye, Send } from 'lucide-react';

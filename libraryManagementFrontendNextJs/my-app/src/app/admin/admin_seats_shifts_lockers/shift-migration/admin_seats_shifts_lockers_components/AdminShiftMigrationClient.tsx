@@ -1,7 +1,5 @@
-// RESPONSIBILITY: Renders the AdminShiftMigrationClient component.
 'use client';
-
-
+// RESPONSIBILITY: Renders the AdminShiftMigrationClient component.
 import { ArrowLeft, Search, ChevronDown, CreditCard, QrCode, Banknote, CheckCircle, Clock } from 'lucide-react';
 import { useAdminShiftMigration, PayMode } from '@/app/admin/admin_seats_shifts_lockers/shift-migration/admin_seats_shifts_lockers_hooks/useAdminShiftMigration';
 import { Card } from '@/components/ui/card';

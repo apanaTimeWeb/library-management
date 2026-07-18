@@ -1,5 +1,5 @@
-// RESPONSIBILITY: Typed Error Boundary component specific to the admin_plans module.
 'use client';
+// RESPONSIBILITY: Typed Error Boundary component specific to the admin_plans module.
 // DATA FLOW: Error -> AdminPlansErrorBoundary -> Fallback UI
 
 import React from 'react';

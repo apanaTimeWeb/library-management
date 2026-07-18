@@ -1,6 +1,5 @@
-// RESPONSIBILITY: Renders the AdminSystemMaintenanceClient component.
 'use client';
-
+// RESPONSIBILITY: Renders the AdminSystemMaintenanceClient component.
 import { useState } from 'react';
 import { Input } from '@/components/ui/input';
 import { KpiCard } from '@/app/admin/admin_system/admin_system_components/AdminSystemKpiCard/AdminSystemKpiCard';

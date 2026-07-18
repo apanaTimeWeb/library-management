@@ -1,7 +1,5 @@
-// RESPONSIBILITY: Renders the AdminFinancePaymentsClient component.
 'use client';
-
-
+// RESPONSIBILITY: Renders the AdminFinancePaymentsClient component.
 import { useState } from 'react';
 import { Input } from '@/components/ui/input';
 import { useRouter } from 'next/navigation';

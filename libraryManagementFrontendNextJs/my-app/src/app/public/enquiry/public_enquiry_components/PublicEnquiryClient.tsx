@@ -1,5 +1,4 @@
 'use client';
-
 import React from 'react';
 import { usePublicEnquiry } from '@/app/public/enquiry/public_enquiry_hooks/usePublicEnquiry';
 import { PublicEnquiryHeader } from '@/app/public/enquiry/public_enquiry_components/PublicEnquiryHeader';

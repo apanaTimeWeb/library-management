@@ -1,5 +1,5 @@
-// RESPONSIBILITY: Renders the Card component for the admin_system module.
 'use client';
+// RESPONSIBILITY: Renders the Card component for the admin_system module.
 // DATA FLOW: Parent -> AdminSystemCard -> DOM
 
 import { cn } from '@/app/admin/admin_system/admin_system_components/AdminSystemutils/AdminSystemutils';

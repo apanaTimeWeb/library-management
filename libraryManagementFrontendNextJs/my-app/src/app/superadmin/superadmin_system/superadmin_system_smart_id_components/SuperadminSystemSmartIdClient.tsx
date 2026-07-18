@@ -1,5 +1,5 @@
-// RESPONSIBILITY: Renders the SuperadminSystemSmartIdClient component.
 'use client';
+// RESPONSIBILITY: Renders the SuperadminSystemSmartIdClient component.
 import { SuperadminCard, CardHeader, CardTitle, CardDescription, CardContent } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminCard';
 import { SuperadminButton } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminButton';
 import { SuperadminBadge } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminBadge';

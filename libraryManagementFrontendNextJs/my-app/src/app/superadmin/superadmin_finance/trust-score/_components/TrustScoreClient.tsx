@@ -1,6 +1,5 @@
-// RESPONSIBILITY: Renders the TrustScoreClient component.
 'use client';
-
+// RESPONSIBILITY: Renders the TrustScoreClient component.
 import { ShieldCheck, ShieldAlert, ShieldX, Users } from 'lucide-react';
 import { SuperadminSearchableDropdown } from '@/app/superadmin/superadmin_shared_components/SuperadminSearchableDropdown';
 import { useTrustScoreClient } from '@/app/superadmin/superadmin_finance/trust-score/_components/useTrustScoreClient';

@@ -1,6 +1,5 @@
-// RESPONSIBILITY: Renders the NotificationCenterClient component.
 'use client';
-
+// RESPONSIBILITY: Renders the NotificationCenterClient component.
 import React from 'react';
 import { ChevronRight, ArrowRight, CheckCheck, DollarSign, Phone, Handshake, Armchair, Calendar, Clock, Lock, Bell, AlertCircle, Circle } from 'lucide-react';
 import { useNotificationCenterClient } from '@/app/superadmin/superadmin_communication/notification-center/_components/useNotificationCenterClient';

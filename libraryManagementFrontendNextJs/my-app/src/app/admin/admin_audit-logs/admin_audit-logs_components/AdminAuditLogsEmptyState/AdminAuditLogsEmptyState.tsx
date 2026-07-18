@@ -1,7 +1,7 @@
+'use client';
 import { Props } from "./AdminAuditLogsEmptyState_types";
 
 // RESPONSIBILITY: Standardized empty state component for lists/tables in the admin_audit-logs module.
-'use client';
 // DATA FLOW: Parent -> AdminAuditLogsEmptyState -> DOM
 
 export default function AdminAuditLogsEmptyState({ title = 'No data found', description = 'Try adjusting your filters.' }: Props) {

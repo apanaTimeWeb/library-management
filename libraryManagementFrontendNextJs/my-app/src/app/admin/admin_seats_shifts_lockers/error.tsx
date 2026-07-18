@@ -1,5 +1,5 @@
-// RESPONSIBILITY: Renders the Next.js native error boundary for the admin_seats_shifts_lockers module.
 'use client';
+// RESPONSIBILITY: Renders the Next.js native error boundary for the admin_seats_shifts_lockers module.
 // DATA FLOW: Next.js Router -> error.tsx
 
 import { useEffect } from 'react';

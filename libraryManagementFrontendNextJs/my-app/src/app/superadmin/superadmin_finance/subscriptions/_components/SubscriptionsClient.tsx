@@ -1,5 +1,5 @@
-// RESPONSIBILITY: Renders the SubscriptionsClient component.
 'use client';
+// RESPONSIBILITY: Renders the SubscriptionsClient component.
 import { SUPERADMIN_ROUTES } from '@/app/superadmin/superadmin_url_config';
 
 /* eslint-disable @typescript-eslint/no-explicit-any */

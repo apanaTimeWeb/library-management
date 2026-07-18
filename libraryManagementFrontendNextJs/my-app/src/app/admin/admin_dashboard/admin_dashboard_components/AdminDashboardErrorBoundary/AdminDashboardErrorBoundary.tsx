@@ -1,5 +1,5 @@
-// RESPONSIBILITY: Typed Error Boundary for the admin_dashboard module. Displays a module-specific fallback UI with a Retry button.
 'use client';
+// RESPONSIBILITY: Typed Error Boundary for the admin_dashboard module. Displays a module-specific fallback UI with a Retry button.
 // DATA FLOW: Error -> AdminDashboardErrorBoundary -> Fallback UI
 
 import React from 'react';

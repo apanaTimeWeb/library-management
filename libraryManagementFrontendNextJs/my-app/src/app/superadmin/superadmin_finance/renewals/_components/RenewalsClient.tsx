@@ -1,6 +1,5 @@
-// RESPONSIBILITY: Renders the RenewalsClient component.
 'use client';
-
+// RESPONSIBILITY: Renders the RenewalsClient component.
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 import type { ICellRendererParams } from 'ag-grid-community';

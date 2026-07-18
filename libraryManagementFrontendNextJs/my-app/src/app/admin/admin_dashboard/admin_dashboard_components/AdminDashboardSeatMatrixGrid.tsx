@@ -1,6 +1,5 @@
-// RESPONSIBILITY: Renders the AdminDashboardSeatMatrixGrid component.
 'use client';
-
+// RESPONSIBILITY: Renders the AdminDashboardSeatMatrixGrid component.
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';

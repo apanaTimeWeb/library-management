@@ -1,5 +1,5 @@
-// RESPONSIBILITY: Client view component rendering expenses table, search filter, and branch context (`Rule 1`, `Rule 8`).
 'use client';
+// RESPONSIBILITY: Client view component rendering expenses table, search filter, and branch context (`Rule 1`, `Rule 8`).
 // DATA FLOW: useAdminExpenses -> AdminExpensesClient -> Table (`Rule 39`).
 
 import { useState } from 'react';

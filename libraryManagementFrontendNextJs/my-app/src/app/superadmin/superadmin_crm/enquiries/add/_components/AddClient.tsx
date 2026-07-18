@@ -1,6 +1,5 @@
-// RESPONSIBILITY: Renders the AddClient component.
 'use client';
-
+// RESPONSIBILITY: Renders the AddClient component.
 import { X, Save, PhoneCall, Loader2 } from 'lucide-react';
 import { Toaster } from 'react-hot-toast';
 import { useAddClient } from '@/app/superadmin/superadmin_crm/enquiries/add/_components/useAddClient';

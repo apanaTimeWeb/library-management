@@ -1,7 +1,6 @@
+'use client';
 // RESPONSIBILITY: Renders library student fee payment records with receipt generation and voiding/reconciliation controls.
 // DATA FLOW: API /finance/payments -> Payments State -> AG Grid / Receipt Action
-'use client';
-
 import React from 'react';
 import { AgGridReact } from 'ag-grid-react';
 import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community';

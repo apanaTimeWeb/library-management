@@ -1,5 +1,5 @@
-// RESPONSIBILITY: Renders the SuperadminSetupWizardStep2 component.
 'use client';
+// RESPONSIBILITY: Renders the SuperadminSetupWizardStep2 component.
 import { useForm, useFieldArray } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Trash2, Plus } from 'lucide-react';

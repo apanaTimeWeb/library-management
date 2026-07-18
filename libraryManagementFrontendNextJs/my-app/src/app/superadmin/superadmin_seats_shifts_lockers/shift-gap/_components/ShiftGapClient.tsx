@@ -1,6 +1,5 @@
-// RESPONSIBILITY: Renders the ShiftGapClient component.
 'use client';
-
+// RESPONSIBILITY: Renders the ShiftGapClient component.
 import { useState } from 'react';
 import { Zap } from 'lucide-react';
 import toast from 'react-hot-toast';

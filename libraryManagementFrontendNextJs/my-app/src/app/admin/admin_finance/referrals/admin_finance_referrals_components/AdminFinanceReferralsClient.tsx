@@ -1,7 +1,5 @@
-// RESPONSIBILITY: Renders the AdminFinanceReferralsClient component.
 'use client';
-
-
+// RESPONSIBILITY: Renders the AdminFinanceReferralsClient component.
 import { useState } from 'react';
 import { Input } from '@/components/ui/input';
 import { Users, Trophy, IndianRupee , Search} from 'lucide-react';

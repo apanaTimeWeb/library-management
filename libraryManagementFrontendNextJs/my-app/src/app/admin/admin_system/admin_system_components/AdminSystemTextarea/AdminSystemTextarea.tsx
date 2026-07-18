@@ -1,5 +1,5 @@
-// RESPONSIBILITY: Renders the Textarea component for the admin_system module.
 'use client';
+// RESPONSIBILITY: Renders the Textarea component for the admin_system module.
 // DATA FLOW: Parent -> AdminSystemTextarea -> DOM
 
 import { type TextareaHTMLAttributes, forwardRef } from 'react';

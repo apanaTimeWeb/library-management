@@ -1,5 +1,5 @@
-// RESPONSIBILITY: Renders the seat occupancy grid matrix with shift/fee filters and assignment navigation.
 'use client';
+// RESPONSIBILITY: Renders the seat occupancy grid matrix with shift/fee filters and assignment navigation.
 // DATA FLOW: AdminDashboardPage / Seat Management -> AdminReusableSeatMatrixGrid -> AdminReusableSeatCell
 
 

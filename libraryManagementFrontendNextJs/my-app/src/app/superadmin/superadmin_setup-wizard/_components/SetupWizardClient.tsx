@@ -1,6 +1,5 @@
-// RESPONSIBILITY: Renders the SetupWizardClient component.
 'use client';
-
+// RESPONSIBILITY: Renders the SetupWizardClient component.
 import { useForm, useFieldArray } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Toaster } from 'react-hot-toast';

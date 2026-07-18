@@ -1,5 +1,5 @@
-// RESPONSIBILITY: Renders the SuperadminCommunicationRoute component.
 'use client';
+// RESPONSIBILITY: Renders the SuperadminCommunicationRoute component.
 import { usePathname } from 'next/navigation';
 
 

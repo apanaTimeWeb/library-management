@@ -1,7 +1,5 @@
-// RESPONSIBILITY: Renders the AdminSeatHistoryClient component.
 'use client';
-
-
+// RESPONSIBILITY: Renders the AdminSeatHistoryClient component.
 import { useState } from 'react';
 import { Download, Search } from 'lucide-react';
 import toast from 'react-hot-toast';

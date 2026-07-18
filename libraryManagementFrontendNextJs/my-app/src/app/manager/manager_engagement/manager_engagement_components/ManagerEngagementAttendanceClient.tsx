@@ -1,5 +1,4 @@
 'use client';
-
 // RESPONSIBILITY: Renders the Attendance UI, filtering by shift and date, and manages attendance status.
 import { useState } from 'react';
 import Link from 'next/link';

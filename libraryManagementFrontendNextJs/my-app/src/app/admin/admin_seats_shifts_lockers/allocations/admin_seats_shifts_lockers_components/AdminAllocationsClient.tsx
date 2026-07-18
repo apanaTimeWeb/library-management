@@ -1,7 +1,5 @@
-// RESPONSIBILITY: Renders the AdminAllocationsClient component.
 'use client';
-
-
+// RESPONSIBILITY: Renders the AdminAllocationsClient component.
 import { useState } from 'react';
 import { Download, Eye } from 'lucide-react';
 import toast from 'react-hot-toast';

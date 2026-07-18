@@ -1,6 +1,5 @@
-// RESPONSIBILITY: Renders the AdminSystemOfflineClient component.
 'use client';
-
+// RESPONSIBILITY: Renders the AdminSystemOfflineClient component.
 import { WifiOff, RefreshCw, CheckCircle, XCircle } from 'lucide-react';
 import { useAdminSystemOffline } from '@/app/admin/admin_system/admin_system_offline_hooks/useAdminSystemOffline';
 

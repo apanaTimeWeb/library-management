@@ -1,5 +1,5 @@
-// RESPONSIBILITY: Entry page for the admin_engagement module.
 'use client';
+// RESPONSIBILITY: Entry page for the admin_engagement module.
 // DATA FLOW: Next.js Router -> page -> Components
 
 import { useState } from 'react';

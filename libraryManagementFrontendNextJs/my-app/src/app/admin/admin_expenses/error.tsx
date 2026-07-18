@@ -1,5 +1,5 @@
-// RESPONSIBILITY: Renders the Next.js native error boundary for the admin_expenses module.
 'use client';
+// RESPONSIBILITY: Renders the Next.js native error boundary for the admin_expenses module.
 // DATA FLOW: Next.js Router -> error.tsx
 
 import { useEffect } from 'react';

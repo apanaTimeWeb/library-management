@@ -1,5 +1,5 @@
-// RESPONSIBILITY: Renders the SuperadminSystemProfileClient component.
 'use client';
+// RESPONSIBILITY: Renders the SuperadminSystemProfileClient component.
 import { SuperadminCard, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminCard';
 import { SuperadminButton } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminButton';
 import { SuperadminInput } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminInput';

@@ -1,5 +1,4 @@
 'use client';
-
 // RESPONSIBILITY: Renders the forgot password page UI using Tailwind.
 // DATA FLOW: UI Component -> useAuthForgotPassword -> useAuthStore (`Rule 39`).
 

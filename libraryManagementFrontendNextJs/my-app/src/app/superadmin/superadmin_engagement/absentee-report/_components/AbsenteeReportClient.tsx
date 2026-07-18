@@ -1,6 +1,5 @@
-// RESPONSIBILITY: Renders the AbsenteeReportClient component.
 'use client';
-
+// RESPONSIBILITY: Renders the AbsenteeReportClient component.
 import type { ICellRendererParams } from 'ag-grid-community';
 import Link from 'next/link';
 import { SUPERADMIN_ROUTES } from '@/app/superadmin/superadmin_url_config';

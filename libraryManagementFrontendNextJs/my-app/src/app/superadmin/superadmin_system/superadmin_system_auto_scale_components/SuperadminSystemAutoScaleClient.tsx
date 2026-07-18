@@ -1,5 +1,5 @@
-// RESPONSIBILITY: Renders the SuperadminSystemAutoScaleClient component.
 'use client';
+// RESPONSIBILITY: Renders the SuperadminSystemAutoScaleClient component.
 import { SuperadminKpiCard } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminKpiCard';
 import { SuperadminCard, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminCard';
 import { SuperadminButton } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminButton';

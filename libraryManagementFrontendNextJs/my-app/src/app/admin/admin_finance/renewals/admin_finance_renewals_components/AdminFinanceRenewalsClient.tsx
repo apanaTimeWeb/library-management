@@ -1,7 +1,5 @@
-// RESPONSIBILITY: Renders the AdminFinanceRenewalsClient component.
 'use client';
-
-
+// RESPONSIBILITY: Renders the AdminFinanceRenewalsClient component.
 import { useState } from 'react';
 import { RefreshCw, Send, X } from 'lucide-react';
 import { formatCurrency } from '@/app/admin/admin_finance/admin_finance_utils/format';

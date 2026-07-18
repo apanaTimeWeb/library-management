@@ -1,5 +1,4 @@
 'use client';
-
 // RESPONSIBILITY: Renders the signup page UI, including brand panel and form using Tailwind.
 // DATA FLOW: UI Component -> useAuthSignup -> useAuthStore (`Rule 39`).
 

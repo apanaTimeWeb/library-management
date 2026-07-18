@@ -1,7 +1,5 @@
-// RESPONSIBILITY: Renders the AdminLockersClient component.
 'use client';
-
-
+// RESPONSIBILITY: Renders the AdminLockersClient component.
 import { useState } from 'react';
 import { Plus, UserPlus, Unlock, Wrench, Search, X } from 'lucide-react';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars

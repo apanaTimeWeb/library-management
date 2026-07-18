@@ -1,6 +1,5 @@
-// RESPONSIBILITY: Renders the ShiftMigrationClient component.
 'use client';
-
+// RESPONSIBILITY: Renders the ShiftMigrationClient component.
 import { useState } from 'react';
 import { ArrowLeft, Search, ChevronDown, CreditCard, QrCode, Banknote, CheckCircle, Clock } from 'lucide-react';
 import toast from 'react-hot-toast';

@@ -1,6 +1,5 @@
-// RESPONSIBILITY: Renders the SupportTicketsClient component.
 'use client';
-
+// RESPONSIBILITY: Renders the SupportTicketsClient component.
 import { useState, useRef, useCallback, useMemo } from 'react';
 import { AgGridReact } from 'ag-grid-react';
 import type { ColDef, ICellRendererParams, GridReadyEvent } from 'ag-grid-community';

@@ -1,5 +1,5 @@
-// RESPONSIBILITY: Typed Error Boundary component specific to the admin_permissions module.
 'use client';
+// RESPONSIBILITY: Typed Error Boundary component specific to the admin_permissions module.
 // DATA FLOW: Error -> AdminPermissionsErrorBoundary -> Fallback UI
 
 import React from 'react';

@@ -1,5 +1,5 @@
-// RESPONSIBILITY: Renders the SuperadminLibrariesClient component.
 'use client';
+// RESPONSIBILITY: Renders the SuperadminLibrariesClient component.
 import React, { useState, useEffect } from 'react';
 import { SuperadminLibrariesHeader } from '@/app/superadmin/superadmin_libraries/superadmin_libraries_components/SuperadminLibrariesHeader';
 import { SuperadminLibrariesGrid } from '@/app/superadmin/superadmin_libraries/superadmin_libraries_components/SuperadminLibrariesGrid';

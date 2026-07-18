@@ -1,7 +1,5 @@
-// RESPONSIBILITY: Renders the AdminSeatMatrixClient component.
 'use client';
-
-
+// RESPONSIBILITY: Renders the AdminSeatMatrixClient component.
 import { CalendarDays, UserPlus, User, X } from 'lucide-react';
 import { useAdminSeatMatrix } from '@/app/admin/admin_seats_shifts_lockers/seat-matrix/admin_seats_shifts_lockers_hooks/useAdminSeatMatrix';
 import { Card } from '@/components/ui/card';

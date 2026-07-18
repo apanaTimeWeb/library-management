@@ -1,5 +1,5 @@
-// RESPONSIBILITY: Renders the SuperadminFinanceRoute component.
 'use client';
+// RESPONSIBILITY: Renders the SuperadminFinanceRoute component.
 import { Toaster } from 'react-hot-toast';
 import { usePathname } from 'next/navigation';
 

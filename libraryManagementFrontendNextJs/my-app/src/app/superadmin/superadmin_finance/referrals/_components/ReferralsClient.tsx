@@ -1,7 +1,6 @@
+'use client';
 // RESPONSIBILITY: Renders the referral program payout ledger, tracking rewards earned through student referrals.
 // DATA FLOW: API /finance/referrals -> Referrals State -> Payout Modal
-'use client';
-
 import { Users, IndianRupee } from 'lucide-react';
 import { formatCurrency } from '@/app/superadmin/superadmin_finance/superadmin_finance_utils/superadmin_format';
 import { SuperadminSearchableDropdown } from '@/app/superadmin/superadmin_shared_components/SuperadminSearchableDropdown';

@@ -1,5 +1,5 @@
-// RESPONSIBILITY: Client view component rendering audit logs table, filters, copy IDs, and detail drawer (`Rule 1`, `Rule 8`, `Rule 19`, `Rule 49`).
 'use client';
+// RESPONSIBILITY: Client view component rendering audit logs table, filters, copy IDs, and detail drawer (`Rule 1`, `Rule 8`, `Rule 19`, `Rule 49`).
 // DATA FLOW: useAdminAuditLogs -> AdminAuditLogsClient -> Table / Detail Drawer (`Rule 39`).
 
 import { useState, useCallback } from 'react';

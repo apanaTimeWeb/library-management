@@ -1,5 +1,5 @@
-// RESPONSIBILITY: Renders the SuperadminInput component.
 'use client';
+// RESPONSIBILITY: Renders the SuperadminInput component.
 import { type InputHTMLAttributes, forwardRef } from 'react';
 import { cn } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/superadmin_utils';
 

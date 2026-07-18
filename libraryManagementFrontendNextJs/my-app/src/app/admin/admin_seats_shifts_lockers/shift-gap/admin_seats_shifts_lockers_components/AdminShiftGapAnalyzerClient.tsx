@@ -1,7 +1,5 @@
-// RESPONSIBILITY: Renders the AdminShiftGapAnalyzerClient component.
 'use client';
-
-
+// RESPONSIBILITY: Renders the AdminShiftGapAnalyzerClient component.
 import { Zap } from 'lucide-react';
 import { useAdminShiftGapAnalyzer, pct, fmtH, DAY_START_H, DAY_END_H } from '@/app/admin/admin_seats_shifts_lockers/shift-gap/admin_seats_shifts_lockers_hooks/useAdminShiftGapAnalyzer';
 import { Card } from '@/components/ui/card';

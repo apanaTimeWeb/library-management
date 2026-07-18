@@ -1,5 +1,4 @@
 'use client';
-
 // RESPONSIBILITY: Renders the reset password page UI using Tailwind.
 // DATA FLOW: UI Component -> useAuthResetPassword -> useAuthStore (`Rule 39`).
 

@@ -1,5 +1,5 @@
-// RESPONSIBILITY: Entry page for the admin_finance module.
 'use client';
+// RESPONSIBILITY: Entry page for the admin_finance module.
 // DATA FLOW: Next.js Router -> page -> Components
 
 import { useState } from 'react';

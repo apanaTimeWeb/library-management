@@ -1,7 +1,5 @@
-// RESPONSIBILITY: Renders the AdminAccountingExpensesClient component.
 'use client';
-
-
+// RESPONSIBILITY: Renders the AdminAccountingExpensesClient component.
 import { useState } from 'react';
 import { Search, Plus, Filter, IndianRupee, TrendingUp } from 'lucide-react';
 import { useAdminAccountingExpenses } from '@/app/admin/admin_accounting/expenses/admin_accounting_expenses_hooks/useAdminAccountingExpenses';
