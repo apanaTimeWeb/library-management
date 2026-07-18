@@ -1,18 +1,18 @@
 'use client';
 // RESPONSIBILITY: Renders the SupportTicketsClient component.
-import { useState, useRef, useCallback, useMemo } from 'react';
-import { AgGridReact } from 'ag-grid-react';
-import type { ColDef, ICellRendererParams, GridReadyEvent } from 'ag-grid-community';
-import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community';
-import { superadmin_gridTheme } from '@/app/superadmin/superadmin_shared_components/superadmin_gridTheme';
-import { Eye, Clock, MessageSquare, AlertTriangle, X, CheckCircle, Loader, Send } from 'lucide-react';
+import { useState, useMemo } from 'react';
+import { Clock, MessageSquare, AlertTriangle, X, CheckCircle, Loader, Send, ChevronLeft, ChevronRight } from 'lucide-react';
 import { SUPERADMIN_SUPPORT_MOCK_TICKETS } from '@/app/superadmin/superadmin_support-tickets/superadmin_support_constants/SuperadminSupportConstants';
 import { Ticket } from "./SupportTicketsClient_types";
 import { TableToolbar } from "@/components/ui/table-toolbar";
-
-ModuleRegistry.registerModules([AllCommunityModule]);
-
-
+import {
+  Table,
+  TableHeader,
+  TableBody,
+  TableRow,
+  TableHead,
+  TableCell,
+} from "@/components/ui/table";
 
 function TicketPanel({ tkt, onClose, onSave }: { tkt: Ticket; onClose: () => void; onSave: (t: Ticket) => void }) {
   const [status, setStatus] = useState(tkt.status);
@@ -31,23 +31,23 @@ function TicketPanel({ tkt, onClose, onSave }: { tkt: Ticket; onClose: () => voi
 
   return (
     <div className="fixed inset-0 z-50 flex items-stretch justify-end">
-      <div className="absolute inset-0 bg-bg-pagelack/60 backdrop-blur-sm" onClick={onClose} />
-      <div className="relative w-full max-w-md bg-bg-pageg-card h-full shadow-2xl flex flex-col p-6 animate-in slide-in-from-right duration-300 border-l border-border overflow-y-auto" onClick={e => e.stopPropagation()}>
+      <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={onClose} />
+      <div className="relative w-full max-w-md bg-bg-card h-full shadow-2xl flex flex-col p-6 animate-in slide-in-from-right duration-300 border-l border-border overflow-y-auto" onClick={e => e.stopPropagation()}>
         <div className="flex items-start justify-between">
           <div>
             <span className="font-mono text-xs text-text-secondary">{tkt.id}</span>
             <h2 className="text-base font-bold text-text-primary mt-1 leading-snug">{tkt.subject}</h2>
           </div>
-          <button className="w-8 h-8 flex items-center justify-center rounded-lg border border-border text-text-secondary bg-transparent hover:bg-bg-pageg-elevated hover:text-text-primary transition-colors shrink-0" onClick={onClose}><X size={16} /></button>
+          <button className="w-8 h-8 flex items-center justify-center rounded-lg border border-border text-text-secondary bg-transparent hover:bg-bg-page hover:text-text-primary transition-colors shrink-0" onClick={onClose}><X size={16} /></button>
         </div>
 
-        <div className="bg-bg-pageg-card rounded-xl border border-border shadow-sm p-4 mt-6">
+        <div className="bg-bg-card rounded-xl border border-border shadow-sm p-4 mt-6">
           <p className="text-sm text-text-secondary leading-relaxed">{tkt.desc}</p>
         </div>
 
         <div className="grid grid-cols-2 gap-3 mt-6">
           {[['Tenant',tkt.tenant],['Priority',tkt.priority],['Age',`${tkt.age} ago`],['Replies',`${tkt.replies} replies`]].map(([label,val]) => (
-            <div key={label} className="bg-bg-pageg-elevated p-3 rounded-lg border border-border">
+            <div key={label} className="bg-bg-input p-3 rounded-lg border border-border">
               <p className="text-xs font-semibold text-text-secondary uppercase tracking-wider mb-1">{label}</p>
               <p className="text-sm font-medium text-text-primary">{val}</p>
             </div>
@@ -64,7 +64,7 @@ function TicketPanel({ tkt, onClose, onSave }: { tkt: Ticket; onClose: () => voi
                     ? s === 'Resolved'    ? 'bg-success-bg border-success text-success ring-1 ring-success'
                     : s === 'In-Progress' ? 'bg-info-bg border-info text-info ring-1 ring-info'
                     :                       'bg-danger-bg border-danger text-danger ring-1 ring-danger'
-                    : 'border-border text-text-secondary bg-transparent hover:bg-bg-pageg-elevated'
+                    : 'border-border text-text-secondary bg-transparent hover:bg-bg-input'
                 }`}>
                 {s === 'Resolved'    ? <><CheckCircle size={11} className="inline mr-1" />{s}</>
                  : s === 'In-Progress' ? <><Loader size={11} className="inline mr-1" />{s}</>
@@ -85,12 +85,13 @@ function TicketPanel({ tkt, onClose, onSave }: { tkt: Ticket; onClose: () => voi
 }
 
 export function SupportTicketsClient() {
-    const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState('');
   const [tickets, setTickets] = useState<Ticket[]>(SUPERADMIN_SUPPORT_MOCK_TICKETS);
   const [filter, setFilter]   = useState('All');
   const [selected, setSelected] = useState<Ticket | null>(null);
   const [toast, setToast]     = useState('');
-  const gridRef = useRef<AgGridReact>(null);
+  const [currentPage, setCurrentPage] = useState(1);
+  const pageSize = 10;
 
   const showToast = (msg: string) => { setToast(msg); setTimeout(() => setToast(''), 2500); };
 
@@ -101,55 +102,26 @@ export function SupportTicketsClient() {
 
   const filtered = filter === 'All' ? tickets : tickets.filter(t => t.status === filter);
 
-  const colDefs = useMemo<any[]>(() => [
-    {
-      headerName: 'Subject / Ticket ID', field: 'subject', flex: 2, minWidth: 200,
-      cellRenderer: (p: ICellRendererParams<typeof SUPERADMIN_SUPPORT_MOCK_TICKETS[0]>) => (
-        <div className="flex flex-col justify-center h-full">
-          <p className="font-medium text-text-primary leading-tight">{p.data?.subject}</p>
-          <div className="flex items-center gap-2 mt-1">
-            <span className="text-xs font-mono text-text-secondary">{p.data?.id}</span>
-            <span className="w-1 h-1 rounded-full bg-bg-pageorder" />
-            <span className="flex items-center gap-1 text-xs text-text-secondary">
-              <MessageSquare size={10} /> {p.data?.replies} replies
-            </span>
-          </div>
-        </div>
-      ),
-    },
-    { headerName: 'Tenant', field: 'tenant', flex: 1.5, minWidth: 150,
-      cellRenderer: (p: ICellRendererParams<typeof SUPERADMIN_SUPPORT_MOCK_TICKETS[0]>) => <span className="font-medium text-text-primary">{p.value}</span> },
-    {
-      headerName: 'Priority', field: 'priority', flex: 0.8, minWidth: 100,
-      cellRenderer: (p: ICellRendererParams<typeof SUPERADMIN_SUPPORT_MOCK_TICKETS[0]>) => (
-        <div className="flex items-center h-full">
-          {p.data?.priority === 'High'   && <span className="inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-xs font-semibold mt-1 bg-danger-bg text-danger"><AlertTriangle size={10} /> HIGH</span>}
-          {p.data?.priority === 'Medium' && <span className="inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-xs font-semibold mt-1 bg-warning-bg text-warning">MEDIUM</span>}
-          {p.data?.priority === 'Low'    && <span className="inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-xs font-semibold mt-1 bg-bg-pageg-elevated text-text-secondary border border-border">LOW</span>}
-        </div>
-      ),
-    },
-    {
-      headerName: 'Status & Age', field: 'status', flex: 1, minWidth: 130,
-      cellRenderer: (p: ICellRendererParams<typeof SUPERADMIN_SUPPORT_MOCK_TICKETS[0]>) => (
-        <div className="flex flex-col justify-center h-full">
-          <p className={`${
-            p.data?.status === 'Resolved' ? 'text-xs font-semibold text-success' :
-            p.data?.status === 'Open'     ? 'text-xs font-semibold text-danger' : 'text-xs font-semibold text-info'
-          }`}>{p.data?.status}</p>
-          <p className="flex items-center gap-1 text-xs text-text-secondary mt-0.5">
-            <Clock size={10} /> {p.data?.age} ago
-          </p>
-        </div>
-      ),
-    }
-  ], []);
+  const searchedTickets = useMemo(() => {
+    if (!searchTerm) return filtered;
+    const lowerSearch = searchTerm.toLowerCase();
+    return filtered.filter(t => 
+      t.subject?.toLowerCase().includes(lowerSearch) ||
+      t.tenant?.toLowerCase().includes(lowerSearch) ||
+      t.id?.toLowerCase().includes(lowerSearch)
+    );
+  }, [filtered, searchTerm]);
 
-  const onGridReady = useCallback((e: GridReadyEvent) => { e.api.sizeColumnsToFit(); }, []);
+  useMemo(() => {
+    setCurrentPage(1);
+  }, [searchTerm, filter]);
+
+  const totalPages = Math.ceil(searchedTickets.length / pageSize);
+  const paginatedTickets = searchedTickets.slice((currentPage - 1) * pageSize, currentPage * pageSize);
 
   return (
     <div className="p-6 max-w-7xl mx-auto space-y-6 min-h-screen">
-      {toast && <div className="fixed top-4 right-4 z-50 bg-bg-pageg-card border border-border shadow-lg rounded-lg px-4 py-3 text-sm font-medium text-text-primary flex items-center gap-2">{toast}</div>}
+      {toast && <div className="fixed top-4 right-4 z-50 bg-bg-card border border-border shadow-lg rounded-lg px-4 py-3 text-sm font-medium text-text-primary flex items-center gap-2">{toast}</div>}
       {selected && <TicketPanel tkt={selected} onClose={() => setSelected(null)} onSave={handleSave} />}
 
       <div className="flex flex-col gap-1 mb-8">
@@ -159,35 +131,109 @@ export function SupportTicketsClient() {
         <h1 className="text-xl font-bold text-text-primary">Support Escalations</h1>
       </div>
 
-      <div className="bg-bg-pageg-card rounded-xl border border-border shadow-sm overflow-hidden flex flex-col">
-        <div className="flex items-center p-4 border-b border-border bg-bg-pageg-card gap-2">
+      <div className="bg-bg-card rounded-xl border border-border shadow-sm overflow-hidden flex flex-col">
+        <div className="flex items-center p-4 border-b border-border bg-bg-card gap-2">
           {['All', 'Open', 'In-Progress', 'Resolved'].map(( f ) => (
             <button key={f} onClick={() => setFilter(f)}
-              className={`px-4 py-1.5 rounded-md text-sm font-medium transition-colors ${filter === f ? 'bg-bg-pageg-elevated text-text-primary shadow-sm ring-1 ring-border' : 'text-text-secondary hover:text-text-primary hover:bg-bg-pageg-elevated'}`}>{f}</button>
+              className={`px-4 py-1.5 rounded-md text-sm font-medium transition-colors ${filter === f ? 'bg-bg-input text-text-primary shadow-sm ring-1 ring-border' : 'text-text-secondary hover:text-text-primary hover:bg-bg-input'}`}>{f}</button>
           ))}
-          <span className="ml-auto text-xs text-text-secondary font-medium">{filtered.length} tickets</span>
+          <span className="ml-auto text-xs text-text-secondary font-medium">{searchedTickets.length} tickets</span>
         </div>
-        <div className="flex flex-col gap-4 w-full">
-<TableToolbar search={searchTerm} onSearch={setSearchTerm} />
-      <div className="w-full" style={{ height: 400 }}>
-          <AgGridReact
-          pagination={true}
-          paginationPageSize={10}
-          quickFilterText={searchTerm}
-            ref={gridRef}
-            theme={superadmin_gridTheme}
-            rowData={filtered}
-            columnDefs={colDefs}
-            rowHeight={60}
-            headerHeight={44}
-            onGridReady={onGridReady}
-            onRowClicked={p => setSelected(p.data)}
-            pagination={true}
-            paginationPageSize={10}
-            suppressCellFocus={true}
-          />
+        
+        <div className="flex flex-col gap-4 w-full p-4">
+          <TableToolbar search={searchTerm} onSearch={setSearchTerm} />
+          
+          <div className="rounded-md border border-border overflow-hidden">
+            <Table>
+              <TableHeader className="bg-bg-page/50">
+                <TableRow className="hover:bg-transparent">
+                  <TableHead className="text-xs font-semibold text-text-secondary uppercase">Subject / Ticket ID</TableHead>
+                  <TableHead className="text-xs font-semibold text-text-secondary uppercase">Tenant</TableHead>
+                  <TableHead className="text-xs font-semibold text-text-secondary uppercase">Priority</TableHead>
+                  <TableHead className="text-xs font-semibold text-text-secondary uppercase">Status & Age</TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                {paginatedTickets.length > 0 ? (
+                  paginatedTickets.map((tkt, index) => (
+                    <TableRow 
+                      key={index}
+                      onClick={() => setSelected(tkt)}
+                      className="cursor-pointer hover:bg-bg-page/50 transition-colors"
+                    >
+                      <TableCell>
+                        <div className="flex flex-col justify-center">
+                          <p className="font-medium text-text-primary leading-tight">{tkt.subject}</p>
+                          <div className="flex items-center gap-2 mt-1">
+                            <span className="text-xs font-mono text-text-secondary">{tkt.id}</span>
+                            <span className="w-1 h-1 rounded-full bg-border" />
+                            <span className="flex items-center gap-1 text-xs text-text-secondary">
+                              <MessageSquare size={10} /> {tkt.replies} replies
+                            </span>
+                          </div>
+                        </div>
+                      </TableCell>
+                      <TableCell className="font-medium text-text-primary">
+                        {tkt.tenant}
+                      </TableCell>
+                      <TableCell>
+                        <div className="flex items-center h-full">
+                          {tkt.priority === 'High'   && <span className="inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-xs font-semibold mt-1 bg-danger-bg text-danger"><AlertTriangle size={10} /> HIGH</span>}
+                          {tkt.priority === 'Medium' && <span className="inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-xs font-semibold mt-1 bg-warning-bg text-warning">MEDIUM</span>}
+                          {tkt.priority === 'Low'    && <span className="inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-xs font-semibold mt-1 bg-bg-input text-text-secondary border border-border">LOW</span>}
+                        </div>
+                      </TableCell>
+                      <TableCell>
+                        <div className="flex flex-col justify-center">
+                          <p className={`${
+                            tkt.status === 'Resolved' ? 'text-xs font-semibold text-success' :
+                            tkt.status === 'Open'     ? 'text-xs font-semibold text-danger' : 'text-xs font-semibold text-info'
+                          }`}>{tkt.status}</p>
+                          <p className="flex items-center gap-1 text-xs text-text-secondary mt-0.5">
+                            <Clock size={10} /> {tkt.age} ago
+                          </p>
+                        </div>
+                      </TableCell>
+                    </TableRow>
+                  ))
+                ) : (
+                  <TableRow>
+                    <TableCell colSpan={4} className="h-24 text-center text-text-secondary">
+                      No tickets found.
+                    </TableCell>
+                  </TableRow>
+                )}
+              </TableBody>
+            </Table>
+          </div>
         </div>
-</div>
+
+        {/* Pagination Footer */}
+        <div className="p-4 border-t border-border flex items-center justify-between bg-bg-page/30">
+          <span className="text-sm font-semibold text-text-secondary">
+            Showing {paginatedTickets.length > 0 ? (currentPage - 1) * pageSize + 1 : 0} to {Math.min(currentPage * pageSize, searchedTickets.length)} of {searchedTickets.length} tickets
+          </span>
+          <div className="flex items-center gap-2">
+            <button
+              onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
+              disabled={currentPage === 1}
+              className="p-1.5 rounded-md border border-border text-text-secondary hover:text-text-primary hover:bg-bg-card disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+            >
+              <ChevronLeft size={16} />
+            </button>
+            <span className="text-sm font-semibold text-text-primary">
+              Page {currentPage} of {totalPages || 1}
+            </span>
+            <button
+              onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
+              disabled={currentPage === totalPages || totalPages === 0}
+              className="p-1.5 rounded-md border border-border text-text-secondary hover:text-text-primary hover:bg-bg-card disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+            >
+              <ChevronRight size={16} />
+            </button>
+          </div>
+        </div>
+
       </div>
     </div>
   );

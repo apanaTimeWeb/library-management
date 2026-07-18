@@ -1,17 +1,20 @@
 'use client';
 // RESPONSIBILITY: Renders the SeatManagementClient component.
 import { useState, useMemo } from 'react';
-import { Plus, Search, Wrench, Edit, AlertTriangle, CheckCircle } from 'lucide-react';
-import { AgGridReact } from 'ag-grid-react';
-import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community';
-import { superadmin_gridTheme } from '@/app/superadmin/superadmin_seats_shifts_lockers/superadmin_seats_shared_components/superadmin_gridTheme';
+import { Plus, Search, Wrench, Edit, AlertTriangle, CheckCircle, ChevronLeft, ChevronRight } from 'lucide-react';
 import toast from 'react-hot-toast';
 import { SUPERADMIN_SEATS_MOCK_SEATS } from '@superadmin/superadmin_seats_shifts_lockers/superadmin_seats_shifts_lockers_utils/SuperadminSeatsMockData';
 import { SuperadminSearchableDropdown } from '@/app/superadmin/superadmin_shared_components/SuperadminSearchableDropdown';
 import type { SuperadminSeatsSeat, SuperadminSeatsSeatStatus } from '@/app/superadmin/superadmin_seats_shifts_lockers/superadmin_seats_types/SuperadminSeatsShiftsLockersTypes';
 import { TableToolbar } from "@/components/ui/table-toolbar";
-
-ModuleRegistry.registerModules([AllCommunityModule]);
+import {
+  Table,
+  TableHeader,
+  TableBody,
+  TableRow,
+  TableHead,
+  TableCell,
+} from "@/components/ui/table";
 
 const STATUS_CLASS: Record<SuperadminSeatsSeatStatus, string> = {
   Working: 'ss-badge ss-badge--success',
@@ -21,24 +24,8 @@ const STATUS_CLASS: Record<SuperadminSeatsSeatStatus, string> = {
 
 const EMPTY_FORM = { seatNo: '', branch: '', status: 'Working' as SuperadminSeatsSeatStatus };
 
-function SeatNoCell({ value }: { value: string }) {
-  return <span className="ss-table__seat-no">{value}</span>;
-}
-
-function BranchCell({ data }: { data: SuperadminSeatsSeat }) {
-  return <span className="ss-cell-primary">{data.branch}</span>;
-}
-
-function SeatStatusCell({ value }: { value: string }) {
-  return (
-    <span className={STATUS_CLASS[value as SuperadminSeatsSeatStatus] ?? 'ss-badge ss-badge--inactive'}>
-      <span className="ss-badge__dot" />{value}
-    </span>
-  );
-}
-
 export function SeatManagementClient() {
-    const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState('');
   const [seats, setSeats] = useState<SuperadminSeatsSeat[]>(SUPERADMIN_SEATS_MOCK_SEATS as SuperadminSeatsSeat[]);
   const [search, setSearch] = useState('');
   const [statusFilter, setStatusFilter] = useState('All Statuses');
@@ -47,14 +34,32 @@ export function SeatManagementClient() {
   const [form, setForm] = useState(EMPTY_FORM);
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [confirmBroken, setConfirmBroken] = useState<SuperadminSeatsSeat | null>(null);
+  
+  const [currentPage, setCurrentPage] = useState(1);
+  const pageSize = 10;
 
-  const filtered = seats.filter(s => {
-    const matchSearch = s.seatNo.toLowerCase().includes(search.toLowerCase()) ||
-      s.branch.toLowerCase().includes(search.toLowerCase()) ||
-      s.assignedTo.toLowerCase().includes(search.toLowerCase());
-    const matchStatus = statusFilter === 'All Statuses' || s.status === statusFilter;
-    return matchSearch && matchStatus;
-  });
+  const filtered = useMemo(() => {
+    return seats.filter(s => {
+      const matchSearch = s.seatNo.toLowerCase().includes(search.toLowerCase()) ||
+        s.branch.toLowerCase().includes(search.toLowerCase()) ||
+        s.assignedTo.toLowerCase().includes(search.toLowerCase());
+      
+      const termMatch = !searchTerm || 
+        s.seatNo.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        s.branch.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        s.assignedTo.toLowerCase().includes(searchTerm.toLowerCase());
+
+      const matchStatus = statusFilter === 'All Statuses' || s.status === statusFilter;
+      return matchSearch && termMatch && matchStatus;
+    });
+  }, [seats, search, searchTerm, statusFilter]);
+
+  useMemo(() => {
+    setCurrentPage(1);
+  }, [search, searchTerm, statusFilter]);
+
+  const totalPages = Math.ceil(filtered.length / pageSize);
+  const paginatedSeats = filtered.slice((currentPage - 1) * pageSize, currentPage * pageSize);
 
   function openAdd() {
     setEditSeat(null);
@@ -102,37 +107,6 @@ export function SeatManagementClient() {
     setConfirmBroken(null);
   }
 
-  const colDefs = useMemo<any[]>(() => [
-    { field: 'seatNo', headerName: 'SEAT #', flex: 1, cellRenderer: SeatNoCell },
-    { field: 'branch', headerName: 'BRANCH', flex: 2, cellRenderer: BranchCell },
-    { field: 'status', headerName: 'STATUS', flex: 1.2, cellRenderer: SeatStatusCell },
-    { field: 'assignedTo', headerName: 'ASSIGNED TO', flex: 2, cellClass: 'ss-cell-secondary' },
-    { field: 'lastMaintenance', headerName: 'LAST MAINTENANCE', flex: 1.5, cellClass: 'ss-cell-secondary' },
-    {
-      headerName: 'ACTIONS', flex: 1.5, sortable: false,
-      cellRenderer: ({ data }: { data: SuperadminSeatsSeat }) => (
-        <div className="ss-cell-actions">
-          <button className="ss-btn-icon" title="View Maintenance Log" onClick={() => toast.success(`Opening log for ${data.seatNo}`)}>
-            <Wrench size={13} />
-          </button>
-          <button className="ss-btn-icon" title="Edit" onClick={() => openEdit(data)}>
-            <Edit size={13} />
-          </button>
-          {data.status !== 'Broken' ? (
-            <button className="ss-btn-icon" title="Mark Broken" onClick={() => setConfirmBroken(data)}>
-              <AlertTriangle size={13} />
-            </button>
-          ) : (
-            <button className="ss-btn-icon" title="Mark Fixed" onClick={() => handleMarkFixed(data)}>
-              <CheckCircle size={13} />
-            </button>
-          )}
-        </div>
-      ),
-    },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  ], [seats, openEdit]);
-
   return (
     <>
       <div className="ss-page">
@@ -173,15 +147,105 @@ export function SeatManagementClient() {
             <button className="ss-btn-primary" onClick={openAdd}><Plus size={15} />Add Seat</button>
           </div>
         ) : (
-          <div className="flex flex-col gap-4 w-full">
-<TableToolbar search={searchTerm} onSearch={setSearchTerm} />
-      <div className="ss-table-wrapper ss-grid-h-400">
-            <AgGridReact
-          pagination={true}
-          paginationPageSize={10}
-          quickFilterText={searchTerm} theme={superadmin_gridTheme} rowData={filtered} columnDefs={colDefs as any} rowHeight={52} headerHeight={40} suppressMovableColumns suppressCellFocus defaultColDef={{ resizable: false, sortable: true }} />
+          <div className="flex flex-col gap-4 w-full bg-bg-card border border-border rounded-lg overflow-hidden">
+            <div className="p-4 flex flex-col gap-4">
+              <TableToolbar search={searchTerm} onSearch={setSearchTerm} />
+              
+              <div className="rounded-md border border-border overflow-hidden">
+                <Table>
+                  <TableHeader className="bg-bg-page/50">
+                    <TableRow className="hover:bg-transparent">
+                      <TableHead className="text-xs font-semibold text-text-secondary uppercase">SEAT #</TableHead>
+                      <TableHead className="text-xs font-semibold text-text-secondary uppercase">BRANCH</TableHead>
+                      <TableHead className="text-xs font-semibold text-text-secondary uppercase">STATUS</TableHead>
+                      <TableHead className="text-xs font-semibold text-text-secondary uppercase">ASSIGNED TO</TableHead>
+                      <TableHead className="text-xs font-semibold text-text-secondary uppercase">LAST MAINTENANCE</TableHead>
+                      <TableHead className="text-xs font-semibold text-text-secondary uppercase w-[140px]">ACTIONS</TableHead>
+                    </TableRow>
+                  </TableHeader>
+                  <TableBody>
+                    {paginatedSeats.length > 0 ? (
+                      paginatedSeats.map((seat, index) => (
+                        <TableRow 
+                          key={index}
+                          className="hover:bg-bg-page/50 transition-colors"
+                        >
+                          <TableCell>
+                            <span className="ss-table__seat-no">{seat.seatNo}</span>
+                          </TableCell>
+                          <TableCell>
+                            <span className="ss-cell-primary">{seat.branch}</span>
+                          </TableCell>
+                          <TableCell>
+                            <span className={STATUS_CLASS[seat.status as SuperadminSeatsSeatStatus] ?? 'ss-badge ss-badge--inactive'}>
+                              <span className="ss-badge__dot" />{seat.status}
+                            </span>
+                          </TableCell>
+                          <TableCell className="ss-cell-secondary">
+                            {seat.assignedTo}
+                          </TableCell>
+                          <TableCell className="ss-cell-secondary">
+                            {seat.lastMaintenance}
+                          </TableCell>
+                          <TableCell>
+                            <div className="ss-cell-actions">
+                              <button className="ss-btn-icon" title="View Maintenance Log" onClick={() => toast.success(`Opening log for ${seat.seatNo}`)}>
+                                <Wrench size={13} />
+                              </button>
+                              <button className="ss-btn-icon" title="Edit" onClick={() => openEdit(seat)}>
+                                <Edit size={13} />
+                              </button>
+                              {seat.status !== 'Broken' ? (
+                                <button className="ss-btn-icon" title="Mark Broken" onClick={() => setConfirmBroken(seat)}>
+                                  <AlertTriangle size={13} />
+                                </button>
+                              ) : (
+                                <button className="ss-btn-icon" title="Mark Fixed" onClick={() => handleMarkFixed(seat)}>
+                                  <CheckCircle size={13} />
+                                </button>
+                              )}
+                            </div>
+                          </TableCell>
+                        </TableRow>
+                      ))
+                    ) : (
+                      <TableRow>
+                        <TableCell colSpan={6} className="h-24 text-center text-text-secondary">
+                          No seats match your search.
+                        </TableCell>
+                      </TableRow>
+                    )}
+                  </TableBody>
+                </Table>
+              </div>
+            </div>
+
+            {/* Pagination Footer */}
+            <div className="p-4 border-t border-border flex items-center justify-between bg-bg-page/30">
+              <span className="text-sm font-semibold text-text-secondary">
+                Showing {paginatedSeats.length > 0 ? (currentPage - 1) * pageSize + 1 : 0} to {Math.min(currentPage * pageSize, filtered.length)} of {filtered.length} seats
+              </span>
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
+                  disabled={currentPage === 1}
+                  className="p-1.5 rounded-md border border-border text-text-secondary hover:text-text-primary hover:bg-bg-card disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                >
+                  <ChevronLeft size={16} />
+                </button>
+                <span className="text-sm font-semibold text-text-primary">
+                  Page {currentPage} of {totalPages || 1}
+                </span>
+                <button
+                  onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
+                  disabled={currentPage === totalPages || totalPages === 0}
+                  className="p-1.5 rounded-md border border-border text-text-secondary hover:text-text-primary hover:bg-bg-card disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                >
+                  <ChevronRight size={16} />
+                </button>
+              </div>
+            </div>
           </div>
-</div>
         )}
       </div>
 

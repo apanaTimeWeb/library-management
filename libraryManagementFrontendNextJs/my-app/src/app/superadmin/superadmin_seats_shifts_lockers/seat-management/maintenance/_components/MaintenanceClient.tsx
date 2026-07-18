@@ -1,16 +1,19 @@
 'use client';
 // RESPONSIBILITY: Renders the MaintenanceClient component.
 import { useState, useMemo } from 'react';
-import { AlertTriangle, Plus } from 'lucide-react';
-import { AgGridReact } from 'ag-grid-react';
-import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community';
-import { superadmin_gridTheme } from '@/app/superadmin/superadmin_seats_shifts_lockers/superadmin_seats_shared_components/superadmin_gridTheme';
+import { AlertTriangle, Plus, ChevronLeft, ChevronRight } from 'lucide-react';
 import toast from 'react-hot-toast';
 import { SuperadminSearchableDropdown } from '@/app/superadmin/superadmin_shared_components/SuperadminSearchableDropdown';
 import type { SuperadminSeatsLogEntry, SuperadminSeatsSeatStatus } from '@/app/superadmin/superadmin_seats_shifts_lockers/superadmin_seats_types/SuperadminSeatsShiftsLockersTypes';
 import { TableToolbar } from "@/components/ui/table-toolbar";
-
-ModuleRegistry.registerModules([AllCommunityModule]);
+import {
+  Table,
+  TableHeader,
+  TableBody,
+  TableRow,
+  TableHead,
+  TableCell,
+} from "@/components/ui/table";
 
 const SEAT_LOGS: Record<string, SuperadminSeatsLogEntry[]> = {
   'S-006': [
@@ -43,21 +46,36 @@ const CURRENT_STATUS: Record<string, SuperadminSeatsSeatStatus> = {
 
 const EMPTY_FORM = { date: '', remark: '', doneBy: '', newStatus: 'Working' as SuperadminSeatsSeatStatus, cost: '' };
 
-function StatusBadge({ value }: { value: string }) {
-  return <span className={STATUS_CLASS[value as SuperadminSeatsSeatStatus] ?? 'ss-badge ss-badge--inactive'}>{value}</span>;
-}
-
 export function MaintenanceClient() {
-    const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState('');
   const [selectedSeat, setSelectedSeat] = useState('S-006');
   const [logs, setLogs] = useState(SEAT_LOGS);
   const [form, setForm] = useState(EMPTY_FORM);
   const [errors, setErrors] = useState<Record<string, string>>({});
+  
+  const [currentPage, setCurrentPage] = useState(1);
+  const pageSize = 10;
 
   const currentLogs = logs[selectedSeat] ?? [];
   const daysSince = DAYS_SINCE[selectedSeat] ?? 0;
   const showOverdue = daysSince > 30;
   const currentStatus = CURRENT_STATUS[selectedSeat];
+
+  const searchedLogs = useMemo(() => {
+    if (!searchTerm) return currentLogs;
+    const lowerSearch = searchTerm.toLowerCase();
+    return currentLogs.filter(log => 
+      log.remark?.toLowerCase().includes(lowerSearch) ||
+      log.doneBy?.toLowerCase().includes(lowerSearch)
+    );
+  }, [currentLogs, searchTerm]);
+
+  useMemo(() => {
+    setCurrentPage(1);
+  }, [searchTerm, selectedSeat]);
+
+  const totalPages = Math.ceil(searchedLogs.length / pageSize);
+  const paginatedLogs = searchedLogs.slice((currentPage - 1) * pageSize, currentPage * pageSize);
 
   function validate() {
     const e: Record<string, string> = {};
@@ -85,16 +103,6 @@ export function MaintenanceClient() {
     setForm(EMPTY_FORM);
     toast.success('Maintenance entry added.');
   }
-
-  const colDefs = useMemo<any[]>(() => [
-    { field: 'num', headerName: '#', flex: 0.5, cellClass: 'ss-cell-secondary' },
-    { field: 'date', headerName: 'DATE', flex: 1.2, cellClass: 'ss-cell-secondary' },
-    { field: 'remark', headerName: 'REMARK', flex: 2.5, cellClass: 'ss-cell-primary' },
-    { field: 'doneBy', headerName: 'DONE BY', flex: 1.2, cellClass: 'ss-cell-secondary' },
-    { field: 'statusBefore', headerName: 'STATUS BEFORE', flex: 1.3, cellRenderer: StatusBadge },
-    { field: 'statusAfter', headerName: 'STATUS AFTER', flex: 1.3, cellRenderer: StatusBadge },
-    { field: 'cost', headerName: 'COST', flex: 0.8, cellClass: 'ss-cell-secondary' },
-  ], []);
 
   return (
     <>
@@ -130,18 +138,94 @@ export function MaintenanceClient() {
             <p className="ss-empty-state__title">No maintenance history for this seat.</p>
           </div>
         ) : (
-          <div className="flex flex-col gap-4 w-full">
-<TableToolbar search={searchTerm} onSearch={setSearchTerm} />
-      <div className="ss-table-wrapper ss-grid-h-320">
-            <AgGridReact
-          pagination={true}
-          paginationPageSize={10}
-          quickFilterText={searchTerm} theme={superadmin_gridTheme} rowData={currentLogs} columnDefs={colDefs as any} rowHeight={52} headerHeight={40} suppressMovableColumns suppressCellFocus defaultColDef={{ resizable: false, sortable: true }} />
+          <div className="flex flex-col gap-4 w-full bg-bg-card border border-border rounded-lg overflow-hidden">
+            <div className="p-4 flex flex-col gap-4">
+              <TableToolbar search={searchTerm} onSearch={setSearchTerm} />
+              
+              <div className="rounded-md border border-border overflow-hidden">
+                <Table>
+                  <TableHeader className="bg-bg-page/50">
+                    <TableRow className="hover:bg-transparent">
+                      <TableHead className="text-xs font-semibold text-text-secondary uppercase">#</TableHead>
+                      <TableHead className="text-xs font-semibold text-text-secondary uppercase">DATE</TableHead>
+                      <TableHead className="text-xs font-semibold text-text-secondary uppercase">REMARK</TableHead>
+                      <TableHead className="text-xs font-semibold text-text-secondary uppercase">DONE BY</TableHead>
+                      <TableHead className="text-xs font-semibold text-text-secondary uppercase">STATUS BEFORE</TableHead>
+                      <TableHead className="text-xs font-semibold text-text-secondary uppercase">STATUS AFTER</TableHead>
+                      <TableHead className="text-xs font-semibold text-text-secondary uppercase">COST</TableHead>
+                    </TableRow>
+                  </TableHeader>
+                  <TableBody>
+                    {paginatedLogs.length > 0 ? (
+                      paginatedLogs.map((log, index) => (
+                        <TableRow 
+                          key={index}
+                          className="hover:bg-bg-page/50 transition-colors"
+                        >
+                          <TableCell className="ss-cell-secondary">
+                            {log.num}
+                          </TableCell>
+                          <TableCell className="ss-cell-secondary">
+                            {log.date}
+                          </TableCell>
+                          <TableCell className="ss-cell-primary">
+                            {log.remark}
+                          </TableCell>
+                          <TableCell className="ss-cell-secondary">
+                            {log.doneBy}
+                          </TableCell>
+                          <TableCell>
+                            <span className={STATUS_CLASS[log.statusBefore as SuperadminSeatsSeatStatus] ?? 'ss-badge ss-badge--inactive'}>{log.statusBefore}</span>
+                          </TableCell>
+                          <TableCell>
+                            <span className={STATUS_CLASS[log.statusAfter as SuperadminSeatsSeatStatus] ?? 'ss-badge ss-badge--inactive'}>{log.statusAfter}</span>
+                          </TableCell>
+                          <TableCell className="ss-cell-secondary">
+                            {log.cost}
+                          </TableCell>
+                        </TableRow>
+                      ))
+                    ) : (
+                      <TableRow>
+                        <TableCell colSpan={7} className="h-24 text-center text-text-secondary">
+                          No maintenance logs match your search.
+                        </TableCell>
+                      </TableRow>
+                    )}
+                  </TableBody>
+                </Table>
+              </div>
+            </div>
+
+            {/* Pagination Footer */}
+            <div className="p-4 border-t border-border flex items-center justify-between bg-bg-page/30">
+              <span className="text-sm font-semibold text-text-secondary">
+                Showing {paginatedLogs.length > 0 ? (currentPage - 1) * pageSize + 1 : 0} to {Math.min(currentPage * pageSize, searchedLogs.length)} of {searchedLogs.length} logs
+              </span>
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
+                  disabled={currentPage === 1}
+                  className="p-1.5 rounded-md border border-border text-text-secondary hover:text-text-primary hover:bg-bg-card disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                >
+                  <ChevronLeft size={16} />
+                </button>
+                <span className="text-sm font-semibold text-text-primary">
+                  Page {currentPage} of {totalPages || 1}
+                </span>
+                <button
+                  onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
+                  disabled={currentPage === totalPages || totalPages === 0}
+                  className="p-1.5 rounded-md border border-border text-text-secondary hover:text-text-primary hover:bg-bg-card disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                >
+                  <ChevronRight size={16} />
+                </button>
+              </div>
+            </div>
           </div>
-</div>
         )}
 
-        <div className="ss-card ss-form-card">
+        <div className="ss-card ss-form-card mt-6">
           <h3 className="ss-section-heading ss-form-card__title">Add New Entry</h3>
           <div className="ss-form-grid">
             <div className="ss-form-field">
