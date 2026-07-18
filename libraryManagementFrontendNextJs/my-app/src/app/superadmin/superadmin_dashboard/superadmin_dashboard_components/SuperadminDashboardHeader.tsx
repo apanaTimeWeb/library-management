@@ -1,7 +1,7 @@
 // RESPONSIBILITY: Renders the SuperadminDashboardHeader component.
 import React from 'react';
 import Link from 'next/link';
-import { SUPERADMIN_ROUTES } from '@/app/superadmin/superadmin_url_config';
+import { SUPERADMIN_ROUTES } from '@/app/superadmin/Superadminsuperadmin_url_config';
 import { Activity } from 'lucide-react';
 
 export function SuperadminDashboardHeader() {

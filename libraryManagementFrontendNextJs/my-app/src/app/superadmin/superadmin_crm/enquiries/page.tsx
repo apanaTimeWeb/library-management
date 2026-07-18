@@ -1,6 +1,6 @@
 // RESPONSIBILITY: Component or Page.
-import { EnquiriesClient } from '@/app/superadmin/superadmin_crm/enquiries/_components/EnquiriesClient';
+import { SuperadminEnquiriesClient } from '@/app/superadmin/superadmin_crm/enquiries/_components/SuperadminEnquiriesClient';
 
 export default function Page() {
-  return <EnquiriesClient />;
+  return <SuperadminEnquiriesClient />;
 }

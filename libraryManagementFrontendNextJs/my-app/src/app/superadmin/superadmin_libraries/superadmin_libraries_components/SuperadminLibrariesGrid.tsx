@@ -60,7 +60,7 @@ export function SuperadminLibrariesGrid({ libraries, onRowClick, onSuspend }: Pr
                     <TableHead className="text-xs font-semibold text-text-secondary uppercase">Location</TableHead>
                     <TableHead className="text-xs font-semibold text-text-secondary uppercase">Seats</TableHead>
                     <TableHead className="text-xs font-semibold text-text-secondary uppercase">Status</TableHead>
-                    <TableHead className="text-xs font-semibold text-text-secondary uppercase w-[100px]">Actions</TableHead>
+                    <TableHead className="text-xs font-semibold text-text-secondary uppercase w-24">Actions</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
@@ -94,8 +94,8 @@ export function SuperadminLibrariesGrid({ libraries, onRowClick, onSuspend }: Pr
                           </TableCell>
                           <TableCell>
                             {lib.status === 'Active'
-                              ? <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full text-[0.65rem] font-bold uppercase tracking-wider bg-[#064E3B] text-[#34D399]"><CheckCircle size={12} /> Active</span>
-                              : <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full text-[0.65rem] font-bold uppercase tracking-wider bg-[#451A03] text-[#FBBF24]"><AlertTriangle size={12} /> Maintenance</span>
+                              ? <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full text-[0.65rem] font-bold uppercase tracking-wider bg-success-bg text-success"><CheckCircle size={12} /> Active</span>
+                              : <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full text-[0.65rem] font-bold uppercase tracking-wider bg-warning-bg text-warning"><AlertTriangle size={12} /> Maintenance</span>
                             }
                           </TableCell>
                           <TableCell>

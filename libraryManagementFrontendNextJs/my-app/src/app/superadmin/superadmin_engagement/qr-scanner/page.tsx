@@ -1,6 +1,6 @@
 // RESPONSIBILITY: Component or Page.
-import { QrScannerClient } from '@/app/superadmin/superadmin_engagement/qr-scanner/_components/QrScannerClient';
+import { SuperadminQrScannerClient } from '@/app/superadmin/superadmin_engagement/qr-scanner/_components/SuperadminQrScannerClient';
 
 export default function Page() {
-  return <QrScannerClient />;
+  return <SuperadminQrScannerClient />;
 }

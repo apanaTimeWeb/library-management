@@ -1,6 +1,6 @@
 // RESPONSIBILITY: Component or Page.
-import { HolidayCalendarClient } from '@/app/superadmin/superadmin_engagement/holiday-calendar/_components/HolidayCalendarClient';
+import { SuperadminHolidayCalendarClient } from '@/app/superadmin/superadmin_engagement/holiday-calendar/_components/SuperadminHolidayCalendarClient';
 
 export default function Page() {
-  return <HolidayCalendarClient />;
+  return <SuperadminHolidayCalendarClient />;
 }

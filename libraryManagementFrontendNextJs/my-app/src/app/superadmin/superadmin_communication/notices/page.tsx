@@ -1,6 +1,6 @@
 // RESPONSIBILITY: Component or Page.
-import { NoticesClient } from '@/app/superadmin/superadmin_communication/notices/_components/NoticesClient';
+import { SuperadminNoticesClient } from '@/app/superadmin/superadmin_communication/notices/_components/SuperadminNoticesClient';
 
 export default function Page() {
-  return <NoticesClient />;
+  return <SuperadminNoticesClient />;
 }

@@ -1,6 +1,6 @@
 // RESPONSIBILITY: Component or Page.
-import { AutoSuspendClient } from '@/app/superadmin/superadmin_finance/auto-suspend/_components/AutoSuspendClient';
+import { SuperadminAutoSuspendClient } from '@/app/superadmin/superadmin_finance/auto-suspend/_components/SuperadminAutoSuspendClient';
 
 export default function Page() {
-  return <AutoSuspendClient />;
+  return <SuperadminAutoSuspendClient />;
 }

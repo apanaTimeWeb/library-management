@@ -1,6 +1,6 @@
 // RESPONSIBILITY: Component or Page.
-import { FinanceDashboardClient } from '@/app/superadmin/superadmin_finance/finance-dashboard/_components/FinanceDashboardClient';
+import { SuperadminFinanceDashboardClient } from '@/app/superadmin/superadmin_finance/finance-dashboard/_components/SuperadminFinanceDashboardClient';
 
 export default function Page() {
-  return <FinanceDashboardClient />;
+  return <SuperadminFinanceDashboardClient />;
 }

@@ -66,7 +66,7 @@ export function SuperadminExpensesGrid({ expenses, onDelete }: Props) {
                     <TableHead className="text-xs font-semibold text-text-secondary uppercase text-right">Amount ₹</TableHead>
                     <TableHead className="text-xs font-semibold text-text-secondary uppercase">Mode</TableHead>
                     <TableHead className="text-xs font-semibold text-text-secondary uppercase">Paid By</TableHead>
-                    <TableHead className="text-xs font-semibold text-text-secondary uppercase text-right w-[100px]">Actions</TableHead>
+                    <TableHead className="text-xs font-semibold text-text-secondary uppercase text-right w-24">Actions</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>

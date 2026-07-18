@@ -1,6 +1,6 @@
 'use client';
 // RESPONSIBILITY: Renders the SuperadminSidebar component.
-import { SUPERADMIN_ROUTES } from '@/app/superadmin/superadmin_url_config';
+import { SUPERADMIN_ROUTES } from '@/app/superadmin/Superadminsuperadmin_url_config';
 
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
@@ -35,7 +35,7 @@ const NAV: any[] = [
   { href: SUPERADMIN_ROUTES.SETTINGS, icon: Settings, label: 'Settings' },
 ];
 
-import { SuperadminSidebarProps } from '@/app/superadmin/superadmin_shared_components/superadmin_shared_types';
+import { SuperadminSidebarProps } from '@/app/superadmin/superadmin_shared_components/Superadminsuperadmin_shared_types';
 
 export default function SuperadminSidebar({ collapsed, onToggle, mobileOpen, onMobileClose }: SuperadminSidebarProps) {
   const pathname = usePathname();

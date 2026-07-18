@@ -1,7 +1,7 @@
 'use client';
 // RESPONSIBILITY: Renders the SuperadminSubscriptionsClient component.
 import React, { useState } from 'react';
-import { superadmin_useSuperadminSubscriptions } from '@/app/superadmin/superadmin_subscriptions/superadmin_subscriptions_hooks/superadmin_useSuperadminSubscriptions';
+import { Superadminsuperadmin_useSuperadminSubscriptions } from '@/app/superadmin/superadmin_subscriptions/superadmin_subscriptions_hooks/Superadminsuperadmin_useSuperadminSubscriptions';
 import { SuperadminSubscriptionsHeader } from '@/app/superadmin/superadmin_subscriptions/superadmin_subscriptions_components/SuperadminSubscriptionsHeader';
 import { SuperadminSubscriptionsKpiGrid } from '@/app/superadmin/superadmin_subscriptions/superadmin_subscriptions_components/SuperadminSubscriptionsKpiGrid';
 import { SuperadminSubscriptionsGrid } from '@/app/superadmin/superadmin_subscriptions/superadmin_subscriptions_components/SuperadminSubscriptionsGrid';
@@ -10,7 +10,7 @@ import type { SuperadminSubscription } from '@/app/superadmin/superadmin_subscri
 import { SUPERADMIN_SUBSCRIPTIONS_KPI } from '@/app/superadmin/superadmin_subscriptions/superadmin_subscriptions_constants/SuperadminSubscriptionsConstants';
 
 export function SuperadminSubscriptionsClient() {
-  const { subs, filteredSubs, filter, setFilter, updateSubscription, renewSubscription } = superadmin_useSuperadminSubscriptions();
+  const { subs, filteredSubs, filter, setFilter, updateSubscription, renewSubscription } = Superadminsuperadmin_useSuperadminSubscriptions();
   const [selected, setSelected] = useState<SuperadminSubscription | null>(null);
   const [toast, setToast] = useState('');
 

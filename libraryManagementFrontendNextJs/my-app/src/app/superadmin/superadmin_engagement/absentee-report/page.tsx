@@ -1,6 +1,6 @@
 // RESPONSIBILITY: Component or Page.
-import { AbsenteeReportClient } from '@/app/superadmin/superadmin_engagement/absentee-report/_components/AbsenteeReportClient';
+import { SuperadminAbsenteeReportClient } from '@/app/superadmin/superadmin_engagement/absentee-report/_components/SuperadminAbsenteeReportClient';
 
 export default function Page() {
-  return <AbsenteeReportClient />;
+  return <SuperadminAbsenteeReportClient />;
 }

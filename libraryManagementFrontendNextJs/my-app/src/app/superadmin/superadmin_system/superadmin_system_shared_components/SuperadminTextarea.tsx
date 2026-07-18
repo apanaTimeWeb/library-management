@@ -1,7 +1,7 @@
 'use client';
 // RESPONSIBILITY: Renders the SuperadminTextarea component.
 import { type TextareaHTMLAttributes, forwardRef } from 'react';
-import { cn } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/superadmin_utils';
+import { cn } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/Superadminsuperadmin_utils';
 
 import { SuperadminTextareaProps } from '@/app/superadmin/superadmin_system/superadmin_system_types/SuperadminSystemSharedComponentsTypes';
 

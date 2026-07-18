@@ -1,6 +1,6 @@
 // RESPONSIBILITY: Component or Page.
-import { TrustScoreClient } from '@/app/superadmin/superadmin_finance/trust-score/_components/TrustScoreClient';
+import { SuperadminTrustScoreClient } from '@/app/superadmin/superadmin_finance/trust-score/_components/SuperadminTrustScoreClient';
 
 export default function Page() {
-  return <TrustScoreClient />;
+  return <SuperadminTrustScoreClient />;
 }

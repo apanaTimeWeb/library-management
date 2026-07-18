@@ -1,6 +1,6 @@
 // RESPONSIBILITY: Component or Page.
-import { SeatManagementClient } from '@/app/superadmin/superadmin_seats_shifts_lockers/seat-management/_components/SeatManagementClient';
+import { SuperadminSeatManagementClient } from '@/app/superadmin/superadmin_seats_shifts_lockers/seat-management/_components/SuperadminSeatManagementClient';
 
 export default function Page() {
-  return <SeatManagementClient />;
+  return <SuperadminSeatManagementClient />;
 }

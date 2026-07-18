@@ -1,6 +1,6 @@
 // RESPONSIBILITY: Component or Page.
-import { PaymentPromisesClient } from '@/app/superadmin/superadmin_finance/payment-promises/_components/PaymentPromisesClient';
+import { SuperadminPaymentPromisesClient } from '@/app/superadmin/superadmin_finance/payment-promises/_components/SuperadminPaymentPromisesClient';
 
 export default function Page() {
-  return <PaymentPromisesClient />;
+  return <SuperadminPaymentPromisesClient />;
 }

@@ -1,14 +1,14 @@
 'use client';
 // RESPONSIBILITY: Renders the SuperadminBillingClient component.
 import React, { useState } from 'react';
-import { superadmin_useSuperadminBilling } from '@/app/superadmin/superadmin_billing/superadmin_billing_hooks/superadmin_useSuperadminBilling';
+import { Superadminsuperadmin_useSuperadminBilling } from '@/app/superadmin/superadmin_billing/superadmin_billing_hooks/Superadminsuperadmin_useSuperadminBilling';
 import { SuperadminBillingHeader } from '@/app/superadmin/superadmin_billing/superadmin_billing_components/SuperadminBillingHeader';
 import { SuperadminBillingGrid } from '@/app/superadmin/superadmin_billing/superadmin_billing_components/SuperadminBillingGrid';
 import { SuperadminBillingPanel } from '@/app/superadmin/superadmin_billing/superadmin_billing_components/SuperadminBillingPanel';
 import type { SuperadminBillingInvoice } from '@/app/superadmin/superadmin_billing/superadmin_billing_types/SuperadminBillingTypes';
 
 export function SuperadminBillingClient() {
-  const { invoices, markInvoicePaid } = superadmin_useSuperadminBilling();
+  const { invoices, markInvoicePaid } = Superadminsuperadmin_useSuperadminBilling();
   const [selected, setSelected] = useState<SuperadminBillingInvoice | null>(null);
   const [toast, setToast] = useState('');
 

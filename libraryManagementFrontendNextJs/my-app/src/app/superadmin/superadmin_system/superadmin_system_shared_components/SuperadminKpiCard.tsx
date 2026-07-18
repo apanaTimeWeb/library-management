@@ -1,6 +1,6 @@
 // RESPONSIBILITY: Renders the SuperadminKpiCard component.
 import React from 'react';
-import { cn } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/superadmin_utils';
+import { cn } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/Superadminsuperadmin_utils';
 import { TrendingUp, TrendingDown, Minus } from 'lucide-react';
 import { SuperadminKpiCardProps } from '@/app/superadmin/superadmin_system/superadmin_system_types/SuperadminSystemSharedComponentsTypes';
 

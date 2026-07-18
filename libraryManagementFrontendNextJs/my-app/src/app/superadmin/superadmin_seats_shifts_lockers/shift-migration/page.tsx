@@ -1,6 +1,6 @@
 // RESPONSIBILITY: Component or Page.
-import { ShiftMigrationClient } from '@/app/superadmin/superadmin_seats_shifts_lockers/shift-migration/_components/ShiftMigrationClient';
+import { SuperadminShiftMigrationClient } from '@/app/superadmin/superadmin_seats_shifts_lockers/shift-migration/_components/SuperadminShiftMigrationClient';
 
 export default function Page() {
-  return <ShiftMigrationClient />;
+  return <SuperadminShiftMigrationClient />;
 }

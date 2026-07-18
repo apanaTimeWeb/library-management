@@ -60,7 +60,7 @@ export function SuperadminDailySettlementGrid({ entries, onSettle }: Props) {
                     <TableHead className="text-xs font-semibold text-text-secondary uppercase text-right">Closing ₹</TableHead>
                     <TableHead className="text-xs font-semibold text-text-secondary uppercase">Settled By</TableHead>
                     <TableHead className="text-xs font-semibold text-text-secondary uppercase">Status</TableHead>
-                    <TableHead className="text-xs font-semibold text-text-secondary uppercase text-right w-[120px]">Action</TableHead>
+                    <TableHead className="text-xs font-semibold text-text-secondary uppercase text-right w-32">Action</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>

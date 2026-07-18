@@ -15,10 +15,10 @@ import {
 } from "@/components/ui/table";
 
 export function ActionBadge({ action }: { action: string }) {
-  if (action === 'Created') return <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-bold uppercase tracking-wider bg-[#064E3B] text-[#34D399]">CREATED</span>;
-  if (action === 'Updated') return <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-bold uppercase tracking-wider bg-[#1E3A5F] text-[#60A5FA]">UPDATED</span>;
-  if (action === 'Deleted') return <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-bold uppercase tracking-wider bg-[#450A0A] text-[#F87171]">DELETED</span>;
-  if (action === 'Fee_Collected') return <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-bold uppercase tracking-wider bg-[#451A03] text-[#FBBF24]">FEE_COLLECTED</span>;
+  if (action === 'Created') return <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-bold uppercase tracking-wider bg-success-bg text-success">CREATED</span>;
+  if (action === 'Updated') return <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-bold uppercase tracking-wider bg-info-bg text-info">UPDATED</span>;
+  if (action === 'Deleted') return <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-bold uppercase tracking-wider bg-danger-bg text-danger">DELETED</span>;
+  if (action === 'Fee_Collected') return <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-bold uppercase tracking-wider bg-warning-bg text-warning">FEE_COLLECTED</span>;
   return null;
 }
 

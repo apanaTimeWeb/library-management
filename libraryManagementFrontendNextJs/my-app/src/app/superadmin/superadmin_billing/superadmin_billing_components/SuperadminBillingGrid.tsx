@@ -45,7 +45,7 @@ export function SuperadminBillingGrid({ invoices, onRowClick, onExport }: Props)
   return (
     <div className="bg-bg-card border border-border rounded-lg overflow-hidden shadow-sm flex flex-col">
       <div className="p-4 border-b border-border bg-bg-page/30 flex items-center justify-between gap-4 flex-wrap">
-        <div className="flex-1 min-w-[200px]">
+        <div className="flex-1 min-w-xs">
           {/* TableToolbar handles the search input, but we can also just use the TableToolbar itself */}
         </div>
         <button 
@@ -98,8 +98,8 @@ export function SuperadminBillingGrid({ invoices, onRowClick, onExport }: Props)
                     <TableCell>
                       <div className="flex items-center h-full">
                         {inv.status === 'Paid'
-                          ? <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-[#064E3B] text-[#34D399]">✅ Paid</span>
-                          : <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-[#450A0A] text-[#F87171]">🔴 Overdue</span>}
+                          ? <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-success-bg text-success">✅ Paid</span>
+                          : <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-danger-bg text-danger">🔴 Overdue</span>}
                       </div>
                     </TableCell>
                   </TableRow>

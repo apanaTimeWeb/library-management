@@ -1,6 +1,6 @@
 // RESPONSIBILITY: Component or Page.
-import { ReceiptIdClient } from '@/app/superadmin/superadmin_finance/receipt/[id]/_components/ReceiptIdClient';
+import { SuperadminReceiptIdClient } from '@/app/superadmin/superadmin_finance/receipt/[id]/_components/SuperadminReceiptIdClient';
 
 export default function Page() {
-  return <ReceiptIdClient />;
+  return <SuperadminReceiptIdClient />;
 }

@@ -1,6 +1,6 @@
 'use client';
 // RESPONSIBILITY: Renders the SuperadminDashboardSidebar component.
-import { SUPERADMIN_ROUTES } from '@/app/superadmin/superadmin_url_config';
+import { SUPERADMIN_ROUTES } from '@/app/superadmin/Superadminsuperadmin_url_config';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useRouter } from 'next/navigation';
@@ -80,7 +80,7 @@ export default function Sidebar({ open }: SidebarProps) {
 
       {showLogout && (
         <div className="fixed inset-0 bg-bg-pagelack/60 backdrop-blur-sm z-50 flex items-center justify-center p-4" onClick={() => setShowLogout(false)}>
-          <div className="bg-bg-pageg-card max-w-[360px] w-full rounded-2xl shadow-2xl p-6 relative border border-border flex flex-col items-center text-center animate-in zoom-in-95 duration-200" onClick={e => e.stopPropagation()}>
+          <div className="bg-bg-pageg-card max-w-sm w-full rounded-2xl shadow-2xl p-6 relative border border-border flex flex-col items-center text-center animate-in zoom-in-95 duration-200" onClick={e => e.stopPropagation()}>
             <div className="w-12 h-12 rounded-full bg-warning-bg/50 flex items-center justify-center mb-4">
               <LogOut size={20} className="text-warning" />
             </div>

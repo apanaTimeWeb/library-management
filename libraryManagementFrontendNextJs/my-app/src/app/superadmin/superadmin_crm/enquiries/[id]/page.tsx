@@ -1,6 +1,6 @@
 // RESPONSIBILITY: Component or Page.
-import { EnquiriesIdClient } from '@/app/superadmin/superadmin_crm/enquiries/[id]/_components/EnquiriesIdClient';
+import { SuperadminEnquiriesIdClient } from '@/app/superadmin/superadmin_crm/enquiries/[id]/_components/SuperadminEnquiriesIdClient';
 
 export default async function Page({ params }: { params: Promise<{ id: string }> }) {
-  return <EnquiriesIdClient params={params} />;
+  return <SuperadminEnquiriesIdClient params={params} />;
 }

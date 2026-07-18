@@ -1,6 +1,6 @@
 // RESPONSIBILITY: Renders the SuperadminBadge component.
 import React from 'react';
-import { cn } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/superadmin_utils';
+import { cn } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/Superadminsuperadmin_utils';
 import { SuperadminBadgeProps } from '@/app/superadmin/superadmin_system/superadmin_system_types/SuperadminSystemSharedComponentsTypes';
 
 const VARIANT_CLASS: Record<string, string> = {

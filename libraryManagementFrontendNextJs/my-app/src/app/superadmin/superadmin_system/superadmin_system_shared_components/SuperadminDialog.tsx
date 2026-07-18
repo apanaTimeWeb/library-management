@@ -2,7 +2,7 @@
 // RESPONSIBILITY: Renders the SuperadminDialog component.
 import * as DialogPrimitive from '@radix-ui/react-dialog';
 import { X } from 'lucide-react';
-import { cn } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/superadmin_utils';
+import { cn } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/Superadminsuperadmin_utils';
 
 export const SuperadminDialog        = DialogPrimitive.Root;
 export const SuperadminDialogTrigger = DialogPrimitive.Trigger;

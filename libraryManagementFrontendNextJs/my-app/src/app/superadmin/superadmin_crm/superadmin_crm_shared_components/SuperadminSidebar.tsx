@@ -3,7 +3,7 @@ import { NavGroup, NavItem } from './SuperadminSidebar_types';
 // RESPONSIBILITY: Renders the SuperadminSidebar component.
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { SUPERADMIN_ROUTES } from '@/app/superadmin/superadmin_url_config';
+import { SUPERADMIN_ROUTES } from '@/app/superadmin/Superadminsuperadmin_url_config';
 import {
   LayoutDashboard, BarChart2, PhoneCall, Users, UserPlus, Users2,
   GraduationCap, FolderLock, Medal, LayoutGrid, Armchair, Timer,

@@ -1,6 +1,6 @@
 // RESPONSIBILITY: Component or Page.
-import { SettingsClient } from '@/app/superadmin/superadmin_settings/_components/SettingsClient';
+import { SuperadminSettingsClient } from '@/app/superadmin/superadmin_settings/_components/SuperadminSettingsClient';
 
 export default function Page() {
-  return <SettingsClient />;
+  return <SuperadminSettingsClient />;
 }

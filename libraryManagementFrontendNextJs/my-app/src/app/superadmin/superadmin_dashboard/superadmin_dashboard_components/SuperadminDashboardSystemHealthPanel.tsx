@@ -1,7 +1,7 @@
 // RESPONSIBILITY: Renders the SuperadminDashboardSystemHealthPanel component.
 import React from 'react';
 import Link from 'next/link';
-import { SUPERADMIN_ROUTES } from '@/app/superadmin/superadmin_url_config';
+import { SUPERADMIN_ROUTES } from '@/app/superadmin/Superadminsuperadmin_url_config';
 import { CheckCircle, Users, Zap, HardDrive, ExternalLink } from 'lucide-react';
 import type { SuperadminDashboardSystemHealth as SystemHealth, SuperadminDashboardSystemHealthPanelProps as Props } from '@/app/superadmin/superadmin_dashboard/superadmin_dashboard_types/SuperadminDashboardTypes';
 

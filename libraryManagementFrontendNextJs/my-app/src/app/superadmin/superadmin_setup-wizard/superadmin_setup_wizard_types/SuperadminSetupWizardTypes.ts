@@ -1,4 +1,4 @@
-import type { BranchDetailsData, ShiftsData, SeatsData, PlansData } from '@/app/superadmin/superadmin_shared_components/superadmin_schema';
+import type { BranchDetailsData, ShiftsData, SeatsData, PlansData } from '@/app/superadmin/superadmin_shared_components/Superadminsuperadmin_schema';
 
 
 export interface SuperadminSetupWizardStep1Props {

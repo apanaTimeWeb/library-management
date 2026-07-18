@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Search, ChevronDown } from 'lucide-react';
-import { useDebounce } from '@/app/superadmin/superadmin_shared_hooks/useDebounce';
-import { SuperadminSearchableDropdownProps } from '@/app/superadmin/superadmin_shared_components/superadmin_shared_types';
+import { useSuperadminDebounce } from '@/app/superadmin/superadmin_shared_hooks/useSuperadminDebounce';
+import { SuperadminSearchableDropdownProps } from '@/app/superadmin/superadmin_shared_components/Superadminsuperadmin_shared_types';
 
 // RESPONSIBILITY: Render a searchable dropdown for large datasets in the superadmin portal.
 export function SuperadminSearchableDropdown({ options, value, onChange, placeholder = 'Select...', className = '' }: SuperadminSearchableDropdownProps) {
@@ -9,7 +9,7 @@ export function SuperadminSearchableDropdown({ options, value, onChange, placeho
   const [searchTerm, setSearchTerm] = useState('');
   const dropdownRef = useRef<HTMLDivElement>(null);
 
-  const debouncedSearch = useDebounce(searchTerm, 300);
+  const debouncedSearch = useSuperadminDebounce(searchTerm, 300);
 
   const filteredOptions = React.useMemo(() => {
     return options.filter(opt => opt.label.toLowerCase().includes(debouncedSearch.toLowerCase()));

@@ -1,6 +1,6 @@
 // RESPONSIBILITY: Component or Page.
-import { LateFeesClient } from '@/app/superadmin/superadmin_finance/late-fees/_components/LateFeesClient';
+import { SuperadminLateFeesClient } from '@/app/superadmin/superadmin_finance/late-fees/_components/SuperadminLateFeesClient';
 
 export default function Page() {
-  return <LateFeesClient />;
+  return <SuperadminLateFeesClient />;
 }

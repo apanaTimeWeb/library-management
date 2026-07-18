@@ -1,6 +1,6 @@
 // RESPONSIBILITY: Component or Page.
-import { InvoiceClient } from '@/app/superadmin/superadmin_finance/invoice/_components/InvoiceClient';
+import { SuperadminInvoiceClient } from '@/app/superadmin/superadmin_finance/invoice/_components/SuperadminInvoiceClient';
 
 export default function Page() {
-  return <InvoiceClient />;
+  return <SuperadminInvoiceClient />;
 }

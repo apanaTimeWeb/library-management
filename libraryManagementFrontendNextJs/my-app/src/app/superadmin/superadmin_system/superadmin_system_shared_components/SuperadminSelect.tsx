@@ -2,7 +2,7 @@
 // RESPONSIBILITY: Renders the SuperadminSelect component.
 import * as SelectPrimitive from '@radix-ui/react-select';
 import { ChevronDown, Check } from 'lucide-react';
-import { cn } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/superadmin_utils';
+import { cn } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/Superadminsuperadmin_utils';
 
 export const SuperadminSelect      = SelectPrimitive.Root;
 export const SuperadminSelectValue = SelectPrimitive.Value;
@@ -29,7 +29,7 @@ export function SuperadminSelectContent({ className, children, ...props }: React
     <SelectPrimitive.Portal>
       <SelectPrimitive.Content
         className={cn(
-          'relative z-50 min-w-[8rem] overflow-hidden rounded-md border border-border bg-card text-text-primary shadow-md animate-in fade-in-80 data-[side=bottom]:slide-in-from-top-1 data-[side=left]:slide-in-from-right-1 data-[side=right]:slide-in-from-left-1 data-[side=top]:slide-in-from-bottom-1',
+          'relative z-50 min-w-32 overflow-hidden rounded-md border border-border bg-card text-text-primary shadow-md animate-in fade-in-80 data-[side=bottom]:slide-in-from-top-1 data-[side=left]:slide-in-from-right-1 data-[side=right]:slide-in-from-left-1 data-[side=top]:slide-in-from-bottom-1',
           className
         )}
         position="popper"

@@ -1,4 +1,4 @@
-import { SUPERADMIN_ROUTES } from '@/app/superadmin/superadmin_url_config';
+import { SUPERADMIN_ROUTES } from '@/app/superadmin/Superadminsuperadmin_url_config';
 
 export const SUPERADMIN_DASHBOARD_RECENT_ACTIVITY = [
   {
