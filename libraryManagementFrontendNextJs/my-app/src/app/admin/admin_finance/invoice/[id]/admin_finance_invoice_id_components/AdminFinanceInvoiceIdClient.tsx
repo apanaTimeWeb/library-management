@@ -5,7 +5,8 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { formatCurrency, formatDate } from '@/app/admin/admin_finance/admin_finance_utils/format';
-import { Printer, ArrowLeft, Send } from 'lucide-react';
+import { ArrowLeft, Printer, Send } from 'lucide-react';
+import { ADMIN_ROUTES } from '@/app/admin/admin_url_config';
 import { openWhatsApp } from '@/lib/whatsappUtils';
 import { printThermal } from '@/lib/thermalPrint';
 import { TablePagination } from '@/components/ui/table-pagination';
@@ -95,7 +96,7 @@ export function AdminFinanceInvoiceIdClient() {
       transactionId: INV.paymentTransactionId,
     });
   }
-    const table = useClientTable(INV.items.slice, 10);
+    const table = useClientTable(INV.items, 10);
 
   return (
     <div className="space-y-4">
@@ -169,7 +170,7 @@ export function AdminFinanceInvoiceIdClient() {
             </tr>
           </thead>
           <tbody>
-            {INV.items.slice((page - 1) * limit, page * limit).map((item, i) => (
+            {table.paginatedData.map((item, i) => (
               <tr key={i} className="fin-table-row">
                 <td className="py-2 px-3 fin-text-body">{item.description}</td>
                 <td className="py-2 px-3 fin-mono">{item.hsnCode}</td>

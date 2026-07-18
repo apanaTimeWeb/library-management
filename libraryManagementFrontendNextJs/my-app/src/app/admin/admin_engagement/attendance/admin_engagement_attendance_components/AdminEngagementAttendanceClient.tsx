@@ -12,6 +12,10 @@ import { Badge } from '@/components/ui/badge';
 import { Input } from '@/components/ui/input';
 import toast from 'react-hot-toast';
 import { Student, AttStatus } from "./AdminEngagementAttendanceClient_types";
+import { ADMIN_ROUTES } from '@/app/admin/admin_url_config';
+import { TableToolbar } from '@/components/ui/table-toolbar';
+import { TablePagination } from '@/components/ui/table-pagination';
+import { useClientTable } from '@/components/ui/use-client-table';
 
 const today = new Date().toISOString().split('T')[0];
 
@@ -139,25 +143,27 @@ export function AdminEngagementAttendanceClient() {
 
                 {/* Status buttons */}
                 <div className="flex items-center gap-1 bg-muted p-1 rounded-lg self-start lg:self-auto">
-                  {(['present', 'absent', 'late'] as AttStatus[]).map(st => (
+                  {(["present", "absent", "late"]).map((stStr) => {
+                    const st = stStr as AttStatus;
+                    return (
                     <Button 
                       key={st} 
                       size="sm"
-                      variant={s.status === st ? 'default' : 'ghost'}
+                      variant={s.status === st ? "default" : "ghost"}
                       onClick={() => setStatus(s.id, st)}
                       className={`h-8 px-3 text-xs font-semibold gap-1.5 capitalize transition-all ${
                         s.status === st 
-                          ? st === 'present' ? 'bg-success hover:bg-success text-white' 
-                            : st === 'absent' ? 'bg-danger hover:bg-danger text-white'
-                            : 'bg-warning hover:bg-warning text-white'
-                          : 'text-muted-foreground hover:text-foreground'
+                          ? st === "present" ? "bg-success hover:bg-success text-white" 
+                            : st === "absent" ? "bg-danger hover:bg-danger text-white"
+                            : "bg-warning hover:bg-warning text-white"
+                          : "text-muted-foreground hover:text-foreground"
                       }`}
                     >
-                      {st === 'present' ? <><CheckCircle size={14}/> Present</>
-                       : st === 'absent' ? '✕ Absent'
+                      {st === "present" ? <><CheckCircle size={14}/> Present</>
+                       : st === "absent" ? "✕ Absent"
                        : <><Clock size={14}/> Late</>}
                     </Button>
-                  ))}
+                  );})}
                 </div>
 
                 {/* Time inputs */}

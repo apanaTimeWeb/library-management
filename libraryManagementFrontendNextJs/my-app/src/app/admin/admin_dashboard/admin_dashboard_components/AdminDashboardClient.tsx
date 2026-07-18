@@ -70,7 +70,7 @@ export function AdminDashboardClient({ initialData }: { initialData: AdminDashbo
             <CardHeader className="pb-3 border-b border-border">
               <CardTitle className="text-base text-text-primary">Action Items</CardTitle>
               <CardDescription className="text-xs text-text-secondary">
-                {data.actionItems?.reduce((s, a) => s + ((a as never).count || 0), 0) || 0} items need your attention
+                {actionItems.reduce((s, a) => s + (a.count || 0), 0)} items need your attention
               </CardDescription>
             </CardHeader>
 

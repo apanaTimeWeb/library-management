@@ -42,7 +42,7 @@ export function AdminFinanceAutoSuspendClient() {
     { label: 'Auto-Restored (Month)', value: configLoading ? '—' : config?.autoRestoredThisMonth ?? 0, icon: RotateCcw, variant: 'default' },
     { label: 'Manual Restores', value: configLoading ? '—' : config?.manualRestores ?? 0, icon: UserCheck, variant: 'default' },
   ] as const;
-    const table = useClientTable(KPI_CARDS, 10);
+    const table = useClientTable(suspended || [], 10);
   return (
     <div className="h-full flex flex-col pb-10 space-y-6 relative">
       {/* page Header */}
@@ -56,7 +56,7 @@ export function AdminFinanceAutoSuspendClient() {
 
       {/* KPI Cards */}
       <div className="grid gap-4 md:grid-cols-4">
-        {table.paginatedData.map(({ label, value, icon: Icon, variant }) => (
+        {KPI_CARDS.map(({ label, value, icon: Icon, variant }) => (
           <Card key={label} className={`p-4 shadow-none flex flex-col justify-center ${variant === 'danger' ? 'border-danger/30 bg-danger/5' : 'border-border bg-card'}`}>
             <div className="flex items-center justify-between mb-1">
               <span className={`text-xs font-bold tracking-wider uppercase ${variant === 'danger' ? 'text-danger' : 'text-muted-foreground'}`}>{label}</span>
@@ -158,7 +158,7 @@ export function AdminFinanceAutoSuspendClient() {
                   </td>
                 </tr>
               ) : (
-                suspended.slice((page - 1) * limit, page * limit).map((s) => (
+                table.paginatedData.map((s) => (
                   <tr key={s.id} className="hover:bg-muted/10 transition-colors">
                     <td className="px-5 py-4">
                       <div className="font-bold text-sm text-primary">{s.studentName}</div>
