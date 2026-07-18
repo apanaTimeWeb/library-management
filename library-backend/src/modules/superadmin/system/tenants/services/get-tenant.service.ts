@@ -1,20 +1,19 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Tenant } from '@/core/entities/tenant.entity';
+import { TenantNotFoundException } from '../exceptions/tenants.exceptions';
 
 @Injectable()
 export class GetTenantService {
   constructor(
     @InjectRepository(Tenant)
-    private readonly tenantRepository: Repository<Tenant>,
+    private readonly repository: Repository<Tenant>,
   ) {}
 
-  async findOne(id: string): Promise<Tenant> {
-    const tenant = await this.tenantRepository.findOne({ where: { id } });
-    if (!tenant) {
-      throw new NotFoundException(`Tenant with ID ${id} not found`);
-    }
-    return tenant;
+  async execute(id: string): Promise<Tenant> {
+    const existing = await this.repository.findOne({ where: { id } as any });
+    if (!existing) throw new TenantNotFoundException();
+    return existing;
   }
 }

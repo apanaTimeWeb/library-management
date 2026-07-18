@@ -1,24 +1,21 @@
 'use client';
-
 // RESPONSIBILITY: Renders the top header for the admin module.
 // DATA FLOW: AdminRoute -> AdminHeader
 
 import { Building2, Bell, Menu } from 'lucide-react';
 import { ThemeToggle } from '@/components/ThemeToggle';
-import { useAdmin } from '@/app/admin/admin_context/AdminContext';
+import { useAdmin } from '@/app/admin/admin_store/AdminContext';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Button } from '@/components/ui/button';
+import { AdminHeaderProps } from "./AdminHeader_types";
 
-interface HeaderProps {
-  sidebarWidth: number;
-  onMobileOpen: () => void;
-}
-
-export default function AdminHeader({ sidebarWidth, onMobileOpen }: HeaderProps) {
+export default function AdminHeader({ sidebarWidth, onMobileOpen }: AdminHeaderProps) {
   const { selectedBranch, setSelectedBranch } = useAdmin();
 
   return (
-    <header className="admin-header" style={{ left: sidebarWidth }}>
+    <header 
+      className="fixed top-0 right-0 h-16 bg-card/80 backdrop-blur-md border-b border-border flex items-center justify-between px-4 md:px-6 z-40 transition-all duration-300 left-[length:var(--left)]" style={{ '--left': sidebarWidth } as React.CSSProperties}
+    >
 
       <div className="flex items-center gap-3">
         <Button
@@ -34,7 +31,7 @@ export default function AdminHeader({ sidebarWidth, onMobileOpen }: HeaderProps)
         <div className="flex items-center gap-2">
           <Building2 size={15} className="text-muted-foreground hidden sm:block" />
           <Select value={selectedBranch} onValueChange={setSelectedBranch}>
-            <SelectTrigger className="w-[160px] h-8 text-sm font-medium border-none shadow-none bg-transparent hover:bg-muted/50 focus:ring-0">
+            <SelectTrigger className="w-40 h-8 text-sm font-medium border-none shadow-none bg-transparent hover:bg-muted/50 focus:ring-0">
               <SelectValue placeholder="Select Branch" />
             </SelectTrigger>
             <SelectContent>
@@ -51,9 +48,9 @@ export default function AdminHeader({ sidebarWidth, onMobileOpen }: HeaderProps)
         <ThemeToggle />
         <Button variant="ghost" size="icon" className="relative rounded-full" aria-label="Notifications">
           <Bell size={17} />
-          <span className="absolute top-2 right-2 h-2 w-2 rounded-full bg-red-500" />
+          <span className="absolute top-2 right-2 h-2 w-2 rounded-full bg-danger" />
         </Button>
-        <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[var(--primary)] text-white text-[10px] font-bold">
+        <div className="flex h-8 w-8 items-center justify-center rounded-full bg-primary text-white text-xs font-bold">
           LA
         </div>
       </div>

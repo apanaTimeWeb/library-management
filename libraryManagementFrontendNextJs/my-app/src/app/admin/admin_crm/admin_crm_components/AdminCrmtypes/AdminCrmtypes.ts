@@ -1,18 +1,4 @@
-// ─── CRM Shared TypeScript Types ─────────────────────────────────────────────
-// Self-contained — no imports from outside (crm) folder
 
-export type EnquiryStatus = 'New' | 'Visited' | 'Interested' | 'Converted' | 'Lost';
-
-export type EnquirySource =
-  | 'Walk-in'
-  | 'WhatsApp'
-  | 'Referral'
-  | 'Social Media'
-  | 'Phone Call'
-  | 'Google Ads'
-  | 'Instagram'
-  | 'Facebook'
-  | 'Other';
 
 export interface FollowUp {
   id: string;
@@ -21,7 +7,6 @@ export interface FollowUp {
   by: string;
   remark: string;
 }
-
 export interface Enquiry {
   id: string;
   name: string;
@@ -40,7 +25,6 @@ export interface Enquiry {
   isUpcoming?: boolean;
   convertedDate?: string;
 }
-
 export interface KanbanColumn {
   id: EnquiryStatus;
   label: string;
@@ -49,7 +33,21 @@ export interface KanbanColumn {
   cardClass: string;
   badgeClass: string;
 }
+export type EnquiryStatus = 'New' | 'Visited' | 'Interested' | 'Converted' | 'Lost';
+export type EnquirySource =
+  | 'Walk-in'
+  | 'WhatsApp'
+  | 'Referral'
+  | 'Social Media'
+  | 'Phone Call'
+  | 'Google Ads'
+  | 'Instagram'
+  | 'Facebook'
+  | 'Other';
 
+// RESPONSIBILITY: Renders the AdminCrmtypes.ts component/hook.
+// ─── CRM Shared TypeScript Types ─────────────────────────────────────────────
+// Self-contained — no imports from outside (crm) folder
 // ─── Kanban Column Config ─────────────────────────────────────────────────────
 export const KANBAN_COLUMNS: KanbanColumn[] = [
   {
@@ -122,3 +120,4 @@ export function getInitials(name: string): string {
     .toUpperCase()
     .slice(0, 2);
 }
+

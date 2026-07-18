@@ -1,14 +1,4 @@
-/**
- * Auth Utility — Client Side
- *
- * Handles login, logout, token refresh, and current user retrieval.
- * Tokens stored in httpOnly cookies (set by the backend) — not accessible via JS.
- *
- * Zero Trust: All role/identity verification happens on the backend.
- * This is only a convenience layer for the frontend UI.
- */
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001/api/v1';
 
 export interface AuthUser {
   id: string;
@@ -20,13 +10,23 @@ export interface AuthUser {
   branchId?: string;
   lastLoginAt?: string;
 }
-
 export interface LoginResponse {
   accessToken: string;
   refreshToken: string;
   user: AuthUser;
 }
 
+/**
+ * Auth Utility — Client Side
+ *
+ * Handles login, logout, token refresh, and current user retrieval.
+ * Tokens stored in httpOnly cookies (set by the backend) — not accessible via JS.
+ *
+ * Zero Trust: All role/identity verification happens on the backend.
+ * This is only a convenience layer for the frontend UI.
+ */
+
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001/api/v1';
 // ─── Login ────────────────────────────────────────────────────────────────────
 // 'identifier' can be phone number or email — backend matches by phone field
 export async function login(identifier: string, password: string): Promise<LoginResponse> {

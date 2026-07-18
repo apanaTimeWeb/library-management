@@ -1,0 +1,8 @@
+export const WAITLISTS_CONSTANTS = {
+  MODULE_NAME: 'MANAGER_WAITLISTS',
+  ERRORS: {
+    WAITLIST_NOT_FOUND: 'Waitlist not found.',
+  },
+  DEFAULT_PAGE: 1,
+  DEFAULT_LIMIT: 20,
+};

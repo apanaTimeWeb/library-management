@@ -1,0 +1,8 @@
+export const SETUP_WIZARD_CONSTANTS = {
+  MODULE_NAME: 'SUPERADMIN_SETUP_WIZARD',
+  ERRORS: {
+    SETUP_WIZARD_NOT_FOUND: 'SetupWizard not found.',
+  },
+  DEFAULT_PAGE: 1,
+  DEFAULT_LIMIT: 20,
+};

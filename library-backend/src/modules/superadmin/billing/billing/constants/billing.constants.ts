@@ -1,0 +1,8 @@
+export const BILLING_CONSTANTS = {
+  MODULE_NAME: 'SUPERADMIN_BILLING',
+  ERRORS: {
+    BILLING_NOT_FOUND: 'Billing not found.',
+  },
+  DEFAULT_PAGE: 1,
+  DEFAULT_LIMIT: 20,
+};

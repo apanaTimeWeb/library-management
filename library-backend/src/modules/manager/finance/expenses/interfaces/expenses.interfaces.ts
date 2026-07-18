@@ -1,9 +1,10 @@
-export interface ExpenseListItem {
+export interface IExpenseRecord {
   id: string;
-  date: string;
-  category: string;
-  amount: number;
-  description: string;
-  branch: string;
-  recordedBy: string;
+}
+
+export interface IExpensesPaginationMeta {
+  page: number;
+  limit: number;
+  total: number;
+  totalPages: number;
 }

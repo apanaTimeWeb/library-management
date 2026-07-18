@@ -1,12 +1,12 @@
 'use client';
-
 // RESPONSIBILITY: Renders the Next.js native error boundary for the admin_staff-users module.
 // DATA FLOW: Next.js Router -> error.tsx
 
 import { useEffect } from 'react';
+import { logger } from '@/lib/logger';
 
 export default function ErrorBoundary({ error, reset }: { error: Error & { digest?: string }; reset: () => void }) {
-  useEffect(() => { console.error(error); }, [error]);
+  useEffect(() => { logger.error('Admin Module Error:', { message: error.message, digest: error.digest }); }, [error]);
   return (
     <div className="flex flex-col items-center justify-center h-full p-8 text-center space-y-4">
       <h2 className="text-xl font-semibold text-destructive">Something went wrong in admin_staff-users!</h2>
@@ -16,3 +16,4 @@ export default function ErrorBoundary({ error, reset }: { error: Error & { diges
     </div>
   );
 }
+

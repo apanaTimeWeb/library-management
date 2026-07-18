@@ -1,0 +1,18 @@
+'use client';
+// RESPONSIBILITY: Renders the SuperadminTabs component.
+import * as TabsPrimitive from '@radix-ui/react-tabs';
+import { cn } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/superadmin_utils';
+
+export const SuperadminTabs = TabsPrimitive.Root;
+
+export function TabsList({ className, ...props }: React.ComponentPropsWithoutRef<typeof TabsPrimitive.List>) {
+  return <TabsPrimitive.List className={cn('inline-flex h-10 items-center justify-center rounded-[var(--radius-md)] bg-muted p-1 text-muted-foreground', className)} {...props} />;
+}
+
+export function TabsTrigger({ className, ...props }: React.ComponentPropsWithoutRef<typeof TabsPrimitive.Trigger>) {
+  return <TabsPrimitive.Trigger className={cn('inline-flex items-center justify-center whitespace-nowrap rounded-[var(--radius-sm)] px-4 py-1.5 text-[13px] font-bold ring-offset-background transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 data-[state=active]:bg-background data-[state=active]:text-foreground data-[state=active]:shadow-sm cursor-pointer', className)} {...props} />;
+}
+
+export function TabsContent({ className, ...props }: React.ComponentPropsWithoutRef<typeof TabsPrimitive.Content>) {
+  return <TabsPrimitive.Content className={cn('mt-4 ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2', className)} {...props} />;
+}

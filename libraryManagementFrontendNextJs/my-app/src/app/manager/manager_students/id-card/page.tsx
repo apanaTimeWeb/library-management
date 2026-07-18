@@ -1,5 +1,7 @@
-import { IdCardClient } from '@/app/manager/manager_students/manager_students_components/IdCardClient';
+// RESPONSIBILITY: Renders the page.tsx component.
+import { ManagerStudentsIdCardClient } from '@/app/manager/manager_students/manager_students_components/ManagerStudentsIdCardClient';
 
 export default function IdCardGeneratorPage() {
-  return <IdCardClient />;
+  return <ManagerStudentsIdCardClient />;
 }
+

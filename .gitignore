@@ -26,18 +26,7 @@ libraryManagementFrontendNextJs/my-app/build/
 next-env.d.ts
 
 # ── Environment Files (NEVER commit secrets!) ────────────────
-.env
-.env.local
-.env.development
-.env.development.local
-.env.test
-.env.test.local
-.env.staging
-.env.production
-.env.production.local
-*.env.backup
-!.env.example
-!.env.template
+
 
 # ── Logs ─────────────────────────────────────────────────────
 logs/

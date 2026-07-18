@@ -1,2 +1,13 @@
+// RESPONSIBILITY: Renders the admin_reports_api.ts component/hook.
 import { fetchApi } from '@/lib/api';
-// API for admin_reports
+import { ADMIN_API_ROUTES } from '@/app/admin/admin_url_config';
+import type { ApiResponse } from '@/app/admin/admin_types/admin_types';
+
+/**
+ * RESPONSIBILITY: Fetches reports data.
+ */
+export async function fetchAdminReports(serverToken?: string): Promise<ApiResponse<unknown>> {
+  const options = serverToken ? { headers: { Authorization: `Bearer ${serverToken}` } } : {};
+  return fetchApi(ADMIN_API_ROUTES.REPORTS, options);
+}
+

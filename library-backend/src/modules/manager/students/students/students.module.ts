@@ -1,58 +1,35 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Student } from '@/core/entities/student.entity';
-import { Branch } from '@/core/entities/branch.entity';
-import { Shift } from '@/core/entities/shift.entity';
-import { Seat } from '@/core/entities/seat.entity';
-import { Locker } from '@/core/entities/locker.entity';
-import { Plan } from '@/core/entities/plan.entity';
-import { StudentSlot } from '@/core/entities/student-slot.entity';
-import { Subscription } from '@/core/entities/subscription.entity';
-import { Payment } from '@/core/entities/payment.entity';
-import { AuthAuthModule } from '@/modules/auth/auth/auth.module';
 
-// Micro-Services
-import { GetAllStudentsService } from './services/get-all-students.service';
-import { GetStudentService } from './services/get-student.service';
-import { CreateStudentService } from './services/create-student.service';
-import { UpdateStudentService } from './services/update-student.service';
-import { DeleteStudentService } from './services/delete-student.service';
+import { StudentsCreateController } from '@/modules/manager/students/students/controllers/students-create.controller';
+import { StudentsUpdateController } from '@/modules/manager/students/students/controllers/students-update.controller';
+import { StudentsDeleteController } from '@/modules/manager/students/students/controllers/students-delete.controller';
+import { StudentsGetAllController } from '@/modules/manager/students/students/controllers/students-get-all.controller';
+import { StudentsGetController } from '@/modules/manager/students/students/controllers/students-get.controller';
 
-// Micro-Controllers
-import { GetAllStudentsController } from './controllers/get-all-students.controller';
-import { GetStudentController } from './controllers/get-student.controller';
-import { CreateStudentController } from './controllers/create-student.controller';
-import { UpdateStudentController } from './controllers/update-student.controller';
-import { DeleteStudentController } from './controllers/delete-student.controller';
+import { StudentsCreateService } from '@/modules/manager/students/students/services/students-create.service';
+import { StudentsUpdateService } from '@/modules/manager/students/students/services/students-update.service';
+import { StudentsDeleteService } from '@/modules/manager/students/students/services/students-delete.service';
+import { StudentsGetAllService } from '@/modules/manager/students/students/services/students-get-all.service';
+import { StudentsGetService } from '@/modules/manager/students/students/services/students-get.service';
 
 @Module({
-  imports: [
-    TypeOrmModule.forFeature([
-      Student,
-      Branch,
-      Shift,
-      Seat,
-      Locker,
-      Plan,
-      StudentSlot,
-      Subscription,
-      Payment,
-    ]),
-    AuthAuthModule,
+  imports: [TypeOrmModule.forFeature([Student])],
+  controllers: [
+    StudentsCreateController,
+    StudentsUpdateController,
+    StudentsDeleteController,
+    StudentsGetAllController,
+    StudentsGetController,
   ],
   providers: [
-    GetAllStudentsService,
-    GetStudentService,
-    CreateStudentService,
-    UpdateStudentService,
-    DeleteStudentService,
+    StudentsCreateService,
+    StudentsUpdateService,
+    StudentsDeleteService,
+    StudentsGetAllService,
+    StudentsGetService,
   ],
-  controllers: [
-    GetAllStudentsController,
-    GetStudentController,
-    CreateStudentController,
-    UpdateStudentController,
-    DeleteStudentController,
-  ],
+  exports: [StudentsGetService],
 })
 export class ManagerStudentsModule {}

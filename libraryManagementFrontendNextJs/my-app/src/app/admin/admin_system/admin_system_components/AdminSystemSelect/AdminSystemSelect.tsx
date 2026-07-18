@@ -14,7 +14,7 @@ export function SelectTrigger({ className, children, ...props }: React.Component
     <SelectPrimitive.Trigger className={cn('sys-select-trigger', className)} {...props}>
       {children}
       <SelectPrimitive.Icon>
-        <ChevronDown size={16} className="text-[var(--text-secondary)]" />
+        <ChevronDown size={16} className="text-secondary" />
       </SelectPrimitive.Icon>
     </SelectPrimitive.Trigger>
   );
@@ -42,10 +42,11 @@ export function SelectItem({ className, children, ...props }: React.ComponentPro
     <SelectPrimitive.Item className={cn('sys-select-item', className)} {...props}>
       <span className="absolute left-2 flex h-3.5 w-3.5 items-center justify-center">
         <SelectPrimitive.ItemIndicator>
-          <Check size={14} className="text-[var(--primary)]" />
+          <Check size={14} className="text-primary" />
         </SelectPrimitive.ItemIndicator>
       </span>
       <SelectPrimitive.ItemText>{children}</SelectPrimitive.ItemText>
     </SelectPrimitive.Item>
   );
 }
+

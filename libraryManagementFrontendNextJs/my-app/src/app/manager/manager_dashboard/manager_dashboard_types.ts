@@ -1,4 +1,4 @@
-export type FetchState = 'idle' | 'loading' | 'success' | 'error';
+
 
 export interface DashboardKpiData {
   title: string;
@@ -7,12 +7,10 @@ export interface DashboardKpiData {
   icon: string;
   iconClass: string;
 }
-
 export interface DashboardSeatData {
   id: string;
   status: string;
 }
-
 export interface DashboardActionItem {
   title: string;
   count: string;
@@ -20,19 +18,16 @@ export interface DashboardActionItem {
   showRenew: boolean;
   href: string;
 }
-
 export interface RecentAdmission {
   name: string;
   smartId: string;
   shift: string;
 }
-
 export interface RecentEnquiry {
   name: string;
   phone: string;
   status: string;
 }
-
 export interface DashboardData {
   kpiData: DashboardKpiData[];
   seatData: DashboardSeatData[];
@@ -40,3 +35,26 @@ export interface DashboardData {
   recentAdmissions: RecentAdmission[];
   recentEnquiries: RecentEnquiry[];
 }
+export interface DashboardState {
+  data: DashboardData | null;
+  status: FetchState;
+  error: string | null;
+  fetchData: () => Promise<void>;
+}
+export interface DashboardSeatMatrixProps {
+  seatData: DashboardSeatData[];
+}
+export interface DashboardKpiGridProps {
+  kpiData: DashboardKpiData[];
+}
+export interface DashboardErrorBoundaryProps {
+  children: React.ReactNode;
+}
+export interface DashboardErrorBoundaryState {
+  hasError: boolean;
+  error: Error | null;
+}
+export interface CellRendererProps {
+  value: string;
+}
+export type FetchState = 'idle' | 'loading' | 'success' | 'error';

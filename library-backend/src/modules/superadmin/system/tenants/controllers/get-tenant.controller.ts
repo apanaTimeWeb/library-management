@@ -1,19 +1,13 @@
-import { Controller, Get, Param, UseGuards } from '@nestjs/common';
-import { ApiTags, ApiOperation, ApiBearerAuth } from '@nestjs/swagger';
-import { JwtAuthGuard } from '@/modules/auth/auth/guards/jwt-auth.guard';
+import { Controller, Get, Param } from '@nestjs/common';
 import { GetTenantService } from '../services/get-tenant.service';
 
-@ApiTags('Superadmin Tenants')
-@ApiBearerAuth()
-@UseGuards(JwtAuthGuard)
-@Controller('api/superadmin/system/tenants')
+@Controller('api/v1/superadmin/tenants')
 export class GetTenantController {
-  constructor(private readonly getTenantService: GetTenantService) {}
+  constructor(private readonly service: GetTenantService) {}
 
-  // SLA: FAST
   @Get(':id')
-  @ApiOperation({ summary: 'Get a single tenant by id' })
-  async findOne(@Param('id') id: string): Promise<any> {
-    return this.getTenantService.findOne(id);
+  async handle(@Param('id') id: string) {
+    const data = await this.service.execute(id);
+    return { success: true, message: 'Tenant retrieved successfully', data };
   }
 }

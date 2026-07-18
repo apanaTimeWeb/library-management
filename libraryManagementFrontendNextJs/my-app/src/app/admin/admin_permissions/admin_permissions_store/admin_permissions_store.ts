@@ -3,12 +3,14 @@
 
 import { create } from 'zustand';
 
-interface AdminPermissionsState {
-  data: any[];
-  setData: (data: any[]) => void;
+
+export interface AdminPermissionsState {
+  data: unknown[];
+  setData: (data: unknown[]) => void;
 }
 
-export const useAdminPermissionsStore = create<AdminPermissionsState>((set: any) => ({
+export const useAdminPermissionsStore = create<AdminPermissionsState>((set) => ({
   data: [],
-  setData: (data: any[]) => set({ data }),
+  setData: (data: unknown[]) => set({ data }),
 }));
+

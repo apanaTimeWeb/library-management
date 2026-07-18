@@ -1,0 +1,14 @@
+import { Controller, Post, Body } from '@nestjs/common';
+import { ShiftMigrationsCreateShiftMigrationService } from '../services/shift-migrations-create-shift-migration.service';
+import { ShiftMigrationsCreateShiftMigrationDto } from '../dto/shift-migrations-create-shift-migration.dto';
+
+@Controller('v1/admin/shift-migrations')
+export class ShiftMigrationsCreateShiftMigrationController {
+  constructor(private readonly service: ShiftMigrationsCreateShiftMigrationService) {}
+
+  @Post()
+  async handle(@Body() dto: ShiftMigrationsCreateShiftMigrationDto) {
+    const data = await this.service.execute(dto);
+    return { success: true, message: 'ShiftMigration created successfully', data };
+  }
+}

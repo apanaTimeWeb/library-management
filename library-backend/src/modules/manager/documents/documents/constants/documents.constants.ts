@@ -1,0 +1,8 @@
+export const DOCUMENTS_CONSTANTS = {
+  MODULE_NAME: 'MANAGER_DOCUMENTS',
+  ERRORS: {
+    DOCUMENT_NOT_FOUND: 'Document not found.',
+  },
+  DEFAULT_PAGE: 1,
+  DEFAULT_LIMIT: 20,
+};

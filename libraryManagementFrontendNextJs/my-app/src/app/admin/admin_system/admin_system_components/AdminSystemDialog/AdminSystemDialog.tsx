@@ -44,3 +44,4 @@ export function DialogTitle({ className, ...props }: React.ComponentPropsWithout
 export function DialogDescription({ className, ...props }: React.ComponentPropsWithoutRef<typeof DialogPrimitive.Description>) {
   return <DialogPrimitive.Description className={cn('sys-dialog-desc', className)} {...props} />;
 }
+

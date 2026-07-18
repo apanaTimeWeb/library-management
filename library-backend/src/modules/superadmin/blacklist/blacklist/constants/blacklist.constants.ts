@@ -1,0 +1,8 @@
+export const BLACKLIST_CONSTANTS = {
+  MODULE_NAME: 'SUPERADMIN_BLACKLIST',
+  ERRORS: {
+    BLACKLIST_NOT_FOUND: 'Blacklist not found.',
+  },
+  DEFAULT_PAGE: 1,
+  DEFAULT_LIMIT: 20,
+};

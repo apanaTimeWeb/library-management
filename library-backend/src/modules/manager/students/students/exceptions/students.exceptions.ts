@@ -1,13 +1,8 @@
 import { HttpException, HttpStatus } from '@nestjs/common';
+import { STUDENTS_CONSTANTS } from '@/modules/manager/students/students/constants/students.constants';
 
 export class StudentNotFoundException extends HttpException {
-  constructor() {
-    super('Student not found', HttpStatus.NOT_FOUND);
-  }
-}
-
-export class BranchNotFoundException extends HttpException {
-  constructor() {
-    super('Branch not found', HttpStatus.NOT_FOUND);
+  constructor(message: string = STUDENTS_CONSTANTS.ERRORS.STUDENT_NOT_FOUND) {
+    super(message, HttpStatus.NOT_FOUND);
   }
 }

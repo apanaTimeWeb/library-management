@@ -1,4 +1,4 @@
-import { EnquiriesClient } from '@/app/manager/manager_crm/manager_crm_components/EnquiriesClient';
+import { ManagerCrmEnquiriesClient } from '@/app/manager/manager_crm/manager_crm_components/ManagerCrmEnquiriesClient';
 import { ManagerCrmErrorBoundary } from '@/app/manager/manager_crm/manager_crm_components/ManagerCrmErrorBoundary';
 
 // RESPONSIBILITY: Strict Server Component for Manager CRM Enquiries.
@@ -6,7 +6,7 @@ import { ManagerCrmErrorBoundary } from '@/app/manager/manager_crm/manager_crm_c
 export default function EnquiriesPage() {
   return (
     <ManagerCrmErrorBoundary>
-      <EnquiriesClient />
+      <ManagerCrmEnquiriesClient />
     </ManagerCrmErrorBoundary>
   );
 }

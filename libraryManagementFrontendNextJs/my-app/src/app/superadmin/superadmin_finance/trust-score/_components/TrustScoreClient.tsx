@@ -1,0 +1,180 @@
+'use client';
+// RESPONSIBILITY: Renders the TrustScoreClient component.
+import { ShieldCheck, ShieldAlert, ShieldX, Users } from 'lucide-react';
+import { SuperadminSearchableDropdown } from '@/app/superadmin/superadmin_shared_components/SuperadminSearchableDropdown';
+import { useTrustScoreClient } from '@/app/superadmin/superadmin_finance/trust-score/_components/useTrustScoreClient';
+import type { SuperadminFinanceTrustScoreStudent } from '@/app/superadmin/superadmin_finance/superadmin_finance_types/SuperadminFinanceTypes';
+
+const BADGE_CLASS: Record<string, string> = {
+  reliable: 'bg-success/10 text-success border-success/20',
+  moderate: 'bg-warning/10 text-warning border-warning/20',
+  low:      'bg-danger/10 text-danger border-danger/20',
+};
+
+const BADGE_ICON: Record<string, typeof ShieldCheck> = {
+  reliable: ShieldCheck,
+  moderate: ShieldAlert,
+  low:      ShieldX,
+};
+
+function TrustGauge({ score }: { score: number }) {
+  const color = score >= 70 ? 'var(--success)' : score >= 40 ? 'var(--warning)' : 'var(--danger)';
+  return (
+    <div className="flex items-center gap-2">
+      <div className="flex-1 h-2 bg-input rounded-full overflow-hidden border border-border/50 max-w-[120px]">
+        <div className="h-full transition-all duration-300 rounded-full" style={{ width: `${score}%`, background: color }} />
+      </div>
+      <span className="text-[12px] font-bold" style={{ color }}>{score}</span>
+    </div>
+  );
+}
+
+export function TrustScoreClient() {
+  const {
+    levelFilter, setLevelFilter,
+    shiftFilter, setShiftFilter,
+    isLoading, filtered, lowTrust, avg, total,
+  } = useTrustScoreClient();
+
+  return (
+    <div className="space-y-6">
+      <div>
+        <h1 className="text-[22px] font-bold text-text-primary">Trust Scores</h1>
+        <p className="text-[12px] text-text-secondary">Student reliability rankings based on payment promise history.</p>
+      </div>
+
+      {/* KPI Cards */}
+      <div className="grid gap-4 md:grid-cols-3">
+        <div className="bg-card rounded-[var(--radius-lg)] border border-border p-4 relative overflow-hidden group">
+          <div className="flex items-center justify-between mb-2 relative z-10">
+            <span className="text-[11px] font-bold text-text-secondary uppercase tracking-wider">Scored Students</span>
+            <div className="w-8 h-8 rounded-[var(--radius-md)] bg-primary/10 flex items-center justify-center text-primary group-hover:scale-110 transition-transform duration-300">
+              <Users size={16} />
+            </div>
+          </div>
+          <p className="text-[28px] font-black text-text-primary tracking-tight relative z-10">{total}</p>
+        </div>
+        
+        <div className="bg-card rounded-[var(--radius-lg)] border border-danger/30 p-4 relative overflow-hidden group bg-gradient-to-br from-danger/5 to-transparent">
+          <div className="flex items-center justify-between mb-2 relative z-10">
+            <span className="text-[11px] font-bold text-danger uppercase tracking-wider">Low Trust (&lt;40)</span>
+            <div className="w-8 h-8 rounded-[var(--radius-md)] bg-danger/10 flex items-center justify-center text-danger group-hover:scale-110 transition-transform duration-300">
+              <ShieldX size={16} />
+            </div>
+          </div>
+          <p className="text-[28px] font-black text-danger tracking-tight relative z-10">{lowTrust}</p>
+        </div>
+
+        <div className="bg-card rounded-[var(--radius-lg)] border border-border p-4 relative overflow-hidden group">
+          <div className="flex items-center justify-between mb-2 relative z-10">
+            <span className="text-[11px] font-bold text-text-secondary uppercase tracking-wider">Average Trust Score</span>
+            <div className="w-8 h-8 rounded-[var(--radius-md)] bg-success/10 flex items-center justify-center text-success group-hover:scale-110 transition-transform duration-300">
+              <ShieldCheck size={16} />
+            </div>
+          </div>
+          <p className="text-[28px] font-black text-text-primary tracking-tight relative z-10">{avg}</p>
+        </div>
+      </div>
+
+      <div className="flex items-center gap-3 bg-card p-3 rounded-[var(--radius-lg)] border border-border w-fit">
+        <div className="w-48">
+          <SuperadminSearchableDropdown
+            options={[
+              { label: 'All Levels', value: 'all' },
+              { label: 'Reliable', value: 'reliable' },
+              { label: 'Moderate', value: 'moderate' },
+              { label: 'Low Trust', value: 'low' }
+            ]}
+            value={levelFilter}
+            onChange={setLevelFilter}
+          />
+        </div>
+        <div className="w-48">
+          <SuperadminSearchableDropdown
+            options={[
+              { label: 'All Shifts', value: 'all' },
+              { label: 'Morning', value: 'Morning' },
+              { label: 'Evening', value: 'Evening' },
+              { label: 'Full Day', value: 'Full Day' }
+            ]}
+            value={shiftFilter}
+            onChange={setShiftFilter}
+          />
+        </div>
+      </div>
+
+      <div className="bg-card rounded-[var(--radius-lg)] border border-border overflow-x-auto">
+        <table className="w-full text-left border-collapse">
+          <thead>
+            <tr className="bg-primary/5 uppercase text-[12px] font-semibold text-text-secondary border-b border-border">
+              <th className="py-3 px-4 w-20">Rank</th>
+              <th className="py-3 px-4">Student</th>
+              <th className="py-3 px-4">Shift</th>
+              <th className="py-3 px-4">Trust Score</th>
+              <th className="text-center py-3 px-4">Total Promises</th>
+              <th className="text-center py-3 px-4">Times Changed</th>
+              <th className="text-center py-3 px-4">Fulfilled</th>
+              <th className="text-left py-3 px-4">Badge</th>
+            </tr>
+          </thead>
+          <tbody>
+            {isLoading ? (
+              Array.from({ length: 5 }).map((_, i) => (
+                <tr key={i} className="border-b border-border last:border-0">
+                  {Array.from({ length: 8 }).map((_, j) => (
+                    <td key={j} className="py-3 px-4">
+                      <div className="h-4 w-16 bg-skeleton-base rounded animate-pulse" />
+                    </td>
+                  ))}
+                </tr>
+              ))
+            ) : filtered.length === 0 ? (
+              <tr>
+                <td colSpan={8}>
+                  <div className="flex flex-col items-center justify-center p-8 text-center space-y-3">
+                    <div className="text-4xl">🛡️</div>
+                    <p className="text-[16px] text-text-secondary">Start recording payment promises to build trust scores.</p>
+                  </div>
+                </td>
+              </tr>
+            ) : (
+              filtered.map(( s: SuperadminFinanceTrustScoreStudent ) => {
+                const Icon = BADGE_ICON[s.badge] || ShieldCheck;
+                return (
+                  <tr key={s.smartId} className="border-b border-border last:border-0 hover:bg-primary/5 transition-colors">
+                    <td className="py-3 px-4 text-[14px] font-bold font-mono text-text-primary">#{s.rank}</td>
+                    <td className="py-3 px-4">
+                      <div className="font-medium text-text-primary text-[14px]">{s.studentName}</div>
+                      <div className="text-[12px] text-text-secondary">{s.smartId}</div>
+                    </td>
+                    <td className="py-3 px-4">
+                      <span className="bg-input text-text-primary border border-border px-2 py-0.5 rounded-[var(--radius-full)] text-[11px] font-bold">{s.shift}</span>
+                    </td>
+                    <td className="py-3 px-4">
+                      <TrustGauge score={s.trustScore} />
+                    </td>
+                    <td className="py-3 px-4 text-center font-medium text-[14px] text-text-primary">{s.totalPromises}</td>
+                    <td className="py-3 px-4 text-center">
+                      {s.timesChanged > 0 ? (
+                        <span className="text-warning font-bold text-[14px]">{s.timesChanged}x</span>
+                      ) : (
+                        <span className="text-text-secondary text-[14px]">0</span>
+                      )}
+                    </td>
+                    <td className="py-3 px-4 text-center font-medium text-[14px] text-text-primary">{s.fulfilledCount}</td>
+                    <td className="py-3 px-4">
+                      <span className={`${BADGE_CLASS[s.badge] || 'bg-input text-text-primary'} border px-2 py-0.5 rounded-[var(--radius-full)] text-[11px] font-bold flex items-center gap-1 w-fit`}>
+                        <Icon size={12} />
+                        {s.badge === 'reliable' ? 'Reliable' : s.badge === 'moderate' ? 'Moderate' : 'Low Trust'}
+                      </span>
+                    </td>
+                  </tr>
+                );
+              })
+            )}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
+}

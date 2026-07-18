@@ -1,0 +1,35 @@
+// RESPONSIBILITY: Renders the useAdminSystemAutoScale.ts component/hook.
+import { useState, useCallback } from 'react';
+
+export function useAdminSystemAutoScale() {
+  const [seatThreshold, setSeatThreshold] = useState(90);
+  const [lockerThreshold, setLockerThreshold] = useState(85);
+  const [alertEnabled, setAlertEnabled] = useState(true);
+
+  const seatOccupancy = 94;
+  const lockerOccupancy = 38;
+
+  const getSeatRecommendation = useCallback(() => {
+    if (seatOccupancy > seatThreshold)
+      return { color: 'danger' as const, msg: `🔴 System suggests adding more seats. Current utilization: ${seatOccupancy}%`, action: '➕ Add Seats', link: '/seat-management' };
+    if (seatOccupancy < 40)
+      return { color: 'warning' as const, msg: `🟡 Low occupancy detected. Consider Power Saving mode.`, action: '⚡ Power Saving →', link: '/system/power-saving' };
+    return { color: 'success' as const, msg: `🟢 Seat occupancy is healthy at ${seatOccupancy}%.`, action: null, link: null };
+  }, [seatOccupancy, seatThreshold]);
+
+  const getLockerRecommendation = useCallback(() => {
+    if (lockerOccupancy < 40)
+      return { color: 'warning' as const, msg: `🟡 Lockers have low usage (${lockerOccupancy}%). Consider offering locker promotions.`, action: null, link: null };
+    if (lockerOccupancy > lockerThreshold)
+      return { color: 'danger' as const, msg: `🔴 Locker capacity near limit. Consider adding locker units.`, action: '➕ Manage Lockers', link: '/locker-matrix' };
+    return { color: 'success' as const, msg: `🟢 Locker utilization looks good at ${lockerOccupancy}%.`, action: null, link: null };
+  }, [lockerOccupancy, lockerThreshold]);
+
+  return {
+    seatThreshold, setSeatThreshold,
+    lockerThreshold, setLockerThreshold,
+    alertEnabled, setAlertEnabled,
+    seatRec: getSeatRecommendation(),
+    lockerRec: getLockerRecommendation()
+  };
+}

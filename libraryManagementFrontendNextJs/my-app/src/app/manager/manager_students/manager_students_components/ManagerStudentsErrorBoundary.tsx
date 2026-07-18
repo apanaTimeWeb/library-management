@@ -1,39 +1,32 @@
 'use client';
-
 import { Component, ErrorInfo, ReactNode } from 'react';
+import { logger } from '@/lib/logger';
 
 // RESPONSIBILITY: Catches errors exclusively within the Manager Students module and prevents the whole app from crashing.
 
-interface Props {
-  children: ReactNode;
-}
+import { ManagerStudentsErrorBoundaryProps, ManagerStudentsErrorBoundaryState } from '@/app/manager/manager_students/manager_students_types';
 
-interface State {
-  hasError: boolean;
-  error?: Error;
-}
-
-export class ManagerStudentsErrorBoundary extends Component<Props, State> {
-  public state: State = {
+export class ManagerStudentsErrorBoundary extends Component<ManagerStudentsErrorBoundaryProps, ManagerStudentsErrorBoundaryState> {
+  public state: ManagerStudentsErrorBoundaryState = {
     hasError: false
   };
 
-  public static getDerivedStateFromError(error: Error): State {
+  public static getDerivedStateFromError(error: Error): ManagerStudentsErrorBoundaryState {
     return { hasError: true, error };
   }
 
   public componentDidCatch(error: Error, errorInfo: ErrorInfo) {
-    console.error('Uncaught error in Manager Students:', error, errorInfo);
+    logger.error('Uncaught error in Manager Students', { message: error.message, componentStack: errorInfo.componentStack });
   }
 
   public render() {
     if (this.state.hasError) {
       return (
-        <div className="p-8 text-center bg-[var(--bg-card)] rounded-lg border border-[var(--border)]">
-          <h2 className="text-[var(--danger)] text-xl font-bold mb-2">Student Module Error</h2>
-          <p className="text-[var(--text-secondary)] mb-4">{this.state.error?.message || 'An unexpected error occurred in the students module.'}</p>
+        <div className="p-8 text-center bg-bg-card rounded-lg border border-border">
+          <h2 className="text-danger text-xl font-bold mb-2">Student Module Error</h2>
+          <p className="text-text-secondary mb-4">{this.state.error?.message || 'An unexpected error occurred in the students module.'}</p>
           <button
-            className="mgr-btn-primary"
+            className="bg-primary text-white rounded-lg px-5 py-2.5 text-sm font-medium hover:bg-primary-hover transition-colors inline-flex items-center gap-2"
             onClick={() => this.setState({ hasError: false, error: undefined })}
           >
             Retry
@@ -45,3 +38,4 @@ export class ManagerStudentsErrorBoundary extends Component<Props, State> {
     return this.props.children;
   }
 }
+

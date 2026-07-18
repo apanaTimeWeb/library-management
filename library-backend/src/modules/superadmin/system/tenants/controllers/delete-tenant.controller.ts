@@ -1,19 +1,13 @@
-import { Controller, Delete, Param, UseGuards } from '@nestjs/common';
-import { ApiTags, ApiOperation, ApiBearerAuth } from '@nestjs/swagger';
-import { JwtAuthGuard } from '@/modules/auth/auth/guards/jwt-auth.guard';
+import { Controller, Delete, Param } from '@nestjs/common';
 import { DeleteTenantService } from '../services/delete-tenant.service';
 
-@ApiTags('Superadmin Tenants')
-@ApiBearerAuth()
-@UseGuards(JwtAuthGuard)
-@Controller('api/superadmin/system/tenants')
+@Controller('api/v1/superadmin/tenants')
 export class DeleteTenantController {
-  constructor(private readonly deleteTenantService: DeleteTenantService) {}
+  constructor(private readonly service: DeleteTenantService) {}
 
-  // SLA: FAST
   @Delete(':id')
-  @ApiOperation({ summary: 'Soft delete a tenant' })
-  async delete(@Param('id') id: string): Promise<any> {
-    return this.deleteTenantService.delete(id);
+  async handle(@Param('id') id: string) {
+    await this.service.execute(id);
+    return { success: true, message: 'Tenant deleted successfully', data: null };
   }
 }

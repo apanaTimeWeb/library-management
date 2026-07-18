@@ -1,10 +1,8 @@
-export const STUDENT_CONSTANTS = {
-  DEFAULT_BRANCH_ID: '8a0c079e-1fca-476b-8390-58c5b8c29d08',
-  ID_PREFIX: 'LIB',
-};
-
-export const STUDENT_STATUS = {
-  ACTIVE: 'Active',
-  INACTIVE: 'Inactive',
-  SUSPENDED: 'Suspended',
+export const STUDENTS_CONSTANTS = {
+  MODULE_NAME: 'MANAGER_STUDENTS',
+  ERRORS: {
+    STUDENT_NOT_FOUND: 'Student not found.',
+  },
+  DEFAULT_PAGE: 1,
+  DEFAULT_LIMIT: 20,
 };

@@ -3,12 +3,14 @@
 
 import { create } from 'zustand';
 
-interface AdminReusableState {
-  data: any[];
-  setData: (data: any[]) => void;
+
+export interface AdminReusableState {
+  data: unknown[];
+  setData: (data: unknown[]) => void;
 }
 
-export const useAdminReusableStore = create<AdminReusableState>((set: any) => ({
+export const useAdminReusableStore = create<AdminReusableState>((set) => ({
   data: [],
-  setData: (data: any[]) => set({ data }),
+  setData: (data: unknown[]) => set({ data }),
 }));
+

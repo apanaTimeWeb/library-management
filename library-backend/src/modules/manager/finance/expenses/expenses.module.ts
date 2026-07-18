@@ -1,20 +1,35 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Expense, ExpenseCategory } from '@/core/entities/expense.entity';
-import { AuthAuthModule } from '@/modules/auth/auth/auth.module';
+import { Expense } from '@/core/entities/expense.entity';
 
-// Micro-Services
-import { GetAllExpensesService } from './services/get-all-expenses.service';
+import { ExpensesCreateController } from '@/modules/manager/finance/expenses/controllers/expenses-create.controller';
+import { ExpensesUpdateController } from '@/modules/manager/finance/expenses/controllers/expenses-update.controller';
+import { ExpensesDeleteController } from '@/modules/manager/finance/expenses/controllers/expenses-delete.controller';
+import { ExpensesGetAllController } from '@/modules/manager/finance/expenses/controllers/expenses-get-all.controller';
+import { ExpensesGetController } from '@/modules/manager/finance/expenses/controllers/expenses-get.controller';
 
-// Micro-Controllers
-import { GetAllExpensesController } from './controllers/get-all-expenses.controller';
+import { ExpensesCreateService } from '@/modules/manager/finance/expenses/services/expenses-create.service';
+import { ExpensesUpdateService } from '@/modules/manager/finance/expenses/services/expenses-update.service';
+import { ExpensesDeleteService } from '@/modules/manager/finance/expenses/services/expenses-delete.service';
+import { ExpensesGetAllService } from '@/modules/manager/finance/expenses/services/expenses-get-all.service';
+import { ExpensesGetService } from '@/modules/manager/finance/expenses/services/expenses-get.service';
 
 @Module({
-  imports: [
-    TypeOrmModule.forFeature([Expense, ExpenseCategory]),
-    AuthAuthModule,
+  imports: [TypeOrmModule.forFeature([Expense])],
+  controllers: [
+    ExpensesCreateController,
+    ExpensesUpdateController,
+    ExpensesDeleteController,
+    ExpensesGetAllController,
+    ExpensesGetController,
   ],
-  providers: [GetAllExpensesService],
-  controllers: [GetAllExpensesController],
+  providers: [
+    ExpensesCreateService,
+    ExpensesUpdateService,
+    ExpensesDeleteService,
+    ExpensesGetAllService,
+    ExpensesGetService,
+  ],
+  exports: [ExpensesGetService],
 })
 export class ManagerExpensesModule {}

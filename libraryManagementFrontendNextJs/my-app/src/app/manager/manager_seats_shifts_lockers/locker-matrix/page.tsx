@@ -1,5 +1,8 @@
-import { LockerMatrixClient } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_components/LockerMatrixClient';
+// RESPONSIBILITY: Renders the page.tsx component.
+import { ManagerSeatsLockerMatrixClient } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_components/ManagerSeatsLockerMatrixClient';
 
 export default function LockerMatrixPage() {
-  return <LockerMatrixClient />;
+  return <ManagerSeatsLockerMatrixClient />;
 }
+
+

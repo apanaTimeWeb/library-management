@@ -1,5 +1,4 @@
 'use client';
-
 // RESPONSIBILITY: The application shell for the admin module, wrapping children with the Sidebar and Header.
 // DATA FLOW: layout.tsx -> AdminRoute -> (AdminProvider, AdminSidebar, AdminHeader, children)
 
@@ -7,9 +6,8 @@ import { useState } from 'react';
 import { usePathname } from 'next/navigation';
 import AdminSidebar from '@/app/admin/admin_components/AdminSidebar/AdminSidebar';
 import AdminHeader from '@/app/admin/admin_components/AdminHeader/AdminHeader';
-import { AdminProvider } from '@/app/admin/admin_context/AdminContext';
+import { AdminProvider } from '@/app/admin/admin_store/AdminContext';
 import { ADMIN_ROUTES } from '@/app/admin/admin_url_config';
-import '@/app/admin/admin.css';
 
 // All route prefixes that belong to admin shell
 const ADMIN_ROUTE_PREFIXES = [
@@ -28,7 +26,7 @@ export function AdminRoute({ children }: { children: React.ReactNode }) {
 
   return (
     <AdminProvider>
-      <div className="admin-theme admin-shell-flex">
+      <div className="admin-theme flex min-h-screen relative w-full bg-bg-card text-foreground overflow-x-hidden">
         <AdminSidebar
           collapsed={collapsed}
           onToggle={() => setCollapsed(c => !c)}
@@ -37,14 +35,13 @@ export function AdminRoute({ children }: { children: React.ReactNode }) {
         />
         
         <div
-          className="admin-main-offset"
-          style={{ marginLeft: sidebarWidth }}
+          className="flex flex-col flex-1 min-w-0 transition-all duration-300 ml-[length:var(--ml)]" style={{ '--ml': sidebarWidth } as React.CSSProperties}
         >
         <AdminHeader
           sidebarWidth={sidebarWidth}
           onMobileOpen={() => setMobileOpen(true)}
         />
-        <main className="admin-shell-content">
+        <main className="flex-1 p-4 md:p-6 lg:p-8 pt-16 md:pt-20 overflow-y-auto">
           {children}
         </main>
       </div>

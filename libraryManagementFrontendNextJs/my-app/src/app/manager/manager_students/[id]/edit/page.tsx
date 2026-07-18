@@ -6,8 +6,8 @@ export default function Page({ params }: { params: Promise<{ id: string }> }) {
 
   return (
     <div className="p-8">
-      <h1 className="text-3xl font-bold text-on-surface">Edit Student</h1>
-      <p className="text-on-surface-variant mt-2">Route: /students/{id}/edit</p>
+      <h1 className="text-3xl font-bold text-text-primary">Edit Student</h1>
+      <p className="text-text-secondary mt-2">Route: /students/{id}/edit</p>
     </div>
   );
 }

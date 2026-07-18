@@ -5,28 +5,28 @@ import { Seat } from '@/core/entities/seat.entity';
 import { Subscription } from '@/core/entities/subscription.entity';
 import { Enquiry } from '@/core/entities/enquiry.entity';
 import { Complaint } from '@/core/entities/complaint.entity';
-import { AuthAuthModule } from '@/modules/auth/auth/auth.module';
+import { AuthModule } from '@/modules/auth/auth.module';
 
 // Micro-Services
-import { DashboardService } from './services/dashboard.service';
-import { ReportsService } from '@/modules/manager/reports/dashboard/services/reports.service';
-import { StudentReportsService } from '@/modules/manager/student-reports/dashboard/services/student-reports.service';
+import { ManagerDashboardService } from '@/modules/manager/dashboard/manager/services/manager-dashboard.service';
+import { DashboardReportsService } from '@/modules/manager/reports/dashboard/services/dashboard-reports.service';
+import { DashboardStudentReportsService } from '@/modules/manager/student-reports/dashboard/services/dashboard-student-reports.service';
 
 // Micro-Controllers
-import { DashboardController } from './controllers/dashboard.controller';
-import { ReportsController } from '@/modules/manager/reports/dashboard/controllers/reports.controller';
-import { StudentReportsController } from '@/modules/manager/student-reports/dashboard/controllers/student-reports.controller';
+import { ManagerDashboardController } from '@/modules/manager/dashboard/manager/controllers/manager-dashboard.controller';
+import { DashboardReportsController } from '@/modules/manager/reports/dashboard/controllers/dashboard-reports.controller';
+import { DashboardStudentReportsController } from '@/modules/manager/student-reports/dashboard/controllers/dashboard-student-reports.controller';
 
 @Module({
   imports: [
     TypeOrmModule.forFeature([Student, Seat, Subscription, Enquiry, Complaint]),
-    AuthAuthModule,
+    AuthModule,
   ],
-  providers: [DashboardService, ReportsService, StudentReportsService],
+  providers: [ManagerDashboardService, DashboardReportsService, DashboardStudentReportsService],
   controllers: [
-    DashboardController,
-    ReportsController,
-    StudentReportsController,
+    ManagerDashboardController,
+    DashboardReportsController,
+    DashboardStudentReportsController,
   ],
 })
 export class ManagerModule {}

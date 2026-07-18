@@ -8,11 +8,11 @@ import { CreateTenantDto } from '../dto/create-tenant.dto';
 export class CreateTenantService {
   constructor(
     @InjectRepository(Tenant)
-    private readonly tenantRepository: Repository<Tenant>,
+    private readonly repository: Repository<Tenant>,
   ) {}
 
-  async create(createTenantDto: CreateTenantDto): Promise<Tenant> {
-    const tenant = this.tenantRepository.create(createTenantDto);
-    return this.tenantRepository.save(tenant);
+  async execute(dto: CreateTenantDto): Promise<Tenant> {
+    const entity = this.repository.create(dto);
+    return await this.repository.save(entity);
   }
 }

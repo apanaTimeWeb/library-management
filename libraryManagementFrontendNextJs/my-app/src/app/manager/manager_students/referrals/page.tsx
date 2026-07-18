@@ -1,5 +1,7 @@
-import { ReferralsClient } from '@/app/manager/manager_students/manager_students_components/ReferralsClient';
+// RESPONSIBILITY: Renders the page.tsx component.
+import { ManagerStudentsReferralsClient } from '@/app/manager/manager_students/manager_students_components/ManagerStudentsReferralsClient';
 
 export default function ReferralsPage() {
-  return <ReferralsClient />;
+  return <ManagerStudentsReferralsClient />;
 }
+

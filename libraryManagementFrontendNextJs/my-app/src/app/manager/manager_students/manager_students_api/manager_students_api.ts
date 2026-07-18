@@ -1,11 +1,15 @@
 import { fetchApi } from '@/lib/api';
+import { logger } from '@/lib/logger';
 import type { Student } from '@/app/manager/manager_students/manager_students_types';
 
 export async function fetchStudents(): Promise<Student[]> {
   try {
-    return await fetchApi('/students');
+    const res = await fetchApi('/students');
+    if (res?.data && Array.isArray(res.data)) return res.data;
+    if (Array.isArray(res)) return res;
+    throw new Error('Invalid response format');
   } catch (error) {
-    console.warn("Backend not reachable, returning mock students");
+    logger.warn('Backend not reachable, returning mock students');
     return [
       { id: '1', smartId: 'LIB-001', name: 'Alex Rivera', phone: '9876543210', status: 'Active', shift: 'Morning', seat: 'S-01', branch: 'Main', plan: 'Monthly', due: 0, joined: '01/01/2024' },
       { id: '2', smartId: 'LIB-002', name: 'Priya Sharma', phone: '9876543211', status: 'Active', shift: 'Evening', seat: 'S-11', branch: 'Main', plan: 'Quarterly', due: 1500, joined: '15/02/2024' },
@@ -14,11 +18,14 @@ export async function fetchStudents(): Promise<Student[]> {
   }
 }
 
-export async function fetchStudentById(id: string): Promise<any> {
+export async function fetchStudentById(id: string): Promise<Student> {
   try {
-    return await fetchApi(`/students/${id}`);
+    const res = await fetchApi(`/students/${id}`);
+    if (res?.data) return res.data;
+    if (res?.id) return res;
+    throw new Error('Invalid response format');
   } catch (error) {
-    console.warn("Backend not reachable, returning mock student for id:", id);
+    logger.warn('Backend not reachable, returning mock student', { id });
     return {
       id: id,
       smartId: id,
@@ -35,14 +42,14 @@ export async function fetchStudentById(id: string): Promise<any> {
   }
 }
 
-export async function createStudent(payload: any): Promise<any> {
+export async function createStudent(payload: Record<string, unknown>): Promise<{ success: boolean; smartId?: string }> {
   try {
     return await fetchApi('/students', {
       method: 'POST',
       body: JSON.stringify(payload)
     });
   } catch (error) {
-    console.warn("Backend not reachable, returning mock success for createStudent");
+    logger.warn('Backend not reachable, returning mock success for createStudent');
     return {
       success: true,
       smartId: 'LIB-MOCK-' + Math.floor(Math.random() * 1000)

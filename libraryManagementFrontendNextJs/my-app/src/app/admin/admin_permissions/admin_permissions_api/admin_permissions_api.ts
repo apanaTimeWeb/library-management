@@ -1,2 +1,13 @@
+// RESPONSIBILITY: Renders the admin_permissions_api.ts component/hook.
 import { fetchApi } from '@/lib/api';
-// API for admin_permissions
+import { ADMIN_API_ROUTES } from '@/app/admin/admin_url_config';
+import type { ApiResponse } from '@/app/admin/admin_types/admin_types';
+
+/**
+ * RESPONSIBILITY: Fetches permissions data.
+ */
+export async function fetchAdminPermissions(serverToken?: string): Promise<ApiResponse<unknown>> {
+  const options = serverToken ? { headers: { Authorization: `Bearer ${serverToken}` } } : {};
+  return fetchApi(ADMIN_API_ROUTES.PERMISSIONS, options);
+}
+

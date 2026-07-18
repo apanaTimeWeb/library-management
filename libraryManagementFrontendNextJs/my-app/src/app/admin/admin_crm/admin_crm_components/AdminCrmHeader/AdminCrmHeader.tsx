@@ -1,35 +1,35 @@
 'use client';
-// RESPONSIBILITY: Renders the Header component for the admin_crm module.
-// DATA FLOW: Parent -> AdminCrmHeader -> DOM
+// RESPONSIBILITY: Renders the top header for the admin_crm sub-module. Receives onMenuClick via props. No API calls.
+// DATA FLOW: AdminCrmLayout -> AdminCrmHeader
 
 import { BellRing, Building2, Menu } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { AdminCrmHeaderProps } from "./AdminCrmHeader_types";
 
-interface HeaderProps {
-  onMenuClick?: () => void;
-}
-
-export default function Header({ onMenuClick }: HeaderProps) {
+export default function AdminCrmHeader({ onMenuClick }: AdminCrmHeaderProps) {
   return (
-    <header className="crm-header">
+    <header className="h-16 flex items-center justify-between px-4 sm:px-6 bg-card border-b border-border shrink-0 sticky top-0 z-30 shadow-sm">
       {/* ── Brand ── */}
-      <div className="crm-header-brand">
+      <div className="flex items-center gap-3">
         {/* Hamburger (mobile only) */}
-        <button
-          className="crm-hamburger"
+        <Button
+          variant="ghost"
+          size="icon"
+          className="md:hidden text-muted-foreground hover:text-foreground"
           onClick={onMenuClick}
           title="Toggle sidebar"
           aria-label="Toggle sidebar"
         >
           <Menu size={20} />
-        </button>
+        </Button>
 
-        <div className="crm-header-logo">
+        <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-primary text-primary-foreground shadow-sm">
           <svg
             width="18"
             height="18"
             viewBox="0 0 24 24"
             fill="none"
-            stroke="#fff"
+            stroke="currentColor"
             strokeWidth="2.2"
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -39,27 +39,27 @@ export default function Header({ onMenuClick }: HeaderProps) {
           </svg>
         </div>
 
-        <span className="crm-header-title">Smart Library 360</span>
+        <span className="font-bold text-lg hidden sm:block tracking-tight">Smart Library 360</span>
       </div>
 
       {/* ── Right section ── */}
-      <div className="crm-header-right">
+      <div className="flex items-center gap-4">
         {/* Branch chip */}
-        <div className="crm-header-branch">
-          <Building2 size={14} />
-          <span>Downtown Hub</span>
+        <div className="hidden sm:flex items-center gap-1.5 bg-muted/50 px-3 py-1.5 rounded-full border border-border">
+          <Building2 size={14} className="text-muted-foreground" />
+          <span className="text-xs font-semibold">Downtown Hub</span>
         </div>
 
         {/* Bell */}
-        <button className="crm-header-bell" title="Notifications" aria-label="Notifications">
+        <Button variant="ghost" size="icon" className="relative text-muted-foreground hover:text-foreground" title="Notifications" aria-label="Notifications">
           <BellRing size={18} />
-          <span className="crm-header-bell-dot" />
-        </button>
+          <span className="absolute top-2 right-2.5 w-2 h-2 bg-danger rounded-full border border-card" />
+        </Button>
 
         {/* Avatar + name */}
-        <div className="crm-header-user">
-          <div className="crm-header-avatar">LA</div>
-          <span className="crm-header-username">Library Admin</span>
+        <div className="flex items-center gap-3 pl-2 sm:pl-4 sm:border-l sm:border-border">
+          <div className="w-8 h-8 rounded-full bg-primary/10 text-primary flex items-center justify-center font-bold text-xs shadow-sm">LA</div>
+          <span className="text-sm font-semibold hidden md:block">Library Admin</span>
         </div>
       </div>
     </header>

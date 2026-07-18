@@ -1,5 +1,4 @@
 'use client';
-
 // RESPONSIBILITY: Renders the Next.js native loading skeleton for the admin_settings module.
 // DATA FLOW: Next.js Router -> loading.tsx
 
@@ -13,3 +12,4 @@ export default function Loading() {
     </div>
   );
 }
+

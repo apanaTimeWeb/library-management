@@ -1,0 +1,8 @@
+export const WHATSAPP_LOGS_CONSTANTS = {
+  MODULE_NAME: 'MANAGER_WHATSAPP_LOGS',
+  ERRORS: {
+    WHATSAPP_LOG_NOT_FOUND: 'WhatsAppMessage not found.',
+  },
+  DEFAULT_PAGE: 1,
+  DEFAULT_LIMIT: 20,
+};

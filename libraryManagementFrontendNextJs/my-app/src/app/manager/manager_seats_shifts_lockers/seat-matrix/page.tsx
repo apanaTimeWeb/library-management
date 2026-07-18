@@ -1,4 +1,4 @@
-import { SeatMatrixClient } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_components/SeatMatrixClient';
+import { ManagerSeatsSeatMatrixClient } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_components/ManagerSeatsSeatMatrixClient';
 import { ManagerSeatsErrorBoundary } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_components/ManagerSeatsErrorBoundary';
 
 // RESPONSIBILITY: Strict Server Component for Seat Matrix.
@@ -6,7 +6,8 @@ import { ManagerSeatsErrorBoundary } from '@/app/manager/manager_seats_shifts_lo
 export default function SeatMatrixPage() {
   return (
     <ManagerSeatsErrorBoundary>
-      <SeatMatrixClient />
+      <ManagerSeatsSeatMatrixClient />
     </ManagerSeatsErrorBoundary>
   );
 }
+

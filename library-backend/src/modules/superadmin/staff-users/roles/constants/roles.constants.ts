@@ -1,0 +1,8 @@
+export const ROLES_CONSTANTS = {
+  MODULE_NAME: 'SUPERADMIN_ROLES',
+  ERRORS: {
+    ROLE_NOT_FOUND: 'Role not found.',
+  },
+  DEFAULT_PAGE: 1,
+  DEFAULT_LIMIT: 20,
+};

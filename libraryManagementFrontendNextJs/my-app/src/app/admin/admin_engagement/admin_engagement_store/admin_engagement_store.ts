@@ -3,12 +3,14 @@
 
 import { create } from 'zustand';
 
-interface AdminEngagementState {
-  data: any[];
-  setData: (data: any[]) => void;
+
+export interface AdminEngagementState {
+  data: unknown[];
+  setData: (data: unknown[]) => void;
 }
 
-export const useAdminEngagementStore = create<AdminEngagementState>((set: any) => ({
+export const useAdminEngagementStore = create<AdminEngagementState>((set) => ({
   data: [],
-  setData: (data: any[]) => set({ data }),
+  setData: (data: unknown[]) => set({ data }),
 }));
+

@@ -1,55 +1,46 @@
-import {
-  LayoutDashboard, BarChart2, History,
-  FileText, User, Building2, Key, Tag,
-  Ban, LucideIcon, IndianRupee, Users,
-  RotateCcw, Phone, MessageSquare, Handshake, AlertCircle
-} from 'lucide-react';
-import { AdminNavItem } from '@/app/admin/admin_types/admin_types';
+// RESPONSIBILITY: Renders the admin_constants.ts component/hook.
 import { ADMIN_ROUTES } from '@/app/admin/admin_url_config';
+import {
+  LayoutDashboard, Users, Users2, Shield, CreditCard,
+  Settings, History, Ban, Tags, Phone, Receipt, LayoutGrid,
+  TrendingUp, Clock, AlertCircle, AlertTriangle
+} from 'lucide-react';
+import type { LucideIcon } from 'lucide-react';
 
-/**
- * Sidebar Navigation Configuration
- */
-export const ADMIN_SIDEBAR_NAV: AdminNavItem[] = [
+
+export type NavItem =
+  | { group: string }
+  | { href: string; icon: LucideIcon; label: string };
+
+export const ADMIN_SIDEBAR_NAV: NavItem[] = [
   { href: ADMIN_ROUTES.DASHBOARD, icon: LayoutDashboard, label: 'Dashboard' },
-  { href: ADMIN_ROUTES.REPORTS,   icon: BarChart2,       label: 'Reports'   },
-  { group: 'Admin' },
-  { href: ADMIN_ROUTES.BRANCHES,    icon: Building2, label: 'Branches'      },
-  { href: ADMIN_ROUTES.STAFF_USERS, icon: User,      label: 'Staff & Users' },
-  { href: ADMIN_ROUTES.PERMISSIONS, icon: Key,       label: 'Permissions'   },
-  { href: ADMIN_ROUTES.PLANS,       icon: FileText,  label: 'Plans'         },
-  { href: ADMIN_ROUTES.COUPONS,     icon: Tag,       label: 'Coupons'       },
-  { href: ADMIN_ROUTES.BLACKLIST,   icon: Ban,       label: 'Blacklist'     },
-  { href: ADMIN_ROUTES.AUDIT_LOGS,  icon: History,   label: 'Audit Logs'    },
-  { group: 'Operations (All Branches)' },
-  { href: ADMIN_ROUTES.EXPENSES,    icon: IndianRupee, label: 'Expenses'    },
-  { href: ADMIN_ROUTES.STUDENTS,    icon: Users,       label: 'Students'    },
-  { group: 'Configuration' },
-  { href: ADMIN_ROUTES.EXPENSE_CATEGORIES, icon: Tag, label: 'Expense Types' },
-  { href: ADMIN_ROUTES.SETTINGS,    icon: Key,       label: 'Settings'      },
+  { group: 'CRM & Students' },
+  { href: ADMIN_ROUTES.CRM_ENQUIRIES, icon: Phone, label: 'Enquiries' },
+  { href: ADMIN_ROUTES.STUDENTS, icon: Users, label: 'Students' },
+  { group: 'Branch Management' },
+  { href: ADMIN_ROUTES.BRANCHES, icon: LayoutGrid, label: 'Branches' },
+  { href: ADMIN_ROUTES.STAFF_USERS, icon: Users2, label: 'Staff Users' },
+  { href: ADMIN_ROUTES.PERMISSIONS, icon: Shield, label: 'Permissions' },
+  { group: 'Finance & Accounting' },
+  { href: ADMIN_ROUTES.PLANS, icon: CreditCard, label: 'Plans' },
+  { href: ADMIN_ROUTES.ACCOUNTING_EXPENSES, icon: Receipt, label: 'Expenses' },
+  { href: ADMIN_ROUTES.COUPONS, icon: Tags, label: 'Coupons' },
+  { group: 'System Configuration' },
+  { href: ADMIN_ROUTES.SETTINGS, icon: Settings, label: 'Settings' },
+  { href: ADMIN_ROUTES.BLACKLIST, icon: Ban, label: 'Blacklist' },
+  { href: ADMIN_ROUTES.AUDIT_LOGS, icon: History, label: 'Audit Logs' },
 ];
 
-/**
- * Icon color & background tokens for KPI cards on Dashboard.
- * Values MUST be CSS token strings — no hex allowed in TSX files.
- */
 export const ADMIN_KPI_META = [
-  { icon: Users,       iconColor: 'var(--primary)', iconBg: 'var(--icon-bg-primary)' },
-  { icon: IndianRupee, iconColor: 'var(--success)', iconBg: 'var(--icon-bg-success)' },
-  { icon: Armchair,    iconColor: 'var(--warning)', iconBg: 'var(--icon-bg-warning)' },
-  { icon: AlertCircle, iconColor: 'var(--danger)',  iconBg: 'var(--icon-bg-danger)'  },
-] as const;
+  { icon: Users, iconColor: 'text-primary', iconBg: 'bg-primary/10' },
+  { icon: CreditCard, iconColor: 'text-success', iconBg: 'bg-success/10' },
+  { icon: LayoutGrid, iconColor: 'text-warning', iconBg: 'bg-warning/10' },
+  { icon: TrendingUp, iconColor: 'text-info', iconBg: 'bg-info/10' },
+];
 
-// Importing Armchair to use in KPI_META
-import { Armchair } from 'lucide-react';
-
-
-/**
- * Action Icons mapped to label
- */
 export const ADMIN_ACTION_ICONS: Record<string, LucideIcon> = {
-  'Fee Renewals Due': RotateCcw,
-  'New Enquiries':    Phone,
-  'Complaint Open':   MessageSquare,
-  'PTP Dates Today':  Handshake,
+  'Pending Renewals': Clock,
+  'Expiring Subscriptions': AlertCircle,
+  'Overdue Payments': AlertTriangle,
+  'New Enquiries': Phone,
 };

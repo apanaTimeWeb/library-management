@@ -1,0 +1,8 @@
+export const ATTENDANCE_CONSTANTS = {
+  MODULE_NAME: 'MANAGER_ATTENDANCE',
+  ERRORS: {
+    ATTENDANCE_NOT_FOUND: 'Attendance not found.',
+  },
+  DEFAULT_PAGE: 1,
+  DEFAULT_LIMIT: 20,
+};

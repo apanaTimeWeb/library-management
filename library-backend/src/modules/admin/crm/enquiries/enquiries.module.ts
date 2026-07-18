@@ -4,30 +4,20 @@ import { Enquiry } from '@/core/entities/enquiry.entity';
 import { User } from '@/core/entities/user.entity';
 
 // Micro-Services
-import { GetAllEnquiriesService } from './services/get-all-enquiries.service';
-import { GetEnquiryService } from './services/get-enquiry.service';
-import { UpdateEnquiryStatusService } from './services/update-enquiry-status.service';
-import { AddFollowUpService } from './services/add-follow-up.service';
+import { EnquiriesGetAllService } from './services/enquiries-get-all-enquiries.service';
+import { EnquiriesGetEnquiryService } from './services/enquiries-get-enquiry.service';
+import { EnquiriesUpdateEnquiryStatusService } from './services/enquiries-update-enquiry-status.service';
+import { EnquiriesAddFollowUpService } from './services/enquiries-add-follow-up.service';
 
 // Micro-Controllers
-import { GetAllEnquiriesController } from './controllers/get-all-enquiries.controller';
-import { GetEnquiryController } from './controllers/get-enquiry.controller';
-import { UpdateEnquiryStatusController } from './controllers/update-enquiry-status.controller';
-import { AddFollowUpController } from './controllers/add-follow-up.controller';
+import { EnquiriesGetAllController } from './controllers/enquiries-get-all-enquiries.controller';
+import { EnquiriesGetEnquiryController } from './controllers/enquiries-get-enquiry.controller';
+import { EnquiriesUpdateEnquiryStatusController } from './controllers/enquiries-update-enquiry-status.controller';
+import { EnquiriesAddFollowUpController } from './controllers/enquiries-add-follow-up.controller';
 
 @Module({
   imports: [TypeOrmModule.forFeature([Enquiry, User])],
-  providers: [
-    GetAllEnquiriesService,
-    GetEnquiryService,
-    UpdateEnquiryStatusService,
-    AddFollowUpService,
-  ],
-  controllers: [
-    GetAllEnquiriesController,
-    GetEnquiryController,
-    UpdateEnquiryStatusController,
-    AddFollowUpController,
-  ],
+  providers: [EnquiriesGetAllService, EnquiriesGetEnquiryService, EnquiriesUpdateEnquiryStatusService, EnquiriesAddFollowUpService, ],
+  controllers: [EnquiriesGetAllController, EnquiriesGetEnquiryController, EnquiriesUpdateEnquiryStatusController, EnquiriesAddFollowUpController, ],
 })
-export class AdminEnquiriesModule {}
+export class EnquiriesAdminModule {}

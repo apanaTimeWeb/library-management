@@ -1,0 +1,8 @@
+export const PAYMENTS_CONSTANTS = {
+  MODULE_NAME: 'ADMIN_PAYMENTS',
+  ERRORS: {
+    PAYMENT_NOT_FOUND: 'Payment not found.',
+  },
+  DEFAULT_PAGE: 1,
+  DEFAULT_LIMIT: 20,
+};

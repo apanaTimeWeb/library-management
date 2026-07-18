@@ -3,12 +3,14 @@
 
 import { create } from 'zustand';
 
-interface AdminBranchesState {
-  data: any[];
-  setData: (data: any[]) => void;
+
+export interface AdminBranchesState {
+  data: unknown[];
+  setData: (data: unknown[]) => void;
 }
 
-export const useAdminBranchesStore = create<AdminBranchesState>((set: any) => ({
+export const useAdminBranchesStore = create<AdminBranchesState>((set) => ({
   data: [],
-  setData: (data: any[]) => set({ data }),
+  setData: (data: unknown[]) => set({ data }),
 }));
+

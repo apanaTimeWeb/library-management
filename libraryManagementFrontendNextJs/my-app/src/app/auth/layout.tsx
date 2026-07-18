@@ -1,3 +1,5 @@
+import { AuthRoute } from '@/app/auth/auth_shared_components/AuthRoute';
+
 export default function AuthLayout({ children }: { children: React.ReactNode }) {
-  return <>{children}</>;
+  return <AuthRoute>{children}</AuthRoute>;
 }

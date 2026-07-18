@@ -1,5 +1,7 @@
-import { ExitClient } from '@/app/manager/manager_students/manager_students_components/ExitClient';
+// RESPONSIBILITY: Renders the page.tsx component.
+import { ManagerStudentsExitClient } from '@/app/manager/manager_students/manager_students_components/ManagerStudentsExitClient';
 
 export default function StudentExitPage() {
-  return <ExitClient />;
+  return <ManagerStudentsExitClient />;
 }
+

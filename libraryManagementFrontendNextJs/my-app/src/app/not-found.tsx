@@ -1,11 +1,12 @@
 'use client';
+// RESPONSIBILITY: Renders the not-found component.
 import Link from 'next/link';
-import '@/app/superadmin/superadmin_system/system.css';
+
 
 export default function NotFound() {
   return (
     <div className="system-theme min-h-screen flex text-center items-center justify-center p-8">
-      <div className="text-center max-w-[480px] w-full mx-auto">
+      <div className="text-center max-w-full max-w-md w-full mx-auto">
 
         {/* Giant 404 */}
         <div className="text-[clamp(80px,20vw,140px)] font-extrabold leading-none tracking-tight mb-2 bg-gradient-to-br from-primary to-purple-500 bg-clip-text text-transparent">

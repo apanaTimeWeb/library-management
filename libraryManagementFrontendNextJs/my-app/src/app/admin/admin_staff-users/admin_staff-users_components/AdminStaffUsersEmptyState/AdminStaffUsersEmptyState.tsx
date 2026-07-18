@@ -1,12 +1,8 @@
 'use client';
+import { Props } from "./AdminStaffUsersEmptyState_types";
 
 // RESPONSIBILITY: Standardized empty state component for lists/tables in the admin_staff-users module.
 // DATA FLOW: Parent -> AdminStaffUsersEmptyState -> DOM
-
-interface Props {
-  title?: string;
-  description?: string;
-}
 
 export default function AdminStaffUsersEmptyState({ title = 'No data found', description = 'Try adjusting your filters.' }: Props) {
   return (
@@ -16,3 +12,4 @@ export default function AdminStaffUsersEmptyState({ title = 'No data found', des
     </div>
   );
 }
+

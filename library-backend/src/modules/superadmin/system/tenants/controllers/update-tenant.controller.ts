@@ -1,23 +1,14 @@
-import { Controller, Patch, Param, Body, UseGuards } from '@nestjs/common';
-import { ApiTags, ApiOperation, ApiBearerAuth } from '@nestjs/swagger';
-import { JwtAuthGuard } from '@/modules/auth/auth/guards/jwt-auth.guard';
+import { Controller, Patch, Param, Body } from '@nestjs/common';
 import { UpdateTenantService } from '../services/update-tenant.service';
 import { UpdateTenantDto } from '../dto/update-tenant.dto';
 
-@ApiTags('Superadmin Tenants')
-@ApiBearerAuth()
-@UseGuards(JwtAuthGuard)
-@Controller('api/superadmin/system/tenants')
+@Controller('api/v1/superadmin/tenants')
 export class UpdateTenantController {
-  constructor(private readonly updateTenantService: UpdateTenantService) {}
+  constructor(private readonly service: UpdateTenantService) {}
 
-  // SLA: FAST
   @Patch(':id')
-  @ApiOperation({ summary: 'Update a tenant' })
-  async update(
-    @Param('id') id: string,
-    @Body() updateTenantDto: UpdateTenantDto,
-  ): Promise<any> {
-    return this.updateTenantService.update(id, updateTenantDto);
+  async handle(@Param('id') id: string, @Body() dto: UpdateTenantDto) {
+    const data = await this.service.execute(id, dto);
+    return { success: true, message: 'Tenant updated successfully', data };
   }
 }

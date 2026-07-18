@@ -1,12 +1,8 @@
 'use client';
+import { Props } from "./AdminStudentsEmptyState_types";
 
 // RESPONSIBILITY: Standardized empty state component for lists/tables in the admin_students module.
 // DATA FLOW: Parent -> AdminStudentsEmptyState -> DOM
-
-interface Props {
-  title?: string;
-  description?: string;
-}
 
 export default function AdminStudentsEmptyState({ title = 'No data found', description = 'Try adjusting your filters.' }: Props) {
   return (
@@ -16,3 +12,4 @@ export default function AdminStudentsEmptyState({ title = 'No data found', descr
     </div>
   );
 }
+

@@ -1,6 +1,4 @@
-/**
- * WhatsApp utility functions for Smart Library 360
- */
+
 
 export interface StudentWhatsAppData {
   name: string;

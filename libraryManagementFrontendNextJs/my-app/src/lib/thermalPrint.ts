@@ -1,7 +1,4 @@
-/**
- * Thermal Print Utility — Smart Library 360
- * 80mm thermal printer — ESC/POS style via browser popup
- */
+
 
 export interface ThermalBillData {
   type: 'idcard' | 'receipt' | 'dues';

@@ -1,0 +1,8 @@
+export const ID_CARDS_CONSTANTS = {
+  MODULE_NAME: 'ADMIN_ID_CARDS',
+  ERRORS: {
+    ID_CARD_NOT_FOUND: 'IDCard not found.',
+  },
+  DEFAULT_PAGE: 1,
+  DEFAULT_LIMIT: 20,
+};

@@ -1,0 +1,8 @@
+export const PLANS_CONSTANTS = {
+  MODULE_NAME: 'SUPERADMIN_PLANS',
+  ERRORS: {
+    PLAN_NOT_FOUND: 'Plan not found.',
+  },
+  DEFAULT_PAGE: 1,
+  DEFAULT_LIMIT: 20,
+};

@@ -1,12 +1,8 @@
 'use client';
+import { Props } from "./AdminExpenseCategoriesEmptyState_types";
 
 // RESPONSIBILITY: Standardized empty state component for lists/tables in the admin_expense-categories module.
 // DATA FLOW: Parent -> AdminExpenseCategoriesEmptyState -> DOM
-
-interface Props {
-  title?: string;
-  description?: string;
-}
 
 export default function AdminExpenseCategoriesEmptyState({ title = 'No data found', description = 'Try adjusting your filters.' }: Props) {
   return (
@@ -16,3 +12,4 @@ export default function AdminExpenseCategoriesEmptyState({ title = 'No data foun
     </div>
   );
 }
+

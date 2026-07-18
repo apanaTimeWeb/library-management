@@ -1,12 +1,8 @@
 'use client';
+import { Props } from "./AdminDashboardEmptyState_types";
 
 // RESPONSIBILITY: Standardized empty state component for lists/tables in the admin_dashboard module.
 // DATA FLOW: Parent -> AdminDashboardEmptyState -> DOM
-
-interface Props {
-  title?: string;
-  description?: string;
-}
 
 export default function AdminDashboardEmptyState({ title = 'No data found', description = 'Try adjusting your filters.' }: Props) {
   return (
@@ -16,3 +12,4 @@ export default function AdminDashboardEmptyState({ title = 'No data found', desc
     </div>
   );
 }
+

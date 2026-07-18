@@ -1,90 +1,94 @@
 'use client';
-
+import { useState } from 'react';
+import { useManagerDashboardData } from '@/app/manager/manager_dashboard/manager_dashboard_hooks/useManagerDashboardData';
 import { useMemo } from 'react';
 import Link from 'next/link';
 import { ChevronRight, TrendingUp } from 'lucide-react';
-import { AgGridReact } from 'ag-grid-react';
-import { AllCommunityModule, ModuleRegistry, type ColDef } from 'ag-grid-community';
-import { gridTheme } from '@/app/manager/manager_reusable/gridTheme';
-import { useDashboardData } from '@/app/manager/manager_dashboard/manager_dashboard_hooks/useDashboardData';
-import { DashboardKpiGrid } from '@/app/manager/manager_dashboard/manager_dashboard_components/DashboardKpiGrid';
-import { DashboardSeatMatrix } from '@/app/manager/manager_dashboard/manager_dashboard_components/DashboardSeatMatrix';
 import { STATUS_CLASS, QUICK_LINKS } from '@/app/manager/manager_dashboard/manager_dashboard_constants';
 import { MANAGER_ROUTES } from '@/app/manager/manager_url_config';
-
-ModuleRegistry.registerModules([AllCommunityModule]);
+import type { CellRendererProps } from '@/app/manager/manager_dashboard/manager_dashboard_types';
+import { ManagerDashboardKpiGrid } from '@/app/manager/manager_dashboard/manager_dashboard_components/ManagerDashboardKpiGrid';
+import { ManagerDashboardSeatMatrix } from '@/app/manager/manager_dashboard/manager_dashboard_components/ManagerDashboardSeatMatrix';
+import { TablePagination } from '@/components/ui/table-pagination';
 
 // RESPONSIBILITY: Main Client view for the Manager Dashboard. Glues data and components together.
 
-function SmartIdCell({ value }: { value: string }) {
-  return <span className="mgr-table-id">{value}</span>;
+function SmartIdCell({ value }: CellRendererProps) {
+  return <span className="font-mono text-primary font-semibold tracking-tight text-xs bg-primary-subtle px-1.5 py-0.5 rounded">{value}</span>;
 }
-function ShiftCell({ value }: { value: string }) {
-  return <span className="mgr-badge mgr-badge--info">{value}</span>;
+function ShiftCell({ value }: CellRendererProps) {
+  return <span className="rounded-full px-2.5 py-0.5 text-xs font-semibold bg-info-bg text-info">{value}</span>;
 }
-function StatusCell({ value }: { value: string }) {
-  const cls = STATUS_CLASS[value] ?? 'mgr-badge--info';
-  return <span className={`mgr-badge ${cls}`}>{value}</span>;
+function StatusCell({ value }: CellRendererProps) {
+  const cls = STATUS_CLASS[value] ?? 'bg-info-bg text-info';
+  return <span className={`rounded-full px-2.5 py-0.5 text-xs font-semibold ${cls}`}>{value}</span>;
 }
-function PhoneCell({ value }: { value: string }) {
-  return <span className="mgr-text-secondary">{value}</span>;
+function PhoneCell({ value }: CellRendererProps) {
+  return <span className="text-text-secondary">{value}</span>;
 }
 
 export function ManagerDashboardClient() {
-  const { data, status, error } = useDashboardData();
+  const [searchTerm, setSearchTerm] = useState('');
 
-  const admissionCols: ColDef[] = useMemo(() => [
-    { field: 'name',    headerName: 'NAME',     flex: 2, sortable: true },
-    { field: 'smartId', headerName: 'SMART ID', flex: 1, sortable: true, cellRenderer: SmartIdCell },
-    { field: 'shift',   headerName: 'SHIFT',    flex: 1, sortable: true, cellRenderer: ShiftCell  },
-  ], []);
+  const { data, status, error } = useManagerDashboardData();
 
-  const enquiryCols: ColDef[] = useMemo(() => [
-    { field: 'name',   headerName: 'NAME',   flex: 2, sortable: true },
-    { field: 'phone',  headerName: 'PHONE',  flex: 1, cellRenderer: PhoneCell },
-    { field: 'status', headerName: 'STATUS', flex: 1, sortable: true, cellRenderer: StatusCell },
-  ], []);
+  const filteredAdmissions = useMemo(() => {
+    return (data?.recentAdmissions || []).filter((item) => 
+      !searchTerm || 
+      item.name?.toLowerCase().includes(searchTerm.toLowerCase()) || 
+      item.smartId?.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+  }, [data?.recentAdmissions, searchTerm]);
 
-  if (status === 'loading') return <div className="p-8 animate-pulse">Loading dashboard...</div>;
-  if (status === 'error') return <div className="p-8 text-[var(--danger)]">Failed to load: {error}</div>;
+  const filteredEnquiries = useMemo(() => {
+    return (data?.recentEnquiries || []).filter((item) => 
+      !searchTerm || 
+      item.name?.toLowerCase().includes(searchTerm.toLowerCase()) || 
+      item.phone?.includes(searchTerm) || 
+      item.status?.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+  }, [data?.recentEnquiries, searchTerm]);
+
+  if (status === 'loading') return <div className="p-8 animate-pulse text-text-secondary">Loading dashboard...</div>;
+  if (status === 'error') return <div className="p-8 text-danger">Failed to load: {error}</div>;
   if (!data) return null;
 
   return (
     <div>
       {/* Page Header */}
-      <div className="mgr-page-header">
+      <div className="flex flex-col md:flex-row md:items-center justify-between p-6 gap-4">
         <div>
-          <p className="mgr-breadcrumb">Manager › Dashboard</p>
-          <h1 className="mgr-page-title">Manager Dashboard</h1>
-          <p className="mgr-page-subtitle">Good morning, Manager — aaj ka quick overview</p>
+          <p className="text-xs font-medium text-text-secondary uppercase tracking-wider mb-2">Manager › Dashboard</p>
+          <h1 className="text-2xl font-bold text-text-primary">Manager Dashboard</h1>
+          <p className="text-sm text-text-secondary mt-1.5">Good morning, Manager — aaj ka quick overview</p>
         </div>
-        <div className="mgr-page-actions">
-          <Link href={MANAGER_ROUTES.REPORTS} className="mgr-btn-ghost mgr-btn-sm">
+        <div className="flex items-center">
+          <Link href={MANAGER_ROUTES.STUDENT_REPORTS} className="bg-primary text-white rounded-lg px-4 py-2 text-sm font-medium hover:bg-primary-hover transition-colors inline-flex items-center gap-2">
             <TrendingUp size={14} /> View Reports
           </Link>
         </div>
       </div>
 
-      <DashboardKpiGrid kpiData={data.kpiData} />
+      <ManagerDashboardKpiGrid kpiData={data.kpiData} />
 
       {/* Row 2 — Seat Matrix + Action Items */}
-      <div className="mgr-dashboard-row2 mgr-section-gap">
-        <DashboardSeatMatrix seatData={data.seatData} />
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-6">
+        <ManagerDashboardSeatMatrix seatData={data.seatData} />
 
-        <div className="mgr-card">
-          <div className="mgr-card-header">
-            <h2 className="mgr-section-title">My Action Items</h2>
+        <div className="bg-bg-card rounded-xl border border-border p-6 flex flex-col h-full">
+          <div className="flex items-center justify-between mb-4">
+            <h2 className="text-base font-semibold text-text-primary">My Action Items</h2>
           </div>
-          <div className="mgr-card-body">
+          <div className="flex-1">
             {data.actionItems?.map((item) => (
-              <div key={item.title} className="mgr-action-item">
-                <span className="mgr-action-label">{item.title}</span>
-                <div className="mgr-action-right">
+              <div key={item.title} className="flex items-center justify-between py-3 border-b border-border last:border-0">
+                <span className="text-sm font-medium text-text-secondary flex items-center">{item.title}</span>
+                <div className="flex items-center gap-3">
                   <span className={item.countClass}>{item.count}</span>
                   {item.showRenew ? (
-                    <Link href={item.href} className="mgr-btn-primary mgr-btn-sm">Renew</Link>
+                    <Link href={item.href} className="bg-primary text-white rounded-lg py-1.5 px-3 text-xs font-medium hover:bg-primary-hover transition-colors inline-flex items-center gap-2">Renew</Link>
                   ) : (
-                    <Link href={item.href} className="mgr-action-link">View</Link>
+                    <Link href={item.href} className="text-sm font-semibold text-primary hover:text-primary-hover transition-colors inline-flex items-center gap-1">View</Link>
                   )}
                 </div>
               </div>
@@ -94,55 +98,95 @@ export function ManagerDashboardClient() {
       </div>
 
       {/* Row 3 — Recent Activity */}
-      <div className="mgr-dashboard-row3 mgr-section-gap">
-        <div className="mgr-card">
-          <div className="mgr-card-header">
-            <h2 className="mgr-section-title">Recent New Admissions</h2>
-            <Link href={MANAGER_ROUTES.STUDENTS} className="mgr-action-link">View all</Link>
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-6">
+        <div className="bg-bg-card rounded-xl border border-border p-6 flex flex-col">
+          <div className="flex items-center justify-between mb-4">
+            <h2 className="text-base font-semibold text-text-primary">Recent New Admissions</h2>
+            <Link href={MANAGER_ROUTES.STUDENTS} className="text-sm font-semibold text-primary hover:text-primary-hover transition-colors inline-flex items-center gap-1">View all</Link>
           </div>
-          <div style={{ height: 280 }}>
-            <AgGridReact
-              theme={gridTheme}
-              rowData={data.recentAdmissions || []}
-              columnDefs={admissionCols}
-              rowHeight={48}
-              headerHeight={38}
-              suppressMovableColumns
-              suppressCellFocus
-              defaultColDef={{ resizable: false }}
+
+          <div className="flex justify-end mb-[16px]">
+            <input
+              type="text"
+              placeholder="Search in table..."
+              className="px-3 py-2 border border-border rounded-md text-sm bg-bg-input text-text-primary focus:outline-none focus:ring-2 focus:ring-primary w-64"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
             />
+          </div>
+
+                    <div className="h-72 w-full overflow-y-auto overflow-x-auto bg-bg-card rounded-lg border border-border">
+            <table className="w-full text-left text-sm whitespace-nowrap">
+              <thead className="bg-bg-elevated sticky top-0 z-10">
+                <tr className="border-b border-border text-text-secondary text-xs uppercase tracking-wider">
+                  <th className="px-4 py-3 font-semibold">NAME</th>
+                  <th className="px-4 py-3 font-semibold">SMART ID</th>
+                  <th className="px-4 py-3 font-semibold">SHIFT</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-border">
+                {filteredAdmissions.length === 0 ? (
+                  <tr>
+                    <td colSpan={3} className="px-4 py-8 text-center text-text-secondary">No admissions found</td>
+                  </tr>
+                ) : (
+                  filteredAdmissions.map((row, i: number) => (
+                    <tr key={row.id} className="hover:bg-bg-page transition-colors cursor-pointer">
+                    <td className="px-4 py-3 text-text-primary font-medium">{row.name}</td>
+                    <td className="px-4 py-3"><SmartIdCell value={row.smartId} /></td>
+                    <td className="px-4 py-3"><ShiftCell value={row.shift} /></td>
+                    <td className="px-4 py-3 text-text-secondary">{row.date}</td>
+                  </tr>))
+                )}
+              </tbody>
+            </table>
           </div>
         </div>
 
-        <div className="mgr-card">
-          <div className="mgr-card-header">
-            <h2 className="mgr-section-title">Recent Enquiries</h2>
-            <Link href={MANAGER_ROUTES.CRM_ENQUIRIES} className="mgr-action-link">View all</Link>
+        <div className="bg-bg-card rounded-xl border border-border p-6 flex flex-col">
+          <div className="flex items-center justify-between mb-4">
+            <h2 className="text-base font-semibold text-text-primary">Recent Enquiries</h2>
+            <Link href={MANAGER_ROUTES.CRM_ENQUIRIES} className="text-sm font-semibold text-primary hover:text-primary-hover transition-colors inline-flex items-center gap-1">View all</Link>
           </div>
-          <div style={{ height: 280 }}>
-            <AgGridReact
-              theme={gridTheme}
-              rowData={data.recentEnquiries || []}
-              columnDefs={enquiryCols}
-              rowHeight={48}
-              headerHeight={38}
-              suppressMovableColumns
-              suppressCellFocus
-              defaultColDef={{ resizable: false }}
-            />
+          <div className="h-72 w-full overflow-y-auto overflow-x-auto bg-bg-card rounded-lg border border-border">
+            <table className="w-full text-left text-sm whitespace-nowrap">
+              <thead className="bg-bg-elevated sticky top-0 z-10">
+                <tr className="border-b border-border text-text-secondary text-xs uppercase tracking-wider">
+                  <th className="px-4 py-3 font-semibold">NAME</th>
+                  <th className="px-4 py-3 font-semibold">PHONE</th>
+                  <th className="px-4 py-3 font-semibold">STATUS</th>
+                  <th className="px-4 py-3 font-semibold">DATE</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-border">
+                {filteredEnquiries.length === 0 ? (
+                  <tr>
+                    <td colSpan={3} className="px-4 py-8 text-center text-text-secondary">No enquiries found</td>
+                  </tr>
+                ) : (
+                  filteredEnquiries.map((row, i: number) => (
+                    <tr key={row.id} className="hover:bg-bg-page transition-colors cursor-pointer">
+                    <td className="px-4 py-3 text-text-primary font-medium">{row.name}</td>
+                    <td className="px-4 py-3"><PhoneCell value={row.phone} /></td>
+                    <td className="px-4 py-3"><StatusCell value={row.status} /></td>
+                    <td className="px-4 py-3 text-text-secondary whitespace-nowrap">{row.date}</td>
+                  </tr>))
+                )}
+              </tbody>
+            </table>
           </div>
         </div>
       </div>
 
       {/* Quick Links */}
-      <div className="mgr-card">
-        <div className="mgr-card-header">
-          <h2 className="mgr-section-title">Quick Links</h2>
+      <div className="bg-bg-card rounded-xl border border-border p-6 mt-6">
+        <div className="flex items-center justify-between mb-4">
+          <h2 className="text-base font-semibold text-text-primary">Quick Links</h2>
         </div>
-        <div className="mgr-card-body">
-          <div className="mgr-quick-links-grid">
+        <div>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {QUICK_LINKS.map((link) => (
-              <Link key={link.title} href={link.href} className="mgr-action-link">
+              <Link key={link.title} href={link.href} className="text-sm font-semibold text-primary hover:text-primary-hover transition-colors inline-flex items-center gap-1">
                 <ChevronRight size={14} />{link.title}
               </Link>
             ))}

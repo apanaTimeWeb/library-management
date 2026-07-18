@@ -1,0 +1,16 @@
+'use client';
+// RESPONSIBILITY: Renders the SuperadminCommunicationRoute component.
+import { usePathname } from 'next/navigation';
+
+
+const COMMUNICATION_ROUTES = ['/communication'];
+
+// ManagerRoute already provides the shell for all /communication/* paths.
+export function SuperadminCommunicationRoute({ children }: { children: React.ReactNode }) {
+  const pathname = usePathname();
+
+  const isCommunicationRoute = COMMUNICATION_ROUTES.some(r => pathname.startsWith(r));
+  if (!isCommunicationRoute) return <>{children}</>;
+
+  return <>{children}</>;
+}

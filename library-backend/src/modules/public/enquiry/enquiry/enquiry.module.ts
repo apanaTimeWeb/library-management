@@ -3,14 +3,14 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { Enquiry } from '@/core/entities/enquiry.entity';
 
 // Micro-Services
-import { CreateEnquiryService } from './services/create-enquiry.service';
+import { EnquiryCreateService } from '@/modules/public/enquiry/enquiry/services/enquiry-create.service';
 
 // Micro-Controllers
-import { CreateEnquiryController } from './controllers/create-enquiry.controller';
+import { EnquiryCreateController } from '@/modules/public/enquiry/enquiry/controllers/enquiry-create.controller';
 
 @Module({
   imports: [TypeOrmModule.forFeature([Enquiry])],
-  providers: [CreateEnquiryService],
-  controllers: [CreateEnquiryController],
+  providers: [EnquiryCreateService],
+  controllers: [EnquiryCreateController],
 })
 export class PublicEnquiryModule {}

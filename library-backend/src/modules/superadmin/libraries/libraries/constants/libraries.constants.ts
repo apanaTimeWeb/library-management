@@ -1,0 +1,8 @@
+export const LIBRARIES_CONSTANTS = {
+  MODULE_NAME: 'SUPERADMIN_LIBRARIES',
+  ERRORS: {
+    LIBRARY_NOT_FOUND: 'Library not found.',
+  },
+  DEFAULT_PAGE: 1,
+  DEFAULT_LIMIT: 20,
+};

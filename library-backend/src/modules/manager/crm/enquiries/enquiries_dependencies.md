@@ -1,0 +1,3 @@
+# Dependencies
+- TypeOrmModule
+- Enquiry
