@@ -4,14 +4,7 @@
 
 import * as SwitchPrimitive from '@radix-ui/react-switch';
 import { cn } from '@/app/admin/admin_system/admin_system_components/AdminSystemutils/AdminSystemutils';
-
-interface SwitchProps {
-  checked?: boolean;
-  onCheckedChange?: (checked: boolean) => void;
-  disabled?: boolean;
-  id?: string;
-  className?: string;
-}
+import { SwitchProps } from "./AdminSystemSwitch_types";
 
 export function Switch({ checked, onCheckedChange, disabled, id, className }: SwitchProps) {
   return (

@@ -3,22 +3,7 @@ import { useState, useMemo } from 'react';
 import toast from 'react-hot-toast';
 import { formatCurrency } from '@/app/admin/admin_finance/admin_finance_utils/format';
 import { ADMIN_FINANCE_MOCK_RENEWALS, ADMIN_FINANCE_MOCK_PLANS, ADMIN_FINANCE_FILTERS } from '@/app/admin/admin_finance/admin_finance_constants/AdminFinanceConstants';
-
-export type FilterType = 'expired' | 'expiring_7' | 'expiring_15';
-
-export type Renewal = {
-  id: number;
-  studentName: string;
-  smartId: string;
-  shift: string;
-  plan: string;
-  planId: number;
-  expiryDate: string;
-  daysLeft: number;
-  lastPaymentDate: string;
-  due: number;
-  total: number;
-};
+import { FilterType, Renewal } from "./useAdminFinanceRenewals_types";
 
 export function useAdminFinanceRenewals() {
   const [filter, setFilter] = useState<FilterType>('expiring_7');

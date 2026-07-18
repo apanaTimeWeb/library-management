@@ -9,19 +9,13 @@ import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/com
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Input } from '@/components/ui/input';
-
-interface ScanResult {
-  name: string; initials: string; smartId: string;
-  shift: string; validTill: string; plan: string;
-}
+import { ScanResult, ScanState } from "./AdminEngagementQrScannerClient_types";
 
 const MOCK_STUDENT: ScanResult = {
   name: 'Rahul Sharma', initials: 'RS',
   smartId: 'SL-001', shift: 'Morning',
   validTill: '30 Jun 2026', plan: 'Premium – 6 Month',
 };
-
-type ScanState = 'idle' | 'scanning' | 'detected' | 'success';
 
 export function AdminEngagementQrScannerClient() {
   const [scanState, setScanState]   = useState<ScanState>('idle');

@@ -4,10 +4,7 @@
 
 import { BellRing, Building2, Menu } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-
-export interface AdminCrmHeaderProps {
-  onMenuClick?: () => void;
-}
+import { AdminCrmHeaderProps } from "./AdminCrmHeader_types";
 
 export default function AdminCrmHeader({ onMenuClick }: AdminCrmHeaderProps) {
   return (

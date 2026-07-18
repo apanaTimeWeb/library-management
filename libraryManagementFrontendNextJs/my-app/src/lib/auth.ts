@@ -1,3 +1,5 @@
+import { AuthUser, LoginResponse } from "./auth_types";
+
 /**
  * Auth Utility — Client Side
  *
@@ -9,24 +11,6 @@
  */
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001/api/v1';
-
-export interface AuthUser {
-  id: string;
-  name: string;
-  phone: string;
-  email?: string;
-  role: string;
-  tenantId?: string;
-  branchId?: string;
-  lastLoginAt?: string;
-}
-
-export interface LoginResponse {
-  accessToken: string;
-  refreshToken: string;
-  user: AuthUser;
-}
-
 // ─── Login ────────────────────────────────────────────────────────────────────
 // 'identifier' can be phone number or email — backend matches by phone field
 export async function login(identifier: string, password: string): Promise<LoginResponse> {

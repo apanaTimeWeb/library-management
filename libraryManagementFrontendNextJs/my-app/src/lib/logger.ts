@@ -1,7 +1,7 @@
+import { LogLevel } from "./logger_types";
+
 // RESPONSIBILITY: Centralized logging utility providing sanitized, environment-aware log handling to prevent Log Injection vulnerabilities.
 // DATA FLOW: Application Components -> logger -> Console / Monitoring Service
-
-type LogLevel = 'info' | 'warn' | 'error' | 'debug';
 
 /**
  * Sanitizes input values to prevent log injection attacks (e.g. CRLF injection, raw unhandled object dumps).

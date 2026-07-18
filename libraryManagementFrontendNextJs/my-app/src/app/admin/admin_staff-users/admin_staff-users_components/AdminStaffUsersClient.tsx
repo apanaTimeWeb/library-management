@@ -9,10 +9,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
 import { TablePagination } from '@/components/ui/table-pagination';
-
-interface AdminStaffUsersClientProps {
-  initialStaff: StaffMember[];
-}
+import { AdminStaffUsersClientProps } from "./AdminStaffUsersClient_types";
 
 export function AdminStaffUsersClient({ initialStaff }: AdminStaffUsersClientProps) {
   const [page, setPage] = useState(1);

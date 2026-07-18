@@ -16,6 +16,7 @@ import { TablePagination } from '@/components/ui/table-pagination';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
+import { AdminReportsClientProps, KpiCardProps } from "./AdminReportsClient_types";
 
 const KPI_META = [
   { icon: IndianRupee, iconColor: 'var(--primary)', iconBg: 'var(--icon-bg-primary)' },
@@ -39,20 +40,6 @@ const TOOLTIP_STYLE = {
   itemStyle:   { color: 'var(--text-primary)'   },
   cursor:      { fill: 'rgba(99,102,241,0.06)'  },
 } as const;
-
-interface AdminReportsClientProps {
-  initialData?: Record<string, Record<string, unknown[]>>;
-}
-
-interface KpiCardProps {
-  label: string;
-  value: string | number;
-  icon: React.ElementType;
-  iconColor: string;
-  iconBg: string;
-  trend?: { up: boolean; value: string };
-  sub?: string;
-}
 
 function AdminReportsKpiCard({ label, value, icon: Icon, iconColor, iconBg, trend, sub }: KpiCardProps) {
   return (

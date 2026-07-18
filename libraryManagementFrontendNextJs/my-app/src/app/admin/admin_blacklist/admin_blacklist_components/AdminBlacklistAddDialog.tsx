@@ -10,12 +10,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, Di
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-
-interface AdminBlacklistAddDialogProps {
-  isOpen: boolean;
-  onClose: () => void;
-  onSubmit: (data: AdminBlacklistFormData) => Promise<{ success: boolean; message: string }>;
-}
+import { AdminBlacklistAddDialogProps } from "./AdminBlacklistAddDialog_types";
 
 export function AdminBlacklistAddDialog({ isOpen, onClose, onSubmit }: AdminBlacklistAddDialogProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);

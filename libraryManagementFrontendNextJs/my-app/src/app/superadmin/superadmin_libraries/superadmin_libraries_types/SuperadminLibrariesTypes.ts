@@ -1,5 +1,6 @@
 import { z } from 'zod';
 import { SUPERADMIN_LIBRARIES_PLANS, SUPERADMIN_LIBRARIES_STATUSES } from '@/app/superadmin/superadmin_libraries/superadmin_libraries_constants/SuperadminLibrariesConstants';
+import { SuperadminLibrariesGridProps, SuperadminLibrariesPanelProps, SuperadminLibrariesErrorBoundaryProps, SuperadminLibrary, SuperadminLibraryPanelMode, SuperadminLibrariesFetchState } from "./SuperadminLibrariesTypes_types";
 
 export const superadminLibrarySchema = z.object({
   id: z.string(),
@@ -13,28 +14,3 @@ export const superadminLibrarySchema = z.object({
   phone: z.string().min(10, 'Valid phone required'),
   joined: z.string()
 });
-
-export type SuperadminLibrary = z.infer<typeof superadminLibrarySchema>;
-
-export type SuperadminLibraryPanelMode = 'view' | 'edit';
-
-export type SuperadminLibrariesFetchState = 'idle' | 'loading' | 'success' | 'error';
-
-export interface SuperadminLibrariesGridProps {
-  libraries: SuperadminLibrary[];
-  onRowClick: (lib: SuperadminLibrary, mode: SuperadminLibraryPanelMode) => void;
-  onSuspend: (id: string) => void;
-}
-
-export interface SuperadminLibrariesPanelProps {
-  lib: SuperadminLibrary;
-  mode: SuperadminLibraryPanelMode;
-  onClose: () => void;
-  onSave: (updated: SuperadminLibrary) => Promise<void>;
-  onSuspend: (id: string) => Promise<void>;
-}
-
-export interface SuperadminLibrariesErrorBoundaryProps {
-  error: Error & { digest?: string };
-  reset: () => void;
-}

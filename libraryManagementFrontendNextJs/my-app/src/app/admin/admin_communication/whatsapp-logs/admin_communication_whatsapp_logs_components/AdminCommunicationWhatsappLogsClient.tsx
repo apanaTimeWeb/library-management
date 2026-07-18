@@ -11,13 +11,7 @@ import { Badge } from '@/components/ui/badge';
 import { Input } from '@/components/ui/input';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from '@/components/ui/dialog';
 import { TablePagination } from '@/components/ui/table-pagination';
-
-interface WaLog {
-  id: string; dateTime: string; phone: string; student: string;
-  type: 'welcome' | 'fee_reminder' | 'receipt' | 'notice' | 'renewal';
-  status: 'Pending' | 'Sent' | 'Delivered' | 'Failed';
-  error: string; message: string;
-}
+import { WaLog } from "./AdminCommunicationWhatsappLogsClient_types";
 
 const TYPE_BADGE: Record<string, string> = {
   welcome: 'bg-info/10 text-info hover:bg-info/20', 

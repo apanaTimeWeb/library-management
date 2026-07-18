@@ -1,11 +1,8 @@
+import { Props } from "./AdminSeatsShiftsLockersEmptyState_types";
+
 // RESPONSIBILITY: Standardized empty state component for lists/tables in the admin_seats_shifts_lockers module.
 'use client';
 // DATA FLOW: Parent -> AdminSeatsShiftsLockersEmptyState -> DOM
-
-interface Props {
-  title?: string;
-  description?: string;
-}
 
 export default function AdminSeatsShiftsLockersEmptyState({ title = 'No data found', description = 'Try adjusting your filters.' }: Props) {
   return (

@@ -1,14 +1,7 @@
 import React from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-
-export interface TablePaginationProps {
-  page: number;
-  limit: number;
-  totalItems: number;
-  onPageChange: (page: number) => void;
-  onLimitChange?: (limit: number) => void;
-}
+import { TablePaginationProps } from "./table-pagination_types";
 
 export function TablePagination({
   page,

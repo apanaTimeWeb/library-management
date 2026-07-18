@@ -2,19 +2,7 @@
 import { useState, useEffect, useMemo } from 'react';
 import toast from 'react-hot-toast';
 import { ADMIN_FINANCE_MOCK_DEPOSITS } from '@/app/admin/admin_finance/admin_finance_constants/AdminFinanceConstants';
-
-export type Deposit = {
-  id: number;
-  studentName: string;
-  smartId: string;
-  depositAmount: number;
-  collectedBy: string;
-  collectedDate: string;
-  deductionAmount: number;
-  deductionReason?: string;
-  status: 'held' | 'refunded' | 'forfeited';
-  refundedDate?: string;
-};
+import { Deposit } from "./useAdminFinanceSecurityDeposits_types";
 
 export function useAdminFinanceSecurityDeposits() {
   const [statusFilter, setStatusFilter] = useState('all');

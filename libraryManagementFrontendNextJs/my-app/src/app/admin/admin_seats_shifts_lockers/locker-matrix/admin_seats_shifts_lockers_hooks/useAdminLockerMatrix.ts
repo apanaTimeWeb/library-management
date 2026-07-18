@@ -8,12 +8,7 @@ import {
   ADMIN_SEATS_MOCK_LOCKER_LEGEND,
   ADMIN_SEATS_MOCK_LOCKER_ACTIVITY
 } from '@/app/admin/admin_seats_shifts_lockers/admin_seats_data/AdminSeatsMockData';
-
-export interface LockerData {
-  uuid?: string; 
-  id: string; 
-  status: 'free' | 'occupied' | 'maintenance';
-}
+import { LockerData } from "./useAdminLockerMatrix_types";
 
 export function useAdminLockerMatrix() {
   const [assignTarget, setAssignTarget] = useState<string | null>(null);

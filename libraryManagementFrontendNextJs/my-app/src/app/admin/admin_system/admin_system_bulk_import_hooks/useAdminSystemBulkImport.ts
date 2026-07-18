@@ -1,21 +1,7 @@
 // RESPONSIBILITY: Renders the useAdminSystemBulkImport.ts component/hook.
 import { useState, useRef, useMemo, useCallback } from 'react';
 import { ADMIN_SYSTEM_MOCK_PREVIEW, ADMIN_SYSTEM_TEMPLATE_HEADERS } from '@/app/admin/admin_system/admin_system_data/AdminSystemMockData2';
-
-export type RowStatus = 'ok' | 'error' | 'warning';
-
-export interface PreviewRow {
-  row: number;
-  name: string;
-  phone: string;
-  email: string;
-  shift: string;
-  seat: string;
-  status: RowStatus;
-  issue?: string;
-}
-
-export type ImportStep = 'upload' | 'preview' | 'importing' | 'done';
+import { PreviewRow, RowStatus, ImportStep } from "./useAdminSystemBulkImport_types";
 
 export function useAdminSystemBulkImport() {
   const [step, setStep] = useState<ImportStep>('upload');

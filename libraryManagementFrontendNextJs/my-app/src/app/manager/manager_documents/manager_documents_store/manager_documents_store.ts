@@ -1,18 +1,9 @@
 import { create } from 'zustand';
 import type { FetchState, DocumentRecord } from '@/app/manager/manager_documents/manager_documents_types/manager_documents_types';
 import { DOCUMENTS_DATA } from '@/app/manager/manager_documents/manager_documents_constants/manager_documents_constants';
+import { ManagerDocumentsState } from "./manager_documents_store_types";
 
 // DATA FLOW: API -> Store -> Hook -> Component
-
-interface ManagerDocumentsState {
-  documents: DocumentRecord[];
-  documentsStatus: FetchState;
-  documentsError: string | null;
-
-  fetchDocuments: () => Promise<void>;
-  deleteDocument: (id: string) => Promise<void>;
-}
-
 export const useManagerDocumentsStore = create<ManagerDocumentsState>((set, get) => ({
   documents: DOCUMENTS_DATA,
   documentsStatus: 'idle',

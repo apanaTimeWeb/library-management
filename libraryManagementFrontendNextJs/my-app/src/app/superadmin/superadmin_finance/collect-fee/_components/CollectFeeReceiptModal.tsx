@@ -6,12 +6,7 @@ import { BookOpen, CheckCircle, MessageSquare, Printer, X } from 'lucide-react';
 import { openWhatsApp } from '@/lib/whatsappUtils';
 import { formatCurrency } from '@/app/superadmin/superadmin_finance/superadmin_finance_utils/superadmin_format';
 import type { SuperadminFinanceReceiptData, SuperadminFinanceCollectFeeMode } from '@/app/superadmin/superadmin_finance/superadmin_finance_types/SuperadminFinanceTypes';
-
-interface Props {
-  receiptData: SuperadminFinanceReceiptData;
-  onClose: () => void;
-  onPrint: () => void;
-const MODE_LABELS: Record<SuperadminFinanceCollectFeeMode, string> = { cash: 'Cash', upi: 'UPI', card: 'Card', bank: 'Bank Transfer' };
+import { Props } from "./CollectFeeReceiptModal_types";
 
 function maskPhone(phone: string): string {
   const d = phone.replace(/\D/g, '').slice(-10);
@@ -87,7 +82,7 @@ export function CollectFeeReceiptModal({ receiptData, onClose, onPrint }: { rece
             
             <div className="space-y-3">
               <button 
-                className="w-full bg-[#25D366] text-white px-4 py-2.5 rounded-[var(--radius-md)] text-[14px] font-bold flex items-center justify-center gap-2 hover:brightness-105 transition-all shadow-sm cursor-pointer"
+                className="w-full bg-success text-white px-4 py-2.5 rounded-[var(--radius-md)] text-[14px] font-bold flex items-center justify-center gap-2 hover:brightness-105 transition-all shadow-sm cursor-pointer"
                 onClick={() => openWhatsApp(receiptData.phone, receiptData.waMessage)}
               >
                 <MessageSquare size={16} /> Send WhatsApp Receipt

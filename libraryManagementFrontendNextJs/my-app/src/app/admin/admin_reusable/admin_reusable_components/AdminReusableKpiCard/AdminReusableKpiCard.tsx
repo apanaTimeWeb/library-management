@@ -3,16 +3,7 @@
 
 import { TrendingUp, TrendingDown, type LucideIcon } from 'lucide-react';
 import { Card } from '@/components/ui/card';
-
-export interface AdminReusableKpiCardProps {
-  label: string;
-  value: string;
-  icon: LucideIcon;
-  iconColor: string;
-  iconBg: string;
-  trend?: { value: string; up: boolean };
-  sub?: string;
-}
+import { AdminReusableKpiCardProps } from "./AdminReusableKpiCard_types";
 
 export default function AdminReusableKpiCard({ label, value, icon: Icon, iconColor, iconBg, trend, sub }: AdminReusableKpiCardProps) {
   return (

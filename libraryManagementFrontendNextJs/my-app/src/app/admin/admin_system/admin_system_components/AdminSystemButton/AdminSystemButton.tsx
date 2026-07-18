@@ -4,6 +4,7 @@
 
 import { type ButtonHTMLAttributes, forwardRef } from 'react';
 import { cn } from '@/app/admin/admin_system/admin_system_components/AdminSystemutils/AdminSystemutils';
+import { ButtonProps } from "./AdminSystemButton_types";
 
 const VARIANT: Record<string, string> = {
   primary:     'sys-btn-primary',
@@ -19,12 +20,6 @@ const SIZE: Record<string, string> = {
   lg:   'sys-btn--lg',
   icon: 'sys-btn--icon',
 };
-
-export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: keyof typeof VARIANT;
-  size?: keyof typeof SIZE;
-}
-
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className, variant = 'primary', size = 'md', ...props }, ref) => (
     <button

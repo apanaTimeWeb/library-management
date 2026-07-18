@@ -2,11 +2,7 @@
 // DATA FLOW: API / Components -> Store -> Components
 
 import { create } from 'zustand';
-
-interface AdminDashboardState {
-  data: unknown[];
-  setData: (data: unknown[]) => void;
-}
+import { AdminDashboardState } from "./admin_dashboard_store_types";
 
 export const useAdminDashboardStore = create<AdminDashboardState>((set) => ({
   data: [],

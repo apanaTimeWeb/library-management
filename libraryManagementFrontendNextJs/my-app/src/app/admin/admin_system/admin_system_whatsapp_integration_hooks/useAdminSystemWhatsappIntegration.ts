@@ -1,8 +1,7 @@
 // RESPONSIBILITY: Renders the useAdminSystemWhatsappIntegration.ts component/hook.
 import { useState, useMemo, useCallback } from 'react';
 import { ADMIN_SYSTEM_WHATSAPP_PROVIDERS, ADMIN_SYSTEM_WHATSAPP_MESSAGE_LOGS } from '@/app/admin/admin_system/admin_system_data/AdminSystemMockData2';
-
-export type TestStatus = 'idle' | 'testing' | 'success' | 'error';
+import { TestStatus } from "./useAdminSystemWhatsappIntegration_types";
 
 export function useAdminSystemWhatsappIntegration() {
   const [provider, setProvider] = useState('wati');

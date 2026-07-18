@@ -5,21 +5,12 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
+import { RefundDeductModalProps, DeductFormData } from "./RefundDeductModal_types";
 
 const deductSchema = z.object({
   deductionAmount: z.number().min(1, 'Amount must be greater than 0'),
   deductionReason: z.string().min(5, 'Please provide a valid reason (min 5 chars)'),
 });
-
-export type DeductFormData = z.infer<typeof deductSchema>;
-
-interface RefundDeductModalProps {
-  isOpen: boolean;
-  onClose: () => void;
-  onSubmit: (data: DeductFormData) => void;
-  studentName: string;
-  isSubmitting: boolean;
-}
 
 export function RefundDeductModal({ isOpen, onClose, onSubmit, studentName, isSubmitting }: RefundDeductModalProps) {
   const {

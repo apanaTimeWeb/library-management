@@ -26,12 +26,10 @@ const schema = z.object({
   paymentMode:   z.enum(['Cash', 'UPI', 'Card', 'Bank Transfer']),
   transactionId: z.string().optional(),
 });
-
-export type FormValues = z.infer<typeof schema>;
-
 const SMART_ID = 'LIB003'; // simulated auto-generated
 
 import { AdmittedData } from '@/app/manager/manager_students/manager_students_types';
+import { FormValues } from "./useManagerStudentsAdmissionForm_types";
 
 export function useManagerStudentsAdmissionForm() {
   const searchParams = useSearchParams();

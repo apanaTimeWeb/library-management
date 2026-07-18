@@ -2,14 +2,11 @@
 import { useState, useMemo } from 'react';
 import toast from 'react-hot-toast';
 import { ADMIN_SEATS_MOCK_SHIFT_GAPS, ADMIN_SEATS_MOCK_VIEW_PERIODS } from '@/app/admin/admin_seats_shifts_lockers/admin_seats_data/AdminSeatsMockData';
+import { BookedBlock, GapBlock, ShiftData } from "./useAdminShiftGapAnalyzer_types";
 
 export const DAY_START_H = 6;
 export const DAY_END_H   = 23;
 export const TOTAL_HOURS = DAY_END_H - DAY_START_H;
-
-export interface BookedBlock { startH: number; endH: number; label: string; }
-export interface GapBlock    { startH: number; endH: number; seats: number; revLoss: number; }
-export interface ShiftData   { id: string; name: string; occupied: number; capacity: number; booked: BookedBlock[]; gaps: GapBlock[]; }
 
 export function pct(h: number) { 
   return ((h - DAY_START_H) / TOTAL_HOURS) * 100; 

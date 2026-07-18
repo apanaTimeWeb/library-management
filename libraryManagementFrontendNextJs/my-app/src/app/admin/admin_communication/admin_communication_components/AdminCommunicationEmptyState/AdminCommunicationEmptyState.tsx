@@ -1,11 +1,8 @@
+import { Props } from "./AdminCommunicationEmptyState_types";
+
 // RESPONSIBILITY: Standardized empty state component for lists/tables in the admin_communication module.
 'use client';
 // DATA FLOW: Parent -> AdminCommunicationEmptyState -> DOM
-
-interface Props {
-  title?: string;
-  description?: string;
-}
 
 export default function AdminCommunicationEmptyState({ title = 'No data found', description = 'Try adjusting your filters.' }: Props) {
   return (

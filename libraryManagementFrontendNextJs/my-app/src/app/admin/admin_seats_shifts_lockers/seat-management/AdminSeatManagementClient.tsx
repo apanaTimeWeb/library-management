@@ -10,10 +10,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
 import { TablePagination } from '@/components/ui/table-pagination';
-
-interface SeatManagementClientProps {
-  initialSeats: Seat[];
-}
+import { SeatManagementClientProps } from "./AdminSeatManagementClient_types";
 
 export function AdminSeatManagementClient({ initialSeats }: SeatManagementClientProps) {
   const [page, setPage] = useState(1);

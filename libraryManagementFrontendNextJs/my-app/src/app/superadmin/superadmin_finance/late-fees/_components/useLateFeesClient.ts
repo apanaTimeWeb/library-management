@@ -13,13 +13,12 @@ import { openWhatsApp } from '@/lib/whatsappUtils';
 import { formatCurrency } from '@/app/superadmin/superadmin_finance/superadmin_finance_utils/superadmin_format';
 import type { SuperadminFinanceLateFeesConfig, SuperadminFinanceOverdueStudent } from '@/app/superadmin/superadmin_finance/superadmin_finance_types/SuperadminFinanceTypes';
 import { SUPERADMIN_FINANCE_MOCK_CONFIG_LATE_FEES, SUPERADMIN_FINANCE_MOCK_OVERDUE_STUDENTS } from '@/app/superadmin/superadmin_finance/superadmin_finance_constants/SuperadminFinanceConstants';
+import { LateFeesConfigFormData } from "./useLateFeesClient_types";
 
 export const lateFeesConfigSchema = z.object({
   gracePeriodDays: z.number().min(0, 'Cannot be negative'),
   penaltyPerDay: z.number().min(0, 'Cannot be negative'),
 });
-
-export type LateFeesConfigFormData = z.infer<typeof lateFeesConfigSchema>;
 
 export function useLateFeesClient() {
   const router = useRouter();

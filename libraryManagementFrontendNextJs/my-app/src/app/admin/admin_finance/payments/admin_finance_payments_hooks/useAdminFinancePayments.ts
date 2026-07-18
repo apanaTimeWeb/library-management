@@ -3,25 +3,7 @@ import { useState, useEffect, useMemo } from 'react';
 import toast from 'react-hot-toast';
 import { fetchApi } from '@/lib/api';
 import { logger } from '@/lib/logger';
-
-export type PaymentMode = 'cash' | 'upi' | 'card' | 'bank';
-export type PaymentStatus = 'valid' | 'deleted';
-
-export interface Payment {
-  id: number;
-  receiptNumber: string;
-  date: string;
-  studentName: string;
-  smartId: string;
-  amount: number;
-  mode: PaymentMode;
-  txnId?: string;
-  lateFee: number;
-  receivedBy: string;
-  remark?: string;
-  status: PaymentStatus;
-  deletionReason?: string;
-}
+import { Payment, PaymentMode, PaymentStatus } from "./useAdminFinancePayments_types";
 
 export function useAdminFinancePayments() {
   const [allPayments, setAllPayments] = useState<Payment[]>([]);

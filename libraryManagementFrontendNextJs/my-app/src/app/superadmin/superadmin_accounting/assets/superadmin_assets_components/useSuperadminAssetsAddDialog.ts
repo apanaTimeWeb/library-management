@@ -8,6 +8,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
 import { logger } from '@/lib/logger';
 import type { SuperadminAsset } from '@/app/superadmin/superadmin_accounting/assets/superadmin_assets_types/SuperadminAssetsTypes';
+import { UseSuperadminAssetsAddDialogProps, SuperadminAssetFormData } from "./useSuperadminAssetsAddDialog_types";
 
 export const superadminAssetSchema = z.object({
   name: z.string().min(1, 'Asset name is required'),
@@ -16,14 +17,6 @@ export const superadminAssetSchema = z.object({
   purchaseValue: z.number().positive('Value must be positive'),
   location: z.string().min(1, 'Location is required'),
 });
-
-export type SuperadminAssetFormData = z.infer<typeof superadminAssetSchema>;
-
-interface UseSuperadminAssetsAddDialogProps {
-  categories: string[];
-  onSave: (data: Omit<SuperadminAsset, 'id' | 'status'>) => Promise<void>;
-  onClose: () => void;
-}
 
 export function useSuperadminAssetsAddDialog({ categories, onSave, onClose }: UseSuperadminAssetsAddDialogProps) {
   const [saving, setSaving] = useState(false);

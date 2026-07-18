@@ -5,13 +5,7 @@ import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { deductSchema, DeductFormData } from '@/app/superadmin/superadmin_finance/security-deposits/_components/useSecurityDepositsClient';
-
-interface SecurityDepositDeductModalProps {
-  target: { id: number; name: string } | null;
-  onClose: () => void;
-  onSubmit: (data: DeductFormData) => void;
-  isProcessing: boolean;
-}
+import { SecurityDepositDeductModalProps } from "./SecurityDepositDeductModal_types";
 
 export function SecurityDepositDeductModal({ target, onClose, onSubmit, isProcessing }: SecurityDepositDeductModalProps) {
   const form = useForm<DeductFormData>({

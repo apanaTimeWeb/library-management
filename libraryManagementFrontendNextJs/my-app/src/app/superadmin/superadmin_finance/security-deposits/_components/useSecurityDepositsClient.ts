@@ -8,6 +8,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
 import type { SuperadminFinanceSecurityDeposit } from '@/app/superadmin/superadmin_finance/superadmin_finance_types/SuperadminFinanceTypes';
 import { SUPERADMIN_FINANCE_MOCK_DEPOSITS } from '@/app/superadmin/superadmin_finance/superadmin_finance_constants/SuperadminFinanceConstants';
+import { RefundFormData, DeductFormData } from "./useSecurityDepositsClient_types";
 
 export const refundSchema = z.object({
   refundAmount: z.number().min(0, 'Cannot be negative'),
@@ -22,15 +23,10 @@ export const refundSchema = z.object({
   message: 'Reason required if deduction > 0',
   path: ['deductionReason']
 });
-
-export type RefundFormData = z.infer<typeof refundSchema>;
-
 export const deductSchema = z.object({
   amount: z.number().min(1, 'Amount must be greater than 0'),
   reason: z.string().min(3, 'Reason must be at least 3 characters'),
 });
-
-export type DeductFormData = z.infer<typeof deductSchema>;
 
 export function useSecurityDepositsClient() {
   const [statusFilter, setStatusFilter] = useState('all');

@@ -11,20 +11,7 @@ import type {
   AuthUser,
   FetchState 
 } from '@/app/auth/auth_types/auth_types';
-
-interface AuthStoreState {
-  fetchState: FetchState;
-  user: AuthUser | null;
-  errorMessage: string | null;
-  
-  // Actions
-  login: (payload: AuthLoginPayload) => Promise<{ success: boolean; message: string; userRole?: string }>;
-  signup: (payload: AuthSignupPayload) => Promise<{ success: boolean; message: string }>;
-  forgotPassword: (payload: AuthForgotPasswordPayload) => Promise<{ success: boolean; message: string }>;
-  resetPassword: (payload: AuthResetPasswordPayload) => Promise<{ success: boolean; message: string }>;
-  logout: () => Promise<void>;
-  clearError: () => void;
-}
+import { AuthStoreState } from "./auth_store_types";
 
 export const useAuthStore = create<AuthStoreState>((set) => ({
   fetchState: 'idle',

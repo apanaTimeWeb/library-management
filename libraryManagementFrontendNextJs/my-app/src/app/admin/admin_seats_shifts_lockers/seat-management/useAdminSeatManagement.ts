@@ -1,17 +1,7 @@
 // RESPONSIBILITY: Renders the useAdminSeatManagement.ts component/hook.
 import { useState, useMemo } from 'react';
 import toast from 'react-hot-toast';
-
-export type SeatStatus = 'Working' | 'Maintenance' | 'Broken';
-
-export interface Seat {
-  id: string;
-  seatNo: string;
-  branch: string;
-  status: SeatStatus;
-  assignedTo: string;
-  lastMaintenance: string;
-}
+import { Seat, SeatStatus } from "./useAdminSeatManagement_types";
 
 const EMPTY_FORM = { seatNo: '', branch: '', status: 'Working' as SeatStatus };
 

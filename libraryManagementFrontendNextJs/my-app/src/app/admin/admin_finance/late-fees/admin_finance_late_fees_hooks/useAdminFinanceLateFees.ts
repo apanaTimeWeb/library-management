@@ -4,19 +4,7 @@ import toast from 'react-hot-toast';
 import { formatCurrency } from '@/app/admin/admin_finance/admin_finance_utils/format';
 import { openWhatsApp } from '@/lib/whatsappUtils';
 import { ADMIN_FINANCE_MOCK_LATE_FEES_CONFIG, ADMIN_FINANCE_MOCK_LATE_FEES_OVERDUE } from '@/app/admin/admin_finance/admin_finance_constants/AdminFinanceConstants';
-
-export type Config = { gracePeriodDays: number; penaltyPerDay: number };
-
-export type OverdueStudent = {
-  studentId: string;
-  studentName: string;
-  smartId: string;
-  phone: string;
-  dueDate: string;
-  daysOverdue: number;
-  accruedFee: number;
-  totalDue: number;
-};
+import { Config, OverdueStudent } from "./useAdminFinanceLateFees_types";
 
 export function useAdminFinanceLateFees() {
   const [config, setConfig] = useState<Config | null>(null);

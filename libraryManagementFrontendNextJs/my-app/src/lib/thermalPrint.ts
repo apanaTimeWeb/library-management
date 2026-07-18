@@ -1,30 +1,4 @@
-/**
- * Thermal Print Utility — Smart Library 360
- * 80mm thermal printer — ESC/POS style via browser popup
- */
-
-export interface ThermalBillData {
-  type: 'idcard' | 'receipt' | 'dues';
-  shopName?: string;
-  branch?: string;
-  studentName: string;
-  smartId: string;
-  phone: string;
-  shift?: string;
-  seat?: string;
-  locker?: string;
-  plan?: string;
-  joinDate?: string;
-  expiryDate?: string;
-  billNumber?: string;
-  date?: string;
-  totalPayable?: number;
-  amountPaid?: number;
-  discount?: number;
-  balance?: number;
-  paymentMode?: string;
-  transactionId?: string;
-}
+import { ThermalBillData } from "./thermalPrint_types";
 
 const W = 42; // character width for 80mm thermal
 

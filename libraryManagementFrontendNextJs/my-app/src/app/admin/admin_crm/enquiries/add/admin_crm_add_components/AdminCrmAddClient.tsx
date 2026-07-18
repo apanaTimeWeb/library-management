@@ -11,8 +11,8 @@ import { addEnquirySchema, type AddEnquiryFormData } from '@/app/admin/admin_crm
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { AdminCrmAddClientProps } from "./AdminCrmAddClient_types";
 
-export interface AdminCrmAddClientProps { onClose?: () => void; }
 export function AdminCrmAddClient({ onClose }: AdminCrmAddClientProps = {}) {
   const router = useRouter();
 

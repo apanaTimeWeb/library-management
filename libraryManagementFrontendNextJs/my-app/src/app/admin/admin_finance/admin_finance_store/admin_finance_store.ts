@@ -2,11 +2,7 @@
 // DATA FLOW: API / Components -> Store -> Components
 
 import { create } from 'zustand';
-
-interface AdminFinanceState {
-  data: unknown[];
-  setData: (data: unknown[]) => void;
-}
+import { AdminFinanceState } from "./admin_finance_store_types";
 
 export const useAdminFinanceStore = create<AdminFinanceState>((set) => ({
   data: [],

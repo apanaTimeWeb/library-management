@@ -2,11 +2,7 @@
 // DATA FLOW: API / Components -> Store -> Components
 
 import { create } from 'zustand';
-
-interface AdminTestState {
-  data: unknown[];
-  setData: (data: unknown[]) => void;
-}
+import { AdminTestState } from "./admin_test_store_types";
 
 export const useAdminTestStore = create<AdminTestState>((set) => ({
   data: [],

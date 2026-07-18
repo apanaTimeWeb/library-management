@@ -1,17 +1,7 @@
 // RESPONSIBILITY: Renders the useAdminPermissions.ts component/hook.
 import { useState } from 'react';
 import toast from 'react-hot-toast';
-
-export type Role = 'Manager';
-
-export interface Permission {
-  module: string;
-  actions: {
-    label: string;
-    key: string;
-    roles: Record<Role, boolean>;
-  }[];
-}
+import { Permission, Role } from "./useAdminPermissions_types";
 
 export const ROLES: Role[] = ['Manager'];
 

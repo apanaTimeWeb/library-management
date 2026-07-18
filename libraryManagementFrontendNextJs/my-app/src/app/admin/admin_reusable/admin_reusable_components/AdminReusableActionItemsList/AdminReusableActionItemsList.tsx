@@ -3,14 +3,7 @@
 
 import Link from 'next/link';
 import { ChevronRight, type LucideIcon } from 'lucide-react';
-
-export interface AdminReusableActionItem {
-  icon: LucideIcon;
-  label: string;
-  count: number;
-  type: 'danger' | 'warning';
-  href: string;
-}
+import { AdminReusableActionItem } from "./AdminReusableActionItemsList_types";
 
 export default function AdminReusableActionItemsList({ items }: { items: AdminReusableActionItem[] }) {
   return (

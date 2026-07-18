@@ -1,11 +1,8 @@
+import { Props } from "./AdminAccountingEmptyState_types";
+
 // RESPONSIBILITY: Standardized empty state component for lists/tables in the admin_accounting module.
 'use client';
 // DATA FLOW: Parent -> AdminAccountingEmptyState -> DOM
-
-interface Props {
-  title?: string;
-  description?: string;
-}
 
 export default function AdminAccountingEmptyState({ title = 'No data found', description = 'Try adjusting your filters.' }: Props) {
   return (

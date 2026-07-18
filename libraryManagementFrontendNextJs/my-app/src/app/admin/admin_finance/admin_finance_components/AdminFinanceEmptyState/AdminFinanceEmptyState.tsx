@@ -1,11 +1,8 @@
+import { Props } from "./AdminFinanceEmptyState_types";
+
 // RESPONSIBILITY: Standardized empty state component for lists/tables in the admin_finance module.
 'use client';
 // DATA FLOW: Parent -> AdminFinanceEmptyState -> DOM
-
-interface Props {
-  title?: string;
-  description?: string;
-}
 
 export default function AdminFinanceEmptyState({ title = 'No data found', description = 'Try adjusting your filters.' }: Props) {
   return (

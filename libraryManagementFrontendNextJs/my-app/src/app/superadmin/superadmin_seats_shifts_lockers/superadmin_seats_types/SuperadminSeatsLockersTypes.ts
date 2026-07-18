@@ -1,10 +1,1 @@
-export type SuperadminSeatsLockerStatus = 'Free' | 'Occupied' | 'Maintenance';
-
-export interface SuperadminSeatsLocker {
-  id: string;
-  lockerId: string;
-  status: SuperadminSeatsLockerStatus;
-  assignedTo: string;
-  studentId: string;
-  assignedSince: string;
-}
+import { SuperadminSeatsLocker, SuperadminSeatsLockerStatus } from "./SuperadminSeatsLockersTypes_types";

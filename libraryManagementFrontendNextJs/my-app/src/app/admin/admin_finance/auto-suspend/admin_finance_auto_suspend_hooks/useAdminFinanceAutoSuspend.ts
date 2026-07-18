@@ -2,24 +2,7 @@
 import { useState, useEffect } from 'react';
 import toast from 'react-hot-toast';
 import { ADMIN_FINANCE_MOCK_CONFIG, ADMIN_FINANCE_MOCK_SUSPENDED } from '@/app/admin/admin_finance/admin_finance_constants/AdminFinanceConstants';
-
-export type Config = { 
-  daysBeforeSuspend: number; 
-  currentlySuspended: number; 
-  autoRestoredThisMonth: number; 
-  manualRestores: number 
-};
-
-export type SuspendedStudent = { 
-  id: number; 
-  studentId: number; 
-  studentName: string; 
-  smartId: string; 
-  seat: string; 
-  shift: string; 
-  daysOverdue: number; 
-  suspendedSince: string 
-};
+import { Config, SuspendedStudent } from "./useAdminFinanceAutoSuspend_types";
 
 export function useAdminFinanceAutoSuspend() {
   const [config, setConfig] = useState<Config | null>(null);

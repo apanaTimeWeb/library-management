@@ -4,15 +4,7 @@
 import { create } from 'zustand';
 import { publicApi, type FetchState } from '@/app/public/public_api/public_api';
 import type { PublicEnquiryFormData } from '@/app/public/enquiry/public_enquiry_types/PublicEnquiryValidation';
-
-interface PublicStoreState {
-  fetchState: FetchState;
-  errorMessage: string | null;
-  
-  // Actions
-  submitEnquiry: (payload: PublicEnquiryFormData) => Promise<{ success: boolean; message: string }>;
-  clearError: () => void;
-}
+import { PublicStoreState } from "./public_store_types";
 
 export const usePublicStore = create<PublicStoreState>((set) => ({
   fetchState: 'idle',

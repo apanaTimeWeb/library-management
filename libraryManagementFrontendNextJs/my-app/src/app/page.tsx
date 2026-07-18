@@ -118,13 +118,13 @@ export default function SeatFlowLanding() {
     setTimeout(() => setDemoBooked(false), 3000);
   };
 
-  if (!mounted) return <div className="min-h-screen bg-[#07080F]" />;
+  if (!mounted) return <div className="min-h-screen bg-background" />;
 
   return (
-    <div className="bg-[#07080F] text-white overflow-hidden font-sans">
+    <div className="bg-background text-white overflow-hidden font-sans">
       {/* ── NAVBAR ── */}
       <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-[#07080F]/90 backdrop-blur-lg border-b border-white/10' : 'bg-transparent'
+        isScrolled ? 'bg-background/90 backdrop-blur-lg border-b border-white/10' : 'bg-transparent'
       }`}>
         <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
           {/* Logo */}

@@ -2,22 +2,7 @@
 // DATA FLOW: Types imported by Store, Hooks, Dialog, and Client Component.
 
 import { z } from 'zod';
-
-export type FetchState = 'idle' | 'loading' | 'success' | 'error';
-
-export type CouponStatus = 'Active' | 'Expired' | 'Exhausted';
-export type CouponDiscountType = 'Flat' | 'Percent';
-
-export interface CouponRecord {
-  id: string;
-  code: string;
-  discount: number;
-  type: CouponDiscountType;
-  usedCount: number;
-  maxUses: number;
-  expiry: string;
-  status: CouponStatus;
-}
+import { CouponRecord, AdminCouponsStoreState, FetchState, CouponStatus, CouponDiscountType, AdminCouponFormData } from "./admin_coupons_types_types";
 
 export const adminCouponFormSchema = z.object({
   code: z.string()
@@ -32,16 +17,3 @@ export const adminCouponFormSchema = z.object({
     .positive('Max uses must be at least 1'),
   expiry: z.string().min(1, 'Expiry date is required'),
 });
-
-export type AdminCouponFormData = z.infer<typeof adminCouponFormSchema>;
-
-export interface AdminCouponsStoreState {
-  coupons: CouponRecord[];
-  fetchState: FetchState;
-  errorMessage: string | null;
-  fetchCoupons: () => Promise<void>;
-  createCoupon: (data: AdminCouponFormData) => Promise<{ success: boolean; message: string }>;
-  deleteCoupon: (id: string) => Promise<{ success: boolean; message: string }>;
-  setCoupons: (coupons: CouponRecord[]) => void;
-  setFetchState: (state: FetchState) => void;
-}

@@ -1,11 +1,8 @@
+import { Props } from "./AdminCrmEmptyState_types";
+
 // RESPONSIBILITY: Standardized empty state component for lists/tables in the admin_crm module.
 'use client';
 // DATA FLOW: Parent -> AdminCrmEmptyState -> DOM
-
-interface Props {
-  title?: string;
-  description?: string;
-}
 
 export default function AdminCrmEmptyState({ title = 'No data found', description = 'Try adjusting your filters.' }: Props) {
   return (

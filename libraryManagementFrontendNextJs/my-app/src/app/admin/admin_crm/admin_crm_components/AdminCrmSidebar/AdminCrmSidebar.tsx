@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { PhoneCall } from 'lucide-react';
 import { ADMIN_ROUTES } from '@/app/admin/admin_url_config';
+import { AdminCrmSidebarProps } from "./AdminCrmSidebar_types";
 
 // CRM sub-module only exposes its own nav items — the full shell sidebar
 // is rendered by AdminSidebar in AdminRoute. This component is intentionally
@@ -13,11 +14,6 @@ import { ADMIN_ROUTES } from '@/app/admin/admin_url_config';
 const CRM_NAV = [
   { href: ADMIN_ROUTES.CRM_ENQUIRIES, Icon: PhoneCall, label: 'Enquiries' },
 ] as const;
-
-interface AdminCrmSidebarProps {
-  isOpen?: boolean;
-  onClose?: () => void;
-}
 
 export default function AdminCrmSidebar({ isOpen, onClose }: AdminCrmSidebarProps) {
   const pathname = usePathname();

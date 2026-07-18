@@ -2,11 +2,7 @@
 // DATA FLOW: API / Components -> Store -> Components
 
 import { create } from 'zustand';
-
-interface AdminEngagementState {
-  data: unknown[];
-  setData: (data: unknown[]) => void;
-}
+import { AdminEngagementState } from "./admin_engagement_store_types";
 
 export const useAdminEngagementStore = create<AdminEngagementState>((set) => ({
   data: [],

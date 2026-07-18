@@ -1,17 +1,8 @@
+import { AdminReusableSeatCellProps } from "./AdminReusableSeatCell_types";
+
 // RESPONSIBILITY: Renders an individual seat cell block with status coloring and hover tooltip details.
 'use client';
 // DATA FLOW: AdminReusableSeatMatrixGrid -> AdminReusableSeatCell
-
-
-
-export interface AdminReusableSeatCellProps {
-  id: string;
-  status: 'free' | 'occupied' | 'expiring' | 'maintenance';
-  occupant?: string;
-  shift?: string;
-  expiry?: string;
-  onClick?: () => void;
-}
 
 /** Returns a CSS class name for the shift badge — using Tailwind */
 function getShiftClass(shift: string): string {

@@ -2,10 +2,7 @@
 // DATA FLOW: Parent Client Component -> AdminAuditLogsEmptyState
 
 import { ShieldAlert } from 'lucide-react';
-
-interface AdminAuditLogsEmptyStateProps {
-  onResetFilters: () => void;
-}
+import { AdminAuditLogsEmptyStateProps } from "./AdminAuditLogsEmptyState_types";
 
 export function AdminAuditLogsEmptyState({ onResetFilters }: AdminAuditLogsEmptyStateProps) {
   return (

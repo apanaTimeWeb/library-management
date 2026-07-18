@@ -3,16 +3,7 @@ import { useState, useEffect, useMemo } from 'react';
 import { fetchApi } from '@/lib/api';
 import { logger } from '@/lib/logger';
 import { ADMIN_SEATS_MOCK_SHIFT_TABS, ADMIN_SEATS_MOCK_LEGEND_ITEMS } from '@/app/admin/admin_seats_shifts_lockers/admin_seats_data/AdminSeatsMockData';
-
-export interface SeatData {
-  uuid?: string;
-  id: string;
-  status: 'free' | 'occupied' | 'expiring' | 'maintenance';
-  student?: string;
-  smartId?: string;
-  shift?: string;
-  expiry?: string;
-}
+import { SeatData } from "./useAdminSeatMatrix_types";
 
 export function useAdminSeatMatrix() {
   const [activeTab, setActiveTab] = useState('All');

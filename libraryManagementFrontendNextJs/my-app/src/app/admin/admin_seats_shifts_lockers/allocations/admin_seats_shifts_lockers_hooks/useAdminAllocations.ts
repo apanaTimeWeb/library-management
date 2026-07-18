@@ -1,19 +1,7 @@
 // RESPONSIBILITY: Renders the useAdminAllocations.ts component/hook.
 import { useState, useMemo } from 'react';
 import { ADMIN_SEATS_MOCK_ALLOCATIONS } from '@/app/admin/admin_seats_shifts_lockers/admin_seats_data/AdminSeatsMockData';
-
-export interface Allocation {
-  studentName: string;
-  smartId: string;
-  seatNo: string;
-  shift: string;
-  customSlots: string;
-  lockerNo: string;
-  validFrom: string;
-  validTill: string;
-  daysLeft: number;
-  status: 'Active' | 'Expired' | 'Suspended';
-}
+import { Allocation } from "./useAdminAllocations_types";
 
 export function useAdminAllocations() {
   const [shiftFilter, setShiftFilter] = useState('All Shifts');

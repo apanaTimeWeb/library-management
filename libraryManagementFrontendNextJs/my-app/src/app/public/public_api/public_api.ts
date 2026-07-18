@@ -1,15 +1,7 @@
 import { StatusCodes } from 'http-status-codes';
 
 import type { PublicEnquiryFormData } from '@/app/public/enquiry/public_enquiry_types/PublicEnquiryValidation';
-
-export type FetchState = 'idle' | 'loading' | 'success' | 'error';
-
-export interface ApiResponse<T> {
-  success: boolean;
-  message: string;
-  data: T | null;
-  statusCode?: number;
-}
+import { ApiResponse, FetchState } from "./public_api_types";
 
 export const publicApi = {
   submitEnquiry: async (_payload: PublicEnquiryFormData): Promise<ApiResponse<null>> => {

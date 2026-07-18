@@ -9,15 +9,7 @@ import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/com
 import { Badge } from '@/components/ui/badge';
 import { ADMIN_ROUTES } from '@/app/admin/admin_url_config';
 import { TablePagination } from '@/components/ui/table-pagination';
-
-export interface AdminReusablePayment {
-  name: string;
-  initials: string;
-  amount: string;
-  mode: 'UPI' | 'Cash' | 'Card' | 'Bank Transfer';
-  timeAgo: string;
-  studentId?: string;
-}
+import { AdminReusablePayment } from "./AdminReusableRecentPaymentsFeed_types";
 
 export default function AdminReusableRecentPaymentsFeed({ payments }: { payments: AdminReusablePayment[] }) {
   const router = useRouter();

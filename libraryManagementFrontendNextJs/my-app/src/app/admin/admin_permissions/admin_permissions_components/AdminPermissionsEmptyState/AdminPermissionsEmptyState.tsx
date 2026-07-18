@@ -1,11 +1,8 @@
+import { Props } from "./AdminPermissionsEmptyState_types";
+
 // RESPONSIBILITY: Standardized empty state component for lists/tables in the admin_permissions module.
 'use client';
 // DATA FLOW: Parent -> AdminPermissionsEmptyState -> DOM
-
-interface Props {
-  title?: string;
-  description?: string;
-}
 
 export default function AdminPermissionsEmptyState({ title = 'No data found', description = 'Try adjusting your filters.' }: Props) {
   return (
