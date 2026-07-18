@@ -161,7 +161,7 @@ export default function AdminCrmEnquiriesClient() {
             className="pl-9"
             placeholder="Search by name or phone…"
             value={searchParam}
-            onChange={(e) => pushParams({ search: e.target.value })}
+            onChange={(e) => pushParams({ q: e.target.value })}
           />
         </div>
         <select
@@ -322,6 +322,7 @@ export default function AdminCrmEnquiriesClient() {
         )}
         </Card>
       )}
+      {isAddModalOpen && <AdminCrmAddClient onClose={() => setIsAddModalOpen(false)} />}
     </div>
   );
 }

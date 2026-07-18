@@ -27,5 +27,5 @@ export default async function AdminDashboardPage() {
     );
   }
 
-  return <AdminDashboardClient initialData={rawData} />;
+  return <AdminDashboardClient initialData={rawData as any} />;
 }
