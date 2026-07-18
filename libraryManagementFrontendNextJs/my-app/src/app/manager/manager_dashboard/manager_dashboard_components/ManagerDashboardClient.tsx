@@ -38,14 +38,14 @@ export function ManagerDashboardClient() {
   const { data, status, error } = useDashboardData();
 
   const admissionCols: ColDef[] = useMemo(() => [
-    { field: 'name',    headerName: 'NAME',     flex: 2, sortable: true },
+    { field: 'name', headerName: 'NAME', flex: 2, sortable: true },
     { field: 'smartId', headerName: 'SMART ID', flex: 1, sortable: true, cellRenderer: SmartIdCell },
-    { field: 'shift',   headerName: 'SHIFT',    flex: 1, sortable: true, cellRenderer: ShiftCell  },
+    { field: 'shift', headerName: 'SHIFT', flex: 1, sortable: true, cellRenderer: ShiftCell },
   ], []);
 
   const enquiryCols: ColDef[] = useMemo(() => [
-    { field: 'name',   headerName: 'NAME',   flex: 2, sortable: true },
-    { field: 'phone',  headerName: 'PHONE',  flex: 1, cellRenderer: PhoneCell },
+    { field: 'name', headerName: 'NAME', flex: 2, sortable: true },
+    { field: 'phone', headerName: 'PHONE', flex: 1, cellRenderer: PhoneCell },
     { field: 'status', headerName: 'STATUS', flex: 1, sortable: true, cellRenderer: StatusCell },
   ], []);
 
@@ -104,18 +104,18 @@ export function ManagerDashboardClient() {
             <h2 className="text-base font-semibold text-text-primary">Recent New Admissions</h2>
             <Link href={MANAGER_ROUTES.STUDENTS} className="text-sm font-semibold text-primary hover:text-primary-hover transition-colors inline-flex items-center gap-1">View all</Link>
           </div>
-          
-        <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: '16px' }}>
-          <input 
-            type="text" 
-            placeholder="Search in table..." 
-            className="px-3 py-2 border border-border rounded-md text-sm bg-bg-input text-text-primary focus:outline-none focus:ring-2 focus:ring-primary w-64"
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-          />
-        </div>
-        
-<div className="h-72 w-full">
+
+          <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: '16px' }}>
+            <input
+              type="text"
+              placeholder="Search in table..."
+              className="px-3 py-2 border border-border rounded-md text-sm bg-bg-input text-text-primary focus:outline-none focus:ring-2 focus:ring-primary w-64"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+            />
+          </div>
+
+          <div className="h-72 w-full">
             <AgGridReact
               quickFilterText={searchTerm}
               pagination={true}
