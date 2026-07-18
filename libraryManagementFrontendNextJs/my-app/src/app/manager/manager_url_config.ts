@@ -19,6 +19,16 @@ export const MANAGER_ROUTES = {
   // Finance (Blocked)
   FINANCE_COLLECT_FEE: '/manager/manager_finance/collect-fee',
   FINANCE_RENEWALS: '/manager/manager_finance/renewals',
+  FINANCE_PAYMENTS: '/manager/manager_finance/payments',
+  FINANCE_PAYMENT_PROMISES: '/manager/manager_finance/payment-promises',
+  FINANCE_TRUST_SCORE: '/manager/manager_finance/trust-score',
+  FINANCE_SECURITY_DEPOSITS: '/manager/manager_finance/security-deposits',
+  FINANCE_LATE_FEES: '/manager/manager_finance/late-fees',
+  FINANCE_AUTO_SUSPEND: '/manager/manager_finance/auto-suspend',
+  FINANCE_INVOICE: '/manager/manager_finance/invoice',
+  FINANCE_RECEIPT: '/manager/manager_finance/receipt',
+  FINANCE_REFERRALS: '/manager/manager_finance/referrals',
+  FINANCE_REFUNDS: '/manager/manager_finance/refunds',
 
   // Communication
   COMMUNICATION_NOTICES: '/manager/manager_communication/notices',
@@ -37,6 +47,13 @@ export const MANAGER_ROUTES = {
 
   // Reports
   STUDENT_REPORTS: '/manager/manager_student-reports',
+
+  // Accounting
+  ACCOUNTING_EXPENSES: '/manager/manager_accounting/expenses',
+  ACCOUNTING_DAILY_SETTLEMENT: '/manager/manager_accounting/daily-settlement',
+  ACCOUNTING_SEAT_GAP_REPORT: '/manager/manager_accounting/seat-gap-report',
+  ACCOUNTING_ASSETS: '/manager/manager_accounting/assets',
+  ACCOUNTING_ASSET_MAINTENANCE: '/manager/manager_accounting/asset-maintenance',
 
   // Seats & Assets
   SEATS_SHIFTS_LOCKERS: '/manager/manager_seats_shifts_lockers',

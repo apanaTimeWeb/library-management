@@ -1,4 +1,4 @@
-// RESPONSIBILITY: Renders the list view of CRM enquiries using AgGrid.
+// RESPONSIBILITY: Renders the list view of CRM enquiries.
 import { useRouter } from 'next/navigation';
 import { Eye, CheckCircle, XCircle, PhoneCall, Plus } from 'lucide-react';
 import { maskPhone } from '@/app/manager/manager_crm/manager_crm_utils';
