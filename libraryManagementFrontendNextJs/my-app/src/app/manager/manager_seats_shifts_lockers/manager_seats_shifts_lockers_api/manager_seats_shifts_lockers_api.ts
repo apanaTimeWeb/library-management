@@ -4,17 +4,17 @@ import { SeatData, LockerData, Allocation, SeatHistoryEntry } from '@/app/manage
 // MOCK APIs for seats and lockers to prevent 500 errors
 export async function fetchSeatMatrix(): Promise<SeatData[]> {
   return new Promise(resolve => setTimeout(() => resolve([
-    { id: '1', seatNumber: 'S-01', isActive: true, shift: 'Morning' },
-    { id: '2', seatNumber: 'S-02', isActive: false, shift: 'Evening' },
-    { id: '3', seatNumber: 'S-03', isActive: true, shift: 'Full Day' },
+    { id: '1', status: 'free', shift: 'Morning' },
+    { id: '2', status: 'maintenance', shift: 'Evening' },
+    { id: '3', status: 'free', shift: 'Full Day' },
   ]), 500));
 }
 
 export async function fetchLockerMatrix(): Promise<LockerData[]> {
   return new Promise(resolve => setTimeout(() => resolve([
-    { id: '1', lockerNumber: 'L-01', isActive: true },
-    { id: '2', lockerNumber: 'L-02', isActive: false },
-    { id: '3', lockerNumber: 'L-03', isActive: true },
+    { id: '1', lockerNumber: 'L-01', isActive: true, status: 'Free' },
+    { id: '2', lockerNumber: 'L-02', isActive: false, status: 'Maintenance' },
+    { id: '3', lockerNumber: 'L-03', isActive: true, status: 'Free' },
   ]), 500));
 }
 

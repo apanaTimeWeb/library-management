@@ -1,48 +1,45 @@
 import { useState } from 'react';
 import toast from 'react-hot-toast';
-import { AbsenteeRecord } from '@/app/manager/manager_engagement/manager_engagement_types/ManagerEngagementTypes';
+import { AbsenteeRow } from '@/app/manager/manager_engagement/manager_engagement_types/ManagerEngagementTypes';
 
-export function useManagerEngagementAbsentee(mockData: AbsenteeRecord[]) {
-  const [data, setData] = useState<AbsenteeRecord[]>(mockData);
-  const [selectedIds, setSelectedIds] = useState<string[]>([]);
-  const [dispatching, setDispatching] = useState(false);
+export function useManagerEngagementAbsentee() {
+  const [data, setData] = useState<any[]>([
+    { id: '1', name: 'John Doe', initials: 'JD', smartId: 'S-101', shift: 'Morning', daysAbsent: 8, lastSeen: '2026-07-10', parentPhone: '9876543210', parentEmail: 'john@example.com', notified: false },
+    { id: '2', name: 'Jane Smith', initials: 'JS', smartId: 'S-102', shift: 'Evening', daysAbsent: 4, lastSeen: '2026-07-14', parentPhone: '9876543211', parentEmail: 'jane@example.com', notified: false }
+  ]);
+  const [threshold, setThreshold] = useState('3');
+  const [shift, setShift] = useState('All');
+  const [toast, setToastMsg] = useState('');
+  const [toastType, setToastType] = useState('success');
 
-  const toggleSelection = (id: string) => {
-    setSelectedIds(prev => 
-      prev.includes(id) ? prev.filter(x => x !== id) : [...prev, id]
-    );
+  const filtered = data.filter(d => {
+    if (threshold !== 'all' && d.daysAbsent < parseInt(threshold)) return false;
+    if (shift !== 'All' && d.shift !== shift) return false;
+    return true;
+  });
+
+  const critical = filtered.filter(d => d.daysAbsent >= 7);
+  const moderate = filtered.filter(d => d.daysAbsent >= 3 && d.daysAbsent < 7);
+
+  const notify = (id: string) => {
+    setData(prev => prev.map(d => d.id === id ? { ...d, notified: true } : d));
+    setToastType('success');
+    setToastMsg('Notification sent to parent');
+    setTimeout(() => setToastMsg(''), 3000);
   };
 
-  const selectAll = () => {
-    if (selectedIds.length === data.length) {
-      setSelectedIds([]);
-    } else {
-      setSelectedIds(data.map(d => d.id));
-    }
-  };
-
-  const handleDispatch = async () => {
-    if (selectedIds.length === 0) return;
-    setDispatching(true);
-    
-    setTimeout(() => {
-      setData(prev => prev.map(d => 
-        selectedIds.includes(d.id) 
-          ? { ...d, actionTaken: true, actionType: 'WhatsApp Reminder', actionDate: new Date().toLocaleDateString('en-GB') } 
-          : d
-      ));
-      toast.success(`Reminders dispatched for ${selectedIds.length} absentees.`);
-      setSelectedIds([]);
-      setDispatching(false);
-    }, 1200);
+  const notifyAll = () => {
+    setData(prev => prev.map(d => ({ ...d, notified: true })));
+    setToastType('success');
+    setToastMsg(`Notifications sent to ${filtered.length} parents`);
+    setTimeout(() => setToastMsg(''), 3000);
   };
 
   return {
-    data,
-    selectedIds,
-    dispatching,
-    toggleSelection,
-    selectAll,
-    handleDispatch
+    threshold, setThreshold,
+    shift, setShift,
+    toast, toastType,
+    filtered, critical, moderate,
+    notify, notifyAll
   };
 }

@@ -132,12 +132,12 @@ export function ManagerDashboardClient() {
                   </tr>
                 ) : (
                   filteredAdmissions.map((row: any, i: number) => (
-                    <tr key={i} className="hover:bg-bg-page transition-colors cursor-pointer">
-                      <td className="px-4 py-3 text-text-primary font-medium">{row.name}</td>
-                      <td className="px-4 py-3"><SmartIdCell value={row.smartId} data={row} /></td>
-                      <td className="px-4 py-3"><ShiftCell value={row.shift} data={row} /></td>
-                    </tr>
-                  ))
+                    <tr key={row.id} className="hover:bg-bg-page transition-colors cursor-pointer">
+                    <td className="px-4 py-3 text-text-primary font-medium">{row.name}</td>
+                    <td className="px-4 py-3"><SmartIdCell value={row.smartId} /></td>
+                    <td className="px-4 py-3"><ShiftCell value={row.shift} /></td>
+                    <td className="px-4 py-3 text-text-secondary">{row.date}</td>
+                  </tr>))
                 )}
               </tbody>
             </table>
@@ -156,6 +156,7 @@ export function ManagerDashboardClient() {
                   <th className="px-4 py-3 font-semibold">NAME</th>
                   <th className="px-4 py-3 font-semibold">PHONE</th>
                   <th className="px-4 py-3 font-semibold">STATUS</th>
+                  <th className="px-4 py-3 font-semibold">DATE</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-border">
@@ -165,12 +166,12 @@ export function ManagerDashboardClient() {
                   </tr>
                 ) : (
                   filteredEnquiries.map((row: any, i: number) => (
-                    <tr key={i} className="hover:bg-bg-page transition-colors cursor-pointer">
-                      <td className="px-4 py-3 text-text-primary font-medium">{row.name}</td>
-                      <td className="px-4 py-3"><PhoneCell value={row.phone} data={row} /></td>
-                      <td className="px-4 py-3"><StatusCell value={row.status} data={row} /></td>
-                    </tr>
-                  ))
+                    <tr key={row.id} className="hover:bg-bg-page transition-colors cursor-pointer">
+                    <td className="px-4 py-3 text-text-primary font-medium">{row.name}</td>
+                    <td className="px-4 py-3"><PhoneCell value={row.phone} /></td>
+                    <td className="px-4 py-3"><StatusCell value={row.status} /></td>
+                    <td className="px-4 py-3 text-text-secondary whitespace-nowrap">{row.date}</td>
+                  </tr>))
                 )}
               </tbody>
             </table>

@@ -29,7 +29,7 @@ export class ManagerDashboardErrorBoundary extends Component<DashboardErrorBound
           <p className="text-text-secondary mb-4">{this.state.error?.message || 'An unexpected error occurred loading the dashboard.'}</p>
           <button
             className="bg-primary text-white rounded-lg px-5 py-2.5 text-sm font-medium hover:bg-primary-hover transition-colors inline-flex items-center gap-2"
-            onClick={() => this.setState({ hasError: false, error: undefined })}
+            onClick={() => this.setState({ hasError: false, error: null })}
           >
             Retry
           </button>
