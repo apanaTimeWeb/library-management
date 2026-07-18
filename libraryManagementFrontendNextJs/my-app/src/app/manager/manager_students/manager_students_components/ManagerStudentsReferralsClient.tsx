@@ -1,13 +1,9 @@
 'use client';
 // RESPONSIBILITY: Renders the ManagerStudentsReferralsClient.tsx component.
 import React, { useState } from 'react';
-import { AgGridReact } from 'ag-grid-react';
-import { AllCommunityModule, ModuleRegistry, type ColDef } from 'ag-grid-community';
 import { Award, Search, Filter, IndianRupee } from 'lucide-react';
-import { gridTheme } from '@/app/manager/manager_reusable/gridTheme';
 import { ReferralData } from '@/app/manager/manager_students/manager_students_types';
-
-ModuleRegistry.registerModules([AllCommunityModule]);
+import { TablePagination } from '@/components/ui/table-pagination';
 
 const REFERRALS_DATA: ReferralData[] = [
   { id: 'REF-001', referrer: 'Arjun Das',    referred: 'Riya Sen',    date: '2026-05-15', status: 'Claimed',  bonus: '₹500', method: 'Fee Discount' },
@@ -20,27 +16,14 @@ export function ManagerStudentsReferralsClient() {
 
   const [rowData] = useState<ReferralData[]>(REFERRALS_DATA);
 
-  const colDefs: ColDef<ReferralData>[] = [
-    { field: 'id',       headerName: 'Ref ID',                    width: 110 },
-    { field: 'referrer', headerName: 'Referrer (Existing)',        flex: 1,
-      cellRenderer: (p: { value: string; data?: ReferralData }) => <span className="text-[13px] font-semibold text-text-secondary">{p.value}</span> },
-    { field: 'referred', headerName: 'Referred Student',           flex: 1,
-      cellRenderer: (p: { value: string; data?: ReferralData }) => <span className="text-[13.5px] font-semibold text-text-primary">{p.value}</span> },
-    { field: 'date',     headerName: 'Date',                       width: 130 },
-    { field: 'bonus',    headerName: 'Bonus',                      width: 110, cellStyle: { fontWeight: 600 } },
-    { field: 'method',   headerName: 'Payout Method',              width: 150 },
-    { field: 'status',   headerName: 'Status',                     width: 130,
-      cellRenderer: (p: { value: string; data?: ReferralData }) => {
-        const cls = p.value === 'Claimed' ? 'bg-success-bg text-success' : p.value === 'Approved' ? 'rounded-full px-2.5 py-0.5 text-[11px] font-semibold--info' : 'bg-warning-bg text-warning';
-        return <span className={`rounded-full px-2.5 py-0.5 text-[11px] font-semibold ${cls}`}>{p.value}</span>;
-      }
-    },
-    { headerName: 'Actions', width: 120, sortable: false,
-      cellRenderer: (p: { value: string; data?: ReferralData }) => p.data?.status !== 'Claimed'
-        ? <div className="flex gap-2 items-center h-full"><button className="bg-transparent border border-border text-text-primary rounded-lg h-8 px-3 text-xs font-medium hover:bg-primary-subtle hover:border-primary transition-colors inline-flex items-center gap-2">Process</button></div>
-        : null
-    },
-  ];
+  const [page, setPage] = useState(1);
+  const [limit, setLimit] = useState(10);
+
+  const filteredData = rowData.filter(item => 
+    !searchTerm || 
+    item.referrer.toLowerCase().includes(searchTerm.toLowerCase()) || 
+    item.referred.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   return (
     <div className="p-6 min-h-screen">
@@ -97,21 +80,60 @@ export function ManagerStudentsReferralsClient() {
           />
         </div>
         
-<div className="w-full overflow-hidden flex flex-col" style={{ height: 400 }}>
-          <AgGridReact
-              quickFilterText={searchTerm}
-              pagination={true}
-              paginationPageSize={10}
-            theme={gridTheme}
-            rowData={rowData}
-            columnDefs={colDefs}
-            rowHeight={56}
-            headerHeight={48}
-            suppressMovableColumns
-            suppressCellFocus
-            defaultColDef={{ resizable: false }}
-          />
-        </div>
+          <div className="w-full overflow-x-auto">
+            <table className="w-full text-left text-sm whitespace-nowrap">
+              <thead className="bg-bg-elevated border-b border-border">
+                <tr className="text-text-secondary text-xs uppercase tracking-wider">
+                  <th className="px-4 py-3 font-semibold">Ref ID</th>
+                  <th className="px-4 py-3 font-semibold">Referrer (Existing)</th>
+                  <th className="px-4 py-3 font-semibold">Referred Student</th>
+                  <th className="px-4 py-3 font-semibold">Date</th>
+                  <th className="px-4 py-3 font-semibold">Bonus</th>
+                  <th className="px-4 py-3 font-semibold">Payout Method</th>
+                  <th className="px-4 py-3 font-semibold">Status</th>
+                  <th className="px-4 py-3 font-semibold text-right">Actions</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-border">
+                {filteredData.length === 0 ? (
+                  <tr>
+                    <td colSpan={8} className="px-4 py-8 text-center text-text-secondary">No referrals found</td>
+                  </tr>
+                ) : (
+                  filteredData.slice((page - 1) * limit, page * limit).map((row) => {
+                    const statusCls = row.status === 'Claimed' ? 'bg-success-bg text-success' : row.status === 'Approved' ? 'bg-info-bg text-info' : 'bg-warning-bg text-warning';
+                    return (
+                      <tr key={row.id} className="hover:bg-bg-page transition-colors cursor-pointer group">
+                        <td className="px-4 py-4 font-medium text-text-primary">{row.id}</td>
+                        <td className="px-4 py-4 text-[13px] font-semibold text-text-secondary">{row.referrer}</td>
+                        <td className="px-4 py-4 text-[13.5px] font-semibold text-text-primary group-hover:text-primary transition-colors">{row.referred}</td>
+                        <td className="px-4 py-4 text-text-secondary">{row.date}</td>
+                        <td className="px-4 py-4 font-semibold text-text-primary">{row.bonus}</td>
+                        <td className="px-4 py-4 text-text-secondary">{row.method}</td>
+                        <td className="px-4 py-4">
+                          <span className={`rounded-full px-2.5 py-0.5 text-[11px] font-bold ${statusCls}`}>{row.status}</span>
+                        </td>
+                        <td className="px-4 py-4 text-right">
+                          {row.status !== 'Claimed' && (
+                            <button className="bg-transparent border border-border text-text-primary rounded-lg h-8 px-3 text-xs font-medium hover:bg-primary-subtle hover:border-primary transition-colors inline-flex items-center gap-2" onClick={(e) => e.stopPropagation()}>Process</button>
+                          )}
+                        </td>
+                      </tr>
+                    );
+                  })
+                )}
+              </tbody>
+            </table>
+          </div>
+          {filteredData.length > 0 && (
+            <TablePagination
+              page={page}
+              limit={limit}
+              totalItems={filteredData.length}
+              onPageChange={setPage}
+              onLimitChange={setLimit}
+            />
+          )}
       </div>
     </div>
   );

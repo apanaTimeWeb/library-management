@@ -4,14 +4,10 @@ import { useMemo, useState, useEffect } from 'react';
 import { Allocation, ActivityItem, Locker, SeatHistoryEntry, LogEntry, Seat, ManagerSeatsSeatMatrixModalProps, ShiftData, Shift, Student } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_types';
 import { ACTIVITY_DATA, INITIAL_LOCKERS, INITIAL_SEATS, SHIFTS_DATA, INITIAL_SHIFTS, STUDENTS_DATA } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_constants/ManagerSeatsConstants';
 import { Download, Eye } from 'lucide-react';
-import { AgGridReact } from 'ag-grid-react';
-import { AllCommunityModule, ModuleRegistry, type ColDef } from 'ag-grid-community';
-import { gridTheme } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shared_components/gridTheme';
 import toast from 'react-hot-toast';
 import { useSeatsStore } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_context/manager_seats_shifts_lockers_store';
 import { ManagerSearchableDropdown } from '@/app/manager/manager_shared_components/ManagerSearchableDropdown';
-
-ModuleRegistry.registerModules([AllCommunityModule]);
+import { TablePagination } from '@/components/ui/table-pagination';
 
 const STATUS_CLASS: Record<string, string> = {
   Active: 'ss-badge ss-badge--success',
@@ -65,26 +61,21 @@ export function ManagerSeatsAllocationsClient() {
     }
   }, [status, allocationsData.length, fetchAllocationsData]);
 
+  const [page, setPage] = useState(1);
+  const [limit, setLimit] = useState(10);
+
   const filtered = (allocationsData as Allocation[]).filter((a) => {
     const matchShift = shiftFilter === 'All Shifts' || a.shift === shiftFilter;
     const matchStatus = statusFilter === 'All Statuses' || a.status === statusFilter;
     const matchFrom = !dateFrom || a.validFrom >= dateFrom;
     const matchTo = !dateTo || a.validTill <= dateTo;
-    return matchShift && matchStatus && matchFrom && matchTo;
+    const matchSearch = !searchTerm || 
+      a.studentName.toLowerCase().includes(searchTerm.toLowerCase()) || 
+      a.smartId.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      a.seatNo.toLowerCase().includes(searchTerm.toLowerCase());
+    return matchShift && matchStatus && matchFrom && matchTo && matchSearch;
   });
 
-  const colDefs: ColDef<Allocation>[] = useMemo(() => [
-    { field: 'studentName', headerName: 'STUDENT', flex: 2, cellRenderer: StudentCell },
-    { field: 'seatNo', headerName: 'SEAT #', flex: 0.8, cellClass: 'ss-table__seat-no' },
-    { field: 'shift', headerName: 'SHIFT', flex: 1, cellClass: 'ss-cell-secondary' },
-    { field: 'customSlots', headerName: 'CUSTOM SLOTS', flex: 1.8, cellClass: 'ss-cell-secondary' },
-    { field: 'lockerNo', headerName: 'LOCKER #', flex: 0.8, cellClass: 'ss-cell-secondary' },
-    { field: 'validFrom', headerName: 'FROM', flex: 1.3, cellClass: 'ss-cell-secondary' },
-    { field: 'validTill', headerName: 'TILL', flex: 1.3, cellClass: 'ss-cell-secondary' },
-    { field: 'daysLeft', headerName: 'DAYS LEFT', flex: 1, cellRenderer: DaysLeftCell },
-    { field: 'status', headerName: 'STATUS', flex: 1.2, cellRenderer: StatusCell },
-    { headerName: 'ACTIONS', flex: 0.8, sortable: false, cellRenderer: ActionsCell },
-  ], []);
 
   return (
     <>
@@ -149,12 +140,53 @@ export function ManagerSeatsAllocationsClient() {
           />
         </div>
         
-<div className="ss-table-wrapper ss-grid-h-400">
-            <AgGridReact
-              quickFilterText={searchTerm}
-              pagination={true}
-              paginationPageSize={10} theme={gridTheme} rowData={filtered} columnDefs={colDefs} rowHeight={52} headerHeight={40} suppressMovableColumns suppressCellFocus defaultColDef={{ resizable: false, sortable: true }} />
+          <div className="w-full overflow-x-auto border border-border rounded-xl">
+            <table className="w-full text-left text-sm whitespace-nowrap">
+              <thead className="bg-bg-elevated border-b border-border">
+                <tr className="text-text-secondary text-xs uppercase tracking-wider">
+                  <th className="px-4 py-3 font-semibold">STUDENT</th>
+                  <th className="px-4 py-3 font-semibold">SEAT #</th>
+                  <th className="px-4 py-3 font-semibold">SHIFT</th>
+                  <th className="px-4 py-3 font-semibold">CUSTOM SLOTS</th>
+                  <th className="px-4 py-3 font-semibold">LOCKER #</th>
+                  <th className="px-4 py-3 font-semibold">FROM</th>
+                  <th className="px-4 py-3 font-semibold">TILL</th>
+                  <th className="px-4 py-3 font-semibold">DAYS LEFT</th>
+                  <th className="px-4 py-3 font-semibold">STATUS</th>
+                  <th className="px-4 py-3 font-semibold text-right">ACTIONS</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-border bg-bg-card">
+                {filtered.slice((page - 1) * limit, page * limit).map((row) => (
+                  <tr key={row.id} className="hover:bg-bg-page transition-colors">
+                    <td className="px-4 py-4"><StudentCell data={row} /></td>
+                    <td className="px-4 py-4"><span className="ss-table__seat-no">{row.seatNo}</span></td>
+                    <td className="px-4 py-4 text-text-secondary">{row.shift}</td>
+                    <td className="px-4 py-4 text-text-secondary">{row.customSlots}</td>
+                    <td className="px-4 py-4 text-text-secondary">{row.lockerNo}</td>
+                    <td className="px-4 py-4 text-text-secondary">{row.validFrom}</td>
+                    <td className="px-4 py-4 text-text-secondary">{row.validTill}</td>
+                    <td className="px-4 py-4"><DaysLeftCell value={row.daysLeft} /></td>
+                    <td className="px-4 py-4"><StatusCell value={row.status} /></td>
+                    <td className="px-4 py-4 text-right">
+                      <div className="flex gap-2 items-center justify-end">
+                        <button className="ss-btn-icon" title="View Student" onClick={() => toast.success(`Viewing ${row.studentName}`)}>
+                          <Eye size={13} />
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
+          <TablePagination
+            page={page}
+            limit={limit}
+            totalItems={filtered.length}
+            onPageChange={setPage}
+            onLimitChange={setLimit}
+          />
         </>
 )}
       </div>

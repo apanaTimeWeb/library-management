@@ -2,17 +2,10 @@
 // RESPONSIBILITY: Renders the WhatsApp communication logs grid with filtering.
 import { useState } from 'react';
 import { ChevronRight, Eye, X } from 'lucide-react';
-import { AgGridReact } from 'ag-grid-react';
-import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community';
-import { gridTheme } from '@/app/manager/manager_reusable/gridTheme';
-import { ManagerRecord } from '@/app/manager/manager_reusable/gridTheme';
 import { WaLog } from '@/app/manager/manager_communication/manager_communication_types/ManagerCommunicationTypes';
 import { WA_LOGS_DATA } from '@/app/manager/manager_communication/manager_communication_constants/ManagerCommunicationConstants';
 import { ManagerSearchableDropdown } from '@/app/manager/manager_shared_components/ManagerSearchableDropdown';
-
-type CellParams = { value: string; data?: WaLog };
-
-ModuleRegistry.registerModules([AllCommunityModule]);
+import { TablePagination } from '@/components/ui/table-pagination';
 
 const TYPE_BADGE: Record<string, string> = {
   welcome: 'bg-info-bg text-info', 
@@ -41,51 +34,20 @@ export function ManagerCommunicationWhatsappLogsClient() {
   const [dateTo,       setDateTo]       = useState('');
   const [viewLog,      setViewLog]      = useState<WaLog | null>(null);
 
+  const [page, setPage] = useState(1);
+  const [limit, setLimit] = useState(10);
+
   const filtered = WA_LOGS_DATA.filter((l: WaLog) => {
     if (typeFilter !== 'All' && l.type !== typeFilter) return false;
     if (statusFilter !== 'All' && l.status !== statusFilter) return false;
     if (search && !l.student.toLowerCase().includes(search.toLowerCase()) && !l.phone.includes(search)) return false;
+    if (searchTerm) {
+      const s = searchTerm.toLowerCase();
+      if (!l.student.toLowerCase().includes(s) && !l.phone.includes(s) && !l.message.toLowerCase().includes(s)) return false;
+    }
     return true;
   });
 
-  const colDefs: unknown[] = [
-    { field: 'dateTime', headerName: 'Date / Time', width: 160, cellRenderer: (p: CellParams) => <span className="text-text-secondary text-sm">{p.value}</span> },
-    { field: 'phone', headerName: 'Phone', width: 130, cellRenderer: (p: CellParams) => <span className="font-mono text-[12px] text-text-primary tracking-tight">{p.value}</span> },
-    { field: 'student', headerName: 'Student', flex: 1, minWidth: 150, cellRenderer: (p: CellParams) => <span className="text-sm font-semibold text-text-primary">{p.value}</span> },
-    { 
-      field: 'type', 
-      headerName: 'Type', 
-      width: 130,
-      cellRenderer: (p: CellParams) => (
-        <span className={`rounded-full px-2.5 py-0.5 text-[11px] font-semibold ${TYPE_BADGE[String(p.value)] || 'bg-info-bg text-info'} inline-block mt-2`}>
-          {TYPE_LABEL[String(p.value)] || p.value}
-        </span>
-      )
-    },
-    { 
-      field: 'status', 
-      headerName: 'Status', 
-      width: 120,
-      cellRenderer: (p: CellParams) => (
-        <span className={`rounded-full px-2.5 py-0.5 text-[11px] font-semibold ${STATUS_BADGE[String(p.value)] || 'bg-info-bg text-info'} inline-block mt-2`}>
-          {p.value}
-        </span>
-      )
-    },
-    { field: 'error', headerName: 'Error', width: 180, cellRenderer: (p: CellParams) => <span className="text-danger text-xs truncate max-w-[160px] inline-block" title={p.value}>{p.value || '—'}</span> },
-    {
-      headerName: 'Actions',
-      width: 100,
-      sortable: false,
-      cellRenderer: (params: CellParams) => (
-        <div className="h-full flex items-center">
-          <button onClick={() => setViewLog(params?.data as WaLog)} className="w-8 h-8 flex items-center justify-center rounded-lg border border-border text-text-secondary bg-transparent hover:bg-primary hover:text-white transition-colors" title="View Message">
-            <Eye size={16} />
-          </button>
-        </div>
-      )
-    }
-  ];
 
   return (
     <div className="p-6 min-h-screen relative">
@@ -186,23 +148,63 @@ export function ManagerCommunicationWhatsappLogsClient() {
             <p className="text-lg font-semibold text-text-primary">No WhatsApp messages found.</p>
           </div>
         ) : (
-          <div className="w-full overflow-hidden border border-border rounded-xl h-[450px]">
-            <AgGridReact
-              quickFilterText={searchTerm}
-              theme={gridTheme}
-              rowData={filtered}
-              columnDefs={colDefs as never}
-              rowHeight={56}
-              headerHeight={48}
-              pagination={true}
-              paginationPageSize={10}
-              defaultColDef={{
-                sortable: true,
-                filter: true,
-                resizable: true
-              }}
-            />
-          </div>
+          <>
+            <div className="w-full overflow-x-auto border border-border rounded-xl">
+              <table className="w-full text-left text-sm whitespace-nowrap">
+                <thead className="bg-bg-elevated border-b border-border">
+                  <tr className="text-text-secondary text-xs uppercase tracking-wider">
+                    <th className="px-4 py-3 font-semibold">Date / Time</th>
+                    <th className="px-4 py-3 font-semibold">Phone</th>
+                    <th className="px-4 py-3 font-semibold">Student</th>
+                    <th className="px-4 py-3 font-semibold">Type</th>
+                    <th className="px-4 py-3 font-semibold">Status</th>
+                    <th className="px-4 py-3 font-semibold">Error</th>
+                    <th className="px-4 py-3 font-semibold text-right">Actions</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-border bg-bg-card">
+                  {filtered.slice((page - 1) * limit, page * limit).map((row) => (
+                    <tr key={row.id} className="hover:bg-bg-page transition-colors">
+                      <td className="px-4 py-4 text-text-secondary">{row.dateTime}</td>
+                      <td className="px-4 py-4"><span className="font-mono text-[12px] text-text-primary tracking-tight">{row.phone}</span></td>
+                      <td className="px-4 py-4"><span className="text-sm font-semibold text-text-primary">{row.student}</span></td>
+                      <td className="px-4 py-4">
+                        <span className={`rounded-full px-2.5 py-0.5 text-[11px] font-semibold ${TYPE_BADGE[row.type] || 'bg-info-bg text-info'}`}>
+                          {TYPE_LABEL[row.type] || row.type}
+                        </span>
+                      </td>
+                      <td className="px-4 py-4">
+                        <span className={`rounded-full px-2.5 py-0.5 text-[11px] font-semibold ${STATUS_BADGE[row.status] || 'bg-info-bg text-info'}`}>
+                          {row.status}
+                        </span>
+                      </td>
+                      <td className="px-4 py-4">
+                        <span className="text-danger text-xs truncate max-w-[160px] inline-block" title={row.error}>{row.error || '—'}</span>
+                      </td>
+                      <td className="px-4 py-4 text-right">
+                        <div className="flex gap-2 items-center justify-end">
+                          <button onClick={() => setViewLog(row)} className="w-8 h-8 flex items-center justify-center rounded-lg border border-border text-text-secondary bg-transparent hover:bg-primary hover:text-white transition-colors" title="View Message">
+                            <Eye size={16} />
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            {filtered.length > 0 && (
+              <div className="mt-4">
+                <TablePagination
+                  page={page}
+                  limit={limit}
+                  totalItems={filtered.length}
+                  onPageChange={setPage}
+                  onLimitChange={setLimit}
+                />
+              </div>
+            )}
+          </>
         )}
       </div>
     </div>

@@ -4,13 +4,9 @@ import { Allocation, ActivityItem, Locker, SeatHistoryEntry, LogEntry, Seat, Man
 import { ACTIVITY_DATA, INITIAL_LOCKERS, INITIAL_SEATS, SHIFTS_DATA, INITIAL_SHIFTS, STUDENTS_DATA } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_constants/ManagerSeatsConstants';
 import { useState, useMemo } from 'react';
 import { ChevronDown, AlertTriangle, Plus } from 'lucide-react';
-import { AgGridReact } from 'ag-grid-react';
-import { AllCommunityModule, ModuleRegistry, type ColDef } from 'ag-grid-community';
-import { gridTheme } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shared_components/gridTheme';
 import toast from 'react-hot-toast';
 import { ManagerSearchableDropdown } from '@/app/manager/manager_shared_components/ManagerSearchableDropdown';
-
-ModuleRegistry.registerModules([AllCommunityModule]);
+import { TablePagination } from '@/components/ui/table-pagination';
 
 const SEAT_LOGS: Record<string, LogEntry[]> = {
   'S-006': [
@@ -54,7 +50,15 @@ export function ManagerSeatsSeatMaintenanceClient() {
   const [selectedSeat, setSelectedSeat] = useState('S-006');
   const [logs, setLogs] = useState(SEAT_LOGS);
   const [form, setForm] = useState(EMPTY_FORM);
+  const [page, setPage] = useState(1);
+  const [limit, setLimit] = useState(10);
   const [errors, setErrors] = useState<Record<string, string>>({});
+
+  const filteredLogs = (logs[selectedSeat] ?? []).filter(log => 
+    !searchTerm || 
+    log.remark.toLowerCase().includes(searchTerm.toLowerCase()) || 
+    log.doneBy.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   const currentLogs = logs[selectedSeat] ?? [];
   const daysSince = DAYS_SINCE[selectedSeat] ?? 0;
@@ -88,15 +92,6 @@ export function ManagerSeatsSeatMaintenanceClient() {
     toast.success('Maintenance entry added.');
   }
 
-  const colDefs: ColDef<LogEntry>[] = useMemo(() => [
-    { field: 'num', headerName: '#', flex: 0.5, cellClass: 'ss-cell-secondary' },
-    { field: 'date', headerName: 'DATE', flex: 1.2, cellClass: 'ss-cell-secondary' },
-    { field: 'remark', headerName: 'REMARK', flex: 2.5, cellClass: 'ss-cell-primary' },
-    { field: 'doneBy', headerName: 'DONE BY', flex: 1.2, cellClass: 'ss-cell-secondary' },
-    { field: 'statusBefore', headerName: 'STATUS BEFORE', flex: 1.3, cellRenderer: StatusBadge },
-    { field: 'statusAfter', headerName: 'STATUS AFTER', flex: 1.3, cellRenderer: StatusBadge },
-    { field: 'cost', headerName: 'COST', flex: 0.8, cellClass: 'ss-cell-secondary' },
-  ], []);
 
   return (
     <>
@@ -129,31 +124,60 @@ export function ManagerSeatsSeatMaintenanceClient() {
         )}
 
         {/* History table */}
-        {currentLogs.length === 0 ? (
+        {filteredLogs.length === 0 ? (
           <div className="ss-empty-state">
             <p className="ss-empty-state__icon">🔧</p>
             <p className="ss-empty-state__title">No maintenance history for this seat.</p>
           </div>
         ) : (
-<>
-<div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: '16px' }}>
-          <input 
-            type="text" 
-            placeholder="Search in table..." 
-            className="px-3 py-2 border border-border rounded-md text-sm bg-bg-input text-text-primary focus:outline-none focus:ring-2 focus:ring-primary w-64"
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-          />
-        </div>
-        
-<div className="ss-table-wrapper ss-grid-h-320">
-            <AgGridReact
-              quickFilterText={searchTerm}
-              pagination={true}
-              paginationPageSize={10} theme={gridTheme} rowData={currentLogs} columnDefs={colDefs} rowHeight={52} headerHeight={40} suppressMovableColumns suppressCellFocus defaultColDef={{ resizable: false, sortable: true }} />
-          </div>
-        </>
-)}
+          <>
+            <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: '16px' }}>
+              <input 
+                type="text" 
+                placeholder="Search in table..." 
+                className="px-3 py-2 border border-border rounded-md text-sm bg-bg-input text-text-primary focus:outline-none focus:ring-2 focus:ring-primary w-64"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+              />
+            </div>
+            
+            <div className="w-full overflow-x-auto border border-border rounded-xl">
+              <table className="w-full text-left text-sm whitespace-nowrap">
+                <thead className="bg-bg-elevated border-b border-border">
+                  <tr className="text-text-secondary text-xs uppercase tracking-wider">
+                    <th className="px-4 py-3 font-semibold">#</th>
+                    <th className="px-4 py-3 font-semibold">DATE</th>
+                    <th className="px-4 py-3 font-semibold">REMARK</th>
+                    <th className="px-4 py-3 font-semibold">DONE BY</th>
+                    <th className="px-4 py-3 font-semibold">STATUS BEFORE</th>
+                    <th className="px-4 py-3 font-semibold">STATUS AFTER</th>
+                    <th className="px-4 py-3 font-semibold">COST</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-border bg-bg-card">
+                  {filteredLogs.slice((page - 1) * limit, page * limit).map((row) => (
+                    <tr key={row.id} className="hover:bg-bg-page transition-colors">
+                      <td className="px-4 py-4 text-text-secondary">{row.num}</td>
+                      <td className="px-4 py-4 text-text-secondary">{row.date}</td>
+                      <td className="px-4 py-4 font-semibold text-text-primary">{row.remark}</td>
+                      <td className="px-4 py-4 text-text-secondary">{row.doneBy}</td>
+                      <td className="px-4 py-4"><StatusBadge value={row.statusBefore} /></td>
+                      <td className="px-4 py-4"><StatusBadge value={row.statusAfter} /></td>
+                      <td className="px-4 py-4 text-text-secondary">{row.cost}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <TablePagination
+              page={page}
+              limit={limit}
+              totalItems={filteredLogs.length}
+              onPageChange={setPage}
+              onLimitChange={setLimit}
+            />
+          </>
+        )}
 
         {/* Add New Entry form */}
         <div className="ss-card ss-form-card">

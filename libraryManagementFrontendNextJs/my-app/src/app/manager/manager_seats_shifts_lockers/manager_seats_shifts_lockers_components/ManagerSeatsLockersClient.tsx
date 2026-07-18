@@ -4,13 +4,9 @@ import { useState, useMemo } from 'react';
 import { Allocation, ActivityItem, Locker, SeatHistoryEntry, LogEntry, Seat, ManagerSeatsSeatMatrixModalProps, ShiftData, Shift, Student } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_types';
 import { ACTIVITY_DATA, INITIAL_LOCKERS, INITIAL_SEATS, SHIFTS_DATA, INITIAL_SHIFTS, STUDENTS_DATA } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_constants/ManagerSeatsConstants';
 import { Plus, ChevronDown, Search, UserPlus, Unlock, Wrench } from 'lucide-react';
-import { AgGridReact } from 'ag-grid-react';
-import { AllCommunityModule, ModuleRegistry, type ColDef } from 'ag-grid-community';
-import { gridTheme } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shared_components/gridTheme';
 import toast from 'react-hot-toast';
 import { ManagerSearchableDropdown } from '@/app/manager/manager_shared_components/ManagerSearchableDropdown';
-
-ModuleRegistry.registerModules([AllCommunityModule]);
+import { TablePagination } from '@/components/ui/table-pagination';
 
 
 const STATUS_CLASS: Record<LockerStatus, string> = {
@@ -53,7 +49,15 @@ export function ManagerSeatsLockersClient() {
   const [newnumber, setNewnumber] = useState('');
   const [addError, setAddError] = useState('');
 
-  const filtered = lockers.filter(l => statusFilter === 'All Statuses' || l.status === statusFilter);
+  const [page, setPage] = useState(1);
+  const [limit, setLimit] = useState(10);
+
+  const filtered = lockers.filter(l => statusFilter === 'All Statuses' || l.status === statusFilter)
+    .filter(item => 
+      !searchTerm || 
+      item.number.toLowerCase().includes(searchTerm.toLowerCase()) || 
+      (item.assignedTo && item.assignedTo.toLowerCase().includes(searchTerm.toLowerCase()))
+    );
 
   function handleAssign() {
     if (!showAssign || !assignSearch.trim()) return;
@@ -94,37 +98,6 @@ export function ManagerSeatsLockersClient() {
     setAddError('');
   }
 
-  const colDefs: ColDef<Locker>[] = useMemo(() => [
-    { field: 'number', headerName: 'LOCKER #', flex: 1, cellRenderer: numberCell },
-    { field: 'status', headerName: 'STATUS', flex: 1.2, cellRenderer: LockerStatusCell },
-    { field: 'assignedTo', headerName: 'ASSIGNED TO', flex: 2, cellRenderer: AssignedToCell },
-    { field: 'assignedSince', headerName: 'SINCE', flex: 1.3, cellClass: 'ss-cell-secondary' },
-    {
-      headerName: 'ACTIONS', flex: 1.2, sortable: false,
-      cellRenderer: (props: { value: string; data?: Locker }) => {
-        const data = props.data as Locker;
-        return (
-          <div className="ss-cell-actions">
-            {data.status === 'Free' && (
-              <button className="ss-btn-icon" title="Assign Student" onClick={() => setShowAssign(data)}>
-                <UserPlus size={13} />
-              </button>
-            )}
-            {data.status === 'Occupied' && (
-              <button className="ss-btn-icon" title="Free Locker" onClick={() => setFreeTarget(data)}>
-                <Unlock size={13} />
-              </button>
-            )}
-            {data.status !== 'Maintenance' && (
-              <button className="ss-btn-icon" title="Mark Maintenance" onClick={() => handleMarkMaintenance(data)}>
-                <Wrench size={13} />
-              </button>
-            )}
-          </div>
-        );
-      },
-    },
-  ], []);
 
   return (
     <>
@@ -174,12 +147,55 @@ export function ManagerSeatsLockersClient() {
           />
         </div>
         
-<div className="ss-table-wrapper ss-grid-h-400">
-            <AgGridReact
-              quickFilterText={searchTerm}
-              pagination={true}
-              paginationPageSize={10} theme={gridTheme} rowData={filtered} columnDefs={colDefs} rowHeight={52} headerHeight={40} suppressMovableColumns suppressCellFocus defaultColDef={{ resizable: false, sortable: true }} />
+          <div className="w-full overflow-x-auto border border-border rounded-xl">
+            <table className="w-full text-left text-sm whitespace-nowrap">
+              <thead className="bg-bg-elevated border-b border-border">
+                <tr className="text-text-secondary text-xs uppercase tracking-wider">
+                  <th className="px-4 py-3 font-semibold">LOCKER #</th>
+                  <th className="px-4 py-3 font-semibold">STATUS</th>
+                  <th className="px-4 py-3 font-semibold">ASSIGNED TO</th>
+                  <th className="px-4 py-3 font-semibold">SINCE</th>
+                  <th className="px-4 py-3 font-semibold text-right">ACTIONS</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-border bg-bg-card">
+                {filtered.slice((page - 1) * limit, page * limit).map((row) => (
+                  <tr key={row.id} className="hover:bg-bg-page transition-colors">
+                    <td className="px-4 py-4"><span className="ss-table__seat-no">{row.number}</span></td>
+                    <td className="px-4 py-4"><LockerStatusCell value={row.status} /></td>
+                    <td className="px-4 py-4"><AssignedToCell data={row} /></td>
+                    <td className="px-4 py-4 text-text-secondary">{row.assignedSince}</td>
+                    <td className="px-4 py-4 text-right">
+                      <div className="flex gap-2 items-center justify-end">
+                        {row.status === 'Free' && (
+                          <button className="ss-btn-icon" title="Assign Student" onClick={() => setShowAssign(row)}>
+                            <UserPlus size={13} />
+                          </button>
+                        )}
+                        {row.status === 'Occupied' && (
+                          <button className="ss-btn-icon" title="Free Locker" onClick={() => setFreeTarget(row)}>
+                            <Unlock size={13} />
+                          </button>
+                        )}
+                        {row.status !== 'Maintenance' && (
+                          <button className="ss-btn-icon" title="Mark Maintenance" onClick={() => handleMarkMaintenance(row)}>
+                            <Wrench size={13} />
+                          </button>
+                        )}
+                      </div>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
+          <TablePagination
+            page={page}
+            limit={limit}
+            totalItems={filtered.length}
+            onPageChange={setPage}
+            onLimitChange={setLimit}
+          />
         </>
 )}
       </div>

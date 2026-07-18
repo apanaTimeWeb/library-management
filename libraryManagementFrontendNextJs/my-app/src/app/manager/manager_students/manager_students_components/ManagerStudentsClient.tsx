@@ -5,17 +5,13 @@ import { useMemo, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { UserPlus, Users2, Download } from 'lucide-react';
-import { AgGridReact } from 'ag-grid-react';
-import { AllCommunityModule, ModuleRegistry, type ColDef } from 'ag-grid-community';
-import { gridTheme } from '@/app/manager/manager_reusable/gridTheme';
 import { useStudentsList } from '@/app/manager/manager_students/manager_students_hooks/useStudentsList';
 import { STUDENT_STATUS_OPTIONS, STUDENT_SHIFT_OPTIONS } from '@/app/manager/manager_students/manager_students_constants';
 import { MANAGER_ROUTES } from '@/app/manager/manager_url_config';
 import { NameCell, ShiftCell, StatusCell, DueCell, ActionsCell } from '@/app/manager/manager_students/manager_students_components/ManagerStudentsTableCells';
 import { ManagerSearchableDropdown } from '@/app/manager/manager_shared_components/ManagerSearchableDropdown';
 import { ManagerStudentsEmptyState } from '@/app/manager/manager_students/manager_students_components/ManagerStudentsEmptyState';
-
-ModuleRegistry.registerModules([AllCommunityModule]);
+import { TablePagination } from '@/components/ui/table-pagination';
 
 // RESPONSIBILITY: Main Client view for the Manager Students directory.
 
@@ -32,26 +28,9 @@ export function ManagerStudentsClient() {
     shiftFilter, setShiftFilter
   } = useStudentsList();
 
-  const colDefs: ColDef[] = useMemo(() => [
-    {
-      field: 'smartId', headerName: 'SMART ID', width: 110,
-      cellStyle: { color: 'var(--primary)', fontFamily: 'monospace', fontSize: '12px' },
-    },
-    { field: 'name',   headerName: 'STUDENT',      flex: 2, minWidth: 160, cellRenderer: NameCell },
-    { field: 'shift',  headerName: 'SHIFT / SEAT', flex: 1, minWidth: 120, cellRenderer: ShiftCell },
-    { field: 'status', headerName: 'STATUS',        width: 105, cellRenderer: StatusCell },
-    { field: 'plan',   headerName: 'PLAN',          flex: 1, minWidth: 100, cellStyle: { color: 'var(--text-secondary)', fontSize: '13px', fontFamily: 'inherit' } },
-    { field: 'due',    headerName: 'DUE',           width: 100, cellRenderer: DueCell },
-    { field: 'joined', headerName: 'JOINED',        width: 100, cellStyle: { color: 'var(--text-secondary)', fontSize: '12px', fontFamily: 'inherit' } },
-    {
-      headerName: 'ACTIONS',
-      width: 120,
-      pinned: 'right' as const,
-      sortable: false,
-      resizable: false,
-      cellRenderer: ActionsCell,
-    },
-  ], []);
+  const [page, setPage] = useState(1);
+  const [limit, setLimit] = useState(10);
+  const router = useRouter();
 
   if (status === 'error') return <div className="p-8 text-danger">Failed to load: {error}</div>;
 
@@ -114,35 +93,59 @@ export function ManagerStudentsClient() {
       </div>
 
       {/* Grid */}
-      <div style={{ border: '1px solid var(--border)', borderRadius: 12, overflow: 'hidden' }}>
-        <div style={{ height: 480 }}>
-          {status === 'loading' ? (
-             <div className="flex items-center justify-center h-full">Loading table...</div>
-          ) : filtered.length === 0 ? (
-             <div className="flex items-center justify-center h-full bg-bg-card">
-               <ManagerStudentsEmptyState />
-             </div>
-          ) : (
-            <AgGridReact
-              quickFilterText={searchTerm}
-              pagination={true}
-              paginationPageSize={10}
-              theme={gridTheme}
-              rowData={filtered}
-              columnDefs={colDefs}
-              rowHeight={56}
-              headerHeight={38}
-              suppressMovableColumns
-              suppressCellFocus
-              defaultColDef={{ resizable: true, sortable: true }}
-              onRowClicked={() => {}}
-              rowClass="cursor-pointer hover:bg-bg-elevated transition-colors"
+      <div className="border border-border rounded-xl overflow-hidden bg-bg-card">
+        {status === 'loading' ? (
+          <div className="flex items-center justify-center h-64 text-text-secondary">Loading table...</div>
+        ) : filtered.length === 0 ? (
+          <div className="flex items-center justify-center h-64">
+            <ManagerStudentsEmptyState />
+          </div>
+        ) : (
+          <>
+            <div className="w-full overflow-x-auto">
+              <table className="w-full text-left text-sm whitespace-nowrap">
+                <thead className="bg-bg-elevated border-b border-border">
+                  <tr className="text-text-secondary text-xs uppercase tracking-wider">
+                    <th className="px-4 py-3 font-semibold">Smart ID</th>
+                    <th className="px-4 py-3 font-semibold">Student</th>
+                    <th className="px-4 py-3 font-semibold">Shift / Seat</th>
+                    <th className="px-4 py-3 font-semibold">Status</th>
+                    <th className="px-4 py-3 font-semibold">Plan</th>
+                    <th className="px-4 py-3 font-semibold">Due</th>
+                    <th className="px-4 py-3 font-semibold">Joined</th>
+                    <th className="px-4 py-3 font-semibold text-right">Actions</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-border">
+                  {filtered.slice((page - 1) * limit, page * limit).map((row: any) => (
+                    <tr 
+                      key={row.id} 
+                      className="hover:bg-bg-page transition-colors cursor-pointer group"
+                      onClick={() => router.push(`${MANAGER_ROUTES.STUDENTS}/${row.id}`)}
+                    >
+                      <td className="px-4 py-4"><span className="text-primary font-mono text-xs font-semibold">{row.smartId}</span></td>
+                      <td className="px-4 py-4"><NameCell value={row.name} data={row} /></td>
+                      <td className="px-4 py-4"><ShiftCell value={row.shift} data={row} /></td>
+                      <td className="px-4 py-4"><StatusCell value={row.status} data={row} /></td>
+                      <td className="px-4 py-4 text-[13px] text-text-secondary">{row.plan}</td>
+                      <td className="px-4 py-4"><DueCell value={row.due} data={row} /></td>
+                      <td className="px-4 py-4 text-[12px] text-text-secondary">{row.joined}</td>
+                      <td className="px-4 py-4 text-right"><ActionsCell value={''} data={row} /></td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <TablePagination
+              page={page}
+              limit={limit}
+              totalItems={filtered.length}
+              onPageChange={setPage}
+              onLimitChange={setLimit}
             />
-          )}
-        </div>
+          </>
+        )}
       </div>
     </div>
   );
 }
-
-

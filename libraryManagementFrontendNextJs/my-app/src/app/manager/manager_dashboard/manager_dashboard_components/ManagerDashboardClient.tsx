@@ -4,17 +4,9 @@ import { useState } from 'react';
 import { useMemo } from 'react';
 import Link from 'next/link';
 import { ChevronRight, TrendingUp } from 'lucide-react';
-import { AgGridReact } from 'ag-grid-react';
-import { AllCommunityModule, ModuleRegistry, type ColDef } from 'ag-grid-community';
-import { gridTheme } from '@/app/manager/manager_reusable/gridTheme';
-import { useDashboardData } from '@/app/manager/manager_dashboard/manager_dashboard_hooks/useDashboardData';
-import { ManagerDashboardKpiGrid } from '@/app/manager/manager_dashboard/manager_dashboard_components/ManagerDashboardKpiGrid';
-import { ManagerDashboardSeatMatrix } from '@/app/manager/manager_dashboard/manager_dashboard_components/ManagerDashboardSeatMatrix';
 import { STATUS_CLASS, QUICK_LINKS } from '@/app/manager/manager_dashboard/manager_dashboard_constants';
 import { MANAGER_ROUTES } from '@/app/manager/manager_url_config';
 import type { CellRendererProps } from '@/app/manager/manager_dashboard/manager_dashboard_types';
-
-ModuleRegistry.registerModules([AllCommunityModule]);
 
 // RESPONSIBILITY: Main Client view for the Manager Dashboard. Glues data and components together.
 
@@ -37,17 +29,22 @@ export function ManagerDashboardClient() {
 
   const { data, status, error } = useDashboardData();
 
-  const admissionCols: ColDef[] = useMemo(() => [
-    { field: 'name', headerName: 'NAME', flex: 2, sortable: true },
-    { field: 'smartId', headerName: 'SMART ID', flex: 1, sortable: true, cellRenderer: SmartIdCell },
-    { field: 'shift', headerName: 'SHIFT', flex: 1, sortable: true, cellRenderer: ShiftCell },
-  ], []);
+  const filteredAdmissions = useMemo(() => {
+    return (data?.recentAdmissions || []).filter((item: any) => 
+      !searchTerm || 
+      item.name?.toLowerCase().includes(searchTerm.toLowerCase()) || 
+      item.smartId?.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+  }, [data?.recentAdmissions, searchTerm]);
 
-  const enquiryCols: ColDef[] = useMemo(() => [
-    { field: 'name', headerName: 'NAME', flex: 2, sortable: true },
-    { field: 'phone', headerName: 'PHONE', flex: 1, cellRenderer: PhoneCell },
-    { field: 'status', headerName: 'STATUS', flex: 1, sortable: true, cellRenderer: StatusCell },
-  ], []);
+  const filteredEnquiries = useMemo(() => {
+    return (data?.recentEnquiries || []).filter((item: any) => 
+      !searchTerm || 
+      item.name?.toLowerCase().includes(searchTerm.toLowerCase()) || 
+      item.phone?.includes(searchTerm) || 
+      item.status?.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+  }, [data?.recentEnquiries, searchTerm]);
 
   if (status === 'loading') return <div className="p-8 animate-pulse text-text-secondary">Loading dashboard...</div>;
   if (status === 'error') return <div className="p-8 text-danger">Failed to load: {error}</div>;
@@ -115,20 +112,31 @@ export function ManagerDashboardClient() {
             />
           </div>
 
-          <div className="h-72 w-full">
-            <AgGridReact
-              quickFilterText={searchTerm}
-              pagination={true}
-              paginationPageSize={10}
-              theme={gridTheme}
-              rowData={data.recentAdmissions || []}
-              columnDefs={admissionCols}
-              rowHeight={48}
-              headerHeight={38}
-              suppressMovableColumns
-              suppressCellFocus
-              defaultColDef={{ resizable: false }}
-            />
+                    <div className="h-72 w-full overflow-y-auto overflow-x-auto bg-bg-card rounded-lg border border-border">
+            <table className="w-full text-left text-sm whitespace-nowrap">
+              <thead className="bg-bg-elevated sticky top-0 z-10">
+                <tr className="border-b border-border text-text-secondary text-xs uppercase tracking-wider">
+                  <th className="px-4 py-3 font-semibold">NAME</th>
+                  <th className="px-4 py-3 font-semibold">SMART ID</th>
+                  <th className="px-4 py-3 font-semibold">SHIFT</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-border">
+                {filteredAdmissions.length === 0 ? (
+                  <tr>
+                    <td colSpan={3} className="px-4 py-8 text-center text-text-secondary">No admissions found</td>
+                  </tr>
+                ) : (
+                  filteredAdmissions.map((row: any, i: number) => (
+                    <tr key={i} className="hover:bg-bg-page transition-colors cursor-pointer">
+                      <td className="px-4 py-3 text-text-primary font-medium">{row.name}</td>
+                      <td className="px-4 py-3"><SmartIdCell value={row.smartId} data={row} /></td>
+                      <td className="px-4 py-3"><ShiftCell value={row.shift} data={row} /></td>
+                    </tr>
+                  ))
+                )}
+              </tbody>
+            </table>
           </div>
         </div>
 
@@ -137,20 +145,31 @@ export function ManagerDashboardClient() {
             <h2 className="text-base font-semibold text-text-primary">Recent Enquiries</h2>
             <Link href={MANAGER_ROUTES.CRM_ENQUIRIES} className="text-sm font-semibold text-primary hover:text-primary-hover transition-colors inline-flex items-center gap-1">View all</Link>
           </div>
-          <div className="h-72 w-full">
-            <AgGridReact
-              quickFilterText={searchTerm}
-              pagination={true}
-              paginationPageSize={10}
-              theme={gridTheme}
-              rowData={data.recentEnquiries || []}
-              columnDefs={enquiryCols}
-              rowHeight={48}
-              headerHeight={38}
-              suppressMovableColumns
-              suppressCellFocus
-              defaultColDef={{ resizable: false }}
-            />
+          <div className="h-72 w-full overflow-y-auto overflow-x-auto bg-bg-card rounded-lg border border-border">
+            <table className="w-full text-left text-sm whitespace-nowrap">
+              <thead className="bg-bg-elevated sticky top-0 z-10">
+                <tr className="border-b border-border text-text-secondary text-xs uppercase tracking-wider">
+                  <th className="px-4 py-3 font-semibold">NAME</th>
+                  <th className="px-4 py-3 font-semibold">PHONE</th>
+                  <th className="px-4 py-3 font-semibold">STATUS</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-border">
+                {filteredEnquiries.length === 0 ? (
+                  <tr>
+                    <td colSpan={3} className="px-4 py-8 text-center text-text-secondary">No enquiries found</td>
+                  </tr>
+                ) : (
+                  filteredEnquiries.map((row: any, i: number) => (
+                    <tr key={i} className="hover:bg-bg-page transition-colors cursor-pointer">
+                      <td className="px-4 py-3 text-text-primary font-medium">{row.name}</td>
+                      <td className="px-4 py-3"><PhoneCell value={row.phone} data={row} /></td>
+                      <td className="px-4 py-3"><StatusCell value={row.status} data={row} /></td>
+                    </tr>
+                  ))
+                )}
+              </tbody>
+            </table>
           </div>
         </div>
       </div>

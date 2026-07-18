@@ -3,15 +3,9 @@
 // RESPONSIBILITY: Renders the Notice Board UI and manages local form states.
 import { useState } from 'react';
 import { ChevronRight, Plus, X, Edit2, Trash2, Send, Megaphone, CheckCircle, Smartphone } from 'lucide-react';
-import { AgGridReact } from 'ag-grid-react';
-import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community';
-import { gridTheme } from '@/app/manager/manager_reusable/gridTheme';
 import { useNotices } from '@/app/manager/manager_communication/manager_communication_hooks/useNotices';
 import type { Notice } from '@/app/manager/manager_communication/manager_communication_types/manager_communication_types';
-
-type CellParams = { value: string; data?: Notice };
-
-ModuleRegistry.registerModules([AllCommunityModule]);
+import { TablePagination } from '@/components/ui/table-pagination';
 
 export function ManagerCommunicationNoticesClient() {
   const [searchTerm, setSearchTerm] = useState('');
@@ -24,6 +18,14 @@ export function ManagerCommunicationNoticesClient() {
   const [broadcastItem, setBroadcastItem] = useState<Notice | null>(null);
   const [toast, setToast]                 = useState('');
   const [form, setForm]                   = useState({ title: '', message: '', validTill: '' });
+  const [page, setPage] = useState(1);
+  const [limit, setLimit] = useState(10);
+
+  const searchedFiltered = notices.filter(item => 
+    !searchTerm || 
+    item.title.toLowerCase().includes(searchTerm.toLowerCase()) || 
+    item.message.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   const showToast = (msg: string) => { setToast(msg); setTimeout(() => setToast(''), 3000); };
 
@@ -54,35 +56,6 @@ export function ManagerCommunicationNoticesClient() {
     showToast('Notice broadcasted to all active students via WhatsApp');
   };
 
-  const colDefs: unknown[] = [
-    { field: 'title', headerName: 'Title', width: 220, cellRenderer: (p: CellParams) => <span className="text-sm font-semibold text-text-primary">{p.value}</span> },
-    { field: 'message', headerName: 'Message', flex: 1, minWidth: 250, cellRenderer: (p: CellParams) => <span className="text-sm text-text-secondary truncate block w-full pt-1" title={p.value}>{p.value}</span> },
-    { 
-      field: 'status', 
-      headerName: 'Status', 
-      width: 120,
-      cellRenderer: (p: CellParams) => (
-        <span className={`rounded-full px-2.5 py-0.5 text-[11px] font-semibold mt-2 inline-flex items-center gap-1 ${p.value === 'Active' ? 'bg-success-bg text-success' : 'border border-border text-text-secondary'}`}>
-          {p.value === 'Active' ? <CheckCircle size={12} /> : null} {p.value}
-        </span>
-      )
-    },
-    { field: 'validTill', headerName: 'Valid Till', width: 130, cellRenderer: (p: CellParams) => <span className="font-mono text-[12px] text-text-primary tracking-tight">{p.value}</span> },
-    { field: 'postedBy', headerName: 'Posted By', width: 130, cellRenderer: (p: CellParams) => <span className="text-sm text-text-secondary">{p.value}</span> },
-    { field: 'postedDate', headerName: 'Posted Date', width: 130, cellRenderer: (p: CellParams) => <span className="font-mono text-[12px] text-text-primary tracking-tight">{p.value}</span> },
-    {
-      headerName: 'Actions',
-      width: 140,
-      sortable: false,
-      cellRenderer: (params: CellParams) => (
-        <div className="h-full flex items-center gap-2">
-          <button onClick={() => openEdit(params?.data as Notice)} className="w-8 h-8 flex items-center justify-center rounded-md hover:bg-muted/50 text-muted-foreground hover:text-primary transition-colors" title="Edit"><Edit2 size={14} /></button>
-          <button onClick={() => setBroadcastItem(params?.data as Notice)} className="w-8 h-8 flex items-center justify-center rounded-md hover:bg-muted/50 text-muted-foreground hover:text-info transition-colors" title="Broadcast"><Send size={14} /></button>
-          <button onClick={() => setDeleteItem(params?.data as Notice)} className="w-8 h-8 flex items-center justify-center rounded-md hover:bg-muted/50 text-muted-foreground hover:text-danger transition-colors" title="Delete"><Trash2 size={14} /></button>
-        </div>
-      )
-    }
-  ];
 
   if (status === 'loading') {
     return <div className="p-6 min-h-screen"><div className="animate-pulse flex space-x-4"><div className="flex-1 space-y-4 py-1"><div className="h-4 bg-gray-400 rounded w-3/4"></div><div className="space-y-2"><div className="h-4 bg-gray-400 rounded"></div><div className="h-4 bg-gray-400 rounded w-5/6"></div></div></div></div></div>;
@@ -194,23 +167,55 @@ export function ManagerCommunicationNoticesClient() {
           />
         </div>
         
-<div className="w-full overflow-hidden border border-border rounded-xl h-[500px]">
-            <AgGridReact
-              quickFilterText={searchTerm}
-              theme={gridTheme}
-              rowData={notices}
-              columnDefs={colDefs as never}
-              rowHeight={56}
-              headerHeight={48}
-              pagination={true}
-              paginationPageSize={10}
-              defaultColDef={{
-                sortable: true,
-                filter: true,
-                resizable: true
-              }}
-            />
+          <div className="w-full overflow-x-auto border border-border rounded-xl">
+            <table className="w-full text-left text-sm whitespace-nowrap">
+              <thead className="bg-bg-elevated border-b border-border">
+                <tr className="text-text-secondary text-xs uppercase tracking-wider">
+                  <th className="px-4 py-3 font-semibold">Title</th>
+                  <th className="px-4 py-3 font-semibold">Message</th>
+                  <th className="px-4 py-3 font-semibold">Status</th>
+                  <th className="px-4 py-3 font-semibold">Valid Till</th>
+                  <th className="px-4 py-3 font-semibold">Posted By</th>
+                  <th className="px-4 py-3 font-semibold">Posted Date</th>
+                  <th className="px-4 py-3 font-semibold text-right">Actions</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-border bg-bg-card">
+                {searchedFiltered.slice((page - 1) * limit, page * limit).map((row) => (
+                  <tr key={row.id} className="hover:bg-bg-page transition-colors">
+                    <td className="px-4 py-4"><span className="text-sm font-semibold text-text-primary">{row.title}</span></td>
+                    <td className="px-4 py-4"><span className="text-sm text-text-secondary truncate block w-full max-w-xs" title={row.message}>{row.message}</span></td>
+                    <td className="px-4 py-4">
+                      <span className={`rounded-full px-2.5 py-0.5 text-[11px] font-semibold inline-flex items-center gap-1 ${row.status === 'Active' ? 'bg-success-bg text-success' : 'border border-border text-text-secondary'}`}>
+                        {row.status === 'Active' ? <CheckCircle size={12} /> : null} {row.status}
+                      </span>
+                    </td>
+                    <td className="px-4 py-4"><span className="font-mono text-[12px] text-text-primary tracking-tight">{row.validTill}</span></td>
+                    <td className="px-4 py-4"><span className="text-sm text-text-secondary">{row.postedBy}</span></td>
+                    <td className="px-4 py-4"><span className="font-mono text-[12px] text-text-primary tracking-tight">{row.postedDate}</span></td>
+                    <td className="px-4 py-4 text-right">
+                      <div className="flex gap-2 items-center justify-end">
+                        <button onClick={() => openEdit(row)} className="w-8 h-8 flex items-center justify-center rounded-md hover:bg-muted/50 text-muted-foreground hover:text-primary transition-colors" title="Edit"><Edit2 size={14} /></button>
+                        <button onClick={() => setBroadcastItem(row)} className="w-8 h-8 flex items-center justify-center rounded-md hover:bg-muted/50 text-muted-foreground hover:text-info transition-colors" title="Broadcast"><Send size={14} /></button>
+                        <button onClick={() => setDeleteItem(row)} className="w-8 h-8 flex items-center justify-center rounded-md hover:bg-muted/50 text-muted-foreground hover:text-danger transition-colors" title="Delete"><Trash2 size={14} /></button>
+                      </div>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
+          {searchedFiltered.length > 0 && (
+            <div className="mt-4">
+              <TablePagination
+                page={page}
+                limit={limit}
+                totalItems={searchedFiltered.length}
+                onPageChange={setPage}
+                onLimitChange={setLimit}
+              />
+            </div>
+          )}
         </>
 )}
       </div>

@@ -4,13 +4,9 @@ import { Allocation, ActivityItem, Locker, SeatHistoryEntry, LogEntry, Seat, Man
 import { ACTIVITY_DATA, INITIAL_LOCKERS, INITIAL_SEATS, SHIFTS_DATA, INITIAL_SHIFTS, STUDENTS_DATA } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_constants/ManagerSeatsConstants';
 import { useState, useMemo } from 'react';
 import { Plus, Search, ChevronDown, Wrench, Edit, AlertTriangle, CheckCircle } from 'lucide-react';
-import { AgGridReact } from 'ag-grid-react';
-import { AllCommunityModule, ModuleRegistry, type ColDef } from 'ag-grid-community';
-import { gridTheme } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shared_components/gridTheme';
 import toast from 'react-hot-toast';
 import { ManagerSearchableDropdown } from '@/app/manager/manager_shared_components/ManagerSearchableDropdown';
-
-ModuleRegistry.registerModules([AllCommunityModule]);
+import { TablePagination } from '@/components/ui/table-pagination';
 
 const STATUS_CLASS: Record<SeatStatus, string> = {
   Working: 'ss-badge ss-badge--success',
@@ -46,6 +42,8 @@ export function ManagerSeatsSeatManagementClient() {
   const [editSeat, setEditSeat] = useState<Seat | null>(null);
   const [form, setForm] = useState(EMPTY_FORM);
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const [page, setPage] = useState(1);
+  const [limit, setLimit] = useState(10);
   const [confirmBroken, setConfirmBroken] = useState<Seat | null>(null);
 
   const filtered = seats.filter((s: Seat) => {
@@ -102,38 +100,6 @@ export function ManagerSeatsSeatManagementClient() {
     setConfirmBroken(null);
   }
 
-  const colDefs: ColDef<Seat>[] = useMemo(() => [
-    { field: 'seatNo', headerName: 'SEAT #', flex: 1, cellRenderer: SeatNoCell },
-    { field: 'branch', headerName: 'BRANCH', flex: 2, cellRenderer: BranchCell },
-    { field: 'status', headerName: 'STATUS', flex: 1.2, cellRenderer: SeatStatusCell },
-    { field: 'assignedTo', headerName: 'ASSIGNED TO', flex: 2, cellClass: 'ss-cell-secondary' },
-    { field: 'lastMaintenance', headerName: 'LAST MAINTENANCE', flex: 1.5, cellClass: 'ss-cell-secondary' },
-    {
-      headerName: 'ACTIONS', flex: 1.5, sortable: false,
-      cellRenderer: (props: { value: string; data?: Seat }) => {
-        const data = props.data as Seat;
-        return (
-          <div className="ss-cell-actions">
-            <button className="ss-btn-icon" title="View Maintenance Log" onClick={() => toast.success(`Opening log for ${data.seatNo}`)}>
-              <Wrench size={13} />
-            </button>
-            <button className="ss-btn-icon" title="Edit" onClick={() => openEdit(data)}>
-              <Edit size={13} />
-            </button>
-            {data.status !== 'Broken' ? (
-              <button className="ss-btn-icon" title="Mark Broken" onClick={() => setConfirmBroken(data)}>
-                <AlertTriangle size={13} />
-              </button>
-            ) : (
-              <button className="ss-btn-icon" title="Mark Fixed" onClick={() => handleMarkFixed(data)}>
-                <CheckCircle size={13} />
-              </button>
-            )}
-          </div>
-        );
-      },
-    },
-  ], []);
 
   return (
     <>
@@ -175,12 +141,59 @@ export function ManagerSeatsSeatManagementClient() {
             <button className="ss-btn-primary" onClick={openAdd}><Plus size={15} />Add Seat</button>
           </div>
         ) : (
-          <div className="ss-table-wrapper ss-grid-h-400">
-            <AgGridReact
-              quickFilterText={search}
-              pagination={true}
-              paginationPageSize={10} theme={gridTheme} rowData={filtered} columnDefs={colDefs} rowHeight={52} headerHeight={40} suppressMovableColumns suppressCellFocus defaultColDef={{ resizable: false, sortable: true }} />
-          </div>
+          <>
+            <div className="w-full overflow-x-auto border border-border rounded-xl">
+              <table className="w-full text-left text-sm whitespace-nowrap">
+                <thead className="bg-bg-elevated border-b border-border">
+                  <tr className="text-text-secondary text-xs uppercase tracking-wider">
+                    <th className="px-4 py-3 font-semibold">SEAT #</th>
+                    <th className="px-4 py-3 font-semibold">BRANCH</th>
+                    <th className="px-4 py-3 font-semibold">STATUS</th>
+                    <th className="px-4 py-3 font-semibold">ASSIGNED TO</th>
+                    <th className="px-4 py-3 font-semibold">LAST MAINTENANCE</th>
+                    <th className="px-4 py-3 font-semibold text-right">ACTIONS</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-border bg-bg-card">
+                  {filtered.slice((page - 1) * limit, page * limit).map((row) => (
+                    <tr key={row.id} className="hover:bg-bg-page transition-colors">
+                      <td className="px-4 py-4"><SeatNoCell value={row.seatNo} /></td>
+                      <td className="px-4 py-4"><BranchCell data={row} /></td>
+                      <td className="px-4 py-4"><SeatStatusCell value={row.status} /></td>
+                      <td className="px-4 py-4 text-text-secondary">{row.assignedTo}</td>
+                      <td className="px-4 py-4 text-text-secondary">{row.lastMaintenance}</td>
+                      <td className="px-4 py-4 text-right">
+                        <div className="flex gap-2 items-center justify-end">
+                          <button className="ss-btn-icon" title="View Maintenance Log" onClick={() => toast.success(`Opening log for ${row.seatNo}`)}>
+                            <Wrench size={13} />
+                          </button>
+                          <button className="ss-btn-icon" title="Edit" onClick={() => openEdit(row)}>
+                            <Edit size={13} />
+                          </button>
+                          {row.status !== 'Broken' ? (
+                            <button className="ss-btn-icon" title="Mark Broken" onClick={() => setConfirmBroken(row)}>
+                              <AlertTriangle size={13} />
+                            </button>
+                          ) : (
+                            <button className="ss-btn-icon" title="Mark Fixed" onClick={() => handleMarkFixed(row)}>
+                              <CheckCircle size={13} />
+                            </button>
+                          )}
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <TablePagination
+              page={page}
+              limit={limit}
+              totalItems={filtered.length}
+              onPageChange={setPage}
+              onLimitChange={setLimit}
+            />
+          </>
         )}
       </div>
 

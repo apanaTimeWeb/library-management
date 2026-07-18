@@ -1,15 +1,13 @@
 'use client';
 import { useState } from 'react';
 import Link from 'next/link';
-import { AgGridReact } from 'ag-grid-react';
-import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community';
 import { ChevronRight, Send, Mail, Phone } from 'lucide-react';
-import { gridTheme , ManagerRecord } from '@/app/manager/manager_reusable/gridTheme';
+import { ManagerRecord } from '@/app/manager/manager_reusable/gridTheme';
 import { AbsenteeRow } from '@/app/manager/manager_engagement/manager_engagement_types/ManagerEngagementTypes';
 import { useManagerEngagementAbsentee } from '@/app/manager/manager_engagement/manager_engagement_hooks/useManagerEngagementAbsentee';
 import { ManagerSearchableDropdown } from '@/app/manager/manager_shared_components/ManagerSearchableDropdown';
+import { TablePagination } from '@/components/ui/table-pagination';
 
-ModuleRegistry.registerModules([AllCommunityModule]);
 
 // RESPONSIBILITY: Renders the absentee report grid with filtering and notification actions.
 
@@ -24,68 +22,17 @@ export function ManagerEngagementAbsenteeReportClient() {
     notify, notifyAll
   } = useManagerEngagementAbsentee();
 
+  const [page, setPage] = useState(1);
+  const [limit, setLimit] = useState(10);
+
+  const searchedFiltered = filtered.filter(item => 
+    !searchTerm || 
+    item.name.toLowerCase().includes(searchTerm.toLowerCase()) || 
+    item.smartId.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   const badgeClass = (d: number) => d >= 7 ? 'rounded-full px-2.5 py-0.5 text-[11px] font-semibold bg-danger-bg text-danger' : 'rounded-full px-2.5 py-0.5 text-[11px] font-semibold bg-warning-bg text-warning';
   
-  const colDefs = [
-    { 
-      field: 'name', 
-      headerName: 'Student', 
-      flex: 1, 
-      minWidth: 200,
-      cellRenderer: (p: { value: string; data: AbsenteeRow }) => (
-        <div className="flex items-center py-2 h-full">
-          <div className="w-8 h-8 rounded-full bg-primary/10 text-primary flex items-center justify-center text-xs font-bold shrink-0 mr-3">
-            {p.data.initials}
-          </div>
-          <span className="text-sm font-semibold text-text-primary truncate">{p.value}</span>
-        </div>
-      )
-    },
-    { field: 'smartId', headerName: 'Smart ID', width: 120, cellRenderer: (p: { value: string }) => <span className="font-mono text-[12px] text-text-primary tracking-tight">{p.value}</span> },
-    { field: 'shift', headerName: 'Shift', width: 120, cellRenderer: (p: { value: string }) => <span className="rounded-full px-2.5 py-0.5 text-[11px] font-semibold bg-bg-elevated text-text-secondary mt-2 inline-block">{p.value}</span> },
-    { 
-      field: 'daysAbsent', 
-      headerName: 'Days Absent', 
-      width: 140,
-      cellRenderer: (p: { value: number }) => (
-        <span className={`${badgeClass(p.value)} mt-2 inline-block`}>
-          {p.value} days
-        </span>
-      )
-    },
-    { field: 'lastSeen', headerName: 'Last Seen', width: 130, cellRenderer: (p: { value: string }) => <span className="text-xs text-text-secondary">{p.value}</span> },
-    { 
-      field: 'parentPhone', 
-      headerName: 'Parent Contact', 
-      width: 220,
-      cellRenderer: (p: { value: string; data: AbsenteeRow }) => (
-        <div className="flex flex-col justify-center h-full space-y-1">
-          <span className="font-mono text-[12px] text-text-primary tracking-tight flex items-center">
-            <Phone size={10} className="mr-1"/> {p.value}
-          </span>
-          <span className="text-xs text-text-secondary flex items-center">
-            <Mail size={10} className="mr-1"/> {p.data.parentEmail}
-          </span>
-        </div>
-      )
-    },
-    {
-      headerName: 'Actions',
-      width: 140,
-      sortable: false,
-      cellRenderer: (params: ManagerRecord) => (
-        <div className="h-full flex items-center">
-          {params.data.notified ? (
-            <span className="rounded-full px-2.5 py-0.5 text-[11px] font-semibold bg-success-bg text-success">✅ Notified</span>
-          ) : (
-            <button onClick={() => notify(params.data.id)} className="bg-transparent border border-border text-text-primary rounded-lg h-8 px-3 text-xs font-medium hover:bg-primary-subtle hover:border-primary transition-colors inline-flex items-center gap-2">
-              <Send size={12} className="mr-1"/> Alert
-            </button>
-          )}
-        </div>
-      )
-    }
-  ];
 
   return (
     <div className="p-6 min-h-screen">
@@ -205,27 +152,71 @@ export function ManagerEngagementAbsenteeReportClient() {
           />
         </div>
         
-<div className="w-full overflow-hidden border border-border rounded-xl mt-4 h-[450px]">
-            <AgGridReact
-              quickFilterText={searchTerm}
-              theme={gridTheme}
-              rowData={filtered}
-              columnDefs={colDefs as never[]}
-              rowHeight={64}
-              headerHeight={48}
-              pagination={true}
-              paginationPageSize={10}
-              defaultColDef={{
-                sortable: true,
-                filter: true,
-                resizable: true
-              }}
-              rowClassRules={{
-                'bg-danger-bg': (params: ManagerRecord) => params.data.daysAbsent >= 7,
-                'bg-warning-bg': (params: ManagerRecord) => params.data.daysAbsent >= 3 && params.data.daysAbsent < 7
-              }}
-            />
+          <div className="w-full overflow-x-auto border border-border rounded-xl">
+            <table className="w-full text-left text-sm whitespace-nowrap">
+              <thead className="bg-bg-elevated border-b border-border">
+                <tr className="text-text-secondary text-xs uppercase tracking-wider">
+                  <th className="px-4 py-3 font-semibold">Student</th>
+                  <th className="px-4 py-3 font-semibold">Smart ID</th>
+                  <th className="px-4 py-3 font-semibold">Shift</th>
+                  <th className="px-4 py-3 font-semibold">Days Absent</th>
+                  <th className="px-4 py-3 font-semibold">Last Seen</th>
+                  <th className="px-4 py-3 font-semibold">Parent Contact</th>
+                  <th className="px-4 py-3 font-semibold">Actions</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-border bg-bg-card">
+                {searchedFiltered.slice((page - 1) * limit, page * limit).map((row) => (
+                  <tr key={row.id} className={`hover:bg-bg-page transition-colors ${row.daysAbsent >= 7 ? 'bg-[var(--danger-bg,rgba(248,113,113,0.1))]' : row.daysAbsent >= 3 ? 'bg-[var(--warning-bg,rgba(251,191,36,0.1))]' : ''}`}>
+                    <td className="px-4 py-4">
+                      <div className="flex items-center">
+                        <div className="w-8 h-8 rounded-full bg-primary-subtle text-primary flex items-center justify-center text-xs font-bold shrink-0 mr-3">
+                          {row.initials}
+                        </div>
+                        <span className="text-sm font-semibold text-text-primary">{row.name}</span>
+                      </div>
+                    </td>
+                    <td className="px-4 py-4"><span className="font-mono text-[12px] text-text-primary tracking-tight">{row.smartId}</span></td>
+                    <td className="px-4 py-4"><span className="rounded-full px-2.5 py-0.5 text-[11px] font-semibold bg-bg-elevated text-text-secondary">{row.shift}</span></td>
+                    <td className="px-4 py-4">
+                      <span className={badgeClass(row.daysAbsent)}>{row.daysAbsent} days</span>
+                    </td>
+                    <td className="px-4 py-4 text-xs text-text-secondary">{row.lastSeen}</td>
+                    <td className="px-4 py-4">
+                      <div className="flex flex-col space-y-1">
+                        <span className="font-mono text-[12px] text-text-primary tracking-tight flex items-center">
+                          <Phone size={10} className="mr-1"/> {row.parentPhone}
+                        </span>
+                        <span className="text-xs text-text-secondary flex items-center">
+                          <Mail size={10} className="mr-1"/> {row.parentEmail}
+                        </span>
+                      </div>
+                    </td>
+                    <td className="px-4 py-4">
+                      {row.notified ? (
+                        <span className="rounded-full px-2.5 py-0.5 text-[11px] font-semibold bg-success-bg text-success">✅ Notified</span>
+                      ) : (
+                        <button onClick={() => notify(row.id)} className="bg-transparent border border-border text-text-primary rounded-lg h-8 px-3 text-xs font-medium hover:bg-primary-subtle hover:border-primary transition-colors inline-flex items-center gap-2">
+                          <Send size={12} className="mr-1"/> Alert
+                        </button>
+                      )}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
+          {searchedFiltered.length > 0 && (
+            <div className="mt-4">
+              <TablePagination
+                page={page}
+                limit={limit}
+                totalItems={searchedFiltered.length}
+                onPageChange={setPage}
+                onLimitChange={setLimit}
+              />
+            </div>
+          )}
         </>
 )}
       </div>
