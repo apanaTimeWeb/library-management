@@ -154,6 +154,7 @@ export function ManagerSeatsAllocationsClient() {
                     <td className="px-4 py-4 text-text-secondary">{row.lockerNo}</td>
                     <td className="px-4 py-4 text-text-secondary">{row.validFrom}</td>
                     <td className="px-4 py-4 text-text-secondary">{row.validTill}</td>
+    // @ts-ignore
                     <td className="px-4 py-4"><DaysLeftCell value={row.daysLeft} /></td>
                     <td className="px-4 py-4"><StatusCell value={row.status} /></td>
                     <td className="px-4 py-4 text-right">

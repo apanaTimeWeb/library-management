@@ -33,10 +33,10 @@ export function SuperadminSystemAutoScaleClient() {
 
       {/* Overview KPI Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 mb-8">
-        <SuperadminKpiCard title="Total Seats" value={120} icon="🪑" subtitle="Across all zones" />
-        <SuperadminKpiCard title="Total Lockers" value={60} icon="🔒" subtitle="All branches" />
-        <SuperadminKpiCard title="Avg Occupancy (30d)" value="68%" icon="📈" trend="up" trendLabel="+4% vs last month" />
-        <SuperadminKpiCard title="Peak Day" value="Apr 8" icon="🏆" subtitle="94% occupancy" />
+        <SuperadminKpiCard title="Total Seats" value={120} icon={() => <span>🪑</span>} subtitle="Across all zones" />
+        <SuperadminKpiCard title="Total Lockers" value={60} icon={() => <span>🔒</span>} subtitle="All branches" />
+        <SuperadminKpiCard title="Avg Occupancy (30d)" value="68%" icon={() => <span>📈</span>} trend="up" trendLabel="+4% vs last month" />
+        <SuperadminKpiCard title="Peak Day" value="Apr 8" icon={() => <span>🏆</span>} subtitle="94% occupancy" />
       </div>
 
       {/* Threshold Config */}

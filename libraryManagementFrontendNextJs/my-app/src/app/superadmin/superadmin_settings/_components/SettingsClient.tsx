@@ -74,12 +74,12 @@ export function SettingsClient() {
             </h2>
             <div className="space-y-4">
                {SUPERADMIN_SETTINGS_MOCK_NOTIF_ITEMS.map((item: FlexRecord) => (
-                <div key={item.id} className="flex items-center gap-3 cursor-pointer"
-                  onClick={() => setChecks(c => ({ ...c, [item.id]: !c[item.id] }))}>
-                  <div className={`w-10 h-[22px] rounded-full relative transition-colors duration-200 ease-in-out ${checks[item.id] ? 'bg-success' : 'bg-border'}`}>
-                    <div className={`absolute top-[1px] left-[1px] w-5 h-5 rounded-full bg-white shadow-sm transition-transform duration-200 ease-in-out ${checks[item.id] ? 'translate-x-[18px]' : ''}`} />
+                <div key={item.id as string} className="flex items-center gap-3 cursor-pointer"
+                  onClick={() => setChecks(c => ({ ...c, [item.id as string]: !c[item.id as string] }))}>
+                  <div className={`w-10 h-[22px] rounded-full relative transition-colors duration-200 ease-in-out ${checks[item.id as string] ? 'bg-success' : 'bg-border'}`}>
+                    <div className={`absolute top-[1px] left-[1px] w-5 h-5 rounded-full bg-white shadow-sm transition-transform duration-200 ease-in-out ${checks[item.id as string] ? 'translate-x-[18px]' : ''}`} />
                   </div>
-                  <span className="text-sm text-text-primary select-none">{item.label}</span>
+                  <span className="text-sm text-text-primary select-none">{item.label as string}</span>
                 </div>
               ))}
             </div>

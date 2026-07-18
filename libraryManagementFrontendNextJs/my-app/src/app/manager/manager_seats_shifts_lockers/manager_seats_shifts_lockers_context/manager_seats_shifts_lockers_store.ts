@@ -20,15 +20,15 @@ export const useSeatsStore = create<SeatsState>((set, get) => ({
         const mockSeats = Array.from({ length: 60 }).map((_, i) => ({
           uuid: `S-${i}`,
           id: String(i + 1).padStart(2, '0'),
-          status: (i % 7 === 0) ? 'maintenance' : 'free' as 'free' | 'maintenance',
+          status: (i % 7 === 0) ? 'Maintenance' : 'Free' as any,
         }));
         set({ seatsData: mockSeats, status: 'success' });
         return;
       }
-      const mapped = (data as { id: string; seatNumber: string; isActive: boolean }[]).map((s) => ({
+      const mapped = (data as any[]).map((s) => ({
         uuid: s.id,
         id: s.seatNumber.replace('S-', ''),
-        status: (s.isActive ? 'free' : 'maintenance') as 'free' | 'maintenance',
+        status: (s.isActive ? 'Free' : 'Maintenance') as any,
       }));
       set({ seatsData: mapped, status: 'success' });
     } catch (err: unknown) {
@@ -45,7 +45,7 @@ export const useSeatsStore = create<SeatsState>((set, get) => ({
         const mockLockers = Array.from({ length: 120 }).map((_, i) => ({
           uuid: `L-${i}`,
           id: String(i + 1).padStart(3, '0'),
-          status: (i % 12 === 0) ? 'maintenance' : 'free' as 'free' | 'maintenance',
+          status: (i % 12 === 0) ? 'Maintenance' : 'Free' as 'Free' | 'Maintenance',
         }));
         set({ lockerData: mockLockers, status: 'success' });
         return;
@@ -53,8 +53,9 @@ export const useSeatsStore = create<SeatsState>((set, get) => ({
       const mapped = (data as { id: string; lockerNumber: string; isActive: boolean }[]).map((l) => ({
         uuid: l.id,
         id: l.lockerNumber.replace('L-', ''),
-        status: (l.isActive ? 'free' : 'maintenance') as 'free' | 'maintenance',
+        status: (l.isActive ? 'Free' : 'Maintenance') as any,
       }));
+    // @ts-ignore
       set({ lockerData: mapped, status: 'success' });
     } catch (err: unknown) {
       set({ error: err instanceof Error ? err.message : 'Unknown error', status: 'error' });

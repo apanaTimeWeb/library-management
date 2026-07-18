@@ -38,7 +38,7 @@ export function SuperadminSeatsLockersClient() {
       case 'Free': return 'success';
       case 'Occupied': return 'danger';
       case 'Maintenance': return 'warning';
-      default: return 'outline';
+      default: return 'default';
     }
   };
 
@@ -129,7 +129,7 @@ export function SuperadminSeatsLockersClient() {
                             </button>
                           )}
                           {locker.status === 'Occupied' && (
-                            <button title="Free Locker" onClick={() => setFreeTarget(locker)} className="p-1.5 text-text-secondary hover:text-danger hover:bg-danger/10 rounded-lg transition-colors">
+                            <button title="Free Locker" onClick={() => setFreeTarget(locker)} className="p-1.5 text-text-secondary hover:text-destructive hover:bg-destructive/10 rounded-lg transition-colors">
                               <Unlock size={16} />
                             </button>
                           )}
@@ -155,7 +155,7 @@ export function SuperadminSeatsLockersClient() {
           <div className="bg-surface rounded-2xl p-6 w-full max-w-md shadow-xl" onClick={e => e.stopPropagation()}>
             <h2 className="text-xl font-bold text-text-primary mb-4">Add Locker</h2>
             <div className="space-y-2 mb-6">
-              <label className="text-sm font-medium text-text-primary">Locker ID <span className="text-danger">*</span></label>
+              <label className="text-sm font-medium text-text-primary">Locker ID <span className="text-destructive">*</span></label>
               <SuperadminInput 
                 id="new-locker-id"
                 placeholder="e.g. D01" 
@@ -163,7 +163,7 @@ export function SuperadminSeatsLockersClient() {
                 onChange={e => { setNewLockerId(e.target.value); setAddError(''); }}
                 className={addError ? 'border-danger focus:border-danger focus:ring-error/20' : ''}
               />
-              {addError && <p className="text-xs text-danger mt-1">{addError}</p>}
+              {addError && <p className="text-xs text-destructive mt-1">{addError}</p>}
             </div>
             <div className="flex items-center justify-end gap-3">
               <SuperadminButton id="add-locker-cancel" onClick={() => setShowAddModal(false)} variant="ghost">Cancel</SuperadminButton>
@@ -181,7 +181,7 @@ export function SuperadminSeatsLockersClient() {
           <div className="bg-surface rounded-2xl p-6 w-full max-w-md shadow-xl" onClick={e => e.stopPropagation()}>
             <h2 className="text-xl font-bold text-text-primary mb-4">Assign Locker {showAssign.lockerId}</h2>
             <div className="space-y-2 mb-6">
-              <label className="text-sm font-medium text-text-primary">Student <span className="text-danger">*</span></label>
+              <label className="text-sm font-medium text-text-primary">Student <span className="text-destructive">*</span></label>
               <div className="relative">
                 <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-text-secondary" />
                 <SuperadminInput 
@@ -213,7 +213,7 @@ export function SuperadminSeatsLockersClient() {
             </p>
             <div className="flex items-center justify-end gap-3">
               <SuperadminButton id="free-locker-cancel" onClick={() => setFreeTarget(null)} variant="ghost">Cancel</SuperadminButton>
-              <SuperadminButton id="free-locker-confirm" onClick={handleFreeLocker} variant="danger">Free Locker</SuperadminButton>
+              <SuperadminButton id="free-locker-confirm" onClick={handleFreeLocker} variant="destructive">Free Locker</SuperadminButton>
             </div>
           </div>
         </div>

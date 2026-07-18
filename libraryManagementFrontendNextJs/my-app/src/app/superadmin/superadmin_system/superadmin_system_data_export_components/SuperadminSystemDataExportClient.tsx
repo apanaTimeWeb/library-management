@@ -58,7 +58,7 @@ export function SuperadminSystemDataExportClient() {
                   <p className="text-sm font-semibold text-text-primary">{qe.label}</p>
                   <p className="text-xs text-text-secondary mt-0.5 leading-snug">{qe.description}</p>
                   <div className="flex items-center gap-2 mt-2">
-                    <SuperadminBadge variant="outline">{qe.format}</SuperadminBadge>
+                    <SuperadminBadge variant="default">{qe.format}</SuperadminBadge>
                     <button
                       id={`quick-export-${qe.id}`}
                       disabled={exporting === qe.id}
@@ -127,7 +127,7 @@ export function SuperadminSystemDataExportClient() {
                     </div>
                     <p className="text-xs text-text-secondary mt-0.5 leading-snug">{mod.description}</p>
                     <div className="flex gap-1 mt-1.5">
-                      {mod.formats.map(( f ) => <SuperadminBadge key={f} variant="outline">{f}</SuperadminBadge>)}
+                      {mod.formats.map(( f ) => <SuperadminBadge key={f} variant="default">{f}</SuperadminBadge>)}
                     </div>
                   </div>
                 </div>

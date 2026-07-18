@@ -7,7 +7,7 @@ import type { SuperadminExpensesKpiGridProps as Props } from '@/app/superadmin/s
 export function SuperadminExpensesKpiGrid({ allExpenses, visibleExpenses }: Props) {
   const total = allExpenses.reduce((s, e) => s + e.amount, 0);
   const visibleTotal = visibleExpenses.reduce((s, e) => s + e.amount, 0);
-  const categoriesCount = new Set(allExpenses.map(( e: FlexRecord ) => e.category)).size;
+  const categoriesCount = new Set(allExpenses.map(( e: any ) => e.category)).size;
 
   return (
     <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">

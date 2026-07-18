@@ -77,7 +77,7 @@ export function useRefundsClient() {
       setAllRefunds((prev) =>
         prev.map(( r ) =>
           r.id === deductDialog.id
-            ? { ...r, deductionAmount: data.amount, netRefund: r.depositHeld - data.amount }
+            ? { ...r, deductionAmount: data.deductionAmount, netRefund: r.depositHeld - data.deductionAmount }
             : r
         )
       );

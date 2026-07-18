@@ -7,8 +7,8 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 
 const deductSchema = z.object({
-  amount: z.number({ invalid_type_error: 'Amount is required' }).min(1, 'Amount must be greater than 0'),
-  reason: z.string().min(1, 'Reason is required'),
+  deductionAmount: z.number().min(1, 'Amount must be greater than 0'),
+  deductionReason: z.string().min(5, 'Please provide a valid reason (min 5 chars)'),
 });
 
 export type DeductFormData = z.infer<typeof deductSchema>;
@@ -51,18 +51,18 @@ export function RefundDeductModal({ isOpen, onClose, onSubmit, studentName, isSu
               type="number" 
               className="w-full bg-input border border-border rounded-[var(--radius-md)] p-2.5 text-[14px] text-text-primary focus:outline-none focus:border-primary transition-colors" 
               placeholder="0.00"
-              {...register('amount', { valueAsNumber: true })} 
+              {...register('deductionAmount', { valueAsNumber: true })} 
             />
-            {errors.amount && <p className="text-danger text-[12px] mt-1">{errors.amount.message}</p>}
+            {errors.deductionAmount && <p className="text-danger text-[12px] mt-1">{errors.deductionAmount.message}</p>}
           </div>
           <div>
             <label className="block text-[12px] font-bold text-text-secondary uppercase tracking-wider mb-2">Reason <span className="text-danger">*</span></label>
             <input 
               className="w-full bg-input border border-border rounded-[var(--radius-md)] p-2.5 text-[14px] text-text-primary focus:outline-none focus:border-primary transition-colors" 
               placeholder="Reason for deduction" 
-              {...register('reason')} 
+              {...register('deductionReason')} 
             />
-            {errors.reason && <p className="text-danger text-[12px] mt-1">{errors.reason.message}</p>}
+            {errors.deductionReason && <p className="text-danger text-[12px] mt-1">{errors.deductionReason.message}</p>}
           </div>
           
           <div className="flex items-center justify-end gap-3 mt-6 pt-2">

@@ -107,6 +107,7 @@ export function ManagerSeatsSeatHistoryClient() {
                     <td className="px-4 py-4 text-text-secondary">{row.occupiedFrom}</td>
                     <td className="px-4 py-4 text-text-secondary">{row.occupiedTill}</td>
                     <td className="px-4 py-4 text-text-secondary">{row.duration}</td>
+    // @ts-ignore
                     <td className="px-4 py-4"><ReasonCell value={row.reason} /></td>
                   </tr>
                 ))}

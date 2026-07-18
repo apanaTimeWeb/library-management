@@ -24,12 +24,12 @@ export function useManagerSeatsAllocations() {
   const filtered = (allocationsData as Allocation[]).filter((a) => {
     const matchShift = shiftFilter === 'All Shifts' || a.shift === shiftFilter;
     const matchStatus = statusFilter === 'All Statuses' || a.status === statusFilter;
-    const matchFrom = !dateFrom || a.validFrom >= dateFrom;
-    const matchTo = !dateTo || a.validTill <= dateTo;
+    const matchFrom = !dateFrom || a.validFrom! >= dateFrom;
+    const matchTo = !dateTo || a.validTill! <= dateTo;
     const matchSearch = !searchTerm || 
-      a.studentName.toLowerCase().includes(searchTerm.toLowerCase()) || 
-      a.smartId.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      a.seatNo.toLowerCase().includes(searchTerm.toLowerCase());
+      a.studentName!.toLowerCase().includes(searchTerm.toLowerCase()) || 
+      a.smartId!.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      a.seatNo!.toLowerCase().includes(searchTerm.toLowerCase());
     return matchShift && matchStatus && matchFrom && matchTo && matchSearch;
   });
 

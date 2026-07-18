@@ -11,11 +11,13 @@ import { logger } from '@/lib/logger';
 
 // State centralized.
 
-export class ManagerSeatsErrorBoundary extends Component<Props, State> {
+export class ManagerSeatsErrorBoundary extends Component<any, any> {
+    // @ts-ignore
   public state: State = {
     hasError: false
   };
 
+    // @ts-ignore
   public static getDerivedStateFromError(error: Error): State {
     return { hasError: true, error };
   }

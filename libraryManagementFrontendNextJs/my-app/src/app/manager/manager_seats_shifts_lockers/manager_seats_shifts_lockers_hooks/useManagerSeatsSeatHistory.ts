@@ -24,10 +24,10 @@ export function useManagerSeatsSeatHistory() {
   const filtered = (seatHistoryData as SeatHistoryEntry[]).filter((h) => {
     const matchSeat = seatFilter === 'All Seats' || h.seatNo === seatFilter;
     const matchSearch = !search ||
-      h.studentName.toLowerCase().includes(search.toLowerCase()) ||
-      h.smartId.toLowerCase().includes(search.toLowerCase());
-    const matchFrom = !dateFrom || h.occupiedFrom >= dateFrom;
-    const matchTo = !dateTo || h.occupiedTill <= dateTo;
+      h.studentName!.toLowerCase().includes(search.toLowerCase()) ||
+      h.smartId!.toLowerCase().includes(search.toLowerCase());
+    const matchFrom = !dateFrom || h.occupiedFrom! >= dateFrom;
+    const matchTo = !dateTo || h.occupiedTill! <= dateTo;
     return matchSeat && matchSearch && matchFrom && matchTo;
   });
 

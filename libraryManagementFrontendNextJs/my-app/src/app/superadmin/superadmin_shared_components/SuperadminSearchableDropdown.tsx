@@ -1,7 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Search, ChevronDown } from 'lucide-react';
-import { useDebounce } from '@/app/manager/manager_shared_hooks/useDebounce'; // We can reuse the manager hook for now, or assume there's a shared one.
-// Wait, is there a superadmin hook? Let's check `superadmin_shared_hooks` if it exists.
+import { useDebounce } from '@/app/superadmin/superadmin_shared_hooks/useDebounce';
 import { SuperadminSearchableDropdownProps } from '@/app/superadmin/superadmin_shared_components/superadmin_shared_types';
 
 // RESPONSIBILITY: Render a searchable dropdown for large datasets in the superadmin portal.

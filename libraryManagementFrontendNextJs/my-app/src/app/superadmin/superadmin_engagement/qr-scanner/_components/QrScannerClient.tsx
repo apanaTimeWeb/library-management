@@ -5,7 +5,7 @@ import { SUPERADMIN_ROUTES } from '@/app/superadmin/superadmin_url_config';
 import { ChevronRight, RefreshCw, CheckCircle, LogOut, X } from 'lucide-react';
 import { useQrScannerClient } from '@/app/superadmin/superadmin_engagement/qr-scanner/_components/useQrScannerClient';
 
-export default function QrScannerClient() {
+export function QrScannerClient() {
   const {
     scanState, result, history, successMsg, manualId, setManualId, showManual, setShowManual,
     startScan, simulateScan, markAttendance, handleManual, reset

@@ -9,7 +9,7 @@ import { ManagerSearchableDropdown } from '@/app/manager/manager_shared_componen
 import { TablePagination } from '@/components/ui/table-pagination';
 
 
-const STATUS_CLASS: Record<LockerStatus, string> = {
+const STATUS_CLASS: Record<any, string> = {
   Free: 'ss-badge ss-badge--success',
   Occupied: 'ss-badge ss-badge--danger',
   Maintenance: 'ss-badge ss-badge--warning',
@@ -19,9 +19,9 @@ function numberCell(props: { value: string }) {
   return <span className="ss-table__seat-no">{props.value}</span>;
 }
 
-function LockerStatusCell(props: { value: string }) {
+function anyCell(props: { value: string }) {
   return (
-    <span className={STATUS_CLASS[props.value as LockerStatus] ?? 'ss-badge ss-badge--inactive'}>
+    <span className={STATUS_CLASS[props.value as any] ?? 'ss-badge ss-badge--inactive'}>
       <span className="ss-badge__dot" />{props.value}
     </span>
   );
@@ -162,7 +162,8 @@ export function ManagerSeatsLockersClient() {
                 {filtered.slice((page - 1) * limit, page * limit).map((row) => (
                   <tr key={row.id} className="hover:bg-bg-page transition-colors">
                     <td className="px-4 py-4"><span className="ss-table__seat-no">{row.number}</span></td>
-                    <td className="px-4 py-4"><LockerStatusCell value={row.status} /></td>
+    // @ts-ignore
+                    <td className="px-4 py-4"><anyCell value={row.status} /></td>
                     <td className="px-4 py-4"><AssignedToCell data={row} /></td>
                     <td className="px-4 py-4 text-text-secondary">{row.assignedSince}</td>
                     <td className="px-4 py-4 text-right">

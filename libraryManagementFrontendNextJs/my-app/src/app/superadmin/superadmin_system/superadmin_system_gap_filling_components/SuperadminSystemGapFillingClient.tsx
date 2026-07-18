@@ -76,7 +76,7 @@ export function SuperadminSystemGapFillingClient() {
         <div className="space-y-4">
           <div className="flex items-center justify-between mb-2">
             <h2 className="text-lg font-semibold text-text-primary">Gap Analysis Results</h2>
-            <SuperadminBadge variant="primary">{seatGaps.length} seats analyzed</SuperadminBadge>
+            <SuperadminBadge variant="default">{seatGaps.length} seats analyzed</SuperadminBadge>
           </div>
           {seatGaps.map((seat) => (
             <SuperadminCard key={seat.seat}>

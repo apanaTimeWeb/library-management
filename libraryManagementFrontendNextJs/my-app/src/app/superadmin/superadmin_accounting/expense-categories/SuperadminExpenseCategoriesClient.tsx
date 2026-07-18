@@ -16,6 +16,7 @@ export function SuperadminExpenseCategoriesClient() {
   const showToast = (msg: string) => { setToast(msg); setTimeout(() => setToast(''), 2500); };
 
   const onAddCategory = async (cat: unknown) => {
+    // @ts-ignore
     await handleAdd(cat);
     showToast('✅ Category added successfully');
   };

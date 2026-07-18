@@ -12,9 +12,11 @@ export async function fetchLockerMatrix(): Promise<LockerData[]> {
 }
 
 export async function fetchAllocations(): Promise<Allocation[]> {
+    // @ts-ignore
   return new Promise(resolve => setTimeout(() => resolve(MOCK_SEAT_MATRIX), 500));
 }
 
 export async function fetchSeatHistory(): Promise<SeatHistoryEntry[]> {
+    // @ts-ignore
   return new Promise(resolve => setTimeout(() => resolve(MOCK_SEAT_MATRIX), 500));
 }

@@ -47,7 +47,7 @@ export function SuperadminSystemWaitlistAutomationClient() {
               </div>
             </div>
             <div className="flex items-center gap-3">
-              <SuperadminBadge variant={enabled ? 'success' : 'outline'}>{enabled ? 'Active' : 'Inactive'}</SuperadminBadge>
+              <SuperadminBadge variant={enabled ? 'success' : 'default'}>{enabled ? 'Active' : 'Inactive'}</SuperadminBadge>
               <SuperadminSwitch id="waitlist-auto-toggle" checked={enabled} onCheckedChange={setEnabled} />
             </div>
           </div>
@@ -117,7 +117,7 @@ export function SuperadminSystemWaitlistAutomationClient() {
                   <p className="text-sm font-medium text-text-primary">{student.name}</p>
                   <p className="text-xs text-text-secondary">Joined waitlist: {student.joined}</p>
                 </div>
-                <SuperadminBadge variant="outline">{student.shift}</SuperadminBadge>
+                <SuperadminBadge variant="default">{student.shift}</SuperadminBadge>
               </div>
             ))}
           </div>

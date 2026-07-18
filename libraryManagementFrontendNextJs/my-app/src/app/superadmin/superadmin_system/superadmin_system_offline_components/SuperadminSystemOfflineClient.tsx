@@ -54,12 +54,12 @@ export function SuperadminSystemOfflineClient() {
                 Available Offline
               </h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {SUPERADMIN_SYSTEM_MOCK_OFFLINE_FEATURES.map((feat: unknown) => (
-                  <div key={feat.title} className="flex items-start gap-3 p-3 rounded-xl bg-surface hover:bg-bg-card transition-colors">
+                {SUPERADMIN_SYSTEM_MOCK_OFFLINE_FEATURES.map((feat: { available: boolean; text: string }) => (
+                  <div key={feat.text} className="flex items-start gap-3 p-3 rounded-xl bg-surface hover:bg-bg-card transition-colors">
                     <CheckCircle size={18} className="text-success mt-0.5 shrink-0" />
                     <div>
-                      <p className="font-semibold text-sm text-text-primary">{feat.title}</p>
-                      <p className="text-xs text-text-secondary mt-0.5">{feat.desc}</p>
+                      <p className="font-semibold text-sm text-text-primary">{feat.text}</p>
+                      <p className="text-xs text-text-secondary mt-0.5">{feat.text}</p>
                     </div>
                   </div>
                 ))}

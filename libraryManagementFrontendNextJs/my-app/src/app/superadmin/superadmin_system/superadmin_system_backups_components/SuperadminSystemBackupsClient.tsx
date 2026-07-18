@@ -65,10 +65,10 @@ export function SuperadminSystemBackupsClient() {
 
       {/* KPI Cards */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-5 mb-8">
-        <SuperadminKpiCard title="Total Backups" value={stats.total} icon={<Archive size={20} />} subtitle="All time" />
-        <SuperadminKpiCard title="Successful" value={stats.successCount} icon={<CheckCircle size={20} />} trend="up" trendLabel="Reliable" />
-        <SuperadminKpiCard title="Failed" value={stats.failedCount} icon={<XCircle size={20} />} trend={stats.failedCount > 0 ? 'down' : 'neutral'} trendLabel={stats.failedCount > 0 ? 'Needs attention' : 'All good'} />
-        <SuperadminKpiCard title="Last Backup" value={stats.lastSuccess ? 'Today' : 'Never'} icon={<Clock size={20} />} subtitle={stats.lastSuccess?.createdAt ?? '—'} />
+        <SuperadminKpiCard title="Total Backups" value={stats.total} icon={Archive} subtitle="All time" />
+        <SuperadminKpiCard title="Successful" value={stats.successCount} icon={CheckCircle} trend="up" trendLabel="Reliable" />
+        <SuperadminKpiCard title="Failed" value={stats.failedCount} icon={XCircle} trend={stats.failedCount > 0 ? 'down' : 'neutral'} trendLabel={stats.failedCount > 0 ? 'Needs attention' : 'All good'} />
+        <SuperadminKpiCard title="Last Backup" value={stats.lastSuccess ? 'Today' : 'Never'} icon={Clock} subtitle={stats.lastSuccess?.createdAt ?? '—'} />
       </div>
 
       {/* Backup Configuration */}
@@ -226,7 +226,7 @@ export function SuperadminSystemBackupsClient() {
                         </div>
                       </td>
                       <td className="py-3 pr-4">
-                        <SuperadminBadge variant={backup.type === 'auto' ? 'primary' : 'outline'}>
+                        <SuperadminBadge variant={backup.type === 'auto' ? 'default' : 'default'}>
                           {backup.type === 'auto' ? <RefreshCw size={12} className="mr-1 inline" /> : <User size={12} className="mr-1 inline" />} {backup.type === 'auto' ? 'Auto' : 'Manual'}
                         </SuperadminBadge>
                       </td>

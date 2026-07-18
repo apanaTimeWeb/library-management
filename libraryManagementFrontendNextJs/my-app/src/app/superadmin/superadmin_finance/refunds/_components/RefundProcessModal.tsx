@@ -9,7 +9,7 @@ import { formatCurrency } from '@/app/superadmin/superadmin_finance/superadmin_f
 import { SuperadminSearchableDropdown } from '@/app/superadmin/superadmin_shared_components/SuperadminSearchableDropdown';
 
 const processSchema = z.object({
-  paymentMethod: z.enum(['upi', 'bank', 'cash', 'cheque'], { required_error: 'Payment method is required' }),
+  paymentMethod: z.enum(['upi', 'bank', 'cash', 'cheque']),
 });
 
 export type ProcessFormData = z.infer<typeof processSchema>;

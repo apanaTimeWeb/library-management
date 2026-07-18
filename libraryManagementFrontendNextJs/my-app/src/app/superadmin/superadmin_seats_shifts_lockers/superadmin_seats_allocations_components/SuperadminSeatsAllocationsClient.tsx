@@ -30,7 +30,7 @@ export function SuperadminSeatsAllocationsClient() {
       case 'Active': return 'success';
       case 'Expired': return 'danger';
       case 'Suspended': return 'warning';
-      default: return 'outline';
+      default: return 'default';
     }
   };
 

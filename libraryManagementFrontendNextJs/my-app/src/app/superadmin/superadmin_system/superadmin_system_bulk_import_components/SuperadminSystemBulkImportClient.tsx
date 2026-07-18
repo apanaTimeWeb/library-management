@@ -167,7 +167,7 @@ export function SuperadminSystemBulkImportClient() {
                         <td className="py-2.5 pr-4">
                           {req
                             ? <SuperadminBadge variant="danger">Required</SuperadminBadge>
-                            : <SuperadminBadge variant="outline">Optional</SuperadminBadge>}
+                            : <SuperadminBadge variant="default">Optional</SuperadminBadge>}
                         </td>
                         <td className="py-2.5 text-text-secondary text-xs">{ex as string}</td>
                       </tr>

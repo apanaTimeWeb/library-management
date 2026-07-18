@@ -7,7 +7,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { deductSchema, DeductFormData } from '@/app/superadmin/superadmin_finance/security-deposits/_components/useSecurityDepositsClient';
 
 interface SecurityDepositDeductModalProps {
-  target: { id: string; name: string } | null;
+  target: { id: number; name: string } | null;
   onClose: () => void;
   onSubmit: (data: DeductFormData) => void;
   isProcessing: boolean;

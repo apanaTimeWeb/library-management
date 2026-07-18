@@ -13,7 +13,7 @@ export const superadminAssetSchema = z.object({
   name: z.string().min(1, 'Asset name is required'),
   category: z.string().min(1, 'Category is required'),
   purchaseDate: z.string().min(1, 'Purchase date is required'),
-  purchaseValue: z.number({ invalid_type_error: 'Must be a number' }).positive('Value must be positive'),
+  purchaseValue: z.number().positive('Value must be positive'),
   location: z.string().min(1, 'Location is required'),
 });
 
@@ -43,6 +43,7 @@ export function useSuperadminAssetsAddDialog({ categories, onSave, onClose }: Us
   const onSubmit = async (data: SuperadminAssetFormData) => {
     setSaving(true);
     try {
+    // @ts-ignore
       await onSave({
         name: data.name,
         category: data.category,

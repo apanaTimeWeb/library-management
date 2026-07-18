@@ -22,7 +22,7 @@ export function useReferralsClient() {
     fetchApi(SUPERADMIN_API_ROUTES.FINANCE_REFERRALS).then(( data: any ) => {
       const actualData = Array.isArray(data) ? data : data?.data;
       if (!Array.isArray(actualData) || actualData.length === 0 || String(actualData[0]?.id).startsWith('MOCK-')) {
-        setAllReferrals(SUPERADMIN_FINANCE_MOCK_REFERRERS as SuperadminFinanceReferral[]);
+        setAllReferrals(SUPERADMIN_FINANCE_MOCK_REFERRERS as unknown as SuperadminFinanceReferral[]);
         setIsLoading(false);
         return;
       }

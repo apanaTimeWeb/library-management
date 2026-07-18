@@ -11,7 +11,7 @@ import { SUPERADMIN_FINANCE_MOCK_DEPOSITS } from '@/app/superadmin/superadmin_fi
 
 export const refundSchema = z.object({
   refundAmount: z.number().min(0, 'Cannot be negative'),
-  deductionAmount: z.number().min(0, 'Cannot be negative').default(0),
+  deductionAmount: z.number().min(0, 'Cannot be negative'),
   deductionReason: z.string().optional(),
 }).refine(data => {
   if (data.deductionAmount > 0 && (!data.deductionReason || data.deductionReason.trim() === '')) {
@@ -38,8 +38,8 @@ export function useSecurityDepositsClient() {
   const [isLoading, setIsLoading] = useState(true);
 
   // Dialog state
-  const [refundTarget, setRefundTarget] = useState<{ id: string; name: string; amount: number } | null>(null);
-  const [deductTarget, setDeductTarget] = useState<{ id: string; name: string } | null>(null);
+  const [refundTarget, setRefundTarget] = useState<{ id: number; name: string; amount: number } | null>(null);
+  const [deductTarget, setDeductTarget] = useState<{ id: number; name: string } | null>(null);
   const [isProcessing, setIsProcessing] = useState(false);
 
   useEffect(() => {

@@ -14,12 +14,12 @@ const MODE_LABELS: Record<SuperadminFinanceCollectFeeMode, string> = { cash: 'Ca
 let receiptCounter = 124;
 
 export const collectFeeSchema = z.object({
-  amount: z.number({ invalid_type_error: 'Amount must be a number' }).positive('Amount must be positive'),
+  amount: z.number().positive('Amount must be positive'),
   mode: z.enum(['cash', 'upi', 'card', 'bank'] as const),
   txnId: z.string().optional(),
   couponCode: z.string().optional(),
   lateFee: z.number().min(0, 'Cannot be negative'),
-  lateFeeOverride: z.boolean().default(false),
+  lateFeeOverride: z.boolean().optional(),
   remark: z.string().optional(),
 }).superRefine((data, ctx) => {
   if (data.mode !== 'cash' && (!data.txnId || data.txnId.trim() === '')) {
@@ -211,7 +211,7 @@ export function useCollectFeeClient() {
     total,
     currentMode,
     lateFeeOverride,
-    onSubmit: form.handleSubmit(onSubmit),
+    onSubmit: form.handleSubmit(onSubmit as any),
     resetForm,
   };
 }

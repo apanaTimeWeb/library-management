@@ -138,3 +138,16 @@ export type SuperadminFinanceAutoSuspendConfig = { daysBeforeSuspend: number; cu
 export type SuperadminFinanceSuspendedStudent = { id: number; studentId: number; studentName: string; smartId: string; seat: string; shift: string; daysOverdue: number; suspendedSince: string };
 
 export type SuperadminFinanceDialogState = { id: number; name: string };
+
+export type SuperadminFinanceReferral = {
+  id: number;
+  date: string;
+  referrerName: string;
+  referrerSmartId: string;
+  refereeName: string;
+  refereeSmartId: string;
+  rewardAmount: number;
+  status: 'pending' | 'paid';
+  paidDate?: string;
+  paymentMethod?: string;
+};

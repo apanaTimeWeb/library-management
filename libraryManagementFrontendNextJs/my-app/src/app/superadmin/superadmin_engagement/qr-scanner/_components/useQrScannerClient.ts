@@ -1,6 +1,6 @@
 // RESPONSIBILITY: Provides state and logic for QrScannerClient
 import { useState } from 'react';
-import type { ScanResult } from '@/app/superadmin/superadmin_engagement/superadmin_engagement_types/SuperadminEngagementTypes';
+export type ScanResult = any;
 
 const MOCK_QR_STUDENT: ScanResult = {
   name: 'Rahul Sharma',

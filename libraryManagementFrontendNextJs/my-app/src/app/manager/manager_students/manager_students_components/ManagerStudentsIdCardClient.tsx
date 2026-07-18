@@ -101,7 +101,7 @@ export function ManagerStudentsIdCardClient() {
                 <button
                   className="bg-transparent border border-border text-text-primary rounded-lg px-5 py-2.5 text-sm font-medium hover:bg-primary-subtle hover:border-primary transition-colors inline-flex items-center gap-2"
                   onClick={handlePrint}
-                  className="w-full justify-center"
+                 
                 >
                   <Printer size={15} />
                   Print ID Card (Thermal)

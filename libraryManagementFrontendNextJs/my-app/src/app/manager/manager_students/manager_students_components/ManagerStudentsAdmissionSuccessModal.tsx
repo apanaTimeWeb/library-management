@@ -90,15 +90,15 @@ export default function ManagerStudentsAdmissionSuccessModal({ data, onClose }: 
 
             <div className="h-[1px] w-full bg-border my-2" />
 
-            <button className="bg-transparent border border-border text-text-primary rounded-lg px-5 py-2.5 text-sm font-medium hover:bg-primary-subtle hover:border-primary transition-colors inline-flex items-center gap-2" onClick={handlePrintIdCard} className="w-full justify-center">
+            <button className="w-full justify-center bg-transparent border border-border text-text-primary rounded-lg px-5 py-2.5 text-sm font-medium hover:bg-primary-subtle hover:border-primary transition-colors inline-flex items-center gap-2" onClick={handlePrintIdCard}>
               <Printer size={15} /> Print ID Card (Thermal)
             </button>
 
-            <button className="bg-transparent border border-border text-text-primary rounded-lg px-5 py-2.5 text-sm font-medium hover:bg-primary-subtle hover:border-primary transition-colors inline-flex items-center gap-2" onClick={handlePrintReceipt} className="w-full justify-center">
+            <button className="w-full justify-center bg-transparent border border-border text-text-primary rounded-lg px-5 py-2.5 text-sm font-medium hover:bg-primary-subtle hover:border-primary transition-colors inline-flex items-center gap-2" onClick={handlePrintReceipt}>
               <Printer size={15} /> Print Fee Receipt (Thermal)
             </button>
 
-            <button className="bg-primary text-white rounded-lg px-5 py-2.5 text-sm font-medium hover:bg-primary-hover transition-colors inline-flex items-center gap-2" onClick={() => { onClose(); router.push(MANAGER_ROUTES.STUDENTS); }} className="w-full justify-center">
+            <button className="w-full justify-center bg-primary text-white rounded-lg px-5 py-2.5 text-sm font-medium hover:bg-primary-hover transition-colors inline-flex items-center gap-2" onClick={() => { onClose(); router.push(MANAGER_ROUTES.STUDENTS); }}>
               <Users size={15} /> Go to Students
             </button>
 

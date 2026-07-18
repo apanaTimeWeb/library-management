@@ -15,8 +15,8 @@ import type { SuperadminFinanceLateFeesConfig, SuperadminFinanceOverdueStudent }
 import { SUPERADMIN_FINANCE_MOCK_CONFIG_LATE_FEES, SUPERADMIN_FINANCE_MOCK_OVERDUE_STUDENTS } from '@/app/superadmin/superadmin_finance/superadmin_finance_constants/SuperadminFinanceConstants';
 
 export const lateFeesConfigSchema = z.object({
-  gracePeriodDays: z.number({ invalid_type_error: 'Must be a number' }).min(0, 'Cannot be negative'),
-  penaltyPerDay: z.number({ invalid_type_error: 'Must be a number' }).min(0, 'Cannot be negative'),
+  gracePeriodDays: z.number().min(0, 'Cannot be negative'),
+  penaltyPerDay: z.number().min(0, 'Cannot be negative'),
 });
 
 export type LateFeesConfigFormData = z.infer<typeof lateFeesConfigSchema>;

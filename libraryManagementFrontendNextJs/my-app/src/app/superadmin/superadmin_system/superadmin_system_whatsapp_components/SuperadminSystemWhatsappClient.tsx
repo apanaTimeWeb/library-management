@@ -61,7 +61,7 @@ export function SuperadminSystemWhatsappClient() {
                testStatus === 'testing'? 'Testing connection...' :
                'WhatsApp Not Tested'}
             </p>
-            <SuperadminBadge variant={testStatus === 'success' ? 'success' : testStatus === 'error' ? 'danger' : 'outline'}>
+            <SuperadminBadge variant={testStatus === 'success' ? 'success' : testStatus === 'error' ? 'danger' : 'default'}>
               {testStatus === 'success' ? 'Connected' : testStatus === 'error' ? 'Disconnected' : 'Unknown'}
             </SuperadminBadge>
           </div>
@@ -80,10 +80,10 @@ export function SuperadminSystemWhatsappClient() {
 
       {/* Usage Stats */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-5 mb-8">
-        <SuperadminKpiCard title="Sent This Month" value={stats.total} icon={<Send size={20} />} subtitle="All messages" />
-        <SuperadminKpiCard title="Delivered" value={stats.deliveredCount} icon={<CheckCircle size={20} />} trend="up" trendLabel={`${stats.deliveryRate}% rate`} />
-        <SuperadminKpiCard title="Failed" value={stats.failedCount} icon={<XCircle size={20} />} trend={stats.failedCount > 0 ? 'down' : 'neutral'} trendLabel="Failed deliveries" />
-        <SuperadminKpiCard title="Est. Cost" value="₹18.50" icon={<Banknote size={20} />} subtitle="~₹0.18 per msg" />
+        <SuperadminKpiCard title="Sent This Month" value={stats.total} icon={Send} subtitle="All messages" />
+        <SuperadminKpiCard title="Delivered" value={stats.deliveredCount} icon={CheckCircle} trend="up" trendLabel={`${stats.deliveryRate}% rate`} />
+        <SuperadminKpiCard title="Failed" value={stats.failedCount} icon={XCircle} trend={stats.failedCount > 0 ? 'down' : 'neutral'} trendLabel="Failed deliveries" />
+        <SuperadminKpiCard title="Est. Cost" value="₹18.50" icon={Banknote} subtitle="~₹0.18 per msg" />
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
@@ -229,7 +229,7 @@ export function SuperadminSystemWhatsappClient() {
                     <p className="text-xs text-text-secondary">{event.desc}</p>
                   </div>
                   <div className="flex items-center gap-2 shrink-0">
-                    <SuperadminBadge variant={event.enabled ? 'success' : 'outline'}>
+                    <SuperadminBadge variant={event.enabled ? 'success' : 'default'}>
                       {event.enabled ? 'ON' : 'OFF'}
                     </SuperadminBadge>
                   </div>

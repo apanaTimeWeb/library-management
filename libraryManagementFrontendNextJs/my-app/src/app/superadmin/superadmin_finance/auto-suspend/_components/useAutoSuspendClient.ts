@@ -11,7 +11,7 @@ import type { SuperadminFinanceAutoSuspendConfig, SuperadminFinanceSuspendedStud
 import { SUPERADMIN_FINANCE_MOCK_CONFIG_AUTO_SUSPEND, SUPERADMIN_FINANCE_MOCK_SUSPENDED_STUDENTS } from '@/app/superadmin/superadmin_finance/superadmin_finance_constants/SuperadminFinanceConstants';
 
 export const autoSuspendConfigSchema = z.object({
-  daysBeforeSuspend: z.number({ invalid_type_error: 'Must be a number' }).min(1, 'Must be at least 1 day'),
+  daysBeforeSuspend: z.number().min(1, 'Must be at least 1 day'),
 });
 
 export const manualRestoreSchema = z.object({

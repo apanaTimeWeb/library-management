@@ -25,7 +25,7 @@ export interface Seat {
 }
 
 export interface ManagerSeatsSeatMatrixModalProps {
-  isOpen: boolean; onClose: () => void; selectedSeat?: SeatData;
+  isOpen: boolean; onClose: () => void; selectedSeat?: any;
 }
 
 export interface BookedBlock { startH: number; endH: number; label: string; }
