@@ -3,7 +3,7 @@
 // RESPONSIBILITY: Visually indicates password strength.
 // DATA FLOW: Props -> AuthPasswordStrengthMeter (`Rule 39`).
 
-type Score = 0 | 1 | 2 | 3 | 4;
+
 
 const SEGMENT_CLASS: Record<number, string> = {
   1: 'bg-danger',
@@ -19,7 +19,7 @@ const LABEL: Record<number, { text: string; colorClass: string }> = {
   4: { text: 'Strong', colorClass: 'text-success'  },
 };
 
-function calcScore(pwd: string): Score {
+function calcScore(pwd: string): 0 | 1 | 2 | 3 | 4 {
   let s = 0;
   if (pwd.length >= 8)          s++;
   if (/[A-Z]/.test(pwd))        s++;
