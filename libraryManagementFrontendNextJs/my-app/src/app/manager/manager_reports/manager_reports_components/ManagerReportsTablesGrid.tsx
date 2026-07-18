@@ -1,3 +1,4 @@
+import { useUrlState } from '@/app/manager/manager_shared_hooks/useUrlState';
 // @ts-nocheck
 import { useState } from 'react';
 import React from 'react';
@@ -96,7 +97,7 @@ function ReportTable<T extends Record<string, unknown>>({
 }
 
 export function ManagerReportsTablesGrid({ data }: ManagerReportsTablesGridProps) {
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useUrlState('searchTerm', '');
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -116,7 +117,7 @@ export function ManagerReportsTablesGrid({ data }: ManagerReportsTablesGridProps
         headers={['NAME', 'SMART ID', 'SHIFT', 'ABSENT DAYS', 'LAST PRESENT']}
         data={data.absenteeRows}
         searchTerm={searchTerm}
-        renderRow={(row) => (
+        renderRow={(row: any) => (
           <>
             <td className="px-4 py-4 font-semibold text-text-primary">{row.name}</td>
             <td className="px-4 py-4"><SmartIdCell value={row.smartId} /></td>
@@ -132,7 +133,7 @@ export function ManagerReportsTablesGrid({ data }: ManagerReportsTablesGridProps
         headers={['MONTH', 'NEW ENQUIRIES', 'CONVERTED', 'RATE']}
         data={data.conversionRows}
         searchTerm={searchTerm}
-        renderRow={(row) => (
+        renderRow={(row: any) => (
           <>
             <td className="px-4 py-4 font-semibold text-text-primary">{row.month}</td>
             <td className="px-4 py-4">{row.newEnq}</td>
@@ -147,7 +148,7 @@ export function ManagerReportsTablesGrid({ data }: ManagerReportsTablesGridProps
         headers={['SHIFT', 'OCCUPANCY', 'AVG DURATION']}
         data={data.seatRows}
         searchTerm={searchTerm}
-        renderRow={(row) => (
+        renderRow={(row: any) => (
           <>
             <td className="px-4 py-4"><ShiftPrimaryCell value={row.shift} /></td>
             <td className="px-4 py-4 font-semibold text-text-primary">{row.occupancy}</td>
@@ -161,7 +162,7 @@ export function ManagerReportsTablesGrid({ data }: ManagerReportsTablesGridProps
         headers={['TYPE', 'OCCUPIED', 'TOTAL', '%']}
         data={data.lockerRows}
         searchTerm={searchTerm}
-        renderRow={(row) => (
+        renderRow={(row: any) => (
           <>
             <td className="px-4 py-4 font-semibold text-text-primary">{row.type}</td>
             <td className="px-4 py-4">{row.occupied}</td>
@@ -177,7 +178,7 @@ export function ManagerReportsTablesGrid({ data }: ManagerReportsTablesGridProps
           headers={['ITEM', 'LOCATION', 'REPORTED', 'PRIORITY']}
           data={data.maintenanceRows}
           searchTerm={searchTerm}
-          renderRow={(row) => (
+          renderRow={(row: any) => (
             <>
               <td className="px-4 py-4 font-semibold text-text-primary">{row.item}</td>
               <td className="px-4 py-4"><SecondaryCell value={row.location} /></td>

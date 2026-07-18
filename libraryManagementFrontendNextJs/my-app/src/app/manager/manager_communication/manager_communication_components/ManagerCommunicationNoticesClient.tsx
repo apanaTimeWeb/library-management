@@ -1,4 +1,6 @@
 'use client';
+import { useUrlState } from '@/app/manager/manager_shared_hooks/useUrlState';
+
 // RESPONSIBILITY: Renders the Notice Board UI and manages local form states.
 import { useState } from 'react';
 import { ChevronRight, Plus, X, Edit2, Trash2, Send, Megaphone, CheckCircle, Smartphone } from 'lucide-react';
@@ -9,7 +11,7 @@ import { TableToolbar } from "@/components/ui/table-toolbar";
 import { useClientTable } from "@/components/ui/use-client-table";
 
 export function ManagerCommunicationNoticesClient() {
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useUrlState('searchTerm', '');
 
   const { notices, status, addNotice, updateNotice, deleteNotice } = useManagerNotices();
 

@@ -1,3 +1,4 @@
+import { useUrlState } from '@/app/manager/manager_shared_hooks/useUrlState';
 import { useState, useEffect, useMemo } from 'react';
 import { useSeatsStore } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_store/manager_seats_shifts_lockers_store';
 import type { SeatData } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_types';
@@ -10,7 +11,7 @@ import type { SeatData } from '@/app/manager/manager_seats_shifts_lockers/manage
 export function useManagerSeatsSeatMatrix() {
   const { seatsData, status, error, fetchData } = useSeatsStore();
   
-  const [activeTab, setActiveTab] = useState('All');
+  const [activeTab, setActiveTab] = useUrlState('activeTab', 'All');
   const [selectedSeat, setSelectedSeat] = useState<SeatData | null>(null);
   const [date, setDate] = useState(() => new Date().toISOString().slice(0, 10));
 

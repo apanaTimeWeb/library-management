@@ -1,3 +1,4 @@
+import { useUrlState } from '@/app/manager/manager_shared_hooks/useUrlState';
 import { useState, useMemo, useEffect } from 'react';
 import { fetchStudents } from '@/app/manager/manager_students/manager_students_api/manager_students_api';
 import type { Student } from '@/app/manager/manager_students/manager_students_types';
@@ -10,7 +11,7 @@ import { printThermal } from '@/lib/thermalPrint';
 export function useManagerStudentsIdCard() {
   const [students, setStudents] = useState<Student[]>([]);
   const [selectedId, setSelectedId] = useState<string>('');
-  const [search, setSearch]         = useState('');
+  const [search, setSearch] = useUrlState('search', '');
   const debouncedSearch = useManagerDebounce(search, 300);
 
   // DEPENDENCY AUDIT: Executed on mount or when key dependencies (like search terms, filters, IDs) change.

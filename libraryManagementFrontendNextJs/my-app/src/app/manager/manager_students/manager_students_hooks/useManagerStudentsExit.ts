@@ -1,3 +1,4 @@
+import { useUrlState } from '@/app/manager/manager_shared_hooks/useUrlState';
 import { useState, useEffect } from 'react';
 import { fetchStudents } from '@/app/manager/manager_students/manager_students_api/manager_students_api';
 import type { Student } from '@/app/manager/manager_students/manager_students_types';
@@ -6,7 +7,7 @@ import { useManagerDebounce } from '@/app/manager/manager_shared_hooks/useManage
 // DATA FLOW: Hook -> useManagerStudentsExit -> Consuming UI Component
 export function useManagerStudentsExit() {
   const [students, setStudents] = useState<Student[]>([]);
-  const [search, setSearch] = useState('');
+  const [search, setSearch] = useUrlState('search', '');
   const debouncedSearch = useManagerDebounce(search, 300);
   const [selected, setSelected] = useState('');
   const [reason, setReason] = useState('');

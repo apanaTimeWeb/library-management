@@ -1,4 +1,6 @@
 'use client';
+import { useUrlState } from '@/app/manager/manager_shared_hooks/useUrlState';
+
 import { useState } from 'react';
 import Link from 'next/link';
 import { ChevronRight, Send, Mail, Phone } from 'lucide-react';
@@ -13,7 +15,7 @@ import { useClientTable } from "@/components/ui/use-client-table";
 // RESPONSIBILITY: Renders the absentee report grid with filtering and notification actions.
 
 export function ManagerEngagementAbsenteeReportClient() {
-const [searchTerm, setSearchTerm] = useState('');
+const [searchTerm, setSearchTerm] = useUrlState('searchTerm', '');
 
   const {
     threshold, setThreshold,

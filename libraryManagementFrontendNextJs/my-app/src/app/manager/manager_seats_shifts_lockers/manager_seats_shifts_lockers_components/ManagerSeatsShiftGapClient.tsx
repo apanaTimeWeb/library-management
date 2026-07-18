@@ -1,4 +1,6 @@
 'use client';
+import { useUrlState } from '@/app/manager/manager_shared_hooks/useUrlState';
+
 // RESPONSIBILITY: Renders the ManagerSeatsShiftGapClient.tsx component UI.
 import { useState } from 'react';
 import { Allocation, ActivityItem, Locker, SeatHistoryEntry, LogEntry, Seat, ManagerSeatsSeatMatrixModalProps, ShiftData, Shift, Student, BookedBlock, GapBlock } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_types';
@@ -22,8 +24,8 @@ function fmtH(h: number) {
 }
 
 export function ManagerSeatsShiftGapClient() {
-  const [shiftFilter, setShiftFilter] = useState('All');
-  const [period, setPeriod]           = useState('Today');
+  const [shiftFilter, setShiftFilter] = useUrlState('shiftFilter', 'All');
+  const [period, setPeriod] = useUrlState('period', 'Today');
 
   const visible = shiftFilter === 'All' ? SHIFTS_DATA : SHIFTS_DATA.filter((s: ShiftData) => s.name === shiftFilter);
 

@@ -1,33 +1,39 @@
 'use client';
-// RESPONSIBILITY: Renders the Student Reports UI and renders data visualization using ApexCharts.
-'use client';
-// RESPONSIBILITY: Renders the Student Reports UI and renders data visualization using ApexCharts.
-import { useState } from 'react';
-import { TablePagination } from '@/components/ui/table-pagination';
-import dynamic from 'next/dynamic';
-import { useRouter, useSearchParams, usePathname } from 'next/navigation';
-import { Users, CalendarCheck, UserPlus, Phone } from 'lucide-react';
 import { useManagerStudentReports } from '@/app/manager/manager_student-reports/manager_student_reports_hooks/useManagerStudentReports';
-import { ManagerSearchableDropdown } from '@/app/manager/manager_shared_components/ManagerSearchableDropdown';
-import { TableToolbar } from "@/components/ui/table-toolbar";
 import { useClientTable } from "@/components/ui/use-client-table";
-import { MAINTENANCE_STATUS_BADGE } from '@/app/manager/manager_student-reports/manager_student-reports_constants';
-
-const Chart = dynamic(() => import('react-apexcharts'), { ssr: false }) as React.ComponentType<Record<string, unknown>>;
-
-const iconMap: Record<string, React.ElementType> = { Users, CalendarCheck, UserPlus, Phone };
+import { TablePagination } from '@/components/ui/table-pagination';
+import { TableToolbar } from "@/components/ui/table-toolbar";
 
 export function ManagerStudentReportsClient() {
-
-  const router = useRouter();
-  const pathname = usePathname();
-  const searchParams = useSearchParams();
-  const dateRange = searchParams.get('range') || 'This Month';
-
-  const { reports: data, status, error } = useManagerStudentReports(dateRange);
+  const { reports: data, status, error } = useManagerStudentReports('This Month');
   const table = useClientTable(data?.absenteeReportData || [], 10);
-      </div>
+  
+  return (
+    <div className="p-6">
+      <h1 className="text-2xl font-bold mb-4">Student Reports</h1>
+      {status === 'loading' && <p>Loading...</p>}
+      {error && <p className="text-red-500">{error}</p>}
+      
+      {data && (
+        <div className="space-y-6">
+          <div className="bg-card p-4 rounded-xl border">
+            <h2 className="text-lg font-bold mb-4">Absentees</h2>
+            <TableToolbar search={table.searchTerm} onSearch={table.setSearchTerm} />
+            <table className="w-full text-left">
+              <thead><tr><th>Student</th><th>Days Absent</th></tr></thead>
+              <tbody>
+                {table.paginatedData.map((a, i) => (
+                  <tr key={i}>
+                    <td>{a.name}</td>
+                    <td>{a.absentDays}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+            <TablePagination page={table.page} limit={table.limit} totalItems={table.totalItems} onPageChange={table.setPage} onLimitChange={table.setLimit} />
+          </div>
+        </div>
+      )}
     </div>
   );
 }
-

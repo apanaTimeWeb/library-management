@@ -1,4 +1,6 @@
 'use client';
+import { useUrlState } from '@/app/manager/manager_shared_hooks/useUrlState';
+
 // RESPONSIBILITY: Renders the ManagerStudentsAlumniClient.tsx component.
 import React, { useState } from 'react';
 import { Search, Filter, Mail, Award } from 'lucide-react';
@@ -14,7 +16,7 @@ const ALUMNI_DATA: AlumniData[] = [
 ];
 
 export function ManagerStudentsAlumniClient() {
-const [searchTerm, setSearchTerm] = useState('');
+const [searchTerm, setSearchTerm] = useUrlState('searchTerm', '');
 
   const [rowData] = useState<AlumniData[]>(ALUMNI_DATA);
 

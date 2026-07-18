@@ -1,3 +1,4 @@
+import { useUrlState } from '@/app/manager/manager_shared_hooks/useUrlState';
 // @ts-nocheck
 'use client';
 // RESPONSIBILITY: Renders the ManagerSeatsSeatMaintenanceClient.tsx component UI.
@@ -48,7 +49,7 @@ function StatusBadge(props: { value: string }) {
 }
 
 export function ManagerSeatsSeatMaintenanceClient() {
-const [searchTerm, setSearchTerm] = useState('');
+const [searchTerm, setSearchTerm] = useUrlState('searchTerm', '');
 
   const [selectedSeat, setSelectedSeat] = useState('S-006');
   const [logs, setLogs] = useState(SEAT_LOGS);
@@ -165,9 +166,9 @@ const [searchTerm, setSearchTerm] = useState('');
                       <td className="px-4 py-4 text-text-secondary">{row.date}</td>
                       <td className="px-4 py-4 font-semibold text-text-primary">{row.remark}</td>
                       <td className="px-4 py-4 text-text-secondary">{row.doneBy}</td>
-    // @ts-ignore
+    {/* @ts-ignore */}
                       <td className="px-4 py-4"><StatusBadge value={row.statusBefore} /></td>
-    // @ts-ignore
+    {/* @ts-ignore */}
                       <td className="px-4 py-4"><StatusBadge value={row.statusAfter} /></td>
                       <td className="px-4 py-4 text-text-secondary">{row.cost}</td>
                     </tr>

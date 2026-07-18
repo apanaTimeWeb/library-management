@@ -1,4 +1,6 @@
 'use client';
+import { useUrlState } from '@/app/manager/manager_shared_hooks/useUrlState';
+
 // RESPONSIBILITY: Renders the WhatsApp communication logs grid with filtering.
 import { useState } from 'react';
 import { ChevronRight, Eye, X } from 'lucide-react';
@@ -27,13 +29,13 @@ const STATUS_BADGE: Record<string, string> = {
 };
 
 export function ManagerCommunicationWhatsappLogsClient() {
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useUrlState('searchTerm', '');
 
   const [typeFilter,   setTypeFilter]   = useState('All');
-  const [statusFilter, setStatusFilter] = useState('All');
-  const [search,       setSearch]       = useState('');
-  const [dateFrom,     setDateFrom]     = useState('');
-  const [dateTo,       setDateTo]       = useState('');
+  const [statusFilter, setStatusFilter] = useUrlState('statusFilter', 'All');
+  const [search, setSearch] = useUrlState('search', '');
+  const [dateFrom, setDateFrom] = useUrlState('dateFrom', '');
+  const [dateTo, setDateTo] = useUrlState('dateTo', '');
   const [viewLog,      setViewLog]      = useState<WaLog | null>(null);
 
   const [page, setPage] = useState(1);

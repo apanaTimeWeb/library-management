@@ -1,3 +1,4 @@
+import { useUrlState } from '@/app/manager/manager_shared_hooks/useUrlState';
 import { useState, useEffect, useMemo } from 'react';
 import { useManagerDebounce } from '@/app/manager/manager_shared_hooks/useManagerDebounce';
 import { useStudentsStore } from '@/app/manager/manager_students/manager_students_store/manager_students_store';
@@ -10,9 +11,9 @@ import { useStudentsStore } from '@/app/manager/manager_students/manager_student
 export function useManagerStudentsList() {
   const { students, status, error, fetchData } = useStudentsStore();
 
-  const [search, setSearch] = useState('');
-  const [statusFilter, setStatusFilter] = useState('all');
-  const [shiftFilter, setShiftFilter] = useState('all');
+  const [search, setSearch] = useUrlState('search', '');
+  const [statusFilter, setStatusFilter] = useUrlState('statusFilter', 'all');
+  const [shiftFilter, setShiftFilter] = useUrlState('shiftFilter', 'all');
 
   // Fetch data on mount if idle, dependencies included to satisfy linter
   // DEPENDENCY AUDIT: Executed on mount or when key dependencies (like search terms, filters, IDs) change.

@@ -1,4 +1,6 @@
 'use client';
+import { useUrlState } from '@/app/manager/manager_shared_hooks/useUrlState';
+
 // RESPONSIBILITY: Renders the ManagerSeatsShiftMigrationClient.tsx component UI.
 import { useState } from 'react';
 import { Allocation, ActivityItem, Locker, SeatHistoryEntry, LogEntry, Seat, ManagerSeatsSeatMatrixModalProps, ShiftData, Shift, Student, PayMode } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_types';
@@ -22,7 +24,7 @@ function daysRemaining(validTill: string): number {
 
 export function ManagerSeatsShiftMigrationClient() {
   const [step, setStep]                         = useState(1);
-  const [search, setSearch]                     = useState('');
+  const [search, setSearch] = useUrlState('search', '');
   const [selectedStudent, setSelectedStudent]   = useState<Student | null>(null);
   const [newShift, setNewShift]                 = useState('');
   const [newSeat, setNewSeat]                   = useState('');

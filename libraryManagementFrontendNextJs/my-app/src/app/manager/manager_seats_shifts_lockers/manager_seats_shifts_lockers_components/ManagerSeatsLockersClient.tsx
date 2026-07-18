@@ -1,3 +1,4 @@
+import { useUrlState } from '@/app/manager/manager_shared_hooks/useUrlState';
 // @ts-nocheck
 'use client';
 // RESPONSIBILITY: Renders the ManagerSeatsLockersClient.tsx component UI.
@@ -40,12 +41,12 @@ function AssignedToCell(props: { data: Locker }) {
 }
 
 export function ManagerSeatsLockersClient() {
-const [searchTerm, setSearchTerm] = useState('');
+const [searchTerm, setSearchTerm] = useUrlState('searchTerm', '');
 
   const [lockers, setLockers] = useState<Locker[]>(INITIAL_LOCKERS);
-  const [statusFilter, setStatusFilter] = useState('All Statuses');
+  const [statusFilter, setStatusFilter] = useUrlState('statusFilter', 'All Statuses');
   const [showAssign, setShowAssign] = useState<Locker | null>(null);
-  const [assignSearch, setAssignSearch] = useState('');
+  const [assignSearch, setAssignSearch] = useUrlState('assignSearch', '');
   const [freeTarget, setFreeTarget] = useState<Locker | null>(null);
   const [showAddModal, setShowAddModal] = useState(false);
   const [newnumber, setNewnumber] = useState('');
@@ -165,8 +166,7 @@ const [searchTerm, setSearchTerm] = useState('');
                 {table.paginatedData.map((row) => (
                   <tr key={row.id} className="hover:bg-bg-pageg-page transition-colors">
                     <td className="px-4 py-4"><span className="ss-table__seat-no">{row.number}</span></td>
-    // @ts-ignore
-                    <td className="px-4 py-4"><div value={row.status} /></td>
+                    <td className="px-4 py-4"><span className="text-text-primary font-semibold">{row.status}</span></td>
                     <td className="px-4 py-4"><AssignedToCell data={row} /></td>
                     <td className="px-4 py-4 text-text-secondary">{row.assignedSince}</td>
                     <td className="px-4 py-4 text-right">

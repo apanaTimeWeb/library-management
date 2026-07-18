@@ -1,14 +1,15 @@
+import { useUrlState } from '@/app/manager/manager_shared_hooks/useUrlState';
 import { useState, useEffect } from 'react';
 import { useSeatsStore } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_store/manager_seats_shifts_lockers_store';
 import { SeatHistoryEntry } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_types';
 
 // DATA FLOW: Hook -> useManagerSeatsSeatHistory -> Consuming UI Component
 export function useManagerSeatsSeatHistory() {
-  const [searchTerm, setSearchTerm] = useState('');
-  const [seatFilter, setSeatFilter] = useState('All Seats');
-  const [search, setSearch] = useState('');
-  const [dateFrom, setDateFrom] = useState('');
-  const [dateTo, setDateTo] = useState('');
+  const [searchTerm, setSearchTerm] = useUrlState('searchTerm', '');
+  const [seatFilter, setSeatFilter] = useUrlState('seatFilter', 'All Seats');
+  const [search, setSearch] = useUrlState('search', '');
+  const [dateFrom, setDateFrom] = useUrlState('dateFrom', '');
+  const [dateTo, setDateTo] = useUrlState('dateTo', '');
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(10);
   

@@ -1,4 +1,6 @@
 'use client';
+import { useUrlState } from '@/app/manager/manager_shared_hooks/useUrlState';
+
 // RESPONSIBILITY: Renders the ManagerSeatsSeatManagementClient.tsx component UI.
 import { Allocation, ActivityItem, Locker, SeatHistoryEntry, LogEntry, Seat, ManagerSeatsSeatMatrixModalProps, ShiftData, Shift, Student, SeatStatus } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_types';
 import { ACTIVITY_DATA, INITIAL_LOCKERS, INITIAL_SEATS, SHIFTS_DATA, INITIAL_SHIFTS, STUDENTS_DATA } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_constants/ManagerSeatsConstants';
@@ -35,12 +37,12 @@ function SeatStatusCell(props: { value: string }) {
 }
 
 export function ManagerSeatsSeatManagementClient() {
-const [searchTerm, setSearchTerm] = useState('');
+const [searchTerm, setSearchTerm] = useUrlState('searchTerm', '');
 
     // @ts-ignore
   const [seats, setSeats] = useState<Seat[]>(INITIAL_SEATS);
-  const [search, setSearch] = useState('');
-  const [statusFilter, setStatusFilter] = useState('All Statuses');
+  const [search, setSearch] = useUrlState('search', '');
+  const [statusFilter, setStatusFilter] = useUrlState('statusFilter', 'All Statuses');
   const [showModal, setShowModal] = useState(false);
   const [editSeat, setEditSeat] = useState<Seat | null>(null);
   const [form, setForm] = useState(EMPTY_FORM);

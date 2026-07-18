@@ -1,4 +1,6 @@
 'use client';
+import { useUrlState } from '@/app/manager/manager_shared_hooks/useUrlState';
+
 // RESPONSIBILITY: Renders the ManagerStudentsReferralsClient.tsx component.
 import React, { useState } from 'react';
 import { Award, Search, Filter, IndianRupee } from 'lucide-react';
@@ -14,7 +16,7 @@ const REFERRALS_DATA: ReferralData[] = [
 ];
 
 export function ManagerStudentsReferralsClient() {
-const [searchTerm, setSearchTerm] = useState('');
+const [searchTerm, setSearchTerm] = useUrlState('searchTerm', '');
 
   const [rowData] = useState<ReferralData[]>(REFERRALS_DATA);
 

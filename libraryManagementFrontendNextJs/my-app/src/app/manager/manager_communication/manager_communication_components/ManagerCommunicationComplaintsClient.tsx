@@ -61,8 +61,7 @@ export function ManagerCommunicationComplaintsClient() {
     showToast('Marked In-Progress');
   };
 
-  const handleResolve = async () => {
-    if (!resolveItem || !resolveNote) return;
+
   const table = useClientTable(filtered, 10);
 
   const setTab = (t: string) => {
