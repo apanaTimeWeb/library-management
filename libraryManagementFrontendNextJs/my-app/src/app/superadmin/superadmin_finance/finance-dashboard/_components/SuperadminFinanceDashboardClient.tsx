@@ -9,7 +9,7 @@ import { formatCurrency } from '@/app/superadmin/superadmin_finance/superadmin_f
 import { useSuperadminFinanceDashboardClient } from '@/app/superadmin/superadmin_finance/finance-dashboard/_components/useSuperadminFinanceDashboardClient';
 
 const MODE_BADGE: Record<string, string> = {
-  cash: 'bg-[#25D366]/10 text-[#128C7E] border border-[#25D366]/20',
+  cash: 'bg-green-500/10 text-emerald-700 border border-green-500/20',
   upi:  'bg-primary/10 text-primary border border-primary/20',
   card: 'bg-warning/10 text-warning border border-warning/20',
   bank: 'bg-info/10 text-info border border-info/20',

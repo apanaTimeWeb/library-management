@@ -18,10 +18,10 @@ import {
 } from "@/components/ui/table";
 
 const MODE_BADGE: Record<string, string> = {
-  cash: 'bg-pay-cash-bg text-pay-cash border border-[#134E4A]/20',
-  upi:  'bg-pay-upi-bg text-pay-upi border border-[#164E63]/20',
-  card: 'bg-pay-card-bg text-pay-card border border-[#1E293B]/20',
-  bank: 'bg-pay-bank-bg text-pay-bank border border-[#0C4A6E]/20',
+  cash: 'bg-pay-cash-bg text-pay-cash border border-pay-cash-bg/20',
+  upi:  'bg-pay-upi-bg text-pay-upi border border-pay-upi-bg/20',
+  card: 'bg-pay-card-bg text-pay-card border border-pay-card-bg/20',
+  bank: 'bg-pay-bank-bg text-pay-bank border border-pay-bank-bg/20',
 };
 
 export function SuperadminPaymentsClient() {

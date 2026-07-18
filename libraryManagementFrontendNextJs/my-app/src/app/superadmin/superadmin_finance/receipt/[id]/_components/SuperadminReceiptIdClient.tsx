@@ -110,7 +110,7 @@ export function SuperadminReceiptIdClient() {
         {/* Action buttons below card */}
         <div className="w-full max-w-xs mt-6 flex flex-col gap-3">
           <button 
-            className="flex items-center justify-center gap-2 bg-[#25D366] text-white hover:bg-[#128C7E] rounded-lg py-3 px-4 font-bold text-sm transition-colors shadow-lg shadow-[#25D366]/20 cursor-pointer" 
+            className="flex items-center justify-center gap-2 bg-green-500 text-white hover:bg-emerald-700 rounded-lg py-3 px-4 font-bold text-sm transition-colors shadow-lg shadow-green-500/20 cursor-pointer" 
             onClick={handleWhatsApp}
           >
             <Send size={18} /> Send via WhatsApp

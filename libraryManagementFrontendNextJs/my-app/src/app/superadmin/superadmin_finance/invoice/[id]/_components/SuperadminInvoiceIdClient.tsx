@@ -155,7 +155,7 @@ export function SuperadminInvoiceIdClient() {
             <Printer size={16} /> Print Thermal Receipt
           </button>
           <button 
-            className="flex items-center gap-2 bg-[#25D366]/10 text-[#128C7E] border border-[#25D366]/20 px-4 py-2.5 rounded-md text-sm font-bold hover:bg-[#25D366] hover:text-white transition-colors cursor-pointer" 
+            className="flex items-center gap-2 bg-green-500/10 text-emerald-700 border border-green-500/20 px-4 py-2.5 rounded-md text-sm font-bold hover:bg-green-500 hover:text-white transition-colors cursor-pointer" 
             onClick={handleWhatsApp}
           >
             <Send size={16} /> Send via WhatsApp

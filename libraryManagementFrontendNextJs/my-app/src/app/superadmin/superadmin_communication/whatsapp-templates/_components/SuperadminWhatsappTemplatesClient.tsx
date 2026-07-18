@@ -148,8 +148,8 @@ export function SuperadminWhatsappTemplatesClient() {
               {/* Preview */}
               <div className="flex flex-col gap-2">
                 <label className="text-xs font-bold text-text-secondary uppercase tracking-wider">Preview (sample values)</label>
-                <div className="bg-[#EFEAE2] dark:bg-[#0B141A] rounded-xl p-4 shadow-sm max-w-md relative before:content-[''] before:absolute before:top-0 before:left-[-8px] before:border-[8px] before:border-transparent before:border-t-[#EFEAE2] dark:before:border-t-[#0B141A]">
-                  <p className="text-sm text-[#111B21] dark:text-[#E9EDEF] whitespace-pre-wrap leading-relaxed">{preview}</p>
+                <div className="bg-green-50 dark:bg-emerald-950 rounded-xl p-4 shadow-sm max-w-md relative before:content-[''] before:absolute before:top-0 before:left-[-8px] before:border-[8px] before:border-transparent before:border-t-green-50 dark:before:border-t-emerald-950">
+                  <p className="text-sm text-emerald-900 dark:text-emerald-100 whitespace-pre-wrap leading-relaxed">{preview}</p>
                 </div>
               </div>
             </div>
