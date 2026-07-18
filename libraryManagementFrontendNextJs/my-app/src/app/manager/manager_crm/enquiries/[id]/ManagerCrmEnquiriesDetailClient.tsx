@@ -72,7 +72,7 @@ export function ManagerCrmEnquiriesDetailClient({ id }: { id: string }) {
 
   useEffect(() => {
     import('@/lib/api').then(({ fetchApi }) => {
-      fetchApi<{id: string, name: string, phone: string, preferredShift: string, status: string, handledBy: {name: string}, createdAt: string, source: string, preferredBranch: string}>(`/crm/enquiries/${id}`)
+      fetchApi<{id: string, name: string, phone: string, email?: string, preferredShift: string, status: string, handledBy: {name: string}, createdAt: string, source: string, preferredBranch: string}>(`/crm/enquiries/${id}`)
         .then((e) => {
           if (!e) {
             setLoading(false);
