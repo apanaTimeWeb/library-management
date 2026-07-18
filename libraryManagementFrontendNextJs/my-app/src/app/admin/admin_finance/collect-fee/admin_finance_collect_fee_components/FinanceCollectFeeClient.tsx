@@ -57,7 +57,7 @@ export function FinanceCollectFeeClient() {
 
       {/* Receipt Modal */}
       {receiptData && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-background/80 backdrop-blur-sm overflow-y-auto" onClick={() => setReceiptData(null)}>
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm overflow-y-auto" onClick={() => setReceiptData(null)}>
           <div className="w-full max-w-md bg-card rounded-xl shadow-2xl border border-border flex flex-col my-auto" onClick={e => e.stopPropagation()}>
             {/* Modal Header */}
             <div className="flex items-center justify-between p-4 border-b border-border bg-muted/20 rounded-t-xl">
@@ -145,7 +145,7 @@ export function FinanceCollectFeeClient() {
               <Button 
                 variant="outline"
                 onClick={handlePrintReceipt}
-                className="w-full font-bold gap-2 bg-background"
+                className="w-full font-bold gap-2 bg-bg-card"
               >
                 <Printer size={16} /> Print Receipt (Thermal 80mm)
               </Button>
@@ -286,7 +286,7 @@ export function FinanceCollectFeeClient() {
                 <div className="flex items-center justify-between">
                   <label className="text-sm font-medium text-primary">Late Fee</label>
                   <label className="flex items-center gap-1.5 text-xs text-muted-foreground cursor-pointer hover:text-primary">
-                    <input type="checkbox" checked={lateFeeOverride} onChange={e => setLateFeeOverride(e.target.checked)} className="rounded border-input" /> Override
+                    <input type="checkbox" checked={lateFeeOverride} onChange={e => setLateFeeOverride(e.target.checked)} className="rounded border-border" /> Override
                   </label>
                 </div>
                 <Input 

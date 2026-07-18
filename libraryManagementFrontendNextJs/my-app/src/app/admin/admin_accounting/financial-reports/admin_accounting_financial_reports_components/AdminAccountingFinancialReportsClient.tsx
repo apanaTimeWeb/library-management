@@ -49,7 +49,7 @@ export function AdminAccountingFinancialReportsClient() {
               variant={period === p ? 'secondary' : 'ghost'}
               size="sm"
               onClick={() => setPeriod(p)}
-              className={`text-xs font-semibold capitalize ${period === p ? 'bg-background shadow-sm' : ''}`}
+              className={`text-xs font-semibold capitalize ${period === p ? 'bg-bg-card shadow-sm' : ''}`}
             >
               {p}
             </Button>

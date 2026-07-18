@@ -43,7 +43,7 @@ export function AdminExpensesClient() {
         <Button
           type="button"
           variant="outline"
-          className="gap-2 bg-background hover:bg-muted"
+          className="gap-2 bg-bg-card hover:bg-muted"
           title="Export table data to CSV"
         >
           <Download size={16} /> Export CSV

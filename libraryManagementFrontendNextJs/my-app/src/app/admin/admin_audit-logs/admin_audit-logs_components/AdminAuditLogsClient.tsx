@@ -129,7 +129,7 @@ export function AdminAuditLogsClient() {
               type="button"
               className={`px-3 py-1.5 text-sm font-medium rounded-md transition-colors ${
                 activeTab === tab 
-                  ? 'bg-background text-foreground shadow-sm' 
+                  ? 'bg-bg-card text-foreground shadow-sm' 
                   : 'text-muted-foreground hover:text-foreground hover:bg-muted/50'
               }`}
               onClick={() => setActiveTab(tab)}

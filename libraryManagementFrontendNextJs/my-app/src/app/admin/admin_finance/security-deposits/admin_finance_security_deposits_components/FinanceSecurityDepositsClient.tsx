@@ -56,7 +56,7 @@ export function FinanceSecurityDepositsClient() {
       {/* Filter Bar */}
       <div className="flex flex-wrap gap-3">
         <select 
-          className="h-10 px-3 rounded-md border border-input bg-background text-sm font-medium focus:outline-none focus:ring-2 focus:ring-ring"
+          className="h-10 px-3 rounded-md border border-border bg-bg-input text-sm font-medium focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary"
           value={statusFilter} 
           onChange={(e) => setStatusFilter(e.target.value)}
         >
@@ -162,7 +162,7 @@ export function FinanceSecurityDepositsClient() {
 
       {/* Process Refund Dialog */}
       {refundDialog && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-background/80 backdrop-blur-sm" onClick={() => setRefundDialog(null)}>
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm" onClick={() => setRefundDialog(null)}>
           <Card className="w-full max-w-sm shadow-lg border-border bg-card p-6 flex flex-col gap-5" onClick={e => e.stopPropagation()}>
             <div className="flex items-center justify-between">
               <h2 className="text-lg font-bold flex items-center gap-2 text-primary tracking-tight">
@@ -208,7 +208,7 @@ export function FinanceSecurityDepositsClient() {
 
       {/* Add Deduction Dialog */}
       {deductDialog && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-background/80 backdrop-blur-sm" onClick={() => setDeductDialog(null)}>
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm" onClick={() => setDeductDialog(null)}>
           <Card className="w-full max-w-sm shadow-lg border-border bg-card p-6 flex flex-col gap-5" onClick={e => e.stopPropagation()}>
             <div className="flex items-center justify-between">
               <h2 className="text-lg font-bold flex items-center gap-2 text-primary tracking-tight">

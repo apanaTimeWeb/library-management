@@ -43,13 +43,13 @@ export function AdminCrmAddClient() {
 
       {/* ── Overlay ── */}
       <div
-        className="fixed inset-0 bg-background/80 backdrop-blur-sm z-40 transition-opacity"
+        className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 transition-opacity"
         onClick={handleClose}
         aria-label="Close drawer"
       />
 
       {/* ── Drawer ── */}
-      <aside className="fixed inset-y-0 right-0 z-50 w-full max-w-md bg-background border-l border-border shadow-xl sm:max-w-sm flex flex-col animate-in slide-in-from-right duration-300" role="dialog" aria-label="New Enquiry" aria-modal="true">
+      <aside className="fixed inset-y-0 right-0 z-50 w-full max-w-md bg-bg-card border-l border-border shadow-xl sm:max-w-sm flex flex-col animate-in slide-in-from-right duration-300" role="dialog" aria-label="New Enquiry" aria-modal="true">
 
         {/* Header */}
         <div className="flex items-center justify-between p-6 border-b border-border bg-muted/20">

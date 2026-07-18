@@ -81,7 +81,7 @@ export function FinanceInvoiceClient() {
           />
         </div>
         <select 
-          className="flex h-10 w-full max-w-52 items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
+          className="flex h-10 w-full max-w-52 items-center justify-between rounded-md border border-border bg-bg-input px-3 py-2 text-sm ring-offset-bg-page placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:ring-offset-2"
           value={statusFilter} 
           onChange={e => setStatusFilter(e.target.value as FilterStatus)}
         >

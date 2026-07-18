@@ -53,7 +53,7 @@ export function FinanceSubscriptionsClient() {
       {/* Filter Bar */}
       <div className="flex flex-wrap gap-3">
         <select 
-          className="h-10 px-3 rounded-md border border-input bg-background text-sm font-medium focus:outline-none focus:ring-2 focus:ring-ring"
+          className="h-10 px-3 rounded-md border border-border bg-bg-input text-sm font-medium focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary"
           value={statusFilter} 
           onChange={(e) => setStatusFilter(e.target.value)}
         >
@@ -64,7 +64,7 @@ export function FinanceSubscriptionsClient() {
           <option value="cancelled">Cancelled</option>
         </select>
         <select 
-          className="h-10 px-3 rounded-md border border-input bg-background text-sm font-medium focus:outline-none focus:ring-2 focus:ring-ring"
+          className="h-10 px-3 rounded-md border border-border bg-bg-input text-sm font-medium focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary"
           value={planFilter} 
           onChange={(e) => setPlanFilter(e.target.value)}
         >
@@ -73,7 +73,7 @@ export function FinanceSubscriptionsClient() {
           <option value="Premium Plan">Premium Plan</option>
         </select>
         <select 
-          className="h-10 px-3 rounded-md border border-input bg-background text-sm font-medium focus:outline-none focus:ring-2 focus:ring-ring"
+          className="h-10 px-3 rounded-md border border-border bg-bg-input text-sm font-medium focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary"
           value={shiftFilter} 
           onChange={(e) => setShiftFilter(e.target.value)}
         >

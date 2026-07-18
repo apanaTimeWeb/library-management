@@ -146,7 +146,7 @@ export function FinanceRenewalsClient() {
 
       {/* Renew Dialog */}
       {renewDialog && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-background/80 backdrop-blur-sm" onClick={() => setRenewDialog(null)}>
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm" onClick={() => setRenewDialog(null)}>
           <Card className="w-full max-w-sm shadow-lg border-border bg-card p-6 flex flex-col gap-5" onClick={e => e.stopPropagation()}>
             <div className="flex items-center justify-between">
               <h2 className="text-lg font-bold flex items-center gap-2 text-primary tracking-tight">
@@ -165,7 +165,7 @@ export function FinanceRenewalsClient() {
               <div className="space-y-1.5">
                 <label className="text-sm font-medium text-primary">Plan</label>
                 <select
-                  className="w-full h-10 px-3 rounded-md border border-input bg-background text-sm font-medium focus:outline-none focus:ring-2 focus:ring-ring"
+                  className="w-full h-10 px-3 rounded-md border border-border bg-bg-input text-sm font-medium focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary"
                   value={renewPlanId}
                   onChange={(e) => {
                     const id = e.target.value;
@@ -188,7 +188,7 @@ export function FinanceRenewalsClient() {
               <div className="space-y-1.5">
                 <label className="text-sm font-medium text-primary">Payment Mode</label>
                 <select 
-                  className="w-full h-10 px-3 rounded-md border border-input bg-background text-sm font-medium focus:outline-none focus:ring-2 focus:ring-ring"
+                  className="w-full h-10 px-3 rounded-md border border-border bg-bg-input text-sm font-medium focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary"
                   value={renewMode} 
                   onChange={(e) => setRenewMode(e.target.value)}
                 >

@@ -98,7 +98,7 @@ export default function AdminReusableSeatMatrixGrid({ seats, shifts }: Props) {
                 onClick={() => setActiveShift(tab)}
                 className={`px-3 py-1.5 text-xs font-medium rounded-sm whitespace-nowrap transition-colors ${
                   activeShift === tab 
-                    ? 'bg-background text-foreground shadow-sm' 
+                    ? 'bg-bg-card text-foreground shadow-sm' 
                     : 'text-muted-foreground hover:text-foreground'
                 }`}
               >

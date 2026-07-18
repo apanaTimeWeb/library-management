@@ -79,7 +79,7 @@ export function AdminAssetsClient() {
         <div className="flex items-center gap-2">
           <Filter size={16} className="text-muted-foreground" />
           <select
-            className="flex h-10 w-44 items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+            className="flex h-10 w-44 items-center justify-between rounded-md border border-border bg-bg-input px-3 py-2 text-sm ring-offset-bg-page placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
             value={categoryFilter}
             onChange={(e) => setCategoryFilter(e.target.value)}
           >

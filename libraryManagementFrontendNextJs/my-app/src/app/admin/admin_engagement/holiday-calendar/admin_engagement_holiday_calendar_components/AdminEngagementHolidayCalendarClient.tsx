@@ -149,7 +149,7 @@ export function AdminEngagementHolidayCalendarClient() {
                   <div key={i} className={`aspect-square rounded-md flex flex-col items-center justify-center relative transition-colors cursor-default select-none border ${
                     hol ? 'bg-danger/10 border-danger/20 text-danger' : 
                     isToday ? 'bg-primary border-primary text-primary-foreground font-bold shadow-md' : 
-                    'bg-background border-transparent text-foreground hover:bg-muted/50'
+                    'bg-bg-card border-transparent text-foreground hover:bg-muted/50'
                   }`} title={hol?.name}>
                     <span className={`text-sm sm:text-base font-semibold ${isToday ? 'text-primary-foreground' : ''}`}>{day}</span>
                     {hol && <div className="absolute bottom-1 sm:bottom-2 w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-danger"></div>}
@@ -257,7 +257,7 @@ export function AdminEngagementHolidayCalendarClient() {
             </div>
             <div className="space-y-2">
               <label className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Type</label>
-              <select value={form.type} onChange={e => setForm(f=>({...f, type:e.target.value}))} className="flex h-10 w-full items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50">
+              <select value={form.type} onChange={e => setForm(f=>({...f, type:e.target.value}))} className="flex h-10 w-full items-center justify-between rounded-md border border-border bg-bg-input px-3 py-2 text-sm ring-offset-bg-page placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50">
                 <option>National</option>
                 <option>Religious</option>
                 <option>Library</option>

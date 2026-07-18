@@ -84,7 +84,7 @@ export function AdminCommunicationWhatsappTemplatesClient() {
               variant={activeId === t.id ? 'secondary' : 'ghost'}
               size="sm"
               onClick={() => setActiveId(t.id)}
-              className={`text-sm font-semibold capitalize gap-2 ${activeId === t.id ? 'bg-background shadow-sm' : ''}`}
+              className={`text-sm font-semibold capitalize gap-2 ${activeId === t.id ? 'bg-bg-card shadow-sm' : ''}`}
             >
               {t.icon} {t.label}
             </Button>

@@ -78,7 +78,7 @@ export function FinanceRefundsClient() {
       {/* Filter Bar */}
       <div className="flex items-center gap-4 bg-muted/30 p-3 rounded-lg border border-border">
         <select 
-          className="flex h-9 w-48 items-center justify-between rounded-md border border-input bg-background px-3 py-1 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
+          className="flex h-9 w-48 items-center justify-between rounded-md border border-border bg-bg-input px-3 py-1 text-sm ring-offset-bg-page placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:ring-offset-2"
           value={statusFilter} 
           onChange={(e) => setStatusFilter(e.target.value)}
         >
@@ -207,7 +207,7 @@ export function FinanceRefundsClient() {
 
       {/* Process Refund Modal */}
       {processDialog && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-background/80 backdrop-blur-sm" onClick={() => setProcessDialog(null)}>
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm" onClick={() => setProcessDialog(null)}>
           <Card className="w-full max-w-sm shadow-lg border-success/20 bg-card p-6 flex flex-col gap-5" onClick={e => e.stopPropagation()}>
             <div className="flex items-center justify-between">
               <h2 className="text-lg font-bold flex items-center gap-2 text-success tracking-tight">
@@ -228,7 +228,7 @@ export function FinanceRefundsClient() {
             <div className="space-y-2">
               <label className="text-sm font-medium">Payment Method</label>
               <select 
-                className="flex h-10 w-full items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
+                className="flex h-10 w-full items-center justify-between rounded-md border border-border bg-bg-input px-3 py-2 text-sm ring-offset-bg-page placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:ring-offset-2"
                 value={paymentMethod} 
                 onChange={(e) => setPaymentMethod(e.target.value)}
               >
@@ -256,7 +256,7 @@ export function FinanceRefundsClient() {
 
       {/* Add Deduction Modal */}
       {deductDialog && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-background/80 backdrop-blur-sm" onClick={() => setDeductDialog(null)}>
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm" onClick={() => setDeductDialog(null)}>
           <Card className="w-full max-w-sm shadow-lg border-warning/20 bg-card p-6 flex flex-col gap-5" onClick={e => e.stopPropagation()}>
             <div className="flex items-center justify-between">
               <h2 className="text-lg font-bold flex items-center gap-2 text-warning tracking-tight">

@@ -117,7 +117,7 @@ export function AdminReportsClient({ initialData }: AdminReportsClientProps) {
                 <button
                   key={o.key}
                   onClick={() => setRange(o.key)}
-                  className={`px-4 py-1.5 text-sm font-medium rounded-md transition-all ${range === o.key ? 'bg-background text-primary shadow-sm' : 'text-muted-foreground hover:text-foreground hover:bg-background/50'}`}
+                  className={`px-4 py-1.5 text-sm font-medium rounded-md transition-all ${range === o.key ? 'bg-bg-card text-primary shadow-sm' : 'text-muted-foreground hover:text-foreground hover:bg-bg-card/50'}`}
                 >
                   {o.label}
                 </button>
@@ -128,7 +128,7 @@ export function AdminReportsClient({ initialData }: AdminReportsClientProps) {
             <select
               value={branch}
               onChange={e => setBranch(e.target.value)}
-              className="flex h-9 w-44 items-center justify-between rounded-md border border-input bg-background px-3 py-1 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
+              className="flex h-9 w-44 items-center justify-between rounded-md border border-border bg-bg-input px-3 py-1 text-sm ring-offset-bg-page placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:ring-offset-2"
             >
               <option>All Branches</option>
               <option>Main Branch</option>

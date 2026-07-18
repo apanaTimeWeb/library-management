@@ -192,7 +192,7 @@ export function FinanceAutoSuspendClient() {
 
       {/* Manual Restore Modal */}
       {restoreDialog && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-background/80 backdrop-blur-sm" onClick={() => setRestoreDialog(null)}>
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm" onClick={() => setRestoreDialog(null)}>
           <Card className="w-full max-w-sm shadow-lg border-success/20 bg-card p-6 flex flex-col gap-5" onClick={e => e.stopPropagation()}>
             <div className="flex items-center justify-between">
               <h2 className="text-lg font-bold flex items-center gap-2 text-success tracking-tight">

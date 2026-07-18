@@ -61,7 +61,7 @@ export function SeatHistoryClient() {
           />
         </div>
         <select 
-          className="h-10 px-3 rounded-md border border-input bg-background text-sm font-medium focus:outline-none focus:ring-2 focus:ring-ring"
+          className="h-10 px-3 rounded-md border border-border bg-bg-input text-sm font-medium focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary"
           value={seatFilter} 
           onChange={(e) => setSeatFilter(e.target.value)}
         >

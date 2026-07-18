@@ -157,7 +157,7 @@ export function AdminStaffUsersClient({ initialStaff }: AdminStaffUsersClientPro
 
       {/* Add / Edit Modal Overlay */}
       {showForm && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-background/80 backdrop-blur-sm" onClick={() => setShowForm(false)}>
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm" onClick={() => setShowForm(false)}>
           <Card className="w-full max-w-lg shadow-lg border-border bg-card p-6 flex flex-col gap-6" onClick={e => e.stopPropagation()}>
             <div className="flex items-center justify-between">
               <h2 className="text-xl font-bold tracking-tight">{editId ? 'Edit Staff Member' : 'Add Staff Member'}</h2>
@@ -193,7 +193,7 @@ export function AdminStaffUsersClient({ initialStaff }: AdminStaffUsersClientPro
                 <div className="space-y-2">
                   <label className="text-sm font-medium">Role</label>
                   <select 
-                    className="flex h-10 w-full items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                    className="flex h-10 w-full items-center justify-between rounded-md border border-border bg-bg-input px-3 py-2 text-sm ring-offset-bg-page placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
                     value={form.roleId} 
                     onChange={handleFieldChange('roleId')}
                   >
@@ -205,7 +205,7 @@ export function AdminStaffUsersClient({ initialStaff }: AdminStaffUsersClientPro
                 <div className="space-y-2">
                   <label className="text-sm font-medium">Branch</label>
                   <select 
-                    className="flex h-10 w-full items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                    className="flex h-10 w-full items-center justify-between rounded-md border border-border bg-bg-input px-3 py-2 text-sm ring-offset-bg-page placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
                     value={form.branchId} 
                     onChange={handleFieldChange('branchId')}
                   >
@@ -230,7 +230,7 @@ export function AdminStaffUsersClient({ initialStaff }: AdminStaffUsersClientPro
 
       {/* Delete Confirm Modal */}
       {deleteId && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-background/80 backdrop-blur-sm" onClick={() => setDeleteId(null)}>
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm" onClick={() => setDeleteId(null)}>
           <Card className="w-full max-w-sm shadow-lg border-danger/20 bg-card p-6 flex flex-col gap-4" onClick={e => e.stopPropagation()}>
             <h2 className="text-lg font-bold flex items-center gap-2 text-danger">
               <Trash2 size={20} /> Remove Staff Member

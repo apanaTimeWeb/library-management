@@ -41,7 +41,7 @@ export function MaintenanceClient() {
       <div className="flex flex-wrap items-center gap-4 bg-muted/30 p-3 rounded-xl border border-border">
         <div className="relative">
           <select 
-            className="flex h-10 w-40 items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 appearance-none"
+            className="flex h-10 w-40 items-center justify-between rounded-md border border-border bg-bg-input px-3 py-2 text-sm ring-offset-bg-page placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 appearance-none"
             value={selectedSeat} 
             onChange={e => setSelectedSeat(e.target.value)}
           >
@@ -125,7 +125,7 @@ export function MaintenanceClient() {
           <div className="space-y-2">
             <label className="text-sm font-medium">New Seat Status <span className="text-danger">*</span></label>
             <div className="relative">
-              <select className="flex h-10 w-full items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 appearance-none" value={form.newStatus} onChange={e => setForm(p => ({ ...p, newStatus: e.target.value as SeatStatus }))}>
+              <select className="flex h-10 w-full items-center justify-between rounded-md border border-border bg-bg-input px-3 py-2 text-sm ring-offset-bg-page placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 appearance-none" value={form.newStatus} onChange={e => setForm(p => ({ ...p, newStatus: e.target.value as SeatStatus }))}>
                 <option value="Working">Working</option>
                 <option value="Maintenance">Maintenance</option>
                 <option value="Broken">Broken</option>
@@ -140,7 +140,7 @@ export function MaintenanceClient() {
         </div>
         <div className="space-y-2 mb-6">
           <label className="text-sm font-medium">Remark <span className="text-danger">*</span></label>
-          <textarea className={`flex min-h-20 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 ${errors.remark ? 'border-danger focus-visible:ring-danger' : ''}`} rows={2} placeholder="e.g. Chair leg repaired" value={form.remark} onChange={e => setForm(p => ({ ...p, remark: e.target.value }))} />
+          <textarea className={`flex min-h-20 w-full rounded-md border border-border bg-bg-input px-3 py-2 text-sm ring-offset-bg-page placeholder:text-text-secondary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 ${errors.remark ? 'border-danger focus-visible:ring-danger' : ''}`} rows={2} placeholder="e.g. Chair leg repaired" value={form.remark} onChange={e => setForm(p => ({ ...p, remark: e.target.value }))} />
           {errors.remark && <p className="text-xs text-danger">{errors.remark}</p>}
         </div>
         <div className="flex justify-end pt-4 border-t border-border">

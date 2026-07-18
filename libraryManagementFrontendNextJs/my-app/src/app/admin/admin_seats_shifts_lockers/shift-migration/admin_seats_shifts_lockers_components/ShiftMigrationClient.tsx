@@ -48,11 +48,11 @@ export function ShiftMigrationClient() {
         </div>
         <div className="relative flex justify-between z-10">
           {ADMIN_SEATS_STEPS.map(s => (
-            <div key={s.n} className="flex flex-col items-center gap-2 bg-background px-4">
+            <div key={s.n} className="flex flex-col items-center gap-2 bg-bg-card px-4">
               <div className={`w-10 h-10 rounded-full flex items-center justify-center font-bold text-sm transition-colors border-2 ${
                 step >= s.n 
                   ? 'bg-primary border-primary text-primary-foreground' 
-                  : 'bg-background border-muted-foreground/30 text-muted-foreground'
+                  : 'bg-bg-card border-muted-foreground/30 text-muted-foreground'
               }`}>
                 {step > s.n ? <CheckCircle size={18} /> : s.n}
               </div>
@@ -96,7 +96,7 @@ export function ShiftMigrationClient() {
                       className={`flex flex-col text-left p-4 rounded-md border transition-all ${
                         selectedStudent?.id === s.id 
                           ? 'bg-primary/5 border-primary ring-1 ring-primary' 
-                          : 'bg-background border-border hover:border-primary/50 hover:bg-muted/30'
+                          : 'bg-bg-card border-border hover:border-primary/50 hover:bg-muted/30'
                       }`}
                       onClick={() => {
                         setSelectedStudent(s);
@@ -137,7 +137,7 @@ export function ShiftMigrationClient() {
                 <div className="space-y-1.5">
                   <label className="text-sm font-medium text-primary">New Shift <span className="text-danger">*</span></label>
                   <select 
-                    className="flex h-11 w-full items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
+                    className="flex h-11 w-full items-center justify-between rounded-md border border-border bg-bg-input px-3 py-2 text-sm ring-offset-bg-page placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:ring-offset-2"
                     value={newShift} 
                     onChange={e => { setNewShift(e.target.value); setNewSeat(''); }}
                   >
@@ -150,7 +150,7 @@ export function ShiftMigrationClient() {
                 <div className="space-y-1.5">
                   <label className="text-sm font-medium text-primary">New Seat <span className="text-danger">*</span></label>
                   <select 
-                    className="flex h-11 w-full items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="flex h-11 w-full items-center justify-between rounded-md border border-border bg-bg-input px-3 py-2 text-sm ring-offset-bg-page placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed"
                     value={newSeat} 
                     onChange={e => setNewSeat(e.target.value)} 
                     disabled={!newShift}
@@ -273,7 +273,7 @@ export function ShiftMigrationClient() {
               <Card className="p-6 shadow-sm border-border bg-card flex flex-col gap-3">
                 <label className="text-sm font-medium text-primary">Remark (optional)</label>
                 <textarea 
-                  className="flex min-h-20 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2" 
+                  className="flex min-h-20 w-full rounded-md border border-border bg-bg-input px-3 py-2 text-sm ring-offset-bg-page placeholder:text-text-secondary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2" 
                   placeholder="Any notes about this migration..." 
                   value={remark} 
                   onChange={e => setRemark(e.target.value)} 
@@ -313,7 +313,7 @@ export function ShiftMigrationClient() {
       </div>
 
       {/* Sticky footer */}
-      <div className="fixed bottom-0 left-0 right-0 md:left-64 z-40 bg-background/80 backdrop-blur-md border-t border-border shadow-md shadow-black/5">
+      <div className="fixed bottom-0 left-0 right-0 md:left-64 z-40 bg-black/60 backdrop-blur-md border-t border-border shadow-md shadow-black/5">
         <div className="max-w-6xl mx-auto w-full px-6 py-4 flex items-center justify-between">
           <Button 
             variant="outline" 
@@ -349,7 +349,7 @@ export function ShiftMigrationClient() {
 
       {/* Confirm Modal */}
       {showConfirm && selectedStudent && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-background/80 backdrop-blur-sm" onClick={() => setShowConfirm(false)}>
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm" onClick={() => setShowConfirm(false)}>
           <Card className="w-full max-w-md shadow-lg border-border bg-card p-6 flex flex-col gap-6" onClick={e => e.stopPropagation()}>
             <h2 className="text-xl font-bold flex items-center gap-2 text-primary">
               <CheckCircle size={24} /> Confirm Migration

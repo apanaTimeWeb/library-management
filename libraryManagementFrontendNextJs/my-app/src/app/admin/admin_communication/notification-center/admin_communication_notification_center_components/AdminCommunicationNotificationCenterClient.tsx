@@ -78,7 +78,7 @@ export function AdminCommunicationNotificationCenterClient() {
           ) : (
             <div className="divide-y divide-border">
               {filtered.map(n => (
-                <div key={n.id} className={`p-4 flex flex-col md:flex-row gap-4 transition-colors ${n.read ? 'bg-background hover:bg-muted/30' : 'bg-muted/10 hover:bg-muted/20'}`}>
+                <div key={n.id} className={`p-4 flex flex-col md:flex-row gap-4 transition-colors ${n.read ? 'bg-bg-card hover:bg-muted/30' : 'bg-muted/10 hover:bg-muted/20'}`}>
                   <div className={`w-12 h-12 rounded-full flex items-center justify-center text-xl shrink-0 ${ICON_CLS[n.category] || 'bg-muted text-muted-foreground'}`}>
                     {n.icon}
                   </div>

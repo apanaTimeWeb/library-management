@@ -95,7 +95,7 @@ export function AdminAssetsAddDialog({ isOpen, onClose, onSubmit }: AdminAssetsA
           <div className="grid grid-cols-2 gap-3">
             <div>
               <label className="block text-xs font-semibold text-foreground uppercase tracking-wider mb-1">Category *</label>
-              <select {...register('category')} className="flex h-10 w-full items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" disabled={isSubmitting}>
+              <select {...register('category')} className="flex h-10 w-full items-center justify-between rounded-md border border-border bg-bg-input px-3 py-2 text-sm ring-offset-bg-page placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" disabled={isSubmitting}>
                 <option value="Furniture">Furniture</option>
                 <option value="Appliance">Appliance</option>
                 <option value="Security">Security</option>

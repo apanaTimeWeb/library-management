@@ -61,7 +61,7 @@ export function SeatMatrixClient() {
               onClick={() => setActiveTab(tab)}
               className={`px-4 py-1.5 text-sm font-bold rounded-md whitespace-nowrap transition-all ${
                 activeTab === tab 
-                  ? 'bg-background text-primary shadow-sm' 
+                  ? 'bg-bg-card text-primary shadow-sm' 
                   : 'text-muted-foreground hover:text-primary'
               }`}
             >
@@ -132,7 +132,7 @@ export function SeatMatrixClient() {
 
       {/* Seat Details Modal */}
       {selectedSeat && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-background/80 backdrop-blur-sm" onClick={() => setSelectedSeat(null)}>
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm" onClick={() => setSelectedSeat(null)}>
           <Card className="w-full max-w-sm shadow-lg border-border bg-card p-0 flex flex-col overflow-hidden animate-in zoom-in-95 duration-200" onClick={e => e.stopPropagation()}>
             {selectedSeat.status === 'free' ? (
               <div className="p-6 flex flex-col gap-6">
@@ -180,7 +180,7 @@ export function SeatMatrixClient() {
             ) : (
               <div className="flex flex-col">
                 <div className={`p-6 pb-8 ${selectedSeat.status === 'expiring' ? 'bg-warning/10' : 'bg-primary/5'} border-b border-border relative`}>
-                  <Button variant="ghost" size="icon" className="absolute top-4 right-4 h-8 w-8 rounded-full bg-background/50 hover:bg-background/80" onClick={() => setSelectedSeat(null)}>
+                  <Button variant="ghost" size="icon" className="absolute top-4 right-4 h-8 w-8 rounded-full bg-bg-card/50 hover:bg-black/60" onClick={() => setSelectedSeat(null)}>
                     <X size={16} />
                   </Button>
                   

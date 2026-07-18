@@ -116,7 +116,7 @@ export function AdminCommunicationComplaintsClient() {
             variant={tab === t ? 'secondary' : 'ghost'}
             size="sm"
             onClick={() => setTab(t as CStatus | 'All')}
-            className={`text-sm font-semibold capitalize ${tab === t ? 'bg-background shadow-sm' : ''}`}
+            className={`text-sm font-semibold capitalize ${tab === t ? 'bg-bg-card shadow-sm' : ''}`}
           >
             {t}
           </Button>
@@ -205,7 +205,7 @@ export function AdminCommunicationComplaintsClient() {
               <Input placeholder="Search student name..." value={addForm.student} onChange={e => setAddForm(f => ({ ...f, student: e.target.value }))} />
             </div>
             <label className="flex items-center gap-2 text-sm font-medium">
-              <input type="checkbox" checked={addForm.anonymous} onChange={e => setAddForm(f => ({ ...f, anonymous: e.target.checked }))} className="rounded border-input text-primary focus:ring-primary" />
+              <input type="checkbox" checked={addForm.anonymous} onChange={e => setAddForm(f => ({ ...f, anonymous: e.target.checked }))} className="rounded border-border text-primary focus:ring-primary" />
               Hide student identity from staff view
             </label>
             <div className="space-y-2">

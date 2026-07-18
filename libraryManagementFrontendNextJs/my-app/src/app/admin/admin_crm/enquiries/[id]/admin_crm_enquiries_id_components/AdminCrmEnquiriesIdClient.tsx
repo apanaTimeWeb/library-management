@@ -376,7 +376,7 @@ export function AdminCrmEnquiriesIdClient({ params }: { params: Promise<{ id: st
                             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-2">
                               <p className="text-sm font-bold text-foreground flex items-center gap-2">
                                 {fu.date}
-                                <span className="text-xs font-mono font-normal text-muted-foreground bg-background px-1.5 py-0.5 rounded-md border border-border">{fu.time}</span>
+                                <span className="text-xs font-mono font-normal text-muted-foreground bg-bg-card px-1.5 py-0.5 rounded-md border border-border">{fu.time}</span>
                               </p>
                               <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">by {fu.by}</p>
                             </div>
@@ -403,7 +403,7 @@ export function AdminCrmEnquiriesIdClient({ params }: { params: Promise<{ id: st
               <CardContent className="p-4">
                 <div className="flex gap-2">
                   <select
-                    className="flex h-10 w-full items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 flex-1 font-semibold"
+                    className="flex h-10 w-full items-center justify-between rounded-md border border-border bg-bg-input px-3 py-2 text-sm ring-offset-bg-page focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:ring-offset-2 flex-1 font-semibold"
                     value={currentStatus}
                     onChange={(e) => setCurrentStatus(e.target.value as EnquiryStatus)}
                   >
