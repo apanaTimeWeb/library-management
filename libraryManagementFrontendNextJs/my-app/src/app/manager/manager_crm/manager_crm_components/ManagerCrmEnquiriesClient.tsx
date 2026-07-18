@@ -95,7 +95,9 @@ export function ManagerCrmEnquiriesClient() {
       ) : (
         <ManagerCrmEnquiriesTable filtered={filtered} updateEnquiryStatus={updateEnquiryStatus} onAddEnquiry={() => setIsAddModalOpen(true)} />
       )}
+      {isAddModalOpen && (
+        <ManagerCrmEnquiriesAddClient onClose={() => setIsAddModalOpen(false)} />
+      )}
     </div>
   );
 }
-

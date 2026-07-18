@@ -1,12 +1,16 @@
 'use client';
 
 import { useState } from 'react';
+import { useDashboardData } from '@/app/manager/manager_dashboard/manager_dashboard_hooks/useDashboardData';
 import { useMemo } from 'react';
 import Link from 'next/link';
 import { ChevronRight, TrendingUp } from 'lucide-react';
 import { STATUS_CLASS, QUICK_LINKS } from '@/app/manager/manager_dashboard/manager_dashboard_constants';
 import { MANAGER_ROUTES } from '@/app/manager/manager_url_config';
 import type { CellRendererProps } from '@/app/manager/manager_dashboard/manager_dashboard_types';
+import { ManagerDashboardKpiGrid } from '@/app/manager/manager_dashboard/manager_dashboard_components/ManagerDashboardKpiGrid';
+import { ManagerDashboardSeatMatrix } from '@/app/manager/manager_dashboard/manager_dashboard_components/ManagerDashboardSeatMatrix';
+import { TablePagination } from '@/components/ui/table-pagination';
 
 // RESPONSIBILITY: Main Client view for the Manager Dashboard. Glues data and components together.
 
