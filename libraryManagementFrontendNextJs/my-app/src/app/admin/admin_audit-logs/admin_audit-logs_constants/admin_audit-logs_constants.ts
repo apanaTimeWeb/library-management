@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the admin_audit-logs_constants.ts component/hook.
 import { AuditLogTabType, AuditLogRecord } from '@/app/admin/admin_audit-logs/admin_audit-logs_types/admin_audit-logs_types';
 
 export const AUDIT_LOG_TABS: AuditLogTabType[] = ['all', 'danger', 'warning', 'info', 'success'];

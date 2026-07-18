@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the useAdminBranches.ts component/hook.
 import { useState, useMemo } from 'react';
 
 export interface Branch {

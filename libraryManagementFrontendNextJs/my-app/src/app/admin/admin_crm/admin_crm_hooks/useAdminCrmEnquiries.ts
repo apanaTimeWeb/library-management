@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the useAdminCrmEnquiries.ts component/hook.
 import { useState, useEffect, useCallback, useMemo } from 'react';
 import { useRouter, useSearchParams, usePathname } from 'next/navigation';
 import { fetchApi } from '@/lib/api';
@@ -32,7 +33,7 @@ export function useAdminCrmEnquiries() {
     setFetchState('loading');
     fetchApi(ADMIN_API_ROUTES.CRM_ENQUIRIES)
       .then((data: unknown) => {
-        const rows = (((Array.isArray(data) ? data : (Array.isArray((data as any)?.data) ? (data as any).data : [])).length > 0) ? (Array.isArray(data) ? data : (Array.isArray((data as any)?.data) ? (data as any).data : [])) : (() => { throw new Error('Force Mock'); })());
+        const rows = (((Array.isArray(data) ? data : (Array.isArray((data as Record<string, unknown>)?.data) ? (data as Record<string, unknown>).data : [])).length > 0) ? (Array.isArray(data) ? data : (Array.isArray((data as Record<string, unknown>)?.data) ? (data as Record<string, unknown>).data : [])) : (() => { throw new Error('Force Mock'); })());
         const mapped: Enquiry[] = rows.map((e: Record<string, unknown>) => ({
           id:              String(e.id ?? ''),
           name:            String(e.name ?? ''),

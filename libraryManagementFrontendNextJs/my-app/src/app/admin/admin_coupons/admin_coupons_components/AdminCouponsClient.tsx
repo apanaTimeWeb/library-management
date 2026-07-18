@@ -69,7 +69,7 @@ function UsageCell({ data }: { data: CouponRecord }) {
           className={`h-full transition-all duration-300 ${
             pct >= 100 ? 'bg-danger' : pct >= 75 ? 'bg-warning' : 'bg-primary'
           }`}
-          style={{ width: `${pct}%` }}
+          className="w-[length:var(--w)]" style={{ '--w': `${pct}%` } as React.CSSProperties}
         />
       </div>
     </div>
@@ -130,7 +130,7 @@ export function AdminCouponsClient() {
 
   return (
     <div className="h-full flex flex-col pb-10 space-y-6">
-      {/* Page Header */}
+      {/* page Header */}
       <div className="border-b border-border pb-4 flex flex-wrap items-end justify-between gap-4">
         <div>
           <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-1">

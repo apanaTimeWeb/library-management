@@ -1,6 +1,6 @@
 // RESPONSIBILITY: Entry page for the admin_finance module.
 'use client';
-// DATA FLOW: Next.js Router -> Page -> Components
+// DATA FLOW: Next.js Router -> page -> Components
 
 import { useParams, useRouter } from 'next/navigation';
 import { ArrowLeft, BookOpen, CheckCircle, Printer, Send } from 'lucide-react';
@@ -85,7 +85,7 @@ export default function ReceiptDetail() {
     <div className="space-y-4">
       {/* Back + actions */}
       <div className="flex items-center justify-between">
-        <button className="fin-badge fin-badge--neutral cursor-pointer" onClick={() => router.push('/admin/admin_finance/receipt')}>
+        <button className="fin-badge fin-badge--neutral cursor-pointer" onClick={() => router.push(ADMIN_ROUTES.FINANCE_RECEIPT)}>
           <ArrowLeft size={11} /> Back to Receipts
         </button>
         <div className="flex gap-2">

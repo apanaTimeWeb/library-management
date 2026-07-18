@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the AdminSystemBackupsTypes.ts component/hook.
 export interface BackupRecord {
   id: string;
   name: string;

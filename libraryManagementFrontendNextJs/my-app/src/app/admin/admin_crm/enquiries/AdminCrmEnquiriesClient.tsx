@@ -121,7 +121,7 @@ export default function AdminCrmEnquiriesClient() {
   return (
     <div className="flex flex-col h-full pb-10 space-y-6">
 
-      {/* Page Header */}
+      {/* page Header */}
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b pb-4">
         <div>
           <nav className="text-xs text-muted-foreground font-medium mb-1 tracking-wide">CRM › Enquiries</nav>

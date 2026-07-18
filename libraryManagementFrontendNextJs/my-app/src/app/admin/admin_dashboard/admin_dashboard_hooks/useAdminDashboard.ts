@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the useAdminDashboard.ts component/hook.
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { ADMIN_ROUTES } from '@/app/admin/admin_url_config';

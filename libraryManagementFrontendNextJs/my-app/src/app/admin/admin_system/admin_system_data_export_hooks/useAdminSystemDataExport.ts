@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the useAdminSystemDataExport.ts component/hook.
 import { useState, useCallback, useMemo } from 'react';
 import { ADMIN_SYSTEM_EXPORT_MODULES } from '@/app/admin/admin_system/admin_system_data/AdminSystemMockData2';
 

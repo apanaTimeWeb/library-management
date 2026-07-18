@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the page.tsx component/hook.
 import { cookies } from 'next/headers';
 import { AdminPermissionsView } from '@/app/admin/admin_permissions/admin_permissions_components/AdminPermissionsView';
 import { fetchAdminPermissions } from '@/app/admin/admin_permissions/admin_permissions_api/admin_permissions_api';

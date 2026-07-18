@@ -1,5 +1,5 @@
 // RESPONSIBILITY: Renders a container card for charts with legend and status badge support.
-// DATA FLOW: Any Admin Page/Report Component -> AdminReusableChartCard
+// DATA FLOW: Any Admin page/Report Component -> AdminReusableChartCard
 
 import { Card } from '@/components/ui/card';
 import React from 'react';
@@ -21,12 +21,12 @@ export default function AdminReusableChartCard({ title, badge, badgeColor, legen
         <div className="flex items-center gap-4">
           {legend?.map(l => (
             <div key={l.label} className="flex items-center gap-1.5">
-              <span className="w-2.5 h-2.5 rounded-full" style={{ background: l.color }} />
+              <span className="w-2.5 h-2.5 rounded-full bg-[color:var(--bg)]" style={{ '--bg': l.color } as React.CSSProperties} />
               <span className="text-xs font-medium text-muted-foreground">{l.label}</span>
             </div>
           ))}
           {badge && (
-            <span className="text-xs font-bold px-2 py-0.5 rounded bg-muted" style={{ color: badgeColor }}>
+            <span className="text-xs font-bold px-2 py-0.5 rounded bg-muted text-[color:var(--c)]" style={{ '--c': badgeColor } as React.CSSProperties}>
               {badge}
             </span>
           )}

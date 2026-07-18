@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the AdminCrmschema.ts component/hook.
 import { z } from 'zod';
 
 // ─── Add Enquiry ──────────────────────────────────────────────────────────────

@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the useAdminSystemSmartId.ts component/hook.
 import { useState, useCallback } from 'react';
 import { ADMIN_SYSTEM_SMART_ID_ACTIVE_IDS, ADMIN_SYSTEM_SMART_ID_FLOW_STEPS } from '@/app/admin/admin_system/admin_system_data/AdminSystemMockData2';
 

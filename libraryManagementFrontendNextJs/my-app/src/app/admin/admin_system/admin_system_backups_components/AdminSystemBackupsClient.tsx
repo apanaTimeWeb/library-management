@@ -173,7 +173,7 @@ export function AdminSystemBackupsClient() {
                 <span className="text-text-primary font-semibold">28.4 MB / 500 MB</span>
               </div>
               <div className="h-2.5 rounded-full bg-bg-input overflow-hidden">
-                <div className="h-full bg-primary" style={{ width: '5.68%' }} />
+                <div className="h-full bg-primary w-[length:var(--w)]" style={{ '--w': '5.68%' } as React.CSSProperties} />
               </div>
               <p className="text-xs text-text-secondary">471.6 MB remaining</p>
             </div>

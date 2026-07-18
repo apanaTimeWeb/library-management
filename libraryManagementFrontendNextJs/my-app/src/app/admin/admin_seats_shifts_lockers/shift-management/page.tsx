@@ -1,8 +1,8 @@
 // RESPONSIBILITY: Entry page for the admin_seats_shifts_lockers shift-management module.
-// DATA FLOW: Next.js Router -> Page -> Components
+// DATA FLOW: Next.js Router -> page -> Components
 
-import { ShiftManagementClient } from '@/app/admin/admin_seats_shifts_lockers/shift-management/admin_seats_shifts_lockers_components/ShiftManagementClient';
+import { AdminShiftManagementClient } from '@/app/admin/admin_seats_shifts_lockers/shift-management/admin_seats_shifts_lockers_components/AdminShiftManagementClient';
 
 export default function ShiftManagementPage() {
-  return <ShiftManagementClient />;
+  return <AdminShiftManagementClient />;
 }

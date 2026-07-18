@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the AdminEngagementConstants.ts component/hook.
 
 export const ADMIN_ENGAGEMENT_MOCK_ABSENTEES = [
   { id:'1', name:'Priya Verma',   initials:'PV', smartId:'SL-002', shift:'Morning',   daysAbsent:4,  lastSeen:'2026-04-08', parentPhone:'+91 981234', parentEmail:'parent1@email.com', notified:false },

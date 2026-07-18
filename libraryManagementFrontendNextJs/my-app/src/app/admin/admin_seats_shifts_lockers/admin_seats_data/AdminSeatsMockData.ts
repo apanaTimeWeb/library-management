@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the AdminSeatsMockData.ts component/hook.
 export const ADMIN_SEATS_MOCK_ALLOCATIONS = [
   { studentName: 'Alex Rivera', smartId: 'LIB-001', seatNo: 'S-02', shift: 'Morning', customSlots: '8AM10AM, 5PM8PM', lockerNo: 'A01', validFrom: '01 Oct 2024', validTill: '31 Oct 2024', daysLeft: 7, status: 'Active' },
   { studentName: 'Priya Sharma', smartId: 'LIB-002', seatNo: 'S-11', shift: 'Evening', customSlots: '', lockerNo: '', validFrom: '15 Sep 2024', validTill: '14 Oct 2024', daysLeft: 3, status: 'Active' },

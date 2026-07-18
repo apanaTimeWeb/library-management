@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the admin_constants.ts component/hook.
 import { ADMIN_ROUTES } from '@/app/admin/admin_url_config';
 import {
   LayoutDashboard, Users, Users2, Shield, CreditCard,

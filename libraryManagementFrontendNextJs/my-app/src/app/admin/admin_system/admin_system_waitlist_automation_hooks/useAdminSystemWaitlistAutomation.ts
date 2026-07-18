@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the useAdminSystemWaitlistAutomation.ts component/hook.
 import { useState } from 'react';
 
 export function useAdminSystemWaitlistAutomation() {

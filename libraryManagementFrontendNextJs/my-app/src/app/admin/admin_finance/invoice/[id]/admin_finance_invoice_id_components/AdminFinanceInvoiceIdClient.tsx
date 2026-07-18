@@ -1,6 +1,6 @@
 // RESPONSIBILITY: Entry page for the admin_finance module.
 'use client';
-// DATA FLOW: Next.js Router -> Page -> Components
+// DATA FLOW: Next.js Router -> page -> Components
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
@@ -97,7 +97,7 @@ export function AdminFinanceInvoiceIdClient() {
     <div className="space-y-4">
       {/* Action bar */}
       <div className="flex items-center justify-between">
-        <button className="fin-badge fin-badge--neutral cursor-pointer" onClick={() => router.push('/admin/admin_finance/invoice')}>
+        <button className="fin-badge fin-badge--neutral cursor-pointer" onClick={() => router.push(ADMIN_ROUTES.FINANCE_INVOICE)}>
           <ArrowLeft size={11} /> Back to Invoices
         </button>
         <div className="flex gap-2">
@@ -183,7 +183,7 @@ export function AdminFinanceInvoiceIdClient() {
               <span className="fin-text-body">{r.v}</span>
             </div>
           ))}
-          <div className="fin-divider" style={{ width: '13rem' }} />
+          <div className="fin-divider w-[length:var(--w)]" style={{ '--w': '13rem' } as React.CSSProperties} />
           <div className="flex justify-between w-52 font-bold">
             <span className="fin-text-body">Grand Total:</span>
             <span className="fin-text-success">{formatCurrency(INV.grandTotal)}</span>

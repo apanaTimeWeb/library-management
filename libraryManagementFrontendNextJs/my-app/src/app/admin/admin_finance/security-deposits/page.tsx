@@ -1,8 +1,8 @@
 // RESPONSIBILITY: Entry page for the admin_finance security-deposits module.
-// DATA FLOW: Next.js Router -> Page -> Components
+// DATA FLOW: Next.js Router -> page -> Components
 
-import { FinanceSecurityDepositsClient } from '@/app/admin/admin_finance/security-deposits/admin_finance_security_deposits_components/FinanceSecurityDepositsClient';
+import { AdminFinanceSecurityDepositsClient } from '@/app/admin/admin_finance/security-deposits/admin_finance_security_deposits_components/AdminFinanceSecurityDepositsClient';
 
 export default function SecurityDepositsPage() {
-  return <FinanceSecurityDepositsClient />;
+  return <AdminFinanceSecurityDepositsClient />;
 }

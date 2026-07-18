@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the AdminSystemMockData.ts component/hook.
 
 export const ADMIN_SYSTEM_MOCK_BACKUP_HISTORY = [
   {

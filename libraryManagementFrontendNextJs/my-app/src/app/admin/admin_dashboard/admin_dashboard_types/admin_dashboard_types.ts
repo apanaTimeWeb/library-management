@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the admin_dashboard_types.ts component/hook.
 // Types for admin_dashboard
 import type { LucideIcon } from 'lucide-react';
 

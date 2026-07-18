@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the useAdminSettings.ts component/hook.
 import { useState } from 'react';
 import toast from 'react-hot-toast';
 

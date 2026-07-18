@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the page.tsx component/hook.
 import { cookies } from 'next/headers';
 import { AdminStudentsClient } from '@/app/admin/admin_students/admin_students_components/AdminStudentsClient';
 import { fetchAdminStudents } from '@/app/admin/admin_students/admin_students_api/admin_students_api';

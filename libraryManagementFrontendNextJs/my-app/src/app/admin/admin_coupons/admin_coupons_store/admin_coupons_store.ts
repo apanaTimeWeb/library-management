@@ -20,7 +20,7 @@ export const useAdminCouponsStore = create<AdminCouponsStoreState>((set, get) =>
     set({ fetchState: 'loading', errorMessage: null });
     try {
       const data = await fetchApi(ADMIN_API_ROUTES.COUPONS);
-      const actualData = Array.isArray(data) ? data : ((data as any)?.data || []);
+      const actualData = Array.isArray(data) ? data : ((data as Record<string, unknown>)?.data || []);
       
       if (actualData.length === 0 || actualData[0]?.id?.startsWith('MOCK-')) {
         set({ coupons: MOCK_COUPONS as unknown as CouponRecord[], fetchState: 'success' });

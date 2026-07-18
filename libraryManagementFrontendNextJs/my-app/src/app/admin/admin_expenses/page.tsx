@@ -1,5 +1,5 @@
 // RESPONSIBILITY: Server Component entry page for the admin_expenses module (`Rule 8`, `Rule 38`).
-// DATA FLOW: Next.js App Router -> Server Page -> AdminExpensesClient (`Rule 39`).
+// DATA FLOW: Next.js App Router -> Server page -> AdminExpensesClient (`Rule 39`).
 
 import { Suspense } from 'react';
 import { AdminExpensesClient } from '@/app/admin/admin_expenses/admin_expenses_components/AdminExpensesClient';

@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the admin_reports_constants.ts component/hook.
 export const ADMIN_REPORTS_KPI_CARDS = [
   { title: 'Total Revenue', value: '₹1.2L', trend: '+15%', up: true },
   { title: 'New Admissions', value: '45', trend: '+5%', up: true },

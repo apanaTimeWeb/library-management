@@ -1,5 +1,5 @@
 // RESPONSIBILITY: Server Component entry page for seat gap report (`Rule 8`).
-// DATA FLOW: Next.js App Router -> Server Page -> AdminAccountingSeatGapReportClient (`Rule 39`).
+// DATA FLOW: Next.js App Router -> Server page -> AdminAccountingSeatGapReportClient (`Rule 39`).
 
 import { Suspense } from 'react';
 import { AdminAccountingSeatGapReportClient } from '@/app/admin/admin_accounting/seat-gap-report/admin_accounting_seat_gap_report_components/AdminAccountingSeatGapReportClient';

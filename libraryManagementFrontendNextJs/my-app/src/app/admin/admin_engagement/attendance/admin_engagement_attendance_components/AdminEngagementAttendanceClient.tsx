@@ -1,6 +1,6 @@
 // RESPONSIBILITY: Entry page for the admin_engagement module.
 'use client';
-// DATA FLOW: Next.js Router -> Page -> Components
+// DATA FLOW: Next.js Router -> page -> Components
 
 import { useState } from 'react';
 import Link from 'next/link';
@@ -63,7 +63,7 @@ export function AdminEngagementAttendanceClient() {
           <h1 className="text-2xl font-bold tracking-tight">📅 Daily Attendance</h1>
           <p className="text-sm text-muted-foreground mt-1">Mark attendance for all enrolled students by shift.</p>
         </div>
-        <Link href="/admin/admin_engagement/absentee-report">
+        <Link href={ADMIN_ROUTES.ENGAGEMENT_ABSENTEE_REPORT}>
           <Button variant="outline" className="gap-2">
             <FileBarChart2 size={16} /> Absentee Report
           </Button>

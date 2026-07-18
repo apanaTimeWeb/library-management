@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the AdminFinanceConstants.ts component/hook.
 export const ADMIN_FINANCE_MOCK_CONFIG = { daysBeforeSuspend: 7, currentlySuspended: 4, autoRestoredThisMonth: 2, manualRestores: 1 };
 
 export const ADMIN_FINANCE_MOCK_SUSPENDED = [

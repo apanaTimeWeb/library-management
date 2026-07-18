@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the AdminCommunicationConstants.ts component/hook.
 export const ADMIN_COMMUNICATION_MOCK_COMPLAINTS = [
   { id: '1', title: 'AC not cooling',     student: 'Rahul Sharma', isAnonymous: false, description: 'The AC in Zone A has not been cooling properly for the past 3 days. Very uncomfortable to study.', status: 'Open',        date: '2026-04-10', resolvedBy: '', resolvedDate: '', resolvedNote: '' },
   { id: '2', title: 'WiFi very slow',     student: 'Anonymous',    isAnonymous: true,  description: 'Internet speed is extremely slow during evening hours. Cannot load study materials.',              status: 'In-Progress', date: '2026-04-09', resolvedBy: 'Admin', resolvedDate: '', resolvedNote: '' },

@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the admin_staff-users_types.ts component/hook.
 export interface IUser {
   id: string;
   fullName: string;

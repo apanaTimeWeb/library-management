@@ -48,7 +48,7 @@ export function AdminAccountingExpensesClient() {
 
   return (
     <div className="h-full flex flex-col pb-10 space-y-6">
-      {/* Page Header */}
+      {/* page Header */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b pb-4">
         <div>
           <h1 className="text-2xl font-bold tracking-tight">Manual Expenses</h1>

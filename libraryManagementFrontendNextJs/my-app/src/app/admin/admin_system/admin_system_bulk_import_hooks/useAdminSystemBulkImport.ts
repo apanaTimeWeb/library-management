@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the useAdminSystemBulkImport.ts component/hook.
 import { useState, useRef, useMemo, useCallback } from 'react';
 import { ADMIN_SYSTEM_MOCK_PREVIEW, ADMIN_SYSTEM_TEMPLATE_HEADERS } from '@/app/admin/admin_system/admin_system_data/AdminSystemMockData2';
 

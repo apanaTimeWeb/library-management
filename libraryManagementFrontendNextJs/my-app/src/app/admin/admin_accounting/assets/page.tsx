@@ -1,5 +1,5 @@
 // RESPONSIBILITY: Server Component entry page for admin_accounting assets (`Rule 8`, `Rule 38`).
-// DATA FLOW: Next.js App Router -> Server Page -> AdminAssetsClient (`Rule 39`).
+// DATA FLOW: Next.js App Router -> Server page -> AdminAssetsClient (`Rule 39`).
 
 import { Suspense } from 'react';
 import { AdminAssetsClient } from '@/app/admin/admin_accounting/assets/admin_assets_components/AdminAssetsClient';

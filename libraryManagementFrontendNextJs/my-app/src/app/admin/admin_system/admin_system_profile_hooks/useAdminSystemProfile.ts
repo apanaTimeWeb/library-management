@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the useAdminSystemProfile.ts component/hook.
 import { useState, useMemo } from 'react';
 
 function getStrength(pw: string): { score: number; label: string; color: string } {

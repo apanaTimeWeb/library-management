@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the useAdminStaff.ts component/hook.
 /**
  * RESPONSIBILITY: Manages local state for admin staff users, including filtering,
  * form handling, and statistics calculation.

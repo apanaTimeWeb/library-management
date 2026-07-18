@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the admin_permissions_api.ts component/hook.
 import { fetchApi } from '@/lib/api';
 import { ADMIN_API_ROUTES } from '@/app/admin/admin_url_config';
 import type { ApiResponse } from '@/app/admin/admin_types/admin_types';

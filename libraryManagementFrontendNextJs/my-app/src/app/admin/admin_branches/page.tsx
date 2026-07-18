@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the page.tsx component/hook.
 import { cookies } from 'next/headers';
 import { AdminBranchesView } from '@/app/admin/admin_branches/admin_branches_components/AdminBranchesView';
 import { fetchAdminBranches } from '@/app/admin/admin_branches/admin_branches_api/admin_branches_api';

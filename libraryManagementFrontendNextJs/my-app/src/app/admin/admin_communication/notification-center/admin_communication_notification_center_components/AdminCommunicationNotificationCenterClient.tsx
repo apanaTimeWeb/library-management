@@ -1,6 +1,6 @@
 // RESPONSIBILITY: Entry page for the admin_communication module.
 'use client';
-// DATA FLOW: Next.js Router -> Page -> Components
+// DATA FLOW: Next.js Router -> page -> Components
 
 import { useState } from 'react';
 import { ChevronRight, ArrowRight, CheckCheck } from 'lucide-react';

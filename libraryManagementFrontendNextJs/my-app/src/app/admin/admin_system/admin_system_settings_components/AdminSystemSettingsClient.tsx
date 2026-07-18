@@ -29,7 +29,7 @@ export function AdminSystemSettingsClient() {
 
   return (
     <div>
-      {/* Page Header */}
+      {/* page Header */}
       <div className="mb-8">
         <div className="flex items-center gap-2 text-text-secondary text-xs font-medium tracking-wide mb-1">
           <span>System</span>

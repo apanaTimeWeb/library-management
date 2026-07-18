@@ -1,6 +1,6 @@
 // RESPONSIBILITY: Entry page for the admin_crm module.
 'use client';
-// DATA FLOW: Next.js Router -> Page -> Components
+// DATA FLOW: Next.js Router -> page -> Components
 
 import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
@@ -32,10 +32,10 @@ export function AdminCrmAddClient({ onClose }: AdminCrmAddClientProps = {}) {
     await new Promise((r) => setTimeout(r, 800));
     // Handle form submission
     toast.success('Lead saved successfully!');
-    setTimeout(() => { if (onClose) { onClose(); } else { router.push('/admin/admin_crm/enquiries'); } }, 600);
+    setTimeout(() => { if (onClose) { onClose(); } else { router.push(ADMIN_ROUTES.CRM_ENQUIRIES); } }, 600);
   };
 
-  const handleClose = () => { if (onClose) { onClose(); } else { router.push('/admin/admin_crm/enquiries'); } };
+  const handleClose = () => { if (onClose) { onClose(); } else { router.push(ADMIN_ROUTES.CRM_ENQUIRIES); } };
 
   return (
     <>
@@ -126,7 +126,7 @@ export function AdminCrmAddClient({ onClose }: AdminCrmAddClientProps = {}) {
               <Button
                 type="submit"
                 form="add-enquiry-form"
-                className=" gap-2" style={{ flex: 2 }}
+                className=" gap-2 flex-[var(--flex)]" style={{ '--flex': 2 } as React.CSSProperties}
                 disabled={isSubmitting}
               >
                 {isSubmitting ? (

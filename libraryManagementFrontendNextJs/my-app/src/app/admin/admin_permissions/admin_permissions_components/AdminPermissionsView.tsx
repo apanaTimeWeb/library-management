@@ -39,7 +39,7 @@ export function AdminPermissionsView({ initialPermissions }: AdminPermissionsVie
       />
 
       <div className="pb-10">
-        {/* Page Header */}
+        {/* page Header */}
         <div className="flex flex-wrap items-end justify-between gap-4 border-b border-border pb-4 mb-6">
           <div>
             <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-1">Smart Library 360 › Admin › Permissions</p>

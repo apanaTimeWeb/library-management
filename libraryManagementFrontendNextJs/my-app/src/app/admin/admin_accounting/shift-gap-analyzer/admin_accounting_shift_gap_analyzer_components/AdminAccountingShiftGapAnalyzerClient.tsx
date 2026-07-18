@@ -86,7 +86,7 @@ export function AdminAccountingShiftGapAnalyzerClient() {
             <div className="h-2 w-full bg-muted rounded-full overflow-hidden">
               <div 
                 className={`h-full transition-all ${m.occupancyPct >= 90 ? 'bg-success' : m.occupancyPct >= 70 ? 'bg-warning' : 'bg-danger'}`} 
-                style={{ width: `${m.occupancyPct}%` }} 
+                className="w-[length:var(--w)]" style={{ '--w': `${m.occupancyPct}%` } as React.CSSProperties} 
               />
             </div>
             <div className="grid grid-cols-3 gap-3 text-center border-t border-border pt-4">

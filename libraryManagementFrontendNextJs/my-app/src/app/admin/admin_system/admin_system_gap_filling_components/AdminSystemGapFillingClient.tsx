@@ -83,13 +83,11 @@ export function AdminSystemGapFillingClient() {
                   {/* Time bar — left/width are computed values, style is correct here */}
                   <div className="flex-1 relative h-8 rounded-lg overflow-hidden bg-bg-input">
                     {seat.booked.map((b, i) => (
-                      <div key={i} className="absolute top-0 h-full bg-primary/70 flex items-center justify-center"
-                        style={{ left: `${b.start}%`, width: `${b.end - b.start}%` }}>
+                      <div key={i} className="absolute top-0 h-full bg-primary/70 flex items-center justify-center left-[length:var(--left)] w-[length:var(--w)]" style={{ '--left': `${b.start}%`, '--w': `${b.end - b.start}%` } as React.CSSProperties}>
                         <span className="text-xs text-on-primary font-medium truncate px-1">Booked</span>
                       </div>
                     ))}
-                    <div className="absolute top-0 h-full bg-tertiary/30 border border-dashed border-tertiary/60 flex items-center justify-center animate-pulse"
-                      style={{ left: `${seat.gap.start}%`, width: `${seat.gap.end - seat.gap.start}%` }}>
+                    <div className="absolute top-0 h-full bg-tertiary/30 border border-dashed border-tertiary/60 flex items-center justify-center animate-pulse left-[length:var(--left)] w-[length:var(--w)]" style={{ '--left': `${seat.gap.start}%`, '--w': `${seat.gap.end - seat.gap.start}%` } as React.CSSProperties}>
                       <span className="text-xs text-tertiary font-medium truncate px-1">🕳️ Gap</span>
                     </div>
                   </div>

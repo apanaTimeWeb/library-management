@@ -1,5 +1,6 @@
+// RESPONSIBILITY: Renders the page.tsx component/hook.
 import { AdminEngagementQrScannerClient } from '@/app/admin/admin_engagement/qr-scanner/admin_engagement_qr_scanner_components/AdminEngagementQrScannerClient';
 
-export default function Page() {
+export default function page() {
   return <AdminEngagementQrScannerClient />;
 }

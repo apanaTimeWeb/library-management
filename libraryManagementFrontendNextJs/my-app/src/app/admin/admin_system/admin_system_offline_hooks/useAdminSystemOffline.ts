@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the useAdminSystemOffline.ts component/hook.
 import { useState, useEffect, useCallback } from 'react';
 import { ADMIN_SYSTEM_OFFLINE_FEATURES } from '@/app/admin/admin_system/admin_system_data/AdminSystemMockData2';
 

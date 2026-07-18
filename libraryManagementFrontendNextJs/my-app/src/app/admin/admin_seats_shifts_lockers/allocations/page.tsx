@@ -1,8 +1,8 @@
 // RESPONSIBILITY: Entry page for the admin_seats_shifts_lockers allocations module.
-// DATA FLOW: Next.js Router -> Page -> Components
+// DATA FLOW: Next.js Router -> page -> Components
 
-import { AllocationsClient } from '@/app/admin/admin_seats_shifts_lockers/allocations/admin_seats_shifts_lockers_components/AllocationsClient';
+import { AdminAllocationsClient } from '@/app/admin/admin_seats_shifts_lockers/allocations/admin_seats_shifts_lockers_components/AdminAllocationsClient';
 
 export default function AllocationsPage() {
-  return <AllocationsClient />;
+  return <AdminAllocationsClient />;
 }

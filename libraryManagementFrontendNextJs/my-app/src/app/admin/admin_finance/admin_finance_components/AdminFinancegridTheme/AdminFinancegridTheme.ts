@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the AdminFinancegridTheme.ts component/hook.
 // (finance)/admin_finance_components/gridTheme.ts
 // ⚠️ NO hardcoded values here — all values come from finance.css via CSS custom properties
 // Per features.md: "Zero JS files need to be touched" when changing AG Grid colors

@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the AdminCrmtypes.ts component/hook.
 // ─── CRM Shared TypeScript Types ─────────────────────────────────────────────
 // Self-contained — no imports from outside (crm) folder
 

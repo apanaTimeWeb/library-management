@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the useAdminSystemAutoScale.ts component/hook.
 import { useState, useCallback } from 'react';
 
 export function useAdminSystemAutoScale() {

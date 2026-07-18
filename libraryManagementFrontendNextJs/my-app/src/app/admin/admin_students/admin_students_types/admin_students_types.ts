@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the admin_students_types.ts component/hook.
 export interface StudentListItem {
   id: string;
   fullName: string;

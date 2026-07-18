@@ -1,5 +1,5 @@
 // RESPONSIBILITY: Server Component entry page for shift gap analyzer (`Rule 8`).
-// DATA FLOW: Next.js App Router -> Server Page -> AdminAccountingShiftGapAnalyzerClient (`Rule 39`).
+// DATA FLOW: Next.js App Router -> Server page -> AdminAccountingShiftGapAnalyzerClient (`Rule 39`).
 
 import { Suspense } from 'react';
 import { AdminAccountingShiftGapAnalyzerClient } from '@/app/admin/admin_accounting/shift-gap-analyzer/admin_accounting_shift_gap_analyzer_components/AdminAccountingShiftGapAnalyzerClient';

@@ -27,7 +27,7 @@ export function AdminSystemBulkImportClient() {
 
   return (
     <div>
-      {/* Page Header */}
+      {/* page Header */}
       <div className="mb-8">
         <div className="flex items-center gap-2 text-text-secondary text-xs font-medium tracking-wide mb-1">
           <span>System</span><ChevronRight size={12} /><span>Bulk Import</span>
@@ -316,8 +316,7 @@ export function AdminSystemBulkImportClient() {
               </div>
               <div className="h-3 rounded-full bg-bg-input overflow-hidden">
                 <div
-                  className="h-full rounded-full bg-primary transition-all duration-300"
-                  style={{ width: `${importProgress}%` }}
+                  className="h-full rounded-full bg-primary transition-all duration-300 w-[length:var(--w)]" style={{ '--w': `${importProgress}%` } as React.CSSProperties}
                 />
               </div>
               <p className="text-xs text-text-secondary">

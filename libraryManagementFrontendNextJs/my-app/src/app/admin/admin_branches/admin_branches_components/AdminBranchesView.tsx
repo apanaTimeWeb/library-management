@@ -40,7 +40,7 @@ export function AdminBranchesView({ initialBranches }: AdminBranchesViewProps) {
 
   return (
     <div className="h-full flex flex-col pb-10 space-y-6">
-      {/* Page Header */}
+      {/* page Header */}
       <div className="border-b border-border pb-4 flex flex-col md:flex-row md:items-end justify-between gap-4">
         <div>
           <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-1">

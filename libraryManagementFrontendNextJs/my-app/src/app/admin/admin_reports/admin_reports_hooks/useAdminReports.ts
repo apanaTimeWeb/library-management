@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the useAdminReports.ts component/hook.
 import { useState } from 'react';
 import { type AdminRecord } from '@/app/admin/admin_reusable/admin_reusable_utils/AdminReusableGridTheme';
 import {

@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the useAdminSystemGapFilling.ts component/hook.
 import { useState } from 'react';
 import { ADMIN_SYSTEM_MOCK_SEAT_GAPS } from '@/app/admin/admin_system/admin_system_data/AdminSystemMockData';
 

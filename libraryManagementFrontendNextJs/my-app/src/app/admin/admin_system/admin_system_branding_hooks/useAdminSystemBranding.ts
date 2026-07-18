@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the useAdminSystemBranding.ts component/hook.
 import { useState, useEffect, useCallback, useRef } from 'react';
 
 function readToken(token: string) {

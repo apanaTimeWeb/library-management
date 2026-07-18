@@ -31,7 +31,7 @@ export function AdminSettingsView({ initialSettings }: AdminSettingsViewProps) {
         }}
       />
       <div className="h-full flex flex-col pb-10 space-y-6 relative max-w-5xl mx-auto">
-        {/* Page Header */}
+        {/* page Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b pb-4">
           <div>
             <nav className="text-xs text-muted-foreground font-medium mb-1 tracking-wide uppercase">Smart Library 360 › Admin › Settings</nav>

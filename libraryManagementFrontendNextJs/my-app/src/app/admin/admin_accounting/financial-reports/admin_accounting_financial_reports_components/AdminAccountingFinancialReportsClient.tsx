@@ -91,13 +91,11 @@ export function AdminAccountingFinancialReportsClient() {
             <div key={`chart-col-${m.month}`} className="flex flex-col items-center gap-2 flex-1 min-w-12">
               <div className="flex items-end gap-1.5 w-full justify-center h-40">
                 <div
-                  className="rounded-t w-6 transition-all bg-success hover:brightness-110"
-                  style={{ height: `${(m.income / maxIncome) * 100}%` }}
+                  className="rounded-t w-6 transition-all bg-success hover:brightness-110 h-[length:var(--h)]" style={{ '--h': `${(m.income / maxIncome) * 100}%` } as React.CSSProperties}
                   title={`Income: ₹${m.income.toLocaleString()}`}
                 />
                 <div
-                  className="rounded-t w-6 transition-all bg-danger hover:brightness-110"
-                  style={{ height: `${(m.expense / maxIncome) * 100}%` }}
+                  className="rounded-t w-6 transition-all bg-danger hover:brightness-110 h-[length:var(--h)]" style={{ '--h': `${(m.expense / maxIncome) * 100}%` } as React.CSSProperties}
                   title={`Expense: ₹${m.expense.toLocaleString()}`}
                 />
               </div>
@@ -127,7 +125,7 @@ export function AdminAccountingFinancialReportsClient() {
                 <span className="text-xs font-semibold text-muted-foreground">₹{c.amount.toLocaleString()} ({c.pct}%)</span>
               </div>
               <div className="h-2 w-full bg-muted rounded-full overflow-hidden">
-                <div className="h-full bg-primary rounded-full transition-all" style={{ width: `${c.pct}%` }} />
+                <div className="h-full bg-primary rounded-full transition-all w-[length:var(--w)]" style={{ '--w': `${c.pct}%` } as React.CSSProperties} />
               </div>
             </div>
           ))}

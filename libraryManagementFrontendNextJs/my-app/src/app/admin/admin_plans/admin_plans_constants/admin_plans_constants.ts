@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the admin_plans_constants.ts component/hook.
 export const PLAN_DEFAULT_FEATURES = ['Access to Study Room', 'High-speed Wi-Fi', 'Power Backup'];
 
 export const MOCK_PLANS = [

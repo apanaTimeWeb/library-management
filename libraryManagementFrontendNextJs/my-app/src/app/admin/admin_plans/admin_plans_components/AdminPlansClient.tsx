@@ -60,7 +60,7 @@ export function AdminPlansClient() {
 
   return (
     <div className="h-full flex flex-col pb-10 space-y-6">
-      {/* Page Header */}
+      {/* page Header */}
       <div className="border-b border-border pb-4 flex flex-col md:flex-row md:items-end justify-between gap-4">
         <div>
           <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-1">
@@ -105,8 +105,7 @@ export function AdminPlansClient() {
             <Card
               key={plan.id}
               onClick={() => setSelectedPlanDetails(plan)}
-              className="hover:shadow-md transition-all flex flex-col justify-between cursor-pointer relative group border-border"
-              style={{ opacity: plan.status === 'Inactive' ? 0.72 : 1 }}
+              className="hover:shadow-md transition-all flex flex-col justify-between cursor-pointer relative group border-border opacity-[var(--op)]" style={{ '--op': plan.status === 'Inactive' ? 0.72 : 1 } as React.CSSProperties}
             >
               <CardContent className="p-6">
                 {/* Card Top */}

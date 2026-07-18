@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the AdminPermissionsConstants.ts component/hook.
 export const ADMIN_PERMISSIONS_MOCK_INITIAL = [
   {
     module: 'Students',

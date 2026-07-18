@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the admin_url_config.ts component/hook.
 /**
  * URL Configuration for the Admin Module
  * Contains all internal routes and external API endpoints.
@@ -36,6 +37,15 @@ export const ADMIN_ROUTES = {
   ACCOUNTING_EXPENSE_CATEGORIES: '/admin/admin_accounting/expense-categories',
   ACCOUNTING_SEAT_GAP_REPORT: '/admin/admin_accounting/seat-gap-report',
   ACCOUNTING_SHIFT_GAP_ANALYZER: '/admin/admin_accounting/shift-gap-analyzer',
+
+  // FINANCE
+  FINANCE_COLLECT_FEE: '/admin/admin_finance/collect-fee',
+  FINANCE_RECEIPT: '/admin/admin_finance/receipt',
+  FINANCE_RECEIPT_ID: (id: string) => `/admin/admin_finance/receipt/${id}`,
+  FINANCE_INVOICE: '/admin/admin_finance/invoice',
+  FINANCE_INVOICE_ID: (id: string) => `/admin/admin_finance/invoice/${id}`,
+  // ENGAGEMENT
+  ENGAGEMENT_ABSENTEE_REPORT: '/admin/admin_engagement/absentee-report',
 } as const;
 
 export const ADMIN_API_ROUTES = {

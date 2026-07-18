@@ -1,8 +1,8 @@
 // RESPONSIBILITY: Entry page for the admin_seats_shifts_lockers seat-history module.
-// DATA FLOW: Next.js Router -> Page -> Components
+// DATA FLOW: Next.js Router -> page -> Components
 
-import { SeatHistoryClient } from '@/app/admin/admin_seats_shifts_lockers/seat-history/admin_seats_shifts_lockers_components/SeatHistoryClient';
+import { AdminSeatHistoryClient } from '@/app/admin/admin_seats_shifts_lockers/seat-history/admin_seats_shifts_lockers_components/AdminSeatHistoryClient';
 
 export default function SeatHistoryPage() {
-  return <SeatHistoryClient />;
+  return <AdminSeatHistoryClient />;
 }

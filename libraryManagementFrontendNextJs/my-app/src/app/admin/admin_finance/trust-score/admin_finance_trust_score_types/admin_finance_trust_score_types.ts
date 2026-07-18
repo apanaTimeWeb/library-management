@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the admin_finance_trust_score_types.ts component/hook.
 export type AdminFinanceTrustScoreStudent = {
   rank: number;
   studentName: string;

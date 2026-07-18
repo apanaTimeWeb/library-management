@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the format.ts component/hook.
 export function formatCurrency(amount: number) {
   return new Intl.NumberFormat("en-IN", {
     style: "currency",

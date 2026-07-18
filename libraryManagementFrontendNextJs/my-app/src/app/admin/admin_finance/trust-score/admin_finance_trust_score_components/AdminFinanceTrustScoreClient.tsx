@@ -24,9 +24,9 @@ function TrustGauge({ score }: { score: number }) {
   return (
     <div className="flex items-center gap-2">
       <div className="fin-trust-track">
-        <div className="fin-trust-fill" style={{ width: `${score}%`, background: color }} />
+        <div className="fin-trust-fill w-[length:var(--w)] bg-[color:var(--bg)]" style={{ '--w': `${score}%`, '--bg': color } as React.CSSProperties} />
       </div>
-      <span className="text-sm font-semibold" style={{ color }}>{score}</span>
+      <span className="text-sm font-semibold text-[color:var(--c)]" style={{ '--c': color } as React.CSSProperties}>{score}</span>
     </div>
   );
 }

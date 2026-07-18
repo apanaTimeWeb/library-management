@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the useAdminSystemMaintenance.ts component/hook.
 import { useMemo } from 'react';
 import { ADMIN_SYSTEM_MOCK_MAINTENANCE_SEATS, ADMIN_SYSTEM_MOCK_MAINTENANCE_ASSETS, ADMIN_SYSTEM_MOCK_MAINTENANCE_LOCKERS } from '@/app/admin/admin_system/admin_system_data/AdminSystemMockData2';
 

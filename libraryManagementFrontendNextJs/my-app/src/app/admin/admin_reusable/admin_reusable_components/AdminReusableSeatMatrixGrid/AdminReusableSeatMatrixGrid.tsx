@@ -119,7 +119,7 @@ export default function AdminReusableSeatMatrixGrid({ seats, shifts }: Props) {
             </p>
           </div>
         ) : (
-          <div className="grid gap-3" style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(64px, 1fr))' }}>
+          <div className="grid gap-3 grid-cols-[var(--cols)]" style={{ '--cols': 'repeat(auto-fill, minmax(64px, 1fr))' } as React.CSSProperties}>
             {filtered.map(seat => (
               <AdminReusableSeatCell
                 key={seat.id}

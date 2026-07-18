@@ -44,7 +44,7 @@ export default function AdminSidebar({ collapsed, onToggle, mobileOpen, onMobile
         className={`fixed top-0 left-0 h-screen bg-card border-r border-border z-50 flex flex-col transition-all duration-300 ${
           mobileOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'
         }`}
-        style={{ width: collapsed && !mobileOpen ? 60 : 240 }}
+        className="w-[length:var(--w)]" style={{ '--w': collapsed && !mobileOpen ? 60 : 240 } as React.CSSProperties}
       >
         <div className="h-16 flex items-center shrink-0 border-b border-border px-2">
           <Button

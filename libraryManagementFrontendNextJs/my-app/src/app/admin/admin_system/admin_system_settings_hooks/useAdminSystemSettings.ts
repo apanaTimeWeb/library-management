@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders the useAdminSystemSettings.ts component/hook.
 import { useState, useEffect, useCallback } from 'react';
 
 function readToken(token: string) {

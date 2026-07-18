@@ -1,5 +1,5 @@
 // RESPONSIBILITY: Server Component entry page for the admin_blacklist module (`Rule 8`, `Rule 38`).
-// DATA FLOW: Next.js App Router -> Server Page -> AdminBlacklistClient (`Rule 39`).
+// DATA FLOW: Next.js App Router -> Server page -> AdminBlacklistClient (`Rule 39`).
 
 import { Suspense } from 'react';
 import { AdminBlacklistClient } from '@/app/admin/admin_blacklist/admin_blacklist_components/AdminBlacklistClient';
