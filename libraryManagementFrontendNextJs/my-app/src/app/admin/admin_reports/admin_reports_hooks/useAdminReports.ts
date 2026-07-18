@@ -1,3 +1,4 @@
+import { useUrlState } from '@/app/admin/admin_shared_hooks/useUrlState';
 // RESPONSIBILITY: Renders the useAdminReports.ts component/hook.
 import { useState } from 'react';
 import { type AdminRecord } from '@/app/admin/admin_reusable/admin_reusable_utils/AdminReusableGridTheme';
@@ -22,7 +23,7 @@ export const RANGE_OPTIONS: { label: string; key: Range }[] = [
 // DATA FLOW: API → useAdminReports.ts → AdminReportsComponent
 export function useAdminReports(initialData?: Record<string, Record<string, unknown[]>>) {
   const [range, setRange] = useState<Range>('last3Months');
-  const [branch, setBranch] = useState('All Branches');
+  const [branch, setBranch] = useUrlState('branch', 'All Branches');
 
   const incomeData: Record<string, unknown>[]  = (initialData?.incomeVsExpense?.[range as string] || ADMIN_REPORTS_INCOME_VS_EXPENSE[range as keyof typeof ADMIN_REPORTS_INCOME_VS_EXPENSE]) as Record<string, unknown>[];
   const revenueData: Record<string, unknown>[] = (initialData?.revenueTrend?.[range as string] || ADMIN_REPORTS_REVENUE_TREND[range as keyof typeof ADMIN_REPORTS_REVENUE_TREND]) as Record<string, unknown>[];

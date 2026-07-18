@@ -1,3 +1,4 @@
+import { useUrlState } from '@/app/admin/admin_shared_hooks/useUrlState';
 // RESPONSIBILITY: Renders the useAdminStaff.ts component/hook.
 /**
  * RESPONSIBILITY: Manages local state for admin staff users, including filtering,
@@ -35,7 +36,7 @@ export function useAdminStaff(initialStaff: StaffMember[]) {
   const [deleteId, setDeleteId] = useState<string | null>(null);
   const [form, setForm] = useState<FormState>(EMPTY);
   const [errors, setErrors] = useState<Partial<FormState>>({});
-  const [search, setSearch] = useState('');
+  const [search, setSearch] = useUrlState('search', '');
 
   const filtered = useMemo(() => {
     return staff.filter(s =>

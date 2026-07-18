@@ -1,3 +1,4 @@
+import { useUrlState } from '@/app/admin/admin_shared_hooks/useUrlState';
 // RESPONSIBILITY: Renders the useAdminBranches.ts component/hook.
 import { useState, useMemo } from 'react';
 
@@ -32,7 +33,7 @@ export function useAdminBranches(initialBranches: Branch[]) {
   const [deleteId, setDeleteId] = useState<string | null>(null);
   const [form, setForm] = useState<FormState>(EMPTY_FORM);
   const [errors, setErrors] = useState<Partial<FormState>>({});
-  const [search, setSearch] = useState('');
+  const [search, setSearch] = useUrlState('search', '');
 
   const filtered = useMemo(() => {
     return branches.filter(b =>

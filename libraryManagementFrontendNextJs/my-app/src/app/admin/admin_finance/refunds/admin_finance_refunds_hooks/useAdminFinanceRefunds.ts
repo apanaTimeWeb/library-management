@@ -1,3 +1,4 @@
+import { useUrlState } from '@/app/admin/admin_shared_hooks/useUrlState';
 // RESPONSIBILITY: Renders the useAdminFinanceRefunds.ts component/hook.
 import { useState, useEffect, useMemo } from 'react';
 import toast from 'react-hot-toast';
@@ -24,7 +25,7 @@ export type Refund = {
 };
 
 export function useAdminFinanceRefunds() {
-  const [statusFilter, setStatusFilter] = useState('all');
+  const [statusFilter, setStatusFilter] = useUrlState('statusFilter', 'all');
   const [allRefunds, setAllRefunds] = useState<Refund[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   

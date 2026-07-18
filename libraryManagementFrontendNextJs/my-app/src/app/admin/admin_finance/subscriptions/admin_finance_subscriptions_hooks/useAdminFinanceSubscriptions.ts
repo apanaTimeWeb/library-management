@@ -1,3 +1,4 @@
+import { useUrlState } from '@/app/admin/admin_shared_hooks/useUrlState';
 // RESPONSIBILITY: Renders the useAdminFinanceSubscriptions.ts component/hook.
 import { useState, useEffect, useMemo } from 'react';
 import { useRouter } from 'next/navigation';
@@ -7,9 +8,9 @@ import { ADMIN_ROUTES } from '@/app/admin/admin_url_config';
 
 export function useAdminFinanceSubscriptions() {
   const router = useRouter();
-  const [statusFilter, setStatusFilter] = useState('all');
+  const [statusFilter, setStatusFilter] = useUrlState('statusFilter', 'all');
   const [planFilter, setPlanFilter] = useState('all');
-  const [shiftFilter, setShiftFilter] = useState('all');
+  const [shiftFilter, setShiftFilter] = useUrlState('shiftFilter', 'all');
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {

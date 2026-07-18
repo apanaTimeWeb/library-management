@@ -1,10 +1,11 @@
+import { useUrlState } from '@/app/admin/admin_shared_hooks/useUrlState';
 // RESPONSIBILITY: Renders the useAdminStudents.ts component/hook.
 import { useState, useMemo } from 'react';
 import { useAdmin } from '@/app/admin/admin_store/AdminContext';
 import type { AdminStudentData } from '@/app/admin/admin_students/admin_students_types/admin_students_types';
 
 export function useAdminStudents(initialStudents: AdminStudentData[]) {
-  const [search, setSearch] = useState('');
+  const [search, setSearch] = useUrlState('search', '');
   const { selectedBranch } = useAdmin();
 
   const filteredStudents = useMemo(() => {

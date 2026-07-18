@@ -1,4 +1,6 @@
 'use client';
+import { useUrlState } from '@/app/admin/admin_shared_hooks/useUrlState';
+
 import { AdminSearchableDropdown } from '@/app/admin/admin_shared_components/AdminSearchableDropdown';
 
 // RESPONSIBILITY: Client view rendering seat gap report (`Rule 1`, `Rule 36`).
@@ -29,8 +31,8 @@ export function AdminAccountingSeatGapReportClient() {
     const [searchTerm, setSearchTerm] = useState('');
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(10);
-  const [shiftFilter, setShiftFilter] = useState('all');
-  const [statusFilter, setStatusFilter] = useState('all');
+  const [shiftFilter, setShiftFilter] = useUrlState('shiftFilter', 'all');
+  const [statusFilter, setStatusFilter] = useUrlState('statusFilter', 'all');
 
   const visible = MOCK.filter(r =>
     (shiftFilter === 'all' || r.shift === shiftFilter) &&

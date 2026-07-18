@@ -1,4 +1,6 @@
 'use client';
+import { useUrlState } from '@/app/admin/admin_shared_hooks/useUrlState';
+
 // RESPONSIBILITY: Client view rendering financial reports with fixed keys and tailwind classes (`Rule 1`, `Rule 36`, `Rule 57`).
 // DATA FLOW: Store -> AdminAccountingFinancialReportsClient (`Rule 39`).
 
@@ -28,7 +30,7 @@ const CATEGORY_BREAKDOWN = [
 const maxIncome = Math.max(...MONTHLY.map(m => m.income));
 
 export function AdminAccountingFinancialReportsClient() {
-  const [period, setPeriod] = useState('monthly');
+  const [period, setPeriod] = useUrlState('period', 'monthly');
 
   const totalIncome  = MONTHLY.reduce((s, m) => s + m.income, 0);
   const totalExpense = MONTHLY.reduce((s, m) => s + m.expense, 0);

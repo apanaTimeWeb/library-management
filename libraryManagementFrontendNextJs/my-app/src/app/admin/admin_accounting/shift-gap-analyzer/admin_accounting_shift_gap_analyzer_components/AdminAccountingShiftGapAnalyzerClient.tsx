@@ -1,3 +1,4 @@
+import { useUrlState } from '@/app/admin/admin_shared_hooks/useUrlState';
 import { AdminSearchableDropdown } from '@/app/admin/admin_shared_components/AdminSearchableDropdown';
 // @ts-nocheck
 'use client';
@@ -33,7 +34,7 @@ export function AdminAccountingShiftGapAnalyzerClient() {
     const [searchTerm, setSearchTerm] = useState('');
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(10);
-  const [shiftFilter, setShiftFilter] = useState('all');
+  const [shiftFilter, setShiftFilter] = useUrlState('shiftFilter', 'all');
 
   const visibleDays = shiftFilter === 'all' ? DAY_GAPS : DAY_GAPS.filter(d => d.shift === shiftFilter);
   const totalLoss = MOCK.reduce((s, m) => s + m.revenueLoss, 0);

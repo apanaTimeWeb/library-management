@@ -1,3 +1,4 @@
+import { useUrlState } from '@/app/admin/admin_shared_hooks/useUrlState';
 // RESPONSIBILITY: Renders the useAdminSeatMatrix.ts component/hook.
 import { useState, useEffect, useMemo } from 'react';
 import { fetchApi } from '@/lib/api';
@@ -16,7 +17,7 @@ export interface SeatData {
 }
 
 export function useAdminSeatMatrix() {
-  const [activeTab, setActiveTab] = useState('All');
+  const [activeTab, setActiveTab] = useUrlState('activeTab', 'All');
   const [selectedSeat, setSelectedSeat] = useState<SeatData | null>(null);
   const [date, setDate] = useState(() => new Date().toISOString().slice(0, 10));
   const [seatsData, setSeatsData] = useState<SeatData[]>([]);

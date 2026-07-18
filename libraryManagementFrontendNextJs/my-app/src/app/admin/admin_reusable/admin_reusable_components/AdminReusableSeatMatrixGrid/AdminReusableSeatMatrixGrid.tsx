@@ -1,4 +1,6 @@
 'use client';
+import { useUrlState } from '@/app/admin/admin_shared_hooks/useUrlState';
+
 // RESPONSIBILITY: Renders the seat occupancy grid matrix with shift/fee filters and assignment navigation.
 // DATA FLOW: AdminDashboardPage / Seat Management -> AdminReusableSeatMatrixGrid -> AdminReusableSeatCell
 
@@ -24,7 +26,7 @@ const LEGEND = [
 export default function AdminReusableSeatMatrixGrid({ seats, shifts }: Props) {
   const router = useRouter();
   const [activeShift, setActiveShift]   = useState('All');
-  const [feeFilter, setFeeFilter]       = useState('All');
+  const [feeFilter, setFeeFilter] = useUrlState('feeFilter', 'All');
   const [appliedFee, setAppliedFee]     = useState('All');
   const [appliedShift, setAppliedShift] = useState('All');
 

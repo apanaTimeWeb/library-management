@@ -31,8 +31,6 @@ export function AdminSeatManagementClient({ initialSeats }: SeatManagementClient
     setShowModal,
     editSeat,
     form,
-    setForm,
-    errors,
     confirmBroken,
     setConfirmBroken,
     openAdd,
@@ -41,6 +39,8 @@ export function AdminSeatManagementClient({ initialSeats }: SeatManagementClient
     handleMarkFixed,
     confirmMarkBroken
   } = useAdminSeatManagement(initialSeats);
+
+  const { register, formState: { errors } } = form;
 
   const getStatusBadge = (status: SeatStatus) => {
     switch (status) {
@@ -225,32 +225,30 @@ export function AdminSeatManagementClient({ initialSeats }: SeatManagementClient
                 <Input 
                   className={errors.seatNo ? 'border-danger' : ''} 
                   placeholder="e.g. A-01" 
-                  value={form.seatNo} 
-                  onChange={e => setForm(p => ({ ...p, seatNo: e.target.value }))} 
+                  {...register('seatNo')}
                 />
-                {errors.seatNo && <p className="text-xs text-danger font-medium">{errors.seatNo}</p>}
+                {errors.seatNo && <p className="text-xs text-danger font-medium">{errors.seatNo.message}</p>}
               </div>
               <div className="space-y-2">
                 <label className="text-sm font-medium">Branch <span className="text-danger">*</span></label>
                 <Input 
                   className={errors.branch ? 'border-danger' : ''} 
                   placeholder="e.g. North Wing" 
-                  value={form.branch} 
-                  onChange={e => setForm(p => ({ ...p, branch: e.target.value }))} 
+                  {...register('branch')}
                 />
-                {errors.branch && <p className="text-xs text-danger font-medium">{errors.branch}</p>}
+                {errors.branch && <p className="text-xs text-danger font-medium">{errors.branch.message}</p>}
               </div>
               <div className="space-y-2">
                 <label className="text-sm font-medium">Status</label>
                 <AdminSearchableDropdown 
                   className="flex h-10 w-full items-center justify-between rounded-md border border-border bg-bg-pageg-input px-3 py-2 text-sm ring-offset-bg-page placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:ring-offset-2"
-                  value={form.status} 
-                  onChange={e => setForm(p => ({ ...p, status: e.target.value as SeatStatus }))}
+                  {...register('status')}
                 >
-                  <option>Working</option>
-                  <option>Maintenance</option>
-                  <option>Broken</option>
+                  <option value="Working">Working</option>
+                  <option value="Maintenance">Maintenance</option>
+                  <option value="Broken">Broken</option>
                 </AdminSearchableDropdown>
+                {errors.status && <p className="text-xs text-danger font-medium">{errors.status.message}</p>}
               </div>
             </div>
             

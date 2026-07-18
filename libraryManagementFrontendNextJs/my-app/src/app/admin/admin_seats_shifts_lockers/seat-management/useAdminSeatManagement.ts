@@ -1,7 +1,10 @@
+import { useUrlState } from '@/app/admin/admin_shared_hooks/useUrlState';
 // RESPONSIBILITY: Renders the useAdminSeatManagement.ts component/hook.
 import { useState, useMemo } from 'react';
 import toast from 'react-hot-toast';
-
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { z } from 'zod';
 
 export interface Seat {
   id: string;
@@ -11,21 +14,30 @@ export interface Seat {
   assignedTo: string;
   lastMaintenance: string;
 }
-export type SeatStatus = 'Working' | 'Maintenance' | 'Broken';
 
-const EMPTY_FORM = { seatNo: '', branch: '', status: 'Working' as SeatStatus };
+export const seatSchema = z.object({
+  seatNo: z.string().min(1, 'Seat number is required'),
+  branch: z.string().min(1, 'Branch is required'),
+  status: z.enum(['Working', 'Maintenance', 'Broken'])
+});
+export type SeatFormValues = z.infer<typeof seatSchema>;
+export type SeatStatus = SeatFormValues['status'];
+
+const EMPTY_FORM: SeatFormValues = { seatNo: '', branch: '', status: 'Working' };
 
 export function useAdminSeatManagement(initialSeats: Seat[]) {
   const [seats, setSeats] = useState<Seat[]>(initialSeats);
-  const [search, setSearch] = useState('');
-  const [statusFilter, setStatusFilter] = useState('All Statuses');
+  const [search, setSearch] = useUrlState('search', '');
+  const [statusFilter, setStatusFilter] = useUrlState('statusFilter', 'All Statuses');
   
   const [showModal, setShowModal] = useState(false);
   const [editSeat, setEditSeat] = useState<Seat | null>(null);
-  const [form, setForm] = useState(EMPTY_FORM);
-  const [errors, setErrors] = useState<Record<string, string>>({});
-  
   const [confirmBroken, setConfirmBroken] = useState<Seat | null>(null);
+
+  const form = useForm<SeatFormValues>({
+    resolver: zodResolver(seatSchema),
+    defaultValues: EMPTY_FORM
+  });
 
   const filtered = useMemo(() => {
     return seats.filter(s => {
@@ -39,37 +51,26 @@ export function useAdminSeatManagement(initialSeats: Seat[]) {
 
   function openAdd() {
     setEditSeat(null);
-    setForm(EMPTY_FORM);
-    setErrors({});
+    form.reset(EMPTY_FORM);
     setShowModal(true);
   }
 
   function openEdit(seat: Seat) {
     setEditSeat(seat);
-    setForm({ seatNo: seat.seatNo, branch: seat.branch, status: seat.status });
-    setErrors({});
+    form.reset({ seatNo: seat.seatNo, branch: seat.branch, status: seat.status });
     setShowModal(true);
   }
 
-  function validate() {
-    const e: Record<string, string> = {};
-    if (!form.seatNo.trim()) e.seatNo = 'Seat number is required';
-    if (!form.branch.trim()) e.branch = 'Branch is required';
-    setErrors(e);
-    return Object.keys(e).length === 0;
-  }
-
-  function handleSave() {
-    if (!validate()) return;
+  const handleSave = form.handleSubmit((data) => {
     if (editSeat) {
-      setSeats(prev => prev.map(s => s.id === editSeat.id ? { ...s, ...form } : s));
+      setSeats(prev => prev.map(s => s.id === editSeat.id ? { ...s, ...data } : s));
       toast.success('Seat updated.');
     } else {
-      setSeats(prev => [...prev, { id: Date.now().toString(), ...form, assignedTo: '—', lastMaintenance: '—' }]);
+      setSeats(prev => [...prev, { id: Date.now().toString(), ...data, assignedTo: '—', lastMaintenance: '—' }]);
       toast.success('Seat added.');
     }
     setShowModal(false);
-  }
+  });
 
   function handleMarkFixed(seat: Seat) {
     setSeats(prev => prev.map(s => s.id === seat.id ? { ...s, status: 'Working' } : s));
@@ -94,8 +95,6 @@ export function useAdminSeatManagement(initialSeats: Seat[]) {
     setShowModal,
     editSeat,
     form,
-    setForm,
-    errors,
     confirmBroken,
     setConfirmBroken,
     openAdd,

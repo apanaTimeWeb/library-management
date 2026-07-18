@@ -1,4 +1,6 @@
 'use client';
+import { useUrlState } from '@/app/admin/admin_shared_hooks/useUrlState';
+
 import { AdminSearchableDropdown } from '@/app/admin/admin_shared_components/AdminSearchableDropdown';
 
 // RESPONSIBILITY: Entry page for the admin_communication module.
@@ -39,10 +41,10 @@ export function AdminCommunicationWhatsappLogsClient() {
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(10);
   const [typeFilter,   setTypeFilter]   = useState('All');
-  const [statusFilter, setStatusFilter] = useState('All');
-  const [search,       setSearch]       = useState('');
-  const [dateFrom,     setDateFrom]     = useState('');
-  const [dateTo,       setDateTo]       = useState('');
+  const [statusFilter, setStatusFilter] = useUrlState('statusFilter', 'All');
+  const [search, setSearch] = useUrlState('search', '');
+  const [dateFrom, setDateFrom] = useUrlState('dateFrom', '');
+  const [dateTo, setDateTo] = useUrlState('dateTo', '');
   const [viewLog,      setViewLog]      = useState<WaLog | null>(null);
 
   const filtered = (ADMIN_COMMUNICATION_MOCK_WHATSAPP_LOGS as WaLog[]).filter(l => {

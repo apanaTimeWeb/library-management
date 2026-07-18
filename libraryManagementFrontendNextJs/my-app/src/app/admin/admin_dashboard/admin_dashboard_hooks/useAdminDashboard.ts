@@ -1,3 +1,4 @@
+import { useUrlState } from '@/app/admin/admin_shared_hooks/useUrlState';
 // RESPONSIBILITY: Renders the useAdminDashboard.ts component/hook.
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
@@ -9,7 +10,7 @@ export function useAdminDashboard(initialData: AdminDashboardData) {
   
   // States for Seat Matrix
   const [activeShift, setActiveShift] = useState('All');
-  const [feeFilter, setFeeFilter] = useState('All');
+  const [feeFilter, setFeeFilter] = useUrlState('feeFilter', 'All');
   const [appliedFee, setAppliedFee] = useState('All');
   const [appliedShift, setAppliedShift] = useState('All');
 

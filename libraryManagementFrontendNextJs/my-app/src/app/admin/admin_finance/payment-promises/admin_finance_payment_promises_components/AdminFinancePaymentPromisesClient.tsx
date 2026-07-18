@@ -1,4 +1,6 @@
 'use client';
+import { useUrlState } from '@/app/admin/admin_shared_hooks/useUrlState';
+
 import { AdminSearchableDropdown } from '@/app/admin/admin_shared_components/AdminSearchableDropdown';
 
 // RESPONSIBILITY: Entry page for the admin_finance module.
@@ -30,7 +32,7 @@ export function AdminFinancePaymentPromisesClient() {
 
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(10);
-  const [statusFilter, setStatusFilter] = useState('all');
+  const [statusFilter, setStatusFilter] = useUrlState('statusFilter', 'all');
   const [promises, setPromises] = useState<PromiseItem[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [extendDialog, setExtendDialog] = useState<{ id: number; name: string } | null>(null);

@@ -1,3 +1,4 @@
+import { useUrlState } from '@/app/admin/admin_shared_hooks/useUrlState';
 // RESPONSIBILITY: Renders the useAdminLockers.ts component/hook.
 import { useState, useMemo } from 'react';
 import toast from 'react-hot-toast';
@@ -16,9 +17,9 @@ export type LockerStatus = 'Free' | 'Occupied' | 'Maintenance';
 
 export function useAdminLockers() {
   const [lockers, setLockers] = useState<Locker[]>(ADMIN_SEATS_MOCK_LOCKERS as Locker[]);
-  const [statusFilter, setStatusFilter] = useState('All Statuses');
+  const [statusFilter, setStatusFilter] = useUrlState('statusFilter', 'All Statuses');
   const [showAssign, setShowAssign] = useState<Locker | null>(null);
-  const [assignSearch, setAssignSearch] = useState('');
+  const [assignSearch, setAssignSearch] = useUrlState('assignSearch', '');
   const [freeTarget, setFreeTarget] = useState<Locker | null>(null);
   const [showAddModal, setShowAddModal] = useState(false);
   const [newLockerId, setNewLockerId] = useState('');
