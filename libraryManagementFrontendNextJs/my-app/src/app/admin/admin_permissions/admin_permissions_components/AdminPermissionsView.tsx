@@ -21,7 +21,7 @@ export function AdminPermissionsView({ initialPermissions }: AdminPermissionsVie
   const [limit, setLimit] = useState(10);
 
   const { perms, toggle, handleSave, roles } = useAdminPermissions(initialPermissions);
-    const table = useClientTable(module.actions, 10);
+
   return (
     <>
       <Toaster
@@ -62,12 +62,7 @@ export function AdminPermissionsView({ initialPermissions }: AdminPermissionsVie
         </div>
       </div>
 
-<div className="mb-4">
-        <TableToolbar 
-          search={table.searchTerm} 
-          onSearch={table.setSearchTerm} 
-        />
-      </div>
+
       <table className="w-full text-sm text-left">
               <thead className="bg-muted/50 text-muted-foreground sticky top-0 z-10 border-b border-border">
                 <tr>
@@ -92,7 +87,7 @@ export function AdminPermissionsView({ initialPermissions }: AdminPermissionsVie
                       </td>
                     </tr>
                     {/* Action rows */}
-                    {table.paginatedData.map((action, aIdx) => (
+                    {module.actions.map((action, aIdx) => (
                       <tr key={action.key} className="hover:bg-muted/30 transition-colors">
                         <td className="px-6 py-3 pl-10 text-muted-foreground font-medium text-sm border-r border-border/50">
                           {action.label}
