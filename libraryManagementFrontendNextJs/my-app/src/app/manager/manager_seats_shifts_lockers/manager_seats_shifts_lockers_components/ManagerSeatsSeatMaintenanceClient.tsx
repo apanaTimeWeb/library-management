@@ -48,14 +48,11 @@ function StatusBadge(props: { value: string }) {
 }
 
 export function ManagerSeatsSeatMaintenanceClient() {
-    const table = useClientTable(filteredLogs.slice((page - 1) * limit, page * limit));
-  const [searchTerm, setSearchTerm] = useState('');
+const [searchTerm, setSearchTerm] = useState('');
 
   const [selectedSeat, setSelectedSeat] = useState('S-006');
   const [logs, setLogs] = useState(SEAT_LOGS);
   const [form, setForm] = useState(EMPTY_FORM);
-  const [page, setPage] = useState(1);
-  const [limit, setLimit] = useState(10);
   const [errors, setErrors] = useState<Record<string, string>>({});
 
   const filteredLogs = (logs[selectedSeat] ?? []).filter(log => 
@@ -63,6 +60,8 @@ export function ManagerSeatsSeatMaintenanceClient() {
     (log.remark || '').toLowerCase().includes(searchTerm.toLowerCase()) || 
     (log.doneBy || '').toLowerCase().includes(searchTerm.toLowerCase())
   );
+  const table = useClientTable(filteredLogs, 10);
+
 
   const currentLogs = logs[selectedSeat] ?? [];
   const daysSince = DAYS_SINCE[selectedSeat] ?? 0;
@@ -180,13 +179,7 @@ export function ManagerSeatsSeatMaintenanceClient() {
         onPageChange={table.setPage} onLimitChange={table.setLimit} 
       />
             </div>
-            <TablePagination
-              page={page}
-              limit={limit}
-              totalItems={filteredLogs.length}
-              onPageChange={setPage}
-              onLimitChange={setLimit}
-            />
+            
           </>
         )}
 

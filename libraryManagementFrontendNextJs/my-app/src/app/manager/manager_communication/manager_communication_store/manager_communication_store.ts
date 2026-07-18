@@ -33,7 +33,7 @@ while(MOCK_NOTICES.length < 50 && base_MOCK_NOTICES.length > 0) {
         set({ notices: MOCK_NOTICES, noticesStatus: 'success' });
         return;
       }
-      const mapped = actualData.map((n: Record<string, unknown>) => ({
+      const mapped = (actualData as any[]).map((n: any) => ({
         id: n.id,
         title: n.title,
         message: n.message,
@@ -96,7 +96,7 @@ while(MOCK_NOTICES.length < 50 && base_MOCK_NOTICES.length > 0) {
         set({ complaints: MOCK_COMPLAINTS, complaintsStatus: 'success' });
         return;
       }
-      const mapped = actualData.map((c: Record<string, unknown>) => ({
+      const mapped = (actualData as any[]).map((c: any) => ({
         id: c.id,
         title: c.subject || 'Complaint',
         desc: c.description || '',

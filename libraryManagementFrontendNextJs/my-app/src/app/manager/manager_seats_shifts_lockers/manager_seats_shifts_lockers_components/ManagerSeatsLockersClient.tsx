@@ -40,8 +40,7 @@ function AssignedToCell(props: { data: Locker }) {
 }
 
 export function ManagerSeatsLockersClient() {
-    const table = useClientTable(filtered.slice((page - 1) * limit, page * limit));
-  const [searchTerm, setSearchTerm] = useState('');
+const [searchTerm, setSearchTerm] = useState('');
 
   const [lockers, setLockers] = useState<Locker[]>(INITIAL_LOCKERS);
   const [statusFilter, setStatusFilter] = useState('All Statuses');
@@ -52,8 +51,6 @@ export function ManagerSeatsLockersClient() {
   const [newnumber, setNewnumber] = useState('');
   const [addError, setAddError] = useState('');
 
-  const [page, setPage] = useState(1);
-  const [limit, setLimit] = useState(10);
 
   const filtered = lockers.filter(l => statusFilter === 'All Statuses' || l.status === statusFilter)
     .filter(item => 
@@ -61,6 +58,8 @@ export function ManagerSeatsLockersClient() {
       item.number.toLowerCase().includes(searchTerm.toLowerCase()) || 
       (item.assignedTo && item.assignedTo.toLowerCase().includes(searchTerm.toLowerCase()))
     );
+  const table = useClientTable(filtered, 10);
+
 
   function handleAssign() {
     if (!showAssign || !assignSearch.trim()) return;
@@ -198,13 +197,7 @@ export function ManagerSeatsLockersClient() {
         onPageChange={table.setPage} onLimitChange={table.setLimit} 
       />
           </div>
-          <TablePagination
-            page={page}
-            limit={limit}
-            totalItems={filtered.length}
-            onPageChange={setPage}
-            onLimitChange={setLimit}
-          />
+          
         </>
 )}
       </div>

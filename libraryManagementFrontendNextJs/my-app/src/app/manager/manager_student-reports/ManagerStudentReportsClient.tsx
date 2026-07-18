@@ -15,10 +15,6 @@ const Chart = dynamic(() => import('react-apexcharts'), { ssr: false }) as React
 const iconMap: Record<string, React.ElementType> = { Users, CalendarCheck, UserPlus, Phone };
 
 export function ManagerStudentReportsClient() {
-    const table = useClientTable(data.absenteeReportData);
-  const [page, setPage] = useState(1);
-  const [limit, setLimit] = useState(10);
-  const [searchTerm, setSearchTerm] = useState('');
 
   const router = useRouter();
   const pathname = usePathname();
@@ -26,6 +22,7 @@ export function ManagerStudentReportsClient() {
   const dateRange = searchParams.get('range') || 'This Month';
 
   const { reports: data, status, error } = useManagerStudentReports(dateRange);
+  const table = useClientTable(data?.absenteeReportData || [], 10);
 
   const setDateRange = (range: string) => {
     const params = new URLSearchParams(searchParams.toString());
@@ -172,15 +169,6 @@ export function ManagerStudentReportsClient() {
         <div className="bg-bg-card rounded-xl border border-border p-6">
           <h3 className="font-semibold mb-4">Absentee Report</h3>
           
-        <div className="flex justify-end mb-4">
-            <input 
-              type="text" 
-              placeholder="Search in table..." 
-              className="px-3 py-2 border rounded-md text-sm w-64"
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-            />
-        </div>
         <TableToolbar search={table.searchTerm} onSearch={table.setSearchTerm} />
       <table className="w-full text-sm text-left">
             <thead><tr className="bg-primary-subtle text-xs uppercase font-semibold text-text-secondary text-left">
@@ -189,7 +177,7 @@ export function ManagerStudentReportsClient() {
               <th className="p-3">Last Present</th>
             </tr></thead>
             <tbody>
-              {data.absenteeReportData?.map((r) => (
+              {table.paginatedData.map((r: any) => (
                 <tr key={r.id} className="border-b border-border hover:bg-primary-subtle/30 transition-colors">
                   <td className="p-3 text-text-primary">{r.name}</td>
                   <td className="p-3 text-text-primary">{r.absentDays}</td>
@@ -202,7 +190,6 @@ export function ManagerStudentReportsClient() {
         page={table.page} limit={table.limit} totalItems={table.totalItems} 
         onPageChange={table.setPage} onLimitChange={table.setLimit} 
       />
-      <TablePagination page={page} limit={limit} totalItems={100} onPageChange={setPage} onLimitChange={setLimit} />
 
         </div>
 

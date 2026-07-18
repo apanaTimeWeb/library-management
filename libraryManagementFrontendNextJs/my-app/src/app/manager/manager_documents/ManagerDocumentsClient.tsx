@@ -9,22 +9,7 @@ import { TableToolbar } from "@/components/ui/table-toolbar";
 import { useClientTable } from "@/components/ui/use-client-table";
 
 export function ManagerDocumentsClient() {
-    const table = useClientTable(filteredDocuments.slice((page - 1) * limit, page * limit));
-  const [searchTerm, setSearchTerm] = useState('');
-
-  const router = useRouter();
-  const pathname = usePathname();
-  const searchParams = useSearchParams();
-  const searchQuery = searchParams.get('q') || '';
-
   const { documents, status, deleteDocument } = useManagerDocuments();
-
-  const setSearchQuery = (q: string) => {
-    const params = new URLSearchParams(searchParams.toString());
-    if (q) params.set('q', q);
-    else params.delete('q');
-    router.replace(`${pathname}?${params.toString()}`, { scroll: false });
-  };
 
   const getFileIcon = (type: string) => {
     if (type === 'PDF') return <FileText size={18} className="text-danger" />;
@@ -32,31 +17,7 @@ export function ManagerDocumentsClient() {
     return <File size={18} className="text-info" />;
   };
 
-  const filteredDocuments = useMemo(() => {
-    let result = documents;
-    if (searchQuery) {
-      const lowerQ = searchQuery.toLowerCase();
-      result = result.filter(d => 
-        d.name.toLowerCase().includes(lowerQ) || 
-        d.category.toLowerCase().includes(lowerQ) ||
-        d.uploadedBy.toLowerCase().includes(lowerQ)
-      );
-    }
-    if (searchTerm) {
-      const lowerS = searchTerm.toLowerCase();
-      result = result.filter(d => 
-        d.name.toLowerCase().includes(lowerS) || 
-        d.category.toLowerCase().includes(lowerS) ||
-        d.uploadedBy.toLowerCase().includes(lowerS)
-      );
-    }
-    return result;
-  }, [documents, searchQuery, searchTerm]);
-
-  const [page, setPage] = useState(1);
-  const [limit, setLimit] = useState(10);
-
-
+  const table = useClientTable(documents);
 
   if (status === 'loading') {
     return <div className="p-6 min-h-screen"><div className="animate-pulse space-y-4"><div className="h-8 bg-gray-300 rounded w-1/4"></div><div className="h-32 bg-gray-300 rounded w-full"></div><div className="h-64 bg-gray-300 rounded w-full"></div></div></div>;
@@ -100,46 +61,27 @@ export function ManagerDocumentsClient() {
         </div>
       </div>
 
-      <div className="bg-bg-card rounded-xl border border-border p-6">
-        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-4">
-          <div className="relative w-full max-w-sm">
-            <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-text-secondary" />
-            <input 
-              type="text" 
-              placeholder="Search documents..." 
-              className="w-full bg-bg-input border border-border rounded-lg pl-10 pr-3.5 py-2 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-            />
-          </div>
-        </div>
-
-        
-        <div className="flex justify-end mb-[16px]">
-          <input 
-            type="text" 
-            placeholder="Search in table..." 
-            className="px-3 py-2 border border-border rounded-md text-sm bg-bg-input text-text-primary focus:outline-none focus:ring-2 focus:ring-primary w-64"
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-          />
-        </div>
-        
-          <div className="w-full overflow-x-auto border border-border rounded-xl">
-            <TableToolbar search={table.searchTerm} onSearch={table.setSearchTerm} />
-      <table className="w-full text-left text-sm whitespace-nowrap">
-              <thead className="bg-bg-elevated border-b border-border">
-                <tr className="text-text-secondary text-xs uppercase tracking-wider">
-                  <th className="px-4 py-3 font-semibold">File Name</th>
-                  <th className="px-4 py-3 font-semibold">Category</th>
-                  <th className="px-4 py-3 font-semibold">Size</th>
-                  <th className="px-4 py-3 font-semibold">Uploaded By</th>
-                  <th className="px-4 py-3 font-semibold">Date</th>
-                  <th className="px-4 py-3 font-semibold text-right">Actions</th>
+      <div className="bg-bg-card rounded-xl border border-border p-6 flex flex-col">
+        <div className="w-full overflow-x-auto border border-border rounded-xl">
+          <TableToolbar search={table.searchTerm} onSearch={table.setSearchTerm} />
+          <table className="w-full text-left text-sm whitespace-nowrap">
+            <thead className="bg-bg-elevated border-b border-border">
+              <tr className="text-text-secondary text-xs uppercase tracking-wider">
+                <th className="px-4 py-3 font-semibold">File Name</th>
+                <th className="px-4 py-3 font-semibold">Category</th>
+                <th className="px-4 py-3 font-semibold">Size</th>
+                <th className="px-4 py-3 font-semibold">Uploaded By</th>
+                <th className="px-4 py-3 font-semibold">Date</th>
+                <th className="px-4 py-3 font-semibold text-right">Actions</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-border bg-bg-card">
+              {table.paginatedData.length === 0 ? (
+                <tr>
+                  <td colSpan={6} className="px-4 py-8 text-center text-text-secondary">No documents found</td>
                 </tr>
-              </thead>
-              <tbody className="divide-y divide-border bg-bg-card">
-                {table.paginatedData.map((row) => (
+              ) : (
+                table.paginatedData.map((row: any) => (
                   <tr key={row.id} className="hover:bg-bg-page transition-colors">
                     <td className="px-4 py-4">
                       <div className="flex items-center gap-3">
@@ -162,25 +104,15 @@ export function ManagerDocumentsClient() {
                       </div>
                     </td>
                   </tr>
-                ))}
-              </tbody>
-            </table>
-      <TablePagination 
-        page={table.page} limit={table.limit} totalItems={table.totalItems} 
-        onPageChange={table.setPage} onLimitChange={table.setLimit} 
-      />
-          </div>
-          {filteredDocuments.length > 0 && (
-            <div className="mt-4">
-              <TablePagination
-                page={page}
-                limit={limit}
-                totalItems={filteredDocuments.length}
-                onPageChange={setPage}
-                onLimitChange={setLimit}
-              />
-            </div>
-          )}
+                ))
+              )}
+            </tbody>
+          </table>
+          <TablePagination 
+            page={table.page} limit={table.limit} totalItems={table.totalItems} 
+            onPageChange={table.setPage} onLimitChange={table.setLimit} 
+          />
+        </div>
       </div>
     </div>
   );

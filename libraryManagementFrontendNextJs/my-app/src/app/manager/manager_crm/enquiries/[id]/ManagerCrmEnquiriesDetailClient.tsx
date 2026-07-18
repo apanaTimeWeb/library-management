@@ -263,11 +263,11 @@ export function ManagerCrmEnquiriesDetailClient({ id }: { id: string }) {
                         <div className="flex items-center justify-between mb-2">
                           <p className="text-xs font-semibold text-text-primary m-0 flex items-center gap-2">
                             {fu.date}
-                            <span className="text-text-tertiary font-normal">{fu.time}</span>
+                            <span className="text-text-tertiary font-normal">{fu.date}</span>
                           </p>
                           <p className="text-[11px] font-medium text-text-secondary uppercase tracking-wider m-0">by {fu.by}</p>
                         </div>
-                        <p className="text-sm text-text-secondary leading-relaxed m-0">{fu.remark}</p>
+                        <p className="text-[13px] text-text-secondary leading-relaxed m-0">{fu.note}</p>
                       </div>
                     </div>
                   ))}

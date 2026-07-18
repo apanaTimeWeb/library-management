@@ -30,27 +30,11 @@ function PhoneCell({ value }: CellRendererProps) {
 }
 
 export function ManagerDashboardClient() {
-    const table = useClientTable(filteredAdmissions);
-  const [searchTerm, setSearchTerm] = useState('');
-
   const { data, status, error } = useManagerDashboardData();
 
-  const filteredAdmissions = useMemo(() => {
-    return (data?.recentAdmissions || []).filter((item) => 
-      !searchTerm || 
-      item.name?.toLowerCase().includes(searchTerm.toLowerCase()) || 
-      item.smartId?.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-  }, [data?.recentAdmissions, searchTerm]);
-
-  const filteredEnquiries = useMemo(() => {
-    return (data?.recentEnquiries || []).filter((item) => 
-      !searchTerm || 
-      item.name?.toLowerCase().includes(searchTerm.toLowerCase()) || 
-      item.phone?.includes(searchTerm) || 
-      item.status?.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-  }, [data?.recentEnquiries, searchTerm]);
+  // Create table hooks for admissions and enquiries
+  const admissionsTable = useClientTable(data?.recentAdmissions || [], 5);
+  const enquiriesTable = useClientTable(data?.recentEnquiries || [], 5);
 
   if (status === 'loading') return <div className="p-8 animate-pulse text-text-secondary">Loading dashboard...</div>;
   if (status === 'error') return <div className="p-8 text-danger">Failed to load: {error}</div>;
@@ -108,19 +92,9 @@ export function ManagerDashboardClient() {
             <Link href={MANAGER_ROUTES.STUDENTS} className="text-sm font-semibold text-primary hover:text-primary-hover transition-colors inline-flex items-center gap-1">View all</Link>
           </div>
 
-          <div className="flex justify-end mb-[16px]">
-            <input
-              type="text"
-              placeholder="Search in table..."
-              className="px-3 py-2 border border-border rounded-md text-sm bg-bg-input text-text-primary focus:outline-none focus:ring-2 focus:ring-primary w-64"
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-            />
-          </div>
-
-                    <div className="h-72 w-full overflow-y-auto overflow-x-auto bg-bg-card rounded-lg border border-border">
-            <TableToolbar search={table.searchTerm} onSearch={table.setSearchTerm} />
-      <table className="w-full text-left text-sm whitespace-nowrap">
+          <div className="w-full overflow-y-auto overflow-x-auto bg-bg-card rounded-lg border border-border">
+            <TableToolbar search={admissionsTable.searchTerm} onSearch={admissionsTable.setSearchTerm} />
+            <table className="w-full text-left text-sm whitespace-nowrap">
               <thead className="bg-bg-elevated sticky top-0 z-10">
                 <tr className="border-b border-border text-text-secondary text-xs uppercase tracking-wider">
                   <th className="px-4 py-3 font-semibold">NAME</th>
@@ -129,12 +103,12 @@ export function ManagerDashboardClient() {
                 </tr>
               </thead>
               <tbody className="divide-y divide-border">
-                {filteredAdmissions.length === 0 ? (
+                {admissionsTable.paginatedData.length === 0 ? (
                   <tr>
                     <td colSpan={3} className="px-4 py-8 text-center text-text-secondary">No admissions found</td>
                   </tr>
                 ) : (
-                  table.paginatedData.map((row, i: number) => (
+                  admissionsTable.paginatedData.map((row: any) => (
                     <tr key={row.id} className="hover:bg-bg-page transition-colors cursor-pointer">
                     <td className="px-4 py-3 text-text-primary font-medium">{row.name}</td>
                     <td className="px-4 py-3"><SmartIdCell value={row.smartId} /></td>
@@ -144,10 +118,10 @@ export function ManagerDashboardClient() {
                 )}
               </tbody>
             </table>
-      <TablePagination 
-        page={table.page} limit={table.limit} totalItems={table.totalItems} 
-        onPageChange={table.setPage} onLimitChange={table.setLimit} 
-      />
+            <TablePagination 
+              page={admissionsTable.page} limit={admissionsTable.limit} totalItems={admissionsTable.totalItems} 
+              onPageChange={admissionsTable.setPage} onLimitChange={admissionsTable.setLimit} 
+            />
           </div>
         </div>
 
@@ -156,7 +130,8 @@ export function ManagerDashboardClient() {
             <h2 className="text-base font-semibold text-text-primary">Recent Enquiries</h2>
             <Link href={MANAGER_ROUTES.CRM_ENQUIRIES} className="text-sm font-semibold text-primary hover:text-primary-hover transition-colors inline-flex items-center gap-1">View all</Link>
           </div>
-          <div className="h-72 w-full overflow-y-auto overflow-x-auto bg-bg-card rounded-lg border border-border">
+          <div className="w-full overflow-y-auto overflow-x-auto bg-bg-card rounded-lg border border-border">
+            <TableToolbar search={enquiriesTable.searchTerm} onSearch={enquiriesTable.setSearchTerm} />
             <table className="w-full text-left text-sm whitespace-nowrap">
               <thead className="bg-bg-elevated sticky top-0 z-10">
                 <tr className="border-b border-border text-text-secondary text-xs uppercase tracking-wider">
@@ -167,12 +142,12 @@ export function ManagerDashboardClient() {
                 </tr>
               </thead>
               <tbody className="divide-y divide-border">
-                {filteredEnquiries.length === 0 ? (
+                {enquiriesTable.paginatedData.length === 0 ? (
                   <tr>
-                    <td colSpan={3} className="px-4 py-8 text-center text-text-secondary">No enquiries found</td>
+                    <td colSpan={4} className="px-4 py-8 text-center text-text-secondary">No enquiries found</td>
                   </tr>
                 ) : (
-                  filteredEnquiries.map((row, i: number) => (
+                  enquiriesTable.paginatedData.map((row: any) => (
                     <tr key={row.id} className="hover:bg-bg-page transition-colors cursor-pointer">
                     <td className="px-4 py-3 text-text-primary font-medium">{row.name}</td>
                     <td className="px-4 py-3"><PhoneCell value={row.phone} /></td>
@@ -182,6 +157,10 @@ export function ManagerDashboardClient() {
                 )}
               </tbody>
             </table>
+            <TablePagination 
+              page={enquiriesTable.page} limit={enquiriesTable.limit} totalItems={enquiriesTable.totalItems} 
+              onPageChange={enquiriesTable.setPage} onLimitChange={enquiriesTable.setLimit} 
+            />
           </div>
         </div>
       </div>

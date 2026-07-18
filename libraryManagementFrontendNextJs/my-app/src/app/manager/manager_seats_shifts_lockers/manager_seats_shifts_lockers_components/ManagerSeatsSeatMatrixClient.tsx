@@ -91,7 +91,7 @@ export function ManagerSeatsSeatMatrixClient() {
       </div>
 
     // @ts-ignore
-      <ManagerSeatsSeatMatrixModal selectedSeat={selectedSeat} onClose={() => setSelectedSeat(undefined)} />
+      <ManagerSeatsSeatMatrixModal isOpen={!!selectedSeat} selectedSeat={selectedSeat || undefined} onClose={() => setSelectedSeat(null)} />
     </div>
   );
 }

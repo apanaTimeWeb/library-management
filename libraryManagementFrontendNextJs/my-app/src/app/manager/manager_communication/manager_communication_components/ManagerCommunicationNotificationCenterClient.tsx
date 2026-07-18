@@ -50,14 +50,12 @@ export function ManagerCommunicationNotificationCenterClient() {
           </button>
         </div>
       </div>
-
       <div className="flex flex-col gap-6">
         {/* Top Filter Bar */}
         <div className="eng-notif-topbar flex flex-wrap gap-3">
-          {NOTIF_CATEGORIES.map(c => (
+          {CATS.map(c => (
             <button key={c.id} onClick={() => setCat(c.id)}
-              className={`eng-notif-cat${cat === c.id ? ' eng-notif-cat--active' : ''}`}
-              className="w-auto px-[16px] py-[8px] rounded-[30px]">
+              className={`w-auto px-[16px] py-[8px] rounded-[30px] eng-notif-cat${cat === c.id ? ' eng-notif-cat--active' : ''}`}>
               <span>{c.icon}</span><span>{c.label}</span>
             </button>
           ))}
@@ -73,7 +71,7 @@ export function ManagerCommunicationNotificationCenterClient() {
           ) : (
             filtered.map(n => (
               <div key={n.id} className={`eng-notif-item${n.read ? ' eng-notif-read' : ''}`}>
-                <div className={`eng-notif-icon ${ICON_CLS[n.category]}`}>{n.icon}</div>
+                <div className={`eng-notif-icon ${ICON_CLS[n.category] || ''}`}>{n.icon}</div>
                 <div className="eng-flex-1">
                   <div className="flex items-center gap-2 mb-1">
                     <p className="eng-notif-title">{n.title}</p>
@@ -98,4 +96,3 @@ export function ManagerCommunicationNotificationCenterClient() {
     </div>
   );
 }
-

@@ -50,8 +50,7 @@ function ActionsCell(props: { data: Allocation }) {
 }
 
 export function ManagerSeatsAllocationsClient() {
-    const table = useClientTable(filtered.slice((page - 1) * limit, page * limit));
-  const {
+const {
     searchTerm,
     setSearchTerm,
     shiftFilter,
@@ -67,8 +66,9 @@ export function ManagerSeatsAllocationsClient() {
     limit,
     setLimit,
     filtered,
-  } = useManagerSeatsAllocations();
-
+  }
+ = useManagerSeatsAllocations();
+  const table = useClientTable(filtered, 10);
 
   return (
     <>
@@ -179,13 +179,7 @@ export function ManagerSeatsAllocationsClient() {
         onPageChange={table.setPage} onLimitChange={table.setLimit} 
       />
           </div>
-          <TablePagination
-            page={page}
-            limit={limit}
-            totalItems={filtered.length}
-            onPageChange={setPage}
-            onLimitChange={setLimit}
-          />
+          
         </>
 )}
       </div>

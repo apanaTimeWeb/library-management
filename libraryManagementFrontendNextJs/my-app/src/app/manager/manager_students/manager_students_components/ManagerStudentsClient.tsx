@@ -18,8 +18,7 @@ import { useClientTable } from "@/components/ui/use-client-table";
 // RESPONSIBILITY: Main Client view for the Manager Students directory.
 
 export function ManagerStudentsClient() {
-    const table = useClientTable(filtered.slice((page - 1) * limit, page * limit));
-  const [searchTerm, setSearchTerm] = useState('');
+const [searchTerm, setSearchTerm] = useState('');
 
   const {
     students,
@@ -31,10 +30,8 @@ export function ManagerStudentsClient() {
     shiftFilter, setShiftFilter
   } = useManagerStudentsList();
 
-  const [page, setPage] = useState(1);
-  const [limit, setLimit] = useState(10);
   const router = useRouter();
-
+  const table = useClientTable(filtered, 10);
   if (status === 'error') return <div className="p-8 text-danger">Failed to load: {error}</div>;
 
   return (
@@ -149,13 +146,7 @@ export function ManagerStudentsClient() {
         onPageChange={table.setPage} onLimitChange={table.setLimit} 
       />
             </div>
-            <TablePagination
-              page={page}
-              limit={limit}
-              totalItems={filtered.length}
-              onPageChange={setPage}
-              onLimitChange={setLimit}
-            />
+            
           </>
         )}
       </div>

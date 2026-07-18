@@ -35,8 +35,7 @@ function SeatStatusCell(props: { value: string }) {
 }
 
 export function ManagerSeatsSeatManagementClient() {
-    const table = useClientTable(filtered.slice((page - 1) * limit, page * limit));
-  const [searchTerm, setSearchTerm] = useState('');
+const [searchTerm, setSearchTerm] = useState('');
 
     // @ts-ignore
   const [seats, setSeats] = useState<Seat[]>(INITIAL_SEATS);
@@ -46,8 +45,6 @@ export function ManagerSeatsSeatManagementClient() {
   const [editSeat, setEditSeat] = useState<Seat | null>(null);
   const [form, setForm] = useState(EMPTY_FORM);
   const [errors, setErrors] = useState<Record<string, string>>({});
-  const [page, setPage] = useState(1);
-  const [limit, setLimit] = useState(10);
   const [confirmBroken, setConfirmBroken] = useState<Seat | null>(null);
 
   const filtered = (seats as any[]).filter((s: Seat) => {
@@ -57,6 +54,8 @@ export function ManagerSeatsSeatManagementClient() {
     const matchStatus = statusFilter === 'All Statuses' || s.status === statusFilter;
     return matchSearch && matchStatus;
   });
+  
+  const table = useClientTable(filtered, 10);
 
   function openAdd() {
     setEditSeat(null);
@@ -196,13 +195,7 @@ export function ManagerSeatsSeatManagementClient() {
         onPageChange={table.setPage} onLimitChange={table.setLimit} 
       />
             </div>
-            <TablePagination
-              page={page}
-              limit={limit}
-              totalItems={filtered.length}
-              onPageChange={setPage}
-              onLimitChange={setLimit}
-            />
+            
           </>
         )}
       </div>

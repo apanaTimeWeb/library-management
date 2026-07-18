@@ -15,8 +15,8 @@ import { TablePagination } from "@/components/ui/table-pagination";
 // Props interface centralized.
 
 export function ManagerCrmEnquiriesTable({ filtered, updateEnquiryStatus, onAddEnquiry }: ManagerCrmEnquiriesTableProps) {
-    const table = useClientTable(filtered);
-  const router = useRouter();
+const router = useRouter();
+const table = useClientTable(filtered, 10);
 
   if (filtered.length === 0) {
     return (

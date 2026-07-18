@@ -1,82 +1,64 @@
 'use client';
-// RESPONSIBILITY: Renders WhatsApp message templates and allows editing and testing.
+// RESPONSIBILITY: Renders WhatsApp message templates for automated alerts.
 import { useState, useRef } from 'react';
+import { ChevronRight, Save, Send, X } from 'lucide-react';
 import { Template } from '@/app/manager/manager_communication/manager_communication_types/ManagerCommunicationTypes';
 import { INIT_TEMPLATES } from '@/app/manager/manager_communication/manager_communication_constants/ManagerCommunicationConstants';
-import { ChevronRight, X, Send, Save } from 'lucide-react';
-
-// Types and constants centralized.
-
-const INIT: Template[] = [
-  { id: 'welcome',      label: 'Welcome Message',      icon: '👋', body: 'Welcome to {libraryname}, {name}! Your seat {seat} is confirmed. We wish you a productive study journey. — Smart Library Team' },
-  { id: 'fee_reminder', label: 'Fee Reminder',          icon: '💰', body: 'Hi {name}, your fee of ₹{amount} is due on {duedate}. Please pay on time to avoid late charges. — {libraryname}' },
-  { id: 'renewal',      label: 'Renewal Alert',         icon: '🔁', body: 'Hi {name}, your {planname} subscription expires in 3 days. Renew now to continue uninterrupted access. — {libraryname}' },
-  { id: 'receipt',      label: 'Payment Receipt',       icon: '🧾', body: 'Dear {name}, your payment of ₹{amount} has been received. Thank you! Contact us at {phone} for queries. — {libraryname}' },
-  { id: 'notice',       label: 'Notice Broadcast',      icon: '📢', body: 'Important Notice from {libraryname}: Dear {name}, please note the following update from the library management.' },
-  { id: 'absentee',     label: 'Absentee Parent Alert', icon: '📅', body: 'Dear Parent, your ward {name} (Seat: {seat}) has been absent for multiple consecutive days. Please contact {libraryname} at {phone}.' },
-  { id: 'ptp',          label: 'PTP Payment Reminder',  icon: '🤝', body: 'Hi {name}, this is a reminder that you had committed to pay ₹{amount} by {duedate}. Please complete your payment. — {libraryname}' },
-];
-
-const VARS = ['{name}', '{amount}', '{duedate}', '{planname}', '{libraryname}', '{phone}', '{seat}'];
 
 const MAX_CHARS = 1024;
+const VARS = ['{student_name}', '{class}', '{fee_amount}', '{due_date}', '{library_fine}'];
 
 export function ManagerCommunicationWhatsappTemplatesClient() {
-  const [templates, setTemplates] = useState<Template[]>(INIT_TEMPLATES);
-  const [activeId, setActiveId]   = useState('welcome');
-  const [saved, setSaved]         = useState(false);
+  const [templates, setTemplates] = useState<Template[]>(INIT_TEMPLATES as unknown as Template[]);
+  const [activeId, setActiveId]   = useState<string>(templates[0].id);
+  const [toast, setToast]         = useState('');
   const [showTest, setShowTest]   = useState(false);
   const [testPhone, setTestPhone] = useState('');
-  const [toast, setToast]         = useState('');
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
-  const active    = templates.find(t => t.id === activeId)!;
+  const active = templates.find(t => t.id === activeId) || templates[0];
   const charCount = active.body.length;
 
   const showToast = (msg: string) => { setToast(msg); setTimeout(() => setToast(''), 3000); };
 
-  const updateBody = (body: string) =>
-    setTemplates(prev => prev.map(t => t.id === activeId ? { ...t, body } : t));
+  const updateBody = (newBody: string) => {
+    setTemplates(prev => prev.map(t => t.id === activeId ? { ...t, body: newBody } : t));
+  };
 
   const insertVar = (v: string) => {
     const el = textareaRef.current;
-    if (!el) { updateBody(active.body + v); return; }
+    if (!el) return;
     const start = el.selectionStart;
-    const end   = el.selectionEnd;
-    updateBody(active.body.slice(0, start) + v + active.body.slice(end));
-    setTimeout(() => { el.focus(); el.setSelectionRange(start + v.length, start + v.length); }, 0);
+    const end = el.selectionEnd;
+    const newBody = active.body.substring(0, start) + v + active.body.substring(end);
+    if (newBody.length <= MAX_CHARS) {
+      updateBody(newBody);
+      setTimeout(() => { el.selectionStart = el.selectionEnd = start + v.length; el.focus(); }, 0);
+    }
   };
 
-  const handleSave = () => {
-    setSaved(true);
-    showToast('💾 Template saved');
-    setTimeout(() => setSaved(false), 2000);
-  };
-
+  const handleSave = () => showToast('Template saved successfully!');
   const handleTest = () => {
     if (!testPhone) return;
+    showToast(`Test message sent to ${testPhone}`);
     setShowTest(false);
     setTestPhone('');
-    showToast(`📱 Test message sent to ${testPhone}`);
   };
 
-  const preview = active.body
-    .replace(/{name}/g, 'Rahul Sharma')
-    .replace(/{amount}/g, '1000')
-    .replace(/{duedate}/g, '15-Apr-2026')
-    .replace(/{planname}/g, 'Monthly')
-    .replace(/{libraryname}/g, 'Smart Library 360')
-    .replace(/{phone}/g, '+91 9000000000')
-    .replace(/{seat}/g, 'S-03');
-
   return (
-    <div className="eng-page">
-      {toast && <div className="eng-toast">{toast}</div>}
+    <div className="eng-page relative">
+      {/* Toast */}
+      {toast && (
+        <div className="fixed bottom-4 right-4 bg-bg-card border border-border shadow-lg rounded-xl px-4 py-3 flex items-center gap-3 z-50 animate-in fade-in slide-in-from-bottom-4">
+          <div className="w-2 h-2 rounded-full bg-success"></div>
+          <p className="text-sm font-medium text-text-primary">{toast}</p>
+        </div>
+      )}
 
-      {/* Test Message Modal */}
+      {/* Test Modal */}
       {showTest && (
-        <div className="eng-overlay">
-          <div className="eng-modal eng-modal--sm">
+        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 overflow-y-auto">
+          <div className="bg-bg-card w-full rounded-2xl shadow-2xl flex flex-col p-6 max-w-sm relative border border-border">
             <button onClick={() => setShowTest(false)} className="eng-modal-close"><X size={16} /></button>
             <p className="eng-modal-title">📱 Send Test Message</p>
             <p className="eng-modal-desc">Enter a phone number to send a test version of this template.</p>
@@ -108,8 +90,7 @@ export function ManagerCommunicationWhatsappTemplatesClient() {
         <div className="eng-tpl-topbar flex flex-wrap gap-3">
           {templates.map(t => (
             <div key={t.id} onClick={() => setActiveId(t.id)}
-              className={`eng-tpl-item${activeId === t.id ? ' eng-tpl-item--active' : ''}`}
-              className="w-auto px-[16px] py-[8px] rounded-[30px]">
+              className={`w-auto px-[16px] py-[8px] rounded-[30px] eng-tpl-item${activeId === t.id ? ' eng-tpl-item--active' : ''}`}>
               {t.icon} {t.label}
             </div>
           ))}
@@ -147,20 +128,15 @@ export function ManagerCommunicationWhatsappTemplatesClient() {
           </div>
 
           <div className="eng-info-box eng-tpl-section">
-            💡 Use variables to personalize messages. E.g.: <em>&quot;Hi {'{name}'}, your fee of ₹{'{amount}'} is due on {'{duedate}'}.&quot;</em>
+            <strong>Note:</strong> WhatsApp templates require pre-approval from Meta. Significant changes might trigger a re-review process which can take up to 24 hours.
           </div>
 
-          <div className="eng-tpl-section">
-            <label className="eng-label">Preview (sample values)</label>
-            <div className="eng-tpl-preview">{preview}</div>
-          </div>
-
-          <div className="eng-card-footer eng-card-footer--end">
+          <div className="eng-card-actions">
             <button onClick={() => setShowTest(true)} className="eng-btn-ghost">
-              <Send size={14} /> Send Test Message
+              <Send size={16} /> Test
             </button>
             <button onClick={handleSave} className="eng-btn-primary">
-              {saved ? '✅ Saved!' : <><Save size={14} /> Save Template</>}
+              <Save size={16} /> Save Changes
             </button>
           </div>
         </div>
@@ -168,4 +144,3 @@ export function ManagerCommunicationWhatsappTemplatesClient() {
     </div>
   );
 }
-

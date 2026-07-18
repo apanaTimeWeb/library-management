@@ -27,8 +27,7 @@ function ReasonCell(props: { value: string }) {
 }
 
 export function ManagerSeatsSeatHistoryClient() {
-    const table = useClientTable(filtered.slice((page - 1) * limit, page * limit));
-  const {
+const {
     searchTerm,
     setSearchTerm,
     seatFilter,
@@ -44,8 +43,9 @@ export function ManagerSeatsSeatHistoryClient() {
     limit,
     setLimit,
     filtered,
-  } = useManagerSeatsSeatHistory();
-
+  }
+ = useManagerSeatsSeatHistory();
+  const table = useClientTable(filtered, 10);
 
   return (
     <div className="ss-page">
@@ -124,13 +124,7 @@ export function ManagerSeatsSeatHistoryClient() {
         onPageChange={table.setPage} onLimitChange={table.setLimit} 
       />
           </div>
-          <TablePagination
-            page={page}
-            limit={limit}
-            totalItems={filtered.length}
-            onPageChange={setPage}
-            onLimitChange={setLimit}
-          />
+          
         </>
       )}
     </div>

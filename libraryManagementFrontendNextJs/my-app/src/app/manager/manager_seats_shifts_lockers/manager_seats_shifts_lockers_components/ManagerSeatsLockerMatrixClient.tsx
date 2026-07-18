@@ -77,17 +77,16 @@ export function ManagerSeatsLockerMatrixClient() {
             <button className="ss-btn-ghost ss-btn--sm">View All</button>
           </div>
           <div className="ss-activity-list">
-    // @ts-ignore
-            {ACTIVITY_DATA.map(({ icon, text, sub, id }) => (
-              <div key={id} className="ss-activity-row">
+            {ACTIVITY_DATA.map((item) => (
+              <div key={item.id} className="ss-activity-row">
                 <div className="ss-activity-row__left">
-                  <div className="ss-activity-icon">{icon}</div>
+                  <div className="ss-activity-icon"><span className="text-xl">👤</span></div>
                   <div>
-                    <p className="ss-activity-title">{text}</p>
-                    <p className="ss-activity-sub">{sub}</p>
+                    <p className="ss-activity-title">{item.type} to {item.student}</p>
+                    <p className="ss-activity-sub">{item.date}</p>
                   </div>
                 </div>
-                <span className="ss-activity-id ss-text-mono">{id}</span>
+                <span className="ss-activity-id ss-text-mono">{item.locker}</span>
               </div>
             ))}
           </div>

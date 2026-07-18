@@ -13,8 +13,7 @@ import { useClientTable } from "@/components/ui/use-client-table";
 // RESPONSIBILITY: Renders the absentee report grid with filtering and notification actions.
 
 export function ManagerEngagementAbsenteeReportClient() {
-    const table = useClientTable(searchedFiltered.slice((page - 1) * limit, page * limit));
-  const [searchTerm, setSearchTerm] = useState('');
+const [searchTerm, setSearchTerm] = useState('');
 
   const {
     threshold, setThreshold,
@@ -24,14 +23,14 @@ export function ManagerEngagementAbsenteeReportClient() {
     notify, notifyAll
   } = useManagerEngagementAbsentee();
 
-  const [page, setPage] = useState(1);
-  const [limit, setLimit] = useState(10);
 
   const searchedFiltered = filtered.filter(item => 
     !searchTerm || 
     item.name.toLowerCase().includes(searchTerm.toLowerCase()) || 
     item.smartId.toLowerCase().includes(searchTerm.toLowerCase())
   );
+  const table = useClientTable(searchedFiltered, 10);
+
 
   const badgeClass = (d: number) => d >= 7 ? 'rounded-full px-2.5 py-0.5 text-[11px] font-semibold bg-danger-bg text-danger' : 'rounded-full px-2.5 py-0.5 text-[11px] font-semibold bg-warning-bg text-warning';
   
@@ -215,13 +214,7 @@ export function ManagerEngagementAbsenteeReportClient() {
           </div>
           {searchedFiltered.length > 0 && (
             <div className="mt-4">
-              <TablePagination
-                page={page}
-                limit={limit}
-                totalItems={searchedFiltered.length}
-                onPageChange={setPage}
-                onLimitChange={setLimit}
-              />
+              
             </div>
           )}
         </>

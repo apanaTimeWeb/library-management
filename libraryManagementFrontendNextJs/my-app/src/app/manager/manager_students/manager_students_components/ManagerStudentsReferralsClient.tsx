@@ -14,19 +14,18 @@ const REFERRALS_DATA: ReferralData[] = [
 ];
 
 export function ManagerStudentsReferralsClient() {
-    const table = useClientTable(filteredData.slice((page - 1) * limit, page * limit));
-  const [searchTerm, setSearchTerm] = useState('');
+const [searchTerm, setSearchTerm] = useState('');
 
   const [rowData] = useState<ReferralData[]>(REFERRALS_DATA);
 
-  const [page, setPage] = useState(1);
-  const [limit, setLimit] = useState(10);
 
   const filteredData = rowData.filter(item => 
     !searchTerm || 
     item.referrer.toLowerCase().includes(searchTerm.toLowerCase()) || 
     item.referred.toLowerCase().includes(searchTerm.toLowerCase())
   );
+  const table = useClientTable(filteredData, 10);
+
 
   return (
     <div className="p-6 min-h-screen">
@@ -133,15 +132,7 @@ export function ManagerStudentsReferralsClient() {
         onPageChange={table.setPage} onLimitChange={table.setLimit} 
       />
           </div>
-          {filteredData.length > 0 && (
-            <TablePagination
-              page={page}
-              limit={limit}
-              totalItems={filteredData.length}
-              onPageChange={setPage}
-              onLimitChange={setLimit}
-            />
-          )}
+
       </div>
     </div>
   );

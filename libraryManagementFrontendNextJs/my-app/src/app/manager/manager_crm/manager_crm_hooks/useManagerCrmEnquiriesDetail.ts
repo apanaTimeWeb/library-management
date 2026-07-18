@@ -107,9 +107,8 @@ export function useManagerCrmEnquiriesDetail(id: string) {
           month: 'long',
           year: 'numeric',
         }),
-        time: new Date().toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' }),
         by: 'Admin',
-        remark: formData.remark,
+        note: formData.remark,
       };
       setEnquiry((prev) =>
         prev ? { ...prev, followUps: [newEntry as FollowUp, ...prev.followUps] } : prev
@@ -146,9 +145,8 @@ export function useManagerCrmEnquiriesDetail(id: string) {
           month: 'long',
           year: 'numeric',
         }),
-        time: new Date().toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' }),
         by: 'Admin',
-        remark: reason ? `Marked as Lost - ${reason}` : 'Marked as Lost.',
+        note: reason ? `Marked as Lost - ${reason}` : 'Marked as Lost.',
       };
       setEnquiry((prev) =>
         prev

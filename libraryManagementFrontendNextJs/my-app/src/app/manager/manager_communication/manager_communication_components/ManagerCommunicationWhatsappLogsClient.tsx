@@ -27,7 +27,6 @@ const STATUS_BADGE: Record<string, string> = {
 };
 
 export function ManagerCommunicationWhatsappLogsClient() {
-    const table = useClientTable(filtered.slice((page - 1) * limit, page * limit));
   const [searchTerm, setSearchTerm] = useState('');
 
   const [typeFilter,   setTypeFilter]   = useState('All');
@@ -51,6 +50,7 @@ export function ManagerCommunicationWhatsappLogsClient() {
     return true;
   });
 
+  const table = useClientTable(filtered, 10);
 
   return (
     <div className="p-6 min-h-screen relative">
