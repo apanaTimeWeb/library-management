@@ -3,63 +3,47 @@
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-
-import { useState, useEffect } from 'react';
+import React from 'react';
 import { useRouter } from 'next/navigation';
 
 import toast from 'react-hot-toast';
 import { formatCurrency } from '@/app/superadmin/superadmin_finance/superadmin_finance_utils/superadmin_format';
 import { RefreshCw } from 'lucide-react';
 import { SuperadminSearchableDropdown } from '@/app/superadmin/superadmin_shared_components/SuperadminSearchableDropdown';
-
-import { SUPERADMIN_FINANCE_MOCK_SUBSCRIPTIONS } from '@/app/superadmin/superadmin_finance/superadmin_finance_constants/SuperadminFinanceConstants';
+import { useSubscriptionsClient } from './useSubscriptionsClient';
 
 const STATUS_BADGE: Record<string, string> = {
-  active:    'fin-badge fin-badge--success',
-  expired:   'fin-badge fin-badge--danger',
-  suspended: 'fin-badge fin-badge--warning',
-  cancelled: 'fin-badge fin-badge--neutral',
+  active:    'bg-success/10 text-success border border-success/20',
+  expired:   'bg-danger/10 text-danger border border-danger/20',
+  suspended: 'bg-warning/10 text-warning border border-warning/20',
+  cancelled: 'bg-input text-text-primary border border-border',
 };
 
 function daysLeftBadgeClass(days: number) {
-  if (days < 0) return 'fin-badge fin-badge--danger';
-  if (days <= 7) return 'fin-badge fin-badge--danger';
-  if (days <= 15) return 'fin-badge fin-badge--warning';
-  return 'fin-badge fin-badge--success';
+  if (days < 0) return 'text-danger font-semibold text-[13px]';
+  if (days <= 7) return 'text-danger font-semibold text-[13px]';
+  if (days <= 15) return 'text-warning font-semibold text-[13px]';
+  return 'text-success font-semibold text-[13px]';
 }
 
 export function SubscriptionsClient() {
   const router = useRouter();
-  const [statusFilter, setStatusFilter] = useState('all');
-  const [planFilter, setPlanFilter] = useState('all');
-  const [shiftFilter, setShiftFilter] = useState('all');
-  const [rows, setRows] = useState(SUPERADMIN_FINANCE_MOCK_SUBSCRIPTIONS);
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    const t = setTimeout(() => setIsLoading(false), 400);
-    return () => clearTimeout(t);
-  }, []);
-
-  useEffect(() => {
-    setRows(
-      SUPERADMIN_FINANCE_MOCK_SUBSCRIPTIONS.filter((s) => {
-        const st = statusFilter === 'all' || s.status === statusFilter;
-        const pl = planFilter === 'all' || s.plan === planFilter;
-        const sh = shiftFilter === 'all' || s.shift === shiftFilter;
-        return st && pl && sh;
-      })
-    );
-  }, [statusFilter, planFilter, shiftFilter]);
+  const {
+    statusFilter, setStatusFilter,
+    planFilter, setPlanFilter,
+    shiftFilter, setShiftFilter,
+    rows,
+    isLoading,
+  } = useSubscriptionsClient();
 
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="fin-page-title">Subscriptions</h1>
-        <p className="fin-page-subtitle">Manage all student subscriptions.</p>
+        <h1 className="text-[22px] font-bold text-text-primary">Subscriptions</h1>
+        <p className="text-[12px] text-text-secondary">Manage all student subscriptions.</p>
       </div>
 
-      <div className="fin-filter-bar flex gap-2">
+      <div className="flex gap-2">
         <div className="w-40">
           <SuperadminSearchableDropdown
             options={[
@@ -98,32 +82,32 @@ export function SubscriptionsClient() {
         </div>
       </div>
 
-      <div className="fin-card overflow-x-auto">
-        <table className="w-full">
+      <div className="bg-card rounded-[var(--radius-lg)] border border-border overflow-x-auto">
+        <table className="w-full text-left border-collapse min-w-[1200px]">
           <thead>
-            <tr className="fin-table-header-row">
-              <th className="text-left py-3 px-4">Student</th>
-              <th className="text-left py-3 px-4">Smart ID</th>
-              <th className="text-left py-3 px-4">Plan</th>
-              <th className="text-left py-3 px-4">Start Date</th>
-              <th className="text-left py-3 px-4">End Date</th>
-              <th className="text-left py-3 px-4">Days Left</th>
+            <tr className="bg-primary/5 uppercase text-[12px] font-semibold text-text-secondary border-b border-border">
+              <th className="py-3 px-4">Student</th>
+              <th className="py-3 px-4">Smart ID</th>
+              <th className="py-3 px-4">Plan</th>
+              <th className="py-3 px-4">Start Date</th>
+              <th className="py-3 px-4">End Date</th>
+              <th className="py-3 px-4">Days Left</th>
               <th className="text-right py-3 px-4">Base ₹</th>
               <th className="text-right py-3 px-4">Discount ₹</th>
               <th className="text-right py-3 px-4">Total ₹</th>
               <th className="text-right py-3 px-4">Paid ₹</th>
               <th className="text-right py-3 px-4">Due ₹</th>
-              <th className="text-left py-3 px-4">Status</th>
+              <th className="py-3 px-4">Status</th>
               <th className="text-right py-3 px-4">Actions</th>
             </tr>
           </thead>
           <tbody>
             {isLoading ? (
               Array.from({ length: 5 }).map((_, i) => (
-                <tr key={i} className="fin-table-row">
+                <tr key={i} className="border-b border-border last:border-0">
                   {Array.from({ length: 13 }).map((_, j) => (
                     <td key={j} className="py-3 px-4">
-                      <div className="fin-skeleton h-4 w-20" />
+                      <div className="h-4 w-20 bg-skeleton-base rounded animate-pulse" />
                     </td>
                   ))}
                 </tr>
@@ -131,42 +115,42 @@ export function SubscriptionsClient() {
             ) : rows.length === 0 ? (
               <tr>
                 <td colSpan={13}>
-                  <div className="fin-empty-state">
-                    <div className="fin-empty-state__icon">📋</div>
-                    <p className="fin-empty-state__title">No subscriptions found.</p>
+                  <div className="flex flex-col items-center justify-center p-8 text-center space-y-3">
+                    <div className="text-4xl">📋</div>
+                    <p className="text-[16px] text-text-secondary">No subscriptions found.</p>
                   </div>
                 </td>
               </tr>
             ) : (
               rows.map(( s: any ) => (
-                <tr key={s.id} className="fin-table-hover-row fin-table-row cursor-pointer" onClick={() => toast.success(`Viewing subscription for ${s.studentName}`)}>
-                  <td className="py-3 px-4 fin-cell-name">{s.studentName}</td>
-                  <td className="py-3 px-4 fin-mono">{s.smartId}</td>
-                  <td className="py-3 px-4 fin-text-body">{s.plan}</td>
-                  <td className="py-3 px-4 fin-cell-subtext">{s.startDate}</td>
-                  <td className="py-3 px-4 fin-cell-subtext">{s.endDate}</td>
+                <tr key={s.id} className="border-b border-border last:border-0 hover:bg-primary/5 transition-colors cursor-pointer" onClick={() => toast.success(`Viewing subscription for ${s.studentName}`)}>
+                  <td className="py-3 px-4 font-medium text-[14px] text-text-primary">{s.studentName}</td>
+                  <td className="py-3 px-4 font-mono text-[12px] text-text-secondary">{s.smartId}</td>
+                  <td className="py-3 px-4 text-[13px] text-text-primary">{s.plan}</td>
+                  <td className="py-3 px-4 text-[12px] text-text-secondary">{s.startDate}</td>
+                  <td className="py-3 px-4 text-[12px] text-text-secondary">{s.endDate}</td>
                   <td className="py-3 px-4">
                     <span className={daysLeftBadgeClass(s.daysLeft)}>
                       {s.daysLeft < 0 ? `${Math.abs(s.daysLeft)}d ago` : `${s.daysLeft}d`}
                     </span>
                   </td>
-                  <td className="py-3 px-4 text-right fin-text-body">{formatCurrency(s.base)}</td>
-                  <td className="py-3 px-4 text-right fin-text-success">{formatCurrency(s.discount)}</td>
-                  <td className="py-3 px-4 text-right font-semibold fin-text-body">{formatCurrency(s.total)}</td>
-                  <td className="py-3 px-4 text-right fin-text-success">{formatCurrency(s.paid)}</td>
-                  <td className={`py-3 px-4 text-right font-semibold ${s.due > 0 ? 'fin-text-danger' : 'fin-text-body'}`}>
+                  <td className="py-3 px-4 text-right text-[13px] text-text-primary">{formatCurrency(s.base)}</td>
+                  <td className="py-3 px-4 text-right text-[13px] text-success">{formatCurrency(s.discount)}</td>
+                  <td className="py-3 px-4 text-right font-semibold text-[13px] text-text-primary">{formatCurrency(s.total)}</td>
+                  <td className="py-3 px-4 text-right text-[13px] text-success">{formatCurrency(s.paid)}</td>
+                  <td className={`py-3 px-4 text-right font-semibold text-[13px] ${s.due > 0 ? 'text-danger' : 'text-text-primary'}`}>
                     {formatCurrency(s.due)}
                   </td>
                   <td className="py-3 px-4">
-                    <span className={STATUS_BADGE[s.status] || 'fin-badge fin-badge--neutral'}>{s.status}</span>
+                    <span className={`${STATUS_BADGE[s.status] || 'bg-input text-text-primary border-border'} px-2 py-0.5 rounded-[var(--radius-full)] text-[11px] font-bold capitalize`}>{s.status}</span>
                   </td>
                   <td className="py-3 px-4">
                     <div className="flex items-center justify-end gap-2">
                       <button
-                        className="fin-badge fin-badge--info cursor-pointer"
+                        className="flex items-center bg-info/10 text-info border border-info/20 px-2 py-1 rounded-[var(--radius-md)] text-[11px] font-bold hover:bg-info hover:text-info-foreground transition-colors cursor-pointer"
                         onClick={(e) => { e.stopPropagation(); router.push(`/superadmin/superadmin_finance/collect-fee?studentId=${s.id}&renew=true`); }}
                       >
-                        <RefreshCw size={11} /> Renew
+                        <RefreshCw size={11} className="mr-1" /> Renew
                       </button>
                     </div>
                   </td>
