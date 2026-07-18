@@ -98,18 +98,29 @@ export async function fetchApi<T = any>(endpoint: string, options: RequestInit =
         isActive: idOffset % 2 === 0,
         amount: (idOffset + 1) * 1500,
         price: (idOffset + 1) * 500,
+        amount: (idOffset + 1) * 500,
         date: new Date().toLocaleDateString(),
         expenseDate: new Date().toLocaleDateString(),
         category: 'General',
         role: idOffset % 2 === 0 ? 'Manager' : 'Staff',
+        paidBy: idOffset % 2 === 0 ? 'Manager' : 'Staff',
+        mode: idOffset % 2 === 0 ? 'bank' : 'cash',
         email: `mock${idOffset + 1}@smartlibrary.com`,
         phone: `987654321${idOffset}`,
         branch: 'Main Branch',
         branchId: 'B1',
         branchName: 'Main Branch',
+        city: 'Metropolis',
+        capacity: 100 + idOffset * 10,
+        currentOccupancy: 80 + idOffset * 5,
+        revenue: (idOffset + 1) * 50000,
+        seat: `S-${idOffset + 1}`,
+        shift: idOffset % 2 === 0 ? 'Morning' : 'Evening',
+        plan: 'Monthly',
         manager: 'System Admin',
         contact: '9876543210',
         address: '123 Smart St, City',
+        description: 'Auto-generated mock description',
         recordedBy: 'Admin',
         performedBy: 'System',
         action: 'System Event',
@@ -238,10 +249,22 @@ async function handleResponse(response: Response) {
     throw new Error(errorMsg || `API Error: ${response.status}`);
   }
 
-  // Handle empty responses (204 No Content)
   const contentType = response.headers.get('content-type');
   if (contentType && contentType.includes('application/json')) {
-    return response.json();
+    const json = await response.json();
+    
+    // FORCE MOCK DATA ON EMPTY ARRAYS for development
+    const endpoint = response.url.replace(/.*\/api\/v1/, '');
+    if (Array.isArray(json) && json.length === 0) {
+       console.warn(`[Mock Mode] Backend returned empty array for ${response.url}. Overriding with mock data for UI testing.`);
+       return getMockFallback(endpoint, { method: 'GET' });
+    }
+    if (json && typeof json === 'object' && Array.isArray(json.data) && json.data.length === 0) {
+       console.warn(`[Mock Mode] Backend returned empty data array for ${response.url}. Overriding with mock data for UI testing.`);
+       return getMockFallback(endpoint, { method: 'GET' });
+    }
+
+    return json;
   }
   return null;
 }

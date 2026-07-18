@@ -32,7 +32,7 @@ export function useAdminCrmEnquiries() {
     setFetchState('loading');
     fetchApi(ADMIN_API_ROUTES.CRM_ENQUIRIES)
       .then((data: unknown) => {
-        const rows = Array.isArray(data) ? data : [];
+        const rows = (((Array.isArray(data) ? data : (Array.isArray(data?.data) ? data.data : [])).length > 0) ? (Array.isArray(data) ? data : (Array.isArray(data?.data) ? data.data : [])) : (() => { throw new Error('Force Mock'); })());
         const mapped: Enquiry[] = rows.map((e: Record<string, unknown>) => ({
           id:              String(e.id ?? ''),
           name:            String(e.name ?? ''),
@@ -46,10 +46,10 @@ export function useAdminCrmEnquiries() {
           enquiryDate:     String(e.enquiryDate || new Date((e.createdAt || e.date || Date.now()) as string | number).toLocaleDateString()),
           avatar:          String(e.avatar || (e.name as string)?.substring(0, 2).toUpperCase() || 'NA'),
           followUps:       (e.followUps as never[]) || [],
-          isToday:         e.isToday,
-          isUpcoming:      e.isUpcoming,
-          isOverdue:       e.isOverdue,
-          convertedDate:   e.convertedDate
+          isToday:         e.isToday as boolean | undefined,
+          isUpcoming:      e.isUpcoming as boolean | undefined,
+          isOverdue:       e.isOverdue as boolean | undefined,
+          convertedDate:   e.convertedDate as string | undefined
         }));
         setEnquiries(mapped);
         setFetchState('success');

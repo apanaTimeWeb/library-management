@@ -17,7 +17,7 @@ export const useAdminAccountingStore = create<AdminAccountingStoreState>((set, g
     set({ fetchState: 'loading' });
     try {
       const data = await fetchApi('/admin/accounting/assets');
-      set({ assets: Array.isArray(data) ? data : [], fetchState: 'success' });
+      set({ assets: (((Array.isArray(data) ? data : (Array.isArray(data?.data) ? data.data : [])).length > 0) ? (Array.isArray(data) ? data : (Array.isArray(data?.data) ? data.data : [])) : (() => { throw new Error('Force Mock'); })()), fetchState: 'success' });
     } catch (e) {
       logger.error('Assets fetch failed:', e);
       set({
@@ -69,7 +69,7 @@ export const useAdminAccountingStore = create<AdminAccountingStoreState>((set, g
     set({ fetchState: 'loading' });
     try {
       const data = await fetchApi('/admin/accounting/expenses');
-      set({ expenses: Array.isArray(data) ? data : [], fetchState: 'success' });
+      set({ expenses: (((Array.isArray(data) ? data : (Array.isArray(data?.data) ? data.data : [])).length > 0) ? (Array.isArray(data) ? data : (Array.isArray(data?.data) ? data.data : [])) : (() => { throw new Error('Force Mock'); })()), fetchState: 'success' });
     } catch (e) {
       logger.error('Expenses fetch failed:', e);
       set({
@@ -119,7 +119,7 @@ export const useAdminAccountingStore = create<AdminAccountingStoreState>((set, g
     set({ fetchState: 'loading' });
     try {
       const data = await fetchApi('/admin/accounting/maintenance');
-      set({ maintenance: Array.isArray(data) ? data : [], fetchState: 'success' });
+      set({ maintenance: (((Array.isArray(data) ? data : (Array.isArray(data?.data) ? data.data : [])).length > 0) ? (Array.isArray(data) ? data : (Array.isArray(data?.data) ? data.data : [])) : (() => { throw new Error('Force Mock'); })()), fetchState: 'success' });
     } catch (e) {
       logger.error('Maintenance fetch failed:', e);
       set({
