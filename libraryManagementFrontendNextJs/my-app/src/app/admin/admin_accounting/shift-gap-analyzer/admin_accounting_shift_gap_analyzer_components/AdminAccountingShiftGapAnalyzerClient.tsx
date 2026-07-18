@@ -120,8 +120,8 @@ export function AdminAccountingShiftGapAnalyzerClient() {
 
 <div className="mb-4">
         <TableToolbar 
-          searchTerm={table.searchTerm} 
-          onSearchChange={table.setSearchChange || table.setSearchTerm} 
+          search={table.searchTerm} 
+          onSearch={table.setSearchTerm} 
         />
       </div>
       <table className="w-full text-sm text-left">

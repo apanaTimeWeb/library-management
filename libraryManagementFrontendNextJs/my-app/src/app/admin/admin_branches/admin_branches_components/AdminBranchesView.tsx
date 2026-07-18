@@ -69,8 +69,8 @@ export function AdminBranchesView({ initialBranches }: AdminBranchesViewProps) {
       <div className="flex-1 min-h-96 border border-border rounded-lg bg-card overflow-hidden flex flex-col shadow-sm">
         <div className="mb-4">
         <TableToolbar 
-          searchTerm={table.searchTerm} 
-          onSearchChange={table.setSearchChange || table.setSearchTerm} 
+          search={table.searchTerm} 
+          onSearch={table.setSearchTerm} 
         />
       </div>
       <div className="overflow-x-auto flex-1">

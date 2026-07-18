@@ -103,8 +103,8 @@ export function AdminSeatManagementClient({ initialSeats }: SeatManagementClient
         <Card className="flex-1 shadow-none border-border bg-card overflow-hidden flex flex-col">
           <div className="mb-4">
         <TableToolbar 
-          searchTerm={table.searchTerm} 
-          onSearchChange={table.setSearchChange || table.setSearchTerm} 
+          search={table.searchTerm} 
+          onSearch={table.setSearchTerm} 
         />
       </div>
       <div className="w-full overflow-x-auto flex-1">

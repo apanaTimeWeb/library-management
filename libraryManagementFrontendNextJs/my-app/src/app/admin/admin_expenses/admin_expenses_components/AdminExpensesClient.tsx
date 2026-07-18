@@ -80,8 +80,8 @@ export function AdminExpensesClient() {
         <Card className="flex-1 min-h-96 shadow-sm border-border bg-card overflow-hidden flex flex-col">
           <div className="mb-4">
         <TableToolbar 
-          searchTerm={table.searchTerm} 
-          onSearchChange={table.setSearchChange || table.setSearchTerm} 
+          search={table.searchTerm} 
+          onSearch={table.setSearchTerm} 
         />
       </div>
       <div className="overflow-x-auto flex-1">

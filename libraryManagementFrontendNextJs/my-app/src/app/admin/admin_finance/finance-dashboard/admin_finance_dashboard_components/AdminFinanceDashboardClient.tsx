@@ -96,8 +96,8 @@ export function AdminFinanceDashboardClient() {
         </div>
         <div className="mb-4">
         <TableToolbar 
-          searchTerm={table.searchTerm} 
-          onSearchChange={table.setSearchTerm} 
+          search={table.searchTerm} 
+          onSearch={table.setSearchTerm} 
         />
       </div>
       <div className="w-full overflow-x-auto flex-1">

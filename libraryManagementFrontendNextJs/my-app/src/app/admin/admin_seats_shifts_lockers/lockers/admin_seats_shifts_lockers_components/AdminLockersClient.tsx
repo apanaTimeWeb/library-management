@@ -84,8 +84,8 @@ export function AdminLockersClient() {
       <Card className="flex-1 shadow-none border-border bg-card overflow-hidden flex flex-col min-h-96">
         <div className="mb-4">
         <TableToolbar 
-          searchTerm={table.searchTerm} 
-          onSearchChange={table.setSearchTerm} 
+          search={table.searchTerm} 
+          onSearch={table.setSearchTerm} 
         />
       </div>
       <div className="w-full overflow-x-auto flex-1">

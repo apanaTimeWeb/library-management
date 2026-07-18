@@ -49,8 +49,8 @@ export function AdminStudentsClient({ initialStudents }: AdminStudentsClientProp
       <div className="flex-1 border border-border bg-bg-card rounded-[var(--radius-lg)] overflow-hidden flex flex-col shadow-sm">
         <div className="mb-4">
         <TableToolbar 
-          searchTerm={table.searchTerm} 
-          onSearchChange={table.setSearchChange || table.setSearchTerm} 
+          search={table.searchTerm} 
+          onSearch={table.setSearchTerm} 
         />
       </div>
       <div className="w-full overflow-x-auto flex-1">

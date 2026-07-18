@@ -114,8 +114,8 @@ export function AdminSystemMaintenanceClient() {
         <CardContent>
           <div className="mb-4">
         <TableToolbar 
-          searchTerm={table.searchTerm} 
-          onSearchChange={table.setSearchTerm} 
+          search={table.searchTerm} 
+          onSearch={table.setSearchTerm} 
         />
       </div>
       <div className="overflow-x-auto">
@@ -177,8 +177,8 @@ export function AdminSystemMaintenanceClient() {
         <CardContent>
           <div className="mb-4">
         <TableToolbar 
-          searchTerm={table.searchTerm} 
-          onSearchChange={table.setSearchTerm} 
+          search={table.searchTerm} 
+          onSearch={table.setSearchTerm} 
         />
       </div>
       <div className="overflow-x-auto">
