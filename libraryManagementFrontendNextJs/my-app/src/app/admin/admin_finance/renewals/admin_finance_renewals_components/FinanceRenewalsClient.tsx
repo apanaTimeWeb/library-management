@@ -65,7 +65,7 @@ export function FinanceRenewalsClient() {
           <Badge
             key={f.value}
             variant="secondary"
-            onClick={() => setFilter(f.value as string)}
+            onClick={() => setFilter(f.value as any)}
             className={`cursor-pointer px-4 py-2 border-none font-bold text-sm uppercase tracking-wider transition-colors ${filter === f.value ? 'bg-primary text-white' : 'bg-muted text-muted-foreground hover:bg-muted/80'}`}
           >
             {f.emoji} {f.label}

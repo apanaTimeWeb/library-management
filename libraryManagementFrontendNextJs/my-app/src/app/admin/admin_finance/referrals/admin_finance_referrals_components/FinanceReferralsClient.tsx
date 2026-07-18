@@ -123,7 +123,7 @@ export function FinanceReferralsClient() {
                         variant="secondary"
                         size="sm"
                         className="bg-muted text-primary hover:bg-muted/80 border-none font-bold text-xs h-7 px-3 gap-1"
-                        onClick={() => setExpanded(expanded === r.id ? null : (r.id as string))}
+                        onClick={() => setExpanded(expanded === r.id ? null : (r.id as any))}
                       >
                         {expanded === r.id ? '▲' : '▼'} {r.referredCount as number} students
                       </Button>

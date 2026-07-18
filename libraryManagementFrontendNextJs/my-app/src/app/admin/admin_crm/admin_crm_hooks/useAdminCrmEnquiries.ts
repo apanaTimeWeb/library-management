@@ -61,8 +61,10 @@ export function useAdminCrmEnquiries() {
 
   const filtered = useMemo(() => {
     return enquiries.filter((e) => {
-      const matchSearch = e.name.toLowerCase().includes(searchParam.toLowerCase()) ||
-        e.phone.includes(searchParam.replace(/\D/g, ''));
+      const searchLower = searchParam.toLowerCase();
+      const matchSearch = searchLower === '' || 
+        (e.name || '').toLowerCase().includes(searchLower) ||
+        (e.phone || '').toLowerCase().includes(searchLower);
       const matchStatus = statusParam === 'All' || e.status === statusParam;
       return matchSearch && matchStatus;
     });

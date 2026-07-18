@@ -21,6 +21,8 @@ export interface AdminReusablePayment {
 
 export default function AdminReusableRecentPaymentsFeed({ payments }: { payments: AdminReusablePayment[] }) {
   const router = useRouter();
+  const [page, setPage] = useState(1);
+  const [limit, setLimit] = useState(10);
 
   const handleRowClick = (studentId?: string) => {
     if (studentId) {
@@ -53,53 +55,62 @@ export default function AdminReusableRecentPaymentsFeed({ payments }: { payments
         </Link>
       </CardHeader>
 
-      <CardContent className="p-0 flex-1 overflow-x-auto">
-        <table className="w-full text-sm text-left">
-          <thead className="bg-muted/30 border-b text-muted-foreground text-xs font-medium uppercase tracking-wider sticky top-0 z-10">
-            <tr>
-              <th className="px-4 py-3">Student Name</th>
-              <th className="px-4 py-3">Amount</th>
-              <th className="px-4 py-3">Mode</th>
-              <th className="px-4 py-3">Time</th>
-            </tr>
-          </thead>
-          <tbody className="divide-y divide-border">
-            {payments.slice((page - 1) * limit, page * limit).map((payment, index) => (
-              <tr 
-                key={index}
-                className="hover:bg-muted/10 transition-colors cursor-pointer"
-                onClick={() => handleRowClick(payment.studentId)}
-              >
-                <td className="px-4 py-3">
-                  <div className="flex items-center gap-3">
-                    <div className="flex items-center justify-center h-7 w-7 rounded-full bg-primary text-primary-foreground text-xs font-bold">
-                      {payment.initials}
-                    </div>
-                    <span className="font-semibold text-sm text-foreground">{payment.name}</span>
-                  </div>
-                </td>
-                <td className="px-4 py-3">
-                  <span className="font-bold text-sm text-foreground">{payment.amount}</span>
-                </td>
-                <td className="px-4 py-3">
-                  <Badge variant="secondary" className={`${getModeBadgeClass(payment.mode)} text-xs uppercase font-bold tracking-wider rounded-md border-none`}>
-                    {payment.mode}
-                  </Badge>
-                </td>
-                <td className="px-4 py-3">
-                  <span className="text-xs text-muted-foreground font-medium">{payment.timeAgo}</span>
-                </td>
-              </tr>
-            ))}
-            {payments.length === 0 && (
+      <CardContent className="p-0 flex-1 overflow-x-auto flex flex-col">
+        <div className="flex-1">
+          <table className="w-full text-sm text-left">
+            <thead className="bg-muted/30 border-b text-muted-foreground text-xs font-medium uppercase tracking-wider sticky top-0 z-10">
               <tr>
-                <td colSpan={4} className="px-4 py-8 text-center text-muted-foreground">
-                  No recent transactions.
-                </td>
+                <th className="px-4 py-3">Student Name</th>
+                <th className="px-4 py-3">Amount</th>
+                <th className="px-4 py-3">Mode</th>
+                <th className="px-4 py-3">Time</th>
               </tr>
-            )}
-          </tbody>
-        </table>
+            </thead>
+            <tbody className="divide-y divide-border">
+              {payments.slice((page - 1) * limit, page * limit).map((payment, index) => (
+                <tr 
+                  key={index}
+                  className="hover:bg-muted/10 transition-colors cursor-pointer"
+                  onClick={() => handleRowClick(payment.studentId)}
+                >
+                  <td className="px-4 py-3">
+                    <div className="flex items-center gap-3">
+                      <div className="flex items-center justify-center h-7 w-7 rounded-full bg-primary text-primary-foreground text-xs font-bold">
+                        {payment.initials}
+                      </div>
+                      <span className="font-semibold text-sm text-foreground">{payment.name}</span>
+                    </div>
+                  </td>
+                  <td className="px-4 py-3">
+                    <span className="font-bold text-sm text-foreground">{payment.amount}</span>
+                  </td>
+                  <td className="px-4 py-3">
+                    <Badge variant="secondary" className={`${getModeBadgeClass(payment.mode)} text-xs uppercase font-bold tracking-wider rounded-md border-none`}>
+                      {payment.mode}
+                    </Badge>
+                  </td>
+                  <td className="px-4 py-3">
+                    <span className="text-xs text-muted-foreground font-medium">{payment.timeAgo}</span>
+                  </td>
+                </tr>
+              ))}
+              {payments.length === 0 && (
+                <tr>
+                  <td colSpan={4} className="px-4 py-8 text-center text-muted-foreground">
+                    No recent transactions.
+                  </td>
+                </tr>
+              )}
+            </tbody>
+          </table>
+        </div>
+        <TablePagination
+          page={page}
+          limit={limit}
+          totalItems={payments.length}
+          onPageChange={setPage}
+          onLimitChange={setLimit}
+        />
       </CardContent>
     </Card>
   );

@@ -37,7 +37,7 @@ export function useFinancePayments() {
       const mapped = data.map((p: Record<string, unknown>) => ({
         id: p.id || Math.random(),
         receiptNumber: 'REC-' + String(p.id || '').substring(0, 8),
-        date: p.date ? new Date(p.date).toISOString().split('T')[0] : new Date().toISOString().split('T')[0],
+        date: p.date ? new Date(p.date as string | number).toISOString().split('T')[0] : new Date().toISOString().split('T')[0],
         studentName: p.studentName || p.name || 'Unknown Student',
         smartId: p.smartId || 'S-001',
         amount: Number(p.amount || 0),
