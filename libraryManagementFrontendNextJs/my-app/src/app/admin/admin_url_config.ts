@@ -18,6 +18,11 @@ export const ADMIN_ROUTES = {
   STUDENTS: '/admin/admin_students',
   EXPENSE_CATEGORIES: '/admin/admin_expense-categories',
   SETTINGS: '/admin/admin_settings',
+  LIBRARIES: '/admin/admin_libraries',
+  SUBSCRIPTIONS: '/admin/admin_subscriptions',
+  BILLING: '/admin/admin_billing',
+  SYSTEM_HEALTH: '/admin/admin_system-health',
+  SUPPORT_TICKETS: '/admin/admin_support-tickets',
   // CRM
   CRM_ENQUIRIES: '/admin/admin_crm/enquiries',
   CRM_ENQUIRY_ADD: '/admin/admin_crm/enquiries/add',

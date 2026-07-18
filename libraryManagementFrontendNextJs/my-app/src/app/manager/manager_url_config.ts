@@ -41,7 +41,15 @@ export const MANAGER_ROUTES = {
 
   // Plans & Settings
   PLANS: '/manager/manager_plans',
+  PLANS: '/manager/manager_plans',
   SETTINGS: '/manager/manager_settings',
+  LIBRARIES: '/manager/manager_libraries',
+  SUBSCRIPTIONS: '/manager/manager_subscriptions',
+  BILLING: '/manager/manager_billing',
+  SYSTEM_HEALTH: '/manager/manager_system-health',
+  AUDIT_LOGS: '/manager/manager_audit-logs',
+  SUPPORT_TICKETS: '/manager/manager_support-tickets',
+  REPORTS: '/manager/manager_student-reports',
 };
 
 export const MANAGER_API_ROUTES = {

@@ -8,7 +8,7 @@ import { logger } from '@/lib/logger';
 import toast from 'react-hot-toast';
 import { formatCurrency } from '@/app/superadmin/superadmin_finance/superadmin_finance_utils/superadmin_format';
 import type { SuperadminFinanceReferral } from '@/app/superadmin/superadmin_finance/superadmin_finance_types/SuperadminFinanceTypes';
-import { SUPERADMIN_FINANCE_MOCK_REFERRALS } from '@/app/superadmin/superadmin_finance/superadmin_finance_constants/SuperadminFinanceConstants';
+import { SUPERADMIN_FINANCE_MOCK_REFERRERS } from '@/app/superadmin/superadmin_finance/superadmin_finance_constants/SuperadminFinanceConstants';
 import type { PayoutFormData } from '@/app/superadmin/superadmin_finance/referrals/_components/ReferralPayoutModal';
 
 export function useReferralsClient() {
@@ -22,7 +22,7 @@ export function useReferralsClient() {
     fetchApi(SUPERADMIN_API_ROUTES.FINANCE_REFERRALS).then(( data: any ) => {
       const actualData = Array.isArray(data) ? data : data?.data;
       if (!Array.isArray(actualData) || actualData.length === 0 || String(actualData[0]?.id).startsWith('MOCK-')) {
-        setAllReferrals(SUPERADMIN_FINANCE_MOCK_REFERRALS as SuperadminFinanceReferral[]);
+        setAllReferrals(SUPERADMIN_FINANCE_MOCK_REFERRERS as SuperadminFinanceReferral[]);
         setIsLoading(false);
         return;
       }

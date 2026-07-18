@@ -4,36 +4,19 @@
 import React from 'react';
 import { Phone, Shield, Wifi } from 'lucide-react';
 
-/* ── Barcode SVG stripes — deterministic from ID ── */
-function BarcodeStripes({ id }: { id: string }) {
-  const bars: { width: number; gap: number }[] = [];
-  for (let i = 0; i < 28; i++) {
-    const code = id.charCodeAt(i % id.length) + i * 3;
-    bars.push({ width: (code % 3) + 1, gap: (code % 2) + 1 });
-  }
-  return (
-    <svg width="110" height="36" viewBox="0 0 110 36" xmlns="http://www.w3.org/2000/svg">
-      {bars.reduce<{ x: number; els: React.ReactElement[] }>(
-        (acc, bar, i) => {
-          const el = (
-            <rect key={i} x={acc.x} y="0" width={bar.width} height="36"
-              fill={i % 5 === 0 ? '#6366F1' : i % 3 === 0 ? '#8B5CF6' : '#C0C1FF'} rx="0.5" />
-          );
-          return { x: acc.x + bar.width + bar.gap, els: [...acc.els, el] };
-        },
-        { x: 0, els: [] }
-      ).els}
-    </svg>
-  );
+export interface IdCardData {
+  name: string;
+  smartId: string;
+  phone: string;
+  shift: string;
+  seat: string;
+  locker: string;
+  plan: string;
+  joinDate: string;
+  expiryDate: string;
+  branch?: string;
+  college?: string;
 }
-
-/* ── QR-pattern visual — deterministic ── */
-function QrPattern({ id }: { id: string }) {
-  const pattern: boolean[] = [];
-'use client';
-
-import React from 'react';
-import { Phone, Shield, Wifi } from 'lucide-react';
 
 /* ── Barcode SVG stripes — deterministic from ID ── */
 function BarcodeStripes({ id }: { id: string }) {
@@ -75,7 +58,7 @@ function QrPattern({ id }: { id: string }) {
   );
 }
 
-import { IdCardData, ManagerStudentsIdCardProps } from '@/app/manager/manager_students/manager_students_types';
+import { ManagerStudentsIdCardProps } from '@/app/manager/manager_students/manager_students_types';
 
 export default function ManagerStudentsIdCard({ data }: ManagerStudentsIdCardProps) {
   const initials = data.name.split(' ').map(n => n[0]).join('').slice(0, 2).toUpperCase();

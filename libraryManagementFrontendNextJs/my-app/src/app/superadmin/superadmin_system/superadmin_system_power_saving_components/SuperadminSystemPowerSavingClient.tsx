@@ -84,6 +84,10 @@ export function SuperadminSystemPowerSavingClient() {
                   <div>
                     <p className="text-sm font-semibold text-text-primary">{zone.name}</p>
                     <p className="text-xs text-text-secondary">{zone.current} / {zone.capacity} seats occupied</p>
+                  </div>
+                </div>
+              </CardContent>
+            </SuperadminCard>
           );
         })}
       </div>

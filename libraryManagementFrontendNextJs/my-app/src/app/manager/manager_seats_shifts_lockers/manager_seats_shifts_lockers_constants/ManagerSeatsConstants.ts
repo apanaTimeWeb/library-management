@@ -35,3 +35,9 @@ export const STUDENTS_DATA: Student[] = [
   { id: '2', name: 'Priya Verma',  currentShift: 'Evening Shift', targetShift: 'Morning Shift', status: 'Approved' },
   { id: '3', name: 'Amit Kumar',   currentShift: 'Night Shift',   targetShift: 'Morning Shift', status: 'Conflict' },
 ];
+
+export const SHIFT_BADGE: Record<string, string> = {
+  Morning: 'ss-badge--primary',
+  Evening: 'ss-badge--warning',
+  Night: 'ss-badge--dark',
+};

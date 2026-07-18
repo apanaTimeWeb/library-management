@@ -3,7 +3,7 @@
 
 import { Plus, Pencil, Trash2, CheckCircle, Search, AlertTriangle } from 'lucide-react';
 import { useAdminBranches, type Branch } from '@/app/admin/admin_branches/admin_branches_hooks/useAdminBranches';
-import { AdminBranchesEmptyState } from '@/app/admin/admin_branches/admin_branches_components/AdminBranchesEmptyState/AdminBranchesEmptyState';
+import AdminBranchesEmptyState from '@/app/admin/admin_branches/admin_branches_components/AdminBranchesEmptyState/AdminBranchesEmptyState';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';

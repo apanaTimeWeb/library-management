@@ -136,7 +136,6 @@ export function InvoiceIdClient() {
 
           <p className="text-[12px] font-bold text-gray-500 uppercase tracking-widest">Authorized Signature</p>
           <p className="text-[13px] text-gray-400 mt-6 italic">Thank you for choosing {INV.libraryName}</p>
-        </div>
 
         {/* Print/WhatsApp buttons inside card too */}
         <div className="flex gap-3 justify-center mt-10">

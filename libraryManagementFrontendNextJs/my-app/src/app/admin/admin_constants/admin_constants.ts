@@ -1,8 +1,7 @@
 import { ADMIN_ROUTES } from '@/app/admin/admin_url_config';
 import {
-  LayoutDashboard, Users, Users2, Shield, CreditCard,
-  Settings, History, Ban, Tags, Phone, Receipt, LayoutGrid,
-  TrendingUp, Clock, AlertCircle, AlertTriangle
+  LayoutDashboard, Building2, FileText, IndianRupee, BarChart2,
+  Activity, History, LifeBuoy, Settings, Users, CreditCard, LayoutGrid, TrendingUp, Clock, AlertCircle, AlertTriangle, Phone
 } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 
@@ -12,21 +11,16 @@ export type NavItem =
 
 export const ADMIN_SIDEBAR_NAV: NavItem[] = [
   { href: ADMIN_ROUTES.DASHBOARD, icon: LayoutDashboard, label: 'Dashboard' },
-  { group: 'CRM & Students' },
-  { href: ADMIN_ROUTES.CRM_ENQUIRIES, icon: Phone, label: 'Enquiries' },
-  { href: ADMIN_ROUTES.STUDENTS, icon: Users, label: 'Students' },
-  { group: 'Branch Management' },
-  { href: ADMIN_ROUTES.BRANCHES, icon: LayoutGrid, label: 'Branches' },
-  { href: ADMIN_ROUTES.STAFF_USERS, icon: Users2, label: 'Staff Users' },
-  { href: ADMIN_ROUTES.PERMISSIONS, icon: Shield, label: 'Permissions' },
-  { group: 'Finance & Accounting' },
-  { href: ADMIN_ROUTES.PLANS, icon: CreditCard, label: 'Plans' },
-  { href: ADMIN_ROUTES.ACCOUNTING_EXPENSES, icon: Receipt, label: 'Expenses' },
-  { href: ADMIN_ROUTES.COUPONS, icon: Tags, label: 'Coupons' },
-  { group: 'System Configuration' },
-  { href: ADMIN_ROUTES.SETTINGS, icon: Settings, label: 'Settings' },
-  { href: ADMIN_ROUTES.BLACKLIST, icon: Ban, label: 'Blacklist' },
+  { href: ADMIN_ROUTES.LIBRARIES, icon: Building2, label: 'Libraries' },
+  { href: ADMIN_ROUTES.SUBSCRIPTIONS, icon: FileText, label: 'Subscriptions' },
+  { href: ADMIN_ROUTES.BILLING, icon: IndianRupee, label: 'Billing' },
+  { href: ADMIN_ROUTES.REPORTS, icon: BarChart2, label: 'Reports' },
+  { group: 'Monitoring & Support' },
+  { href: ADMIN_ROUTES.SYSTEM_HEALTH, icon: Activity, label: 'System Health' },
   { href: ADMIN_ROUTES.AUDIT_LOGS, icon: History, label: 'Audit Logs' },
+  { href: ADMIN_ROUTES.SUPPORT_TICKETS, icon: LifeBuoy, label: 'Support Tickets' },
+  { group: 'System' },
+  { href: ADMIN_ROUTES.SETTINGS, icon: Settings, label: 'Settings' },
 ];
 
 export const ADMIN_KPI_META = [

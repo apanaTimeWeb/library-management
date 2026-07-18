@@ -26,8 +26,7 @@ import {
 } from 'lucide-react';
 import { ManagerSearchableDropdown } from '@/app/manager/manager_shared_components/ManagerSearchableDropdown';
 import { useManagerCrmEnquiriesDetail } from '@/app/manager/manager_crm/manager_crm_hooks/useManagerCrmEnquiriesDetail';
-import { useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
+
 import { MANAGER_CRM_URLS } from '@/app/manager/manager_crm/manager_crm_url_config';
 import {
   type Enquiry,

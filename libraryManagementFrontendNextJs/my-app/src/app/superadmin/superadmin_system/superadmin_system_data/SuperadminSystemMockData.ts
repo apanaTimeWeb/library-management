@@ -22,20 +22,20 @@ export const SUPERADMIN_SYSTEM_MOCK_IMPORT_PREVIEW = [
 
 export const SUPERADMIN_SYSTEM_MOCK_EXPORT_MODULES = [
   { id: 'students',     label: 'Students',            description: 'All student records including personal info, seat, shift, and status', icon: 'FileText', estimatedRows: 248,  formats: ['CSV', 'XLSX'] },
-  { id: 'payments',     label: 'Payments & Fees',     description: 'Complete payment history — fee collected, due amounts, receipts',     icon: 'DollarSign', estimatedRows: 1240, formats: ['CSV', 'XLSX'] },
-  { id: 'attendance',   label: 'Attendance',          description: 'Full attendance log — daily check-ins by student and shift',          icon: 'Calendar', estimatedRows: 5800, formats: ['CSV', 'XLSX'] },
-  { id: 'expenses',     label: 'Expenses',            description: 'Library expense records — rent, electricity, salaries, etc.',         icon: 'CreditCard', estimatedRows: 320,  formats: ['CSV', 'XLSX'] },
-  { id: 'enquiries',    label: 'CRM Enquiries',       description: 'Lead pipeline — all enquires with status and follow-up history',      icon: 'Users', estimatedRows: 186,  formats: ['CSV', 'XLSX'] },
+  { id: 'payments',     label: 'Payments & Fees',     description: 'Complete payment history  fee collected, due amounts, receipts',     icon: 'DollarSign', estimatedRows: 1240, formats: ['CSV', 'XLSX'] },
+  { id: 'attendance',   label: 'Attendance',          description: 'Full attendance log  daily check-ins by student and shift',          icon: 'Calendar', estimatedRows: 5800, formats: ['CSV', 'XLSX'] },
+  { id: 'expenses',     label: 'Expenses',            description: 'Library expense records  rent, electricity, salaries, etc.',         icon: 'CreditCard', estimatedRows: 320,  formats: ['CSV', 'XLSX'] },
+  { id: 'enquiries',    label: 'CRM Enquiries',       description: 'Lead pipeline  all enquires with status and follow-up history',      icon: 'Users', estimatedRows: 186,  formats: ['CSV', 'XLSX'] },
   { id: 'seats',        label: 'Seats & Lockers',     description: 'Seat matrix, locker assignments, and maintenance logs',               icon: 'Layout', estimatedRows: 140,  formats: ['CSV', 'XLSX'] },
-  { id: 'whatsapp',     label: 'WhatsApp Logs',       description: 'All outbound WhatsApp messages — receipts, renewals, alerts',        icon: 'MessageCircle', estimatedRows: 890,  formats: ['CSV'] },
-  { id: 'audit',        label: 'Audit Logs',          description: 'Staff actions log — sensitive operations, deletes, and edits',        icon: 'Shield', estimatedRows: 2400, formats: ['CSV', 'XLSX'] },
+  { id: 'whatsapp',     label: 'WhatsApp Logs',       description: 'All outbound WhatsApp messages  receipts, renewals, alerts',        icon: 'MessageCircle', estimatedRows: 890,  formats: ['CSV'] },
+  { id: 'audit',        label: 'Audit Logs',          description: 'Staff actions log  sensitive operations, deletes, and edits',        icon: 'Shield', estimatedRows: 2400, formats: ['CSV', 'XLSX'] },
 ];
 
 export const SUPERADMIN_SYSTEM_MOCK_SEAT_GAPS = [
-  { seat: 'S-03', booked: [{ start: 0, end: 25 }, { start: 70, end: 100 }], gap: { start: 25, end: 70,  label: '10AM — 2PM', hours: 4  } },
-  { seat: 'S-07', booked: [{ start: 0, end: 45 }],                          gap: { start: 45, end: 100, label: '12PM — 6PM', hours: 6  } },
-  { seat: 'S-12', booked: [{ start: 30, end: 60 }, { start: 80, end: 100 }],gap: { start: 60, end: 80,  label: '2PM — 4PM',  hours: 2  } },
-  { seat: 'S-15', booked: [{ start: 0, end: 15 }],                          gap: { start: 15, end: 100, label: '8AM — 6PM',  hours: 10 } },
+  { seat: 'S-03', booked: [{ start: 0, end: 25 }, { start: 70, end: 100 }], gap: { start: 25, end: 70,  label: '10AM  2PM', hours: 4  } },
+  { seat: 'S-07', booked: [{ start: 0, end: 45 }],                          gap: { start: 45, end: 100, label: '12PM  6PM', hours: 6  } },
+  { seat: 'S-12', booked: [{ start: 30, end: 60 }, { start: 80, end: 100 }],gap: { start: 60, end: 80,  label: '2PM  4PM',  hours: 2  } },
+  { seat: 'S-15', booked: [{ start: 0, end: 15 }],                          gap: { start: 15, end: 100, label: '8AM  6PM',  hours: 10 } },
 ];
 
 export const SUPERADMIN_SYSTEM_MOCK_MAINTENANCE_SEATS = [
@@ -52,9 +52,9 @@ export const SUPERADMIN_SYSTEM_MOCK_MAINTENANCE_ASSETS = [
 ];
 
 export const SUPERADMIN_SYSTEM_MOCK_MAINTENANCE_LOCKERS = [
-  { id: 'L-03', status: 'Issue Reported', lastIssue: 'Lock jammed — 2026-04-08' },
+  { id: 'L-03', status: 'Issue Reported', lastIssue: 'Lock jammed  2026-04-08' },
   { id: 'L-11', status: 'OK', lastIssue: 'None' },
-  { id: 'L-19', status: 'Issue Reported', lastIssue: 'Door hinge broken — 2026-04-06' },
+  { id: 'L-19', status: 'Issue Reported', lastIssue: 'Door hinge broken  2026-04-06' },
 ];
 
 export const SUPERADMIN_SYSTEM_MOCK_OFFLINE_FEATURES = [
