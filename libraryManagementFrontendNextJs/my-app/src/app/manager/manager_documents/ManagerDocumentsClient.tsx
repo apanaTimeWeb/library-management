@@ -4,7 +4,7 @@
 import React, { useState, useMemo } from 'react';
 import { useRouter, useSearchParams, usePathname } from 'next/navigation';
 import { FolderOpen, Upload, Search, FileText, Download, Trash2, Image as ImageIcon, File } from 'lucide-react';
-import { useDocuments } from '@/app/manager/manager_documents/manager_documents_hooks/useDocuments';
+import { useManagerDocuments } from '@/app/manager/manager_documents/manager_documents_hooks/useManagerDocuments';
 import { TablePagination } from '@/components/ui/table-pagination';
 
 
@@ -16,7 +16,7 @@ export function ManagerDocumentsClient() {
   const searchParams = useSearchParams();
   const searchQuery = searchParams.get('q') || '';
 
-  const { documents, status, deleteDocument } = useDocuments();
+  const { documents, status, deleteDocument } = useManagerDocuments();
 
   const setSearchQuery = (q: string) => {
     const params = new URLSearchParams(searchParams.toString());

@@ -39,7 +39,7 @@ export function ManagerStudentsGroupClient() {
         </div>
 
         <div className="bg-bg-card rounded-xl border border-border p-6 flex flex-col items-center justify-center text-center gap-4 border-dashed border-2 border-border bg-transparent hover:border-success transition-colors cursor-pointer">
-          <div className="w-16 h-16 rounded-full bg-[color-mix(in_srgb,var(--success)_15%,transparent)] flex items-center justify-center text-success mb-2">
+          <div className="w-16 h-16 rounded-full bg-success-bg flex items-center justify-center text-success mb-2">
             <Users2 size={28} />
           </div>
           <div>

@@ -3,14 +3,14 @@
 // RESPONSIBILITY: Renders the Notice Board UI and manages local form states.
 import { useState } from 'react';
 import { ChevronRight, Plus, X, Edit2, Trash2, Send, Megaphone, CheckCircle, Smartphone } from 'lucide-react';
-import { useNotices } from '@/app/manager/manager_communication/manager_communication_hooks/useNotices';
+import { useManagerNotices } from '@/app/manager/manager_communication/manager_communication_hooks/useManagerNotices';
 import type { Notice } from '@/app/manager/manager_communication/manager_communication_types/manager_communication_types';
 import { TablePagination } from '@/components/ui/table-pagination';
 
 export function ManagerCommunicationNoticesClient() {
   const [searchTerm, setSearchTerm] = useState('');
 
-  const { notices, status, addNotice, updateNotice, deleteNotice } = useNotices();
+  const { notices, status, addNotice, updateNotice, deleteNotice } = useManagerNotices();
 
   const [showAdd, setShowAdd]             = useState(false);
   const [editItem, setEditItem]           = useState<Notice | null>(null);

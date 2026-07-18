@@ -167,7 +167,7 @@ export function ManagerEngagementAbsenteeReportClient() {
               </thead>
               <tbody className="divide-y divide-border bg-bg-card">
                 {searchedFiltered.slice((page - 1) * limit, page * limit).map((row) => (
-                  <tr key={row.id} className={`hover:bg-bg-page transition-colors ${row.daysAbsent >= 7 ? 'bg-[var(--danger-bg,rgba(248,113,113,0.1))]' : row.daysAbsent >= 3 ? 'bg-[var(--warning-bg,rgba(251,191,36,0.1))]' : ''}`}>
+                  <tr key={row.id} className={`hover:bg-bg-page transition-colors ${row.daysAbsent >= 7 ? 'bg-danger-bg' : row.daysAbsent >= 3 ? 'bg-warning-bg' : ''}`}>
                     <td className="px-4 py-4">
                       <div className="flex items-center">
                         <div className="w-8 h-8 rounded-full bg-primary-subtle text-primary flex items-center justify-center text-xs font-bold shrink-0 mr-3">

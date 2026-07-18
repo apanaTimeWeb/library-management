@@ -9,7 +9,7 @@ function SmartIdCell(props: { value: string }) {
   return <span className="font-mono text-xs text-primary">{props.value}</span>;
 }
 function ShiftBadgeCell(props: { value: string }) {
-  return <span className="px-2 py-0.5 rounded-full text-[11px] font-semibold bg-[var(--info-bg,rgba(96,165,250,0.1))] text-info border border-info/20">{props.value}</span>;
+  return <span className="px-2 py-0.5 rounded-full text-[11px] font-semibold bg-info-bg text-info border border-info-bg">{props.value}</span>;
 }
 function ShiftPrimaryCell(props: { value: string }) {
   return <span className="px-2 py-0.5 rounded-full text-[11px] font-semibold bg-primary-subtle text-primary border border-primary/20">{props.value}</span>;
@@ -30,9 +30,9 @@ function SecondaryCell(props: { value: string | number }) {
   return <span className="text-text-secondary">{props.value}</span>;
 }
 function PriorityCell(props: { value: string }) {
-  const cls = props.value === 'High' ? 'bg-[var(--danger-bg,rgba(248,113,113,0.1))] text-danger border-danger/20' 
-            : props.value === 'Medium' ? 'bg-[var(--warning-bg,rgba(251,191,36,0.1))] text-warning border-warning/20' 
-            : 'bg-[var(--info-bg,rgba(96,165,250,0.1))] text-info border-info/20';
+  const cls = props.value === 'High' ? 'bg-danger-bg text-danger border-danger-bg' 
+            : props.value === 'Medium' ? 'bg-warning-bg text-warning border-warning-bg' 
+            : 'bg-info-bg text-info border-info-bg';
   return <span className={`px-2 py-0.5 rounded-full text-[11px] font-semibold border ${cls}`}>{props.value}</span>;
 }
 

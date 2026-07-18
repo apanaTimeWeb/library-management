@@ -3,7 +3,7 @@ import { useManagerStudentReportsStore } from '@/app/manager/manager_student-rep
 
 // DATA FLOW: API -> Store -> Hook -> Component
 
-export function useStudentReports(dateRange: string) {
+export function useManagerStudentReports(dateRange: string) {
   const { reports, reportsStatus, reportsError, fetchReports } = useManagerStudentReportsStore();
 
   // DEPENDENCY AUDIT: Executed on mount or when key dependencies (like search terms, filters, IDs) change.

@@ -3,7 +3,7 @@ import { useManagerCommunicationStore } from '@/app/manager/manager_communicatio
 
 // DATA FLOW: API -> Store -> Hook -> Component
 
-export function useNotices() {
+export function useManagerNotices() {
   const { notices, noticesStatus, noticesError, fetchNotices, addNotice, updateNotice, deleteNotice } = useManagerCommunicationStore();
 
   // DEPENDENCY AUDIT: Executed on mount or when key dependencies (like search terms, filters, IDs) change.

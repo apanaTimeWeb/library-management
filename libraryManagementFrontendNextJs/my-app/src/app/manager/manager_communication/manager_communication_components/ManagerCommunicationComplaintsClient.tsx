@@ -5,7 +5,7 @@ import { useState } from 'react';
 import { TablePagination } from '@/components/ui/table-pagination';
 import { useRouter, useSearchParams, usePathname } from 'next/navigation';
 import { ChevronRight, Plus, X, Eye, RefreshCw, CheckCircle, Smile, MessageCircle } from 'lucide-react';
-import { useComplaints } from '@/app/manager/manager_communication/manager_communication_hooks/useComplaints';
+import { useManagerComplaints } from '@/app/manager/manager_communication/manager_communication_hooks/useManagerComplaints';
 import type { Complaint } from '@/app/manager/manager_communication/manager_communication_types/manager_communication_types';
 
 const TABS: (Complaint['status'] | 'All')[] = ['All', 'New', 'In-Progress', 'Resolved'];
@@ -20,7 +20,7 @@ export function ManagerCommunicationComplaintsClient() {
   const searchParams = useSearchParams();
   const currentTab = (searchParams.get('tab') as Complaint['status'] | 'All') || 'All';
 
-  const { complaints, status, addComplaint, updateComplaintStatus } = useComplaints();
+  const { complaints, status, addComplaint, updateComplaintStatus } = useManagerComplaints();
 
   const [showAdd, setShowAdd]           = useState(false);
   const [viewItem, setViewItem]         = useState<Complaint | null>(null);

@@ -3,10 +3,10 @@ import { useDashboardStore } from '@/app/manager/manager_dashboard/manager_dashb
 
 /**
  * Custom hook to fetch and manage dashboard data.
- * DATA FLOW: API → useDashboardData → ManagerDashboardClient
+ * DATA FLOW: API → useManagerDashboardData → ManagerDashboardClient
  */
-// DATA FLOW: API → useDashboardData.ts → DashboardDataComponent
-export function useDashboardData() {
+// DATA FLOW: API → useManagerDashboardData.ts → DashboardDataComponent
+export function useManagerDashboardData() {
   const { data, status, error, fetchData } = useDashboardStore();
 
   // Fetch data on mount if idle, dependencies included to satisfy linter

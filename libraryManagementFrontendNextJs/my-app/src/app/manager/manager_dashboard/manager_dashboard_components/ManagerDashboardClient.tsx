@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { useDashboardData } from '@/app/manager/manager_dashboard/manager_dashboard_hooks/useDashboardData';
+import { useManagerDashboardData } from '@/app/manager/manager_dashboard/manager_dashboard_hooks/useManagerDashboardData';
 import { useMemo } from 'react';
 import Link from 'next/link';
 import { ChevronRight, TrendingUp } from 'lucide-react';
@@ -31,7 +31,7 @@ function PhoneCell({ value }: CellRendererProps) {
 export function ManagerDashboardClient() {
   const [searchTerm, setSearchTerm] = useState('');
 
-  const { data, status, error } = useDashboardData();
+  const { data, status, error } = useManagerDashboardData();
 
   const filteredAdmissions = useMemo(() => {
     return (data?.recentAdmissions || []).filter((item: any) => 

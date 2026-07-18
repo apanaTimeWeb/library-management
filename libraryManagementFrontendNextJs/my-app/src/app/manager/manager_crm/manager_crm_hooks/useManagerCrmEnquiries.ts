@@ -4,7 +4,7 @@ import type { EnquiryStatus } from '@/app/manager/manager_crm/manager_crm_types'
 
 // DATA FLOW: Hook -> useManagerCrmEnquiries -> Consuming UI Component
 // Use debounce to prevent excessive renders during search (Rule 15)
-function useDebounce<T>(value: T, delay: number): T {
+function useManagerDebounce<T>(value: T, delay: number): T {
   const [debouncedValue, setDebouncedValue] = useState<T>(value);
   // DEPENDENCY AUDIT: Executed on mount or when key dependencies (like search terms, filters, IDs) change.
   useEffect(() => {
@@ -33,7 +33,7 @@ export function useManagerCrmEnquiries() {
     }
   }, [status, fetchData]);
 
-  const debouncedSearch = useDebounce(search, 300);
+  const debouncedSearch = useManagerDebounce(search, 300);
 
   const filtered = useMemo(() => {
     return enquiries.filter((e) => {

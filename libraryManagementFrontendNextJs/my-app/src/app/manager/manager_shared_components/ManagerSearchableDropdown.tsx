@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Search, ChevronDown } from 'lucide-react';
-import { useDebounce } from '@/app/manager/manager_shared_hooks/useDebounce';
+import { useManagerDebounce } from '@/app/manager/manager_shared_hooks/useManagerDebounce';
 
 import { ManagerSearchableDropdownProps } from '@/app/manager/manager_types/manager_types';
 
@@ -10,7 +10,7 @@ export function ManagerSearchableDropdown({ options, value, onChange, placeholde
   const [searchTerm, setSearchTerm] = useState('');
   const dropdownRef = useRef<HTMLDivElement>(null);
 
-  const debouncedSearch = useDebounce(searchTerm, 300);
+  const debouncedSearch = useManagerDebounce(searchTerm, 300);
 
   const filteredOptions = React.useMemo(() => {
     return options.filter(opt => opt.label.toLowerCase().includes(debouncedSearch.toLowerCase()));

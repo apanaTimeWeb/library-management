@@ -5,7 +5,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { useRouter, useSearchParams, usePathname } from 'next/navigation';
 import { ChevronRight, Save, FileBarChart2, Bell, CheckCircle, Clock, Calendar, XCircle, AlertTriangle } from 'lucide-react';
-import { useAttendance } from '@/app/manager/manager_engagement/manager_engagement_hooks/useAttendance';
+import { useManagerEngagementAttendance } from '@/app/manager/manager_engagement/manager_engagement_hooks/useManagerEngagementAttendance';
 import type { AttStatus } from '@/app/manager/manager_engagement/manager_engagement_types/manager_engagement_types';
 import { ManagerSearchableDropdown } from '@/app/manager/manager_shared_components/ManagerSearchableDropdown';
 import { MANAGER_ROUTES } from '@/app/manager/manager_url_config';
@@ -18,7 +18,7 @@ export function ManagerEngagementAttendanceClient() {
   const date = searchParams.get('date') || today;
   const shift = searchParams.get('shift') || 'All';
 
-  const { students, status, updateAttendanceStatus, updateAttendanceTime, saveAttendance } = useAttendance();
+  const { students, status, updateAttendanceStatus, updateAttendanceTime, saveAttendance } = useManagerEngagementAttendance();
 
   const [saved, setSaved]       = useState(false);
   const [alerted, setAlerted]   = useState<Set<string>>(new Set());

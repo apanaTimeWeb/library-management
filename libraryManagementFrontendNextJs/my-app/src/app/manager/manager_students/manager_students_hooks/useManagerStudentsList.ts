@@ -1,13 +1,13 @@
 import { useState, useEffect, useMemo } from 'react';
-import { useDebounce } from '@/app/manager/manager_shared_hooks/useDebounce';
+import { useManagerDebounce } from '@/app/manager/manager_shared_hooks/useManagerDebounce';
 import { useStudentsStore } from '@/app/manager/manager_students/manager_students_context/manager_students_store';
 
 /**
  * Custom hook to fetch and filter students.
- * DATA FLOW: API → useStudentsList → ManagerStudentsClient
+ * DATA FLOW: API → useManagerStudentsList → ManagerStudentsClient
  */
-// DATA FLOW: API → useStudentsList.ts → StudentsListComponent
-export function useStudentsList() {
+// DATA FLOW: API → useManagerStudentsList.ts → StudentsListComponent
+export function useManagerStudentsList() {
   const { students, status, error, fetchData } = useStudentsStore();
 
   const [search, setSearch] = useState('');
@@ -22,7 +22,7 @@ export function useStudentsList() {
     }
   }, [status, fetchData]);
 
-  const debouncedSearch = useDebounce(search, 300);
+  const debouncedSearch = useManagerDebounce(search, 300);
 
   const filtered = useMemo(() =>
     students.filter(s => {

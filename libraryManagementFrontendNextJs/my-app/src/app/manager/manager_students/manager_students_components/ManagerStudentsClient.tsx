@@ -5,7 +5,7 @@ import { useMemo, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { UserPlus, Users2, Download } from 'lucide-react';
-import { useStudentsList } from '@/app/manager/manager_students/manager_students_hooks/useStudentsList';
+import { useManagerStudentsList } from '@/app/manager/manager_students/manager_students_hooks/useManagerStudentsList';
 import { STUDENT_STATUS_OPTIONS, STUDENT_SHIFT_OPTIONS } from '@/app/manager/manager_students/manager_students_constants';
 import { MANAGER_ROUTES } from '@/app/manager/manager_url_config';
 import { NameCell, ShiftCell, StatusCell, DueCell, ActionsCell } from '@/app/manager/manager_students/manager_students_components/ManagerStudentsTableCells';
@@ -26,7 +26,7 @@ export function ManagerStudentsClient() {
     search, setSearch,
     statusFilter, setStatusFilter,
     shiftFilter, setShiftFilter
-  } = useStudentsList();
+  } = useManagerStudentsList();
 
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(10);

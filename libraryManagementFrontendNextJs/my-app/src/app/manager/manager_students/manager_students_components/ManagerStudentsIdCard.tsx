@@ -60,7 +60,7 @@ export default function ManagerStudentsIdCard({ data }: ManagerStudentsIdCardPro
       <div className="relative w-[340px] bg-white rounded-2xl overflow-hidden shadow-xl border border-gray-200 text-gray-900 font-sans" id="student-id-card-print">
 
         {/* Holographic diagonal lines overlay */}
-        <div className="absolute inset-0 pointer-events-none opacity-20 bg-[linear-gradient(45deg,transparent_25%,rgba(255,255,255,0.2)_50%,transparent_75%,transparent_100%)] bg-[length:20px_20px]" aria-hidden="true" />
+        <div className="absolute inset-0 pointer-events-none opacity-20 bg-[linear-gradient(45deg,transparent_25%,var(--border)_50%,transparent_75%,transparent_100%)] bg-[length:20px_20px]" aria-hidden="true" />
 
         {/* ── Header band ── */}
         <div className="bg-bg-elevated text-white p-4 flex justify-between items-start relative z-10">
@@ -95,9 +95,8 @@ export default function ManagerStudentsIdCard({ data }: ManagerStudentsIdCardPro
 
             <div className="flex-1 min-w-0">
               <p className="text-lg font-bold text-gray-900 truncate leading-tight">{data.name}</p>
-              <span className="inline-block bg-gray-100 text-gray-600 text-[10px] font-bold px-1.5 py-0.5 rounded mt-0.5 tracking-wider">#{data.smartId}</span>
-              {data.college && <p className="text-[10px] text-gray-500 truncate mt-1">🎓 {data.college}</p>}
-              <p className="flex items-center gap-1 text-[11px] font-medium text-gray-600 mt-1.5">
+              {data.college && <p className="text-[10px] text-text-secondary truncate mt-1">🎓 {data.college}</p>}
+              <p className="flex items-center gap-1 text-[11px] font-medium text-text-secondary mt-1.5">
                 <Phone size={10} /> {data.phone}
               </p>
             </div>
@@ -122,25 +121,25 @@ export default function ManagerStudentsIdCard({ data }: ManagerStudentsIdCardPro
               <div className="text-[11px] font-bold text-gray-900 mt-0.5 truncate">{data.seat}</div>
             </div>
             <div className="border-t-2 pt-1.5" style={{ borderTopColor: '#3B82F6' }}>
-              <div className="text-[8px] font-bold text-gray-500 tracking-widest">📋 PLAN</div>
-              <div className="text-[11px] font-bold text-gray-900 mt-0.5 truncate">{data.plan.split(' ')[0]}</div>
+              <div className="text-[8px] font-bold text-text-secondary tracking-widest">📋 PLAN</div>
+              <div className="text-[11px] font-bold text-text-primary mt-0.5 truncate">{data.plan.split(' ')[0]}</div>
             </div>
-            <div className="border-t-2 pt-1.5" style={{ borderTopColor: '#10B981' }}>
-              <div className="text-[8px] font-bold text-gray-500 tracking-widest">🔐 LOCKER</div>
-              <div className="text-[11px] font-bold text-gray-900 mt-0.5 truncate">{data.locker === 'None' ? 'N/A' : data.locker.split(' ')[0]}</div>
+            <div>
+              <div className="text-[8px] font-bold text-text-secondary tracking-widest">🔐 LOCKER</div>
+              <div className="text-[11px] font-bold text-text-primary mt-0.5 truncate">{data.locker === 'None' ? 'N/A' : data.locker.split(' ')[0]}</div>
             </div>
           </div>
 
           {/* Validity row */}
           <div className="flex items-center justify-between bg-gray-50 rounded-lg p-2.5 mb-5 border border-gray-100">
             <div>
-              <div className="text-[8px] font-bold text-gray-400 tracking-widest mb-0.5">VALID FROM</div>
-              <div className="text-[10px] font-bold text-gray-800">{data.joinDate}</div>
+              <div className="text-[8px] font-bold text-text-secondary tracking-widest mb-0.5">VALID FROM</div>
+              <div className="text-[10px] font-bold text-text-primary">{data.joinDate}</div>
             </div>
-            <div className="text-gray-300 text-[10px]">▶</div>
+            <div className="text-border text-[10px]">▶</div>
             <div className="text-right">
-              <div className="text-[8px] font-bold text-gray-400 tracking-widest mb-0.5">EXPIRES</div>
-              <div className="text-[10px] font-bold text-gray-800 text-red-600">{data.expiryDate}</div>
+              <div className="text-[8px] font-bold text-text-secondary tracking-widest mb-0.5">EXPIRES</div>
+              <div className="text-[10px] font-bold text-danger">{data.expiryDate}</div>
             </div>
           </div>
 
@@ -154,13 +153,14 @@ export default function ManagerStudentsIdCard({ data }: ManagerStudentsIdCardPro
             <div className="flex flex-col items-center flex-1 mx-4">
               <BarcodeStripes id={data.smartId} />
               <span className="text-[9px] font-mono font-bold tracking-widest mt-1">{data.smartId}</span>
-              <span className="text-[7px] font-bold text-gray-400 uppercase tracking-widest">Member ID</span>
+              <span className="text-[7px] font-bold text-text-secondary uppercase tracking-widest">Member ID</span>
             </div>
-
-            <div className="flex flex-col items-center gap-0.5 bg-emerald-50 rounded-lg p-1.5 border border-emerald-100">
-              <Shield size={14} color="#10B981" />
-              <span className="text-[8px] font-bold text-emerald-600 tracking-widest">VERIFIED</span>
-              <span className="text-[6px] font-semibold text-emerald-500/70 uppercase tracking-wider">Tamper Evident</span>
+          </div>
+          
+          <div className="flex flex-col items-end justify-center">
+            <div className="flex flex-col items-center border border-success/30 bg-success-bg px-2 py-1 rounded">
+              <span className="text-[8px] font-bold text-success tracking-widest">VERIFIED</span>
+              <span className="text-[6px] font-semibold text-success/70 uppercase tracking-wider">Tamper Evident</span>
             </div>
           </div>
         </div>

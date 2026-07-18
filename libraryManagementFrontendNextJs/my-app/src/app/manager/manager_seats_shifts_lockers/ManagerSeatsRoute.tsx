@@ -1,5 +1,5 @@
 'use client';
-// RESPONSIBILITY: Renders the SeatsRoute.tsx component.
+// RESPONSIBILITY: Renders the ManagerSeatsRoute.tsx component.
 import { Toaster } from 'react-hot-toast';
 import { usePathname } from 'next/navigation';
 
@@ -8,7 +8,7 @@ const SEATS_ROUTES = ['/seats_shifts_lockers'];
 
 // ManagerRoute already provides the shell (sidebar + header) for all /seats_shifts_lockers/* paths.
 // This component only injects the CSS tokens and Toaster — no duplicate shell.
-export function SeatsRoute({ children }: { children: React.ReactNode }) {
+export function ManagerSeatsRoute({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
 
   const isSeatsRoute = SEATS_ROUTES.some(r => pathname.startsWith(r));

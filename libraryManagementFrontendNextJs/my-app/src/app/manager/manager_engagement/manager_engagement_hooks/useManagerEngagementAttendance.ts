@@ -3,7 +3,7 @@ import { useManagerEngagementStore } from '@/app/manager/manager_engagement/mana
 
 // DATA FLOW: API -> Store -> Hook -> Component
 
-export function useAttendance() {
+export function useManagerEngagementAttendance() {
   const { 
     attendance, 
     attendanceStatus, 

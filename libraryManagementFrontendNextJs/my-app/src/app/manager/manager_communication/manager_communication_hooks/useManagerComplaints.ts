@@ -3,7 +3,7 @@ import { useManagerCommunicationStore } from '@/app/manager/manager_communicatio
 
 // DATA FLOW: API -> Store -> Hook -> Component
 
-export function useComplaints() {
+export function useManagerComplaints() {
   const { complaints, complaintsStatus, complaintsError, fetchComplaints, addComplaint, updateComplaintStatus } = useManagerCommunicationStore();
 
   // DEPENDENCY AUDIT: Executed on mount or when key dependencies (like search terms, filters, IDs) change.

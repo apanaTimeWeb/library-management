@@ -3,7 +3,7 @@ import { useManagerDocumentsStore } from '@/app/manager/manager_documents/manage
 
 // DATA FLOW: API -> Store -> Hook -> Component
 
-export function useDocuments() {
+export function useManagerDocuments() {
   const { 
     documents, 
     documentsStatus, 

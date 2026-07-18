@@ -1,12 +1,14 @@
 'use client';
 
+'use client';
+
 // RESPONSIBILITY: Renders the Student Reports UI and renders data visualization using ApexCharts.
 import { useState } from 'react';
 import { TablePagination } from '@/components/ui/table-pagination';
 import dynamic from 'next/dynamic';
 import { useRouter, useSearchParams, usePathname } from 'next/navigation';
 import { Users, CalendarCheck, UserPlus, Phone } from 'lucide-react';
-import { useStudentReports } from '@/app/manager/manager_student-reports/manager_student_reports_hooks/useStudentReports';
+import { useManagerStudentReports } from '@/app/manager/manager_student-reports/manager_student_reports_hooks/useManagerStudentReports';
 import { ManagerSearchableDropdown } from '@/app/manager/manager_shared_components/ManagerSearchableDropdown';
 
 const Chart = dynamic(() => import('react-apexcharts'), { ssr: false }) as React.ComponentType<Record<string, unknown>>;
@@ -23,7 +25,7 @@ export function ManagerStudentReportsClient() {
   const searchParams = useSearchParams();
   const dateRange = searchParams.get('range') || 'This Month';
 
-  const { reports: data, status, error } = useStudentReports(dateRange);
+  const { reports: data, status, error } = useManagerStudentReports(dateRange);
 
   const setDateRange = (range: string) => {
     const params = new URLSearchParams(searchParams.toString());
