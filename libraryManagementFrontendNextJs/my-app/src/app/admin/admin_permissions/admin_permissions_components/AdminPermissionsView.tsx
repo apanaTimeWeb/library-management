@@ -117,12 +117,7 @@ export function AdminPermissionsView({ initialPermissions }: AdminPermissionsVie
               </tbody>
             </table>
           </div> 
-      <TablePagination 
-        totalItems={table.totalItems} 
-        page={table.page} 
-        limit={table.limit} 
-        onPageChange={table.setPage} 
-      />
+
           <TablePagination
             page={page}
             limit={limit}
