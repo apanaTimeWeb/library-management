@@ -20,7 +20,7 @@ export const useAdminAuditLogsStore = create<AdminAuditLogsStoreState>((set) => 
     set({ fetchState: 'loading', errorMessage: null });
     try {
       const data = await fetchApi(ADMIN_API_ROUTES.AUDIT_LOGS);
-      const actualData = Array.isArray(data) ? data : ((data as Record<string, unknown>)?.data || []);
+      const actualData = (Array.isArray(data) ? data : ((data as Record<string, unknown>)?.data || [])) as any[];
       
       if (actualData.length === 0 || actualData[0]?.id?.startsWith('MOCK-')) {
         set({ logs: MOCK_AUDIT_LOGS, fetchState: 'success' });
