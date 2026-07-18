@@ -61,7 +61,7 @@ export function AdminFinancePaymentPromisesClient() {
     toast.success(`📅 ${extendDialog.name}'s promise date extended.`);
     setExtendDialog(null); setNewDate(''); setExtendReason('');
   };
-    const table = useClientTable(prev, 10);
+    const table = useClientTable(filtered || [], 10);
   return (
     <div className="space-y-6">
       <div>
@@ -118,7 +118,7 @@ export function AdminFinancePaymentPromisesClient() {
                 </td>
               </tr>
             ) : (
-              filtered.slice((page - 1) * limit, page * limit).map((p) => (
+              table.paginatedData.map((p) => (
                 <tr key={p.id} className="fin-table-hover-row fin-table-row">
                   <td className="py-3 px-4">
                     <div className="fin-cell-name">{p.studentName}</div>
