@@ -1,151 +1,125 @@
 // RESPONSIBILITY: Renders the ReceiptIdClient component.
 'use client';
 
-import { useParams, useRouter } from 'next/navigation';
 import { ArrowLeft, BookOpen, CheckCircle, Printer, Send } from 'lucide-react';
-import { openWhatsApp } from '@/lib/whatsappUtils';
-import { printThermal } from '@/lib/thermalPrint';
-
-import { SUPERADMIN_FINANCE_MOCK_RECEIPT_DETAIL as RECEIPT_DATA } from '@/app/superadmin/superadmin_finance/superadmin_finance_constants/SuperadminFinanceConstants';
+import { useReceiptIdClient } from './useReceiptIdClient';
 
 export function ReceiptIdClient() {
-  const router = useRouter();
-
-  function handleWhatsApp() {
-    const W = 42;
-    const ln = '-'.repeat(W);
-    const dln = '='.repeat(W);
-    const c = (t: string) => ' '.repeat(Math.max(0, Math.floor((W - t.length) / 2))) + t;
-    const r = (l: string, v: string) => l.slice(0,10).padEnd(10) + ' ' + v;
-
-    const msg = [
-      dln, c('SMART LIBRARY 360'), c('Main Branch'), dln,
-      c('FEE RECEIPT'), ln,
-      r('Receipt :', RECEIPT_DATA.receiptNo),
-      r('Date    :', RECEIPT_DATA.date), ln,
-      r('Name    :', RECEIPT_DATA.studentName),
-      r('ID      :', RECEIPT_DATA.studentId),
-      r('Phone   :', RECEIPT_DATA.phone), ln,
-      r('Plan    :', RECEIPT_DATA.plan), ln,
-      ...RECEIPT_DATA.items.map(( i: FlexRecord ) => r(i.label.slice(0,9)+':', `Rs.${i.amount.toLocaleString('en-IN')}`)),
-      dln,
-      r('TOTAL   :', `Rs.${RECEIPT_DATA.total.toLocaleString('en-IN')}`),
-      dln,
-      r('Mode    :', RECEIPT_DATA.paymentMode),
-      r('Txn ID  :', RECEIPT_DATA.txnId), '',
-      c('Payment Received & Confirmed'),
-      c('Thank You! Keep Studying!'),
-      dln,
-    ].join('\n');
-
-    openWhatsApp(RECEIPT_DATA.phone, msg);
-  }
-
-  function handlePrint() {
-    printThermal({
-      type:         'receipt',
-      shopName:     'Smart Library 360',
-      branch:       'Main Branch',
-      studentName:  RECEIPT_DATA.studentName,
-      smartId:      RECEIPT_DATA.studentId,
-      phone:        RECEIPT_DATA.phone,
-      shift:        RECEIPT_DATA.shift,
-      seat:         RECEIPT_DATA.seat,
-      plan:         RECEIPT_DATA.plan,
-      billNumber:   RECEIPT_DATA.receiptNo,
-      date:         RECEIPT_DATA.date,
-      totalPayable: RECEIPT_DATA.total,
-      amountPaid:   RECEIPT_DATA.total,
-      discount:     0,
-      balance:      0,
-      paymentMode:  RECEIPT_DATA.paymentMode,
-      transactionId: RECEIPT_DATA.txnId,
-    });
-  }
+  const {
+    router,
+    receiptData,
+    handleWhatsApp,
+    handlePrint,
+  } = useReceiptIdClient();
 
   return (
     <div className="space-y-4">
       {/* Back + actions */}
       <div className="flex items-center justify-between">
-        <button className="fin-badge fin-badge--neutral cursor-pointer" onClick={() => router.push('/superadmin/superadmin_finance/receipt')}>
-          <ArrowLeft size={11} /> Back to Receipts
+        <button 
+          className="flex items-center gap-2 bg-input text-text-primary border border-border px-3 py-1.5 rounded-[var(--radius-md)] text-[12px] font-bold hover:bg-primary/10 hover:text-primary transition-colors cursor-pointer" 
+          onClick={() => router.push('/superadmin/superadmin_finance/receipt')}
+        >
+          <ArrowLeft size={14} /> Back to Receipts
         </button>
         <div className="flex gap-2">
-          <button className="fin-badge fin-badge--neutral cursor-pointer" onClick={handlePrint}>
-            <Printer size={11} /> Print (Thermal)
+          <button 
+            className="flex items-center gap-2 bg-input text-text-primary border border-border px-3 py-1.5 rounded-[var(--radius-md)] text-[12px] font-bold hover:bg-primary/10 hover:text-primary transition-colors cursor-pointer" 
+            onClick={handlePrint}
+          >
+            <Printer size={14} /> Print (Thermal)
           </button>
-          <button className="fin-badge fin-badge--success cursor-pointer" onClick={handleWhatsApp}>
-            <Send size={11} /> WhatsApp
+          <button 
+            className="flex items-center gap-2 bg-success/10 text-success border border-success/20 px-3 py-1.5 rounded-[var(--radius-md)] text-[12px] font-bold hover:bg-success hover:text-success-foreground transition-colors cursor-pointer" 
+            onClick={handleWhatsApp}
+          >
+            <Send size={14} /> WhatsApp
           </button>
         </div>
       </div>
 
       {/* Visual receipt */}
       <div className="flex flex-col items-center">
-        <div className="fin-receipt-thermal">
-          <div className="fin-receipt-zigzag fin-receipt-zigzag--top">
-            {Array.from({ length: 20 }).map((_, i) => <div key={i} className="fin-receipt-zigzag-dot" />)}
-          </div>
-          <div className="fin-receipt-body">
-            <div className="fin-receipt-logo-circle">
-              <BookOpen size={28} className="fin-receipt-accent-icon" />
+        {/* Container with shadow and rounded core */}
+        <div className="w-full max-w-[320px] bg-[#f9fafb] text-[#111827] shadow-[0_10px_40px_rgba(0,0,0,0.1)] relative mt-4 filter drop-shadow-xl font-mono" style={{ color: '#111827' }}>
+          
+          {/* Top Zigzag */}
+          <div className="h-3 w-full relative overflow-hidden bg-transparent z-10 before:absolute before:inset-0 before:bg-[#f9fafb]" style={{ maskImage: 'radial-gradient(4px at 4px 12px, transparent 0, transparent 4px, black 4.5px)', maskSize: '8px 12px', maskPosition: '0 -4px', maskRepeat: 'repeat-x', WebkitMaskImage: 'radial-gradient(4px at 4px 12px, transparent 0, transparent 4px, black 4.5px)', WebkitMaskSize: '8px 12px', WebkitMaskPosition: '0 -4px', WebkitMaskRepeat: 'repeat-x' }}></div>
+
+          <div className="px-6 py-4 flex flex-col items-center">
+            {/* Logo area */}
+            <div className="w-12 h-12 bg-primary/10 text-primary rounded-full flex items-center justify-center mb-3">
+              <BookOpen size={24} />
             </div>
-            <p className="fin-receipt-brand">Smart Library 360</p>
-            <h2 className="fin-receipt-title">Payment Receipt</h2>
-            <div className="fin-receipt-id-box">
-              <p className="fin-receipt-id-label">Receipt No.</p>
-              <p className="fin-receipt-id-value">{RECEIPT_DATA.receiptNo}</p>
+            
+            <p className="text-[16px] font-black tracking-widest uppercase mb-1">Smart Library</p>
+            <h2 className="text-[12px] font-bold text-gray-500 uppercase tracking-widest border-b border-gray-300 pb-2 mb-4 w-full text-center">Payment Receipt</h2>
+            
+            <div className="w-full flex justify-between items-center mb-6 bg-gray-100 p-2 rounded">
+              <p className="text-[10px] font-bold text-gray-500 uppercase">Receipt No.</p>
+              <p className="text-[14px] font-black">{receiptData.receiptNo}</p>
             </div>
-            <div className="space-y-3 text-left mb-6">
+
+            <div className="space-y-2 text-left mb-6 w-full text-[12px]">
               {[
-                ['Date',       RECEIPT_DATA.date],
-                ['Student',    RECEIPT_DATA.studentName],
-                ['Smart ID',   RECEIPT_DATA.studentId],
-                ['Phone',      '+91 ' + RECEIPT_DATA.phone],
-                ['Shift',      RECEIPT_DATA.shift],
-                ['Seat',       RECEIPT_DATA.seat],
-                ['Plan',       RECEIPT_DATA.plan],
-                ['Mode',       RECEIPT_DATA.paymentMode],
-                ['Txn ID',     RECEIPT_DATA.txnId],
+                ['Date',       receiptData.date],
+                ['Student',    receiptData.studentName],
+                ['Smart ID',   receiptData.studentId],
+                ['Phone',      '+91 ' + receiptData.phone],
+                ['Shift',      receiptData.shift],
+                ['Seat',       receiptData.seat],
+                ['Plan',       receiptData.plan],
+                ['Mode',       receiptData.paymentMode],
+                ['Txn ID',     receiptData.txnId],
               ].map(([l, v]) => (
-                <div key={l} className="flex justify-between">
-                  <span className="fin-receipt-row-label">{l}</span>
-                  <span className="fin-receipt-row-value">{v}</span>
+                <div key={l} className="flex justify-between border-b border-gray-200 border-dashed pb-1">
+                  <span className="text-gray-500 font-medium">{l}</span>
+                  <span className="font-bold">{v}</span>
                 </div>
               ))}
             </div>
+            
             {/* Items */}
-            <div className="text-left mb-4 w-full">
-              {RECEIPT_DATA.items.map(( item: FlexRecord ) => (
-                <div key={item.label} className="flex justify-between text-sm">
-                  <span className="fin-cell-subtext">{item.label}</span>
-                  <span className="fin-text-body">Rs.{item.amount.toLocaleString('en-IN')}</span>
+            <div className="text-left mb-4 w-full space-y-1 text-[12px]">
+              {receiptData.items.map((item: { label: string; amount: number }) => (
+                <div key={item.label} className="flex justify-between font-medium">
+                  <span className="text-gray-600">{item.label}</span>
+                  <span>Rs.{item.amount.toLocaleString('en-IN')}</span>
                 </div>
               ))}
             </div>
-            <div className="fin-receipt-dashed-line">
-              <p className="fin-receipt-total-label">Total Paid</p>
-              <p className="fin-receipt-total-amount">Rs.{RECEIPT_DATA.total.toLocaleString('en-IN')}</p>
+            
+            <div className="w-full border-t-2 border-dashed border-gray-300 py-3 mt-2 flex justify-between items-center">
+              <p className="text-[14px] font-bold text-gray-600 uppercase">Total Paid</p>
+              <p className="text-[20px] font-black tracking-tight">Rs.{receiptData.total.toLocaleString('en-IN')}</p>
             </div>
-            <div className="fin-receipt-paid-badge">
-              <CheckCircle size={16} className="fin-receipt-accent-icon" />
-              <span className="fin-receipt-paid-text">Payment Received</span>
+            
+            <div className="flex items-center gap-2 mt-2 mb-6 bg-green-50 text-green-700 px-3 py-1.5 rounded-full border border-green-200 shadow-sm">
+              <CheckCircle size={14} className="text-green-600" />
+              <span className="text-[11px] font-bold uppercase tracking-wider">Payment Received</span>
             </div>
-            <p className="fin-receipt-footer-quote">&quot;Knowledge is the best investment.&quot;</p>
-            <p className="fin-receipt-footer-thanks">Thank you! Keep studying 😊</p>
+            
+            <p className="text-[11px] italic text-gray-400 text-center mb-1">&quot;Knowledge is the best investment.&quot;</p>
+            <p className="text-[12px] font-bold text-gray-500 text-center">Thank you! Keep studying 😊</p>
           </div>
-          <div className="fin-receipt-zigzag fin-receipt-zigzag--bottom">
-            {Array.from({ length: 20 }).map((_, i) => <div key={i} className="fin-receipt-zigzag-dot" />)}
-          </div>
+
+          {/* Bottom Zigzag */}
+          <div className="h-3 w-full relative overflow-hidden bg-transparent z-10 before:absolute before:inset-0 before:bg-[#f9fafb]" style={{ maskImage: 'radial-gradient(4px at 4px 0, transparent 0, transparent 4px, black 4.5px)', maskSize: '8px 12px', maskPosition: '0 4px', maskRepeat: 'repeat-x', WebkitMaskImage: 'radial-gradient(4px at 4px 0, transparent 0, transparent 4px, black 4.5px)', WebkitMaskSize: '8px 12px', WebkitMaskPosition: '0 4px', WebkitMaskRepeat: 'repeat-x' }}></div>
         </div>
 
         {/* Action buttons below card */}
         <div className="w-full max-w-xs mt-6 flex flex-col gap-3">
-          <button className="fin-receipt-btn-wa" onClick={handleWhatsApp}>
-            <Send size={16} /> Send via WhatsApp
+          <button 
+            className="flex items-center justify-center gap-2 bg-[#25D366] text-white hover:bg-[#128C7E] rounded-[var(--radius-lg)] py-3 px-4 font-bold text-[14px] transition-colors shadow-lg shadow-[#25D366]/20 cursor-pointer" 
+            onClick={handleWhatsApp}
+          >
+            <Send size={18} /> Send via WhatsApp
           </button>
-          <button className="fin-receipt-btn-secondary" onClick={handlePrint}>
-            <Printer size={16} /> Print (80mm Thermal)
+          <button 
+            className="flex items-center justify-center gap-2 bg-input text-text-primary border border-border hover:bg-primary/10 hover:text-primary rounded-[var(--radius-lg)] py-3 px-4 font-bold text-[14px] transition-colors cursor-pointer" 
+            onClick={handlePrint}
+          >
+            <Printer size={18} /> Print (80mm Thermal)
           </button>
         </div>
       </div>

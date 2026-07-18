@@ -1,74 +1,42 @@
 // RESPONSIBILITY: Renders the SecurityDepositsClient component.
 'use client';
 
-/* eslint-disable @typescript-eslint/no-explicit-any */
-
-import { useState, useEffect } from 'react';
-import toast from 'react-hot-toast';
 import { formatCurrency } from '@/app/superadmin/superadmin_finance/superadmin_finance_utils/superadmin_format';
-import { Undo2, Minus } from 'lucide-react';
+import { Undo2, Minus, Briefcase } from 'lucide-react';
 import { SuperadminSearchableDropdown } from '@/app/superadmin/superadmin_shared_components/SuperadminSearchableDropdown';
-import type { SuperadminFinanceSecurityDeposit } from '@/app/superadmin/superadmin_finance/superadmin_finance_types/SuperadminFinanceTypes';
-import { SUPERADMIN_FINANCE_MOCK_DEPOSITS } from '@/app/superadmin/superadmin_finance/superadmin_finance_constants/SuperadminFinanceConstants';
+import { Toaster } from 'react-hot-toast';
+import { useSecurityDepositsClient } from './useSecurityDepositsClient';
+import { SecurityDepositRefundModal } from './SecurityDepositRefundModal';
+import { SecurityDepositDeductModal } from './SecurityDepositDeductModal';
 
 const STATUS_BADGE: Record<string, string> = {
-  held:      'fin-badge fin-badge--info',
-  refunded:  'fin-badge fin-badge--success',
-  forfeited: 'fin-badge fin-badge--danger',
+  held:      'bg-info/10 text-info border-info/20',
+  refunded:  'bg-success/10 text-success border-success/20',
+  forfeited: 'bg-danger/10 text-danger border-danger/20',
 };
 
 export function SecurityDepositsClient() {
-  const [statusFilter, setStatusFilter] = useState('all');
-  const [deposits, setDeposits] = useState<SuperadminFinanceSecurityDeposit[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [refundDialog, setRefundDialog] = useState<{ id: number; name: string; amount: number } | null>(null);
-  const [refundAmount, setRefundAmount] = useState('');
-  const [deductionAmount, setDeductionAmount] = useState('');
-  const [deductionReason, setDeductionReason] = useState('');
-  const [deductDialog, setDeductDialog] = useState<{ id: number; name: string } | null>(null);
-  const [deductAmt, setDeductAmt] = useState('');
-  const [deductReason, setDeductReason] = useState('');
-
-  useEffect(() => {
-    const t = setTimeout(() => { setDeposits(SUPERADMIN_FINANCE_MOCK_DEPOSITS as SuperadminFinanceSecurityDeposit[]); setIsLoading(false); }, 700);
-    return () => clearTimeout(t);
-  }, []);
-
-  const filtered = deposits.filter((d) => statusFilter === 'all' || d.status === statusFilter);
-
-  const handleRefund = () => {
-    if (!refundDialog) return;
-    setDeposits((prev) =>
-      prev.map(( d ) =>
-        d.id === refundDialog.id
-          ? { ...d, status: 'refunded', refundedDate: new Date().toISOString().split('T')[0], deductionAmount: parseFloat(deductionAmount) || d.deductionAmount, deductionReason: deductionReason || d.deductionReason }
-          : d
-      )
-    );
-    toast.success(`💸 Deposit refund for ${refundDialog.name} processed.`);
-    setRefundDialog(null); setRefundAmount(''); setDeductionAmount(''); setDeductionReason('');
-  };
-
-  const handleDeduction = () => {
-    if (!deductDialog || !deductAmt || !deductReason) return;
-    setDeposits((prev) =>
-      prev.map(( d ) =>
-        d.id === deductDialog.id ? { ...d, deductionAmount: parseFloat(deductAmt), deductionReason: deductReason } : d
-      )
-    );
-    toast.success(`➕ Deduction added to ${deductDialog.name}'s deposit.`);
-    setDeductDialog(null); setDeductAmt(''); setDeductReason('');
-  };
+  const {
+    statusFilter, setStatusFilter,
+    filtered, isLoading,
+    refundTarget, setRefundTarget, openRefund, handleRefundSubmit,
+    deductTarget, setDeductTarget, openDeduct, handleDeductSubmit,
+    isProcessing,
+  } = useSecurityDepositsClient();
 
   return (
     <div className="space-y-6">
+      <Toaster position="bottom-right" toastOptions={{
+        className: 'bg-card text-text-primary border border-border text-[13px]'
+      }} />
+
       <div>
-        <h1 className="fin-page-title">Security Deposits</h1>
-        <p className="fin-page-subtitle">Manage student security deposit records.</p>
+        <h1 className="text-[22px] font-bold text-text-primary">Security Deposits</h1>
+        <p className="text-[12px] text-text-secondary">Manage student security deposit records.</p>
       </div>
 
-      <div className="fin-filter-bar">
-        <div className="w-40">
+      <div className="flex items-center gap-3 bg-card p-3 rounded-[var(--radius-lg)] border border-border w-fit">
+        <div className="w-48">
           <SuperadminSearchableDropdown
             options={[
               { label: 'All Status', value: 'all' },
@@ -82,28 +50,28 @@ export function SecurityDepositsClient() {
         </div>
       </div>
 
-      <div className="fin-card overflow-x-auto">
-        <table className="w-full">
+      <div className="bg-card rounded-[var(--radius-lg)] border border-border overflow-x-auto">
+        <table className="w-full text-left border-collapse">
           <thead>
-            <tr className="fin-table-header-row">
-              <th className="text-left py-3 px-4">Student</th>
+            <tr className="bg-primary/5 uppercase text-[12px] font-semibold text-text-secondary border-b border-border">
+              <th className="py-3 px-4">Student</th>
               <th className="text-right py-3 px-4">Deposit ₹</th>
-              <th className="text-left py-3 px-4">Status</th>
-              <th className="text-left py-3 px-4">Collected By</th>
-              <th className="text-left py-3 px-4">Collected Date</th>
+              <th className="py-3 px-4">Status</th>
+              <th className="py-3 px-4">Collected By</th>
+              <th className="py-3 px-4">Collected Date</th>
               <th className="text-right py-3 px-4">Deduction ₹</th>
-              <th className="text-left py-3 px-4">Deduction Reason</th>
-              <th className="text-left py-3 px-4">Refunded Date</th>
+              <th className="py-3 px-4">Deduction Reason</th>
+              <th className="py-3 px-4">Refunded Date</th>
               <th className="text-right py-3 px-4">Actions</th>
             </tr>
           </thead>
           <tbody>
             {isLoading ? (
               Array.from({ length: 5 }).map((_, i) => (
-                <tr key={i} className="fin-table-row">
+                <tr key={i} className="border-b border-border last:border-0">
                   {Array.from({ length: 9 }).map((_, j) => (
                     <td key={j} className="py-3 px-4">
-                      <div className="fin-skeleton h-4 w-16" />
+                      <div className="h-4 w-16 bg-skeleton-base rounded animate-pulse" />
                     </td>
                   ))}
                 </tr>
@@ -111,49 +79,51 @@ export function SecurityDepositsClient() {
             ) : filtered.length === 0 ? (
               <tr>
                 <td colSpan={9}>
-                  <div className="fin-empty-state">
-                    <div className="fin-empty-state__icon">💼</div>
-                    <p className="fin-empty-state__title">No security deposits recorded.</p>
+                  <div className="flex flex-col items-center justify-center p-8 text-center space-y-3">
+                    <div className="text-4xl text-text-secondary"><Briefcase size={40} /></div>
+                    <p className="text-[16px] text-text-secondary">No security deposits recorded.</p>
                   </div>
                 </td>
               </tr>
             ) : (
-              filtered.map(( d ) => (
-                <tr key={d.id} className="fin-table-hover-row fin-table-row">
+              filtered.map((d) => (
+                <tr key={d.id} className="border-b border-border last:border-0 hover:bg-primary/5 transition-colors">
                   <td className="py-3 px-4">
-                    <div className="fin-cell-name">{d.studentName}</div>
-                    <div className="fin-cell-subtext">{d.smartId}</div>
+                    <div className="font-medium text-text-primary text-[14px]">{d.studentName}</div>
+                    <div className="text-[12px] text-text-secondary">{d.smartId}</div>
                   </td>
-                  <td className="py-3 px-4 text-right font-semibold fin-text-body">{formatCurrency(d.depositAmount)}</td>
+                  <td className="py-3 px-4 text-right font-semibold text-[14px] text-text-primary">{formatCurrency(d.depositAmount)}</td>
                   <td className="py-3 px-4">
-                    <span className={STATUS_BADGE[d.status] || 'fin-badge fin-badge--neutral'}>{d.status}</span>
+                    <span className={`${STATUS_BADGE[d.status] || 'bg-input text-text-primary border border-border'} px-2 py-0.5 rounded-[var(--radius-full)] text-[11px] font-bold border capitalize`}>
+                      {d.status}
+                    </span>
                   </td>
-                  <td className="py-3 px-4 fin-text-body">{d.collectedBy}</td>
-                  <td className="py-3 px-4 fin-cell-subtext">{d.collectedDate}</td>
-                  <td className={`py-3 px-4 text-right ${d.deductionAmount > 0 ? 'fin-text-danger' : 'fin-text-muted'}`}>
+                  <td className="py-3 px-4 text-[14px] font-medium text-text-primary">{d.collectedBy}</td>
+                  <td className="py-3 px-4 text-[12px] text-text-secondary">{d.collectedDate}</td>
+                  <td className={`py-3 px-4 text-right text-[14px] font-semibold ${d.deductionAmount > 0 ? 'text-danger' : 'text-text-secondary'}`}>
                     {d.deductionAmount > 0 ? formatCurrency(d.deductionAmount) : '—'}
                   </td>
-                  <td className="py-3 px-4 fin-cell-subtext">{d.deductionReason || '—'}</td>
-                  <td className="py-3 px-4 fin-cell-subtext">{d.refundedDate || '—'}</td>
+                  <td className="py-3 px-4 text-[12px] text-text-secondary">{d.deductionReason || '—'}</td>
+                  <td className="py-3 px-4 text-[12px] text-text-secondary">{d.refundedDate || '—'}</td>
                   <td className="py-3 px-4">
                     {d.status === 'held' && (
                       <div className="flex items-center justify-end gap-2">
                         <button
-                          className="fin-badge fin-badge--success cursor-pointer"
-                          onClick={() => { setRefundDialog({ id: d.id, name: d.studentName, amount: d.depositAmount }); setRefundAmount(String(d.depositAmount - d.deductionAmount)); }}
+                          className="bg-success/10 text-success border border-success/20 px-2 py-1 rounded-[var(--radius-md)] text-[11px] font-bold hover:bg-success hover:text-success-foreground transition-colors cursor-pointer flex items-center gap-1"
+                          onClick={() => openRefund(d)}
                         >
-                          <Undo2 size={11} /> 💸 Process Refund
+                          <Undo2 size={11} /> Process Refund
                         </button>
                         <button
-                          className="fin-badge fin-badge--warning cursor-pointer"
-                          onClick={() => setDeductDialog({ id: d.id, name: d.studentName })}
+                          className="bg-warning/10 text-warning border border-warning/20 px-2 py-1 rounded-[var(--radius-md)] text-[11px] font-bold hover:bg-warning hover:text-warning-foreground transition-colors cursor-pointer flex items-center gap-1"
+                          onClick={() => openDeduct(d)}
                         >
-                          <Minus size={11} /> ➕ Add Deduction
+                          <Minus size={11} /> Add Deduction
                         </button>
                       </div>
                     )}
                     {d.status === 'refunded' && d.refundedDate && (
-                      <span className="fin-cell-subtext">Refunded {d.refundedDate}</span>
+                      <span className="text-[12px] text-text-secondary flex justify-end">Refunded {d.refundedDate}</span>
                     )}
                   </td>
                 </tr>
@@ -163,61 +133,18 @@ export function SecurityDepositsClient() {
         </table>
       </div>
 
-      {refundDialog && (
-        <div className="fin-dialog-overlay">
-          <div className="fin-dialog">
-            <h2 className="fin-dialog__title">💸 Process Refund — {refundDialog.name}</h2>
-            <button className="fin-dialog__close" onClick={() => setRefundDialog(null)}>✕</button>
-            <div className="space-y-4">
-              <div>
-                <label className="fin-label">Refund Amount</label>
-                <input type="number" className="fin-input" value={refundAmount} onChange={( e: unknown ) => setRefundAmount(e.target.value as string)} />
-              </div>
-              <div>
-                <label className="fin-label">Deduction Amount</label>
-                <input type="number" className="fin-input" value={deductionAmount} onChange={( e: unknown ) => setDeductionAmount(e.target.value as string)} placeholder="0" />
-              </div>
-              <div>
-                <label className="fin-label">Deduction Reason {parseFloat(deductionAmount) > 0 && <span className="fin-text-danger">*</span>}</label>
-                <input className="fin-input" value={deductionReason} onChange={( e: unknown ) => setDeductionReason(e.target.value as string)} placeholder="Reason..." />
-              </div>
-            </div>
-            <div className="fin-dialog__footer">
-              <button className="fin-badge fin-badge--neutral cursor-pointer" onClick={() => setRefundDialog(null)}>Cancel</button>
-              <button className="fin-badge fin-badge--success cursor-pointer" onClick={handleRefund}>Process Refund</button>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {deductDialog && (
-        <div className="fin-dialog-overlay">
-          <div className="fin-dialog">
-            <h2 className="fin-dialog__title">➕ Add Deduction — {deductDialog.name}</h2>
-            <button className="fin-dialog__close" onClick={() => setDeductDialog(null)}>✕</button>
-            <div className="space-y-4">
-              <div>
-                <label className="fin-label">Amount <span className="fin-text-danger">*</span></label>
-                <input type="number" className="fin-input" value={deductAmt} onChange={( e: unknown ) => setDeductAmt(e.target.value as string)} />
-              </div>
-              <div>
-                <label className="fin-label">Reason <span className="fin-text-danger">*</span></label>
-                <input className="fin-input" value={deductReason} onChange={( e: unknown ) => setDeductReason(e.target.value as string)} placeholder="Reason for deduction" />
-              </div>
-            </div>
-            <div className="fin-dialog__footer">
-              <button className="fin-badge fin-badge--neutral cursor-pointer" onClick={() => setDeductDialog(null)}>Cancel</button>
-              <button
-                className="fin-badge fin-badge--warning cursor-pointer"
-                onClick={handleDeduction}
-                disabled={!deductAmt || !deductReason}
-              >
-                Add Deduction
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
+      <SecurityDepositRefundModal 
+        target={refundTarget}
+        onClose={() => setRefundTarget(null)}
+        onSubmit={handleRefundSubmit}
+        isProcessing={isProcessing}
+      />
+      <SecurityDepositDeductModal 
+        target={deductTarget}
+        onClose={() => setDeductTarget(null)}
+        onSubmit={handleDeductSubmit}
+        isProcessing={isProcessing}
+      />
     </div>
   );
 }

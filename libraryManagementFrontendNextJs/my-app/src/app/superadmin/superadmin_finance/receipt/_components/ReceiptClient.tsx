@@ -1,105 +1,64 @@
 // RESPONSIBILITY: Renders the ReceiptClient component.
 'use client';
 
-import { useState } from 'react';
-import Link from 'next/link';
-import { formatCurrency, formatDate } from '@/app/superadmin/superadmin_finance/superadmin_finance_utils/superadmin_format';
+import { useRouter } from 'next/navigation';
 import { Search, Receipt, Printer, Send } from 'lucide-react';
-import { openWhatsApp } from '@/lib/whatsappUtils';
-import { printThermal } from '@/lib/thermalPrint';
+import { formatCurrency, formatDate } from '@/app/superadmin/superadmin_finance/superadmin_finance_utils/superadmin_format';
 import { SuperadminSearchableDropdown } from '@/app/superadmin/superadmin_shared_components/SuperadminSearchableDropdown';
+import { useReceiptClient } from './useReceiptClient';
 import type { SuperadminFinanceReceiptFilterMode } from '@/app/superadmin/superadmin_finance/superadmin_finance_types/SuperadminFinanceTypes';
-import { SUPERADMIN_FINANCE_MOCK_RECEIPTS } from '@/app/superadmin/superadmin_finance/superadmin_finance_constants/SuperadminFinanceConstants';
 
 const MODE_BADGE: Record<string, string> = {
-  upi: 'fin-badge fin-badge--upi', cash: 'fin-badge fin-badge--cash',
-  card: 'fin-badge fin-badge--card', 'bank transfer': 'fin-badge fin-badge--bank',
+  upi: 'bg-pay-upi/10 text-pay-upi border-pay-upi/20', 
+  cash: 'bg-pay-cash/10 text-pay-cash border-pay-cash/20',
+  card: 'bg-pay-card/10 text-pay-card border-pay-card/20', 
+  'bank transfer': 'bg-pay-bank/10 text-pay-bank border-pay-bank/20',
 };
-
-import { useRouter } from 'next/navigation';
 
 export function ReceiptClient() {
   const router = useRouter();
-  const [search, setSearch]           = useState('');
-  const [modeFilter, setModeFilter]   = useState<SuperadminFinanceReceiptFilterMode>('all');
-
-  const filtered = SUPERADMIN_FINANCE_MOCK_RECEIPTS.filter(r => {
-    const ms = !search || r.studentName.toLowerCase().includes(search.toLowerCase()) ||
-      r.receiptNumber.toLowerCase().includes(search.toLowerCase()) ||
-      r.studentId.toLowerCase().includes(search.toLowerCase());
-    const mm = modeFilter === 'all' || r.paymentMode.toLowerCase() === modeFilter;
-    return ms && mm;
-  });
-
-  const totalCollected = SUPERADMIN_FINANCE_MOCK_RECEIPTS.reduce((s, r) => s + r.amount, 0);
-
-  function handleWhatsApp(r: typeof SUPERADMIN_FINANCE_MOCK_RECEIPTS[0]) {
-    const W = 42;
-    const line = '─'.repeat(W);
-    const c = (t: string) => ' '.repeat(Math.max(0, Math.floor((W - t.length) / 2))) + t;
-    const row = (l: string, v: string) => l + ' '.repeat(Math.max(1, W - l.length - v.length)) + v;
-    const msg = [
-      c('★ SMART LIBRARY 360 ★'),
-      c('Main Branch'),
-      line,
-      c('[ PAYMENT RECEIPT ]'),
-      line,
-      row('Receipt :', r.receiptNumber),
-      row('Date    :', formatDate(r.date)),
-      '',
-      row('Name    :', r.studentName),
-      row('Smart ID:', r.studentId),
-      '',
-      line,
-      row('Plan    :', r.planName),
-      line,
-      row('PAID    :', `Rs.${r.amount.toLocaleString('en-IN')}`),
-      row('Mode    :', r.paymentMode),
-      '',
-      c('Payment Confirmed'),
-      c('Thank You! Keep Studying 😊'),
-      line,
-    ].join('\n');
-    openWhatsApp(r.phone, msg);
-  }
-
-  function handlePrint(r: typeof SUPERADMIN_FINANCE_MOCK_RECEIPTS[0]) {
-    printThermal({
-      type: 'receipt', shopName: 'Smart Library 360', branch: 'Main Branch',
-      studentName: r.studentName, smartId: r.studentId, phone: r.phone,
-      shift: r.shift, seat: r.seat, plan: r.planName,
-      billNumber: r.receiptNumber, date: formatDate(r.date),
-      totalPayable: r.amount, amountPaid: r.amount, discount: 0,
-      balance: 0, paymentMode: r.paymentMode,
-    });
-  }
+  const {
+    search, setSearch, modeFilter, setModeFilter, filtered,
+    totalCollected, totalReceipts, thisMonthCount,
+    handleWhatsApp, handlePrint,
+  } = useReceiptClient();
 
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="fin-page-title">Receipts</h1>
-        <p className="fin-page-subtitle">View and share payment receipts for all transactions.</p>
+        <h1 className="text-[22px] font-bold text-text-primary">Receipts</h1>
+        <p className="text-[12px] text-text-secondary">View and share payment receipts for all transactions.</p>
       </div>
 
       <div className="grid grid-cols-3 gap-4">
         {[
-          { label: 'TOTAL RECEIPTS',  value: SUPERADMIN_FINANCE_MOCK_RECEIPTS.length.toString() },
+          { label: 'TOTAL RECEIPTS', value: totalReceipts },
           { label: 'TOTAL COLLECTED', value: formatCurrency(totalCollected), success: true },
-          { label: 'THIS MONTH',      value: SUPERADMIN_FINANCE_MOCK_RECEIPTS.filter(r => r.date.startsWith(new Date().toISOString().slice(0, 7))).length.toString() },
-        ].map(( k ) => (
-          <div key={k.label} className="fin-kpi-card">
-            <div className="fin-kpi-card__header"><p className="fin-kpi-label">{k.label}</p><Receipt size={18} className="fin-icon-muted" /></div>
-            <p className={`fin-kpi-value${k.success ? ' fin-text-success' : ''}`}>{k.value}</p>
+          { label: 'THIS MONTH', value: thisMonthCount },
+        ].map((k) => (
+          <div key={k.label} className="bg-card rounded-[var(--radius-lg)] border border-border p-4 relative overflow-hidden group">
+            <div className="flex items-center justify-between mb-2 relative z-10">
+              <span className={`text-[11px] font-bold uppercase tracking-wider ${k.success ? 'text-success' : 'text-text-secondary'}`}>{k.label}</span>
+              <div className={`w-8 h-8 rounded-[var(--radius-md)] flex items-center justify-center transition-transform duration-300 group-hover:scale-110 ${k.success ? 'bg-success/10 text-success' : 'bg-primary/10 text-primary'}`}>
+                <Receipt size={16} />
+              </div>
+            </div>
+            <p className={`text-[28px] font-black tracking-tight relative z-10 ${k.success ? 'text-success' : 'text-text-primary'}`}>{k.value}</p>
           </div>
         ))}
       </div>
 
-      <div className="fin-filter-bar">
+      <div className="flex items-center gap-3 bg-card p-3 rounded-[var(--radius-lg)] border border-border w-fit">
         <div className="relative flex-1 min-w-52">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 fin-icon-muted" />
-          <input className="fin-input fin-input--pl9" placeholder="Search by receipt no., student name or ID..." value={search} onChange={e => setSearch(e.target.value)} />
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-text-secondary" />
+          <input 
+            className="w-full bg-input border border-border rounded-[var(--radius-md)] py-2 pl-9 pr-3 text-[14px] font-medium text-text-primary focus:outline-none focus:border-primary transition-colors" 
+            placeholder="Search receipt no., name or ID..." 
+            value={search} 
+            onChange={e => setSearch(e.target.value)} 
+          />
         </div>
-        <div className="w-40">
+        <div className="w-48">
           <SuperadminSearchableDropdown
             options={[
               { label: 'All Modes', value: 'all' },
@@ -114,43 +73,65 @@ export function ReceiptClient() {
         </div>
       </div>
 
-      <div className="fin-card overflow-x-auto">
-        <table className="w-full">
+      <div className="bg-card rounded-[var(--radius-lg)] border border-border overflow-x-auto">
+        <table className="w-full text-left border-collapse">
           <thead>
-            <tr className="fin-table-header-row">
-              <th className="text-left py-3 px-4">Receipt No.</th>
-              <th className="text-left py-3 px-4">Student</th>
-              <th className="text-left py-3 px-4">Plan</th>
-              <th className="text-left py-3 px-4">Date</th>
+            <tr className="bg-primary/5 uppercase text-[12px] font-semibold text-text-secondary border-b border-border">
+              <th className="py-3 px-4">Receipt No.</th>
+              <th className="py-3 px-4">Student</th>
+              <th className="py-3 px-4 max-w-[180px]">Plan</th>
+              <th className="py-3 px-4">Date</th>
               <th className="text-right py-3 px-4">Amount</th>
-              <th className="text-left py-3 px-4">Mode</th>
+              <th className="py-3 px-4">Mode</th>
               <th className="text-right py-3 px-4">Actions</th>
             </tr>
           </thead>
           <tbody>
             {filtered.length === 0 ? (
-              <tr><td colSpan={7}><div className="fin-empty-state"><div className="fin-empty-state__icon">🧾</div><p className="fin-empty-state__title">No receipts found.</p></div></td></tr>
-            ) : filtered.map(( r ) => (
-              <tr key={r.id} className="fin-table-hover-row fin-table-row cursor-pointer" onClick={() => router.push(`/superadmin/superadmin_finance/receipt/${r.id}`)}>
-                <td className="py-3 px-4"><span className="fin-mono">{r.receiptNumber}</span></td>
-                <td className="py-3 px-4">
-                  <p className="fin-cell-name">{r.studentName}</p>
-                  <p className="fin-cell-subtext">{r.studentId}</p>
+              <tr>
+                <td colSpan={7}>
+                  <div className="flex flex-col items-center justify-center p-8 text-center space-y-3">
+                    <div className="text-4xl text-text-secondary"><Receipt size={40} /></div>
+                    <p className="text-[16px] text-text-secondary">No receipts found.</p>
+                  </div>
                 </td>
-                <td className="py-3 px-4 fin-cell-subtext" style={{ maxWidth: 180 }}>{r.planName}</td>
-                <td className="py-3 px-4 fin-cell-subtext">{formatDate(r.date)}</td>
-                <td className="py-3 px-4 text-right font-semibold fin-text-body">{formatCurrency(r.amount)}</td>
+              </tr>
+            ) : filtered.map((r) => (
+              <tr 
+                key={r.id} 
+                className="border-b border-border last:border-0 hover:bg-primary/5 transition-colors cursor-pointer group" 
+                onClick={() => router.push(`/superadmin/superadmin_finance/receipt/${r.id}`)}
+              >
                 <td className="py-3 px-4">
-                  <span className={MODE_BADGE[r.paymentMode.toLowerCase()] || 'fin-badge fin-badge--info'}>{r.paymentMode}</span>
+                  <span className="font-mono text-[14px] font-bold text-text-primary">{r.receiptNumber}</span>
+                </td>
+                <td className="py-3 px-4">
+                  <div className="font-medium text-[14px] text-text-primary group-hover:text-primary transition-colors">{r.studentName}</div>
+                  <div className="text-[12px] text-text-secondary">{r.studentId}</div>
+                </td>
+                <td className="py-3 px-4 text-[12px] text-text-secondary max-w-[180px] truncate">{r.planName}</td>
+                <td className="py-3 px-4 text-[12px] text-text-secondary">{formatDate(r.date)}</td>
+                <td className="py-3 px-4 text-right font-semibold text-[14px] text-text-primary">{formatCurrency(r.amount)}</td>
+                <td className="py-3 px-4">
+                  <span className={`${MODE_BADGE[r.paymentMode.toLowerCase()] || 'bg-info/10 text-info border-info/20'} px-2 py-0.5 rounded-[var(--radius-full)] text-[11px] font-bold border capitalize`}>
+                    {r.paymentMode}
+                  </span>
                 </td>
                 <td className="py-3 px-4">
                   <div className="flex items-center justify-end gap-2">
-
-                    <button className="fin-badge fin-badge--neutral cursor-pointer" onClick={(e) => { e.stopPropagation(); handlePrint(r); }} title="Print (Thermal)">
-                      <Printer size={11} />
+                    <button 
+                      className="w-8 h-8 flex items-center justify-center rounded-[var(--radius-md)] bg-input text-text-primary border border-border hover:bg-primary/10 hover:text-primary hover:border-primary/20 transition-colors" 
+                      onClick={(e) => { e.stopPropagation(); handlePrint(r); }} 
+                      title="Print (Thermal)"
+                    >
+                      <Printer size={14} />
                     </button>
-                    <button className="fin-badge fin-badge--success cursor-pointer" onClick={(e) => { e.stopPropagation(); handleWhatsApp(r); }} title="Send WhatsApp">
-                      <Send size={11} />
+                    <button 
+                      className="w-8 h-8 flex items-center justify-center rounded-[var(--radius-md)] bg-success/10 text-success border border-success/20 hover:bg-success hover:text-success-foreground transition-colors" 
+                      onClick={(e) => { e.stopPropagation(); handleWhatsApp(r); }} 
+                      title="Send WhatsApp"
+                    >
+                      <Send size={14} />
                     </button>
                   </div>
                 </td>
