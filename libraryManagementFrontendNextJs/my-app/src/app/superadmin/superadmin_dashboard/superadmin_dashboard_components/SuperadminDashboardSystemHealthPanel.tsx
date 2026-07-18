@@ -4,7 +4,6 @@ import Link from 'next/link';
 import { SUPERADMIN_ROUTES } from '@/app/superadmin/superadmin_url_config';
 import { CheckCircle, Users, Zap, HardDrive, ExternalLink } from 'lucide-react';
 import type { SuperadminDashboardSystemHealth as SystemHealth, SuperadminDashboardSystemHealthPanelProps as Props } from '@/app/superadmin/superadmin_dashboard/superadmin_dashboard_types/SuperadminDashboardTypes';
-import { ADMIN_ROUTES } from '@/app/admin/admin_url_config';
 
 const METRICS = [
   { key: 'uptime',      label: 'System Uptime',   icon: CheckCircle, colorCls: 'text-success', bgCls: 'bg-success-bg' },

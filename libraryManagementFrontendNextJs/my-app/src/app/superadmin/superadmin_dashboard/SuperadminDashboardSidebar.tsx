@@ -10,7 +10,6 @@ import {
   HeadphonesIcon, ScrollText, Activity, Settings, BarChart2, LogOut,
 } from 'lucide-react';
 import type { SuperadminDashboardSidebarProps as SidebarProps } from '@/app/superadmin/superadmin_dashboard/superadmin_dashboard_types/SuperadminDashboardTypes';
-import { ADMIN_ROUTES } from '@/app/admin/admin_url_config';
 
 const NAV_ITEMS = [
   { href: SUPERADMIN_ROUTES.PREFIX + '_dashboard',       icon: LayoutDashboard, label: 'Dashboard'         },

@@ -10,7 +10,6 @@ import { superadmin_gridTheme } from '@/app/superadmin/superadmin_shared_compone
 import { SuperadminSearchableDropdown } from '@/app/superadmin/superadmin_shared_components/SuperadminSearchableDropdown';
 import { useAbsenteeReportClient } from '@/app/superadmin/superadmin_engagement/absentee-report/_components/useAbsenteeReportClient';
 import { TableToolbar } from "@/components/ui/table-toolbar";
-import { ADMIN_ROUTES } from '@/app/admin/admin_url_config';
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 

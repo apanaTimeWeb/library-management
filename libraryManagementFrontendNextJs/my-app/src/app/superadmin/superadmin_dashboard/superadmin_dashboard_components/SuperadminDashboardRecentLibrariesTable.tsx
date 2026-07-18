@@ -10,7 +10,6 @@ import { superadmin_gridTheme } from '@/app/superadmin/superadmin_shared_compone
 import { ExternalLink } from 'lucide-react';
 import type { SuperadminDashboardRecentLibrary as Library, SuperadminDashboardRecentLibrariesTableProps as Props } from '@/app/superadmin/superadmin_dashboard/superadmin_dashboard_types/SuperadminDashboardTypes';
 import { TableToolbar } from "@/components/ui/table-toolbar";
-import { ADMIN_ROUTES } from '@/app/admin/admin_url_config';
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 

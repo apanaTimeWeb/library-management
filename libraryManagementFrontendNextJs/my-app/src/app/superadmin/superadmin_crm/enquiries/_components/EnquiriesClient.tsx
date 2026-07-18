@@ -15,7 +15,6 @@ import { useEnquiriesClient } from '@/app/superadmin/superadmin_crm/enquiries/_c
 import { TableToolbar } from "@/components/ui/table-toolbar";
 import { useClientTable } from "@/components/ui/use-client-table";
 import { TablePagination } from "@/components/ui/table-pagination";
-import { ADMIN_ROUTES } from '@/app/admin/admin_url_config';
 
 /* ── Helpers ─────────────────────────────────────────────── */
 function StatusBadge({ status }: { status: EnquiryStatus }) {

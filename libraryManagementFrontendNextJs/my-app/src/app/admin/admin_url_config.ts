@@ -1,4 +1,3 @@
-import { ADMIN_ROUTES } from '@/app/admin/admin_url_config';
 // RESPONSIBILITY: Renders the admin_url_config.ts component/hook.
 /**
  * URL Configuration for the Admin Module

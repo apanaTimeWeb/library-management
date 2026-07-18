@@ -4,7 +4,6 @@ import Link from 'next/link';
 import { SUPERADMIN_ROUTES } from '@/app/superadmin/superadmin_url_config';
 import { ChevronRight, RefreshCw, CheckCircle, LogOut, X } from 'lucide-react';
 import { useQrScannerClient } from '@/app/superadmin/superadmin_engagement/qr-scanner/_components/useQrScannerClient';
-import { ADMIN_ROUTES } from '@/app/admin/admin_url_config';
 
 export function QrScannerClient() {
   const {

@@ -10,7 +10,6 @@ import { logger } from '@/lib/logger';
 import { SUPERADMIN_ROUTES, SUPERADMIN_API_ROUTES } from '@/app/superadmin/superadmin_url_config';
 import type { Enquiry, EnquiryStatus, FollowUp } from '@/app/superadmin/superadmin_crm/superadmin_crm_shared_components/superadmin_types';
 import { followUpSchema, type FollowUpFormData } from '@/app/superadmin/superadmin_crm/superadmin_crm_shared_components/superadmin_schema';
-import { ADMIN_ROUTES } from '@/app/admin/admin_url_config';
 
 export function useEnquiriesIdClient(id: string) {
   const router = useRouter();

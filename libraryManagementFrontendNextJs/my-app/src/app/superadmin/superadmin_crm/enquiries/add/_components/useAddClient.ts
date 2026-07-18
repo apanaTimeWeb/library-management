@@ -7,7 +7,6 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import toast from 'react-hot-toast';
 import { addEnquirySchema, type AddEnquiryFormData } from '@/app/superadmin/superadmin_crm/superadmin_crm_shared_components/superadmin_schema';
-import { ADMIN_ROUTES } from '@/app/admin/admin_url_config';
 
 export function useAddClient() {
   const router = useRouter();

@@ -3,7 +3,6 @@ import React from 'react';
 import Link from 'next/link';
 import { SUPERADMIN_ROUTES } from '@/app/superadmin/superadmin_url_config';
 import { Activity } from 'lucide-react';
-import { ADMIN_ROUTES } from '@/app/admin/admin_url_config';
 
 export function SuperadminDashboardHeader() {
   return (

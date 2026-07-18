@@ -12,7 +12,6 @@ import toast from 'react-hot-toast';
 import { formatCurrency, formatDate } from '@/app/superadmin/superadmin_finance/superadmin_finance_utils/superadmin_format';
 import type { SuperadminFinancePayment } from '@/app/superadmin/superadmin_finance/superadmin_finance_types/SuperadminFinanceTypes';
 import { SUPERADMIN_FINANCE_MOCK_PAYMENTS } from '@/app/superadmin/superadmin_finance/superadmin_finance_constants/SuperadminFinanceConstants';
-import { ADMIN_ROUTES } from '@/app/admin/admin_url_config';
 
 export function usePaymentsClient() {
   const [modeFilter, setModeFilter] = useState('all');

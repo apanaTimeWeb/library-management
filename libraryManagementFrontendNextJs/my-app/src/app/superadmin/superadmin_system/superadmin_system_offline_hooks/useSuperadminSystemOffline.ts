@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { logger } from '@/lib/logger';
 import { SUPERADMIN_ROUTES } from '@/app/superadmin/superadmin_url_config';
-import { ADMIN_ROUTES } from '@/app/admin/admin_url_config';
 
 export function useSuperadminSystemOffline() {
   const [dots, setDots] = useState('');
