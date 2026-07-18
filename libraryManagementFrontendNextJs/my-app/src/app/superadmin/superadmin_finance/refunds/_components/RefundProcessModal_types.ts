@@ -12,6 +12,5 @@ export interface RefundProcessModalProps {
   amount: number;
   isSubmitting: boolean;
 }
-import { z } from 'zod';
 export const processSchema = z.object({ paymentMethod: z.enum(['upi', 'bank', 'cash', 'cheque']) });
 export type ProcessFormData = z.infer<typeof processSchema>;

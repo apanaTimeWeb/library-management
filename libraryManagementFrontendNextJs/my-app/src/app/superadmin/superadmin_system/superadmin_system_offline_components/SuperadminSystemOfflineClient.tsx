@@ -1,7 +1,7 @@
 // RESPONSIBILITY: Renders the SuperadminSystemOfflineClient component.
 'use client';
 import { WifiOff, RefreshCw, CheckCircle, XCircle } from 'lucide-react';
-import { SUPERADMIN_SYSTEM_MOCK_OFFLINE_FEATURES } from '@/app/superadmin/superadmin_system/superadmin_system_data/SuperadminSystemMockData';
+import { SUPERADMIN_SYSTEM_MOCK_OFFLINE_FEATURES } from '@/app/superadmin/superadmin_system/superadmin_system_utils/SuperadminSystemMockData';
 import { useSuperadminSystemOffline } from '@/app/superadmin/superadmin_system/superadmin_system_offline_hooks/useSuperadminSystemOffline';
 
 export function SuperadminSystemOfflineClient() {

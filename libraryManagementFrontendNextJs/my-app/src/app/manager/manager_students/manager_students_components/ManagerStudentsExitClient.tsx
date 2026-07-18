@@ -147,12 +147,10 @@ export function ManagerStudentsExitClient() {
           )}
 
           {!student && (
-            <div className="bg-bg-card rounded-xl border border-border p-6 h-full min-h-96">
-              <div className="flex flex-col items-center justify-center p-12 text-center h-full min-h-72">
+            <div className="max-w-md w-full rounded-2xl p-6 relative border border-border bg-bg-card shadow-2xl flex flex-col items-center text-center animate-in zoom-in-95 duration-200">
                 <div className="text-4xl mb-4 opacity-50">👈</div>
                 <p className="text-lg font-bold text-text-primary mb-1">Select a student</p>
                 <p className="text-sm text-text-secondary">Choose a student from the left panel to process their exit.</p>
-              </div>
             </div>
           )}
         </div>

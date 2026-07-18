@@ -1,6 +1,6 @@
 // DATA FLOW: SuperadminSeatsMockData -> useSuperadminSeatsLockers -> SuperadminSeatsLockersClient
 import { useState, useMemo, useCallback } from 'react';
-import { SUPERADMIN_SEATS_MOCK_LOCKERS } from '@/app/superadmin/superadmin_seats_shifts_lockers/superadmin_seats_data/SuperadminSeatsMockData';
+import { SUPERADMIN_SEATS_MOCK_LOCKERS } from '@/app/superadmin/superadmin_seats_shifts_lockers/superadmin_seats_shifts_lockers_utils/SuperadminSeatsMockData';
 import { SuperadminSeatsLocker } from '@/app/superadmin/superadmin_seats_shifts_lockers/superadmin_seats_types/SuperadminSeatsLockersTypes';
 import toast from 'react-hot-toast';
 

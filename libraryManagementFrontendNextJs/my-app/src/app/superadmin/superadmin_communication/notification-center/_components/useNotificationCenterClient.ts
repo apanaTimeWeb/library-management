@@ -1,6 +1,6 @@
 // RESPONSIBILITY: Provides logic for NotificationCenterClient
 import { useState } from 'react';
-import { SUPERADMIN_COMMUNICATION_MOCK_NOTIFICATIONS } from '@/app/superadmin/superadmin_communication/superadmin_communication_data/SuperadminCommunicationMockData';
+import { SUPERADMIN_COMMUNICATION_MOCK_NOTIFICATIONS } from '@/app/superadmin/superadmin_communication/superadmin_communication_utils/SuperadminCommunicationMockData';
 import type { SuperadminCommunicationNotification as Notification } from '@/app/superadmin/superadmin_communication/superadmin_communication_types/SuperadminCommunicationTypes';
 
 

@@ -1,6 +1,6 @@
 // RESPONSIBILITY: Provides logic for HolidayCalendarClient
 import { useState } from 'react';
-import { SUPERADMIN_ENGAGEMENT_MOCK_HOLIDAYS } from '@/app/superadmin/superadmin_engagement/superadmin_engagement_data/SuperadminEngagementMockData';
+import { SUPERADMIN_ENGAGEMENT_MOCK_HOLIDAYS } from '@/app/superadmin/superadmin_engagement/superadmin_engagement_utils/SuperadminEngagementMockData';
 import type { SuperadminEngagementHoliday as Holiday } from '@/app/superadmin/superadmin_engagement/superadmin_engagement_types/SuperadminEngagementTypes';
 
 export function useHolidayCalendarClient() {

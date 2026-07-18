@@ -9,6 +9,5 @@ export interface RefundDeductModalProps {
   studentName: string;
   isSubmitting: boolean;
 }
-import { z } from 'zod';
 export const deductSchema = z.object({ deductionAmount: z.number().min(1, 'Amount is required'), deductionReason: z.string().min(1, 'Reason is required') });
 export type DeductFormData = z.infer<typeof deductSchema>;

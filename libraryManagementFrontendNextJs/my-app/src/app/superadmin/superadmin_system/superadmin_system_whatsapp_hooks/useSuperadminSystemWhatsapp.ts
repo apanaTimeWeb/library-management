@@ -1,5 +1,5 @@
 import { useState, useCallback, useMemo } from 'react';
-import { SUPERADMIN_SYSTEM_MOCK_WHATSAPP_LOGS } from '@/app/superadmin/superadmin_system/superadmin_system_data/SuperadminSystemMockData';
+import { SUPERADMIN_SYSTEM_MOCK_WHATSAPP_LOGS } from '@/app/superadmin/superadmin_system/superadmin_system_utils/SuperadminSystemMockData';
 import { SuperadminSystemWhatsappTestStatus, SuperadminSystemWhatsappLog } from '@/app/superadmin/superadmin_system/superadmin_system_types/SuperadminSystemWhatsappTypes';
 import { SUPERADMIN_SYSTEM_WHATSAPP_PROVIDERS } from '@/app/superadmin/superadmin_system/superadmin_system_constants/SuperadminSystemWhatsappConstants';
 

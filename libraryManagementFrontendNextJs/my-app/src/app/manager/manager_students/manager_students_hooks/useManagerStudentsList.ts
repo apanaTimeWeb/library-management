@@ -1,6 +1,6 @@
 import { useState, useEffect, useMemo } from 'react';
 import { useManagerDebounce } from '@/app/manager/manager_shared_hooks/useManagerDebounce';
-import { useStudentsStore } from '@/app/manager/manager_students/manager_students_context/manager_students_store';
+import { useStudentsStore } from '@/app/manager/manager_students/manager_students_store/manager_students_store';
 
 /**
  * Custom hook to fetch and filter students.

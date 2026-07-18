@@ -4,7 +4,7 @@
 import { useState, useEffect, useMemo, useCallback } from 'react';
 import { useSearchParams, useRouter, usePathname } from 'next/navigation';
 import { useAdminExpensesStore } from '@/app/admin/admin_expenses/admin_expenses_store/admin_expenses_store';
-import { useAdmin } from '@/app/admin/admin_context/AdminContext';
+import { useAdmin } from '@/app/admin/admin_store/AdminContext';
 
 export function useAdminExpenses() {
   const searchParams = useSearchParams();

@@ -1,7 +1,7 @@
 // RESPONSIBILITY: Renders the useAdminShiftManagement.ts component/hook.
 import { useState } from 'react';
 import toast from 'react-hot-toast';
-import { ADMIN_SEATS_MOCK_SHIFTS } from '@/app/admin/admin_seats_shifts_lockers/admin_seats_data/AdminSeatsMockData';
+import { ADMIN_SEATS_MOCK_SHIFTS } from '@/app/admin/admin_seats_shifts_lockers/admin_seats_shifts_lockers_utils/AdminSeatsMockData';
 
 
 export interface Shift {

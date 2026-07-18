@@ -1,6 +1,6 @@
 // DATA FLOW: State hooks -> SuperadminSystemDataExportClient
 import { useState, useCallback } from 'react';
-import { SUPERADMIN_SYSTEM_MOCK_EXPORT_MODULES } from '@/app/superadmin/superadmin_system/superadmin_system_data/SuperadminSystemMockData';
+import { SUPERADMIN_SYSTEM_MOCK_EXPORT_MODULES } from '@/app/superadmin/superadmin_system/superadmin_system_utils/SuperadminSystemMockData';
 
 /**
  * Custom hook to manage the state and logic for the Data Export page.

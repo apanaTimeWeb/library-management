@@ -2,7 +2,7 @@
  * RESPONSIBILITY: Logic and state management for AbsenteeReportClient.
  */
 import { useState } from 'react';
-import { SUPERADMIN_ENGAGEMENT_MOCK_ABSENTEES } from '@superadmin/superadmin_engagement/superadmin_engagement_data/SuperadminEngagementMockData';
+import { SUPERADMIN_ENGAGEMENT_MOCK_ABSENTEES } from '@superadmin/superadmin_engagement/superadmin_engagement_utils/SuperadminEngagementMockData';
 import type { SuperadminEngagementAbsenteeRow as AbsenteeRow } from '@/app/superadmin/superadmin_engagement/superadmin_engagement_types/SuperadminEngagementTypes';
 
 export function useAbsenteeReportClient() {

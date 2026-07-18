@@ -7,7 +7,7 @@ import {
   ADMIN_SEATS_MOCK_LOCKER_STATS,
   ADMIN_SEATS_MOCK_LOCKER_LEGEND,
   ADMIN_SEATS_MOCK_LOCKER_ACTIVITY
-} from '@/app/admin/admin_seats_shifts_lockers/admin_seats_data/AdminSeatsMockData';
+} from '@/app/admin/admin_seats_shifts_lockers/admin_seats_shifts_lockers_utils/AdminSeatsMockData';
 
 
 export interface LockerData {

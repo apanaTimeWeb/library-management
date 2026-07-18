@@ -1,6 +1,6 @@
 // RESPONSIBILITY: Renders the useAdminSystemSmartId.ts component/hook.
 import { useState, useCallback } from 'react';
-import { ADMIN_SYSTEM_SMART_ID_ACTIVE_IDS, ADMIN_SYSTEM_SMART_ID_FLOW_STEPS } from '@/app/admin/admin_system/admin_system_data/AdminSystemMockData2';
+import { ADMIN_SYSTEM_SMART_ID_ACTIVE_IDS, ADMIN_SYSTEM_SMART_ID_FLOW_STEPS } from '@/app/admin/admin_system/admin_system_utils/AdminSystemMockData2';
 
 const ALL_IDS = Array.from({ length: 20 }, (_, i) => i + 1);
 const GAP_IDS = ALL_IDS.filter(id => !ADMIN_SYSTEM_SMART_ID_ACTIVE_IDS.includes(id));

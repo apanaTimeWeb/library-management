@@ -1,6 +1,6 @@
 // RESPONSIBILITY: Renders the useAdminSystemPowerSaving.ts component/hook.
 import { useState, useCallback } from 'react';
-import { ADMIN_SYSTEM_MOCK_POWER_ZONES, ADMIN_SYSTEM_MOCK_POWER_ALERTS } from '@/app/admin/admin_system/admin_system_data/AdminSystemMockData2';
+import { ADMIN_SYSTEM_MOCK_POWER_ZONES, ADMIN_SYSTEM_MOCK_POWER_ALERTS } from '@/app/admin/admin_system/admin_system_utils/AdminSystemMockData2';
 
 export function useAdminSystemPowerSaving() {
   const [threshold, setThreshold] = useState(30);

@@ -1,6 +1,6 @@
 // RESPONSIBILITY: Renders the useAdminAllocations.ts component/hook.
 import { useState, useMemo } from 'react';
-import { ADMIN_SEATS_MOCK_ALLOCATIONS } from '@/app/admin/admin_seats_shifts_lockers/admin_seats_data/AdminSeatsMockData';
+import { ADMIN_SEATS_MOCK_ALLOCATIONS } from '@/app/admin/admin_seats_shifts_lockers/admin_seats_shifts_lockers_utils/AdminSeatsMockData';
 
 
 export interface Allocation {

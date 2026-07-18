@@ -2,7 +2,7 @@
 import { useState, useEffect, useMemo } from 'react';
 import { fetchApi } from '@/lib/api';
 import { logger } from '@/lib/logger';
-import { ADMIN_SEATS_MOCK_SHIFT_TABS, ADMIN_SEATS_MOCK_LEGEND_ITEMS } from '@/app/admin/admin_seats_shifts_lockers/admin_seats_data/AdminSeatsMockData';
+import { ADMIN_SEATS_MOCK_SHIFT_TABS, ADMIN_SEATS_MOCK_LEGEND_ITEMS } from '@/app/admin/admin_seats_shifts_lockers/admin_seats_shifts_lockers_utils/AdminSeatsMockData';
 
 
 export interface SeatData {

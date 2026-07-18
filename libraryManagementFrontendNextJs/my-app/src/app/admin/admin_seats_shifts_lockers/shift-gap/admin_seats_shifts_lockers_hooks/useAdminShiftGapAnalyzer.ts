@@ -1,7 +1,7 @@
 // RESPONSIBILITY: Renders the useAdminShiftGapAnalyzer.ts component/hook.
 import { useState, useMemo } from 'react';
 import toast from 'react-hot-toast';
-import { ADMIN_SEATS_MOCK_SHIFT_GAPS, ADMIN_SEATS_MOCK_VIEW_PERIODS } from '@/app/admin/admin_seats_shifts_lockers/admin_seats_data/AdminSeatsMockData';
+import { ADMIN_SEATS_MOCK_SHIFT_GAPS, ADMIN_SEATS_MOCK_VIEW_PERIODS } from '@/app/admin/admin_seats_shifts_lockers/admin_seats_shifts_lockers_utils/AdminSeatsMockData';
 
 
 export interface BookedBlock { startH: number; endH: number; label: string; }

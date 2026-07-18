@@ -1,6 +1,6 @@
 // RESPONSIBILITY: Renders the useAdminStudents.ts component/hook.
 import { useState, useMemo } from 'react';
-import { useAdmin } from '@/app/admin/admin_context/AdminContext';
+import { useAdmin } from '@/app/admin/admin_store/AdminContext';
 import type { AdminStudentData } from '@/app/admin/admin_students/admin_students_types/admin_students_types';
 
 export function useAdminStudents(initialStudents: AdminStudentData[]) {

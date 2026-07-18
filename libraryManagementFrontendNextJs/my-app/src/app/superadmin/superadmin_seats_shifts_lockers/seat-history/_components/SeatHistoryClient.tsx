@@ -6,7 +6,7 @@ import { Search } from 'lucide-react';
 import { AgGridReact } from 'ag-grid-react';
 import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community';
 import { superadmin_gridTheme } from '@/app/superadmin/superadmin_seats_shifts_lockers/superadmin_seats_shared_components/superadmin_gridTheme';
-import { SUPERADMIN_SEATS_MOCK_HISTORY } from '@superadmin/superadmin_seats_shifts_lockers/superadmin_seats_data/SuperadminSeatsMockData';
+import { SUPERADMIN_SEATS_MOCK_HISTORY } from '@superadmin/superadmin_seats_shifts_lockers/superadmin_seats_shifts_lockers_utils/SuperadminSeatsMockData';
 import { SuperadminSearchableDropdown } from '@/app/superadmin/superadmin_shared_components/SuperadminSearchableDropdown';
 import type { SuperadminSeatsHistoryEntry } from '@/app/superadmin/superadmin_seats_shifts_lockers/superadmin_seats_types/SuperadminSeatsShiftsLockersTypes';
 

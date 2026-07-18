@@ -2,7 +2,7 @@
  * RESPONSIBILITY: Logic and state management for WhatsappLogsClient.
  */
 import { useState } from 'react';
-import { SUPERADMIN_COMMUNICATION_MOCK_WA_LOGS } from '@superadmin/superadmin_communication/superadmin_communication_data/SuperadminCommunicationMockData';
+import { SUPERADMIN_COMMUNICATION_MOCK_WA_LOGS } from '@superadmin/superadmin_communication/superadmin_communication_utils/SuperadminCommunicationMockData';
 import type { SuperadminCommunicationWhatsappLog as WaLog } from '@/app/superadmin/superadmin_communication/superadmin_communication_types/SuperadminCommunicationTypes';
 
 export function useWhatsappLogsClient() {

@@ -6,7 +6,7 @@ import { useState } from 'react';
 import { usePathname } from 'next/navigation';
 import AdminSidebar from '@/app/admin/admin_components/AdminSidebar/AdminSidebar';
 import AdminHeader from '@/app/admin/admin_components/AdminHeader/AdminHeader';
-import { AdminProvider } from '@/app/admin/admin_context/AdminContext';
+import { AdminProvider } from '@/app/admin/admin_store/AdminContext';
 import { ADMIN_ROUTES } from '@/app/admin/admin_url_config';
 
 // All route prefixes that belong to admin shell

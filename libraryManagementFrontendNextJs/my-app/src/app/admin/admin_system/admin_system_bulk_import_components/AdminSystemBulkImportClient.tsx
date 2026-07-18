@@ -5,7 +5,7 @@ import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter }
 import { Button } from '@/app/admin/admin_system/admin_system_components/AdminSystemButton/AdminSystemButton';
 import { Badge } from '@/app/admin/admin_system/admin_system_components/AdminSystemBadge/AdminSystemBadge';
 import { Upload, FileSpreadsheet, ChevronRight, CheckCircle, XCircle, AlertTriangle, Download, RefreshCw } from 'lucide-react';
-import { ADMIN_SYSTEM_MOCK_PREVIEW } from '@/app/admin/admin_system/admin_system_data/AdminSystemMockData2';
+import { ADMIN_SYSTEM_MOCK_PREVIEW } from '@/app/admin/admin_system/admin_system_utils/AdminSystemMockData2';
 import { useAdminSystemBulkImport } from '@/app/admin/admin_system/admin_system_bulk_import_hooks/useAdminSystemBulkImport';
 import { TablePagination } from '@/components/ui/table-pagination';
 

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useSeatsStore } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_context/manager_seats_shifts_lockers_store';
+import { useSeatsStore } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_store/manager_seats_shifts_lockers_store';
 import { Allocation } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_types';
 
 // DATA FLOW: Hook -> useManagerSeatsAllocations -> Consuming UI Component

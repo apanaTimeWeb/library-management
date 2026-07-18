@@ -1,6 +1,6 @@
 // RESPONSIBILITY: Provides logic for WhatsappTemplatesClient
 import { useState, useRef } from 'react';
-import { SUPERADMIN_COMMUNICATION_MOCK_WA_TEMPLATES } from '@/app/superadmin/superadmin_communication/superadmin_communication_data/SuperadminCommunicationMockData';
+import { SUPERADMIN_COMMUNICATION_MOCK_WA_TEMPLATES } from '@/app/superadmin/superadmin_communication/superadmin_communication_utils/SuperadminCommunicationMockData';
 import type { SuperadminCommunicationWhatsappTemplate as Template } from '@/app/superadmin/superadmin_communication/superadmin_communication_types/SuperadminCommunicationTypes';
 
 export function useWhatsappTemplatesClient() {

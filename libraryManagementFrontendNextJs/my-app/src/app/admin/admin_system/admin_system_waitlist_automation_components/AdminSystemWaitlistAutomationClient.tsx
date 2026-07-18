@@ -9,7 +9,7 @@ import { Switch } from '@/app/admin/admin_system/admin_system_components/AdminSy
 import { Textarea } from '@/app/admin/admin_system/admin_system_components/AdminSystemTextarea/AdminSystemTextarea';
 import { Badge } from '@/app/admin/admin_system/admin_system_components/AdminSystemBadge/AdminSystemBadge';
 import { ListOrdered, ChevronRight } from 'lucide-react';
-import { ADMIN_SYSTEM_WAITLIST_QUEUE } from '@/app/admin/admin_system/admin_system_data/AdminSystemMockData2';
+import { ADMIN_SYSTEM_WAITLIST_QUEUE } from '@/app/admin/admin_system/admin_system_utils/AdminSystemMockData2';
 import { useAdminSystemWaitlistAutomation } from '@/app/admin/admin_system/admin_system_waitlist_automation_hooks/useAdminSystemWaitlistAutomation';
 
 export function AdminSystemWaitlistAutomationClient() {

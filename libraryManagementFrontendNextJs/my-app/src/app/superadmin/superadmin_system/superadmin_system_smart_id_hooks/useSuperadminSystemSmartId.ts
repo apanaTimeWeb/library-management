@@ -1,5 +1,5 @@
 import { useState, useCallback } from 'react';
-import { SUPERADMIN_SYSTEM_MOCK_SMART_IDS_ACTIVE } from '@/app/superadmin/superadmin_system/superadmin_system_data/SuperadminSystemMockData';
+import { SUPERADMIN_SYSTEM_MOCK_SMART_IDS_ACTIVE } from '@/app/superadmin/superadmin_system/superadmin_system_utils/SuperadminSystemMockData';
 
 export function useSuperadminSystemSmartId() {
   const [confirmed, setConfirmed] = useState(false);

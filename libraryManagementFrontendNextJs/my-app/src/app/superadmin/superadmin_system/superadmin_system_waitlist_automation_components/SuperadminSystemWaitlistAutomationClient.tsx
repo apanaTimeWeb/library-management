@@ -8,7 +8,7 @@ import { SuperadminSwitch } from '@/app/superadmin/superadmin_system/superadmin_
 import { SuperadminTextarea } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminTextarea';
 import { SuperadminBadge } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminBadge';
 import { ListOrdered, ChevronRight } from 'lucide-react';
-import { SUPERADMIN_SYSTEM_MOCK_WAITLIST } from '@/app/superadmin/superadmin_system/superadmin_system_data/SuperadminSystemMockData';
+import { SUPERADMIN_SYSTEM_MOCK_WAITLIST } from '@/app/superadmin/superadmin_system/superadmin_system_utils/SuperadminSystemMockData';
 import { useSuperadminSystemWaitlistAutomation } from '@/app/superadmin/superadmin_system/superadmin_system_waitlist_automation_hooks/useSuperadminSystemWaitlistAutomation';
 
 export function SuperadminSystemWaitlistAutomationClient() {

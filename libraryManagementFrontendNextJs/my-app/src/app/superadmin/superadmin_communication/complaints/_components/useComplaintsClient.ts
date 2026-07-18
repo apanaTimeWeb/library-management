@@ -1,6 +1,6 @@
 // RESPONSIBILITY: Provides logic for ComplaintsClient
 import { useState } from 'react';
-import { SUPERADMIN_COMMUNICATION_MOCK_COMPLAINTS } from '@/app/superadmin/superadmin_communication/superadmin_communication_data/SuperadminCommunicationMockData';
+import { SUPERADMIN_COMMUNICATION_MOCK_COMPLAINTS } from '@/app/superadmin/superadmin_communication/superadmin_communication_utils/SuperadminCommunicationMockData';
 import type { SuperadminCommunicationComplaint as Complaint, SuperadminCommunicationComplaintStatus as CStatus } from '@/app/superadmin/superadmin_communication/superadmin_communication_types/SuperadminCommunicationTypes';
 
 export const TABS: (CStatus | 'All')[] = ['All', 'Open', 'In-Progress', 'Resolved'];

@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo } from 'react';
-import { useCrmStore } from '@/app/manager/manager_crm/manager_crm_context/manager_crm_store';
+import { useCrmStore } from '@/app/manager/manager_crm/manager_crm_store/manager_crm_store';
 import type { EnquiryStatus } from '@/app/manager/manager_crm/manager_crm_types';
 
 // DATA FLOW: Hook -> useManagerCrmEnquiries -> Consuming UI Component

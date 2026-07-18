@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo } from 'react';
-import { useSeatsStore } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_context/manager_seats_shifts_lockers_store';
+import { useSeatsStore } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_store/manager_seats_shifts_lockers_store';
 import type { SeatData } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_types';
 
 /**

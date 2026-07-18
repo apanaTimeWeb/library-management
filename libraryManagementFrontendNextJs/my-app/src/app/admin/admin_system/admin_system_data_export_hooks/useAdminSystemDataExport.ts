@@ -1,6 +1,6 @@
 // RESPONSIBILITY: Renders the useAdminSystemDataExport.ts component/hook.
 import { useState, useCallback, useMemo } from 'react';
-import { ADMIN_SYSTEM_EXPORT_MODULES } from '@/app/admin/admin_system/admin_system_data/AdminSystemMockData2';
+import { ADMIN_SYSTEM_EXPORT_MODULES } from '@/app/admin/admin_system/admin_system_utils/AdminSystemMockData2';
 
 export function useAdminSystemDataExport() {
   const [selected, setSelected] = useState<Set<string>>(new Set());

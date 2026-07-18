@@ -1,6 +1,6 @@
 // DATA FLOW: SuperadminSystemMockData -> useSuperadminSystemBulkImport -> SuperadminSystemBulkImportClient
 import { useState, useRef, useCallback } from 'react';
-import { SUPERADMIN_SYSTEM_MOCK_IMPORT_PREVIEW } from '@/app/superadmin/superadmin_system/superadmin_system_data/SuperadminSystemMockData';
+import { SUPERADMIN_SYSTEM_MOCK_IMPORT_PREVIEW } from '@/app/superadmin/superadmin_system/superadmin_system_utils/SuperadminSystemMockData';
 import { SuperadminSystemBulkImportStep, SuperadminSystemBulkImportPreviewRow, SuperadminSystemBulkImportRowStatus } from '@/app/superadmin/superadmin_system/superadmin_system_types/SuperadminSystemBulkImportTypes';
 import { SUPERADMIN_SYSTEM_BULK_IMPORT_TEMPLATE_HEADERS } from '@/app/superadmin/superadmin_system/superadmin_system_constants/SuperadminSystemBulkImportConstants';
 

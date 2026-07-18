@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react';
 import { logger } from '@/lib/logger';
 import { fetchApi } from '@/lib/api';
 import { SUPERADMIN_API_ROUTES } from '@/app/superadmin/superadmin_url_config';
-import { SUPERADMIN_COMMUNICATION_MOCK_NOTICES } from '@superadmin/superadmin_communication/superadmin_communication_data/SuperadminCommunicationMockData';
+import { SUPERADMIN_COMMUNICATION_MOCK_NOTICES } from '@superadmin/superadmin_communication/superadmin_communication_utils/SuperadminCommunicationMockData';
 import type { SuperadminCommunicationNotice as Notice } from '@/app/superadmin/superadmin_communication/superadmin_communication_types/SuperadminCommunicationTypes';
 
 const today = new Date().toISOString().split('T')[0];

@@ -1,7 +1,7 @@
 // RESPONSIBILITY: Renders the useAdminShiftMigration.ts component/hook.
 import { useState, useMemo } from 'react';
 import toast from 'react-hot-toast';
-import { ADMIN_SEATS_MOCK_STUDENTS, ADMIN_SEATS_MOCK_SHIFT_RATES, ADMIN_SEATS_STEPS } from '@/app/admin/admin_seats_shifts_lockers/admin_seats_data/AdminSeatsMockData';
+import { ADMIN_SEATS_MOCK_STUDENTS, ADMIN_SEATS_MOCK_SHIFT_RATES, ADMIN_SEATS_STEPS } from '@/app/admin/admin_seats_shifts_lockers/admin_seats_shifts_lockers_utils/AdminSeatsMockData';
 
 
 export interface Student {

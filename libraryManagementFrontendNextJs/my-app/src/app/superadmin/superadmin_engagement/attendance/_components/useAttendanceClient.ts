@@ -1,6 +1,6 @@
 // RESPONSIBILITY: Provides logic for AttendanceClient
 import { useState } from 'react';
-import { SUPERADMIN_ENGAGEMENT_MOCK_ATTENDANCE } from '@/app/superadmin/superadmin_engagement/superadmin_engagement_data/SuperadminEngagementMockData';
+import { SUPERADMIN_ENGAGEMENT_MOCK_ATTENDANCE } from '@/app/superadmin/superadmin_engagement/superadmin_engagement_utils/SuperadminEngagementMockData';
 import type { SuperadminEngagementStudent as Student, SuperadminEngagementAttStatus as AttStatus } from '@/app/superadmin/superadmin_engagement/superadmin_engagement_types/SuperadminEngagementTypes';
 
 const today = new Date().toISOString().split('T')[0];
