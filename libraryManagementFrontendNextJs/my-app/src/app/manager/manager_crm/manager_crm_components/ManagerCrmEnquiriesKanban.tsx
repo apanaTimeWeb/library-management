@@ -11,7 +11,7 @@ import { MANAGER_CRM_URLS } from '@/app/manager/manager_crm/manager_crm_url_conf
 
 // Props interface centralized.
 
-export function ManagerCrmEnquiriesKanban({ isEmpty, getCardsByStatus }: ManagerCrmEnquiriesKanbanProps) {
+export function ManagerCrmEnquiriesKanban({ isEmpty, getCardsByStatus, onAddEnquiry }: ManagerCrmEnquiriesKanbanProps) {
   const router = useRouter();
 
   if (isEmpty) {
@@ -22,7 +22,7 @@ export function ManagerCrmEnquiriesKanban({ isEmpty, getCardsByStatus }: Manager
         <p className="text-text-secondary text-sm mb-6">Add your first lead to start the pipeline</p>
         <button
           className="bg-primary text-white rounded-lg px-5 py-2.5 text-sm font-medium hover:bg-primary-hover transition-colors inline-flex items-center gap-2"
-          onClick={() => router.push(MANAGER_CRM_URLS.ADD_ENQUIRY)}
+          onClick={onAddEnquiry}
         >
           <Plus size={15} /> Add Enquiry
         </button>

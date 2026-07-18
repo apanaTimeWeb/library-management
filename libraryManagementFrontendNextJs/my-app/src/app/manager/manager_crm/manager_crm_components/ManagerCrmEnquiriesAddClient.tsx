@@ -10,7 +10,8 @@ import { MANAGER_CRM_URLS } from '@/app/manager/manager_crm/manager_crm_url_conf
 
 // RESPONSIBILITY: Renders the Add Enquiry drawer.
 
-export function ManagerCrmEnquiriesAddClient() {
+export interface ManagerCrmEnquiriesAddClientProps { onClose?: () => void; }
+export function ManagerCrmEnquiriesAddClient({ onClose }: ManagerCrmEnquiriesAddClientProps = {}) {
   const router = useRouter();
 
   const {
@@ -28,10 +29,10 @@ export function ManagerCrmEnquiriesAddClient() {
     await new Promise((r) => setTimeout(r, 800));
     // Handle form submission
     toast.success('Lead saved successfully!', { className: 'crm-toast crm-toast--success' });
-    setTimeout(() => router.push(MANAGER_CRM_URLS.ENQUIRIES), 600);
+    setTimeout(() => { if (onClose) onClose(); else router.push(MANAGER_CRM_URLS.ENQUIRIES); }, 600);
   };
 
-  const handleClose = () => router.push(MANAGER_CRM_URLS.ENQUIRIES);
+  const handleClose = () => { if (onClose) onClose(); else router.push(MANAGER_CRM_URLS.ENQUIRIES); };
 
   return (
     <>
@@ -45,7 +46,8 @@ export function ManagerCrmEnquiriesAddClient() {
       />
 
       {/* ── Drawer ── */}
-      <aside className="fixed top-0 right-0 h-screen w-full sm:w-full max-w-md bg-bg-drawer border-l border-border z-[101] flex flex-col overflow-hidden animate-in slide-in-from-right duration-300 shadow-2xl" role="dialog" aria-label="New Enquiry" aria-modal="true">
+      <div className="fixed inset-0 z-[101] flex items-center justify-center p-4 sm:p-6 pointer-events-none">
+        <aside className="w-full max-w-md bg-bg-drawer border border-border flex flex-col overflow-hidden animate-in zoom-in-95 duration-200 shadow-2xl rounded-2xl pointer-events-auto" role="dialog" aria-label="New Enquiry" aria-modal="true">
 
         {/* Header */}
         <div className="flex items-center justify-between p-5 sm:p-6 border-b border-border shrink-0">
@@ -87,7 +89,23 @@ export function ManagerCrmEnquiriesAddClient() {
                   {...register('name')}
                 />
                 {errors.name && <p className="text-xs text-danger mt-1 mb-0">{errors.name.message}</p>}
+              
+              {/* ── Phone ── */}
+              <div className="flex flex-col gap-1.5 mt-4">
+                <label htmlFor="enq-phone" className="text-xs font-semibold text-text-secondary uppercase tracking-wider mb-1 after:content-['*'] after:text-danger after:ml-1">
+                  Phone / WhatsApp
+                </label>
+                <input
+                  id="enq-phone"
+                  type="text"
+                  autoComplete="off"
+                  placeholder="e.g. 9876543210"
+                  className={`w-full px-3.5 py-2.5 rounded-lg text-sm bg-bg-input text-text-primary border outline-none transition-all placeholder:text-text-secondary focus:ring-4 ${errors.phone ? 'border-danger focus:ring-danger/15' : 'border-border focus:border-primary focus:ring-primary/15'}`}
+                  {...register('phone')}
+                />
+                {errors.phone && <p className="text-xs text-danger mt-1 mb-0">{errors.phone.message}</p>}
               </div>
+</div>
 
             </div>
           </div>
@@ -122,6 +140,7 @@ export function ManagerCrmEnquiriesAddClient() {
           </div>
         </form>
       </aside>
+      </div>
     </>
   );
 }

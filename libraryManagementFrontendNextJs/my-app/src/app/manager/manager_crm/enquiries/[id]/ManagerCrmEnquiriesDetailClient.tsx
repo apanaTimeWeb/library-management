@@ -55,8 +55,68 @@ function timelineDotClass(by: string): string {
   return '';
 }
 
-/* ── Mark Lost Modal ───────────────────────────────────── */
-// Types and constants centralized. timeline?: Record<string, unknown>[]; isToday?: boolean; isUpcoming?: boolean; isOverdue?: boolean; avatar?: string;
+/* ── MarkLostModal ─────────────────────────────────────── */
+interface MarkLostModalProps {
+  onConfirm: (reason: string) => void;
+  onCancel: () => void;
+  isSubmitting: boolean;
+}
+
+function MarkLostModal({ onConfirm, onCancel, isSubmitting }: MarkLostModalProps) {
+  const { register, handleSubmit } = useForm<MarkLostFormData>({
+    resolver: zodResolver(markLostSchema),
+    defaultValues: { reason: '' },
+  });
+  const onSubmit = (d: MarkLostFormData) => onConfirm(d.reason ?? '');
+
+  return (
+    <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[100] flex items-center justify-center p-4">
+      <div className="bg-bg-drawer border border-border w-full max-w-md rounded-2xl shadow-xl overflow-hidden animate-in zoom-in-95">
+        <div className="p-5 border-b border-border flex items-center gap-3">
+          <div className="bg-danger/10 text-danger p-2 rounded-full shrink-0">
+            <AlertTriangle size={22} />
+          </div>
+          <div>
+            <h3 className="text-lg font-bold text-text-primary">Mark as Lost?</h3>
+            <p className="text-sm text-text-secondary">This will move the enquiry to the Lost column.</p>
+          </div>
+        </div>
+        <form id="mark-lost-form" onSubmit={handleSubmit(onSubmit)} className="p-5 space-y-4">
+          <div className="flex flex-col gap-1.5">
+            <label htmlFor="lost-reason" className="text-xs font-semibold text-text-secondary uppercase tracking-wider">
+              Reason <span className="lowercase font-normal opacity-70">(optional)</span>
+            </label>
+            <textarea
+              id="lost-reason"
+              rows={3}
+              placeholder="e.g. Didn't respond..."
+              className="w-full px-3.5 py-2.5 rounded-lg text-sm bg-bg-input text-text-primary border border-border outline-none transition-all focus:border-primary focus:ring-4 focus:ring-primary/15"
+              {...register('reason')}
+            />
+          </div>
+        </form>
+        <div className="p-4 border-t border-border flex gap-3">
+          <button type="button" onClick={onCancel} className="flex-1 py-2 text-sm font-medium border border-border rounded-lg hover:bg-bg-elevated transition-colors">Cancel</button>
+          <button type="submit" form="mark-lost-form" disabled={isSubmitting} className="flex-1 py-2 text-sm font-medium bg-danger text-white rounded-lg hover:bg-danger/90 transition-colors inline-flex justify-center items-center gap-2">
+            {isSubmitting ? <span className="animate-spin w-4 h-4 border-2 border-white border-t-transparent rounded-full" /> : <><XCircle size={15} /> Mark as Lost</>}
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function InfoItem({ icon, label, value }: { icon: React.ReactNode, label: string, value: string }) {
+  return (
+    <div className="flex items-start gap-3">
+      <div className="text-text-tertiary mt-0.5">{icon}</div>
+      <div>
+        <p className="text-xs font-semibold text-text-secondary uppercase tracking-wider mb-0.5">{label}</p>
+        <p className="text-sm font-medium text-text-primary">{value}</p>
+      </div>
+    </div>
+  );
+}
 
 /* ── Main Page ─────────────────────────────────────────── */
 export function ManagerCrmEnquiriesDetailClient({ id }: { id: string }) {
@@ -163,7 +223,7 @@ export function ManagerCrmEnquiriesDetailClient({ id }: { id: string }) {
     }
   };
 
-  const handleAddFollowUp = async (formData: FollowUpFormData) => {
+  const onSubmitFU = async (formData: FollowUpFormData) => {
     try {
       const { fetchApi } = await import('@/lib/api');
       const payload = {
@@ -188,7 +248,7 @@ export function ManagerCrmEnquiriesDetailClient({ id }: { id: string }) {
         remark: formData.remark,
       };
       setEnquiry((prev) =>
-        prev ? { ...prev, followUps: [newEntry, ...prev.followUps] } : prev
+        prev ? { ...prev, followUps: [newEntry as any, ...prev.followUps] } : prev
       );
       resetFU();
       toast.success('Follow-up added!', {
@@ -228,7 +288,7 @@ export function ManagerCrmEnquiriesDetailClient({ id }: { id: string }) {
       };
       setEnquiry((prev) =>
         prev
-          ? { ...prev, status: 'Lost', followUps: [lostEntry, ...prev.followUps] }
+          ? { ...prev, status: 'Lost', followUps: [lostEntry as any, ...prev.followUps] }
           : prev
       );
       setCurrentStatus('Lost');
@@ -341,7 +401,7 @@ export function ManagerCrmEnquiriesDetailClient({ id }: { id: string }) {
                 </div>
               ) : (
                 <div className="relative pl-3 border-l-2 border-border/50 space-y-6">
-                  {enquiry.followUps.map((fu: FollowUp) => (
+                  {enquiry.followUps.map((fu: any) => (
                     <div className="relative" key={fu.id}>
                       <div className={`crm-timeline-dot ${timelineDotClass(fu.by)}`} />
                       <div className="bg-bg-input border border-border rounded-lg p-4 transition-colors hover:border-text-secondary">

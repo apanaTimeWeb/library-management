@@ -4,7 +4,10 @@ import type { Student } from '@/app/manager/manager_students/manager_students_ty
 
 export async function fetchStudents(): Promise<Student[]> {
   try {
-    return await fetchApi('/students');
+    const res = await fetchApi('/students');
+    if (res?.data && Array.isArray(res.data)) return res.data;
+    if (Array.isArray(res)) return res;
+    throw new Error('Invalid response format');
   } catch (error) {
     logger.warn('Backend not reachable, returning mock students');
     return [
@@ -17,7 +20,10 @@ export async function fetchStudents(): Promise<Student[]> {
 
 export async function fetchStudentById(id: string): Promise<Student> {
   try {
-    return await fetchApi(`/students/${id}`);
+    const res = await fetchApi(`/students/${id}`);
+    if (res?.data) return res.data;
+    if (res?.id) return res;
+    throw new Error('Invalid response format');
   } catch (error) {
     logger.warn('Backend not reachable, returning mock student', { id });
     return {

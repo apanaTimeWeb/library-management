@@ -11,7 +11,7 @@ import type { ManagerCrmEnquiriesTableProps } from '@/app/manager/manager_crm/ma
 
 // Props interface centralized.
 
-export function ManagerCrmEnquiriesTable({ filtered, updateEnquiryStatus }: ManagerCrmEnquiriesTableProps) {
+export function ManagerCrmEnquiriesTable({ filtered, updateEnquiryStatus, onAddEnquiry }: ManagerCrmEnquiriesTableProps) {
   const router = useRouter();
 
   if (filtered.length === 0) {
@@ -21,7 +21,7 @@ export function ManagerCrmEnquiriesTable({ filtered, updateEnquiryStatus }: Mana
           <PhoneCall size={40} className="text-text-secondary mx-auto mb-4" />
           <p className="text-text-primary font-semibold text-lg mb-2">No enquiries found</p>
           <p className="text-text-secondary text-sm mb-6">Try a different search or status filter</p>
-          <button className="bg-primary text-white rounded-lg px-5 py-2.5 text-sm font-medium hover:bg-primary-hover transition-colors inline-flex items-center gap-2" onClick={() => router.push(MANAGER_CRM_URLS.ADD_ENQUIRY)}>
+          <button className="bg-primary text-white rounded-lg px-5 py-2.5 text-sm font-medium hover:bg-primary-hover transition-colors inline-flex items-center gap-2" onClick={onAddEnquiry}>
             <Plus size={15} /> Add Enquiry
           </button>
         </div>

@@ -25,10 +25,13 @@ export interface ManagerCrmKanbanCardProps {
 export interface ManagerCrmEnquiriesTableProps {
   filtered: import('@/app/manager/manager_crm/manager_crm_types').Enquiry[];
   updateEnquiryStatus: (id: string, status: import('@/app/manager/manager_crm/manager_crm_types').Enquiry['status']) => void;
+  onAddEnquiry?: () => void;
 }
 
 export interface ManagerCrmEnquiriesKanbanProps {
-  data: EnquiryDetail[];
+  isEmpty: boolean;
+  getCardsByStatus: (status: import('@/app/manager/manager_crm/manager_crm_types/ManagerCrmTypes').EnquiryStatus) => import('@/app/manager/manager_crm/manager_crm_types').Enquiry[];
+  onAddEnquiry?: () => void;
 }
 
 export interface MarkLostModalProps {

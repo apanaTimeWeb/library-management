@@ -1,6 +1,8 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
+import { ManagerCrmEnquiriesAddClient } from '@/app/manager/manager_crm/manager_crm_components/ManagerCrmEnquiriesAddClient';
+import { useState } from 'react';
 import { LayoutGrid, List, Plus, Search } from 'lucide-react';
 import { useManagerCrmEnquiries } from '@/app/manager/manager_crm/manager_crm_hooks/useManagerCrmEnquiries';
 import { ManagerCrmEnquiriesKanban } from '@/app/manager/manager_crm/manager_crm_components/ManagerCrmEnquiriesKanban';
@@ -12,6 +14,7 @@ import { MANAGER_CRM_URLS } from '@/app/manager/manager_crm/manager_crm_url_conf
 
 export function ManagerCrmEnquiriesClient() {
   const router = useRouter();
+  const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const {
     status, error, filtered,
     view, setView,
@@ -50,7 +53,7 @@ export function ManagerCrmEnquiriesClient() {
                 <List size={16} />
               </button>
             </div>
-            <button className="bg-primary text-white rounded-lg px-5 py-2.5 text-sm font-medium hover:bg-primary-hover transition-colors inline-flex items-center gap-2" onClick={() => router.push(MANAGER_CRM_URLS.ADD_ENQUIRY)}>
+            <button className="bg-primary text-white rounded-lg px-5 py-2.5 text-sm font-medium hover:bg-primary-hover transition-colors inline-flex items-center gap-2" onClick={() => setIsAddModalOpen(true)}>
               <Plus size={16} /> Add Enquiry
             </button>
           </div>
@@ -88,9 +91,9 @@ export function ManagerCrmEnquiriesClient() {
       {status === 'loading' ? (
         <div className="flex items-center justify-center p-24 text-text-secondary">Loading pipeline...</div>
       ) : view === 'kanban' ? (
-        <ManagerCrmEnquiriesKanban isEmpty={filtered.length === 0} getCardsByStatus={getCardsByStatus} />
+        <ManagerCrmEnquiriesKanban isEmpty={filtered.length === 0} getCardsByStatus={getCardsByStatus} onAddEnquiry={() => setIsAddModalOpen(true)} />
       ) : (
-        <ManagerCrmEnquiriesTable filtered={filtered} updateEnquiryStatus={updateEnquiryStatus} />
+        <ManagerCrmEnquiriesTable filtered={filtered} updateEnquiryStatus={updateEnquiryStatus} onAddEnquiry={() => setIsAddModalOpen(true)} />
       )}
     </div>
   );

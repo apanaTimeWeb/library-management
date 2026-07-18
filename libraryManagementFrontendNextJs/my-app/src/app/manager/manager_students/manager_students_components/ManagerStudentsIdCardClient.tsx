@@ -43,9 +43,18 @@ export function ManagerStudentsIdCardClient() {
 
   const cardData: IdCardData | null = useMemo(() => {
     if (!selected) return null;
-    const [dd, mm, yyyy] = selected.joined.split('/');
+    const joinedStr = selected.joined || (selected as any).joinedDate || '01/01/2024';
+    let dd, mm, yyyy;
+    if (joinedStr.includes('/')) {
+      [dd, mm, yyyy] = joinedStr.split('/');
+    } else {
+      const d = new Date(joinedStr);
+      dd = String(d.getDate()).padStart(2, '0');
+      mm = String(d.getMonth() + 1).padStart(2, '0');
+      yyyy = String(d.getFullYear());
+    }
     const joinDate   = new Date(`${yyyy}-${mm}-${dd}`);
-    const expiryDate = calcExpiryDate(joinDate, selected.plan);
+    const expiryDate = calcExpiryDate(joinDate, selected.plan || 'Monthly');
     return {
       name:       selected.name,
       smartId:    selected.smartId,

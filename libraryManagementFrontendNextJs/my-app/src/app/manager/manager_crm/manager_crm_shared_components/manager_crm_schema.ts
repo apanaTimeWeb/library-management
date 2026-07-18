@@ -2,9 +2,8 @@ import { z } from 'zod';
 
 // ─── Add Enquiry ──────────────────────────────────────────────────────────────
 export const addEnquirySchema = z.object({
-  name: z
-    .string()
-    .min(2, 'Full name must be at least 2 characters'),
+  name: z.string().min(2, 'Full name must be at least 2 characters'),
+  phone: z.string().min(10, 'Phone must be at least 10 digits'),
 });
 export type AddEnquiryFormData = z.infer<typeof addEnquirySchema>;
 
