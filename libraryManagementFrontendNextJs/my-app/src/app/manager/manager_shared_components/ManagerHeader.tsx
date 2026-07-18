@@ -5,7 +5,7 @@
 import { Bell, Menu, BookOpen } from 'lucide-react';
 import { ThemeToggle } from '@/components/ThemeToggle';
 
-import { ManagerHeaderProps } from '@/app/manager/manager_shared_components/manager_shared_types';
+import { ManagerHeaderProps } from '@/app/manager/manager_types/manager_types';
 
 export default function ManagerHeader({ sidebarWidth, onMobileOpen }: ManagerHeaderProps) {
   return (

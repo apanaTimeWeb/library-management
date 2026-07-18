@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Search, ChevronDown } from 'lucide-react';
 import { useDebounce } from '@/app/manager/manager_shared_hooks/useDebounce';
 
-import { ManagerSearchableDropdownProps } from '@/app/manager/manager_shared_components/manager_shared_types';
+import { ManagerSearchableDropdownProps } from '@/app/manager/manager_types/manager_types';
 
 // RESPONSIBILITY: Render a searchable dropdown for large datasets.
 export function ManagerSearchableDropdown({ options, value, onChange, placeholder = 'Select...', className = '' }: ManagerSearchableDropdownProps) {
