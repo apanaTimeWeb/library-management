@@ -1,4 +1,10 @@
 import { ReactNode } from 'react';
+import { LucideIcon } from 'lucide-react';
+
+/**
+ * Type for Manager Sidebar navigation items
+ */
+export type ManagerNavItem = { group: string } | { href: string; icon: LucideIcon; label: string };
 
 /**
  * Props for the ManagerSidebar component

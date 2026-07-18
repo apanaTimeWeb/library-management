@@ -13,15 +13,13 @@ import {
   Ban, Receipt, DollarSign, CalendarCheck, ClipboardCheck,
   QrCode, Calendar, TrendingUp, BarChart, Wallet, BookOpen,
   MessageSquare, Bell, BellRing, Smartphone,
-  LogOut, Menu, X, type LucideIcon,
+  LogOut, Menu, X,
 } from 'lucide-react';
 
-type NavItem = { group: string } | { href: string; icon: LucideIcon; label: string };
-
 import { MANAGER_ROUTES } from '@/app/manager/manager_url_config';
-import { ManagerSidebarProps } from '@/app/manager/manager_types/manager_types';
+import { ManagerSidebarProps, ManagerNavItem } from '@/app/manager/manager_types/manager_types';
 
-const NAV: NavItem[] = [
+const NAV: ManagerNavItem[] = [
   { href: MANAGER_ROUTES.DASHBOARD, icon: LayoutDashboard, label: 'Dashboard' },
   { href: MANAGER_ROUTES.REPORTS,   icon: BarChart2,       label: 'Reports'   },
   { group: 'CRM' },
