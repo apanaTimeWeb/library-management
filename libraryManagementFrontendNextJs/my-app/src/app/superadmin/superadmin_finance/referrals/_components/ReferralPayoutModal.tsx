@@ -13,17 +13,23 @@ const payoutSchema = z.object({
 });
 
 export type PayoutFormData = z.infer<typeof payoutSchema>;
-
-interface ReferralPayoutModalProps {
-  isOpen: boolean;
   onClose: () => void;
-  onSubmit: (data: PayoutFormData) => void;
-  referrerName: string;
-  amount: number;
-  isSubmitting: boolean;
-}
 
-export function ReferralPayoutModal({ isOpen, onClose, onSubmit, referrerName, amount, isSubmitting }: ReferralPayoutModalProps) {
+export function ReferralPayoutModal({ 
+  isOpen, 
+  onClose, 
+  onSubmit, 
+  referrerName, 
+  amount, 
+  isSubmitting 
+}: { 
+  isOpen: boolean; 
+  onClose: () => void; 
+  onSubmit: (data: PayoutFormData) => void; 
+  referrerName: string; 
+  amount: number; 
+  isSubmitting: boolean; 
+}) {
   const {
     handleSubmit,
     setValue,

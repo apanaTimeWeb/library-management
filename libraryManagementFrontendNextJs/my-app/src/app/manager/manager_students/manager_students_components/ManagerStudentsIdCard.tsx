@@ -111,10 +111,10 @@ export default function ManagerStudentsIdCard({ data }: ManagerStudentsIdCardPro
 
           {/* Colored divider */}
           <div className="flex w-full h-1 rounded-full overflow-hidden mb-5">
-            <div className="flex-1 bg-[#6366F1]" />
-            <div className="flex-1 bg-[#8B5CF6]" />
-            <div className="flex-1 bg-[#3B82F6]" />
-            <div className="flex-1 bg-[#10B981]" />
+            <div className="flex-1 bg-indigo-500" />
+            <div className="flex-1 bg-purple-500" />
+            <div className="flex-1 bg-blue-500" />
+            <div className="flex-1 bg-emerald-500" />
           </div>
 
           {/* Details grid — 4 boxes */}

@@ -129,11 +129,11 @@ export function SeatMatrixClient() {
             {selectedSeat.status === 'free' ? (
               /* Free seat panel */
               <>
-                <div className="ss-occupied-header__row" style={{marginBottom: '1rem'}}>
+                <div className="ss-occupied-header__row" className="mb-4">
                   <span className="ss-badge ss-badge--success">Free</span>
                   <span className="ss-occupied-header__seat">Seat {selectedSeat.id}</span>
                 </div>
-                <p className="ss-text-secondary ss-text-caption" style={{marginBottom: '1.5rem'}}>This seat is available for assignment.</p>
+                <p className="ss-text-secondary ss-text-caption" className="mb-6">This seat is available for assignment.</p>
                 <div className="ss-modal-footer">
                   <button className="ss-btn-ghost" onClick={() => setSelectedSeat(null)}>Close</button>
                   <button className="ss-btn-primary">
@@ -144,11 +144,11 @@ export function SeatMatrixClient() {
             ) : selectedSeat.status === 'maintenance' ? (
               /* Maintenance panel */
               <>
-                <div className="ss-occupied-header__row" style={{marginBottom: '1rem'}}>
+                <div className="ss-occupied-header__row" className="mb-4">
                   <span className="ss-badge ss-badge--inactive">Maintenance</span>
                   <span className="ss-occupied-header__seat">Seat {selectedSeat.id}</span>
                 </div>
-                <p className="ss-text-secondary ss-text-caption" style={{marginBottom: '1.5rem'}}>This seat is under maintenance and unavailable.</p>
+                <p className="ss-text-secondary ss-text-caption" className="mb-6">This seat is under maintenance and unavailable.</p>
                 <div className="ss-modal-footer">
                   <button className="ss-btn-ghost" onClick={() => setSelectedSeat(null)}>Close</button>
                 </div>
@@ -156,7 +156,7 @@ export function SeatMatrixClient() {
             ) : (
               /* Occupied / expiring panel */
               <>
-                <div className="ss-occupied-header" style={{margin: '-1.5rem -1.5rem 1.5rem -1.5rem'}}>
+                <div className="ss-occupied-header -mx-6 -mt-6 mb-6">
                   <div className="ss-occupied-header__row">
                     <span className={`ss-badge ${selectedSeat.status === 'expiring' ? 'ss-badge--warning' : 'ss-badge--danger'}`}>
                       {selectedSeat.status === 'expiring' ? 'Expiring Soon' : 'Occupied'}
@@ -185,7 +185,7 @@ export function SeatMatrixClient() {
                     </p>
                   </div>
                 </div>
-                <div className="ss-modal-footer" style={{marginTop: '1.5rem'}}>
+                <div className="ss-modal-footer mt-6">
                   <button className="ss-btn-ghost" onClick={() => setSelectedSeat(null)}>Close</button>
                   <button className="ss-btn-primary">View Full Profile</button>
                 </div>

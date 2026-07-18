@@ -17,8 +17,7 @@ import {
 } from 'lucide-react';
 import type { FC } from 'react';
 
-type NavItem  = { href: string; Icon: FC<LucideProps>; label: string };
-type NavGroup = { group: string; items: NavItem[] };
+
 
 const NAV: NavGroup[] = [
   {

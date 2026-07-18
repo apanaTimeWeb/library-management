@@ -112,7 +112,7 @@ export default function ManagerStudentsAdmissionSuccessModal({ data, onClose }: 
               ].map((r, i) => (
                 <div key={i} className="flex items-center justify-between">
                   <span className="text-xs font-medium text-text-secondary">{r.label}</span>
-                  <span className={`text-sm font-bold text-[color:var(--val-color)] ${(r as never as Record<string, string | boolean>).mono ? 'font-mono' : ''}`} style={{ '--val-color': (r as never as Record<string, string | boolean>).color as string } as React.CSSProperties}>
+                  <span className={`text-sm font-bold ${(r as never as Record<string, string | boolean>).mono ? 'font-mono' : ''} ${(r as never as Record<string, string | boolean>).color === 'var(--danger)' ? 'text-danger' : 'text-success'}`}>
                     {r.value}
                   </span>
                 </div>

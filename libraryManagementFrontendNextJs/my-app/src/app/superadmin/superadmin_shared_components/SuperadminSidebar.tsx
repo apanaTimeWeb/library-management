@@ -19,11 +19,9 @@ import {
   SuperadminDialogTitle,
 } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminDialog';
 
-type NavItem =
-  | { group: string }
-  | { href: string; icon: LucideIcon; label: string };
 
-const NAV: NavItem[] = [
+
+const NAV: any[] = [
   { href: SUPERADMIN_ROUTES.DASHBOARD, icon: LayoutDashboard, label: 'Dashboard' },
   { href: SUPERADMIN_ROUTES.LIBRARIES, icon: Building2, label: 'Libraries' },
   { href: SUPERADMIN_ROUTES.SUBSCRIPTIONS, icon: FileText, label: 'Subscriptions' },

@@ -11,7 +11,7 @@ import { SUPERADMIN_SUPPORT_MOCK_TICKETS } from '@/app/superadmin/superadmin_sup
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
-type Ticket = typeof SUPERADMIN_SUPPORT_MOCK_TICKETS[0];
+
 
 function TicketPanel({ tkt, onClose, onSave }: { tkt: Ticket; onClose: () => void; onSave: (t: Ticket) => void }) {
   const [status, setStatus] = useState(tkt.status);
@@ -102,7 +102,7 @@ export function SupportTicketsClient() {
   const colDefs = useMemo<any[]>(() => [
     {
       headerName: 'Subject / Ticket ID', field: 'subject', flex: 2, minWidth: 200,
-      cellRenderer: (p: ICellRendererParams<Ticket>) => (
+      cellRenderer: (p: ICellRendererParams<typeof SUPERADMIN_SUPPORT_MOCK_TICKETS[0]>) => (
         <div className="flex flex-col justify-center h-full">
           <p className="font-medium text-text-primary leading-tight">{p.data?.subject}</p>
           <div className="flex items-center gap-2 mt-1">
@@ -116,10 +116,10 @@ export function SupportTicketsClient() {
       ),
     },
     { headerName: 'Tenant', field: 'tenant', flex: 1.5, minWidth: 150,
-      cellRenderer: (p: ICellRendererParams<Ticket>) => <span className="font-medium text-text-primary">{p.value}</span> },
+      cellRenderer: (p: ICellRendererParams<typeof SUPERADMIN_SUPPORT_MOCK_TICKETS[0]>) => <span className="font-medium text-text-primary">{p.value}</span> },
     {
       headerName: 'Priority', field: 'priority', flex: 0.8, minWidth: 100,
-      cellRenderer: (p: ICellRendererParams<Ticket>) => (
+      cellRenderer: (p: ICellRendererParams<typeof SUPERADMIN_SUPPORT_MOCK_TICKETS[0]>) => (
         <div className="flex items-center h-full">
           {p.data?.priority === 'High'   && <span className="inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-[11px] font-semibold mt-1 bg-danger-bg text-danger"><AlertTriangle size={10} /> HIGH</span>}
           {p.data?.priority === 'Medium' && <span className="inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-[11px] font-semibold mt-1 bg-warning-bg text-warning">MEDIUM</span>}
@@ -129,7 +129,7 @@ export function SupportTicketsClient() {
     },
     {
       headerName: 'Status & Age', field: 'status', flex: 1, minWidth: 130,
-      cellRenderer: (p: ICellRendererParams<Ticket>) => (
+      cellRenderer: (p: ICellRendererParams<typeof SUPERADMIN_SUPPORT_MOCK_TICKETS[0]>) => (
         <div className="flex flex-col justify-center h-full">
           <p className={`${
             p.data?.status === 'Resolved' ? 'text-[11px] font-semibold text-success' :

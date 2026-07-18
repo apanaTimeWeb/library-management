@@ -11,8 +11,6 @@ interface Props {
   receiptData: SuperadminFinanceReceiptData;
   onClose: () => void;
   onPrint: () => void;
-}
-
 const MODE_LABELS: Record<SuperadminFinanceCollectFeeMode, string> = { cash: 'Cash', upi: 'UPI', card: 'Card', bank: 'Bank Transfer' };
 
 function maskPhone(phone: string): string {
@@ -20,7 +18,7 @@ function maskPhone(phone: string): string {
   return `${d.slice(0, 2)}****${d.slice(6)}`;
 }
 
-export function CollectFeeReceiptModal({ receiptData, onClose, onPrint }: Props) {
+export function CollectFeeReceiptModal({ receiptData, onClose, onPrint }: { receiptData: SuperadminFinanceReceiptData; onClose: () => void; onPrint: () => void; }) {
   return (
     <div className="fixed inset-0 z-40 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm transition-opacity" onClick={onClose} role="dialog" aria-modal="true">
       <div className="relative w-full max-w-2xl bg-card rounded-[var(--radius-xl)] shadow-2xl flex flex-col md:flex-row overflow-hidden animate-in fade-in zoom-in-95 duration-200" onClick={e => e.stopPropagation()}>

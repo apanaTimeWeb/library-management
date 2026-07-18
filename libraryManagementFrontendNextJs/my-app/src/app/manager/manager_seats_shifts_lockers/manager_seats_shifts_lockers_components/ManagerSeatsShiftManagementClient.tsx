@@ -111,7 +111,7 @@ export function ManagerSeatsShiftManagementClient() {
                       </p>
                     </div>
                     <div className="ss-occupancy-bar">
-                      <div className="ss-occupancy-bar__fill w-[var(--w)]" style={{ '--w': `${Math.round(((shift.occupancy || 0) / (shift.capacity || 1)) * 100)}%` } as React.CSSProperties} />
+                      <div className="ss-occupancy-bar__fill w-full" style={{ width: `${Math.round(((shift.occupancy || 0) / (shift.capacity || 1)) * 100)}%` }} />
                     </div>
                   </div>
 

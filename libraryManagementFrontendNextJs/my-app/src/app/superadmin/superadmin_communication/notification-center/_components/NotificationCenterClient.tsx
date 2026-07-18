@@ -6,7 +6,7 @@ import { ChevronRight, ArrowRight, CheckCheck, DollarSign, Phone, Handshake, Arm
 import { useNotificationCenterClient } from '@/app/superadmin/superadmin_communication/notification-center/_components/useNotificationCenterClient';
 import type { SuperadminCommunicationNotification as Notification } from '@/app/superadmin/superadmin_communication/superadmin_communication_types/SuperadminCommunicationTypes';
 
-type Category = 'All' | 'Finance' | 'CRM' | 'Operations' | 'Attendance' | 'High Only';
+
 
 const ICON_MAP: Record<string, React.ReactNode> = {
   DollarSign: <DollarSign size={20}/>,

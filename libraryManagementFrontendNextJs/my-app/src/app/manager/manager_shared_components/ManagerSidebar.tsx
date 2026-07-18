@@ -125,7 +125,7 @@ export default function ManagerSidebar({ collapsed, onToggle, mobileOpen, onMobi
             }
             const Icon = item.icon;
             const active = isActive(item.href);
-            const color = ICON_COLORS[i % ICON_COLORS.length];
+            
             return (
               <Link
                 key={item.href}
@@ -134,7 +134,7 @@ export default function ManagerSidebar({ collapsed, onToggle, mobileOpen, onMobi
                 title={(collapsed && !mobileOpen) ? item.label : undefined}
                 onClick={mobileOpen ? onMobileClose : undefined}
               >
-                <Icon size={15} className={`shrink-0 ${active ? 'text-current' : 'text-[color:var(--nav-color)]'}`} style={{ '--nav-color': color } as React.CSSProperties} />
+                <Icon size={15} className={`shrink-0 ${active ? 'text-primary' : 'text-text-secondary'}`} />
                 {(!collapsed || mobileOpen) && (
                   <span className="truncate">{item.label}</span>
                 )}

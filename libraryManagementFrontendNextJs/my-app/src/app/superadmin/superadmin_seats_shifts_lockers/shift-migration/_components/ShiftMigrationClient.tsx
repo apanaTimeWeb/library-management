@@ -15,7 +15,7 @@ const SHIFTS = [
   { name: 'Full Day',  seats: 1, rate: 50 },
 ];
 
-type PayMode = 'Cash' | 'UPI' | 'Card';
+
 
 function daysRemaining(validTill: string): number {
   const diff = new Date(validTill).getTime() - Date.now();
@@ -32,7 +32,7 @@ export function ShiftMigrationClient() {
   const [showCustomSlot, setShowCustomSlot]     = useState(false);
   const [customStart, setCustomStart]           = useState('');
   const [customEnd, setCustomEnd]               = useState('');
-  const [payMode, setPayMode]                   = useState<PayMode>('Cash');
+  const [payMode, setPayMode]                   = useState<string>('Cash');
   const [txnId, setTxnId]                       = useState('');
   const [remark, setRemark]                     = useState('');
   const [showConfirm, setShowConfirm]           = useState(false);

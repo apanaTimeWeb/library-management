@@ -70,7 +70,7 @@ export function ManagerSeatsShiftMigrationClient() {
 
         <div className="ss-stepper">
           <div className="ss-stepper__track" />
-          <div className="ss-stepper__progress w-[var(--w)]" style={{ '--w': `${((step - 1) / 2) * 100}%` } as React.CSSProperties} />
+          <div className="ss-stepper__progress w-full" style={{ width: `${((step - 1) / 2) * 100}%` }} />
           <div className="ss-stepper__steps">
             {STEPS.map(s => (
               <div key={s.n} className="ss-stepper__step">
