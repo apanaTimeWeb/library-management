@@ -40,7 +40,7 @@ export function AdminCommunicationComplaintsClient() {
         status: c.status === 'open' ? 'Open' : (c.status === 'resolved' ? 'Resolved' : 'In-Progress'),
         student: String(c.student || c.studentName || 'Mock Student (S-001)'),
       }));
-      setComplaints(mapped);
+      setComplaints(mapped as unknown as Complaint[]);
     }).catch(e => logger.error('Complaints fetch failed:', e));
   }, []);
   

@@ -42,7 +42,7 @@ export function AdminCommunicationNoticesClient() {
         validTill: n.validTill ? new Date(n.validTill as string).toISOString().split('T')[0] : new Date(Date.now() + 7 * 86400000).toISOString().split('T')[0],
         status: (n.validTill && new Date(n.validTill as string) < new Date()) ? 'Expired' : 'Active',
       }));
-      setNotices(mapped);
+      setNotices(mapped as unknown as any[]);
     }).catch(e => logger.error('Notices fetch failed:', e));
   }, []);
 
