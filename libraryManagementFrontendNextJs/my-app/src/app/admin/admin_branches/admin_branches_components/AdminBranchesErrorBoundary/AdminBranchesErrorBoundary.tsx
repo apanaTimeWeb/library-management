@@ -1,6 +1,5 @@
-'use client';
-
 // RESPONSIBILITY: Typed Error Boundary component specific to the admin_branches module.
+'use client';
 // DATA FLOW: Error -> AdminBranchesErrorBoundary -> Fallback UI
 
 import React from 'react';

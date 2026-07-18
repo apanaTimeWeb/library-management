@@ -1,5 +1,5 @@
-'use client';
 // RESPONSIBILITY: Renders the top header for the admin_crm sub-module. Receives onMenuClick via props. No API calls.
+'use client';
 // DATA FLOW: AdminCrmLayout -> AdminCrmHeader
 
 import { BellRing, Building2, Menu } from 'lucide-react';

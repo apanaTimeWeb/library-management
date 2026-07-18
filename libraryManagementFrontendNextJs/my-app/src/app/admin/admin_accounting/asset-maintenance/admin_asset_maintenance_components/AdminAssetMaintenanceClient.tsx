@@ -1,6 +1,7 @@
 // RESPONSIBILITY: Renders the AdminAssetMaintenanceClient component.
 'use client';
 
+
 import { useState } from 'react';
 import { Search, Plus, Filter, IndianRupee } from 'lucide-react';
 import { useAdminAssetMaintenance } from '@/app/admin/admin_accounting/asset-maintenance/admin_asset_maintenance_hooks/useAdminAssetMaintenance';
@@ -9,6 +10,7 @@ import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { TablePagination } from '@/components/ui/table-pagination';
 
 function StatusBadge({ value }: { value: string }) {
   if (!value) return null;
@@ -50,6 +52,9 @@ export function AdminAssetMaintenanceClient() {
     handleCreateMaintenance,
     handleResetFilters,
   } = useAdminAssetMaintenance();
+
+  const [page, setPage] = useState(1);
+  const [limit, setLimit] = useState(10);
 
   const [isAddOpen, setIsAddOpen] = useState(false);
 
@@ -114,8 +119,8 @@ export function AdminAssetMaintenanceClient() {
       <Card className="flex-1 shadow-none border-border overflow-hidden flex flex-col min-h-96">
         {fetchState === 'loading' && maintenance.length === 0 ? (
           <div className="flex items-center justify-center h-full text-muted-foreground">Loading maintenance tasks…</div>
-        ) : (
-          <div className="w-full overflow-x-auto">
+        ) : (<>
+            <div className="w-full overflow-x-auto">
             <table className="w-full text-sm text-left">
               <thead className="bg-muted/30 border-y text-muted-foreground text-xs font-medium uppercase tracking-wider sticky top-0 z-10">
                 <tr>
@@ -128,7 +133,7 @@ export function AdminAssetMaintenanceClient() {
                 </tr>
               </thead>
               <tbody className="divide-y divide-border">
-                {maintenance.map((task, index) => (
+                {maintenance.slice((page - 1) * limit, page * limit).map((task, index) => (
                   <tr key={index} className="hover:bg-muted/10 transition-colors">
                     <td className="px-4 py-4 text-muted-foreground text-xs">{task.date}</td>
                     <td className="px-4 py-4 font-semibold text-foreground">{task.assetName}</td>
@@ -154,6 +159,14 @@ export function AdminAssetMaintenanceClient() {
               </tbody>
             </table>
           </div>
+          <TablePagination
+            page={page}
+            limit={limit}
+            totalItems={maintenance.length}
+            onPageChange={setPage}
+            onLimitChange={setLimit}
+          />
+          </>
         )}
       </Card>
 

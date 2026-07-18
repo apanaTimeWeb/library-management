@@ -1,6 +1,8 @@
 // RESPONSIBILITY: Renders the AllocationsClient component.
 'use client';
 
+
+import { useState } from 'react';
 import { Download, Eye } from 'lucide-react';
 import toast from 'react-hot-toast';
 import { useAllocations } from '@/app/admin/admin_seats_shifts_lockers/allocations/admin_seats_shifts_lockers_hooks/useAllocations';
@@ -8,6 +10,7 @@ import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { TablePagination } from '@/components/ui/table-pagination';
 
 export function AllocationsClient() {
   const {
@@ -21,6 +24,9 @@ export function AllocationsClient() {
     setDateTo,
     filtered
   } = useAllocations();
+
+  const [page, setPage] = useState(1);
+  const [limit, setLimit] = useState(10);
 
   const getStatusBadge = (status: string) => {
     switch (status) {
@@ -124,7 +130,7 @@ export function AllocationsClient() {
                   </td>
                 </tr>
               ) : (
-                filtered.map((a, i) => (
+                filtered.slice((page - 1) * limit, page * limit).map((a, i) => (
                   <tr key={i} className="hover:bg-muted/10 transition-colors">
                     <td className="px-5 py-3">
                       <div className="flex flex-col">
@@ -157,7 +163,14 @@ export function AllocationsClient() {
               )}
             </tbody>
           </table>
-        </div>
+          </div>
+          <TablePagination
+            page={page}
+            limit={limit}
+            totalItems={filtered.length}
+            onPageChange={setPage}
+            onLimitChange={setLimit}
+          />
       </Card>
     </div>
   );

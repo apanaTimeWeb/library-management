@@ -1,6 +1,5 @@
-'use client';
-
 // RESPONSIBILITY: Renders the Next.js native loading skeleton for the admin_expense-categories module.
+'use client';
 // DATA FLOW: Next.js Router -> loading.tsx
 
 export default function Loading() {

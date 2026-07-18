@@ -1,6 +1,5 @@
-'use client';
-
 // RESPONSIBILITY: Typed Error Boundary component specific to the admin_finance module.
+'use client';
 // DATA FLOW: Error -> AdminFinanceErrorBoundary -> Fallback UI
 
 import React from 'react';

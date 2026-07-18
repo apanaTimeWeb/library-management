@@ -1,6 +1,8 @@
 // RESPONSIBILITY: Renders the FinanceAutoSuspendClient component.
 'use client';
 
+
+import { useState } from 'react';
 import toast from 'react-hot-toast';
 import { Settings, Ban, RotateCcw, Bell, Save, UserCheck, ShieldAlert, X } from 'lucide-react';
 import { useFinanceAutoSuspend } from '@/app/admin/admin_finance/auto-suspend/admin_finance_auto_suspend_hooks/useFinanceAutoSuspend';
@@ -8,6 +10,7 @@ import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Input } from '@/components/ui/input';
+import { TablePagination } from '@/components/ui/table-pagination';
 
 export function FinanceAutoSuspendClient() {
   const {
@@ -28,6 +31,9 @@ export function FinanceAutoSuspendClient() {
     handleSave,
     handleRestore
   } = useFinanceAutoSuspend();
+
+  const [page, setPage] = useState(1);
+  const [limit, setLimit] = useState(10);
 
   const KPI_CARDS = [
     { label: 'Days Before Suspend', value: configLoading ? '—' : config?.daysBeforeSuspend, icon: Settings, variant: 'default' },
@@ -145,7 +151,7 @@ export function FinanceAutoSuspendClient() {
                   </td>
                 </tr>
               ) : (
-                suspended.map((s) => (
+                suspended.slice((page - 1) * limit, page * limit).map((s) => (
                   <tr key={s.id} className="hover:bg-muted/10 transition-colors">
                     <td className="px-5 py-4">
                       <div className="font-bold text-sm text-primary">{s.studentName}</div>
@@ -187,7 +193,14 @@ export function FinanceAutoSuspendClient() {
               )}
             </tbody>
           </table>
-        </div>
+          </div>
+          <TablePagination
+            page={page}
+            limit={limit}
+            totalItems={suspended.length}
+            onPageChange={setPage}
+            onLimitChange={setLimit}
+          />
       </Card>
 
       {/* Manual Restore Modal */}

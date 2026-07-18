@@ -1,6 +1,8 @@
 // RESPONSIBILITY: Renders the FinanceReceiptClient component.
 'use client';
 
+
+import { useState } from 'react';
 import Link from 'next/link';
 import { Search, Receipt, Eye, Printer, Send } from 'lucide-react';
 import { formatCurrency, formatDate } from '@/app/admin/admin_finance/admin_finance_utils/format';
@@ -9,6 +11,7 @@ import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Input } from '@/components/ui/input';
+import { TablePagination } from '@/components/ui/table-pagination';
 
 export function FinanceReceiptClient() {
   const {
@@ -21,6 +24,9 @@ export function FinanceReceiptClient() {
     handleWhatsApp,
     handlePrint
   } = useFinanceReceipt();
+
+  const [page, setPage] = useState(1);
+  const [limit, setLimit] = useState(10);
 
   const getModeBadge = (mode: string) => {
     switch(mode.toLowerCase()) {
@@ -121,7 +127,7 @@ export function FinanceReceiptClient() {
                   </td>
                 </tr>
               ) : (
-                filteredReceipts.map((r) => (
+                filteredReceipts.slice((page - 1) * limit, page * limit).map((r) => (
                   <tr key={r.id} className="hover:bg-muted/10 transition-colors">
                     <td className="px-5 py-4">
                       <span className="font-mono text-sm font-medium text-primary">{r.receiptNumber}</span>
@@ -176,7 +182,14 @@ export function FinanceReceiptClient() {
               )}
             </tbody>
           </table>
-        </div>
+          </div>
+          <TablePagination
+            page={page}
+            limit={limit}
+            totalItems={filteredReceipts.length}
+            onPageChange={setPage}
+            onLimitChange={setLimit}
+          />
       </Card>
     </div>
   );

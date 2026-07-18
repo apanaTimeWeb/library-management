@@ -1,11 +1,11 @@
-'use client';
-
 // RESPONSIBILITY: Client view rendering shift gap analysis (`Rule 1`, `Rule 36`, `Rule 57`).
+'use client';
 // DATA FLOW: Static Mock -> AdminAccountingShiftGapAnalyzerClient (`Rule 39`).
 
 import { useState } from 'react';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
+import { TablePagination } from '@/components/ui/table-pagination';
 
 type ShiftGap = {
   shift: string;
@@ -35,6 +35,8 @@ const DAY_GAPS: DayGap[] = [
 ];
 
 export function AdminAccountingShiftGapAnalyzerClient() {
+  const [page, setPage] = useState(1);
+  const [limit, setLimit] = useState(10);
   const [shiftFilter, setShiftFilter] = useState('all');
 
   const visibleDays = shiftFilter === 'all' ? DAY_GAPS : DAY_GAPS.filter(d => d.shift === shiftFilter);
@@ -125,7 +127,7 @@ export function AdminAccountingShiftGapAnalyzerClient() {
             </tr>
           </thead>
           <tbody className="divide-y divide-border">
-            {visibleDays.map((d) => (
+            {visibleDays.slice((page - 1) * limit, page * limit).map((d) => (
               <tr key={`daygap-${d.date}-${d.seatNo}-${d.shift}`} className="hover:bg-muted/30 transition-colors">
                 <td className="py-4 px-4 text-muted-foreground font-medium">{d.date}</td>
                 <td className="py-4 px-4 text-foreground">{d.shift}</td>

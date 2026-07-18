@@ -1,7 +1,8 @@
 // RESPONSIBILITY: Renders the seat occupancy grid matrix with shift/fee filters and assignment navigation.
+'use client';
 // DATA FLOW: AdminDashboardPage / Seat Management -> AdminReusableSeatMatrixGrid -> AdminReusableSeatCell
 
-'use client';
+
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';

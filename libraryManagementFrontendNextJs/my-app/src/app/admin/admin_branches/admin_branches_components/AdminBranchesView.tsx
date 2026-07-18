@@ -1,5 +1,6 @@
-// RESPONSIBILITY: Renders the AdminBranchesView component.
 'use client';
+import { useState } from 'react';
+// RESPONSIBILITY: Renders the AdminBranchesView component.
 
 import { Plus, Pencil, Trash2, CheckCircle, Search, AlertTriangle } from 'lucide-react';
 import { useAdminBranches, type Branch } from '@/app/admin/admin_branches/admin_branches_hooks/useAdminBranches';
@@ -8,12 +9,16 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from '@/components/ui/dialog';
+import { TablePagination } from '@/components/ui/table-pagination';
 
 interface AdminBranchesViewProps {
   initialBranches: Branch[];
 }
 
 export function AdminBranchesView({ initialBranches }: AdminBranchesViewProps) {
+  const [page, setPage] = useState(1);
+  const [limit, setLimit] = useState(10);
+
   const {
     branches,
     filtered,
@@ -77,7 +82,7 @@ export function AdminBranchesView({ initialBranches }: AdminBranchesViewProps) {
             </thead>
             <tbody className="divide-y divide-border">
               {filtered.length > 0 ? (
-                filtered.map((branch) => (
+                filtered.slice((page - 1) * limit, page * limit).map((branch) => (
                   <tr key={branch.id} className="hover:bg-muted/30 transition-colors">
                     <td className="px-6 py-4 font-medium text-foreground">{branch.name}</td>
                     <td className="px-6 py-4 text-muted-foreground">{branch.city}</td>
@@ -125,7 +130,14 @@ export function AdminBranchesView({ initialBranches }: AdminBranchesViewProps) {
               )}
             </tbody>
           </table>
-        </div>
+          </div>
+          <TablePagination
+            page={page}
+            limit={limit}
+            totalItems={filtered.length}
+            onPageChange={setPage}
+            onLimitChange={setLimit}
+          />
       </div>
 
       {/* Add / Edit Modal */}

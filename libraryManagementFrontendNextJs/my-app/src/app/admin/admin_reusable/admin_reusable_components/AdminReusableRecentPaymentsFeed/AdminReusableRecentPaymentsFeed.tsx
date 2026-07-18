@@ -1,5 +1,6 @@
-// RESPONSIBILITY: Renders the AdminReusableRecentPaymentsFeed component.
 'use client';
+import { useState } from 'react';
+// RESPONSIBILITY: Renders the AdminReusableRecentPaymentsFeed component.
 
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
@@ -7,6 +8,7 @@ import { ExternalLink } from 'lucide-react';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { ADMIN_ROUTES } from '@/app/admin/admin_url_config';
+import { TablePagination } from '@/components/ui/table-pagination';
 
 export interface AdminReusablePayment {
   name: string;
@@ -62,7 +64,7 @@ export default function AdminReusableRecentPaymentsFeed({ payments }: { payments
             </tr>
           </thead>
           <tbody className="divide-y divide-border">
-            {payments.map((payment, index) => (
+            {payments.slice((page - 1) * limit, page * limit).map((payment, index) => (
               <tr 
                 key={index}
                 className="hover:bg-muted/10 transition-colors cursor-pointer"

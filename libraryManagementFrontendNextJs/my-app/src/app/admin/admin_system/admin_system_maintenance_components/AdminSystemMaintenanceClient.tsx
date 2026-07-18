@@ -1,14 +1,20 @@
 // RESPONSIBILITY: Renders the AdminSystemMaintenanceClient component.
 'use client';
+
+import { useState } from 'react';
 import { KpiCard } from '@/app/admin/admin_system/admin_system_components/AdminSystemKpiCard/AdminSystemKpiCard';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/app/admin/admin_system/admin_system_components/AdminSystemCard/AdminSystemCard';
 import { Badge } from '@/app/admin/admin_system/admin_system_components/AdminSystemBadge/AdminSystemBadge';
 import { Button } from '@/app/admin/admin_system/admin_system_components/AdminSystemButton/AdminSystemButton';
 import { Wrench, Package, Lock, ChevronRight } from 'lucide-react';
 import { useAdminSystemMaintenance } from '@/app/admin/admin_system/admin_system_maintenance_hooks/useAdminSystemMaintenance';
+import { TablePagination } from '@/components/ui/table-pagination';
 
 export function AdminSystemMaintenanceClient() {
   const { seatsNeedingAttention, assetsOverdue, lockerIssues, seats, assets, lockers } = useAdminSystemMaintenance();
+
+  const [page, setPage] = useState(1);
+  const [limit, setLimit] = useState(10);
 
   return (
     <div>
@@ -51,7 +57,7 @@ export function AdminSystemMaintenanceClient() {
                 </tr>
               </thead>
               <tbody className="divide-y divide-outline-variant/30">
-                {seats.map((seat) => (
+                {seats.slice((page - 1) * limit, page * limit).map((seat) => (
                   <tr key={seat.id} className="hover:bg-bg-card transition-colors">
                     <td className="py-3 pr-4 font-mono font-medium text-text-primary">{seat.id}</td>
                     <td className="py-3 pr-4">
@@ -71,6 +77,13 @@ export function AdminSystemMaintenanceClient() {
               </tbody>
             </table>
           </div>
+          <TablePagination
+            page={page}
+            limit={limit}
+            totalItems={seats.length}
+            onPageChange={setPage}
+            onLimitChange={setLimit}
+          />
         </CardContent>
       </Card>
 

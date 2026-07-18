@@ -1,5 +1,5 @@
-'use client';
 // RESPONSIBILITY: Renders the Tabs component for the admin_system module.
+'use client';
 // DATA FLOW: Parent -> AdminSystemTabs -> DOM
 
 import * as TabsPrimitive from '@radix-ui/react-tabs';

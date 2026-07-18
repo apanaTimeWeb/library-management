@@ -1,7 +1,5 @@
-'use client';
-
-
 // RESPONSIBILITY: Entry page for the admin_crm module.
+'use client';
 // DATA FLOW: Next.js Router -> Page -> Components
 
 import { useRouter } from 'next/navigation';

@@ -1,6 +1,5 @@
-'use client';
-
 // RESPONSIBILITY: Renders the top header for the admin module.
+'use client';
 // DATA FLOW: AdminRoute -> AdminHeader
 
 import { Building2, Bell, Menu } from 'lucide-react';

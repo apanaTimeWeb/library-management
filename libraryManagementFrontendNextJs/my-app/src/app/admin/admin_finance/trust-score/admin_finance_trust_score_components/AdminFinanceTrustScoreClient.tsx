@@ -1,7 +1,10 @@
 // RESPONSIBILITY: Renders the AdminFinanceTrustScoreClient component.
 'use client';
+
+import { useState } from 'react';
 import { ShieldCheck, ShieldAlert, ShieldX, Users } from 'lucide-react';
 import { useAdminFinanceTrustScore } from '@/app/admin/admin_finance/trust-score/admin_finance_trust_score_hooks/useAdminFinanceTrustScore';
+import { TablePagination } from '@/components/ui/table-pagination';
 
 const BADGE_CLASS: Record<string, string> = {
   reliable: 'fin-badge fin-badge--success',
@@ -34,6 +37,9 @@ export function AdminFinanceTrustScoreClient() {
     isLoading, filtered, lowTrust, avg,
     totalCount
   } = useAdminFinanceTrustScore();
+
+  const [page, setPage] = useState(1);
+  const [limit, setLimit] = useState(10);
 
   return (
     <div className="space-y-6">
@@ -116,7 +122,7 @@ export function AdminFinanceTrustScoreClient() {
                 </td>
               </tr>
             ) : (
-              filtered.map((s) => {
+              filtered.slice((page - 1) * limit, page * limit).map((s) => {
                 const Icon = BADGE_ICON[s.badge] || ShieldCheck;
                 return (
                   <tr key={s.smartId} className="fin-table-hover-row fin-table-row">
@@ -152,7 +158,14 @@ export function AdminFinanceTrustScoreClient() {
             )}
           </tbody>
         </table>
-      </div>
+          </div>
+          <TablePagination
+            page={page}
+            limit={limit}
+            totalItems={filtered.length}
+            onPageChange={setPage}
+            onLimitChange={setLimit}
+          />
     </div>
   );
 }

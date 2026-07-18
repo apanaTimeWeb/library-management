@@ -1,6 +1,5 @@
-'use client';
-
 // RESPONSIBILITY: Standardized empty state component for lists/tables in the admin_blacklist module.
+'use client';
 // DATA FLOW: Parent -> AdminBlacklistEmptyState -> DOM
 
 interface Props {

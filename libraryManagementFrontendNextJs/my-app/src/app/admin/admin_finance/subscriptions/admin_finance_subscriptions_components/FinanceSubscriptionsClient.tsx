@@ -1,12 +1,15 @@
 // RESPONSIBILITY: Renders the FinanceSubscriptionsClient component.
 'use client';
 
+
+import { useState } from 'react';
 import { RefreshCw, Eye } from 'lucide-react';
 import { formatCurrency } from '@/app/admin/admin_finance/admin_finance_utils/format';
 import { useFinanceSubscriptions } from '@/app/admin/admin_finance/subscriptions/admin_finance_subscriptions_hooks/useFinanceSubscriptions';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
+import { TablePagination } from '@/components/ui/table-pagination';
 
 export function FinanceSubscriptionsClient() {
   const {
@@ -21,6 +24,9 @@ export function FinanceSubscriptionsClient() {
     handleRenew,
     handleView
   } = useFinanceSubscriptions();
+
+  const [page, setPage] = useState(1);
+  const [limit, setLimit] = useState(10);
 
   const getStatusBadge = (status: string) => {
     switch (status) {
@@ -126,7 +132,7 @@ export function FinanceSubscriptionsClient() {
                   </td>
                 </tr>
               ) : (
-                rows.map((s) => (
+                rows.slice((page - 1) * limit, page * limit).map((s) => (
                   <tr key={s.id} className="hover:bg-muted/10 transition-colors">
                     <td className="px-5 py-3 font-bold text-sm text-primary">{s.studentName}</td>
                     <td className="px-5 py-3 text-xs font-mono text-muted-foreground">{s.smartId}</td>
@@ -175,7 +181,14 @@ export function FinanceSubscriptionsClient() {
               )}
             </tbody>
           </table>
-        </div>
+          </div>
+          <TablePagination
+            page={page}
+            limit={limit}
+            totalItems={rows.length}
+            onPageChange={setPage}
+            onLimitChange={setLimit}
+          />
       </Card>
     </div>
   );

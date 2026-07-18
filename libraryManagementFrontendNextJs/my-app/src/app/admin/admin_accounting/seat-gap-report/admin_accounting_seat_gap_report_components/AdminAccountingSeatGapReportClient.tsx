@@ -1,6 +1,5 @@
-'use client';
-
 // RESPONSIBILITY: Client view rendering seat gap report (`Rule 1`, `Rule 36`).
+'use client';
 // DATA FLOW: Static Mock -> AdminAccountingSeatGapReportClient (`Rule 39`).
 
 import { useState } from 'react';
@@ -8,6 +7,7 @@ import { Download } from 'lucide-react';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
+import { TablePagination } from '@/components/ui/table-pagination';
 
 type GapRow = {
   seatNo: string;
@@ -29,6 +29,8 @@ const MOCK: GapRow[] = [
 ];
 
 export function AdminAccountingSeatGapReportClient() {
+  const [page, setPage] = useState(1);
+  const [limit, setLimit] = useState(10);
   const [shiftFilter, setShiftFilter] = useState('all');
   const [statusFilter, setStatusFilter] = useState('all');
 
@@ -100,7 +102,7 @@ export function AdminAccountingSeatGapReportClient() {
           <tbody className="divide-y divide-border">
             {visible.length === 0 ? (
               <tr><td colSpan={7} className="py-12 text-center text-muted-foreground">No gap seats found.</td></tr>
-            ) : visible.map(r => (
+            ) : visible.slice((page - 1) * limit, page * limit).map(r => (
               <tr key={`${r.seatNo}-${r.shift}`} className="hover:bg-muted/30 transition-colors">
                 <td className="py-4 px-4 font-bold text-foreground">{r.seatNo}</td>
                 <td className="py-4 px-4 text-muted-foreground">{r.shift}</td>

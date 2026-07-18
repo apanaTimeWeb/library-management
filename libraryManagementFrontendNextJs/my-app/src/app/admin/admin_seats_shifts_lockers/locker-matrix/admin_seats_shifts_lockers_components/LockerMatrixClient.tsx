@@ -1,6 +1,7 @@
 // RESPONSIBILITY: Renders the LockerMatrixClient component.
 'use client';
 
+
 import { LockKeyhole, Settings, Zap, X } from 'lucide-react';
 import { useLockerMatrix } from '@/app/admin/admin_seats_shifts_lockers/locker-matrix/admin_seats_shifts_lockers_hooks/useLockerMatrix';
 import { Card } from '@/components/ui/card';

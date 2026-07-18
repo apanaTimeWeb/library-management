@@ -1,6 +1,8 @@
 // RESPONSIBILITY: Renders the SeatHistoryClient component.
 'use client';
 
+
+import { useState } from 'react';
 import { Download, Search } from 'lucide-react';
 import toast from 'react-hot-toast';
 import { useSeatHistory } from '@/app/admin/admin_seats_shifts_lockers/seat-history/admin_seats_shifts_lockers_hooks/useSeatHistory';
@@ -8,6 +10,7 @@ import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { TablePagination } from '@/components/ui/table-pagination';
 
 export function SeatHistoryClient() {
   const {
@@ -21,6 +24,9 @@ export function SeatHistoryClient() {
     setDateTo,
     filtered
   } = useSeatHistory();
+
+  const [page, setPage] = useState(1);
+  const [limit, setLimit] = useState(10);
 
   const getReasonBadge = (reason: string) => {
     switch (reason) {
@@ -111,7 +117,7 @@ export function SeatHistoryClient() {
                   </td>
                 </tr>
               ) : (
-                filtered.map((h, i) => (
+                filtered.slice((page - 1) * limit, page * limit).map((h, i) => (
                   <tr key={i} className="hover:bg-muted/10 transition-colors">
                     <td className="px-5 py-4 text-sm font-black text-primary">{h.seatNo}</td>
                     <td className="px-5 py-4 font-bold text-sm text-primary">{h.studentName}</td>
@@ -130,7 +136,14 @@ export function SeatHistoryClient() {
               )}
             </tbody>
           </table>
-        </div>
+          </div>
+          <TablePagination
+            page={page}
+            limit={limit}
+            totalItems={filtered.length}
+            onPageChange={setPage}
+            onLimitChange={setLimit}
+          />
       </Card>
     </div>
   );

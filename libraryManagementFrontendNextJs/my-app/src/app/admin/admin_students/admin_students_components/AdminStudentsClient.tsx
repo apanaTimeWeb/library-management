@@ -1,5 +1,6 @@
-// RESPONSIBILITY: Renders the AdminStudentsClient component.
 'use client';
+import { useState } from 'react';
+// RESPONSIBILITY: Renders the AdminStudentsClient component.
 
 import { Download, Search } from 'lucide-react';
 import { useAdminStudents } from '@/app/admin/admin_students/admin_students_hooks/useAdminStudents';
@@ -7,8 +8,12 @@ import type { AdminStudentsClientProps } from '@/app/admin/admin_students/admin_
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
+import { TablePagination } from '@/components/ui/table-pagination';
 
 export function AdminStudentsClient({ initialStudents }: AdminStudentsClientProps) {
+  const [page, setPage] = useState(1);
+  const [limit, setLimit] = useState(10);
+
   const { search, setSearch, selectedBranch, filteredStudents } = useAdminStudents(initialStudents);
 
   return (
@@ -52,7 +57,7 @@ export function AdminStudentsClient({ initialStudents }: AdminStudentsClientProp
               </tr>
             </thead>
             <tbody className="divide-y divide-border">
-              {filteredStudents.map((student) => (
+              {filteredStudents.slice((page - 1) * limit, page * limit).map((student) => (
                 <tr 
                   key={student.id} 
                   className="hover:bg-bg-page transition-colors group cursor-pointer"
@@ -88,7 +93,14 @@ export function AdminStudentsClient({ initialStudents }: AdminStudentsClientProp
               )}
             </tbody>
           </table>
-        </div>
+          </div>
+          <TablePagination
+            page={page}
+            limit={limit}
+            totalItems={filteredStudents.length}
+            onPageChange={setPage}
+            onLimitChange={setLimit}
+          />
       </div>
     </div>
   );

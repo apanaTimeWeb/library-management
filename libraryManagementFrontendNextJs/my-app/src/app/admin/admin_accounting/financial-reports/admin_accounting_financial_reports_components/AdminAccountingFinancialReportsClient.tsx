@@ -1,6 +1,5 @@
-'use client';
-
 // RESPONSIBILITY: Client view rendering financial reports with fixed keys and tailwind classes (`Rule 1`, `Rule 36`, `Rule 57`).
+'use client';
 // DATA FLOW: Store -> AdminAccountingFinancialReportsClient (`Rule 39`).
 
 import { useState } from 'react';

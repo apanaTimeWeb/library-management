@@ -1,6 +1,5 @@
-'use client';
-
 // RESPONSIBILITY: Standardized empty state component for lists/tables in the admin_branches module.
+'use client';
 // DATA FLOW: Parent -> AdminBranchesEmptyState -> DOM
 
 interface Props {

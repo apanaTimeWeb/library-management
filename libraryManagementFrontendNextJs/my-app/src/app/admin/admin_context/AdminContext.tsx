@@ -1,6 +1,5 @@
-'use client';
-
 // RESPONSIBILITY: Provides global admin state like selectedBranch.
+'use client';
 // DATA FLOW: AdminRoute -> AdminProvider -> Any Admin Component
 
 import React, { createContext, useContext, useState, useMemo } from 'react';

@@ -1,8 +1,8 @@
-'use client';
-
 // RESPONSIBILITY: Client view component rendering expenses table, search filter, and branch context (`Rule 1`, `Rule 8`).
+'use client';
 // DATA FLOW: useAdminExpenses -> AdminExpensesClient -> Table (`Rule 39`).
 
+import { useState } from 'react';
 import { Search, Download, IndianRupee } from 'lucide-react';
 import { useAdminExpenses } from '@/app/admin/admin_expenses/admin_expenses_hooks/useAdminExpenses';
 import { AdminExpensesSkeleton } from '@/app/admin/admin_expenses/admin_expenses_components/AdminExpensesSkeleton';
@@ -11,6 +11,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
 import { Card } from '@/components/ui/card';
+import { TablePagination } from '@/components/ui/table-pagination';
 
 export function AdminExpensesClient() {
   const {
@@ -22,6 +23,9 @@ export function AdminExpensesClient() {
     setSearchInput,
     handleResetSearch,
   } = useAdminExpenses();
+
+  const [page, setPage] = useState(1);
+  const [limit, setLimit] = useState(10);
 
   if (fetchState === 'loading' && expenses.length === 0) {
     return <AdminExpensesSkeleton />;
@@ -84,7 +88,7 @@ export function AdminExpensesClient() {
                 </tr>
               </thead>
               <tbody className="divide-y divide-border">
-                {expenses.map((expense, idx) => (
+                {expenses.slice((page - 1) * limit, page * limit).map((expense, idx) => (
                   <tr key={`${expense.id}-${idx}`} className="hover:bg-muted/30 transition-colors">
                     <td className="px-6 py-3 text-xs text-muted-foreground">{expense.date}</td>
                     <td className="px-6 py-3 font-medium text-foreground">{expense.category}</td>
@@ -114,6 +118,13 @@ export function AdminExpensesClient() {
               </tbody>
             </table>
           </div>
+          <TablePagination
+            page={page}
+            limit={limit}
+            totalItems={expenses.length}
+            onPageChange={setPage}
+            onLimitChange={setLimit}
+          />
         </Card>
       )}
     </div>

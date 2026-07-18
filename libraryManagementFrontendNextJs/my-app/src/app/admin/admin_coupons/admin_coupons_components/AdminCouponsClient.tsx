@@ -1,6 +1,5 @@
-'use client';
-
 // RESPONSIBILITY: Client view component rendering coupons table, KPIs, search bar, and detail drawer (`Rule 1`, `Rule 8`, `Rule 19`, `Rule 49`).
+'use client';
 // DATA FLOW: useAdminCoupons -> AdminCouponsClient -> Table / Add Dialog / Detail Drawer (`Rule 39`).
 
 import { useState, useCallback } from 'react';
@@ -12,12 +11,16 @@ import { AdminCouponsAddDialog } from '@/app/admin/admin_coupons/admin_coupons_c
 import { CouponRecord } from '@/app/admin/admin_coupons/admin_coupons_types/admin_coupons_types';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { TablePagination } from '@/components/ui/table-pagination';
 import { Badge } from '@/components/ui/badge';
 import { Card } from '@/components/ui/card';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from '@/components/ui/dialog';
 import toast from 'react-hot-toast';
 
 function CodeCell({ value }: { value: string }) {
+  const [page, setPage] = useState(1);
+  const [limit, setLimit] = useState(10);
+
   const [copied, setCopied] = useState(false);
 
   const handleCopy = useCallback((e: React.MouseEvent) => {
@@ -101,6 +104,11 @@ export function AdminCouponsClient() {
     handleCreateCoupon,
     handleDeleteCoupon,
     handleResetSearch,
+    page,
+    limit,
+    totalCoupons,
+    setPage,
+    setLimit,
   } = useAdminCoupons();
 
   const [isAddOpen, setIsAddOpen] = useState(false);
@@ -224,6 +232,13 @@ export function AdminCouponsClient() {
               </tbody>
             </table>
           </div>
+          <TablePagination
+            page={page}
+            limit={limit}
+            totalItems={totalCoupons}
+            onPageChange={setPage}
+            onLimitChange={setLimit}
+          />
         </Card>
       )}
 

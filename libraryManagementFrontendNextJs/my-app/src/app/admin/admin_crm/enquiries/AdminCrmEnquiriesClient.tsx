@@ -1,6 +1,8 @@
 // RESPONSIBILITY: Renders the AdminCrmEnquiriesClient component.
 'use client';
 
+
+import { useState } from 'react';
 import {
   Search, LayoutGrid, List, Plus, Phone,
   CheckCircle, XCircle, MoreHorizontal, PhoneCall,
@@ -18,6 +20,7 @@ import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
+import { TablePagination } from '@/components/ui/table-pagination';
 
 function StatusBadge({ status }: { status: EnquiryStatus }) {
   const getBadgeClass = (s: EnquiryStatus) => {
@@ -90,6 +93,9 @@ export default function AdminCrmEnquiriesClient() {
     handleQuickLost,
     router
   } = useAdminCrmEnquiries();
+
+  const [page, setPage] = useState(1);
+  const [limit, setLimit] = useState(10);
 
   if (fetchState === 'loading') {
     return (
@@ -234,7 +240,7 @@ export default function AdminCrmEnquiriesClient() {
                  <Plus size={15} /> Add Enquiry
                </Button>
              </div>
-          ) : (
+          ) : (<>
             <div className="w-full overflow-x-auto flex-1">
               <table className="w-full text-sm text-left">
                 <thead className="bg-muted/30 border-b text-muted-foreground text-xs font-medium uppercase tracking-wider sticky top-0 z-10">
@@ -251,7 +257,7 @@ export default function AdminCrmEnquiriesClient() {
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-border">
-                  {filtered.map((enq, idx) => (
+                  {filtered.slice((page - 1) * limit, page * limit).map((enq, idx) => (
                     <tr
                       key={enq.id}
                       onClick={() => router.push(`${ADMIN_ROUTES.CRM_ENQUIRIES}/${enq.id}`)}
@@ -302,8 +308,16 @@ export default function AdminCrmEnquiriesClient() {
                   ))}
                 </tbody>
               </table>
-            </div>
-          )}
+          </div>
+          <TablePagination
+            page={page}
+            limit={limit}
+            totalItems={filtered.length}
+            onPageChange={setPage}
+            onLimitChange={setLimit}
+          />
+          </>
+        )}
         </Card>
       )}
     </div>

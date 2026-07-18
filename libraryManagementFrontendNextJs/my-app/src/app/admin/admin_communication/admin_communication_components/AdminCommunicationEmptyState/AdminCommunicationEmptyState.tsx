@@ -1,6 +1,5 @@
-'use client';
-
 // RESPONSIBILITY: Standardized empty state component for lists/tables in the admin_communication module.
+'use client';
 // DATA FLOW: Parent -> AdminCommunicationEmptyState -> DOM
 
 interface Props {

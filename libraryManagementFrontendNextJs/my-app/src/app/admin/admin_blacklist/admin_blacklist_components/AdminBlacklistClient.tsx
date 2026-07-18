@@ -1,6 +1,5 @@
-'use client';
-
 // RESPONSIBILITY: Client view component rendering blacklist table, search filter, and detail drawer (`Rule 1`, `Rule 8`, `Rule 19`, `Rule 45`, `Rule 49`).
+'use client';
 // DATA FLOW: useAdminBlacklist -> AdminBlacklistClient -> Table / Add Dialog / Detail Drawer (`Rule 39`).
 
 import { useState, useCallback } from 'react';
@@ -16,6 +15,7 @@ import { Badge } from '@/components/ui/badge';
 import { Card } from '@/components/ui/card';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from '@/components/ui/dialog';
 import toast from 'react-hot-toast';
+import { TablePagination } from '@/components/ui/table-pagination';
 
 function IdCell({ value }: { value: string }) {
   const [copied, setCopied] = useState(false);
@@ -76,6 +76,9 @@ export function AdminBlacklistClient() {
     handleRemoveStudent,
     handleResetSearch,
   } = useAdminBlacklist();
+
+  const [page, setPage] = useState(1);
+  const [limit, setLimit] = useState(10);
 
   const [isAddOpen, setIsAddOpen] = useState(false);
 
@@ -144,7 +147,7 @@ export function AdminBlacklistClient() {
                 </tr>
               </thead>
               <tbody className="divide-y divide-border">
-                {list.map((student) => (
+                {list.slice((page - 1) * limit, page * limit).map((student) => (
                   <tr 
                     key={student.id} 
                     className="hover:bg-muted/30 transition-colors cursor-pointer group"
@@ -192,6 +195,13 @@ export function AdminBlacklistClient() {
               </tbody>
             </table>
           </div>
+          <TablePagination
+            page={page}
+            limit={limit}
+            totalItems={list.length}
+            onPageChange={setPage}
+            onLimitChange={setLimit}
+          />
         </Card>
       )}
 

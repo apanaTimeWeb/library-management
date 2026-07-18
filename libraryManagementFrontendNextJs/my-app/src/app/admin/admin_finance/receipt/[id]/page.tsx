@@ -1,5 +1,5 @@
-'use client';
 // RESPONSIBILITY: Entry page for the admin_finance module.
+'use client';
 // DATA FLOW: Next.js Router -> Page -> Components
 
 import { useParams, useRouter } from 'next/navigation';

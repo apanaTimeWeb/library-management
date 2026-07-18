@@ -1,12 +1,15 @@
 // RESPONSIBILITY: Renders the FinanceReferralsClient component.
 'use client';
 
+
+import { useState } from 'react';
 import { Users, Trophy, IndianRupee } from 'lucide-react';
 import { formatCurrency } from '@/app/admin/admin_finance/admin_finance_utils/format';
 import { useFinanceReferrals } from '@/app/admin/admin_finance/referrals/admin_finance_referrals_hooks/useFinanceReferrals';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
+import { TablePagination } from '@/components/ui/table-pagination';
 
 export function FinanceReferralsClient() {
   const {
@@ -18,6 +21,9 @@ export function FinanceReferralsClient() {
     topReferrer,
     referrers
   } = useFinanceReferrals();
+
+  const [page, setPage] = useState(1);
+  const [limit, setLimit] = useState(10);
 
   return (
     <div className="h-full flex flex-col pb-10 space-y-6 relative">
@@ -93,7 +99,7 @@ export function FinanceReferralsClient() {
                   </td>
                 </tr>
               ) : (
-                referrers.map((r: Record<string, unknown>, idx: number) => (
+                referrers.slice((page - 1) * limit, page * limit).map((r: Record<string, unknown>, idx: number) => (
                   <tr key={r.id as string} className="hover:bg-muted/10 transition-colors">
                     <td className="px-5 py-4">
                       <span className={`text-sm ${idx === 0 ? 'text-warning font-black text-lg' : 'text-muted-foreground font-bold'}`}>#{idx + 1}</span>
@@ -130,7 +136,14 @@ export function FinanceReferralsClient() {
               )}
             </tbody>
           </table>
-        </div>
+          </div>
+          <TablePagination
+            page={page}
+            limit={limit}
+            totalItems={referrers.length}
+            onPageChange={setPage}
+            onLimitChange={setLimit}
+          />
       </Card>
     </div>
   );

@@ -1,6 +1,8 @@
 // RESPONSIBILITY: Renders the admin permissions matrix.
 'use client';
 
+
+import { useState } from 'react';
 import React from 'react';
 import { Shield, CheckCircle } from 'lucide-react';
 import { Toaster } from 'react-hot-toast';
@@ -8,12 +10,16 @@ import { useAdminPermissions, type Permission } from '@/app/admin/admin_permissi
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Card } from '@/components/ui/card';
+import { TablePagination } from '@/components/ui/table-pagination';
 
 interface AdminPermissionsViewProps {
   initialPermissions: Permission[];
 }
 
 export function AdminPermissionsView({ initialPermissions }: AdminPermissionsViewProps) {
+  const [page, setPage] = useState(1);
+  const [limit, setLimit] = useState(10);
+
   const { perms, toggle, handleSave, roles } = useAdminPermissions(initialPermissions);
 
   return (
@@ -60,7 +66,7 @@ export function AdminPermissionsView({ initialPermissions }: AdminPermissionsVie
                 </tr>
               </thead>
               <tbody className="divide-y divide-border">
-                {perms.map((module, mIdx) => (
+                {perms.slice((page - 1) * limit, page * limit).map((module, mIdx) => (
                   <React.Fragment key={`module-${module.module}`}>
                     {/* Module header row */}
                     <tr className="bg-muted/20">
@@ -102,6 +108,13 @@ export function AdminPermissionsView({ initialPermissions }: AdminPermissionsVie
               </tbody>
             </table>
           </div>
+          <TablePagination
+            page={page}
+            limit={limit}
+            totalItems={perms.length}
+            onPageChange={setPage}
+            onLimitChange={setLimit}
+          />
         </Card>
       </div>
     </>

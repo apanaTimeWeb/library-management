@@ -1,6 +1,5 @@
-'use client';
-
 // RESPONSIBILITY: Entry page for the admin_communication module.
+'use client';
 // DATA FLOW: Next.js Router -> Page -> Components
 
 import { useState, useMemo, useEffect } from 'react';
@@ -15,6 +14,7 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from '@/components/ui/dialog';
 import toast from 'react-hot-toast';
+import { TablePagination } from '@/components/ui/table-pagination';
 
 type CStatus = 'Open' | 'In-Progress' | 'Resolved';
 
@@ -25,6 +25,8 @@ interface Complaint {
 }
 
 export function AdminCommunicationComplaintsClient() {
+  const [page, setPage] = useState(1);
+  const [limit, setLimit] = useState(10);
   const [tab, setTab]                   = useState<CStatus | 'All'>('All');
   const [complaints, setComplaints]     = useState<Complaint[]>(ADMIN_COMMUNICATION_MOCK_COMPLAINTS as Complaint[]);
   const [showAdd, setShowAdd]           = useState(false);
@@ -147,7 +149,7 @@ export function AdminCommunicationComplaintsClient() {
               </tr>
             </thead>
             <tbody className="divide-y divide-border">
-              {filtered.map((c, i) => {
+              {filtered.slice((page - 1) * limit, page * limit).map((c, i) => {
                 const isExpanded = expandedDesc.includes(c.id);
                 const isLong = c.description.length > 60;
                 return (

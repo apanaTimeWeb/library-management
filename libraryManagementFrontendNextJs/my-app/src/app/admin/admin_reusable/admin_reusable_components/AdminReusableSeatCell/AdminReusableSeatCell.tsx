@@ -1,7 +1,8 @@
 // RESPONSIBILITY: Renders an individual seat cell block with status coloring and hover tooltip details.
+'use client';
 // DATA FLOW: AdminReusableSeatMatrixGrid -> AdminReusableSeatCell
 
-'use client';
+
 
 export interface AdminReusableSeatCellProps {
   id: string;

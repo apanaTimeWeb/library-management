@@ -1,6 +1,5 @@
-'use client';
-
 // RESPONSIBILITY: Client view rendering daily settlement grid (`Rule 1`, `Rule 8`).
+'use client';
 // DATA FLOW: Static Mock -> AdminAccountingDailySettlementClient (`Rule 39`).
 
 import { useState } from 'react';
@@ -10,6 +9,7 @@ import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
+import { TablePagination } from '@/components/ui/table-pagination';
 
 type Entry = {
   id: number;
@@ -32,6 +32,8 @@ const MOCK: Entry[] = [
 ];
 
 export function AdminAccountingDailySettlementClient() {
+  const [page, setPage] = useState(1);
+  const [limit, setLimit] = useState(10);
   const [date, setDate] = useState(TODAY);
   const [entries, setEntries] = useState(MOCK);
 
@@ -93,7 +95,7 @@ export function AdminAccountingDailySettlementClient() {
               </tr>
             </thead>
             <tbody className="divide-y divide-border">
-              {entries.map((entry) => (
+              {entries.slice((page - 1) * limit, page * limit).map((entry) => (
                 <tr key={entry.id} className="hover:bg-muted/10 transition-colors">
                   <td className="px-4 py-4 font-semibold text-foreground">{entry.shift}</td>
                   <td className="px-4 py-4 text-right">₹{entry.openingBalance.toLocaleString()}</td>
@@ -124,7 +126,14 @@ export function AdminAccountingDailySettlementClient() {
               )}
             </tbody>
           </table>
-        </div>
+          </div>
+          <TablePagination
+            page={page}
+            limit={limit}
+            totalItems={entries.length}
+            onPageChange={setPage}
+            onLimitChange={setLimit}
+          />
       </Card>
     </div>
   );

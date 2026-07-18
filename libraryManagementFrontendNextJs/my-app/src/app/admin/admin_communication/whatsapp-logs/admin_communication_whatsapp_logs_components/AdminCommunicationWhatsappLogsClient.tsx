@@ -1,6 +1,5 @@
-'use client';
-
 // RESPONSIBILITY: Entry page for the admin_communication module.
+'use client';
 // DATA FLOW: Next.js Router -> Page -> Components
 
 import { useState } from 'react';
@@ -11,6 +10,7 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Input } from '@/components/ui/input';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from '@/components/ui/dialog';
+import { TablePagination } from '@/components/ui/table-pagination';
 
 interface WaLog {
   id: string; dateTime: string; phone: string; student: string;
@@ -37,6 +37,8 @@ const STATUS_BADGE: Record<string, string> = {
 };
 
 export function AdminCommunicationWhatsappLogsClient() {
+  const [page, setPage] = useState(1);
+  const [limit, setLimit] = useState(10);
   const [typeFilter,   setTypeFilter]   = useState('All');
   const [statusFilter, setStatusFilter] = useState('All');
   const [search,       setSearch]       = useState('');
@@ -123,7 +125,7 @@ export function AdminCommunicationWhatsappLogsClient() {
               </tr>
             </thead>
             <tbody className="divide-y divide-border">
-              {filtered.map((l) => (
+              {filtered.slice((page - 1) * limit, page * limit).map((l) => (
                 <tr key={l.id} className="hover:bg-muted/30 transition-colors">
                   <td className="py-4 px-4 text-muted-foreground text-xs">{l.dateTime}</td>
                   <td className="py-4 px-4 font-mono font-medium text-foreground">{l.phone}</td>

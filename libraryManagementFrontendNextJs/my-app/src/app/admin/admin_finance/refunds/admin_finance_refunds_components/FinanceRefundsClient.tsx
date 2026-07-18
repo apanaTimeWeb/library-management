@@ -1,6 +1,8 @@
 // RESPONSIBILITY: Renders the FinanceRefundsClient component.
 'use client';
 
+
+import { useState } from 'react';
 import { Undo2, X } from 'lucide-react';
 import { formatCurrency } from '@/app/admin/admin_finance/admin_finance_utils/format';
 import { useFinanceRefunds } from '@/app/admin/admin_finance/refunds/admin_finance_refunds_hooks/useFinanceRefunds';
@@ -8,6 +10,7 @@ import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Input } from '@/components/ui/input';
+import { TablePagination } from '@/components/ui/table-pagination';
 
 export function FinanceRefundsClient() {
   const {
@@ -30,6 +33,9 @@ export function FinanceRefundsClient() {
     handleProcess,
     handleDeduction
   } = useFinanceRefunds();
+
+  const [page, setPage] = useState(1);
+  const [limit, setLimit] = useState(10);
 
   const getStatusBadge = (status: string) => {
     switch(status.toLowerCase()) {
@@ -126,7 +132,7 @@ export function FinanceRefundsClient() {
                   </td>
                 </tr>
               ) : (
-                filteredRefunds.map((r) => (
+                filteredRefunds.slice((page - 1) * limit, page * limit).map((r) => (
                   <tr key={r.id} className="hover:bg-muted/10 transition-colors">
                     <td className="px-5 py-4">
                       <div className="font-bold text-sm text-primary">{r.studentName}</div>
@@ -202,7 +208,14 @@ export function FinanceRefundsClient() {
               )}
             </tbody>
           </table>
-        </div>
+          </div>
+          <TablePagination
+            page={page}
+            limit={limit}
+            totalItems={filteredRefunds.length}
+            onPageChange={setPage}
+            onLimitChange={setLimit}
+          />
       </Card>
 
       {/* Process Refund Modal */}

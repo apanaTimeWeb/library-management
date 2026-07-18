@@ -1,5 +1,5 @@
-'use client';
 // RESPONSIBILITY: Renders the Select component for the admin_system module.
+'use client';
 // DATA FLOW: Parent -> AdminSystemSelect -> DOM
 
 import * as SelectPrimitive from '@radix-ui/react-select';

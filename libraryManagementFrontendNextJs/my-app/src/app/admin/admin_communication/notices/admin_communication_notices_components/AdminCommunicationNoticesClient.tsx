@@ -1,6 +1,5 @@
-'use client';
-
 // RESPONSIBILITY: Entry page for the admin_communication module.
+'use client';
 // DATA FLOW: Next.js Router -> Page -> Components
 
 import { useState, useEffect } from 'react';
@@ -14,6 +13,7 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from '@/components/ui/dialog';
 import toast from 'react-hot-toast';
+import { TablePagination } from '@/components/ui/table-pagination';
 
 interface Notice {
   id: string; title: string; message: string;
@@ -24,6 +24,8 @@ interface Notice {
 const today = new Date().toISOString().split('T')[0];
 
 export function AdminCommunicationNoticesClient() {
+  const [page, setPage] = useState(1);
+  const [limit, setLimit] = useState(10);
   const [notices, setNotices]             = useState<Notice[]>([]);
   const [showAdd, setShowAdd]             = useState(false);
   const [editItem, setEditItem]           = useState<Notice | null>(null);
@@ -113,7 +115,7 @@ export function AdminCommunicationNoticesClient() {
               </tr>
             </thead>
             <tbody className="divide-y divide-border">
-              {notices.map((n) => (
+              {notices.slice((page - 1) * limit, page * limit).map((n) => (
                 <tr key={n.id} className="hover:bg-muted/30 transition-colors">
                   <td className="py-4 px-4 font-bold text-foreground">{n.title}</td>
                   <td className="py-4 px-4 text-muted-foreground max-w-xs truncate" title={n.message}>{n.message}</td>

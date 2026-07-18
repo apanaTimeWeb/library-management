@@ -1,5 +1,6 @@
-// RESPONSIBILITY: Renders the AdminStaffUsersClient component.
 'use client';
+import { useState } from 'react';
+// RESPONSIBILITY: Renders the AdminStaffUsersClient component.
 
 import { UserPlus, Pencil, Trash2, CheckCircle, Search, Users, X } from 'lucide-react';
 import { useAdminStaff, type StaffMember } from '@/app/admin/admin_staff-users/admin_staff-users_hooks/useAdminStaff';
@@ -7,12 +8,16 @@ import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
+import { TablePagination } from '@/components/ui/table-pagination';
 
 interface AdminStaffUsersClientProps {
   initialStaff: StaffMember[];
 }
 
 export function AdminStaffUsersClient({ initialStaff }: AdminStaffUsersClientProps) {
+  const [page, setPage] = useState(1);
+  const [limit, setLimit] = useState(10);
+
   const {
     staff,
     filtered,
@@ -101,7 +106,7 @@ export function AdminStaffUsersClient({ initialStaff }: AdminStaffUsersClientPro
               </tr>
             </thead>
             <tbody className="divide-y divide-border">
-              {filtered.map((staff) => (
+              {filtered.slice((page - 1) * limit, page * limit).map((staff) => (
                 <tr 
                   key={staff.id} 
                   className="hover:bg-muted/10 transition-colors group"
@@ -152,7 +157,14 @@ export function AdminStaffUsersClient({ initialStaff }: AdminStaffUsersClientPro
               )}
             </tbody>
           </table>
-        </div>
+          </div>
+          <TablePagination
+            page={page}
+            limit={limit}
+            totalItems={filtered.length}
+            onPageChange={setPage}
+            onLimitChange={setLimit}
+          />
       </Card>
 
       {/* Add / Edit Modal Overlay */}

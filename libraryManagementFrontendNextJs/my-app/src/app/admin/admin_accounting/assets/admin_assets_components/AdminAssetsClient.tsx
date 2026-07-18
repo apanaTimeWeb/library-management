@@ -1,6 +1,7 @@
 // RESPONSIBILITY: Renders the AdminAssetsClient component.
 'use client';
 
+
 import { useState } from 'react';
 import { Search, Plus, Filter, IndianRupee } from 'lucide-react';
 import { useAdminAssets } from '@/app/admin/admin_accounting/assets/admin_assets_hooks/useAdminAssets';
@@ -9,6 +10,7 @@ import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { TablePagination } from '@/components/ui/table-pagination';
 
 function StatusBadge({ value }: { value: string }) {
   if (!value) return null;
@@ -37,6 +39,9 @@ export function AdminAssetsClient() {
     handleCreateAsset,
     handleResetFilters,
   } = useAdminAssets();
+
+  const [page, setPage] = useState(1);
+  const [limit, setLimit] = useState(10);
 
   const [isAddOpen, setIsAddOpen] = useState(false);
 
@@ -101,8 +106,8 @@ export function AdminAssetsClient() {
       <Card className="flex-1 shadow-none border-border overflow-hidden flex flex-col min-h-96">
         {fetchState === 'loading' && assets.length === 0 ? (
           <div className="flex items-center justify-center h-full text-muted-foreground">Loading assets…</div>
-        ) : (
-          <div className="w-full overflow-x-auto">
+        ) : (<>
+            <div className="w-full overflow-x-auto">
             <table className="w-full text-sm text-left">
               <thead className="bg-muted/30 border-y text-muted-foreground text-xs font-medium uppercase tracking-wider sticky top-0 z-10">
                 <tr>
@@ -115,7 +120,7 @@ export function AdminAssetsClient() {
                 </tr>
               </thead>
               <tbody className="divide-y divide-border">
-                {assets.map((asset, index) => (
+                {assets.slice((page - 1) * limit, page * limit).map((asset, index) => (
                   <tr key={index} className="hover:bg-muted/10 transition-colors">
                     <td className="px-4 py-4 font-semibold text-foreground">{asset.name}</td>
                     <td className="px-4 py-4 text-muted-foreground font-medium">{asset.category}</td>
@@ -139,6 +144,14 @@ export function AdminAssetsClient() {
               </tbody>
             </table>
           </div>
+          <TablePagination
+            page={page}
+            limit={limit}
+            totalItems={assets.length}
+            onPageChange={setPage}
+            onLimitChange={setLimit}
+          />
+          </>
         )}
       </Card>
 

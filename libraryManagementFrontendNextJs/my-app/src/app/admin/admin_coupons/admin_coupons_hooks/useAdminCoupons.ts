@@ -24,8 +24,13 @@ export function useAdminCoupons() {
   const { coupons, fetchState, fetchCoupons, createCoupon, deleteCoupon } = useAdminCouponsStore();
 
   const initialSearch = searchParams.get('search') || '';
+  const initialPage = Number(searchParams.get('page')) || 1;
+  const initialLimit = Number(searchParams.get('limit')) || 10;
+
   const [searchInput, setSearchInput] = useState(initialSearch);
   const [debouncedSearch, setDebouncedSearch] = useState(initialSearch);
+  const [page, setPage] = useState(initialPage);
+  const [limit, setLimit] = useState(initialLimit);
   const [selectedCoupon, setSelectedCoupon] = useState<CouponRecord | null>(null);
 
   // Fetch initial coupons on mount
@@ -43,8 +48,8 @@ export function useAdminCoupons() {
     return () => clearTimeout(timer);
   }, [searchInput]);
 
-  // Sync debounced search to URL query parameters (`Rule 42`)
-  // Dependency array monitors debouncedSearch, pathname, router, and searchParams (`Rule 55`)
+  // Sync debounced search and pagination to URL query parameters (`Rule 42`)
+  // Dependency array monitors debouncedSearch, page, limit, pathname, router, and searchParams (`Rule 55`)
   useEffect(() => {
     const params = new URLSearchParams(searchParams.toString());
     if (debouncedSearch.trim()) {
@@ -52,10 +57,17 @@ export function useAdminCoupons() {
     } else {
       params.delete('search');
     }
+    params.set('page', page.toString());
+    params.set('limit', limit.toString());
     const queryString = params.toString();
     const targetUrl = queryString ? `${pathname}?${queryString}` : pathname;
     router.replace(targetUrl, { scroll: false });
-  }, [debouncedSearch, pathname, router, searchParams]);
+  }, [debouncedSearch, page, limit, pathname, router, searchParams]);
+
+  // Reset page to 1 when search changes
+  useEffect(() => {
+    setPage(1);
+  }, [debouncedSearch]);
 
   const filteredCoupons = useMemo(() => {
     if (!debouncedSearch) return coupons;
@@ -67,6 +79,11 @@ export function useAdminCoupons() {
         String(c.discount).includes(q)
     );
   }, [coupons, debouncedSearch]);
+
+  const paginatedCoupons = useMemo(() => {
+    const startIndex = (page - 1) * limit;
+    return filteredCoupons.slice(startIndex, startIndex + limit);
+  }, [filteredCoupons, page, limit]);
 
   const kpis = useMemo(() => {
     const activeCount = coupons.filter((c) => c.status === 'Active').length;
@@ -102,7 +119,12 @@ export function useAdminCoupons() {
   }, []);
 
   return {
-    coupons: filteredCoupons,
+    coupons: paginatedCoupons,
+    totalCoupons: filteredCoupons.length,
+    page,
+    limit,
+    setPage,
+    setLimit,
     kpis,
     fetchState,
     searchInput,

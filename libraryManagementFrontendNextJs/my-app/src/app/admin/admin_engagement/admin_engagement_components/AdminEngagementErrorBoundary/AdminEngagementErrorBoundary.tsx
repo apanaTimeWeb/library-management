@@ -1,6 +1,5 @@
-'use client';
-
 // RESPONSIBILITY: Typed Error Boundary component specific to the admin_engagement module.
+'use client';
 // DATA FLOW: Error -> AdminEngagementErrorBoundary -> Fallback UI
 
 import React from 'react';

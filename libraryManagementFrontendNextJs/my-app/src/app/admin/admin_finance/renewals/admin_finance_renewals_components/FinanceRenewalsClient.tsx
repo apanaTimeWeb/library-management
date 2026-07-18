@@ -1,6 +1,8 @@
 // RESPONSIBILITY: Renders the FinanceRenewalsClient component.
 'use client';
 
+
+import { useState } from 'react';
 import { RefreshCw, Send, X } from 'lucide-react';
 import { formatCurrency } from '@/app/admin/admin_finance/admin_finance_utils/format';
 import { useFinanceRenewals } from '@/app/admin/admin_finance/renewals/admin_finance_renewals_hooks/useFinanceRenewals';
@@ -8,6 +10,7 @@ import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { TablePagination } from '@/components/ui/table-pagination';
 
 export function FinanceRenewalsClient() {
   const {
@@ -33,6 +36,9 @@ export function FinanceRenewalsClient() {
     ADMIN_FINANCE_FILTERS
   } = useFinanceRenewals();
 
+  const [page, setPage] = useState(1);
+  const [limit, setLimit] = useState(10);
+
   const getDaysLeftStyle = (days: number) => {
     if (days < 0) return 'text-danger font-bold';
     if (days <= 7) return 'text-warning font-bold';
@@ -55,7 +61,7 @@ export function FinanceRenewalsClient() {
 
       {/* Filter tabs */}
       <div className="flex flex-wrap gap-2">
-        {ADMIN_FINANCE_FILTERS.map((f) => (
+        {ADMIN_FINANCE_FILTERS.slice((page - 1) * limit, page * limit).map((f) => (
           <Badge
             key={f.value}
             variant="secondary"
@@ -141,7 +147,14 @@ export function FinanceRenewalsClient() {
               )}
             </tbody>
           </table>
-        </div>
+          </div>
+          <TablePagination
+            page={page}
+            limit={limit}
+            totalItems={ADMIN_FINANCE_FILTERS.length}
+            onPageChange={setPage}
+            onLimitChange={setLimit}
+          />
       </Card>
 
       {/* Renew Dialog */}

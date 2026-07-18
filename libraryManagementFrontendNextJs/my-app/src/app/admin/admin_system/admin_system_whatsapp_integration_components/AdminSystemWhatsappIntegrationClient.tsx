@@ -1,5 +1,7 @@
 // RESPONSIBILITY: Renders the AdminSystemWhatsappIntegrationClient component.
 'use client';
+
+import { useState } from 'react';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/app/admin/admin_system/admin_system_components/AdminSystemCard/AdminSystemCard';
 import { Button } from '@/app/admin/admin_system/admin_system_components/AdminSystemButton/AdminSystemButton';
 import { Badge } from '@/app/admin/admin_system/admin_system_components/AdminSystemBadge/AdminSystemBadge';
@@ -11,6 +13,7 @@ import {
   XCircle, Phone, Zap, BarChart3, Clock, Loader2
 } from 'lucide-react';
 import { useAdminSystemWhatsappIntegration } from '@/app/admin/admin_system/admin_system_whatsapp_integration_hooks/useAdminSystemWhatsappIntegration';
+import { TablePagination } from '@/components/ui/table-pagination';
 
 const STATUS_CFG = {
   delivered: { variant: 'success' as const, icon: CheckCircle },
@@ -32,6 +35,9 @@ export function AdminSystemWhatsappIntegrationClient() {
     deliveredCount, failedCount, deliveryRate,
     providers, logs
   } = useAdminSystemWhatsappIntegration();
+
+  const [page, setPage] = useState(1);
+  const [limit, setLimit] = useState(10);
 
   return (
     <div>
@@ -310,6 +316,13 @@ export function AdminSystemWhatsappIntegrationClient() {
               </tbody>
             </table>
           </div>
+          <TablePagination
+            page={page}
+            limit={limit}
+            totalItems={providers.length}
+            onPageChange={setPage}
+            onLimitChange={setLimit}
+          />
         </CardContent>
       </Card>
     </div>

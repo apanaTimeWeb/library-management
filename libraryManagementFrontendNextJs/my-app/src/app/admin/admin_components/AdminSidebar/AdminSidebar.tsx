@@ -1,6 +1,5 @@
-'use client';
-
 // RESPONSIBILITY: Renders the sidebar navigation for the admin module.
+'use client';
 // DATA FLOW: AdminRoute -> AdminSidebar
 
 import Link from 'next/link';

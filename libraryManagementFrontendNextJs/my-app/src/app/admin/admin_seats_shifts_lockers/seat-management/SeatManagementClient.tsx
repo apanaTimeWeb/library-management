@@ -1,5 +1,6 @@
-// RESPONSIBILITY: Renders the SeatManagementClient component.
 'use client';
+import { useState } from 'react';
+// RESPONSIBILITY: Renders the SeatManagementClient component.
 
 import { Plus, Search, Wrench, Edit, AlertTriangle, CheckCircle, X } from 'lucide-react';
 import toast, { Toaster } from 'react-hot-toast';
@@ -8,12 +9,16 @@ import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
+import { TablePagination } from '@/components/ui/table-pagination';
 
 interface SeatManagementClientProps {
   initialSeats: Seat[];
 }
 
 export function SeatManagementClient({ initialSeats }: SeatManagementClientProps) {
+  const [page, setPage] = useState(1);
+  const [limit, setLimit] = useState(10);
+
   const {
     filtered,
     search,
@@ -109,7 +114,7 @@ export function SeatManagementClient({ initialSeats }: SeatManagementClientProps
                 </tr>
               </thead>
               <tbody className="divide-y divide-border">
-                {filtered.map((seat) => (
+                {filtered.slice((page - 1) * limit, page * limit).map((seat) => (
                   <tr key={seat.id} className="hover:bg-muted/10 transition-colors group">
                     <td className="px-4 py-3 font-bold text-sm text-primary">
                       {seat.seatNo}
@@ -177,6 +182,13 @@ export function SeatManagementClient({ initialSeats }: SeatManagementClientProps
               </tbody>
             </table>
           </div>
+          <TablePagination
+            page={page}
+            limit={limit}
+            totalItems={filtered.length}
+            onPageChange={setPage}
+            onLimitChange={setLimit}
+          />
         </Card>
       )}
 

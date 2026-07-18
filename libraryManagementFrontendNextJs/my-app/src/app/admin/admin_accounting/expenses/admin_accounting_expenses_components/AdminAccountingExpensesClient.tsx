@@ -1,6 +1,7 @@
 // RESPONSIBILITY: Renders the AdminAccountingExpensesClient component.
 'use client';
 
+
 import { useState } from 'react';
 import { Search, Plus, Filter, IndianRupee, TrendingUp } from 'lucide-react';
 import { useAdminAccountingExpenses } from '@/app/admin/admin_accounting/expenses/admin_accounting_expenses_hooks/useAdminAccountingExpenses';
@@ -9,6 +10,7 @@ import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { TablePagination } from '@/components/ui/table-pagination';
 
 function ModeBadge({ value }: { value: string }) {
   if (!value) return null;
@@ -38,6 +40,9 @@ export function AdminAccountingExpensesClient() {
     handleCreateExpense,
     handleResetFilters,
   } = useAdminAccountingExpenses();
+
+  const [page, setPage] = useState(1);
+  const [limit, setLimit] = useState(10);
 
   const [isAddOpen, setIsAddOpen] = useState(false);
 
@@ -105,8 +110,8 @@ export function AdminAccountingExpensesClient() {
       <Card className="flex-1 shadow-none border-border overflow-hidden flex flex-col min-h-96">
         {fetchState === 'loading' && expenses.length === 0 ? (
           <div className="flex items-center justify-center h-full text-muted-foreground">Loading expenses…</div>
-        ) : (
-          <div className="w-full overflow-x-auto">
+        ) : (<>
+            <div className="w-full overflow-x-auto">
             <table className="w-full text-sm text-left">
               <thead className="bg-muted/30 border-y text-muted-foreground text-xs font-medium uppercase tracking-wider sticky top-0 z-10">
                 <tr>
@@ -119,7 +124,7 @@ export function AdminAccountingExpensesClient() {
                 </tr>
               </thead>
               <tbody className="divide-y divide-border">
-                {expenses.map((expense, index) => (
+                {expenses.slice((page - 1) * limit, page * limit).map((expense, index) => (
                   <tr key={index} className="hover:bg-muted/10 transition-colors">
                     <td className="px-4 py-4 text-muted-foreground text-xs">{expense.date}</td>
                     <td className="px-4 py-4 font-semibold text-foreground">{expense.category}</td>
@@ -143,6 +148,14 @@ export function AdminAccountingExpensesClient() {
               </tbody>
             </table>
           </div>
+          <TablePagination
+            page={page}
+            limit={limit}
+            totalItems={expenses.length}
+            onPageChange={setPage}
+            onLimitChange={setLimit}
+          />
+          </>
         )}
       </Card>
 

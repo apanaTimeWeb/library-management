@@ -1,6 +1,5 @@
-'use client';
-
 // RESPONSIBILITY: Standardized empty state component for lists/tables in the admin_seats_shifts_lockers module.
+'use client';
 // DATA FLOW: Parent -> AdminSeatsShiftsLockersEmptyState -> DOM
 
 interface Props {

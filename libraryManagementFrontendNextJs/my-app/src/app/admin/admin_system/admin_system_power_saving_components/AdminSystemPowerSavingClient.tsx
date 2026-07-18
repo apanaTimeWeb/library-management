@@ -1,5 +1,7 @@
 // RESPONSIBILITY: Renders the AdminSystemPowerSavingClient component.
 'use client';
+
+import { useState } from 'react';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/app/admin/admin_system/admin_system_components/AdminSystemCard/AdminSystemCard';
 import { Button } from '@/app/admin/admin_system/admin_system_components/AdminSystemButton/AdminSystemButton';
 import { Input } from '@/app/admin/admin_system/admin_system_components/AdminSystemInput/AdminSystemInput';
@@ -9,9 +11,13 @@ import { Badge } from '@/app/admin/admin_system/admin_system_components/AdminSys
 import { Progress } from '@/app/admin/admin_system/admin_system_components/AdminSystemProgress/AdminSystemProgress';
 import { Zap, ChevronRight } from 'lucide-react';
 import { useAdminSystemPowerSaving } from '@/app/admin/admin_system/admin_system_power_saving_hooks/useAdminSystemPowerSaving';
+import { TablePagination } from '@/components/ui/table-pagination';
 
 export function AdminSystemPowerSavingClient() {
   const { threshold, setThreshold, alertsEnabled, setAlertsEnabled, getZoneStatus, zones, alerts } = useAdminSystemPowerSaving();
+
+  const [page, setPage] = useState(1);
+  const [limit, setLimit] = useState(10);
 
   return (
     <div>
@@ -118,7 +124,7 @@ export function AdminSystemPowerSavingClient() {
                 </tr>
               </thead>
               <tbody className="divide-y divide-outline-variant/30">
-                {alerts.map((alert, i) => (
+                {alerts.slice((page - 1) * limit, page * limit).map((alert, i) => (
                   <tr key={i} className="hover:bg-bg-card transition-colors">
                     <td className="py-3 pr-4 text-text-secondary">{alert.date}</td>
                     <td className="py-3 pr-4 text-text-primary">{alert.shift}</td>
@@ -130,6 +136,13 @@ export function AdminSystemPowerSavingClient() {
               </tbody>
             </table>
           </div>
+          <TablePagination
+            page={page}
+            limit={limit}
+            totalItems={alerts.length}
+            onPageChange={setPage}
+            onLimitChange={setLimit}
+          />
         </CardContent>
       </Card>
     </div>

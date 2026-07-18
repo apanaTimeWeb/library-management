@@ -1,6 +1,5 @@
-'use client';
-
 // RESPONSIBILITY: Standardized empty state component for lists/tables in the admin_engagement module.
+'use client';
 // DATA FLOW: Parent -> AdminEngagementEmptyState -> DOM
 
 interface Props {

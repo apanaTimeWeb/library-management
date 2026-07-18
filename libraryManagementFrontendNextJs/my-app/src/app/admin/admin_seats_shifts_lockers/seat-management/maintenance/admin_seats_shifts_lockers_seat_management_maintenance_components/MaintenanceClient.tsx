@@ -1,12 +1,15 @@
 // RESPONSIBILITY: Renders the MaintenanceClient component.
 'use client';
 
+
+import { useState } from 'react';
 import { ChevronDown, AlertTriangle, Plus } from 'lucide-react';
 import { useMaintenance, type SeatStatus } from '@/app/admin/admin_seats_shifts_lockers/seat-management/maintenance/admin_seats_shifts_lockers_seat_management_maintenance_hooks/useMaintenance';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
+import { TablePagination } from '@/components/ui/table-pagination';
 
 const STATUS_CLASS: Record<SeatStatus, string> = {
   Working: 'bg-success/10 text-success hover:bg-success/20',
@@ -28,6 +31,9 @@ export function MaintenanceClient() {
     handleAddEntry,
     SEATS
   } = useMaintenance();
+
+  const [page, setPage] = useState(1);
+  const [limit, setLimit] = useState(10);
 
   return (
     <div className="h-full flex flex-col pb-10 space-y-6">
@@ -85,7 +91,7 @@ export function MaintenanceClient() {
                 </tr>
               </thead>
               <tbody className="divide-y divide-border">
-                {currentLogs.map((log) => (
+                {currentLogs.slice((page - 1) * limit, page * limit).map((log) => (
                   <tr key={log.id} className="hover:bg-muted/10 transition-colors">
                     <td className="px-4 py-4 text-muted-foreground font-medium">{log.num}</td>
                     <td className="px-4 py-4 text-muted-foreground">{log.date}</td>
@@ -107,6 +113,13 @@ export function MaintenanceClient() {
               </tbody>
             </table>
           </div>
+          <TablePagination
+            page={page}
+            limit={limit}
+            totalItems={currentLogs.length}
+            onPageChange={setPage}
+            onLimitChange={setLimit}
+          />
         </Card>
       )}
 

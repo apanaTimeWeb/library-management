@@ -1,5 +1,5 @@
-'use client';
 // RESPONSIBILITY: Renders the Badge component for the admin_system module.
+'use client';
 // DATA FLOW: Parent -> AdminSystemBadge -> DOM
 
 import { cn } from '@/app/admin/admin_system/admin_system_components/AdminSystemutils/AdminSystemutils';

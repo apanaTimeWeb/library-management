@@ -1,6 +1,7 @@
 // RESPONSIBILITY: Renders the ShiftManagementClient component.
 'use client';
 
+
 import { Plus, Edit, PowerOff, Zap, AlertTriangle, X } from 'lucide-react';
 import { useShiftManagement } from '@/app/admin/admin_seats_shifts_lockers/shift-management/admin_seats_shifts_lockers_hooks/useShiftManagement';
 import { Card } from '@/components/ui/card';

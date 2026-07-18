@@ -1,6 +1,5 @@
-'use client';
-
 // RESPONSIBILITY: Typed Error Boundary component specific to the admin_reusable module.
+'use client';
 // DATA FLOW: Error -> AdminReusableErrorBoundary -> Fallback UI
 
 import React from 'react';

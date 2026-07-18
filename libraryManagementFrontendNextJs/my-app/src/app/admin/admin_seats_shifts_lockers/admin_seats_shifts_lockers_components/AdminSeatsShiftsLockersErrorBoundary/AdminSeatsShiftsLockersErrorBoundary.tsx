@@ -1,6 +1,5 @@
-'use client';
-
 // RESPONSIBILITY: Typed Error Boundary component specific to the admin_seats_shifts_lockers module.
+'use client';
 // DATA FLOW: Error -> AdminSeatsShiftsLockersErrorBoundary -> Fallback UI
 
 import React from 'react';

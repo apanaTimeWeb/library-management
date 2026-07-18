@@ -1,7 +1,5 @@
-'use client';
-
-
 // RESPONSIBILITY: Entry page for the admin_finance module.
+'use client';
 // DATA FLOW: Next.js Router -> Page -> Components
 
 import { useState, useEffect } from 'react';
@@ -10,6 +8,7 @@ import toast from 'react-hot-toast';
 import { formatCurrency } from '@/app/admin/admin_finance/admin_finance_utils/format';
 import { CheckCircle, CalendarPlus, Eye } from 'lucide-react';
 import { ADMIN_FINANCE_MOCK_PAYMENT_PROMISES } from '@/app/admin/admin_finance/admin_finance_constants/AdminFinanceConstants';
+import { TablePagination } from '@/components/ui/table-pagination';
 
 const STATUS_BADGE: Record<string, string> = {
   pending:   'fin-badge fin-badge--warning',
@@ -37,6 +36,8 @@ function calcDays(dateStr: string) {
 }
 
 export function AdminFinancePaymentPromisesClient() {
+  const [page, setPage] = useState(1);
+  const [limit, setLimit] = useState(10);
   const [statusFilter, setStatusFilter] = useState('all');
   const [promises, setPromises] = useState<PromiseItem[]>([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -121,7 +122,7 @@ export function AdminFinancePaymentPromisesClient() {
                 </td>
               </tr>
             ) : (
-              filtered.map((p) => (
+              filtered.slice((page - 1) * limit, page * limit).map((p) => (
                 <tr key={p.id} className="fin-table-hover-row fin-table-row">
                   <td className="py-3 px-4">
                     <div className="fin-cell-name">{p.studentName}</div>
@@ -174,7 +175,14 @@ export function AdminFinancePaymentPromisesClient() {
             )}
           </tbody>
         </table>
-      </div>
+          </div>
+          <TablePagination
+            page={page}
+            limit={limit}
+            totalItems={filtered.length}
+            onPageChange={setPage}
+            onLimitChange={setLimit}
+          />
 
       {extendDialog && (
         <div className="fin-dialog-overlay">

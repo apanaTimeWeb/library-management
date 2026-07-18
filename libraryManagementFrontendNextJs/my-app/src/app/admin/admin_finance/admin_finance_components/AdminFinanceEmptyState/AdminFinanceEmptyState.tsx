@@ -1,6 +1,5 @@
-'use client';
-
 // RESPONSIBILITY: Standardized empty state component for lists/tables in the admin_finance module.
+'use client';
 // DATA FLOW: Parent -> AdminFinanceEmptyState -> DOM
 
 interface Props {

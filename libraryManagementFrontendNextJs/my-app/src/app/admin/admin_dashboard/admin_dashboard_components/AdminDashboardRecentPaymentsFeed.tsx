@@ -1,5 +1,6 @@
-// RESPONSIBILITY: Renders the AdminDashboardRecentPaymentsFeed component.
 'use client';
+import { useState } from 'react';
+// RESPONSIBILITY: Renders the AdminDashboardRecentPaymentsFeed component.
 
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
@@ -8,8 +9,12 @@ import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/com
 import { Badge } from '@/components/ui/badge';
 import { ADMIN_ROUTES } from '@/app/admin/admin_url_config';
 import type { AdminDashboardPaymentData } from '@/app/admin/admin_dashboard/admin_dashboard_types/admin_dashboard_types';
+import { TablePagination } from '@/components/ui/table-pagination';
 
 export function AdminDashboardRecentPaymentsFeed({ payments }: { payments: AdminDashboardPaymentData[] }) {
+  const [page, setPage] = useState(1);
+  const [limit, setLimit] = useState(10);
+
   const router = useRouter();
 
   const handleRowClick = (studentId?: string) => {
@@ -55,7 +60,7 @@ export function AdminDashboardRecentPaymentsFeed({ payments }: { payments: Admin
               </tr>
             </thead>
             <tbody className="divide-y divide-border">
-              {payments.map((payment, i) => (
+              {payments.slice((page - 1) * limit, page * limit).map((payment, i) => (
                 <tr 
                   key={i} 
                   onClick={() => handleRowClick(payment.id)}
@@ -91,7 +96,14 @@ export function AdminDashboardRecentPaymentsFeed({ payments }: { payments: Admin
               )}
             </tbody>
           </table>
-        </div>
+          </div>
+          <TablePagination
+            page={page}
+            limit={limit}
+            totalItems={payments.length}
+            onPageChange={setPage}
+            onLimitChange={setLimit}
+          />
       </CardContent>
     </Card>
   );

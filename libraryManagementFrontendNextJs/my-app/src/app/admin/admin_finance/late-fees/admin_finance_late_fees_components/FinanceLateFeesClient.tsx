@@ -1,6 +1,8 @@
 // RESPONSIBILITY: Renders the FinanceLateFeesClient component.
 'use client';
 
+
+import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Settings, AlertTriangle, Save, MessageSquare } from 'lucide-react';
 import { formatCurrency } from '@/app/admin/admin_finance/admin_finance_utils/format';
@@ -8,6 +10,7 @@ import { useFinanceLateFees } from '@/app/admin/admin_finance/late-fees/admin_fi
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { TablePagination } from '@/components/ui/table-pagination';
 
 export function FinanceLateFeesClient() {
   const router = useRouter();
@@ -26,6 +29,9 @@ export function FinanceLateFeesClient() {
     handleSave,
     sendWhatsAppReminder
   } = useFinanceLateFees();
+
+  const [page, setPage] = useState(1);
+  const [limit, setLimit] = useState(10);
 
   return (
     <div className="h-full flex flex-col pb-10 space-y-6 relative">
@@ -138,7 +144,7 @@ export function FinanceLateFeesClient() {
                   </td>
                 </tr>
               ) : (
-                overdue.map((s) => (
+                overdue.slice((page - 1) * limit, page * limit).map((s) => (
                   <tr key={s.studentId} className="hover:bg-muted/10 transition-colors">
                     <td className="px-5 py-4">
                       <div className="font-bold text-sm text-primary">{s.studentName}</div>
@@ -182,7 +188,14 @@ export function FinanceLateFeesClient() {
               )}
             </tbody>
           </table>
-        </div>
+          </div>
+          <TablePagination
+            page={page}
+            limit={limit}
+            totalItems={overdue.length}
+            onPageChange={setPage}
+            onLimitChange={setLimit}
+          />
       </Card>
     </div>
   );

@@ -1,6 +1,5 @@
-'use client';
-
 // RESPONSIBILITY: Renders the Next.js native error boundary for the admin_permissions module.
+'use client';
 // DATA FLOW: Next.js Router -> error.tsx
 
 import { useEffect } from 'react';

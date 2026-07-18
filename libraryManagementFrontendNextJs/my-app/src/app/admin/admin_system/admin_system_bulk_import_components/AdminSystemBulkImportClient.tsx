@@ -1,11 +1,13 @@
 // RESPONSIBILITY: Renders the AdminSystemBulkImportClient component.
 'use client';
+import { useState } from 'react';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/app/admin/admin_system/admin_system_components/AdminSystemCard/AdminSystemCard';
 import { Button } from '@/app/admin/admin_system/admin_system_components/AdminSystemButton/AdminSystemButton';
 import { Badge } from '@/app/admin/admin_system/admin_system_components/AdminSystemBadge/AdminSystemBadge';
 import { Upload, FileSpreadsheet, ChevronRight, CheckCircle, XCircle, AlertTriangle, Download, RefreshCw } from 'lucide-react';
 import { ADMIN_SYSTEM_MOCK_PREVIEW } from '@/app/admin/admin_system/admin_system_data/AdminSystemMockData2';
 import { useAdminSystemBulkImport } from '@/app/admin/admin_system/admin_system_bulk_import_hooks/useAdminSystemBulkImport';
+import { TablePagination } from '@/components/ui/table-pagination';
 
 const STATUS_CONFIG = {
   ok: { label: 'OK', variant: 'success' as const, icon: CheckCircle },
@@ -19,6 +21,9 @@ export function AdminSystemBulkImportClient() {
     errorCount, warningCount, okCount, filteredRows,
     handleFileSelect, handleDrop, handleImport, handleReset, downloadTemplate
   } = useAdminSystemBulkImport();
+
+  const [page, setPage] = useState(1);
+  const [limit, setLimit] = useState(10);
 
   return (
     <div>
@@ -164,7 +169,14 @@ export function AdminSystemBulkImportClient() {
                     ))}
                   </tbody>
                 </table>
-              </div>
+          </div>
+          <TablePagination
+            page={page}
+            limit={limit}
+            totalItems={filteredRows.length}
+            onPageChange={setPage}
+            onLimitChange={setLimit}
+          />
             </CardContent>
           </Card>
         </div>

@@ -1,6 +1,5 @@
-'use client';
-
 // RESPONSIBILITY: Typed Error Boundary component specific to the admin_audit-logs module.
+'use client';
 // DATA FLOW: Error -> AdminAuditLogsErrorBoundary -> Fallback UI
 
 import React from 'react';

@@ -1,6 +1,5 @@
-'use client';
-
 // RESPONSIBILITY: Typed Error Boundary component specific to the admin_accounting module.
+'use client';
 // DATA FLOW: Error -> AdminAccountingErrorBoundary -> Fallback UI
 
 import React from 'react';

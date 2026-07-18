@@ -1,6 +1,5 @@
-'use client';
-
 // RESPONSIBILITY: Typed Error Boundary component specific to the admin_blacklist module.
+'use client';
 // DATA FLOW: Error -> AdminBlacklistErrorBoundary -> Fallback UI
 
 import React from 'react';

@@ -1,6 +1,8 @@
 // RESPONSIBILITY: Renders the LockersClient component.
 'use client';
 
+
+import { useState } from 'react';
 import { Plus, UserPlus, Unlock, Wrench, Search, X } from 'lucide-react';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { useLockers, Locker } from '@/app/admin/admin_seats_shifts_lockers/lockers/admin_seats_shifts_lockers_hooks/useLockers';
@@ -8,6 +10,7 @@ import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { TablePagination } from '@/components/ui/table-pagination';
 
 export function LockersClient() {
   const {
@@ -31,6 +34,9 @@ export function LockersClient() {
     handleMarkMaintenance,
     handleAddLocker
   } = useLockers();
+
+  const [page, setPage] = useState(1);
+  const [limit, setLimit] = useState(10);
 
   const getStatusBadge = (status: string) => {
     switch (status) {
@@ -104,7 +110,7 @@ export function LockersClient() {
                   </td>
                 </tr>
               ) : (
-                filtered.map((l, i) => (
+                filtered.slice((page - 1) * limit, page * limit).map((l, i) => (
                   <tr key={i} className="hover:bg-muted/10 transition-colors">
                     <td className="px-5 py-4 text-base font-black text-primary tracking-tight">{l.lockerId}</td>
                     <td className="px-5 py-4">
@@ -148,7 +154,14 @@ export function LockersClient() {
               )}
             </tbody>
           </table>
-        </div>
+          </div>
+          <TablePagination
+            page={page}
+            limit={limit}
+            totalItems={filtered.length}
+            onPageChange={setPage}
+            onLimitChange={setLimit}
+          />
       </Card>
 
       {/* Add Locker Modal */}

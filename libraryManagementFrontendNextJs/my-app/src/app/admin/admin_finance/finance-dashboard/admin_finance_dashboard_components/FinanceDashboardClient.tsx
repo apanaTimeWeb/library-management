@@ -1,6 +1,8 @@
 // RESPONSIBILITY: Renders the FinanceDashboardClient component.
 'use client';
 
+
+import { useState } from 'react';
 import {
   PiggyBank, Users, Clock, Ban, UsersRound, ShieldAlert,
   TrendingUp, TrendingDown, IndianRupee, Receipt, AlertTriangle, RefreshCw,
@@ -9,9 +11,13 @@ import { formatCurrency } from '@/app/admin/admin_finance/admin_finance_utils/fo
 import { useFinanceDashboard } from '@/app/admin/admin_finance/finance-dashboard/admin_finance_dashboard_hooks/useFinanceDashboard';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
+import { TablePagination } from '@/components/ui/table-pagination';
 
 export function FinanceDashboardClient() {
   const { stats, recentPayments, isLoading } = useFinanceDashboard();
+
+  const [page, setPage] = useState(1);
+  const [limit, setLimit] = useState(10);
 
   const statCards = stats ? [
     { label: 'Total Collections',   value: formatCurrency(stats.totalCollections), icon: PiggyBank,     sub: <span className="text-success font-medium flex items-center gap-1 text-xs"><TrendingUp size={12} />+{stats.collectionsGrowth}% vs last month</span>, variant: 'default' },
@@ -114,7 +120,7 @@ export function FinanceDashboardClient() {
                       </td>
                     </tr>
                   ))
-                : recentPayments.map((p) => (
+                : recentPayments.slice((page - 1) * limit, page * limit).map((p) => (
                     <tr key={p.id} className="hover:bg-muted/10 transition-colors">
                       <td className="px-5 py-4">
                         <div className="font-bold text-sm text-primary">{p.studentName}</div>
@@ -135,7 +141,14 @@ export function FinanceDashboardClient() {
                   ))}
             </tbody>
           </table>
-        </div>
+          </div>
+          <TablePagination
+            page={page}
+            limit={limit}
+            totalItems={recentPayments.length}
+            onPageChange={setPage}
+            onLimitChange={setLimit}
+          />
       </Card>
     </div>
   );

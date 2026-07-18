@@ -1,5 +1,7 @@
 // RESPONSIBILITY: Renders the AdminSystemBackupsClient component.
 'use client';
+
+import { useState } from 'react';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/app/admin/admin_system/admin_system_components/AdminSystemCard/AdminSystemCard';
 import { Button } from '@/app/admin/admin_system/admin_system_components/AdminSystemButton/AdminSystemButton';
 import { Badge } from '@/app/admin/admin_system/admin_system_components/AdminSystemBadge/AdminSystemBadge';
@@ -10,6 +12,7 @@ import {
   AlertTriangle, HardDrive, Shield, Cloud, Loader2
 } from 'lucide-react';
 import { useAdminSystemBackups } from '@/app/admin/admin_system/admin_system_backups_hooks/useAdminSystemBackups';
+import { TablePagination } from '@/components/ui/table-pagination';
 
 const STATUS_CFG = {
   success: { label: 'Success', variant: 'success' as const, icon: CheckCircle },
@@ -27,6 +30,9 @@ export function AdminSystemBackupsClient() {
     successCount, failedCount, lastSuccess,
     handleCreateBackup, handleDownload, handleDeleteBackup
   } = useAdminSystemBackups();
+
+  const [page, setPage] = useState(1);
+  const [limit, setLimit] = useState(10);
 
   return (
     <div>
@@ -207,7 +213,7 @@ export function AdminSystemBackupsClient() {
                 </tr>
               </thead>
               <tbody className="divide-y divide-outline-variant/30">
-                {backups.map((backup) => {
+                {backups.slice((page - 1) * limit, page * limit).map((backup) => {
                   const cfg = STATUS_CFG[backup.status as keyof typeof STATUS_CFG];
                   const Icon = cfg.icon;
                   return (
@@ -273,6 +279,13 @@ export function AdminSystemBackupsClient() {
               </tbody>
             </table>
           </div>
+          <TablePagination
+            page={page}
+            limit={limit}
+            totalItems={backups.length}
+            onPageChange={setPage}
+            onLimitChange={setLimit}
+          />
         </CardContent>
       </Card>
     </div>

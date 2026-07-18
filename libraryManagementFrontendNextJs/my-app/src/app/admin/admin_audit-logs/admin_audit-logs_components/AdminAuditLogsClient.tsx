@@ -1,6 +1,5 @@
-'use client';
-
 // RESPONSIBILITY: Client view component rendering audit logs table, filters, copy IDs, and detail drawer (`Rule 1`, `Rule 8`, `Rule 19`, `Rule 49`).
+'use client';
 // DATA FLOW: useAdminAuditLogs -> AdminAuditLogsClient -> Table / Detail Drawer (`Rule 39`).
 
 import { useState, useCallback } from 'react';
@@ -16,6 +15,7 @@ import { Badge } from '@/components/ui/badge';
 import { Card } from '@/components/ui/card';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from '@/components/ui/dialog';
 import toast from 'react-hot-toast';
+import { TablePagination } from '@/components/ui/table-pagination';
 
 const SEVERITY_ICONS: Record<string, React.ReactNode> = {
   danger:  <ShieldAlert size={12} />,
@@ -90,6 +90,9 @@ export function AdminAuditLogsClient() {
     handleResetFilters,
   } = useAdminAuditLogs();
 
+  const [page, setPage] = useState(1);
+  const [limit, setLimit] = useState(10);
+
   const handleRowClick = useCallback((log: AuditLogRecord) => {
     setSelectedLog(log);
   }, [setSelectedLog]);
@@ -123,7 +126,7 @@ export function AdminAuditLogsClient() {
           />
         </div>
         <div className="flex items-center p-1 rounded-lg bg-muted/30 border border-border">
-          {AUDIT_LOG_TABS.map((tab) => (
+          {AUDIT_LOG_TABS.slice((page - 1) * limit, page * limit).map((tab) => (
             <button
               key={tab}
               type="button"
@@ -191,6 +194,13 @@ export function AdminAuditLogsClient() {
               </tbody>
             </table>
           </div>
+          <TablePagination
+            page={page}
+            limit={limit}
+            totalItems={AUDIT_LOG_TABS.length}
+            onPageChange={setPage}
+            onLimitChange={setLimit}
+          />
         </Card>
       )}
 

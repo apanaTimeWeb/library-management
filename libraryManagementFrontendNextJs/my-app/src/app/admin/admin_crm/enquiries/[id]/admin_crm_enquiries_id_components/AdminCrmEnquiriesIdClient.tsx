@@ -1,7 +1,5 @@
-'use client';
-
-
 // RESPONSIBILITY: Renders the CRM Enquiry detail page with status updates, follow-up timeline, and action buttons.
+'use client';
 // DATA FLOW: Next.js Router -> AdminCrmEnquiryDetailPage -> (MarkLostModal, InfoItem, timeline, status card)
 
 import { useState, use, useEffect } from 'react';

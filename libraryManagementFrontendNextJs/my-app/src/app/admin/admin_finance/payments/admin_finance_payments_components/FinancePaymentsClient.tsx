@@ -1,6 +1,8 @@
 // RESPONSIBILITY: Renders the FinancePaymentsClient component.
 'use client';
 
+
+import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Receipt, Trash2, FileText, Download, X } from 'lucide-react';
 import { formatCurrency, formatDate } from '@/app/admin/admin_finance/admin_finance_utils/format';
@@ -9,6 +11,7 @@ import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Switch } from '@/components/ui/switch';
+import { TablePagination } from '@/components/ui/table-pagination';
 
 export function FinancePaymentsClient() {
   const router = useRouter();
@@ -26,6 +29,9 @@ export function FinancePaymentsClient() {
     handleDelete,
     isLoading
   } = useFinancePayments();
+
+  const [page, setPage] = useState(1);
+  const [limit, setLimit] = useState(10);
 
   const getModeBadge = (mode: string) => {
     switch(mode.toLowerCase()) {
@@ -112,7 +118,7 @@ export function FinancePaymentsClient() {
                   </td>
                 </tr>
               ) : (
-                visible.map((p) => {
+                visible.slice((page - 1) * limit, page * limit).map((p) => {
                   const isDeleted = p.status === 'deleted';
                   return (
                     <tr key={p.id} className={`hover:bg-muted/10 transition-colors ${isDeleted ? 'bg-danger/5' : ''}`}>
@@ -203,7 +209,14 @@ export function FinancePaymentsClient() {
               )}
             </tbody>
           </table>
-        </div>
+          </div>
+          <TablePagination
+            page={page}
+            limit={limit}
+            totalItems={visible.length}
+            onPageChange={setPage}
+            onLimitChange={setLimit}
+          />
       </Card>
 
       {/* Delete Confirmation Modal */}

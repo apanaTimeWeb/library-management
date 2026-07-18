@@ -1,6 +1,8 @@
 // RESPONSIBILITY: Renders the FinanceSecurityDepositsClient component.
 'use client';
 
+
+import { useState } from 'react';
 import { Undo2, Minus, X } from 'lucide-react';
 import { formatCurrency } from '@/app/admin/admin_finance/admin_finance_utils/format';
 import { useFinanceSecurityDeposits } from '@/app/admin/admin_finance/security-deposits/admin_finance_security_deposits_hooks/useFinanceSecurityDeposits';
@@ -8,6 +10,7 @@ import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { TablePagination } from '@/components/ui/table-pagination';
 
 export function FinanceSecurityDepositsClient() {
   const {
@@ -32,6 +35,9 @@ export function FinanceSecurityDepositsClient() {
     handleRefund,
     handleDeduction
   } = useFinanceSecurityDeposits();
+
+  const [page, setPage] = useState(1);
+  const [limit, setLimit] = useState(10);
 
   const getStatusBadge = (status: string) => {
     switch (status) {
@@ -105,7 +111,7 @@ export function FinanceSecurityDepositsClient() {
                   </td>
                 </tr>
               ) : (
-                filtered.map((d) => (
+                filtered.slice((page - 1) * limit, page * limit).map((d) => (
                   <tr key={d.id} className="hover:bg-muted/10 transition-colors">
                     <td className="px-5 py-4">
                       <div className="font-bold text-sm text-primary">{d.studentName}</div>
@@ -157,7 +163,14 @@ export function FinanceSecurityDepositsClient() {
               )}
             </tbody>
           </table>
-        </div>
+          </div>
+          <TablePagination
+            page={page}
+            limit={limit}
+            totalItems={filtered.length}
+            onPageChange={setPage}
+            onLimitChange={setLimit}
+          />
       </Card>
 
       {/* Process Refund Dialog */}

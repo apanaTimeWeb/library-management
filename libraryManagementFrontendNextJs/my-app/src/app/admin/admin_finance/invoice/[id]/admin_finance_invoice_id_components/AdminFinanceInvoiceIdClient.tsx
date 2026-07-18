@@ -1,6 +1,5 @@
-'use client';
-
 // RESPONSIBILITY: Entry page for the admin_finance module.
+'use client';
 // DATA FLOW: Next.js Router -> Page -> Components
 
 import { useRouter } from 'next/navigation';
@@ -8,6 +7,7 @@ import { formatCurrency, formatDate } from '@/app/admin/admin_finance/admin_fina
 import { Printer, ArrowLeft, Send } from 'lucide-react';
 import { openWhatsApp } from '@/lib/whatsappUtils';
 import { printThermal } from '@/lib/thermalPrint';
+import { TablePagination } from '@/components/ui/table-pagination';
 
 const INV = {
   invoiceNumber:        'INV-20260411-001',
@@ -36,6 +36,8 @@ const INV = {
 };
 
 export function AdminFinanceInvoiceIdClient() {
+  const [page, setPage] = useState(1);
+  const [limit, setLimit] = useState(10);
   const router = useRouter();
 
   function handleWhatsApp() {
@@ -156,7 +158,7 @@ export function AdminFinanceInvoiceIdClient() {
             </tr>
           </thead>
           <tbody>
-            {INV.items.map((item, i) => (
+            {INV.items.slice((page - 1) * limit, page * limit).map((item, i) => (
               <tr key={i} className="fin-table-row">
                 <td className="py-2 px-3 fin-text-body">{item.description}</td>
                 <td className="py-2 px-3 fin-mono">{item.hsnCode}</td>

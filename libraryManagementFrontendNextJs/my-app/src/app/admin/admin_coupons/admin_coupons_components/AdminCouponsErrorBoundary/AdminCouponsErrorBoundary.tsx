@@ -1,6 +1,5 @@
-'use client';
-
 // RESPONSIBILITY: Typed Error Boundary component specific to the admin_coupons module.
+'use client';
 // DATA FLOW: Error -> AdminCouponsErrorBoundary -> Fallback UI
 
 import React from 'react';

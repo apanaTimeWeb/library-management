@@ -1,6 +1,7 @@
 // RESPONSIBILITY: Renders the AdminReportsClient component.
 'use client';
 
+
 import { Download, FileText, IndianRupee, Users, Wallet, TrendingUp, BarChart2, PieChart as PieIcon, Activity } from 'lucide-react';
 import toast, { Toaster } from 'react-hot-toast';
 import {
@@ -8,7 +9,9 @@ import {
   PieChart, Pie, Cell, Legend,
   AreaChart, Area,
 } from 'recharts';
+import { useState } from 'react';
 import { useAdminReports } from '@/app/admin/admin_reports/admin_reports_hooks/useAdminReports';
+import { TablePagination } from '@/components/ui/table-pagination';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -86,6 +89,16 @@ export function AdminReportsClient({ initialData }: AdminReportsClientProps) {
     handleExport,
     rangeOptions
   } = useAdminReports(initialData);
+
+  const [page, setPage] = useState(1);
+  const [limit, setLimit] = useState(10);
+  
+  const branchData = [
+    { branch: 'Main Branch',    revenue: '₹62,000', expense: '₹18,000', profit: '₹44,000', students: 248, occ: 92 },
+    { branch: 'Branch 2',       revenue: '₹48,000', expense: '₹14,500', profit: '₹33,500', students: 180, occ: 85 },
+    { branch: 'Kothrud Center', revenue: '₹28,000', expense: '₹9,000',  profit: '₹19,000', students: 95,  occ: 78 },
+    { branch: 'Nashik Branch',  revenue: '₹14,000', expense: '₹5,000',  profit: '₹9,000',  students: 42,  occ: 60 },
+  ];
 
   return (
     <>
@@ -342,12 +355,7 @@ export function AdminReportsClient({ initialData }: AdminReportsClientProps) {
                 </tr>
               </thead>
               <tbody className="divide-y divide-border">
-                {[
-                  { branch: 'Main Branch',    revenue: '₹62,000', expense: '₹18,000', profit: '₹44,000', students: 248, occ: 92 },
-                  { branch: 'Branch 2',       revenue: '₹48,000', expense: '₹14,500', profit: '₹33,500', students: 180, occ: 85 },
-                  { branch: 'Kothrud Center', revenue: '₹28,000', expense: '₹9,000',  profit: '₹19,000', students: 95,  occ: 78 },
-                  { branch: 'Nashik Branch',  revenue: '₹14,000', expense: '₹5,000',  profit: '₹9,000',  students: 42,  occ: 60 },
-                ].map((row, i) => (
+                {branchData.slice((page - 1) * limit, page * limit).map((row, i) => (
                   <tr key={i} className="hover:bg-muted/10 transition-colors">
                     <td className="px-4 py-3 font-bold text-sm text-primary">{row.branch}</td>
                     <td className="px-4 py-3 font-bold text-sm text-primary">{row.revenue}</td>
@@ -378,6 +386,13 @@ export function AdminReportsClient({ initialData }: AdminReportsClientProps) {
               </tbody>
             </table>
           </div>
+          <TablePagination
+            page={page}
+            limit={limit}
+            totalItems={branchData.length}
+            onPageChange={setPage}
+            onLimitChange={setLimit}
+          />
         </Card>
       </div>
     </>

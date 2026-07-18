@@ -1,6 +1,5 @@
-'use client';
-
 // RESPONSIBILITY: Entry page for the admin_engagement module.
+'use client';
 // DATA FLOW: Next.js Router -> Page -> Components
 
 import { useState } from 'react';
@@ -11,6 +10,7 @@ import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import toast from 'react-hot-toast';
+import { TablePagination } from '@/components/ui/table-pagination';
 
 interface AbsenteeRow {
   id: string; name: string; initials: string; smartId: string;
@@ -19,6 +19,8 @@ interface AbsenteeRow {
 }
 
 export function AdminEngagementAbsenteeReportClient() {
+  const [page, setPage] = useState(1);
+  const [limit, setLimit] = useState(10);
   const [threshold, setThreshold] = useState('3');
   const [shift, setShift]         = useState('All');
   const [rows, setRows]           = useState<AbsenteeRow[]>(ADMIN_ENGAGEMENT_MOCK_ABSENTEES as AbsenteeRow[]);
@@ -140,7 +142,7 @@ export function AdminEngagementAbsenteeReportClient() {
               </tr>
             </thead>
             <tbody className="divide-y divide-border">
-              {filtered.map((r) => (
+              {filtered.slice((page - 1) * limit, page * limit).map((r) => (
                 <tr key={r.id} className={`transition-colors ${rowClass(r.daysAbsent)}`}>
                   <td className="py-4 px-4">
                     <div className="flex items-center gap-3">
