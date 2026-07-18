@@ -16,8 +16,8 @@ export function useSuperadminSystemProfile() {
       0: { label: 'Very Weak', color: 'bg-error' },
       1: { label: 'Weak', color: 'bg-error' },
       2: { label: 'Fair', color: 'bg-tertiary' },
-      3: { label: 'Good', color: 'bg-green-500' },
-      4: { label: 'Strong', color: 'bg-green-400' },
+      3: { label: 'Good', color: 'bg-success' },
+      4: { label: 'Strong', color: 'bg-success' },
     };
     return { score, ...map[score] };
   }, [newPw]);

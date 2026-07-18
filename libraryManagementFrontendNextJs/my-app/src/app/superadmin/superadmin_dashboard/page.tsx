@@ -5,5 +5,5 @@ import { fetchSuperadminDashboardData } from '@/app/superadmin/superadmin_dashbo
 export default async function SuperAdminDashboardPage() {
   const initialData = await fetchSuperadminDashboardData();
   
-  return <SuperadminDashboardClient initialData={initialData} />;
+  return <SuperadminDashboardClient initialData={initialData.data} />;
 }

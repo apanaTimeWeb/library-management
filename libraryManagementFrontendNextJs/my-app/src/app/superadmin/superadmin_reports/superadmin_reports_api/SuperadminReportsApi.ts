@@ -1,11 +1,10 @@
 import type { SuperadminReportsDataResponse } from '@/app/superadmin/superadmin_reports/superadmin_reports_types/SuperadminReportsTypes';
-import { SUPERADMIN_REPORTS_MOCK_DATA } from '@/app/superadmin/superadmin_reports/superadmin_reports_constants/SuperadminReportsConstants';
+import type { ApiResponse } from '@/app/superadmin/superadmin_shared_components/superadmin_types';
+// RESPONSIBILITY: Fetches superadmin reports data.
+import { fetchApi } from '@/lib/api';
+import { SUPERADMIN_API_ROUTES } from '@/app/superadmin/superadmin_url_config';
 
-export async function fetchSuperadminReportsData(dateRange: string = 'Last 6 Months'): Promise<SuperadminReportsDataResponse> {
-  // Simulate network delay
-  await new Promise((resolve) => setTimeout(resolve, 800));
-  
-  // In a real application, you would pass `dateRange` to your backend query.
-  // For now, we return the mock data directly.
-  return SUPERADMIN_REPORTS_MOCK_DATA;
+export async function fetchSuperadminReportsData(dateRange: string = 'Last 6 Months'): Promise<ApiResponse<SuperadminReportsDataResponse>> {
+  const response = await fetchApi(`${SUPERADMIN_API_ROUTES.REPORTS}?dateRange=${encodeURIComponent(dateRange)}`);
+  return response as ApiResponse<SuperadminReportsDataResponse>;
 }

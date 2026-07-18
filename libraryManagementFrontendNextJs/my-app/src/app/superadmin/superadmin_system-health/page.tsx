@@ -3,7 +3,7 @@ import { SuperadminSystemHealthClient } from '@/app/superadmin/superadmin_system
 import { fetchSuperadminSystemHealthData } from '@/app/superadmin/superadmin_system-health/superadmin_system_health_api/SuperadminSystemHealthApi';
 
 export default async function SuperAdminSystemHealthPage() {
-  const initialData = await fetchSuperadminSystemHealthData();
+  const response = await fetchSuperadminSystemHealthData();
   
-  return <SuperadminSystemHealthClient initialData={initialData} />;
+  return <SuperadminSystemHealthClient initialData={response.data!} />;
 }

@@ -11,10 +11,10 @@ import { useSuperadminSystemWhatsapp } from '@/app/superadmin/superadmin_system/
 import { SUPERADMIN_SYSTEM_WHATSAPP_PROVIDERS, SUPERADMIN_SYSTEM_WHATSAPP_STATUS_CFG } from '@/app/superadmin/superadmin_system/superadmin_system_constants/SuperadminSystemWhatsappConstants';
 
 const PROVIDER_LOGOS: Record<string, React.ReactNode> = {
-  twilio: <Globe size={16} className="text-blue-500" />,
-  wati: <Globe size={16} className="text-green-500" />,
-  aisensy: <Globe size={16} className="text-purple-500" />,
-  custom: <Settings size={16} className="text-gray-500" />,
+  twilio: <Globe size={16} className="text-primary" />,
+  wati: <Globe size={16} className="text-success" />,
+  aisensy: <Globe size={16} className="text-tertiary" />,
+  custom: <Settings size={16} className="text-on-surface-variant" />,
 };
 
 export function SuperadminSystemWhatsappClient() {
@@ -42,13 +42,13 @@ export function SuperadminSystemWhatsappClient() {
 
       {/* Connection Status Banner */}
       <div className={`flex items-center gap-4 p-4 rounded-2xl border mb-8 ${
-        testStatus === 'success' ? 'bg-green-500/10 border-green-500/25' : 
-        testStatus === 'error' ? 'bg-error-container/10 border-error/20' : 
+        testStatus === 'success' ? 'bg-success-subtle border-success/30' : 
+        testStatus === 'error' ? 'bg-error-container border-error/30' : 
         'bg-surface-container border-outline-variant'
       }`}>
         <div className={`h-12 w-12 rounded-xl flex items-center justify-center text-2xl ${
-          testStatus === 'success' ? 'bg-green-500/20 text-success-base' :
-          testStatus === 'error'  ? 'bg-error-container/30 text-error-base' :
+          testStatus === 'success' ? 'bg-success-subtle text-success' :
+          testStatus === 'error'  ? 'bg-error-container text-error' :
           'bg-surface-container-high text-on-surface-variant'
         }`}>
           {testStatus === 'success' ? <CheckCircle size={24} /> : testStatus === 'error' ? <XCircle size={24} /> : <Radio size={24} />}
@@ -185,7 +185,7 @@ export function SuperadminSystemWhatsappClient() {
                   {webhookUrl}
                 </div>
                 <SuperadminButton id="copy-webhook-btn" variant="ghost" size="sm" onClick={handleCopyWebhook}>
-                  {copiedUrl ? <CheckCircle size={14} className="text-green-400" /> : <Copy size={14} />}
+                  {copiedUrl ? <CheckCircle size={14} className="text-success" /> : <Copy size={14} />}
                 </SuperadminButton>
               </div>
               <p className="text-xs text-on-surface-variant">Paste this URL in your provider's webhook settings.</p>

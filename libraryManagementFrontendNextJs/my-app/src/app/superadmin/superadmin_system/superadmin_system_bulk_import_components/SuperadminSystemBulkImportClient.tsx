@@ -189,8 +189,8 @@ export function SuperadminSystemBulkImportClient() {
               <p className="text-2xl font-bold text-on-surface">{previewData.length}</p>
               <p className="text-xs text-on-surface-variant mt-1">Total Rows</p>
             </div>
-            <div className="p-4 rounded-2xl bg-green-500/10 border border-green-500/20 text-center">
-              <p className="text-2xl font-bold text-green-400">{okCount}</p>
+            <div className="p-4 rounded-2xl bg-success-subtle border border-success/30 text-center">
+              <p className="text-2xl font-bold text-success">{okCount}</p>
               <p className="text-xs text-on-surface-variant mt-1"><CheckCircle size={14} className="inline mr-1" /> Ready to Import</p>
             </div>
             <div className="p-4 rounded-2xl bg-tertiary/10 border border-tertiary/20 text-center">
@@ -329,13 +329,13 @@ export function SuperadminSystemBulkImportClient() {
       {step === 'done' && (
         <SuperadminCard>
           <CardContent className="py-16 flex flex-col items-center gap-6 text-center">
-            <div className="h-24 w-24 rounded-full bg-green-500/15 flex items-center justify-center text-5xl">
+            <div className="h-24 w-24 rounded-full bg-success-subtle flex items-center justify-center text-5xl">
               🎉
             </div>
             <div>
               <h2 className="text-2xl font-bold text-on-surface mb-2">Import Complete!</h2>
               <p className="text-on-surface-variant">
-                <span className="text-green-400 font-semibold">{okCount} students</span> were successfully imported into the system.
+                <span className="text-success font-semibold">{okCount} students</span> were successfully imported into the system.
               </p>
               {errorCount > 0 && (
                 <p className="text-sm text-on-surface-variant mt-2">

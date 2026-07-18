@@ -3,7 +3,7 @@ import { SuperadminReportsClient } from '@/app/superadmin/superadmin_reports/Sup
 import { fetchSuperadminReportsData } from '@/app/superadmin/superadmin_reports/superadmin_reports_api/SuperadminReportsApi';
 
 export default async function SuperAdminReportsPage() {
-  const initialData = await fetchSuperadminReportsData('Last 6 Months');
+  const response = await fetchSuperadminReportsData('Last 6 Months');
   
-  return <SuperadminReportsClient initialData={initialData} />;
+  return <SuperadminReportsClient initialData={response.data!} />;
 }

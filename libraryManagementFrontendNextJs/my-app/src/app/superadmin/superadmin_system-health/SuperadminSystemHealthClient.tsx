@@ -24,7 +24,9 @@ export function SuperadminSystemHealthClient({ initialData }: SuperadminSystemHe
     setFetchState('loading');
     try {
       const refreshedData = await fetchSuperadminSystemHealthData();
-      setData(refreshedData);
+      if (refreshedData.data) {
+        setData(refreshedData.data);
+      }
       setLastRefresh(new Date().toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' }));
       setFetchState('success');
     } catch (err) {

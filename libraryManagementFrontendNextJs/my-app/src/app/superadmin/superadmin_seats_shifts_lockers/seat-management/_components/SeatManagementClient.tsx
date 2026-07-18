@@ -150,7 +150,7 @@ export function SeatManagementClient() {
             <Search size={14} className="ss-input-icon" />
             <input type="text" placeholder="Search by seat #, branch or student..." className="ss-input" value={search} onChange={e => setSearch(e.target.value)} />
           </div>
-          <div style={{ minWidth: 200 }}>
+          <div className="min-w-[200px]">
             <SuperadminSearchableDropdown
               options={[
                 { label: 'All Statuses', value: 'All Statuses' },

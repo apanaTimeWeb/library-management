@@ -26,9 +26,11 @@ export function SuperadminReportsClient({ initialData }: Props) {
     
     fetchSuperadminReportsData(range)
       .then(res => {
-        if (mounted) {
-          setData(res);
+        if (mounted && res.data) {
+          setData(res.data);
           setFetchState('success');
+        } else if (mounted) {
+          setFetchState('error');
         }
       })
       .catch(err => {

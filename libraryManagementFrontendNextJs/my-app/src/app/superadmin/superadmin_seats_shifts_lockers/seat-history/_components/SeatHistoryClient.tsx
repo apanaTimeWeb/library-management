@@ -64,7 +64,7 @@ export function SeatHistoryClient() {
       </div>
 
       <div className="ss-filter-bar">
-        <div style={{ minWidth: 200 }}>
+        <div className="min-w-[200px]">
           <SuperadminSearchableDropdown
             options={[
               { label: 'All Seats', value: 'All Seats' },
