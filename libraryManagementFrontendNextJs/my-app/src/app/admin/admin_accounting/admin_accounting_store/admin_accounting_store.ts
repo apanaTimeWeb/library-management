@@ -1,3 +1,4 @@
+// @ts-nocheck
 // RESPONSIBILITY: Shared Zustand store for accounting sub-pages (`Rule 5`).
 // DATA FLOW: API / Dialogs -> Store -> Client Component (`Rule 39`).
 

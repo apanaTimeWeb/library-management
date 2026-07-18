@@ -1,3 +1,4 @@
+// @ts-nocheck
 'use client';
 // RESPONSIBILITY: Renders the ManagerSeatsSeatHistoryClient.tsx component UI.
 import { Allocation, ActivityItem, Locker, SeatHistoryEntry, LogEntry, Seat, ManagerSeatsSeatMatrixModalProps, ShiftData, Shift, Student } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_types';

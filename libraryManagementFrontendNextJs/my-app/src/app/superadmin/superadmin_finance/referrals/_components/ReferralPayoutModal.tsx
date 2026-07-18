@@ -7,7 +7,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { formatCurrency } from '@/app/superadmin/superadmin_finance/superadmin_finance_utils/superadmin_format';
 import { SuperadminSearchableDropdown } from '@/app/superadmin/superadmin_shared_components/SuperadminSearchableDropdown';
-import { PayoutFormData } from "./ReferralPayoutModal_types";
+import { PayoutFormData, payoutSchema } from "./ReferralPayoutModal_types";
 
 
 

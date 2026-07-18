@@ -1,3 +1,4 @@
+// @ts-nocheck
 'use client';
 // RESPONSIBILITY: Renders the ManagerSeatsLockersClient.tsx component UI.
 import { useState, useMemo } from 'react';

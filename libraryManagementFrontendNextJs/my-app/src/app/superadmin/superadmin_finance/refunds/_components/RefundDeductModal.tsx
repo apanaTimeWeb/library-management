@@ -5,7 +5,7 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import { RefundDeductModalProps, DeductFormData } from "./RefundDeductModal_types";
+import { RefundDeductModalProps, DeductFormData, deductSchema } from "./RefundDeductModal_types";
 
 
 

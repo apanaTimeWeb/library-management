@@ -128,11 +128,11 @@ export function SeatMatrixClient() {
             {selectedSeat.status === 'free' ? (
               /* Free seat panel */
               <>
-                <div className="ss-occupied-header__row" className="mb-4">
+                <div className="ss-occupied-header__row mb-4">
                   <span className="ss-badge ss-badge--success">Free</span>
                   <span className="ss-occupied-header__seat">Seat {selectedSeat.id}</span>
                 </div>
-                <p className="ss-text-secondary ss-text-caption" className="mb-6">This seat is available for assignment.</p>
+                <p className="ss-text-secondary ss-text-caption mb-6">This seat is available for assignment.</p>
                 <div className="ss-modal-footer">
                   <button className="ss-btn-ghost" onClick={() => setSelectedSeat(null)}>Close</button>
                   <button className="ss-btn-primary">
@@ -143,11 +143,11 @@ export function SeatMatrixClient() {
             ) : selectedSeat.status === 'maintenance' ? (
               /* Maintenance panel */
               <>
-                <div className="ss-occupied-header__row" className="mb-4">
+                <div className="ss-occupied-header__row mb-4">
                   <span className="ss-badge ss-badge--inactive">Maintenance</span>
                   <span className="ss-occupied-header__seat">Seat {selectedSeat.id}</span>
                 </div>
-                <p className="ss-text-secondary ss-text-caption" className="mb-6">This seat is under maintenance and unavailable.</p>
+                <p className="ss-text-secondary ss-text-caption mb-6">This seat is under maintenance and unavailable.</p>
                 <div className="ss-modal-footer">
                   <button className="ss-btn-ghost" onClick={() => setSelectedSeat(null)}>Close</button>
                 </div>
