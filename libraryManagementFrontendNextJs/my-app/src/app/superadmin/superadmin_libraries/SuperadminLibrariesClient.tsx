@@ -1,16 +1,50 @@
 // RESPONSIBILITY: Renders the SuperadminLibrariesClient component.
 'use client';
-import React, { useState } from 'react';
-import { superadmin_useSuperadminLibraries } from '@/app/superadmin/superadmin_libraries/superadmin_libraries_hooks/superadmin_useSuperadminLibraries';
+import React, { useState, useEffect } from 'react';
 import { SuperadminLibrariesHeader } from '@/app/superadmin/superadmin_libraries/superadmin_libraries_components/SuperadminLibrariesHeader';
 import { SuperadminLibrariesGrid } from '@/app/superadmin/superadmin_libraries/superadmin_libraries_components/SuperadminLibrariesGrid';
 import { SuperadminLibrariesPanel } from '@/app/superadmin/superadmin_libraries/superadmin_libraries_components/SuperadminLibrariesPanel';
-import type { SuperadminLibrary, SuperadminLibraryPanelMode } from '@/app/superadmin/superadmin_libraries/superadmin_libraries_types/SuperadminLibrariesTypes';
-import { SUPERADMIN_LIBRARIES_TOASTS } from '@/app/superadmin/superadmin_libraries/superadmin_libraries_constants/SuperadminLibrariesConstants';
+import type { SuperadminLibrary, SuperadminLibraryPanelMode, SuperadminLibrariesFetchState } from '@/app/superadmin/superadmin_libraries/superadmin_libraries_types/SuperadminLibrariesTypes';
+import { SUPERADMIN_LIBRARIES_TOASTS, SUPERADMIN_LIBRARIES_MOCK_DATA } from '@/app/superadmin/superadmin_libraries/superadmin_libraries_constants/SuperadminLibrariesConstants';
 import { CheckCircle } from 'lucide-react';
+import { logger } from '@/lib/logger';
 
 export function SuperadminLibrariesClient() {
-  const { libraries, fetchState, updateLibrary, toggleStatus } = superadmin_useSuperadminLibraries();
+  const [libraries, setLibraries] = useState<SuperadminLibrary[]>([]);
+  const [fetchState, setFetchState] = useState<SuperadminLibrariesFetchState>('idle');
+
+  useEffect(() => {
+    let mounted = true;
+    const loadLibraries = async () => {
+      setFetchState('loading');
+      try {
+        await new Promise(res => setTimeout(res, 800));
+        if (mounted) {
+          setLibraries(SUPERADMIN_LIBRARIES_MOCK_DATA);
+          setFetchState('success');
+        }
+      } catch (err) {
+        logger.error('Failed to load library branches', err);
+        if (mounted) setFetchState('error');
+      }
+    };
+    loadLibraries();
+    return () => { mounted = false; };
+  }, []);
+
+  const updateLibrary = async (id: string, updates: Partial<SuperadminLibrary>) => {
+    await new Promise(res => setTimeout(res, 1200));
+    setLibraries((libs) => libs.map((l) => (l.id === id ? { ...l, ...updates } : l)));
+  };
+
+  const toggleStatus = async (id: string) => {
+    const lib = libraries.find((l) => l.id === id);
+    if (!lib) throw new Error('Library not found');
+    const newStatus = lib.status === 'Active' ? 'Maintenance' : 'Active';
+    await new Promise(res => setTimeout(res, 600));
+    setLibraries((libs) => libs.map((l) => (l.id === id ? { ...l, status: newStatus } : l)));
+  };
+
   const [selected, setSelected] = useState<SuperadminLibrary | null>(null);
   const [panelMode, setPanelMode] = useState<SuperadminLibraryPanelMode>('view');
   const [toast, setToast] = useState('');

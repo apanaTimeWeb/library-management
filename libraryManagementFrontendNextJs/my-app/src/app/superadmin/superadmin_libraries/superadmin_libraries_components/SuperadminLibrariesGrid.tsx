@@ -107,6 +107,7 @@ export function SuperadminLibrariesGrid({ libraries, onRowClick, onSuspend }: Pr
           onRowClicked={p => { onRowClick(p.data!, 'view'); }}
           pagination={true}
           paginationPageSize={10}
+          paginationPageSizeSelector={false}
           suppressCellFocus={true}
           components={components}
           noRowsOverlayComponent="noRowsOverlayComponent"
