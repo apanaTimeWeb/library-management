@@ -31,7 +31,7 @@ export function ManagerCrmEnquiriesKanban({ isEmpty, getCardsByStatus, onAddEnqu
   }
 
   return (
-    <div className="flex gap-4 overflow-x-auto pb-4 items-start h-full min-h-[500px]">
+    <div className="flex gap-4 overflow-x-auto pb-4 items-start h-full min-h-screen">
       {KANBAN_COLUMNS.map((col) => {
         const cards = getCardsByStatus(col.id);
         return (
@@ -46,9 +46,9 @@ export function ManagerCrmEnquiriesKanban({ isEmpty, getCardsByStatus, onAddEnqu
                 <MoreHorizontal size={15} />
               </button>
             </div>
-            <div className="flex flex-col gap-3 min-h-[150px]">
+            <div className="flex flex-col gap-3 min-h-40">
               {cards.length === 0 ? (
-                <div className="flex flex-col items-center justify-center p-6 text-center border-2 border-dashed border-border rounded-lg text-text-disabled h-full min-h-[120px]">
+                <div className="flex flex-col items-center justify-center p-6 text-center border-2 border-dashed border-border rounded-lg text-text-disabled h-full min-h-32">
                   <PhoneCall size={28} />
                   <p className="text-sm font-semibold mt-2">No {col.label} leads</p>
                   <p className="text-xs mt-1 text-text-secondary">Leads will appear here when moved to {col.label}</p>

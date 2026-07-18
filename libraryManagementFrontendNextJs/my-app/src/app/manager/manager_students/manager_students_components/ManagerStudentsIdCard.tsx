@@ -75,7 +75,7 @@ export default function ManagerStudentsIdCard({ data }: ManagerStudentsIdCardPro
         <div className="absolute inset-0 pointer-events-none opacity-20 bg-[linear-gradient(45deg,transparent_25%,rgba(255,255,255,0.2)_50%,transparent_75%,transparent_100%)] bg-[length:20px_20px]" aria-hidden="true" />
 
         {/* ── Header band ── */}
-        <div className="bg-[#0F172A] text-white p-4 flex justify-between items-start relative z-10">
+        <div className="bg-bg-elevated text-white p-4 flex justify-between items-start relative z-10">
           <div className="flex items-center gap-3">
             <div className="text-2xl">📚</div>
             <div>

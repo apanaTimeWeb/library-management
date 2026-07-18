@@ -133,7 +133,7 @@ export function ManagerCommunicationWhatsappLogsClient() {
             <label className="text-[13px] font-medium text-text-secondary mb-1.5">To</label>
             <input type="date" className="bg-bg-input border border-border rounded-lg px-3.5 py-2 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary" value={dateTo} onChange={e => setDateTo(e.target.value)} />
           </div>
-          <div className="flex flex-col flex-grow min-w-[200px]">
+          <div className="flex flex-col flex-grow min-w-48">
             <label className="text-[13px] font-medium text-text-secondary mb-1.5">Search</label>
             <input className="w-full bg-bg-input border border-border rounded-lg px-3.5 py-2 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary" placeholder="Student name or phone..." value={search} onChange={e => setSearch(e.target.value)} />
           </div>
@@ -179,7 +179,7 @@ export function ManagerCommunicationWhatsappLogsClient() {
                         </span>
                       </td>
                       <td className="px-4 py-4">
-                        <span className="text-danger text-xs truncate max-w-[160px] inline-block" title={row.error}>{row.error || '—'}</span>
+                        <span className="text-danger text-xs truncate max-w-40 inline-block" title={row.error}>{row.error || '—'}</span>
                       </td>
                       <td className="px-4 py-4 text-right">
                         <div className="flex gap-2 items-center justify-end">

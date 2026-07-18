@@ -32,7 +32,7 @@ export function ManagerStudentsStudentProfileClient({ id }: { id: string }) {
     return (
       <div className="p-6 min-h-screen">
         <div className="bg-bg-card rounded-xl border border-border p-6">
-          <div className="flex flex-col items-center justify-center p-12 text-center h-full min-h-[300px]">
+          <div className="flex flex-col items-center justify-center p-12 text-center h-full min-h-72">
             <div className="text-4xl mb-4 opacity-50">🔍</div>
             <p className="text-lg font-bold text-text-primary mb-1">Student not found</p>
             <p className="text-sm text-text-secondary">ID: {id}</p>
@@ -57,7 +57,7 @@ export function ManagerStudentsStudentProfileClient({ id }: { id: string }) {
           <p className="text-[11px] font-bold uppercase tracking-wider text-text-secondary mt-1">Manager › Students › {student.name}</p>
         </div>
         <div className="p-6 min-h-screen-actions">
-          <Link href={`/manager/manager_students/${id}/edit`} className="bg-transparent border border-border text-text-primary rounded-lg px-5 py-2.5 text-sm font-medium hover:bg-primary-subtle hover:border-primary transition-colors inline-flex items-center gap-2">
+          <Link href={`${MANAGER_ROUTES.STUDENTS}/${id}/edit`} className="bg-transparent border border-border text-text-primary rounded-lg px-5 py-2.5 text-sm font-medium hover:bg-primary-subtle hover:border-primary transition-colors inline-flex items-center gap-2">
             Edit
           </Link>
         </div>
@@ -152,13 +152,13 @@ export function ManagerStudentsStudentProfileClient({ id }: { id: string }) {
               <h2 className="text-base font-semibold text-text-primary">Quick Actions</h2>
             </div>
             <div className="flex flex-col gap-3">
-              <Link href={`/manager/manager_finance/collect-fee?id=${student.smartId}`} className="bg-primary text-white rounded-lg px-5 py-2.5 text-sm font-medium hover:bg-primary-hover transition-colors inline-flex items-center gap-2 w-full justify-center">
+              <Link href={`${MANAGER_ROUTES.FINANCE_COLLECT_FEE}?id=${student.smartId}`} className="bg-primary text-white rounded-lg px-5 py-2.5 text-sm font-medium hover:bg-primary-hover transition-colors inline-flex items-center gap-2 w-full justify-center">
                 Collect Fee
               </Link>
-              <Link href={`/manager/manager_students/id-card?id=${student.smartId}`} className="bg-transparent border border-border text-text-primary rounded-lg px-5 py-2.5 text-sm font-medium hover:bg-primary-subtle hover:border-primary transition-colors inline-flex items-center gap-2 w-full justify-center">
+              <Link href={`${MANAGER_ROUTES.STUDENTS_ID_CARD}?id=${student.smartId}`} className="bg-transparent border border-border text-text-primary rounded-lg px-5 py-2.5 text-sm font-medium hover:bg-primary-subtle hover:border-primary transition-colors inline-flex items-center gap-2 w-full justify-center">
                 View ID Card
               </Link>
-              <Link href={`/manager/manager_finance/renewals?id=${student.smartId}`} className="bg-transparent border border-border text-text-primary rounded-lg px-5 py-2.5 text-sm font-medium hover:bg-primary-subtle hover:border-primary transition-colors inline-flex items-center gap-2 w-full justify-center">
+              <Link href={`${MANAGER_ROUTES.FINANCE_RENEWALS}?id=${student.smartId}`} className="bg-transparent border border-border text-text-primary rounded-lg px-5 py-2.5 text-sm font-medium hover:bg-primary-subtle hover:border-primary transition-colors inline-flex items-center gap-2 w-full justify-center">
                 Renew Subscription
               </Link>
             </div>

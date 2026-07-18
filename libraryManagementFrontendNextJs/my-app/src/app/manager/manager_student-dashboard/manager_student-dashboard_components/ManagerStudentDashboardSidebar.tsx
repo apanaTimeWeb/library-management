@@ -10,7 +10,7 @@
 //   return (
 //     <>
 //       {/* Top Navigation Bar - Exact same as your HTML */}
-//       <header className="fixed top-0 w-full h-[64px] z-50 flex items-center justify-between px-6 bg-[#12121d] shadow-none">
+//       <header className="fixed top-0 w-full h-16 z-50 flex items-center justify-between px-6 bg-bg-elevated shadow-none">
 //         <div className="flex items-center gap-4">
 //           <span className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-br from-[#c0c1ff] to-[#8083ff]">
 //             Smart Library 360
@@ -44,22 +44,22 @@
 //       </header>
 
 //       {/* Staff Sidebar - Exact same as your HTML */}
-//       <aside className="fixed left-0 top-0 h-screen w-60 z-40 flex flex-col pt-[64px] pb-4 overflow-y-auto bg-[#1b1a26]">
+//       <aside className="fixed left-0 top-0 h-screen w-60 z-40 flex flex-col pt-16 pb-4 overflow-y-auto bg-bg-card">
 //         <div className="px-6 py-6 border-b border-border/10">
 //           <h2 className="text-xs font-semibold text-primary tracking-widest uppercase">Admission Module</h2>
 //           <p className="text-[10px] text-slate-500 mt-1">Academic Year 2024-25</p>
 //         </div>
 
 //         <nav className="mt-4 flex flex-col">
-//           <Link href="/staff" className="flex items-center gap-3 px-6 py-3 cursor-pointer text-slate-400 hover:bg-[#292935] hover:text-white transition-all">
+//           <Link href="/staff" className="flex items-center gap-3 px-6 py-3 cursor-pointer text-slate-400 hover:bg-bg-elevated hover:text-white transition-all">
 //             <span className="material-symbols-outlined">dashboard</span>
 //             <span className="text-sm">Dashboard</span>
 //           </Link>
-//           <Link href="/staff/reports" className="flex items-center gap-3 px-6 py-3 cursor-pointer text-slate-400 hover:bg-[#292935] hover:text-white transition-all">
+//           <Link href="/staff/reports" className="flex items-center gap-3 px-6 py-3 cursor-pointer text-slate-400 hover:bg-bg-elevated hover:text-white transition-all">
 //             <span className="material-symbols-outlined">assessment</span>
 //             <span className="text-sm">Reports</span>
 //           </Link>
-//           <Link href="/staff/enquiries" className="flex items-center gap-3 px-6 py-3 cursor-pointer text-slate-400 hover:bg-[#292935] hover:text-white transition-all">
+//           <Link href="/staff/enquiries" className="flex items-center gap-3 px-6 py-3 cursor-pointer text-slate-400 hover:bg-bg-elevated hover:text-white transition-all">
 //             <span className="material-symbols-outlined">manage_search</span>
 //             <span className="text-sm">CRM (Enquiries)</span>
 //           </Link>
@@ -73,31 +73,31 @@
 //             <span className="text-sm">Students</span>
 //           </Link>
 
-//           <Link href="/staff/seats" className="flex items-center gap-3 px-6 py-3 cursor-pointer text-slate-400 hover:bg-[#292935] hover:text-white transition-all">
+//           <Link href="/staff/seats" className="flex items-center gap-3 px-6 py-3 cursor-pointer text-slate-400 hover:bg-bg-elevated hover:text-white transition-all">
 //             <span className="material-symbols-outlined">event_seat</span>
 //             <span className="text-sm">Seats &amp; Shifts</span>
 //           </Link>
-//           <Link href="/staff/finance" className="flex items-center gap-3 px-6 py-3 cursor-pointer text-slate-400 hover:bg-[#292935] hover:text-white transition-all">
+//           <Link href="/staff/finance" className="flex items-center gap-3 px-6 py-3 cursor-pointer text-slate-400 hover:bg-bg-elevated hover:text-white transition-all">
 //             <span className="material-symbols-outlined">payments</span>
 //             <span className="text-sm">Finance</span>
 //           </Link>
-//           <Link href="/staff/operations" className="flex items-center gap-3 px-6 py-3 cursor-pointer text-slate-400 hover:bg-[#292935] hover:text-white transition-all">
+//           <Link href="/staff/operations" className="flex items-center gap-3 px-6 py-3 cursor-pointer text-slate-400 hover:bg-bg-elevated hover:text-white transition-all">
 //             <span className="material-symbols-outlined">settings_applications</span>
 //             <span className="text-sm">Operations</span>
 //           </Link>
-//           <Link href="/staff/accounts" className="flex items-center gap-3 px-6 py-3 cursor-pointer text-slate-400 hover:bg-[#292935] hover:text-white transition-all">
+//           <Link href="/staff/accounts" className="flex items-center gap-3 px-6 py-3 cursor-pointer text-slate-400 hover:bg-bg-elevated hover:text-white transition-all">
 //             <span className="material-symbols-outlined">account_balance</span>
 //             <span className="text-sm">Accounts</span>
 //           </Link>
-//           <Link href="/staff/communication" className="flex items-center gap-3 px-6 py-3 cursor-pointer text-slate-400 hover:bg-[#292935] hover:text-white transition-all">
+//           <Link href="/staff/communication" className="flex items-center gap-3 px-6 py-3 cursor-pointer text-slate-400 hover:bg-bg-elevated hover:text-white transition-all">
 //             <span className="material-symbols-outlined">chat</span>
 //             <span className="text-sm">Communication</span>
 //           </Link>
-//           <Link href="/staff/admin" className="flex items-center gap-3 px-6 py-3 cursor-pointer text-slate-400 hover:bg-[#292935] hover:text-white transition-all">
+//           <Link href="/staff/admin" className="flex items-center gap-3 px-6 py-3 cursor-pointer text-slate-400 hover:bg-bg-elevated hover:text-white transition-all">
 //             <span className="material-symbols-outlined">admin_panel_settings</span>
 //             <span className="text-sm">Admin</span>
 //           </Link>
-//           <Link href="/staff/system" className="flex items-center gap-3 px-6 py-3 cursor-pointer text-slate-400 hover:bg-[#292935] hover:text-white transition-all">
+//           <Link href="/staff/system" className="flex items-center gap-3 px-6 py-3 cursor-pointer text-slate-400 hover:bg-bg-elevated hover:text-white transition-all">
 //             <span className="material-symbols-outlined">settings</span>
 //             <span className="text-sm">System</span>
 //           </Link>

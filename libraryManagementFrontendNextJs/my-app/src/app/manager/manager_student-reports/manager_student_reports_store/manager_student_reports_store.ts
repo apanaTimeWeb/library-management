@@ -2,7 +2,7 @@ import { create } from 'zustand';
 import { fetchApi } from '@/lib/api';
 import { logger } from '@/lib/logger';
 import type { FetchState, ReportsData, ManagerStudentReportsState } from '@/app/manager/manager_student-reports/manager_student_reports_types/manager_student_reports_types';
-
+import { MANAGER_ROUTES } from '@/app/manager/manager_url_config';
 export const useManagerStudentReportsStore = create<ManagerStudentReportsState>((set) => ({
   reports: null,
   reportsStatus: 'idle',
@@ -11,7 +11,7 @@ export const useManagerStudentReportsStore = create<ManagerStudentReportsState>(
   fetchReports: async (dateRange: string) => {
     set({ reportsStatus: 'loading', reportsError: null });
     try {
-      const data = await fetchApi<ReportsData>(`/manager/manager_student-reports?range=${encodeURIComponent(dateRange)}`);
+      const data = await fetchApi<ReportsData>(`${MANAGER_ROUTES.STUDENT_REPORTS}?range=${encodeURIComponent(dateRange)}`);
       set({ reports: data, reportsStatus: 'success' });
     } catch (err) {
       const message = err instanceof Error ? err.message : String(err);

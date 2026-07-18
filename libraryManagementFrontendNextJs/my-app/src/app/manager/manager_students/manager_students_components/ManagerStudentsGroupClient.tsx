@@ -33,7 +33,7 @@ export function ManagerStudentsGroupClient() {
           </div>
           <div>
             <h3 className="text-text-primary font-semibold mb-1">Bulk Upload (Excel/CSV)</h3>
-            <p className="text-text-secondary text-sm max-w-[250px]">Upload multiple student records at once using our standard template.</p>
+            <p className="text-text-secondary text-sm max-w-64">Upload multiple student records at once using our standard template.</p>
           </div>
           <button className="bg-primary text-white rounded-lg px-5 py-2.5 text-sm font-medium hover:bg-primary-hover transition-colors inline-flex items-center gap-2 mt-2">Choose File</button>
         </div>
@@ -44,7 +44,7 @@ export function ManagerStudentsGroupClient() {
           </div>
           <div>
             <h3 className="text-text-primary font-semibold mb-1">Manual Group Entry</h3>
-            <p className="text-text-secondary text-sm max-w-[250px]">Manually add multiple students who are joining together (e.g., friends sharing a plan).</p>
+            <p className="text-text-secondary text-sm max-w-64">Manually add multiple students who are joining together (e.g., friends sharing a plan).</p>
           </div>
           <button className="bg-primary text-white rounded-lg px-5 py-2.5 text-sm font-medium hover:bg-primary-hover transition-colors inline-flex items-center gap-2 mt-2 bg-success border-none">Start Manual Entry</button>
         </div>

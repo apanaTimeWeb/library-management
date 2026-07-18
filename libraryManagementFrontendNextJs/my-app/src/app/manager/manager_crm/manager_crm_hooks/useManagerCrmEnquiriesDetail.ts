@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import toast from 'react-hot-toast';
 import { EnquiryDetail, EnquiryStatus, FollowUp } from '@/app/manager/manager_crm/manager_crm_types/ManagerCrmTypes';
-
+import { MANAGER_ROUTES } from '@/app/manager/manager_url_config';
 export function useManagerCrmEnquiriesDetail(id: string) {
   const router = useRouter();
 
@@ -99,7 +99,7 @@ export function useManagerCrmEnquiriesDetail(id: string) {
   };
 
   const handleConvert = () => {
-    if(enquiry) router.push(`/manager/manager_students/new?name=${enquiry.name}&phone=${enquiry.phone}`);
+    if(enquiry) router.push(`${MANAGER_ROUTES.STUDENTS_NEW}?name=${enquiry.name}&phone=${enquiry.phone}`);
   };
 
   const handleMarkLostConfirm = async (reason: string) => {

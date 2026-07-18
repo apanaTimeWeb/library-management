@@ -18,6 +18,7 @@ export const MANAGER_ROUTES = {
 
   // Finance (Blocked)
   FINANCE_COLLECT_FEE: '/manager/manager_finance/collect-fee',
+  FINANCE_RENEWALS: '/manager/manager_finance/renewals',
 
   // Communication
   COMMUNICATION_NOTICES: '/manager/manager_communication/notices',

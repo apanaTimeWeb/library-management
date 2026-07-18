@@ -37,7 +37,7 @@ export function ManagerStudentsExitClient() {
     return (
       <div className="p-6 min-h-screen">
         <div className="bg-bg-card rounded-xl border border-border p-6" style={{ maxWidth: 480, margin: '60px auto' }}>
-          <div className="flex flex-col items-center justify-center p-12 text-center h-full min-h-[300px]">
+          <div className="flex flex-col items-center justify-center p-12 text-center h-full min-h-72">
             <div className="text-4xl mb-4 opacity-50">✅</div>
             <p className="text-lg font-bold text-text-primary mb-1">Exit Processed</p>
             <p className="text-sm text-text-secondary">{student.name} ({student.smartId}) has been marked as exited.</p>
@@ -80,7 +80,7 @@ export function ManagerStudentsExitClient() {
                 onChange={e => setSearch(e.target.value)}
               />
             </div>
-            <div className="flex flex-col gap-2 max-h-[400px] overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-border scrollbar-track-transparent">
+            <div className="flex flex-col gap-2 max-h-96 overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-border scrollbar-track-transparent">
               {filtered.map(s => (
                 <button
                   key={s.smartId}
@@ -159,8 +159,8 @@ export function ManagerStudentsExitClient() {
           )}
 
           {!student && (
-            <div className="bg-bg-card rounded-xl border border-border p-6 h-full min-h-[400px]">
-              <div className="flex flex-col items-center justify-center p-12 text-center h-full min-h-[300px]">
+            <div className="bg-bg-card rounded-xl border border-border p-6 h-full min-h-96">
+              <div className="flex flex-col items-center justify-center p-12 text-center h-full min-h-72">
                 <div className="text-4xl mb-4 opacity-50">👈</div>
                 <p className="text-lg font-bold text-text-primary mb-1">Select a student</p>
                 <p className="text-sm text-text-secondary">Choose a student from the left panel to process their exit.</p>

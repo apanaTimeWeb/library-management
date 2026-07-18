@@ -244,7 +244,7 @@ export function ManagerEngagementHolidayCalendarClient() {
                 No holidays in {monthLabel} 🎉
               </div>
             ) : (
-              <div className="flex flex-col gap-3 max-h-[300px] overflow-y-auto pr-2">
+              <div className="flex flex-col gap-3 max-h-72 overflow-y-auto pr-2">
                 {thisMonthHolidays.map(h => (
                   <div key={h.id} className="flex items-center justify-between p-3 rounded-lg border border-border hover:bg-bg-elevated transition-colors">
                     <div>
@@ -272,7 +272,7 @@ export function ManagerEngagementHolidayCalendarClient() {
                 <div className="text-sm font-bold text-text-primary uppercase tracking-wider mb-4">
                   All Holidays ({holidays.length})
                 </div>
-                <div className="flex flex-col gap-3 max-h-[300px] overflow-y-auto pr-2">
+                <div className="flex flex-col gap-3 max-h-72 overflow-y-auto pr-2">
                   {holidays
                     .sort((a,b)=>a.date.localeCompare(b.date))
                     .map(h => (

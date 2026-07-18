@@ -78,12 +78,12 @@ export default function ManagerStudentsAdmissionSuccessModal({ data, onClose }: 
           <div className="flex-1 flex flex-col gap-3 min-w-72">
             <p className="text-sm font-bold text-text-secondary uppercase tracking-wider mb-2">Quick Actions</p>
 
-            <button className="bg-[#25D366] text-white rounded-lg px-5 py-2.5 text-sm font-medium hover:bg-[#20bd5a] transition-colors inline-flex items-center gap-2 w-full justify-center shadow-sm" onClick={handleSendIdCard}>
+            <button className="bg-success text-white rounded-lg px-5 py-2.5 text-sm font-medium hover:opacity-90 transition-colors inline-flex items-center gap-2 w-full justify-center shadow-sm" onClick={handleSendIdCard}>
               <MessageSquare size={16} /> Send ID Card via WhatsApp
             </button>
 
             {data.parentPhone && (
-              <button className="bg-transparent border border-[#25D366] text-[#25D366] rounded-lg px-5 py-2.5 text-sm font-medium hover:bg-[#25D366]/10 transition-colors inline-flex items-center gap-2 w-full justify-center" onClick={handleSendParent}>
+              <button className="bg-transparent border border-success text-success rounded-lg px-5 py-2.5 text-sm font-medium hover:bg-success-bg transition-colors inline-flex items-center gap-2 w-full justify-center" onClick={handleSendParent}>
                 <MessageSquare size={16} /> Send to Parent WhatsApp
               </button>
             )}
