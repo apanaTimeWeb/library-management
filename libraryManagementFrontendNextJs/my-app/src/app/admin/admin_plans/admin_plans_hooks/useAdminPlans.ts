@@ -62,10 +62,10 @@ export function useAdminPlans() {
     const q = debouncedSearch.toLowerCase();
     return plans.filter(
       (p) =>
-        p.name.toLowerCase().includes(q) ||
-        p.duration.toLowerCase().includes(q) ||
-        p.status.toLowerCase().includes(q) ||
-        p.features.some((f) => f.toLowerCase().includes(q))
+        p.name?.toLowerCase().includes(q) ||
+        p.duration?.toLowerCase().includes(q) ||
+        p.status?.toLowerCase().includes(q) ||
+        p.features?.some((f) => f.toLowerCase().includes(q))
     );
   }, [plans, debouncedSearch]);
 

@@ -109,7 +109,7 @@ export function FinanceReferralsClient() {
                   </td>
                 </tr>
               ) : (
-                referrers.slice((page - 1) * limit, page * limit).map((r: Record<string, unknown>, idx: number) => (
+                referrers.filter(row => JSON.stringify(row).toLowerCase().includes(searchTerm.toLowerCase())).slice((page - 1) * limit, page * limit).map((r: Record<string, unknown>, idx: number) => (
                   <tr key={r.id as string} className="hover:bg-muted/10 transition-colors">
                     <td className="px-5 py-4">
                       <span className={`text-sm ${idx === 0 ? 'text-warning font-black text-lg' : 'text-muted-foreground font-bold'}`}>#{idx + 1}</span>

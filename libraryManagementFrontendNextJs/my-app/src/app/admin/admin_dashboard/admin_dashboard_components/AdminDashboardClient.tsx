@@ -17,7 +17,7 @@ import type { AdminDashboardData, AdminDashboardActionItem } from '@/app/admin/a
 export function AdminDashboardClient({ initialData }: { initialData: AdminDashboardData }) {
   const { data, seatMatrixState } = useAdminDashboard(initialData);
 
-  const actionItems: AdminDashboardActionItem[] = data.actionItems?.map((a: AdminDashboardActionItem) => ({
+  const actionItems: AdminDashboardActionItem[] = data.actionItems?.map((a: any) => ({
     ...a,
     icon: ADMIN_ACTION_ICONS[a.label as keyof typeof ADMIN_ACTION_ICONS] ?? AlertCircle,
     type: (a.type === 'danger' || a.type === 'warning') ? a.type : 'warning',
@@ -71,7 +71,7 @@ export function AdminDashboardClient({ initialData }: { initialData: AdminDashbo
             <CardHeader className="pb-3 border-b border-border">
               <CardTitle className="text-base text-text-primary">Action Items</CardTitle>
               <CardDescription className="text-xs text-text-secondary">
-                {data.actionItems?.reduce((s, a) => s + (a.count || 0), 0) || 0} items need your attention
+                {data.actionItems?.reduce((s, a) => s + ((a as any).count || 0), 0) || 0} items need your attention
               </CardDescription>
             </CardHeader>
 

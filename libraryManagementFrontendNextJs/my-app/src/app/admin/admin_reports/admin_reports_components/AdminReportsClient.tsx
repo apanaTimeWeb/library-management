@@ -365,7 +365,7 @@ export function AdminReportsClient({ initialData }: AdminReportsClientProps) {
                 </tr>
               </thead>
               <tbody className="divide-y divide-border">
-                {branchData.slice((page - 1) * limit, page * limit).map((row, i) => (
+                {branchData.filter(row => JSON.stringify(row).toLowerCase().includes(searchTerm.toLowerCase())).slice((page - 1) * limit, page * limit).map((row, i) => (
                   <tr key={i} className="hover:bg-muted/10 transition-colors">
                     <td className="px-4 py-3 font-bold text-sm text-primary">{row.branch}</td>
                     <td className="px-4 py-3 font-bold text-sm text-primary">{row.revenue}</td>

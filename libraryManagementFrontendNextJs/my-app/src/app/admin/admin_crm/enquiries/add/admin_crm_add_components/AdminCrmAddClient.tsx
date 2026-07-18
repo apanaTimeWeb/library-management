@@ -12,7 +12,8 @@ import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter }
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 
-export function AdminCrmAddClient() {
+export interface AdminCrmAddClientProps { onClose?: () => void; }
+export function AdminCrmAddClient({ onClose }: AdminCrmAddClientProps = {}) {
   const router = useRouter();
 
   const {
@@ -30,10 +31,10 @@ export function AdminCrmAddClient() {
     await new Promise((r) => setTimeout(r, 800));
     // Handle form submission
     toast.success('Lead saved successfully!');
-    setTimeout(() => router.push('/admin/admin_crm/enquiries'), 600);
+    setTimeout(() => { if (onClose) { onClose(); } else { router.push('/admin/admin_crm/enquiries'); } }, 600);
   };
 
-  const handleClose = () => router.push('/admin/admin_crm/enquiries');
+  const handleClose = () => { if (onClose) { onClose(); } else { router.push('/admin/admin_crm/enquiries'); } };
 
   return (
     <>

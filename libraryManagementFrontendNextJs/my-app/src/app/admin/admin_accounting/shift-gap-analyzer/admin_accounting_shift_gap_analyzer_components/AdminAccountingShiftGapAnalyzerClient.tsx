@@ -138,7 +138,7 @@ export function AdminAccountingShiftGapAnalyzerClient() {
             </tr>
           </thead>
           <tbody className="divide-y divide-border">
-            {visibleDays.slice((page - 1) * limit, page * limit).map((d) => (
+            {visibleDays.filter(row => JSON.stringify(row).toLowerCase().includes(searchTerm.toLowerCase())).slice((page - 1) * limit, page * limit).map((d) => (
               <tr key={`daygap-${d.date}-${d.seatNo}-${d.shift}`} className="hover:bg-muted/30 transition-colors">
                 <td className="py-4 px-4 text-muted-foreground font-medium">{d.date}</td>
                 <td className="py-4 px-4 text-foreground">{d.shift}</td>

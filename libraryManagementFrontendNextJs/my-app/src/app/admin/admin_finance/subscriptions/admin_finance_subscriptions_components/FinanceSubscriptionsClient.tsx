@@ -142,7 +142,7 @@ export function FinanceSubscriptionsClient() {
                   </td>
                 </tr>
               ) : (
-                rows.slice((page - 1) * limit, page * limit).map((s) => (
+                rows.filter(row => JSON.stringify(row).toLowerCase().includes(searchTerm.toLowerCase())).slice((page - 1) * limit, page * limit).map((s) => (
                   <tr key={s.id} className="hover:bg-muted/10 transition-colors">
                     <td className="px-5 py-3 font-bold text-sm text-primary">{s.studentName}</td>
                     <td className="px-5 py-3 text-xs font-mono text-muted-foreground">{s.smartId}</td>

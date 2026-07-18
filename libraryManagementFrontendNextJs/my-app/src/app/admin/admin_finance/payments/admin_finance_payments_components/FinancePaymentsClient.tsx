@@ -128,7 +128,7 @@ export function FinancePaymentsClient() {
                   </td>
                 </tr>
               ) : (
-                visible.slice((page - 1) * limit, page * limit).map((p) => {
+                visible.filter(row => JSON.stringify(row).toLowerCase().includes(searchTerm.toLowerCase())).slice((page - 1) * limit, page * limit).map((p) => {
                   const isDeleted = p.status === 'deleted';
                   return (
                     <tr key={p.id} className={`hover:bg-muted/10 transition-colors ${isDeleted ? 'bg-danger/5' : ''}`}>

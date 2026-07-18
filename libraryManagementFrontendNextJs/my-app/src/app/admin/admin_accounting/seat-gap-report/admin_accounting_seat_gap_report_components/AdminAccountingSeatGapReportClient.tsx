@@ -112,7 +112,7 @@ export function AdminAccountingSeatGapReportClient() {
           <tbody className="divide-y divide-border">
             {visible.length === 0 ? (
               <tr><td colSpan={7} className="py-12 text-center text-muted-foreground">No gap seats found.</td></tr>
-            ) : visible.slice((page - 1) * limit, page * limit).map(r => (
+            ) : visible.filter(row => JSON.stringify(row).toLowerCase().includes(searchTerm.toLowerCase())).slice((page - 1) * limit, page * limit).map(r => (
               <tr key={`${r.seatNo}-${r.shift}`} className="hover:bg-muted/30 transition-colors">
                 <td className="py-4 px-4 font-bold text-foreground">{r.seatNo}</td>
                 <td className="py-4 px-4 text-muted-foreground">{r.shift}</td>

@@ -67,7 +67,7 @@ export function AdminSystemMaintenanceClient() {
                 </tr>
               </thead>
               <tbody className="divide-y divide-outline-variant/30">
-                {seats.slice((page - 1) * limit, page * limit).map((seat) => (
+                {seats.filter(row => JSON.stringify(row).toLowerCase().includes(searchTerm.toLowerCase())).slice((page - 1) * limit, page * limit).map((seat) => (
                   <tr key={seat.id} className="hover:bg-bg-card transition-colors">
                     <td className="py-3 pr-4 font-mono font-medium text-text-primary">{seat.id}</td>
                     <td className="py-3 pr-4">
@@ -166,7 +166,7 @@ export function AdminSystemMaintenanceClient() {
                 </tr>
               </thead>
               <tbody className="divide-y divide-outline-variant/30">
-                {lockers.map((locker) => (
+                {lockers.filter(row => JSON.stringify(row).toLowerCase().includes(searchTerm.toLowerCase())).map((locker) => (
                   <tr key={locker.id} className="hover:bg-bg-card transition-colors">
                     <td className="py-3 pr-4 font-mono font-medium text-text-primary">{locker.id}</td>
                     <td className="py-3 pr-4">

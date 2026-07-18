@@ -132,7 +132,7 @@ export function AdminFinanceTrustScoreClient() {
                 </td>
               </tr>
             ) : (
-              filtered.slice((page - 1) * limit, page * limit).map((s) => {
+              filtered.filter(row => JSON.stringify(row).toLowerCase().includes(searchTerm.toLowerCase())).slice((page - 1) * limit, page * limit).map((s) => {
                 const Icon = BADGE_ICON[s.badge] || ShieldCheck;
                 return (
                   <tr key={s.smartId} className="fin-table-hover-row fin-table-row">

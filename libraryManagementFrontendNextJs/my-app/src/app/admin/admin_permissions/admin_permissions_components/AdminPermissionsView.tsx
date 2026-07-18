@@ -76,7 +76,7 @@ export function AdminPermissionsView({ initialPermissions }: AdminPermissionsVie
                 </tr>
               </thead>
               <tbody className="divide-y divide-border">
-                {perms.slice((page - 1) * limit, page * limit).map((module, mIdx) => (
+                {perms.filter(row => JSON.stringify(row).toLowerCase().includes(searchTerm.toLowerCase())).slice((page - 1) * limit, page * limit).map((module, mIdx) => (
                   <React.Fragment key={`module-${module.module}`}>
                     {/* Module header row */}
                     <tr className="bg-muted/20">

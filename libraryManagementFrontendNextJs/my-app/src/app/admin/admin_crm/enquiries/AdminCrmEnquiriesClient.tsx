@@ -3,6 +3,7 @@
 
 
 import { useState } from 'react';
+import { AdminCrmAddClient } from '@/app/admin/admin_crm/enquiries/add/admin_crm_add_components/AdminCrmAddClient';
 import {
   Search, LayoutGrid, List, Plus, Phone,
   CheckCircle, XCircle, MoreHorizontal, PhoneCall,
@@ -96,6 +97,7 @@ export default function AdminCrmEnquiriesClient() {
 
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(10);
+  const [isAddModalOpen, setIsAddModalOpen] = useState(false);
 
   if (fetchState === 'loading') {
     return (
@@ -145,7 +147,7 @@ export default function AdminCrmEnquiriesClient() {
               <List size={16} />
             </button>
           </div>
-          <Button onClick={() => router.push(ADMIN_ROUTES.CRM_ENQUIRY_ADD)} className="gap-2">
+          <Button onClick={() => setIsAddModalOpen(true)} className="gap-2">
             <Plus size={16} /> Add Enquiry
           </Button>
         </div>
@@ -159,7 +161,7 @@ export default function AdminCrmEnquiriesClient() {
             className="pl-9"
             placeholder="Search by name or phone…"
             value={searchParam}
-            onChange={(e) => pushParams({ q: e.target.value })}
+            onChange={(e) => pushParams({ search: e.target.value })}
           />
         </div>
         <select
@@ -184,7 +186,7 @@ export default function AdminCrmEnquiriesClient() {
               <PhoneCall size={48} className="text-muted-foreground opacity-20" />
               <p className="text-lg font-bold">No enquiries yet</p>
               <p className="text-sm text-muted-foreground">Add your first lead to start the pipeline</p>
-              <Button onClick={() => router.push(ADMIN_ROUTES.CRM_ENQUIRY_ADD)} className="mt-4 gap-2">
+              <Button onClick={() => setIsAddModalOpen(true)} className="mt-4 gap-2">
                 <Plus size={15} /> Add Enquiry
               </Button>
             </div>
@@ -236,7 +238,7 @@ export default function AdminCrmEnquiriesClient() {
                <PhoneCall size={40} className="text-muted-foreground opacity-20" />
                <p className="text-lg font-bold">No enquiries found</p>
                <p className="text-sm text-muted-foreground">Try a different search or status filter</p>
-               <Button onClick={() => router.push(ADMIN_ROUTES.CRM_ENQUIRY_ADD)} className="mt-4 gap-2">
+               <Button onClick={() => setIsAddModalOpen(true)} className="mt-4 gap-2">
                  <Plus size={15} /> Add Enquiry
                </Button>
              </div>
