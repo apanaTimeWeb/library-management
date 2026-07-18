@@ -15,7 +15,7 @@ import { printThermal } from '@/lib/thermalPrint';
 import { fetchStudents } from '@/app/manager/manager_students/manager_students_api/manager_students_api';
 import type { Student } from '@/app/manager/manager_students/manager_students_types';
 import { useManagerDebounce } from '@/app/manager/manager_shared_hooks/useManagerDebounce';
-
+import { MANAGER_ROUTES } from '@/app/manager/manager_url_config';
 export function ManagerStudentsIdCardClient() {
   const [students, setStudents] = useState<Student[]>([]);
   const [selectedId, setSelectedId] = useState<string>('');
@@ -109,7 +109,7 @@ export function ManagerStudentsIdCardClient() {
     <div className="p-6 min-h-screen">
       <div className="p-6 min-h-screen-header">
         <div>
-          <Link href="/manager/manager_students" className="inline-flex items-center gap-2 text-sm font-medium text-text-secondary hover:text-primary transition-colors mb-4">
+          <Link href={MANAGER_ROUTES.STUDENTS} className="inline-flex items-center gap-2 text-sm font-medium text-text-secondary hover:text-primary transition-colors mb-4">
             <ArrowLeft size={14} /> Back to Students
           </Link>
           <h1 className="text-[22px] font-bold text-text-primary">ID Card Generator</h1>

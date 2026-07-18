@@ -6,6 +6,7 @@ import { AbsenteeRow } from '@/app/manager/manager_engagement/manager_engagement
 import { useManagerEngagementAbsentee } from '@/app/manager/manager_engagement/manager_engagement_hooks/useManagerEngagementAbsentee';
 import { ManagerSearchableDropdown } from '@/app/manager/manager_shared_components/ManagerSearchableDropdown';
 import { TablePagination } from '@/components/ui/table-pagination';
+import { MANAGER_ROUTES } from '@/app/manager/manager_url_config';
 
 
 // RESPONSIBILITY: Renders the absentee report grid with filtering and notification actions.
@@ -44,7 +45,7 @@ export function ManagerEngagementAbsenteeReportClient() {
 
       {/* ── Breadcrumb ── */}
       <div className="text-xs font-medium text-text-secondary uppercase tracking-wider mb-2 flex items-center gap-1.5">
-        <Link href="/manager/manager_engagement/attendance">Engagement</Link>
+        <Link href={MANAGER_ROUTES.ENGAGEMENT_ATTENDANCE}>Engagement</Link>
         <ChevronRight size={12} className="mx-1"/>
         <span>Absentee Report</span>
       </div>

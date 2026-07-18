@@ -7,7 +7,7 @@ import { logger } from '@/lib/logger';
 import { calcExpiryDate, formatDateIN } from '@/lib/whatsappUtils';
 import { fetchStudentById } from '@/app/manager/manager_students/manager_students_api/manager_students_api';
 import type { Student } from '@/app/manager/manager_students/manager_students_types';
-
+import { MANAGER_ROUTES } from '@/app/manager/manager_url_config';
 export function ManagerStudentsStudentProfileClient({ id }: { id: string }) {
   const [student, setStudent] = useState<Student | null>(null);
   const [loading, setLoading] = useState(true);
@@ -50,7 +50,7 @@ export function ManagerStudentsStudentProfileClient({ id }: { id: string }) {
     <div className="p-6 min-h-screen">
       <div className="p-6 min-h-screen-header">
         <div>
-          <Link href="/manager/manager_students" className="inline-flex items-center gap-2 text-sm font-medium text-text-secondary hover:text-primary transition-colors mb-4">
+          <Link href={MANAGER_ROUTES.STUDENTS} className="inline-flex items-center gap-2 text-sm font-medium text-text-secondary hover:text-primary transition-colors mb-4">
             <ArrowLeft size={14} /> Back to Students
           </Link>
           <h1 className="text-[22px] font-bold text-text-primary">Student Profile</h1>

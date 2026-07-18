@@ -6,7 +6,7 @@ import ManagerStudentsIdCard from '@/app/manager/manager_students/manager_studen
 import { AdmittedData, ManagerStudentsAdmissionSuccessModalProps } from '@/app/manager/manager_students/manager_students_types';
 import { formatIdCardMessage, openWhatsApp, type StudentWhatsAppData } from '@/lib/whatsappUtils';
 import { printThermal } from '@/lib/thermalPrint';
-
+import { MANAGER_ROUTES } from '@/app/manager/manager_url_config';
 
 export default function ManagerStudentsAdmissionSuccessModal({ data, onClose }: ManagerStudentsAdmissionSuccessModalProps) {
   const router  = useRouter();
@@ -98,7 +98,7 @@ export default function ManagerStudentsAdmissionSuccessModal({ data, onClose }: 
               <Printer size={15} /> Print Fee Receipt (Thermal)
             </button>
 
-            <button className="bg-primary text-white rounded-lg px-5 py-2.5 text-sm font-medium hover:bg-primary-hover transition-colors inline-flex items-center gap-2" onClick={() => { onClose(); router.push('/manager/manager_students'); }} style={{ width: '100%', justifyContent: 'center' }}>
+            <button className="bg-primary text-white rounded-lg px-5 py-2.5 text-sm font-medium hover:bg-primary-hover transition-colors inline-flex items-center gap-2" onClick={() => { onClose(); router.push(MANAGER_ROUTES.STUDENTS); }} style={{ width: '100%', justifyContent: 'center' }}>
               <Users size={15} /> Go to Students
             </button>
 

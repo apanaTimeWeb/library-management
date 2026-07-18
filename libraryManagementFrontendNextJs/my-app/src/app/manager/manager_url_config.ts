@@ -32,6 +32,7 @@ export const MANAGER_ROUTES = {
   ENGAGEMENT_ABSENTEE_REPORT: '/manager/manager_engagement/absentee-report',
   ENGAGEMENT_ANALYTICS: '/manager/manager_engagement/analytics',
   ENGAGEMENT_FEEDBACK: '/manager/manager_engagement/feedback',
+  ENGAGEMENT_HOLIDAY_CALENDAR: '/manager/manager_engagement/holiday-calendar',
 
   // Reports
   STUDENT_REPORTS: '/manager/manager_student-reports',
@@ -41,7 +42,7 @@ export const MANAGER_ROUTES = {
 
   // Plans & Settings
   PLANS: '/manager/manager_plans',
-  PLANS: '/manager/manager_plans',
+
   SETTINGS: '/manager/manager_settings',
   LIBRARIES: '/manager/manager_libraries',
   SUBSCRIPTIONS: '/manager/manager_subscriptions',

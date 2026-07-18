@@ -7,7 +7,7 @@ import { fetchStudents } from '@/app/manager/manager_students/manager_students_a
 import type { Student } from '@/app/manager/manager_students/manager_students_types';
 import { useManagerDebounce } from '@/app/manager/manager_shared_hooks/useManagerDebounce';
 import { ManagerSearchableDropdown } from '@/app/manager/manager_shared_components/ManagerSearchableDropdown';
-
+import { MANAGER_ROUTES } from '@/app/manager/manager_url_config';
 export function ManagerStudentsExitClient() {
   const [students, setStudents] = useState<Student[]>([]);
   const [search, setSearch] = useState('');
@@ -42,7 +42,7 @@ export function ManagerStudentsExitClient() {
             <p className="text-lg font-bold text-text-primary mb-1">Exit Processed</p>
             <p className="text-sm text-text-secondary">{student.name} ({student.smartId}) has been marked as exited.</p>
             <div style={{ marginTop: 20, display: 'flex', gap: 10 }}>
-              <Link href="/manager/manager_students" className="bg-primary text-white rounded-lg px-5 py-2.5 text-sm font-medium hover:bg-primary-hover transition-colors inline-flex items-center gap-2">Back to Students</Link>
+              <Link href={MANAGER_ROUTES.STUDENTS} className="bg-primary text-white rounded-lg px-5 py-2.5 text-sm font-medium hover:bg-primary-hover transition-colors inline-flex items-center gap-2">Back to Students</Link>
               <button className="bg-transparent border border-border text-text-primary rounded-lg px-5 py-2.5 text-sm font-medium hover:bg-primary-subtle hover:border-primary transition-colors inline-flex items-center gap-2" onClick={() => { setConfirmed(false); setSelected(''); setReason(''); }}>
                 Process Another
               </button>
@@ -57,7 +57,7 @@ export function ManagerStudentsExitClient() {
     <div className="p-6 min-h-screen">
       <div className="p-6 min-h-screen-header">
         <div>
-          <Link href="/manager/manager_students" className="inline-flex items-center gap-2 text-sm font-medium text-text-secondary hover:text-primary transition-colors mb-4">
+          <Link href={MANAGER_ROUTES.STUDENTS} className="inline-flex items-center gap-2 text-sm font-medium text-text-secondary hover:text-primary transition-colors mb-4">
             <ArrowLeft size={14} /> Back to Students
           </Link>
           <h1 className="text-[22px] font-bold text-text-primary">Student Exit</h1>

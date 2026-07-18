@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { ChevronRight, CheckCircle, X, RefreshCw } from 'lucide-react';
 import { ScanResult, ScanState } from '@/app/manager/manager_engagement/manager_engagement_types/ManagerEngagementTypes';
 import { MOCK_STUDENT } from '@/app/manager/manager_engagement/manager_engagement_constants/ManagerEngagementConstants';
+import { MANAGER_ROUTES } from '@/app/manager/manager_url_config';
 
 // RESPONSIBILITY: Provides the QR code scanning interface, displays result overlays, and manages scan history.
 export function ManagerEngagementQrScannerClient() {
@@ -51,7 +52,7 @@ export function ManagerEngagementQrScannerClient() {
     <div className="p-6 min-h-screen relative">
       {/* ── Breadcrumb ── */}
       <div className="text-xs font-medium text-text-secondary uppercase tracking-wider mb-2 flex items-center gap-1.5">
-        <Link href="/manager/manager_engagement/attendance">Engagement</Link>
+        <Link href={MANAGER_ROUTES.ENGAGEMENT_ATTENDANCE}>Engagement</Link>
         <ChevronRight size={12} className="mx-1"/>
         <span>QR Scanner</span>
       </div>

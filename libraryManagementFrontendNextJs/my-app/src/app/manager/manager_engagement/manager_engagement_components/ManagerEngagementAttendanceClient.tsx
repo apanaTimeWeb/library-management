@@ -8,7 +8,7 @@ import { ChevronRight, Save, FileBarChart2, Bell, CheckCircle, Clock, Calendar, 
 import { useAttendance } from '@/app/manager/manager_engagement/manager_engagement_hooks/useAttendance';
 import type { AttStatus } from '@/app/manager/manager_engagement/manager_engagement_types/manager_engagement_types';
 import { ManagerSearchableDropdown } from '@/app/manager/manager_shared_components/ManagerSearchableDropdown';
-
+import { MANAGER_ROUTES } from '@/app/manager/manager_url_config';
 export function ManagerEngagementAttendanceClient() {
   const router = useRouter();
   const pathname = usePathname();
@@ -51,7 +51,7 @@ export function ManagerEngagementAttendanceClient() {
     <div className="p-6 min-h-screen relative pb-24">
       {/* ── Breadcrumb ── */}
       <div className="text-xs font-medium text-text-secondary uppercase tracking-wider mb-2 flex items-center gap-1.5">
-        <Link href="/manager/manager_engagement/attendance">Engagement</Link>
+        <Link href={MANAGER_ROUTES.ENGAGEMENT_ATTENDANCE}>Engagement</Link>
         <ChevronRight size={12} className="mx-1" />
         <span>Attendance</span>
       </div>
@@ -64,7 +64,7 @@ export function ManagerEngagementAttendanceClient() {
             <p className="text-[13px] text-text-secondary mt-1.5">Mark attendance for all enrolled students by shift.</p>
           </div>
           <div className="flex gap-2">
-            <Link href="/manager/manager_engagement/absentee-report" className="bg-transparent border border-border text-text-primary rounded-lg h-8 px-3 text-xs font-medium hover:bg-primary-subtle hover:border-primary transition-colors flex items-center gap-2">
+            <Link href={MANAGER_ROUTES.ENGAGEMENT_ABSENTEE_REPORT} className="bg-transparent border border-border text-text-primary rounded-lg h-8 px-3 text-xs font-medium hover:bg-primary-subtle hover:border-primary transition-colors flex items-center gap-2">
               <FileBarChart2 size={14} /> Absentee Report
             </Link>
           </div>

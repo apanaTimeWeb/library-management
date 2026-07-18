@@ -15,7 +15,7 @@ import ManagerStudentsAdmissionSuccessModal from '@/app/manager/manager_students
 import { useManagerStudentsAdmissionForm } from '@/app/manager/manager_students/manager_students_hooks/useManagerStudentsAdmissionForm';
 import { PLANS, SHIFTS, SEATS } from '@/app/manager/manager_students/manager_students_constants';
 import { ManagerSearchableDropdown } from '@/app/manager/manager_shared_components/ManagerSearchableDropdown';
-
+import { MANAGER_ROUTES } from '@/app/manager/manager_url_config';
 export default function ManagerStudentsAdmissionForm() {
   const {
     register,
@@ -63,7 +63,7 @@ export default function ManagerStudentsAdmissionForm() {
         {/* Page Header */}
         <div className="mb-8 flex flex-col md:flex-row md:items-end justify-between gap-4">
           <div>
-            <Link href="/manager/manager_students" className="flex items-center gap-1.5 text-[13px] font-medium text-text-secondary hover:text-primary transition-colors mb-4 inline-flex">
+            <Link href={MANAGER_ROUTES.STUDENTS} className="flex items-center gap-1.5 text-[13px] font-medium text-text-secondary hover:text-primary transition-colors mb-4 inline-flex">
               <ArrowLeft size={14} /> Back to Students
             </Link>
             <h1 className="text-[22px] font-bold text-text-primary">New Student Admission</h1>
@@ -359,7 +359,7 @@ export default function ManagerStudentsAdmissionForm() {
                       <CheckCircle size={15} />
                       {isSubmitting ? 'Confirming…' : 'Confirm Admission'}
                     </button>
-                    <Link href="/manager/manager_students" className="w-full flex justify-center items-center gap-2 bg-transparent border border-border text-text-primary rounded-lg px-5 py-2.5 text-[13.5px] font-semibold hover:bg-primary-subtle hover:border-primary transition-colors">
+                    <Link href={MANAGER_ROUTES.STUDENTS} className="w-full flex justify-center items-center gap-2 bg-transparent border border-border text-text-primary rounded-lg px-5 py-2.5 text-[13.5px] font-semibold hover:bg-primary-subtle hover:border-primary transition-colors">
                       Cancel
                     </Link>
                   </div>

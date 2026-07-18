@@ -3,13 +3,13 @@
 import React from 'react';
 import { Users2, Plus, Upload, Download } from 'lucide-react';
 import Link from 'next/link';
-
+import { MANAGER_ROUTES } from '@/app/manager/manager_url_config';
 export function ManagerStudentsGroupClient() {
   return (
     <div className="p-6 min-h-screen">
       <div className="p-6 min-h-screen-header">
         <div>
-          <Link href="/manager/manager_students" className="inline-flex items-center gap-2 text-sm font-medium text-text-secondary hover:text-primary transition-colors mb-4">
+          <Link href={MANAGER_ROUTES.STUDENTS} className="inline-flex items-center gap-2 text-sm font-medium text-text-secondary hover:text-primary transition-colors mb-4">
             ← Back to Students
           </Link>
           <h1 className="text-[22px] font-bold text-text-primary">Group Admission</h1>
