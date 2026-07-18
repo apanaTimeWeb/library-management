@@ -23,7 +23,7 @@ export const useAdminCouponsStore = create<AdminCouponsStoreState>((set, get) =>
       const actualData = Array.isArray(data) ? data : (data?.data || []);
       
       if (actualData.length === 0 || actualData[0]?.id?.startsWith('MOCK-')) {
-        set({ coupons: MOCK_COUPONS, fetchState: 'success' });
+        set({ coupons: MOCK_COUPONS as unknown as CouponRecord[], fetchState: 'success' });
         return;
       }
 
@@ -44,11 +44,11 @@ export const useAdminCouponsStore = create<AdminCouponsStoreState>((set, get) =>
         }));
         set({ coupons: mapped, fetchState: 'success' });
       } else {
-        set({ coupons: MOCK_COUPONS, fetchState: 'success' });
+        set({ coupons: MOCK_COUPONS as unknown as CouponRecord[], fetchState: 'success' });
       }
     } catch (e) {
       logger.error('Coupons fetch failed, falling back to mock coupons:', e);
-      set({ coupons: MOCK_COUPONS, fetchState: 'success' });
+      set({ coupons: MOCK_COUPONS as unknown as CouponRecord[], fetchState: 'success' });
     }
   },
 

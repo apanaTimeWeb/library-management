@@ -15,7 +15,7 @@ async function getBranchesData(): Promise<Branch[]> {
   
   const data = (response.data as Record<string, unknown>[]) || [];
   if (data.length === 0 || String(data[0]?.id).startsWith('MOCK-')) {
-    return ADMIN_BRANCHES_MOCK_DATA;
+    return ADMIN_BRANCHES_MOCK_DATA as Branch[];
   }
   return data.map((b) => ({
     id: (b.id || b.branchId || `B-${Math.random().toString(36).substr(2, 5)}`) as string,

@@ -38,9 +38,9 @@ export function AdminCommunicationNoticesClient() {
         title: String(n.title || n.name || 'Notice'),
         message: String(n.message || n.details || ''),
         postedBy: String(n.postedBy || 'Admin'),
-        postedDate: n.createdAt ? new Date(n.createdAt).toISOString().split('T')[0] : (n.date ? new Date(n.date).toISOString().split('T')[0] : new Date().toISOString().split('T')[0]),
-        validTill: n.validTill ? new Date(n.validTill).toISOString().split('T')[0] : new Date(Date.now() + 7 * 86400000).toISOString().split('T')[0],
-        status: (n.validTill && new Date(n.validTill) < new Date()) ? 'Expired' : 'Active',
+        postedDate: n.createdAt ? new Date(n.createdAt as string).toISOString().split('T')[0] : (n.date ? new Date(n.date as string).toISOString().split('T')[0] : new Date().toISOString().split('T')[0]),
+        validTill: n.validTill ? new Date(n.validTill as string).toISOString().split('T')[0] : new Date(Date.now() + 7 * 86400000).toISOString().split('T')[0],
+        status: (n.validTill && new Date(n.validTill as string) < new Date()) ? 'Expired' : 'Active',
       }));
       setNotices(mapped);
     }).catch(e => logger.error('Notices fetch failed:', e));

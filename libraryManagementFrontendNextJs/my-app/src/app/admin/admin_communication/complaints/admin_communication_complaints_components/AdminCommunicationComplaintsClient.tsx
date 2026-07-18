@@ -38,7 +38,7 @@ export function AdminCommunicationComplaintsClient() {
         id: String(c.id || Math.random()),
         title: String(c.subject || c.title || 'Complaint'),
         desc: String(c.description || ''),
-        date: c.createdAt ? new Date(c.createdAt).toLocaleDateString() : (c.date || new Date().toLocaleDateString()),
+        date: c.createdAt ? new Date(c.createdAt as string).toLocaleDateString() : (c.date || new Date().toLocaleDateString()) as string,
         status: c.status === 'open' ? 'Open' : (c.status === 'resolved' ? 'Resolved' : 'In-Progress'),
         student: String(c.student || c.studentName || 'Mock Student (S-001)'),
       }));

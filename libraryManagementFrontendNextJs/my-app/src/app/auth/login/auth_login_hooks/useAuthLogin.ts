@@ -39,7 +39,8 @@ export function useAuthLogin() {
     const res = await login(data);
 
     if (res.success) {
-      const userRole = res.userRole || selectedRole.id;
+      // Use selectedRole.id from the UI, as the mock backend always returns 'superadmin'
+      const userRole = selectedRole.id;
       const roleConfig = AUTH_ROLES.find(r => r.id === userRole);
       window.location.href = roleConfig ? getRedirectUrl(roleConfig) : `/${userRole}/dashboard`;
     }
