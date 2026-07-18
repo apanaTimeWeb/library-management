@@ -4,7 +4,7 @@
 
 import { useState } from 'react';
 import React from 'react';
-import { Shield, CheckCircle } from 'lucide-react';
+import { Shield, CheckCircle , Search} from 'lucide-react';
 import { Toaster } from 'react-hot-toast';
 import { useAdminPermissions, type Permission } from '@/app/admin/admin_permissions/admin_permissions_hooks/useAdminPermissions';
 import { Button } from '@/components/ui/button';
@@ -17,6 +17,7 @@ interface AdminPermissionsViewProps {
 }
 
 export function AdminPermissionsView({ initialPermissions }: AdminPermissionsViewProps) {
+    const [searchTerm, setSearchTerm] = useState('');
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(10);
 
@@ -54,7 +55,15 @@ export function AdminPermissionsView({ initialPermissions }: AdminPermissionsVie
         {/* Permissions Card */}
         <Card className="max-w-4xl overflow-hidden bg-card border-border shadow-sm">
           <div className="overflow-x-auto">
-            <table className="w-full text-sm text-left">
+            
+      <div className="flex justify-between items-center mb-4">
+        <div className="relative w-64">
+          <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
+          <Input placeholder="Search..." className="pl-8" value={searchTerm} onChange={e => setSearchTerm(e.target.value)} />
+        </div>
+      </div>
+
+<table className="w-full text-sm text-left">
               <thead className="bg-muted/50 text-muted-foreground sticky top-0 z-10 border-b border-border">
                 <tr>
                   <th className="px-6 py-3 font-semibold uppercase text-xs tracking-wider w-72">Permission Module &amp; Action</th>

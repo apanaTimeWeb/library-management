@@ -112,6 +112,7 @@ export function AdminCommunicationWhatsappLogsClient() {
             <p className="font-medium text-foreground">No WhatsApp messages found.</p>
           </div>
         ) : (
+          <>
           <table className="w-full text-sm text-left">
             <thead className="bg-muted text-muted-foreground text-xs font-semibold uppercase tracking-wider sticky top-0 z-10">
               <tr>
@@ -154,6 +155,15 @@ export function AdminCommunicationWhatsappLogsClient() {
               ))}
             </tbody>
           </table>
+
+      <TablePagination 
+        total={100} 
+        page={page} 
+        limit={limit} 
+        onPageChange={setPage} 
+        onLimitChange={setLimit} 
+      />
+          </>
         )}
       </Card>
 

@@ -6,13 +6,14 @@ import { KpiCard } from '@/app/admin/admin_system/admin_system_components/AdminS
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/app/admin/admin_system/admin_system_components/AdminSystemCard/AdminSystemCard';
 import { Badge } from '@/app/admin/admin_system/admin_system_components/AdminSystemBadge/AdminSystemBadge';
 import { Button } from '@/app/admin/admin_system/admin_system_components/AdminSystemButton/AdminSystemButton';
-import { Wrench, Package, Lock, ChevronRight } from 'lucide-react';
+import { Wrench, Package, Lock, ChevronRight , Search} from 'lucide-react';
 import { useAdminSystemMaintenance } from '@/app/admin/admin_system/admin_system_maintenance_hooks/useAdminSystemMaintenance';
 import { TablePagination } from '@/components/ui/table-pagination';
 
 export function AdminSystemMaintenanceClient() {
   const { seatsNeedingAttention, assetsOverdue, lockerIssues, seats, assets, lockers } = useAdminSystemMaintenance();
 
+    const [searchTerm, setSearchTerm] = useState('');
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(10);
 
@@ -46,7 +47,15 @@ export function AdminSystemMaintenanceClient() {
         </CardHeader>
         <CardContent>
           <div className="overflow-x-auto">
-            <table className="w-full text-sm">
+            
+      <div className="flex justify-between items-center mb-4">
+        <div className="relative w-64">
+          <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
+          <Input placeholder="Search..." className="pl-8" value={searchTerm} onChange={e => setSearchTerm(e.target.value)} />
+        </div>
+      </div>
+
+<table className="w-full text-sm">
               <thead>
                 <tr className="border-b border-border text-text-secondary text-xs uppercase tracking-wide">
                   <th className="text-left py-3 pr-4">Seat #</th>

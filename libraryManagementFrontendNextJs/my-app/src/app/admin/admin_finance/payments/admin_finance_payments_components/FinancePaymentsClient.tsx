@@ -4,7 +4,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { Receipt, Trash2, FileText, Download, X } from 'lucide-react';
+import { Receipt, Trash2, FileText, Download, X , Search} from 'lucide-react';
 import { formatCurrency, formatDate } from '@/app/admin/admin_finance/admin_finance_utils/format';
 import { useFinancePayments } from '@/app/admin/admin_finance/payments/admin_finance_payments_hooks/useFinancePayments';
 import { Card } from '@/components/ui/card';
@@ -30,6 +30,7 @@ export function FinancePaymentsClient() {
     isLoading
   } = useFinancePayments();
 
+    const [searchTerm, setSearchTerm] = useState('');
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(10);
 
@@ -87,7 +88,15 @@ export function FinancePaymentsClient() {
       {/* Ledger Table */}
       <Card className="flex-1 shadow-none border-border bg-card overflow-hidden flex flex-col">
         <div className="w-full overflow-x-auto flex-1">
-          <table className="w-full text-sm text-left">
+          
+      <div className="flex justify-between items-center mb-4">
+        <div className="relative w-64">
+          <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
+          <Input placeholder="Search..." className="pl-8" value={searchTerm} onChange={e => setSearchTerm(e.target.value)} />
+        </div>
+      </div>
+
+<table className="w-full text-sm text-left">
             <thead className="bg-muted/30 border-b text-muted-foreground text-xs font-bold uppercase tracking-wider sticky top-0 z-10">
               <tr>
                 <th className="px-4 py-3">Receipt #</th>

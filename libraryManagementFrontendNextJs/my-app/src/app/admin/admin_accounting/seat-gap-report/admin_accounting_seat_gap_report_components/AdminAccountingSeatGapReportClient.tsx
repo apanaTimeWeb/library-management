@@ -3,7 +3,7 @@
 // DATA FLOW: Static Mock -> AdminAccountingSeatGapReportClient (`Rule 39`).
 
 import { useState } from 'react';
-import { Download } from 'lucide-react';
+import { Download , Search} from 'lucide-react';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -29,6 +29,7 @@ const MOCK: GapRow[] = [
 ];
 
 export function AdminAccountingSeatGapReportClient() {
+    const [searchTerm, setSearchTerm] = useState('');
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(10);
   const [shiftFilter, setShiftFilter] = useState('all');
@@ -87,7 +88,15 @@ export function AdminAccountingSeatGapReportClient() {
       </div>
 
       <Card className="overflow-x-auto shadow-sm border-border">
-        <table className="w-full text-sm text-left">
+        
+      <div className="flex justify-between items-center mb-4">
+        <div className="relative w-64">
+          <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
+          <Input placeholder="Search..." className="pl-8" value={searchTerm} onChange={e => setSearchTerm(e.target.value)} />
+        </div>
+      </div>
+
+<table className="w-full text-sm text-left">
           <thead className="bg-muted text-muted-foreground text-xs font-semibold uppercase tracking-wider">
             <tr>
               <th className="py-3 px-4">Seat No</th>
@@ -119,6 +128,15 @@ export function AdminAccountingSeatGapReportClient() {
             ))}
           </tbody>
         </table>
+
+      <TablePagination 
+        total={100} 
+        page={page} 
+        limit={limit} 
+        onPageChange={setPage} 
+        onLimitChange={setLimit} 
+      />
+    
       </Card>
     </div>
   );

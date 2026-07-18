@@ -134,6 +134,7 @@ export function AdminCommunicationComplaintsClient() {
             <p className="text-sm">All issues are resolved.</p>
           </div>
         ) : (
+          <>
           <table className="w-full text-sm text-left">
             <thead className="bg-muted text-muted-foreground text-xs font-semibold uppercase tracking-wider">
               <tr>
@@ -191,6 +192,15 @@ export function AdminCommunicationComplaintsClient() {
               })}
             </tbody>
           </table>
+
+      <TablePagination 
+        total={100} 
+        page={page} 
+        limit={limit} 
+        onPageChange={setPage} 
+        onLimitChange={setLimit} 
+      />
+          </>
         )}
       </Card>
 

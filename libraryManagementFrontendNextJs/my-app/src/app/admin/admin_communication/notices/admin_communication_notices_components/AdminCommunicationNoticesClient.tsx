@@ -102,6 +102,7 @@ export function AdminCommunicationNoticesClient() {
             </Button>
           </div>
         ) : (
+          <>
           <table className="w-full text-sm text-left">
             <thead className="bg-muted text-muted-foreground text-xs font-semibold uppercase tracking-wider sticky top-0 z-10">
               <tr>
@@ -144,6 +145,15 @@ export function AdminCommunicationNoticesClient() {
               ))}
             </tbody>
           </table>
+
+      <TablePagination 
+        total={100} 
+        page={page} 
+        limit={limit} 
+        onPageChange={setPage} 
+        onLimitChange={setLimit} 
+      />
+          </>
         )}
       </Card>
 
