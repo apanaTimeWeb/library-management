@@ -3,13 +3,10 @@ import { CheckCircle } from 'lucide-react';
 
 // RESPONSIBILITY: Renders the success message after a form submission.
 
-interface PublicEnquirySuccessStateProps {
+export function PublicEnquirySuccessState({ submittedName, onReset }: {
   submittedName: string;
-
   onReset: () => void;
-}
-
-export function PublicEnquirySuccessState({ submittedName, onReset }: PublicEnquirySuccessStateProps) {
+}) {
   return (
     <div className="py-6 text-center animate-in fade-in slide-in-from-bottom-4 duration-500">
       <div className="flex justify-center mb-6">

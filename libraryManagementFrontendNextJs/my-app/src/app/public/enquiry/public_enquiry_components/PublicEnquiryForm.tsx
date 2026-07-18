@@ -6,12 +6,10 @@ import { PublicEnquiryFormData } from '@/app/public/enquiry/public_enquiry_types
 
 // RESPONSIBILITY: Renders the enquiry form input fields and handles user interaction.
 
-interface PublicEnquiryFormProps {
+export function PublicEnquiryForm({ formMethods, onSubmit }: {
   formMethods: UseFormReturn<PublicEnquiryFormData>;
   onSubmit: (e?: React.BaseSyntheticEvent) => Promise<void>;
-}
-
-export function PublicEnquiryForm({ formMethods, onSubmit }: PublicEnquiryFormProps) {
+}) {
   const { register, formState: { errors, isSubmitting } } = formMethods;
 
   return (
