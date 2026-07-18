@@ -32,21 +32,21 @@ export function SuperadminSystemDataExportClient() {
   return (
     <div>
       <div className="mb-8">
-        <div className="flex items-center gap-2 text-on-surface-variant text-xs font-medium tracking-wide mb-1">
+        <div className="flex items-center gap-2 text-text-secondary text-xs font-medium tracking-wide mb-1">
           <span>System</span><ChevronRight size={12} /><span>Data Export</span>
         </div>
-        <h1 className="text-3xl font-bold text-on-surface flex items-center gap-3">
+        <h1 className="text-3xl font-bold text-text-primary flex items-center gap-3">
           <Download size={28} className="text-primary" />
           Data Export
         </h1>
-        <p className="text-on-surface-variant mt-1 text-sm">
+        <p className="text-text-secondary mt-1 text-sm">
           Export your library data as CSV or Excel. All exports are filtered by date range.
         </p>
       </div>
 
       {/* Quick Exports */}
       <div className="mb-8">
-        <h2 className="text-base font-semibold text-on-surface mb-3">⚡ Quick Exports</h2>
+        <h2 className="text-base font-semibold text-text-primary mb-3">⚡ Quick Exports</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {SUPERADMIN_SYSTEM_QUICK_EXPORTS.map((qe) => (
             <SuperadminCard key={qe.id} className="hover:border-primary/40 transition-colors cursor-pointer group" onClick={() => handleExport(qe.id)}>
@@ -55,8 +55,8 @@ export function SuperadminSystemDataExportClient() {
                   <qe.icon size={18} />
                 </div>
                 <div className="flex-1 min-w-0">
-                  <p className="text-sm font-semibold text-on-surface">{qe.label}</p>
-                  <p className="text-xs text-on-surface-variant mt-0.5 leading-snug">{qe.description}</p>
+                  <p className="text-sm font-semibold text-text-primary">{qe.label}</p>
+                  <p className="text-xs text-text-secondary mt-0.5 leading-snug">{qe.description}</p>
                   <div className="flex items-center gap-2 mt-2">
                     <SuperadminBadge variant="outline">{qe.format}</SuperadminBadge>
                     <button
@@ -90,8 +90,8 @@ export function SuperadminSystemDataExportClient() {
             </div>
             <div className="flex gap-2">
               <button onClick={selectAll} className="text-xs text-primary font-medium hover:underline">Select All</button>
-              <span className="text-on-surface-variant text-xs">·</span>
-              <button onClick={clearAll} className="text-xs text-on-surface-variant hover:text-on-surface">Clear</button>
+              <span className="text-text-secondary text-xs">·</span>
+              <button onClick={clearAll} className="text-xs text-text-secondary hover:text-text-primary">Clear</button>
             </div>
           </div>
         </CardHeader>
@@ -111,21 +111,21 @@ export function SuperadminSystemDataExportClient() {
                   className={`flex items-start gap-3 p-3.5 rounded-xl border cursor-pointer transition-all ${
                     isSelected
                       ? 'border-primary/40 bg-primary/8'
-                      : 'border-outline-variant hover:border-primary/25 hover:bg-surface-container-high'
+                      : 'border-border hover:border-primary/25 hover:bg-bg-card'
                   }`}
                 >
                   <div className={`h-5 w-5 rounded border-2 flex items-center justify-center shrink-0 mt-0.5 transition-all ${
-                    isSelected ? 'bg-primary border-primary' : 'border-outline-variant'
+                    isSelected ? 'bg-primary border-primary' : 'border-border'
                   }`}>
                     {isSelected && <CheckCircle size={12} className="text-on-primary" />}
                   </div>
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2">
                       <span className="text-base"><Icon size={16} /></span>
-                      <span className="text-sm font-semibold text-on-surface">{mod.label}</span>
-                      <span className="text-xs text-on-surface-variant ml-auto">~{mod.estimatedRows.toLocaleString()} rows</span>
+                      <span className="text-sm font-semibold text-text-primary">{mod.label}</span>
+                      <span className="text-xs text-text-secondary ml-auto">~{mod.estimatedRows.toLocaleString()} rows</span>
                     </div>
-                    <p className="text-xs text-on-surface-variant mt-0.5 leading-snug">{mod.description}</p>
+                    <p className="text-xs text-text-secondary mt-0.5 leading-snug">{mod.description}</p>
                     <div className="flex gap-1 mt-1.5">
                       {mod.formats.map(( f ) => <SuperadminBadge key={f} variant="outline">{f}</SuperadminBadge>)}
                     </div>
@@ -136,9 +136,9 @@ export function SuperadminSystemDataExportClient() {
           </div>
 
           {/* Filters row */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 p-4 rounded-xl bg-surface-container-high border border-outline-variant">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 p-4 rounded-xl bg-bg-card border border-border">
             <div className="space-y-1.5">
-              <label className="text-xs font-medium text-on-surface-variant uppercase tracking-wide">Output Format</label>
+              <label className="text-xs font-medium text-text-secondary uppercase tracking-wide">Output Format</label>
               <div className="flex gap-2">
                 {(['CSV', 'XLSX'] as const).map(( f ) => (
                   <button
@@ -148,7 +148,7 @@ export function SuperadminSystemDataExportClient() {
                     className={`flex-1 py-2 rounded-lg text-sm font-semibold border transition-all ${
                       format === f
                         ? 'bg-primary text-on-primary border-primary'
-                        : 'bg-surface-container text-on-surface-variant border-outline-variant hover:border-primary/40'
+                        : 'bg-bg-card text-text-secondary border-border hover:border-primary/40'
                     }`}
                   >
                     {f}
@@ -157,23 +157,23 @@ export function SuperadminSystemDataExportClient() {
               </div>
             </div>
             <div className="space-y-1.5">
-              <label htmlFor="export-date-from" className="text-xs font-medium text-on-surface-variant uppercase tracking-wide">From Date</label>
+              <label htmlFor="export-date-from" className="text-xs font-medium text-text-secondary uppercase tracking-wide">From Date</label>
               <input
                 id="export-date-from"
                 type="date"
                 value={dateFrom}
                 onChange={e => setDateFrom(e.target.value)}
-                className="w-full px-3 py-2 rounded-lg bg-surface-container border border-outline-variant text-sm text-on-surface focus:outline-none focus:border-primary"
+                className="w-full px-3 py-2 rounded-lg bg-bg-card border border-border text-sm text-text-primary focus:outline-none focus:border-primary"
               />
             </div>
             <div className="space-y-1.5">
-              <label htmlFor="export-date-to" className="text-xs font-medium text-on-surface-variant uppercase tracking-wide">To Date</label>
+              <label htmlFor="export-date-to" className="text-xs font-medium text-text-secondary uppercase tracking-wide">To Date</label>
               <input
                 id="export-date-to"
                 type="date"
                 value={dateTo}
                 onChange={e => setDateTo(e.target.value)}
-                className="w-full px-3 py-2 rounded-lg bg-surface-container border border-outline-variant text-sm text-on-surface focus:outline-none focus:border-primary"
+                className="w-full px-3 py-2 rounded-lg bg-bg-card border border-border text-sm text-text-primary focus:outline-none focus:border-primary"
               />
             </div>
           </div>
@@ -182,9 +182,9 @@ export function SuperadminSystemDataExportClient() {
           <div className="flex items-center gap-4 w-full">
             <div className="flex-1">
               {selected.size > 0 && (
-                <p className="text-sm text-on-surface-variant">
+                <p className="text-sm text-text-secondary">
                   <span className="text-primary font-semibold">{selected.size} module{selected.size > 1 ? 's' : ''}</span> selected ·
-                  ~<span className="text-on-surface font-medium">{estimatedTotal.toLocaleString()} rows</span> · Format: <span className="text-primary font-medium">{format}</span>
+                  ~<span className="text-text-primary font-medium">{estimatedTotal.toLocaleString()} rows</span> · Format: <span className="text-primary font-medium">{format}</span>
                 </p>
               )}
             </div>

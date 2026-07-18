@@ -16,16 +16,16 @@ export function AdminSystemPowerSavingClient() {
   return (
     <div>
       <div className="mb-8">
-        <div className="flex items-center gap-2 text-on-surface-variant text-xs font-medium tracking-wide mb-1">
+        <div className="flex items-center gap-2 text-text-secondary text-xs font-medium tracking-wide mb-1">
           <span>System</span>
           <ChevronRight size={12} />
           <span>Power Saving</span>
         </div>
-        <h1 className="text-3xl font-bold text-on-surface flex items-center gap-3">
+        <h1 className="text-3xl font-bold text-text-primary flex items-center gap-3">
           <Zap size={28} className="text-primary" />
           Power Saving Mode
         </h1>
-        <p className="text-on-surface-variant mt-1 text-sm">Optimize energy usage based on real-time zone occupancy.</p>
+        <p className="text-text-secondary mt-1 text-sm">Optimize energy usage based on real-time zone occupancy.</p>
       </div>
 
       {/* Config Card */}
@@ -47,15 +47,15 @@ export function AdminSystemPowerSavingClient() {
                 min={5}
                 max={95}
               />
-              <span className="text-sm text-on-surface-variant">
-                If shift occupancy drops below <strong className="text-on-surface">{threshold}%</strong>, suggest consolidation.
+              <span className="text-sm text-text-secondary">
+                If shift occupancy drops below <strong className="text-text-primary">{threshold}%</strong>, suggest consolidation.
               </span>
             </div>
           </div>
-          <div className="flex items-center justify-between p-4 rounded-xl bg-surface-container-high border border-outline-variant">
+          <div className="flex items-center justify-between p-4 rounded-xl bg-bg-card border border-border">
             <div>
-              <p className="text-sm font-medium text-on-surface">Enable Power Saving Alerts</p>
-              <p className="text-xs text-on-surface-variant">Send alerts when zones fall below threshold</p>
+              <p className="text-sm font-medium text-text-primary">Enable Power Saving Alerts</p>
+              <p className="text-xs text-text-secondary">Send alerts when zones fall below threshold</p>
             </div>
             <Switch id="power-saving-toggle" checked={alertsEnabled} onCheckedChange={setAlertsEnabled} />
           </div>
@@ -76,13 +76,13 @@ export function AdminSystemPowerSavingClient() {
               <CardContent>
                 <div className="flex items-start justify-between mb-3">
                   <div>
-                    <p className="text-sm font-semibold text-on-surface">{zone.name}</p>
-                    <p className="text-xs text-on-surface-variant">{zone.current} / {zone.capacity} seats occupied</p>
+                    <p className="text-sm font-semibold text-text-primary">{zone.name}</p>
+                    <p className="text-xs text-text-secondary">{zone.current} / {zone.capacity} seats occupied</p>
                   </div>
                   <Badge variant={status.variant}>{status.label}</Badge>
                 </div>
                 <div className="space-y-1.5">
-                  <div className="flex justify-between text-xs text-on-surface-variant">
+                  <div className="flex justify-between text-xs text-text-secondary">
                     <span>Occupancy</span>
                     <span className={isLow ? 'text-tertiary font-semibold' : 'text-success font-semibold'}>{zone.occupancy}%</span>
                   </div>
@@ -109,7 +109,7 @@ export function AdminSystemPowerSavingClient() {
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
               <thead>
-                <tr className="border-b border-outline-variant text-on-surface-variant text-xs uppercase tracking-wide">
+                <tr className="border-b border-border text-text-secondary text-xs uppercase tracking-wide">
                   <th className="text-left py-3 pr-4">Date</th>
                   <th className="text-left py-3 pr-4">Shift</th>
                   <th className="text-left py-3 pr-4">Zone</th>
@@ -119,12 +119,12 @@ export function AdminSystemPowerSavingClient() {
               </thead>
               <tbody className="divide-y divide-outline-variant/30">
                 {alerts.map((alert, i) => (
-                  <tr key={i} className="hover:bg-surface-container-high transition-colors">
-                    <td className="py-3 pr-4 text-on-surface-variant">{alert.date}</td>
-                    <td className="py-3 pr-4 text-on-surface">{alert.shift}</td>
-                    <td className="py-3 pr-4 text-on-surface">{alert.zone}</td>
+                  <tr key={i} className="hover:bg-bg-card transition-colors">
+                    <td className="py-3 pr-4 text-text-secondary">{alert.date}</td>
+                    <td className="py-3 pr-4 text-text-primary">{alert.shift}</td>
+                    <td className="py-3 pr-4 text-text-primary">{alert.zone}</td>
                     <td className="py-3 pr-4"><Badge variant="warning">&lt; {alert.threshold}</Badge></td>
-                    <td className="py-3 text-on-surface-variant">{alert.action}</td>
+                    <td className="py-3 text-text-secondary">{alert.action}</td>
                   </tr>
                 ))}
               </tbody>

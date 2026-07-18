@@ -45,18 +45,18 @@ export function SuperadminSeatsAllocationsClient() {
     <div>
       <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8">
         <div>
-          <div className="flex items-center gap-2 text-on-surface-variant text-xs font-medium tracking-wide mb-1">
+          <div className="flex items-center gap-2 text-text-secondary text-xs font-medium tracking-wide mb-1">
             <span>Seats</span><ChevronRight size={12} /><span>Allocations</span>
           </div>
-          <h1 className="text-3xl font-bold text-on-surface">Allocations</h1>
-          <p className="text-on-surface-variant mt-1 text-sm">All active and past seat allocations</p>
+          <h1 className="text-3xl font-bold text-text-primary">Allocations</h1>
+          <p className="text-text-secondary mt-1 text-sm">All active and past seat allocations</p>
         </div>
         <SuperadminButton id="export-allocations-btn" onClick={handleExport} variant="secondary">
           <Download size={16} className="mr-2" /> Export
         </SuperadminButton>
       </div>
 
-      <SuperadminCard className="mb-6 bg-surface-container-high border-none">
+      <SuperadminCard className="mb-6 bg-bg-card border-none">
         <CardContent className="p-4 flex flex-wrap items-center gap-4">
           <div className="w-40">
             <SuperadminSelect value={shiftFilter} onValueChange={setShiftFilter}>
@@ -93,17 +93,17 @@ export function SuperadminSeatsAllocationsClient() {
         <CardContent className="p-0">
           {filteredAllocations.length === 0 ? (
             <div className="py-20 flex flex-col items-center justify-center text-center">
-              <div className="h-16 w-16 bg-surface-container-highest rounded-full flex items-center justify-center text-on-surface-variant mb-3">
+              <div className="h-16 w-16 bg-bg-input rounded-full flex items-center justify-center text-text-secondary mb-3">
                 <Inbox size={32} />
               </div>
-              <p className="text-on-surface font-semibold text-lg">No allocations found</p>
-              <p className="text-on-surface-variant text-sm mt-1">Adjust your filters to see results.</p>
+              <p className="text-text-primary font-semibold text-lg">No allocations found</p>
+              <p className="text-text-secondary text-sm mt-1">Adjust your filters to see results.</p>
             </div>
           ) : (
             <div className="overflow-x-auto">
               <table className="w-full text-sm text-left">
                 <thead>
-                  <tr className="border-b border-outline-variant bg-surface text-on-surface-variant text-xs uppercase tracking-wider font-semibold">
+                  <tr className="border-b border-border bg-surface text-text-secondary text-xs uppercase tracking-wider font-semibold">
                     <th className="py-4 pl-4 pr-3">Student</th>
                     <th className="py-4 px-3">Seat #</th>
                     <th className="py-4 px-3">Shift</th>
@@ -120,18 +120,18 @@ export function SuperadminSeatsAllocationsClient() {
                     <tr
                       key={`${alloc.smartId}-${idx}`}
                       onClick={() => handleRowClick(alloc.studentName)}
-                      className="hover:bg-surface-container-highest transition-colors cursor-pointer group"
+                      className="hover:bg-bg-input transition-colors cursor-pointer group"
                     >
                       <td className="py-3 pl-4 pr-3">
-                        <p className="font-semibold text-on-surface">{alloc.studentName}</p>
-                        <p className="text-xs text-on-surface-variant">{alloc.smartId}</p>
+                        <p className="font-semibold text-text-primary">{alloc.studentName}</p>
+                        <p className="text-xs text-text-secondary">{alloc.smartId}</p>
                       </td>
-                      <td className="py-3 px-3 font-mono font-medium text-on-surface">{alloc.seatNo}</td>
-                      <td className="py-3 px-3 text-on-surface-variant">{alloc.shift}</td>
-                      <td className="py-3 px-3 text-on-surface-variant">{alloc.customSlots}</td>
-                      <td className="py-3 px-3 text-on-surface-variant">{alloc.lockerNo}</td>
-                      <td className="py-3 px-3 text-on-surface-variant">{alloc.validFrom}</td>
-                      <td className="py-3 px-3 text-on-surface-variant">{alloc.validTill}</td>
+                      <td className="py-3 px-3 font-mono font-medium text-text-primary">{alloc.seatNo}</td>
+                      <td className="py-3 px-3 text-text-secondary">{alloc.shift}</td>
+                      <td className="py-3 px-3 text-text-secondary">{alloc.customSlots}</td>
+                      <td className="py-3 px-3 text-text-secondary">{alloc.lockerNo}</td>
+                      <td className="py-3 px-3 text-text-secondary">{alloc.validFrom}</td>
+                      <td className="py-3 px-3 text-text-secondary">{alloc.validTill}</td>
                       <td className="py-3 px-3">{getDaysLeftBadge(alloc.daysLeft)}</td>
                       <td className="py-3 px-3">
                         <SuperadminBadge variant={getStatusVariant(alloc.status)}>

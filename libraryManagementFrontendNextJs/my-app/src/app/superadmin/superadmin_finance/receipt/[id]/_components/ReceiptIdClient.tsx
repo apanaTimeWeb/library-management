@@ -91,16 +91,16 @@ export function ReceiptIdClient() {
             </div>
             
             <div className="w-full border-t-2 border-dashed border-border py-3 mt-2 flex justify-between items-center">
-              <p className="text-[14px] font-bold text-on-surface-subtle uppercase">Total Paid</p>
-              <h2 className="text-[32px] font-black text-on-surface mt-1 tracking-tight">Rs.{receiptData.total.toLocaleString('en-IN')}</h2>
+              <p className="text-[14px] font-bold text-text-primary-subtle uppercase">Total Paid</p>
+              <h2 className="text-[32px] font-black text-text-primary mt-1 tracking-tight">Rs.{receiptData.total.toLocaleString('en-IN')}</h2>
             </div>
-            <div className="flex items-center gap-2 mt-2 mb-6 bg-success-subtle text-success px-3 py-1.5 rounded-full border border-success-subtle shadow-sm">
+            <div className="flex items-center gap-2 mt-2 mb-6 bg-success-bg text-success px-3 py-1.5 rounded-full border border-success-subtle shadow-sm">
               <CheckCircle size={14} className="text-success" />
               <span className="text-[12px] font-bold uppercase tracking-wider">Payment Successful</span>
             </div>
             
-            <p className="text-[11px] italic text-on-surface-subtle text-center mb-1">&quot;Knowledge is the best investment.&quot;</p>
-            <p className="text-[12px] font-bold text-on-surface-subtle text-center">Thank you! Keep studying 😊</p>
+            <p className="text-[11px] italic text-text-primary-subtle text-center mb-1">&quot;Knowledge is the best investment.&quot;</p>
+            <p className="text-[12px] font-bold text-text-primary-subtle text-center">Thank you! Keep studying 😊</p>
           </div>
 
           {/* Bottom Zigzag */}

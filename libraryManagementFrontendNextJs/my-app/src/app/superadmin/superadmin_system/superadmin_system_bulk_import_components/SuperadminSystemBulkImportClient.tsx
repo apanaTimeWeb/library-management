@@ -34,16 +34,16 @@ export function SuperadminSystemBulkImportClient() {
     <div>
       {/* Page Header */}
       <div className="mb-8">
-        <div className="flex items-center gap-2 text-on-surface-variant text-xs font-medium tracking-wide mb-1">
+        <div className="flex items-center gap-2 text-text-secondary text-xs font-medium tracking-wide mb-1">
           <span>System</span><ChevronRight size={12} /><span>Bulk Import</span>
         </div>
         <div className="flex items-start justify-between">
           <div>
-            <h1 className="text-3xl font-bold text-on-surface flex items-center gap-3">
+            <h1 className="text-3xl font-bold text-text-primary flex items-center gap-3">
               <FileSpreadsheet size={28} className="text-primary" />
               Bulk Student Import
             </h1>
-            <p className="text-on-surface-variant mt-1 text-sm">
+            <p className="text-text-secondary mt-1 text-sm">
               Upload an Excel or CSV file to import up to 500 students at once. System validates every row before import.
             </p>
           </div>
@@ -73,11 +73,11 @@ export function SuperadminSystemBulkImportClient() {
                 <div className={`h-8 w-8 rounded-full flex items-center justify-center text-sm font-bold border-2 transition-all ${
                   isDone    ? 'bg-primary border-primary text-on-primary' :
                   isActive  ? 'border-primary text-primary bg-primary/10' :
-                              'border-outline-variant text-on-surface-variant'
+                              'border-border text-text-secondary'
                 }`}>
                   {isDone ? '✓' : s.num}
                 </div>
-                <span className={`text-xs font-medium whitespace-nowrap ${isActive ? 'text-primary' : 'text-on-surface-variant'}`}>{s.label}</span>
+                <span className={`text-xs font-medium whitespace-nowrap ${isActive ? 'text-primary' : 'text-text-secondary'}`}>{s.label}</span>
               </div>
               {i < arr.length - 1 && (
                 <div className={`flex-1 h-0.5 mx-2 mb-4 transition-colors ${isDone ? 'bg-primary' : 'bg-outline-variant'}`} />
@@ -105,24 +105,24 @@ export function SuperadminSystemBulkImportClient() {
                 className={`flex flex-col items-center justify-center gap-4 p-16 rounded-2xl border-2 border-dashed cursor-pointer transition-all ${
                   isDragging
                     ? 'border-primary bg-primary/8 scale-[1.01]'
-                    : 'border-outline-variant hover:border-primary/50 hover:bg-surface-container-high'
+                    : 'border-border hover:border-primary/50 hover:bg-bg-card'
                 }`}
               >
                 <div className={`h-20 w-20 rounded-2xl flex items-center justify-center text-4xl transition-all ${
-                  isDragging ? 'bg-primary/20' : 'bg-surface-container-highest'
+                  isDragging ? 'bg-primary/20' : 'bg-bg-input'
                 }`}>
                   {isDragging ? '📂' : '📁'}
                 </div>
                 <div className="text-center">
-                  <p className="text-base font-semibold text-on-surface">
+                  <p className="text-base font-semibold text-text-primary">
                     {isDragging ? 'Drop your file here' : 'Drag & drop your file here'}
                   </p>
-                  <p className="text-sm text-on-surface-variant mt-1">or <span className="text-primary font-medium">browse to upload</span></p>
+                  <p className="text-sm text-text-secondary mt-1">or <span className="text-primary font-medium">browse to upload</span></p>
                 </div>
-                <div className="flex items-center gap-3 text-xs text-on-surface-variant">
-                  <span className="px-2 py-1 rounded-lg bg-surface-container-highest">.xlsx</span>
-                  <span className="px-2 py-1 rounded-lg bg-surface-container-highest">.xls</span>
-                  <span className="px-2 py-1 rounded-lg bg-surface-container-highest">.csv</span>
+                <div className="flex items-center gap-3 text-xs text-text-secondary">
+                  <span className="px-2 py-1 rounded-lg bg-bg-input">.xlsx</span>
+                  <span className="px-2 py-1 rounded-lg bg-bg-input">.xls</span>
+                  <span className="px-2 py-1 rounded-lg bg-bg-input">.csv</span>
                 </div>
               </div>
               <input
@@ -145,7 +145,7 @@ export function SuperadminSystemBulkImportClient() {
               <div className="overflow-x-auto">
                 <table className="w-full text-sm">
                   <thead>
-                    <tr className="border-b border-outline-variant text-on-surface-variant text-xs uppercase tracking-wide">
+                    <tr className="border-b border-border text-text-secondary text-xs uppercase tracking-wide">
                       <th className="text-left py-2 pr-4">Column</th>
                       <th className="text-left py-2 pr-4">Required</th>
                       <th className="text-left py-2">Example</th>
@@ -162,14 +162,14 @@ export function SuperadminSystemBulkImportClient() {
                       ['Fee Paid',  false, '1000'],
                       ['Join Date', false, '2026-04-12'],
                     ].map(([col, req, ex]) => (
-                      <tr key={col as string} className="hover:bg-surface-container-high">
-                        <td className="py-2.5 pr-4 font-medium text-on-surface">{col as string}</td>
+                      <tr key={col as string} className="hover:bg-bg-card">
+                        <td className="py-2.5 pr-4 font-medium text-text-primary">{col as string}</td>
                         <td className="py-2.5 pr-4">
                           {req
                             ? <SuperadminBadge variant="danger">Required</SuperadminBadge>
                             : <SuperadminBadge variant="outline">Optional</SuperadminBadge>}
                         </td>
-                        <td className="py-2.5 text-on-surface-variant text-xs">{ex as string}</td>
+                        <td className="py-2.5 text-text-secondary text-xs">{ex as string}</td>
                       </tr>
                     ))}
                   </tbody>
@@ -185,30 +185,30 @@ export function SuperadminSystemBulkImportClient() {
         <div className="space-y-5">
           {/* Summary */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <div className="p-4 rounded-2xl bg-surface-container border border-outline-variant text-center">
-              <p className="text-2xl font-bold text-on-surface">{previewData.length}</p>
-              <p className="text-xs text-on-surface-variant mt-1">Total Rows</p>
+            <div className="p-4 rounded-2xl bg-bg-card border border-border text-center">
+              <p className="text-2xl font-bold text-text-primary">{previewData.length}</p>
+              <p className="text-xs text-text-secondary mt-1">Total Rows</p>
             </div>
-            <div className="p-4 rounded-2xl bg-success-subtle border border-success/30 text-center">
+            <div className="p-4 rounded-2xl bg-success-bg border border-success/30 text-center">
               <p className="text-2xl font-bold text-success">{okCount}</p>
-              <p className="text-xs text-on-surface-variant mt-1"><CheckCircle size={14} className="inline mr-1" /> Ready to Import</p>
+              <p className="text-xs text-text-secondary mt-1"><CheckCircle size={14} className="inline mr-1" /> Ready to Import</p>
             </div>
             <div className="p-4 rounded-2xl bg-tertiary/10 border border-tertiary/20 text-center">
               <p className="text-2xl font-bold text-tertiary">{warningCount}</p>
-              <p className="text-xs text-on-surface-variant mt-1">⚠️ Warnings</p>
+              <p className="text-xs text-text-secondary mt-1">⚠️ Warnings</p>
             </div>
-            <div className="p-4 rounded-2xl bg-error-container/10 border border-error/20 text-center">
-              <p className="text-2xl font-bold text-error">{errorCount}</p>
-              <p className="text-xs text-on-surface-variant mt-1">❌ Errors (must fix)</p>
+            <div className="p-4 rounded-2xl bg-danger-bg/10 border border-danger/20 text-center">
+              <p className="text-2xl font-bold text-danger">{errorCount}</p>
+              <p className="text-xs text-text-secondary mt-1">❌ Errors (must fix)</p>
             </div>
           </div>
 
           {errorCount > 0 && (
-            <div className="flex items-start gap-3 p-4 rounded-xl bg-error-container/10 border border-error/20">
-              <XCircle size={18} className="text-error shrink-0 mt-0.5" />
+            <div className="flex items-start gap-3 p-4 rounded-xl bg-danger-bg/10 border border-danger/20">
+              <XCircle size={18} className="text-danger shrink-0 mt-0.5" />
               <div>
-                <p className="text-sm font-semibold text-error">{errorCount} rows have errors and will be skipped</p>
-                <p className="text-xs text-on-surface-variant mt-0.5">Fix the issues in your file and re-upload, or proceed to import only the valid rows.</p>
+                <p className="text-sm font-semibold text-danger">{errorCount} rows have errors and will be skipped</p>
+                <p className="text-xs text-text-secondary mt-0.5">Fix the issues in your file and re-upload, or proceed to import only the valid rows.</p>
               </div>
             </div>
           )}
@@ -230,7 +230,7 @@ export function SuperadminSystemBulkImportClient() {
                       className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
                         filter === f
                           ? 'bg-primary text-on-primary'
-                          : 'bg-surface-container-high text-on-surface-variant hover:text-on-surface'
+                          : 'bg-bg-card text-text-secondary hover:text-text-primary'
                       }`}
                     >
                       {f === 'all' ? `All (${previewData.length})` :
@@ -246,7 +246,7 @@ export function SuperadminSystemBulkImportClient() {
               <div className="overflow-x-auto">
                 <table className="w-full text-sm">
                   <thead>
-                    <tr className="border-b border-outline-variant text-on-surface-variant text-xs uppercase tracking-wide">
+                    <tr className="border-b border-border text-text-secondary text-xs uppercase tracking-wide">
                       <th className="text-left py-3 pr-3">Row</th>
                       <th className="text-left py-3 pr-3">Name</th>
                       <th className="text-left py-3 pr-3">Phone</th>
@@ -262,22 +262,22 @@ export function SuperadminSystemBulkImportClient() {
                       const cfg = SUPERADMIN_SYSTEM_BULK_IMPORT_STATUS_CONFIG[row.status];
                       const Icon = cfg.icon;
                       return (
-                        <tr key={row.row} className={`hover:bg-surface-container-high transition-colors ${
-                          row.status === 'error' ? 'bg-error-container/5' :
+                        <tr key={row.row} className={`hover:bg-bg-card transition-colors ${
+                          row.status === 'error' ? 'bg-danger-bg/5' :
                           row.status === 'warning' ? 'bg-tertiary/5' : ''
                         }`}>
-                          <td className="py-3 pr-3 font-mono text-xs text-on-surface-variant">#{row.row}</td>
-                          <td className="py-3 pr-3 font-medium text-on-surface">{row.name || <span className="text-error text-xs italic">missing</span>}</td>
-                          <td className="py-3 pr-3 text-on-surface-variant">{row.phone || <span className="text-error text-xs italic">missing</span>}</td>
-                          <td className="py-3 pr-3 text-on-surface-variant">{row.email || <span className="text-on-surface-variant/40 text-xs">—</span>}</td>
-                          <td className="py-3 pr-3 text-on-surface">{row.shift}</td>
-                          <td className="py-3 pr-3 font-mono text-xs text-on-surface">{row.seat || <span className="text-on-surface-variant/40 text-xs">auto</span>}</td>
+                          <td className="py-3 pr-3 font-mono text-xs text-text-secondary">#{row.row}</td>
+                          <td className="py-3 pr-3 font-medium text-text-primary">{row.name || <span className="text-danger text-xs italic">missing</span>}</td>
+                          <td className="py-3 pr-3 text-text-secondary">{row.phone || <span className="text-danger text-xs italic">missing</span>}</td>
+                          <td className="py-3 pr-3 text-text-secondary">{row.email || <span className="text-text-secondary/40 text-xs">—</span>}</td>
+                          <td className="py-3 pr-3 text-text-primary">{row.shift}</td>
+                          <td className="py-3 pr-3 font-mono text-xs text-text-primary">{row.seat || <span className="text-text-secondary/40 text-xs">auto</span>}</td>
                           <td className="py-3 pr-3">
                             <SuperadminBadge variant={cfg.variant}>
                               <Icon size={10} className="inline mr-1" /> {cfg.label}
                             </SuperadminBadge>
                           </td>
-                          <td className="py-3 text-xs text-on-surface-variant">{row.issue || '—'}</td>
+                          <td className="py-3 text-xs text-text-secondary">{row.issue || '—'}</td>
                         </tr>
                       );
                     })}
@@ -303,21 +303,21 @@ export function SuperadminSystemBulkImportClient() {
           <CardContent className="py-16 flex flex-col items-center gap-6 text-center">
             <div className="text-5xl animate-bounce">⏳</div>
             <div>
-              <h2 className="text-xl font-bold text-on-surface mb-1">Importing Students...</h2>
-              <p className="text-sm text-on-surface-variant">Please don't close this tab while import is in progress.</p>
+              <h2 className="text-xl font-bold text-text-primary mb-1">Importing Students...</h2>
+              <p className="text-sm text-text-secondary">Please don't close this tab while import is in progress.</p>
             </div>
             <div className="w-full max-w-sm space-y-2">
-              <div className="flex justify-between text-xs text-on-surface-variant">
+              <div className="flex justify-between text-xs text-text-secondary">
                 <span>Progress</span>
                 <span className="text-primary font-semibold">{importProgress}%</span>
               </div>
-              <div className="h-3 rounded-full bg-surface-container-highest overflow-hidden">
+              <div className="h-3 rounded-full bg-bg-input overflow-hidden">
                 <div
                   className="h-full rounded-full bg-primary transition-all duration-300"
                   style={{ width: `${importProgress}%` }}
                 />
               </div>
-              <p className="text-xs text-on-surface-variant">
+              <p className="text-xs text-text-secondary">
                 {Math.round((importProgress / 100) * okCount)} of {okCount} rows imported
               </p>
             </div>
@@ -329,17 +329,17 @@ export function SuperadminSystemBulkImportClient() {
       {step === 'done' && (
         <SuperadminCard>
           <CardContent className="py-16 flex flex-col items-center gap-6 text-center">
-            <div className="h-24 w-24 rounded-full bg-success-subtle flex items-center justify-center text-5xl">
+            <div className="h-24 w-24 rounded-full bg-success-bg flex items-center justify-center text-5xl">
               🎉
             </div>
             <div>
-              <h2 className="text-2xl font-bold text-on-surface mb-2">Import Complete!</h2>
-              <p className="text-on-surface-variant">
+              <h2 className="text-2xl font-bold text-text-primary mb-2">Import Complete!</h2>
+              <p className="text-text-secondary">
                 <span className="text-success font-semibold">{okCount} students</span> were successfully imported into the system.
               </p>
               {errorCount > 0 && (
-                <p className="text-sm text-on-surface-variant mt-2">
-                  <span className="text-error font-semibold">{errorCount} rows</span> were skipped due to validation errors.
+                <p className="text-sm text-text-secondary mt-2">
+                  <span className="text-danger font-semibold">{errorCount} rows</span> were skipped due to validation errors.
                 </p>
               )}
             </div>

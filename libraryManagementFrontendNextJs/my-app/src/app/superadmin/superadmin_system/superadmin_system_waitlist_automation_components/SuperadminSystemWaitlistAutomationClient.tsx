@@ -17,16 +17,16 @@ export function SuperadminSystemWaitlistAutomationClient() {
   return (
     <div>
       <div className="mb-8">
-        <div className="flex items-center gap-2 text-on-surface-variant text-xs font-medium tracking-wide mb-1">
+        <div className="flex items-center gap-2 text-text-secondary text-xs font-medium tracking-wide mb-1">
           <span>System</span>
           <ChevronRight size={12} />
           <span>Waitlist Automation</span>
         </div>
-        <h1 className="text-3xl font-bold text-on-surface flex items-center gap-3">
+        <h1 className="text-3xl font-bold text-text-primary flex items-center gap-3">
           <ListOrdered size={28} className="text-primary" />
           Waitlist Automation
         </h1>
-        <p className="text-on-surface-variant mt-1 text-sm">Automatically notify the next student in queue when a seat becomes available.</p>
+        <p className="text-text-secondary mt-1 text-sm">Automatically notify the next student in queue when a seat becomes available.</p>
       </div>
 
       {/* Status Toggle Card */}
@@ -34,12 +34,12 @@ export function SuperadminSystemWaitlistAutomationClient() {
         <CardContent>
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4">
-              <div className={`h-12 w-12 rounded-2xl flex items-center justify-center text-2xl ${enabled ? 'bg-green-500/15' : 'bg-surface-container-highest'}`}>
+              <div className={`h-12 w-12 rounded-2xl flex items-center justify-center text-2xl ${enabled ? 'bg-green-500/15' : 'bg-bg-input'}`}>
                 📋
               </div>
               <div>
-                <p className="text-base font-semibold text-on-surface">Waitlist Auto-Notification</p>
-                <p className="text-sm text-on-surface-variant mt-0.5">
+                <p className="text-base font-semibold text-text-primary">Waitlist Auto-Notification</p>
+                <p className="text-sm text-text-secondary mt-0.5">
                   {enabled
                     ? 'When a seat becomes free, automatically WhatsApp the next student in queue.'
                     : 'Auto-notification is OFF. Students must be notified manually.'}
@@ -69,7 +69,7 @@ export function SuperadminSystemWaitlistAutomationClient() {
               value={template}
               onChange={e => setTemplate(e.target.value)}
             />
-            <p className="text-xs text-on-surface-variant">Available variables: <code className="text-primary">{'{name}'}</code>, <code className="text-primary">{'{shift}'}</code>, <code className="text-primary">{'{seat}'}</code></p>
+            <p className="text-xs text-text-secondary">Available variables: <code className="text-primary">{'{name}'}</code>, <code className="text-primary">{'{shift}'}</code>, <code className="text-primary">{'{seat}'}</code></p>
           </div>
           <div className="space-y-2">
             <SuperadminLabel htmlFor="waitlist-delay">Notification Delay</SuperadminLabel>
@@ -82,7 +82,7 @@ export function SuperadminSystemWaitlistAutomationClient() {
                 className="w-28"
                 min={0}
               />
-              <span className="text-sm text-on-surface-variant">minutes after seat becomes available</span>
+              <span className="text-sm text-text-secondary">minutes after seat becomes available</span>
             </div>
           </div>
         </CardContent>
@@ -102,7 +102,7 @@ export function SuperadminSystemWaitlistAutomationClient() {
             {SUPERADMIN_SYSTEM_MOCK_WAITLIST.map((student) => (
               <div
                 key={student.position}
-                className="flex items-center gap-4 p-3 rounded-xl bg-surface-container-high border border-outline-variant/50 hover:border-outline-variant transition-colors"
+                className="flex items-center gap-4 p-3 rounded-xl bg-bg-card border border-border/50 hover:border-border transition-colors"
               >
                 {/* Position */}
                 <div className="h-8 w-8 rounded-full bg-primary/15 flex items-center justify-center text-primary text-sm font-bold shrink-0">
@@ -114,8 +114,8 @@ export function SuperadminSystemWaitlistAutomationClient() {
                 </div>
                 {/* Info */}
                 <div className="flex-1">
-                  <p className="text-sm font-medium text-on-surface">{student.name}</p>
-                  <p className="text-xs text-on-surface-variant">Joined waitlist: {student.joined}</p>
+                  <p className="text-sm font-medium text-text-primary">{student.name}</p>
+                  <p className="text-xs text-text-secondary">Joined waitlist: {student.joined}</p>
                 </div>
                 <SuperadminBadge variant="outline">{student.shift}</SuperadminBadge>
               </div>

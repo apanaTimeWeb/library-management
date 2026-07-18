@@ -11,9 +11,9 @@ import { Hash, ChevronRight, ArrowRight, AlertTriangle, LogOut, Search, Target, 
 import { useSuperadminSystemSmartId } from '@/app/superadmin/superadmin_system/superadmin_system_smart_id_hooks/useSuperadminSystemSmartId';
 
 const FLOW_STEPS = [
-  { step: '1', icon: <LogOut size={24} className="text-on-surface-variant" />, title: 'Student Exits', desc: 'ID freed — student moved to alumni archive' },
-  { step: '2', icon: <Search size={24} className="text-on-surface-variant" />, title: 'System Scans', desc: 'Checks for lowest available gap ID in the sequence' },
-  { step: '3', icon: <Target size={24} className="text-on-surface-variant" />, title: 'Gap ID Assigned', desc: 'New student gets freed ID — records stay compact & serial' },
+  { step: '1', icon: <LogOut size={24} className="text-text-secondary" />, title: 'Student Exits', desc: 'ID freed — student moved to alumni archive' },
+  { step: '2', icon: <Search size={24} className="text-text-secondary" />, title: 'System Scans', desc: 'Checks for lowest available gap ID in the sequence' },
+  { step: '3', icon: <Target size={24} className="text-text-secondary" />, title: 'Gap ID Assigned', desc: 'New student gets freed ID — records stay compact & serial' },
 ];
 
 export function SuperadminSystemSmartIdClient() {
@@ -22,16 +22,16 @@ export function SuperadminSystemSmartIdClient() {
   return (
     <div>
       <div className="mb-8">
-        <div className="flex items-center gap-2 text-on-surface-variant text-xs font-medium tracking-wide mb-1">
+        <div className="flex items-center gap-2 text-text-secondary text-xs font-medium tracking-wide mb-1">
           <span>System</span>
           <ChevronRight size={12} />
           <span>Smart ID</span>
         </div>
-        <h1 className="text-3xl font-bold text-on-surface flex items-center gap-3">
+        <h1 className="text-3xl font-bold text-text-primary flex items-center gap-3">
           <Hash size={28} className="text-primary" />
           Smart ID Auto-Fill
         </h1>
-        <p className="text-on-surface-variant mt-1 text-sm">Intelligent ID gap detection keeps student records compact and serial.</p>
+        <p className="text-text-secondary mt-1 text-sm">Intelligent ID gap detection keeps student records compact and serial.</p>
       </div>
 
       {/* Algorithm Explanation */}
@@ -50,8 +50,8 @@ export function SuperadminSystemSmartIdClient() {
                   </div>
                   <div className="text-center">
                     <p className="text-xs font-semibold text-primary uppercase tracking-wider">Step {step.step}</p>
-                    <p className="text-sm font-medium text-on-surface mt-0.5">{step.title}</p>
-                    <p className="text-xs text-on-surface-variant mt-1 max-w-xs">{step.desc}</p>
+                    <p className="text-sm font-medium text-text-primary mt-0.5">{step.title}</p>
+                    <p className="text-xs text-text-secondary mt-1 max-w-xs">{step.desc}</p>
                   </div>
                 </div>
                 {i < FLOW_STEPS.length - 1 && (
@@ -94,7 +94,7 @@ export function SuperadminSystemSmartIdClient() {
               );
             })}
           </div>
-          <div className="flex items-center gap-6 text-xs text-on-surface-variant">
+          <div className="flex items-center gap-6 text-xs text-text-secondary">
             <div className="flex items-center gap-1.5">
               <div className="h-3 w-3 rounded bg-primary/40 border border-primary/30" />
               Active ({activeIds.length})
@@ -129,7 +129,7 @@ export function SuperadminSystemSmartIdClient() {
                   Are you sure?
                 </SuperadminDialogDescription>
               </SuperadminDialogHeader>
-              <div className="p-4 rounded-xl bg-error-container/20 border border-error/20 text-sm text-error mt-2">
+              <div className="p-4 rounded-xl bg-danger-bg/20 border border-danger/20 text-sm text-danger mt-2">
                 ⚠️ Warning: All student ID references will be updated. Ensure backups are taken first.
               </div>
               <div className="flex justify-end gap-3 mt-4">

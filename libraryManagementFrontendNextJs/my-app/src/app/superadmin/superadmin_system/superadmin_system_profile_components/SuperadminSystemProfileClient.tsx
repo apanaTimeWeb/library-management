@@ -20,16 +20,16 @@ export function SuperadminSystemProfileClient() {
   return (
     <div>
       <div className="mb-8">
-        <div className="flex items-center gap-2 text-on-surface-variant text-xs font-medium tracking-wide mb-1">
+        <div className="flex items-center gap-2 text-text-secondary text-xs font-medium tracking-wide mb-1">
           <span>System</span>
           <ChevronRight size={12} />
           <span>Profile</span>
         </div>
-        <h1 className="text-3xl font-bold text-on-surface flex items-center gap-3">
+        <h1 className="text-3xl font-bold text-text-primary flex items-center gap-3">
           <User size={28} className="text-primary" />
           My Profile
         </h1>
-        <p className="text-on-surface-variant mt-1 text-sm">Manage your personal information and account security.</p>
+        <p className="text-text-secondary mt-1 text-sm">Manage your personal information and account security.</p>
       </div>
 
       <div className="max-w-xl mx-auto space-y-6">
@@ -56,7 +56,7 @@ export function SuperadminSystemProfileClient() {
             </div>
 
             <div className="space-y-2">
-              <SuperadminLabel htmlFor="profile-name">Full Name <span className="text-error">*</span></SuperadminLabel>
+              <SuperadminLabel htmlFor="profile-name">Full Name <span className="text-danger">*</span></SuperadminLabel>
               <SuperadminInput id="profile-name" defaultValue="Admin User" />
             </div>
             <div className="space-y-2">
@@ -64,7 +64,7 @@ export function SuperadminSystemProfileClient() {
               <SuperadminInput id="profile-email" type="email" defaultValue="admin@smartlibrary.in" />
             </div>
             <div className="space-y-2">
-              <SuperadminLabel htmlFor="profile-phone">Phone <span className="text-error">*</span></SuperadminLabel>
+              <SuperadminLabel htmlFor="profile-phone">Phone <span className="text-danger">*</span></SuperadminLabel>
               <SuperadminInput id="profile-phone" type="tel" defaultValue="+91 98765 43210" />
             </div>
           </CardContent>
@@ -87,7 +87,7 @@ export function SuperadminSystemProfileClient() {
               <SuperadminLabel htmlFor="current-password">Current Password</SuperadminLabel>
               <div className="relative">
                 <SuperadminInput id="current-password" type={showCurrent ? 'text' : 'password'} placeholder="Enter current password" className="pr-12" />
-                <button type="button" onClick={() => setShowCurrent(s => !s)} className="absolute right-3 top-1/2 -translate-y-1/2 text-on-surface-variant hover:text-on-surface">
+                <button type="button" onClick={() => setShowCurrent(s => !s)} className="absolute right-3 top-1/2 -translate-y-1/2 text-text-secondary hover:text-text-primary">
                   {showCurrent ? <EyeOff size={16} /> : <Eye size={16} />}
                 </button>
               </div>
@@ -96,14 +96,14 @@ export function SuperadminSystemProfileClient() {
               <SuperadminLabel htmlFor="new-password">New Password</SuperadminLabel>
               <div className="relative">
                 <SuperadminInput id="new-password" type={showNew ? 'text' : 'password'} placeholder="Min. 8 characters" value={newPw} onChange={e => setNewPw(e.target.value)} className="pr-12" />
-                <button type="button" onClick={() => setShowNew(s => !s)} className="absolute right-3 top-1/2 -translate-y-1/2 text-on-surface-variant hover:text-on-surface">
+                <button type="button" onClick={() => setShowNew(s => !s)} className="absolute right-3 top-1/2 -translate-y-1/2 text-text-secondary hover:text-text-primary">
                   {showNew ? <EyeOff size={16} /> : <Eye size={16} />}
                 </button>
               </div>
               {newPw && (
                 <div className="space-y-1.5 mt-2">
                   <SuperadminProgress value={strength.score} max={4} barClassName={strength.color} />
-                  <p className={`text-xs font-medium ${strength.score >= 3 ? 'text-success' : strength.score === 2 ? 'text-tertiary' : 'text-error'}`}>
+                  <p className={`text-xs font-medium ${strength.score >= 3 ? 'text-success' : strength.score === 2 ? 'text-tertiary' : 'text-danger'}`}>
                     Password strength: {strength.label}
                   </p>
                 </div>
@@ -113,7 +113,7 @@ export function SuperadminSystemProfileClient() {
               <SuperadminLabel htmlFor="confirm-password">Confirm New Password</SuperadminLabel>
               <div className="relative">
                 <SuperadminInput id="confirm-password" type={showConfirm ? 'text' : 'password'} placeholder="Repeat new password" className="pr-12" />
-                <button type="button" onClick={() => setShowConfirm(s => !s)} className="absolute right-3 top-1/2 -translate-y-1/2 text-on-surface-variant hover:text-on-surface">
+                <button type="button" onClick={() => setShowConfirm(s => !s)} className="absolute right-3 top-1/2 -translate-y-1/2 text-text-secondary hover:text-text-primary">
                   {showConfirm ? <EyeOff size={16} /> : <Eye size={16} />}
                 </button>
               </div>

@@ -10,7 +10,7 @@ export default function SuperAdminDashboardLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="flex min-h-screen bg-surface text-on-surface overflow-hidden">
+    <div className="flex min-h-screen bg-surface text-text-primary overflow-hidden">
       {/* Fixed Sidebar */}
       <Sidebar />
 

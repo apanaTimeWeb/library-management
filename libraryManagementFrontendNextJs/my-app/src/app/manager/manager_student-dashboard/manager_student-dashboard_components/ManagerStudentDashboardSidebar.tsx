@@ -21,7 +21,7 @@
 //           <div className="relative hidden md:block">
 //             <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">search</span>
 //             <input
-//               className="bg-surface-container-lowest border-none rounded-lg pl-10 pr-4 py-1.5 text-sm focus:ring-1 focus:ring-primary w-64"
+//               className="bg-bg-card-lowest border-none rounded-lg pl-10 pr-4 py-1.5 text-sm focus:ring-1 focus:ring-primary w-64"
 //               placeholder="Global Search..."
 //               type="text"
 //             />
@@ -32,7 +32,7 @@
 //             <span className="material-symbols-outlined cursor-pointer hover:text-white transition-colors">help</span>
 //             <span className="material-symbols-outlined cursor-pointer hover:text-white transition-colors">settings</span>
 
-//             <div className="w-8 h-8 rounded-full overflow-hidden border border-outline-variant/20">
+//             <div className="w-8 h-8 rounded-full overflow-hidden border border-border/20">
 //               <img
 //                 alt="User Profile Avatar"
 //                 className="w-full h-full object-cover"
@@ -45,7 +45,7 @@
 
 //       {/* Staff Sidebar - Exact same as your HTML */}
 //       <aside className="fixed left-0 top-0 h-screen w-60 z-40 flex flex-col pt-[64px] pb-4 overflow-y-auto bg-[#1b1a26]">
-//         <div className="px-6 py-6 border-b border-outline-variant/10">
+//         <div className="px-6 py-6 border-b border-border/10">
 //           <h2 className="text-xs font-semibold text-primary tracking-widest uppercase">Admission Module</h2>
 //           <p className="text-[10px] text-slate-500 mt-1">Academic Year 2024-25</p>
 //         </div>

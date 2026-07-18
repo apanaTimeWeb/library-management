@@ -13,8 +13,8 @@ export function useSuperadminSystemProfile() {
     if (/[0-9]/.test(newPw)) score++;
     if (/[^A-Za-z0-9]/.test(newPw)) score++;
     const map: Record<number, { label: string; color: string }> = {
-      0: { label: 'Very Weak', color: 'bg-error' },
-      1: { label: 'Weak', color: 'bg-error' },
+      0: { label: 'Very Weak', color: 'bg-danger' },
+      1: { label: 'Weak', color: 'bg-danger' },
       2: { label: 'Fair', color: 'bg-tertiary' },
       3: { label: 'Good', color: 'bg-success' },
       4: { label: 'Strong', color: 'bg-success' },

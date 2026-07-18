@@ -14,7 +14,7 @@ const PROVIDER_LOGOS: Record<string, React.ReactNode> = {
   twilio: <Globe size={16} className="text-primary" />,
   wati: <Globe size={16} className="text-success" />,
   aisensy: <Globe size={16} className="text-tertiary" />,
-  custom: <Settings size={16} className="text-on-surface-variant" />,
+  custom: <Settings size={16} className="text-text-secondary" />,
 };
 
 export function SuperadminSystemWhatsappClient() {
@@ -28,34 +28,34 @@ export function SuperadminSystemWhatsappClient() {
   return (
     <div>
       <div className="mb-8">
-        <div className="flex items-center gap-2 text-on-surface-variant text-xs font-medium tracking-wide mb-1">
+        <div className="flex items-center gap-2 text-text-secondary text-xs font-medium tracking-wide mb-1">
           <span>System</span><ChevronRight size={12} /><span>WhatsApp Integration</span>
         </div>
-        <h1 className="text-3xl font-bold text-on-surface flex items-center gap-3">
+        <h1 className="text-3xl font-bold text-text-primary flex items-center gap-3">
           <MessageSquare size={28} className="text-primary" />
           WhatsApp Integration
         </h1>
-        <p className="text-on-surface-variant mt-1 text-sm">
+        <p className="text-text-secondary mt-1 text-sm">
           Connect a WhatsApp Business API provider to send automated receipts, reminders, and alerts.
         </p>
       </div>
 
       {/* Connection Status Banner */}
       <div className={`flex items-center gap-4 p-4 rounded-2xl border mb-8 ${
-        testStatus === 'success' ? 'bg-success-subtle border-success/30' : 
-        testStatus === 'error' ? 'bg-error-container border-error/30' : 
-        'bg-surface-container border-outline-variant'
+        testStatus === 'success' ? 'bg-success-bg border-success/30' : 
+        testStatus === 'error' ? 'bg-danger-bg border-danger/30' : 
+        'bg-bg-card border-border'
       }`}>
         <div className={`h-12 w-12 rounded-xl flex items-center justify-center text-2xl ${
-          testStatus === 'success' ? 'bg-success-subtle text-success' :
-          testStatus === 'error'  ? 'bg-error-container text-error' :
-          'bg-surface-container-high text-on-surface-variant'
+          testStatus === 'success' ? 'bg-success-bg text-success' :
+          testStatus === 'error'  ? 'bg-danger-bg text-danger' :
+          'bg-bg-card text-text-secondary'
         }`}>
           {testStatus === 'success' ? <CheckCircle size={24} /> : testStatus === 'error' ? <XCircle size={24} /> : <Radio size={24} />}
         </div>
         <div className="flex-1">
           <div className="flex items-center gap-3">
-            <p className="text-base font-semibold text-on-surface">
+            <p className="text-base font-semibold text-text-primary">
               {testStatus === 'success' ? 'WhatsApp Connected'  :
                testStatus === 'error'  ? 'Connection Failed'   :
                testStatus === 'testing'? 'Testing connection...' :
@@ -65,7 +65,7 @@ export function SuperadminSystemWhatsappClient() {
               {testStatus === 'success' ? 'Connected' : testStatus === 'error' ? 'Disconnected' : 'Unknown'}
             </SuperadminBadge>
           </div>
-          <p className="text-xs text-on-surface-variant mt-0.5">
+          <p className="text-xs text-text-secondary mt-0.5">
             {testStatus === 'success'
               ? `Provider: ${selectedProvider.label} · Test message sent to ${senderPhone}`
               : testStatus === 'error'
@@ -74,7 +74,7 @@ export function SuperadminSystemWhatsappClient() {
           </p>
         </div>
         {testStatus !== 'testing' && testStatus === 'success' && (
-          <p className="text-xs text-on-surface-variant">Last tested: just now</p>
+          <p className="text-xs text-text-secondary">Last tested: just now</p>
         )}
       </div>
 
@@ -107,7 +107,7 @@ export function SuperadminSystemWhatsappClient() {
                     className={`flex items-center gap-2.5 p-3 rounded-xl border text-left transition-all ${
                       provider === p.id
                         ? 'border-primary/40 bg-primary/10 text-primary'
-                        : 'border-outline-variant hover:border-primary/25 text-on-surface-variant hover:text-on-surface'
+                        : 'border-border hover:border-primary/25 text-text-secondary hover:text-text-primary'
                     }`}
                   >
                     <span className="text-xl">{PROVIDER_LOGOS[p.id]}</span>
@@ -132,7 +132,7 @@ export function SuperadminSystemWhatsappClient() {
                 <button
                   type="button"
                   onClick={() => setShowApiKey(s => !s)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-on-surface-variant hover:text-on-surface"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-text-secondary hover:text-text-primary"
                 >
                   {showApiKey ? <EyeOff size={16} /> : <Eye size={16} />}
                 </button>
@@ -154,7 +154,7 @@ export function SuperadminSystemWhatsappClient() {
                   <button
                     type="button"
                     onClick={() => setShowSecret(s => !s)}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 text-on-surface-variant hover:text-on-surface"
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-text-secondary hover:text-text-primary"
                   >
                     {showSecret ? <EyeOff size={16} /> : <Eye size={16} />}
                   </button>
@@ -165,7 +165,7 @@ export function SuperadminSystemWhatsappClient() {
             <div className="space-y-2">
               <SuperadminLabel htmlFor="sender-phone">Sender WhatsApp Number</SuperadminLabel>
               <div className="relative">
-                <Phone size={15} className="absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant" />
+                <Phone size={15} className="absolute left-3 top-1/2 -translate-y-1/2 text-text-secondary" />
                 <SuperadminInput
                   id="sender-phone"
                   type="tel"
@@ -175,20 +175,20 @@ export function SuperadminSystemWhatsappClient() {
                   className="pl-9"
                 />
               </div>
-              <p className="text-xs text-on-surface-variant">Must be your registered WhatsApp Business number</p>
+              <p className="text-xs text-text-secondary">Must be your registered WhatsApp Business number</p>
             </div>
 
             <div className="space-y-2">
               <SuperadminLabel>Inbound Webhook URL</SuperadminLabel>
               <div className="flex items-center gap-2">
-                <div className="flex-1 px-3 py-2 rounded-lg bg-surface-container-highest border border-outline-variant text-xs font-mono text-on-surface-variant truncate">
+                <div className="flex-1 px-3 py-2 rounded-lg bg-bg-input border border-border text-xs font-mono text-text-secondary truncate">
                   {webhookUrl}
                 </div>
                 <SuperadminButton id="copy-webhook-btn" variant="ghost" size="sm" onClick={handleCopyWebhook}>
                   {copiedUrl ? <CheckCircle size={14} className="text-success" /> : <Copy size={14} />}
                 </SuperadminButton>
               </div>
-              <p className="text-xs text-on-surface-variant">Paste this URL in your provider's webhook settings.</p>
+              <p className="text-xs text-text-secondary">Paste this URL in your provider's webhook settings.</p>
             </div>
           </CardContent>
           <CardFooter>
@@ -223,10 +223,10 @@ export function SuperadminSystemWhatsappClient() {
                 { id: 'trigger-waitlist', label: 'Waitlist Notification', desc: 'When seat becomes available for waitlisted', enabled: true  },
                 { id: 'trigger-absentee', label: 'Absentee Alert',        desc: 'When student absent for 3+ days',            enabled: false },
               ].map(( event ) => (
-                <div key={event.id} className="flex items-center justify-between p-3 rounded-xl bg-surface-container-high border border-outline-variant/50">
+                <div key={event.id} className="flex items-center justify-between p-3 rounded-xl bg-bg-card border border-border/50">
                   <div>
-                    <p className="text-sm font-medium text-on-surface">{event.label}</p>
-                    <p className="text-xs text-on-surface-variant">{event.desc}</p>
+                    <p className="text-sm font-medium text-text-primary">{event.label}</p>
+                    <p className="text-xs text-text-secondary">{event.desc}</p>
                   </div>
                   <div className="flex items-center gap-2 shrink-0">
                     <SuperadminBadge variant={event.enabled ? 'success' : 'outline'}>
@@ -252,7 +252,7 @@ export function SuperadminSystemWhatsappClient() {
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
               <thead>
-                <tr className="border-b border-outline-variant text-on-surface-variant text-xs uppercase tracking-wide">
+                <tr className="border-b border-border text-text-secondary text-xs uppercase tracking-wide">
                   <th className="text-left py-3 pr-4">Recipient</th>
                   <th className="text-left py-3 pr-4">Message Type</th>
                   <th className="text-left py-3 pr-4">Template</th>
@@ -265,11 +265,11 @@ export function SuperadminSystemWhatsappClient() {
                   const cfg  = SUPERADMIN_SYSTEM_WHATSAPP_STATUS_CFG[log.status];
                   const Icon = cfg.icon;
                   return (
-                    <tr key={log.id} className="hover:bg-surface-container-high transition-colors">
-                      <td className="py-3 pr-4 font-mono text-sm text-on-surface">{log.to}</td>
-                      <td className="py-3 pr-4 text-on-surface">{log.type}</td>
+                    <tr key={log.id} className="hover:bg-bg-card transition-colors">
+                      <td className="py-3 pr-4 font-mono text-sm text-text-primary">{log.to}</td>
+                      <td className="py-3 pr-4 text-text-primary">{log.type}</td>
                       <td className="py-3 pr-4">
-                        <code className="text-xs text-on-surface-variant bg-surface-container-highest px-1.5 py-0.5 rounded">
+                        <code className="text-xs text-text-secondary bg-bg-input px-1.5 py-0.5 rounded">
                           {log.template}
                         </code>
                       </td>
@@ -278,7 +278,7 @@ export function SuperadminSystemWhatsappClient() {
                           <Icon size={10} className="inline mr-1" /> {log.status}
                         </SuperadminBadge>
                       </td>
-                      <td className="py-3 text-xs text-on-surface-variant">{log.sentAt}</td>
+                      <td className="py-3 text-xs text-text-secondary">{log.sentAt}</td>
                     </tr>
                   );
                 })}

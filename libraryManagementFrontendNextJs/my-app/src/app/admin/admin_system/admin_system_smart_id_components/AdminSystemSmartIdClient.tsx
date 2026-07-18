@@ -16,17 +16,17 @@ export function AdminSystemSmartIdClient() {
   return (
     <div>
       <div className="mb-8">
-        <div className="flex items-center gap-2 text-on-surface-variant text-xs font-medium tracking-wide mb-1">
+        <div className="flex items-center gap-2 text-text-secondary text-xs font-medium tracking-wide mb-1">
           <span>System</span>
           <ChevronRight size={12} />
           <span>Smart ID</span>
         </div>
-        <h1 className="text-3xl font-bold text-on-surface flex items-center gap-3">
+        <h1 className="text-3xl font-bold text-text-primary flex items-center gap-3">
           <Hash size={28} className="text-primary" />
           Smart ID Auto-Fill
         </h1>
-        <p className="text-on-surface-variant mt-1 text-sm">
-          <span className="text-on-surface-variant text-sm mt-1">{activeIds.length} of 20 used</span> keeps student records compact and serial.
+        <p className="text-text-secondary mt-1 text-sm">
+          <span className="text-text-secondary text-sm mt-1">{activeIds.length} of 20 used</span> keeps student records compact and serial.
         </p>
       </div>
 
@@ -46,8 +46,8 @@ export function AdminSystemSmartIdClient() {
                   </div>
                   <div className="text-center">
                     <p className="text-xs font-semibold text-primary uppercase tracking-wider">Step {step.step}</p>
-                    <p className="text-sm font-medium text-on-surface mt-0.5">{step.title}</p>
-                    <p className="text-xs text-on-surface-variant mt-1 max-w-40">{step.desc}</p>
+                    <p className="text-sm font-medium text-text-primary mt-0.5">{step.title}</p>
+                    <p className="text-xs text-text-secondary mt-1 max-w-40">{step.desc}</p>
                   </div>
                 </div>
                 {i < flowSteps.length - 1 && (
@@ -91,7 +91,7 @@ export function AdminSystemSmartIdClient() {
               );
             })}
           </div>
-          <div className="flex items-center gap-6 text-xs text-on-surface-variant">
+          <div className="flex items-center gap-6 text-xs text-text-secondary">
             <div className="flex items-center gap-1.5">
               <div className="h-3 w-3 rounded bg-primary/40 border border-primary/30" />
               Active ({activeIds.length})
@@ -126,7 +126,7 @@ export function AdminSystemSmartIdClient() {
                   Are you sure?
                 </DialogDescription>
               </DialogHeader>
-              <div className="p-4 rounded-xl bg-error-container/20 border border-error/20 text-sm text-error mt-2">
+              <div className="p-4 rounded-xl bg-danger-bg/20 border border-danger/20 text-sm text-danger mt-2">
                 ⚠️ Warning: All student ID references will be updated. Ensure backups are taken first.
               </div>
               <div className="flex justify-end gap-3 mt-4">

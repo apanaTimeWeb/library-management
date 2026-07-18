@@ -62,7 +62,7 @@ export function CollectFeeReceiptModal({ receiptData, onClose, onPrint }: Props)
                 <p className="text-xl font-bold">₹{receiptData.total.toFixed(0)}</p>
               </div>
               
-              <div className="flex items-center gap-2 bg-success-subtle text-success px-3 py-1 rounded-full mb-4">
+              <div className="flex items-center gap-2 bg-success-bg text-success px-3 py-1 rounded-full mb-4">
                 <CheckCircle size={14} />
                 <span className="text-xs font-bold uppercase">Payment Received</span>
               </div>

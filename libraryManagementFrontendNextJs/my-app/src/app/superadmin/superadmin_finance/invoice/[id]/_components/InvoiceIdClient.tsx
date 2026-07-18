@@ -107,25 +107,25 @@ export function InvoiceIdClient() {
             { l: 'GST',      v: formatCurrency(INV.totalGst) },
           ].map(( r ) => (
             <div key={r.l} className="flex justify-between w-64 px-4">
-              <span className="text-[13px] font-medium text-on-surface-variant">{r.l}</span>
-              <span className="text-[13px] font-semibold text-on-surface">{r.v}</span>
+              <span className="text-[13px] font-medium text-text-secondary">{r.l}</span>
+              <span className="text-[13px] font-semibold text-text-primary">{r.v}</span>
             </div>
           ))}
           <div className="w-64 h-[1px] bg-outline-variant my-2" />
-          <div className="flex justify-between items-center border-t border-outline-variant pt-3 mt-3 w-64 px-4">
-            <span className="text-[16px] font-bold text-on-surface">Total Amount Paid</span>
+          <div className="flex justify-between items-center border-t border-border pt-3 mt-3 w-64 px-4">
+            <span className="text-[16px] font-bold text-text-primary">Total Amount Paid</span>
             <span className="text-[16px] font-black text-success">{formatCurrency(INV.grandTotal)}</span>
           </div>
         </div>
 
-        <div className="grid grid-cols-3 gap-4 mb-10 bg-surface-variant p-6 rounded-[var(--radius-md)] border border-outline-variant">
+        <div className="grid grid-cols-3 gap-4 mb-10 bg-surface-variant p-6 rounded-[var(--radius-md)] border border-border">
           <div>
-            <p className="text-[10px] font-bold text-on-surface-variant uppercase tracking-wider mb-2">Payment Mode</p>
-            <p className="text-[14px] font-bold text-on-surface">{INV.paymentMode}</p>
+            <p className="text-[10px] font-bold text-text-secondary uppercase tracking-wider mb-2">Payment Mode</p>
+            <p className="text-[14px] font-bold text-text-primary">{INV.paymentMode}</p>
           </div>
           <div>
-            <p className="text-[10px] font-bold text-on-surface-variant uppercase tracking-wider mb-2">Transaction ID</p>
-            <p className="text-[14px] font-mono font-medium text-on-surface">{INV.paymentTransactionId}</p>
+            <p className="text-[10px] font-bold text-text-secondary uppercase tracking-wider mb-2">Transaction ID</p>
+            <p className="text-[14px] font-mono font-medium text-text-primary">{INV.paymentTransactionId}</p>
           </div>
           <div className="flex items-center gap-2 mt-2">
             <span className="bg-success/10 text-success px-3 py-1 rounded-[var(--radius-full)] text-[12px] font-bold uppercase tracking-wider">

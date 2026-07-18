@@ -36,14 +36,14 @@ export function AdminSystemWhatsappIntegrationClient() {
   return (
     <div>
       <div className="mb-8">
-        <div className="flex items-center gap-2 text-on-surface-variant text-xs font-medium tracking-wide mb-1">
+        <div className="flex items-center gap-2 text-text-secondary text-xs font-medium tracking-wide mb-1">
           <span>System</span><ChevronRight size={12} /><span>WhatsApp Integration</span>
         </div>
-        <h1 className="text-3xl font-bold text-on-surface flex items-center gap-3">
+        <h1 className="text-3xl font-bold text-text-primary flex items-center gap-3">
           <MessageSquare size={28} className="text-primary" />
           WhatsApp Integration
         </h1>
-        <p className="text-on-surface-variant mt-1 text-sm">
+        <p className="text-text-secondary mt-1 text-sm">
           Connect a WhatsApp Business API provider to send automated receipts, reminders, and alerts.
         </p>
       </div>
@@ -53,19 +53,19 @@ export function AdminSystemWhatsappIntegrationClient() {
         testStatus === 'success'
           ? 'bg-success/10 border-success/25'
           : testStatus === 'error'
-          ? 'bg-error-container/10 border-error/20'
-          : 'bg-surface-container border-outline-variant'
+          ? 'bg-danger-bg/10 border-danger/20'
+          : 'bg-bg-card border-border'
       }`}>
         <div className={`h-12 w-12 rounded-xl flex items-center justify-center text-2xl ${
           testStatus === 'success' ? 'bg-success/20' :
-          testStatus === 'error' ? 'bg-error-container/30' :
-          'bg-surface-container-high'
+          testStatus === 'error' ? 'bg-danger-bg/30' :
+          'bg-bg-card'
         }`}>
           {testStatus === 'success' ? '✅' : testStatus === 'error' ? '❌' : '📡'}
         </div>
         <div className="flex-1">
           <div className="flex items-center gap-3">
-            <p className="text-base font-semibold text-on-surface">
+            <p className="text-base font-semibold text-text-primary">
               {testStatus === 'success' ? 'WhatsApp Connected' :
                testStatus === 'error' ? 'Connection Failed' :
                testStatus === 'testing' ? 'Testing connection...' :
@@ -75,7 +75,7 @@ export function AdminSystemWhatsappIntegrationClient() {
               {testStatus === 'success' ? 'Connected' : testStatus === 'error' ? 'Disconnected' : 'Unknown'}
             </Badge>
           </div>
-          <p className="text-xs text-on-surface-variant mt-0.5">
+          <p className="text-xs text-text-secondary mt-0.5">
             {testStatus === 'success'
               ? `Provider: ${activeProvider.label} · Test message sent to ${senderPhone}`
               : testStatus === 'error'
@@ -84,7 +84,7 @@ export function AdminSystemWhatsappIntegrationClient() {
           </p>
         </div>
         {testStatus !== 'testing' && (
-          <p className="text-xs text-on-surface-variant">
+          <p className="text-xs text-text-secondary">
             {testStatus === 'success' ? 'Last tested: just now' : ''}
           </p>
         )}
@@ -120,7 +120,7 @@ export function AdminSystemWhatsappIntegrationClient() {
                     className={`flex items-center gap-2.5 p-3 rounded-xl border text-left transition-all ${
                       provider === p.id
                         ? 'border-primary/40 bg-primary/10 text-primary'
-                        : 'border-outline-variant hover:border-primary/25 text-on-surface-variant hover:text-on-surface'
+                        : 'border-border hover:border-primary/25 text-text-secondary hover:text-text-primary'
                     }`}
                   >
                     <span className="text-xl">{p.logo}</span>
@@ -146,7 +146,7 @@ export function AdminSystemWhatsappIntegrationClient() {
                 <button
                   type="button"
                   onClick={() => setShowApiKey(s => !s)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-on-surface-variant hover:text-on-surface"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-text-secondary hover:text-text-primary"
                 >
                   {showApiKey ? <EyeOff size={16} /> : <Eye size={16} />}
                 </button>
@@ -169,7 +169,7 @@ export function AdminSystemWhatsappIntegrationClient() {
                   <button
                     type="button"
                     onClick={() => setShowSecret(s => !s)}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 text-on-surface-variant hover:text-on-surface"
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-text-secondary hover:text-text-primary"
                   >
                     {showSecret ? <EyeOff size={16} /> : <Eye size={16} />}
                   </button>
@@ -181,7 +181,7 @@ export function AdminSystemWhatsappIntegrationClient() {
             <div className="space-y-2">
               <Label htmlFor="sender-phone">Sender WhatsApp Number</Label>
               <div className="relative">
-                <Phone size={15} className="absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant" />
+                <Phone size={15} className="absolute left-3 top-1/2 -translate-y-1/2 text-text-secondary" />
                 <Input
                   id="sender-phone"
                   type="tel"
@@ -191,14 +191,14 @@ export function AdminSystemWhatsappIntegrationClient() {
                   className="pl-9"
                 />
               </div>
-              <p className="text-xs text-on-surface-variant">Must be your registered WhatsApp Business number</p>
+              <p className="text-xs text-text-secondary">Must be your registered WhatsApp Business number</p>
             </div>
 
             {/* Webhook URL (read-only) */}
             <div className="space-y-2">
               <Label>Inbound Webhook URL</Label>
               <div className="flex items-center gap-2">
-                <div className="flex-1 px-3 py-2 rounded-lg bg-surface-container-highest border border-outline-variant text-xs font-mono text-on-surface-variant truncate">
+                <div className="flex-1 px-3 py-2 rounded-lg bg-bg-input border border-border text-xs font-mono text-text-secondary truncate">
                   {webhookUrl}
                 </div>
                 <Button
@@ -211,7 +211,7 @@ export function AdminSystemWhatsappIntegrationClient() {
                 </Button>
               </div>
               {/* eslint-disable-next-line react/no-unescaped-entities */}
-              <p className="text-xs text-on-surface-variant">Paste this URL in your provider's webhook settings to receive inbound messages.</p>
+              <p className="text-xs text-text-secondary">Paste this URL in your provider's webhook settings to receive inbound messages.</p>
             </div>
           </CardContent>
           <CardFooter>
@@ -248,10 +248,10 @@ export function AdminSystemWhatsappIntegrationClient() {
                 { id: 'trigger-waitlist', label: 'Waitlist Notification', desc: 'When seat becomes available for waitlisted', enabled: true },
                 { id: 'trigger-absentee', label: 'Absentee Alert', desc: 'When student absent for 3+ days', enabled: false },
               ].map(event => (
-                <div key={event.id} className="flex items-center justify-between p-3 rounded-xl bg-surface-container-high border border-outline-variant/50">
+                <div key={event.id} className="flex items-center justify-between p-3 rounded-xl bg-bg-card border border-border/50">
                   <div>
-                    <p className="text-sm font-medium text-on-surface">{event.label}</p>
-                    <p className="text-xs text-on-surface-variant">{event.desc}</p>
+                    <p className="text-sm font-medium text-text-primary">{event.label}</p>
+                    <p className="text-xs text-text-secondary">{event.desc}</p>
                   </div>
                   <div className="flex items-center gap-2 shrink-0">
                     <Badge variant={event.enabled ? 'success' : 'outline'}>
@@ -277,7 +277,7 @@ export function AdminSystemWhatsappIntegrationClient() {
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
               <thead>
-                <tr className="border-b border-outline-variant text-on-surface-variant text-xs uppercase tracking-wide">
+                <tr className="border-b border-border text-text-secondary text-xs uppercase tracking-wide">
                   <th className="text-left py-3 pr-4">Recipient</th>
                   <th className="text-left py-3 pr-4">Message Type</th>
                   <th className="text-left py-3 pr-4">Template</th>
@@ -290,11 +290,11 @@ export function AdminSystemWhatsappIntegrationClient() {
                   const cfg = STATUS_CFG[log.status as keyof typeof STATUS_CFG];
                   const Icon = cfg.icon;
                   return (
-                    <tr key={log.id} className="hover:bg-surface-container-high transition-colors">
-                      <td className="py-3 pr-4 font-mono text-sm text-on-surface">{log.to}</td>
-                      <td className="py-3 pr-4 text-on-surface">{log.type}</td>
+                    <tr key={log.id} className="hover:bg-bg-card transition-colors">
+                      <td className="py-3 pr-4 font-mono text-sm text-text-primary">{log.to}</td>
+                      <td className="py-3 pr-4 text-text-primary">{log.type}</td>
                       <td className="py-3 pr-4">
-                        <code className="text-xs text-on-surface-variant bg-surface-container-highest px-1.5 py-0.5 rounded">
+                        <code className="text-xs text-text-secondary bg-bg-input px-1.5 py-0.5 rounded">
                           {log.template}
                         </code>
                       </td>
@@ -303,7 +303,7 @@ export function AdminSystemWhatsappIntegrationClient() {
                           <Icon size={10} className="mr-1" /> {log.status}
                         </Badge>
                       </td>
-                      <td className="py-3 text-xs text-on-surface-variant">{log.sentAt}</td>
+                      <td className="py-3 text-xs text-text-secondary">{log.sentAt}</td>
                     </tr>
                   );
                 })}

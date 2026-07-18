@@ -19,16 +19,16 @@ export function SuperadminSystemAutoScaleClient() {
   return (
     <div>
       <div className="mb-8">
-        <div className="flex items-center gap-2 text-on-surface-variant text-xs font-medium tracking-wide mb-1">
+        <div className="flex items-center gap-2 text-text-secondary text-xs font-medium tracking-wide mb-1">
           <span>System</span>
           <ChevronRight size={12} />
           <span>Auto-Scale</span>
         </div>
-        <h1 className="text-3xl font-bold text-on-surface flex items-center gap-3">
+        <h1 className="text-3xl font-bold text-text-primary flex items-center gap-3">
           <BarChart3 size={28} className="text-primary" />
           Auto-Scale Intelligence
         </h1>
-        <p className="text-on-surface-variant mt-1 text-sm">Smart capacity monitoring with automated recommendations for scaling your library.</p>
+        <p className="text-text-secondary mt-1 text-sm">Smart capacity monitoring with automated recommendations for scaling your library.</p>
       </div>
 
       {/* Overview KPI Cards */}
@@ -59,7 +59,7 @@ export function SuperadminSystemAutoScaleClient() {
                   max={99}
                   className="w-28"
                 />
-                <span className="text-sm text-on-surface-variant">e.g., "90" → alert at 90% full</span>
+                <span className="text-sm text-text-secondary">e.g., "90" → alert at 90% full</span>
               </div>
             </div>
             <div className="space-y-2">
@@ -74,14 +74,14 @@ export function SuperadminSystemAutoScaleClient() {
                   max={99}
                   className="w-28"
                 />
-                <span className="text-sm text-on-surface-variant">e.g., "85" → alert at 85% full</span>
+                <span className="text-sm text-text-secondary">e.g., "85" → alert at 85% full</span>
               </div>
             </div>
           </div>
-          <div className="flex items-center justify-between p-4 rounded-xl bg-surface-container-high border border-outline-variant">
+          <div className="flex items-center justify-between p-4 rounded-xl bg-bg-card border border-border">
             <div>
-              <p className="text-sm font-medium text-on-surface">Alert me when occupancy exceeds threshold</p>
-              <p className="text-xs text-on-surface-variant">Receive in-app notifications and dashboard badges</p>
+              <p className="text-sm font-medium text-text-primary">Alert me when occupancy exceeds threshold</p>
+              <p className="text-xs text-text-secondary">Receive in-app notifications and dashboard badges</p>
             </div>
             <SuperadminSwitch id="auto-scale-alert-toggle" checked={alertEnabled} onCheckedChange={setAlertEnabled} />
           </div>
@@ -103,7 +103,7 @@ export function SuperadminSystemAutoScaleClient() {
         <CardContent className="space-y-4">
           {/* Seat Recommendation */}
           <div className={`p-4 rounded-xl border ${
-            seatRec.color === 'danger' ? 'bg-error-container/10 border-error/20' :
+            seatRec.color === 'danger' ? 'bg-danger-bg/10 border-danger/20' :
             seatRec.color === 'warning' ? 'bg-tertiary/10 border-tertiary/20' :
             'bg-green-500/10 border-green-500/20'
           }`}>
@@ -112,7 +112,7 @@ export function SuperadminSystemAutoScaleClient() {
                 <SuperadminBadge variant={seatRec.color}>
                   Seats
                 </SuperadminBadge>
-                <p className="text-sm text-on-surface">{seatRec.msg}</p>
+                <p className="text-sm text-text-primary">{seatRec.msg}</p>
               </div>
               {seatRec.action && (
                 <SuperadminButton id="seat-rec-action-btn" variant="secondary" size="sm">
@@ -124,7 +124,7 @@ export function SuperadminSystemAutoScaleClient() {
 
           {/* Locker Recommendation */}
           <div className={`p-4 rounded-xl border ${
-            lockerRec.color === 'danger' ? 'bg-error-container/10 border-error/20' :
+            lockerRec.color === 'danger' ? 'bg-danger-bg/10 border-danger/20' :
             lockerRec.color === 'warning' ? 'bg-tertiary/10 border-tertiary/20' :
             'bg-green-500/10 border-green-500/20'
           }`}>
@@ -133,7 +133,7 @@ export function SuperadminSystemAutoScaleClient() {
                 <SuperadminBadge variant={lockerRec.color}>
                   Lockers
                 </SuperadminBadge>
-                <p className="text-sm text-on-surface">{lockerRec.msg}</p>
+                <p className="text-sm text-text-primary">{lockerRec.msg}</p>
               </div>
               {lockerRec.action && (
                 <SuperadminButton id="locker-rec-action-btn" variant="secondary" size="sm">

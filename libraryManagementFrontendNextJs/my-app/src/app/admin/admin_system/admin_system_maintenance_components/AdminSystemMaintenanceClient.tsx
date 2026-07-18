@@ -13,16 +13,16 @@ export function AdminSystemMaintenanceClient() {
   return (
     <div>
       <div className="mb-8">
-        <div className="flex items-center gap-2 text-on-surface-variant text-xs font-medium tracking-wide mb-1">
+        <div className="flex items-center gap-2 text-text-secondary text-xs font-medium tracking-wide mb-1">
           <span>System</span>
           <ChevronRight size={12} />
           <span>Maintenance</span>
         </div>
-        <h1 className="text-3xl font-bold text-on-surface flex items-center gap-3">
+        <h1 className="text-3xl font-bold text-text-primary flex items-center gap-3">
           <Wrench size={28} className="text-primary" />
           Maintenance Dashboard
         </h1>
-        <p className="text-on-surface-variant mt-1 text-sm">Track and manage maintenance for seats, assets, and lockers.</p>
+        <p className="text-text-secondary mt-1 text-sm">Track and manage maintenance for seats, assets, and lockers.</p>
       </div>
 
       {/* Summary KPI Cards */}
@@ -42,7 +42,7 @@ export function AdminSystemMaintenanceClient() {
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
               <thead>
-                <tr className="border-b border-outline-variant text-on-surface-variant text-xs uppercase tracking-wide">
+                <tr className="border-b border-border text-text-secondary text-xs uppercase tracking-wide">
                   <th className="text-left py-3 pr-4">Seat #</th>
                   <th className="text-left py-3 pr-4">Status</th>
                   <th className="text-left py-3 pr-4">Last Maintenance</th>
@@ -52,14 +52,14 @@ export function AdminSystemMaintenanceClient() {
               </thead>
               <tbody className="divide-y divide-outline-variant/30">
                 {seats.map((seat) => (
-                  <tr key={seat.id} className="hover:bg-surface-container-high transition-colors">
-                    <td className="py-3 pr-4 font-mono font-medium text-on-surface">{seat.id}</td>
+                  <tr key={seat.id} className="hover:bg-bg-card transition-colors">
+                    <td className="py-3 pr-4 font-mono font-medium text-text-primary">{seat.id}</td>
                     <td className="py-3 pr-4">
                       <Badge variant={seat.status === 'OK' ? 'success' : 'danger'}>{seat.status}</Badge>
                     </td>
-                    <td className="py-3 pr-4 text-on-surface-variant">{seat.lastMaint}</td>
+                    <td className="py-3 pr-4 text-text-secondary">{seat.lastMaint}</td>
                     <td className="py-3 pr-4">
-                      <span className={seat.daysSince > 30 ? 'text-error font-semibold' : 'text-on-surface-variant'}>
+                      <span className={seat.daysSince > 30 ? 'text-danger font-semibold' : 'text-text-secondary'}>
                         {seat.daysSince}d
                       </span>
                     </td>
@@ -84,7 +84,7 @@ export function AdminSystemMaintenanceClient() {
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
               <thead>
-                <tr className="border-b border-outline-variant text-on-surface-variant text-xs uppercase tracking-wide">
+                <tr className="border-b border-border text-text-secondary text-xs uppercase tracking-wide">
                   <th className="text-left py-3 pr-4">Asset</th>
                   <th className="text-center py-3 pr-4">Qty</th>
                   <th className="text-left py-3 pr-4">Status</th>
@@ -97,21 +97,21 @@ export function AdminSystemMaintenanceClient() {
               <tbody className="divide-y divide-outline-variant/30">
                 {/* eslint-disable-next-line @typescript-eslint/no-unused-vars */}
                 {assets.map((asset, i) => (
-                  <tr key={asset.name} className="hover:bg-surface-container-high transition-colors">
-                    <td className="py-3 pr-4 font-medium text-on-surface">{asset.name}</td>
-                    <td className="py-3 pr-4 text-center text-on-surface-variant">{asset.qty}</td>
+                  <tr key={asset.name} className="hover:bg-bg-card transition-colors">
+                    <td className="py-3 pr-4 font-medium text-text-primary">{asset.name}</td>
+                    <td className="py-3 pr-4 text-center text-text-secondary">{asset.qty}</td>
                     <td className="py-3 pr-4">
                       <Badge variant={asset.status === 'OK' ? 'success' : asset.status === 'Due Soon' ? 'warning' : 'danger'}>
                         {asset.status}
                       </Badge>
                     </td>
-                    <td className="py-3 pr-4 text-on-surface-variant">{asset.lastServiced}</td>
-                    <td className="py-3 pr-4 text-on-surface-variant">{asset.nextDue}</td>
+                    <td className="py-3 pr-4 text-text-secondary">{asset.lastServiced}</td>
+                    <td className="py-3 pr-4 text-text-secondary">{asset.nextDue}</td>
                     <td className="py-3 pr-4">
                       {asset.daysOverdue > 0 ? (
                         <Badge variant="danger">+{asset.daysOverdue}d overdue</Badge>
                       ) : (
-                        <span className="text-on-surface-variant text-xs">{Math.abs(asset.daysOverdue)}d left</span>
+                        <span className="text-text-secondary text-xs">{Math.abs(asset.daysOverdue)}d left</span>
                       )}
                     </td>
                     <td className="py-3">
@@ -135,7 +135,7 @@ export function AdminSystemMaintenanceClient() {
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
               <thead>
-                <tr className="border-b border-outline-variant text-on-surface-variant text-xs uppercase tracking-wide">
+                <tr className="border-b border-border text-text-secondary text-xs uppercase tracking-wide">
                   <th className="text-left py-3 pr-4">Locker #</th>
                   <th className="text-left py-3 pr-4">Status</th>
                   <th className="text-left py-3 pr-4">Last Reported Issue</th>
@@ -144,12 +144,12 @@ export function AdminSystemMaintenanceClient() {
               </thead>
               <tbody className="divide-y divide-outline-variant/30">
                 {lockers.map((locker) => (
-                  <tr key={locker.id} className="hover:bg-surface-container-high transition-colors">
-                    <td className="py-3 pr-4 font-mono font-medium text-on-surface">{locker.id}</td>
+                  <tr key={locker.id} className="hover:bg-bg-card transition-colors">
+                    <td className="py-3 pr-4 font-mono font-medium text-text-primary">{locker.id}</td>
                     <td className="py-3 pr-4">
                       <Badge variant={locker.status === 'OK' ? 'success' : 'danger'}>{locker.status}</Badge>
                     </td>
-                    <td className="py-3 pr-4 text-on-surface-variant">{locker.lastIssue}</td>
+                    <td className="py-3 pr-4 text-text-secondary">{locker.lastIssue}</td>
                     <td className="py-3">
                       <Button id={`update-locker-${locker.id}`} variant="ghost" size="sm">✏️ Update Status</Button>
                     </td>
