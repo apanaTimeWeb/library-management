@@ -33,7 +33,7 @@ export function AdminCommunicationNoticesClient() {
 
   useEffect(() => {
     fetchApi('/communication/notices').then(data => {
-      const mapped = table.paginatedData.map(( n: Record<string, unknown> ) => ({
+      const mapped = (data as any[]).map(( n: Record<string, unknown> ) => ({
         id: String(n.id || Math.random()),
         title: String(n.title || n.name || 'Notice'),
         message: String(n.message || n.details || ''),

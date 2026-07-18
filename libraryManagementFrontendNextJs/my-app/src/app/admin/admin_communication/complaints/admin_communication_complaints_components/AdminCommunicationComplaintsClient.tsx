@@ -32,7 +32,7 @@ export function AdminCommunicationComplaintsClient() {
 
   useEffect(() => {
     fetchApi('/communication/complaints').then(data => {
-      const mapped = table.paginatedData.map(( c: Record<string, unknown> ) => ({
+      const mapped = (data as any[]).map(( c: Record<string, unknown> ) => ({
         id: String(c.id || Math.random()),
         title: String(c.subject || c.title || 'Complaint'),
         desc: String(c.description || ''),

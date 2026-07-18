@@ -44,7 +44,7 @@ export function AdminFinancePaymentPromisesClient() {
 
   const handleFulfill = (id: number, name: string) => {
     setPromises((prev) =>
-      table.paginatedData.map((p) => p.id === id ? { ...p, status: 'fulfilled', fulfilledDate: new Date().toISOString().split('T')[0] } : p)
+      prev.map((p) => p.id === id ? { ...p, status: 'fulfilled', fulfilledDate: new Date().toISOString().split('T')[0] } : p)
     );
     toast.success(`✅ ${name}'s promise marked as paid.`);
   };
@@ -52,7 +52,7 @@ export function AdminFinancePaymentPromisesClient() {
   const handleExtend = () => {
     if (!extendDialog || !newDate || !extendReason) return;
     setPromises((prev) =>
-      table.paginatedData.map((p) =>
+      prev.map((p) =>
         p.id === extendDialog.id
           ? { ...p, expectedDate: newDate, timesChanged: p.timesChanged + 1, daysUntilDue: calcDays(newDate) }
           : p
