@@ -256,7 +256,7 @@ export function ManagerCrmEnquiriesDetailClient({ id }: { id: string }) {
                 </div>
               ) : (
                 <div className="relative pl-3 border-l-2 border-border/50 space-y-6">
-                  {enquiry.followUps.map((fu: any) => (
+                  {enquiry.followUps.map((fu) => (
                     <div className="relative" key={fu.id}>
                       <div className={`crm-timeline-dot ${timelineDotClass(fu.by)}`} />
                       <div className="bg-bg-input border border-border rounded-lg p-4 transition-colors hover:border-text-secondary">

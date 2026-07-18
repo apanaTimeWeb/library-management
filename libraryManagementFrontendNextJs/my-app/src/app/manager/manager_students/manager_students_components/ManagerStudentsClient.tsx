@@ -42,7 +42,7 @@ export function ManagerStudentsClient() {
           <h1 className="text-[22px] font-bold text-text-primary">Student Directory</h1>
           <p className="text-[13px] text-text-secondary mt-1.5">Manage admissions, seating, and billing for all active learners.</p>
         </div>
-        <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+        <div className="flex gap-[8px] flex-wrap">
           <button className="bg-transparent border border-border text-text-primary rounded-lg h-10 px-4 text-sm font-medium hover:bg-primary-subtle hover:border-primary transition-colors inline-flex items-center gap-2"><Download size={14} /> Export</button>
           <Link href={MANAGER_ROUTES.STUDENTS_GROUP} className="bg-transparent border border-border text-text-primary rounded-lg h-10 px-4 text-sm font-medium hover:bg-primary-subtle hover:border-primary transition-colors inline-flex items-center gap-2">
             <Users2 size={14} /> Group Admission
@@ -69,21 +69,21 @@ export function ManagerStudentsClient() {
       </div>
 
       {/* Filters */}
-      <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10, marginBottom: 16 }}>
+      <div className="flex flex-wrap gap-[10px] mb-[16px]">
         <input
           className="w-full max-w-sm bg-bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
           placeholder="Search name, phone, Smart ID…"
           value={search}
           onChange={e => setSearch(e.target.value)}
         />
-        <div style={{ width: 200 }}>
+        <div className="w-[200px]">
           <ManagerSearchableDropdown
             value={statusFilter}
             onChange={setStatusFilter}
             options={STUDENT_STATUS_OPTIONS}
           />
         </div>
-        <div style={{ width: 200 }}>
+        <div className="w-[200px]">
           <ManagerSearchableDropdown
             value={shiftFilter}
             onChange={setShiftFilter}
@@ -117,7 +117,7 @@ export function ManagerStudentsClient() {
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-border">
-                  {filtered.slice((page - 1) * limit, page * limit).map((row: any) => (
+                  {filtered.slice((page - 1) * limit, page * limit).map((row) => (
                     <tr 
                       key={row.id} 
                       className="hover:bg-bg-page transition-colors cursor-pointer group"

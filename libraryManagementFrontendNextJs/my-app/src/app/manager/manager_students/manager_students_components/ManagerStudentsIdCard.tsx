@@ -50,9 +50,16 @@ import { ManagerStudentsIdCardProps } from '@/app/manager/manager_students/manag
 export default function ManagerStudentsIdCard({ data }: ManagerStudentsIdCardProps) {
   const initials = data.name.split(' ').map(n => n[0]).join('').slice(0, 2).toUpperCase();
   const shiftLabel = data.shift.split(' ')[0];
-  const avatarColors = ['#6366F1', '#8B5CF6', '#3B82F6', '#10B981', '#F59E0B', '#EF4444'];
-  const colorIdx = data.smartId.charCodeAt(data.smartId.length - 1) % avatarColors.length;
-  const avatarColor = avatarColors[colorIdx];
+  const avatarColorClasses = [
+    { from: 'from-indigo-500', to: 'to-indigo-900', border: 'border-indigo-400', text: 'text-indigo-500' },
+    { from: 'from-violet-500', to: 'to-violet-900', border: 'border-violet-400', text: 'text-violet-500' },
+    { from: 'from-blue-500', to: 'to-blue-900', border: 'border-blue-400', text: 'text-blue-500' },
+    { from: 'from-emerald-500', to: 'to-emerald-900', border: 'border-emerald-400', text: 'text-emerald-500' },
+    { from: 'from-amber-500', to: 'to-amber-900', border: 'border-amber-400', text: 'text-amber-500' },
+    { from: 'from-red-500', to: 'to-red-900', border: 'border-red-400', text: 'text-red-500' },
+  ];
+  const colorIdx = data.smartId.charCodeAt(data.smartId.length - 1) % avatarColorClasses.length;
+  const avatarClass = avatarColorClasses[colorIdx];
 
   return (
     <div className="flex items-center justify-center p-4">
@@ -83,8 +90,8 @@ export default function ManagerStudentsIdCard({ data }: ManagerStudentsIdCardPro
           {/* Profile row */}
           <div className="flex gap-4 items-center mb-5">
             {/* Photo avatar with color */}
-            <div className="relative w-16 h-16 rounded-xl flex items-center justify-center border-2 shadow-sm shrink-0" style={{ background: `linear-gradient(135deg, ${avatarColor}55, ${avatarColor}22)`, borderColor: `${avatarColor}88` }}>
-              <span className="text-xl font-bold" style={{ color: avatarColor }}>{initials}</span>
+            <div className={`relative w-16 h-16 rounded-xl flex items-center justify-center border-2 shadow-sm shrink-0 bg-gradient-to-br ${avatarClass.from} ${avatarClass.to} ${avatarClass.border}`}>
+              <span className={`text-xl font-bold ${avatarClass.text}`}>{initials}</span>
               {/* Chip icon on avatar */}
               <div className="absolute -right-2 top-1/2 -translate-y-1/2 w-4 h-6 bg-yellow-400 rounded-sm border border-yellow-500 flex flex-col justify-evenly p-0.5 shadow-sm">
                 <div className="w-full h-[1px] bg-yellow-600/50" />
@@ -104,23 +111,23 @@ export default function ManagerStudentsIdCard({ data }: ManagerStudentsIdCardPro
 
           {/* Colored divider */}
           <div className="flex w-full h-1 rounded-full overflow-hidden mb-5">
-            <div className="flex-1" style={{ background: '#6366F1' }} />
-            <div className="flex-1" style={{ background: '#8B5CF6' }} />
-            <div className="flex-1" style={{ background: '#3B82F6' }} />
-            <div className="flex-1" style={{ background: '#10B981' }} />
+            <div className="flex-1 bg-[#6366F1]" />
+            <div className="flex-1 bg-[#8B5CF6]" />
+            <div className="flex-1 bg-[#3B82F6]" />
+            <div className="flex-1 bg-[#10B981]" />
           </div>
 
           {/* Details grid — 4 boxes */}
           <div className="grid grid-cols-4 gap-2 mb-5">
-            <div className="border-t-2 pt-1.5" style={{ borderTopColor: '#6366F1' }}>
+            <div className="border-t-2 pt-1.5 border-t-[#6366F1]">
               <div className="text-[8px] font-bold text-gray-500 tracking-widest">⏰ SHIFT</div>
               <div className="text-[11px] font-bold text-gray-900 mt-0.5 truncate">{shiftLabel}</div>
             </div>
-            <div className="border-t-2 pt-1.5" style={{ borderTopColor: '#8B5CF6' }}>
+            <div className="border-t-2 pt-1.5 border-t-[#8B5CF6]">
               <div className="text-[8px] font-bold text-gray-500 tracking-widest">💺 SEAT</div>
               <div className="text-[11px] font-bold text-gray-900 mt-0.5 truncate">{data.seat}</div>
             </div>
-            <div className="border-t-2 pt-1.5" style={{ borderTopColor: '#3B82F6' }}>
+            <div className="border-t-2 pt-1.5 border-t-[#3B82F6]">
               <div className="text-[8px] font-bold text-text-secondary tracking-widest">📋 PLAN</div>
               <div className="text-[11px] font-bold text-text-primary mt-0.5 truncate">{data.plan.split(' ')[0]}</div>
             </div>

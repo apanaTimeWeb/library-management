@@ -37,7 +37,7 @@ export function ManagerStudentsIdCardClient() {
           <div className="bg-bg-card rounded-xl border border-border p-6">
             <div className="flex items-center justify-between mb-4">
               <h2 className="text-base font-semibold text-text-primary">
-                <IdCard size={16} style={{ display: 'inline', marginRight: 6, verticalAlign: 'middle' }} />
+                <IdCard size={16} className="inline mr-[6px] align-middle" />
                 Select Student
               </h2>
               {selected && (
@@ -47,7 +47,7 @@ export function ManagerStudentsIdCardClient() {
               )}
             </div>
             <div className="">
-              <div className="w-full bg-bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent-icon-wrap" style={{ marginBottom: 14 }}>
+              <div className="w-full bg-bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent-icon-wrap mb-[14px]">
                 <Search size={14} className="w-full bg-bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent-icon" />
                 <input
                   className="w-full bg-bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent w-full bg-bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent-with-icon"
@@ -101,7 +101,7 @@ export function ManagerStudentsIdCardClient() {
                 <button
                   className="bg-transparent border border-border text-text-primary rounded-lg px-5 py-2.5 text-sm font-medium hover:bg-primary-subtle hover:border-primary transition-colors inline-flex items-center gap-2"
                   onClick={handlePrint}
-                  style={{ width: '100%', justifyContent: 'center' }}
+                  className="w-full justify-center"
                 >
                   <Printer size={15} />
                   Print ID Card (Thermal)

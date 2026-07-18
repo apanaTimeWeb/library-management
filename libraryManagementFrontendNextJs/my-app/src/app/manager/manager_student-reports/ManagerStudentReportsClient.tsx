@@ -48,7 +48,7 @@ export function ManagerStudentReportsClient() {
 
       {/* Filters */}
       <div className="flex flex-wrap items-center gap-4 mb-8">
-        <div style={{ width: 200 }}>
+        <div className="w-[200px]">
           <ManagerSearchableDropdown
             value={dateRange}
             onChange={(v) => setDateRange(v)}
@@ -59,7 +59,7 @@ export function ManagerStudentReportsClient() {
             ]}
           />
         </div>
-        <div style={{ width: 200 }}>
+        <div className="w-[200px]">
           <ManagerSearchableDropdown
             value="Main Branch (read-only)"
             onChange={() => {}}
@@ -75,8 +75,8 @@ export function ManagerStudentReportsClient() {
           return (
             <div key={kpi.title} className="bg-bg-card border border-border rounded-xl p-5 shadow-sm">
               <div className="flex items-center gap-3 mb-3">
-                <div className="w-10 h-10 rounded-xl flex items-center justify-center" style={{ backgroundColor: `${kpi.color}20` }}>
-                  {Icon && <Icon size={20} style={{ color: kpi.color }} />}
+                <div className="w-10 h-10 rounded-xl flex items-center justify-center bg-[color:var(--bg)]" style={{ '--bg': `${kpi.color}20` } as React.CSSProperties}>
+                  {Icon && <Icon size={20} className="text-[color:var(--text)]" style={{ '--text': kpi.color } as React.CSSProperties} />}
                 </div>
                 <span className="text-[13px] font-medium text-text-secondary uppercase tracking-wider">{kpi.title}</span>
               </div>

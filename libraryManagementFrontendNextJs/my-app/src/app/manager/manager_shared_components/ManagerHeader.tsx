@@ -7,9 +7,10 @@ import { ThemeToggle } from '@/components/ThemeToggle';
 
 import { ManagerHeaderProps } from '@/app/manager/manager_types/manager_types';
 
-export default function ManagerHeader({ sidebarWidth, onMobileOpen }: ManagerHeaderProps) {
+export default function ManagerHeader({ collapsed, onMobileOpen }: ManagerHeaderProps) {
+  const leftClass = collapsed ? 'left-[60px]' : 'left-[240px]';
   return (
-    <header className="fixed top-0 right-0 h-16 bg-bg-header border-b border-border z-40 flex items-center justify-between px-6 transition-all duration-300" style={{ left: sidebarWidth }}>
+    <header className={`fixed top-0 right-0 h-16 bg-bg-header border-b border-border z-40 flex items-center justify-between px-6 transition-all duration-300 ${leftClass}`}>
 
       <div className="flex items-center gap-4">
         <button className="md:hidden p-2 -ml-2 text-text-secondary hover:text-text-primary rounded-lg hover:bg-bg-sidebar transition-colors" onClick={onMobileOpen} aria-label="Open menu">

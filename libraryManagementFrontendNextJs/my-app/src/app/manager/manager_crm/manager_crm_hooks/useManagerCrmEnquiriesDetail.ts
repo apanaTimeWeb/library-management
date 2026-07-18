@@ -112,7 +112,7 @@ export function useManagerCrmEnquiriesDetail(id: string) {
         remark: formData.remark,
       };
       setEnquiry((prev) =>
-        prev ? { ...prev, followUps: [newEntry as any, ...prev.followUps] } : prev
+        prev ? { ...prev, followUps: [newEntry as FollowUp, ...prev.followUps] } : prev
       );
       resetFU();
       toast.success('Follow-up added!', {
@@ -152,7 +152,7 @@ export function useManagerCrmEnquiriesDetail(id: string) {
       };
       setEnquiry((prev) =>
         prev
-          ? { ...prev, status: 'Lost', followUps: [lostEntry as any, ...prev.followUps] }
+          ? { ...prev, status: 'Lost', followUps: [lostEntry as FollowUp, ...prev.followUps] }
           : prev
       );
       setCurrentStatus('Lost');

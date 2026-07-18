@@ -70,7 +70,7 @@ export function ManagerSeatsShiftGapClient() {
                   <span className="ss-kpi-card__label">Utilization</span>
                   <span className="ss-gap-card__util">{utilPct}%</span>
                   <div className="ss-progress-track">
-                    <div className="ss-progress-fill" style={{ width: `${utilPct}%` }} />
+                    <div className="ss-progress-fill w-[var(--w)]" style={{ '--w': `${utilPct}%` } as React.CSSProperties} />
                   </div>
                 </div>
               </div>
@@ -79,9 +79,8 @@ export function ManagerSeatsShiftGapClient() {
                 <div className="ss-timebar">
                   {shift.booked.map((b: BookedBlock, i: number) => (
                     <div
-                      key={i}
-                      className="ss-timebar__block ss-timebar__block--booked"
-                      style={{ left: `${pct(b.startH)}%`, width: `${pct(b.endH) - pct(b.startH)}%` }}
+                      className="absolute top-0 h-full bg-success/20 border-x border-success/40 left-[var(--l)] w-[var(--w)]"
+                      style={{ '--l': `${pct(b.startH)}%`, '--w': `${pct(b.endH) - pct(b.startH)}%` } as React.CSSProperties}
                       title={b.label}
                     >
                       {b.label}
@@ -89,9 +88,8 @@ export function ManagerSeatsShiftGapClient() {
                   ))}
                   {shift.gaps.map((g: GapBlock, i: number) => (
                     <div
-                      key={i}
-                      className="ss-timebar__block ss-timebar__block--gap"
-                      style={{ left: `${pct(g.startH)}%`, width: `${pct(g.endH) - pct(g.startH)}%` }}
+                      className="absolute top-0 h-full bg-danger/20 border-x border-danger/40 cursor-pointer hover:bg-danger/30 transition-colors left-[var(--l)] w-[var(--w)]"
+                      style={{ '--l': `${pct(g.startH)}%`, '--w': `${pct(g.endH) - pct(g.startH)}%` } as React.CSSProperties}
                       title={`Gap: ${fmtH(g.startH)} – ${fmtH(g.endH)}`}
                     >
                       GAP

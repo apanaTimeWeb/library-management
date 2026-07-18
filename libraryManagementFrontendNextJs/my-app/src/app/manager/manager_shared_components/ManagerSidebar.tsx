@@ -104,8 +104,7 @@ export default function ManagerSidebar({ collapsed, onToggle, mobileOpen, onMobi
       )}
 
       <aside
-        className={`fixed top-0 left-0 h-screen bg-bg-sidebar border-r border-border z-50 flex flex-col transition-all duration-300 ${mobileOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}`}
-        style={{ width: collapsed ? 60 : 240 }}
+        className={`fixed top-0 left-0 h-screen bg-bg-sidebar border-r border-border z-50 flex flex-col transition-all duration-300 ${mobileOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'} ${collapsed ? 'w-[60px]' : 'w-[240px]'}`}
       >
         <div className="h-16 flex items-center px-4 border-b border-border shrink-0 gap-3">
           <button
@@ -116,7 +115,7 @@ export default function ManagerSidebar({ collapsed, onToggle, mobileOpen, onMobi
             {mobileOpen ? <X size={18} /> : <Menu size={18} />}
           </button>
           {(!collapsed || mobileOpen) && (
-            <span className="font-bold text-text-primary truncate"><BookOpen size={14} style={{ display: 'inline', marginRight: 6 }} />Smart Library 360</span>
+            <span className="font-bold text-text-primary truncate"><BookOpen size={14} className="inline mr-[6px]" />Smart Library 360</span>
           )}
         </div>
 
@@ -137,7 +136,7 @@ export default function ManagerSidebar({ collapsed, onToggle, mobileOpen, onMobi
                 title={(collapsed && !mobileOpen) ? item.label : undefined}
                 onClick={mobileOpen ? onMobileClose : undefined}
               >
-                <Icon size={15} className="shrink-0" style={{ color: active ? 'inherit' : color }} />
+                <Icon size={15} className={`shrink-0 ${active ? 'text-current' : 'text-[color:var(--nav-color)]'}`} style={{ '--nav-color': color } as React.CSSProperties} />
                 {(!collapsed || mobileOpen) && (
                   <span className="truncate">{item.label}</span>
                 )}

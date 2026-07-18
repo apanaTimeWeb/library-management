@@ -10,7 +10,7 @@ import { MANAGER_BRANCH } from '@/app/manager/manager_students/manager_students_
 export function NameCell({ data }: { data: Student }) {
   const initials = data.name.split(' ').map((n: string) => n[0]).join('').slice(0, 2).toUpperCase();
   return (
-    <div style={{ display: 'flex', alignItems: 'center', gap: 10, height: '100%' }}>
+    <div className="flex items-center gap-[10px] h-full">
       <div className="w-8 h-8 rounded-full bg-primary/10 text-primary flex items-center justify-center text-xs font-bold shrink-0">{initials}</div>
       <div>
         <p className="text-sm font-semibold text-text-primary">{data.name}</p>
@@ -22,7 +22,7 @@ export function NameCell({ data }: { data: Student }) {
 
 export function ShiftCell({ data }: { data: Student }) {
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', height: '100%' }}>
+    <div className="flex flex-col justify-center h-full">
       <span className="text-sm font-semibold text-text-primary">{data.shift}</span>
       <span className="text-xs text-text-secondary mt-0.5">{data.seat}</span>
     </div>
@@ -38,7 +38,7 @@ export function StatusCell({ value }: { value: string }) {
 
 export function DueCell({ value }: { value: number }) {
   return (
-    <span style={{ fontWeight: 600, color: value > 0 ? 'var(--danger)' : 'var(--success)' }}>
+    <span className={`font-semibold ${value > 0 ? 'text-danger' : 'text-success'}`}>
       {value > 0 ? `₹${value.toLocaleString('en-IN')}` : '✅ Clear'}
     </span>
   );
@@ -75,7 +75,7 @@ export function ActionsCell({ data }: { data: Student }) {
   const profileUrl = `${MANAGER_ROUTES.STUDENTS}/${data.id || data.smartId}`;
 
   return (
-    <div style={{ display: 'flex', alignItems: 'center', gap: 6, height: '100%' }}>
+    <div className="flex items-center gap-[6px] h-full">
       
       <Link href={`${profileUrl}/edit`} className="w-8 h-8 rounded-lg border border-border text-text-secondary inline-flex items-center justify-center hover:bg-primary-subtle hover:text-primary transition-colors" title="Edit">
         <Pencil size={13} />

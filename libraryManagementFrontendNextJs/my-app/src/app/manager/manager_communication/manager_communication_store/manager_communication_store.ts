@@ -33,14 +33,14 @@ while(MOCK_NOTICES.length < 50 && base_MOCK_NOTICES.length > 0) {
         set({ notices: MOCK_NOTICES, noticesStatus: 'success' });
         return;
       }
-      const mapped = actualData.map((n: any) => ({
+      const mapped = actualData.map((n: Record<string, unknown>) => ({
         id: n.id,
         title: n.title,
         message: n.message,
         postedBy: 'Admin',
-        postedDate: new Date(n.createdAt).toISOString().split('T')[0],
-        validTill: new Date(n.validTill).toISOString().split('T')[0],
-        status: new Date(n.validTill) >= new Date() ? 'Active' : 'Expired',
+        postedDate: new Date(n.createdAt as string).toISOString().split('T')[0],
+        validTill: new Date(n.validTill as string).toISOString().split('T')[0],
+        status: new Date(n.validTill as string) >= new Date() ? 'Active' : 'Expired',
       })) as Notice[];
       set({ notices: mapped, noticesStatus: 'success' });
     } catch (err) {
@@ -96,7 +96,7 @@ while(MOCK_NOTICES.length < 50 && base_MOCK_NOTICES.length > 0) {
         set({ complaints: MOCK_COMPLAINTS, complaintsStatus: 'success' });
         return;
       }
-      const mapped = actualData.map((c: any) => ({
+      const mapped = actualData.map((c: Record<string, unknown>) => ({
         id: c.id,
         title: c.subject || 'Complaint',
         desc: c.description || '',
@@ -104,10 +104,10 @@ while(MOCK_NOTICES.length < 50 && base_MOCK_NOTICES.length > 0) {
         status: c.status === 'open' ? 'New' : (c.status === 'resolved' ? 'Resolved' : 'In-Progress'),
         studentName: c.isAnonymous ? 'Anonymous' : 'Mock Student',
         phone: c.phone || '9999999999',
-        category: c.category || 'General',
-        priority: c.priority || 'Low',
-        resolvedOn: c.resolvedOn || undefined,
-        resolution: c.resolvedNote || undefined,
+        category: (c.category as string) || 'General',
+        priority: (c.priority as string) || 'Low',
+        resolvedOn: (c.resolvedOn as string) || undefined,
+        resolution: (c.resolvedNote as string) || undefined,
       })) as Complaint[];
       set({ complaints: mapped, complaintsStatus: 'success' });
     } catch (err) {

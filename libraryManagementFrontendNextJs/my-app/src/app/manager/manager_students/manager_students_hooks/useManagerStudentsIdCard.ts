@@ -35,7 +35,7 @@ export function useManagerStudentsIdCard() {
 
   const cardData: IdCardData | null = useMemo(() => {
     if (!selected) return null;
-    const joinedStr = selected.joined || (selected as any).joinedDate || '01/01/2024';
+    const joinedStr = selected.joined || selected.joiningDate || '01/01/2024';
     let dd, mm, yyyy;
     if (joinedStr.includes('/')) {
       [dd, mm, yyyy] = joinedStr.split('/');

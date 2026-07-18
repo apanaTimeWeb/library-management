@@ -29,9 +29,9 @@ export function ManagerRoute({ children }: { children: React.ReactNode }) {
         mobileOpen={mobileOpen}
         onMobileClose={() => setMobileOpen(false)}
       />
-      <div className="flex flex-col flex-1 min-w-0 transition-all duration-300" style={{ marginLeft: sidebarWidth }}>
+      <div className={`flex flex-col flex-1 min-w-0 transition-all duration-300 ${collapsed ? 'ml-[60px]' : 'ml-[240px]'}`}>
         <ManagerHeader
-          sidebarWidth={sidebarWidth}
+          collapsed={collapsed}
           onMobileOpen={() => setMobileOpen(true)}
         />
         <main className="flex-1 p-4 md:p-6 lg:p-8 pt-20 md:pt-24 overflow-y-auto">

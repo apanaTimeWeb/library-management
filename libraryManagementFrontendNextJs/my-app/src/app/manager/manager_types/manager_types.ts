@@ -14,7 +14,7 @@ export interface ManagerSidebarProps {
  * Props for the ManagerHeader component
  */
 export interface ManagerHeaderProps {
-  sidebarWidth: number;
+  collapsed: boolean;
   onMobileOpen: () => void;
 }
 

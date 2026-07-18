@@ -24,12 +24,12 @@ export function ManagerStudentsExitClient() {
   if (confirmed && student) {
     return (
       <div className="p-6 min-h-screen">
-        <div className="bg-bg-card rounded-xl border border-border p-6" style={{ maxWidth: 480, margin: '60px auto' }}>
+        <div className="bg-bg-card rounded-xl border border-border p-6 max-w-[480px] my-[60px] mx-auto">
           <div className="flex flex-col items-center justify-center p-12 text-center h-full min-h-72">
             <div className="text-4xl mb-4 opacity-50">✅</div>
             <p className="text-lg font-bold text-text-primary mb-1">Exit Processed</p>
             <p className="text-sm text-text-secondary">{student.name} ({student.smartId}) has been marked as exited.</p>
-            <div style={{ marginTop: 20, display: 'flex', gap: 10 }}>
+            <div className="mt-[20px] flex gap-[10px]">
               <Link href={MANAGER_ROUTES.STUDENTS} className="bg-primary text-white rounded-lg px-5 py-2.5 text-sm font-medium hover:bg-primary-hover transition-colors inline-flex items-center gap-2">Back to Students</Link>
               <button className="bg-transparent border border-border text-text-primary rounded-lg px-5 py-2.5 text-sm font-medium hover:bg-primary-subtle hover:border-primary transition-colors inline-flex items-center gap-2" onClick={reset}>
                 Process Another
@@ -59,7 +59,7 @@ export function ManagerStudentsExitClient() {
             <h2 className="text-base font-semibold text-text-primary">Select Student</h2>
           </div>
           <div className="">
-            <div className="w-full bg-bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent-icon-wrap" style={{ marginBottom: 16 }}>
+            <div className="w-full bg-bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent-icon-wrap mb-[16px]">
               <Search size={14} className="w-full bg-bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent-icon" />
               <input
                 className="w-full bg-bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent w-full bg-bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent-with-icon"
@@ -95,10 +95,10 @@ export function ManagerStudentsExitClient() {
               <div className="flex items-center justify-between mb-4">
                 <h2 className="text-base font-semibold text-text-primary">Exit Details</h2>
               </div>
-              <div className="" style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
+              <div className="" className="flex flex-col gap-[14px]">
                 <div className="flex items-center justify-between py-3 border-b border-border last:border-0">
                   <span className="text-sm font-medium text-text-secondary flex items-center">Student</span>
-                  <span style={{ color: 'var(--text-primary)', fontWeight: 600 }}>{student.name}</span>
+                  <span className="text-text-primary font-semibold">{student.name}</span>
                 </div>
                 <div className="flex items-center justify-between py-3 border-b border-border last:border-0">
                   <span className="text-sm font-medium text-text-secondary flex items-center">Smart ID</span>
@@ -106,12 +106,12 @@ export function ManagerStudentsExitClient() {
                 </div>
                 <div className="flex items-center justify-between py-3 border-b border-border last:border-0">
                   <span className="text-sm font-medium text-text-secondary flex items-center">Dues</span>
-                  <span className={student.due > 0 ? 'text-danger font-bold' : 'text-success font-bold'} style={{ fontWeight: 700 }}>
+                  <span className={student.due > 0 ? 'text-danger font-bold' : 'text-success font-bold'} className="font-bold">
                     {student.due > 0 ? `⚠️ ₹${student.due} pending` : '✅ Clear'}
                   </span>
                 </div>
 
-                <div className="flex flex-col gap-1.5" style={{ marginTop: 8 }}>
+                <div className="flex flex-col gap-1.5 mt-[8px]">
                   <label className="block text-sm font-medium text-text-secondary mb-1.5 after:content-['*'] after:ml-0.5 after:text-danger">Reason for Exit</label>
                   <ManagerSearchableDropdown
                     value={reason}
@@ -128,9 +128,9 @@ export function ManagerStudentsExitClient() {
                 </div>
 
                 {student.due > 0 && (
-                  <div style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '10px 12px', background: 'var(--danger-bg)', borderRadius: 8, border: '1px solid color-mix(in srgb, var(--danger) 30%, transparent)' }}>
-                    <AlertTriangle size={14} style={{ color: 'var(--danger)', flexShrink: 0 }} />
-                    <span style={{ fontSize: 13, color: 'var(--danger)' }}>Student has pending dues of ₹{student.due}. Please collect before exit.</span>
+                  <div className="flex items-center gap-[8px] p-[10px_12px] bg-danger-bg rounded-[8px] border border-danger/30">
+                    <AlertTriangle size={14} className="text-danger shrink-0" />
+                    <span className="text-[13px] text-danger">Student has pending dues of ₹{student.due}. Please collect before exit.</span>
                   </div>
                 )}
 

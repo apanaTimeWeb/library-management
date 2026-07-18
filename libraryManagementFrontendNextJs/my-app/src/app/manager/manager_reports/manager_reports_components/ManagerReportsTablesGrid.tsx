@@ -36,7 +36,7 @@ function PriorityCell(props: { value: string }) {
   return <span className={`px-2 py-0.5 rounded-full text-[11px] font-semibold border ${cls}`}>{props.value}</span>;
 }
 
-function ReportTable({ 
+function ReportTable<T extends Record<string, unknown>>({ 
   title, 
   headers, 
   data, 
@@ -45,8 +45,8 @@ function ReportTable({
 }: { 
   title: string, 
   headers: string[], 
-  data: any[], 
-  renderRow: (row: any, i: number) => React.ReactNode,
+  data: T[], 
+  renderRow: (row: T, i: number) => React.ReactNode,
   searchTerm: string
 }) {
   const [page, setPage] = useState(1);

@@ -109,7 +109,7 @@ export function ManagerCommunicationWhatsappTemplatesClient() {
           {templates.map(t => (
             <div key={t.id} onClick={() => setActiveId(t.id)}
               className={`eng-tpl-item${activeId === t.id ? ' eng-tpl-item--active' : ''}`}
-              style={{ width: 'auto', padding: '8px 16px', borderRadius: '30px' }}>
+              className="w-auto px-[16px] py-[8px] rounded-[30px]">
               {t.icon} {t.label}
             </div>
           ))}

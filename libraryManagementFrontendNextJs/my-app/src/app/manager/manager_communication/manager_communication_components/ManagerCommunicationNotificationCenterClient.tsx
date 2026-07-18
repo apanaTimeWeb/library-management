@@ -57,7 +57,7 @@ export function ManagerCommunicationNotificationCenterClient() {
           {NOTIF_CATEGORIES.map(c => (
             <button key={c.id} onClick={() => setCat(c.id)}
               className={`eng-notif-cat${cat === c.id ? ' eng-notif-cat--active' : ''}`}
-              style={{ width: 'auto', padding: '8px 16px', borderRadius: '30px' }}>
+              className="w-auto px-[16px] py-[8px] rounded-[30px]">
               <span>{c.icon}</span><span>{c.label}</span>
             </button>
           ))}

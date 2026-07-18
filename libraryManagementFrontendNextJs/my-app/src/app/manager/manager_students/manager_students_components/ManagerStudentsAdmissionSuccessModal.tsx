@@ -62,7 +62,7 @@ export default function ManagerStudentsAdmissionSuccessModal({ data, onClose }: 
       <div className="bg-bg-page w-full max-w-4xl rounded-2xl shadow-2xl flex flex-col overflow-hidden animate-in fade-in zoom-in-95 duration-200 my-auto" onClick={e => e.stopPropagation()}>
 
         <div className="flex items-center justify-between p-6 border-b border-border bg-bg-card">
-          <div style={{ display: 'flex', alignItems: 'center', gap: 12, flexWrap: 'wrap' }}>
+          <div className="flex items-center gap-[12px] flex-wrap mt-[20px]">
             <h2 className="text-xl font-bold text-text-primary" id="success-modal-title">🎉 Admission Confirmed!</h2>
             <span className="rounded-full px-2.5 py-0.5 text-[11px] font-semibold bg-success-bg text-success inline-flex items-center gap-1"><CheckCircle size={12} /> Active</span>
           </div>
@@ -90,15 +90,15 @@ export default function ManagerStudentsAdmissionSuccessModal({ data, onClose }: 
 
             <div className="h-[1px] w-full bg-border my-2" />
 
-            <button className="bg-transparent border border-border text-text-primary rounded-lg px-5 py-2.5 text-sm font-medium hover:bg-primary-subtle hover:border-primary transition-colors inline-flex items-center gap-2" onClick={handlePrintIdCard} style={{ width: '100%', justifyContent: 'center' }}>
+            <button className="bg-transparent border border-border text-text-primary rounded-lg px-5 py-2.5 text-sm font-medium hover:bg-primary-subtle hover:border-primary transition-colors inline-flex items-center gap-2" onClick={handlePrintIdCard} className="w-full justify-center">
               <Printer size={15} /> Print ID Card (Thermal)
             </button>
 
-            <button className="bg-transparent border border-border text-text-primary rounded-lg px-5 py-2.5 text-sm font-medium hover:bg-primary-subtle hover:border-primary transition-colors inline-flex items-center gap-2" onClick={handlePrintReceipt} style={{ width: '100%', justifyContent: 'center' }}>
+            <button className="bg-transparent border border-border text-text-primary rounded-lg px-5 py-2.5 text-sm font-medium hover:bg-primary-subtle hover:border-primary transition-colors inline-flex items-center gap-2" onClick={handlePrintReceipt} className="w-full justify-center">
               <Printer size={15} /> Print Fee Receipt (Thermal)
             </button>
 
-            <button className="bg-primary text-white rounded-lg px-5 py-2.5 text-sm font-medium hover:bg-primary-hover transition-colors inline-flex items-center gap-2" onClick={() => { onClose(); router.push(MANAGER_ROUTES.STUDENTS); }} style={{ width: '100%', justifyContent: 'center' }}>
+            <button className="bg-primary text-white rounded-lg px-5 py-2.5 text-sm font-medium hover:bg-primary-hover transition-colors inline-flex items-center gap-2" onClick={() => { onClose(); router.push(MANAGER_ROUTES.STUDENTS); }} className="w-full justify-center">
               <Users size={15} /> Go to Students
             </button>
 
@@ -112,7 +112,7 @@ export default function ManagerStudentsAdmissionSuccessModal({ data, onClose }: 
               ].map((r, i) => (
                 <div key={i} className="flex items-center justify-between">
                   <span className="text-xs font-medium text-text-secondary">{r.label}</span>
-                  <span className="text-sm font-bold text-text-primary" style={{ fontFamily: (r as never as Record<string, string | boolean>).mono ? 'monospace' : undefined, color: (r as never as Record<string, string | boolean>).color as string }}>
+                  <span className={`text-sm font-bold text-[color:var(--val-color)] ${(r as never as Record<string, string | boolean>).mono ? 'font-mono' : ''}`} style={{ '--val-color': (r as never as Record<string, string | boolean>).color as string } as React.CSSProperties}>
                     {r.value}
                   </span>
                 </div>

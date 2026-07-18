@@ -34,7 +34,7 @@ export function ManagerDashboardClient() {
   const { data, status, error } = useManagerDashboardData();
 
   const filteredAdmissions = useMemo(() => {
-    return (data?.recentAdmissions || []).filter((item: any) => 
+    return (data?.recentAdmissions || []).filter((item) => 
       !searchTerm || 
       item.name?.toLowerCase().includes(searchTerm.toLowerCase()) || 
       item.smartId?.toLowerCase().includes(searchTerm.toLowerCase())
@@ -42,7 +42,7 @@ export function ManagerDashboardClient() {
   }, [data?.recentAdmissions, searchTerm]);
 
   const filteredEnquiries = useMemo(() => {
-    return (data?.recentEnquiries || []).filter((item: any) => 
+    return (data?.recentEnquiries || []).filter((item) => 
       !searchTerm || 
       item.name?.toLowerCase().includes(searchTerm.toLowerCase()) || 
       item.phone?.includes(searchTerm) || 
@@ -106,7 +106,7 @@ export function ManagerDashboardClient() {
             <Link href={MANAGER_ROUTES.STUDENTS} className="text-sm font-semibold text-primary hover:text-primary-hover transition-colors inline-flex items-center gap-1">View all</Link>
           </div>
 
-          <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: '16px' }}>
+          <div className="flex justify-end mb-[16px]">
             <input
               type="text"
               placeholder="Search in table..."
@@ -131,7 +131,7 @@ export function ManagerDashboardClient() {
                     <td colSpan={3} className="px-4 py-8 text-center text-text-secondary">No admissions found</td>
                   </tr>
                 ) : (
-                  filteredAdmissions.map((row: any, i: number) => (
+                  filteredAdmissions.map((row, i: number) => (
                     <tr key={row.id} className="hover:bg-bg-page transition-colors cursor-pointer">
                     <td className="px-4 py-3 text-text-primary font-medium">{row.name}</td>
                     <td className="px-4 py-3"><SmartIdCell value={row.smartId} /></td>
@@ -165,7 +165,7 @@ export function ManagerDashboardClient() {
                     <td colSpan={3} className="px-4 py-8 text-center text-text-secondary">No enquiries found</td>
                   </tr>
                 ) : (
-                  filteredEnquiries.map((row: any, i: number) => (
+                  filteredEnquiries.map((row, i: number) => (
                     <tr key={row.id} className="hover:bg-bg-page transition-colors cursor-pointer">
                     <td className="px-4 py-3 text-text-primary font-medium">{row.name}</td>
                     <td className="px-4 py-3"><PhoneCell value={row.phone} /></td>

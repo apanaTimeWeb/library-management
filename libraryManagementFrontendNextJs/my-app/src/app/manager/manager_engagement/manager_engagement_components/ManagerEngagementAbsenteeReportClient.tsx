@@ -95,7 +95,7 @@ export function ManagerEngagementAbsenteeReportClient() {
           <div className="flex gap-6 items-center">
             <div className="flex flex-col">
               <span className="block text-[13px] font-medium text-text-secondary mb-1.5">Days Threshold</span>
-              <div style={{ width: 180 }}>
+              <div className="w-[180px]">
                 <ManagerSearchableDropdown
                   value={threshold}
                   onChange={v => setThreshold(v)}
@@ -110,7 +110,7 @@ export function ManagerEngagementAbsenteeReportClient() {
             </div>
             <div className="flex flex-col">
               <span className="block text-[13px] font-medium text-text-secondary mb-1.5">Shift</span>
-              <div style={{ width: 150 }}>
+              <div className="w-[150px]">
                 <ManagerSearchableDropdown
                   value={shift}
                   onChange={v => setShift(v)}
@@ -142,7 +142,7 @@ export function ManagerEngagementAbsenteeReportClient() {
           </div>
         ) : (
 <>
-<div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: '16px' }}>
+<div className="flex justify-end mb-[16px]">
           <input 
             type="text" 
             placeholder="Search in table..." 

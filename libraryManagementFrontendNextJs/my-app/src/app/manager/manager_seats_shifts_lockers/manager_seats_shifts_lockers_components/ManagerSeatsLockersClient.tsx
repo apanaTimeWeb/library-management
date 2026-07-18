@@ -137,7 +137,7 @@ export function ManagerSeatsLockersClient() {
           </div>
         ) : (
 <>
-<div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: '16px' }}>
+<div className="flex justify-end mb-[16px]">
           <input 
             type="text" 
             placeholder="Search in table..." 

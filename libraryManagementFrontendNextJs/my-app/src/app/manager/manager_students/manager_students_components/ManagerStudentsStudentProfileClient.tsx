@@ -11,7 +11,7 @@ export function ManagerStudentsStudentProfileClient({ id }: { id: string }) {
   const { student, loading, expiryDate } = useManagerStudentsStudentProfile(id);
 
   if (loading) {
-    return <div className="p-6 min-h-screen"><div className="bg-bg-card rounded-xl border border-border p-6" style={{ padding: 20 }}>Loading...</div></div>;
+    return <div className="p-6 min-h-screen"><div className="bg-bg-card rounded-xl border border-border p-6 p-[20px]">Loading...</div></div>;
   }
 
   if (!student) {
@@ -58,7 +58,7 @@ export function ManagerStudentsStudentProfileClient({ id }: { id: string }) {
             }>{student.status}</span>
           </div>
           <div className="">
-            <div style={{ display: 'flex', alignItems: 'center', gap: 16, marginBottom: 24 }}>
+            <div className="flex items-center gap-[16px] mb-[24px]">
               <div className="w-14 h-14 rounded-2xl bg-primary/10 text-primary flex items-center justify-center text-xl font-bold shrink-0">
                 {student.name.split(' ').map((n: string) => n[0]).join('').slice(0, 2).toUpperCase()}
               </div>
@@ -71,14 +71,14 @@ export function ManagerStudentsStudentProfileClient({ id }: { id: string }) {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pt-6 border-t border-border">
               <div className="flex flex-col gap-1.5">
                 <label className="block text-sm font-medium text-text-secondary mb-1.5">Phone</label>
-                <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                  <Phone size={14} style={{ color: 'var(--primary)' }} />
-                  <span style={{ color: 'var(--text-primary)' }}>{student.phone}</span>
+                <div className="flex items-center gap-[8px]">
+                  <Phone size={14} className="text-primary" />
+                  <span className="text-text-primary">{student.phone}</span>
                 </div>
               </div>
               <div className="flex flex-col gap-1.5">
                 <label className="block text-sm font-medium text-text-secondary mb-1.5">Branch</label>
-                <span style={{ color: 'var(--text-primary)' }}>{student.branch}</span>
+                <span className="text-text-primary">{student.branch}</span>
               </div>
               <div className="flex flex-col gap-1.5">
                 <label className="block text-sm font-medium text-text-secondary mb-1.5">Shift</label>
@@ -86,16 +86,16 @@ export function ManagerStudentsStudentProfileClient({ id }: { id: string }) {
               </div>
               <div className="flex flex-col gap-1.5">
                 <label className="block text-sm font-medium text-text-secondary mb-1.5">Seat</label>
-                <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
-                  <Armchair size={14} style={{ color: 'var(--primary)' }} />
-                  <span style={{ color: 'var(--text-primary)', fontWeight: 600 }}>{student.seat}</span>
+                <div className="flex items-center gap-[6px]">
+                  <Armchair size={14} className="text-primary" />
+                  <span className="text-text-primary font-semibold">{student.seat}</span>
                 </div>
               </div>
               <div className="flex flex-col gap-1.5">
                 <label className="block text-sm font-medium text-text-secondary mb-1.5">Plan</label>
-                <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
-                  <CreditCard size={14} style={{ color: 'var(--primary)' }} />
-                  <span style={{ color: 'var(--text-primary)' }}>{student.plan}</span>
+                <div className="flex items-center gap-[6px]">
+                  <CreditCard size={14} className="text-primary" />
+                  <span className="text-text-primary">{student.plan}</span>
                 </div>
               </div>
               <div className="flex flex-col gap-1.5">
@@ -116,17 +116,17 @@ export function ManagerStudentsStudentProfileClient({ id }: { id: string }) {
             <div className="">
               <div className="flex items-center justify-between py-3 border-b border-border last:border-0">
                 <span className="text-sm font-medium text-text-secondary flex items-center">
-                  <Calendar size={13} style={{ display: 'inline', marginRight: 6 }} />
+                  <Calendar size={13} className="inline mr-[6px]" />
                   Joined
                 </span>
-                <span style={{ color: 'var(--text-primary)', fontWeight: 500 }}>{student.joined}</span>
+                <span className="text-text-primary font-medium">{student.joined}</span>
               </div>
               <div className="flex items-center justify-between py-3 border-b border-border last:border-0">
                 <span className="text-sm font-medium text-text-secondary flex items-center">
-                  <Shield size={13} style={{ display: 'inline', marginRight: 6 }} />
+                  <Shield size={13} className="inline mr-[6px]" />
                   Expires
                 </span>
-                <span style={{ color: 'var(--warning)', fontWeight: 600 }}>{formatDateIN(expiryDate)}</span>
+                <span className="text-warning font-semibold">{formatDateIN(expiryDate)}</span>
               </div>
             </div>
           </div>

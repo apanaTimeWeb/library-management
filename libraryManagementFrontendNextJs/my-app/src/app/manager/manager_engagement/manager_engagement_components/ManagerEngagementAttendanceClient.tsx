@@ -105,7 +105,7 @@ export function ManagerEngagementAttendanceClient() {
           </div>
           <div className="flex items-center gap-3">
             <label className="text-[13px] font-medium text-text-secondary">Shift</label>
-            <div style={{ width: 150 }}>
+            <div className="w-[150px]">
               <ManagerSearchableDropdown
                 value={shift}
                 onChange={v => setFilter('shift', v)}

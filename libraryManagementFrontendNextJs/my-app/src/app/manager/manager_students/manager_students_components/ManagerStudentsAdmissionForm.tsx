@@ -177,7 +177,7 @@ export default function ManagerStudentsAdmissionForm() {
                         <Armchair size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-text-secondary" />
                         <ManagerSearchableDropdown
                           value={watchedShift}
-                          onChange={(v) => setValue('shift', v)}
+                          onChange={(v) => setValue('shift', v, { shouldValidate: true })}
                           options={[
                             { label: 'Select shift...', value: '' },
                             ...SHIFTS.map((s: string) => ({ label: s, value: s }))
@@ -191,7 +191,7 @@ export default function ManagerStudentsAdmissionForm() {
                       <label className="block text-[13px] font-medium text-text-secondary mb-1.5 after:content-['*'] after:ml-1 after:text-danger">Seat Number</label>
                       <ManagerSearchableDropdown
                         value={watchedSeat}
-                        onChange={(v) => setValue('seat', v)}
+                        onChange={(v) => setValue('seat', v, { shouldValidate: true })}
                         options={[
                           { label: 'Select seat...', value: '' },
                           ...SEATS.map((s: string) => ({ label: s, value: s }))
@@ -220,7 +220,7 @@ export default function ManagerStudentsAdmissionForm() {
                         <ManagerSearchableDropdown
                           value={watchedPlan}
                           onChange={(v) => {
-                            setValue('plan', v);
+                            setValue('plan', v, { shouldValidate: true });
                             const p = PLANS.find((plan) => plan.value === v);
                             if (p) setValue('amountPaid', String(p.amount - discount));
                           }}
@@ -274,7 +274,7 @@ export default function ManagerStudentsAdmissionForm() {
                           <button
                             key={mode}
                             type="button"
-                            onClick={() => setValue('paymentMode', mode)}
+                            onClick={() => setValue('paymentMode', mode, { shouldValidate: true })}
                             className={`flex items-center justify-center gap-2 px-3 py-2.5 rounded-lg border text-[13px] font-medium transition-all duration-200 ${watchedMode === mode ? 'border-primary bg-primary-subtle text-primary ring-1 ring-primary/20' : 'border-border bg-bg-page text-text-secondary hover:border-primary/50 hover:bg-primary-subtle/30'}`}
                           >
                             <CreditCard size={13} />
