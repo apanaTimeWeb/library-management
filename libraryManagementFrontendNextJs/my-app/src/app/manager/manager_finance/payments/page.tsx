@@ -1,9 +1,15 @@
-// RESPONSIBILITY: Server component entry point for this route.
+import { ManagerFinanceErrorBoundary } from '@/app/manager/manager_finance/manager_finance_components/ManagerFinanceErrorBoundary';
+import { ManagerFinancePaymentsClient } from '@/app/manager/manager_finance/manager_finance_components/ManagerFinancePaymentsClient';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Payments Overview | Smart Library 360',
+};
+
 export default function Page() {
   return (
-    <div className="p-6 min-h-screen bg-page">
-      <h1 className="text-text-primary text-xl font-bold text-text-primary mb-4">Payments</h1>
-      <p className="text-text-secondary">Coming soon...</p>
-    </div>
+    <ManagerFinanceErrorBoundary>
+      <ManagerFinancePaymentsClient />
+    </ManagerFinanceErrorBoundary>
   );
 }
