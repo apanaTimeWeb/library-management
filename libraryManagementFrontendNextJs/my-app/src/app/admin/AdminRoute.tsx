@@ -35,7 +35,7 @@ export function AdminRoute({ children }: { children: React.ReactNode }) {
         />
         
         <div
-          className="flex flex-col flex-1 min-w-0 transition-all duration-300 ml-[length:var(--ml)]" style={{ '--ml': sidebarWidth } as React.CSSProperties}
+          className={`flex flex-col flex-1 min-w-0 transition-all duration-300 ml-0 ${collapsed ? 'md:ml-[60px]' : 'md:ml-[240px]'}`}
         >
         <AdminHeader
           sidebarWidth={sidebarWidth}

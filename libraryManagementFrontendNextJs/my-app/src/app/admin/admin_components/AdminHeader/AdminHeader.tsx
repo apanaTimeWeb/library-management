@@ -14,7 +14,7 @@ export default function AdminHeader({ sidebarWidth, onMobileOpen }: AdminHeaderP
 
   return (
     <header 
-      className="fixed top-0 right-0 h-16 bg-card/80 backdrop-blur-md border-b border-border flex items-center justify-between px-4 md:px-6 z-40 transition-all duration-300 left-[length:var(--left)]" style={{ '--left': sidebarWidth } as React.CSSProperties}
+      className={`fixed top-0 right-0 h-16 bg-card/80 backdrop-blur-md border-b border-border flex items-center justify-between px-4 md:px-6 z-40 transition-all duration-300 left-0 ${sidebarWidth === 60 ? 'md:left-[60px]' : 'md:left-[240px]'}`}
     >
 
       <div className="flex items-center gap-3">
