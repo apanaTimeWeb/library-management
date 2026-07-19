@@ -102,6 +102,8 @@ export default function AdminCrmEnquiriesClient() {
   const [limit, setLimit] = useState(10);
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
 
+  const table = useClientTable(KANBAN_COLUMNS, 10);
+
   if (fetchState === 'loading') {
     return (
       <div className="flex flex-col items-center justify-center h-96 gap-4">
@@ -120,7 +122,6 @@ export default function AdminCrmEnquiriesClient() {
       </div>
     );
   }
-    const table = useClientTable(KANBAN_COLUMNS, 10);
 
   return (
     <div className="flex flex-col h-full pb-10 space-y-6">

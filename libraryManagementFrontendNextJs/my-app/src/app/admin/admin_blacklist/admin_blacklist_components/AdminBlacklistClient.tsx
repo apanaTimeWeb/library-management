@@ -88,10 +88,11 @@ export function AdminBlacklistClient() {
     setSelectedStudent(student);
   }, [setSelectedStudent]);
 
+  const table = useClientTable(list, 10);
+
   if (fetchState === 'loading' && list.length === 0) {
     return <AdminBlacklistSkeleton />;
   }
-    const table = useClientTable(list, 10);
 
   return (
     <div className="h-full flex flex-col pb-10 space-y-6">

@@ -100,10 +100,11 @@ export function AdminAuditLogsClient() {
     setSelectedLog(log);
   }, [setSelectedLog]);
 
+  const table = useClientTable(logs, 10);
+
   if (fetchState === 'loading' && logs.length === 0) {
     return <AdminAuditLogsSkeleton />;
   }
-    const table = useClientTable(logs, 10);
 
   return (
     <div className="h-full flex flex-col pb-10 space-y-6">

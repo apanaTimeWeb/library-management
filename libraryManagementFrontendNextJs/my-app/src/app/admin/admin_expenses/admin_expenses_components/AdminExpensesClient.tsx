@@ -30,12 +30,13 @@ export function AdminExpensesClient() {
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(10);
 
+  const table = useClientTable(expenses, 10);
+
   if (fetchState === 'loading' && expenses.length === 0) {
     return <AdminExpensesSkeleton />;
   }
 
   const showBranchColumn = selectedBranch === 'All Branches';
-    const table = useClientTable(expenses, 10);
   return (
     <div className="h-full flex flex-col pb-10 space-y-6">
       {/* page Header */}

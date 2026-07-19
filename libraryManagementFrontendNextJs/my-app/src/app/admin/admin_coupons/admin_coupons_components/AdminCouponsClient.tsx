@@ -118,17 +118,18 @@ export function AdminCouponsClient() {
     setSelectedCoupon(coupon);
   }, [setSelectedCoupon]);
 
-  if (fetchState === 'loading' && coupons.length === 0) {
-    return <AdminCouponsSkeleton />;
-  }
-
   const kpiCards = [
     { label: 'Total Coupons', value: kpis.totalCount,   iconBg: 'bg-primary/10', iconColor: 'text-primary' },
     { label: 'Active',        value: kpis.activeCount,  iconBg: 'bg-success/10', iconColor: 'text-success' },
     { label: 'Expired/Full',  value: kpis.expiredCount, iconBg: 'bg-danger/10',  iconColor: 'text-danger'  },
     { label: 'Total Redemptions', value: kpis.totalUses, iconBg: 'bg-warning/10', iconColor: 'text-warning' },
   ];
-    const table = useClientTable(kpiCards, 10);
+
+  const table = useClientTable(kpiCards, 10);
+
+  if (fetchState === 'loading' && coupons.length === 0) {
+    return <AdminCouponsSkeleton />;
+  }
 
   return (
     <div className="h-full flex flex-col pb-10 space-y-6">
