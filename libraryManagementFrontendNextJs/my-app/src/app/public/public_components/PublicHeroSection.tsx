@@ -4,6 +4,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Play, ArrowRight, ShieldCheck } from 'lucide-react';
 import Link from 'next/link';
+import { PUBLIC_ROUTES } from '@/app/public/public_url_config';
 
 export function PublicHeroSection() {
   return (
