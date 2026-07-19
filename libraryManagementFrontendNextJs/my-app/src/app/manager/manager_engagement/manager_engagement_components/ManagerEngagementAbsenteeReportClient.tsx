@@ -3,7 +3,7 @@ import { useUrlState } from '@/app/manager/manager_shared_hooks/useUrlState';
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { ChevronRight, Send, Mail, Phone } from 'lucide-react';
+import { Send, Phone, Mail, ChevronRight, ClipboardList, PartyPopper } from 'lucide-react';
 import { AbsenteeRow } from '@/app/manager/manager_engagement/manager_engagement_types/ManagerEngagementTypes';
 import { useManagerEngagementAbsentee } from '@/app/manager/manager_engagement/manager_engagement_hooks/useManagerEngagementAbsentee';
 import { ManagerSearchableDropdown } from '@/app/manager/manager_shared_components/ManagerSearchableDropdown';
@@ -57,7 +57,7 @@ const [searchTerm, setSearchTerm] = useUrlState('searchTerm', '' as string);
       <div className="mb-8">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
           <div>
-            <h1 className="text-xl font-bold text-text-primary">ðŸ“‹ Absentee Report</h1>
+            <h1 className="text-xl font-bold text-text-primary"><ClipboardList size={24} className="inline mr-2" /> Absentee Report</h1>
             <p className="text-sm text-text-secondary mt-1.5">Students with consecutive absences requiring attention.</p>
           </div>
           <div className="flex gap-2">
@@ -139,7 +139,7 @@ const [searchTerm, setSearchTerm] = useUrlState('searchTerm', '' as string);
       <div className="bg-card rounded-xl border border-border p-4">
         {filtered.length === 0 ? (
           <div className="py-12 flex flex-col items-center justify-center text-center">
-            <div className="text-4xl mb-4">ðŸŽ‰</div>
+            <PartyPopper size={48} className="mx-auto mb-4 text-text-secondary opacity-50" />
             <p className="text-lg font-semibold text-text-primary mb-1">No absentees above threshold!</p>
             <p className="text-sm text-text-secondary">All students have great attendance above the selected threshold.</p>
           </div>

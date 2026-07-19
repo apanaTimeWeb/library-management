@@ -1,7 +1,7 @@
 'use client';
 // RESPONSIBILITY: Renders the ManagerStudentsIdCard.tsx component.
 import React from 'react';
-import { Phone, Shield, Wifi } from 'lucide-react';
+import { Shield, Wifi, Phone, Armchair, Book, GraduationCap, Clipboard, Lock } from 'lucide-react';
 
 import { IdCardData } from '@/app/manager/manager_students/manager_students_types';
 
@@ -72,7 +72,7 @@ export default function ManagerStudentsIdCard({ data }: ManagerStudentsIdCardPro
         {/* ── Header band ── */}
         <div className="bg-card text-white p-4 flex justify-between items-start relative z-10">
           <div className="flex items-center gap-3">
-            <div className="text-text-primary text-xl">ðŸ“š</div>
+            <Book size={20} className="text-text-primary" />
             <div>
               <div className="text-sm font-bold tracking-wider leading-tight">SMART LIBRARY 360</div>
               <div className="font-semibold text-text-secondary tracking-widest uppercase" style={{ fontSize: '9px' }}>{data.branch ?? 'MAIN BRANCH'}</div>
@@ -102,7 +102,7 @@ export default function ManagerStudentsIdCard({ data }: ManagerStudentsIdCardPro
 
             <div className="flex-1 min-w-0">
               <p className="text-lg font-bold text-text-primary truncate leading-tight">{data.name}</p>
-              {data.college && <p className="text-text-secondary truncate mt-1" style={{ fontSize: '10px' }}>ðŸŽ“ {data.college}</p>}
+              {data.college && <p className="text-text-secondary truncate mt-1" style={{ fontSize: '10px' }}><GraduationCap size={10} className="inline mr-1" /> {data.college}</p>}
               <p className="flex items-center gap-1 font-medium text-text-secondary mt-1.5" style={{ fontSize: '11px' }}>
                 <Phone size={10} /> {data.phone}
               </p>
@@ -124,15 +124,15 @@ export default function ManagerStudentsIdCard({ data }: ManagerStudentsIdCardPro
               <div className="font-bold text-text-primary mt-0.5 truncate" style={{ fontSize: '11px' }}>{shiftLabel}</div>
             </div>
             <div className="border-t-2 pt-1.5 border-t-[#8B5CF6]">
-              <div className="font-bold text-text-secondary tracking-widest" style={{ fontSize: '8px' }}>ðŸ’º SEAT</div>
+              <div className="font-bold text-text-secondary tracking-widest" style={{ fontSize: '8px' }}><Armchair size={8} className="inline mr-1" /> SEAT</div>
               <div className="font-bold text-text-primary mt-0.5 truncate" style={{ fontSize: '11px' }}>{data.seat}</div>
             </div>
             <div className="border-t-2 pt-1.5 border-t-[#3B82F6]">
-              <div className="font-bold text-text-secondary tracking-widest" style={{ fontSize: '8px' }}>ðŸ“‹ PLAN</div>
+              <div className="font-bold text-text-secondary tracking-widest" style={{ fontSize: '8px' }}><Clipboard size={8} className="inline mr-1" /> PLAN</div>
               <div className="font-bold text-text-primary mt-0.5 truncate" style={{ fontSize: '11px' }}>{data.plan.split(' ')[0]}</div>
             </div>
             <div>
-              <div className="font-bold text-text-secondary tracking-widest" style={{ fontSize: '8px' }}>ðŸ” LOCKER</div>
+              <div className="font-bold text-text-secondary tracking-widest" style={{ fontSize: '8px' }}><Lock size={8} className="inline mr-1" /> LOCKER</div>
               <div className="font-bold text-text-primary mt-0.5 truncate" style={{ fontSize: '11px' }}>{data.locker === 'None' ? 'N/A' : data.locker.split(' ')[0]}</div>
             </div>
           </div>

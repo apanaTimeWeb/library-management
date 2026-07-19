@@ -28,7 +28,7 @@ export function ManagerStudentsIdCardClient() {
             <ArrowLeft size={14} /> Back to Students
           </Link>
           <h1 className="text-xl font-bold text-text-primary">ID Card Generator</h1>
-          <p className="text-sm text-text-secondary mt-1.5">Search â†’ click student â†’ preview â†’ print or send via WhatsApp</p>
+          <p className="text-sm text-text-secondary mt-1.5">Search → click student → preview → print or send via WhatsApp</p>
         </div>
       </div>
 
@@ -48,10 +48,10 @@ export function ManagerStudentsIdCardClient() {
               )}
             </div>
             <div className="">
-              <div className="w-full bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent-icon-wrap mb-[14px]">
-                <Search size={14} className="w-full bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent-icon" />
+              <div className="relative mb-[14px]">
+                <Search size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-text-secondary" />
                 <input
-                  className="w-full bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent w-full bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent-with-icon"
+                  className="w-full bg-input border border-border rounded-lg pl-10 pr-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
                   placeholder="Search name, Smart ID, phone…"
                   value={search}
                   onChange={e => setSearch(e.target.value)}
@@ -60,7 +60,7 @@ export function ManagerStudentsIdCardClient() {
               <div className="mt-4 max-h-96 overflow-y-auto space-y-2 pr-2 scrollbar-thin scrollbar-thumb-border scrollbar-track-transparent">
                 {filtered.length === 0 && (
                   <div className="flex flex-col items-center justify-center p-12 text-center h-full min-h-48">
-                    <div className="text-4xl mb-4 opacity-50">ðŸ”</div>
+                    <Search size={48} className="mb-4 opacity-50 text-text-secondary" />
                     <p className="text-lg font-bold text-text-primary mb-1">No students found</p>
                   </div>
                 )}
@@ -75,7 +75,7 @@ export function ManagerStudentsIdCardClient() {
                       <div className="w-8 h-8 rounded-full bg-primary/10 text-primary flex items-center justify-center text-xs font-bold shrink-0">{initials}</div>
                       <div className="flex-1 min-w-0">
                         <p className="text-sm font-semibold text-text-primary truncate">{s.name}</p>
-                        <p className="text-xs text-text-secondary mt-0.5 truncate">{s.smartId} Â· {s.shift} Â· Seat {s.seat}</p>
+                        <p className="text-xs text-text-secondary mt-0.5 truncate">{s.smartId} · {s.shift} · Seat {s.seat}</p>
                       </div>
                       <span className={
                         s.status === 'Active'    ? 'rounded-full px-2.5 py-0.5 text-xs font-semibold bg-success-bg text-success' :
@@ -127,7 +127,7 @@ export function ManagerStudentsIdCardClient() {
           ) : (
             <div className="bg-card rounded-xl border border-border p-6 w-full max-w-sm">
               <div className="flex flex-col items-center justify-center p-12 text-center h-full min-h-48">
-                <div className="text-4xl mb-4 opacity-50">ðŸªª</div>
+                <IdCard size={48} className="mb-4 opacity-50 text-text-secondary" />
                 <p className="text-lg font-bold text-text-primary mb-1">No student selected</p>
                 <p className="text-sm text-text-secondary">Search and click a student to preview their ID card.</p>
               </div>

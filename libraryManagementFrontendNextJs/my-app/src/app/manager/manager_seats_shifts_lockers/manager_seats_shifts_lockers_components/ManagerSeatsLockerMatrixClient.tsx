@@ -80,7 +80,7 @@ export function ManagerSeatsLockerMatrixClient() {
             {ACTIVITY_DATA.map((item) => (
               <div key={item.id} className="ss-activity-row">
                 <div className="ss-activity-row__left">
-                  <div className="ss-activity-icon"><span className="text-xl">ðŸ‘¤</span></div>
+                  <div className="ss-activity-icon"><User size={20} /></div>
                   <div>
                     <p className="ss-activity-title">{item.type} to {item.student}</p>
                     <p className="ss-activity-sub">{item.date}</p>

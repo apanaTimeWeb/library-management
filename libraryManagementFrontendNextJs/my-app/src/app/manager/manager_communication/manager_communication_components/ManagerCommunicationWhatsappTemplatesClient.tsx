@@ -1,7 +1,7 @@
 'use client';
 // RESPONSIBILITY: Renders WhatsApp message templates for automated alerts.
 import { useState, useRef } from 'react';
-import { ChevronRight, Save, Send, X } from 'lucide-react';
+import { Send, X, Save, ChevronRight, Smartphone } from 'lucide-react';
 import { Template } from '@/app/manager/manager_communication/manager_communication_types/ManagerCommunicationTypes';
 import { INIT_TEMPLATES } from '@/app/manager/manager_communication/manager_communication_constants/ManagerCommunicationConstants';
 
@@ -60,7 +60,7 @@ export function ManagerCommunicationWhatsappTemplatesClient() {
         <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 overflow-y-auto">
           <div className="bg-card w-full rounded-2xl shadow-2xl flex flex-col p-6 max-w-sm relative border border-border">
             <button onClick={() => setShowTest(false)} className="eng-modal-close"><X size={16} /></button>
-            <p className="eng-modal-title">ðŸ“± Send Test Message</p>
+            <p className="eng-modal-title"><Smartphone size={20} className="inline mr-2" /> Send Test Message</p>
             <p className="eng-modal-desc">Enter a phone number to send a test version of this template.</p>
             <div>
               <label className="eng-label">Phone Number</label>
@@ -81,7 +81,7 @@ export function ManagerCommunicationWhatsappTemplatesClient() {
         <div className="eng-breadcrumb">
           <span>Communication</span><ChevronRight size={12} /><span>WhatsApp Templates</span>
         </div>
-        <h1 className="eng-page-title">ðŸ“± WhatsApp Templates</h1>
+        <h1 className="eng-page-title"><Smartphone size={24} className="inline mr-2" /> WhatsApp Templates</h1>
         <p className="eng-page-subtitle">Customize automated message templates sent to students.</p>
       </div>
 

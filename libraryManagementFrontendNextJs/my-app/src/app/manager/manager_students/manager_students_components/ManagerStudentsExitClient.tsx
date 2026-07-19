@@ -79,7 +79,7 @@ export function ManagerStudentsExitClient() {
                   <div className="w-8 h-8 rounded-full bg-primary/10 text-primary flex items-center justify-center text-xs font-bold shrink-0">{s.name.split(' ').map((n: string) => n[0]).join('').slice(0,2)}</div>
                   <div className="flex-1 min-w-0">
                     <p className="text-sm font-semibold text-text-primary truncate">{s.name}</p>
-                    <p className="text-xs text-text-secondary mt-0.5 truncate">{s.smartId} Ã‚Â· {s.shift} Ã‚Â· {s.seat}</p>
+                    <p className="text-xs text-text-secondary mt-0.5 truncate">{s.smartId} · {s.shift} · {s.seat}</p>
                   </div>
                   <span className={s.status === 'Active' ? 'rounded-full px-2.5 py-0.5 text-xs font-semibold bg-success-bg text-success' : 'rounded-full px-2.5 py-0.5 text-xs font-semibold bg-danger-bg text-danger'}>
                     {s.status}

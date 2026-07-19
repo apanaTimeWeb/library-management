@@ -5,7 +5,7 @@ import { useUrlState } from '@/app/manager/manager_shared_hooks/useUrlState';
 import { useState, useMemo } from 'react';
 import { Allocation, ActivityItem, Locker, SeatHistoryEntry, LogEntry, Seat, ManagerSeatsSeatMatrixModalProps, ShiftData, Shift, Student } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_types';
 import { ACTIVITY_DATA, INITIAL_LOCKERS, INITIAL_SEATS, SHIFTS_DATA, INITIAL_SHIFTS, STUDENTS_DATA } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_constants/ManagerSeatsConstants';
-import { Plus, ChevronDown, Search, UserPlus, Unlock, Wrench } from 'lucide-react';
+import { UserPlus, Wrench, Unlock, Plus, Search, ChevronDown, User, Lock } from 'lucide-react';
 import toast from 'react-hot-toast';
 import { ManagerSearchableDropdown } from '@/app/manager/manager_shared_components/ManagerSearchableDropdown';
 import { TablePagination } from '@/components/ui/table-pagination';
@@ -132,7 +132,7 @@ const [searchTerm, setSearchTerm] = useUrlState('searchTerm', '' as string);
 
         {filtered.length === 0 ? (
           <div className="ss-empty-state">
-            <p className="ss-empty-state__icon">ðŸ”’</p>
+            <Lock size={48} className="mx-auto text-text-secondary opacity-50" />
             <p className="ss-empty-state__title">No lockers added yet.</p>
             <button className="ss-btn-primary" onClick={() => { setNewnumber(''); setAddError(''); setShowAddModal(true); }}>
               <Plus size={15} />Add Locker
@@ -227,7 +227,7 @@ const [searchTerm, setSearchTerm] = useUrlState('searchTerm', '' as string);
       {showAssign && (
         <div className="ss-modal-overlay" onClick={() => setShowAssign(null)}>
           <div className="ss-modal" onClick={e => e.stopPropagation()}>
-            <h2 className="ss-modal-title">ðŸ‘¤ Assign Locker {showAssign.number}</h2>
+            <h2 className="ss-modal-title"><User size={20} className="inline mr-2" /> Assign Locker {showAssign.number}</h2>
             <div className="ss-form-field">
               <label className="ss-label">Student <span className="ss-text-danger">*</span></label>
               <div className="ss-filter-bar__input-wrap">
@@ -248,7 +248,7 @@ const [searchTerm, setSearchTerm] = useUrlState('searchTerm', '' as string);
       {freeTarget && (
         <div className="ss-modal-overlay" onClick={() => setFreeTarget(null)}>
           <div className="ss-modal" onClick={e => e.stopPropagation()}>
-            <h2 className="ss-modal-title">ðŸ”“ Free Locker {freeTarget.number}</h2>
+            <h2 className="ss-modal-title"><Unlock size={20} className="inline mr-2" /> Free Locker {freeTarget.number}</h2>
             <p className="ss-modal-desc">
               Free Locker <strong>{freeTarget.number}</strong> from <strong>{freeTarget.assignedTo}</strong>? Locker becomes available immediately.
             </p>

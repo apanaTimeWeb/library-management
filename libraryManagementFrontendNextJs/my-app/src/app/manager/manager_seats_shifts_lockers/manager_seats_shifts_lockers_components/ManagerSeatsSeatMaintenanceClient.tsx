@@ -5,7 +5,7 @@ import { useUrlState } from '@/app/manager/manager_shared_hooks/useUrlState';
 import { Allocation, ActivityItem, Locker, SeatHistoryEntry, LogEntry, Seat, ManagerSeatsSeatMatrixModalProps, ShiftData, Shift, Student, SeatStatus } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_types';
 import { ACTIVITY_DATA, INITIAL_LOCKERS, INITIAL_SEATS, SHIFTS_DATA, INITIAL_SHIFTS, STUDENTS_DATA } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_constants/ManagerSeatsConstants';
 import { useState, useMemo } from 'react';
-import { ChevronDown, AlertTriangle, Plus } from 'lucide-react';
+import { AlertTriangle, Plus, ChevronDown, Wrench } from 'lucide-react';
 import toast from 'react-hot-toast';
 import { ManagerSearchableDropdown } from '@/app/manager/manager_shared_components/ManagerSearchableDropdown';
 import { TablePagination } from '@/components/ui/table-pagination';
@@ -130,7 +130,7 @@ const [searchTerm, setSearchTerm] = useUrlState('searchTerm', '' as string);
         {/* History table */}
         {filteredLogs.length === 0 ? (
           <div className="ss-empty-state">
-            <p className="ss-empty-state__icon">ðŸ”§</p>
+            <Wrench size={48} className="mx-auto text-text-secondary opacity-50" />
             <p className="ss-empty-state__title">No maintenance history for this seat.</p>
           </div>
         ) : (

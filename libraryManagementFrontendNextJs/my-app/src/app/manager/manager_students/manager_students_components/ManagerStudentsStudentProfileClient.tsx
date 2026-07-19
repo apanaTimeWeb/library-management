@@ -19,7 +19,7 @@ export function ManagerStudentsStudentProfileClient({ id }: { id: string }) {
       <div className="p-6 min-h-screen">
         <div className="bg-card rounded-xl border border-border p-6">
           <div className="flex flex-col items-center justify-center p-12 text-center h-full min-h-72">
-            <div className="text-4xl mb-4 opacity-50">ðŸ”</div>
+            <Search size={48} className="mb-4 opacity-50 text-text-secondary" />
             <p className="text-lg font-bold text-text-primary mb-1">Student not found</p>
             <p className="text-sm text-text-secondary">ID: {id}</p>
           </div>

@@ -2,7 +2,7 @@
 // RESPONSIBILITY: Renders the ManagerEngagementHolidayCalendarClient component.
 import { useState } from 'react';
 import Link from 'next/link';
-import { ChevronRight, ChevronLeft, Plus, X, Trash2, CalendarDays } from 'lucide-react';
+import { CalendarDays, ChevronLeft, X, Plus, Trash2, ChevronRight, Calendar } from 'lucide-react';
 import { Holiday } from '@/app/manager/manager_engagement/manager_engagement_types/ManagerEngagementTypes';
 import { INIT_HOLIDAYS } from '@/app/manager/manager_engagement/manager_engagement_constants/ManagerEngagementConstants';
 import { ManagerSearchableDropdown } from '@/app/manager/manager_shared_components/ManagerSearchableDropdown';
@@ -53,12 +53,12 @@ export function ManagerEngagementHolidayCalendarClient() {
     setHolidays(p => [...p, { id: Date.now().toString(), ...form }]);
     setForm({ date:'', name:'', type:'National' });
     setShowAdd(false);
-    showToast('ðŸ“… Holiday added successfully');
+    showToast('📅 Holiday added successfully');
   };
 
   const removeHoliday = (id: string) => {
     setHolidays(p => p.filter(h => h.id !== id));
-    showToast('ðŸ—‘ï¸ Holiday removed');
+    showToast('🗑️ Holiday removed');
   };
 
   const monthLabel = new Date(year, month).toLocaleDateString('en-IN', { month:'long', year:'numeric' });
@@ -81,7 +81,7 @@ export function ManagerEngagementHolidayCalendarClient() {
         <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 overflow-y-auto">
           <div className="bg-page w-full rounded-2xl shadow-2xl flex flex-col p-6 max-w-sm relative">
             <button onClick={()=>setShowAdd(false)} className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-black/5 dark:hover:bg-white/10 text-text-secondary transition-colors absolute top-4 right-4"><X size={16}/></button>
-            <p className="text-lg font-bold text-text-primary">ðŸ“… Add Holiday</p>
+            <p className="text-lg font-bold text-text-primary"><Calendar size={20} className="inline mr-2" /> Add Holiday</p>
             <p className="text-sm text-text-secondary mt-1 mb-6">Mark a library closure or holiday in the calendar.</p>
 
             <div className="flex flex-col mb-4">
@@ -129,7 +129,7 @@ export function ManagerEngagementHolidayCalendarClient() {
       <div className="mb-8">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
           <div>
-            <h1 className="text-xl font-bold text-text-primary">ðŸ“… Holiday Calendar</h1>
+            <h1 className="text-xl font-bold text-text-primary"><Calendar size={24} className="inline mr-2" /> Holiday Calendar</h1>
             <p className="text-sm text-text-secondary mt-1.5">Manage library holidays, closures, and special events.</p>
           </div>
           <div className="flex gap-2">
@@ -241,7 +241,7 @@ export function ManagerEngagementHolidayCalendarClient() {
 
             {thisMonthHolidays.length === 0 ? (
               <div className="text-sm text-text-secondary italic text-center py-6">
-                No holidays in {monthLabel} ðŸŽ‰
+                No holidays in {monthLabel} 🎉
               </div>
             ) : (
               <div className="flex flex-col gap-3 max-h-72 overflow-y-auto pr-2">

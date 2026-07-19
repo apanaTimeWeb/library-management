@@ -3,7 +3,7 @@ import { useUrlState } from '@/app/manager/manager_shared_hooks/useUrlState';
 
 // RESPONSIBILITY: Renders the WhatsApp communication logs grid with filtering.
 import { useState } from 'react';
-import { ChevronRight, Eye, X } from 'lucide-react';
+import { X, Eye, ChevronRight, Smartphone } from 'lucide-react';
 import { WaLog } from '@/app/manager/manager_communication/manager_communication_types/ManagerCommunicationTypes';
 import { WA_LOGS_DATA } from '@/app/manager/manager_communication/manager_communication_constants/ManagerCommunicationConstants';
 import { ManagerSearchableDropdown } from '@/app/manager/manager_shared_components/ManagerSearchableDropdown';
@@ -61,7 +61,7 @@ export function ManagerCommunicationWhatsappLogsClient() {
         <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 overflow-y-auto">
           <div className="bg-card w-full rounded-2xl shadow-2xl flex flex-col p-6 max-w-lg relative border border-border">
             <button onClick={() => setViewLog(null)} className="absolute top-4 right-4 w-8 h-8 flex items-center justify-center rounded-full hover:bg-danger-bg text-text-secondary hover:text-danger transition-colors"><X size={16} /></button>
-            <p className="text-lg font-bold text-text-primary mb-4">ðŸ“± Message Details</p>
+            <p className="text-lg font-bold text-text-primary mb-4"><Smartphone size={20} className="inline mr-2" /> Message Details</p>
             <div className="flex gap-2 mb-6">
               <span className={`rounded-full px-2.5 py-0.5 text-xs font-semibold ${TYPE_BADGE[viewLog.type]}`}>{TYPE_LABEL[viewLog.type]}</span>
               <span className={`rounded-full px-2.5 py-0.5 text-xs font-semibold ${STATUS_BADGE[viewLog.status]}`}>{viewLog.status}</span>
@@ -92,7 +92,7 @@ export function ManagerCommunicationWhatsappLogsClient() {
         <div className="text-xs font-medium text-text-secondary uppercase tracking-wider mb-2 flex items-center gap-1.5">
           <span>Communication</span><ChevronRight size={12} className="mx-1" /><span>WhatsApp Logs</span>
         </div>
-        <h1 className="text-xl font-bold text-text-primary">ðŸ“± WhatsApp Logs</h1>
+        <h1 className="text-xl font-bold text-text-primary"><Smartphone size={24} className="inline mr-2" /> WhatsApp Logs</h1>
         <p className="text-sm text-text-secondary mt-1.5">All outbound WhatsApp messages sent from the system.</p>
       </div>
 
@@ -149,7 +149,7 @@ export function ManagerCommunicationWhatsappLogsClient() {
       <div className="bg-card rounded-xl border border-border p-4 shadow-sm">
         {filtered.length === 0 ? (
           <div className="py-12 flex flex-col items-center justify-center text-center">
-            <div className="text-4xl mb-4">ðŸ“±</div>
+            <Smartphone size={48} className="mx-auto mb-4 text-text-secondary opacity-50" />
             <p className="text-lg font-semibold text-text-primary">No WhatsApp messages found.</p>
           </div>
         ) : (

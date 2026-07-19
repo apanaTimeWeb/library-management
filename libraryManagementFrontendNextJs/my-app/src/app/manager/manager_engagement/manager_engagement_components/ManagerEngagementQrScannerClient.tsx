@@ -1,7 +1,7 @@
 'use client';
 import { useState } from 'react';
 import Link from 'next/link';
-import { ChevronRight, CheckCircle, X, RefreshCw } from 'lucide-react';
+import { RefreshCw, X, CheckCircle, ChevronRight, LogOut, Camera, QrCode } from 'lucide-react';
 import { ScanResult, ScanState } from '@/app/manager/manager_engagement/manager_engagement_types/ManagerEngagementTypes';
 import { MOCK_STUDENT } from '@/app/manager/manager_engagement/manager_engagement_constants/ManagerEngagementConstants';
 import { MANAGER_ROUTES } from '@/app/manager/manager_url_config';
@@ -58,7 +58,7 @@ export function ManagerEngagementQrScannerClient() {
       </div>
 
       <div className="mb-8">
-        <h1 className="text-xl font-bold text-text-primary">ðŸ“· QR Scanner</h1>
+        <h1 className="text-xl font-bold text-text-primary"><Camera size={24} className="inline mr-2" /> QR Scanner</h1>
         <p className="text-sm text-text-secondary mt-1.5">Scan student ID cards to instantly mark attendance.</p>
       </div>
 
@@ -102,7 +102,7 @@ export function ManagerEngagementQrScannerClient() {
               ) : (
                 <>
                   <div className="text-5xl opacity-50 mb-2">
-                    {scanState === 'scanning' ? 'ðŸ“·' : 'ðŸ”²'}
+                    {scanState === 'scanning' ? <Camera size={24} className="inline mx-auto text-text-secondary opacity-50" /> : <QrCode size={24} className="inline mx-auto text-text-secondary opacity-50" />}
                   </div>
                   <p className="text-sm font-medium opacity-80">
                     {scanState === 'idle' ? 'Camera inactive' : 'Tap to simulate scan'}
@@ -127,7 +127,7 @@ export function ManagerEngagementQrScannerClient() {
           {/* Start button */}
           {scanState === 'idle' && (
             <button onClick={startScan} className="w-full mt-4 bg-primary text-white rounded-lg px-5 py-3 text-sm font-semibold hover:bg-primary-hover transition-colors inline-flex items-center justify-center gap-2">
-              ðŸ“· Start Scanning
+              <Camera size={16} className="inline mr-2" /> Start Scanning
             </button>
           )}
         </div>
@@ -155,7 +155,7 @@ export function ManagerEngagementQrScannerClient() {
                 ✅ Mark IN
               </button>
               <button onClick={() => markAttendance('OUT')} className="bg-danger text-white rounded-lg px-4 py-2.5 text-sm font-semibold hover:opacity-90 transition-colors flex items-center justify-center gap-2">
-                ðŸ”š Mark OUT
+                <LogOut size={16} className="inline mr-2" /> Mark OUT
               </button>
             </div>
           </div>
@@ -181,7 +181,7 @@ export function ManagerEngagementQrScannerClient() {
         <div className="text-center mt-6">
           {!showManual ? (
             <button onClick={() => setShowManual(true)} className="text-sm font-medium text-primary hover:text-primary-hover transition-colors">
-              Can't scan? Enter Smart ID manually â†’
+              Can't scan? Enter Smart ID manually →
             </button>
           ) : (
             <div className="bg-card rounded-xl border border-border p-6 mt-4 text-left animate-in fade-in duration-200">
@@ -196,7 +196,7 @@ export function ManagerEngagementQrScannerClient() {
                 <button onClick={() => handleManual('IN')} disabled={!manualId.trim()}
                   className="bg-success text-white rounded-lg px-4 py-2.5 text-sm font-semibold hover:opacity-90 transition-colors flex items-center justify-center gap-2 flex-1 disabled:opacity-50">✅ Mark IN</button>
                 <button onClick={() => handleManual('OUT')} disabled={!manualId.trim()}
-                  className="bg-danger text-white rounded-lg px-4 py-2.5 text-sm font-semibold hover:opacity-90 transition-colors flex items-center justify-center gap-2 flex-1 disabled:opacity-50">ðŸ”š Mark OUT</button>
+                  className="bg-danger text-white rounded-lg px-4 py-2.5 text-sm font-semibold hover:opacity-90 transition-colors flex items-center justify-center gap-2 flex-1 disabled:opacity-50"><LogOut size={16} className="inline mr-2" /> Mark OUT</button>
                 <button onClick={() => setShowManual(false)} className="bg-transparent border border-border text-text-primary rounded-lg px-4 py-2.5 text-sm font-medium hover:bg-primary-subtle hover:border-primary transition-colors flex items-center justify-center gap-2 flex-1">Cancel</button>
               </div>
             </div>

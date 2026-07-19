@@ -5,7 +5,7 @@ import { useUrlState } from '@/app/manager/manager_shared_hooks/useUrlState';
 import { Allocation, ActivityItem, Locker, SeatHistoryEntry, LogEntry, Seat, ManagerSeatsSeatMatrixModalProps, ShiftData, Shift, Student, SeatStatus } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_types';
 import { ACTIVITY_DATA, INITIAL_LOCKERS, INITIAL_SEATS, SHIFTS_DATA, INITIAL_SHIFTS, STUDENTS_DATA } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_constants/ManagerSeatsConstants';
 import { useState, useMemo } from 'react';
-import { Plus, Search, ChevronDown, Wrench, Edit, AlertTriangle, CheckCircle } from 'lucide-react';
+import { Edit, AlertTriangle, Wrench, Plus, Search, CheckCircle, ChevronDown, Armchair } from 'lucide-react';
 import toast from 'react-hot-toast';
 import { ManagerSearchableDropdown } from '@/app/manager/manager_shared_components/ManagerSearchableDropdown';
 import { TablePagination } from '@/components/ui/table-pagination';
@@ -140,7 +140,7 @@ const [searchTerm, setSearchTerm] = useUrlState('searchTerm', '' as string);
 
         {filtered.length === 0 ? (
           <div className="ss-empty-state">
-            <p className="ss-empty-state__icon">ðŸª‘</p>
+            <Armchair size={48} className="mx-auto text-text-secondary opacity-50" />
             <p className="ss-empty-state__title">No seats found.</p>
             <p className="ss-empty-state__sub">Add your first seat to get started.</p>
             <button className="ss-btn-primary" onClick={openAdd}><Plus size={15} />Add Seat</button>
