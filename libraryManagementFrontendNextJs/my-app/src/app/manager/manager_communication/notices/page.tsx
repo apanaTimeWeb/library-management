@@ -1,6 +1,15 @@
-// RESPONSIBILITY: Renders the Notice Board page (Server Component).
+import { ManagerCommunicationErrorBoundary } from '@/app/manager/manager_communication/manager_communication_components/ManagerCommunicationErrorBoundary';
 import { ManagerCommunicationNoticesClient } from '@/app/manager/manager_communication/manager_communication_components/ManagerCommunicationNoticesClient';
+import { Metadata } from 'next';
 
-export default function NoticesPage() {
-  return <ManagerCommunicationNoticesClient />;
+export const metadata: Metadata = {
+  title: 'Notices | Smart Library 360',
+};
+
+export default function Page() {
+  return (
+    <ManagerCommunicationErrorBoundary>
+      <ManagerCommunicationNoticesClient />
+    </ManagerCommunicationErrorBoundary>
+  );
 }

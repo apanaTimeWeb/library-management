@@ -1,148 +1,81 @@
 'use client';
-// RESPONSIBILITY: Renders WhatsApp message templates for automated alerts.
-import { useState, useRef } from 'react';
-import { Send, X, Save, ChevronRight, Smartphone } from 'lucide-react';
-import { Template } from '@/app/manager/manager_communication/manager_communication_types/ManagerCommunicationTypes';
-import { INIT_TEMPLATES } from '@/app/manager/manager_communication/manager_communication_constants/ManagerCommunicationConstants';
 
-const MAX_CHARS = 1024;
-const VARS = ['{student_name}', '{class}', '{fee_amount}', '{due_date}', '{library_fine}'];
+import { useEffect } from 'react';
+import { MessageCircle, Plus, Edit } from 'lucide-react';
+import { useManagerCommunicationStore } from '@/app/manager/manager_communication/manager_communication_store/manager_communication_store';
+import { COMMUNICATION_STATUS_COLORS } from '@/app/manager/manager_communication/manager_communication_constants/manager_communication_constants';
 
-export function ManagerCommunicationWhatsappTemplatesClient() {
-  const [templates, setTemplates] = useState<Template[]>(INIT_TEMPLATES as unknown as Template[]);
-  const [activeId, setActiveId]   = useState<string>(templates[0].id);
-  const [toast, setToast]         = useState('');
-  const [showTest, setShowTest]   = useState(false);
-  const [testPhone, setTestPhone] = useState('');
-  const textareaRef = useRef<HTMLTextAreaElement>(null);
+export function ManagerCommunicationWhatsAppTemplatesClient() {
+  const { whatsappTemplates, status, error, fetchWhatsAppTemplates } = useManagerCommunicationStore();
 
-  const active = templates.find(t => t.id === activeId) || templates[0];
-  const charCount = active.body.length;
+  useEffect(() => {
+    fetchWhatsAppTemplates();
+  }, [fetchWhatsAppTemplates]);
 
-  const showToast = (msg: string) => { setToast(msg); setTimeout(() => setToast(''), 3000); };
-
-  const updateBody = (newBody: string) => {
-    setTemplates(prev => prev.map(t => t.id === activeId ? { ...t, body: newBody } : t));
-  };
-
-  const insertVar = (v: string) => {
-    const el = textareaRef.current;
-    if (!el) return;
-    const start = el.selectionStart;
-    const end = el.selectionEnd;
-    const newBody = active.body.substring(0, start) + v + active.body.substring(end);
-    if (newBody.length <= MAX_CHARS) {
-      updateBody(newBody);
-      setTimeout(() => { el.selectionStart = el.selectionEnd = start + v.length; el.focus(); }, 0);
-    }
-  };
-
-  const handleSave = () => showToast('Template saved successfully!');
-  const handleTest = () => {
-    if (!testPhone) return;
-    showToast(`Test message sent to ${testPhone}`);
-    setShowTest(false);
-    setTestPhone('');
-  };
+  if (status === 'error') {
+    return <div className="p-8 text-danger bg-danger/10 rounded-lg m-6">Failed to load templates: {error}</div>;
+  }
 
   return (
-    <div className="eng-page relative">
-      {/* Toast */}
-      {toast && (
-        <div className="fixed bottom-4 right-4 bg-card border border-border shadow-lg rounded-xl px-4 py-3 flex items-center gap-3 z-50 animate-in fade-in slide-in-from-bottom-4">
-          <div className="w-2 h-2 rounded-full bg-success"></div>
-          <p className="text-sm font-medium text-text-primary">{toast}</p>
+    <div className="p-6 min-h-screen">
+      <div className="mb-8 flex flex-col md:flex-row md:items-end justify-between gap-4">
+        <div>
+          <p className="text-xs font-semibold text-text-secondary uppercase tracking-wider mb-2">Smart Library 360 › Communication</p>
+          <h1 className="text-xl font-bold text-text-primary flex items-center gap-2"><MessageCircle size={24} className="text-[#25D366]" /> WhatsApp Templates</h1>
+          <p className="text-sm text-text-secondary mt-1.5">Manage and submit automated message templates for approval.</p>
         </div>
-      )}
-
-      {/* Test Modal */}
-      {showTest && (
-        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 overflow-y-auto">
-          <div className="bg-card w-full rounded-2xl shadow-2xl flex flex-col p-6 max-w-sm relative border border-border">
-            <button onClick={() => setShowTest(false)} className="eng-modal-close"><X size={16} /></button>
-            <p className="eng-modal-title"><Smartphone size={20} className="inline mr-2" /> Send Test Message</p>
-            <p className="eng-modal-desc">Enter a phone number to send a test version of this template.</p>
-            <div>
-              <label className="eng-label">Phone Number</label>
-              <input className="eng-input" placeholder="+91 9000000000"
-                value={testPhone} onChange={e => setTestPhone(e.target.value)} />
-            </div>
-            <div className="eng-modal-footer">
-              <button onClick={() => setShowTest(false)} className="eng-btn-ghost">Cancel</button>
-              <button onClick={handleTest} className="eng-btn-primary" disabled={!testPhone}>
-                <Send size={14} /> Send Test
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
-
-      <div className="mb-8">
-        <div className="eng-breadcrumb">
-          <span>Communication</span><ChevronRight size={12} /><span>WhatsApp Templates</span>
-        </div>
-        <h1 className="eng-page-title"><Smartphone size={24} className="inline mr-2" /> WhatsApp Templates</h1>
-        <p className="eng-page-subtitle">Customize automated message templates sent to students.</p>
+        <button className="flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-lg text-sm font-medium hover:bg-primary-hover transition-colors">
+          <Plus size={16} /> New Template
+        </button>
       </div>
 
-      <div className="flex flex-col gap-6">
-        {/* Top Filter Bar */}
-        <div className="eng-tpl-topbar flex flex-wrap gap-3">
-          {templates.map(t => (
-            <div key={t.id} onClick={() => setActiveId(t.id)}
-              className={`w-auto px-[16px] py-2 rounded-[30px] eng-tpl-item${activeId === t.id ? ' eng-tpl-item--active' : ''}`}>
-              {t.icon} {t.label}
-            </div>
-          ))}
-        </div>
-
-        {/* Right Editor */}
-        <div className="eng-card eng-flex-1">
-          <div className="eng-card-header">
-            <h2 className="eng-card-title">{active.icon} {active.label}</h2>
-            <p className="eng-card-desc">Edit the message body. Use variable chips to personalize.</p>
-          </div>
-
-          <div>
-            <label className="eng-label">Message Body</label>
-            <textarea
-              ref={textareaRef}
-              className="eng-textarea"
-              rows={8}
-              value={active.body}
-              onChange={e => updateBody(e.target.value)}
-              maxLength={MAX_CHARS}
-            />
-            <p className={`eng-char-count${charCount > MAX_CHARS * 0.9 ? ' eng-char-count--warn' : ''}`}>
-              {charCount} / {MAX_CHARS} characters
-            </p>
-          </div>
-
-          <div className="eng-tpl-section">
-            <label className="eng-label">Insert Variable</label>
-            <div className="eng-tpl-var-row">
-              {VARS.map(v => (
-                <button key={v} onClick={() => insertVar(v)} className="eng-var-chip">{v}</button>
+      <div className="bg-card border border-border rounded-xl overflow-hidden shadow-sm">
+        <div className="overflow-x-auto">
+          <table className="w-full text-left border-collapse">
+            <thead>
+              <tr className="bg-bg-elevated border-b border-border">
+                <th className="px-6 py-3 text-xs font-semibold text-text-secondary uppercase">Template Name</th>
+                <th className="px-6 py-3 text-xs font-semibold text-text-secondary uppercase">Category & Lang</th>
+                <th className="px-6 py-3 text-xs font-semibold text-text-secondary uppercase">Content Preview</th>
+                <th className="px-6 py-3 text-xs font-semibold text-text-secondary uppercase">Last Updated</th>
+                <th className="px-6 py-3 text-xs font-semibold text-text-secondary uppercase">Status</th>
+                <th className="px-6 py-3 text-xs font-semibold text-text-secondary uppercase text-right">Actions</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-border">
+              {status === 'loading' ? (
+                <tr><td colSpan={6} className="p-8 text-center text-text-secondary">Loading templates...</td></tr>
+              ) : whatsappTemplates.map((template) => (
+                <tr key={template.id} className="hover:bg-page transition-colors">
+                  <td className="px-6 py-4 font-mono text-sm text-text-primary">{template.templateName}</td>
+                  <td className="px-6 py-4">
+                    <div className="flex flex-col">
+                      <span className="font-medium text-text-primary">{template.category}</span>
+                      <span className="text-xs text-text-secondary uppercase">{template.language}</span>
+                    </div>
+                  </td>
+                  <td className="px-6 py-4">
+                    <div className="text-sm text-text-secondary max-w-[300px] truncate" title={template.content}>
+                      {template.content}
+                    </div>
+                  </td>
+                  <td className="px-6 py-4 text-sm text-text-secondary">{template.lastUpdated}</td>
+                  <td className="px-6 py-4">
+                    <span className={`px-2.5 py-1 rounded-full text-xs font-semibold ${COMMUNICATION_STATUS_COLORS[template.status]}`}>
+                      {template.status}
+                    </span>
+                  </td>
+                  <td className="px-6 py-4 text-right">
+                    <button className="text-sm font-medium text-primary hover:underline inline-flex items-center gap-1">
+                      <Edit size={14} /> Edit
+                    </button>
+                  </td>
+                </tr>
               ))}
-            </div>
-          </div>
-
-          <div className="eng-info-box eng-tpl-section">
-            <strong>Note:</strong> WhatsApp templates require pre-approval from Meta. Significant changes might trigger a re-review process which can take up to 24 hours.
-          </div>
-
-          <div className="eng-card-actions">
-            <button onClick={() => setShowTest(true)} className="eng-btn-ghost">
-              <Send size={16} /> Test
-            </button>
-            <button onClick={handleSave} className="eng-btn-primary">
-              <Save size={16} /> Save Changes
-            </button>
-          </div>
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
   );
 }
-
-

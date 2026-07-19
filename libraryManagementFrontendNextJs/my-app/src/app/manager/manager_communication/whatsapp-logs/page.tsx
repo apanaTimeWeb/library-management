@@ -1,7 +1,15 @@
-// RESPONSIBILITY: Renders the page.tsx component.
-import { ManagerCommunicationWhatsappLogsClient } from '@/app/manager/manager_communication/manager_communication_components/ManagerCommunicationWhatsappLogsClient';
+import { ManagerCommunicationErrorBoundary } from '@/app/manager/manager_communication/manager_communication_components/ManagerCommunicationErrorBoundary';
+import { ManagerCommunicationWhatsAppLogsClient } from '@/app/manager/manager_communication/manager_communication_components/ManagerCommunicationWhatsAppLogsClient';
+import { Metadata } from 'next';
 
-export default function WhatsappLogsPage() {
-  return <ManagerCommunicationWhatsappLogsClient />;
+export const metadata: Metadata = {
+  title: 'WhatsApp Logs | Smart Library 360',
+};
+
+export default function Page() {
+  return (
+    <ManagerCommunicationErrorBoundary>
+      <ManagerCommunicationWhatsAppLogsClient />
+    </ManagerCommunicationErrorBoundary>
+  );
 }
-
