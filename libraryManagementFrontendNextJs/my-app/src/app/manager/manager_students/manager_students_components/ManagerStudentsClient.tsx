@@ -73,7 +73,7 @@ const [searchTerm, setSearchTerm] = useUrlState('searchTerm', '' as string);
       <div className="flex flex-wrap gap-[10px] mb-[16px]">
         <input
           className="w-full max-w-sm bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
-          placeholder="Search name, phone, Smart IDâ€¦"
+          placeholder="Search name, phone, Smart ID…"
           value={search}
           onChange={e => setSearch(e.target.value)}
         />

@@ -84,7 +84,7 @@ export function AdminStaffUsersClient({ initialStaff }: AdminStaffUsersClientPro
         <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
         <Input
           className="pl-9 h-10"
-          placeholder="Search by name, email or roleâ€¦"
+          placeholder="Search by name, email or role…"
           value={search}
           onChange={e => setSearch(e.target.value)}
         />

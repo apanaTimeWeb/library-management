@@ -1,13 +1,13 @@
 ﻿// RESPONSIBILITY: Renders or handles logic for api.ts.
 /**
- * API Utility â€” Secure fetch wrapper
+ * API Utility — Secure fetch wrapper
  *
  * Every API call:
  * 1. Attaches Authorization: Bearer <token> header
  * 2. On 401 â†’ tries to refresh token once, then redirects to login
  * 3. On 403 â†’ redirects to /403 page
  *
- * NOTE: Cache-Control is a RESPONSE header â€” do NOT send it as a REQUEST header.
+ * NOTE: Cache-Control is a RESPONSE header — do NOT send it as a REQUEST header.
  * Sending it as a request header causes CORS preflight to fail.
  */
 
@@ -170,7 +170,7 @@ export async function fetchApi<T = unknown>(endpoint: string, options: RequestIn
 
   const headers: HeadersInit = {
     'Content-Type': 'application/json',
-    // âœ… Removed 'Cache-Control' â€” it's a response header, not request header.
+    // âœ… Removed 'Cache-Control' — it's a response header, not request header.
     // Sending it as a request header causes CORS preflight failures.
     ...options.headers,
     // Attach JWT token if available
@@ -198,7 +198,7 @@ export async function fetchApi<T = unknown>(endpoint: string, options: RequestIn
     return getMockFallback<T>(endpoint, options);
   }
 
-  // â”€â”€ Handle 401 â€” Token expired â†’ try refresh â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+  // â”€â”€ Handle 401 — Token expired â†’ try refresh â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   if (response.status === 401) {
     const newToken = await refreshAccessToken();
     if (newToken) {
@@ -219,19 +219,19 @@ export async function fetchApi<T = unknown>(endpoint: string, options: RequestIn
         throw new Error('Session expired. Please log in again.');
       }
       if (retryResponse.status === 401) {
-        // Refresh also failed â€” force logout
+        // Refresh also failed — force logout
         clearAuthState();
         throw new Error('Session expired. Please log in again.');
       }
       return handleResponse<T>(retryResponse);
     } else {
-      // No refresh token â€” force logout
+      // No refresh token — force logout
       clearAuthState();
       throw new Error('Session expired. Please log in again.');
     }
   }
 
-  // â”€â”€ Handle 403 â€” Access denied â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+  // â”€â”€ Handle 403 — Access denied â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   if (response.status === 403) {
     if (typeof window !== 'undefined') {
       window.location.href = '/403';

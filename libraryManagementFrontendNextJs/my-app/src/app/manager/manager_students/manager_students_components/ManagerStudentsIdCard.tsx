@@ -5,7 +5,7 @@ import { Phone, Shield, Wifi } from 'lucide-react';
 
 import { IdCardData } from '@/app/manager/manager_students/manager_students_types';
 
-/* â”€â”€ Barcode SVG stripes â€” deterministic from ID â”€â”€ */
+/* â”€â”€ Barcode SVG stripes — deterministic from ID â”€â”€ */
 function BarcodeStripes({ id }: { id: string }) {
   const bars: { width: number; gap: number }[] = [];
   for (let i = 0; i < 28; i++) {
@@ -28,7 +28,7 @@ function BarcodeStripes({ id }: { id: string }) {
   );
 }
 
-/* â”€â”€ QR-pattern visual â€” deterministic â”€â”€ */
+/* â”€â”€ QR-pattern visual — deterministic â”€â”€ */
 function QrPattern({ id }: { id: string }) {
   const pattern: boolean[] = [];
   for (let i = 0; i < 25; i++) {
@@ -117,7 +117,7 @@ export default function ManagerStudentsIdCard({ data }: ManagerStudentsIdCardPro
             <div className="flex-1 bg-emerald-500" />
           </div>
 
-          {/* Details grid â€” 4 boxes */}
+          {/* Details grid — 4 boxes */}
           <div className="grid grid-cols-4 gap-2 mb-5">
             <div className="border-t-2 pt-1.5 border-t-[#6366F1]">
               <div className="font-bold text-text-secondary tracking-widest" style={{ fontSize: '8px' }}>â° SHIFT</div>

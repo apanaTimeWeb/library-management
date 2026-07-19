@@ -18,10 +18,10 @@ export interface LoginResponse {
 }
 
 /**
- * Auth Utility â€” Client Side
+ * Auth Utility — Client Side
  *
  * Handles login, logout, token refresh, and current user retrieval.
- * Tokens stored in httpOnly cookies (set by the backend) â€” not accessible via JS.
+ * Tokens stored in httpOnly cookies (set by the backend) — not accessible via JS.
  *
  * Zero Trust: All role/identity verification happens on the backend.
  * This is only a convenience layer for the frontend UI.
@@ -29,12 +29,12 @@ export interface LoginResponse {
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001/api/v1';
 // â”€â”€â”€ Login â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
-// 'identifier' can be phone number or email â€” backend matches by phone field
+// 'identifier' can be phone number or email — backend matches by phone field
 export async function login(identifier: string, password: string): Promise<LoginResponse> {
   const res = await fetch(`${API_BASE_URL}/auth/login`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    // Backend LoginDto expects 'phone' field â€” we send identifier as phone
+    // Backend LoginDto expects 'phone' field — we send identifier as phone
     body: JSON.stringify({ phone: identifier, password }),
     credentials: 'include',
   });

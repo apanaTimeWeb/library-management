@@ -59,7 +59,7 @@ export function AdminBranchesView({ initialBranches }: AdminBranchesViewProps) {
         <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
         <Input
           className="pl-9"
-          placeholder="Search by branch name, city or managerâ€¦"
+          placeholder="Search by branch name, city or manager…"
           value={search}
           onChange={e => setSearch(e.target.value)}
         />

@@ -33,7 +33,7 @@ export function ManagerCrmEnquiriesClient() {
           <div>
             <h1 className="text-text-primary text-xl font-bold text-text-primary mb-1">Enquiry Pipeline</h1>
             <p className="text-sm text-text-secondary">
-              {status === 'loading' ? 'Loading...' : `${filtered.length} leads`} {'â€¢'} Track every prospect from enquiry to admission
+              {status === 'loading' ? 'Loading...' : `${filtered.length} leads`} {'•'} Track every prospect from enquiry to admission
             </p>
           </div>
           <div className="flex items-center gap-3 w-full md:w-auto">
@@ -66,7 +66,7 @@ export function ManagerCrmEnquiriesClient() {
           <input
             type="text"
             className="w-full pl-9 pr-3 py-2 bg-card border border-border rounded-md text-sm text-text-primary outline-none focus:border-primary transition-colors"
-            placeholder="Search by name or phoneâ€¦"
+            placeholder="Search by name or phone…"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
           />

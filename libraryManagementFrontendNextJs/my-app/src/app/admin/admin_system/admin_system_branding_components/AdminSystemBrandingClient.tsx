@@ -27,7 +27,7 @@ export function AdminSystemBrandingClient() {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
-        {/* Left â€” Settings Form */}
+        {/* Left — Settings Form */}
         <div className="lg:col-span-2 space-y-4">
           <Card>
             <CardHeader>
@@ -99,7 +99,7 @@ export function AdminSystemBrandingClient() {
           </Card>
         </div>
 
-        {/* Right â€” Live Preview */}
+        {/* Right — Live Preview */}
         <div ref={containerRef} className="lg:col-span-3 space-y-4">
           <Card>
             <CardHeader>

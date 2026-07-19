@@ -62,7 +62,7 @@ export function ManagerSeatsLockerMatrixClient() {
               key={uuid || id + '-' + index}
               className={`ss-locker-cell ss-locker-cell--${status}`}
               onClick={() => handleCellClick(id, status)}
-              title={status === 'Free' ? 'Available â€” click to assign' : status === 'Occupied' ? 'Occupied â€” click to view student' : 'Under Maintenance'}
+              title={status === 'Free' ? 'Available — click to assign' : status === 'Occupied' ? 'Occupied — click to view student' : 'Under Maintenance'}
             >
               {id}
             </button>

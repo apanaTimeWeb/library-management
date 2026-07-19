@@ -43,7 +43,7 @@ export function SuperadminReportsCharts({ data }: Props) {
     <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
       
       {/* Revenue vs Expenses */}
-      <ChartCard title="Revenue vs Expenses" subtitle="Grouped comparison â€” last 6 months">
+      <ChartCard title="Revenue vs Expenses" subtitle="Grouped comparison — last 6 months">
         <ResponsiveContainer width="100%" height="100%">
           <BarChart data={data.revenueExpense} barCategoryGap="30%">
             <CartesianGrid vertical={false} stroke={GRID_COLOR} strokeOpacity={0.4} />

@@ -39,7 +39,7 @@ export default function ManagerStudentsAdmissionForm() {
 
   return (
     <>
-      {/* Success Modal â€” shows after admission confirmed */}
+      {/* Success Modal — shows after admission confirmed */}
       {admittedData && (
         <ManagerStudentsAdmissionSuccessModal
           data={admittedData}
@@ -290,7 +290,7 @@ export default function ManagerStudentsAdmissionForm() {
                       <input
                         {...register('transactionId')}
                         className="w-full bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary"
-                        placeholder="e.g. 41220912â€¦"
+                        placeholder="e.g. 41220912…"
                       />
                     </div>
 

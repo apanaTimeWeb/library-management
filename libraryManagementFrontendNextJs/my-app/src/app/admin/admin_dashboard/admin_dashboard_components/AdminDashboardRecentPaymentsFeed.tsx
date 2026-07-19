@@ -37,7 +37,7 @@ export function AdminDashboardRecentPaymentsFeed({ payments }: { payments: Admin
         <div>
           <CardTitle className="text-base text-text-primary">Recent Payments</CardTitle>
           <CardDescription className="text-xs mt-1 text-text-secondary">
-            Last {payments.length} transactions today â€” click row to view student
+            Last {payments.length} transactions today — click row to view student
           </CardDescription>
         </div>
         <Link

@@ -40,7 +40,7 @@ export function AdminDashboardSeatCell({ id, status, occupant, shift, expiry, on
           </>
         ) : (
           <span className="font-medium">
-            {status === 'free' ? 'Free â€” click to assign' : 'Under Maintenance'}
+            {status === 'free' ? 'Free — click to assign' : 'Under Maintenance'}
           </span>
         )}
         <div className="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-border" />

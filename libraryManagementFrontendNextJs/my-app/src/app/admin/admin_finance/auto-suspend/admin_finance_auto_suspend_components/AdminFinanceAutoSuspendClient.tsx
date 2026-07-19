@@ -37,10 +37,10 @@ export function AdminFinanceAutoSuspendClient() {
   const [limit, setLimit] = useState(10);
 
   const KPI_CARDS = [
-    { label: 'Days Before Suspend', value: configLoading ? 'â€”' : config?.daysBeforeSuspend, icon: Settings, variant: 'default' },
-    { label: 'Currently Suspended', value: configLoading ? 'â€”' : config?.currentlySuspended ?? 0, icon: Ban, variant: 'danger' },
-    { label: 'Auto-Restored (Month)', value: configLoading ? 'â€”' : config?.autoRestoredThisMonth ?? 0, icon: RotateCcw, variant: 'default' },
-    { label: 'Manual Restores', value: configLoading ? 'â€”' : config?.manualRestores ?? 0, icon: UserCheck, variant: 'default' },
+    { label: 'Days Before Suspend', value: configLoading ? '—' : config?.daysBeforeSuspend, icon: Settings, variant: 'default' },
+    { label: 'Currently Suspended', value: configLoading ? '—' : config?.currentlySuspended ?? 0, icon: Ban, variant: 'danger' },
+    { label: 'Auto-Restored (Month)', value: configLoading ? '—' : config?.autoRestoredThisMonth ?? 0, icon: RotateCcw, variant: 'default' },
+    { label: 'Manual Restores', value: configLoading ? '—' : config?.manualRestores ?? 0, icon: UserCheck, variant: 'default' },
   ] as const;
     const table = useClientTable(suspended || [], 10);
   return (
@@ -170,7 +170,7 @@ export function AdminFinanceAutoSuspendClient() {
                         {s.shift}
                       </Badge>
                     </td>
-                    <td className="px-5 py-4 text-sm text-muted-foreground font-medium">â€”</td>
+                    <td className="px-5 py-4 text-sm text-muted-foreground font-medium">—</td>
                     <td className="px-5 py-4">
                       <span className="font-bold text-sm text-danger">{s.daysOverdue}d</span>
                     </td>

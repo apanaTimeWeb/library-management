@@ -33,7 +33,7 @@ export function ManagerStudentsIdCardClient() {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        {/* LEFT â€” selector */}
+        {/* LEFT — selector */}
         <div>
           <div className="bg-card rounded-xl border border-border p-6">
             <div className="flex items-center justify-between mb-4">
@@ -52,7 +52,7 @@ export function ManagerStudentsIdCardClient() {
                 <Search size={14} className="w-full bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent-icon" />
                 <input
                   className="w-full bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent w-full bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent-with-icon"
-                  placeholder="Search name, Smart ID, phoneâ€¦"
+                  placeholder="Search name, Smart ID, phone…"
                   value={search}
                   onChange={e => setSearch(e.target.value)}
                 />
@@ -112,12 +112,12 @@ export function ManagerStudentsIdCardClient() {
           )}
         </div>
 
-        {/* RIGHT â€” preview */}
+        {/* RIGHT — preview */}
         <div className="flex flex-col items-center justify-center bg-page border border-dashed border-border rounded-xl p-8 sticky top-24">
           {cardData ? (
             <>
               <p className="text-xs font-bold uppercase tracking-wider text-text-secondary mb-6">
-                Preview â€” {selected?.name}
+                Preview — {selected?.name}
               </p>
               <ManagerStudentsIdCard data={cardData} />
               <p className="text-xs text-text-secondary mt-6 text-center max-w-72">

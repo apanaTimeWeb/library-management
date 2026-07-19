@@ -2,7 +2,7 @@
 import type { SuperadminAsset } from '@/app/superadmin/superadmin_accounting/assets/superadmin_assets_types/SuperadminAssetsTypes';
 
 export const SUPERADMIN_ASSETS_MOCK_DATA: SuperadminAsset[] = [
-  { id: 1, name: 'AC Unit â€” Hall A',       category: 'Appliance',  purchaseDate: '2023-06-01', purchaseValue: 45000, currentValue: 32000, location: 'Ground Floor', status: 'active'      },
+  { id: 1, name: 'AC Unit — Hall A',       category: 'Appliance',  purchaseDate: '2023-06-01', purchaseValue: 45000, currentValue: 32000, location: 'Ground Floor', status: 'active'      },
   { id: 2, name: 'CCTV Camera Set (8)',     category: 'Security',   purchaseDate: '2022-11-15', purchaseValue: 28000, currentValue: 18000, location: 'All Floors',   status: 'active'      },
   { id: 3, name: 'Water Purifier',          category: 'Appliance',  purchaseDate: '2024-01-10', purchaseValue: 12000, currentValue: 10000, location: 'Ground Floor', status: 'maintenance' },
   { id: 4, name: 'Study Tables (20)',       category: 'Furniture',  purchaseDate: '2021-08-20', purchaseValue: 60000, currentValue: 35000, location: 'First Floor',  status: 'active'      },

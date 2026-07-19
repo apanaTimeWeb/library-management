@@ -72,7 +72,7 @@ export function AdminSystemBackupsClient() {
         <KpiCard title="Total Backups" value={backups.length} icon="ðŸ—„ï¸" subtitle="All time" />
         <KpiCard title="Successful" value={successCount} icon="âœ…" trend="up" trendLabel="Reliable" />
         <KpiCard title="Failed" value={failedCount} icon="âŒ" trend={failedCount > 0 ? 'down' : 'neutral'} trendLabel={failedCount > 0 ? 'Needs attention' : 'All good'} />
-        <KpiCard title="Last Backup" value={lastSuccess ? 'Today' : 'Never'} icon="ðŸ•" subtitle={lastSuccess?.createdAt ?? 'â€”'} />
+        <KpiCard title="Last Backup" value={lastSuccess ? 'Today' : 'Never'} icon="ðŸ•" subtitle={lastSuccess?.createdAt ?? '—'} />
       </div>
 
       {/* Backup Configuration */}
@@ -163,7 +163,7 @@ export function AdminSystemBackupsClient() {
                     <Shield size={16} className="text-success" />
                   </div>
                   <div>
-                    <p className="text-xs font-semibold text-success">Connected â€” Google Drive</p>
+                    <p className="text-xs font-semibold text-success">Connected — Google Drive</p>
                     <p className="text-xs text-text-secondary">Last synced: 2026-04-12 at 02:03 AM</p>
                   </div>
                 </div>
@@ -195,7 +195,7 @@ export function AdminSystemBackupsClient() {
           <div className="flex items-center justify-between">
             <div>
               <CardTitle>Backup History</CardTitle>
-              <CardDescription>All backup records â€” download or restore from any checkpoint.</CardDescription>
+              <CardDescription>All backup records — download or restore from any checkpoint.</CardDescription>
             </div>
             <Button id="refresh-backups-btn" variant="ghost" size="sm">
               <RefreshCw size={14} className="mr-1" /> Refresh

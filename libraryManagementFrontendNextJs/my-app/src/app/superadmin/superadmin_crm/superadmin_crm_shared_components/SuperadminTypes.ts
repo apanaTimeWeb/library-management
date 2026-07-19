@@ -47,7 +47,7 @@ export type EnquirySource =
   | 'Other';
 
 // â”€â”€â”€ CRM Shared TypeScript Types â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
-// Self-contained â€” no imports from outside (crm) folder
+// Self-contained — no imports from outside (crm) folder
 // â”€â”€â”€ Kanban Column Config â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 export const KANBAN_COLUMNS: KanbanColumn[] = [
   {

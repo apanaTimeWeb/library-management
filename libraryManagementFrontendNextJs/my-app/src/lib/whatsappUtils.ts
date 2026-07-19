@@ -41,7 +41,7 @@ export function formatCurrencyIN(amount: number): string {
 }
 
 /**
- * ID Card WhatsApp message â€” mirrors the printed card layout exactly:
+ * ID Card WhatsApp message — mirrors the printed card layout exactly:
  * Header â†’ Profile â†’ Shift/Seat/Plan/Locker â†’ Validity â†’ Payment
  */
 export function formatIdCardMessage(data: StudentWhatsAppData): string {
@@ -89,7 +89,7 @@ export function formatIdCardMessage(data: StudentWhatsAppData): string {
 }
 
 /**
- * Dues reminder message â€” for students page action button
+ * Dues reminder message — for students page action button
  */
 export function formatDuesMessage(data: StudentWhatsAppData): string {
   const balance = data.totalPayable - data.amountPaid;

@@ -124,7 +124,7 @@ export function AdminAssetsAddDialog({ isOpen, onClose, onSubmit }: AdminAssetsA
             </Button>
             <Button type="submit" disabled={isSubmitting} className="gap-2">
               {isSubmitting && <Loader2 size={15} className="animate-spin" />}
-              {isSubmitting ? 'Registeringâ€¦' : 'Register Asset'}
+              {isSubmitting ? 'Registering…' : 'Register Asset'}
             </Button>
           </div>
         </form>

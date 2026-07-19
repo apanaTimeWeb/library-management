@@ -192,7 +192,7 @@ export function AdminReportsClient({ initialData }: AdminReportsClientProps) {
             </ResponsiveContainer>
           </Card>
 
-          {/* Chart 3: Monthly Revenue Trend â€” Area */}
+          {/* Chart 3: Monthly Revenue Trend — Area */}
           <Card className="p-5 shadow-none border-border bg-bg-card rounded-[var(--radius-lg)]">
             <div className="flex items-center justify-between mb-5">
               <div className="flex items-center gap-2">

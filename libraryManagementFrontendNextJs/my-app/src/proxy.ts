@@ -4,9 +4,9 @@ import type { NextRequest } from 'next/server';
 import { jwtVerify } from 'jose';
 
 /**
- * Next.js Server-Side Middleware â€” Route Protection
+ * Next.js Server-Side Middleware — Route Protection
  *
- * This runs on the SERVER before any page renders â€” cannot be bypassed by the client.
+ * This runs on the SERVER before any page renders — cannot be bypassed by the client.
  * It is the primary security layer for the frontend (Zero Trust principle).
  *
  * Route-Role Access Matrix:
@@ -62,7 +62,7 @@ export async function middleware(request: NextRequest) {
   const token = request.cookies.get('access_token')?.value;
 
   if (!token) {
-    // No token â€” redirect to login with return URL
+    // No token — redirect to login with return URL
     const loginUrl = new URL('/auth/login', request.url);
     loginUrl.searchParams.set('returnTo', pathname);
     const response = NextResponse.redirect(loginUrl);
@@ -82,20 +82,20 @@ export async function middleware(request: NextRequest) {
     // â”€â”€ Check role access â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     const allowedRoles = ROUTE_ROLE_MAP[matchedRoute];
     if (!allowedRoles.includes(userRole)) {
-      // Wrong role â€” redirect to 403 page
+      // Wrong role — redirect to 403 page
       const response = NextResponse.redirect(new URL('/403', request.url));
       response.headers.set('Cache-Control', 'no-store');
       return response;
     }
 
-    // â”€â”€ Authorized â€” set cache-control and continue â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+    // â”€â”€ Authorized — set cache-control and continue â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     const response = NextResponse.next();
     response.headers.set('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
     response.headers.set('Pragma', 'no-cache');
     response.headers.set('Expires', '0');
     return response;
   } catch (error) {
-    // Token is invalid or expired â€” redirect to login
+    // Token is invalid or expired — redirect to login
     const loginUrl = new URL('/auth/login', request.url);
     loginUrl.searchParams.set('returnTo', pathname);
     loginUrl.searchParams.set('reason', 'session_expired');
@@ -109,7 +109,7 @@ export async function middleware(request: NextRequest) {
 }
 
 /**
- * Middleware matcher â€” applies to all routes EXCEPT static files and Next.js internals
+ * Middleware matcher — applies to all routes EXCEPT static files and Next.js internals
  */
 export const config = {
   matcher: [

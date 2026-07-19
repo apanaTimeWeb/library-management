@@ -15,15 +15,15 @@ import { useClientTable } from "@/components/ui/use-client-table";
 const SEAT_LOGS: Record<string, LogEntry[]> = {
   'S-006': [
     { id: '1', num: 1, date: '10 Oct 2024', remark: 'Chair leg repaired', doneBy: 'Ramesh K.', statusBefore: 'Broken', statusAfter: 'Working', cost: '₹350' },
-    { id: '2', num: 2, date: '15 Aug 2024', remark: 'Routine inspection', doneBy: 'Suresh M.', statusBefore: 'Working', statusAfter: 'Working', cost: 'â€”' },
+    { id: '2', num: 2, date: '15 Aug 2024', remark: 'Routine inspection', doneBy: 'Suresh M.', statusBefore: 'Working', statusAfter: 'Working', cost: '—' },
   ],
   'S-017': [
-    { id: '3', num: 1, date: '15 Oct 2024', remark: 'Loose table joint â€” WIP', doneBy: 'Suresh M.', statusBefore: 'Working', statusAfter: 'Maintenance', cost: 'â€”' },
+    { id: '3', num: 1, date: '15 Oct 2024', remark: 'Loose table joint — WIP', doneBy: 'Suresh M.', statusBefore: 'Working', statusAfter: 'Maintenance', cost: '—' },
   ],
   'S-029': [],
   'S-043': [
     { id: '4', num: 1, date: '05 Oct 2024', remark: 'Power socket replaced', doneBy: 'Ramesh K.', statusBefore: 'Broken', statusAfter: 'Working', cost: '₹200' },
-    { id: '5', num: 2, date: '20 Jul 2024', remark: 'Socket loose â€” tightened', doneBy: 'Ramesh K.', statusBefore: 'Maintenance', statusAfter: 'Working', cost: '₹50' },
+    { id: '5', num: 2, date: '20 Jul 2024', remark: 'Socket loose — tightened', doneBy: 'Ramesh K.', statusBefore: 'Maintenance', statusAfter: 'Working', cost: '₹50' },
   ],
 };
 
@@ -86,10 +86,10 @@ const [searchTerm, setSearchTerm] = useUrlState('searchTerm', '' as string);
       num: currentLogs.length + 1,
       date: form.date,
       remark: form.remark,
-      doneBy: form.doneBy || 'â€”',
+      doneBy: form.doneBy || '—',
       statusBefore: prevStatus,
       statusAfter: form.newStatus,
-      cost: form.cost ? `₹${form.cost}` : 'â€”',
+      cost: form.cost ? `₹${form.cost}` : '—',
     };
     setLogs(prev => ({ ...prev, [selectedSeat]: [...(prev[selectedSeat] ?? []), newEntry] }));
     setForm(EMPTY_FORM);
@@ -123,7 +123,7 @@ const [searchTerm, setSearchTerm] = useUrlState('searchTerm', '' as string);
         {showOverdue && (
           <div className="ss-alert-banner">
             <AlertTriangle size={16} className="ss-text-warning" />
-            <span>Last maintenance was <strong>{daysSince} days ago</strong> â€” attention recommended.</span>
+            <span>Last maintenance was <strong>{daysSince} days ago</strong> — attention recommended.</span>
           </div>
         )}
 

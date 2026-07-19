@@ -135,10 +135,10 @@ export function AdminFinanceSecurityDepositsClient() {
                     <td className="px-5 py-4 text-sm font-medium text-primary">{d.collectedBy}</td>
                     <td className="px-5 py-4 text-sm text-muted-foreground">{d.collectedDate}</td>
                     <td className={`px-5 py-4 text-right text-sm font-bold ${d.deductionAmount > 0 ? 'text-danger' : 'text-muted-foreground font-medium'}`}>
-                      {d.deductionAmount > 0 ? formatCurrency(d.deductionAmount) : 'â€”'}
+                      {d.deductionAmount > 0 ? formatCurrency(d.deductionAmount) : '—'}
                     </td>
-                    <td className="px-5 py-4 text-sm text-muted-foreground">{d.deductionReason || 'â€”'}</td>
-                    <td className="px-5 py-4 text-sm text-muted-foreground">{d.refundedDate || 'â€”'}</td>
+                    <td className="px-5 py-4 text-sm text-muted-foreground">{d.deductionReason || '—'}</td>
+                    <td className="px-5 py-4 text-sm text-muted-foreground">{d.refundedDate || '—'}</td>
                     <td className="px-5 py-4 text-right">
                       {d.status === 'held' && (
                         <div className="flex items-center justify-end gap-2">

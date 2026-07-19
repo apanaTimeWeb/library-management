@@ -87,7 +87,7 @@ const [searchTerm, setSearchTerm] = useUrlState('searchTerm', '' as string);
       setSeats(prev => prev.map((s: Seat) => s.id === editSeat.id ? { ...s, ...form, status: form.status as SeatStatus } : s));
       toast.success('Seat updated.');
     } else {
-      setSeats(prev => [...prev, { id: Date.now().toString(), ...form, assignedTo: 'â€”', lastMaintenance: 'â€”', status: form.status as SeatStatus }]);
+      setSeats(prev => [...prev, { id: Date.now().toString(), ...form, assignedTo: '—', lastMaintenance: '—', status: form.status as SeatStatus }]);
       toast.success('Seat added.');
     }
     setShowModal(false);

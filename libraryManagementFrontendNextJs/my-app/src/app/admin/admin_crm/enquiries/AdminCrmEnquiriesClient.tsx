@@ -108,7 +108,7 @@ export default function AdminCrmEnquiriesClient() {
     return (
       <div className="flex flex-col items-center justify-center h-96 gap-4">
         <div className="h-8 w-8 rounded-full border-4 border-primary border-t-transparent animate-spin" />
-        <p className="text-muted-foreground font-medium">Loading enquiriesâ€¦</p>
+        <p className="text-muted-foreground font-medium">Loading enquiries…</p>
       </div>
     );
   }
@@ -132,7 +132,7 @@ export default function AdminCrmEnquiriesClient() {
           <nav className="text-xs text-muted-foreground font-medium mb-1 tracking-wide">CRM â€º Enquiries</nav>
           <h1 className="text-text-primary text-xl font-bold tracking-tight">Enquiry Pipeline</h1>
           <p className="text-sm text-muted-foreground mt-1">
-            {filtered.length} lead{filtered.length !== 1 ? 's' : ''} â€¢ Track every prospect from enquiry to admission
+            {filtered.length} lead{filtered.length !== 1 ? 's' : ''} • Track every prospect from enquiry to admission
           </p>
         </div>
         <div className="flex items-center gap-3">
@@ -164,7 +164,7 @@ export default function AdminCrmEnquiriesClient() {
           <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
           <Input
             className="pl-9"
-            placeholder="Search by name or phoneâ€¦"
+            placeholder="Search by name or phone…"
             value={searchParam}
             onChange={(e) => pushParams({ q: e.target.value })}
           />

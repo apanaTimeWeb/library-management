@@ -182,7 +182,7 @@ export function SuperadminSetupWizardClient() {
       <main className="flex-1 flex flex-col">
         <div className="h-14 border-b border-border bg-card/80 backdrop-blur flex items-center justify-between px-6 shrink-0 md:hidden">
           <div className="h-1.5 w-32 bg-border rounded-full overflow-hidden">
-            {/* âœ… RULE 3 â€” dynamic computed width */}
+            {/* âœ… RULE 3 — dynamic computed width */}
             <div className="h-full bg-primary rounded-full transition-all duration-500" style={{ width: `${progress}%` }} />
           </div>
           <button

@@ -76,7 +76,7 @@ export function AdminCrmAddClient({ onClose }: AdminCrmAddClientProps = {}) {
             </Button>
           </div>
 
-          {/* Body â€” Form */}
+          {/* Body — Form */}
           <form id="add-enquiry-form" onSubmit={handleSubmit(onSubmit)} noValidate className="flex flex-col flex-1 overflow-hidden">
             <div className="flex-1 overflow-y-auto p-6 space-y-6">
               
@@ -133,7 +133,7 @@ export function AdminCrmAddClient({ onClose }: AdminCrmAddClientProps = {}) {
                 {isSubmitting ? (
                   <>
                     <div className="h-4 w-4 rounded-full border-2 border-primary-foreground border-t-transparent animate-spin" />
-                    Savingâ€¦
+                    Saving…
                   </>
                 ) : (
                   <>

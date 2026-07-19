@@ -11,9 +11,9 @@ import { Hash, ChevronRight, ArrowRight, AlertTriangle, LogOut, Search, Target, 
 import { useSuperadminSystemSmartId } from '@/app/superadmin/superadmin_system/superadmin_system_smart_id_hooks/useSuperadminSystemSmartId';
 
 const FLOW_STEPS = [
-  { step: '1', icon: <LogOut size={24} className="text-text-secondary" />, title: 'Student Exits', desc: 'ID freed â€” student moved to alumni archive' },
+  { step: '1', icon: <LogOut size={24} className="text-text-secondary" />, title: 'Student Exits', desc: 'ID freed — student moved to alumni archive' },
   { step: '2', icon: <Search size={24} className="text-text-secondary" />, title: 'System Scans', desc: 'Checks for lowest available gap ID in the sequence' },
-  { step: '3', icon: <Target size={24} className="text-text-secondary" />, title: 'Gap ID Assigned', desc: 'New student gets freed ID â€” records stay compact & serial' },
+  { step: '3', icon: <Target size={24} className="text-text-secondary" />, title: 'Gap ID Assigned', desc: 'New student gets freed ID — records stay compact & serial' },
 ];
 
 export function SuperadminSystemSmartIdClient() {
@@ -38,7 +38,7 @@ export function SuperadminSystemSmartIdClient() {
       <SuperadminCard className="mb-6">
         <CardHeader>
           <CardTitle>How Smart ID Gap-Fill Works</CardTitle>
-          <CardDescription>When a student exits, their ID is reclaimed for the next admission â€” keeping IDs compact.</CardDescription>
+          <CardDescription>When a student exits, their ID is reclaimed for the next admission — keeping IDs compact.</CardDescription>
         </CardHeader>
         <CardContent>
           <div className="flex flex-col md:flex-row items-center gap-4">
@@ -101,7 +101,7 @@ export function SuperadminSystemSmartIdClient() {
             </div>
             <div className="flex items-center gap-1.5">
               <div className="h-3 w-3 rounded bg-tertiary/40 border border-tertiary/30" />
-              Gap â€” Available for reassignment ({gapIds.length})
+              Gap — Available for reassignment ({gapIds.length})
             </div>
           </div>
         </CardContent>

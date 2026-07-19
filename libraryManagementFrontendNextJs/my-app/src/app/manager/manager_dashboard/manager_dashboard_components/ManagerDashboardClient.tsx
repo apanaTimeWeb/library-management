@@ -47,7 +47,7 @@ export function ManagerDashboardClient() {
         <div>
           <p className="text-xs font-medium text-text-secondary uppercase tracking-wider mb-2">Manager â€º Dashboard</p>
           <h1 className="text-text-primary text-xl font-bold text-text-primary">Manager Dashboard</h1>
-          <p className="text-sm text-text-secondary mt-1.5">Good morning, Manager â€” aaj ka quick overview</p>
+          <p className="text-sm text-text-secondary mt-1.5">Good morning, Manager — aaj ka quick overview</p>
         </div>
         <div className="flex items-center">
           <Link href={MANAGER_ROUTES.STUDENT_REPORTS} className="bg-primary text-white rounded-lg px-4 py-2 text-sm font-medium hover:bg-primary-hover transition-colors inline-flex items-center gap-2">
@@ -58,7 +58,7 @@ export function ManagerDashboardClient() {
 
       <ManagerDashboardKpiGrid kpiData={data.kpiData} />
 
-      {/* Row 2 â€” Seat Matrix + Action Items */}
+      {/* Row 2 — Seat Matrix + Action Items */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-6">
         <ManagerDashboardSeatMatrix seatData={data.seatData} />
 
@@ -84,7 +84,7 @@ export function ManagerDashboardClient() {
         </div>
       </div>
 
-      {/* Row 3 â€” Recent Activity */}
+      {/* Row 3 — Recent Activity */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-6">
         <div className="bg-card rounded-xl border border-border p-6 flex flex-col">
           <div className="flex items-center justify-between mb-4">

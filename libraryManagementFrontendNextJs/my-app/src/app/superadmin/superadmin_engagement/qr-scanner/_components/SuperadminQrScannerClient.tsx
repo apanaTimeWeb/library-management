@@ -35,7 +35,7 @@ export function SuperadminQrScannerClient() {
               <div className="text-xs text-text-secondary mt-0.5">
                 {scanState === 'idle'     && 'Click Start Scan to activate camera'}
                 {scanState === 'scanning' && 'Point camera at student ID card QR code'}
-                {scanState === 'detected' && 'QR code detected â€” confirm attendance below'}
+                {scanState === 'detected' && 'QR code detected — confirm attendance below'}
                 {scanState === 'success'  && 'Attendance recorded successfully!'}
               </div>
             </div>

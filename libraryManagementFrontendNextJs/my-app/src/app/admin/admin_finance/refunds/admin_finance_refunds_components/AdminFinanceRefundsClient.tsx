@@ -65,22 +65,22 @@ export function AdminFinanceRefundsClient() {
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
         <Card className="p-4 shadow-none border-success/30 bg-success/5 flex flex-col justify-center">
           <p className="text-xs font-bold tracking-wider uppercase text-success mb-1">Total Refunded</p>
-          <p className="text-xl font-bold text-success">{isLoading ? 'â€”' : formatCurrency(kpiData.totalRefunded)}</p>
+          <p className="text-xl font-bold text-success">{isLoading ? '—' : formatCurrency(kpiData.totalRefunded)}</p>
         </Card>
         
         <Card className="p-4 shadow-none border-warning/30 bg-warning/5 flex flex-col justify-center">
           <p className="text-xs font-bold tracking-wider uppercase text-warning mb-1">Pending</p>
-          <p className="text-xl font-bold text-warning">{isLoading ? 'â€”' : kpiData.pendingCount}</p>
+          <p className="text-xl font-bold text-warning">{isLoading ? '—' : kpiData.pendingCount}</p>
         </Card>
         
         <Card className="p-4 shadow-none border-border bg-card flex flex-col justify-center">
           <p className="text-xs font-bold tracking-wider uppercase text-muted-foreground mb-1">Approved</p>
-          <p className="text-xl font-bold text-primary">{isLoading ? 'â€”' : kpiData.approvedCount}</p>
+          <p className="text-xl font-bold text-primary">{isLoading ? '—' : kpiData.approvedCount}</p>
         </Card>
         
         <Card className="p-4 shadow-none border-danger/30 bg-danger/5 flex flex-col justify-center">
           <p className="text-xs font-bold tracking-wider uppercase text-danger mb-1">Rejected</p>
-          <p className="text-xl font-bold text-danger">{isLoading ? 'â€”' : kpiData.rejectedCount}</p>
+          <p className="text-xl font-bold text-danger">{isLoading ? '—' : kpiData.rejectedCount}</p>
         </Card>
       </div>
 
@@ -148,7 +148,7 @@ export function AdminFinanceRefundsClient() {
                       <div className="text-xs text-muted-foreground font-medium mt-0.5">{r.smartId}</div>
                     </td>
                     <td className="px-5 py-4 text-sm text-muted-foreground font-medium">
-                      {r.exitDate || 'â€”'}
+                      {r.exitDate || '—'}
                     </td>
                     <td className="px-5 py-4 text-right">
                       <span className="font-bold text-sm text-primary">{formatCurrency(r.depositHeld)}</span>

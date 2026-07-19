@@ -14,7 +14,7 @@ export const PUBLIC_FEATURES: PublicFeatureItem[] = [
   },
   {
     title: 'WhatsApp Alerts',
-    description: 'Fee due, seat expiry, and attendance â€” automatic WhatsApp alerts. No manual reminders needed.',
+    description: 'Fee due, seat expiry, and attendance — automatic WhatsApp alerts. No manual reminders needed.',
     iconName: 'Bell',
   },
   {

@@ -40,7 +40,7 @@ export function AdminSettingsView({ initialSettings }: AdminSettingsViewProps) {
             className="gap-2 w-full md:w-auto font-bold"
           >
             <Save size={16} />
-            {loading ? 'Savingâ€¦' : 'Save Settings'}
+            {loading ? 'Saving…' : 'Save Settings'}
           </Button>
         </div>
 

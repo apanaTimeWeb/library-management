@@ -82,7 +82,7 @@ export function AdminEngagementQrScannerClient() {
                 <CardDescription className="mt-1 font-medium">
                   {scanState === 'idle'     && 'Click Start Scan to activate camera'}
                   {scanState === 'scanning' && 'Point camera at student ID card QR code'}
-                  {scanState === 'detected' && 'QR code detected â€” confirm attendance below'}
+                  {scanState === 'detected' && 'QR code detected — confirm attendance below'}
                   {scanState === 'success'  && 'Attendance recorded successfully!'}
                 </CardDescription>
               </div>

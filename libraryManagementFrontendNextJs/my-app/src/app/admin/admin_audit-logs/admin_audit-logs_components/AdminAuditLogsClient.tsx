@@ -125,7 +125,7 @@ export function AdminAuditLogsClient() {
           <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
           <Input
             className="pl-9"
-            placeholder="Search action, module, or userâ€¦"
+            placeholder="Search action, module, or user…"
             value={searchInput}
             onChange={(e) => setSearchInput(e.target.value)}
           />

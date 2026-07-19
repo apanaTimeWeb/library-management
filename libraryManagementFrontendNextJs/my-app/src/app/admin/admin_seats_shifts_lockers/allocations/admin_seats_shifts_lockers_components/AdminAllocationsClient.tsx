@@ -149,8 +149,8 @@ export function AdminAllocationsClient() {
                     </td>
                     <td className="px-5 py-3 text-sm font-black text-primary">{a.seatNo}</td>
                     <td className="px-5 py-3 font-medium text-sm text-primary">{a.shift}</td>
-                    <td className="px-5 py-3 text-sm text-muted-foreground">{a.customSlots || 'â€”'}</td>
-                    <td className="px-5 py-3 text-sm text-muted-foreground font-mono">{a.lockerNo || 'â€”'}</td>
+                    <td className="px-5 py-3 text-sm text-muted-foreground">{a.customSlots || '—'}</td>
+                    <td className="px-5 py-3 text-sm text-muted-foreground font-mono">{a.lockerNo || '—'}</td>
                     <td className="px-5 py-3 text-sm text-muted-foreground">{a.validFrom}</td>
                     <td className="px-5 py-3 text-sm text-muted-foreground">{a.validTill}</td>
                     <td className="px-5 py-3">

@@ -185,7 +185,7 @@ export function ManagerCommunicationWhatsappLogsClient() {
                         </span>
                       </td>
                       <td className="px-4 py-4">
-                        <span className="text-danger text-xs truncate max-w-40 inline-block" title={row.error}>{row.error || 'â€”'}</span>
+                        <span className="text-danger text-xs truncate max-w-40 inline-block" title={row.error}>{row.error || '—'}</span>
                       </td>
                       <td className="px-4 py-4 text-right">
                         <div className="flex gap-2 items-center justify-end">

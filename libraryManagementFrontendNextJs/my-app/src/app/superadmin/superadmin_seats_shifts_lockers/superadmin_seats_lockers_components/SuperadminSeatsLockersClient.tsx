@@ -118,7 +118,7 @@ export function SuperadminSeatsLockersClient() {
                         </SuperadminBadge>
                       </td>
                       <td className="py-3 px-3">
-                        {locker.assignedTo === 'â€”' ? (
+                        {locker.assignedTo === '—' ? (
                           <span className="text-text-secondary">Unassigned</span>
                         ) : (
                           <div>

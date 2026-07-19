@@ -69,7 +69,7 @@ export function ManagerCrmEnquiriesAddClient({ onClose }: ManagerCrmEnquiriesAdd
           </button>
         </div>
 
-        {/* Body â€” Form */}
+        {/* Body — Form */}
         <form id="add-enquiry-form" onSubmit={handleSubmit(onSubmit)} noValidate className="flex flex-col flex-1 overflow-hidden">
           <div className="flex-1 overflow-y-auto p-6 scrollbar-thin">
             <div className="flex flex-col gap-5">
@@ -127,7 +127,7 @@ export function ManagerCrmEnquiriesAddClient({ onClose }: ManagerCrmEnquiriesAdd
               {isSubmitting ? (
                 <>
                   <span className="animate-spin w-4 h-4 border-2 border-current border-t-transparent rounded-full" />
-                  Savingâ€¦
+                  Saving…
                 </>
               ) : (
                 <>

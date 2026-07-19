@@ -115,7 +115,7 @@ export function AdminShiftGapAnalyzerClient() {
 
               {shift.gaps.length === 0 ? (
                 <p className="text-sm font-medium text-muted-foreground flex items-center gap-2 bg-muted/20 p-3 rounded-md border border-border">
-                  <span className="text-success text-lg">âœ…</span> No gaps detected â€” fully utilized.
+                  <span className="text-success text-lg">âœ…</span> No gaps detected — fully utilized.
                 </p>
               ) : (
                 <div className="grid gap-3">

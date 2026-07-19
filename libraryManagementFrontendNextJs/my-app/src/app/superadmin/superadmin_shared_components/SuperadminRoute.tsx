@@ -6,7 +6,7 @@ import Sidebar from '@/app/superadmin/superadmin_shared_components/SuperadminSid
 import Header from '@/app/superadmin/superadmin_shared_components/SuperadminHeader';
 import { getCurrentUser } from '@/lib/auth';
 
-// ALL system routes â€” including ones previously missing from the guard
+// ALL system routes — including ones previously missing from the guard
 const SYSTEM_ROUTES = [
   '/superadmin',
 ];

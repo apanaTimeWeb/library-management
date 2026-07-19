@@ -34,7 +34,7 @@ export function AdminSystemSmartIdClient() {
       <Card className="mb-6">
         <CardHeader>
           <CardTitle>How Smart ID Gap-Fill Works</CardTitle>
-          <CardDescription>When a student exits, their ID is reclaimed for the next admission â€” keeping IDs compact.</CardDescription>
+          <CardDescription>When a student exits, their ID is reclaimed for the next admission — keeping IDs compact.</CardDescription>
         </CardHeader>
         <CardContent>
           <div className="flex flex-col md:flex-row items-center gap-4">
@@ -98,7 +98,7 @@ export function AdminSystemSmartIdClient() {
             </div>
             <div className="flex items-center gap-1.5">
               <div className="h-3 w-3 rounded bg-tertiary/40 border border-tertiary/30" />
-              Gap â€” Available for reassignment ({gapIds.length})
+              Gap — Available for reassignment ({gapIds.length})
             </div>
           </div>
         </CardContent>

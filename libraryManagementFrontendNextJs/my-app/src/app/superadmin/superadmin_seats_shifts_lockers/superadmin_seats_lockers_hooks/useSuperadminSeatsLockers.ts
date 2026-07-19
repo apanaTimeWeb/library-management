@@ -35,7 +35,7 @@ export function useSuperadminSeatsLockers() {
   const handleFreeLocker = useCallback(() => {
     if (!freeTarget) return;
     setLockers(prev => prev.map(l => l.id === freeTarget.id
-      ? { ...l, status: 'Free', assignedTo: 'â€”', studentId: 'â€”', assignedSince: 'â€”' }
+      ? { ...l, status: 'Free', assignedTo: '—', studentId: '—', assignedSince: '—' }
       : l
     ));
     toast.success(`Locker ${freeTarget.lockerId} is now free.`);
@@ -52,7 +52,7 @@ export function useSuperadminSeatsLockers() {
     if (lockers.some(l => l.lockerId === newLockerId.trim())) { setAddError('Locker ID already exists'); return; }
     setLockers(prev => [...prev, {
       id: Date.now().toString(), lockerId: newLockerId.trim(),
-      status: 'Free', assignedTo: 'â€”', studentId: 'â€”', assignedSince: 'â€”',
+      status: 'Free', assignedTo: '—', studentId: '—', assignedSince: '—',
     }]);
     toast.success(`Locker ${newLockerId.trim()} added.`);
     setShowAddModal(false);

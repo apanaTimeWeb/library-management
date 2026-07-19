@@ -171,7 +171,7 @@ export function AdminFinanceCollectFeeClient() {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
-          {/* Left â€” Form */}
+          {/* Left — Form */}
           <div className="lg:col-span-3 space-y-4">
             <Card className="p-6 shadow-none border-border bg-card space-y-4">
               <h3 className="font-bold text-sm tracking-widest uppercase text-muted-foreground mb-4">Student <span className="text-danger">*</span></h3>
@@ -310,7 +310,7 @@ export function AdminFinanceCollectFeeClient() {
             </Card>
           </div>
 
-          {/* Right â€” Receipt Preview */}
+          {/* Right — Receipt Preview */}
           <div className="lg:col-span-2">
             <div className="sticky top-6 space-y-4">
               <h3 className="font-bold text-sm tracking-widest uppercase text-muted-foreground mb-4">Receipt Preview</h3>
@@ -329,11 +329,11 @@ export function AdminFinanceCollectFeeClient() {
                     </div>
                     <div className="flex justify-between w-full">
                       <span className="text-text-secondary">Student</span>
-                      <span className="font-bold text-right">{selectedStudent?.name || 'â€”'}</span>
+                      <span className="font-bold text-right">{selectedStudent?.name || '—'}</span>
                     </div>
                     <div className="flex justify-between w-full">
                       <span className="text-text-secondary">Smart ID</span>
-                      <span className="font-bold text-right">{selectedStudent?.smartId || 'â€”'}</span>
+                      <span className="font-bold text-right">{selectedStudent?.smartId || '—'}</span>
                     </div>
                     <div className="flex justify-between w-full">
                       <span className="text-text-secondary">Mode</span>

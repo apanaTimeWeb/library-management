@@ -129,7 +129,7 @@ export function AdminLockersClient() {
                       </Badge>
                     </td>
                     <td className="px-5 py-4">
-                      {l.assignedTo === 'â€”' ? (
+                      {l.assignedTo === '—' ? (
                         <span className="text-muted-foreground text-sm font-medium italic">Unassigned</span>
                       ) : (
                         <div className="flex flex-col">

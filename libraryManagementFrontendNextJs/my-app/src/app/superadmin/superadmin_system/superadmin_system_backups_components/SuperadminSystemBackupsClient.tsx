@@ -74,7 +74,7 @@ export function SuperadminSystemBackupsClient() {
         <SuperadminKpiCard title="Total Backups" value={stats.total} icon={Archive} subtitle="All time" />
         <SuperadminKpiCard title="Successful" value={stats.successCount} icon={CheckCircle} trend="up" trendLabel="Reliable" />
         <SuperadminKpiCard title="Failed" value={stats.failedCount} icon={XCircle} trend={stats.failedCount > 0 ? 'down' : 'neutral'} trendLabel={stats.failedCount > 0 ? 'Needs attention' : 'All good'} />
-        <SuperadminKpiCard title="Last Backup" value={stats.lastSuccess ? 'Today' : 'Never'} icon={Clock} subtitle={stats.lastSuccess?.createdAt ?? 'â€”'} />
+        <SuperadminKpiCard title="Last Backup" value={stats.lastSuccess ? 'Today' : 'Never'} icon={Clock} subtitle={stats.lastSuccess?.createdAt ?? '—'} />
       </div>
 
       {/* Backup Configuration */}
@@ -164,7 +164,7 @@ export function SuperadminSystemBackupsClient() {
                         <Shield size={16} className="text-success" />
                       </div>
                       <div>
-                        <p className="text-xs font-semibold text-success">Connected â€” Google Drive</p>
+                        <p className="text-xs font-semibold text-success">Connected — Google Drive</p>
                         <p className="text-xs text-text-secondary">Last synced: 2026-04-12 at 02:03 AM</p>
                       </div>
                     </div>
@@ -198,7 +198,7 @@ export function SuperadminSystemBackupsClient() {
           <div className="flex items-center justify-between">
             <div>
               <CardTitle>Backup History</CardTitle>
-              <CardDescription>All backup records â€” download or restore from any checkpoint.</CardDescription>
+              <CardDescription>All backup records — download or restore from any checkpoint.</CardDescription>
             </div>
             <SuperadminButton id="refresh-backups-btn" variant="ghost" size="sm">
               <RefreshCw size={14} className="mr-1" /> Refresh

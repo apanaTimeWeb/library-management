@@ -30,7 +30,7 @@ export function AdminDashboardClient({ initialData }: { initialData: AdminDashbo
         <div>
           <p className="text-sm text-text-secondary mb-1">Smart Library 360 â€º Admin â€º Dashboard</p>
           <h1 className="text-text-primary text-xl font-bold tracking-tight text-text-primary">Dashboard</h1>
-          <p className="text-sm text-text-secondary mt-1">Welcome back â€” here's what's happening today.</p>
+          <p className="text-sm text-text-secondary mt-1">Welcome back — here's what's happening today.</p>
         </div>
         <Link href={ADMIN_ROUTES.REPORTS}>
           <Button variant="outline" size="sm" className="border-border text-text-primary">

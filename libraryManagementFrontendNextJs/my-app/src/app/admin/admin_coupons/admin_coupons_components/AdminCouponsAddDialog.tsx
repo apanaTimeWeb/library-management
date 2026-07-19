@@ -190,7 +190,7 @@ export function AdminCouponsAddDialog({ isOpen, onClose, onSubmit }: AdminCoupon
             className="gap-2"
           >
             {isSubmitting && <Loader2 size={15} className="animate-spin" />}
-            {isSubmitting ? 'Creatingâ€¦' : 'Create Coupon'}
+            {isSubmitting ? 'Creating…' : 'Create Coupon'}
           </Button>
         </DialogFooter>
       </DialogContent>

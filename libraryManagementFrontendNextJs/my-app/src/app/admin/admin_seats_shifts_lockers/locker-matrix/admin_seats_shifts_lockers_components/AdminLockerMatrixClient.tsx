@@ -85,7 +85,7 @@ export function AdminLockerMatrixClient() {
                     ${getLockerColor(status)}
                   `}
                   onClick={() => handleCellClick(id, status)}
-                  title={status === 'free' ? 'Available â€” click to assign' : status === 'occupied' ? 'Occupied â€” click to view student' : 'Under Maintenance'}
+                  title={status === 'free' ? 'Available — click to assign' : status === 'occupied' ? 'Occupied — click to view student' : 'Under Maintenance'}
                 >
                   {id}
                 </button>
@@ -152,7 +152,7 @@ export function AdminLockerMatrixClient() {
       {/* Footer */}
       <footer className="text-center py-4 border-t border-border mt-auto">
         <p className="text-xs font-medium text-muted-foreground uppercase tracking-widest">
-          Nocturnal Archive Management System â€” {new Date().getFullYear()}
+          Nocturnal Archive Management System — {new Date().getFullYear()}
         </p>
       </footer>
 

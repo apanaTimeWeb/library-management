@@ -18,10 +18,10 @@ export function SuperadminAutoSuspendClient() {
   } = useSuperadminAutoSuspendClient();
 
   const KPI_CARDS = [
-    { label: 'Days Before Suspend', value: configLoading ? 'â€”' : config?.daysBeforeSuspend, icon: Settings, variant: 'default' },
-    { label: 'Currently Suspended', value: configLoading ? 'â€”' : config?.currentlySuspended ?? 0, icon: Ban, variant: 'danger' },
-    { label: 'Auto-Restored (Month)', value: configLoading ? 'â€”' : config?.autoRestoredThisMonth ?? 0, icon: RotateCcw, variant: 'default' },
-    { label: 'Manual Restores', value: configLoading ? 'â€”' : config?.manualRestores ?? 0, icon: UserCheck, variant: 'default' },
+    { label: 'Days Before Suspend', value: configLoading ? '—' : config?.daysBeforeSuspend, icon: Settings, variant: 'default' },
+    { label: 'Currently Suspended', value: configLoading ? '—' : config?.currentlySuspended ?? 0, icon: Ban, variant: 'danger' },
+    { label: 'Auto-Restored (Month)', value: configLoading ? '—' : config?.autoRestoredThisMonth ?? 0, icon: RotateCcw, variant: 'default' },
+    { label: 'Manual Restores', value: configLoading ? '—' : config?.manualRestores ?? 0, icon: UserCheck, variant: 'default' },
   ] as const;
 
   return (
@@ -139,7 +139,7 @@ export function SuperadminAutoSuspendClient() {
                   <td className="py-3 px-4">
                     <span className="bg-border text-text-primary px-2.5 py-0.5 rounded-full text-xs font-semibold">{s.shift}</span>
                   </td>
-                  <td className="py-3 px-4 text-xs text-text-secondary">â€”</td>
+                  <td className="py-3 px-4 text-xs text-text-secondary">—</td>
                   <td className="py-3 px-4">
                     <span className="text-danger font-bold text-sm">{s.daysOverdue}d</span>
                   </td>

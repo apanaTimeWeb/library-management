@@ -165,7 +165,7 @@ export function AdminFinancePaymentsClient() {
                         </Badge>
                       </td>
                       <td className="px-4 py-3">
-                        <span className="font-mono text-xs text-muted-foreground">{p.txnId || 'â€”'}</span>
+                        <span className="font-mono text-xs text-muted-foreground">{p.txnId || '—'}</span>
                       </td>
                       <td className="px-4 py-3 text-right">
                         <span className={`text-sm font-bold ${p.lateFee > 0 ? 'text-warning' : 'text-muted-foreground opacity-50'}`}>

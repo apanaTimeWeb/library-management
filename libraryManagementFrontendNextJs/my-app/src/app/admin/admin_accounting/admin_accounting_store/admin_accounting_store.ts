@@ -23,7 +23,7 @@ export const useAdminAccountingStore = create<AdminAccountingStoreState>((set, g
       logger.error('Assets fetch failed:', e);
       set({
         assets: [
-          { id: 'A1', name: 'AC Unit â€” Hall A', category: 'Appliance', purchaseDate: '2023-06-01', purchaseValue: 45000, currentValue: 32000, location: 'Ground Floor', status: 'active' },
+          { id: 'A1', name: 'AC Unit — Hall A', category: 'Appliance', purchaseDate: '2023-06-01', purchaseValue: 45000, currentValue: 32000, location: 'Ground Floor', status: 'active' },
           { id: 'A2', name: 'CCTV Camera Set', category: 'Security', purchaseDate: '2022-11-15', purchaseValue: 28000, currentValue: 18000, location: 'All Floors', status: 'active' },
         ],
         fetchState: 'success'

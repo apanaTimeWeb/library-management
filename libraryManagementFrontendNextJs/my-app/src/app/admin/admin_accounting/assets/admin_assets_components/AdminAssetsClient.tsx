@@ -79,7 +79,7 @@ export function AdminAssetsClient() {
           <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
           <Input
             className="pl-9 w-full"
-            placeholder="Search by asset name or locationâ€¦"
+            placeholder="Search by asset name or location…"
             value={searchInput}
             onChange={(e) => setSearchInput(e.target.value)}
           />
@@ -109,7 +109,7 @@ export function AdminAssetsClient() {
       {/* Grid */}
       <Card className="flex-1 shadow-none border-border overflow-hidden flex flex-col min-h-96">
         {fetchState === 'loading' && assets.length === 0 ? (
-          <div className="flex items-center justify-center h-full text-muted-foreground">Loading assetsâ€¦</div>
+          <div className="flex items-center justify-center h-full text-muted-foreground">Loading assets…</div>
         ) : (<>
             <div className="mb-4">
         <TableToolbar 

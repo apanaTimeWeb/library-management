@@ -118,7 +118,7 @@ const {
 
         {filtered.length === 0 ? (
           <div className="ss-empty-state">
-            <p className="ss-empty-state__icon">Ã°Å¸â€œâ€¹</p>
+            <p className="ss-empty-state__icon">Ã°Å¸“â€¹</p>
             <p className="ss-empty-state__title">No allocations found.</p>
           </div>
         ) : (

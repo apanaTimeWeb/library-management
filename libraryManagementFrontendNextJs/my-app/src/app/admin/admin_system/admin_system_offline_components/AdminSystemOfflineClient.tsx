@@ -33,7 +33,7 @@ export function AdminSystemOfflineClient() {
         <p className="text-center text-text-secondary text-base mb-8 max-w-sm">
           {online
             ? "Great news! You're reconnected. Redirecting to Dashboard..."
-            : "No internet connection detected. Don't worry â€” your basic features still work:"}
+            : "No internet connection detected. Don't worry — your basic features still work:"}
         </p>
 
         {/* Feature list */}

@@ -12,7 +12,7 @@ export function ManagerReportsHeader() {
         Reports
       </h1>
       <p className="text-sm text-text-secondary">
-        Operational overview â€” finance reports blocked
+        Operational overview — finance reports blocked
       </p>
     </div>
   );

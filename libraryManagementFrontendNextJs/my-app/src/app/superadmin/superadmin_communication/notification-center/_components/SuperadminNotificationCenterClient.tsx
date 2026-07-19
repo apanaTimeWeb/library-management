@@ -38,7 +38,7 @@ export function SuperadminNotificationCenterClient() {
 
   return (
     <div className="p-4 sm:p-6 min-h-screen bg-page animate-in fade-in duration-200">
-      {/* Ã¢â€â‚¬Ã¢â€â‚¬ Page Header Ã¢â€â‚¬Ã¢â€â‚¬ */}
+      {/* Ã¢”â‚¬Ã¢”â‚¬ Page Header Ã¢”â‚¬Ã¢”â‚¬ */}
       <div className="mb-8">
         <div className="flex items-center gap-2 text-text-secondary text-xs font-bold tracking-wide mb-6">
           <span className="hover:text-primary transition-colors cursor-pointer">Communication</span>

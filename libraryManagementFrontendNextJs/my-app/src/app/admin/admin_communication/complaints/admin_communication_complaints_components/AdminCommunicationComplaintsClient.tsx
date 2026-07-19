@@ -59,7 +59,7 @@ export function AdminCommunicationComplaintsClient() {
       description: addForm.description,
       status: 'Open',
       date: new Date().toISOString().split('T')[0],
-      resolvedBy: 'â€”', resolvedDate: 'â€”', resolvedNote: '',
+      resolvedBy: '—', resolvedDate: '—', resolvedNote: '',
     };
     setComplaints(prev => [c, ...prev]);
     setAddForm({ student: '', anonymous: false, title: '', description: '' });
@@ -161,7 +161,7 @@ export function AdminCommunicationComplaintsClient() {
                     <td className="py-4 px-4 font-bold text-foreground">{c.title}</td>
                     <td className={`py-4 px-4 ${c.isAnonymous ? 'italic text-muted-foreground' : 'text-foreground font-medium'}`}>{c.student}</td>
                     <td className="py-4 px-4">
-                      <span className="text-muted-foreground font-medium">{isLong && !isExpanded ? c.description.slice(0, 60) + 'â€¦' : c.description}</span>
+                      <span className="text-muted-foreground font-medium">{isLong && !isExpanded ? c.description.slice(0, 60) + '…' : c.description}</span>
                       {isLong && (
                         <button onClick={() => toggleDesc(c.id)} className="text-xs text-info hover:underline ml-1 font-semibold">
                           {isExpanded ? 'less' : 'more'}
@@ -268,7 +268,7 @@ export function AdminCommunicationComplaintsClient() {
                 <div className="bg-success/5 border border-success/20 p-4 rounded-lg space-y-1">
                   <p className="text-xs font-bold uppercase tracking-wider text-success">Resolution</p>
                   <p className="text-sm font-medium text-foreground">{viewItem.resolvedNote}</p>
-                  <p className="text-xs text-muted-foreground">â€” {viewItem.resolvedBy} on {viewItem.resolvedDate}</p>
+                  <p className="text-xs text-muted-foreground">— {viewItem.resolvedBy} on {viewItem.resolvedDate}</p>
                 </div>
               )}
             </div>

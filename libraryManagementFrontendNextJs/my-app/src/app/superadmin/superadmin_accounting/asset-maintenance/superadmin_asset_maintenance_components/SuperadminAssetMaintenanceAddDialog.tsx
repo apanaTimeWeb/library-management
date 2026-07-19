@@ -29,7 +29,7 @@ export function SuperadminAssetMaintenanceAddDialog({ onClose, onSave }: Props) 
         issue: form.issue,
         reportedDate: form.reportedDate,
         scheduledDate: form.scheduledDate,
-        vendor: form.vendor || 'â€”',
+        vendor: form.vendor || '—',
         cost: parseFloat(form.cost) || 0
       });
       onClose();

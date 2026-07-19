@@ -64,7 +64,7 @@ export function AdminExpensesClient() {
           <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
           <Input
             className="pl-9"
-            placeholder="Search category, branch, or managerâ€¦"
+            placeholder="Search category, branch, or manager…"
             value={searchInput}
             onChange={(e) => setSearchInput(e.target.value)}
           />

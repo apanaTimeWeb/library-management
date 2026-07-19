@@ -106,7 +106,7 @@ export function SuperadminSystemBulkImportClient() {
           <SuperadminCard>
             <CardHeader>
               <CardTitle>Upload Your File</CardTitle>
-              <CardDescription>Accepted formats: .xlsx, .xls, .csv â€” Maximum 500 rows, 5MB</CardDescription>
+              <CardDescription>Accepted formats: .xlsx, .xls, .csv — Maximum 500 rows, 5MB</CardDescription>
             </CardHeader>
             <CardContent>
               <div
@@ -227,7 +227,7 @@ export function SuperadminSystemBulkImportClient() {
             <CardHeader>
               <div className="flex items-center justify-between">
                 <div>
-                  <CardTitle>Data Preview â€” {fileName}</CardTitle>
+                  <CardTitle>Data Preview — {fileName}</CardTitle>
                   <CardDescription>Review each row before importing.</CardDescription>
                 </div>
                 {/* Filter buttons */}
@@ -278,7 +278,7 @@ export function SuperadminSystemBulkImportClient() {
                           <td className="py-3 pr-3 font-mono text-xs text-text-secondary">#{row.row}</td>
                           <td className="py-3 pr-3 font-medium text-text-primary">{row.name || <span className="text-danger text-xs italic">missing</span>}</td>
                           <td className="py-3 pr-3 text-text-secondary">{row.phone || <span className="text-danger text-xs italic">missing</span>}</td>
-                          <td className="py-3 pr-3 text-text-secondary">{row.email || <span className="text-text-secondary/40 text-xs">â€”</span>}</td>
+                          <td className="py-3 pr-3 text-text-secondary">{row.email || <span className="text-text-secondary/40 text-xs">—</span>}</td>
                           <td className="py-3 pr-3 text-text-primary">{row.shift}</td>
                           <td className="py-3 pr-3 font-mono text-xs text-text-primary">{row.seat || <span className="text-text-secondary/40 text-xs">auto</span>}</td>
                           <td className="py-3 pr-3">
@@ -286,7 +286,7 @@ export function SuperadminSystemBulkImportClient() {
                               <Icon size={10} className="inline mr-1" /> {cfg.label}
                             </SuperadminBadge>
                           </td>
-                          <td className="py-3 text-xs text-text-secondary">{row.issue || 'â€”'}</td>
+                          <td className="py-3 text-xs text-text-secondary">{row.issue || '—'}</td>
                         </tr>
                       );
                     })}

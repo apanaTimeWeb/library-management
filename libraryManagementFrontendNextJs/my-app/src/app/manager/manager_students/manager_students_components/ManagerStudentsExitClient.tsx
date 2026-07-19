@@ -27,7 +27,7 @@ export function ManagerStudentsExitClient() {
       <div className="p-6 min-h-screen">
         <div className="bg-card rounded-xl border border-border p-6 max-w-[480px] my-[60px] mx-auto">
           <div className="flex flex-col items-center justify-center p-12 text-center h-full min-h-72">
-            <div className="text-4xl mb-4 opacity-50">Ã¢Å“â€¦</div>
+            <div className="text-4xl mb-4 opacity-50">Ã¢Å“…</div>
             <p className="text-lg font-bold text-text-primary mb-1">Exit Processed</p>
             <p className="text-sm text-text-secondary">{student.name} ({student.smartId}) has been marked as exited.</p>
             <div className="mt-[20px] flex gap-[10px]">
@@ -108,7 +108,7 @@ export function ManagerStudentsExitClient() {
                 <div className="flex items-center justify-between py-3 border-b border-border last:border-0">
                   <span className="text-sm font-medium text-text-secondary flex items-center">Dues</span>
                   <span className={`${student.due > 0 ? 'text-danger font-bold' : 'text-success font-bold'} font-bold`}>
-                    {student.due > 0 ? `Ã¢Å¡Â Ã¯Â¸Â Ã¢â€šÂ¹${student.due} pending` : 'Ã¢Å“â€¦ Clear'}
+                    {student.due > 0 ? `Ã¢Å¡Â Ã¯Â¸Â Ã¢â€šÂ¹${student.due} pending` : 'Ã¢Å“… Clear'}
                   </span>
                 </div>
 

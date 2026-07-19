@@ -84,14 +84,14 @@ export function AdminPlansClient() {
           <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
           <Input
             className="pl-9"
-            placeholder="Search plan name or featureâ€¦"
+            placeholder="Search plan name or feature…"
             value={searchInput}
             onChange={(e) => setSearchInput(e.target.value)}
           />
         </div>
         <div className="flex items-center gap-2 text-xs font-medium text-muted-foreground">
           <span>Total Plans: <strong className="text-foreground">{totalCount}</strong></span>
-          <span>â€¢</span>
+          <span>•</span>
           <span>Active: <strong className="text-success">{plans.filter((p) => p.status === 'Active').length}</strong></span>
         </div>
       </div>

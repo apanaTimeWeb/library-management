@@ -83,7 +83,7 @@ const {
 
       {filtered.length === 0 ? (
         <div className="ss-empty-state">
-          <p className="ss-empty-state__icon">Ã°Å¸â€œÅ“</p>
+          <p className="ss-empty-state__icon">Ã°Å¸“Å“</p>
           <p className="ss-empty-state__title">No seat history records found.</p>
         </div>
       ) : (

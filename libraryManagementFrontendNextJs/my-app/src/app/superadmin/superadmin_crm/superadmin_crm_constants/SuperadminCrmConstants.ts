@@ -162,7 +162,7 @@ export const CRM_CONSTANTS = {
           date: "May 20, 2025",
           time: "03:00 PM",
           by: "Admin",
-          remark: "Called three times â€” no response. Marked as lost after 7-day follow-up window."
+          remark: "Called three times — no response. Marked as lost after 7-day follow-up window."
         },
         {
           id: "fu_010",

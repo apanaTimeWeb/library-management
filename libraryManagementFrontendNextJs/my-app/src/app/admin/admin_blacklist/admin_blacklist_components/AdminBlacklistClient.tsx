@@ -124,7 +124,7 @@ export function AdminBlacklistClient() {
           <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
           <Input
             className="pl-9"
-            placeholder="Search name, phone, or seatâ€¦"
+            placeholder="Search name, phone, or seat…"
             value={searchInput}
             onChange={(e) => setSearchInput(e.target.value)}
           />

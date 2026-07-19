@@ -62,7 +62,7 @@ export function AdminFinanceReferralsClient() {
             <span className="text-xs font-bold tracking-wider uppercase text-warning">Top Referrer</span>
             <Trophy size={16} className="text-warning" />
           </div>
-          <p className="text-xl font-bold text-primary truncate">{topReferrer?.name || 'â€”'}</p>
+          <p className="text-xl font-bold text-primary truncate">{topReferrer?.name || '—'}</p>
           <p className="text-xs text-muted-foreground font-medium">{topReferrer?.referredCount || 0} referrals</p>
         </Card>
       </div>

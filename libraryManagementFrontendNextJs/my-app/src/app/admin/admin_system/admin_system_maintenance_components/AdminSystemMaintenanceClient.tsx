@@ -42,7 +42,7 @@ export function AdminSystemMaintenanceClient() {
         <KpiCard title="Locker Issues" value={lockerIssues} icon="ðŸ”’" trend="down" trendLabel="Reported issues" />
       </div>
 
-      {/* Section 1 â€” Seats */}
+      {/* Section 1 — Seats */}
       <Card className="mb-6">
         <CardHeader>
           <CardTitle className="flex items-center gap-2"><Wrench size={18} className="text-primary" /> Seats</CardTitle>
@@ -105,7 +105,7 @@ export function AdminSystemMaintenanceClient() {
         </CardContent>
       </Card>
 
-      {/* Section 2 â€” Assets */}
+      {/* Section 2 — Assets */}
       <Card className="mb-6">
         <CardHeader>
           <CardTitle className="flex items-center gap-2"><Package size={18} className="text-primary" /> Assets</CardTitle>
@@ -168,7 +168,7 @@ export function AdminSystemMaintenanceClient() {
         </CardContent>
       </Card>
 
-      {/* Section 3 â€” Lockers */}
+      {/* Section 3 — Lockers */}
       <Card>
         <CardHeader>
           <CardTitle className="flex items-center gap-2"><Lock size={18} className="text-primary" /> Lockers</CardTitle>

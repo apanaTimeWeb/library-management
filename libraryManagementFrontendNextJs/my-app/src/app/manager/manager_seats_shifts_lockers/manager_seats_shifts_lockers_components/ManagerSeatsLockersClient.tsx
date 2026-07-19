@@ -31,7 +31,7 @@ function anyCell(props: { value: string }) {
 }
 
 function AssignedToCell(props: { data: Locker }) {
-  if (props.data?.assignedTo === 'â€”') return <span className="ss-table__cell-muted">Unassigned</span>;
+  if (props.data?.assignedTo === '—') return <span className="ss-table__cell-muted">Unassigned</span>;
   return (
     <div className="ss-cell-stack">
       <p className="ss-cell-name">{props.data?.assignedTo}</p>
@@ -76,7 +76,7 @@ const [searchTerm, setSearchTerm] = useUrlState('searchTerm', '' as string);
   function handleFreeLocker() {
     if (!freeTarget) return;
     setLockers(prev => prev.map(l => l.id === freeTarget.id
-      ? { ...l, status: 'Free', assignedTo: 'â€”', studentId: 'â€”', assignedSince: 'â€”' }
+      ? { ...l, status: 'Free', assignedTo: '—', studentId: '—', assignedSince: '—' }
       : l
     ));
     toast.success(`Locker ${freeTarget.number} is now free.`);
@@ -93,7 +93,7 @@ const [searchTerm, setSearchTerm] = useUrlState('searchTerm', '' as string);
     if (lockers.some(l => l.number === newnumber.trim())) { setAddError('Locker ID already exists'); return; }
     setLockers(prev => [...prev, {
       id: Date.now().toString(), number: newnumber.trim(),
-      status: 'Free', assignedTo: 'â€”', studentId: 'â€”', assignedSince: 'â€”',
+      status: 'Free', assignedTo: '—', studentId: '—', assignedSince: '—',
     }]);
     toast.success(`Locker ${newnumber.trim()} added.`);
     setShowAddModal(false);

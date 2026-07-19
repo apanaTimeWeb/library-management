@@ -92,7 +92,7 @@ export function AdminAssetMaintenanceClient() {
           <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
           <Input
             className="pl-9 w-full"
-            placeholder="Search asset or vendorâ€¦"
+            placeholder="Search asset or vendor…"
             value={searchInput}
             onChange={(e) => setSearchInput(e.target.value)}
           />
@@ -122,7 +122,7 @@ export function AdminAssetMaintenanceClient() {
       {/* Grid */}
       <Card className="flex-1 shadow-none border-border overflow-hidden flex flex-col min-h-96">
         {fetchState === 'loading' && maintenance.length === 0 ? (
-          <div className="flex items-center justify-center h-full text-muted-foreground">Loading maintenance tasksâ€¦</div>
+          <div className="flex items-center justify-center h-full text-muted-foreground">Loading maintenance tasks…</div>
         ) : (<>
             <div className="mb-4">
         <TableToolbar 

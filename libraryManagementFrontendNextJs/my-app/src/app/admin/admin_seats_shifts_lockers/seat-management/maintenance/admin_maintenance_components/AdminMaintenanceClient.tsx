@@ -66,7 +66,7 @@ export function AdminMaintenanceClient() {
       {showOverdue && (
         <div className="flex items-center gap-3 p-4 bg-warning/10 border border-warning/20 rounded-xl text-warning">
           <AlertTriangle size={18} />
-          <span className="text-sm">Last maintenance was <strong>{daysSince} days ago</strong> â€” attention recommended.</span>
+          <span className="text-sm">Last maintenance was <strong>{daysSince} days ago</strong> — attention recommended.</span>
         </div>
       )}
 

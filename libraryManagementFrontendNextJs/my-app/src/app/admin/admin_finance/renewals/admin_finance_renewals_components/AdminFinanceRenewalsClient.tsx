@@ -204,7 +204,7 @@ export function AdminFinanceRenewalsClient() {
                   }}
                 >
                   {ADMIN_FINANCE_MOCK_PLANS.map((p) => (
-                    <option key={p.id} value={String(p.id)}>{p.name} â€” {formatCurrency(p.price)}</option>
+                    <option key={p.id} value={String(p.id)}>{p.name} — {formatCurrency(p.price)}</option>
                   ))}
                 </AdminSearchableDropdown>
               </div>

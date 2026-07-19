@@ -39,7 +39,7 @@ export function SuperadminSystemMaintenanceClient() {
         <SuperadminKpiCard title="Locker Issues" value={lockerIssues} icon={() => <span>ðŸ”’</span>} trend="down" trendLabel="Reported issues" />
       </div>
 
-      {/* Section 1 â€” Seats */}
+      {/* Section 1 — Seats */}
       <SuperadminCard className="mb-6">
         <CardHeader>
           <CardTitle className="flex items-center gap-2"><Wrench size={18} className="text-primary" /> Seats</CardTitle>
@@ -88,7 +88,7 @@ export function SuperadminSystemMaintenanceClient() {
         </CardContent>
       </SuperadminCard>
 
-      {/* Section 2 â€” Assets */}
+      {/* Section 2 — Assets */}
       <SuperadminCard className="mb-6">
         <CardHeader>
           <CardTitle className="flex items-center gap-2"><Package size={18} className="text-primary" /> Assets</CardTitle>
@@ -140,7 +140,7 @@ export function SuperadminSystemMaintenanceClient() {
         </CardContent>
       </SuperadminCard>
 
-      {/* Section 3 â€” Lockers */}
+      {/* Section 3 — Lockers */}
       <SuperadminCard>
         <CardHeader>
           <CardTitle className="flex items-center gap-2"><Lock size={18} className="text-primary" /> Lockers</CardTitle>

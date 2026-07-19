@@ -3,7 +3,7 @@ export const AUTH_ROLES = [
   {
     id: "superadmin",
     label: "Super Admin",
-    description: "First-time setup â€” configure library, shifts & plans",
+    description: "First-time setup — configure library, shifts & plans",
     icon: "ðŸ‘‘",
     redirectTo: "/superadmin/superadmin_dashboard",
     setupComplete: true
@@ -11,7 +11,7 @@ export const AUTH_ROLES = [
   {
     id: "admin",
     label: "Admin",
-    description: "Branch management â€” students, fees, reports",
+    description: "Branch management — students, fees, reports",
     icon: "ðŸ›¡ï¸",
     redirectTo: "/admin/admin_dashboard",
     setupComplete: true
@@ -19,7 +19,7 @@ export const AUTH_ROLES = [
   {
     id: "manager",
     label: "Manager",
-    description: "Daily ops â€” admissions, seat matrix, renewals",
+    description: "Daily ops — admissions, seat matrix, renewals",
     icon: "ðŸ“‹",
     redirectTo: "/manager/manager_seats_shifts_lockers/seat-matrix",
     setupComplete: true

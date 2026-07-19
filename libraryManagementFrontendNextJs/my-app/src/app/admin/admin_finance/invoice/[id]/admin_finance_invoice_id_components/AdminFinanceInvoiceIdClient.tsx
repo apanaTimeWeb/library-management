@@ -155,7 +155,7 @@ export function AdminFinanceInvoiceClient() {
                           {inv.paymentMode}
                         </Badge>
                       ) : (
-                        <span className="text-muted-foreground opacity-50">â€”</span>
+                        <span className="text-muted-foreground opacity-50">—</span>
                       )}
                     </td>
                     <td className="px-5 py-4">

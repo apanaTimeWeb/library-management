@@ -106,7 +106,7 @@ export function AdminShiftMigrationClient() {
                       }}
                     >
                       <p className="font-bold text-primary text-base">{s.name}</p>
-                      <p className="text-xs font-medium text-muted-foreground mt-1">{s.smartId} <span className="mx-2">â€¢</span> {s.currentShift}</p>
+                      <p className="text-xs font-medium text-muted-foreground mt-1">{s.smartId} <span className="mx-2">•</span> {s.currentShift}</p>
                     </button>
                   ))}
                 </div>
@@ -114,12 +114,12 @@ export function AdminShiftMigrationClient() {
               
               {selectedStudent && (
                 <div className="bg-primary/5 border border-primary/20 rounded-md p-5 flex flex-col gap-2">
-                  <p className="text-xs font-bold text-primary uppercase tracking-wider">Current Details â€” {selectedStudent.name}</p>
+                  <p className="text-xs font-bold text-primary uppercase tracking-wider">Current Details — {selectedStudent.name}</p>
                   <p className="text-sm font-medium text-primary leading-relaxed">
-                    Shift: <strong>{selectedStudent.currentShift}</strong> <span className="mx-2 text-muted-foreground">â€¢</span> 
-                    Seat: <strong>{selectedStudent.currentSeat}</strong> <span className="mx-2 text-muted-foreground">â€¢</span> 
-                    Valid Till: <strong>{selectedStudent.validTill}</strong> <span className="mx-2 text-muted-foreground">â€¢</span> 
-                    Plan: <strong>{selectedStudent.plan}</strong> <span className="mx-2 text-muted-foreground">â€¢</span> 
+                    Shift: <strong>{selectedStudent.currentShift}</strong> <span className="mx-2 text-muted-foreground">•</span> 
+                    Seat: <strong>{selectedStudent.currentSeat}</strong> <span className="mx-2 text-muted-foreground">•</span> 
+                    Valid Till: <strong>{selectedStudent.validTill}</strong> <span className="mx-2 text-muted-foreground">•</span> 
+                    Plan: <strong>{selectedStudent.plan}</strong> <span className="mx-2 text-muted-foreground">•</span> 
                     Days Left: <strong className="text-primary">{daysLeft}</strong>
                   </p>
                 </div>
@@ -238,7 +238,7 @@ export function AdminShiftMigrationClient() {
                 <div className={`p-4 rounded-md border ${isPaying ? 'bg-danger/5 border-danger/20 text-danger' : adjustment < 0 ? 'bg-info/5 border-info/20 text-info' : 'bg-success/5 border-success/20 text-success'}`}>
                   <p className="text-sm font-bold flex items-center gap-2">
                     {isPaying
-                      ? 'ðŸ”´ Student pays more â€” collect ₹' + adjustment + ' before confirming.'
+                      ? 'ðŸ”´ Student pays more — collect ₹' + adjustment + ' before confirming.'
                       : adjustment < 0
                         ? 'ðŸ”µ Refund ₹' + Math.abs(adjustment) + ' to student.'
                         : 'âœ… No fee adjustment needed.'}
