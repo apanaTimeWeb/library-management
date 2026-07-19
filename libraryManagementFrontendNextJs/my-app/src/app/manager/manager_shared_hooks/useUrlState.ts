@@ -1,4 +1,5 @@
-﻿'use client';
+'use client';
+﻿
 // RESPONSIBILITY: Renders or handles logic for useUrlState.ts.
 import { useRouter, useSearchParams, usePathname } from 'next/navigation';
 import { useCallback } from 'react';

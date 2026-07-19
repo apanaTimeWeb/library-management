@@ -1,4 +1,3 @@
-
 'use client';
 // RESPONSIBILITY: Renders the ManagerStudentsExitClient.tsx component.
 import { useState, useEffect } from 'react';

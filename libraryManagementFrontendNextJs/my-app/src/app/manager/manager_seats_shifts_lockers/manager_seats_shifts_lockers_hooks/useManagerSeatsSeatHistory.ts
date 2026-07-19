@@ -2,7 +2,7 @@
 import { useUrlState } from '@/app/manager/manager_shared_hooks/useUrlState';
 import { useState, useEffect } from 'react';
 import { useSeatsStore } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_store/manager_seats_shifts_lockers_store';
-import { SeatHistoryEntry } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_types';
+import { SeatHistoryEntry } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_types/ManagerSeatsTypes';
 
 // DATA FLOW: Hook -> useManagerSeatsSeatHistory -> Consuming UI Component
 export function useManagerSeatsSeatHistory() {

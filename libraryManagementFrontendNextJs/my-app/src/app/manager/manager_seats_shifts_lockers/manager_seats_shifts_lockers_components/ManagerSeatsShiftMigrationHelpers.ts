@@ -1,4 +1,5 @@
-﻿'use client';
+'use client';
+﻿
 // RESPONSIBILITY: Renders or handles logic for ManagerSeatsShiftMigrationHelpers.ts.
 export const SHIFTS = [
   { name: 'Morning',   seats: 4, rate: 33 },

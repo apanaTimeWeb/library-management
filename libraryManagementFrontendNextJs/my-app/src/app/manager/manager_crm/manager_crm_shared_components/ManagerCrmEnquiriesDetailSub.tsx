@@ -1,4 +1,5 @@
-﻿'use client';
+'use client';
+﻿
 // RESPONSIBILITY: Renders the ManagerCrmEnquiriesDetailSub.tsx component/page.
 export function timelineDotClass(by: string): string {
   if (by === 'System') return 'crm-timeline-dot--system';

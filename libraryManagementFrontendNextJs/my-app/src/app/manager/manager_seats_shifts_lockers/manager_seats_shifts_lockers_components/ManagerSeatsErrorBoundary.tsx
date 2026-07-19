@@ -1,5 +1,4 @@
-﻿'use client';
-
+'use client';
 import { Component, ErrorInfo, ReactNode } from 'react';
 import { Allocation, ActivityItem, Locker, SeatHistoryEntry, LogEntry, Seat, ManagerSeatsSeatMatrixModalProps, ShiftData, Shift, Student } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_types/ManagerSeatsTypes';
 import { ACTIVITY_DATA, INITIAL_LOCKERS, INITIAL_SEATS, SHIFTS_DATA, INITIAL_SHIFTS, STUDENTS_DATA } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_constants/ManagerSeatsConstants';
@@ -11,14 +10,17 @@ import { logger } from '@/lib/logger';
 
 // State centralized.
 
-export class ManagerSeatsErrorBoundary extends Component<any, any> {
-    // @ts-ignore
-  public state: State = {
+interface ErrorBoundaryState {
+  hasError: boolean;
+  error?: Error | null;
+}
+
+export class ManagerSeatsErrorBoundary extends Component<{children: React.ReactNode}, ErrorBoundaryState> {
+  public state: ErrorBoundaryState = {
     hasError: false
   };
 
-    // @ts-ignore
-  public static getDerivedStateFromError(error: Error): State {
+  public static getDerivedStateFromError(error: Error): ErrorBoundaryState {
     return { hasError: true, error };
   }
 
@@ -34,7 +36,7 @@ export class ManagerSeatsErrorBoundary extends Component<any, any> {
           <p className="text-text-secondary mb-4">{this.state.error?.message || 'An unexpected error occurred in the seats module.'}</p>
           <button
             className="bg-primary text-white rounded-lg px-5 py-2.5 text-sm font-medium hover:bg-primary-hover transition-colors inline-flex items-center gap-2"
-            onClick={() => this.setState({ hasError: false, error: undefined })}
+            onClick={() => this.setState({ hasError: false, error: null })}
           >
             Retry
           </button>

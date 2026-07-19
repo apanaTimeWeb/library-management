@@ -1,3 +1,4 @@
+'use client';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
@@ -10,7 +11,6 @@ const complaintSchema = z.object({
 });
 type ComplaintFormData = z.infer<typeof complaintSchema>;
 
-'use client';
 // RESPONSIBILITY: Renders the Complaints UI and handles status filtering and resolution.
 import { useState } from 'react';
 import { TablePagination } from '@/components/ui/table-pagination';

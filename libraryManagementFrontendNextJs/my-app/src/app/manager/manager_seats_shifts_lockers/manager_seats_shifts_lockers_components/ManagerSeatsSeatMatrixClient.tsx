@@ -1,8 +1,7 @@
-﻿'use client';
-
+'use client';
 import { CalendarDays } from 'lucide-react';
 import { useManagerSeatsSeatMatrix } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_hooks/useManagerSeatsSeatMatrix';
-import { SHIFT_TABS, LEGEND_ITEMS, SEAT_MATRIX_STATUS_STYLES } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_constants';
+import { SHIFT_TABS, LEGEND_ITEMS, SEAT_MATRIX_STATUS_STYLES } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_constants/ManagerSeatsConstants';
 import { ManagerSeatsSeatMatrixModal } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_components/ManagerSeatsSeatMatrixModal';
 
 // RESPONSIBILITY: Main Client view for Seat Matrix. Glues data hook to UI.
@@ -47,7 +46,7 @@ export function ManagerSeatsSeatMatrixClient() {
       <div className="flex flex-wrap gap-6 mb-6 p-4 bg-card border border-border rounded-lg shadow-sm">
         {LEGEND_ITEMS.map(({ cls, label }) => (
           <div key={label} className="flex items-center gap-2">
-            <span className={`w-3 h-3 rounded-full ${cls === 'ss-legend-dot--success' ? 'bg-success' : cls === 'ss-legend-dot--danger' ? 'bg-danger' : cls === 'ss-legend-dot--warning' ? 'bg-warning' : 'bg-text-secondary'}`} />
+            <span className={`w-3 h-3 rounded-full ${cls === 'w-2.5 h-2.5 rounded-full bg-success shadow-[0_0_8px_rgba(var(--success),0.5)]' ? 'bg-success' : cls === 'w-2.5 h-2.5 rounded-full bg-danger shadow-[0_0_8px_rgba(var(--danger),0.5)]' ? 'bg-danger' : cls === 'w-2.5 h-2.5 rounded-full bg-warning shadow-[0_0_8px_rgba(var(--warning),0.5)]' ? 'bg-warning' : 'bg-text-secondary'}`} />
             <span className="text-sm font-medium text-text-secondary">{label}</span>
           </div>
         ))}
@@ -73,7 +72,7 @@ export function ManagerSeatsSeatMatrixClient() {
                 className={`h-12 rounded-lg text-sm font-semibold flex items-center justify-center transition-transform hover:scale-105 active:scale-95 shadow-sm ${
                   SEAT_MATRIX_STATUS_STYLES[seat.status] || SEAT_MATRIX_STATUS_STYLES['maintenance']
                 }`}
-                onClick={() => setSelectedSeat(seat as any)}
+                onClick={() => setSelectedSeat(seat)}
                 title={
                   seat.student
                     ? `${seat.student} · ${seat.shift} · Expires ${seat.expiry}`
@@ -87,7 +86,6 @@ export function ManagerSeatsSeatMatrixClient() {
         )}
       </div>
 
-    // @ts-ignore
       <ManagerSeatsSeatMatrixModal isOpen={!!selectedSeat} selectedSeat={selectedSeat || undefined} onClose={() => setSelectedSeat(null)} />
     </div>
   );

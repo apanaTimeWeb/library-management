@@ -2,7 +2,7 @@
 import { useUrlState } from '@/app/manager/manager_shared_hooks/useUrlState';
 import { useState, useEffect, useMemo } from 'react';
 import { useSeatsStore } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_store/manager_seats_shifts_lockers_store';
-import type { SeatData } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_types';
+import type { SeatData } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_types/ManagerSeatsTypes';
 
 /**
  * Custom hook to fetch and filter seat matrix data.

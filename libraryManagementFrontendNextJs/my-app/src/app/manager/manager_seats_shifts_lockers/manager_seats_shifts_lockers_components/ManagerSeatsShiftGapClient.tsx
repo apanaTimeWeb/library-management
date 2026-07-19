@@ -3,7 +3,7 @@ import { useUrlState } from '@/app/manager/manager_shared_hooks/useUrlState';
 
 // RESPONSIBILITY: Renders the ManagerSeatsShiftGapClient.tsx component UI.
 import { useState } from 'react';
-import { Allocation, ActivityItem, Locker, SeatHistoryEntry, LogEntry, Seat, ManagerSeatsSeatMatrixModalProps, ShiftData, Shift, Student, BookedBlock, GapBlock } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_types';
+import { Allocation, ActivityItem, Locker, SeatHistoryEntry, LogEntry, Seat, ManagerSeatsSeatMatrixModalProps, ShiftData, Shift, Student, BookedBlock, GapBlock } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_types/ManagerSeatsTypes';
 import { ACTIVITY_DATA, INITIAL_LOCKERS, INITIAL_SEATS, SHIFTS_DATA, INITIAL_SHIFTS, STUDENTS_DATA } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_constants/ManagerSeatsConstants';
 import { Zap } from 'lucide-react';
 import toast from 'react-hot-toast';
@@ -31,16 +31,16 @@ export function ManagerSeatsShiftGapClient() {
 
   return (
     <>
-      <div className="ss-page">
-        <div className="ss-page-header">
+      <div className="p-6 md:p-8 space-y-6 max-w-7xl mx-auto w-full">
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
           <div>
-            <h1 className="ss-page-title">Shift Gap Analyzer</h1>
-            <p className="ss-page-subtitle">Identify revenue-loss gaps and fill empty time slots</p>
+            <h1 className="text-2xl font-bold text-text-primary">Shift Gap Analyzer</h1>
+            <p className="text-text-secondary mt-1 text-sm">Identify revenue-loss gaps and fill empty time slots</p>
           </div>
         </div>
 
-        <div className="ss-filter-bar">
-          <div className="ss-filter-bar__select-wrap">
+        <div className="flex flex-col md:flex-row items-center gap-4 mb-6 p-1 rounded-xl bg-bg-elevated inline-flex w-fit">
+          <div className="w-full md:w-64 relative">
             <ManagerSearchableDropdown
               value={shiftFilter}
               onChange={setShiftFilter}
@@ -50,7 +50,7 @@ export function ManagerSeatsShiftGapClient() {
               ]}
             />
           </div>
-          <div className="ss-filter-bar__select-wrap">
+          <div className="w-full md:w-64 relative">
             <ManagerSearchableDropdown
               value={period}
               onChange={setPeriod}
@@ -62,23 +62,23 @@ export function ManagerSeatsShiftGapClient() {
         {visible.map((shift: ShiftData) => {
           const utilPct = Math.round(((shift.occupied || 0) / (shift.capacity || 1)) * 100);
           return (
-            <div key={shift.id} className="ss-gap-card">
-              <div className="ss-gap-card__header">
+            <div key={shift.id} className="bg-card border border-border rounded-xl overflow-hidden flex flex-col hover:border-primary/50 transition-colors">
+              <div className="p-5 flex justify-between items-start border-b border-border bg-bg-elevated/30">
                 <div>
-                  <h2 className="ss-gap-card__title">{shift.name} Shift</h2>
-                  <p className="ss-gap-card__meta">{shift.occupied} / {shift.capacity} seats occupied</p>
+                  <h2 className="text-lg font-semibold text-text-primary">{shift.name} Shift</h2>
+                  <p className="text-text-secondary text-sm">{shift.occupied} / {shift.capacity} seats occupied</p>
                 </div>
-                <div className="ss-kpi-card ss-gap-kpi-mini">
-                  <span className="ss-kpi-card__label">Utilization</span>
-                  <span className="ss-gap-card__util">{utilPct}%</span>
-                  <div className="ss-progress-track">
-                    <div className="ss-progress-fill w-full" style={{ width: `${utilPct}%` }} />
+                <div className="bg-bg-elevated p-4 rounded-lg border border-border p-3 flex items-center justify-between border-none bg-bg-base/50 mt-4">
+                  <span className="text-xs text-text-secondary font-medium uppercase">Utilization</span>
+                  <span className="text-sm font-bold text-text-primary ml-2">{utilPct}%</span>
+                  <div className="h-1.5 w-24 bg-border rounded-full ml-auto">
+                    <div className="h-full bg-primary rounded-full transition-all w-full" style={{ width: `${utilPct}%` }} />
                   </div>
                 </div>
               </div>
 
-              <div className="ss-gap-card__body">
-                <div className="ss-timebar">
+              <div className="p-5">
+                <div className="relative h-12 bg-bg-elevated rounded-lg border border-border overflow-hidden">
                   {shift.booked.map((b: BookedBlock, i: number) => (
                     <div
                       className="absolute top-0 h-full bg-success/20 border-x border-success/40 w-full"
@@ -99,27 +99,27 @@ export function ManagerSeatsShiftGapClient() {
                   ))}
                 </div>
 
-                <div className="ss-timebar-axis">
-                  <span className="ss-text-caption">{fmtH(DAY_START_H)}</span>
-                  <span className="ss-text-caption">{fmtH(Math.round((DAY_START_H + DAY_END_H) / 2))}</span>
-                  <span className="ss-text-caption">{fmtH(DAY_END_H)}</span>
+                <div className="flex justify-between mt-2 px-1">
+                  <span className="text-xs text-text-secondary font-medium tracking-wide uppercase">{fmtH(DAY_START_H)}</span>
+                  <span className="text-xs text-text-secondary font-medium tracking-wide uppercase">{fmtH(Math.round((DAY_START_H + DAY_END_H) / 2))}</span>
+                  <span className="text-xs text-text-secondary font-medium tracking-wide uppercase">{fmtH(DAY_END_H)}</span>
                 </div>
 
                 {shift.gaps.length === 0 ? (
-                  <p className="ss-text-secondary ss-text-caption">No gaps detected — fully utilized.</p>
+                  <p className="text-text-secondary text-xs text-text-secondary font-medium tracking-wide uppercase">No gaps detected — fully utilized.</p>
                 ) : (
-                  <div className="ss-gap-list">
+                  <div className="space-y-3 mt-6">
                     {shift.gaps.map((g: GapBlock, i: number) => (
-                      <div key={i} className="ss-gap-row">
-                        <div className="ss-gap-row__left">
-                          <span className="ss-badge ss-badge--warning">🕳️ Gap</span>
+                      <div key={i} className="p-4 rounded-lg border border-border bg-bg-elevated flex justify-between items-center hover:border-warning/50 transition-colors">
+                        <div className="flex items-start gap-3">
+                          <span className="px-2.5 py-1 text-xs font-medium rounded-full inline-flex items-center gap-1.5 whitespace-nowrap w-fit bg-warning/15 text-warning border border-warning/20">🕳️ Gap</span>
                           <div>
-                            <p className="ss-gap-row__time">{fmtH(g.startH)} – {fmtH(g.endH)} · {g.seats} seats free</p>
-                            <p className="ss-gap-row__loss">Est. revenue loss: ₹{g.revLoss}/day</p>
+                            <p className="text-sm font-semibold text-text-primary">{fmtH(g.startH)} – {fmtH(g.endH)} · {g.seats} seats free</p>
+                            <p className="text-xs text-danger mt-1">Est. revenue loss: ₹{g.revLoss}/day</p>
                           </div>
                         </div>
                         <button
-                          className="ss-btn-primary ss-btn--sm"
+                          className="flex items-center justify-center gap-1.5 px-3 py-1.5 bg-primary text-white rounded-lg hover:bg-primary-hover transition-colors font-medium text-xs"
                           onClick={() => toast.success(`Opening new admission pre-filled with ${shift.name} ${fmtH(g.startH)}–${fmtH(g.endH)} slot`)}
                         >
                           <Zap size={13} />Quick Fill
