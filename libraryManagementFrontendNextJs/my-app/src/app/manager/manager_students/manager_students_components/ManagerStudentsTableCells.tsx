@@ -5,7 +5,7 @@ import { MANAGER_ROUTES } from '@/app/manager/manager_url_config';
 import type { Student } from '@/app/manager/manager_students/manager_students_types';
 import { MANAGER_BRANCH } from '@/app/manager/manager_students/manager_students_constants';
 
-// RESPONSIBILITY: Micro-components for AG Grid cells
+// RESPONSIBILITY: Micro-components for table cells
 
 export function NameCell({ data }: { data: Student }) {
   const initials = data.name.split(' ').map((n: string) => n[0]).join('').slice(0, 2).toUpperCase();
