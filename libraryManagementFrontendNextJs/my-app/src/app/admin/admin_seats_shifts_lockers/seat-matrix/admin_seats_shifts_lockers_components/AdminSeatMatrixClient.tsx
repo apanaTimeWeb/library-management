@@ -117,7 +117,7 @@ export function AdminSeatMatrixClient() {
                   onClick={() => setSelectedSeat(seat)}
                   title={
                     seat.student
-                      ? `${seat.student} Â· ${seat.shift} Â· Expires ${seat.expiry}`
+                      ? `${seat.student} · ${seat.shift} · Expires ${seat.expiry}`
                       : seat.status === 'maintenance' ? 'Under Maintenance' : 'Available'
                   }
                 >

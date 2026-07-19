@@ -74,8 +74,8 @@ export default function AdminReusableSeatMatrixGrid({ seats, shifts }: Props) {
           <div>
             <CardTitle className="text-base">Seat Matrix</CardTitle>
             <CardDescription className="text-xs mt-1">
-              {counts.occupied + counts.expiring} occupied Â· {counts.free} free
-              Â· {counts.expiring} expiring Â· {counts.maintenance} maintenance
+              {counts.occupied + counts.expiring} occupied · {counts.free} free
+              · {counts.expiring} expiring · {counts.maintenance} maintenance
             </CardDescription>
           </div>
 

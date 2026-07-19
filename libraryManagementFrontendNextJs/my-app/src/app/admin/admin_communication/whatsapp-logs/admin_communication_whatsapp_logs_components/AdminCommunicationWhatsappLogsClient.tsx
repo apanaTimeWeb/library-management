@@ -63,7 +63,7 @@ export function AdminCommunicationWhatsappLogsClient() {
           <p className="text-xs font-semibold text-muted-foreground flex items-center gap-1 uppercase tracking-wider mb-1">
             Communication <ChevronRight size={12} /> WhatsApp Logs
           </p>
-          <h1 className="text-text-primary text-xl font-bold tracking-tight">ðŸ“± WhatsApp Logs</h1>
+          <h1 className="text-text-primary text-xl font-bold tracking-tight">📱 WhatsApp Logs</h1>
           <p className="text-sm text-muted-foreground mt-1">All outbound WhatsApp messages sent from the system.</p>
         </div>
       </div>
@@ -109,7 +109,7 @@ export function AdminCommunicationWhatsappLogsClient() {
       <Card className="overflow-x-auto shadow-sm border-border">
         {filtered.length === 0 ? (
           <div className="flex flex-col items-center justify-center p-12 text-center text-muted-foreground">
-            <div className="text-4xl mb-4">ðŸ“±</div>
+            <div className="text-4xl mb-4">📱</div>
             <p className="font-medium text-foreground">No WhatsApp messages found.</p>
           </div>
         ) : (
@@ -184,7 +184,7 @@ export function AdminCommunicationWhatsappLogsClient() {
       <Dialog open={!!viewLog} onOpenChange={() => setViewLog(null)}>
         <DialogContent className="sm:max-w-lg">
           <DialogHeader>
-            <DialogTitle>ðŸ“± Message Details</DialogTitle>
+            <DialogTitle>📱 Message Details</DialogTitle>
           </DialogHeader>
           {viewLog && (
             <div className="space-y-4 py-2">

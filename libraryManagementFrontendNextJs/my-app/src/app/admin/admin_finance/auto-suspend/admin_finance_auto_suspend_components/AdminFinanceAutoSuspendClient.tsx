@@ -151,7 +151,7 @@ export function AdminFinanceAutoSuspendClient() {
                 <tr>
                   <td colSpan={7} className="px-5 py-20 text-center">
                     <div className="flex flex-col items-center justify-center gap-3">
-                      <div className="text-4xl opacity-50">ðŸ”“</div>
+                      <div className="text-4xl opacity-50">🔓</div>
                       <p className="text-lg font-bold">No students currently suspended.</p>
                       <p className="text-sm text-muted-foreground">All students are in good standing.</p>
                     </div>
@@ -181,9 +181,9 @@ export function AdminFinanceAutoSuspendClient() {
                           variant="secondary" 
                           size="sm" 
                           className="bg-muted text-primary hover:bg-muted/80 border-none font-bold text-xs gap-1"
-                          onClick={() => toast.success(`ðŸ“± WhatsApp reminder sent to ${s.studentName}.`)}
+                          onClick={() => toast.success(`📱 WhatsApp reminder sent to ${s.studentName}.`)}
                         >
-                          <Bell size={13} /> ðŸ“± Send Reminder
+                          <Bell size={13} /> 📱 Send Reminder
                         </Button>
                         <Button 
                           variant="secondary" 

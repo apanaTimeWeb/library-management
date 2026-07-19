@@ -35,10 +35,10 @@ export function AdminSystemAutoScaleClient() {
 
       {/* Overview KPI Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 mb-8">
-        <KpiCard title="Total Seats" value={120} icon="ðŸª‘" subtitle="Across all zones" />
-        <KpiCard title="Total Lockers" value={60} icon="ðŸ”’" subtitle="All branches" />
-        <KpiCard title="Avg Occupancy (30d)" value="68%" icon="ðŸ“ˆ" trend="up" trendLabel="+4% vs last month" />
-        <KpiCard title="Peak Day" value="Apr 8" icon="ðŸ†" subtitle="94% occupancy" />
+        <KpiCard title="Total Seats" value={120} icon="🪑" subtitle="Across all zones" />
+        <KpiCard title="Total Lockers" value={60} icon="🔒" subtitle="All branches" />
+        <KpiCard title="Avg Occupancy (30d)" value="68%" icon="📈" trend="up" trendLabel="+4% vs last month" />
+        <KpiCard title="Peak Day" value="Apr 8" icon="🏆" subtitle="94% occupancy" />
       </div>
 
       {/* Threshold Config */}
@@ -61,7 +61,7 @@ export function AdminSystemAutoScaleClient() {
                   max={99}
                   className="w-28"
                 />
-                <span className="text-sm text-text-secondary">e.g., "90" â†’ alert at 90% full</span>
+                <span className="text-sm text-text-secondary">e.g., "90" → alert at 90% full</span>
               </div>
             </div>
             <div className="space-y-2">
@@ -76,7 +76,7 @@ export function AdminSystemAutoScaleClient() {
                   max={99}
                   className="w-28"
                 />
-                <span className="text-sm text-text-secondary">e.g., "85" â†’ alert at 85% full</span>
+                <span className="text-sm text-text-secondary">e.g., "85" → alert at 85% full</span>
               </div>
             </div>
           </div>
@@ -89,7 +89,7 @@ export function AdminSystemAutoScaleClient() {
           </div>
         </CardContent>
         <CardFooter>
-          <Button id="save-autoscale-thresholds-btn" variant="primary">ðŸ’¾ Save Thresholds</Button>
+          <Button id="save-autoscale-thresholds-btn" variant="primary">💾 Save Thresholds</Button>
         </CardFooter>
       </Card>
 

@@ -68,7 +68,7 @@ export function AdminCommunicationWhatsappTemplatesClient() {
           <p className="text-xs font-semibold text-muted-foreground flex items-center gap-1 uppercase tracking-wider mb-1">
             Communication <ChevronRight size={12} /> WhatsApp Templates
           </p>
-          <h1 className="text-text-primary text-xl font-bold tracking-tight">ðŸ“± WhatsApp Templates</h1>
+          <h1 className="text-text-primary text-xl font-bold tracking-tight">📱 WhatsApp Templates</h1>
           <p className="text-sm text-muted-foreground mt-1">Customize automated message templates sent to students.</p>
         </div>
       </div>
@@ -124,7 +124,7 @@ export function AdminCommunicationWhatsappTemplatesClient() {
             </div>
 
             <div className="p-4 bg-info/10 text-info border border-info/20 rounded-lg text-sm font-medium">
-              ðŸ’¡ Use variables to personalize messages. E.g.: <em>&quot;Hi {'{name}'}, your fee of ₹{'{amount}'} is due on {'{duedate}'}.&quot;</em>
+              💡 Use variables to personalize messages. E.g.: <em>&quot;Hi {'{name}'}, your fee of ₹{'{amount}'} is due on {'{duedate}'}.&quot;</em>
             </div>
 
             <div className="space-y-2 pt-4 border-t border-border">
@@ -150,7 +150,7 @@ export function AdminCommunicationWhatsappTemplatesClient() {
       <Dialog open={showTest} onOpenChange={setShowTest}>
         <DialogContent className="sm:max-w-md">
           <DialogHeader>
-            <DialogTitle>ðŸ“± Send Test Message</DialogTitle>
+            <DialogTitle>📱 Send Test Message</DialogTitle>
             <DialogDescription>Enter a phone number to send a test version of this template.</DialogDescription>
           </DialogHeader>
           <div className="space-y-4 py-4">

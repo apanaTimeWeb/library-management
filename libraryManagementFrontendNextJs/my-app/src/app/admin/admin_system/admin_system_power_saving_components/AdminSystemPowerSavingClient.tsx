@@ -69,7 +69,7 @@ export function AdminSystemPowerSavingClient() {
           </div>
         </CardContent>
         <CardFooter>
-          <Button id="save-power-config-btn" variant="primary">ðŸ’¾ Save Configuration</Button>
+          <Button id="save-power-config-btn" variant="primary">💾 Save Configuration</Button>
         </CardFooter>
       </Card>
 
@@ -98,7 +98,7 @@ export function AdminSystemPowerSavingClient() {
                 </div>
                 {isLow && (
                   <div className="mt-3 p-2.5 rounded-lg bg-tertiary/10 border border-tertiary/20 text-xs text-tertiary">
-                    ðŸ’¡ Suggested: Move students to Zone A â†’ Turn off {zone.name} AC
+                    💡 Suggested: Move students to Zone A → Turn off {zone.name} AC
                   </div>
                 )}
               </CardContent>

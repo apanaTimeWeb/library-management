@@ -98,7 +98,7 @@ export function AdminCommunicationComplaintsClient() {
           <p className="text-xs font-semibold text-muted-foreground flex items-center gap-1 uppercase tracking-wider mb-1">
             Communication <ChevronRight size={12} /> Complaints
           </p>
-          <h1 className="text-text-primary text-xl font-bold tracking-tight">ðŸ’¬ Complaints</h1>
+          <h1 className="text-text-primary text-xl font-bold tracking-tight">💬 Complaints</h1>
           <p className="text-sm text-muted-foreground mt-1">Track and resolve student complaints.</p>
         </div>
         <Button onClick={() => setShowAdd(true)} className="gap-2">
@@ -125,7 +125,7 @@ export function AdminCommunicationComplaintsClient() {
       <Card className="overflow-x-auto shadow-sm border-border">
         {filtered.length === 0 ? (
           <div className="flex flex-col items-center justify-center p-12 text-center text-muted-foreground">
-            <span className="text-4xl mb-3">ðŸ˜Š</span>
+            <span className="text-4xl mb-3">😊</span>
             <p className="font-medium text-foreground">No open complaints!</p>
             <p className="text-sm">All issues are resolved.</p>
           </div>

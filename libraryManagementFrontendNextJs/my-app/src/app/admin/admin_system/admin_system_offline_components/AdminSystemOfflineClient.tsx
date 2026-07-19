@@ -26,7 +26,7 @@ export function AdminSystemOfflineClient() {
         <h1 className={`text-3xl font-bold text-center tracking-tight mb-2 transition-colors duration-500 ${
           online ? 'text-success' : 'text-text-primary'
         }`}>
-          {online ? 'Back Online! ðŸŽ‰' : "You're Offline"}
+          {online ? 'Back Online! 🎉' : "You're Offline"}
         </h1>
 
         {/* Subtitle */}
@@ -82,7 +82,7 @@ export function AdminSystemOfflineClient() {
 
         {/* Footer */}
         <p className="mt-10 text-xs text-text-secondary/70 text-center font-medium tracking-wide">
-          Smart Library 360 Â· Works offline with limited functionality
+          Smart Library 360 · Works offline with limited functionality
         </p>
       </div>
     </div>

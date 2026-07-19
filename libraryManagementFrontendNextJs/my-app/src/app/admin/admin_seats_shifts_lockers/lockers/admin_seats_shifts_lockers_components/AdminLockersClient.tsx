@@ -106,7 +106,7 @@ export function AdminLockersClient() {
                 <tr>
                   <td colSpan={5} className="px-5 py-20 text-center">
                     <div className="flex flex-col items-center justify-center gap-3">
-                      <div className="text-4xl opacity-50">ðŸ”’</div>
+                      <div className="text-4xl opacity-50">🔒</div>
                       <p className="text-lg font-bold">No lockers added yet.</p>
                       <Button 
                         onClick={() => { setNewLockerId(''); setAddError(''); setShowAddModal(true); }} 

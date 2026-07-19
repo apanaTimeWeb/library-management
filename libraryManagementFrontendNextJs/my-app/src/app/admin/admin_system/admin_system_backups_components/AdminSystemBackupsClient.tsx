@@ -62,17 +62,17 @@ export function AdminSystemBackupsClient() {
           >
             {creating
               ? <><Loader2 size={16} className="animate-spin mr-1" /> Creating Backup...</>
-              : <><Database size={16} className="mr-1" /> ðŸ“¥ Create Manual Backup</>}
+              : <><Database size={16} className="mr-1" /> 📥 Create Manual Backup</>}
           </Button>
         </div>
       </div>
 
       {/* KPI Cards */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-5 mb-8">
-        <KpiCard title="Total Backups" value={backups.length} icon="ðŸ—„ï¸" subtitle="All time" />
+        <KpiCard title="Total Backups" value={backups.length} icon="🗄️" subtitle="All time" />
         <KpiCard title="Successful" value={successCount} icon="✅" trend="up" trendLabel="Reliable" />
-        <KpiCard title="Failed" value={failedCount} icon="âŒ" trend={failedCount > 0 ? 'down' : 'neutral'} trendLabel={failedCount > 0 ? 'Needs attention' : 'All good'} />
-        <KpiCard title="Last Backup" value={lastSuccess ? 'Today' : 'Never'} icon="ðŸ•" subtitle={lastSuccess?.createdAt ?? '—'} />
+        <KpiCard title="Failed" value={failedCount} icon="❌" trend={failedCount > 0 ? 'down' : 'neutral'} trendLabel={failedCount > 0 ? 'Needs attention' : 'All good'} />
+        <KpiCard title="Last Backup" value={lastSuccess ? 'Today' : 'Never'} icon="🕰️" subtitle={lastSuccess?.createdAt ?? '—'} />
       </div>
 
       {/* Backup Configuration */}
@@ -126,7 +126,7 @@ export function AdminSystemBackupsClient() {
             </div>
           </CardContent>
           <CardFooter>
-            <Button id="save-backup-schedule-btn" variant="primary">ðŸ’¾ Save Schedule</Button>
+            <Button id="save-backup-schedule-btn" variant="primary">💾 Save Schedule</Button>
           </CardFooter>
         </Card>
 
@@ -183,8 +183,8 @@ export function AdminSystemBackupsClient() {
             </div>
           </CardContent>
           <CardFooter>
-            <Button id="save-cloud-config-btn" variant="primary">ðŸ’¾ Save Cloud Config</Button>
-            <Button id="test-cloud-connection-btn" variant="ghost">ðŸ”Œ Test Connection</Button>
+            <Button id="save-cloud-config-btn" variant="primary">💾 Save Cloud Config</Button>
+            <Button id="test-cloud-connection-btn" variant="ghost">🔌 Test Connection</Button>
           </CardFooter>
         </Card>
       </div>
@@ -236,7 +236,7 @@ export function AdminSystemBackupsClient() {
                       </td>
                       <td className="py-3 pr-4">
                         <Badge variant={backup.type === 'auto' ? 'primary' : 'outline'}>
-                          {backup.type === 'auto' ? 'ðŸ”„ Auto' : 'ðŸ‘¤ Manual'}
+                          {backup.type === 'auto' ? '🔄 Auto' : '👤 Manual'}
                         </Badge>
                       </td>
                       <td className="py-3 pr-4 font-mono text-xs text-text-secondary">{backup.size}</td>
@@ -279,7 +279,7 @@ export function AdminSystemBackupsClient() {
                             onClick={() => handleDeleteBackup(backup.id)}
                             className="text-danger hover:bg-danger-bg/20"
                           >
-                            ðŸ—‘ï¸
+                            🗑ï¸
                           </Button>
                         </div>
                       </td>

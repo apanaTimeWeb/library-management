@@ -73,7 +73,7 @@ export function AdminMaintenanceClient() {
       {currentLogs.length === 0 ? (
         <Card className="flex flex-col items-center justify-center py-16 px-4 text-center shadow-none border-border">
           <div className="w-12 h-12 bg-muted rounded-full flex items-center justify-center mb-4">
-            <span className="text-xl">ðŸ”§</span>
+            <span className="text-xl">🔧</span>
           </div>
           <h3 className="text-lg font-semibold text-foreground">No maintenance history for this seat.</h3>
           <p className="text-sm text-muted-foreground mt-2">All maintenance entries will appear here.</p>

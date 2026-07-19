@@ -80,7 +80,7 @@ export function AdminDashboardClient({ initialData }: { initialData: AdminDashbo
 
             <div className="px-4 pb-3">
               <div className="flex items-start gap-2 bg-info-bg border border-info/20 p-3 rounded-md">
-                <span className="text-sm">ðŸ’¡</span>
+                <span className="text-sm">💡</span>
                 <p className="text-xs text-info font-medium leading-relaxed">
                   5 students expire within 7 days. Consider sending renewal reminders via WhatsApp.
                 </p>

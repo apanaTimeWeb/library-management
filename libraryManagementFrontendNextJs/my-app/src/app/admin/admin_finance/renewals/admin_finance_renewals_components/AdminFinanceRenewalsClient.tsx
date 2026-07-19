@@ -58,7 +58,7 @@ export function AdminFinanceRenewalsClient() {
           <p className="text-sm text-muted-foreground mt-1">Subscriptions needing renewal attention.</p>
         </div>
         <Button onClick={handleRemindAll} variant="secondary" className="bg-primary/10 text-primary hover:bg-primary/20 border-none font-bold gap-2">
-          <Send size={16} /> ðŸ“± Remind All
+          <Send size={16} /> 📱 Remind All
         </Button>
       </div>
 

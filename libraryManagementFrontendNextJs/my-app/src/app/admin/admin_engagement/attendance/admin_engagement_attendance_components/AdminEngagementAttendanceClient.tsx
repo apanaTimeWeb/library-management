@@ -59,7 +59,7 @@ export function AdminEngagementAttendanceClient() {
           <p className="text-xs font-semibold text-muted-foreground flex items-center gap-1 uppercase tracking-wider mb-1">
             Engagement <ChevronRight size={12} /> Attendance
           </p>
-          <h1 className="text-text-primary text-xl font-bold tracking-tight">ðŸ“… Daily Attendance</h1>
+          <h1 className="text-text-primary text-xl font-bold tracking-tight">📅 Daily Attendance</h1>
           <p className="text-sm text-muted-foreground mt-1">Mark attendance for all enrolled students by shift.</p>
         </div>
         <Link href={ADMIN_ROUTES.ENGAGEMENT_ABSENTEE_REPORT}>
@@ -122,7 +122,7 @@ export function AdminEngagementAttendanceClient() {
         <div className="divide-y divide-border">
           {filtered.length === 0 ? (
             <div className="flex flex-col items-center justify-center p-12 text-center text-muted-foreground">
-              <div className="text-4xl mb-4">ðŸ“…</div>
+              <div className="text-4xl mb-4">📅</div>
               <p className="font-medium text-foreground mb-1 text-lg">No students in this shift</p>
               <p className="text-sm">Try selecting a different shift or date.</p>
             </div>
@@ -139,7 +139,7 @@ export function AdminEngagementAttendanceClient() {
                   </div>
                   <div>
                     <div className="font-bold text-foreground text-sm">{s.name}</div>
-                    <div className="text-xs text-muted-foreground font-medium mt-0.5">{s.smartId} Â· {s.shift} shift</div>
+                    <div className="text-xs text-muted-foreground font-medium mt-0.5">{s.smartId} · {s.shift} shift</div>
                   </div>
                 </div>
 

@@ -63,7 +63,7 @@ export function AdminSystemSmartIdClient() {
       <Card className="mb-6">
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
-            ðŸ”¢ Current ID Sequence
+            🔢 Current ID Sequence
             {regenerated && <Badge variant="success">✅ Regenerated</Badge>}
           </CardTitle>
           <CardDescription>
@@ -116,7 +116,7 @@ export function AdminSystemSmartIdClient() {
         <CardContent>
           <Dialog>
             <DialogTrigger asChild>
-              <Button id="force-regenerate-btn" variant="destructive">ðŸ”¢ Force Regenerate Sequence</Button>
+              <Button id="force-regenerate-btn" variant="destructive">🔢 Force Regenerate Sequence</Button>
             </DialogTrigger>
             <DialogContent>
               <DialogHeader>

@@ -240,7 +240,7 @@ export function AdminShiftMigrationClient() {
                     {isPaying
                       ? '🔴 Student pays more — collect ₹' + adjustment + ' before confirming.'
                       : adjustment < 0
-                        ? 'ðŸ”µ Refund ₹' + Math.abs(adjustment) + ' to student.'
+                        ? '🔵 Refund ₹' + Math.abs(adjustment) + ' to student.'
                         : '✅ No fee adjustment needed.'}
                   </p>
                 </div>

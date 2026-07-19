@@ -113,7 +113,7 @@ export function AdminFinanceSecurityDepositsClient() {
                 <tr>
                   <td colSpan={9} className="px-5 py-20 text-center">
                     <div className="flex flex-col items-center justify-center gap-3">
-                      <div className="text-4xl opacity-50">ðŸ’¼</div>
+                      <div className="text-4xl opacity-50">💼</div>
                       <p className="text-lg font-bold">No security deposits recorded.</p>
                       <p className="text-sm text-muted-foreground">Try adjusting your filters.</p>
                     </div>
@@ -151,7 +151,7 @@ export function AdminFinanceSecurityDepositsClient() {
                               setRefundAmount(String(d.depositAmount - d.deductionAmount)); 
                             }}
                           >
-                            <Undo2 size={12} /> ðŸ’¸ Process Refund
+                            <Undo2 size={12} /> 💸 Process Refund
                           </Button>
                           <Button 
                             variant="secondary" 
@@ -194,7 +194,7 @@ export function AdminFinanceSecurityDepositsClient() {
           <Card className="w-full max-w-sm shadow-lg border-border bg-card p-6 flex flex-col gap-5" onClick={e => e.stopPropagation()}>
             <div className="flex items-center justify-between">
               <h2 className="text-lg font-bold flex items-center gap-2 text-primary tracking-tight">
-                ðŸ’¸ Process Refund
+                💸 Process Refund
               </h2>
               <Button variant="ghost" size="icon" className="h-8 w-8 rounded-full" onClick={() => setRefundDialog(null)}>
                 <X size={16} />

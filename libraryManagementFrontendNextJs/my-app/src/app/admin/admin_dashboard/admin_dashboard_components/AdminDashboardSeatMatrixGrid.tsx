@@ -48,8 +48,8 @@ export function AdminDashboardSeatMatrixGrid({ seats, shifts, state }: Props) {
           <div>
             <CardTitle className="text-base text-text-primary">Seat Matrix</CardTitle>
             <CardDescription className="text-xs mt-1 text-text-secondary">
-              {counts.occupied + counts.expiring} occupied Â· {counts.free} free
-              Â· {counts.expiring} expiring Â· {counts.maintenance} maintenance
+              {counts.occupied + counts.expiring} occupied · {counts.free} free
+              · {counts.expiring} expiring · {counts.maintenance} maintenance
             </CardDescription>
           </div>
 

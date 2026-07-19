@@ -43,7 +43,7 @@ export function AdminShiftManagementClient() {
 
       {shifts.length === 0 ? (
         <Card className="flex flex-col items-center justify-center py-20 gap-3 border-dashed bg-muted/5 shadow-none">
-          <div className="text-4xl mb-2 opacity-50">ðŸ•</div>
+          <div className="text-4xl mb-2 opacity-50">🕒</div>
           <p className="text-lg font-bold">No shifts defined.</p>
           <p className="text-sm text-muted-foreground">Use Setup Wizard or add manually.</p>
           <Button onClick={openAdd} variant="default" className="mt-4 gap-2">
@@ -63,7 +63,7 @@ export function AdminShiftManagementClient() {
 
               <div className="bg-muted/30 rounded-md p-3 flex justify-center items-center mb-6 border border-border">
                 <p className={`font-mono font-bold tracking-tight ${!shift.active ? 'text-muted-foreground' : 'text-primary'}`}>
-                  {shift.startTime} <span className="text-muted-foreground mx-1">â†’</span> {shift.endTime}
+                  {shift.startTime} <span className="text-muted-foreground mx-1">→</span> {shift.endTime}
                 </p>
               </div>
 

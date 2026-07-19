@@ -73,7 +73,7 @@ export function AdminSystemBulkImportClient() {
                   isActive ? 'border-primary text-primary bg-primary/10' :
                   'border-border text-text-secondary'
                 }`}>
-                  {isDone ? 'âœ“' : s.num}
+                  {isDone ? '✓' : s.num}
                 </div>
                 <span className={`text-xs font-medium whitespace-nowrap ${isActive ? 'text-primary' : 'text-text-secondary'}`}>{s.label}</span>
               </div>
@@ -109,7 +109,7 @@ export function AdminSystemBulkImportClient() {
                 <div className={`h-20 w-20 rounded-2xl flex items-center justify-center text-4xl transition-all ${
                   isDragging ? 'bg-primary/20' : 'bg-input'
                 }`}>
-                  {isDragging ? 'ðŸ“‚' : 'ðŸ“'}
+                  {isDragging ? '📂' : '📄'}
                 </div>
                 <div className="text-center">
                   <p className="text-base font-semibold text-text-primary">
@@ -359,7 +359,7 @@ export function AdminSystemBulkImportClient() {
         <Card>
           <CardContent className="py-16 flex flex-col items-center gap-6 text-center">
             <div className="h-24 w-24 rounded-full bg-success/15 flex items-center justify-center text-5xl">
-              ðŸŽ‰
+              🎉
             </div>
             <div>
               <h2 className="text-text-primary text-xl font-bold text-text-primary mb-2">Import Complete!</h2>
@@ -374,7 +374,7 @@ export function AdminSystemBulkImportClient() {
             </div>
             <div className="flex gap-3">
               <Button id="view-students-btn" variant="primary">
-                ðŸ‘¥ View All Students
+                👥 View All Students
               </Button>
               <Button id="import-again-btn" variant="ghost" onClick={handleReset}>
                 <Upload size={16} className="mr-1" /> Import Another File

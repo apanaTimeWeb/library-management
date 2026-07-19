@@ -79,7 +79,7 @@ export function AdminEngagementHolidayCalendarClient() {
           <p className="text-xs font-semibold text-muted-foreground flex items-center gap-1 uppercase tracking-wider mb-1">
             Engagement <ChevronRight size={12} /> Holiday Calendar
           </p>
-          <h1 className="text-text-primary text-xl font-bold tracking-tight">ðŸ“… Holiday Calendar</h1>
+          <h1 className="text-text-primary text-xl font-bold tracking-tight">📅 Holiday Calendar</h1>
           <p className="text-sm text-muted-foreground mt-1">Manage library holidays, closures, and special events.</p>
         </div>
         <Button onClick={()=>setShowAdd(true)} className="gap-2">
@@ -188,7 +188,7 @@ export function AdminEngagementHolidayCalendarClient() {
             <CardContent className="p-0">
               {thisMonthHolidays.length === 0 ? (
                 <div className="p-8 text-center text-muted-foreground text-sm font-medium">
-                  No holidays in {monthLabel} ðŸŽ‰
+                  No holidays in {monthLabel} 🎉
                 </div>
               ) : (
                 <div className="divide-y divide-border">
@@ -243,7 +243,7 @@ export function AdminEngagementHolidayCalendarClient() {
       <Dialog open={showAdd} onOpenChange={setShowAdd}>
         <DialogContent className="sm:max-w-md">
           <DialogHeader>
-            <DialogTitle>ðŸ“… Add Holiday</DialogTitle>
+            <DialogTitle>📅 Add Holiday</DialogTitle>
             <DialogDescription>Mark a library closure or holiday in the calendar.</DialogDescription>
           </DialogHeader>
           <div className="space-y-4 py-4">

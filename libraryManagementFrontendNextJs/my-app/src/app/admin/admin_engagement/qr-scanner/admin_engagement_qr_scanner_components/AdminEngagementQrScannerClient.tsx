@@ -66,7 +66,7 @@ export function AdminEngagementQrScannerClient() {
           <p className="text-xs font-semibold text-muted-foreground flex items-center gap-1 uppercase tracking-wider mb-1">
             Engagement <ChevronRight size={12} /> QR Scanner
           </p>
-          <h1 className="text-text-primary text-xl font-bold tracking-tight">ðŸ“· QR Scanner</h1>
+          <h1 className="text-text-primary text-xl font-bold tracking-tight">📷 QR Scanner</h1>
           <p className="text-sm text-muted-foreground mt-1">Scan student ID cards to instantly mark attendance.</p>
         </div>
       </div>
@@ -179,7 +179,7 @@ export function AdminEngagementQrScannerClient() {
                     ✅ Mark IN
                   </Button>
                   <Button onClick={() => markAttendance('OUT')} variant="destructive" className="flex-1 gap-2 font-bold py-6 text-base shadow-sm">
-                    ðŸ”š Mark OUT
+                    🔚 Mark OUT
                   </Button>
                 </div>
               </CardContent>
@@ -190,7 +190,7 @@ export function AdminEngagementQrScannerClient() {
           <div className="mt-6 text-center">
             {!showManual ? (
               <Button variant="link" onClick={() => setShowManual(true)} className="text-muted-foreground hover:text-foreground">
-                Can't scan? Enter Smart ID manually â†’
+                Can't scan? Enter Smart ID manually →
               </Button>
             ) : (
               <Card className="shadow-sm border-border text-left max-w-sm mx-auto animate-in fade-in zoom-in-95 duration-200">
@@ -213,7 +213,7 @@ export function AdminEngagementQrScannerClient() {
                       ✅ Mark IN
                     </Button>
                     <Button onClick={() => handleManual('OUT')} disabled={!manualId.trim()} variant="destructive" className="flex-1 gap-2">
-                      ðŸ”š Mark OUT
+                      🔚 Mark OUT
                     </Button>
                     <Button onClick={() => setShowManual(false)} variant="ghost" className="w-full mt-2">
                       Cancel

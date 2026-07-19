@@ -69,7 +69,7 @@ export function AdminSystemWhatsappIntegrationClient() {
           testStatus === 'error' ? 'bg-danger-bg/30' :
           'bg-card'
         }`}>
-          {testStatus === 'success' ? '✅' : testStatus === 'error' ? 'âŒ' : 'ðŸ“¡'}
+          {testStatus === 'success' ? '✅' : testStatus === 'error' ? 'âŒ' : '📡'}
         </div>
         <div className="flex-1">
           <div className="flex items-center gap-3">
@@ -85,7 +85,7 @@ export function AdminSystemWhatsappIntegrationClient() {
           </div>
           <p className="text-xs text-text-secondary mt-0.5">
             {testStatus === 'success'
-              ? `Provider: ${activeProvider.label} Â· Test message sent to ${senderPhone}`
+              ? `Provider: ${activeProvider.label} · Test message sent to ${senderPhone}`
               : testStatus === 'error'
               ? 'Check your API key and try again. Ensure the number is registered on WhatsApp Business.'
               : 'Click "Test Connection" to verify your WhatsApp setup.'}
@@ -100,10 +100,10 @@ export function AdminSystemWhatsappIntegrationClient() {
 
       {/* Usage Stats */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-5 mb-8">
-        <KpiCard title="Sent This Month" value={logs.length} icon="ðŸ“¤" subtitle="All messages" />
+        <KpiCard title="Sent This Month" value={logs.length} icon="📤" subtitle="All messages" />
         <KpiCard title="Delivered" value={deliveredCount} icon="✅" trend="up" trendLabel={`${deliveryRate}% rate`} />
         <KpiCard title="Failed" value={failedCount} icon="âŒ" trend={failedCount > 0 ? 'down' : 'neutral'} trendLabel="Failed deliveries" />
-        <KpiCard title="Est. Cost" value="₹18.50" icon="ðŸ’¸" subtitle="~₹0.18 per msg" />
+        <KpiCard title="Est. Cost" value="₹18.50" icon="💸" subtitle="~₹0.18 per msg" />
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
@@ -231,10 +231,10 @@ export function AdminSystemWhatsappIntegrationClient() {
             >
               {testStatus === 'testing'
                 ? <><Loader2 size={16} className="animate-spin mr-1" /> Testing...</>
-                : 'ðŸ”Œ Test Connection'}
+                : '🔌 Test Connection'}
             </Button>
             <Button id="save-whatsapp-config-btn" variant="primary">
-              ðŸ’¾ Save Configuration
+              💾 Save Configuration
             </Button>
           </CardFooter>
         </Card>

@@ -129,7 +129,7 @@ export default function AdminFinanceReceiptClient() {
                 <tr>
                   <td colSpan={7} className="px-5 py-20 text-center">
                     <div className="flex flex-col items-center justify-center gap-3">
-                      <div className="text-4xl opacity-50">ðŸ§¾</div>
+                      <div className="text-4xl opacity-50">🧾</div>
                       <p className="text-lg font-bold">No receipts found.</p>
                       <p className="text-sm text-muted-foreground">Try adjusting your filters.</p>
                     </div>

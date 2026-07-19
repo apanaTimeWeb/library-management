@@ -131,7 +131,7 @@ export function AdminFinanceDashboardClient() {
                     <tr key={p.id} className="hover:bg-muted/10 transition-colors">
                       <td className="px-5 py-4">
                         <div className="font-bold text-sm text-primary">{p.studentName}</div>
-                        <div className="text-xs text-muted-foreground font-medium mt-0.5">{p.studentSmartId} Â· {p.date}</div>
+                        <div className="text-xs text-muted-foreground font-medium mt-0.5">{p.studentSmartId} · {p.date}</div>
                       </td>
                       <td className="px-5 py-4">
                         <Badge variant="secondary" className={`border-none uppercase tracking-wide font-bold ${

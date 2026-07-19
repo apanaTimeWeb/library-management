@@ -62,7 +62,7 @@ export function AdminFinanceCollectFeeClient() {
             <div className="flex items-center justify-between p-4 border-b border-border bg-muted/20 rounded-t-xl">
               <div>
                 <h2 className="text-lg font-bold flex items-center gap-2 text-primary">
-                  ðŸŽ‰ Payment Collected!
+                  🎉 Payment Collected!
                 </h2>
                 <Badge variant="secondary" className="mt-1 bg-success/10 text-success border-none font-bold text-xs gap-1">
                   <CheckCircle size={12} /> {receiptData.receiptNo}
@@ -121,7 +121,7 @@ export function AdminFinanceCollectFeeClient() {
                   </div>
 
                   <p className="text-xs italic text-text-secondary text-center">"Knowledge is the best investment."</p>
-                  <p className="text-xs font-bold mt-1">Thank you! Keep studying ðŸ˜Š</p>
+                  <p className="text-xs font-bold mt-1">Thank you! Keep studying 😊</p>
                 </div>
 
                 {/* Bottom Zigzag */}
@@ -197,7 +197,7 @@ export function AdminFinanceCollectFeeClient() {
                     >
                       <div>
                         <div className="font-bold text-sm text-primary">{s.name}</div>
-                        <div className="text-xs text-muted-foreground mt-0.5">{s.smartId} Â· {s.plan} Â· +91-{maskPhone(s.phone)}</div>
+                        <div className="text-xs text-muted-foreground mt-0.5">{s.smartId} · {s.plan} · +91-{maskPhone(s.phone)}</div>
                       </div>
                       <Badge variant="secondary" className={`${s.status === 'active' ? 'bg-success/10 text-success' : s.status === 'suspended' ? 'bg-danger/10 text-danger' : 'bg-warning/10 text-warning'} border-none uppercase tracking-wider font-bold text-xs`}>
                         {s.status}
@@ -211,7 +211,7 @@ export function AdminFinanceCollectFeeClient() {
                   <CheckCircle size={18} className="text-success" />
                   <span className="font-bold text-sm text-success">{selectedStudent.name}</span>
                   <span className="text-xs text-success/80 font-medium">({selectedStudent.smartId})</span>
-                  <span className="text-xs text-success/80">Â· +91-{maskPhone(selectedStudent.phone)}</span>
+                  <span className="text-xs text-success/80">· +91-{maskPhone(selectedStudent.phone)}</span>
                 </div>
               )}
               {selectedStudent != null && selectedStudent.dueAmount > 0 && (
@@ -358,7 +358,7 @@ export function AdminFinanceCollectFeeClient() {
                   <p className="text-xs italic text-muted-foreground text-center mt-4">"Knowledge is the best investment."</p>
                 </div>
               </div>
-              <Button variant="outline" className="w-full text-muted-foreground font-bold" onClick={resetForm}>ðŸš« Cancel & Reset</Button>
+              <Button variant="outline" className="w-full text-muted-foreground font-bold" onClick={resetForm}>🚫 Cancel & Reset</Button>
             </div>
           </div>
         </div>

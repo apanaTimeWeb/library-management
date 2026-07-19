@@ -110,7 +110,7 @@ export function AdminSystemSettingsClient() {
               </CardContent>
               <CardFooter>
                 <Button id="save-branding-btn" onClick={handleSave} variant="primary">
-                  <Save size={16} className="mr-1" /> {saved ? 'âœ“ Saved!' : 'ðŸ’¾ Save Settings'}
+                  <Save size={16} className="mr-1" /> {saved ? '✓ Saved!' : '💾 Save Settings'}
                 </Button>
               </CardFooter>
             </Card>
@@ -149,7 +149,7 @@ export function AdminSystemSettingsClient() {
               </CardContent>
               <CardFooter>
                 <Button id="save-latefee-btn" onClick={handleSave} variant="primary">
-                  <Save size={16} className="mr-1" /> {saved ? 'âœ“ Saved!' : 'ðŸ’¾ Save Settings'}
+                  <Save size={16} className="mr-1" /> {saved ? '✓ Saved!' : '💾 Save Settings'}
                 </Button>
               </CardFooter>
             </Card>
@@ -186,7 +186,7 @@ export function AdminSystemSettingsClient() {
               </CardContent>
               <CardFooter>
                 <Button id="save-autosuspend-btn" onClick={handleSave} variant="primary">
-                  <Save size={16} className="mr-1" /> {saved ? 'âœ“ Saved!' : 'ðŸ’¾ Save Settings'}
+                  <Save size={16} className="mr-1" /> {saved ? '✓ Saved!' : '💾 Save Settings'}
                 </Button>
               </CardFooter>
             </Card>
@@ -213,10 +213,10 @@ export function AdminSystemSettingsClient() {
                 <div className="space-y-3">
                   <Label>Accepted Payment Modes</Label>
                   {[
-                    { key: 'acceptCash', label: 'ðŸ’µ Cash' },
-                    { key: 'acceptUpi', label: 'ðŸ“± UPI' },
-                    { key: 'acceptCard', label: 'ðŸ’³ Card' },
-                    { key: 'acceptBank', label: 'ðŸ¦ Bank Transfer' },
+                    { key: 'acceptCash', label: '💵 Cash' },
+                    { key: 'acceptUpi', label: '📱 UPI' },
+                    { key: 'acceptCard', label: '💳 Card' },
+                    { key: 'acceptBank', label: '🏦 Bank Transfer' },
                   ].map(({ key, label }) => (
                     <label key={key} className="flex items-center gap-3 cursor-pointer">
                       <input
@@ -233,7 +233,7 @@ export function AdminSystemSettingsClient() {
               </CardContent>
               <CardFooter>
                 <Button id="save-upi-btn" onClick={handleSave} variant="primary">
-                  <Save size={16} className="mr-1" /> {saved ? 'âœ“ Saved!' : 'ðŸ’¾ Save Settings'}
+                  <Save size={16} className="mr-1" /> {saved ? '✓ Saved!' : '💾 Save Settings'}
                 </Button>
               </CardFooter>
             </Card>
@@ -265,11 +265,11 @@ export function AdminSystemSettingsClient() {
                     </button>
                   </div>
                 </div>
-                <Button id="test-connection-btn" variant="ghost">ðŸ”Œ Test Connection</Button>
+                <Button id="test-connection-btn" variant="ghost">🔌 Test Connection</Button>
               </CardContent>
               <CardFooter>
                 <Button id="save-notifications-btn" onClick={handleSave} variant="primary">
-                  <Save size={16} className="mr-1" /> {saved ? 'âœ“ Saved!' : 'ðŸ’¾ Save Settings'}
+                  <Save size={16} className="mr-1" /> {saved ? '✓ Saved!' : '💾 Save Settings'}
                 </Button>
               </CardFooter>
             </Card>
@@ -297,7 +297,7 @@ export function AdminSystemSettingsClient() {
               </CardContent>
               <CardFooter>
                 <Button id="save-general-btn" onClick={handleSave} variant="primary">
-                  <Save size={16} className="mr-1" /> {saved ? 'âœ“ Saved!' : 'ðŸ’¾ Save Settings'}
+                  <Save size={16} className="mr-1" /> {saved ? '✓ Saved!' : '💾 Save Settings'}
                 </Button>
               </CardFooter>
             </Card>

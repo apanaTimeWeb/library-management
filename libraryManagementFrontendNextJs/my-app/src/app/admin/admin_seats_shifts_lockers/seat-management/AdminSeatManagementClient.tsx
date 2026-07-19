@@ -94,7 +94,7 @@ export function AdminSeatManagementClient({ initialSeats }: SeatManagementClient
       {/* Main Content */}
       {filtered.length === 0 ? (
         <Card className="flex flex-col items-center justify-center py-20 gap-3 border-dashed bg-muted/5 shadow-none">
-          <div className="text-4xl mb-2 opacity-50">ðŸª‘</div>
+          <div className="text-4xl mb-2 opacity-50">🪑</div>
           <p className="text-lg font-bold">No seats found.</p>
           <p className="text-sm text-muted-foreground">Add your first seat to get started.</p>
           <Button onClick={openAdd} variant="default" className="mt-4 gap-2">

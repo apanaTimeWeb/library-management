@@ -61,7 +61,7 @@ export function AdminEngagementAbsenteeReportClient() {
           <p className="text-xs font-semibold text-muted-foreground flex items-center gap-1 uppercase tracking-wider mb-1">
             Engagement <ChevronRight size={12} /> Absentee Report
           </p>
-          <h1 className="text-text-primary text-xl font-bold tracking-tight">ðŸ“‹ Absentee Report</h1>
+          <h1 className="text-text-primary text-xl font-bold tracking-tight">📋 Absentee Report</h1>
           <p className="text-sm text-muted-foreground mt-1">Students with consecutive absences requiring attention.</p>
         </div>
         <Button onClick={notifyAll} className="gap-2">
@@ -126,7 +126,7 @@ export function AdminEngagementAbsenteeReportClient() {
       <Card className="overflow-x-auto shadow-sm border-border">
         {filtered.length === 0 ? (
           <div className="flex flex-col items-center justify-center p-12 text-center text-muted-foreground">
-            <div className="text-4xl mb-4">ðŸŽ‰</div>
+            <div className="text-4xl mb-4">🎉</div>
             <p className="font-medium text-foreground mb-1 text-lg">No absentees above threshold!</p>
             <p className="text-sm">All students have great attendance above the selected threshold.</p>
           </div>

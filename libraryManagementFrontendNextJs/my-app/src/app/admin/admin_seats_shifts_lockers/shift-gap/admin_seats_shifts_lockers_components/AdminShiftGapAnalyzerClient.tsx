@@ -123,11 +123,11 @@ export function AdminShiftGapAnalyzerClient() {
                     <div key={i} className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-3 rounded-md bg-warning/5 border border-warning/20">
                       <div className="flex items-start gap-3">
                         <Badge variant="secondary" className="bg-warning/20 text-warning border-none uppercase tracking-wider font-bold text-xs shrink-0 mt-0.5">
-                          ðŸ•³ï¸ Gap
+                          🕳ï¸ Gap
                         </Badge>
                         <div>
                           <p className="text-sm font-bold text-primary mb-1">
-                            {fmtH(g.startH)} â€“ {fmtH(g.endH)} <span className="text-muted-foreground font-medium mx-1">Â·</span> {g.seats} seats free
+                            {fmtH(g.startH)} â€“ {fmtH(g.endH)} <span className="text-muted-foreground font-medium mx-1">·</span> {g.seats} seats free
                           </p>
                           <p className="text-xs font-medium text-danger">
                             Est. revenue loss: ₹{g.revLoss}/day

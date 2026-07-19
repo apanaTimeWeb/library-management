@@ -178,7 +178,7 @@ export function AdminFinanceLateFeesClient() {
                           className="bg-info/10 text-info hover:bg-info/20 border-none font-bold text-xs"
                           onClick={() => router.push(`${ADMIN_ROUTES.FINANCE_COLLECT_FEE}?studentId=${s.studentId}`)}
                         >
-                          ðŸ’° Collect Now
+                          💰 Collect Now
                         </Button>
                         <Button 
                           variant="secondary" 

@@ -37,9 +37,9 @@ export function AdminSystemMaintenanceClient() {
 
       {/* Summary KPI Cards */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-        <KpiCard title="Seats Needing Attention" value={seatsNeedingAttention} icon="ðŸª‘" trend="down" trendLabel="Action required" />
+        <KpiCard title="Seats Needing Attention" value={seatsNeedingAttention} icon="🪑" trend="down" trendLabel="Action required" />
         <KpiCard title="Assets Overdue" value={assetsOverdue} icon="âš™ï¸" trend="down" trendLabel="Service overdue" />
-        <KpiCard title="Locker Issues" value={lockerIssues} icon="ðŸ”’" trend="down" trendLabel="Reported issues" />
+        <KpiCard title="Locker Issues" value={lockerIssues} icon="🔒" trend="down" trendLabel="Reported issues" />
       </div>
 
       {/* Section 1 — Seats */}
@@ -82,7 +82,7 @@ export function AdminSystemMaintenanceClient() {
                       </span>
                     </td>
                     <td className="py-3">
-                      <Button id={`log-seat-maint-${seat.id}`} variant="ghost" size="sm">ðŸ”§ Log Maintenance</Button>
+                      <Button id={`log-seat-maint-${seat.id}`} variant="ghost" size="sm">🔧 Log Maintenance</Button>
                     </td>
                   </tr>
                 ))}
@@ -152,7 +152,7 @@ export function AdminSystemMaintenanceClient() {
                       )}
                     </td>
                     <td className="py-3">
-                      <Button id={`log-asset-service-${asset.name}`} variant="ghost" size="sm">ðŸ“ Log Service</Button>
+                      <Button id={`log-asset-service-${asset.name}`} variant="ghost" size="sm">📝 Log Service</Button>
                     </td>
                   </tr>
                 ))}
