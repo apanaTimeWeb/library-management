@@ -81,7 +81,7 @@ export function ManagerDocumentsClient() {
                   <td colSpan={6} className="px-4 py-8 text-center text-text-secondary">No documents found</td>
                 </tr>
               ) : (
-                table.paginatedData.map((row: any) => (
+                table.paginatedData.map((row: { id: string, name: string, type: string, category: string, size: string, uploadedBy: string, date: string }) => (
                   <tr key={row.id} className="hover:bg-page transition-colors">
                     <td className="px-4 py-4">
                       <div className="flex items-center gap-3">

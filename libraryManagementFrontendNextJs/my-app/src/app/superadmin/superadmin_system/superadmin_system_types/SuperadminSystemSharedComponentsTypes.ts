@@ -1,3 +1,4 @@
+﻿// RESPONSIBILITY: Renders or handles logic for SuperadminSystemSharedComponentsTypes.ts.
 import { ButtonHTMLAttributes, InputHTMLAttributes, LabelHTMLAttributes, TextareaHTMLAttributes } from 'react';
 
 
@@ -29,3 +30,4 @@ export interface SuperadminCardProps extends React.HTMLAttributes<HTMLDivElement
 export interface SuperadminBadgeProps extends React.HTMLAttributes<HTMLSpanElement> {
   variant?: 'default' | 'success' | 'warning' | 'danger' | 'info';
 }
+

@@ -1,3 +1,4 @@
+﻿// RESPONSIBILITY: Renders or handles logic for AdminExpenseCategoriesAddDialog_types.ts.
 import { useEffect, useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm as useReactHookForm } from "react-hook-form";
@@ -12,3 +13,4 @@ export interface AdminExpenseCategoriesAddDialogProps {
   onClose: () => void;
   onSubmit: (data: AdminExpenseCategoryFormData) => Promise<{ success: boolean; message: string }>;
 }
+

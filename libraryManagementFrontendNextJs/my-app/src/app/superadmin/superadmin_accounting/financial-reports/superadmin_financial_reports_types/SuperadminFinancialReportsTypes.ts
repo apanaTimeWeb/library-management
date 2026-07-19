@@ -1,3 +1,4 @@
+﻿// RESPONSIBILITY: Renders or handles logic for SuperadminFinancialReportsTypes.ts.
 
 
 export interface SuperadminMonthlyReport {
@@ -10,3 +11,4 @@ export interface SuperadminCategoryBreakdown {
   amount: number;
   pct: number;
 }
+

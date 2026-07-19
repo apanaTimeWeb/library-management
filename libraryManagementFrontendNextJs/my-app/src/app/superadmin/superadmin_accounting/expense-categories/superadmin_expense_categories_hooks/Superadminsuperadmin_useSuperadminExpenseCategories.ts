@@ -1,8 +1,9 @@
+﻿// RESPONSIBILITY: Renders or handles logic for Superadminsuperadmin_useSuperadminExpenseCategories.ts.
 import { useState } from 'react';
 import type { SuperadminExpenseCategory } from '@/app/superadmin/superadmin_accounting/expense-categories/superadmin_expense_categories_types/SuperadminExpenseCategoriesTypes';
 import { SUPERADMIN_EXPENSE_CATEGORIES_MOCK_DATA, SUPERADMIN_EXPENSE_CATEGORIES_COLORS } from '@/app/superadmin/superadmin_accounting/expense-categories/superadmin_expense_categories_constants/SuperadminExpenseCategoriesConstants';
 
-// DATA FLOW: API → useSuperadminExpenseCategories.ts → SuperadminExpenseCategoriesComponent
+// DATA FLOW: API â†’ useSuperadminExpenseCategories.ts â†’ SuperadminExpenseCategoriesComponent
 export function Superadminsuperadmin_useSuperadminExpenseCategories() {
   const [categories, setCategories] = useState<SuperadminExpenseCategory[]>(SUPERADMIN_EXPENSE_CATEGORIES_MOCK_DATA);
 
@@ -26,3 +27,4 @@ export function Superadminsuperadmin_useSuperadminExpenseCategories() {
     handleDelete,
   };
 }
+

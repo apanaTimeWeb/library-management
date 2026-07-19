@@ -1,17 +1,11 @@
 'use client';
+// RESPONSIBILITY: Class-based Error Boundary for the Admin module. Catches render errors, displays a module-specific fallback UI with a Retry button.
 
-import React, { Component, ErrorInfo, ReactNode } from 'react';
+import { Component, ErrorInfo } from 'react';
 import { AlertTriangle, RefreshCw } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-
-export interface AdminErrorBoundaryProps {
-  children: ReactNode;
-}
-
-export interface AdminErrorBoundaryState {
-  hasError: boolean;
-  error?: Error;
-}
+import { logger } from '@/lib/logger';
+import type { AdminErrorBoundaryProps, AdminErrorBoundaryState } from '@/app/admin/admin_shared_components/AdminSharedTypes';
 
 export class AdminErrorBoundary extends Component<AdminErrorBoundaryProps, AdminErrorBoundaryState> {
   constructor(props: AdminErrorBoundaryProps) {
@@ -24,7 +18,7 @@ export class AdminErrorBoundary extends Component<AdminErrorBoundaryProps, Admin
   }
 
   componentDidCatch(error: Error, errorInfo: ErrorInfo) {
-    console.error('Admin Module Error:', error, errorInfo);
+    logger.error('Admin Module Error:', error, errorInfo);
   }
 
   resetError = () => {

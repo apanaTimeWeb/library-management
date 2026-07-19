@@ -1,3 +1,4 @@
+﻿// RESPONSIBILITY: Renders or handles logic for Superadminsuperadmin_url_config.ts.
 /**
  * URL Configuration for the Superadmin Module
  * Contains all internal routes and external API endpoints.
@@ -82,3 +83,4 @@ export const SUPERADMIN_API_ROUTES = {
   FINANCE_REFERRALS: '/finance/referrals',
   FINANCE_PAYMENTS: '/finance/payments',
 } as const;
+

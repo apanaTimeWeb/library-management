@@ -1,3 +1,4 @@
+﻿// RESPONSIBILITY: Renders or handles logic for Superadminsuperadmin_types.ts.
 
 
 export interface FollowUp {
@@ -45,9 +46,9 @@ export type EnquirySource =
   | 'Facebook'
   | 'Other';
 
-// ─── CRM Shared TypeScript Types ─────────────────────────────────────────────
-// Self-contained — no imports from outside (crm) folder
-// ─── Kanban Column Config ─────────────────────────────────────────────────────
+// â”€â”€â”€ CRM Shared TypeScript Types â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// Self-contained â€” no imports from outside (crm) folder
+// â”€â”€â”€ Kanban Column Config â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 export const KANBAN_COLUMNS: KanbanColumn[] = [
   {
     id: 'New',
@@ -91,10 +92,10 @@ export const KANBAN_COLUMNS: KanbanColumn[] = [
   },
 ];
 
-// ─── Status → Badge class mapping ────────────────────────────────────────────
+// â”€â”€â”€ Status â†’ Badge class mapping â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 // Colors per module_03_crm_enquiries.md:
-//   New → --info (blue) | Visited → --warning (amber) | Interested → --purple
-//   Converted → --success (green) | Lost → neutral grey
+//   New â†’ --info (blue) | Visited â†’ --warning (amber) | Interested â†’ --purple
+//   Converted â†’ --success (green) | Lost â†’ neutral grey
 export const STATUS_BADGE: Record<EnquiryStatus, string> = {
   New:        'crm-badge--new',
   Visited:    'crm-badge--visited',
@@ -103,14 +104,14 @@ export const STATUS_BADGE: Record<EnquiryStatus, string> = {
   Lost:       'crm-badge--neutral',
 };
 
-// ─── Utility: mask phone number ───────────────────────────────────────────────
+// â”€â”€â”€ Utility: mask phone number â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 export function maskPhone(phone: string): string {
   const digits = phone.replace(/\D/g, '');
   if (digits.length < 6) return phone;
   return digits.slice(0, 2) + '****' + digits.slice(-4);
 }
 
-// ─── Utility: get initials ────────────────────────────────────────────────────
+// â”€â”€â”€ Utility: get initials â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 export function getInitials(name: string): string {
   return name
     .split(' ')
@@ -119,3 +120,4 @@ export function getInitials(name: string): string {
     .toUpperCase()
     .slice(0, 2);
 }
+

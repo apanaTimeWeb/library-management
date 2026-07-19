@@ -1,4 +1,4 @@
-// @ts-nocheck
+﻿
 'use client';
 // RESPONSIBILITY: Renders the ManagerSeatsAllocationsClient.tsx component UI.
 import { useMemo, useState, useEffect } from 'react';
@@ -118,7 +118,7 @@ const {
 
         {filtered.length === 0 ? (
           <div className="ss-empty-state">
-            <p className="ss-empty-state__icon">ðŸ“‹</p>
+            <p className="ss-empty-state__icon">Ã°Å¸â€œâ€¹</p>
             <p className="ss-empty-state__title">No allocations found.</p>
           </div>
         ) : (

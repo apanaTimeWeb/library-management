@@ -1,3 +1,4 @@
+﻿// RESPONSIBILITY: Renders or handles logic for useManagerSeatsLockerMatrix.ts.
 import { useState, useEffect } from 'react';
 import { useSeatsStore } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_store/manager_seats_shifts_lockers_store';
 import toast from 'react-hot-toast';
@@ -30,3 +31,4 @@ export function useManagerSeatsLockerMatrix() {
     handleCellClick,
   };
 }
+

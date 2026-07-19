@@ -1,3 +1,4 @@
+﻿// RESPONSIBILITY: Renders or handles logic for SuperadminAuditLogsTypes.ts.
 
 
 export interface SuperadminAuditLog {
@@ -21,3 +22,4 @@ export interface SuperadminAuditLogsPanelProps {
   onClose: () => void;
 }
 export type SuperadminAuditLogAction = 'Created' | 'Updated' | 'Deleted' | 'Fee_Collected' | string;
+

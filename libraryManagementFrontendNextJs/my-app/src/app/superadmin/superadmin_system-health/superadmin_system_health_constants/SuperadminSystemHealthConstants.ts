@@ -1,3 +1,4 @@
+﻿// RESPONSIBILITY: Renders or handles logic for SuperadminSystemHealthConstants.ts.
 import type { SuperadminSystemHealthDataResponse } from '@/app/superadmin/superadmin_system-health/superadmin_system_health_types/SuperadminSystemHealthTypes';
 
 export const SUPERADMIN_SYSTEM_HEALTH_MOCK_DATA: SuperadminSystemHealthDataResponse = {
@@ -15,3 +16,4 @@ export const SUPERADMIN_SYSTEM_HEALTH_MOCK_DATA: SuperadminSystemHealthDataRespo
     { n: 'AWS S3 Backups',     st: 'Syncing...', dotColorKey: 'info' },
   ],
 };
+

@@ -1,6 +1,7 @@
 'use client';
-// RESPONSIBILITY: Renders the SuperadminSidebar component.
+// RESPONSIBILITY: Renders the collapsible sidebar navigation for the Superadmin module. Handles active state detection, mobile overlay, and logout dialog.
 import { SUPERADMIN_ROUTES } from '@/app/superadmin/Superadminsuperadmin_url_config';
+import type { SuperadminNavEntry } from '@/app/superadmin/superadmin_crm/superadmin_crm_shared_components/SuperadminSidebar_types';
 
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
@@ -21,7 +22,7 @@ import {
 
 
 
-const NAV: any[] = [
+const NAV: SuperadminNavEntry[] = [
   { href: SUPERADMIN_ROUTES.DASHBOARD, icon: LayoutDashboard, label: 'Dashboard' },
   { href: SUPERADMIN_ROUTES.LIBRARIES, icon: Building2, label: 'Libraries' },
   { href: SUPERADMIN_ROUTES.SUBSCRIPTIONS, icon: FileText, label: 'Subscriptions' },

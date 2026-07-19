@@ -1,3 +1,4 @@
+﻿// RESPONSIBILITY: Renders or handles logic for useSuperadminSystemSettings.ts.
 import { useState, useEffect, useCallback } from 'react';
 
 function readToken(token: string) {
@@ -49,3 +50,4 @@ export function useSuperadminSystemSettings() {
     handleSave
   };
 }
+

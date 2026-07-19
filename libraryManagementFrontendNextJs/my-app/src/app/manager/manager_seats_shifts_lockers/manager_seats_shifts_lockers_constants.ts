@@ -1,9 +1,10 @@
+﻿// RESPONSIBILITY: Renders or handles logic for manager_seats_shifts_lockers_constants.ts.
 export const SHIFT_TABS = ['All', 'Morning', 'Evening', 'Full Day'];
 
 export const LEGEND_ITEMS = [
   { cls: 'ss-legend-dot--success',     label: 'Free' },
   { cls: 'ss-legend-dot--danger',      label: 'Occupied' },
-  { cls: 'ss-legend-dot--warning',     label: 'Expiring ≤7 days' },
+  { cls: 'ss-legend-dot--warning',     label: 'Expiring â‰¤7 days' },
   { cls: 'ss-legend-dot--maintenance', label: 'Maintenance' },
 ];
 
@@ -19,3 +20,4 @@ export const SEAT_MATRIX_STATUS_STYLES: Record<string, string> = {
   expiring: 'bg-warning text-white border-transparent',
   maintenance: 'bg-bg-elevated text-text-secondary border-transparent opacity-50 cursor-not-allowed shadow-none'
 };
+

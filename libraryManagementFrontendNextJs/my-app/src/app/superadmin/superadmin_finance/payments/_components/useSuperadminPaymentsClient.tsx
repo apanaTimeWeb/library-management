@@ -1,4 +1,4 @@
-// RESPONSIBILITY: Component or Page.
+// RESPONSIBILITY: Logic, state management, and AG Grid configuration for the SuperadminPaymentsClient component.
 /**
  * RESPONSIBILITY: Logic, state management, and AG Grid configuration for the SuperadminPaymentsClient component.
  */
@@ -20,13 +20,13 @@ export function useSuperadminPaymentsClient() {
   const [allPayments, setAllPayments] = useState<SuperadminFinancePayment[]>([]);
 
   useEffect(() => {
-    fetchApi(SUPERADMIN_API_ROUTES.FINANCE_PAYMENTS).then(( data: any ) => {
-      const actualData = Array.isArray(data) ? data : data?.data;
+    fetchApi<unknown>(SUPERADMIN_API_ROUTES.FINANCE_PAYMENTS).then(( data: unknown ) => {
+      const actualData = Array.isArray(data) ? data : (data as Record<string, unknown>)?.data;
       if (!Array.isArray(actualData) || actualData.length === 0 || String(actualData[0]?.id).startsWith('MOCK-')) {
         setAllPayments(SUPERADMIN_FINANCE_MOCK_PAYMENTS as SuperadminFinancePayment[]);
         return;
       }
-      const mapped: SuperadminFinancePayment[] = actualData.map(( p: Record<string, any> ) => ({
+      const mapped: SuperadminFinancePayment[] = (actualData as Record<string, unknown>[]).map(( p: Record<string, unknown> ) => ({
         id: typeof p.id === 'number' ? p.id : parseInt(String(p.id || '0'), 10),
         receiptNumber: 'REC-' + String(p.id || '').substring(0, 8),
         date: p.date ? new Date(String(p.date)).toISOString().split('T')[0] : new Date().toISOString().split('T')[0],

@@ -1,3 +1,4 @@
+﻿// RESPONSIBILITY: Renders or handles logic for AdminEngagementHolidayCalendarClient_types.ts.
 import { useState } from "react";
 import Link from "next/link";
 import { ChevronRight, ChevronLeft, Plus, Trash2, CalendarDays } from "lucide-react";
@@ -9,3 +10,4 @@ import { Input } from "@/components/ui/input";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from "@/components/ui/dialog";
 import toast from "react-hot-toast";
 export interface Holiday { id: string; date: string; name: string; type: string; }
+

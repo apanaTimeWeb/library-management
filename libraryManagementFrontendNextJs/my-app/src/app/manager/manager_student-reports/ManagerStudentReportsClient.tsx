@@ -1,4 +1,5 @@
 'use client';
+// RESPONSIBILITY: Renders the ManagerStudentReportsClient.tsx component/page.
 import { useManagerStudentReports } from '@/app/manager/manager_student-reports/manager_student_reports_hooks/useManagerStudentReports';
 import { useClientTable } from "@/components/ui/use-client-table";
 import { TablePagination } from '@/components/ui/table-pagination';
@@ -23,7 +24,7 @@ export function ManagerStudentReportsClient() {
               <thead><tr><th>Student</th><th>Days Absent</th></tr></thead>
               <tbody>
                 {table.paginatedData.map((a, i) => (
-                  <tr key={i}>
+                  <tr key={a.name}>
                     <td>{a.name}</td>
                     <td>{a.absentDays}</td>
                   </tr>

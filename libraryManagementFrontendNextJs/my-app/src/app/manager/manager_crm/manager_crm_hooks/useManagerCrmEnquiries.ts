@@ -1,3 +1,4 @@
+﻿// RESPONSIBILITY: Renders or handles logic for useManagerCrmEnquiries.ts.
 import { useUrlState } from '@/app/manager/manager_shared_hooks/useUrlState';
 import { useState, useEffect, useMemo } from 'react';
 import { useCrmStore } from '@/app/manager/manager_crm/manager_crm_store/manager_crm_store';
@@ -17,7 +18,7 @@ function useManagerDebounce<T>(value: T, delay: number): T {
 
 /**
  * Custom hook to manage Enquiries data, searching, and filtering.
- * DATA FLOW: API → useManagerCrmEnquiries → ManagerCrmEnquiriesClient
+ * DATA FLOW: API â†’ useManagerCrmEnquiries â†’ ManagerCrmEnquiriesClient
  */
 export function useManagerCrmEnquiries() {
   const { enquiries, status, error, fetchData, updateEnquiryStatus } = useCrmStore();
@@ -61,3 +62,4 @@ export function useManagerCrmEnquiries() {
     updateEnquiryStatus
   };
 }
+

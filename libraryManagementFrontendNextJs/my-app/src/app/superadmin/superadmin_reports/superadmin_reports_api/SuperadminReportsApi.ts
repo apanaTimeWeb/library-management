@@ -1,3 +1,4 @@
+﻿// RESPONSIBILITY: Renders or handles logic for SuperadminReportsApi.ts.
 import type { SuperadminReportsDataResponse } from '@/app/superadmin/superadmin_reports/superadmin_reports_types/SuperadminReportsTypes';
 import type { ApiResponse } from '@/app/superadmin/superadmin_shared_components/Superadminsuperadmin_types';
 import { SUPERADMIN_REPORTS_MOCK_DATA } from '@/app/superadmin/superadmin_reports/superadmin_reports_constants/SuperadminReportsConstants';
@@ -12,3 +13,4 @@ export async function fetchSuperadminReportsData(dateRange: string = 'Last 6 Mon
     statusCode: 200
   };
 }
+

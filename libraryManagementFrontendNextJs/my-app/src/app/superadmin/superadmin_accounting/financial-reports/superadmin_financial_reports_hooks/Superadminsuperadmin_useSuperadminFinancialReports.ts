@@ -1,7 +1,8 @@
+﻿// RESPONSIBILITY: Renders or handles logic for Superadminsuperadmin_useSuperadminFinancialReports.ts.
 import { useState, useMemo } from 'react';
 import { SUPERADMIN_MONTHLY_REPORTS_MOCK, SUPERADMIN_CATEGORY_BREAKDOWN_MOCK } from '@/app/superadmin/superadmin_accounting/financial-reports/superadmin_financial_reports_constants/SuperadminFinancialReportsConstants';
 
-// DATA FLOW: API → useSuperadminFinancialReports.ts → SuperadminFinancialReportsComponent
+// DATA FLOW: API â†’ useSuperadminFinancialReports.ts â†’ SuperadminFinancialReportsComponent
 export function Superadminsuperadmin_useSuperadminFinancialReports() {
   const [period, setPeriod] = useState<'monthly' | 'quarterly' | 'yearly'>('monthly');
 
@@ -30,3 +31,4 @@ export function Superadminsuperadmin_useSuperadminFinancialReports() {
     maxIncome
   };
 }
+

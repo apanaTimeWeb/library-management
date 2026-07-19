@@ -1,3 +1,4 @@
+﻿// RESPONSIBILITY: Renders or handles logic for auth.ts.
 
 
 export interface AuthUser {
@@ -17,23 +18,23 @@ export interface LoginResponse {
 }
 
 /**
- * Auth Utility — Client Side
+ * Auth Utility â€” Client Side
  *
  * Handles login, logout, token refresh, and current user retrieval.
- * Tokens stored in httpOnly cookies (set by the backend) — not accessible via JS.
+ * Tokens stored in httpOnly cookies (set by the backend) â€” not accessible via JS.
  *
  * Zero Trust: All role/identity verification happens on the backend.
  * This is only a convenience layer for the frontend UI.
  */
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001/api/v1';
-// ─── Login ────────────────────────────────────────────────────────────────────
-// 'identifier' can be phone number or email — backend matches by phone field
+// â”€â”€â”€ Login â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// 'identifier' can be phone number or email â€” backend matches by phone field
 export async function login(identifier: string, password: string): Promise<LoginResponse> {
   const res = await fetch(`${API_BASE_URL}/auth/login`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    // Backend LoginDto expects 'phone' field — we send identifier as phone
+    // Backend LoginDto expects 'phone' field â€” we send identifier as phone
     body: JSON.stringify({ phone: identifier, password }),
     credentials: 'include',
   });
@@ -67,7 +68,7 @@ export async function login(identifier: string, password: string): Promise<Login
 }
 
 
-// ─── Logout ───────────────────────────────────────────────────────────────────
+// â”€â”€â”€ Logout â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 export async function logout(): Promise<void> {
   try {
     const token = getAccessToken();
@@ -88,7 +89,7 @@ export async function logout(): Promise<void> {
   }
 }
 
-// ─── Refresh Access Token ─────────────────────────────────────────────────────
+// â”€â”€â”€ Refresh Access Token â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 export async function refreshAccessToken(): Promise<string | null> {
   try {
     const refreshToken = localStorage.getItem('refresh_token');
@@ -118,7 +119,7 @@ export async function refreshAccessToken(): Promise<string | null> {
   }
 }
 
-// ─── Get Current User ─────────────────────────────────────────────────────────
+// â”€â”€â”€ Get Current User â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 export function getCurrentUser(): AuthUser | null {
   if (typeof window === 'undefined') return null;
   try {
@@ -129,18 +130,18 @@ export function getCurrentUser(): AuthUser | null {
   }
 }
 
-// ─── Get Access Token ─────────────────────────────────────────────────────────
+// â”€â”€â”€ Get Access Token â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 export function getAccessToken(): string | null {
   if (typeof window === 'undefined') return null;
   return localStorage.getItem('access_token');
 }
 
-// ─── Check if Logged In ───────────────────────────────────────────────────────
+// â”€â”€â”€ Check if Logged In â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 export function isAuthenticated(): boolean {
   return !!getAccessToken();
 }
 
-// ─── Clear All Auth State (on logout) ────────────────────────────────────────
+// â”€â”€â”€ Clear All Auth State (on logout) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 export function clearAuthState(): void {
   if (typeof window === 'undefined') return;
 
@@ -158,3 +159,4 @@ export function clearAuthState(): void {
     window.location.href = '/auth/login';
   }
 }
+

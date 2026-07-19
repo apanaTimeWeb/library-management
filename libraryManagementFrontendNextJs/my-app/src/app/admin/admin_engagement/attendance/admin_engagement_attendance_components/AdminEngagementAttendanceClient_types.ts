@@ -1,3 +1,4 @@
+﻿// RESPONSIBILITY: Renders or handles logic for AdminEngagementAttendanceClient_types.ts.
 import { useState } from "react";
 import Link from "next/link";
 import { ChevronRight, Save, FileBarChart2, Bell, CheckCircle, Clock } from "lucide-react";
@@ -13,3 +14,4 @@ export interface Student {
   status: AttStatus; inTime: string; outTime: string;
 }
 export type AttStatus = 'present' | 'absent' | 'late' | null;
+

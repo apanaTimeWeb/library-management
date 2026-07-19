@@ -1,3 +1,4 @@
+﻿// RESPONSIBILITY: Renders or handles logic for manager_url_config.ts.
 export const MANAGER_ROUTES = {
   // Dashboard
   DASHBOARD: '/manager/manager_dashboard',
@@ -75,3 +76,4 @@ export const MANAGER_API_ROUTES = {
   DASHBOARD: '/manager/manager_dashboard',
   STUDENTS: '/students',
 };
+

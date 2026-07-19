@@ -1,3 +1,4 @@
+﻿// RESPONSIBILITY: Renders or handles logic for AdminCommunicationNotificationCenterClient_types.ts.
 import { useState } from "react";
 import { ChevronRight, ArrowRight, CheckCheck } from "lucide-react";
 import { ADMIN_COMMUNICATION_MOCK_NOTIFICATIONS, ADMIN_COMMUNICATION_NOTIFICATION_CATS } from "@/app/admin/admin_communication/admin_communication_constants/AdminCommunicationConstants";
@@ -11,3 +12,4 @@ export interface Notification {
   time: string; priority: 'High' | 'Medium'; link: string; read: boolean;
 }
 export type Category = 'All' | 'Finance' | 'CRM' | 'Operations' | 'Attendance' | 'High Only';
+

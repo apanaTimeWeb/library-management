@@ -1,5 +1,5 @@
-'use client';
-
+﻿'use client';
+// RESPONSIBILITY: Renders the ManagerCrmEnquiriesMarkLostModal.tsx component/page.
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { AlertTriangle, XCircle } from 'lucide-react';
@@ -49,3 +49,4 @@ export function MarkLostModal({ onConfirm, onCancel, isSubmitting }: MarkLostMod
     </div>
   );
 }
+

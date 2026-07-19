@@ -1,3 +1,4 @@
+﻿// RESPONSIBILITY: Renders or handles logic for SuperadminSystemBulkImportConstants.ts.
 import { CheckCircle, XCircle, AlertTriangle } from 'lucide-react';
 import React from 'react';
 
@@ -13,3 +14,4 @@ export const SUPERADMIN_SYSTEM_BULK_IMPORT_STATUS_CONFIG: Record<
   warning: { label: 'Warning', variant: 'warning', icon: AlertTriangle },
   error:   { label: 'Error',   variant: 'danger',  icon: XCircle      },
 };
+

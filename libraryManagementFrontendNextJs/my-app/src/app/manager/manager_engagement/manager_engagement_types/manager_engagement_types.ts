@@ -1,3 +1,4 @@
+﻿// RESPONSIBILITY: Renders or handles logic for manager_engagement_types.ts.
 
 
 export interface StudentAttendance {
@@ -13,3 +14,4 @@ export interface StudentAttendance {
 }
 export type FetchState = 'idle' | 'loading' | 'success' | 'error';
 export type AttStatus = 'present' | 'absent' | 'late' | null;
+

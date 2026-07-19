@@ -1,3 +1,4 @@
+﻿// RESPONSIBILITY: Renders or handles logic for ManagerSeatsConstants.ts.
 import { ActivityItem, Locker, Seat, ShiftData, Shift, Student } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_types/ManagerSeatsTypes';
 
 export const ACTIVITY_DATA: ActivityItem[] = [
@@ -41,3 +42,4 @@ export const SHIFT_BADGE: Record<string, string> = {
   Evening: 'ss-badge--warning',
   Night: 'ss-badge--dark',
 };
+

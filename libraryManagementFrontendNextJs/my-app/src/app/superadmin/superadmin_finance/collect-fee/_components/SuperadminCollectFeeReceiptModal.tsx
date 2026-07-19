@@ -9,7 +9,7 @@ import { formatCurrency } from '@/app/superadmin/superadmin_finance/superadmin_f
 import type { SuperadminFinanceReceiptData, SuperadminFinanceCollectFeeMode } from '@/app/superadmin/superadmin_finance/superadmin_finance_types/SuperadminFinanceTypes';
 import { Props } from "./SuperadminCollectFeeReceiptModal_types";
 
-const MODE_LABELS: Record<any, string> = { cash: 'Cash', upi: 'UPI', card: 'Card', bank: 'Bank Transfer' };
+const MODE_LABELS: Record<string, string> = { cash: 'Cash', upi: 'UPI', card: 'Card', bank: 'Bank Transfer' };
 
 function maskPhone(phone: string): string {
   const d = phone.replace(/\D/g, '').slice(-10);

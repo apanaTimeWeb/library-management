@@ -1,3 +1,4 @@
+﻿// RESPONSIBILITY: Renders or handles logic for SuperadminSeatGapReportTypes.ts.
 
 
 export interface SuperadminGapRow {
@@ -9,3 +10,4 @@ export interface SuperadminGapRow {
   revenueLoss: number;
   status: 'vacant' | 'maintenance';
 }
+

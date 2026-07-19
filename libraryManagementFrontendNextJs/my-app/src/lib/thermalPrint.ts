@@ -1,3 +1,4 @@
+﻿// RESPONSIBILITY: Renders or handles logic for thermalPrint.ts.
 
 
 export interface ThermalBillData {
@@ -63,7 +64,7 @@ export function buildThermalContent(d: ThermalBillData): string {
 
   const L: string[] = [];
 
-  // ── HEADER ──
+  // â”€â”€ HEADER â”€â”€
   L.push(dln());
   L.push(center(shop));
   L.push(center(branch));
@@ -167,7 +168,7 @@ export function buildThermalContent(d: ThermalBillData): string {
 }
 
 /**
- * Opens thermal-style print popup — 80mm monospace
+ * Opens thermal-style print popup â€” 80mm monospace
  * Works with browser print dialog + physical thermal printers
  */
 export function printThermal(data: ThermalBillData): void {
@@ -182,7 +183,7 @@ export function printThermal(data: ThermalBillData): void {
 <html>
 <head>
   <meta charset="utf-8"/>
-  <title>Receipt — Smart Library 360</title>
+  <title>Receipt â€” Smart Library 360</title>
   <style>
     * { margin:0; padding:0; box-sizing:border-box; }
     html, body {
@@ -236,3 +237,4 @@ export function printThermal(data: ThermalBillData): void {
     }, 800);
   }
 }
+

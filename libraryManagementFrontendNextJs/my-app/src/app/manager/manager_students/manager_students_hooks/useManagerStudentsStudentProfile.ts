@@ -1,3 +1,4 @@
+﻿// RESPONSIBILITY: Renders or handles logic for useManagerStudentsStudentProfile.ts.
 import { useEffect, useState } from 'react';
 import { logger } from '@/lib/logger';
 import { fetchStudentById } from '@/app/manager/manager_students/manager_students_api/manager_students_api';
@@ -33,3 +34,4 @@ export function useManagerStudentsStudentProfile(id: string) {
 
   return { student, loading, joinDate, expiryDate };
 }
+

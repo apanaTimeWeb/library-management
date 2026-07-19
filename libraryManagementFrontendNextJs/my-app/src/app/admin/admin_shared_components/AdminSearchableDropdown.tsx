@@ -1,9 +1,8 @@
-import React from 'react';
+'use client';
+// RESPONSIBILITY: Generic searchable dropdown component for the admin module. Wraps a native <select> with consistent design system styling.
 
-export interface AdminSearchableDropdownProps extends React.SelectHTMLAttributes<HTMLSelectElement> {
-  options?: string[] | { label: string; value: string }[];
-  onValueChange?: (val: string) => void;
-}
+import React from 'react';
+import type { AdminSearchableDropdownProps } from '@/app/admin/admin_shared_components/AdminSharedTypes';
 
 export function AdminSearchableDropdown({ options, onValueChange, className, onChange, ...props }: AdminSearchableDropdownProps) {
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -17,11 +16,11 @@ export function AdminSearchableDropdown({ options, onValueChange, className, onC
       onChange={handleChange}
       {...props}
     >
-      {options && options.map((opt, i) => {
+      {options && options.map((opt) => {
         if (typeof opt === 'string') {
-          return <option key={i} value={opt}>{opt}</option>;
+          return <option key={opt} value={opt}>{opt}</option>;
         }
-        return <option key={i} value={opt.value}>{opt.label}</option>;
+        return <option key={opt.value} value={opt.value}>{opt.label}</option>;
       })}
       {!options && props.children}
     </select>

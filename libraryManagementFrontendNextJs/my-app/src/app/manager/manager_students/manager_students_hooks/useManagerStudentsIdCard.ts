@@ -1,11 +1,5 @@
+// RESPONSIBILITY: Renders or handles logic for useManagerStudentsIdCard.ts.
 import { useUrlState } from '@/app/manager/manager_shared_hooks/useUrlState';
-import { useState, useMemo, useEffect } from 'react';
-import { fetchStudents } from '@/app/manager/manager_students/manager_students_api/manager_students_api';
-import type { Student } from '@/app/manager/manager_students/manager_students_types';
-import { useManagerDebounce } from '@/app/manager/manager_shared_hooks/useManagerDebounce';
-import { IdCardData } from '@/app/manager/manager_students/manager_students_types';
-import { formatIdCardMessage, openWhatsApp, calcExpiryDate, formatDateIN, type StudentWhatsAppData } from '@/lib/whatsappUtils';
-import { printThermal } from '@/lib/thermalPrint';
 
 // DATA FLOW: Hook -> useManagerStudentsIdCard -> Consuming UI Component
 export function useManagerStudentsIdCard() {
@@ -16,7 +10,7 @@ export function useManagerStudentsIdCard() {
 
   // DEPENDENCY AUDIT: Executed on mount or when key dependencies (like search terms, filters, IDs) change.
   useEffect(() => {
-    fetchStudents().then(setStudents).catch(console.error);
+    fetchStudents().then(setStudents).catch((err) => logger.error('Failed to fetch students', err));
   }, []);
 
   const filtered = useMemo(() =>
@@ -110,3 +104,4 @@ export function useManagerStudentsIdCard() {
     handlePrint,
   };
 }
+

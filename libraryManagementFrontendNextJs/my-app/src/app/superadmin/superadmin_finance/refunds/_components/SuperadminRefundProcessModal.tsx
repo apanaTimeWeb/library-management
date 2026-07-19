@@ -45,7 +45,7 @@ export function SuperadminRefundProcessModal({ isOpen, onClose, onSubmit, studen
                 { label: 'Cheque', value: 'cheque' }
               ]}
               value={paymentMethod}
-              onChange={(v) => setValue('paymentMethod', v as any)}
+              onChange={(v) => setValue('paymentMethod', v as 'cash' | 'upi' | 'card' | 'bank transfer')}
             />
             {errors.paymentMethod && <p className="text-danger text-xs mt-1">{errors.paymentMethod.message}</p>}
           </div>

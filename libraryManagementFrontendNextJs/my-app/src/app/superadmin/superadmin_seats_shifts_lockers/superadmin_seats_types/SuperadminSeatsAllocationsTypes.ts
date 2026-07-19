@@ -1,3 +1,4 @@
+﻿// RESPONSIBILITY: Renders or handles logic for SuperadminSeatsAllocationsTypes.ts.
 
 
 export interface SuperadminSeatsAllocation {
@@ -13,3 +14,4 @@ export interface SuperadminSeatsAllocation {
   status: SuperadminSeatsAllocationStatus;
 }
 export type SuperadminSeatsAllocationStatus = 'Active' | 'Expired' | 'Suspended';
+

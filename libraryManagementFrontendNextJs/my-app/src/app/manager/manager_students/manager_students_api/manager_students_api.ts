@@ -1,3 +1,4 @@
+﻿// RESPONSIBILITY: Renders or handles logic for manager_students_api.ts.
 import { fetchApi } from '@/lib/api';
 import { logger } from '@/lib/logger';
 import type { Student } from '@/app/manager/manager_students/manager_students_types';
@@ -35,7 +36,7 @@ export async function fetchStudentById(id: string): Promise<Student> {
       shift: 'Morning',
       seat: 'S-01',
       branch: 'Main Branch',
-      plan: 'Monthly ₹1000',
+      plan: 'Monthly â‚¹1000',
       due: 0,
       joined: '01/01/2024'
     };
@@ -56,3 +57,4 @@ export async function createStudent(payload: Record<string, unknown>): Promise<{
     };
   }
 }
+

@@ -1,3 +1,4 @@
+﻿// RESPONSIBILITY: Renders or handles logic for AdminReusableSeatMatrixGrid_types.ts.
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import AdminReusableSeatCell from "@/app/admin/admin_reusable/admin_reusable_components/AdminReusableSeatCell/AdminReusableSeatCell";
@@ -19,3 +20,4 @@ export interface Props {
   seats: AdminReusableSeatData[];
   shifts: string[];
 }
+

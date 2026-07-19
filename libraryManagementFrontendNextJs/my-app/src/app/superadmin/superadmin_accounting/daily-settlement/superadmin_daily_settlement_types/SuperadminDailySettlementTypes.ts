@@ -1,3 +1,4 @@
+﻿// RESPONSIBILITY: Renders or handles logic for SuperadminDailySettlementTypes.ts.
 
 
 export interface SuperadminDailySettlementEntry {
@@ -11,3 +12,4 @@ export interface SuperadminDailySettlementEntry {
   settledBy: string;
   status: 'pending' | 'settled';
 }
+

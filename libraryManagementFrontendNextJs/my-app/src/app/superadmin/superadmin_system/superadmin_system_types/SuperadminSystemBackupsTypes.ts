@@ -1,3 +1,4 @@
+﻿// RESPONSIBILITY: Renders or handles logic for SuperadminSystemBackupsTypes.ts.
 
 
 export interface SuperadminSystemBackupRecord {
@@ -9,3 +10,4 @@ export interface SuperadminSystemBackupRecord {
   status: 'success' | 'failed' | 'in-progress';
   modules: string[];
 }
+

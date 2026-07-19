@@ -22,7 +22,7 @@ export function SuperadminRefundsClient() {
     const table = useClientTable(Array.from({ length: 5 }));
   const {
     statusFilter, setStatusFilter,
-    isLoading, isSubmitting,
+    fetchState, isSubmitting,
     processDialog, setProcessDialog,
     deductDialog, setDeductDialog,
     filtered,
@@ -33,6 +33,8 @@ export function SuperadminRefundsClient() {
     handleProcess,
     handleDeduction,
   } = useSuperadminRefundsClient();
+
+  const isLoading = fetchState === 'loading';
 
   return (
     <div className="space-y-6">

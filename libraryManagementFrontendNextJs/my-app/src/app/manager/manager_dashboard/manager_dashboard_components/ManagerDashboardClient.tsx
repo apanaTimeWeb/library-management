@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { ChevronRight, TrendingUp } from 'lucide-react';
 import { STATUS_CLASS, QUICK_LINKS } from '@/app/manager/manager_dashboard/manager_dashboard_constants';
 import { MANAGER_ROUTES } from '@/app/manager/manager_url_config';
-import type { CellRendererProps } from '@/app/manager/manager_dashboard/manager_dashboard_types';
+import type { CellRendererProps, RecentAdmission, RecentEnquiry } from '@/app/manager/manager_dashboard/manager_dashboard_types';
 import { ManagerDashboardKpiGrid } from '@/app/manager/manager_dashboard/manager_dashboard_components/ManagerDashboardKpiGrid';
 import { ManagerDashboardSeatMatrix } from '@/app/manager/manager_dashboard/manager_dashboard_components/ManagerDashboardSeatMatrix';
 import { TablePagination } from '@/components/ui/table-pagination';
@@ -108,7 +108,7 @@ export function ManagerDashboardClient() {
                     <td colSpan={3} className="px-4 py-8 text-center text-text-secondary">No admissions found</td>
                   </tr>
                 ) : (
-                  admissionsTable.paginatedData.map((row: any) => (
+                  admissionsTable.paginatedData.map((row: RecentAdmission & { id?: string; date?: string }) => (
                     <tr key={row.id} className="hover:bg-page transition-colors cursor-pointer">
                     <td className="px-4 py-3 text-text-primary font-medium">{row.name}</td>
                     <td className="px-4 py-3"><SmartIdCell value={row.smartId} /></td>
@@ -147,7 +147,7 @@ export function ManagerDashboardClient() {
                     <td colSpan={4} className="px-4 py-8 text-center text-text-secondary">No enquiries found</td>
                   </tr>
                 ) : (
-                  enquiriesTable.paginatedData.map((row: any) => (
+                  enquiriesTable.paginatedData.map((row: RecentEnquiry & { id?: string; date?: string }) => (
                     <tr key={row.id} className="hover:bg-page transition-colors cursor-pointer">
                     <td className="px-4 py-3 text-text-primary font-medium">{row.name}</td>
                     <td className="px-4 py-3"><PhoneCell value={row.phone} /></td>

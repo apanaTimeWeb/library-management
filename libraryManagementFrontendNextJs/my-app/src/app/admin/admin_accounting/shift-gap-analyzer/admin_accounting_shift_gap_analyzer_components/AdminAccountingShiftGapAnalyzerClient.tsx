@@ -1,6 +1,6 @@
-import { useUrlState } from '@/app/admin/admin_shared_hooks/useUrlState';
+﻿import { useUrlState } from '@/app/admin/admin_shared_hooks/useUrlState';
 import { AdminSearchableDropdown } from '@/app/admin/admin_shared_components/AdminSearchableDropdown';
-// @ts-nocheck
+
 'use client';
 // RESPONSIBILITY: Client view rendering shift gap analysis (`Rule 1`, `Rule 36`, `Rule 57`).
 // DATA FLOW: Static Mock -> AdminAccountingShiftGapAnalyzerClient (`Rule 39`).
@@ -16,9 +16,9 @@ import { TableToolbar } from '@/components/ui/table-toolbar';
 import { useClientTable } from '@/components/ui/use-client-table';
 
 const MOCK: ShiftGap[] = [
-  { shift: 'Morning (6AMâ€“2PM)',   totalSeats: 40, occupied: 34, vacant: 6,  occupancyPct: 85, avgGapDays: 12, revenueLoss: 3600  },
-  { shift: 'Afternoon (2PMâ€“9PM)', totalSeats: 40, occupied: 28, vacant: 12, occupancyPct: 70, avgGapDays: 18, revenueLoss: 7200  },
-  { shift: 'Night (9PMâ€“6AM)',     totalSeats: 30, occupied: 18, vacant: 12, occupancyPct: 60, avgGapDays: 24, revenueLoss: 8640  },
+  { shift: 'Morning (6AMÃ¢â‚¬â€œ2PM)',   totalSeats: 40, occupied: 34, vacant: 6,  occupancyPct: 85, avgGapDays: 12, revenueLoss: 3600  },
+  { shift: 'Afternoon (2PMÃ¢â‚¬â€œ9PM)', totalSeats: 40, occupied: 28, vacant: 12, occupancyPct: 70, avgGapDays: 18, revenueLoss: 7200  },
+  { shift: 'Night (9PMÃ¢â‚¬â€œ6AM)',     totalSeats: 30, occupied: 18, vacant: 12, occupancyPct: 60, avgGapDays: 24, revenueLoss: 8640  },
   { shift: '24-Hour',             totalSeats: 20, occupied: 19, vacant: 1,  occupancyPct: 95, avgGapDays: 5,  revenueLoss: 600   },
 ];
 const DAY_GAPS: DayGap[] = [
@@ -51,7 +51,7 @@ export function AdminAccountingShiftGapAnalyzerClient() {
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         <Card className="p-5 shadow-sm border-danger/20">
           <p className="text-xs font-bold uppercase tracking-wider text-danger mb-1">Total Revenue Loss</p>
-          <p className="text-text-primary text-xl font-extrabold text-danger">â‚¹{totalLoss.toLocaleString()}</p>
+          <p className="text-text-primary text-xl font-extrabold text-danger">Ã¢â€šÂ¹{totalLoss.toLocaleString()}</p>
         </Card>
         <Card className="p-5 shadow-sm border-warning/20">
           <p className="text-xs font-bold uppercase tracking-wider text-warning mb-1">Total Vacant Seats</p>
@@ -93,7 +93,7 @@ export function AdminAccountingShiftGapAnalyzerClient() {
               </div>
               <div>
                 <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Loss</p>
-                <p className="text-warning font-bold text-lg mt-1">â‚¹{m.revenueLoss.toLocaleString()}</p>
+                <p className="text-warning font-bold text-lg mt-1">Ã¢â€šÂ¹{m.revenueLoss.toLocaleString()}</p>
               </div>
             </div>
           </Card>
@@ -133,7 +133,7 @@ export function AdminAccountingShiftGapAnalyzerClient() {
               <th className="py-3 px-4">Shift</th>
               <th className="py-3 px-4">Seat No</th>
               <th className="text-right py-3 px-4">Gap Days</th>
-              <th className="text-right py-3 px-4">Revenue Loss (â‚¹)</th>
+              <th className="text-right py-3 px-4">Revenue Loss (Ã¢â€šÂ¹)</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-border">
@@ -143,7 +143,7 @@ export function AdminAccountingShiftGapAnalyzerClient() {
                 <td className="py-4 px-4 text-foreground">{d.shift}</td>
                 <td className="py-4 px-4 font-bold text-foreground">{d.seatNo}</td>
                 <td className={`py-4 px-4 text-right font-semibold ${d.gapDays > 20 ? 'text-danger' : 'text-warning'}`}>{d.gapDays}d</td>
-                <td className="py-4 px-4 text-right text-danger font-semibold">â‚¹{d.loss.toLocaleString()}</td>
+                <td className="py-4 px-4 text-right text-danger font-semibold">Ã¢â€šÂ¹{d.loss.toLocaleString()}</td>
               </tr>
             ))}
           </tbody>

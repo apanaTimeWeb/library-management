@@ -1,3 +1,4 @@
+﻿// RESPONSIBILITY: Renders or handles logic for SuperadminRefundProcessModal_types.ts.
 import React from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -14,3 +15,4 @@ export interface RefundProcessModalProps {
 }
 export const processSchema = z.object({ paymentMethod: z.enum(['upi', 'bank', 'cash', 'cheque']) });
 export type ProcessFormData = z.infer<typeof processSchema>;
+

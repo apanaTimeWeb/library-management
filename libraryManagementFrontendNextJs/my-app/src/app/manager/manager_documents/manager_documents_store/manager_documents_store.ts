@@ -1,3 +1,4 @@
+﻿// RESPONSIBILITY: Renders or handles logic for manager_documents_store.ts.
 import { create } from 'zustand';
 import type { FetchState, DocumentRecord } from '@/app/manager/manager_documents/manager_documents_types/manager_documents_types';
 import { DOCUMENTS_DATA } from '@/app/manager/manager_documents/manager_documents_constants/manager_documents_constants';
@@ -31,3 +32,4 @@ export const useManagerDocumentsStore = create<ManagerDocumentsState>((set, get)
     }));
   }
 }));
+

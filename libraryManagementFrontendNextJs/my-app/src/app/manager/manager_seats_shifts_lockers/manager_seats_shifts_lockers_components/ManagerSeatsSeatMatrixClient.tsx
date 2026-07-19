@@ -1,5 +1,5 @@
-'use client';
-// @ts-nocheck
+﻿'use client';
+
 import { CalendarDays } from 'lucide-react';
 import { useManagerSeatsSeatMatrix } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_hooks/useManagerSeatsSeatMatrix';
 import { SHIFT_TABS, LEGEND_ITEMS, SEAT_MATRIX_STATUS_STYLES } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_constants';
@@ -19,7 +19,7 @@ export function ManagerSeatsSeatMatrixClient() {
 
   return (
     <div className="p-6 min-h-screen">
-      {/* â”€â”€ Filter bar â”€â”€ */}
+      {/* Ã¢â€â‚¬Ã¢â€â‚¬ Filter bar Ã¢â€â‚¬Ã¢â€â‚¬ */}
       <div className="flex flex-wrap justify-between items-center gap-4 mb-6">
         <div className="flex bg-card p-1 rounded-lg border border-border">
           {SHIFT_TABS.map(tab => (
@@ -43,7 +43,7 @@ export function ManagerSeatsSeatMatrixClient() {
         </label>
       </div>
 
-      {/* â”€â”€ Legend â”€â”€ */}
+      {/* Ã¢â€â‚¬Ã¢â€â‚¬ Legend Ã¢â€â‚¬Ã¢â€â‚¬ */}
       <div className="flex flex-wrap gap-6 mb-6 p-4 bg-card border border-border rounded-lg shadow-sm">
         {LEGEND_ITEMS.map(({ cls, label }) => (
           <div key={label} className="flex items-center gap-2">
@@ -53,7 +53,7 @@ export function ManagerSeatsSeatMatrixClient() {
         ))}
       </div>
 
-      {/* â”€â”€ Grid â”€â”€ */}
+      {/* Ã¢â€â‚¬Ã¢â€â‚¬ Grid Ã¢â€â‚¬Ã¢â€â‚¬ */}
       <div className="bg-card border border-border rounded-xl p-6 shadow-sm">
         <div className="flex flex-col sm:flex-row justify-between sm:items-end mb-6 border-b border-border pb-4 gap-2">
           <h2 className="text-xl font-bold text-text-primary">A-Wing Floor Plan</h2>
@@ -76,7 +76,7 @@ export function ManagerSeatsSeatMatrixClient() {
                 onClick={() => setSelectedSeat(seat as any)}
                 title={
                   seat.student
-                    ? `${seat.student} Â· ${seat.shift} Â· Expires ${seat.expiry}`
+                    ? `${seat.student} Ã‚Â· ${seat.shift} Ã‚Â· Expires ${seat.expiry}`
                     : seat.status === 'maintenance' ? 'Under Maintenance' : 'Available'
                 }
               >

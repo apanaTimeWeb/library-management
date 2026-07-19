@@ -1,3 +1,4 @@
+﻿// RESPONSIBILITY: Renders or handles logic for useSuperadminSeatsLockers.ts.
 // DATA FLOW: SuperadminSeatsMockData -> useSuperadminSeatsLockers -> SuperadminSeatsLockersClient
 import { useState, useMemo, useCallback } from 'react';
 import { SUPERADMIN_SEATS_MOCK_LOCKERS } from '@/app/superadmin/superadmin_seats_shifts_lockers/superadmin_seats_shifts_lockers_utils/SuperadminSeatsMockData';
@@ -34,7 +35,7 @@ export function useSuperadminSeatsLockers() {
   const handleFreeLocker = useCallback(() => {
     if (!freeTarget) return;
     setLockers(prev => prev.map(l => l.id === freeTarget.id
-      ? { ...l, status: 'Free', assignedTo: '—', studentId: '—', assignedSince: '—' }
+      ? { ...l, status: 'Free', assignedTo: 'â€”', studentId: 'â€”', assignedSince: 'â€”' }
       : l
     ));
     toast.success(`Locker ${freeTarget.lockerId} is now free.`);
@@ -51,7 +52,7 @@ export function useSuperadminSeatsLockers() {
     if (lockers.some(l => l.lockerId === newLockerId.trim())) { setAddError('Locker ID already exists'); return; }
     setLockers(prev => [...prev, {
       id: Date.now().toString(), lockerId: newLockerId.trim(),
-      status: 'Free', assignedTo: '—', studentId: '—', assignedSince: '—',
+      status: 'Free', assignedTo: 'â€”', studentId: 'â€”', assignedSince: 'â€”',
     }]);
     toast.success(`Locker ${newLockerId.trim()} added.`);
     setShowAddModal(false);
@@ -88,3 +89,4 @@ export function useSuperadminSeatsLockers() {
     openAddModal
   };
 }
+

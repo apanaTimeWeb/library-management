@@ -1,3 +1,4 @@
+﻿// RESPONSIBILITY: Renders or handles logic for AdminEngagementAbsenteeReportClient_types.ts.
 import { useState } from "react";
 import { TablePagination } from "@/components/ui/table-pagination";
 import { Input } from "@/components/ui/input";
@@ -13,3 +14,4 @@ export interface AbsenteeRow {
   shift: string; daysAbsent: number; lastSeen: string;
   parentPhone: string; parentEmail: string; notified: boolean;
 }
+

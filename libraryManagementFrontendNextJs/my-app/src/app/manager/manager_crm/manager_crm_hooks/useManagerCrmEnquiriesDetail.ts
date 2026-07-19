@@ -1,3 +1,4 @@
+﻿// RESPONSIBILITY: Renders or handles logic for useManagerCrmEnquiriesDetail.ts.
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
@@ -156,7 +157,7 @@ export function useManagerCrmEnquiriesDetail(id: string) {
       setCurrentStatus('Lost');
       setShowLostModal(false);
       toast('Enquiry marked as lost.', {
-        icon: '❌',
+        icon: 'âŒ',
         className: 'crm-toast crm-toast--danger',
       });
     } catch (err) {
@@ -187,3 +188,4 @@ export function useManagerCrmEnquiriesDetail(id: string) {
     handleMarkLostConfirm,
   };
 }
+

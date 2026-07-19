@@ -1,3 +1,4 @@
+﻿// RESPONSIBILITY: Renders or handles logic for public_api.ts.
 import { StatusCodes } from 'http-status-codes';
 
 import type { PublicEnquiryFormData } from '@/app/public/enquiry/public_enquiry_types/PublicEnquiryValidation';
@@ -38,3 +39,4 @@ export const publicApi = {
     }
   },
 };
+

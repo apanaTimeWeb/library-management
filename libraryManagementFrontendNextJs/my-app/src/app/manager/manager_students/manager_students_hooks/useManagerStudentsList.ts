@@ -1,3 +1,4 @@
+﻿// RESPONSIBILITY: Renders or handles logic for useManagerStudentsList.ts.
 import { useUrlState } from '@/app/manager/manager_shared_hooks/useUrlState';
 import { useState, useEffect, useMemo } from 'react';
 import { useManagerDebounce } from '@/app/manager/manager_shared_hooks/useManagerDebounce';
@@ -5,9 +6,9 @@ import { useStudentsStore } from '@/app/manager/manager_students/manager_student
 
 /**
  * Custom hook to fetch and filter students.
- * DATA FLOW: API → useManagerStudentsList → ManagerStudentsClient
+ * DATA FLOW: API â†’ useManagerStudentsList â†’ ManagerStudentsClient
  */
-// DATA FLOW: API → useManagerStudentsList.ts → StudentsListComponent
+// DATA FLOW: API â†’ useManagerStudentsList.ts â†’ StudentsListComponent
 export function useManagerStudentsList() {
   const { students, status, error, fetchData } = useStudentsStore();
 
@@ -49,4 +50,5 @@ export function useManagerStudentsList() {
     shiftFilter, setShiftFilter
   };
 }
+
 

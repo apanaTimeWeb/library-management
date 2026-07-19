@@ -1,3 +1,4 @@
+﻿// RESPONSIBILITY: Renders or handles logic for AdminDashboardErrorBoundary_types.ts.
 import React from "react";
 export interface AdminDashboardErrorBoundaryProps {
   children: React.ReactNode;
@@ -6,3 +7,4 @@ export interface AdminDashboardErrorBoundaryProps {
 export interface AdminDashboardErrorBoundaryState {
   hasError: boolean;
 }
+

@@ -1,3 +1,4 @@
+﻿// RESPONSIBILITY: Renders or handles logic for SuperadminSystemGapFillingTypes.ts.
 
 
 export interface SuperadminSystemGapInterval { 
@@ -13,3 +14,4 @@ export interface SuperadminSystemSeatGapRecord {
   booked: SuperadminSystemGapInterval[];
   gap: SuperadminSystemGapDetail;
 }
+

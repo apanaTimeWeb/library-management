@@ -1,3 +1,4 @@
+﻿// RESPONSIBILITY: Renders or handles logic for manager_crm_utils.ts.
 /**
  * Utility: mask phone number
  * Masks phone numbers to show only first two and last four digits.
@@ -20,3 +21,4 @@ export function getInitials(name: string): string {
     .toUpperCase()
     .slice(0, 2);
 }
+

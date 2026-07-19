@@ -1,3 +1,4 @@
+﻿// RESPONSIBILITY: Renders or handles logic for Superadminsuperadmin_setupWizard_constants.ts.
 export const SETUP_WIZARD_DATA = {
   libraryName: "City Reading Hub",
   address: "Block A, Sector 18, Civil Lines",
@@ -15,3 +16,4 @@ export const SETUP_WIZARD_DATA = {
     { name: "Quarterly", days: 90, price: 2800 }
   ]
 };
+

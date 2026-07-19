@@ -1,3 +1,4 @@
+﻿// RESPONSIBILITY: Renders or handles logic for SuperadminAssetsTypes.ts.
 
 
 export interface SuperadminAsset {
@@ -10,3 +11,4 @@ export interface SuperadminAsset {
   location: string;
   status: 'active' | 'maintenance' | 'disposed';
 }
+

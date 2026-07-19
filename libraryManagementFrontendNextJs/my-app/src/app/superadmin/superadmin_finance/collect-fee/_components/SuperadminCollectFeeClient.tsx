@@ -75,7 +75,7 @@ export function SuperadminCollectFeeClient() {
                   className="w-full bg-input border border-border rounded-md py-2.5 pl-9 pr-3 text-sm font-medium text-text-primary focus:outline-none focus:border-primary transition-colors" 
                   placeholder="Search by name or Smart ID..." 
                   value={search}
-                  onChange={e => { setSearch(e.target.value); handleSelectStudent(null as any); setShowDropdown(true); }}
+                  onChange={e => { setSearch(e.target.value); handleSelectStudent(null); setShowDropdown(true); }}
                   onFocus={() => setShowDropdown(true)} 
                 />
               </div>

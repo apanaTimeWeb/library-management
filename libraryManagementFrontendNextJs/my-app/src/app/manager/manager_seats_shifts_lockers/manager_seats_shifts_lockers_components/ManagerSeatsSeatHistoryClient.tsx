@@ -1,4 +1,4 @@
-// @ts-nocheck
+﻿
 'use client';
 // RESPONSIBILITY: Renders the ManagerSeatsSeatHistoryClient.tsx component UI.
 import { Allocation, ActivityItem, Locker, SeatHistoryEntry, LogEntry, Seat, ManagerSeatsSeatMatrixModalProps, ShiftData, Shift, Student } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_types';
@@ -83,7 +83,7 @@ const {
 
       {filtered.length === 0 ? (
         <div className="ss-empty-state">
-          <p className="ss-empty-state__icon">ðŸ“œ</p>
+          <p className="ss-empty-state__icon">Ã°Å¸â€œÅ“</p>
           <p className="ss-empty-state__title">No seat history records found.</p>
         </div>
       ) : (

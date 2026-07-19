@@ -1,3 +1,4 @@
+﻿// RESPONSIBILITY: Renders or handles logic for manager_seats_shifts_lockers_types.ts.
 
 
 export interface SeatData {
@@ -95,3 +96,4 @@ export type SeatStatus = 'free' | 'occupied' | 'expiring' | 'maintenance' | 'Wor
 export type LockerStatus = 'Free' | 'Occupied' | 'Maintenance' | 'Available';
 export type PayMode = 'Cash' | 'UPI' | 'Card';
 export type FetchState = 'idle' | 'loading' | 'success' | 'error';
+

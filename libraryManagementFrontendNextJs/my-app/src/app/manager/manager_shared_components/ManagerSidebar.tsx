@@ -1,4 +1,4 @@
-// @ts-nocheck
+﻿
 'use client';
 // RESPONSIBILITY: Collapsible sidebar navigation for the Manager shell. Manages active route highlighting and mobile overlay.
 

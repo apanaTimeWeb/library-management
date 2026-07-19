@@ -1,3 +1,4 @@
+﻿// RESPONSIBILITY: Renders or handles logic for mockRegistry.ts.
 import managerStudentsMock from '@/app/manager/manager_students/hardcoded.json';
 import { MOCK_AUDIT_LOGS } from '@/app/admin/admin_audit-logs/admin_audit-logs_constants/admin_audit-logs_constants';
 import { MOCK_BLACKLIST } from '@/app/admin/admin_blacklist/admin_blacklist_constants/admin_blacklist_constants';
@@ -35,7 +36,7 @@ import {
 const GENERIC_DASHBOARD_MOCK = {
   kpiData: [
     { label: "Active Users", value: "150", trend: "+5%" },
-    { label: "Revenue", value: "₹15,000", trend: "+10%" },
+    { label: "Revenue", value: "â‚¹15,000", trend: "+10%" },
   ],
   seatData: { total: 100, occupied: 80, available: 20 },
   actionItems: [{ title: "Pending Approvals", count: 3, countClass: "text-red-500", href: "#" }],
@@ -63,7 +64,7 @@ const ADMIN_DASHBOARD_MOCK = {
   kpiCards: [
     { label: 'Total Branches', value: '12', trend: { value: '+2', up: true }, sub: 'from last month' },
     { label: 'Active Students', value: '1,250', trend: { value: '+150', up: true }, sub: 'from last month' },
-    { label: 'Total Revenue', value: '₹4.5L', trend: { value: '₹50K', up: true }, sub: 'from last month' },
+    { label: 'Total Revenue', value: 'â‚¹4.5L', trend: { value: 'â‚¹50K', up: true }, sub: 'from last month' },
     { label: 'Pending Approvals', value: '24', trend: { value: '-5', up: false }, sub: 'from last week' },
   ],
   actionItems: [
@@ -80,11 +81,11 @@ const ADMIN_DASHBOARD_MOCK = {
     studentId: `STU-${i+1}`
   })),
   recentPayments: [
-    { name: 'Rahul Kumar', initials: 'RK', amount: '₹1,500', mode: 'UPI', timeAgo: 'Just now', studentId: 'STU-1' },
-    { name: 'Amit Singh', initials: 'AS', amount: '₹2,000', mode: 'Cash', timeAgo: '2 hours ago', studentId: 'STU-2' },
-    { name: 'Priya Sharma', initials: 'PS', amount: '₹1,000', mode: 'Card', timeAgo: '5 hours ago', studentId: 'STU-3' },
-    { name: 'Neha Gupta', initials: 'NG', amount: '₹3,000', mode: 'Bank Transfer', timeAgo: '1 day ago', studentId: 'STU-4' },
-    { name: 'Vikram Singh', initials: 'VS', amount: '₹1,200', mode: 'UPI', timeAgo: '1 day ago', studentId: 'STU-5' },
+    { name: 'Rahul Kumar', initials: 'RK', amount: 'â‚¹1,500', mode: 'UPI', timeAgo: 'Just now', studentId: 'STU-1' },
+    { name: 'Amit Singh', initials: 'AS', amount: 'â‚¹2,000', mode: 'Cash', timeAgo: '2 hours ago', studentId: 'STU-2' },
+    { name: 'Priya Sharma', initials: 'PS', amount: 'â‚¹1,000', mode: 'Card', timeAgo: '5 hours ago', studentId: 'STU-3' },
+    { name: 'Neha Gupta', initials: 'NG', amount: 'â‚¹3,000', mode: 'Bank Transfer', timeAgo: '1 day ago', studentId: 'STU-4' },
+    { name: 'Vikram Singh', initials: 'VS', amount: 'â‚¹1,200', mode: 'UPI', timeAgo: '1 day ago', studentId: 'STU-5' },
   ]
 };
 
@@ -158,3 +159,4 @@ export const mockRegistry: Record<string, any> = {
     }
   },
 };
+

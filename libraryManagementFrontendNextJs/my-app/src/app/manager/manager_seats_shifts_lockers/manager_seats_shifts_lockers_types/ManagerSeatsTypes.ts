@@ -1,3 +1,4 @@
+﻿// RESPONSIBILITY: Renders or handles logic for ManagerSeatsTypes.ts.
 
 
 export interface Allocation {
@@ -21,7 +22,7 @@ export interface Seat {
   condition: 'Excellent' | 'Good' | 'Needs Repair'; hasPower: boolean;
 }
 export interface ManagerSeatsSeatMatrixModalProps {
-  isOpen: boolean; onClose: () => void; selectedSeat?: any;
+  isOpen: boolean; onClose: () => void; selectedSeat?: Seat;
 }
 export interface BookedBlock { startH: number; endH: number; label: string; }
 export interface GapBlock    { startH: number; endH: number; seats: number; revLoss: number; }
@@ -37,3 +38,4 @@ export interface Student {
   smartId?: string;
   dailyRate?: number;
 }
+

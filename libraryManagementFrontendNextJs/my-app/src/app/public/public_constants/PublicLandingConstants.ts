@@ -1,3 +1,4 @@
+﻿// RESPONSIBILITY: Renders or handles logic for PublicLandingConstants.ts.
 import { PublicFeatureItem, PublicFAQItem } from "@/app/public/public_types/PublicLanding_types";
 
 export const PUBLIC_FEATURES: PublicFeatureItem[] = [
@@ -13,7 +14,7 @@ export const PUBLIC_FEATURES: PublicFeatureItem[] = [
   },
   {
     title: 'WhatsApp Alerts',
-    description: 'Fee due, seat expiry, and attendance — automatic WhatsApp alerts. No manual reminders needed.',
+    description: 'Fee due, seat expiry, and attendance â€” automatic WhatsApp alerts. No manual reminders needed.',
     iconName: 'Bell',
   },
   {
@@ -55,3 +56,4 @@ export const PUBLIC_FAQS: PublicFAQItem[] = [
     answer: 'Yes! You can manage your library from anywhere using your mobile phone or laptop. All data is securely stored in the cloud.',
   },
 ];
+

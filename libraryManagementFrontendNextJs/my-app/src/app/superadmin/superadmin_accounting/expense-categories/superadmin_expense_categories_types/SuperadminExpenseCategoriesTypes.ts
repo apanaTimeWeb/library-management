@@ -1,3 +1,4 @@
+﻿// RESPONSIBILITY: Renders or handles logic for SuperadminExpenseCategoriesTypes.ts.
 
 
 export interface SuperadminExpenseCategory {
@@ -7,3 +8,4 @@ export interface SuperadminExpenseCategory {
   spent: number;
   color: string;
 }
+

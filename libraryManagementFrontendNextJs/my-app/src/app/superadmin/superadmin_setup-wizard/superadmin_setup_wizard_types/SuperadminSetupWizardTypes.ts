@@ -1,3 +1,4 @@
+﻿// RESPONSIBILITY: Renders or handles logic for SuperadminSetupWizardTypes.ts.
 import type { BranchDetailsData, ShiftsData, SeatsData, PlansData } from '@/app/superadmin/superadmin_shared_components/Superadminsuperadmin_schema';
 
 
@@ -13,3 +14,4 @@ export interface SuperadminSetupWizardStep3Props {
 export interface SuperadminSetupWizardStep4Props {
   onNext: (d: PlansData) => void;
 }
+

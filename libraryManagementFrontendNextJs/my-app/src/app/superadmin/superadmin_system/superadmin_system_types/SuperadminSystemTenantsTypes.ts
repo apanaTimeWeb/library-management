@@ -1,3 +1,4 @@
+﻿// RESPONSIBILITY: Renders or handles logic for SuperadminSystemTenantsTypes.ts.
 
 
 export interface SuperadminSystemTenant {
@@ -27,3 +28,4 @@ export interface TenantsPaginatedResponse {
   page: number;
   limit: number;
 }
+

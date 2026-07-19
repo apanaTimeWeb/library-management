@@ -1,38 +1,39 @@
+﻿// RESPONSIBILITY: Renders or handles logic for SuperadminDashboardConstants.ts.
 import { SUPERADMIN_ROUTES } from '@/app/superadmin/Superadminsuperadmin_url_config';
 
 export const SUPERADMIN_DASHBOARD_RECENT_ACTIVITY = [
   {
     type: 'success',
     title: 'New Library Registered',
-    desc: 'StudyNest Patna — Pro Plan',
+    desc: 'StudyNest Patna â€” Pro Plan',
     time: '2 hours ago',
     href: SUPERADMIN_ROUTES.LIBRARIES,
   },
   {
     type: 'danger',
     title: 'Subscription Overdue',
-    desc: 'Scholar Spaces — ₹999 due',
+    desc: 'Scholar Spaces â€” â‚¹999 due',
     time: '5 hours ago',
     href: SUPERADMIN_ROUTES.SUBSCRIPTIONS,
   },
   {
     type: 'warning',
     title: 'Support Ticket Opened',
-    desc: 'TKT-991 — Payment Gateway Failing',
+    desc: 'TKT-991 â€” Payment Gateway Failing',
     time: '1 day ago',
     href: SUPERADMIN_ROUTES.SUPPORT_TICKETS,
   },
   {
     type: 'info',
     title: 'Automated Backup Completed',
-    desc: 'DB Snapshot — AWS S3',
+    desc: 'DB Snapshot â€” AWS S3',
     time: '2 days ago',
     href: SUPERADMIN_ROUTES.SYSTEM_HEALTH,
   },
   {
     type: 'success',
     title: 'Plan Renewed',
-    desc: 'The Alexandria Modern — Enterprise Annual',
+    desc: 'The Alexandria Modern â€” Enterprise Annual',
     time: '3 days ago',
     href: SUPERADMIN_ROUTES.BILLING,
   },
@@ -42,7 +43,7 @@ export const SUPERADMIN_DASHBOARD_MOCK_DATA = {
   kpiCards: [
     { title: 'Total Active Libraries', value: '1,204', icon: 'store', trend: '+12% this month' },
     { title: 'Total Registered Students', value: '45,892', icon: 'groups', trend: '+8% this month' },
-    { title: 'Monthly Recurring Revenue', value: '₹14.2L', icon: 'currency_rupee', trend: '+5% this month' },
+    { title: 'Monthly Recurring Revenue', value: 'â‚¹14.2L', icon: 'currency_rupee', trend: '+5% this month' },
     { title: 'Pending Support Tickets', value: '23', icon: 'pending_actions', alert: '5 High Priority' },
   ],
   systemHealth: {
@@ -60,3 +61,4 @@ export const SUPERADMIN_DASHBOARD_MOCK_DATA = {
     { id: '2', initials: 'SS', name: 'Scholar Space', owner: 'Amit S', students: 45, plan: 'Basic', status: 'setup', joinedAt: 'Yesterday' },
   ],
 };
+

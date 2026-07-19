@@ -1,3 +1,4 @@
+﻿// RESPONSIBILITY: Renders or handles logic for ManagerCommunicationTypes.ts.
 
 
 export interface Template { id: string; label: string; icon: string; body: string; }
@@ -13,3 +14,4 @@ export interface Notification {
   time: string; priority: 'High' | 'Medium'; link: string; read: boolean;
 }
 export type Category = 'All' | 'Finance' | 'CRM' | 'Operations' | 'Attendance' | 'High Only';
+

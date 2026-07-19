@@ -1,5 +1,5 @@
-'use client';
-// @ts-nocheck
+﻿'use client';
+
 import { useState, useEffect } from 'react';
 import type { ReactNode } from 'react';
 import { User, KeyRound, LockKeyhole, Settings } from 'lucide-react';
@@ -62,7 +62,7 @@ export function ManagerSeatsLockerMatrixClient() {
               key={uuid || id + '-' + index}
               className={`ss-locker-cell ss-locker-cell--${status}`}
               onClick={() => handleCellClick(id, status)}
-              title={status === 'Free' ? 'Available — click to assign' : status === 'Occupied' ? 'Occupied — click to view student' : 'Under Maintenance'}
+              title={status === 'Free' ? 'Available â€” click to assign' : status === 'Occupied' ? 'Occupied â€” click to view student' : 'Under Maintenance'}
             >
               {id}
             </button>
@@ -80,7 +80,7 @@ export function ManagerSeatsLockerMatrixClient() {
             {ACTIVITY_DATA.map((item) => (
               <div key={item.id} className="ss-activity-row">
                 <div className="ss-activity-row__left">
-                  <div className="ss-activity-icon"><span className="text-xl">👤</span></div>
+                  <div className="ss-activity-icon"><span className="text-xl">ðŸ‘¤</span></div>
                   <div>
                     <p className="ss-activity-title">{item.type} to {item.student}</p>
                     <p className="ss-activity-sub">{item.date}</p>
@@ -106,11 +106,11 @@ export function ManagerSeatsLockerMatrixClient() {
     {assignTarget && (
       <div className="ss-modal-overlay" onClick={() => setAssignTarget(null)}>
         <div className="ss-modal" onClick={e => e.stopPropagation()}>
-          <h2 className="ss-modal-title">⚡ Assign Locker {assignTarget}</h2>
+          <h2 className="ss-modal-title">âš¡ Assign Locker {assignTarget}</h2>
           <p className="ss-modal-desc">Locker <strong>{assignTarget}</strong> is available.</p>
           <div className="ss-modal-footer">
             <button className="ss-btn-ghost" onClick={() => setAssignTarget(null)}>Cancel</button>
-            <button className="ss-btn-primary" onClick={() => { toast.success(`Locker ${assignTarget} assigned.`); setAssignTarget(null); }}>⚡ Assign Student</button>
+            <button className="ss-btn-primary" onClick={() => { toast.success(`Locker ${assignTarget} assigned.`); setAssignTarget(null); }}>âš¡ Assign Student</button>
           </div>
         </div>
       </div>

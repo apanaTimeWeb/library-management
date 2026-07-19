@@ -1,3 +1,4 @@
+﻿// RESPONSIBILITY: Renders or handles logic for Superadminsuperadmin_format.ts.
 export function formatCurrency(amount: number) {
   return new Intl.NumberFormat("en-IN", {
     style: "currency",
@@ -28,3 +29,4 @@ export function formatDateTime(dateStr: string) {
     minute: "2-digit",
   }).format(date);
 }
+

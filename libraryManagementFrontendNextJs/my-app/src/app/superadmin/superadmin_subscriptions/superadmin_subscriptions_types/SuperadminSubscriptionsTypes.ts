@@ -1,3 +1,4 @@
+﻿// RESPONSIBILITY: Renders or handles logic for SuperadminSubscriptionsTypes.ts.
 
 
 export interface SuperadminSubscription {
@@ -35,3 +36,4 @@ export interface SuperadminSubscriptionsGridProps {
   setFilter: (f: string) => void;
   onRowClick: (sub: SuperadminSubscription) => void;
 }
+

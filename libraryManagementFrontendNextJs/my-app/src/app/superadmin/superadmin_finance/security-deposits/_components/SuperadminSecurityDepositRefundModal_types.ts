@@ -1,3 +1,4 @@
+﻿// RESPONSIBILITY: Renders or handles logic for SuperadminSecurityDepositRefundModal_types.ts.
 import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -8,3 +9,4 @@ export interface SecurityDepositRefundModalProps {
   onSubmit: (data: RefundFormData) => void;
   isProcessing: boolean;
 }
+

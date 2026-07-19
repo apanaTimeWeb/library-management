@@ -1,3 +1,4 @@
+﻿// RESPONSIBILITY: Renders or handles logic for manager_communication_store.ts.
 import { create } from 'zustand';
 import { fetchApi } from '@/lib/api';
 import type { FetchState, Notice, Complaint, ManagerCommunicationState } from '@/app/manager/manager_communication/manager_communication_types/manager_communication_types';
@@ -33,7 +34,7 @@ while(MOCK_NOTICES.length < 50 && base_MOCK_NOTICES.length > 0) {
         set({ notices: MOCK_NOTICES, noticesStatus: 'success' });
         return;
       }
-      const mapped = (actualData as any[]).map((n: any) => ({
+      const mapped = (actualData as Record<string, unknown>[]).map((n: Record<string, unknown>) => ({
         id: n.id,
         title: n.title,
         message: n.message,
@@ -96,7 +97,7 @@ while(MOCK_NOTICES.length < 50 && base_MOCK_NOTICES.length > 0) {
         set({ complaints: MOCK_COMPLAINTS, complaintsStatus: 'success' });
         return;
       }
-      const mapped = (actualData as any[]).map((c: any) => ({
+      const mapped = (actualData as Record<string, unknown>[]).map((c: Record<string, unknown>) => ({
         id: c.id,
         title: c.subject || 'Complaint',
         desc: c.description || '',
@@ -149,3 +150,4 @@ while(MOCK_NOTICES.length < 50 && base_MOCK_NOTICES.length > 0) {
     }));
   }
 }));
+

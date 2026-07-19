@@ -60,7 +60,7 @@ export function SuperadminReferralPayoutModal({
                 { label: 'Cash', value: 'cash' },
               ]}
               value={paymentMethod}
-              onChange={(v) => setValue('paymentMethod', v as any)}
+              onChange={(v) => setValue('paymentMethod', v as 'cash' | 'upi' | 'card' | 'bank transfer')}
             />
             {errors.paymentMethod && <p className="text-danger text-xs mt-1">{errors.paymentMethod.message}</p>}
           </div>

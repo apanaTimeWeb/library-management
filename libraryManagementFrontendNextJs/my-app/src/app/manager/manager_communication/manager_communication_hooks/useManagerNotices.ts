@@ -1,3 +1,4 @@
+﻿// RESPONSIBILITY: Renders or handles logic for useManagerNotices.ts.
 import { useEffect } from 'react';
 import { useManagerCommunicationStore } from '@/app/manager/manager_communication/manager_communication_store/manager_communication_store';
 
@@ -22,3 +23,4 @@ export function useManagerNotices() {
     deleteNotice
   };
 }
+

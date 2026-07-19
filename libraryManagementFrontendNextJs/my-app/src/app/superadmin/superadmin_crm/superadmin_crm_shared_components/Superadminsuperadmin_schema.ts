@@ -1,3 +1,4 @@
+﻿// RESPONSIBILITY: Renders or handles logic for Superadminsuperadmin_schema.ts.
 import { z } from 'zod';
 
 
@@ -6,13 +7,13 @@ export type FollowUpFormData = z.infer<typeof followUpSchema>;
 export type UpdateStatusFormData = z.infer<typeof updateStatusSchema>;
 export type MarkLostFormData = z.infer<typeof markLostSchema>;
 
-// ─── Add Enquiry ──────────────────────────────────────────────────────────────
+// â”€â”€â”€ Add Enquiry â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 export const addEnquirySchema = z.object({
   name: z
     .string()
     .min(2, 'Full name must be at least 2 characters'),
 });
-// ─── Follow-Up ────────────────────────────────────────────────────────────────
+// â”€â”€â”€ Follow-Up â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 export const followUpSchema = z.object({
   date: z
     .string()
@@ -21,13 +22,14 @@ export const followUpSchema = z.object({
     .string()
     .min(3, 'Remark must be at least 3 characters'),
 });
-// ─── Update Status ────────────────────────────────────────────────────────────
+// â”€â”€â”€ Update Status â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 export const updateStatusSchema = z.object({
   status: z.enum(['new', 'visited', 'interested', 'converted', 'lost'], {
     error: 'Please select a valid status',
   }),
 });
-// ─── Mark as Lost ─────────────────────────────────────────────────────────────
+// â”€â”€â”€ Mark as Lost â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 export const markLostSchema = z.object({
   reason: z.string().optional(),
 });
+

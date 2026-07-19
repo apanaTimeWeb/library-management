@@ -1,3 +1,4 @@
+﻿// RESPONSIBILITY: Renders or handles logic for AdminSystemSwitch_types.ts.
 import * as SwitchPrimitive from "@radix-ui/react-switch";
 import { cn } from "@/app/admin/admin_system/admin_system_components/AdminSystemutils/AdminSystemutils";
 import React from "react";
@@ -8,3 +9,4 @@ export interface SwitchProps {
   id?: string;
   className?: string;
 }
+

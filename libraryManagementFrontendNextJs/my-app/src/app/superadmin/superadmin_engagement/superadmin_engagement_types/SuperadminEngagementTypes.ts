@@ -1,3 +1,4 @@
+﻿// RESPONSIBILITY: Renders or handles logic for SuperadminEngagementTypes.ts.
 
 
 export interface SuperadminEngagementScanResult {
@@ -39,3 +40,4 @@ export interface SuperadminEngagementAbsenteeRow {
 }
 export type SuperadminEngagementScanState = 'idle' | 'scanning' | 'detected' | 'success';
 export type SuperadminEngagementAttStatus = 'present' | 'absent' | 'late' | null;
+

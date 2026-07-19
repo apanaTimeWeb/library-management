@@ -1,3 +1,4 @@
+﻿// RESPONSIBILITY: Renders or handles logic for SuperadminSystemWhatsappConstants.ts.
 import { CheckCircle, XCircle, Clock } from 'lucide-react';
 import React from 'react';
 import { SuperadminSystemWhatsappProvider, SuperadminSystemWhatsappLogStatus } from '@/app/superadmin/superadmin_system/superadmin_system_types/SuperadminSystemWhatsappTypes';
@@ -17,3 +18,4 @@ export const SUPERADMIN_SYSTEM_WHATSAPP_STATUS_CFG: Record<
   failed:    { variant: 'danger',  icon: XCircle     },
   pending:   { variant: 'warning', icon: Clock       },
 };
+

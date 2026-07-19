@@ -1,23 +1,28 @@
 'use client';
-import React, { Component, ErrorInfo, ReactNode } from 'react';
+// RESPONSIBILITY: Class-based Error Boundary for the Manager module. Catches render errors, displays a module-specific fallback UI with a Retry button.
+
+import { Component, ErrorInfo } from 'react';
 import { AlertTriangle, RefreshCw } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-
-export interface ManagerErrorBoundaryProps { children: ReactNode; }
-export interface ManagerErrorBoundaryState { hasError: boolean; error?: Error; }
+import { logger } from '@/lib/logger';
+import type { ManagerErrorBoundaryProps, ManagerErrorBoundaryState } from '@/app/manager/manager_shared_components/ManagerSharedTypes';
 
 export class ManagerErrorBoundary extends Component<ManagerErrorBoundaryProps, ManagerErrorBoundaryState> {
   constructor(props: ManagerErrorBoundaryProps) {
     super(props);
     this.state = { hasError: false };
   }
+
   static getDerivedStateFromError(error: Error): ManagerErrorBoundaryState {
     return { hasError: true, error };
   }
+
   componentDidCatch(error: Error, errorInfo: ErrorInfo) {
-    console.error('Manager Module Error:', error, errorInfo);
+    logger.error('Manager Module Error:', error, errorInfo);
   }
+
   resetError = () => this.setState({ hasError: false, error: undefined });
+
   render() {
     if (this.state.hasError) {
       return (

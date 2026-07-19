@@ -1,3 +1,4 @@
+﻿// RESPONSIBILITY: Renders or handles logic for manager_communication_types.ts.
 
 
 export interface Notice {
@@ -38,3 +39,4 @@ export interface ManagerCommunicationState {
   updateComplaintStatus: (id: string, status: Complaint['status'], resolution?: string) => Promise<void>;
 }
 export type FetchState = 'idle' | 'loading' | 'success' | 'error';
+

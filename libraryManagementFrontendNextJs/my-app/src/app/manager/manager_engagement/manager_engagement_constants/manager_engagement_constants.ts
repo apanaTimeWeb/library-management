@@ -1,3 +1,4 @@
+﻿// RESPONSIBILITY: Renders or handles logic for manager_engagement_constants.ts.
 import type { StudentAttendance } from '@/app/manager/manager_engagement/manager_engagement_types/manager_engagement_types';
 
 export const INIT_STUDENTS: StudentAttendance[] = [
@@ -10,3 +11,4 @@ export const INIT_STUDENTS: StudentAttendance[] = [
   { id:'7', smartId:'SL-007', name:'Arjun Mehta',    initials:'AM', shift:'Morning',   consecutiveAbsent:2, status:null, inTime:'',      outTime:''      },
   { id:'8', smartId:'SL-008', name:'Nisha Gupta',    initials:'NG', shift:'Evening',   consecutiveAbsent:0, status:null, inTime:'18:00', outTime:'22:00' },
 ];
+

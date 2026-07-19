@@ -1,3 +1,4 @@
+﻿// RESPONSIBILITY: Renders or handles logic for SuperadminSeatGapReportConstants.ts.
 import type { SuperadminGapRow } from '@/app/superadmin/superadmin_accounting/seat-gap-report/superadmin_seat_gap_report_types/SuperadminSeatGapReportTypes';
 
 export const SUPERADMIN_SEAT_GAP_REPORT_MOCK_DATA: SuperadminGapRow[] = [
@@ -13,4 +14,5 @@ export const SUPERADMIN_SEAT_GAP_REPORT_STATUS_STYLES: Record<string, string> = 
   vacant:      'bg-warning-bg text-warning border border-warning/20',
   maintenance: 'bg-danger-bg text-danger border border-danger/20',
 };
+
 

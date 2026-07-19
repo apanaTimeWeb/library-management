@@ -1,3 +1,4 @@
+﻿// RESPONSIBILITY: Renders or handles logic for AdminAccountingDailySettlementClient_types.ts.
 import { useState } from "react";
 import { CheckCircle } from "lucide-react";
 import toast from "react-hot-toast";
@@ -17,3 +18,4 @@ export type Entry = {
   settledBy: string;
   status: 'pending' | 'settled';
 };
+

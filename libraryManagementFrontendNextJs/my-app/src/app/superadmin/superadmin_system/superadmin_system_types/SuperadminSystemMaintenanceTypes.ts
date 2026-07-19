@@ -1,3 +1,4 @@
+﻿// RESPONSIBILITY: Renders or handles logic for SuperadminSystemMaintenanceTypes.ts.
 
 
 export interface SuperadminSystemMaintenanceSeat {
@@ -22,3 +23,4 @@ export interface SuperadminSystemMaintenanceLocker {
 export type SuperadminSystemMaintenanceSeatStatus = 'Needs Attention' | 'OK';
 export type SuperadminSystemMaintenanceAssetStatus = 'Overdue' | 'Due Soon' | 'OK';
 export type SuperadminSystemMaintenanceLockerStatus = 'Issue Reported' | 'OK';
+

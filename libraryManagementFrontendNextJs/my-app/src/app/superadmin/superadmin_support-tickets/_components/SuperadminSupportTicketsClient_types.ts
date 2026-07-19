@@ -1,1 +1,3 @@
+﻿// RESPONSIBILITY: Renders or handles logic for SuperadminSupportTicketsClient_types.ts.
 export interface Ticket { user?: string; branch?: string; date?: string; desc?: string; tenant?: string; age?: string; replies?: number;  id: string; subject: string; status: string; priority: string; }
+

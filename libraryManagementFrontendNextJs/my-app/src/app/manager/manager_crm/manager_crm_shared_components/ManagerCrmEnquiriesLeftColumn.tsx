@@ -1,4 +1,5 @@
-'use client';
+﻿'use client';
+// RESPONSIBILITY: Renders the ManagerCrmEnquiriesLeftColumn.tsx component/page.
 import { Phone, Tag, Clock, User, MapPin, CalendarDays } from 'lucide-react';
 import { type EnquiryDetail } from '@/app/manager/manager_crm/manager_crm_types/ManagerCrmTypes';
 import { STATUS_BADGE } from '@/app/manager/manager_crm/manager_crm_constants';
@@ -64,3 +65,4 @@ export function ManagerCrmEnquiriesLeftColumn({ enquiry }: { enquiry: EnquiryDet
     </>
   );
 }
+

@@ -1,3 +1,4 @@
+﻿// RESPONSIBILITY: Renders or handles logic for SuperadminSystemMockData.ts.
 export const SUPERADMIN_SYSTEM_MOCK_BACKUP_HISTORY = [
   {
     id: 'bk-001', name: 'Nightly Auto Backup',    type: 'auto',   size: '4.2 MB', createdAt: '2026-04-12 02:00 AM', status: 'success',
@@ -97,3 +98,4 @@ export const SUPERADMIN_SYSTEM_MOCK_WHATSAPP_LOGS = [
   { id: 'wl-005', to: '91****4430', type: 'Seat Vacancy',     status: 'delivered', sentAt: '2026-04-10 11:00 AM', template: 'waitlist_notify' },
   { id: 'wl-006', to: '98****0010', type: 'Fee Receipt',      status: 'delivered', sentAt: '2026-04-10 09:15 AM', template: 'receipt_confirmation' },
 ];
+

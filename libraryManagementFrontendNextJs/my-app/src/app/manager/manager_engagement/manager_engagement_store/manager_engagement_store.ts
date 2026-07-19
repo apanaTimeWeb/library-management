@@ -1,3 +1,4 @@
+﻿// RESPONSIBILITY: Renders or handles logic for manager_engagement_store.ts.
 import { create } from 'zustand';
 import type { FetchState, StudentAttendance, AttStatus } from '@/app/manager/manager_engagement/manager_engagement_types/manager_engagement_types';
 import { INIT_STUDENTS } from '@/app/manager/manager_engagement/manager_engagement_constants/manager_engagement_constants';
@@ -44,3 +45,4 @@ export const useManagerEngagementStore = create<ManagerEngagementState>((set, ge
     return new Promise(resolve => setTimeout(resolve, 500));
   }
 }));
+

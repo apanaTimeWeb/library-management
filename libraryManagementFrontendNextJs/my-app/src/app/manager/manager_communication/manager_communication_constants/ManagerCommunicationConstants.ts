@@ -1,3 +1,4 @@
+﻿// RESPONSIBILITY: Renders or handles logic for ManagerCommunicationConstants.ts.
 import { Template, WaLog, Notification, Category } from '@/app/manager/manager_communication/manager_communication_types/ManagerCommunicationTypes';
 
 export const INIT_TEMPLATES: Template[] = [
@@ -28,3 +29,4 @@ export const NOTIF_CATEGORIES: { id: Category; label: string; icon: string }[] =
   { id: 'Attendance', label: 'Attendance',          icon: '@' },
   { id: 'High Only',  label: 'Priority: High Only', icon: '!' },
 ];
+

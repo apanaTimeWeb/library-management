@@ -1,3 +1,4 @@
+﻿// RESPONSIBILITY: Renders or handles logic for AdminPermissionsView_types.ts.
 import { useState } from "react";
 import { Input } from "@/components/ui/input";
 import React from "react";
@@ -11,3 +12,4 @@ import { TablePagination } from "@/components/ui/table-pagination";
 export interface AdminPermissionsViewProps {
   initialPermissions: Permission[];
 }
+

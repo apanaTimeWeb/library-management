@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders or handles logic for auth_api.ts.
 import { StatusCodes } from 'http-status-codes';
 import { AUTH_API_ROUTES } from '@/app/auth/auth_url_config';
 import type { ApiResponse, AuthLoginResponse, AuthSignupPayload, AuthUser } from '@/app/auth/auth_types/auth_types';
@@ -18,7 +19,7 @@ export const authApi = {
           body: JSON.stringify({ phone: identifier, password }),
         });
       } catch (fetchError) {
-        console.warn('Backend not reachable, mocking login success');
+        logger.warn('Backend not reachable, mocking login success');
         response = {
           message: 'Mock login successful',
           data: {
@@ -191,3 +192,4 @@ export const authApi = {
     }
   },
 };
+

@@ -1,3 +1,4 @@
+﻿// RESPONSIBILITY: Renders or handles logic for manager_crm_types.ts.
 
 
 export interface FollowUp {
@@ -53,3 +54,4 @@ export type EnquirySource =
   | 'Instagram'
   | 'Facebook'
   | 'Other';
+

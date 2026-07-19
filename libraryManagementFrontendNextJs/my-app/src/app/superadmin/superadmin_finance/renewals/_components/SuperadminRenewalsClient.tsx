@@ -66,7 +66,7 @@ export function SuperadminRenewalsClient() {
 
       {/* Filter tabs */}
       <div className="flex gap-2">
-        {FILTERS.map(( f: any ) => (
+        {FILTERS.map(( f: { label: string; value: string; emoji: string } ) => (
           <button
             key={f.value}
             onClick={() => setFilter(f.value)}
@@ -213,7 +213,7 @@ export function SuperadminRenewalsClient() {
               </div>
               <div>
                 <label className="text-xs font-bold text-text-secondary block mb-1">Amount</label>
-                <input type="number" className="w-full bg-input border border-border rounded-md py-2.5 px-3 text-sm font-medium text-text-primary focus:outline-none focus:border-primary transition-colors" value={renewAmount} onChange={( e: any ) => setRenewAmount(e.target.value)} />
+                <input type="number" className="w-full bg-input border border-border rounded-md py-2.5 px-3 text-sm font-medium text-text-primary focus:outline-none focus:border-primary transition-colors" value={renewAmount} onChange={( e: React.ChangeEvent<HTMLInputElement> ) => setRenewAmount(e.target.value)} />
               </div>
               <div>
                 <label className="text-xs font-bold text-text-secondary block mb-1">Payment Mode</label>
@@ -231,7 +231,7 @@ export function SuperadminRenewalsClient() {
               {renewMode !== 'cash' && (
                 <div>
                   <label className="text-xs font-bold text-text-secondary block mb-1">Transaction ID</label>
-                  <input className="w-full bg-input border border-border rounded-md py-2.5 px-3 text-sm font-medium text-text-primary focus:outline-none focus:border-primary transition-colors" value={renewTxnId} onChange={( e: any ) => setRenewTxnId(e.target.value)} placeholder="Enter transaction reference" />
+                  <input className="w-full bg-input border border-border rounded-md py-2.5 px-3 text-sm font-medium text-text-primary focus:outline-none focus:border-primary transition-colors" value={renewTxnId} onChange={( e: React.ChangeEvent<HTMLInputElement> ) => setRenewTxnId(e.target.value)} placeholder="Enter transaction reference" />
                 </div>
               )}
             </div>

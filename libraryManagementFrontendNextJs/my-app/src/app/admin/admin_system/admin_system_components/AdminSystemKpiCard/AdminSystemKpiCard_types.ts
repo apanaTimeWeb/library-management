@@ -1,3 +1,4 @@
+﻿// RESPONSIBILITY: Renders or handles logic for AdminSystemKpiCard_types.ts.
 import { cn } from "@/app/admin/admin_system/admin_system_components/AdminSystemutils/AdminSystemutils";
 import { TrendingUp, TrendingDown, Minus } from "lucide-react";
 import React from "react";
@@ -10,3 +11,4 @@ export interface KpiCardProps {
   trendLabel?: string;
   className?: string;
 }
+

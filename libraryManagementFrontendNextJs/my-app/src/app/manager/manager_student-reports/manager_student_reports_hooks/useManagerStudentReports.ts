@@ -1,3 +1,4 @@
+﻿// RESPONSIBILITY: Renders or handles logic for useManagerStudentReports.ts.
 import { useEffect } from 'react';
 import { useManagerStudentReportsStore } from '@/app/manager/manager_student-reports/manager_student_reports_store/manager_student_reports_store';
 
@@ -17,3 +18,4 @@ export function useManagerStudentReports(dateRange: string) {
     error: reportsError
   };
 }
+

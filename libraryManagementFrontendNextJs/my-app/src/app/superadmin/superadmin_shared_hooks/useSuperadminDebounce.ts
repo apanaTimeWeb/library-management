@@ -1,3 +1,4 @@
+﻿// RESPONSIBILITY: Renders or handles logic for useSuperadminDebounce.ts.
 import { useState, useEffect } from 'react';
 
 export function useSuperadminDebounce<T>(value: T, delay: number): T {
@@ -15,3 +16,4 @@ export function useSuperadminDebounce<T>(value: T, delay: number): T {
 
   return debouncedValue;
 }
+

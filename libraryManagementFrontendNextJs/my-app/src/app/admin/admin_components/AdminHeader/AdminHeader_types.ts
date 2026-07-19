@@ -1,3 +1,4 @@
+﻿// RESPONSIBILITY: Renders or handles logic for AdminHeader_types.ts.
 import { Building2, Bell, Menu } from "lucide-react";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { useAdmin } from "@/app/admin/admin_store/AdminContext";
@@ -8,3 +9,4 @@ export interface AdminHeaderProps {
   sidebarWidth: number;
   onMobileOpen: () => void;
 }
+

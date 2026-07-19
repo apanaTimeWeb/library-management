@@ -1,3 +1,4 @@
+﻿// RESPONSIBILITY: Renders or handles logic for SuperadminSystemSettingsConstants.ts.
 import { Palette, AlertCircle, Zap, CreditCard, Bell, Globe } from 'lucide-react';
 
 export const SUPERADMIN_SYSTEM_SETTINGS_CATEGORIES = [
@@ -8,3 +9,4 @@ export const SUPERADMIN_SYSTEM_SETTINGS_CATEGORIES = [
   { id: 'notifications',label: 'Notifications',     icon: Bell        },
   { id: 'general',      label: 'General',           icon: Globe       },
 ];
+

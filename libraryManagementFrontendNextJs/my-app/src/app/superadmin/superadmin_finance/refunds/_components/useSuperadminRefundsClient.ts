@@ -1,4 +1,3 @@
-// @ts-nocheck
 /**
  * RESPONSIBILITY: Logic and state management for the SuperadminRefundsClient component.
  */
@@ -16,21 +15,21 @@ import type { DeductFormData } from '@/app/superadmin/superadmin_finance/refunds
 export function useSuperadminRefundsClient() {
   const [statusFilter, setStatusFilter] = useState('all');
   const [allRefunds, setAllRefunds] = useState<SuperadminFinanceRefund[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const [fetchState, setFetchState] = useState<'idle' | 'loading' | 'success' | 'error'>('loading');
   const [isSubmitting, setIsSubmitting] = useState(false);
   
   const [processDialog, setProcessDialog] = useState<{ id: number; name: string; amount: number } | null>(null);
   const [deductDialog, setDeductDialog] = useState<{ id: number; name: string } | null>(null);
 
   useEffect(() => {
-    fetchApi(SUPERADMIN_API_ROUTES.FINANCE_REFUNDS).then(( data: any ) => {
-      const actualData = Array.isArray(data) ? data : data?.data;
+    fetchApi<unknown>(SUPERADMIN_API_ROUTES.FINANCE_REFUNDS).then(( data: unknown ) => {
+      const actualData = Array.isArray(data) ? data : (data as Record<string, unknown>)?.data;
       if (!Array.isArray(actualData) || actualData.length === 0 || String(actualData[0]?.id).startsWith('MOCK-')) {
         setAllRefunds(SUPERADMIN_FINANCE_MOCK_REFUNDS as SuperadminFinanceRefund[]);
-        setIsLoading(false);
+        setFetchState('success');
         return;
       }
-      const mapped: SuperadminFinanceRefund[] = actualData.map(( r: Record<string, any> ) => ({
+      const mapped: SuperadminFinanceRefund[] = (actualData as Record<string, unknown>[]).map(( r: Record<string, unknown> ) => ({
         id: parseInt(String(r.id || '0'), 10),
         studentName: String(r.name || 'Student'),
         smartId: 'S-001',
@@ -41,10 +40,10 @@ export function useSuperadminRefundsClient() {
         requestedDate: r.date ? new Date(String(r.date)).toISOString().split('T')[0] : new Date().toISOString().split('T')[0],
       }));
       setAllRefunds(mapped);
-      setIsLoading(false);
+      setFetchState('success');
     }).catch(err => {
       logger.error('Failed to load finance refunds', err);
-      setIsLoading(false);
+      setFetchState('error');
     });
   }, []);
 
@@ -90,7 +89,7 @@ export function useSuperadminRefundsClient() {
 
   return {
     statusFilter, setStatusFilter,
-    isLoading, isSubmitting,
+    fetchState, isSubmitting,
     processDialog, setProcessDialog,
     deductDialog, setDeductDialog,
     filtered,

@@ -1,3 +1,4 @@
+﻿// RESPONSIBILITY: Renders or handles logic for manager_students_types.ts.
 
 
 export interface Student {
@@ -81,3 +82,4 @@ export type AdmittedData = IdCardData & {
   paymentMode: string;
   transactionId?: string;
 };
+

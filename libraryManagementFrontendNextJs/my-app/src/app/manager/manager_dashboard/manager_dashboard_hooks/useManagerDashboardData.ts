@@ -1,11 +1,12 @@
+﻿// RESPONSIBILITY: Renders or handles logic for useManagerDashboardData.ts.
 import { useEffect } from 'react';
 import { useDashboardStore } from '@/app/manager/manager_dashboard/manager_dashboard_store/manager_dashboard_store';
 
 /**
  * Custom hook to fetch and manage dashboard data.
- * DATA FLOW: API → useManagerDashboardData → ManagerDashboardClient
+ * DATA FLOW: API â†’ useManagerDashboardData â†’ ManagerDashboardClient
  */
-// DATA FLOW: API → useManagerDashboardData.ts → DashboardDataComponent
+// DATA FLOW: API â†’ useManagerDashboardData.ts â†’ DashboardDataComponent
 export function useManagerDashboardData() {
   const { data, status, error, fetchData } = useDashboardStore();
 
@@ -19,3 +20,4 @@ export function useManagerDashboardData() {
 
   return { data, status, error };
 }
+

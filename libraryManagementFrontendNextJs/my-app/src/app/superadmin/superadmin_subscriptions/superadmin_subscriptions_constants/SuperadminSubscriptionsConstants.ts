@@ -1,3 +1,4 @@
+﻿// RESPONSIBILITY: Renders or handles logic for SuperadminSubscriptionsConstants.ts.
 import type { SuperadminSubscription, SuperadminSubscriptionKpi } from '@/app/superadmin/superadmin_subscriptions/superadmin_subscriptions_types/SuperadminSubscriptionsTypes';
 
 export const SUPERADMIN_SUBSCRIPTIONS_PLANS = ['Basic (Monthly)', 'Pro (Monthly)', 'Enterprise (Annual)'];
@@ -12,6 +13,7 @@ export const SUPERADMIN_SUBSCRIPTIONS_MOCK_DATA: SuperadminSubscription[] = [
 
 export const SUPERADMIN_SUBSCRIPTIONS_KPI: SuperadminSubscriptionKpi[] = [
   { label: 'Active Subscriptions',      val: '24',        icon: 'users',         colorType: 'primary', trend: '+3 this month',       trendType: 'success' },
-  { label: 'Monthly Recurring Revenue', val: '₹1,42,500', icon: 'receipt_text',  colorType: 'success', trend: '↑ 12% vs last month', trendType: 'success' },
-  { label: 'Churn Rate',                val: '1.2%',       icon: 'trending_down', colorType: 'warning', trend: 'Healthy ✓',          trendType: 'success' },
+  { label: 'Monthly Recurring Revenue', val: 'â‚¹1,42,500', icon: 'receipt_text',  colorType: 'success', trend: 'â†‘ 12% vs last month', trendType: 'success' },
+  { label: 'Churn Rate',                val: '1.2%',       icon: 'trending_down', colorType: 'warning', trend: 'Healthy âœ“',          trendType: 'success' },
 ];
+

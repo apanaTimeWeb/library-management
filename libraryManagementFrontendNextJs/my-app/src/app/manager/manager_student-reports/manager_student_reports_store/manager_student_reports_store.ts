@@ -1,3 +1,4 @@
+﻿// RESPONSIBILITY: Renders or handles logic for manager_student_reports_store.ts.
 import { create } from 'zustand';
 import { fetchApi } from '@/lib/api';
 import { logger } from '@/lib/logger';
@@ -20,3 +21,4 @@ export const useManagerStudentReportsStore = create<ManagerStudentReportsState>(
     }
   }
 }));
+

@@ -1,8 +1,5 @@
-// RESPONSIBILITY: Component or Page.
-// @ts-nocheck
-/**
- * RESPONSIBILITY: Logic and state management for the SuperadminReferralsClient component.
- */
+// RESPONSIBILITY: Logic and state management for the SuperadminReferralsClient component.
+
 import { SUPERADMIN_API_ROUTES } from '@/app/superadmin/Superadminsuperadmin_url_config';
 import { useState, useEffect } from 'react';
 import { fetchApi } from '@/lib/api';
@@ -21,14 +18,14 @@ export function useSuperadminReferralsClient() {
   const [payoutDialog, setPayoutDialog] = useState<{ id: number; name: string; amount: number } | null>(null);
 
   useEffect(() => {
-    fetchApi(SUPERADMIN_API_ROUTES.FINANCE_REFERRALS).then(( data: any ) => {
-      const actualData = Array.isArray(data) ? data : data?.data;
+    fetchApi<unknown>(SUPERADMIN_API_ROUTES.FINANCE_REFERRALS).then(( data: unknown ) => {
+      const actualData = Array.isArray(data) ? data : (data as Record<string, unknown>)?.data;
       if (!Array.isArray(actualData) || actualData.length === 0 || String(actualData[0]?.id).startsWith('MOCK-')) {
         setAllReferrals(SUPERADMIN_FINANCE_MOCK_REFERRERS as unknown as SuperadminFinanceReferral[]);
         setIsLoading(false);
         return;
       }
-      const mapped: SuperadminFinanceReferral[] = actualData.map(( r: Record<string, any> ) => ({
+      const mapped: SuperadminFinanceReferral[] = (actualData as Record<string, unknown>[]).map(( r: Record<string, unknown> ) => ({
         id: parseInt(String(r.id || '0'), 10),
         referrerName: String(r.referrerName || 'Referrer'),
         referrerSmartId: 'S-001',

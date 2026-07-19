@@ -1,4 +1,5 @@
 'use client';
+// RESPONSIBILITY: Renders the AdminReportsBranchTable.tsx component/page.
 import { Search } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { TablePagination } from '@/components/ui/table-pagination';
@@ -14,10 +15,10 @@ export function AdminReportsBranchTable({ rangeOptions, range }: { rangeOptions:
   const [limit, setLimit] = useState(10);
 
   const branchData = [
-    { branch: 'Main Branch',    revenue: '₹62,000', expense: '₹18,000', profit: '₹44,000', students: 248, occ: 92 },
-    { branch: 'Branch 2',       revenue: '₹48,000', expense: '₹14,500', profit: '₹33,500', students: 180, occ: 85 },
-    { branch: 'Kothrud Center', revenue: '₹28,000', expense: '₹9,000',  profit: '₹19,000', students: 95,  occ: 78 },
-    { branch: 'Nashik Branch',  revenue: '₹14,000', expense: '₹5,000',  profit: '₹9,000',  students: 42,  occ: 60 },
+    { branch: 'Main Branch',    revenue: 'â‚¹62,000', expense: 'â‚¹18,000', profit: 'â‚¹44,000', students: 248, occ: 92 },
+    { branch: 'Branch 2',       revenue: 'â‚¹48,000', expense: 'â‚¹14,500', profit: 'â‚¹33,500', students: 180, occ: 85 },
+    { branch: 'Kothrud Center', revenue: 'â‚¹28,000', expense: 'â‚¹9,000',  profit: 'â‚¹19,000', students: 95,  occ: 78 },
+    { branch: 'Nashik Branch',  revenue: 'â‚¹14,000', expense: 'â‚¹5,000',  profit: 'â‚¹9,000',  students: 42,  occ: 60 },
   ];
 
   return (
@@ -45,7 +46,7 @@ export function AdminReportsBranchTable({ rangeOptions, range }: { rangeOptions:
           </thead>
           <tbody className="divide-y divide-border">
             {branchData.filter(row => JSON.stringify(row).toLowerCase().includes(searchTerm.toLowerCase())).slice((page - 1) * limit, page * limit).map((row, i) => (
-              <tr key={i} className="hover:bg-muted/10 transition-colors">
+              <tr key={row.branch} className="hover:bg-muted/10 transition-colors">
                 <td className="px-4 py-3 font-bold text-sm text-primary">{row.branch}</td>
                 <td className="px-4 py-3 font-bold text-sm text-primary">{row.revenue}</td>
                 <td className="px-4 py-3 font-bold text-sm text-danger">{row.expense}</td>
@@ -84,3 +85,4 @@ export function AdminReportsBranchTable({ rangeOptions, range }: { rangeOptions:
     </Card>
   );
 }
+

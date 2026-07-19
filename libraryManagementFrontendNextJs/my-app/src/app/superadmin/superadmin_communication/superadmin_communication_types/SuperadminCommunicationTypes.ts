@@ -1,3 +1,4 @@
+﻿// RESPONSIBILITY: Renders or handles logic for SuperadminCommunicationTypes.ts.
 
 
 export interface SuperadminCommunicationWhatsappTemplate {
@@ -49,3 +50,4 @@ export interface SuperadminCommunicationNotice {
   status: 'Active' | 'Expired';
 }
 export type SuperadminCommunicationComplaintStatus = 'Open' | 'In-Progress' | 'Resolved';
+

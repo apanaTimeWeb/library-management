@@ -1,3 +1,4 @@
+﻿// RESPONSIBILITY: Renders or handles logic for SuperadminCollectFeeReceiptModal_types.ts.
 import React from "react";
 import { BookOpen, CheckCircle, MessageSquare, Printer, X } from "lucide-react";
 import { openWhatsApp } from "@/lib/whatsappUtils";
@@ -7,3 +8,4 @@ export interface Props {
   receiptData: SuperadminFinanceReceiptData;
   onClose: () => void;
 }
+

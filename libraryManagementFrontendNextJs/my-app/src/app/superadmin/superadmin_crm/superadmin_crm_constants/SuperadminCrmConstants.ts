@@ -1,3 +1,4 @@
+﻿// RESPONSIBILITY: Renders or handles logic for SuperadminCrmConstants.ts.
 export const CRM_CONSTANTS = {
   enquiries: [
     {
@@ -161,7 +162,7 @@ export const CRM_CONSTANTS = {
           date: "May 20, 2025",
           time: "03:00 PM",
           by: "Admin",
-          remark: "Called three times — no response. Marked as lost after 7-day follow-up window."
+          remark: "Called three times â€” no response. Marked as lost after 7-day follow-up window."
         },
         {
           id: "fu_010",
@@ -179,11 +180,11 @@ export const CRM_CONSTANTS = {
     { id: "staff_003", name: "Mike Ross" }
   ],
   shifts: [
-    { id: "shift_001", name: "Morning", time: "6 AM – 12 PM" },
-    { id: "shift_002", name: "Afternoon", time: "12 PM – 5 PM" },
-    { id: "shift_003", name: "Evening", time: "5 PM – 10 PM" },
-    { id: "shift_004", name: "Night", time: "10 PM – 6 AM" },
-    { id: "shift_005", name: "Full Day", time: "6 AM – 10 PM" }
+    { id: "shift_001", name: "Morning", time: "6 AM â€“ 12 PM" },
+    { id: "shift_002", name: "Afternoon", time: "12 PM â€“ 5 PM" },
+    { id: "shift_003", name: "Evening", time: "5 PM â€“ 10 PM" },
+    { id: "shift_004", name: "Night", time: "10 PM â€“ 6 AM" },
+    { id: "shift_005", name: "Full Day", time: "6 AM â€“ 10 PM" }
   ]
 };
 import { Enquiry } from '@/app/superadmin/superadmin_crm/superadmin_crm_shared_components/Superadminsuperadmin_types';
@@ -194,3 +195,4 @@ export const SUPERADMIN_CRM_MOCK_ENQUIRIES: Enquiry[] = [
   { id: 'E3', name: 'Amit Patel', phone: '7654321098', shift: 'Full Day', status: 'Converted', addedDate: '2026-04-08', source: 'Referral', handledBy: 'Admin', enquiryDate: '2026-04-08', preferredBranch: 'Main', avatar: 'AP', followUps: [], isOverdue: false, isToday: false, isUpcoming: false },
   { id: 'E4', name: 'Sneha Gupta', phone: '6543210987', shift: 'Night', status: 'Lost', addedDate: '2026-04-07', source: 'Instagram', handledBy: 'Staff', enquiryDate: '2026-04-07', preferredBranch: 'Main', avatar: 'SG', followUps: [], isOverdue: false, isToday: false, isUpcoming: false },
 ];
+

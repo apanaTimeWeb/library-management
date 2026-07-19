@@ -2,7 +2,7 @@
 // RESPONSIBILITY: Renders the SuperadminSubscriptionsClient component.
 import { SUPERADMIN_ROUTES } from '@/app/superadmin/Superadminsuperadmin_url_config';
 
-/* eslint-disable @typescript-eslint/no-explicit-any */
+
 
 import React from 'react';
 import { useRouter } from 'next/navigation';
@@ -128,7 +128,7 @@ export function SuperadminSubscriptionsClient() {
                 </td>
               </tr>
             ) : (
-              rows.map(( s: any ) => (
+              rows.map(( s: Record<string, unknown> & { id: number | string; status: string; studentName: string; smartId: string; shift: string; plan: string; startDate: string; endDate: string; lastPaymentDate: string; amount: number } ) => (
                 <tr key={s.id} className="border-b border-border last:border-0 hover:bg-primary/5 transition-colors cursor-pointer" onClick={() => toast.success(`Viewing subscription for ${s.studentName}`)}>
                   <td className="py-3 px-4 font-medium text-sm text-text-primary">{s.studentName}</td>
                   <td className="py-3 px-4 font-mono text-xs text-text-secondary">{s.smartId}</td>

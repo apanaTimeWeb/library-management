@@ -1,3 +1,4 @@
+﻿// RESPONSIBILITY: Renders or handles logic for AdminAccountingShiftGapAnalyzerClient_types.ts.
 import { useState } from "react";
 import { Search } from "lucide-react";
 import { Input } from "@/components/ui/input";
@@ -14,3 +15,4 @@ export type ShiftGap = {
   revenueLoss: number;
 };
 export type DayGap = { date: string; shift: string; seatNo: string; gapDays: number; loss: number };
+

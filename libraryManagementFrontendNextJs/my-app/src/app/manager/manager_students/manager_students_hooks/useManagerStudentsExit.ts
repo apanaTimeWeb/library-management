@@ -1,5 +1,7 @@
+// RESPONSIBILITY: Renders or handles logic for useManagerStudentsExit.ts.
 import { useUrlState } from '@/app/manager/manager_shared_hooks/useUrlState';
 import { useState, useEffect } from 'react';
+import { logger } from '@/lib/logger';
 import { fetchStudents } from '@/app/manager/manager_students/manager_students_api/manager_students_api';
 import type { Student } from '@/app/manager/manager_students/manager_students_types';
 import { useManagerDebounce } from '@/app/manager/manager_shared_hooks/useManagerDebounce';
@@ -15,7 +17,7 @@ export function useManagerStudentsExit() {
 
   // DEPENDENCY AUDIT: Executed on mount or when key dependencies (like search terms, filters, IDs) change.
   useEffect(() => {
-    fetchStudents().then(setStudents).catch(console.error);
+    fetchStudents().then(setStudents).catch((err) => logger.error('Failed to fetch students', err));
   }, []);
 
   const filtered = students.filter(s =>
@@ -51,3 +53,4 @@ export function useManagerStudentsExit() {
     reset,
   };
 }
+

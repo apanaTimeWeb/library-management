@@ -1,3 +1,4 @@
+﻿// RESPONSIBILITY: Renders or handles logic for SuperadminCommunicationMockData.ts.
 export const SUPERADMIN_COMMUNICATION_MOCK_COMPLAINTS = [
   { id: '1', title: 'AC not cooling',     student: 'Rahul Sharma', isAnonymous: false, description: 'The AC in Zone A has not been cooling properly for the past 3 days. Very uncomfortable to study.', status: 'Open',        date: '2026-04-10', resolvedBy: '', resolvedDate: '', resolvedNote: '' },
   { id: '2', title: 'WiFi very slow',     student: 'Anonymous',    isAnonymous: true,  description: 'Internet speed is extremely slow during evening hours. Cannot load study materials.',              status: 'In-Progress', date: '2026-04-09', resolvedBy: 'Admin', resolvedDate: '', resolvedNote: '' },
@@ -40,3 +41,4 @@ export const SUPERADMIN_COMMUNICATION_MOCK_WA_TEMPLATES = [
   { id: 'absentee',     label: 'Absentee Parent Alert', icon: 'CalendarClock', body: 'Dear Parent, your ward {name} (Seat: {seat}) has been absent for multiple consecutive days. Please contact {libraryname} at {phone}.' },
   { id: 'ptp',          label: 'PTP Payment Reminder', icon: 'Handshake', body: 'Hi {name}, this is a reminder that you had committed to pay ?{amount} by {duedate}. Please complete your payment.  {libraryname}' },
 ];
+

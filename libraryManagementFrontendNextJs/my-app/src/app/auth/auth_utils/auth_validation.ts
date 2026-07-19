@@ -1,3 +1,4 @@
+﻿// RESPONSIBILITY: Renders or handles logic for auth_validation.ts.
 import { z } from 'zod';
 
 export const authLoginSchema = z.object({
@@ -47,3 +48,4 @@ export const authResetPasswordSchema = z
     message: 'Passwords do not match',
     path: ['confirmPassword'],
   });
+

@@ -1,10 +1,29 @@
-// RESPONSIBILITY: Provides state and logic for SuperadminQrScannerClient
+// RESPONSIBILITY: Provides state and logic for SuperadminQrScannerClient. Simulates QR scan, manual entry, and attendance marking.
+// DATA FLOW: useSuperadminQrScannerClient → SuperadminQrScannerClient.tsx (view only)
+
 import { useState } from 'react';
 
+/** Shape of a scanned student record returned by the QR scanner */
+export interface SuperadminQrScanResult {
+  name: string;
+  smartId: string;
+  initials: string;
+  shift: string;
+  plan: string;
+  validTill: string;
+}
 
-export type ScanResult = any;
+/** A single attendance history entry created after marking IN/OUT */
+export interface SuperadminQrHistoryEntry {
+  id: string;
+  name: string;
+  type: 'IN' | 'OUT';
+  time: string;
+}
 
-const MOCK_QR_STUDENT: ScanResult = {
+export type SuperadminQrScanState = 'idle' | 'scanning' | 'detected' | 'success';
+
+const MOCK_QR_STUDENT: SuperadminQrScanResult = {
   name: 'Rahul Sharma',
   smartId: 'SL-0042',
   initials: 'RS',
@@ -13,10 +32,15 @@ const MOCK_QR_STUDENT: ScanResult = {
   validTill: '31 Dec 2026'
 };
 
+/**
+ * @description Custom hook for QR scanner state and logic.
+ * Manages scan state machine (idle → scanning → detected → success → idle),
+ * manual Smart ID entry, and attendance history.
+ */
 export function useSuperadminQrScannerClient() {
-  const [scanState, setScanState] = useState<'idle' | 'scanning' | 'detected' | 'success'>('idle');
-  const [result, setResult] = useState<ScanResult | null>(null);
-  const [history, setHistory] = useState<Array<any>>([]);
+  const [scanState, setScanState] = useState<SuperadminQrScanState>('idle');
+  const [result, setResult] = useState<SuperadminQrScanResult | null>(null);
+  const [history, setHistory] = useState<SuperadminQrHistoryEntry[]>([]);
   const [successMsg, setSuccessMsg] = useState('');
   const [manualId, setManualId] = useState('');
   const [showManual, setShowManual] = useState(false);
