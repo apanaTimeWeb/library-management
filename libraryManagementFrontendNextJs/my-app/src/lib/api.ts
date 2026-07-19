@@ -1,4 +1,4 @@
-﻿// RESPONSIBILITY: Renders or handles logic for api.ts.
+// RESPONSIBILITY: Renders or handles logic for api.ts.
 /**
  * API Utility — Secure fetch wrapper
  *
@@ -260,7 +260,7 @@ async function handleResponse<T = unknown>(response: Response): Promise<T> {
     const json = await response.json() as T;
     
     // FORCE MOCK DATA ON EMPTY ARRAYS for development
-    const endpoint = response.url.replace(/.*\/api\/v1/, '');
+    const endpoint = (response.url || '').replace(/.*\/api\/v1/, '');
     if (Array.isArray(json) && json.length === 0) {
        logger.warn(`[Mock Mode] Backend returned empty array for ${response.url}. Overriding with mock data for UI testing.`);
        return getMockFallback<T>(endpoint, { method: 'GET' });
