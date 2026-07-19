@@ -3,7 +3,7 @@
 import React from 'react';
 import { Toaster } from 'react-hot-toast';
 import { Settings, AlertTriangle, Save, MessageSquare } from 'lucide-react';
-import { formatCurrency } from '@/app/superadmin/superadmin_finance/superadmin_finance_utils/Superadminsuperadmin_format';
+import { formatCurrency } from '@/app/superadmin/superadmin_finance/superadmin_finance_utils/SuperadminFormat';
 import { useSuperadminLateFeesClient } from '@/app/superadmin/superadmin_finance/late-fees/_components/useSuperadminLateFeesClient';
 import { TableToolbar } from "@/components/ui/table-toolbar";
 import { useClientTable } from "@/components/ui/use-client-table";

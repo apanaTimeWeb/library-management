@@ -1,12 +1,12 @@
 // RESPONSIBILITY: Hook for fetching, mutating, and tracking active library branch states.
-// DATA FLOW: API → Superadminsuperadmin_useSuperadminLibraries.ts → SuperadminLibrariesComponent
+// DATA FLOW: API → useSuperadminLibraries.ts → SuperadminLibrariesComponent
 
 import { useState, useEffect } from 'react';
 import type { SuperadminLibrary, SuperadminLibrariesFetchState } from '@/app/superadmin/superadmin_libraries/superadmin_libraries_types/SuperadminLibrariesTypes';
 import { SUPERADMIN_LIBRARIES_MOCK_DATA } from '@/app/superadmin/superadmin_libraries/superadmin_libraries_constants/SuperadminLibrariesConstants';
 import { logger } from '@/lib/logger';
 
-export function Superadminsuperadmin_useSuperadminLibraries() {
+export function useSuperadminLibraries() {
   const [libraries, setLibraries] = useState<SuperadminLibrary[]>([]);
   const [fetchState, setFetchState] = useState<SuperadminLibrariesFetchState>('idle');
 

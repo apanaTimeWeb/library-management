@@ -7,9 +7,9 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import toast from 'react-hot-toast';
 import { logger } from '@/lib/logger';
-import { SUPERADMIN_ROUTES, SUPERADMIN_API_ROUTES } from '@/app/superadmin/Superadminsuperadmin_url_config';
-import type { Enquiry, EnquiryStatus, FollowUp } from '@/app/superadmin/superadmin_crm/superadmin_crm_shared_components/Superadminsuperadmin_types';
-import { followUpSchema, type FollowUpFormData } from '@/app/superadmin/superadmin_crm/superadmin_crm_shared_components/Superadminsuperadmin_schema';
+import { SUPERADMIN_ROUTES, SUPERADMIN_API_ROUTES } from '@/app/superadmin/SuperadminUrlConfig';
+import type { Enquiry, EnquiryStatus, FollowUp } from '@/app/superadmin/superadmin_crm/superadmin_crm_shared_components/SuperadminTypes';
+import { followUpSchema, type FollowUpFormData } from '@/app/superadmin/superadmin_crm/superadmin_crm_shared_components/SuperadminSchema';
 
 export function useSuperadminEnquiriesIdClient(id: string) {
   const router = useRouter();

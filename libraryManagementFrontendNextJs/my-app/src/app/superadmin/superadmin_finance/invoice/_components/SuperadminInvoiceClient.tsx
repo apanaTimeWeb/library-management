@@ -1,10 +1,10 @@
 'use client';
 // RESPONSIBILITY: Renders the SuperadminInvoiceClient component.
-import { SUPERADMIN_ROUTES } from '@/app/superadmin/Superadminsuperadmin_url_config';
+import { SUPERADMIN_ROUTES } from '@/app/superadmin/SuperadminUrlConfig';
 
 import { useRouter } from 'next/navigation';
 import { Search, FileText, Printer, Send } from 'lucide-react';
-import { formatCurrency, formatDate } from '@/app/superadmin/superadmin_finance/superadmin_finance_utils/Superadminsuperadmin_format';
+import { formatCurrency, formatDate } from '@/app/superadmin/superadmin_finance/superadmin_finance_utils/SuperadminFormat';
 import { SuperadminSearchableDropdown } from '@/app/superadmin/superadmin_shared_components/SuperadminSearchableDropdown';
 import { useSuperadminInvoiceClient } from '@/app/superadmin/superadmin_finance/invoice/_components/useSuperadminInvoiceClient';
 import type { SuperadminFinanceInvoiceFilterStatus } from '@/app/superadmin/superadmin_finance/superadmin_finance_types/SuperadminFinanceTypes';

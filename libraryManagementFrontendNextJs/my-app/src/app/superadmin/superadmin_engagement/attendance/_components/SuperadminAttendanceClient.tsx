@@ -1,7 +1,7 @@
 'use client';
 // RESPONSIBILITY: Renders the SuperadminAttendanceClient component.
 import Link from 'next/link';
-import { SUPERADMIN_ROUTES } from '@/app/superadmin/Superadminsuperadmin_url_config';
+import { SUPERADMIN_ROUTES } from '@/app/superadmin/SuperadminUrlConfig';
 import { ChevronRight, Save, FileBarChart2, Bell, CheckCircle, Clock } from 'lucide-react';
 import { SuperadminSearchableDropdown } from '@/app/superadmin/superadmin_shared_components/SuperadminSearchableDropdown';
 import { useSuperadminAttendanceClient } from '@/app/superadmin/superadmin_engagement/attendance/_components/useSuperadminAttendanceClient';

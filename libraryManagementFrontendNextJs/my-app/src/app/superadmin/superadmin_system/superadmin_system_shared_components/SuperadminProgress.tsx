@@ -1,6 +1,6 @@
 'use client';
 // RESPONSIBILITY: Renders the SuperadminProgress component.
-import { cn } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/Superadminsuperadmin_utils';
+import { cn } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminUtils';
 import { SuperadminProgressProps } from '@/app/superadmin/superadmin_system/superadmin_system_types/SuperadminSystemSharedComponentsTypes';
 
 export function SuperadminProgress({ value, max = 100, className, barClassName }: SuperadminProgressProps & { max?: number; className?: string; barClassName?: string }) {

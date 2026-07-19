@@ -1,7 +1,7 @@
 'use client';
 // RESPONSIBILITY: Renders the SuperadminQrScannerClient component.
 import Link from 'next/link';
-import { SUPERADMIN_ROUTES } from '@/app/superadmin/Superadminsuperadmin_url_config';
+import { SUPERADMIN_ROUTES } from '@/app/superadmin/SuperadminUrlConfig';
 import { ChevronRight, RefreshCw, CheckCircle, LogOut, X } from 'lucide-react';
 import { useSuperadminQrScannerClient } from '@/app/superadmin/superadmin_engagement/qr-scanner/_components/useSuperadminQrScannerClient';
 

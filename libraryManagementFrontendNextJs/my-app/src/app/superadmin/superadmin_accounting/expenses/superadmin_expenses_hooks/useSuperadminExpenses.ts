@@ -1,10 +1,10 @@
-﻿// RESPONSIBILITY: Renders or handles logic for Superadminsuperadmin_useSuperadminExpenses.ts.
+﻿// RESPONSIBILITY: Renders or handles logic for useSuperadminExpenses.ts.
 import { useState, useMemo } from 'react';
 import type { SuperadminExpense } from '@/app/superadmin/superadmin_accounting/expenses/superadmin_expenses_types/SuperadminExpensesTypes';
 import { SUPERADMIN_EXPENSES_MOCK_DATA, SUPERADMIN_EXPENSES_CATEGORIES } from '@/app/superadmin/superadmin_accounting/expenses/superadmin_expenses_constants/SuperadminExpensesConstants';
 
 // DATA FLOW: API â†’ useSuperadminExpenses.ts â†’ SuperadminExpensesComponent
-export function Superadminsuperadmin_useSuperadminExpenses() {
+export function useSuperadminExpenses() {
   const [expenses, setExpenses] = useState<SuperadminExpense[]>(SUPERADMIN_EXPENSES_MOCK_DATA);
   const [catFilter, setCatFilter] = useState('all');
 

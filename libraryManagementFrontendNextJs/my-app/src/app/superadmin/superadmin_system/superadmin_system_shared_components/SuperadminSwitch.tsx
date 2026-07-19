@@ -1,7 +1,7 @@
 'use client';
 // RESPONSIBILITY: Renders the SuperadminSwitch component.
 import * as SwitchPrimitive from '@radix-ui/react-switch';
-import { cn } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/Superadminsuperadmin_utils';
+import { cn } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminUtils';
 import { SuperadminSwitchProps } from '@/app/superadmin/superadmin_system/superadmin_system_types/SuperadminSystemSharedComponentsTypes';
 
 export function SuperadminSwitch({ checked, onCheckedChange, disabled = false, id, className }: SuperadminSwitchProps & { id?: string, className?: string }) {

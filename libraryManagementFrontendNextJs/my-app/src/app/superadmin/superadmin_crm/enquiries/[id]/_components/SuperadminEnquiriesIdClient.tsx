@@ -1,18 +1,18 @@
 'use client';
-import { SUPERADMIN_ROUTES } from '@/app/superadmin/Superadminsuperadmin_url_config';
+import { SUPERADMIN_ROUTES } from '@/app/superadmin/SuperadminUrlConfig';
 
 // RESPONSIBILITY: Renders detailed CRM enquiry view, follow-up timeline, and status transitions.
 import { Toaster } from 'react-hot-toast';
 import {
   ArrowLeft, Phone, MapPin, User, CalendarDays, Tag, Clock, CheckCircle, XCircle, Plus, Edit2, AlertTriangle, Loader2
 } from 'lucide-react';
-import { type EnquiryStatus, type FollowUp, STATUS_BADGE, maskPhone, getInitials } from '@/app/superadmin/superadmin_crm/superadmin_crm_shared_components/Superadminsuperadmin_types';
+import { type EnquiryStatus, type FollowUp, STATUS_BADGE, maskPhone, getInitials } from '@/app/superadmin/superadmin_crm/superadmin_crm_shared_components/SuperadminTypes';
 import { SuperadminSearchableDropdown } from '@/app/superadmin/superadmin_shared_components/SuperadminSearchableDropdown';
 import type { SuperadminCrmMarkLostModalProps as MarkLostModalProps } from '@/app/superadmin/superadmin_crm/superadmin_crm_types/SuperadminCrmTypes';
 import { useSuperadminEnquiriesIdClient } from '@/app/superadmin/superadmin_crm/enquiries/[id]/_components/useSuperadminEnquiriesIdClient';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { markLostSchema, type MarkLostFormData } from '@/app/superadmin/superadmin_crm/superadmin_crm_shared_components/Superadminsuperadmin_schema';
+import { markLostSchema, type MarkLostFormData } from '@/app/superadmin/superadmin_crm/superadmin_crm_shared_components/SuperadminSchema';
 
 const STATUS_OPTIONS: EnquiryStatus[] = ['New', 'Visited', 'Interested', 'Converted', 'Lost'];
 

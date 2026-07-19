@@ -1,6 +1,6 @@
 'use client';
 // RESPONSIBILITY: Renders the SuperadminSubscriptionsClient component.
-import { SUPERADMIN_ROUTES } from '@/app/superadmin/Superadminsuperadmin_url_config';
+import { SUPERADMIN_ROUTES } from '@/app/superadmin/SuperadminUrlConfig';
 
 
 
@@ -8,7 +8,7 @@ import React from 'react';
 import { useRouter } from 'next/navigation';
 
 import toast from 'react-hot-toast';
-import { formatCurrency } from '@/app/superadmin/superadmin_finance/superadmin_finance_utils/Superadminsuperadmin_format';
+import { formatCurrency } from '@/app/superadmin/superadmin_finance/superadmin_finance_utils/SuperadminFormat';
 import { RefreshCw } from 'lucide-react';
 import { SuperadminSearchableDropdown } from '@/app/superadmin/superadmin_shared_components/SuperadminSearchableDropdown';
 import { useSuperadminSubscriptionsClient } from '@/app/superadmin/superadmin_finance/subscriptions/_components/useSuperadminSubscriptionsClient';

@@ -1,4 +1,4 @@
-﻿// RESPONSIBILITY: Renders or handles logic for Superadminsuperadmin_utils.ts.
+﻿// RESPONSIBILITY: Renders or handles logic for SuperadminUtils.ts.
 import { clsx, type ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 

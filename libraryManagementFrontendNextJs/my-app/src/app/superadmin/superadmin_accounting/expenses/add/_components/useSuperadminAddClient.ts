@@ -3,7 +3,7 @@
  */
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { SUPERADMIN_ROUTES } from '@/app/superadmin/Superadminsuperadmin_url_config';
+import { SUPERADMIN_ROUTES } from '@/app/superadmin/SuperadminUrlConfig';
 import toast from 'react-hot-toast';
 
 export const CATEGORIES = ['Electricity', 'Maintenance', 'Stationery', 'Internet', 'Cleaning', 'Salary', 'Rent', 'Miscellaneous'];

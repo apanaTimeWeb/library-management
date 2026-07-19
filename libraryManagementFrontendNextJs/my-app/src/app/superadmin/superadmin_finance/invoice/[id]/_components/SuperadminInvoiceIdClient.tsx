@@ -1,8 +1,8 @@
 'use client';
 // RESPONSIBILITY: Renders the SuperadminInvoiceIdClient component.
-import { SUPERADMIN_ROUTES } from '@/app/superadmin/Superadminsuperadmin_url_config';
+import { SUPERADMIN_ROUTES } from '@/app/superadmin/SuperadminUrlConfig';
 
-import { formatCurrency, formatDate } from '@/app/superadmin/superadmin_finance/superadmin_finance_utils/Superadminsuperadmin_format';
+import { formatCurrency, formatDate } from '@/app/superadmin/superadmin_finance/superadmin_finance_utils/SuperadminFormat';
 import { Printer, ArrowLeft, Send } from 'lucide-react';
 import { useSuperadminInvoiceIdClient } from '@/app/superadmin/superadmin_finance/invoice/[id]/_components/useSuperadminInvoiceIdClient';
 import { TableToolbar } from "@/components/ui/table-toolbar";

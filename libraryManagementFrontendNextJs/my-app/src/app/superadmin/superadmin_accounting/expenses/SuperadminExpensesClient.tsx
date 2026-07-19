@@ -1,7 +1,7 @@
 'use client';
 // RESPONSIBILITY: Renders the SuperadminExpensesClient component.
 import React, { useState } from 'react';
-import { Superadminsuperadmin_useSuperadminExpenses as useSuperadminExpenses } from '@/app/superadmin/superadmin_accounting/expenses/superadmin_expenses_hooks/Superadminsuperadmin_useSuperadminExpenses';
+import { useSuperadminExpenses as useSuperadminExpenses } from '@/app/superadmin/superadmin_accounting/expenses/superadmin_expenses_hooks/useSuperadminExpenses';
 import { SuperadminExpensesHeader } from '@/app/superadmin/superadmin_accounting/expenses/superadmin_expenses_components/SuperadminExpensesHeader';
 import { SuperadminExpensesKpiGrid } from '@/app/superadmin/superadmin_accounting/expenses/superadmin_expenses_components/SuperadminExpensesKpiGrid';
 import { SuperadminExpensesFilterBar } from '@/app/superadmin/superadmin_accounting/expenses/superadmin_expenses_components/SuperadminExpensesFilterBar';

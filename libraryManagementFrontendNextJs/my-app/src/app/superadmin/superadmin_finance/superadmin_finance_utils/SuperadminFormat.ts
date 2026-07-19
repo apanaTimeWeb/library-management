@@ -1,4 +1,4 @@
-﻿// RESPONSIBILITY: Renders or handles logic for Superadminsuperadmin_format.ts.
+﻿// RESPONSIBILITY: Renders or handles logic for SuperadminFormat.ts.
 export function formatCurrency(amount: number) {
   return new Intl.NumberFormat("en-IN", {
     style: "currency",

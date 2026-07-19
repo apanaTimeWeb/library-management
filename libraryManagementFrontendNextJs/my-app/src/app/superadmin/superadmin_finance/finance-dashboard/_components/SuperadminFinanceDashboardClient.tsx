@@ -5,7 +5,7 @@ import {
   PiggyBank, Users, Clock, Ban, UsersRound, ShieldAlert,
   TrendingUp, TrendingDown, IndianRupee, Receipt, AlertTriangle, RefreshCw,
 } from 'lucide-react';
-import { formatCurrency } from '@/app/superadmin/superadmin_finance/superadmin_finance_utils/Superadminsuperadmin_format';
+import { formatCurrency } from '@/app/superadmin/superadmin_finance/superadmin_finance_utils/SuperadminFormat';
 import { useSuperadminFinanceDashboardClient } from '@/app/superadmin/superadmin_finance/finance-dashboard/_components/useSuperadminFinanceDashboardClient';
 
 const MODE_BADGE: Record<string, string> = {

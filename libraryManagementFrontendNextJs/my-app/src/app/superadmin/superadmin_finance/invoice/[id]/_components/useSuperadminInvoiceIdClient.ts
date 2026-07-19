@@ -2,7 +2,7 @@
  * RESPONSIBILITY: Logic and state management for the SuperadminInvoiceIdClient component.
  */
 import { useRouter } from 'next/navigation';
-import { formatDate } from '@/app/superadmin/superadmin_finance/superadmin_finance_utils/Superadminsuperadmin_format';
+import { formatDate } from '@/app/superadmin/superadmin_finance/superadmin_finance_utils/SuperadminFormat';
 import { openWhatsApp } from '@/lib/whatsappUtils';
 import { printThermal } from '@/lib/thermalPrint';
 

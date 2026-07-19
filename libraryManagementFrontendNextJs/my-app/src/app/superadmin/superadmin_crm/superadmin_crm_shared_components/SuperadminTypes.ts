@@ -1,4 +1,4 @@
-﻿// RESPONSIBILITY: Renders or handles logic for Superadminsuperadmin_types.ts.
+﻿// RESPONSIBILITY: Renders or handles logic for SuperadminTypes.ts.
 
 
 export interface FollowUp {

@@ -5,9 +5,9 @@ import React, { useState, useMemo } from 'react';
 import { SuperadminSearchableDropdown } from '@/app/superadmin/superadmin_shared_components/SuperadminSearchableDropdown';
 import { useSuperadminPaymentsClient } from '@/app/superadmin/superadmin_finance/payments/superadmin_payments_components/useSuperadminPaymentsClient';
 import { TableToolbar } from "@/components/ui/table-toolbar";
-import { SUPERADMIN_ROUTES } from '@/app/superadmin/Superadminsuperadmin_url_config';
+import { SUPERADMIN_ROUTES } from '@/app/superadmin/SuperadminUrlConfig';
 import { Receipt, FileText, Trash2 } from 'lucide-react';
-import { formatCurrency, formatDate } from '@/app/superadmin/superadmin_finance/superadmin_finance_utils/Superadminsuperadmin_format';
+import { formatCurrency, formatDate } from '@/app/superadmin/superadmin_finance/superadmin_finance_utils/SuperadminFormat';
 import { useClientTable } from "@/components/ui/use-client-table";
 import { TablePagination } from "@/components/ui/table-pagination";
 import {

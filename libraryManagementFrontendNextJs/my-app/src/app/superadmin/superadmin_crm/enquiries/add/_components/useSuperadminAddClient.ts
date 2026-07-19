@@ -2,11 +2,11 @@
  * RESPONSIBILITY: Logic and state management for Enquiries add form.
  */
 import { useRouter } from 'next/navigation';
-import { SUPERADMIN_ROUTES } from '@/app/superadmin/Superadminsuperadmin_url_config';
+import { SUPERADMIN_ROUTES } from '@/app/superadmin/SuperadminUrlConfig';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import toast from 'react-hot-toast';
-import { addEnquirySchema, type AddEnquiryFormData } from '@/app/superadmin/superadmin_crm/superadmin_crm_shared_components/Superadminsuperadmin_schema';
+import { addEnquirySchema, type AddEnquiryFormData } from '@/app/superadmin/superadmin_crm/superadmin_crm_shared_components/SuperadminSchema';
 
 export function useSuperadminAddClient() {
   const router = useRouter();

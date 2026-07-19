@@ -2,7 +2,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { Plus } from 'lucide-react';
-import { SUPERADMIN_LIBRARIES_ROUTES } from '@/app/superadmin/superadmin_libraries/superadmin_libraries_constants/Superadminsuperadmin_libraries_url_config';
+import { SUPERADMIN_LIBRARIES_ROUTES } from '@/app/superadmin/superadmin_libraries/superadmin_libraries_constants/SuperadminLibrariesUrlConfig';
 
 export function SuperadminLibrariesHeader() {
   return (

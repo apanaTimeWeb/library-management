@@ -1,4 +1,4 @@
-﻿// RESPONSIBILITY: Renders or handles logic for Superadminsuperadmin_schema.ts.
+﻿// RESPONSIBILITY: Renders or handles logic for SuperadminSchema.ts.
 import { z } from 'zod';
 
 

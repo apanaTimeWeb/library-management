@@ -3,8 +3,8 @@
 import { useForm, useFieldArray } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Trash2, Plus } from 'lucide-react';
-import { plansSchema, type PlansData } from '@/app/superadmin/superadmin_shared_components/Superadminsuperadmin_schema';
-import { SETUP_WIZARD_DATA as d } from '@/app/superadmin/superadmin_setup-wizard/Superadminsuperadmin_setupWizard_constants';
+import { plansSchema, type PlansData } from '@/app/superadmin/superadmin_shared_components/SuperadminSchema';
+import { SETUP_WIZARD_DATA as d } from '@/app/superadmin/superadmin_setup-wizard/SuperadminSetupWizardConstants';
 
 const inputCls = (hasErr?: boolean) => `w-full bg-input border rounded-lg px-3 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 transition-all placeholder:text-text-tertiary ${hasErr ? 'border-danger focus:ring-danger' : 'border-border focus:ring-primary'}`;
 

@@ -1,7 +1,7 @@
 // RESPONSIBILITY: Renders the SuperadminDashboardActionItemsPanel component.
 import React from 'react';
 import Link from 'next/link';
-import { SUPERADMIN_ROUTES } from '@/app/superadmin/Superadminsuperadmin_url_config';
+import { SUPERADMIN_ROUTES } from '@/app/superadmin/SuperadminUrlConfig';
 import { AlertTriangle, CreditCard, Headphones, CloudUpload, ChevronRight, Lightbulb, ExternalLink } from 'lucide-react';
 import type { SuperadminDashboardActionItem, SuperadminDashboardActionItemsPanelProps as Props } from '@/app/superadmin/superadmin_dashboard/superadmin_dashboard_types/SuperadminDashboardTypes';
 

@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Search, ChevronDown } from 'lucide-react';
 import { useSuperadminDebounce } from '@/app/superadmin/superadmin_shared_hooks/useSuperadminDebounce';
-import { SuperadminSearchableDropdownProps } from '@/app/superadmin/superadmin_shared_components/Superadminsuperadmin_shared_types';
+import { SuperadminSearchableDropdownProps } from '@/app/superadmin/superadmin_shared_components/SuperadminSharedTypes';
 
 // RESPONSIBILITY: Render a searchable dropdown for large datasets in the superadmin portal.
 export function SuperadminSearchableDropdown({ options, value, onChange, placeholder = 'Select...', className = '' }: SuperadminSearchableDropdownProps) {

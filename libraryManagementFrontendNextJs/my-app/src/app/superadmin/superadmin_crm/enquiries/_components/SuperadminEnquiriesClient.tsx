@@ -1,7 +1,7 @@
 'use client';
 // RESPONSIBILITY: Renders CRM pipeline board / list view with status columns and quick conversion actions.
 // RESPONSIBILITY: Renders CRM pipeline board / list view with status columns and quick conversion actions.
-import { SUPERADMIN_ROUTES } from '@/app/superadmin/Superadminsuperadmin_url_config';
+import { SUPERADMIN_ROUTES } from '@/app/superadmin/SuperadminUrlConfig';
 
 import { useRouter } from 'next/navigation';
 import {
@@ -9,7 +9,7 @@ import {
 } from 'lucide-react';
 import {
   type Enquiry, type EnquiryStatus, KANBAN_COLUMNS, STATUS_BADGE, maskPhone,
-} from '@/app/superadmin/superadmin_crm/superadmin_crm_shared_components/Superadminsuperadmin_types';
+} from '@/app/superadmin/superadmin_crm/superadmin_crm_shared_components/SuperadminTypes';
 import { SuperadminSearchableDropdown } from '@/app/superadmin/superadmin_shared_components/SuperadminSearchableDropdown';
 import { useSuperadminEnquiriesClient } from '@/app/superadmin/superadmin_crm/enquiries/_components/useSuperadminEnquiriesClient';
 import { TableToolbar } from "@/components/ui/table-toolbar";

@@ -5,7 +5,7 @@
 import { useState, useEffect } from 'react';
 import { fetchApi } from '@/lib/api';
 import { logger } from '@/lib/logger';
-import { SUPERADMIN_API_ROUTES } from '@/app/superadmin/Superadminsuperadmin_url_config';
+import { SUPERADMIN_API_ROUTES } from '@/app/superadmin/SuperadminUrlConfig';
 import { CalendarDays, UserPlus, User } from 'lucide-react';
 import type { SuperadminSeatsSeatData } from '@/app/superadmin/superadmin_seats_shifts_lockers/superadmin_seats_types/SuperadminSeatsShiftsLockersTypes';
 

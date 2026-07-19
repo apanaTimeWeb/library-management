@@ -9,7 +9,7 @@ import { SuperadminReportsKpiGrid } from '@/app/superadmin/superadmin_reports/su
 import { SuperadminReportsCharts } from '@/app/superadmin/superadmin_reports/superadmin_reports_components/SuperadminReportsCharts';
 import { fetchSuperadminReportsData } from '@/app/superadmin/superadmin_reports/superadmin_reports_api/SuperadminReportsApi';
 import { logger } from '@/lib/logger';
-import type { FetchState } from '@/app/superadmin/superadmin_shared_components/Superadminsuperadmin_types';
+import type { FetchState } from '@/app/superadmin/superadmin_shared_components/SuperadminTypes';
 
 export function SuperadminReportsClient({ initialData }: Props) {
   const [range, setRange] = useState('Last 6 Months');

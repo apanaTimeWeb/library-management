@@ -1,4 +1,4 @@
-﻿// RESPONSIBILITY: Renders or handles logic for Superadminsuperadmin_url_config.ts.
+﻿// RESPONSIBILITY: Renders or handles logic for SuperadminUrlConfig.ts.
 /**
  * URL Configuration for the Superadmin Module
  * Contains all internal routes and external API endpoints.

@@ -6,7 +6,7 @@ const TODAY = new Date().toISOString().split('T')[0];
 
 // RESPONSIBILITY: Hook managing daily settlement records, totals, and settlement state transitions.
 // DATA FLOW: API → useSuperadminDailySettlement.ts → SuperadminDailySettlementComponent
-export function Superadminsuperadmin_useSuperadminDailySettlement() {
+export function useSuperadminDailySettlement() {
   const [date, setDate] = useState(TODAY);
   const [entries, setEntries] = useState<SuperadminDailySettlementEntry[]>(SUPERADMIN_DAILY_SETTLEMENT_MOCK_DATA);
 

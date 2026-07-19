@@ -7,7 +7,7 @@ import { User, KeyRound, LockKeyhole, Settings } from 'lucide-react';
 import toast from 'react-hot-toast';
 import { fetchApi } from '@/lib/api';
 import { logger } from '@/lib/logger';
-import { SUPERADMIN_API_ROUTES } from '@/app/superadmin/Superadminsuperadmin_url_config';
+import { SUPERADMIN_API_ROUTES } from '@/app/superadmin/SuperadminUrlConfig';
 import type { SuperadminSeatsLockerData, SuperadminSeatsActivityItem } from '@/app/superadmin/superadmin_seats_shifts_lockers/superadmin_seats_types/SuperadminSeatsShiftsLockersTypes';
 
 

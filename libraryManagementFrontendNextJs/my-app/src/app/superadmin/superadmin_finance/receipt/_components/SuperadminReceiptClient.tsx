@@ -1,10 +1,10 @@
 'use client';
 // RESPONSIBILITY: Renders the SuperadminReceiptClient component.
-import { SUPERADMIN_ROUTES } from '@/app/superadmin/Superadminsuperadmin_url_config';
+import { SUPERADMIN_ROUTES } from '@/app/superadmin/SuperadminUrlConfig';
 
 import { useRouter } from 'next/navigation';
 import { Search, Receipt, Printer, Send } from 'lucide-react';
-import { formatCurrency, formatDate } from '@/app/superadmin/superadmin_finance/superadmin_finance_utils/Superadminsuperadmin_format';
+import { formatCurrency, formatDate } from '@/app/superadmin/superadmin_finance/superadmin_finance_utils/SuperadminFormat';
 import { SuperadminSearchableDropdown } from '@/app/superadmin/superadmin_shared_components/SuperadminSearchableDropdown';
 import { useSuperadminReceiptClient } from '@/app/superadmin/superadmin_finance/receipt/_components/useSuperadminReceiptClient';
 import type { SuperadminFinanceReceiptFilterMode } from '@/app/superadmin/superadmin_finance/superadmin_finance_types/SuperadminFinanceTypes';

@@ -1,10 +1,10 @@
-﻿// RESPONSIBILITY: Renders or handles logic for Superadminsuperadmin_useSuperadminSubscriptions.ts.
+﻿// RESPONSIBILITY: Renders or handles logic for useSuperadminSubscriptions.ts.
 import { useState, useCallback } from 'react';
 import type { SuperadminSubscription } from '@/app/superadmin/superadmin_subscriptions/superadmin_subscriptions_types/SuperadminSubscriptionsTypes';
 import { SUPERADMIN_SUBSCRIPTIONS_MOCK_DATA } from '@/app/superadmin/superadmin_subscriptions/superadmin_subscriptions_constants/SuperadminSubscriptionsConstants';
 
-// DATA FLOW: API â†’ Superadminsuperadmin_useSuperadminSubscriptions.ts â†’ SuperadminSubscriptionsComponent
-export function Superadminsuperadmin_useSuperadminSubscriptions() {
+// DATA FLOW: API â†’ useSuperadminSubscriptions.ts â†’ SuperadminSubscriptionsComponent
+export function useSuperadminSubscriptions() {
   const [subs, setSubs] = useState<SuperadminSubscription[]>(SUPERADMIN_SUBSCRIPTIONS_MOCK_DATA);
   const [filter, setFilter] = useState('All');
 

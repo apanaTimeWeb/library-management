@@ -1,4 +1,4 @@
-﻿// RESPONSIBILITY: Renders or handles logic for Superadminsuperadmin_setupWizard_constants.ts.
+﻿// RESPONSIBILITY: Renders or handles logic for SuperadminSetupWizardConstants.ts.
 export const SETUP_WIZARD_DATA = {
   libraryName: "City Reading Hub",
   address: "Block A, Sector 18, Civil Lines",

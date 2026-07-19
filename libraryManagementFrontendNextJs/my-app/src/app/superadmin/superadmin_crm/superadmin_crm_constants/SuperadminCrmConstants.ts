@@ -187,7 +187,7 @@ export const CRM_CONSTANTS = {
     { id: "shift_005", name: "Full Day", time: "6 AM â€“ 10 PM" }
   ]
 };
-import { Enquiry } from '@/app/superadmin/superadmin_crm/superadmin_crm_shared_components/Superadminsuperadmin_types';
+import { Enquiry } from '@/app/superadmin/superadmin_crm/superadmin_crm_shared_components/SuperadminTypes';
 
 export const SUPERADMIN_CRM_MOCK_ENQUIRIES: Enquiry[] = [
   { id: 'E1', name: 'Ravi Kumar', phone: '9876543210', shift: 'Morning', status: 'New', addedDate: '2026-04-10', source: 'Walk-in', handledBy: 'Admin', enquiryDate: '2026-04-10', preferredBranch: 'Main', avatar: 'RK', followUps: [], isOverdue: false, isToday: false, isUpcoming: false },

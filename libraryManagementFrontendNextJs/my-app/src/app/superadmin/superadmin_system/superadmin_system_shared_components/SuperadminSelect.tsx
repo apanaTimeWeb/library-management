@@ -2,7 +2,7 @@
 // RESPONSIBILITY: Renders the SuperadminSelect component.
 import * as SelectPrimitive from '@radix-ui/react-select';
 import { ChevronDown, Check } from 'lucide-react';
-import { cn } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/Superadminsuperadmin_utils';
+import { cn } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminUtils';
 
 export const SuperadminSelect      = SelectPrimitive.Root;
 export const SuperadminSelectValue = SelectPrimitive.Value;

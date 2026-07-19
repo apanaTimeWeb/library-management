@@ -4,10 +4,10 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { logger } from '@/lib/logger';
-import { SUPERADMIN_ROUTES, SUPERADMIN_API_ROUTES } from '@/app/superadmin/Superadminsuperadmin_url_config';
+import { SUPERADMIN_ROUTES, SUPERADMIN_API_ROUTES } from '@/app/superadmin/SuperadminUrlConfig';
 import { fetchApi } from '@/lib/api';
 import { SUPERADMIN_CRM_MOCK_ENQUIRIES } from '@/app/superadmin/superadmin_crm/superadmin_crm_constants/SuperadminCrmConstants';
-import type { Enquiry, EnquiryStatus } from '@/app/superadmin/superadmin_crm/superadmin_crm_shared_components/Superadminsuperadmin_types';
+import type { Enquiry, EnquiryStatus } from '@/app/superadmin/superadmin_crm/superadmin_crm_shared_components/SuperadminTypes';
 
 export function useSuperadminEnquiriesClient() {
   const router = useRouter();

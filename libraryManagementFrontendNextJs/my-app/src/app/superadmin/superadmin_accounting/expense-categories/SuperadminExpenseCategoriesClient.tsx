@@ -3,7 +3,7 @@
 // DATA FLOW: useSuperadminExpenseCategories -> SuperadminExpenseCategoriesClient -> Card / Dialog
 
 import React, { useState } from 'react';
-import { Superadminsuperadmin_useSuperadminExpenseCategories as useSuperadminExpenseCategories } from '@/app/superadmin/superadmin_accounting/expense-categories/superadmin_expense_categories_hooks/Superadminsuperadmin_useSuperadminExpenseCategories';
+import { useSuperadminExpenseCategories as useSuperadminExpenseCategories } from '@/app/superadmin/superadmin_accounting/expense-categories/superadmin_expense_categories_hooks/useSuperadminExpenseCategories';
 import { SuperadminExpenseCategoriesHeader } from '@/app/superadmin/superadmin_accounting/expense-categories/superadmin_expense_categories_components/SuperadminExpenseCategoriesHeader';
 import { SuperadminExpenseCategoriesCard } from '@/app/superadmin/superadmin_accounting/expense-categories/superadmin_expense_categories_components/SuperadminExpenseCategoriesCard';
 import { SuperadminExpenseCategoriesAddDialog } from '@/app/superadmin/superadmin_accounting/expense-categories/superadmin_expense_categories_components/SuperadminExpenseCategoriesAddDialog';

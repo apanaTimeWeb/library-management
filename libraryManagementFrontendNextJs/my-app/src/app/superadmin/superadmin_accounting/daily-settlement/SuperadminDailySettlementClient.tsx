@@ -1,7 +1,7 @@
 'use client';
 // RESPONSIBILITY: Renders the SuperadminDailySettlementClient component.
 import React, { useState } from 'react';
-import { Superadminsuperadmin_useSuperadminDailySettlement as useSuperadminDailySettlement } from '@/app/superadmin/superadmin_accounting/daily-settlement/superadmin_daily_settlement_hooks/Superadminsuperadmin_useSuperadminDailySettlement';
+import { useSuperadminDailySettlement as useSuperadminDailySettlement } from '@/app/superadmin/superadmin_accounting/daily-settlement/superadmin_daily_settlement_hooks/useSuperadminDailySettlement';
 import { SuperadminDailySettlementHeader } from '@/app/superadmin/superadmin_accounting/daily-settlement/superadmin_daily_settlement_components/SuperadminDailySettlementHeader';
 import { SuperadminDailySettlementKpiGrid } from '@/app/superadmin/superadmin_accounting/daily-settlement/superadmin_daily_settlement_components/SuperadminDailySettlementKpiGrid';
 import { SuperadminDailySettlementGrid } from '@/app/superadmin/superadmin_accounting/daily-settlement/superadmin_daily_settlement_components/SuperadminDailySettlementGrid';

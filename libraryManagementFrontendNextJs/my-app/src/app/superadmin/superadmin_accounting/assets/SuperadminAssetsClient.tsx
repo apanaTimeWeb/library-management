@@ -3,7 +3,7 @@
 // DATA FLOW: useSuperadminAssets -> SuperadminAssetsClient -> Table / AddDialog
 
 import React, { useState } from 'react';
-import { Superadminsuperadmin_useSuperadminAssets as useSuperadminAssets } from '@/app/superadmin/superadmin_accounting/assets/superadmin_assets_hooks/Superadminsuperadmin_useSuperadminAssets';
+import { useSuperadminAssets as useSuperadminAssets } from '@/app/superadmin/superadmin_accounting/assets/superadmin_assets_hooks/useSuperadminAssets';
 import { SuperadminAssetsHeader } from '@/app/superadmin/superadmin_accounting/assets/superadmin_assets_components/SuperadminAssetsHeader';
 import { SuperadminAssetsKpiGrid } from '@/app/superadmin/superadmin_accounting/assets/superadmin_assets_components/SuperadminAssetsKpiGrid';
 import { SuperadminAssetsFilterBar } from '@/app/superadmin/superadmin_accounting/assets/superadmin_assets_components/SuperadminAssetsFilterBar';

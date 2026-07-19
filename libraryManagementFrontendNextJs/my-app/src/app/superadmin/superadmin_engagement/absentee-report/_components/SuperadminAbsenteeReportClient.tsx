@@ -2,7 +2,7 @@
 // RESPONSIBILITY: Renders the SuperadminAbsenteeReportClient component.
 import { useState, useMemo } from 'react';
 import Link from 'next/link';
-import { SUPERADMIN_ROUTES } from '@/app/superadmin/Superadminsuperadmin_url_config';
+import { SUPERADMIN_ROUTES } from '@/app/superadmin/SuperadminUrlConfig';
 import { ChevronRight, Send, Mail, Phone, CheckCircle, ChevronLeft } from 'lucide-react';
 import { SuperadminSearchableDropdown } from '@/app/superadmin/superadmin_shared_components/SuperadminSearchableDropdown';
 import { useSuperadminAbsenteeReportClient } from '@/app/superadmin/superadmin_engagement/absentee-report/_components/useSuperadminAbsenteeReportClient';

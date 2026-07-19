@@ -1,6 +1,6 @@
 'use client';
 // RESPONSIBILITY: Renders the SuperadminReceiptIdClient component.
-import { SUPERADMIN_ROUTES } from '@/app/superadmin/Superadminsuperadmin_url_config';
+import { SUPERADMIN_ROUTES } from '@/app/superadmin/SuperadminUrlConfig';
 
 import { ArrowLeft, BookOpen, CheckCircle, Printer, Send } from 'lucide-react';
 import { useSuperadminReceiptIdClient } from '@/app/superadmin/superadmin_finance/receipt/[id]/_components/useSuperadminReceiptIdClient';

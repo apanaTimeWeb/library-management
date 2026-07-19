@@ -2,7 +2,7 @@
 // RESPONSIBILITY: Renders the SuperadminDashboardRecentLibrariesTable component.
 import React, { useState, useMemo } from 'react';
 import Link from 'next/link';
-import { SUPERADMIN_ROUTES } from '@/app/superadmin/Superadminsuperadmin_url_config';
+import { SUPERADMIN_ROUTES } from '@/app/superadmin/SuperadminUrlConfig';
 import { ExternalLink, ChevronLeft, ChevronRight } from 'lucide-react';
 import type { SuperadminDashboardRecentLibrary as Library, SuperadminDashboardRecentLibrariesTableProps as Props } from '@/app/superadmin/superadmin_dashboard/superadmin_dashboard_types/SuperadminDashboardTypes';
 import { TableToolbar } from "@/components/ui/table-toolbar";

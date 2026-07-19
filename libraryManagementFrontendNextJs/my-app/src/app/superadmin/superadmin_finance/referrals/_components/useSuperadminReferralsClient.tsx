@@ -1,11 +1,11 @@
 // RESPONSIBILITY: Logic and state management for the SuperadminReferralsClient component.
 
-import { SUPERADMIN_API_ROUTES } from '@/app/superadmin/Superadminsuperadmin_url_config';
+import { SUPERADMIN_API_ROUTES } from '@/app/superadmin/SuperadminUrlConfig';
 import { useState, useEffect } from 'react';
 import { fetchApi } from '@/lib/api';
 import { logger } from '@/lib/logger';
 import toast from 'react-hot-toast';
-import { formatCurrency } from '@/app/superadmin/superadmin_finance/superadmin_finance_utils/Superadminsuperadmin_format';
+import { formatCurrency } from '@/app/superadmin/superadmin_finance/superadmin_finance_utils/SuperadminFormat';
 import type { SuperadminFinanceReferral } from '@/app/superadmin/superadmin_finance/superadmin_finance_types/SuperadminFinanceTypes';
 import { SUPERADMIN_FINANCE_MOCK_REFERRERS } from '@/app/superadmin/superadmin_finance/superadmin_finance_constants/SuperadminFinanceConstants';
 import type { PayoutFormData } from '@/app/superadmin/superadmin_finance/referrals/_components/SuperadminReferralPayoutModal';

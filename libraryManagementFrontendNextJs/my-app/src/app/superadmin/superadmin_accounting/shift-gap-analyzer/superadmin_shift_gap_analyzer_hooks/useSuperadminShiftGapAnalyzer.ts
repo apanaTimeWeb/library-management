@@ -1,9 +1,9 @@
-﻿// RESPONSIBILITY: Renders or handles logic for Superadminsuperadmin_useSuperadminShiftGapAnalyzer.ts.
+﻿// RESPONSIBILITY: Renders or handles logic for useSuperadminShiftGapAnalyzer.ts.
 import { useState, useMemo } from 'react';
 import { SUPERADMIN_SHIFT_GAPS_MOCK, SUPERADMIN_DAY_GAPS_MOCK } from '@/app/superadmin/superadmin_accounting/shift-gap-analyzer/superadmin_shift_gap_analyzer_constants/SuperadminShiftGapAnalyzerConstants';
 
 // DATA FLOW: API â†’ useSuperadminShiftGapAnalyzer.ts â†’ SuperadminShiftGapAnalyzerComponent
-export function Superadminsuperadmin_useSuperadminShiftGapAnalyzer() {
+export function useSuperadminShiftGapAnalyzer() {
   const [shiftFilter, setShiftFilter] = useState('all');
 
   const visibleDays = useMemo(() => {

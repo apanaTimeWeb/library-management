@@ -1,5 +1,5 @@
 ﻿// RESPONSIBILITY: Renders or handles logic for SuperadminDashboardConstants.ts.
-import { SUPERADMIN_ROUTES } from '@/app/superadmin/Superadminsuperadmin_url_config';
+import { SUPERADMIN_ROUTES } from '@/app/superadmin/SuperadminUrlConfig';
 
 export const SUPERADMIN_DASHBOARD_RECENT_ACTIVITY = [
   {

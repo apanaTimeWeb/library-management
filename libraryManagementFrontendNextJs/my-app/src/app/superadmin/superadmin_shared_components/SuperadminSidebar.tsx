@@ -1,7 +1,7 @@
 'use client';
 // RESPONSIBILITY: Renders the collapsible sidebar navigation for the Superadmin module. Handles active state detection, mobile overlay, and logout dialog.
-import { SUPERADMIN_ROUTES } from '@/app/superadmin/Superadminsuperadmin_url_config';
-import type { SuperadminNavEntry } from './Superadminsuperadmin_shared_types';
+import { SUPERADMIN_ROUTES } from '@/app/superadmin/SuperadminUrlConfig';
+import type { SuperadminNavEntry } from './SuperadminSharedTypes';
 
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
@@ -36,7 +36,7 @@ const NAV: SuperadminNavEntry[] = [
   { href: SUPERADMIN_ROUTES.SETTINGS, icon: Settings, label: 'Settings' },
 ];
 
-import { SuperadminSidebarProps } from '@/app/superadmin/superadmin_shared_components/Superadminsuperadmin_shared_types';
+import { SuperadminSidebarProps } from '@/app/superadmin/superadmin_shared_components/SuperadminSharedTypes';
 
 export default function SuperadminSidebar({ collapsed, onToggle, mobileOpen, onMobileClose }: SuperadminSidebarProps) {
   const pathname = usePathname();

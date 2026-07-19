@@ -2,7 +2,7 @@
 /**
  * RESPONSIBILITY: Logic, state management, and AG Grid configuration for the SuperadminPaymentsClient component.
  */
-import { SUPERADMIN_ROUTES, SUPERADMIN_API_ROUTES } from '@/app/superadmin/Superadminsuperadmin_url_config';
+import { SUPERADMIN_ROUTES, SUPERADMIN_API_ROUTES } from '@/app/superadmin/SuperadminUrlConfig';
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { fetchApi } from '@/lib/api';

@@ -3,7 +3,7 @@
 import { useForm, useFieldArray } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Toaster } from 'react-hot-toast';
-import { SUPERADMIN_ROUTES } from '@/app/superadmin/Superadminsuperadmin_url_config';
+import { SUPERADMIN_ROUTES } from '@/app/superadmin/SuperadminUrlConfig';
 import { useState } from 'react';
 import {
   BookOpen, Check, Plus, Trash2, ChevronRight, ChevronLeft,
@@ -14,8 +14,8 @@ import {
   shiftsSchema,       type ShiftsData,
   seatsSchema,        type SeatsData,
   plansSchema,        type PlansData,
-} from '@/app/superadmin/superadmin_shared_components/Superadminsuperadmin_schema';
-import { SETUP_WIZARD_DATA as d } from '@/app/superadmin/superadmin_setup-wizard/Superadminsuperadmin_setupWizard_constants';
+} from '@/app/superadmin/superadmin_shared_components/SuperadminSchema';
+import { SETUP_WIZARD_DATA as d } from '@/app/superadmin/superadmin_setup-wizard/SuperadminSetupWizardConstants';
 
 const STEPS = [
   { num: 1, title: 'Branch Details', desc: 'Library info & address' },

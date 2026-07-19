@@ -2,7 +2,7 @@
 // RESPONSIBILITY: Renders student security deposit refund processing pipeline with deduction calculation and payout tracking.
 // DATA FLOW: API /finance/refunds -> Refunds State -> Process / Deduct Modals
 import { Undo2 } from 'lucide-react';
-import { formatCurrency } from '@/app/superadmin/superadmin_finance/superadmin_finance_utils/Superadminsuperadmin_format';
+import { formatCurrency } from '@/app/superadmin/superadmin_finance/superadmin_finance_utils/SuperadminFormat';
 import { SuperadminSearchableDropdown } from '@/app/superadmin/superadmin_shared_components/SuperadminSearchableDropdown';
 import { useSuperadminRefundsClient } from '@/app/superadmin/superadmin_finance/refunds/_components/useSuperadminRefundsClient';
 import { SuperadminRefundProcessModal } from '@/app/superadmin/superadmin_finance/refunds/_components/SuperadminRefundProcessModal';

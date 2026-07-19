@@ -1,5 +1,5 @@
 ﻿// RESPONSIBILITY: Renders or handles logic for SuperadminSetupWizardTypes.ts.
-import type { BranchDetailsData, ShiftsData, SeatsData, PlansData } from '@/app/superadmin/superadmin_shared_components/Superadminsuperadmin_schema';
+import type { BranchDetailsData, ShiftsData, SeatsData, PlansData } from '@/app/superadmin/superadmin_shared_components/SuperadminSchema';
 
 
 export interface SuperadminSetupWizardStep1Props {

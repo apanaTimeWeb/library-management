@@ -2,7 +2,7 @@
 // RESPONSIBILITY: Renders the SuperadminCollectFeeClient component.
 import React from 'react';
 import { Toaster } from 'react-hot-toast';
-import { formatCurrency } from '@/app/superadmin/superadmin_finance/superadmin_finance_utils/Superadminsuperadmin_format';
+import { formatCurrency } from '@/app/superadmin/superadmin_finance/superadmin_finance_utils/SuperadminFormat';
 import { Search, CheckCircle, IndianRupee, BookOpen } from 'lucide-react';
 import { printThermal } from '@/lib/thermalPrint';
 import type { SuperadminFinanceCollectFeeMode } from '@/app/superadmin/superadmin_finance/superadmin_finance_types/SuperadminFinanceTypes';

@@ -1,7 +1,7 @@
 'use client';
 // RESPONSIBILITY: Renders the SuperadminFinancialReportsClient component.
 import React from 'react';
-import { Superadminsuperadmin_useSuperadminFinancialReports as useSuperadminFinancialReports } from '@/app/superadmin/superadmin_accounting/financial-reports/superadmin_financial_reports_hooks/Superadminsuperadmin_useSuperadminFinancialReports';
+import { useSuperadminFinancialReports as useSuperadminFinancialReports } from '@/app/superadmin/superadmin_accounting/financial-reports/superadmin_financial_reports_hooks/useSuperadminFinancialReports';
 import { SuperadminFinancialReportsHeader } from '@/app/superadmin/superadmin_accounting/financial-reports/superadmin_financial_reports_components/SuperadminFinancialReportsHeader';
 import { SuperadminFinancialReportsKpiCards } from '@/app/superadmin/superadmin_accounting/financial-reports/superadmin_financial_reports_components/SuperadminFinancialReportsKpiCards';
 import { SuperadminFinancialReportsBarChart } from '@/app/superadmin/superadmin_accounting/financial-reports/superadmin_financial_reports_components/SuperadminFinancialReportsBarChart';

@@ -80,4 +80,4 @@ export interface ApiResponse<T> {
 export type FetchState = 'idle' | 'loading' | 'success' | 'error';
 
 // RESPONSIBILITY: Centralized domain type definitions across the Superadmin module ensuring zero `any` usage.
-// DATA FLOW: Superadminsuperadmin_types.ts -> Components / Hooks / APIs
+// DATA FLOW: SuperadminTypes.ts -> Components / Hooks / APIs
