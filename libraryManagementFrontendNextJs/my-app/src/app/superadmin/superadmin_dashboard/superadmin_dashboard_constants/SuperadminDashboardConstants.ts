@@ -12,7 +12,7 @@ export const SUPERADMIN_DASHBOARD_RECENT_ACTIVITY = [
   {
     type: 'danger',
     title: 'Subscription Overdue',
-    desc: 'Scholar Spaces â€” â‚¹999 due',
+    desc: 'Scholar Spaces â€” ₹999 due',
     time: '5 hours ago',
     href: SUPERADMIN_ROUTES.SUBSCRIPTIONS,
   },
@@ -43,7 +43,7 @@ export const SUPERADMIN_DASHBOARD_MOCK_DATA = {
   kpiCards: [
     { title: 'Total Active Libraries', value: '1,204', icon: 'store', trend: '+12% this month' },
     { title: 'Total Registered Students', value: '45,892', icon: 'groups', trend: '+8% this month' },
-    { title: 'Monthly Recurring Revenue', value: 'â‚¹14.2L', icon: 'currency_rupee', trend: '+5% this month' },
+    { title: 'Monthly Recurring Revenue', value: '₹14.2L', icon: 'currency_rupee', trend: '+5% this month' },
     { title: 'Pending Support Tickets', value: '23', icon: 'pending_actions', alert: '5 High Priority' },
   ],
   systemHealth: {

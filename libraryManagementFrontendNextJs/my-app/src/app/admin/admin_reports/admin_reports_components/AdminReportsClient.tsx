@@ -144,11 +144,11 @@ export function AdminReportsClient({ initialData }: AdminReportsClientProps) {
                   tick={ADMIN_REPORTS_AXIS_TICK}
                   axisLine={false}
                   tickLine={false}
-                  tickFormatter={v => `â‚¹${(Number(v) / 1000).toFixed(0)}k`}
+                  tickFormatter={v => `₹${(Number(v) / 1000).toFixed(0)}k`}
                 />
                 <Tooltip
                   {...ADMIN_REPORTS_TOOLTIP_STYLE}
-                  formatter={((v: unknown, name: string) => [`â‚¹${Number(v).toLocaleString('en-IN')}`, name]) as never}
+                  formatter={((v: unknown, name: string) => [`₹${Number(v).toLocaleString('en-IN')}`, name]) as never}
                 />
                 <Bar dataKey="income"  fill="var(--primary)" radius={[5,5,0,0]} name="Income"  maxBarSize={32} />
                 <Bar dataKey="expense" fill="var(--danger)"    radius={[5,5,0,0]} name="Expense" maxBarSize={32} />
@@ -219,11 +219,11 @@ export function AdminReportsClient({ initialData }: AdminReportsClientProps) {
                   tick={ADMIN_REPORTS_AXIS_TICK}
                   axisLine={false}
                   tickLine={false}
-                  tickFormatter={v => `â‚¹${(Number(v) / 1000).toFixed(0)}k`}
+                  tickFormatter={v => `₹${(Number(v) / 1000).toFixed(0)}k`}
                 />
                 <Tooltip
                   {...ADMIN_REPORTS_TOOLTIP_STYLE}
-                  formatter={((v: unknown) => [`â‚¹${Number(v as number).toLocaleString('en-IN')}`, 'Revenue']) as never}
+                  formatter={((v: unknown) => [`₹${Number(v as number).toLocaleString('en-IN')}`, 'Revenue']) as never}
                 />
                 <Area
                   type="monotone"

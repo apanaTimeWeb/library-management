@@ -101,7 +101,7 @@ export function ManagerStudentsStudentProfileClient({ id }: { id: string }) {
               <div className="flex flex-col gap-1.5">
                 <label className="block text-sm font-medium text-text-secondary mb-1.5">Dues</label>
                 <span className={student.due > 0 ? 'text-danger font-bold' : 'text-success font-bold'}>
-                  {student.due > 0 ? `â‚¹${student.due.toLocaleString('en-IN')}` : 'âœ… Clear'}
+                  {student.due > 0 ? `₹${student.due.toLocaleString('en-IN')}` : 'âœ… Clear'}
                 </span>
               </div>
             </div>

@@ -121,11 +121,11 @@ export function AdminFinanceSubscriptionsClient() {
                 <th className="px-5 py-3">Start Date</th>
                 <th className="px-5 py-3">End Date</th>
                 <th className="px-5 py-3">Days Left</th>
-                <th className="px-5 py-3 text-right">Base â‚¹</th>
-                <th className="px-5 py-3 text-right">Discount â‚¹</th>
-                <th className="px-5 py-3 text-right">Total â‚¹</th>
-                <th className="px-5 py-3 text-right">Paid â‚¹</th>
-                <th className="px-5 py-3 text-right">Due â‚¹</th>
+                <th className="px-5 py-3 text-right">Base ₹</th>
+                <th className="px-5 py-3 text-right">Discount ₹</th>
+                <th className="px-5 py-3 text-right">Total ₹</th>
+                <th className="px-5 py-3 text-right">Paid ₹</th>
+                <th className="px-5 py-3 text-right">Due ₹</th>
                 <th className="px-5 py-3">Status</th>
                 <th className="px-5 py-3 text-right">Actions</th>
               </tr>

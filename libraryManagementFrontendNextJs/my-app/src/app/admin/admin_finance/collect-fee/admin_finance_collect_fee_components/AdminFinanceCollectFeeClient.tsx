@@ -112,7 +112,7 @@ export function AdminFinanceCollectFeeClient() {
 
                   <div className="w-full border-t-2 border-dashed border-black/30 pt-3 pb-3 mb-4 text-center">
                     <p className="text-xs text-text-secondary uppercase tracking-widest mb-1">Total Paid</p>
-                    <p className="text-text-primary text-xl font-bold">â‚¹{receiptData.total.toFixed(0)}</p>
+                    <p className="text-text-primary text-xl font-bold">₹{receiptData.total.toFixed(0)}</p>
                   </div>
 
                   <div className="flex items-center gap-1 bg-black text-white px-3 py-1 rounded-full text-xs font-bold mb-4">
@@ -343,7 +343,7 @@ export function AdminFinanceCollectFeeClient() {
 
                   <div className="w-full border-t border-dashed border-black/30 pt-3 mb-4 text-center">
                     <p className="text-xs text-text-secondary uppercase tracking-widest mb-1">Total Amount</p>
-                    <p className="text-xl font-bold">â‚¹{total > 0 ? total.toFixed(0) : '0'}</p>
+                    <p className="text-xl font-bold">₹{total > 0 ? total.toFixed(0) : '0'}</p>
                   </div>
                   
                   <Button

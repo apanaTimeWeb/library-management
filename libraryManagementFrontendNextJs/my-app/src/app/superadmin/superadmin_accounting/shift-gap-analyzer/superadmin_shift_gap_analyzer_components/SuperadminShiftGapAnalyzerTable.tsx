@@ -30,7 +30,7 @@ export function SuperadminShiftGapAnalyzerTable({ days }: Props) {
             <th className="py-3.5 px-4 text-xs font-bold text-text-disabled uppercase tracking-wider">Shift</th>
             <th className="py-3.5 px-4 text-xs font-bold text-text-disabled uppercase tracking-wider">Seat No</th>
             <th className="py-3.5 px-4 text-xs font-bold text-text-disabled uppercase tracking-wider text-right">Gap Days</th>
-            <th className="py-3.5 px-4 text-xs font-bold text-text-disabled uppercase tracking-wider text-right">Revenue Loss â‚¹</th>
+            <th className="py-3.5 px-4 text-xs font-bold text-text-disabled uppercase tracking-wider text-right">Revenue Loss ₹</th>
           </tr>
         </thead>
         <tbody className="divide-y divide-[var(--border)]">
@@ -46,7 +46,7 @@ export function SuperadminShiftGapAnalyzerTable({ days }: Props) {
               <td className={`py-3.5 px-4 text-base font-extrabold tracking-tight text-right ${d.gapDays > 20 ? 'text-danger' : 'text-warning'}`}>
                 {d.gapDays}d
               </td>
-              <td className="py-3.5 px-4 text-base font-extrabold text-danger tracking-tight text-right">â‚¹{d.loss.toLocaleString()}</td>
+              <td className="py-3.5 px-4 text-base font-extrabold text-danger tracking-tight text-right">₹{d.loss.toLocaleString()}</td>
             </tr>
           ))}
         </tbody>

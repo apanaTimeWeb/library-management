@@ -35,7 +35,7 @@ export function SuperadminSetupWizardStep4({ onNext }: Props) {
               className={inputCls()} />
           </div>
           <div className="space-y-1.5">
-            <label className="text-xs font-semibold text-text-secondary uppercase tracking-wider mb-1.5 block">Price (â‚¹)</label>
+            <label className="text-xs font-semibold text-text-secondary uppercase tracking-wider mb-1.5 block">Price (₹)</label>
             <input type="number" min={0}
               {...register(`plans.${i}.price`, { valueAsNumber: true })}
               placeholder="1000"

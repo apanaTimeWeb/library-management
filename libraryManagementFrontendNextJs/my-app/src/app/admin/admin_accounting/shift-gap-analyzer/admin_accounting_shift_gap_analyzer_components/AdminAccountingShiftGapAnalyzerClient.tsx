@@ -51,7 +51,7 @@ export function AdminAccountingShiftGapAnalyzerClient() {
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         <Card className="p-5 shadow-sm border-danger/20">
           <p className="text-xs font-bold uppercase tracking-wider text-danger mb-1">Total Revenue Loss</p>
-          <p className="text-text-primary text-xl font-extrabold text-danger">â‚¹{totalLoss.toLocaleString()}</p>
+          <p className="text-text-primary text-xl font-extrabold text-danger">₹{totalLoss.toLocaleString()}</p>
         </Card>
         <Card className="p-5 shadow-sm border-warning/20">
           <p className="text-xs font-bold uppercase tracking-wider text-warning mb-1">Total Vacant Seats</p>
@@ -93,7 +93,7 @@ export function AdminAccountingShiftGapAnalyzerClient() {
               </div>
               <div>
                 <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Loss</p>
-                <p className="text-warning font-bold text-lg mt-1">â‚¹{m.revenueLoss.toLocaleString()}</p>
+                <p className="text-warning font-bold text-lg mt-1">₹{m.revenueLoss.toLocaleString()}</p>
               </div>
             </div>
           </Card>
@@ -133,7 +133,7 @@ export function AdminAccountingShiftGapAnalyzerClient() {
               <th className="py-3 px-4">Shift</th>
               <th className="py-3 px-4">Seat No</th>
               <th className="text-right py-3 px-4">Gap Days</th>
-              <th className="text-right py-3 px-4">Revenue Loss (â‚¹)</th>
+              <th className="text-right py-3 px-4">Revenue Loss (₹)</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-border">
@@ -143,7 +143,7 @@ export function AdminAccountingShiftGapAnalyzerClient() {
                 <td className="py-4 px-4 text-foreground">{d.shift}</td>
                 <td className="py-4 px-4 font-bold text-foreground">{d.seatNo}</td>
                 <td className={`py-4 px-4 text-right font-semibold ${d.gapDays > 20 ? 'text-danger' : 'text-warning'}`}>{d.gapDays}d</td>
-                <td className="py-4 px-4 text-right text-danger font-semibold">â‚¹{d.loss.toLocaleString()}</td>
+                <td className="py-4 px-4 text-right text-danger font-semibold">₹{d.loss.toLocaleString()}</td>
               </tr>
             ))}
           </tbody>

@@ -107,7 +107,7 @@ export function AdminAssetsAddDialog({ isOpen, onClose, onSubmit }: AdminAssetsA
 
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <label className="block text-xs font-semibold text-foreground uppercase tracking-wider mb-1">Purchase Value (â‚¹) *</label>
+              <label className="block text-xs font-semibold text-foreground uppercase tracking-wider mb-1">Purchase Value (₹) *</label>
               <Input type="number" {...register('purchaseValue', { valueAsNumber: true })} placeholder="60000" className="w-full" disabled={isSubmitting} />
               {errors.purchaseValue && <p className="text-xs text-danger mt-1 font-medium">{errors.purchaseValue.message}</p>}
             </div>

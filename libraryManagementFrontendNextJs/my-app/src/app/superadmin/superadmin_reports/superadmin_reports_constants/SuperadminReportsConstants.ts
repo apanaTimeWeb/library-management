@@ -35,9 +35,9 @@ export const SUPERADMIN_REPORTS_MOCK_DATA: SuperadminReportsDataResponse = {
     { name: 'Unallocated', value: 9  },
   ],
   kpiCards: [
-    { label: 'Total Revenue This Month', value: 'â‚¹2,14,000', iconType: 'primary', icon: 'rupee', trend: '+18% vs last month', trendType: 'up' },
-    { label: 'Total Expenses',           value: 'â‚¹67,000',   iconType: 'danger',  icon: 'trending_down', trend: '+9% vs last month',  trendType: 'down' },
-    { label: 'Net Profit',               value: 'â‚¹1,47,000', iconType: 'success', icon: 'trending_up', trend: '+22% vs last month', trendType: 'up' },
+    { label: 'Total Revenue This Month', value: '₹2,14,000', iconType: 'primary', icon: 'rupee', trend: '+18% vs last month', trendType: 'up' },
+    { label: 'Total Expenses',           value: '₹67,000',   iconType: 'danger',  icon: 'trending_down', trend: '+9% vs last month',  trendType: 'down' },
+    { label: 'Net Profit',               value: '₹1,47,000', iconType: 'success', icon: 'trending_up', trend: '+22% vs last month', trendType: 'up' },
     { label: 'Active Libraries',         value: '38',         iconType: 'warning', icon: 'users', trend: '+4 this month',      trendType: 'up' },
   ]
 };

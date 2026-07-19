@@ -107,7 +107,7 @@ export function AdminAssetMaintenanceAddDialog({ isOpen, onClose, onSubmit }: Ad
 
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <label className="block text-xs font-semibold text-foreground uppercase tracking-wider mb-1">Cost (â‚¹) *</label>
+              <label className="block text-xs font-semibold text-foreground uppercase tracking-wider mb-1">Cost (₹) *</label>
               <Input type="number" {...register('cost', { valueAsNumber: true })} placeholder="1200" className="w-full font-bold" disabled={isSubmitting} />
               {errors.cost && <p className="text-xs text-danger mt-1 font-medium">{errors.cost.message}</p>}
             </div>

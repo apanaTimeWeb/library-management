@@ -36,7 +36,7 @@ export async function fetchStudentById(id: string): Promise<Student> {
       shift: 'Morning',
       seat: 'S-01',
       branch: 'Main Branch',
-      plan: 'Monthly â‚¹1000',
+      plan: 'Monthly ₹1000',
       due: 0,
       joined: '01/01/2024'
     };

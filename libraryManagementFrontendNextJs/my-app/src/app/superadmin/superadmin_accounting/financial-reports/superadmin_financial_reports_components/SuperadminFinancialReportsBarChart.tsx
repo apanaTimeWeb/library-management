@@ -15,12 +15,12 @@ export function SuperadminFinancialReportsBarChart({ monthlyData, maxIncome }: P
               <div
                 className="w-5 rounded-t-[var(--radius-sm)] transition-all duration-500 ease-out hover:opacity-80"
                 style={{ height: `${(m.income / maxIncome) * 100}%`, backgroundColor: 'var(--success)' }}
-                title={`Income: â‚¹${m.income.toLocaleString()}`}
+                title={`Income: ₹${m.income.toLocaleString()}`}
               />
               <div
                 className="w-5 rounded-t-[var(--radius-sm)] transition-all duration-500 ease-out hover:opacity-80"
                 style={{ height: `${(m.expense / maxIncome) * 100}%`, backgroundColor: 'var(--danger)' }}
-                title={`Expense: â‚¹${m.expense.toLocaleString()}`}
+                title={`Expense: ₹${m.expense.toLocaleString()}`}
               />
             </div>
             <span className="text-xs font-bold text-text-disabled uppercase tracking-wider group-hover:text-text-primary transition-colors">{m.month}</span>

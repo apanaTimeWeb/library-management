@@ -52,7 +52,7 @@ function DiscountCell({ data }: { data: CouponRecord }) {
   if (!data) return null;
   return (
     <span className="font-semibold text-primary">
-      {data.type === 'Flat' ? `â‚¹${data.discount}` : `${data.discount}%`} off
+      {data.type === 'Flat' ? `₹${data.discount}` : `${data.discount}%`} off
     </span>
   );
 }
@@ -280,7 +280,7 @@ export function AdminCouponsClient() {
                 <div>
                   <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Discount Value</span>
                   <p className="font-bold text-base text-primary mt-0.5">
-                    {selectedCoupon.type === 'Flat' ? `â‚¹${selectedCoupon.discount}` : `${selectedCoupon.discount}%`} off
+                    {selectedCoupon.type === 'Flat' ? `₹${selectedCoupon.discount}` : `${selectedCoupon.discount}%`} off
                   </p>
                 </div>
                 <div>

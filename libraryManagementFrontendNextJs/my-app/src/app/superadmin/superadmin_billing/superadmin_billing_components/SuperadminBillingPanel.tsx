@@ -69,7 +69,7 @@ export function SuperadminBillingPanel({ inv, onClose, onMarkPaid }: Props) {
 
           <div className="bg-page rounded-lg p-6 border border-border text-center shadow-inner">
             <p className="text-xs font-bold text-text-disabled uppercase tracking-wider mb-2">Invoice Amount</p>
-            <p className="text-4xl font-extrabold text-primary tracking-tight mb-3">â‚¹{inv.amount.toLocaleString()}</p>
+            <p className="text-4xl font-extrabold text-primary tracking-tight mb-3">₹{inv.amount.toLocaleString()}</p>
             <div className="flex justify-center">
               {inv.status === 'Paid'
                 ? <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider bg-success-bg text-success"><CheckCircle size={14} /> Paid</span>

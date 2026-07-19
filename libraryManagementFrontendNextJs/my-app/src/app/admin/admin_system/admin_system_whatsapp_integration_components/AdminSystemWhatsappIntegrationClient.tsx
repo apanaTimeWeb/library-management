@@ -103,7 +103,7 @@ export function AdminSystemWhatsappIntegrationClient() {
         <KpiCard title="Sent This Month" value={logs.length} icon="ðŸ“¤" subtitle="All messages" />
         <KpiCard title="Delivered" value={deliveredCount} icon="âœ…" trend="up" trendLabel={`${deliveryRate}% rate`} />
         <KpiCard title="Failed" value={failedCount} icon="âŒ" trend={failedCount > 0 ? 'down' : 'neutral'} trendLabel="Failed deliveries" />
-        <KpiCard title="Est. Cost" value="â‚¹18.50" icon="ðŸ’¸" subtitle="~â‚¹0.18 per msg" />
+        <KpiCard title="Est. Cost" value="₹18.50" icon="ðŸ’¸" subtitle="~₹0.18 per msg" />
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">

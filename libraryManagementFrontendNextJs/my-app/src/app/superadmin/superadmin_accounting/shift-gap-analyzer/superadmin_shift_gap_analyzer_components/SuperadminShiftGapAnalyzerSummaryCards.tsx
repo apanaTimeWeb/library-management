@@ -52,7 +52,7 @@ export function SuperadminShiftGapAnalyzerSummaryCards({ shifts }: Props) {
               </div>
               <div>
                 <p className="text-xs font-bold text-text-secondary uppercase tracking-wider mb-0.5">Loss</p>
-                <p className="text-lg font-extrabold text-warning">â‚¹{m.revenueLoss.toLocaleString()}</p>
+                <p className="text-lg font-extrabold text-warning">₹{m.revenueLoss.toLocaleString()}</p>
               </div>
             </div>
           </div>

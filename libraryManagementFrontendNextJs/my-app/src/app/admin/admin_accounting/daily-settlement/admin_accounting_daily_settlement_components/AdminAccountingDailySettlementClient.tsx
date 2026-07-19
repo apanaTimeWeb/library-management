@@ -59,15 +59,15 @@ export function AdminAccountingDailySettlementClient() {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
         <Card className="p-5 shadow-none border-border">
           <p className="text-xs font-bold uppercase tracking-wider text-muted-foreground mb-1">Total Cash</p>
-          <p className="text-text-primary text-xl font-extrabold text-foreground">â‚¹{totalCash.toLocaleString()}</p>
+          <p className="text-text-primary text-xl font-extrabold text-foreground">₹{totalCash.toLocaleString()}</p>
         </Card>
         <Card className="p-5 shadow-none border-border">
           <p className="text-xs font-bold uppercase tracking-wider text-muted-foreground mb-1">Total UPI</p>
-          <p className="text-text-primary text-xl font-extrabold text-info">â‚¹{totalUpi.toLocaleString()}</p>
+          <p className="text-text-primary text-xl font-extrabold text-info">₹{totalUpi.toLocaleString()}</p>
         </Card>
         <Card className="p-5 shadow-none border-border">
           <p className="text-xs font-bold uppercase tracking-wider text-muted-foreground mb-1">Total Expenses</p>
-          <p className="text-text-primary text-xl font-extrabold text-danger">â‚¹{totalExp.toLocaleString()}</p>
+          <p className="text-text-primary text-xl font-extrabold text-danger">₹{totalExp.toLocaleString()}</p>
         </Card>
       </div>
 
@@ -96,11 +96,11 @@ export function AdminAccountingDailySettlementClient() {
               {entries.slice((page - 1) * limit, page * limit).map((entry) => (
                 <tr key={entry.id} className="hover:bg-muted/10 transition-colors">
                   <td className="px-4 py-4 font-semibold text-foreground">{entry.shift}</td>
-                  <td className="px-4 py-4 text-right">â‚¹{entry.openingBalance.toLocaleString()}</td>
-                  <td className="px-4 py-4 text-right">â‚¹{entry.cashCollected.toLocaleString()}</td>
-                  <td className="px-4 py-4 text-right text-info font-medium">â‚¹{entry.upiCollected.toLocaleString()}</td>
-                  <td className="px-4 py-4 text-right text-danger font-medium">â‚¹{entry.expenses.toLocaleString()}</td>
-                  <td className="px-4 py-4 text-right font-bold text-foreground">â‚¹{entry.closingBalance.toLocaleString()}</td>
+                  <td className="px-4 py-4 text-right">₹{entry.openingBalance.toLocaleString()}</td>
+                  <td className="px-4 py-4 text-right">₹{entry.cashCollected.toLocaleString()}</td>
+                  <td className="px-4 py-4 text-right text-info font-medium">₹{entry.upiCollected.toLocaleString()}</td>
+                  <td className="px-4 py-4 text-right text-danger font-medium">₹{entry.expenses.toLocaleString()}</td>
+                  <td className="px-4 py-4 text-right font-bold text-foreground">₹{entry.closingBalance.toLocaleString()}</td>
                   <td className="px-4 py-4 text-muted-foreground text-sm">{entry.settledBy}</td>
                   <td className="px-4 py-4">
                     {entry.status === 'settled' ? (

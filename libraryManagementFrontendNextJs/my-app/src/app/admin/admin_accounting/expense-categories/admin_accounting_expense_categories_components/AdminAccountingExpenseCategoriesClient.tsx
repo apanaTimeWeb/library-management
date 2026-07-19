@@ -49,8 +49,8 @@ export function AdminAccountingExpenseCategoriesClient() {
 
               <div className="space-y-2">
                 <div className="flex justify-between text-xs font-semibold">
-                  <span className="text-muted-foreground">Spent: â‚¹{cat.spent}</span>
-                  <span className="text-foreground">Budget: â‚¹{cat.budget}</span>
+                  <span className="text-muted-foreground">Spent: ₹{cat.spent}</span>
+                  <span className="text-foreground">Budget: ₹{cat.budget}</span>
                 </div>
                 <div className="h-2.5 w-full bg-muted rounded-full overflow-hidden">
                   <div className={`h-full ${cat.color} transition-all w-[length:var(--w)]`} style={{ '--w': `${pct}%` } as React.CSSProperties} />

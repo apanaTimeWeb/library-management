@@ -89,11 +89,11 @@ export function AdminFinanceSecurityDepositsClient() {
             <thead className="bg-muted/30 border-b text-muted-foreground text-xs font-bold uppercase tracking-wider sticky top-0 z-10">
               <tr>
                 <th className="px-5 py-3">Student</th>
-                <th className="px-5 py-3 text-right">Deposit â‚¹</th>
+                <th className="px-5 py-3 text-right">Deposit ₹</th>
                 <th className="px-5 py-3">Status</th>
                 <th className="px-5 py-3">Collected By</th>
                 <th className="px-5 py-3">Collected Date</th>
-                <th className="px-5 py-3 text-right">Deduction â‚¹</th>
+                <th className="px-5 py-3 text-right">Deduction ₹</th>
                 <th className="px-5 py-3">Deduction Reason</th>
                 <th className="px-5 py-3">Refunded Date</th>
                 <th className="px-5 py-3 text-right">Actions</th>

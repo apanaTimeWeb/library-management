@@ -130,7 +130,7 @@ export function AdminShiftGapAnalyzerClient() {
                             {fmtH(g.startH)} â€“ {fmtH(g.endH)} <span className="text-muted-foreground font-medium mx-1">Â·</span> {g.seats} seats free
                           </p>
                           <p className="text-xs font-medium text-danger">
-                            Est. revenue loss: â‚¹{g.revLoss}/day
+                            Est. revenue loss: ₹{g.revLoss}/day
                           </p>
                         </div>
                       </div>

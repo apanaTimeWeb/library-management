@@ -95,7 +95,7 @@ export function AdminFinanceRenewalsClient() {
                 <th className="px-5 py-3">Expiry Date</th>
                 <th className="px-5 py-3">Days Left</th>
                 <th className="px-5 py-3">Last Payment</th>
-                <th className="px-5 py-3 text-right">Due â‚¹</th>
+                <th className="px-5 py-3 text-right">Due ₹</th>
                 <th className="px-5 py-3 text-right">Actions</th>
               </tr>
             </thead>

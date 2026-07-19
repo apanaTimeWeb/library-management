@@ -10,9 +10,9 @@ import { TableToolbar } from "@/components/ui/table-toolbar";
 import { useClientTable } from "@/components/ui/use-client-table";
 
 const REFERRALS_DATA: ReferralData[] = [
-  { id: 'REF-001', referrer: 'Arjun Das',    referred: 'Riya Sen',    date: '2026-05-15', status: 'Claimed',  bonus: 'â‚¹500', method: 'Fee Discount' },
-  { id: 'REF-002', referrer: 'Priya Verma',  referred: 'Kunal Singh', date: '2026-06-02', status: 'Pending',  bonus: 'â‚¹500', method: 'Cash'         },
-  { id: 'REF-003', referrer: 'Rohan Sharma', referred: 'Aditi Jain',  date: '2026-06-03', status: 'Approved', bonus: 'â‚¹500', method: 'Fee Discount' },
+  { id: 'REF-001', referrer: 'Arjun Das',    referred: 'Riya Sen',    date: '2026-05-15', status: 'Claimed',  bonus: '₹500', method: 'Fee Discount' },
+  { id: 'REF-002', referrer: 'Priya Verma',  referred: 'Kunal Singh', date: '2026-06-02', status: 'Pending',  bonus: '₹500', method: 'Cash'         },
+  { id: 'REF-003', referrer: 'Rohan Sharma', referred: 'Aditi Jain',  date: '2026-06-03', status: 'Approved', bonus: '₹500', method: 'Fee Discount' },
 ];
 
 export function ManagerStudentsReferralsClient() {
@@ -48,7 +48,7 @@ const [searchTerm, setSearchTerm] = useUrlState('searchTerm', '' as string);
         {[
           { label: 'Total Referrals',        value: '45',       icon: Award,        iconClass: 'bg-primary/10 text-primary' },
           { label: 'Pending Approvals',       value: '8',        icon: Search,       iconClass: 'bg-warning/10 text-warning' },
-          { label: 'Total Bonus Distributed', value: 'â‚¹18,500', icon: IndianRupee,  iconClass: 'bg-success/10 text-success' },
+          { label: 'Total Bonus Distributed', value: '₹18,500', icon: IndianRupee,  iconClass: 'bg-success/10 text-success' },
         ].map(k => {
           const Icon = k.icon;
           return (

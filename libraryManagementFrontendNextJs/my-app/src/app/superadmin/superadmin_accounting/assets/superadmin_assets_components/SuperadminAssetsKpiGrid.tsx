@@ -12,7 +12,7 @@ export function SuperadminAssetsKpiGrid({ totalAssets, totalValue, maintenanceCo
       </div>
       <div className="bg-success-bg border border-success/20 rounded-lg p-4 shadow-sm flex flex-col justify-center">
         <p className="text-xs font-bold text-success uppercase tracking-wider mb-1">Current Value</p>
-        <p className="text-xl font-extrabold text-success">â‚¹{totalValue.toLocaleString()}</p>
+        <p className="text-xl font-extrabold text-success">₹{totalValue.toLocaleString()}</p>
       </div>
       <div className="bg-warning-bg border border-warning/20 rounded-lg p-4 shadow-sm flex flex-col justify-center">
         <p className="text-xs font-bold text-warning uppercase tracking-wider mb-1">Under Maintenance</p>

@@ -63,27 +63,27 @@ export function AdminDashboardRecentPaymentsFeed({ payments }: { payments: Admin
               {payments.slice((page - 1) * limit, page * limit).map((payment, i) => (
                 <tr 
                   key={i} 
-                  onClick={() => handleRowClick(payment.id)}
+                  onClick={() => handleRowClick(payment.studentId)}
                   className="hover:bg-page transition-colors cursor-pointer group"
                 >
                   <td className="px-4 py-3">
                     <div className="flex items-center gap-3">
                       <div className="flex items-center justify-center h-8 w-8 rounded-full bg-primary text-white text-xs font-bold shadow-sm">
-                        {String(payment.studentName || 'U').charAt(0).toUpperCase()}
+                        {payment.initials || String(payment.name || 'U').charAt(0).toUpperCase()}
                       </div>
-                      <span className="font-semibold text-sm text-text-primary group-hover:text-primary transition-colors">{payment.studentName || 'Unknown'}</span>
+                      <span className="font-semibold text-sm text-text-primary group-hover:text-primary transition-colors">{payment.name || 'Unknown'}</span>
                     </div>
                   </td>
                   <td className="px-4 py-3 font-bold text-sm text-text-primary">
-                    â‚¹{payment.amount}
+                    {payment.amount}
                   </td>
                   <td className="px-4 py-3">
-                    <Badge variant="secondary" className={`${getModeBadgeClass('Cash')} text-xs uppercase font-bold tracking-wider rounded-md border-none`}>
-                      {payment.status}
+                    <Badge variant="secondary" className={`${getModeBadgeClass(payment.mode || 'Cash')} text-xs uppercase font-bold tracking-wider rounded-md border-none`}>
+                      {payment.mode || 'Unknown'}
                     </Badge>
                   </td>
                   <td className="px-4 py-3 text-xs text-text-secondary font-medium">
-                    {payment.date}
+                    {payment.timeAgo}
                   </td>
                 </tr>
               ))}

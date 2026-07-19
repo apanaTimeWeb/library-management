@@ -64,7 +64,7 @@ export function AdminAccountingFinancialReportsClient() {
             <TrendingUp size={16} className="text-success" />
             <p className="text-xs font-bold uppercase tracking-wider text-success">Total Income</p>
           </div>
-          <p className="text-3xl font-extrabold text-success tracking-tighter">â‚¹{totalIncome.toLocaleString()}</p>
+          <p className="text-3xl font-extrabold text-success tracking-tighter">₹{totalIncome.toLocaleString()}</p>
         </Card>
         
         <Card className="p-5 shadow-sm border-danger/20">
@@ -72,7 +72,7 @@ export function AdminAccountingFinancialReportsClient() {
             <TrendingDown size={16} className="text-danger" />
             <p className="text-xs font-bold uppercase tracking-wider text-danger">Total Expenses</p>
           </div>
-          <p className="text-3xl font-extrabold text-danger tracking-tighter">â‚¹{totalExpense.toLocaleString()}</p>
+          <p className="text-3xl font-extrabold text-danger tracking-tighter">₹{totalExpense.toLocaleString()}</p>
         </Card>
         
         <Card className="p-5 shadow-sm border-border">
@@ -81,7 +81,7 @@ export function AdminAccountingFinancialReportsClient() {
             <p className="text-xs font-bold uppercase tracking-wider text-muted-foreground">Net Profit</p>
           </div>
           <p className={`text-3xl font-extrabold tracking-tighter ${netProfit >= 0 ? 'text-foreground' : 'text-danger'}`}>
-            â‚¹{netProfit.toLocaleString()}
+            ₹{netProfit.toLocaleString()}
           </p>
         </Card>
       </div>
@@ -94,11 +94,11 @@ export function AdminAccountingFinancialReportsClient() {
               <div className="flex items-end gap-1.5 w-full justify-center h-40">
                 <div
                   className="rounded-t w-6 transition-all bg-success hover:brightness-110 h-[length:var(--h)]" style={{ '--h': `${(m.income / maxIncome) * 100}%` } as React.CSSProperties}
-                  title={`Income: â‚¹${m.income.toLocaleString()}`}
+                  title={`Income: ₹${m.income.toLocaleString()}`}
                 />
                 <div
                   className="rounded-t w-6 transition-all bg-danger hover:brightness-110 h-[length:var(--h)]" style={{ '--h': `${(m.expense / maxIncome) * 100}%` } as React.CSSProperties}
-                  title={`Expense: â‚¹${m.expense.toLocaleString()}`}
+                  title={`Expense: ₹${m.expense.toLocaleString()}`}
                 />
               </div>
               <span className="text-xs font-medium text-muted-foreground">{m.month}</span>
@@ -124,7 +124,7 @@ export function AdminAccountingFinancialReportsClient() {
             <div key={`cat-breakdown-${c.category}`}>
               <div className="flex justify-between mb-1.5">
                 <span className="text-sm font-medium text-foreground">{c.category}</span>
-                <span className="text-xs font-semibold text-muted-foreground">â‚¹{c.amount.toLocaleString()} ({c.pct}%)</span>
+                <span className="text-xs font-semibold text-muted-foreground">₹{c.amount.toLocaleString()} ({c.pct}%)</span>
               </div>
               <div className="h-2 w-full bg-muted rounded-full overflow-hidden">
                 <div className="h-full bg-primary rounded-full transition-all w-[length:var(--w)]" style={{ '--w': `${c.pct}%` } as React.CSSProperties} />

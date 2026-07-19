@@ -142,7 +142,7 @@ export function SuperadminWhatsappTemplatesClient() {
 
               {/* Help Tip */}
               <div className="bg-info/10 border-l-4 border-l-info text-info p-4 rounded-md text-sm leading-relaxed">
-                <span className="font-bold">ðŸ’¡ Pro Tip:</span> Use variables to personalize messages. E.g.: <em className="opacity-80">"Hi {'{name}'}, your fee of â‚¹{'{amount}'} is due on {'{duedate}'}."</em>
+                <span className="font-bold">ðŸ’¡ Pro Tip:</span> Use variables to personalize messages. E.g.: <em className="opacity-80">"Hi {'{name}'}, your fee of ₹{'{amount}'} is due on {'{duedate}'}."</em>
               </div>
 
               {/* Preview */}

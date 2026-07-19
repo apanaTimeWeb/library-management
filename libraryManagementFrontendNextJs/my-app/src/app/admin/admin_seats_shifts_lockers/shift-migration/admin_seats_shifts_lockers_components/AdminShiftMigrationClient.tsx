@@ -195,7 +195,7 @@ export function AdminShiftMigrationClient() {
                   <p className="text-xs font-bold text-success uppercase tracking-wider">Availability</p>
                   <p className="text-sm font-medium text-primary leading-relaxed">
                     <strong>{selectedShiftData?.seats}</strong> seats available in <strong>{newShift}</strong> shift. 
-                    Rate: <strong>â‚¹{newRate}/day</strong>.
+                    Rate: <strong>₹{newRate}/day</strong>.
                     {showCustomSlot && customStart && customEnd && (
                       <span className="block mt-1">Custom slot: <strong>{customStart} â€“ {customEnd}</strong>.</span>
                     )}
@@ -216,11 +216,11 @@ export function AdminShiftMigrationClient() {
                 <div className="flex flex-col gap-3 bg-muted/10 p-5 rounded-md border border-border">
                   <div className="flex justify-between items-center">
                     <span className="text-sm font-medium text-muted-foreground">Old Rate</span>
-                    <span className="font-mono font-bold">â‚¹{oldRate}/day</span>
+                    <span className="font-mono font-bold">₹{oldRate}/day</span>
                   </div>
                   <div className="flex justify-between items-center">
                     <span className="text-sm font-medium text-muted-foreground">New Rate</span>
-                    <span className="font-mono font-bold">â‚¹{newRate}/day</span>
+                    <span className="font-mono font-bold">₹{newRate}/day</span>
                   </div>
                   <div className="flex justify-between items-center">
                     <span className="text-sm font-medium text-muted-foreground">Days Remaining</span>
@@ -230,7 +230,7 @@ export function AdminShiftMigrationClient() {
                   <div className="flex justify-between items-center">
                     <span className="text-base font-bold text-primary">Fee Adjustment</span>
                     <span className={`text-xl font-black font-mono tracking-tighter ${isPaying ? 'text-danger' : 'text-success'}`}>
-                      {isPaying ? '+' : ''}â‚¹{Math.abs(adjustment)}
+                      {isPaying ? '+' : ''}₹{Math.abs(adjustment)}
                     </span>
                   </div>
                 </div>
@@ -238,9 +238,9 @@ export function AdminShiftMigrationClient() {
                 <div className={`p-4 rounded-md border ${isPaying ? 'bg-danger/5 border-danger/20 text-danger' : adjustment < 0 ? 'bg-info/5 border-info/20 text-info' : 'bg-success/5 border-success/20 text-success'}`}>
                   <p className="text-sm font-bold flex items-center gap-2">
                     {isPaying
-                      ? 'ðŸ”´ Student pays more â€” collect â‚¹' + adjustment + ' before confirming.'
+                      ? 'ðŸ”´ Student pays more â€” collect ₹' + adjustment + ' before confirming.'
                       : adjustment < 0
-                        ? 'ðŸ”µ Refund â‚¹' + Math.abs(adjustment) + ' to student.'
+                        ? 'ðŸ”µ Refund ₹' + Math.abs(adjustment) + ' to student.'
                         : 'âœ… No fee adjustment needed.'}
                   </p>
                 </div>
@@ -360,7 +360,7 @@ export function AdminShiftMigrationClient() {
               New Seat <strong>{newSeat}</strong> ({newShift}) assigned.<br/>
               {showCustomSlot && customStart && customEnd && <span className="block mt-2">Custom slot: <strong>{customStart} â€“ {customEnd}</strong>.<br/></span>}
               <span className="block mt-4 pt-4 border-t border-border text-base">
-                Fee adjustment: <strong className={isPaying ? 'text-danger' : 'text-success'}>{isPaying ? '+' : ''}â‚¹{Math.abs(adjustment)}</strong>
+                Fee adjustment: <strong className={isPaying ? 'text-danger' : 'text-success'}>{isPaying ? '+' : ''}₹{Math.abs(adjustment)}</strong>
               </span>
             </p>
             <div className="flex items-center justify-end gap-3 pt-2">

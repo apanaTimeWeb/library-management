@@ -51,7 +51,7 @@ export function AdminFinanceReferralsClient() {
         
         <Card className="p-4 shadow-none flex flex-col justify-center border-success/30 bg-success/5">
           <div className="flex items-center justify-between mb-1">
-            <span className="text-xs font-bold tracking-wider uppercase text-success">Total Bonus Issued â‚¹</span>
+            <span className="text-xs font-bold tracking-wider uppercase text-success">Total Bonus Issued ₹</span>
             <IndianRupee size={16} className="text-success" />
           </div>
           <p className="text-text-primary text-xl font-bold text-success">{formatCurrency(totalBonus)}</p>
@@ -91,9 +91,9 @@ export function AdminFinanceReferralsClient() {
                 <th className="px-5 py-3">Referrer</th>
                 <th className="px-5 py-3">Referred Students</th>
                 <th className="px-5 py-3 text-center">Referred Count</th>
-                <th className="px-5 py-3 text-right">Bonus Earned â‚¹</th>
-                <th className="px-5 py-3 text-right">Redeemed â‚¹</th>
-                <th className="px-5 py-3 text-right">Balance â‚¹</th>
+                <th className="px-5 py-3 text-right">Bonus Earned ₹</th>
+                <th className="px-5 py-3 text-right">Redeemed ₹</th>
+                <th className="px-5 py-3 text-right">Balance ₹</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-border">

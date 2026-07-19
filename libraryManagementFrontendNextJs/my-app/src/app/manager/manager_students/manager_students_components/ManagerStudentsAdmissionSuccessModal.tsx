@@ -107,8 +107,8 @@ export default function ManagerStudentsAdmissionSuccessModal({ data, onClose }: 
                 { label: 'Smart ID',    value: data.smartId,     mono: true },
                 { label: 'Plan',        value: data.plan },
                 { label: 'Valid Until', value: data.expiryDate },
-                { label: 'Paid',        value: `â‚¹${data.amountPaid.toLocaleString('en-IN')}`, color: 'var(--success)' },
-                ...(balance > 0 ? [{ label: 'Balance Due', value: `â‚¹${balance.toLocaleString('en-IN')}`, color: 'var(--danger)' }] : []),
+                { label: 'Paid',        value: `₹${data.amountPaid.toLocaleString('en-IN')}`, color: 'var(--success)' },
+                ...(balance > 0 ? [{ label: 'Balance Due', value: `₹${balance.toLocaleString('en-IN')}`, color: 'var(--danger)' }] : []),
               ].map((r, i) => (
                 <div key={i} className="flex items-center justify-between">
                   <span className="text-xs font-medium text-text-secondary">{r.label}</span>

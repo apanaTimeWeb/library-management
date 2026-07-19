@@ -31,7 +31,7 @@ export function SuperadminAssetMaintenanceTable({ logs, onComplete }: Props) {
             <th className="py-3.5 px-4 text-xs font-bold text-text-disabled uppercase tracking-wider">Reported</th>
             <th className="py-3.5 px-4 text-xs font-bold text-text-disabled uppercase tracking-wider">Scheduled</th>
             <th className="py-3.5 px-4 text-xs font-bold text-text-disabled uppercase tracking-wider">Vendor</th>
-            <th className="py-3.5 px-4 text-xs font-bold text-text-disabled uppercase tracking-wider text-right">Cost â‚¹</th>
+            <th className="py-3.5 px-4 text-xs font-bold text-text-disabled uppercase tracking-wider text-right">Cost ₹</th>
             <th className="py-3.5 px-4 text-xs font-bold text-text-disabled uppercase tracking-wider">Status</th>
             <th className="py-3.5 px-4 text-xs font-bold text-text-disabled uppercase tracking-wider text-right">Action</th>
           </tr>
@@ -44,7 +44,7 @@ export function SuperadminAssetMaintenanceTable({ logs, onComplete }: Props) {
               <td className="py-3.5 px-4 text-sm font-medium text-text-secondary">{l.reportedDate}</td>
               <td className="py-3.5 px-4 text-sm font-medium text-text-secondary">{l.scheduledDate}</td>
               <td className="py-3.5 px-4 text-sm font-medium text-text-secondary">{l.vendor}</td>
-              <td className="py-3.5 px-4 text-base font-extrabold text-text-primary tracking-tight text-right">â‚¹{l.cost.toLocaleString()}</td>
+              <td className="py-3.5 px-4 text-base font-extrabold text-text-primary tracking-tight text-right">₹{l.cost.toLocaleString()}</td>
               <td className="py-3.5 px-4">
                 <span className={`inline-flex items-center px-2 py-0.5 rounded text-xs font-bold uppercase tracking-wider shadow-sm ${SUPERADMIN_ASSET_MAINTENANCE_STATUS_STYLES[l.status]}`}>
                   {l.status}

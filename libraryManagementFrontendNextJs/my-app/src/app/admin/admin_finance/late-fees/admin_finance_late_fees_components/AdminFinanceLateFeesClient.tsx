@@ -76,7 +76,7 @@ export function AdminFinanceLateFeesClient() {
               <p className="text-xs text-muted-foreground">Days after due date before penalties apply</p>
             </div>
             <div className="space-y-1.5">
-              <label className="text-sm font-medium text-primary">Penalty Per Day (â‚¹)</label>
+              <label className="text-sm font-medium text-primary">Penalty Per Day (₹)</label>
               <Input 
                 type="number" 
                 value={penaltyRate} 

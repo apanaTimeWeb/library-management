@@ -141,7 +141,7 @@ export function AdminSystemSettingsClient() {
                   <div className="space-y-2">
                     <Label htmlFor="penalty-per-day">Penalty Per Day</Label>
                     <div className="flex items-center gap-2">
-                      <span className="text-sm text-text-secondary">â‚¹</span>
+                      <span className="text-sm text-text-secondary">₹</span>
                       <Input id="penalty-per-day" type="number" value={form.penaltyPerDay} onChange={e => setForm(f => ({ ...f, penaltyPerDay: +e.target.value }))} />
                     </div>
                   </div>
@@ -292,7 +292,7 @@ export function AdminSystemSettingsClient() {
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="library-currency">Currency</Label>
-                  <Input id="library-currency" defaultValue="INR (â‚¹)" />
+                  <Input id="library-currency" defaultValue="INR (₹)" />
                 </div>
               </CardContent>
               <CardFooter>

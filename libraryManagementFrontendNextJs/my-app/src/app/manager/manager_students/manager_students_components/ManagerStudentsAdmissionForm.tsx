@@ -234,7 +234,7 @@ export default function ManagerStudentsAdmissionForm() {
                     </div>
 
                     <div className="flex flex-col">
-                      <label className="block text-sm font-medium text-text-secondary mb-1.5">Manual Discount (â‚¹)</label>
+                      <label className="block text-sm font-medium text-text-secondary mb-1.5">Manual Discount (₹)</label>
                       <div className="relative">
                         <IndianRupee size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-text-secondary" />
                         <input
@@ -256,7 +256,7 @@ export default function ManagerStudentsAdmissionForm() {
                     </div>
 
                     <div className="flex flex-col">
-                      <label className="block text-sm font-medium text-text-secondary mb-1.5 after:content-['*'] after:ml-1 after:text-danger">Amount Paid Now (â‚¹)</label>
+                      <label className="block text-sm font-medium text-text-secondary mb-1.5 after:content-['*'] after:ml-1 after:text-danger">Amount Paid Now (₹)</label>
                       <div className="relative">
                         <IndianRupee size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-text-secondary" />
                         <input

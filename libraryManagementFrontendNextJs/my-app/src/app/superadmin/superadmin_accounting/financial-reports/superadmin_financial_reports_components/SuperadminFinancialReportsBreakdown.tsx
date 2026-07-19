@@ -15,7 +15,7 @@ export function SuperadminFinancialReportsBreakdown({ categoryBreakdown }: Props
             <div className="flex justify-between items-end mb-2">
               <span className="text-sm font-bold text-text-secondary group-hover:text-text-primary transition-colors">{c.category}</span>
               <div className="flex items-center gap-2">
-                <span className="text-sm font-extrabold text-text-primary">â‚¹{c.amount.toLocaleString()}</span>
+                <span className="text-sm font-extrabold text-text-primary">₹{c.amount.toLocaleString()}</span>
                 <span className="text-xs font-bold text-text-disabled uppercase tracking-wider">({c.pct}%)</span>
               </div>
             </div>

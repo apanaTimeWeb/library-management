@@ -29,11 +29,12 @@ export interface AdminDashboardActionItem {
   href: string;
 }
 export interface AdminDashboardPaymentData {
-  id: string;
-  studentName: string;
-  amount: number;
-  date: string;
-  status: 'Success' | 'Pending' | 'Failed';
+  studentId: string;
+  name: string;
+  initials: string;
+  amount: string;
+  mode: string;
+  timeAgo: string;
 }
 export interface AdminDashboardData {
   kpiCards: Omit<AdminDashboardKpiCardProps, 'icon' | 'iconColor' | 'iconBg'>[];

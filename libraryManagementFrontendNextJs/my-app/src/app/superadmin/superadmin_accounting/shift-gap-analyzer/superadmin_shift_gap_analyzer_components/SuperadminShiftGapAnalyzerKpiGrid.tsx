@@ -8,7 +8,7 @@ export function SuperadminShiftGapAnalyzerKpiGrid({ totalLoss, totalVacant, avgO
     <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
       <div className="bg-danger-bg border border-danger/20 rounded-lg p-4 shadow-sm flex flex-col justify-center">
         <p className="text-xs font-bold text-danger uppercase tracking-wider mb-1">Total Revenue Loss</p>
-        <p className="text-xl font-extrabold text-danger">â‚¹{totalLoss.toLocaleString()}</p>
+        <p className="text-xl font-extrabold text-danger">₹{totalLoss.toLocaleString()}</p>
       </div>
       <div className="bg-warning-bg border border-warning/20 rounded-lg p-4 shadow-sm flex flex-col justify-center">
         <p className="text-xs font-bold text-warning uppercase tracking-wider mb-1">Total Vacant Seats</p>

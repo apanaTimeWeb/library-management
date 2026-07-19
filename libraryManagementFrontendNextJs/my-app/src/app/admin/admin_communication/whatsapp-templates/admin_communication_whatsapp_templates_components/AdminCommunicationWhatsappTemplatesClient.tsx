@@ -124,7 +124,7 @@ export function AdminCommunicationWhatsappTemplatesClient() {
             </div>
 
             <div className="p-4 bg-info/10 text-info border border-info/20 rounded-lg text-sm font-medium">
-              ðŸ’¡ Use variables to personalize messages. E.g.: <em>&quot;Hi {'{name}'}, your fee of â‚¹{'{amount}'} is due on {'{duedate}'}.&quot;</em>
+              ðŸ’¡ Use variables to personalize messages. E.g.: <em>&quot;Hi {'{name}'}, your fee of ₹{'{amount}'} is due on {'{duedate}'}.&quot;</em>
             </div>
 
             <div className="space-y-2 pt-4 border-t border-border">

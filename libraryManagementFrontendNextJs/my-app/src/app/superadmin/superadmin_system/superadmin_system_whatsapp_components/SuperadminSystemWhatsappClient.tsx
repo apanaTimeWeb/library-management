@@ -89,7 +89,7 @@ export function SuperadminSystemWhatsappClient() {
         <SuperadminKpiCard title="Sent This Month" value={stats.total} icon={Send} subtitle="All messages" />
         <SuperadminKpiCard title="Delivered" value={stats.deliveredCount} icon={CheckCircle} trend="up" trendLabel={`${stats.deliveryRate}% rate`} />
         <SuperadminKpiCard title="Failed" value={stats.failedCount} icon={XCircle} trend={stats.failedCount > 0 ? 'down' : 'neutral'} trendLabel="Failed deliveries" />
-        <SuperadminKpiCard title="Est. Cost" value="â‚¹18.50" icon={Banknote} subtitle="~â‚¹0.18 per msg" />
+        <SuperadminKpiCard title="Est. Cost" value="₹18.50" icon={Banknote} subtitle="~₹0.18 per msg" />
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">

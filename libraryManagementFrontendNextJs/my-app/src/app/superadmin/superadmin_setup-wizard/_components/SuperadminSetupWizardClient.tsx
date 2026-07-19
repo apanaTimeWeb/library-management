@@ -249,7 +249,7 @@ export function SuperadminSetupWizardClient() {
                   <div className="flex flex-wrap gap-2">
                     {plans.plans.map(( pl ) => (
                       <span key={pl.name} className="text-xs font-medium text-text-secondary bg-card px-2 py-1 rounded border border-border">
-                        {pl.name} Â· {pl.days}d Â· â‚¹{pl.price}
+                        {pl.name} Â· {pl.days}d Â· ₹{pl.price}
                       </span>
                     ))}
                   </div>

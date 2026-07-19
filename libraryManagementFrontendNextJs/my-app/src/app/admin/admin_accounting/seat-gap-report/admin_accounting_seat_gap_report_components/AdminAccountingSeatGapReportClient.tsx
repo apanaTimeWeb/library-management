@@ -57,7 +57,7 @@ export function AdminAccountingSeatGapReportClient() {
         </Card>
         <Card className="p-5 shadow-sm border-warning/20">
           <p className="text-xs font-bold uppercase tracking-wider text-warning mb-1">Revenue Loss</p>
-          <p className="text-text-primary text-xl font-extrabold text-warning">â‚¹{totalLoss.toLocaleString()}</p>
+          <p className="text-text-primary text-xl font-extrabold text-warning">₹{totalLoss.toLocaleString()}</p>
         </Card>
         <Card className="p-5 shadow-sm border-border">
           <p className="text-xs font-bold uppercase tracking-wider text-muted-foreground mb-1">Avg Gap Days</p>
@@ -109,7 +109,7 @@ export function AdminAccountingSeatGapReportClient() {
               <th className="py-3 px-4">Floor</th>
               <th className="py-3 px-4">Last Occupied</th>
               <th className="text-right py-3 px-4">Gap Days</th>
-              <th className="text-right py-3 px-4">Revenue Loss (â‚¹)</th>
+              <th className="text-right py-3 px-4">Revenue Loss (₹)</th>
               <th className="py-3 px-4">Status</th>
             </tr>
           </thead>
@@ -123,7 +123,7 @@ export function AdminAccountingSeatGapReportClient() {
                 <td className="py-4 px-4 text-muted-foreground">{r.floor}</td>
                 <td className="py-4 px-4 text-muted-foreground">{r.lastOccupied}</td>
                 <td className={`py-4 px-4 text-right font-semibold ${r.gapDays > 20 ? 'text-danger' : 'text-warning'}`}>{r.gapDays}d</td>
-                <td className="py-4 px-4 text-right font-semibold text-danger">â‚¹{r.revenueLoss.toLocaleString()}</td>
+                <td className="py-4 px-4 text-right font-semibold text-danger">₹{r.revenueLoss.toLocaleString()}</td>
                 <td className="py-4 px-4">
                   <Badge variant="secondary" className={`${r.status === 'vacant' ? 'bg-warning/10 text-warning hover:bg-warning/20' : 'bg-muted text-muted-foreground'} border-none font-bold tracking-wide`}>
                     {r.status.charAt(0).toUpperCase() + r.status.slice(1)}

@@ -32,7 +32,7 @@ export function SuperadminSeatGapReportTable({ rows }: Props) {
             <th className="py-3.5 px-4 text-xs font-bold text-text-disabled uppercase tracking-wider">Floor</th>
             <th className="py-3.5 px-4 text-xs font-bold text-text-disabled uppercase tracking-wider">Last Occupied</th>
             <th className="py-3.5 px-4 text-xs font-bold text-text-disabled uppercase tracking-wider text-right">Gap Days</th>
-            <th className="py-3.5 px-4 text-xs font-bold text-text-disabled uppercase tracking-wider text-right">Revenue Loss â‚¹</th>
+            <th className="py-3.5 px-4 text-xs font-bold text-text-disabled uppercase tracking-wider text-right">Revenue Loss ₹</th>
             <th className="py-3.5 px-4 text-xs font-bold text-text-disabled uppercase tracking-wider">Status</th>
           </tr>
         </thead>
@@ -46,7 +46,7 @@ export function SuperadminSeatGapReportTable({ rows }: Props) {
               <td className={`py-3.5 px-4 text-base font-extrabold tracking-tight text-right ${r.gapDays > 20 ? 'text-danger' : 'text-warning'}`}>
                 {r.gapDays}d
               </td>
-              <td className="py-3.5 px-4 text-base font-extrabold text-danger tracking-tight text-right">â‚¹{r.revenueLoss.toLocaleString()}</td>
+              <td className="py-3.5 px-4 text-base font-extrabold text-danger tracking-tight text-right">₹{r.revenueLoss.toLocaleString()}</td>
               <td className="py-3.5 px-4">
                 <span className={`inline-flex items-center px-2 py-0.5 rounded text-xs font-bold uppercase tracking-wider shadow-sm ${SUPERADMIN_SEAT_GAP_REPORT_STATUS_STYLES[r.status] || ''}`}>
                   {r.status}

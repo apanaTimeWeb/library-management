@@ -17,10 +17,10 @@ export const STUDENT_SHIFT_OPTIONS = [
 ];
 
 export const PLANS = [
-  { label: 'Monthly â€” â‚¹1,500',    value: 'Monthly',    amount: 1500 },
-  { label: 'Quarterly â€” â‚¹4,200',  value: 'Quarterly',  amount: 4200 },
-  { label: 'Half-Yearly â€” â‚¹7,800',value: 'Half-Yearly',amount: 7800 },
-  { label: 'Annual â€” â‚¹14,000',    value: 'Annual',     amount: 14000 },
+  { label: 'Monthly â€” ₹1,500',    value: 'Monthly',    amount: 1500 },
+  { label: 'Quarterly â€” ₹4,200',  value: 'Quarterly',  amount: 4200 },
+  { label: 'Half-Yearly â€” ₹7,800',value: 'Half-Yearly',amount: 7800 },
+  { label: 'Annual â€” ₹14,000',    value: 'Annual',     amount: 14000 },
 ];
 
 export const SHIFTS = ['Morning (8 AMâ€“2 PM)', 'Evening (2 PMâ€“8 PM)', 'Full Day (8 AMâ€“8 PM)', 'Night (10 PMâ€“6 AM)'];

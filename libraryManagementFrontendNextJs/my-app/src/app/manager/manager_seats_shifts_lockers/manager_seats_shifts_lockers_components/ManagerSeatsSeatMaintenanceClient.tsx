@@ -14,7 +14,7 @@ import { useClientTable } from "@/components/ui/use-client-table";
 
 const SEAT_LOGS: Record<string, LogEntry[]> = {
   'S-006': [
-    { id: '1', num: 1, date: '10 Oct 2024', remark: 'Chair leg repaired', doneBy: 'Ramesh K.', statusBefore: 'Broken', statusAfter: 'Working', cost: 'â‚¹350' },
+    { id: '1', num: 1, date: '10 Oct 2024', remark: 'Chair leg repaired', doneBy: 'Ramesh K.', statusBefore: 'Broken', statusAfter: 'Working', cost: '₹350' },
     { id: '2', num: 2, date: '15 Aug 2024', remark: 'Routine inspection', doneBy: 'Suresh M.', statusBefore: 'Working', statusAfter: 'Working', cost: 'â€”' },
   ],
   'S-017': [
@@ -22,8 +22,8 @@ const SEAT_LOGS: Record<string, LogEntry[]> = {
   ],
   'S-029': [],
   'S-043': [
-    { id: '4', num: 1, date: '05 Oct 2024', remark: 'Power socket replaced', doneBy: 'Ramesh K.', statusBefore: 'Broken', statusAfter: 'Working', cost: 'â‚¹200' },
-    { id: '5', num: 2, date: '20 Jul 2024', remark: 'Socket loose â€” tightened', doneBy: 'Ramesh K.', statusBefore: 'Maintenance', statusAfter: 'Working', cost: 'â‚¹50' },
+    { id: '4', num: 1, date: '05 Oct 2024', remark: 'Power socket replaced', doneBy: 'Ramesh K.', statusBefore: 'Broken', statusAfter: 'Working', cost: '₹200' },
+    { id: '5', num: 2, date: '20 Jul 2024', remark: 'Socket loose â€” tightened', doneBy: 'Ramesh K.', statusBefore: 'Maintenance', statusAfter: 'Working', cost: '₹50' },
   ],
 };
 
@@ -89,7 +89,7 @@ const [searchTerm, setSearchTerm] = useUrlState('searchTerm', '' as string);
       doneBy: form.doneBy || 'â€”',
       statusBefore: prevStatus,
       statusAfter: form.newStatus,
-      cost: form.cost ? `â‚¹${form.cost}` : 'â€”',
+      cost: form.cost ? `₹${form.cost}` : 'â€”',
     };
     setLogs(prev => ({ ...prev, [selectedSeat]: [...(prev[selectedSeat] ?? []), newEntry] }));
     setForm(EMPTY_FORM);
@@ -212,7 +212,7 @@ const [searchTerm, setSearchTerm] = useUrlState('searchTerm', '' as string);
               </div>
             </div>
             <div className="ss-form-field">
-              <label className="ss-label">Cost (â‚¹)</label>
+              <label className="ss-label">Cost (₹)</label>
               <input type="number" className="ss-input ss-input--no-icon" placeholder="e.g. 350" value={form.cost} onChange={e => setForm(p => ({ ...p, cost: e.target.value }))} />
             </div>
             <div className="ss-form-field ss-form-field--full">

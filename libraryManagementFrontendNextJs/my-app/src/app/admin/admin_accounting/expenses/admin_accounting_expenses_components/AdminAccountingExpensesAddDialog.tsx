@@ -112,7 +112,7 @@ export function AdminAccountingExpensesAddDialog({ isOpen, onClose, onSubmit }: 
 
           <div className="grid grid-cols-3 gap-3">
             <div className="col-span-1">
-              <label className="block text-xs font-semibold text-foreground uppercase tracking-wider mb-1">Amount (â‚¹) *</label>
+              <label className="block text-xs font-semibold text-foreground uppercase tracking-wider mb-1">Amount (₹) *</label>
               <Input type="number" {...register('amount', { valueAsNumber: true })} placeholder="1000" className="w-full font-bold" disabled={isSubmitting} />
               {errors.amount && <p className="text-xs text-danger mt-1 font-medium">{errors.amount.message}</p>}
             </div>

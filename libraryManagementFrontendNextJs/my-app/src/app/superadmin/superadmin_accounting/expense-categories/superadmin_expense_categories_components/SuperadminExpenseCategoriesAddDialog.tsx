@@ -61,7 +61,7 @@ export function SuperadminExpenseCategoriesAddDialog({ availableColors, onClose,
             />
           </div>
           <div>
-            <label className="text-xs font-bold text-text-secondary uppercase tracking-wider block mb-1.5">Monthly Budget â‚¹ <span className="text-danger">*</span></label>
+            <label className="text-xs font-bold text-text-secondary uppercase tracking-wider block mb-1.5">Monthly Budget ₹ <span className="text-danger">*</span></label>
             <input 
               type="number" 
               className="w-full bg-input border border-border rounded-md py-2 px-3 text-sm font-medium text-text-primary focus:outline-none focus:border-primary transition-colors" 

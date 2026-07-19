@@ -124,7 +124,7 @@ export function SuperadminSystemSettingsClient() {
                   <div className="space-y-2">
                     <SuperadminLabel htmlFor="penalty-per-day">Penalty Per Day</SuperadminLabel>
                     <div className="flex items-center gap-2">
-                      <span className="text-sm text-text-secondary">â‚¹</span>
+                      <span className="text-sm text-text-secondary">₹</span>
                       <SuperadminInput id="penalty-per-day" type="number" value={form.penaltyPerDay} onChange={e => setForm(f => ({ ...f, penaltyPerDay: +e.target.value }))} />
                     </div>
                   </div>
@@ -275,7 +275,7 @@ export function SuperadminSystemSettingsClient() {
                 </div>
                 <div className="space-y-2">
                   <SuperadminLabel htmlFor="library-currency">Currency</SuperadminLabel>
-                  <SuperadminInput id="library-currency" defaultValue="INR (â‚¹)" />
+                  <SuperadminInput id="library-currency" defaultValue="INR (₹)" />
                 </div>
               </CardContent>
               <CardFooter>

@@ -26,8 +26,8 @@ export function SuperadminExpenseCategoriesCard({ category, onDelete }: Props) {
       </div>
 
       <div className="flex items-center justify-between text-sm">
-        <span className="font-medium text-text-secondary">Spent: <span className={`font-bold ${over ? 'text-danger' : 'text-text-primary'}`}>â‚¹{category.spent.toLocaleString()}</span></span>
-        <span className="font-medium text-text-secondary">Budget: <span className="font-bold text-text-primary">â‚¹{category.budget.toLocaleString()}</span></span>
+        <span className="font-medium text-text-secondary">Spent: <span className={`font-bold ${over ? 'text-danger' : 'text-text-primary'}`}>₹{category.spent.toLocaleString()}</span></span>
+        <span className="font-medium text-text-secondary">Budget: <span className="font-bold text-text-primary">₹{category.budget.toLocaleString()}</span></span>
       </div>
 
       <div className="h-2.5 w-full bg-input rounded-full overflow-hidden shadow-inner">
@@ -43,7 +43,7 @@ export function SuperadminExpenseCategoriesCard({ category, onDelete }: Props) {
         </span>
         {over && (
           <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-bold uppercase tracking-wider bg-danger-bg text-danger">
-            Over budget by â‚¹{(category.spent - category.budget).toLocaleString()}
+            Over budget by ₹{(category.spent - category.budget).toLocaleString()}
           </span>
         )}
       </div>

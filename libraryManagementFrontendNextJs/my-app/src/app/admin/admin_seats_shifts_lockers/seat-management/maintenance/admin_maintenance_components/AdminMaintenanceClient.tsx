@@ -162,7 +162,7 @@ export function AdminMaintenanceClient() {
             </div>
           </div>
           <div className="space-y-2">
-            <label className="text-sm font-medium">Cost (â‚¹)</label>
+            <label className="text-sm font-medium">Cost (₹)</label>
             <Input type="number" placeholder="e.g. 350" value={form.cost} onChange={e => setForm(p => ({ ...p, cost: e.target.value }))} />
           </div>
         </div>

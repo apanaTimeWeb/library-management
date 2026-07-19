@@ -74,7 +74,7 @@ export function SuperadminSubscriptionsPanel({ sub, onClose, onUpdate, onRenew }
             <div className="flex items-center gap-2 text-text-secondary">
               <IndianRupee size={16} /> <span className="text-sm font-bold uppercase tracking-wider">Monthly Value</span>
             </div>
-            <span className="text-text-primary text-xl font-extrabold text-primary tracking-tight">â‚¹{sub.mrr.toLocaleString()}</span>
+            <span className="text-text-primary text-xl font-extrabold text-primary tracking-tight">₹{sub.mrr.toLocaleString()}</span>
           </div>
 
           {editing ? (

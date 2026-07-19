@@ -29,8 +29,8 @@ export function SuperadminAssetsTable({ assets }: Props) {
             <th className="py-3.5 px-4 text-xs font-bold text-text-disabled uppercase tracking-wider">Asset Name</th>
             <th className="py-3.5 px-4 text-xs font-bold text-text-disabled uppercase tracking-wider">Category</th>
             <th className="py-3.5 px-4 text-xs font-bold text-text-disabled uppercase tracking-wider">Purchase Date</th>
-            <th className="py-3.5 px-4 text-xs font-bold text-text-disabled uppercase tracking-wider text-right">Purchase Value â‚¹</th>
-            <th className="py-3.5 px-4 text-xs font-bold text-text-disabled uppercase tracking-wider text-right">Current Value â‚¹</th>
+            <th className="py-3.5 px-4 text-xs font-bold text-text-disabled uppercase tracking-wider text-right">Purchase Value ₹</th>
+            <th className="py-3.5 px-4 text-xs font-bold text-text-disabled uppercase tracking-wider text-right">Current Value ₹</th>
             <th className="py-3.5 px-4 text-xs font-bold text-text-disabled uppercase tracking-wider">Location</th>
             <th className="py-3.5 px-4 text-xs font-bold text-text-disabled uppercase tracking-wider">Status</th>
           </tr>
@@ -45,8 +45,8 @@ export function SuperadminAssetsTable({ assets }: Props) {
                 </span>
               </td>
               <td className="py-3.5 px-4 text-sm font-medium text-text-secondary">{a.purchaseDate}</td>
-              <td className="py-3.5 px-4 text-sm font-medium text-text-secondary text-right">â‚¹{a.purchaseValue.toLocaleString()}</td>
-              <td className="py-3.5 px-4 text-base font-extrabold text-text-primary tracking-tight text-right">â‚¹{a.currentValue.toLocaleString()}</td>
+              <td className="py-3.5 px-4 text-sm font-medium text-text-secondary text-right">₹{a.purchaseValue.toLocaleString()}</td>
+              <td className="py-3.5 px-4 text-base font-extrabold text-text-primary tracking-tight text-right">₹{a.currentValue.toLocaleString()}</td>
               <td className="py-3.5 px-4 text-sm font-medium text-text-secondary">{a.location}</td>
               <td className="py-3.5 px-4">
                 <span className={`inline-flex items-center px-2 py-0.5 rounded text-xs font-bold uppercase tracking-wider border border-transparent shadow-sm ${SUPERADMIN_ASSETS_STATUS_STYLES[a.status] || SUPERADMIN_ASSETS_STATUS_STYLES.disposed}`}>
