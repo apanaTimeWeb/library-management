@@ -34,7 +34,7 @@ export function SuperadminComplaintsClient() {
 
       {/* Add Complaint Modal */}
       {showAdd && (
-        <div className="fixed inset-0 bg-bg-pagelack/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 animate-in fade-in duration-200">
+        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 animate-in fade-in duration-200">
           <div className="bg-card border border-border w-full max-w-lg rounded-xl shadow-2xl overflow-hidden relative">
             <button onClick={() => setShowAdd(false)} className="absolute top-4 right-4 text-text-secondary hover:text-text-primary transition-colors cursor-pointer"><X size={16} /></button>
             <div className="p-5 border-b border-border bg-muted/30 flex items-center gap-2">
@@ -77,7 +77,7 @@ export function SuperadminComplaintsClient() {
 
       {/* View Modal */}
       {viewItem && (
-        <div className="fixed inset-0 bg-bg-pagelack/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 animate-in fade-in duration-200">
+        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 animate-in fade-in duration-200">
           <div className="bg-card border border-border w-full max-w-lg rounded-xl shadow-2xl overflow-hidden relative">
             <button onClick={() => setViewItem(null)} className="absolute top-4 right-4 text-text-secondary hover:text-text-primary transition-colors cursor-pointer"><X size={16} /></button>
             <div className="p-6">
@@ -109,7 +109,7 @@ export function SuperadminComplaintsClient() {
 
       {/* Resolve Modal */}
       {resolveItem && (
-        <div className="fixed inset-0 bg-bg-pagelack/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 animate-in fade-in duration-200">
+        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 animate-in fade-in duration-200">
           <div className="bg-card border border-border w-full max-w-lg rounded-xl shadow-2xl overflow-hidden relative">
             <button onClick={() => setResolveItem(null)} className="absolute top-4 right-4 text-text-secondary hover:text-text-primary transition-colors cursor-pointer"><X size={16} /></button>
             <div className="p-5 border-b border-border bg-success/10 flex items-center gap-2">
@@ -238,3 +238,4 @@ export function SuperadminComplaintsClient() {
     </div>
   );
 }
+

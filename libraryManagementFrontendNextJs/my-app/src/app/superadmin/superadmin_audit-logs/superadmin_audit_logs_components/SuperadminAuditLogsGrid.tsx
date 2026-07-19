@@ -47,7 +47,7 @@ export function SuperadminAuditLogsGrid({ logs, onRowClick, actionFilter, onFilt
 
   return (
     <div className="bg-bg-card border border-border rounded-lg overflow-hidden shadow-sm flex flex-col">
-      <div className="p-4 border-b border-border bg-bg-page/30 flex items-center justify-between gap-4 flex-wrap">
+      <div className="p-4 border-b border-border bg-page/30 flex items-center justify-between gap-4 flex-wrap">
         <div className="flex-1"></div>
         <div className="flex items-center gap-4 ml-auto w-full sm:w-auto">
           <div className="w-full sm:w-48">
@@ -72,7 +72,7 @@ export function SuperadminAuditLogsGrid({ logs, onRowClick, actionFilter, onFilt
         
         <div className="rounded-md border border-border overflow-hidden">
           <Table>
-            <TableHeader className="bg-bg-page/50">
+            <TableHeader className="bg-page/50">
               <TableRow className="hover:bg-transparent">
                 <TableHead className="text-xs font-semibold text-text-secondary uppercase">Timestamp</TableHead>
                 <TableHead className="text-xs font-semibold text-text-secondary uppercase">Performed By</TableHead>
@@ -87,7 +87,7 @@ export function SuperadminAuditLogsGrid({ logs, onRowClick, actionFilter, onFilt
                   <TableRow 
                     key={index}
                     onClick={() => onRowClick(log)}
-                    className="cursor-pointer hover:bg-bg-page/50 transition-colors"
+                    className="cursor-pointer hover:bg-page/50 transition-colors"
                   >
                     <TableCell className="font-mono text-xs text-text-disabled tracking-tight">
                       {log.time}
@@ -149,3 +149,4 @@ export function SuperadminAuditLogsGrid({ logs, onRowClick, actionFilter, onFilt
     </div>
   );
 }
+

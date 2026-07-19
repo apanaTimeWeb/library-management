@@ -56,7 +56,7 @@ export function SuperadminAutoSuspendClient() {
             Policy Configuration
           </div>
           {!editing && (
-            <button className="px-3 py-1.5 bg-input border border-border text-text-primary text-xs font-bold rounded-md hover:bg-bg-pageorder transition-colors cursor-pointer" onClick={openEditConfig}>
+            <button className="px-3 py-1.5 bg-input border border-border text-text-primary text-xs font-bold rounded-md hover:bg-border transition-colors cursor-pointer" onClick={openEditConfig}>
               Edit
             </button>
           )}
@@ -137,7 +137,7 @@ export function SuperadminAutoSuspendClient() {
                   </td>
                   <td className="py-3 px-4 text-sm font-medium text-text-primary">{s.seat}</td>
                   <td className="py-3 px-4">
-                    <span className="bg-bg-pageorder text-text-primary px-2.5 py-0.5 rounded-full text-xs font-semibold">{s.shift}</span>
+                    <span className="bg-border text-text-primary px-2.5 py-0.5 rounded-full text-xs font-semibold">{s.shift}</span>
                   </td>
                   <td className="py-3 px-4 text-xs text-text-secondary">â€”</td>
                   <td className="py-3 px-4">
@@ -147,7 +147,7 @@ export function SuperadminAutoSuspendClient() {
                   <td className="py-3 px-4">
                     <div className="flex items-center justify-end gap-2">
                       <button
-                        className="bg-input border border-border text-text-primary px-2.5 py-1 rounded-md text-xs font-bold flex items-center gap-1 hover:bg-bg-pageorder transition-colors cursor-pointer"
+                        className="bg-input border border-border text-text-primary px-2.5 py-1 rounded-md text-xs font-bold flex items-center gap-1 hover:bg-border transition-colors cursor-pointer"
                         onClick={() => sendReminder(s.studentName)}
                       >
                         <Bell size={12} /> ðŸ“± Reminder
@@ -173,7 +173,7 @@ export function SuperadminAutoSuspendClient() {
 
       {restoreDialog && (
         <div className="fixed inset-0 z-40 flex items-center justify-center p-4">
-          <div className="absolute inset-0 bg-bg-pagelack/60 backdrop-blur-sm transition-opacity" onClick={() => setRestoreDialog(null)} />
+          <div className="absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity" onClick={() => setRestoreDialog(null)} />
           <div className="relative w-full max-w-md bg-card rounded-xl shadow-2xl overflow-hidden p-7 animate-in fade-in zoom-in-95 duration-200">
             <div className="flex items-center justify-between mb-2">
               <h2 className="text-lg font-bold text-text-primary">Restore Student</h2>
@@ -210,4 +210,5 @@ export function SuperadminAutoSuspendClient() {
     </div>
   );
 }
+
 

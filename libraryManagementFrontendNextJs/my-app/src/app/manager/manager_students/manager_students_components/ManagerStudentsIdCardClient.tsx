@@ -70,7 +70,7 @@ export function ManagerStudentsIdCardClient() {
                     <button
                       key={s.smartId}
                       onClick={() => setSelectedId(s.smartId)}
-                      className={`w-full flex items-center gap-3 p-3 rounded-lg border border-transparent hover:bg-bg-pagelack/5 dark:hover:bg-white/5 transition-colors text-left ${s.smartId === selectedId ? 'bg-primary-subtle border-primary/20' : ''}`}
+                      className={`w-full flex items-center gap-3 p-3 rounded-lg border border-transparent hover:bg-black/5 dark:hover:bg-white/5 transition-colors text-left ${s.smartId === selectedId ? 'bg-primary-subtle border-primary/20' : ''}`}
                     >
                       <div className="w-8 h-8 rounded-full bg-primary/10 text-primary flex items-center justify-center text-xs font-bold shrink-0">{initials}</div>
                       <div className="flex-1 min-w-0">
@@ -138,4 +138,5 @@ export function ManagerStudentsIdCardClient() {
     </div>
   );
 }
+
 

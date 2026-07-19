@@ -74,7 +74,7 @@ export function ManagerStudentsExitClient() {
                 <button
                   key={s.smartId}
                   onClick={() => setSelected(s.smartId)}
-                  className={`w-full flex items-center gap-3 p-3 rounded-lg border border-transparent hover:bg-bg-pagelack/5 dark:hover:bg-white/5 transition-colors text-left ${selected === s.smartId ? 'bg-primary-subtle border-primary/20' : ''}`}
+                  className={`w-full flex items-center gap-3 p-3 rounded-lg border border-transparent hover:bg-black/5 dark:hover:bg-white/5 transition-colors text-left ${selected === s.smartId ? 'bg-primary-subtle border-primary/20' : ''}`}
                 >
                   <div className="w-8 h-8 rounded-full bg-primary/10 text-primary flex items-center justify-center text-xs font-bold shrink-0">{s.name.split(' ').map((n: string) => n[0]).join('').slice(0,2)}</div>
                   <div className="flex-1 min-w-0">
@@ -159,4 +159,5 @@ export function ManagerStudentsExitClient() {
     </div>
   );
 }
+
 

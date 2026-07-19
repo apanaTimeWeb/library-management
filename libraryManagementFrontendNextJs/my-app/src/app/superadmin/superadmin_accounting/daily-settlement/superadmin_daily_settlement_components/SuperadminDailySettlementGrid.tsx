@@ -50,7 +50,7 @@ export function SuperadminDailySettlementGrid({ entries, onSettle }: Props) {
             
             <div className="rounded-md border border-border overflow-hidden">
               <Table>
-                <TableHeader className="bg-bg-page/50">
+                <TableHeader className="bg-page/50">
                   <TableRow className="hover:bg-transparent">
                     <TableHead className="text-xs font-semibold text-text-secondary uppercase">Shift</TableHead>
                     <TableHead className="text-xs font-semibold text-text-secondary uppercase text-right">Opening ₹</TableHead>
@@ -68,7 +68,7 @@ export function SuperadminDailySettlementGrid({ entries, onSettle }: Props) {
                     paginatedEntries.map((entry, index) => (
                       <TableRow 
                         key={index}
-                        className="hover:bg-bg-page/50 transition-colors"
+                        className="hover:bg-page/50 transition-colors"
                       >
                         <TableCell className="font-extrabold text-text-primary">
                           {entry.shift}
@@ -123,7 +123,7 @@ export function SuperadminDailySettlementGrid({ entries, onSettle }: Props) {
           </div>
           
           {/* Pagination Footer */}
-          <div className="p-4 border-t border-border flex items-center justify-between bg-bg-page/30">
+          <div className="p-4 border-t border-border flex items-center justify-between bg-page/30">
             <span className="text-sm font-semibold text-text-secondary">
               Showing {paginatedEntries.length > 0 ? (currentPage - 1) * pageSize + 1 : 0} to {Math.min(currentPage * pageSize, searchedEntries.length)} of {searchedEntries.length} entries
             </span>
@@ -152,3 +152,4 @@ export function SuperadminDailySettlementGrid({ entries, onSettle }: Props) {
     </div>
   );
 }
+

@@ -16,7 +16,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" suppressHydrationWarning>
       <head />
-      <body className={`bg-bg-pageackground text-on-background ${inter.variable} font-sans`} suppressHydrationWarning>
+      <body className={`bg-background text-on-background ${inter.variable} font-sans`} suppressHydrationWarning>
         <ThemeProvider attribute="data-theme" defaultTheme="dark" enableSystem={false}>
           {children}
           <GlobalCommandPalette />
@@ -25,3 +25,4 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     </html>
   );
 }
+

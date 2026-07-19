@@ -47,7 +47,7 @@ export function SuperadminQrScannerClient() {
           </div>
 
           <div
-            className={`relative bg-bg-pagelack aspect-video flex items-center justify-center overflow-hidden transition-all duration-300 ${scanState === 'scanning' ? 'cursor-pointer hover:bg-bg-pagelack/90' : ''}`}
+            className={`relative bg-black aspect-video flex items-center justify-center overflow-hidden transition-all duration-300 ${scanState === 'scanning' ? 'cursor-pointer hover:bg-black/90' : ''}`}
             onClick={scanState === 'scanning' ? simulateScan : undefined}
           >
             <div className="flex flex-col items-center justify-center text-center p-6 z-10">
@@ -189,3 +189,4 @@ export function SuperadminQrScannerClient() {
     </div>
   );
 }
+

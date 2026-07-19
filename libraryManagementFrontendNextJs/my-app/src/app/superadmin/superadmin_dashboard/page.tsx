@@ -8,3 +8,4 @@ export default async function SuperAdminDashboardPage() {
   
   return <SuperadminDashboardClient initialData={initialData.data} />;
 }
+

@@ -41,7 +41,7 @@ export default function Sidebar({ open }: SidebarProps) {
         </div>
       </div>
 
-      <div className="h-px w-[calc(100%-2rem)] mx-auto bg-bg-pageorder mb-4 shrink-0" />
+      <div className="h-px w-[calc(100%-2rem)] mx-auto bg-border mb-4 shrink-0" />
 
       <nav className="flex-1 overflow-y-auto px-4 space-y-1.5 scrollbar-thin">
         {NAV_ITEMS.map(({ href, icon: Icon, label }, i) => {
@@ -79,7 +79,7 @@ export default function Sidebar({ open }: SidebarProps) {
       </div>
 
       {showLogout && (
-        <div className="fixed inset-0 bg-bg-pagelack/60 backdrop-blur-sm z-50 flex items-center justify-center p-4" onClick={() => setShowLogout(false)}>
+        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4" onClick={() => setShowLogout(false)}>
           <div className="bg-card max-w-sm w-full rounded-2xl shadow-2xl p-6 relative border border-border flex flex-col items-center text-center animate-in zoom-in-95 duration-200" onClick={e => e.stopPropagation()}>
             <div className="w-12 h-12 rounded-full bg-warning-bg/50 flex items-center justify-center mb-4">
               <LogOut size={20} className="text-warning" />
@@ -96,3 +96,4 @@ export default function Sidebar({ open }: SidebarProps) {
     </aside>
   );
 }
+

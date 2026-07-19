@@ -8,3 +8,4 @@ export default async function SuperAdminSystemHealthPage() {
   
   return <SuperadminSystemHealthClient initialData={response.data!} />;
 }
+

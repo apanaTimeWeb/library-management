@@ -98,7 +98,7 @@ export default function ManagerSidebar({ collapsed, onToggle, mobileOpen, onMobi
   return (
     <>
       {mobileOpen && (
-        <div className="fixed inset-0 bg-bg-pagelack/50 z-40 md:hidden" onClick={onMobileClose} aria-hidden="true" />
+        <div className="fixed inset-0 bg-black/50 z-40 md:hidden" onClick={onMobileClose} aria-hidden="true" />
       )}
 
       <aside
@@ -107,7 +107,7 @@ export default function ManagerSidebar({ collapsed, onToggle, mobileOpen, onMobi
         <div className="h-16 flex items-center px-4 border-b border-border shrink-0 gap-3">
           <button
             onClick={mobileOpen ? onMobileClose : onToggle}
-            className="p-2 text-text-secondary hover:text-text-primary rounded-lg hover:bg-bg-pagelack/5 dark:hover:bg-white/5 transition-colors"
+            className="p-2 text-text-secondary hover:text-text-primary rounded-lg hover:bg-black/5 dark:hover:bg-white/5 transition-colors"
             aria-label={mobileOpen ? 'Close sidebar' : 'Toggle sidebar'}
           >
             {mobileOpen ? <X size={18} /> : <Menu size={18} />}
@@ -130,7 +130,7 @@ export default function ManagerSidebar({ collapsed, onToggle, mobileOpen, onMobi
               <Link
                 key={item.href}
                 href={item.href}
-                className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors ${active ? 'bg-primary-subtle text-primary' : 'text-text-secondary hover:bg-bg-pagelack/5 dark:hover:bg-white/5 hover:text-text-primary'}`}
+                className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors ${active ? 'bg-primary-subtle text-primary' : 'text-text-secondary hover:bg-black/5 dark:hover:bg-white/5 hover:text-text-primary'}`}
                 title={(collapsed && !mobileOpen) ? item.label : undefined}
                 onClick={mobileOpen ? onMobileClose : undefined}
               >
@@ -158,7 +158,7 @@ export default function ManagerSidebar({ collapsed, onToggle, mobileOpen, onMobi
       </aside>
 
       {showLogout && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-bg-pagelack/50 backdrop-blur-sm" onClick={() => setShowLogout(false)}>
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm" onClick={() => setShowLogout(false)}>
           <div className="bg-card border border-border rounded-xl shadow-xl p-6 max-w-sm w-full mx-4" onClick={e => e.stopPropagation()}>
             <p className="text-lg font-bold text-text-primary mb-2">Log out?</p>
             <p className="text-sm text-text-secondary mb-6">Are you sure you want to log out?</p>
@@ -172,4 +172,5 @@ export default function ManagerSidebar({ collapsed, onToggle, mobileOpen, onMobi
     </>
   );
 }
+
 

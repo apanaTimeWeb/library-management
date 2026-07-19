@@ -151,7 +151,7 @@ export function SuperadminAttendanceClient() {
                       </div>
                       {s.status === 'present' && (
                         <>
-                          <div className="w-px h-4 bg-bg-pageorder" />
+                          <div className="w-px h-4 bg-border" />
                           <div className="flex items-center gap-2">
                             <span className="text-xs font-bold text-text-secondary uppercase">Out</span>
                             <input type="time" className="bg-transparent text-sm font-bold text-text-primary outline-none cursor-pointer w-20" value={s.outTime}
@@ -199,3 +199,4 @@ export function SuperadminAttendanceClient() {
     </div>
   );
 }
+

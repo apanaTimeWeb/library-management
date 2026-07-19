@@ -43,7 +43,7 @@ export function SuperadminSeatGapReportFilterBar({ shiftFilter, setShiftFilter, 
       </div>
 
       <button 
-        className="ml-auto flex items-center gap-2 bg-input hover:bg-bg-pageorder border border-border text-text-primary text-xs font-bold py-1.5 px-3 rounded-sm transition-colors shadow-sm disabled:opacity-50 cursor-pointer"
+        className="ml-auto flex items-center gap-2 bg-input hover:bg-border border border-border text-text-primary text-xs font-bold py-1.5 px-3 rounded-sm transition-colors shadow-sm disabled:opacity-50 cursor-pointer"
         onClick={handleExportClick}
         disabled={exporting}
       >
@@ -53,3 +53,4 @@ export function SuperadminSeatGapReportFilterBar({ shiftFilter, setShiftFilter, 
     </div>
   );
 }
+

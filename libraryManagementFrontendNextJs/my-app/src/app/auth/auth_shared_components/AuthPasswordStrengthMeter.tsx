@@ -39,7 +39,7 @@ export default function PasswordStrengthMeter({ password }: { password: string }
         {[0, 1, 2, 3].map(i => (
           <div
             key={i}
-            className={`h-1 flex-1 rounded-full transition-colors ${i < score ? segClass : 'bg-bg-pageorder'}`}
+            className={`h-1 flex-1 rounded-full transition-colors ${i < score ? segClass : 'bg-border'}`}
           />
         ))}
       </div>
@@ -51,3 +51,4 @@ export default function PasswordStrengthMeter({ password }: { password: string }
     </div>
   );
 }
+

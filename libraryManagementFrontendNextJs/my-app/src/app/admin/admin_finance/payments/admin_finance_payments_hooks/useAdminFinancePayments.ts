@@ -34,7 +34,7 @@ export function useAdminFinancePayments() {
 
   useEffect(() => {
     setIsLoading(true);
-    fetchApi('/finance/payments').then((data: Array<Record<string, unknown>>) => {
+    fetchApi('/finance/payments').then((data: any) => {
       const mapped = data.map((p: Record<string, unknown>) => ({
         id: p.id || Math.random(),
         receiptNumber: 'REC-' + String(p.id || '').substring(0, 8),
@@ -97,5 +97,7 @@ export function useAdminFinancePayments() {
     isLoading
   };
 }
+
+
 
 

@@ -173,7 +173,7 @@ export function AdminFinanceRenewalsClient() {
 
       {/* Renew Dialog */}
       {renewDialog && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-bg-pagelack/60 backdrop-blur-sm" onClick={() => setRenewDialog(null)}>
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm" onClick={() => setRenewDialog(null)}>
           <Card className="w-full max-w-sm shadow-lg border-border bg-card p-6 flex flex-col gap-5" onClick={e => e.stopPropagation()}>
             <div className="flex items-center justify-between">
               <h2 className="text-lg font-bold flex items-center gap-2 text-primary tracking-tight">
@@ -250,3 +250,4 @@ export function AdminFinanceRenewalsClient() {
     </div>
   );
 }
+

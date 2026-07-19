@@ -45,7 +45,7 @@ export function AdminCrmAddClient({ onClose }: AdminCrmAddClientProps = {}) {
       {/* â”€â”€ Overlay and Modal Container â”€â”€ */}
       <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6">
         <div
-          className="absolute inset-0 bg-bg-pagelack/60 backdrop-blur-sm transition-opacity"
+          className="absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity"
           onClick={handleClose}
           aria-label="Close modal"
         />
@@ -149,3 +149,4 @@ export function AdminCrmAddClient({ onClose }: AdminCrmAddClientProps = {}) {
     </>
   );
 }
+

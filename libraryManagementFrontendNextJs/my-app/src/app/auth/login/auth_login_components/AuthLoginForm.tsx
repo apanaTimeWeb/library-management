@@ -134,7 +134,7 @@ export function AuthLoginForm() {
               </div>
             </div>
 
-            <div className="h-px bg-bg-pageorder my-6" />
+            <div className="h-px bg-border my-6" />
 
             {/* Form */}
             <form onSubmit={handleSubmit} noValidate className="space-y-4">
@@ -202,7 +202,7 @@ export function AuthLoginForm() {
               <Link href={AUTH_ROUTES.FORGOT_PASSWORD} className="text-sm font-medium text-text-secondary hover:text-primary transition-colors">
                 Forgot Password?
               </Link>
-              <div className="h-px bg-bg-pageorder" />
+              <div className="h-px bg-border" />
               <p className="text-sm text-text-secondary">
                 Don&apos;t have an account?{' '}
                 <Link href={AUTH_ROUTES.SIGNUP} className="text-primary font-semibold hover:underline">Sign Up</Link>
@@ -214,4 +214,5 @@ export function AuthLoginForm() {
     </main>
   );
 }
+
 

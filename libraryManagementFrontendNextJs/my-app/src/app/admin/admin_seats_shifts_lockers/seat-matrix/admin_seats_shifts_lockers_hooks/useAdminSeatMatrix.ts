@@ -27,7 +27,7 @@ export function useAdminSeatMatrix() {
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setIsLoading(true);
     fetchApi('/seats_shifts_lockers/seat-matrix')
-      .then((data: Array<Record<string, unknown>>) => {
+      .then((data: any) => {
         type ApiSeatData = { id?: string; seatNumber?: string; isActive?: boolean; };
         const mapped = data.map(( s: ApiSeatData ) => ({
           uuid: s.id,
@@ -66,6 +66,8 @@ export function useAdminSeatMatrix() {
     ADMIN_SEATS_MOCK_LEGEND_ITEMS
   };
 }
+
+
 
 
 

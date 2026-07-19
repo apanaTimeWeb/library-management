@@ -103,13 +103,14 @@ export function AuthForgotPasswordForm() {
           )}
 
           <div className="flex items-center justify-center gap-3 mt-7 opacity-40">
-            <div className="h-px w-6 bg-bg-pageorder" />
+            <div className="h-px w-6 bg-border" />
             <span className="text-xs tracking-[0.12em] uppercase font-bold text-text-secondary">Smart Library 360</span>
-            <div className="h-px w-6 bg-bg-pageorder" />
+            <div className="h-px w-6 bg-border" />
           </div>
         </div>
       </div>
     </div>
   );
 }
+
 

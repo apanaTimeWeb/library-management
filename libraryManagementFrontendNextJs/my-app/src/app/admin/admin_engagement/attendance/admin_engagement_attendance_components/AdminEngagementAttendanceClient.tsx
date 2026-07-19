@@ -208,7 +208,7 @@ export function AdminEngagementAttendanceClient() {
       </Card>
 
       {/* â”€â”€ Sticky Save Bar â”€â”€ */}
-      <div className="fixed bottom-0 left-0 right-0 lg:left-72 p-4 bg-bg-pagelack/60 backdrop-blur-md border-t border-border flex items-center justify-between z-50 shadow-md shadow-black/5">
+      <div className="fixed bottom-0 left-0 right-0 lg:left-72 p-4 bg-black/60 backdrop-blur-md border-t border-border flex items-center justify-between z-50 shadow-md shadow-black/5">
         <p className="text-sm text-foreground">
           <strong className="text-primary">{marked}</strong> of <strong>{filtered.length}</strong> marked for <strong className="font-mono">{date}</strong>
         </p>
@@ -219,3 +219,4 @@ export function AdminEngagementAttendanceClient() {
     </div>
   );
 }
+

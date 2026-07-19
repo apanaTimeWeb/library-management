@@ -48,7 +48,7 @@ export function SuperadminAbsenteeReportClient() {
   const getRowClass = (d: number) => {
     if (d >= 7) return 'bg-danger-bg/50 hover:bg-danger-bg/70';
     if (d >= 3) return 'bg-warning-bg/30 hover:bg-warning-bg/50';
-    return 'hover:bg-bg-page/50';
+    return 'hover:bg-page/50';
   };
 
   return (
@@ -155,7 +155,7 @@ export function SuperadminAbsenteeReportClient() {
             
             <div className="rounded-md border border-border overflow-hidden">
               <Table>
-                <TableHeader className="bg-bg-page/50">
+                <TableHeader className="bg-page/50">
                   <TableRow className="hover:bg-transparent">
                     <TableHead className="text-xs font-semibold text-text-secondary uppercase">Student</TableHead>
                     <TableHead className="text-xs font-semibold text-text-secondary uppercase">Smart ID</TableHead>
@@ -262,3 +262,4 @@ export function SuperadminAbsenteeReportClient() {
     </div>
   );
 }
+

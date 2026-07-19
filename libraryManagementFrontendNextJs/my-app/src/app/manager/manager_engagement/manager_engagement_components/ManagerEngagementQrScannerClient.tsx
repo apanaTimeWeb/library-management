@@ -84,7 +84,7 @@ export function ManagerEngagementQrScannerClient() {
           </div>
 
           <div
-            className="aspect-square bg-bg-pagelack rounded-lg relative overflow-hidden flex items-center justify-center cursor-pointer border-2 border-transparent data-[scanning=true]:border-primary"
+            className="aspect-square bg-black rounded-lg relative overflow-hidden flex items-center justify-center cursor-pointer border-2 border-transparent data-[scanning=true]:border-primary"
             data-scanning={scanState === 'scanning' ? 'true' : undefined}
             onClick={scanState === 'scanning' ? simulateScan : undefined}
           >
@@ -92,12 +92,12 @@ export function ManagerEngagementQrScannerClient() {
               {scanState === 'success' ? (
                 <div className="animate-in zoom-in duration-300 flex flex-col items-center">
                   <CheckCircle size={72} className="text-success mb-2 drop-shadow-md"/>
-                  <p className="text-sm font-bold bg-bg-pagelack/60 px-3 py-1.5 rounded-full backdrop-blur-sm">{successMsg}</p>
+                  <p className="text-sm font-bold bg-black/60 px-3 py-1.5 rounded-full backdrop-blur-sm">{successMsg}</p>
                 </div>
               ) : scanState === 'detected' ? (
                 <div className="animate-in zoom-in duration-300 flex flex-col items-center">
                   <div className="text-5xl mb-2 drop-shadow-md">âœ…</div>
-                  <p className="text-sm font-bold bg-bg-pagelack/60 px-3 py-1.5 rounded-full backdrop-blur-sm">QR Code Detected!</p>
+                  <p className="text-sm font-bold bg-black/60 px-3 py-1.5 rounded-full backdrop-blur-sm">QR Code Detected!</p>
                 </div>
               ) : (
                 <>
@@ -146,7 +146,7 @@ export function ManagerEngagementQrScannerClient() {
                 </div>
                 <div className="text-xs text-text-secondary">Valid till: {result.validTill}</div>
               </div>
-              <button onClick={reset} className="absolute top-0 right-0 w-8 h-8 rounded-lg border border-transparent text-text-secondary inline-flex items-center justify-center hover:bg-bg-pagelack/5 dark:hover:bg-white/10 transition-colors">
+              <button onClick={reset} className="absolute top-0 right-0 w-8 h-8 rounded-lg border border-transparent text-text-secondary inline-flex items-center justify-center hover:bg-black/5 dark:hover:bg-white/10 transition-colors">
                 <X size={15}/>
               </button>
             </div>
@@ -207,4 +207,5 @@ export function ManagerEngagementQrScannerClient() {
     </div>
   );
 }
+
 

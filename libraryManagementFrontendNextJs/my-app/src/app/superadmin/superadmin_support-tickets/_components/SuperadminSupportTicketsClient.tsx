@@ -38,7 +38,7 @@ function TicketPanel({ tkt, onClose, onSave }: { tkt: Ticket; onClose: () => voi
             <span className="font-mono text-xs text-text-secondary">{tkt.id}</span>
             <h2 className="text-base font-bold text-text-primary mt-1 leading-snug">{tkt.subject}</h2>
           </div>
-          <button className="w-8 h-8 flex items-center justify-center rounded-lg border border-border text-text-secondary bg-transparent hover:bg-bg-page hover:text-text-primary transition-colors shrink-0" onClick={onClose}><X size={16} /></button>
+          <button className="w-8 h-8 flex items-center justify-center rounded-lg border border-border text-text-secondary bg-transparent hover:bg-page hover:text-text-primary transition-colors shrink-0" onClick={onClose}><X size={16} /></button>
         </div>
 
         <div className="bg-bg-card rounded-xl border border-border shadow-sm p-4 mt-6">
@@ -145,7 +145,7 @@ export function SuperadminSupportTicketsClient() {
           
           <div className="rounded-md border border-border overflow-hidden">
             <Table>
-              <TableHeader className="bg-bg-page/50">
+              <TableHeader className="bg-page/50">
                 <TableRow className="hover:bg-transparent">
                   <TableHead className="text-xs font-semibold text-text-secondary uppercase">Subject / Ticket ID</TableHead>
                   <TableHead className="text-xs font-semibold text-text-secondary uppercase">Tenant</TableHead>
@@ -159,7 +159,7 @@ export function SuperadminSupportTicketsClient() {
                     <TableRow 
                       key={index}
                       onClick={() => setSelected(tkt)}
-                      className="cursor-pointer hover:bg-bg-page/50 transition-colors"
+                      className="cursor-pointer hover:bg-page/50 transition-colors"
                     >
                       <TableCell>
                         <div className="flex flex-col justify-center">
@@ -209,7 +209,7 @@ export function SuperadminSupportTicketsClient() {
         </div>
 
         {/* Pagination Footer */}
-        <div className="p-4 border-t border-border flex items-center justify-between bg-bg-page/30">
+        <div className="p-4 border-t border-border flex items-center justify-between bg-page/30">
           <span className="text-sm font-semibold text-text-secondary">
             Showing {paginatedTickets.length > 0 ? (currentPage - 1) * pageSize + 1 : 0} to {Math.min(currentPage * pageSize, searchedTickets.length)} of {searchedTickets.length} tickets
           </span>
@@ -238,3 +238,4 @@ export function SuperadminSupportTicketsClient() {
     </div>
   );
 }
+

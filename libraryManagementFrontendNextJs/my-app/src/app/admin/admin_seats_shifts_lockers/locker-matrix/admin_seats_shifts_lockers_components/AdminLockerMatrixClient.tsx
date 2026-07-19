@@ -158,7 +158,7 @@ export function AdminLockerMatrixClient() {
 
       {/* Assign Modal */}
       {assignTarget && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-bg-pagelack/60 backdrop-blur-sm" onClick={() => setAssignTarget(null)}>
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm" onClick={() => setAssignTarget(null)}>
           <Card className="w-full max-w-sm shadow-lg border-border bg-card p-6 flex flex-col gap-4" onClick={e => e.stopPropagation()}>
             <div className="flex items-center justify-between">
               <h2 className="text-lg font-bold flex items-center gap-2 text-primary">
@@ -185,3 +185,4 @@ export function AdminLockerMatrixClient() {
     </div>
   );
 }
+

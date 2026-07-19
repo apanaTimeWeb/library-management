@@ -44,7 +44,7 @@ export function SuperadminBillingGrid({ invoices, onRowClick, onExport }: Props)
 
   return (
     <div className="bg-bg-card border border-border rounded-lg overflow-hidden shadow-sm flex flex-col">
-      <div className="p-4 border-b border-border bg-bg-page/30 flex items-center justify-between gap-4 flex-wrap">
+      <div className="p-4 border-b border-border bg-page/30 flex items-center justify-between gap-4 flex-wrap">
         <div className="flex-1 min-w-xs">
           {/* TableToolbar handles the search input, but we can also just use the TableToolbar itself */}
         </div>
@@ -60,7 +60,7 @@ export function SuperadminBillingGrid({ invoices, onRowClick, onExport }: Props)
         
         <div className="rounded-md border border-border overflow-hidden">
           <Table>
-            <TableHeader className="bg-bg-page/50">
+            <TableHeader className="bg-page/50">
               <TableRow className="hover:bg-transparent">
                 <TableHead className="text-xs font-semibold text-text-secondary uppercase">Invoice ID</TableHead>
                 <TableHead className="text-xs font-semibold text-text-secondary uppercase">Tenant</TableHead>
@@ -75,7 +75,7 @@ export function SuperadminBillingGrid({ invoices, onRowClick, onExport }: Props)
                   <TableRow 
                     key={index}
                     onClick={() => onRowClick(inv)}
-                    className="cursor-pointer hover:bg-bg-page/50 transition-colors"
+                    className="cursor-pointer hover:bg-page/50 transition-colors"
                   >
                     <TableCell>
                       <div className="flex items-center gap-2 h-full">
@@ -117,7 +117,7 @@ export function SuperadminBillingGrid({ invoices, onRowClick, onExport }: Props)
       </div>
 
       {/* Pagination Footer */}
-      <div className="p-4 border-t border-border flex items-center justify-between bg-bg-page/30">
+      <div className="p-4 border-t border-border flex items-center justify-between bg-page/30">
         <span className="text-sm font-semibold text-text-secondary">
           Showing {paginatedInvoices.length > 0 ? (currentPage - 1) * pageSize + 1 : 0} to {Math.min(currentPage * pageSize, searchedInvoices.length)} of {searchedInvoices.length} invoices
         </span>
@@ -144,3 +144,4 @@ export function SuperadminBillingGrid({ invoices, onRowClick, onExport }: Props)
     </div>
   );
 }
+

@@ -18,7 +18,7 @@ function maskPhone(phone: string): string {
 
 export function SuperadminCollectFeeReceiptModal({ receiptData, onClose, onPrint }: { receiptData: SuperadminFinanceReceiptData; onClose: () => void; onPrint: () => void; }) {
   return (
-    <div className="fixed inset-0 z-40 flex items-center justify-center p-4 bg-bg-pagelack/60 backdrop-blur-sm transition-opacity" onClick={onClose} role="dialog" aria-modal="true">
+    <div className="fixed inset-0 z-40 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm transition-opacity" onClick={onClose} role="dialog" aria-modal="true">
       <div className="relative w-full max-w-2xl bg-card rounded-xl shadow-2xl flex flex-col md:flex-row overflow-hidden animate-in fade-in zoom-in-95 duration-200" onClick={e => e.stopPropagation()}>
         
         {/* Left Side: Thermal Receipt Preview */}
@@ -92,7 +92,7 @@ export function SuperadminCollectFeeReceiptModal({ receiptData, onClose, onPrint
               </button>
               <p className="text-xs text-text-secondary text-center">📱 +91-{maskPhone(receiptData.phone)}</p>
               
-              <div className="h-px w-full bg-bg-pageorder my-4" />
+              <div className="h-px w-full bg-border my-4" />
               
               <button 
                 className="w-full bg-transparent border-2 border-border text-text-primary px-4 py-2.5 rounded-md text-sm font-bold flex items-center justify-center gap-2 hover:bg-input transition-all cursor-pointer"
@@ -110,7 +110,7 @@ export function SuperadminCollectFeeReceiptModal({ receiptData, onClose, onPrint
               <div className="flex justify-between"><span className="text-text-secondary">Mode</span><span className="font-semibold text-text-primary">{MODE_LABELS[receiptData.mode]}</span></div>
             </div>
             <button 
-              className="w-full bg-bg-pageorder text-text-primary px-4 py-2 rounded-md text-sm font-bold hover:bg-bg-pageorder-focus transition-all cursor-pointer"
+              className="w-full bg-border text-text-primary px-4 py-2 rounded-md text-sm font-bold hover:bg-border-focus transition-all cursor-pointer"
               onClick={onClose}
             >
               Done
@@ -122,3 +122,4 @@ export function SuperadminCollectFeeReceiptModal({ receiptData, onClose, onPrint
     </div>
   );
 }
+

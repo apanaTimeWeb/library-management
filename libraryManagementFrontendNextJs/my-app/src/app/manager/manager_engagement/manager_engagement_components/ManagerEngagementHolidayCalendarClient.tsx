@@ -78,9 +78,9 @@ export function ManagerEngagementHolidayCalendarClient() {
 
       {/* â”€â”€ Add Holiday Modal â”€â”€ */}
       {showAdd && (
-        <div className="fixed inset-0 bg-bg-pagelack/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 overflow-y-auto">
+        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 overflow-y-auto">
           <div className="bg-page w-full rounded-2xl shadow-2xl flex flex-col p-6 max-w-sm relative">
-            <button onClick={()=>setShowAdd(false)} className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-bg-pagelack/5 dark:hover:bg-white/10 text-text-secondary transition-colors absolute top-4 right-4"><X size={16}/></button>
+            <button onClick={()=>setShowAdd(false)} className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-black/5 dark:hover:bg-white/10 text-text-secondary transition-colors absolute top-4 right-4"><X size={16}/></button>
             <p className="text-lg font-bold text-text-primary">ðŸ“… Add Holiday</p>
             <p className="text-sm text-text-secondary mt-1 mb-6">Mark a library closure or holiday in the calendar.</p>
 
@@ -268,7 +268,7 @@ export function ManagerEngagementHolidayCalendarClient() {
             {/* All holidays summary */}
             {holidays.length > 0 && (
               <>
-                <div className="h-px w-full bg-bg-pageorder my-4" />
+                <div className="h-px w-full bg-border my-4" />
                 <div className="text-sm font-bold text-text-primary uppercase tracking-wider mb-4">
                   All Holidays ({holidays.length})
                 </div>
@@ -297,4 +297,5 @@ export function ManagerEngagementHolidayCalendarClient() {
     </div>
   );
 }
+
 

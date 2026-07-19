@@ -69,7 +69,7 @@ export function AdminAssetsAddDialog({ isOpen, onClose, onSubmit }: AdminAssetsA
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-bg-pagelack/60 backdrop-blur-sm p-4 animate-in fade-in-50">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4 animate-in fade-in-50">
       <div className="bg-card border border-border rounded-xl shadow-2xl max-w-md w-full p-6 space-y-5">
         <div className="flex items-center justify-between border-b border-border pb-3">
           <div className="flex items-center gap-2.5 text-primary font-semibold text-lg">
@@ -132,3 +132,4 @@ export function AdminAssetsAddDialog({ isOpen, onClose, onSubmit }: AdminAssetsA
     </div>
   );
 }
+

@@ -224,7 +224,7 @@ export function AdminPlansClient() {
 
       {/* Detail Drawer / Modal (`Rule 19`) */}
       {selectedPlanDetails && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-bg-pagelack/60 backdrop-blur-sm p-4 animate-in fade-in-50">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4 animate-in fade-in-50">
           <Card className="max-w-lg w-full shadow-2xl border-border">
             <CardHeader className="flex flex-row items-center justify-between border-b border-border pb-4 bg-muted/20">
               <div className="flex items-center gap-3">
@@ -311,3 +311,4 @@ export function AdminPlansClient() {
     </div>
   );
 }
+

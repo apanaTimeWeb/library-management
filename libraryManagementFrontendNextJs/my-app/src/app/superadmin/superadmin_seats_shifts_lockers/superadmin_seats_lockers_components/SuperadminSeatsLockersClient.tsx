@@ -162,7 +162,7 @@ export function SuperadminSeatsLockersClient() {
 
       {/* Add Locker Modal */}
       {showAddModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-bg-pagelack/50 p-4" onClick={() => setShowAddModal(false)}>
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4" onClick={() => setShowAddModal(false)}>
           <div className="bg-surface rounded-2xl p-6 w-full max-w-md shadow-xl" onClick={e => e.stopPropagation()}>
             <h2 className="text-xl font-bold text-text-primary mb-4">Add Locker</h2>
             <div className="space-y-2 mb-6">
@@ -188,7 +188,7 @@ export function SuperadminSeatsLockersClient() {
 
       {/* Assign Modal */}
       {showAssign && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-bg-pagelack/50 p-4" onClick={() => setShowAssign(null)}>
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4" onClick={() => setShowAssign(null)}>
           <div className="bg-surface rounded-2xl p-6 w-full max-w-md shadow-xl" onClick={e => e.stopPropagation()}>
             <h2 className="text-xl font-bold text-text-primary mb-4">Assign Locker {showAssign.lockerId}</h2>
             <div className="space-y-2 mb-6">
@@ -216,7 +216,7 @@ export function SuperadminSeatsLockersClient() {
 
       {/* Free Locker Confirm */}
       {freeTarget && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-bg-pagelack/50 p-4" onClick={() => setFreeTarget(null)}>
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4" onClick={() => setFreeTarget(null)}>
           <div className="bg-surface rounded-2xl p-6 w-full max-w-md shadow-xl" onClick={e => e.stopPropagation()}>
             <h2 className="text-xl font-bold text-text-primary mb-4">Free Locker {freeTarget.lockerId}</h2>
             <p className="text-sm text-text-secondary mb-6">
@@ -232,3 +232,4 @@ export function SuperadminSeatsLockersClient() {
     </div>
   );
 }
+

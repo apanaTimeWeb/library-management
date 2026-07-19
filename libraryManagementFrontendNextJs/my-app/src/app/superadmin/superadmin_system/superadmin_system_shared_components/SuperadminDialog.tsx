@@ -11,7 +11,7 @@ export const SuperadminDialogClose   = DialogPrimitive.Close;
 export function SuperadminDialogOverlay({ className, ...props }: React.ComponentPropsWithoutRef<typeof DialogPrimitive.Overlay>) {
   return (
     <DialogPrimitive.Overlay
-      className={cn('fixed inset-0 z-50 bg-bg-pagelack/50 backdrop-blur-sm data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0', className)}
+      className={cn('fixed inset-0 z-50 bg-black/50 backdrop-blur-sm data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0', className)}
       {...props}
     />
   );
@@ -46,3 +46,4 @@ export function SuperadminDialogTitle({ className, ...props }: React.ComponentPr
 export function SuperadminDialogDescription({ className, ...props }: React.ComponentPropsWithoutRef<typeof DialogPrimitive.Description>) {
   return <DialogPrimitive.Description className={cn('text-sm text-text-secondary', className)} {...props} />;
 }
+

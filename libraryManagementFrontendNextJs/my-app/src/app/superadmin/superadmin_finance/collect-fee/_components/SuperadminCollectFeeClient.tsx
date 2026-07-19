@@ -166,7 +166,7 @@ export function SuperadminCollectFeeClient() {
                     placeholder="e.g. SAVE50" 
                     onChange={e => { setValue('couponCode', e.target.value); setCouponStatus('idle'); setCouponDiscount(0); }} 
                   />
-                  <button type="button" className="px-4 py-2 bg-input border border-border text-text-primary text-xs font-bold rounded-md hover:bg-bg-pageorder transition-colors cursor-pointer" onClick={handleApplyCoupon}>Apply</button>
+                  <button type="button" className="px-4 py-2 bg-input border border-border text-text-primary text-xs font-bold rounded-md hover:bg-border transition-colors cursor-pointer" onClick={handleApplyCoupon}>Apply</button>
                 </div>
                 {couponStatus === 'valid' && <p className="text-success text-xs mt-1 font-semibold">{formatCurrency(watch('amount') ? watch('amount') * 0.1 : 0)} discount applied (assuming logic applies)</p>}
                 {couponStatus === 'invalid' && <p className="text-danger text-xs mt-1">❌ Invalid/expired code</p>}
@@ -237,7 +237,7 @@ export function SuperadminCollectFeeClient() {
                 <button
                   type="submit"
                   disabled={!selectedStudent || !currentAmount || currentAmount <= 0 || isSubmitting}
-                  className={`w-full flex items-center justify-center gap-2 py-3 rounded text-sm font-bold transition-all ${(!selectedStudent || !currentAmount || currentAmount <= 0 || isSubmitting) ? 'bg-bg-pageorder text-text-secondary cursor-not-allowed' : 'bg-green-600 text-white hover:bg-green-700 shadow-md cursor-pointer'}`}
+                  className={`w-full flex items-center justify-center gap-2 py-3 rounded text-sm font-bold transition-all ${(!selectedStudent || !currentAmount || currentAmount <= 0 || isSubmitting) ? 'bg-border text-text-secondary cursor-not-allowed' : 'bg-green-600 text-white hover:bg-green-700 shadow-md cursor-pointer'}`}
                 >
                   <CheckCircle size={18} />
                   <span>{isSubmitting ? 'Processing...' : 'Collect Payment'}</span>
@@ -263,4 +263,5 @@ export function SuperadminCollectFeeClient() {
     </>
   );
 }
+
 

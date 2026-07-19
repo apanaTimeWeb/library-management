@@ -8,7 +8,7 @@ export function ManagerSeatsSeatMatrixModal({ isOpen, onClose, selectedSeat }: M
   if (!selectedSeat) return null;
 
   return (
-    <div className="ss-modal-overlay flex items-center justify-center fixed inset-0 z-50 bg-bg-pagelack/50" onClick={onClose}>
+    <div className="ss-modal-overlay flex items-center justify-center fixed inset-0 z-50 bg-black/50" onClick={onClose}>
       <div className="ss-modal bg-card p-6 rounded-xl shadow-xl w-full max-w-sm border border-border" onClick={e => e.stopPropagation()}>
         {selectedSeat.status === 'free' ? (
           <>
@@ -76,4 +76,5 @@ export function ManagerSeatsSeatMatrixModal({ isOpen, onClose, selectedSeat }: M
     </div>
   );
 }
+
 

@@ -82,7 +82,7 @@ export function GlobalCommandPalette() {
             value={search}
             onChange={(e) => setSearch(e.target.value)}
           />
-          <button className="text-text-secondary hover:text-text-primary p-1 rounded-md hover:bg-bg-pageg-elevated transition-colors" onClick={() => setOpen(false)}>
+          <button className="text-text-secondary hover:text-text-primary p-1 rounded-md hover:bg-card transition-colors" onClick={() => setOpen(false)}>
             <X size={18} />
           </button>
         </div>
@@ -106,13 +106,14 @@ export function GlobalCommandPalette() {
             ))
           )}
         </div>
-        <div className="bg-bg-pageg-elevated px-4 py-2 border-t border-border flex items-center gap-4 text-xs text-text-secondary">
-          <span className="flex items-center gap-1"><kbd className="bg-bg-pageg-card border border-border rounded px-1.5 py-0.5 font-sans shadow-sm text-text-primary">↑↓</kbd> to navigate</span>
-          <span className="flex items-center gap-1"><kbd className="bg-bg-pageg-card border border-border rounded px-1.5 py-0.5 font-sans shadow-sm text-text-primary">↵</kbd> to select</span>
-          <span className="flex items-center gap-1"><kbd className="bg-bg-pageg-card border border-border rounded px-1.5 py-0.5 font-sans shadow-sm text-text-primary">esc</kbd> to close</span>
+        <div className="bg-card px-4 py-2 border-t border-border flex items-center gap-4 text-xs text-text-secondary">
+          <span className="flex items-center gap-1"><kbd className="bg-card border border-border rounded px-1.5 py-0.5 font-sans shadow-sm text-text-primary">↑↓</kbd> to navigate</span>
+          <span className="flex items-center gap-1"><kbd className="bg-card border border-border rounded px-1.5 py-0.5 font-sans shadow-sm text-text-primary">↵</kbd> to select</span>
+          <span className="flex items-center gap-1"><kbd className="bg-card border border-border rounded px-1.5 py-0.5 font-sans shadow-sm text-text-primary">esc</kbd> to close</span>
         </div>
       </div>
     </div>
   );
 }
+
 

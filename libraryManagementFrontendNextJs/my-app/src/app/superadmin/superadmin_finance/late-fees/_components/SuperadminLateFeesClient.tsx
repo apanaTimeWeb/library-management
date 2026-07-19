@@ -35,7 +35,7 @@ export function SuperadminLateFeesClient() {
             Late Fee Settings
           </div>
           {!editing && (
-            <button className="px-3 py-1.5 bg-input border border-border text-text-primary text-xs font-bold rounded-md hover:bg-bg-pageorder transition-colors cursor-pointer" onClick={startEdit}>
+            <button className="px-3 py-1.5 bg-input border border-border text-text-primary text-xs font-bold rounded-md hover:bg-border transition-colors cursor-pointer" onClick={startEdit}>
               Edit
             </button>
           )}
@@ -170,4 +170,5 @@ export function SuperadminLateFeesClient() {
     </div>
   );
 }
+
 

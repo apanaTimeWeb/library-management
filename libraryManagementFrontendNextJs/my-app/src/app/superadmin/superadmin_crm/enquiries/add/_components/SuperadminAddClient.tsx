@@ -12,7 +12,7 @@ export function SuperadminAddClient() {
       <Toaster position="bottom-right" />
 
       {/* Overlay */}
-      <div className="fixed inset-0 z-40 bg-bg-pagelack/50 backdrop-blur-sm animate-in fade-in cursor-pointer" onClick={handleClose} aria-label="Close drawer" />
+      <div className="fixed inset-0 z-40 bg-black/50 backdrop-blur-sm animate-in fade-in cursor-pointer" onClick={handleClose} aria-label="Close drawer" />
 
       {/* Drawer */}
       <aside className="fixed inset-y-0 right-0 z-50 w-full sm:w-96 bg-card shadow-2xl flex flex-col animate-in slide-in-from-right duration-300" role="dialog" aria-label="New Enquiry" aria-modal="true">
@@ -72,3 +72,4 @@ export function SuperadminAddClient() {
     </>
   );
 }
+

@@ -55,7 +55,7 @@ export function ManagerCommunicationComplaintsClient() {
     router.replace(`${pathname}?${params.toString()}`, { scroll: false });
   };
 
-  const handleAdd = async (data: Array<Record<string, unknown>>) => {
+  const handleAdd = async (data: any) => {
     await addComplaint({
       title: data.title,
       studentName: data.isAnonymous ? 'Anonymous' : (data.studentName || ''),
@@ -287,4 +287,6 @@ export function ManagerCommunicationComplaintsClient() {
     </div>
   );
 }
+
+
 

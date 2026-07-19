@@ -39,7 +39,7 @@ export function ManagerCrmEnquiriesAddClient({ onClose }: ManagerCrmEnquiriesAdd
 
       {/* â”€â”€ Overlay â”€â”€ */}
       <div
-        className="fixed inset-0 bg-bg-pagelack/60 backdrop-blur-sm z-50 animate-in fade-in duration-200"
+        className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 animate-in fade-in duration-200"
         onClick={handleClose}
         aria-label="Close drawer"
       />
@@ -113,7 +113,7 @@ export function ManagerCrmEnquiriesAddClient({ onClose }: ManagerCrmEnquiriesAdd
           <div className="p-4 sm:p-6 border-t border-border flex flex-col sm:flex-row gap-3 shrink-0">
             <button
               type="button"
-              className="flex-1 inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-lg text-sm font-medium bg-transparent text-text-primary border border-border hover:bg-bg-pageorder/40 hover:border-text-secondary transition-all"
+              className="flex-1 inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-lg text-sm font-medium bg-transparent text-text-primary border border-border hover:bg-border/40 hover:border-text-secondary transition-all"
               onClick={handleClose}
             >
               Cancel
@@ -143,4 +143,5 @@ export function ManagerCrmEnquiriesAddClient({ onClose }: ManagerCrmEnquiriesAdd
     </>
   );
 }
+
 

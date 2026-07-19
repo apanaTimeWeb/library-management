@@ -30,7 +30,7 @@ export function SuperadminRefundDeductModal({ isOpen, onClose, onSubmit, student
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-bg-pagelack/50 backdrop-blur-sm">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm">
       <div className="bg-card w-full max-w-md rounded-xl shadow-2xl border border-border p-6 animate-in fade-in zoom-in duration-200">
         <h2 className="text-lg font-bold text-text-primary mb-6 flex items-center gap-2">➕ Add Deduction — {studentName}</h2>
         <button className="absolute top-4 right-4 text-text-secondary hover:text-text-primary" onClick={handleClose} type="button">✕</button>
@@ -69,3 +69,4 @@ export function SuperadminRefundDeductModal({ isOpen, onClose, onSubmit, student
     </div>
   );
 }
+

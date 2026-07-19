@@ -33,7 +33,7 @@ export function useAdminCrmEnquiries() {
   useEffect(() => {
     setFetchState('loading');
     fetchApi(ADMIN_API_ROUTES.CRM_ENQUIRIES)
-      .then((data: unknown) => {
+      .then((data: any) => {
         let rows: any[] = [];
         if (Array.isArray(data)) rows = data;
         else if (data && typeof data === 'object' && Array.isArray((data as Record<string, any>).data)) rows = (data as Record<string, any>).data;
@@ -103,3 +103,4 @@ export function useAdminCrmEnquiries() {
     router
   };
 }
+

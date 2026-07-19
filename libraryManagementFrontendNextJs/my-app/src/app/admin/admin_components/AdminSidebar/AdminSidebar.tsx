@@ -28,7 +28,7 @@ export default function AdminSidebar({ collapsed, onToggle, mobileOpen, onMobile
       {/* Mobile overlay */}
       {mobileOpen && (
         <div
-          className="fixed inset-0 bg-bg-pagelack/60 z-40 md:hidden"
+          className="fixed inset-0 bg-black/60 z-40 md:hidden"
           onClick={onMobileClose}
           aria-hidden="true"
         />
@@ -128,3 +128,4 @@ export default function AdminSidebar({ collapsed, onToggle, mobileOpen, onMobile
     </>
   );
 }
+

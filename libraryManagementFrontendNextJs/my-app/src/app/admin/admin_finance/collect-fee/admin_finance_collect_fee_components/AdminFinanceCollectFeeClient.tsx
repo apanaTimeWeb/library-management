@@ -56,7 +56,7 @@ export function AdminFinanceCollectFeeClient() {
 
       {/* Receipt Modal */}
       {receiptData && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-bg-pagelack/60 backdrop-blur-sm overflow-y-auto" onClick={() => setReceiptData(null)}>
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm overflow-y-auto" onClick={() => setReceiptData(null)}>
           <div className="w-full max-w-md bg-card rounded-xl shadow-2xl border border-border flex flex-col my-auto" onClick={e => e.stopPropagation()}>
             {/* Modal Header */}
             <div className="flex items-center justify-between p-4 border-b border-border bg-muted/20 rounded-t-xl">
@@ -115,7 +115,7 @@ export function AdminFinanceCollectFeeClient() {
                     <p className="text-text-primary text-xl font-bold">â‚¹{receiptData.total.toFixed(0)}</p>
                   </div>
 
-                  <div className="flex items-center gap-1 bg-bg-pagelack text-white px-3 py-1 rounded-full text-xs font-bold mb-4">
+                  <div className="flex items-center gap-1 bg-black text-white px-3 py-1 rounded-full text-xs font-bold mb-4">
                     <CheckCircle size={12} />
                     <span>Payment Received</span>
                   </div>
@@ -366,3 +366,4 @@ export function AdminFinanceCollectFeeClient() {
     </>
   );
 }
+

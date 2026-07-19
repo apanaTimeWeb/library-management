@@ -84,7 +84,7 @@ export function SuperadminRenewalsClient() {
           
           <div className="rounded-md border border-border overflow-hidden">
             <Table>
-              <TableHeader className="bg-bg-page/50">
+              <TableHeader className="bg-page/50">
                 <TableRow className="hover:bg-transparent">
                   <TableHead className="text-xs font-semibold text-text-secondary uppercase">Student</TableHead>
                   <TableHead className="text-xs font-semibold text-text-secondary uppercase">Smart ID</TableHead>
@@ -102,7 +102,7 @@ export function SuperadminRenewalsClient() {
                   paginatedRenewals.map((r, index) => (
                     <TableRow 
                       key={index}
-                      className="hover:bg-bg-page/50 transition-colors"
+                      className="hover:bg-page/50 transition-colors"
                     >
                       <TableCell className="font-medium text-sm text-text-primary">
                         {r.studentName}
@@ -165,7 +165,7 @@ export function SuperadminRenewalsClient() {
         </div>
 
         {/* Pagination Footer */}
-        <div className="p-4 border-t border-border flex items-center justify-between bg-bg-page/30">
+        <div className="p-4 border-t border-border flex items-center justify-between bg-page/30">
           <span className="text-sm font-semibold text-text-secondary">
             Showing {paginatedRenewals.length > 0 ? (currentPage - 1) * pageSize + 1 : 0} to {Math.min(currentPage * pageSize, searchedRenewals.length)} of {searchedRenewals.length} renewals
           </span>
@@ -252,3 +252,4 @@ export function SuperadminRenewalsClient() {
     </div>
   );
 }
+

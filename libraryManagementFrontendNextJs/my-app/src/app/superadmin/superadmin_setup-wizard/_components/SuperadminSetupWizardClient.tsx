@@ -66,7 +66,7 @@ export function SuperadminSetupWizardClient() {
 
       {/* â”€â”€ SKIP CONFIRMATION MODAL â”€â”€ */}
       {showSkipModal && (
-        <div className="fixed inset-0 bg-bg-pagelack/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
           <div className="bg-card max-w-md w-full rounded-2xl shadow-2xl p-6 relative border border-border flex flex-col items-center text-center animate-in zoom-in-95 duration-200">
             <div className="w-12 h-12 rounded-full bg-warning-bg/50 flex items-center justify-center mb-4">
               <AlertTriangle size={22} className="text-warning" />
@@ -142,7 +142,7 @@ export function SuperadminSetupWizardClient() {
             return (
               <div key={s.num} className="relative">
                 {i < STEPS.length - 1 && (
-                  <div className={`absolute left-3 top-8 bottom-[-10px] w-0.5 bg-bg-pageorder transition-colors duration-500 ${isDone ? 'bg-primary' : ''}`} />
+                  <div className={`absolute left-3 top-8 bottom-[-10px] w-0.5 bg-border transition-colors duration-500 ${isDone ? 'bg-primary' : ''}`} />
                 )}
                 <div className={`flex gap-4 py-3 relative z-10 opacity-60 transition-opacity ${isActive ? 'opacity-100' : ''}`}>
                   <div className={`w-6 h-6 rounded-full border-2 bg-card flex items-center justify-center transition-colors shrink-0 border-border ${isDone ? 'bg-primary border-primary' : isActive ? 'border-primary ring-4 ring-primary/20' : ''}`}>
@@ -181,7 +181,7 @@ export function SuperadminSetupWizardClient() {
       {/* â”€â”€ MAIN CONTENT â”€â”€ */}
       <main className="flex-1 flex flex-col">
         <div className="h-14 border-b border-border bg-card/80 backdrop-blur flex items-center justify-between px-6 shrink-0 md:hidden">
-          <div className="h-1.5 w-32 bg-bg-pageorder rounded-full overflow-hidden">
+          <div className="h-1.5 w-32 bg-border rounded-full overflow-hidden">
             {/* âœ… RULE 3 â€” dynamic computed width */}
             <div className="h-full bg-primary rounded-full transition-all duration-500" style={{ width: `${progress}%` }} />
           </div>
@@ -312,3 +312,4 @@ export function SuperadminSetupWizardClient() {
     </div>
   );
 }
+

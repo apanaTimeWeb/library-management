@@ -107,7 +107,7 @@ export function SuperadminPaymentPromisesClient() {
                     )}
                   </td>
                   <td className="py-3 px-4">
-                    <span className={SUPERADMIN_FINANCE_PROMISE_STATUS_BADGE[p.status] || 'bg-bg-pageorder text-text-primary px-2.5 py-0.5 rounded-full text-xs font-semibold'}>{p.status}</span>
+                    <span className={SUPERADMIN_FINANCE_PROMISE_STATUS_BADGE[p.status] || 'bg-border text-text-primary px-2.5 py-0.5 rounded-full text-xs font-semibold'}>{p.status}</span>
                   </td>
                   <td className="py-3 px-4">
                     {p.status !== 'fulfilled' ? (
@@ -142,7 +142,7 @@ export function SuperadminPaymentPromisesClient() {
 
       {extendDialog && (
         <div className="fixed inset-0 z-40 flex items-center justify-center p-4">
-          <div className="absolute inset-0 bg-bg-pagelack/60 backdrop-blur-sm transition-opacity" onClick={() => setExtendDialog(null)} />
+          <div className="absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity" onClick={() => setExtendDialog(null)} />
           <div className="relative w-full max-w-md bg-card rounded-xl shadow-2xl overflow-hidden p-7 animate-in fade-in zoom-in-95 duration-200">
             <h2 className="text-lg font-bold text-text-primary mb-4">📅 Extend Promise — {extendDialog.name}</h2>
             <button className="absolute top-4 right-4 text-text-secondary hover:text-danger transition-colors cursor-pointer" onClick={() => setExtendDialog(null)}>✕</button>
@@ -175,3 +175,4 @@ export function SuperadminPaymentPromisesClient() {
     </div>
   );
 }
+

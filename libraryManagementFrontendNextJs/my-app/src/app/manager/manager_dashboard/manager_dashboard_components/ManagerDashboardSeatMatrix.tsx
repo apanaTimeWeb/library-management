@@ -34,7 +34,7 @@ export function ManagerDashboardSeatMatrix({ seatData }: DashboardSeatMatrixProp
             Available
           </div>
           <div className="flex items-center gap-2 text-xs font-medium text-text-secondary uppercase tracking-wider">
-            <div className="w-2.5 h-2.5 rounded-full bg-bg-pageorder" />
+            <div className="w-2.5 h-2.5 rounded-full bg-border" />
             Occupied
           </div>
           <div className="flex items-center gap-2 text-xs font-medium text-text-secondary uppercase tracking-wider">
@@ -46,3 +46,4 @@ export function ManagerDashboardSeatMatrix({ seatData }: DashboardSeatMatrixProp
     </div>
   );
 }
+

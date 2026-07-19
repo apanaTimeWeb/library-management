@@ -58,7 +58,7 @@ export function ManagerCommunicationWhatsappLogsClient() {
     <div className="p-6 min-h-screen relative">
       {/* View Message Modal */}
       {viewLog && (
-        <div className="fixed inset-0 bg-bg-pagelack/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 overflow-y-auto">
+        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 overflow-y-auto">
           <div className="bg-card w-full rounded-2xl shadow-2xl flex flex-col p-6 max-w-lg relative border border-border">
             <button onClick={() => setViewLog(null)} className="absolute top-4 right-4 w-8 h-8 flex items-center justify-center rounded-full hover:bg-danger-bg text-text-secondary hover:text-danger transition-colors"><X size={16} /></button>
             <p className="text-lg font-bold text-text-primary mb-4">ðŸ“± Message Details</p>
@@ -220,5 +220,6 @@ export function ManagerCommunicationWhatsappLogsClient() {
     </div>
   );
 }
+
 
 

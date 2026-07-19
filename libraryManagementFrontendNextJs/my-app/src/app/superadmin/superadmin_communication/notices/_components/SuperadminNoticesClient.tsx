@@ -74,7 +74,7 @@ export function SuperadminNoticesClient() {
                   value={form.validTill} onChange={e => setForm(f => ({ ...f, validTill: e.target.value }))} />
               </div>
             </div>
-            <div className="px-6 py-4 bg-bg-page border-t border-border flex justify-end gap-3">
+            <div className="px-6 py-4 bg-page border-t border-border flex justify-end gap-3">
               <button onClick={() => setShowAdd(false)} className="px-4 py-2 border border-border text-text-primary text-sm font-bold rounded-md hover:bg-bg-input transition-colors cursor-pointer">Cancel</button>
               <button onClick={handleSave} className="flex items-center gap-2 px-4 py-2 bg-primary text-primary-foreground text-sm font-bold rounded-md hover:brightness-95 transition-all disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
                 disabled={!form.title || !form.message || !form.validTill}>
@@ -141,7 +141,7 @@ export function SuperadminNoticesClient() {
             
             <div className="rounded-md border border-border overflow-hidden">
               <Table>
-                <TableHeader className="bg-bg-page/50">
+                <TableHeader className="bg-page/50">
                   <TableRow className="hover:bg-transparent">
                     <TableHead className="text-xs font-semibold text-text-secondary uppercase">Title</TableHead>
                     <TableHead className="text-xs font-semibold text-text-secondary uppercase">Message</TableHead>
@@ -157,7 +157,7 @@ export function SuperadminNoticesClient() {
                     paginatedNotices.map((notice, index) => (
                       <TableRow 
                         key={index}
-                        className="hover:bg-bg-page/50 transition-colors"
+                        className="hover:bg-page/50 transition-colors"
                       >
                         <TableCell className="font-bold text-text-primary">
                           {notice.title}
@@ -232,3 +232,4 @@ export function SuperadminNoticesClient() {
     </div>
   );
 }
+

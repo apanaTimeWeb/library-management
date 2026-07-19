@@ -226,7 +226,7 @@ export function AdminShiftMigrationClient() {
                     <span className="text-sm font-medium text-muted-foreground">Days Remaining</span>
                     <span className="font-mono font-bold">{daysLeft} days</span>
                   </div>
-                  <div className="h-px bg-bg-pageorder my-2" />
+                  <div className="h-px bg-border my-2" />
                   <div className="flex justify-between items-center">
                     <span className="text-base font-bold text-primary">Fee Adjustment</span>
                     <span className={`text-xl font-black font-mono tracking-tighter ${isPaying ? 'text-danger' : 'text-success'}`}>
@@ -314,7 +314,7 @@ export function AdminShiftMigrationClient() {
       </div>
 
       {/* Sticky footer */}
-      <div className="fixed bottom-0 left-0 right-0 md:left-64 z-40 bg-bg-pagelack/60 backdrop-blur-md border-t border-border shadow-md shadow-black/5">
+      <div className="fixed bottom-0 left-0 right-0 md:left-64 z-40 bg-black/60 backdrop-blur-md border-t border-border shadow-md shadow-black/5">
         <div className="max-w-6xl mx-auto w-full px-6 py-4 flex items-center justify-between">
           <Button 
             variant="outline" 
@@ -350,7 +350,7 @@ export function AdminShiftMigrationClient() {
 
       {/* Confirm Modal */}
       {showConfirm && selectedStudent && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-bg-pagelack/60 backdrop-blur-sm" onClick={() => setShowConfirm(false)}>
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm" onClick={() => setShowConfirm(false)}>
           <Card className="w-full max-w-md shadow-lg border-border bg-card p-6 flex flex-col gap-6" onClick={e => e.stopPropagation()}>
             <h2 className="text-xl font-bold flex items-center gap-2 text-primary">
               <CheckCircle size={24} /> Confirm Migration
@@ -373,3 +373,4 @@ export function AdminShiftMigrationClient() {
     </div>
   );
 }
+

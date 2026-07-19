@@ -84,7 +84,7 @@ export function SuperadminWhatsappLogsClient() {
                 <div className="mt-4 p-3 bg-danger-bg text-danger rounded-lg border border-danger/20 text-sm font-bold flex items-center gap-2"><AlertTriangle size={14} /> Error: {viewLog.error}</div>
               )}
             </div>
-            <div className="px-6 py-4 bg-bg-page border-t border-border flex justify-end">
+            <div className="px-6 py-4 bg-page border-t border-border flex justify-end">
               <button onClick={() => setViewLog(null)} className="px-4 py-2 border border-border text-text-primary text-sm font-bold rounded-md hover:bg-bg-input transition-colors cursor-pointer">Close</button>
             </div>
           </div>
@@ -159,7 +159,7 @@ export function SuperadminWhatsappLogsClient() {
             
             <div className="rounded-md border border-border overflow-hidden">
               <Table>
-                <TableHeader className="bg-bg-page/50">
+                <TableHeader className="bg-page/50">
                   <TableRow className="hover:bg-transparent">
                     <TableHead className="text-xs font-semibold text-text-secondary uppercase">Date / Time</TableHead>
                     <TableHead className="text-xs font-semibold text-text-secondary uppercase">Phone</TableHead>
@@ -175,7 +175,7 @@ export function SuperadminWhatsappLogsClient() {
                       <TableRow 
                         key={index}
                         onClick={() => setViewLog(log)}
-                        className="cursor-pointer hover:bg-bg-page/50 transition-colors"
+                        className="cursor-pointer hover:bg-page/50 transition-colors"
                       >
                         <TableCell className="text-text-secondary text-sm">
                           {log.dateTime}
@@ -245,3 +245,4 @@ export function SuperadminWhatsappLogsClient() {
     </div>
   );
 }
+

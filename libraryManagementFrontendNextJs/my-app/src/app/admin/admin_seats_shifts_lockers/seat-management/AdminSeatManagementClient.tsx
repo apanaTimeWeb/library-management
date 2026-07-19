@@ -208,7 +208,7 @@ export function AdminSeatManagementClient({ initialSeats }: SeatManagementClient
 
       {/* Add / Edit Modal */}
       {showModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-bg-pagelack/60 backdrop-blur-sm" onClick={() => setShowModal(false)}>
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm" onClick={() => setShowModal(false)}>
           <Card className="w-full max-w-sm shadow-lg border-border bg-card p-6 flex flex-col gap-6" onClick={e => e.stopPropagation()}>
             <div className="flex items-center justify-between">
               <h2 className="text-xl font-bold tracking-tight flex items-center gap-2">
@@ -262,7 +262,7 @@ export function AdminSeatManagementClient({ initialSeats }: SeatManagementClient
 
       {/* Mark Broken Confirm */}
       {confirmBroken && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-bg-pagelack/60 backdrop-blur-sm" onClick={() => setConfirmBroken(null)}>
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm" onClick={() => setConfirmBroken(null)}>
           <Card className="w-full max-w-sm shadow-lg border-warning/20 bg-card p-6 flex flex-col gap-4" onClick={e => e.stopPropagation()}>
             <h2 className="text-lg font-bold flex items-center gap-2 text-warning">
               <AlertTriangle size={20} /> Mark Seat as Broken
@@ -280,3 +280,4 @@ export function AdminSeatManagementClient({ initialSeats }: SeatManagementClient
     </div>
   );
 }
+

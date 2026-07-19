@@ -39,7 +39,7 @@ function QrPattern({ id }: { id: string }) {
   return (
     <div className="grid grid-cols-5 gap-0.5 p-1 bg-white w-14 h-14" aria-label={`QR code for ${id}`}>
       {pattern.map((on, i) => (
-        <div key={i} className={`w-2 h-2 ${on ? 'bg-bg-pagelack' : 'bg-page'}`} />
+        <div key={i} className={`w-2 h-2 ${on ? 'bg-black' : 'bg-page'}`} />
       ))}
     </div>
   );
@@ -113,7 +113,7 @@ export default function ManagerStudentsIdCard({ data }: ManagerStudentsIdCardPro
           <div className="flex w-full h-1 rounded-full overflow-hidden mb-5">
             <div className="flex-1 bg-indigo-500" />
             <div className="flex-1 bg-purple-500" />
-            <div className="flex-1 bg-bg-pagelue-500" />
+            <div className="flex-1 bg-blue-500" />
             <div className="flex-1 bg-emerald-500" />
           </div>
 
@@ -178,3 +178,4 @@ export default function ManagerStudentsIdCard({ data }: ManagerStudentsIdCardPro
     </div>
   );
 }
+

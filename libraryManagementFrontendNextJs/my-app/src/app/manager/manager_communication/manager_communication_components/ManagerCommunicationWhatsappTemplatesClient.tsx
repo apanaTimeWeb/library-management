@@ -57,7 +57,7 @@ export function ManagerCommunicationWhatsappTemplatesClient() {
 
       {/* Test Modal */}
       {showTest && (
-        <div className="fixed inset-0 bg-bg-pagelack/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 overflow-y-auto">
+        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 overflow-y-auto">
           <div className="bg-card w-full rounded-2xl shadow-2xl flex flex-col p-6 max-w-sm relative border border-border">
             <button onClick={() => setShowTest(false)} className="eng-modal-close"><X size={16} /></button>
             <p className="eng-modal-title">ðŸ“± Send Test Message</p>
@@ -144,4 +144,5 @@ export function ManagerCommunicationWhatsappTemplatesClient() {
     </div>
   );
 }
+
 

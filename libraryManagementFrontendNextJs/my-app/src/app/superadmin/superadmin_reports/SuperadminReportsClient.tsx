@@ -51,20 +51,20 @@ export function SuperadminReportsClient({ initialData }: Props) {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {[...Array(4)].map((_, i) => (
               <div key={i} className="h-28 bg-card border border-border rounded-lg p-4 flex flex-col justify-between">
-                <div className="h-4 w-24 bg-bg-pageorder/50 rounded" />
-                <div className="h-8 w-32 bg-bg-pageorder/60 rounded" />
+                <div className="h-4 w-24 bg-border/50 rounded" />
+                <div className="h-8 w-32 bg-border/60 rounded" />
               </div>
             ))}
           </div>
           {/* Charts Skeleton Grid */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             <div className="h-80 bg-card border border-border rounded-lg p-6 flex flex-col justify-between">
-              <div className="h-5 w-40 bg-bg-pageorder/50 rounded" />
-              <div className="h-60 w-full bg-bg-pageorder/30 rounded" />
+              <div className="h-5 w-40 bg-border/50 rounded" />
+              <div className="h-60 w-full bg-border/30 rounded" />
             </div>
             <div className="h-80 bg-card border border-border rounded-lg p-6 flex flex-col justify-between">
-              <div className="h-5 w-40 bg-bg-pageorder/50 rounded" />
-              <div className="h-60 w-full bg-bg-pageorder/30 rounded" />
+              <div className="h-5 w-40 bg-border/50 rounded" />
+              <div className="h-60 w-full bg-border/30 rounded" />
             </div>
           </div>
         </div>
@@ -77,3 +77,4 @@ export function SuperadminReportsClient({ initialData }: Props) {
     </div>
   );
 }
+

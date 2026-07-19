@@ -8,3 +8,4 @@ export default async function SuperAdminReportsPage() {
   
   return <SuperadminReportsClient initialData={response.data!} />;
 }
+

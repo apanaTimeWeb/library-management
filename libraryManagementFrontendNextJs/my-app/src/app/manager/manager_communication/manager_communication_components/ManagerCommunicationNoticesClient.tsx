@@ -93,7 +93,7 @@ export function ManagerCommunicationNoticesClient() {
 
       {/* Add/Edit Modal */}
       {showAdd && (
-        <div className="fixed inset-0 bg-bg-pagelack/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 overflow-y-auto">
+        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 overflow-y-auto">
           <div className="bg-card w-full rounded-2xl shadow-2xl flex flex-col p-6 max-w-lg relative border border-border">
             <button onClick={() => setShowAdd(false)} className="absolute top-4 right-4 w-8 h-8 flex items-center justify-center rounded-full hover:bg-danger-bg text-text-secondary hover:text-danger transition-colors" aria-label="Close"><X size={16} /></button>
             <p className="text-lg font-bold text-text-primary mb-4 flex items-center gap-2">
@@ -130,7 +130,7 @@ export function ManagerCommunicationNoticesClient() {
 
       {/* Delete Confirmation */}
       {deleteItem && (
-        <div className="fixed inset-0 bg-bg-pagelack/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 overflow-y-auto">
+        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 overflow-y-auto">
           <div className="bg-card w-full rounded-2xl shadow-2xl flex flex-col p-6 max-w-sm relative border border-border">
             <p className="text-lg font-bold text-text-primary mb-2 flex items-center gap-2"><Trash2 size={18} className="text-danger" /> Delete Notice?</p>
             <p className="text-sm text-text-secondary">"{deleteItem.title}" will be permanently deleted.</p>
@@ -144,7 +144,7 @@ export function ManagerCommunicationNoticesClient() {
 
       {/* Broadcast Confirmation */}
       {broadcastItem && (
-        <div className="fixed inset-0 bg-bg-pagelack/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 overflow-y-auto">
+        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 overflow-y-auto">
           <div className="bg-card w-full rounded-2xl shadow-2xl flex flex-col p-6 max-w-sm relative border border-border">
             <p className="text-lg font-bold text-text-primary mb-2 flex items-center gap-2"><Smartphone size={18} className="text-success" /> Broadcast via WhatsApp</p>
             <p className="text-sm text-text-secondary">Send "{broadcastItem.title}" to all active students via WhatsApp?</p>
@@ -250,5 +250,6 @@ export function ManagerCommunicationNoticesClient() {
     </div>
   );
 }
+
 
 

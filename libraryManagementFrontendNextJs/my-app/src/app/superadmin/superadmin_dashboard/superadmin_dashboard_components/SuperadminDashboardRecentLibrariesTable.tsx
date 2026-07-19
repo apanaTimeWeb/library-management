@@ -50,7 +50,7 @@ export function SuperadminDashboardRecentLibrariesTable({ data }: Props) {
 
   return (
     <div className="bg-bg-card border border-border rounded-lg overflow-hidden shadow-sm flex flex-col">
-      <div className="p-6 flex items-center justify-between border-b border-border bg-bg-page/30">
+      <div className="p-6 flex items-center justify-between border-b border-border bg-page/30">
         <h2 className="text-base font-bold text-text-primary">Recently Registered Libraries</h2>
         <Link href={SUPERADMIN_ROUTES.LIBRARIES} className="text-primary text-xs font-bold flex items-center gap-1 hover:text-primary/80 transition-colors">
           View All <ExternalLink size={12} />
@@ -61,7 +61,7 @@ export function SuperadminDashboardRecentLibrariesTable({ data }: Props) {
         
         <div className="rounded-md border border-border overflow-hidden">
           <Table>
-            <TableHeader className="bg-bg-page/50">
+            <TableHeader className="bg-page/50">
               <TableRow className="hover:bg-transparent">
                 <TableHead className="text-xs font-semibold text-text-secondary uppercase">Library</TableHead>
                 <TableHead className="text-xs font-semibold text-text-secondary uppercase">Owner</TableHead>
@@ -80,7 +80,7 @@ export function SuperadminDashboardRecentLibrariesTable({ data }: Props) {
                   return (
                     <TableRow 
                       key={index}
-                      className="hover:bg-bg-page/50 transition-colors"
+                      className="hover:bg-page/50 transition-colors"
                     >
                       <TableCell>
                         <div className="flex items-center gap-3 h-full">
@@ -125,7 +125,7 @@ export function SuperadminDashboardRecentLibrariesTable({ data }: Props) {
       </div>
 
       {/* Pagination Footer */}
-      <div className="p-4 border-t border-border flex items-center justify-between bg-bg-page/30">
+      <div className="p-4 border-t border-border flex items-center justify-between bg-page/30">
         <span className="text-sm font-semibold text-text-secondary">
           Showing {paginatedData.length > 0 ? (currentPage - 1) * pageSize + 1 : 0} to {Math.min(currentPage * pageSize, searchedData.length)} of {searchedData.length} libraries
         </span>
@@ -152,3 +152,4 @@ export function SuperadminDashboardRecentLibrariesTable({ data }: Props) {
     </div>
   );
 }
+

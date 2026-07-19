@@ -12,7 +12,7 @@ export interface TableToolbarProps {
 
 export function TableToolbar({ search, onSearch, title, placeholder = "Search..." }: TableToolbarProps) {
   return (
-    <div className="p-4 border-b border-border flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 bg-bg-pageg-card rounded-t-[var(--radius-lg)]">
+    <div className="p-4 border-b border-border flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 bg-card rounded-t-[var(--radius-lg)]">
       {title ? (
         <h2 className="text-base font-bold text-text-primary">{title}</h2>
       ) : <div />}
@@ -22,7 +22,7 @@ export function TableToolbar({ search, onSearch, title, placeholder = "Search...
         <input 
           type="text" 
           placeholder={placeholder}
-          className="w-full pl-9 pr-4 py-2 bg-bg-pageg-input border border-border rounded-md text-sm text-text-primary placeholder:text-text-secondary focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors"
+          className="w-full pl-9 pr-4 py-2 bg-input border border-border rounded-md text-sm text-text-primary placeholder:text-text-secondary focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors"
           value={search}
           onChange={(e) => onSearch(e.target.value)}
         />
@@ -30,4 +30,5 @@ export function TableToolbar({ search, onSearch, title, placeholder = "Search...
     </div>
   );
 }
+
 

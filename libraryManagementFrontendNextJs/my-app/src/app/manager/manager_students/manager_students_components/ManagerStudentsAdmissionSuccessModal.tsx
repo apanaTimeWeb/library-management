@@ -53,7 +53,7 @@ export default function ManagerStudentsAdmissionSuccessModal({ data, onClose }: 
 
   return (
     <div
-      className="fixed inset-0 bg-bg-pagelack/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 overflow-y-auto"
+      className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 overflow-y-auto"
       role="dialog"
       aria-modal="true"
       aria-labelledby="success-modal-title"
@@ -66,7 +66,7 @@ export default function ManagerStudentsAdmissionSuccessModal({ data, onClose }: 
             <h2 className="text-xl font-bold text-text-primary" id="success-modal-title">ðŸŽ‰ Admission Confirmed!</h2>
             <span className="rounded-full px-2.5 py-0.5 text-xs font-semibold bg-success-bg text-success inline-flex items-center gap-1"><CheckCircle size={12} /> Active</span>
           </div>
-          <button className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-bg-pagelack/5 dark:hover:bg-white/10 text-text-secondary transition-colors" onClick={onClose} aria-label="Close">
+          <button className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-black/5 dark:hover:bg-white/10 text-text-secondary transition-colors" onClick={onClose} aria-label="Close">
             <X size={15} />
           </button>
         </div>
@@ -88,7 +88,7 @@ export default function ManagerStudentsAdmissionSuccessModal({ data, onClose }: 
               </button>
             )}
 
-            <div className="h-px w-full bg-bg-pageorder my-2" />
+            <div className="h-px w-full bg-border my-2" />
 
             <button className="w-full justify-center bg-transparent border border-border text-text-primary rounded-lg px-5 py-2.5 text-sm font-medium hover:bg-primary-subtle hover:border-primary transition-colors inline-flex items-center gap-2" onClick={handlePrintIdCard}>
               <Printer size={15} /> Print ID Card (Thermal)
@@ -124,6 +124,7 @@ export default function ManagerStudentsAdmissionSuccessModal({ data, onClose }: 
     </div>
   );
 }
+
 
 
 

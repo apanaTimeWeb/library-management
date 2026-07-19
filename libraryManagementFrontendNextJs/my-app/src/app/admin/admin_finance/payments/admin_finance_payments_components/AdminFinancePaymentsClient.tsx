@@ -247,7 +247,7 @@ export function AdminFinancePaymentsClient() {
 
       {/* Delete Confirmation Modal */}
       {deleteDialog && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-bg-pagelack/60 backdrop-blur-sm" onClick={() => setDeleteDialog(null)}>
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm" onClick={() => setDeleteDialog(null)}>
           <Card className="w-full max-w-sm shadow-lg border-danger/20 bg-card p-6 flex flex-col gap-5" onClick={e => e.stopPropagation()}>
             <div className="flex items-center justify-between">
               <h2 className="text-lg font-bold flex items-center gap-2 text-danger tracking-tight">
@@ -292,3 +292,4 @@ export function AdminFinancePaymentsClient() {
     </div>
   );
 }
+

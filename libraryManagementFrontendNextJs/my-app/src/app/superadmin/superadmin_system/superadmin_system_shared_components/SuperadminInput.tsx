@@ -11,7 +11,7 @@ const SuperadminInput = forwardRef<HTMLInputElement, SuperadminInputProps>(
       type={type}
       ref={ref}
       className={cn(
-        'flex h-10 w-full rounded-md border border-input bg-bg-pageackground px-3 py-2 text-sm text-text-primary ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:border-primary disabled:cursor-not-allowed disabled:opacity-50 transition-all',
+        'flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm text-text-primary ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:border-primary disabled:cursor-not-allowed disabled:opacity-50 transition-all',
         className
       )}
       {...props}
@@ -21,3 +21,4 @@ const SuperadminInput = forwardRef<HTMLInputElement, SuperadminInputProps>(
 
 SuperadminInput.displayName = 'SuperadminInput';
 export { SuperadminInput };
+

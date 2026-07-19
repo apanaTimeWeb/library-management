@@ -44,7 +44,7 @@ export function ManagerStudentsAdmissionFormSummary({
               <span className="text-text-secondary">Seat</span>
               <span className="font-semibold text-text-primary">{watchedSeat}</span>
             </div>
-            <div className="h-px bg-bg-pageorder my-4" />
+            <div className="h-px bg-border my-4" />
             <div className="flex justify-between items-center text-sm">
               <span className="text-text-secondary">Base Amount</span>
               <span className="font-semibold text-text-primary">₹{baseAmt.toLocaleString('en-IN')}</span>
@@ -82,4 +82,5 @@ export function ManagerStudentsAdmissionFormSummary({
     </aside>
   );
 }
+
 
