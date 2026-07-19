@@ -8,19 +8,8 @@ import { ACTIVITY_DATA, INITIAL_LOCKERS, INITIAL_SEATS, SHIFTS_DATA, INITIAL_SHI
 import toast from 'react-hot-toast';
 import { ArrowLeft, Search, ChevronDown, CreditCard, QrCode, Banknote, CheckCircle, Clock } from 'lucide-react';
 import { ManagerSearchableDropdown } from '@/app/manager/manager_shared_components/ManagerSearchableDropdown';
+import { SHIFTS, daysRemaining } from './ManagerSeatsShiftMigrationHelpers';
 
-const SHIFTS = [
-  { name: 'Morning',   seats: 4, rate: 33 },
-  { name: 'Afternoon', seats: 8, rate: 36 },
-  { name: 'Evening',   seats: 2, rate: 40 },
-  { name: 'Full Day',  seats: 1, rate: 50 },
-];
-
-
-function daysRemaining(validTill: string): number {
-  const diff = new Date(validTill).getTime() - Date.now();
-  return Math.max(0, Math.ceil(diff / 86_400_000));
-}
 
 export function ManagerSeatsShiftMigrationClient() {
   const [step, setStep]                         = useState(1);

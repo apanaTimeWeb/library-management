@@ -44,73 +44,8 @@ import {
 /* ── Status Select options ─────────────────────────────── */
 const STATUS_OPTIONS: EnquiryStatus[] = ['New', 'Visited', 'Interested', 'Converted', 'Lost'];
 
-/* ── Timeline dot color by staff ──────────────────────── */
-function timelineDotClass(by: string): string {
-  if (by === 'System') return 'crm-timeline-dot--system';
-  const lower = by.toLowerCase();
-  if (lower.includes('sarah')) return 'crm-timeline-dot--success';
-  if (lower.includes('mike'))  return 'crm-timeline-dot--info';
-  if (lower.includes('admin')) return 'crm-timeline-dot--warning';
-  return '';
-}
-
-/* ── MarkLostModal ─────────────────────────────────────── */
-
-function MarkLostModal({ onConfirm, onCancel, isSubmitting }: MarkLostModalProps) {
-  const { register, handleSubmit } = useForm<MarkLostFormData>({
-    resolver: zodResolver(markLostSchema),
-    defaultValues: { reason: '' },
-  });
-  const onSubmit = (d: MarkLostFormData) => onConfirm(d.reason ?? '');
-
-  return (
-    <div className="fixed inset-0 bg-bg-pagelack/60 backdrop-blur-sm z-[100] flex items-center justify-center p-4">
-      <div className="bg-bg-pageg-drawer border border-border w-full max-w-md rounded-2xl shadow-xl overflow-hidden animate-in zoom-in-95">
-        <div className="p-5 border-b border-border flex items-center gap-3">
-          <div className="bg-danger/10 text-danger p-2 rounded-full shrink-0">
-            <AlertTriangle size={22} />
-          </div>
-          <div>
-            <h3 className="text-lg font-bold text-text-primary">Mark as Lost?</h3>
-            <p className="text-sm text-text-secondary">This will move the enquiry to the Lost column.</p>
-          </div>
-        </div>
-        <form id="mark-lost-form" onSubmit={handleSubmit(onSubmit)} className="p-5 space-y-4">
-          <div className="flex flex-col gap-1.5">
-            <label htmlFor="lost-reason" className="text-xs font-semibold text-text-secondary uppercase tracking-wider">
-              Reason <span className="lowercase font-normal opacity-70">(optional)</span>
-            </label>
-            <textarea
-              id="lost-reason"
-              rows={3}
-              placeholder="e.g. Didn't respond..."
-              className="w-full px-3.5 py-2.5 rounded-lg text-sm bg-bg-pageg-input text-text-primary border border-border outline-none transition-all focus:border-primary focus:ring-4 focus:ring-primary/15"
-              {...register('reason')}
-            />
-          </div>
-        </form>
-        <div className="p-4 border-t border-border flex gap-3">
-          <button type="button" onClick={onCancel} className="flex-1 py-2 text-sm font-medium border border-border rounded-lg hover:bg-bg-pageg-elevated transition-colors">Cancel</button>
-          <button type="submit" form="mark-lost-form" disabled={isSubmitting} className="flex-1 py-2 text-sm font-medium bg-danger text-white rounded-lg hover:bg-danger/90 transition-colors inline-flex justify-center items-center gap-2">
-            {isSubmitting ? <span className="animate-spin w-4 h-4 border-2 border-white border-t-transparent rounded-full" /> : <><XCircle size={15} /> Mark as Lost</>}
-          </button>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function InfoItem({ icon, label, value }: { icon: React.ReactNode, label: string, value: string }) {
-  return (
-    <div className="flex items-start gap-3">
-      <div className="text-text-tertiary mt-0.5">{icon}</div>
-      <div>
-        <p className="text-xs font-semibold text-text-secondary uppercase tracking-wider mb-0.5">{label}</p>
-        <p className="text-sm font-medium text-text-primary">{value}</p>
-      </div>
-    </div>
-  );
-}
+import { MarkLostModal } from '@/app/manager/manager_crm/manager_crm_shared_components/ManagerCrmEnquiriesMarkLostModal';
+import { ManagerCrmEnquiriesLeftColumn } from '@/app/manager/manager_crm/manager_crm_shared_components/ManagerCrmEnquiriesLeftColumn';
 
 /* ── Main Page ─────────────────────────────────────────── */
 export function ManagerCrmEnquiriesDetailClient({ id }: { id: string }) {
@@ -215,65 +150,7 @@ export function ManagerCrmEnquiriesDetailClient({ id }: { id: string }) {
           ══════════════════════════════ */}
           <div className="flex flex-col gap-6 min-w-0">
 
-            {/* ── Info Card ── */}
-            <div className="bg-bg-pageg-card border border-border rounded-xl p-6 shadow-sm">
-              <div className="flex items-center gap-5 pb-6 border-b border-border mb-6">
-                {/* Avatar */}
-                <div className="rounded-full flex items-center justify-center bg-gradient-to-br from-primary to-purple font-bold text-white shrink-0 w-16 h-16 text-xl shadow-lg shadow-primary/20">
-                  {getInitials(enquiry.name)}
-                </div>
-                <div className="flex flex-col gap-1.5 min-w-0">
-                  <div className="flex items-center gap-3 flex-wrap">
-                    <h1 className="text-text-primaryxl font-bold text-text-primary m-0 truncate">{enquiry.name}</h1>
-                    <span className={`crm-badge ${statusBadgeCls}`}>{enquiry.status}</span>
-                  </div>
-                  <p className="flex items-center gap-1.5 text-sm text-text-secondary font-mono m-0">
-                    <Phone size={13} />
-                    +91 {enquiry.phone}
-                  </p>
-                </div>
-              </div>
-
-              {/* Details grid */}
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-6">
-                <InfoItem icon={<Tag size={14} />}          label="Source"           value={enquiry.source} />
-                <InfoItem icon={<Clock size={14} />}        label="Preferred Shift"  value={enquiry.shift} />
-                <InfoItem icon={<User size={14} />}         label="Handled By"       value={enquiry.handledBy} />
-                <InfoItem icon={<MapPin size={14} />}       label="Branch Preference" value={enquiry.preferredBranch} />
-                <InfoItem icon={<CalendarDays size={14} />} label="Enquiry Date"     value={enquiry.enquiryDate} />
-                <InfoItem icon={<Phone size={14} />}        label="Phone (masked)"   value={maskPhone(enquiry.phone)} />
-              </div>
-            </div>
-
-            {/* ── Timeline ── */}
-            <div className="bg-bg-pageg-card border border-border rounded-xl p-6 shadow-sm">
-              <h2 className="text-[15px] font-bold text-text-primary mb-5 m-0">Activity Timeline</h2>
-
-              {enquiry.followUps.length === 0 ? (
-                <div className="flex flex-col items-center justify-center p-8 text-center border-2 border-dashed border-border rounded-xl bg-bg-pageg-elevated/50">
-                  <Clock size={32} className="text-text-secondary mb-4 mx-auto" />
-                  <p className="text-sm text-text-secondary mb-6">No follow-ups recorded yet</p>
-                </div>
-              ) : (
-                <div className="relative pl-3 border-l-2 border-border/50 space-y-6">
-                  {enquiry.followUps.map((fu) => (
-                    <div className="relative" key={fu.id}>
-                      <div className={`crm-timeline-dot ${timelineDotClass(fu.by)}`} />
-                      <div className="bg-bg-pageg-input border border-border rounded-lg p-4 transition-colors hover:border-text-secondary">
-                        <div className="flex items-center justify-between mb-2">
-                          <p className="text-xs font-semibold text-text-primary m-0 flex items-center gap-2">
-                            {fu.date}
-                            <span className="text-text-tertiary font-normal">{fu.date}</span>
-                          </p>
-                          <p className="text-[11px] font-medium text-text-secondary uppercase tracking-wider m-0">by {fu.by}</p>
-                        </div>
-                        <p className="text-[13px] text-text-secondary leading-relaxed m-0">{fu.note}</p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              )}
-            </div>
+            <ManagerCrmEnquiriesLeftColumn enquiry={enquiry} />
 
           </div>
 

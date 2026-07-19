@@ -2,13 +2,25 @@
 import { useUrlState } from '@/app/manager/manager_shared_hooks/useUrlState';
 
 // RESPONSIBILITY: Renders the Notice Board UI and manages local form states.
-import { useState } from 'react';
+import { usePermissions } from '@/app/manager/manager_shared_hooks/usePermissions';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { z } from 'zod';
+import { useState, useEffect } from 'react';
 import { ChevronRight, Plus, X, Edit2, Trash2, Send, Megaphone, CheckCircle, Smartphone } from 'lucide-react';
 import { useManagerNotices } from '@/app/manager/manager_communication/manager_communication_hooks/useManagerNotices';
 import type { Notice } from '@/app/manager/manager_communication/manager_communication_types/manager_communication_types';
 import { TablePagination } from '@/components/ui/table-pagination';
 import { TableToolbar } from "@/components/ui/table-toolbar";
 import { useClientTable } from "@/components/ui/use-client-table";
+
+
+const noticeSchema = z.object({
+  title: z.string().min(1, 'Title is required'),
+  message: z.string().min(1, 'Message is required'),
+  validTill: z.string().min(1, 'Valid till is required'),
+});
+type NoticeFormData = z.infer<typeof noticeSchema>;
 
 export function ManagerCommunicationNoticesClient() {
   const [searchTerm, setSearchTerm] = useUrlState('searchTerm', '');
@@ -20,7 +32,13 @@ export function ManagerCommunicationNoticesClient() {
   const [deleteItem, setDeleteItem]       = useState<Notice | null>(null);
   const [broadcastItem, setBroadcastItem] = useState<Notice | null>(null);
   const [toast, setToast]                 = useState('');
-  const [form, setForm]                   = useState({ title: '', message: '', validTill: '' });
+  
+  const { canEdit, canDelete } = usePermissions();
+  const { register, handleSubmit, reset, setValue, formState: { errors } } = useForm<NoticeFormData>({
+    resolver: zodResolver(noticeSchema),
+    defaultValues: { title: '', message: '', validTill: '' }
+  });
+
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(10);
 
@@ -34,12 +52,11 @@ export function ManagerCommunicationNoticesClient() {
 
   const showToast = (msg: string) => { setToast(msg); setTimeout(() => setToast(''), 3000); };
 
-  const openAdd  = () => { setForm({ title: '', message: '', validTill: '' }); setEditItem(null); setShowAdd(true); };
-  const openEdit = (n: Notice) => { setForm({ title: n.title, message: n.message, validTill: n.validTill }); setEditItem(n); setShowAdd(true); };
+  const openAdd  = () => { reset({ title: '', message: '', validTill: '' }); setEditItem(null); setShowAdd(true); };
+  const openEdit = (n: Notice) => { reset({ title: n.title, message: n.message, validTill: n.validTill }); setEditItem(n); setShowAdd(true); };
 
-  const handleSave = async () => {
-    if (!form.title || !form.message || !form.validTill) return;
-    if (editItem) {
+  const onSubmit = async (form: NoticeFormData) => {
+        if (editItem) {
       await updateNotice(editItem.id, form);
       showToast('Notice updated successfully');
     } else {
@@ -82,30 +99,31 @@ export function ManagerCommunicationNoticesClient() {
             <p className="text-lg font-bold text-text-primary mb-4 flex items-center gap-2">
               {editItem ? <Edit2 size={18} /> : <Megaphone size={18} />} {editItem ? 'Edit Notice' : 'Post Notice'}
             </p>
-            <div className="space-y-4">
+            
+            <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
               <div>
                 <label className="text-[13px] font-medium text-text-secondary mb-1 block">Title <span className="text-danger">*</span></label>
-                <input className="w-full bg-bg-pageg-input border border-border rounded-lg px-3.5 py-2 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary" placeholder="Notice title"
-                  value={form.title} onChange={e => setForm(f => ({ ...f, title: e.target.value }))} />
+                <input className="w-full bg-bg-pageg-input border border-border rounded-lg px-3.5 py-2 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary" placeholder="Notice title" {...register('title')} />
+                {errors.title && <p className="text-danger text-xs mt-1">{errors.title.message}</p>}
               </div>
               <div>
                 <label className="text-[13px] font-medium text-text-secondary mb-1 block">Message <span className="text-danger">*</span></label>
-                <textarea className="w-full bg-bg-pageg-input border border-border rounded-lg px-3.5 py-2 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary" rows={6} placeholder="Notice message..."
-                  value={form.message} onChange={e => setForm(f => ({ ...f, message: e.target.value }))} />
+                <textarea className="w-full bg-bg-pageg-input border border-border rounded-lg px-3.5 py-2 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary" rows={6} placeholder="Notice message..." {...register('message')} />
+                {errors.message && <p className="text-danger text-xs mt-1">{errors.message.message}</p>}
               </div>
               <div>
                 <label className="text-[13px] font-medium text-text-secondary mb-1 block">Valid Till <span className="text-danger">*</span></label>
-                <input type="date" className="w-full bg-bg-pageg-input border border-border rounded-lg px-3.5 py-2 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary"
-                  value={form.validTill} onChange={e => setForm(f => ({ ...f, validTill: e.target.value }))} />
+                <input type="date" className="w-full bg-bg-pageg-input border border-border rounded-lg px-3.5 py-2 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary" {...register('validTill')} />
+                {errors.validTill && <p className="text-danger text-xs mt-1">{errors.validTill.message}</p>}
               </div>
-            </div>
-            <div className="mt-6 flex justify-end gap-3">
-              <button onClick={() => setShowAdd(false)} className="px-4 py-2 border border-border text-text-primary rounded hover:bg-bg-pageg-elevated transition-colors text-sm font-medium">Cancel</button>
-              <button onClick={handleSave} className="px-4 py-2 bg-primary text-white rounded hover:bg-primary-hover transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 text-sm font-medium"
-                disabled={!form.title || !form.message || !form.validTill}>
-                <Megaphone size={16} /> {editItem ? 'Update Notice' : 'Post Notice'}
-              </button>
-            </div>
+              <div className="mt-6 flex justify-end gap-3">
+                <button type="button" onClick={() => setShowAdd(false)} className="px-4 py-2 border border-border text-text-primary rounded hover:bg-bg-pageg-elevated transition-colors text-sm font-medium">Cancel</button>
+                <button type="submit" className="px-4 py-2 bg-primary text-white rounded hover:bg-primary-hover transition-colors flex items-center gap-2 text-sm font-medium">
+                  <Megaphone size={16} /> {editItem ? 'Update Notice' : 'Post Notice'}
+                </button>
+              </div>
+            </form>
+
           </div>
         </div>
       )}
@@ -146,9 +164,9 @@ export function ManagerCommunicationNoticesClient() {
           <h1 className="text-[22px] font-bold text-text-primary flex items-center gap-2"><Megaphone size={24} /> Notice Board</h1>
           <p className="text-[13px] text-text-secondary mt-1.5">Post and manage library notices for students.</p>
         </div>
-        <button onClick={openAdd} className="flex items-center gap-2 px-4 py-2 bg-primary text-white rounded hover:bg-primary-hover transition-colors text-sm font-medium">
+        {canEdit && <button onClick={openAdd} className="flex items-center gap-2 px-4 py-2 bg-primary text-white rounded hover:bg-primary-hover transition-colors text-sm font-medium">
           <Plus size={16} /> Post Notice
-        </button>
+        </button>}
       </div>
 
       <div className="bg-bg-pageg-card rounded-xl border border-border p-4 shadow-sm">
@@ -156,9 +174,9 @@ export function ManagerCommunicationNoticesClient() {
           <div className="py-12 flex flex-col items-center justify-center text-center">
             <div className="mb-4 text-text-secondary opacity-50"><Megaphone size={48} /></div>
             <p className="text-lg font-semibold text-text-primary mb-4">No notices posted yet.</p>
-            <button onClick={openAdd} className="flex items-center gap-2 px-4 py-2 bg-primary text-white rounded hover:bg-primary-hover transition-colors text-sm font-medium">
+            {canEdit && <button onClick={openAdd} className="flex items-center gap-2 px-4 py-2 bg-primary text-white rounded hover:bg-primary-hover transition-colors text-sm font-medium">
               <Plus size={16} /> Post Notice
-            </button>
+        </button>}
           </div>
         ) : (
 <>
@@ -201,9 +219,9 @@ export function ManagerCommunicationNoticesClient() {
                     <td className="px-4 py-4"><span className="font-mono text-[12px] text-text-primary tracking-tight">{row.postedDate}</span></td>
                     <td className="px-4 py-4 text-right">
                       <div className="flex gap-2 items-center justify-end">
-                        <button onClick={() => openEdit(row)} className="w-8 h-8 flex items-center justify-center rounded-md hover:bg-muted/50 text-muted-foreground hover:text-primary transition-colors" aria-label="Edit" title="Edit"><Edit2 size={14} /></button>
+                        {canEdit && <button onClick={() => openEdit(row)} className="w-8 h-8 flex items-center justify-center rounded-md hover:bg-muted/50 text-muted-foreground hover:text-primary transition-colors" aria-label="Edit" title="Edit"><Edit2 size={14} /></button>}
                         <button onClick={() => setBroadcastItem(row)} className="w-8 h-8 flex items-center justify-center rounded-md hover:bg-muted/50 text-muted-foreground hover:text-info transition-colors" aria-label="Broadcast" title="Broadcast"><Send size={14} /></button>
-                        <button onClick={() => setDeleteItem(row)} className="w-8 h-8 flex items-center justify-center rounded-md hover:bg-muted/50 text-muted-foreground hover:text-danger transition-colors" aria-label="Delete" title="Delete"><Trash2 size={14} /></button>
+                        {canDelete && <button onClick={() => setDeleteItem(row)} className="w-8 h-8 flex items-center justify-center rounded-md hover:bg-muted/50 text-muted-foreground hover:text-danger transition-colors" aria-label="Delete" title="Delete"><Trash2 size={14} /></button>}
                       </div>
                     </td>
                   </tr>

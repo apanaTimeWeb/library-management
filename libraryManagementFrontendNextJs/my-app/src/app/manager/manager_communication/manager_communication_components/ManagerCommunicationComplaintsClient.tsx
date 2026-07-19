@@ -1,3 +1,15 @@
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import * as z from 'zod';
+
+const complaintSchema = z.object({
+  studentName: z.string().optional(),
+  isAnonymous: z.boolean().default(false),
+  title: z.string().min(3, "Title must be at least 3 characters"),
+  desc: z.string().min(10, "Description must be at least 10 characters")
+});
+type ComplaintFormData = z.infer<typeof complaintSchema>;
+
 'use client';
 // RESPONSIBILITY: Renders the Complaints UI and handles status filtering and resolution.
 import { useState } from 'react';
@@ -28,7 +40,7 @@ export function ManagerCommunicationComplaintsClient() {
   const [resolveItem, setResolveItem]   = useState<Complaint | null>(null);
   const [resolveNote, setResolveNote]   = useState('');
   const [toast, setToast]               = useState('');
-  const [addForm, setAddForm]           = useState({ studentName: '', isAnonymous: false, title: '', desc: '', phone: '' });
+  const { register, handleSubmit, formState: { errors, isSubmitting }, reset } = useForm<ComplaintFormData>({ resolver: zodResolver(complaintSchema), defaultValues: { isAnonymous: false } });
   const [expandedDesc, setExpandedDesc] = useState<string[]>([]);
 
   const showToast = (msg: string) => { setToast(msg); setTimeout(() => setToast(''), 3000); };
@@ -121,34 +133,7 @@ export function ManagerCommunicationComplaintsClient() {
             <button onClick={() => setShowAdd(false)} className="eng-modal-close" aria-label="Close"><X size={16} /></button>
             <p className="eng-modal-title flex items-center gap-2"><Plus size={18}/> Add Complaint</p>
             <p className="eng-modal-desc">Staff raises complaint on student&apos;s behalf.</p>
-            <div className="eng-form-stack">
-              <div>
-                <label className="eng-label">Student Name (optional)</label>
-                <input className="eng-input" placeholder="Search student name..."
-                  value={addForm.studentName} onChange={e => setAddForm(f => ({ ...f, studentName: e.target.value }))} />
-              </div>
-              <label className="eng-checkbox-row">
-                <input type="checkbox" checked={addForm.isAnonymous}
-                  onChange={e => setAddForm(f => ({ ...f, isAnonymous: e.target.checked }))} />
-                Hide student identity from staff view
-              </label>
-              <div>
-                <label className="eng-label">Title <span className="eng-required">*</span></label>
-                <input className="eng-input" placeholder="Brief complaint title"
-                  value={addForm.title} onChange={e => setAddForm(f => ({ ...f, title: e.target.value }))} />
-              </div>
-              <div>
-                <label className="eng-label">Description <span className="eng-required">*</span></label>
-                <textarea className="eng-textarea" rows={4} placeholder="Describe the issue in detail..."
-                  value={addForm.desc} onChange={e => setAddForm(f => ({ ...f, desc: e.target.value }))} />
-              </div>
-            </div>
-            <div className="eng-modal-footer">
-              <button onClick={() => setShowAdd(false)} className="eng-btn-ghost">Cancel</button>
-              <button onClick={handleAdd} className="eng-btn-primary"
-                disabled={!addForm.title || !addForm.desc}>Submit Complaint</button>
-            </div>
-          </div>
+            <form id="add-complaint-form" onSubmit={handleSubmit(handleAdd)} className="eng-form-stack">
         </div>
       )}
 
