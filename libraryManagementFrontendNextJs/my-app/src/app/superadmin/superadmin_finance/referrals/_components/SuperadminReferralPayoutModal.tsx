@@ -11,6 +11,8 @@ import { SuperadminSearchableDropdown } from '@/app/superadmin/superadmin_shared
 import { PayoutFormData, payoutSchema } from "./SuperadminReferralPayoutModal_types";
 
 
+export type { PayoutFormData } from "./SuperadminReferralPayoutModal_types";
+
 
 export function SuperadminReferralPayoutModal({ 
   isOpen, 
@@ -60,7 +62,7 @@ export function SuperadminReferralPayoutModal({
                 { label: 'Cash', value: 'cash' },
               ]}
               value={paymentMethod}
-              onChange={(v) => setValue('paymentMethod', v as 'cash' | 'upi' | 'card' | 'bank transfer')}
+              onChange={(v) => setValue('paymentMethod', v as 'cash' | 'upi' | 'bank')}
             />
             {errors.paymentMethod && <p className="text-danger text-xs mt-1">{errors.paymentMethod.message}</p>}
           </div>

@@ -21,13 +21,15 @@ const PROVIDER_LOGOS: Record<string, React.ReactNode> = {
 };
 
 export function SuperadminSystemWhatsappClient() {
-    const table = useClientTable(logs);
+
   const {
     provider, setProvider, apiKey, setApiKey, apiSecret, setApiSecret,
     senderPhone, setSenderPhone, showApiKey, setShowApiKey, showSecret, setShowSecret,
     testStatus, copiedUrl, webhookUrl, selectedProvider, logs, stats,
     handleTestConnection, handleCopyWebhook
   } = useSuperadminSystemWhatsapp();
+
+  const table = useClientTable(logs);
 
   return (
     <div>

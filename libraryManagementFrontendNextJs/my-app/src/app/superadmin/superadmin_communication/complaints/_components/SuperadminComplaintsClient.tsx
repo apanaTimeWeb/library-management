@@ -8,12 +8,12 @@ import { useClientTable } from "@/components/ui/use-client-table";
 import { TablePagination } from "@/components/ui/table-pagination";
 
 export function SuperadminComplaintsClient() {
-    const table = useClientTable(filtered);
   const {
     tab, setTab, showAdd, setShowAdd, viewItem, setViewItem, resolveItem, setResolveItem,
     resolveNote, setResolveNote, toast, addForm, setAddForm, expandedDesc,
     filtered, handleAdd, markInProgress, handleResolve, toggleDesc
   } = useSuperadminComplaintsClient();
+  const table = useClientTable(filtered);
 
   const statusBadge = (s: CStatus) => {
     if (s === 'Open')        return <span className="flex items-center gap-1 px-2 py-0.5 rounded-sm text-xs font-bold uppercase tracking-wider bg-danger/10 text-danger border border-danger/20"><Circle size={10} fill="currentColor" /> Open</span>;

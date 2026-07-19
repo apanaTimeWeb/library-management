@@ -11,7 +11,7 @@ import { superadminLibrarySchema } from '@/app/superadmin/superadmin_libraries/s
 import { SUPERADMIN_LIBRARIES_PLANS } from '@/app/superadmin/superadmin_libraries/superadmin_libraries_constants/SuperadminLibrariesConstants';
 import { logger } from '@/lib/logger';
 import { SuperadminSearchableDropdown } from '@/app/superadmin/superadmin_shared_components/SuperadminSearchableDropdown';
-import { maskSuperadminLibraryPhone } from '@/app/superadmin/superadmin_libraries/Superadminsuperadmin_libraries_utils/Superadminsuperadmin_libraries_utils';
+import { maskSuperadminLibraryPhone } from '@/app/superadmin/superadmin_libraries/superadmin_libraries_utils/Superadminsuperadmin_libraries_utils';
 
 export function SuperadminLibrariesPanel({ lib, mode, onClose, onSave, onSuspend }: Props) {
   const [editing, setEditing] = useState(mode === 'edit');

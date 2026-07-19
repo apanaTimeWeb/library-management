@@ -12,8 +12,10 @@ import { useClientTable } from "@/components/ui/use-client-table";
 import { TablePagination } from "@/components/ui/table-pagination";
 
 export function SuperadminSystemMaintenanceClient() {
-    const table = useClientTable(seats);
+
   const { seatsNeedingAttention, assetsOverdue, lockerIssues, seats, assets, lockers } = useSuperadminSystemMaintenance();
+
+  const table = useClientTable(seats);
 
   return (
     <div>

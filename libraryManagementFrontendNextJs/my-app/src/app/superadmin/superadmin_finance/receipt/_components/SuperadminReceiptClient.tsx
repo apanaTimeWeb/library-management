@@ -20,13 +20,14 @@ const MODE_BADGE: Record<string, string> = {
 };
 
 export function SuperadminReceiptClient() {
-    const table = useClientTable(filtered);
   const router = useRouter();
   const {
     search, setSearch, modeFilter, setModeFilter, filtered,
     totalCollected, totalReceipts, thisMonthCount,
     handleWhatsApp, handlePrint,
   } = useSuperadminReceiptClient();
+
+  const table = useClientTable(filtered);
 
   return (
     <div className="space-y-6">

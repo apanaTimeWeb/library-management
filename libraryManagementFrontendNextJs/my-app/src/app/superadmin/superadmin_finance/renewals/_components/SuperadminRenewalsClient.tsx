@@ -5,6 +5,7 @@ import { formatCurrency } from '@/app/superadmin/superadmin_finance/superadmin_f
 import { RefreshCw, Send, ChevronLeft, ChevronRight } from 'lucide-react';
 import { SuperadminSearchableDropdown } from '@/app/superadmin/superadmin_shared_components/SuperadminSearchableDropdown';
 import { useSuperadminRenewalsClient, PLANS, FILTERS } from '@/app/superadmin/superadmin_finance/renewals/_components/useSuperadminRenewalsClient';
+import type { SuperadminFinanceRenewalsFilterType } from '@/app/superadmin/superadmin_finance/superadmin_finance_types/SuperadminFinanceTypes';
 import { TableToolbar } from "@/components/ui/table-toolbar";
 import {
   Table,
@@ -69,7 +70,7 @@ export function SuperadminRenewalsClient() {
         {FILTERS.map(( f: { label: string; value: string; emoji: string } ) => (
           <button
             key={f.value}
-            onClick={() => setFilter(f.value)}
+            onClick={() => setFilter(f.value as SuperadminFinanceRenewalsFilterType)}
             className={`px-3 py-1.5 rounded-md text-xs font-bold transition-all border ${filter === f.value ? 'bg-primary/10 text-primary border-primary ring-2 ring-primary/30' : 'bg-transparent text-text-secondary border-border hover:bg-input'} cursor-pointer`}
           >
             {f.emoji} {f.label}

@@ -31,7 +31,6 @@ function daysLeftBadgeClass(days: number) {
 }
 
 export function SuperadminSubscriptionsClient() {
-    const table = useClientTable(Array.from({ length: 5 }));
   const router = useRouter();
   const {
     statusFilter, setStatusFilter,
@@ -40,6 +39,8 @@ export function SuperadminSubscriptionsClient() {
     rows,
     isLoading,
   } = useSuperadminSubscriptionsClient();
+
+  const table = useClientTable(rows);
 
   return (
     <div className="space-y-6">
@@ -128,7 +129,7 @@ export function SuperadminSubscriptionsClient() {
                 </td>
               </tr>
             ) : (
-              rows.map(( s: Record<string, unknown> & { id: number | string; status: string; studentName: string; smartId: string; shift: string; plan: string; startDate: string; endDate: string; lastPaymentDate: string; amount: number } ) => (
+              table.paginatedData.map(( s: any ) => (
                 <tr key={s.id} className="border-b border-border last:border-0 hover:bg-primary/5 transition-colors cursor-pointer" onClick={() => toast.success(`Viewing subscription for ${s.studentName}`)}>
                   <td className="py-3 px-4 font-medium text-sm text-text-primary">{s.studentName}</td>
                   <td className="py-3 px-4 font-mono text-xs text-text-secondary">{s.smartId}</td>

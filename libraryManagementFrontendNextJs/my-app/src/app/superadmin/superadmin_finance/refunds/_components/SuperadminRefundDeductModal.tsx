@@ -9,6 +9,8 @@ import { z } from 'zod';
 import { RefundDeductModalProps, DeductFormData, deductSchema } from "./SuperadminRefundDeductModal_types";
 
 
+export type { DeductFormData } from "./SuperadminRefundDeductModal_types";
+
 
 export function SuperadminRefundDeductModal({ isOpen, onClose, onSubmit, studentName, isSubmitting }: RefundDeductModalProps) {
   const {

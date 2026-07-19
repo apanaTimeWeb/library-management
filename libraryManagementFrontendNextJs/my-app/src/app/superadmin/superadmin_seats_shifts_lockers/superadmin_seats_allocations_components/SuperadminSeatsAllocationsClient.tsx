@@ -14,7 +14,7 @@ import { useClientTable } from "@/components/ui/use-client-table";
 import { TablePagination } from "@/components/ui/table-pagination";
 
 export function SuperadminSeatsAllocationsClient() {
-    const table = useClientTable(filteredAllocations);
+
   const {
     shiftFilter,
     setShiftFilter,
@@ -28,6 +28,8 @@ export function SuperadminSeatsAllocationsClient() {
     handleExport,
     handleRowClick
   } = useSuperadminSeatsAllocations();
+
+  const table = useClientTable(filteredAllocations);
 
   const getStatusVariant = (status: string) => {
     switch (status) {

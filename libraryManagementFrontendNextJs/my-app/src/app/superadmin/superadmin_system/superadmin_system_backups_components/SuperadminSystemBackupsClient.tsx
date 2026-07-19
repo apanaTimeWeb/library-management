@@ -23,12 +23,14 @@ const STATUS_CFG: Record<string, { label: string; variant: 'success' | 'danger' 
 };
 
 export function SuperadminSystemBackupsClient() {
-    const table = useClientTable(backups);
+
   const {
     autoBackup, setAutoBackup, cloudSync, setCloudSync, backupTime, setBackupTime,
     retention, setRetention, creating, downloading, backups, stats,
     handleCreateBackup, handleDownload, handleDeleteBackup
   } = useSuperadminSystemBackups();
+
+  const table = useClientTable(backups);
   const [cloudProvider, setCloudProvider] = useState('Google Drive');
 
   const cloudProviderOptions = [

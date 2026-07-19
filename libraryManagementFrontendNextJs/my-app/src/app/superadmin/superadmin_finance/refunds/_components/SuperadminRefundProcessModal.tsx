@@ -11,6 +11,8 @@ import { SuperadminSearchableDropdown } from '@/app/superadmin/superadmin_shared
 import { RefundProcessModalProps, ProcessFormData, processSchema } from "./SuperadminRefundProcessModal_types";
 
 
+export type { ProcessFormData } from "./SuperadminRefundProcessModal_types";
+
 
 export function SuperadminRefundProcessModal({ isOpen, onClose, onSubmit, studentName, amount, isSubmitting }: RefundProcessModalProps) {
   const {
@@ -45,7 +47,7 @@ export function SuperadminRefundProcessModal({ isOpen, onClose, onSubmit, studen
                 { label: 'Cheque', value: 'cheque' }
               ]}
               value={paymentMethod}
-              onChange={(v) => setValue('paymentMethod', v as 'cash' | 'upi' | 'card' | 'bank transfer')}
+              onChange={(v) => setValue('paymentMethod', v as 'cash' | 'upi' | 'bank' | 'cheque')}
             />
             {errors.paymentMethod && <p className="text-danger text-xs mt-1">{errors.paymentMethod.message}</p>}
           </div>

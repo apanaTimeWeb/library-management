@@ -57,11 +57,11 @@ function KanbanCard({ enq, onClick }: { enq: Enquiry; colClass: string; onClick:
 }
 
 export function SuperadminEnquiriesClient() {
-    const table = useClientTable(filtered);
   const {
     router, view, setView, search, setSearch, statusFilter, setStatusFilter,
     filtered, colEnquiries, handleQuickConvert, handleQuickLost
   } = useSuperadminEnquiriesClient();
+  const table = useClientTable(filtered);
 
   return (
     <div className="relative p-2 sm:p-4">

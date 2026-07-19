@@ -14,7 +14,7 @@ import { useClientTable } from "@/components/ui/use-client-table";
 import { TablePagination } from "@/components/ui/table-pagination";
 
 export function SuperadminSystemPowerSavingClient() {
-    const table = useClientTable(alerts);
+
   const {
     threshold,
     setThreshold,
@@ -24,6 +24,8 @@ export function SuperadminSystemPowerSavingClient() {
     alerts,
     getZoneStatus
   } = useSuperadminSystemPowerSaving();
+
+  const table = useClientTable(alerts);
 
   return (
     <div>

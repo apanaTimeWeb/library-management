@@ -19,7 +19,6 @@ const STATUS_BADGE: Record<string, string> = {
 };
 
 export function SuperadminInvoiceClient() {
-    const table = useClientTable(filtered);
   const router = useRouter();
   const {
     search, setSearch,
@@ -28,6 +27,7 @@ export function SuperadminInvoiceClient() {
     totalInvoices, totalBilled, pendingCount,
     handleWhatsApp, handlePrint
   } = useSuperadminInvoiceClient();
+  const table = useClientTable(filtered);
 
   return (
     <div className="space-y-6">

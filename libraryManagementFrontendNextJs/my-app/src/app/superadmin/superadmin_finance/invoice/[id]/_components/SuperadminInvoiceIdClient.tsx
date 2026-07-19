@@ -10,13 +10,13 @@ import { useClientTable } from "@/components/ui/use-client-table";
 import { TablePagination } from "@/components/ui/table-pagination";
 
 export function SuperadminInvoiceIdClient() {
-    const table = useClientTable(INV.items);
   const {
     router,
     invoiceData: INV,
     handleWhatsApp,
     handlePrint,
   } = useSuperadminInvoiceIdClient();
+  const table = useClientTable(INV.items);
 
   return (
     <div className="space-y-4">

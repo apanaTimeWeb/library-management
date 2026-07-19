@@ -13,7 +13,7 @@ import { useClientTable } from "@/components/ui/use-client-table";
 import { TablePagination } from "@/components/ui/table-pagination";
 
 export function SuperadminSeatsLockersClient() {
-    const table = useClientTable(filteredLockers);
+
   const {
     filteredLockers,
     statusFilter,
@@ -36,6 +36,8 @@ export function SuperadminSeatsLockersClient() {
     handleAddLocker,
     openAddModal
   } = useSuperadminSeatsLockers();
+
+  const table = useClientTable(filteredLockers);
 
   const getStatusVariant = (status: string) => {
     switch (status) {
