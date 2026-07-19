@@ -1,3 +1,4 @@
+﻿// RESPONSIBILITY: Renders or handles logic for SuperadminEngagementMockData.ts.
 export const SUPERADMIN_ENGAGEMENT_MOCK_HOLIDAYS = [
   { id:'1', date:'2026-04-14', name:'Dr. Ambedkar Jayanti',      type:'National'  },
   { id:'2', date:'2026-04-21', name:'Ram Navami',                type:'Religious' },
@@ -30,3 +31,4 @@ export const SUPERADMIN_ENGAGEMENT_MOCK_QR_STUDENT = {
   smartId: 'SL-001', shift: 'Morning',
   validTill: '30 Jun 2026', plan: 'Premium  6 Month',
 };
+

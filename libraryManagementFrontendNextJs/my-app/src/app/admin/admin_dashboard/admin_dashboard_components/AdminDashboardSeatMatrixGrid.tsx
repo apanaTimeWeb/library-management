@@ -10,8 +10,8 @@ import type { AdminDashboardSeatMatrixProps as Props } from '@/app/admin/admin_d
 const LEGEND = [
   { label: 'Free',          cls: 'bg-success-bg text-success' },
   { label: 'Occupied',      cls: 'bg-info-bg text-info' },
-  { label: 'Expiring ≤7d',  cls: 'bg-warning-bg text-warning' },
-  { label: 'Maintenance',   cls: 'bg-bg-page text-text-secondary' },
+  { label: 'Expiring â‰¤7d',  cls: 'bg-warning-bg text-warning' },
+  { label: 'Maintenance',   cls: 'bg-page text-text-secondary' },
 ];
 
 export function AdminDashboardSeatMatrixGrid({ seats, shifts, state }: Props) {
@@ -42,7 +42,7 @@ export function AdminDashboardSeatMatrixGrid({ seats, shifts, state }: Props) {
   };
 
   return (
-    <Card className="flex flex-col overflow-hidden h-full border-border bg-bg-card shadow-none">
+    <Card className="flex flex-col overflow-hidden h-full border-border bg-card shadow-none">
       <CardHeader className="pb-3 border-b border-border">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div>
@@ -53,14 +53,14 @@ export function AdminDashboardSeatMatrixGrid({ seats, shifts, state }: Props) {
             </CardDescription>
           </div>
 
-          <div className="flex bg-bg-input/50 p-1 rounded-md overflow-x-auto max-w-full no-scrollbar">
+          <div className="flex bg-input/50 p-1 rounded-md overflow-x-auto max-w-full no-scrollbar">
             {allTabs.map(tab => (
               <button
                 key={tab}
                 onClick={() => setActiveShift(tab)}
                 className={`px-3 py-1.5 text-xs font-medium rounded-sm whitespace-nowrap transition-colors ${
                   activeShift === tab 
-                    ? 'bg-bg-page text-text-primary shadow-sm' 
+                    ? 'bg-page text-text-primary shadow-sm' 
                     : 'text-text-secondary hover:text-text-primary'
                 }`}
               >
@@ -71,7 +71,7 @@ export function AdminDashboardSeatMatrixGrid({ seats, shifts, state }: Props) {
         </div>
       </CardHeader>
 
-      <CardContent className="flex-1 p-4 overflow-y-auto bg-bg-page min-h-72">
+      <CardContent className="flex-1 p-4 overflow-y-auto bg-page min-h-72">
         {filtered.length === 0 ? (
           <div className="flex items-center justify-center h-full min-h-48">
             <p className="text-text-secondary text-sm font-medium">
@@ -95,7 +95,7 @@ export function AdminDashboardSeatMatrixGrid({ seats, shifts, state }: Props) {
         )}
       </CardContent>
 
-      <div className="flex flex-wrap items-center gap-3 px-4 py-3 bg-bg-page border-t border-border">
+      <div className="flex flex-wrap items-center gap-3 px-4 py-3 bg-page border-t border-border">
         <span className="text-xs font-semibold text-text-secondary mr-1">Legend:</span>
         {LEGEND.map(l => (
           <Badge key={l.label} variant="secondary" className={`${l.cls} border-none`}>
@@ -104,24 +104,24 @@ export function AdminDashboardSeatMatrixGrid({ seats, shifts, state }: Props) {
         ))}
       </div>
 
-      <CardFooter className="flex flex-wrap items-center gap-3 py-3 px-4 bg-bg-page border-t border-border">
+      <CardFooter className="flex flex-wrap items-center gap-3 py-3 px-4 bg-page border-t border-border">
         <span className="text-xs font-semibold text-text-secondary">Filter:</span>
 
         <Select value={appliedShift} onValueChange={setAppliedShift}>
-          <SelectTrigger className="w-36 h-8 text-xs border-border bg-bg-input text-text-primary">
+          <SelectTrigger className="w-36 h-8 text-xs border-border bg-input text-text-primary">
             <SelectValue placeholder="All Shifts" />
           </SelectTrigger>
-          <SelectContent className="bg-bg-card border-border text-text-primary">
+          <SelectContent className="bg-card border-border text-text-primary">
             <SelectItem value="All">All Shifts</SelectItem>
             {shifts.map(s => <SelectItem key={s} value={s}>{s}</SelectItem>)}
           </SelectContent>
         </Select>
 
         <Select value={feeFilter} onValueChange={setFeeFilter}>
-          <SelectTrigger className="w-36 h-8 text-xs border-border bg-bg-input text-text-primary">
+          <SelectTrigger className="w-36 h-8 text-xs border-border bg-input text-text-primary">
             <SelectValue placeholder="All Fee Status" />
           </SelectTrigger>
-          <SelectContent className="bg-bg-card border-border text-text-primary">
+          <SelectContent className="bg-card border-border text-text-primary">
             <SelectItem value="All">All Fee Status</SelectItem>
             <SelectItem value="Due">Due</SelectItem>
             <SelectItem value="Paid">Paid</SelectItem>

@@ -1,18 +1,24 @@
 'use client';
+import { AdminSearchableDropdown } from '@/app/admin/admin_shared_components/AdminSearchableDropdown';
+
 // RESPONSIBILITY: Renders the AdminFinancePaymentsClient component.
 import { useState } from 'react';
 import { Input } from '@/components/ui/input';
 import { useRouter } from 'next/navigation';
 import { Receipt, Trash2, FileText, Download, X , Search} from 'lucide-react';
-import { formatCurrency, formatDate } from '@/app/admin/admin_finance/admin_finance_utils/format';
+import { formatCurrency, formatDate } from '@/app/admin/admin_finance/admin_finance_utils/AdminFinanceFormat';
 import { useAdminFinancePayments } from '@/app/admin/admin_finance/payments/admin_finance_payments_hooks/useAdminFinancePayments';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Switch } from '@/components/ui/switch';
 import { TablePagination } from '@/components/ui/table-pagination';
+import { TableToolbar } from '@/components/ui/table-toolbar';
+import { useClientTable } from '@/components/ui/use-client-table';
+import { ADMIN_ROUTES } from '@/app/admin/admin_url_config';
 
 export function AdminFinancePaymentsClient() {
+
   const router = useRouter();
   const {
     visible,
@@ -42,22 +48,22 @@ export function AdminFinancePaymentsClient() {
       default: return 'bg-muted text-muted-foreground';
     }
   };
-
+    const table = useClientTable(visible, 10);
   return (
     <div className="h-full flex flex-col pb-10 space-y-6 relative">
       {/* page Header */}
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b pb-4">
         <div>
           <nav className="text-xs text-muted-foreground font-medium mb-1 tracking-wide uppercase">Smart Library 360 › Admin › Finance</nav>
-          <h1 className="text-2xl font-bold tracking-tight">Payment History</h1>
+          <h1 className="text-text-primary text-xl font-bold tracking-tight">Payment History</h1>
           <p className="text-sm text-muted-foreground mt-1">Complete payment ledger with audit trail.</p>
         </div>
       </div>
 
       {/* Filter Bar */}
       <div className="flex flex-col sm:flex-row items-center gap-4 bg-muted/30 p-3 rounded-lg border border-border">
-        <select 
-          className="flex h-9 w-44 items-center justify-between rounded-md border border-border bg-bg-input px-3 py-1 text-sm ring-offset-bg-page placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:ring-offset-2"
+        <AdminSearchableDropdown 
+          className="flex h-9 w-44 items-center justify-between rounded-md border border-border bg-input px-3 py-1 text-sm ring-offset-bg-page placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:ring-offset-2"
           value={modeFilter} 
           onChange={(e) => setModeFilter(e.target.value)}
         >
@@ -66,7 +72,7 @@ export function AdminFinancePaymentsClient() {
           <option value="upi">UPI</option>
           <option value="card">Card</option>
           <option value="bank">Bank Transfer</option>
-        </select>
+        </AdminSearchableDropdown>
         
         <div className="flex items-center gap-2">
           <Switch 
@@ -95,7 +101,13 @@ export function AdminFinancePaymentsClient() {
         </div>
       </div>
 
-<table className="w-full text-sm text-left">
+<div className="mb-4">
+        <TableToolbar 
+          search={table.searchTerm} 
+          onSearch={table.setSearchTerm} 
+        />
+      </div>
+      <table className="w-full text-sm text-left">
             <thead className="bg-muted/30 border-b text-muted-foreground text-xs font-bold uppercase tracking-wider sticky top-0 z-10">
               <tr>
                 <th className="px-4 py-3">Receipt #</th>
@@ -119,14 +131,14 @@ export function AdminFinancePaymentsClient() {
                     </div>
                   </td>
                 </tr>
-              ) : visible.length === 0 ? (
+              ) : table.paginatedData.length === 0 ? (
                 <tr>
                   <td colSpan={9} className="px-4 py-20 text-center text-muted-foreground">
                     No payments found matching your criteria.
                   </td>
                 </tr>
               ) : (
-                visible.filter(row => JSON.stringify(row).toLowerCase().includes(searchTerm.toLowerCase())).slice((page - 1) * limit, page * limit).map((p) => {
+                table.paginatedData.map((p) => {
                   const isDeleted = p.status === 'deleted';
                   return (
                     <tr key={p.id} className={`hover:bg-muted/10 transition-colors ${isDeleted ? 'bg-danger/5' : ''}`}>
@@ -186,7 +198,7 @@ export function AdminFinancePaymentsClient() {
                               size="icon" 
                               className="h-7 w-7 text-muted-foreground hover:text-primary hover:bg-primary/10" 
                               title="View Receipt"
-                              onClick={() => router.push(ADMIN_ROUTES.FINANCE_RECEIPT_ID(p.id))}
+                              onClick={() => router.push(ADMIN_ROUTES.FINANCE_RECEIPT_ID(String(p.id)))}
                             >
                               <Receipt size={14} />
                             </Button>
@@ -195,7 +207,7 @@ export function AdminFinancePaymentsClient() {
                               size="icon" 
                               className="h-7 w-7 text-muted-foreground hover:text-primary hover:bg-primary/10" 
                               title="View Invoice"
-                              onClick={() => router.push(ADMIN_ROUTES.FINANCE_INVOICE_ID(p.id))}
+                              onClick={() => router.push(ADMIN_ROUTES.FINANCE_INVOICE_ID(String(p.id)))}
                             >
                               <FileText size={14} />
                             </Button>
@@ -217,7 +229,13 @@ export function AdminFinancePaymentsClient() {
               )}
             </tbody>
           </table>
-          </div>
+          </div> 
+      <TablePagination 
+        totalItems={table.totalItems} 
+        page={table.page} 
+        limit={table.limit} 
+        onPageChange={table.setPage} 
+      />
           <TablePagination
             page={page}
             limit={limit}
@@ -250,7 +268,7 @@ export function AdminFinancePaymentsClient() {
             <div className="space-y-2">
               <label className="text-sm font-medium">Deletion reason <span className="text-danger">*</span></label>
               <textarea
-                className="flex min-h-20 w-full rounded-md border border-border bg-bg-input px-3 py-2 text-sm ring-offset-bg-page placeholder:text-text-secondary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+                className="flex min-h-20 w-full rounded-md border border-border bg-input px-3 py-2 text-sm ring-offset-bg-page placeholder:text-text-secondary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
                 value={deleteReason}
                 onChange={(e) => setDeleteReason(e.target.value)}
                 placeholder="Enter reason for deletion..."
@@ -274,3 +292,4 @@ export function AdminFinancePaymentsClient() {
     </div>
   );
 }
+

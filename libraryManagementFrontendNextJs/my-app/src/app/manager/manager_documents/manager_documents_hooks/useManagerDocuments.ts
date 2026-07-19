@@ -1,3 +1,4 @@
+﻿// RESPONSIBILITY: Renders or handles logic for useManagerDocuments.ts.
 import { useEffect } from 'react';
 import { useManagerDocumentsStore } from '@/app/manager/manager_documents/manager_documents_store/manager_documents_store';
 
@@ -26,3 +27,4 @@ export function useManagerDocuments() {
     deleteDocument
   };
 }
+

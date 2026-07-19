@@ -1,3 +1,4 @@
+﻿// RESPONSIBILITY: Renders or handles logic for SuperadminAccountingTypes.ts.
 // Types for superadmin_accounting module
 
 import type { SuperadminDayGap, SuperadminShiftGap } from '@/app/superadmin/superadmin_accounting/shift-gap-analyzer/superadmin_shift_gap_analyzer_types/SuperadminShiftGapAnalyzerTypes';
@@ -156,3 +157,4 @@ export interface SuperadminAssetMaintenanceAddDialogProps {
 // assets
 // daily-settlement
 // asset-maintenance
+

@@ -1,16 +1,21 @@
 'use client';
+import { AdminSearchableDropdown } from '@/app/admin/admin_shared_components/AdminSearchableDropdown';
+
 // RESPONSIBILITY: Renders the AdminFinanceRenewalsClient component.
 import { useState } from 'react';
 import { RefreshCw, Send, X } from 'lucide-react';
-import { formatCurrency } from '@/app/admin/admin_finance/admin_finance_utils/format';
+import { formatCurrency } from '@/app/admin/admin_finance/admin_finance_utils/AdminFinanceFormat';
 import { useAdminFinanceRenewals } from '@/app/admin/admin_finance/renewals/admin_finance_renewals_hooks/useAdminFinanceRenewals';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { TablePagination } from '@/components/ui/table-pagination';
+import { TableToolbar } from '@/components/ui/table-toolbar';
+import { useClientTable } from '@/components/ui/use-client-table';
 
 export function AdminFinanceRenewalsClient() {
+
   const {
     filter,
     setFilter,
@@ -42,14 +47,14 @@ export function AdminFinanceRenewalsClient() {
     if (days <= 7) return 'text-warning font-bold';
     return 'text-primary font-bold';
   };
-
+    const table = useClientTable(visible, 10);
   return (
     <div className="h-full flex flex-col pb-10 space-y-6 relative">
       {/* page Header */}
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b pb-4">
         <div>
           <nav className="text-xs text-muted-foreground font-medium mb-1 tracking-wide uppercase">Smart Library 360 › Admin › Finance</nav>
-          <h1 className="text-2xl font-bold tracking-tight">Renewals</h1>
+          <h1 className="text-text-primary text-xl font-bold tracking-tight">Renewals</h1>
           <p className="text-sm text-muted-foreground mt-1">Subscriptions needing renewal attention.</p>
         </div>
         <Button onClick={handleRemindAll} variant="secondary" className="bg-primary/10 text-primary hover:bg-primary/20 border-none font-bold gap-2">
@@ -73,7 +78,13 @@ export function AdminFinanceRenewalsClient() {
 
       {/* Table */}
       <Card className="flex-1 shadow-none border-border bg-card overflow-hidden flex flex-col min-h-96">
-        <div className="w-full overflow-x-auto flex-1">
+        <div className="mb-4">
+        <TableToolbar 
+          search={table.searchTerm} 
+          onSearch={table.setSearchTerm} 
+        />
+      </div>
+      <div className="w-full overflow-x-auto flex-1">
           <table className="w-full text-sm text-left whitespace-nowrap min-w-max">
             <thead className="bg-muted/30 border-b text-muted-foreground text-xs font-bold uppercase tracking-wider sticky top-0 z-10">
               <tr>
@@ -93,15 +104,14 @@ export function AdminFinanceRenewalsClient() {
                 <tr>
                   <td colSpan={9} className="px-5 py-20 text-center">
                     <div className="flex flex-col items-center justify-center gap-3">
-                      <div className="text-4xl opacity-50">✨</div>
+                      <div className="text-4xl opacity-50">âœ¨</div>
                       <p className="text-lg font-bold">No renewals needed.</p>
                       <p className="text-sm text-muted-foreground">Try adjusting your filters.</p>
                     </div>
                   </td>
                 </tr>
               ) : (
-                visible.map((r) => (
-                  <tr key={r.id} className="hover:bg-muted/10 transition-colors">
+                table.paginatedData.map((r) => ( <tr key={r.id} className="hover:bg-muted/10 transition-colors">
                     <td className="px-5 py-4 font-bold text-sm text-primary">{r.studentName}</td>
                     <td className="px-5 py-4 text-xs font-mono text-muted-foreground">{r.smartId}</td>
                     <td className="px-5 py-4">
@@ -145,7 +155,13 @@ export function AdminFinanceRenewalsClient() {
               )}
             </tbody>
           </table>
-          </div>
+          </div> 
+      <TablePagination 
+        totalItems={table.totalItems} 
+        page={table.page} 
+        limit={table.limit} 
+        onPageChange={table.setPage} 
+      />
           <TablePagination
             page={page}
             limit={limit}
@@ -175,8 +191,8 @@ export function AdminFinanceRenewalsClient() {
             <div className="space-y-4">
               <div className="space-y-1.5">
                 <label className="text-sm font-medium text-primary">Plan</label>
-                <select
-                  className="w-full h-10 px-3 rounded-md border border-border bg-bg-input text-sm font-medium focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary"
+                <AdminSearchableDropdown
+                  className="w-full h-10 px-3 rounded-md border border-border bg-input text-sm font-medium focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary"
                   value={renewPlanId}
                   onChange={(e) => {
                     const id = e.target.value;
@@ -190,7 +206,7 @@ export function AdminFinanceRenewalsClient() {
                   {ADMIN_FINANCE_MOCK_PLANS.map((p) => (
                     <option key={p.id} value={String(p.id)}>{p.name} — {formatCurrency(p.price)}</option>
                   ))}
-                </select>
+                </AdminSearchableDropdown>
               </div>
               <div className="space-y-1.5">
                 <label className="text-sm font-medium text-primary">Amount</label>
@@ -198,8 +214,8 @@ export function AdminFinanceRenewalsClient() {
               </div>
               <div className="space-y-1.5">
                 <label className="text-sm font-medium text-primary">Payment Mode</label>
-                <select 
-                  className="w-full h-10 px-3 rounded-md border border-border bg-bg-input text-sm font-medium focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary"
+                <AdminSearchableDropdown 
+                  className="w-full h-10 px-3 rounded-md border border-border bg-input text-sm font-medium focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary"
                   value={renewMode} 
                   onChange={(e) => setRenewMode(e.target.value)}
                 >
@@ -207,7 +223,7 @@ export function AdminFinanceRenewalsClient() {
                   <option value="upi">UPI</option>
                   <option value="card">Card</option>
                   <option value="bank">Bank Transfer</option>
-                </select>
+                </AdminSearchableDropdown>
               </div>
               {renewMode !== 'cash' && (
                 <div className="space-y-1.5 animate-in fade-in slide-in-from-top-1">
@@ -234,3 +250,4 @@ export function AdminFinanceRenewalsClient() {
     </div>
   );
 }
+

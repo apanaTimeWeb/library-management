@@ -1,3 +1,4 @@
+﻿// RESPONSIBILITY: Renders or handles logic for ManagerCrmValidation.ts.
 import { z } from 'zod';
 
 
@@ -12,3 +13,4 @@ export const ManagerCrmMarkLostSchema = z.object({
   reason: z.string().min(1, 'Please select a reason'),
   details: z.string().optional(),
 });
+

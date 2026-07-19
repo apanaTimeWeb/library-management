@@ -1,3 +1,4 @@
+﻿// RESPONSIBILITY: Renders or handles logic for SuperadminSystemWhatsappTypes.ts.
 
 
 export interface SuperadminSystemWhatsappProvider {
@@ -15,3 +16,4 @@ export interface SuperadminSystemWhatsappLog {
 }
 export type SuperadminSystemWhatsappTestStatus = 'idle' | 'testing' | 'success' | 'error';
 export type SuperadminSystemWhatsappLogStatus = 'delivered' | 'failed' | 'pending';
+

@@ -1,14 +1,16 @@
+// RESPONSIBILITY: Renders or handles logic for useManagerSeatsAllocations.ts.
+import { useUrlState } from '@/app/manager/manager_shared_hooks/useUrlState';
 import { useState, useEffect } from 'react';
 import { useSeatsStore } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_store/manager_seats_shifts_lockers_store';
-import { Allocation } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_types';
+import { Allocation } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_types/ManagerSeatsTypes';
 
 // DATA FLOW: Hook -> useManagerSeatsAllocations -> Consuming UI Component
 export function useManagerSeatsAllocations() {
-  const [searchTerm, setSearchTerm] = useState('');
-  const [shiftFilter, setShiftFilter] = useState('All Shifts');
-  const [statusFilter, setStatusFilter] = useState('All Statuses');
-  const [dateFrom, setDateFrom] = useState('');
-  const [dateTo, setDateTo] = useState('');
+  const [searchTerm, setSearchTerm] = useUrlState('searchTerm', '' as string);
+  const [shiftFilter, setShiftFilter] = useUrlState('shiftFilter', 'All Shifts' as string);
+  const [statusFilter, setStatusFilter] = useUrlState('statusFilter', 'All Statuses' as string);
+  const [dateFrom, setDateFrom] = useUrlState('dateFrom', '' as string);
+  const [dateTo, setDateTo] = useUrlState('dateTo', '' as string);
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(10);
 
@@ -51,3 +53,5 @@ export function useManagerSeatsAllocations() {
     filtered,
   };
 }
+
+

@@ -1,3 +1,4 @@
+﻿// RESPONSIBILITY: Renders or handles logic for useSuperadminSeatsAllocations.ts.
 // DATA FLOW: SuperadminSeatsMockData -> useSuperadminSeatsAllocations -> SuperadminSeatsAllocationsClient
 import { useState, useMemo, useCallback } from 'react';
 import { SUPERADMIN_SEATS_MOCK_ALLOCATIONS } from '@/app/superadmin/superadmin_seats_shifts_lockers/superadmin_seats_shifts_lockers_utils/SuperadminSeatsMockData';
@@ -44,3 +45,4 @@ export function useSuperadminSeatsAllocations() {
     handleRowClick
   };
 }
+

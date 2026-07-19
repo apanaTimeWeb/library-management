@@ -1,3 +1,4 @@
+﻿// RESPONSIBILITY: Renders or handles logic for SuperadminAssetsConstants.ts.
 import type { SuperadminAsset } from '@/app/superadmin/superadmin_accounting/assets/superadmin_assets_types/SuperadminAssetsTypes';
 
 export const SUPERADMIN_ASSETS_MOCK_DATA: SuperadminAsset[] = [
@@ -14,4 +15,5 @@ export const SUPERADMIN_ASSETS_STATUS_STYLES: Record<string, string> = {
   maintenance: 'bg-warning-bg text-warning',
   disposed:    'bg-bg-input text-text-secondary',
 };
+
 

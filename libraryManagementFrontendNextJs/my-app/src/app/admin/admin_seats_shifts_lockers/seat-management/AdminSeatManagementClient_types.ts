@@ -1,3 +1,4 @@
+﻿// RESPONSIBILITY: Renders or handles logic for AdminSeatManagementClient_types.ts.
 import { useState } from "react";
 import { Plus, Search, Wrench, Edit, AlertTriangle, CheckCircle, X } from "lucide-react";
 import toast, { Toaster } from "react-hot-toast";
@@ -10,3 +11,4 @@ import { TablePagination } from "@/components/ui/table-pagination";
 export interface SeatManagementClientProps {
   initialSeats: Seat[];
 }
+

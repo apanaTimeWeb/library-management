@@ -22,7 +22,7 @@ export class ManagerCrmErrorBoundary extends Component<ManagerCrmErrorBoundaryPr
   public render() {
     if (this.state.hasError) {
       return (
-        <div className="p-8 text-center bg-bg-card rounded-lg border border-border">
+        <div className="p-8 text-center bg-card rounded-lg border border-border">
           <h2 className="text-danger text-xl font-bold mb-2">CRM Module Error</h2>
           <p className="text-text-secondary mb-4">{this.state.error?.message || 'An unexpected error occurred in the CRM module.'}</p>
           <button

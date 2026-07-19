@@ -1,3 +1,4 @@
+﻿// RESPONSIBILITY: Renders or handles logic for SuperadminFinancialReportsConstants.ts.
 import type { SuperadminMonthlyReport, SuperadminCategoryBreakdown } from '@/app/superadmin/superadmin_accounting/financial-reports/superadmin_financial_reports_types/SuperadminFinancialReportsTypes';
 
 export const SUPERADMIN_MONTHLY_REPORTS_MOCK: SuperadminMonthlyReport[] = [
@@ -17,3 +18,4 @@ export const SUPERADMIN_CATEGORY_BREAKDOWN_MOCK: SuperadminCategoryBreakdown[] =
   { category: 'Salary',        amount: 12000, pct: 50 },
   { category: 'Miscellaneous', amount: 2200,  pct: 9  },
 ];
+

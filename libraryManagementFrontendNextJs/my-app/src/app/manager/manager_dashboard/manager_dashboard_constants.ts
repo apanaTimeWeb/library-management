@@ -1,3 +1,4 @@
+﻿// RESPONSIBILITY: Renders or handles logic for manager_dashboard_constants.ts.
 export const SEAT_CLASS: Record<string, string> = {
   available: 'bg-success-bg border-success text-success',
   occupied:  'bg-border border-border text-text-secondary',
@@ -22,3 +23,4 @@ export const QUICK_LINKS = [
   { title: 'QR Scanner',      href: '/manager/manager_engagement/qr-scanner'    },
   { title: 'My Profile',      href: '#'                         },
 ];
+

@@ -1,8 +1,15 @@
+import { ManagerFinanceErrorBoundary } from '@/app/manager/manager_finance/manager_finance_components/ManagerFinanceErrorBoundary';
+import { ManagerFinanceSubscriptionsClient } from '@/app/manager/manager_finance/manager_finance_components/ManagerFinanceSubscriptionsClient';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Subscriptions | Smart Library 360',
+};
+
 export default function Page() {
   return (
-    <div className="p-6 min-h-screen bg-bg-page">
-      <h1 className="text-2xl font-bold text-text-primary mb-4">Subscriptions</h1>
-      <p className="text-text-secondary">Coming soon...</p>
-    </div>
+    <ManagerFinanceErrorBoundary>
+      <ManagerFinanceSubscriptionsClient />
+    </ManagerFinanceErrorBoundary>
   );
 }

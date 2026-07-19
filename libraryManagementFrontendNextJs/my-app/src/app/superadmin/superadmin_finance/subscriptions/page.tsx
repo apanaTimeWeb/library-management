@@ -1,5 +1,6 @@
-import { SubscriptionsClient } from '@/app/superadmin/superadmin_finance/subscriptions/_components/SubscriptionsClient';
+// RESPONSIBILITY: Component or Page.
+import { SuperadminSubscriptionsClient } from '@/app/superadmin/superadmin_finance/subscriptions/superadmin_finance_subscriptions_components/SuperadminSubscriptionsClient';
 
 export default function Page() {
-  return <SubscriptionsClient />;
+  return <SuperadminSubscriptionsClient />;
 }

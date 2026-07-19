@@ -1,4 +1,6 @@
 'use client';
+import { AdminSearchableDropdown } from '@/app/admin/admin_shared_components/AdminSearchableDropdown';
+
 // RESPONSIBILITY: Renders the AdminAllocationsClient component.
 import { useState } from 'react';
 import { Download, Eye } from 'lucide-react';
@@ -9,8 +11,11 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { TablePagination } from '@/components/ui/table-pagination';
+import { TableToolbar } from '@/components/ui/table-toolbar';
+import { useClientTable } from '@/components/ui/use-client-table';
 
 export function AdminAllocationsClient() {
+
   const {
     shiftFilter,
     setShiftFilter,
@@ -41,14 +46,14 @@ export function AdminAllocationsClient() {
     if (daysLeft <= 15) return <Badge variant="secondary" className="bg-warning/10 text-warning border-none">{daysLeft}d left</Badge>;
     return <Badge variant="secondary" className="bg-success/10 text-success border-none">{daysLeft}d left</Badge>;
   };
-
+    const table = useClientTable(filtered, 10);
   return (
     <div className="h-full flex flex-col pb-10 space-y-6 relative">
       {/* page Header */}
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b pb-4">
         <div>
           <nav className="text-xs text-muted-foreground font-medium mb-1 tracking-wide uppercase">Smart Library 360 › Admin › Seats & Shifts</nav>
-          <h1 className="text-2xl font-bold tracking-tight">Allocations</h1>
+          <h1 className="text-text-primary text-xl font-bold tracking-tight">Allocations</h1>
           <p className="text-sm text-muted-foreground mt-1">All active and past seat allocations.</p>
         </div>
         <Button 
@@ -62,8 +67,8 @@ export function AdminAllocationsClient() {
 
       {/* Filter Bar */}
       <div className="flex flex-wrap items-center gap-3">
-        <select 
-          className="h-10 px-3 rounded-md border border-border bg-bg-input text-sm font-medium focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary"
+        <AdminSearchableDropdown 
+          className="h-10 px-3 rounded-md border border-border bg-input text-sm font-medium focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary"
           value={shiftFilter} 
           onChange={(e) => setShiftFilter(e.target.value)}
         >
@@ -71,10 +76,10 @@ export function AdminAllocationsClient() {
           <option value="Morning">Morning</option>
           <option value="Evening">Evening</option>
           <option value="Full Day">Full Day</option>
-        </select>
+        </AdminSearchableDropdown>
         
-        <select 
-          className="h-10 px-3 rounded-md border border-border bg-bg-input text-sm font-medium focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary"
+        <AdminSearchableDropdown 
+          className="h-10 px-3 rounded-md border border-border bg-input text-sm font-medium focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary"
           value={statusFilter} 
           onChange={(e) => setStatusFilter(e.target.value)}
         >
@@ -82,7 +87,7 @@ export function AdminAllocationsClient() {
           <option value="Active">Active</option>
           <option value="Expired">Expired</option>
           <option value="Suspended">Suspended</option>
-        </select>
+        </AdminSearchableDropdown>
 
         <Input 
           type="date" 
@@ -100,7 +105,13 @@ export function AdminAllocationsClient() {
 
       {/* Table */}
       <Card className="flex-1 shadow-none border-border bg-card overflow-hidden flex flex-col min-h-96">
-        <div className="w-full overflow-x-auto flex-1">
+        <div className="mb-4">
+        <TableToolbar 
+          search={table.searchTerm} 
+          onSearch={table.setSearchTerm} 
+        />
+      </div>
+      <div className="w-full overflow-x-auto flex-1">
           <table className="w-full text-sm text-left whitespace-nowrap min-w-max">
             <thead className="bg-muted/30 border-b text-muted-foreground text-xs font-bold uppercase tracking-wider sticky top-0 z-10">
               <tr>
@@ -117,7 +128,7 @@ export function AdminAllocationsClient() {
               </tr>
             </thead>
             <tbody className="divide-y divide-border">
-              {filtered.length === 0 ? (
+              {table.paginatedData.length === 0 ? (
                 <tr>
                   <td colSpan={10} className="px-5 py-20 text-center">
                     <div className="flex flex-col items-center justify-center gap-3">
@@ -128,7 +139,7 @@ export function AdminAllocationsClient() {
                   </td>
                 </tr>
               ) : (
-                filtered.slice((page - 1) * limit, page * limit).map((a, i) => (
+                table.paginatedData.map((a, i) => (
                   <tr key={i} className="hover:bg-muted/10 transition-colors">
                     <td className="px-5 py-3">
                       <div className="flex flex-col">
@@ -161,7 +172,13 @@ export function AdminAllocationsClient() {
               )}
             </tbody>
           </table>
-          </div>
+          </div> 
+      <TablePagination 
+        totalItems={table.totalItems} 
+        page={table.page} 
+        limit={table.limit} 
+        onPageChange={table.setPage} 
+      />
           <TablePagination
             page={page}
             limit={limit}

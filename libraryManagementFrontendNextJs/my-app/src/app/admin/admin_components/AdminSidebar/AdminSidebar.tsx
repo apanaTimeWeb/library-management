@@ -35,10 +35,10 @@ export default function AdminSidebar({ collapsed, onToggle, mobileOpen, onMobile
       )}
 
       <aside
-        className={`fixed top-0 left-0 h-screen bg-card border-r border-border z-50 flex flex-col transition-all duration-300 ${
+        className={`fixed top-0 left-0 h-screen bg-card border-r border-border z-50 flex flex-col transition-all duration-300 w-[length:var(--w)] ${
           mobileOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'
         }`}
-        className="w-[length:var(--w)]" style={{ '--w': collapsed && !mobileOpen ? 60 : 240 } as React.CSSProperties}
+        style={{ '--w': collapsed && !mobileOpen ? 60 : 240 } as React.CSSProperties}
       >
         <div className="h-16 flex items-center shrink-0 border-b border-border px-2">
           <Button
@@ -128,3 +128,4 @@ export default function AdminSidebar({ collapsed, onToggle, mobileOpen, onMobile
     </>
   );
 }
+

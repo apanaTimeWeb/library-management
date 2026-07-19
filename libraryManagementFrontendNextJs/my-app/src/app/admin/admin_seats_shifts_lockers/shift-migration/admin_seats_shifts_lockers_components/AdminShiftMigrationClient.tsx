@@ -1,4 +1,6 @@
 'use client';
+import { AdminSearchableDropdown } from '@/app/admin/admin_shared_components/AdminSearchableDropdown';
+
 // RESPONSIBILITY: Renders the AdminShiftMigrationClient component.
 import { ArrowLeft, Search, ChevronDown, CreditCard, QrCode, Banknote, CheckCircle, Clock } from 'lucide-react';
 import { useAdminShiftMigration, PayMode } from '@/app/admin/admin_seats_shifts_lockers/shift-migration/admin_seats_shifts_lockers_hooks/useAdminShiftMigration';
@@ -47,11 +49,11 @@ export function AdminShiftMigrationClient() {
         </div>
         <div className="relative flex justify-between z-10">
           {ADMIN_SEATS_STEPS.map(s => (
-            <div key={s.n} className="flex flex-col items-center gap-2 bg-bg-card px-4">
+            <div key={s.n} className="flex flex-col items-center gap-2 bg-card px-4">
               <div className={`w-10 h-10 rounded-full flex items-center justify-center font-bold text-sm transition-colors border-2 ${
                 step >= s.n 
                   ? 'bg-primary border-primary text-primary-foreground' 
-                  : 'bg-bg-card border-muted-foreground/30 text-muted-foreground'
+                  : 'bg-card border-muted-foreground/30 text-muted-foreground'
               }`}>
                 {step > s.n ? <CheckCircle size={18} /> : s.n}
               </div>
@@ -95,7 +97,7 @@ export function AdminShiftMigrationClient() {
                       className={`flex flex-col text-left p-4 rounded-md border transition-all ${
                         selectedStudent?.id === s.id 
                           ? 'bg-primary/5 border-primary ring-1 ring-primary' 
-                          : 'bg-bg-card border-border hover:border-primary/50 hover:bg-muted/30'
+                          : 'bg-card border-border hover:border-primary/50 hover:bg-muted/30'
                       }`}
                       onClick={() => {
                         setSelectedStudent(s);
@@ -135,8 +137,8 @@ export function AdminShiftMigrationClient() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="space-y-1.5">
                   <label className="text-sm font-medium text-primary">New Shift <span className="text-danger">*</span></label>
-                  <select 
-                    className="flex h-11 w-full items-center justify-between rounded-md border border-border bg-bg-input px-3 py-2 text-sm ring-offset-bg-page placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:ring-offset-2"
+                  <AdminSearchableDropdown 
+                    className="flex h-11 w-full items-center justify-between rounded-md border border-border bg-input px-3 py-2 text-sm ring-offset-bg-page placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:ring-offset-2"
                     value={newShift} 
                     onChange={e => { setNewShift(e.target.value); setNewSeat(''); }}
                   >
@@ -144,12 +146,12 @@ export function AdminShiftMigrationClient() {
                     {ADMIN_SEATS_MOCK_SHIFT_RATES.map(sh => (
                       <option key={sh.name} value={sh.name}>{sh.name} ({sh.seats} seats free)</option>
                     ))}
-                  </select>
+                  </AdminSearchableDropdown>
                 </div>
                 <div className="space-y-1.5">
                   <label className="text-sm font-medium text-primary">New Seat <span className="text-danger">*</span></label>
-                  <select 
-                    className="flex h-11 w-full items-center justify-between rounded-md border border-border bg-bg-input px-3 py-2 text-sm ring-offset-bg-page placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                  <AdminSearchableDropdown 
+                    className="flex h-11 w-full items-center justify-between rounded-md border border-border bg-input px-3 py-2 text-sm ring-offset-bg-page placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed"
                     value={newSeat} 
                     onChange={e => setNewSeat(e.target.value)} 
                     disabled={!newShift}
@@ -158,7 +160,7 @@ export function AdminShiftMigrationClient() {
                     {newShift && ['B-01', 'B-02', 'B-03', 'B-04'].map(seat => (
                       <option key={seat}>{seat}</option>
                     ))}
-                  </select>
+                  </AdminSearchableDropdown>
                 </div>
               </div>
 
@@ -195,7 +197,7 @@ export function AdminShiftMigrationClient() {
                     <strong>{selectedShiftData?.seats}</strong> seats available in <strong>{newShift}</strong> shift. 
                     Rate: <strong>₹{newRate}/day</strong>.
                     {showCustomSlot && customStart && customEnd && (
-                      <span className="block mt-1">Custom slot: <strong>{customStart} – {customEnd}</strong>.</span>
+                      <span className="block mt-1">Custom slot: <strong>{customStart} â€“ {customEnd}</strong>.</span>
                     )}
                   </p>
                 </div>
@@ -272,7 +274,7 @@ export function AdminShiftMigrationClient() {
               <Card className="p-6 shadow-sm border-border bg-card flex flex-col gap-3">
                 <label className="text-sm font-medium text-primary">Remark (optional)</label>
                 <textarea 
-                  className="flex min-h-20 w-full rounded-md border border-border bg-bg-input px-3 py-2 text-sm ring-offset-bg-page placeholder:text-text-secondary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2" 
+                  className="flex min-h-20 w-full rounded-md border border-border bg-input px-3 py-2 text-sm ring-offset-bg-page placeholder:text-text-secondary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2" 
                   placeholder="Any notes about this migration..." 
                   value={remark} 
                   onChange={e => setRemark(e.target.value)} 
@@ -298,7 +300,7 @@ export function AdminShiftMigrationClient() {
                   { label: 'Days Left',      value: `${daysLeft} days`           },
                   ...(newShift ? [{ label: 'New Shift', value: newShift, highlight: true }] : []),
                   ...(newSeat  ? [{ label: 'New Seat',  value: newSeat, highlight: true  }] : []),
-                  ...(showCustomSlot && customStart && customEnd ? [{ label: 'Custom Slot', value: `${customStart} – ${customEnd}`, highlight: true }] : []),
+                  ...(showCustomSlot && customStart && customEnd ? [{ label: 'Custom Slot', value: `${customStart} â€“ ${customEnd}`, highlight: true }] : []),
                 ].map(({ label, value, highlight }) => (
                   <div key={label} className={`flex flex-col gap-1 pb-3 border-b border-border last:border-0 last:pb-0 ${highlight ? 'text-primary' : ''}`}>
                     <p className={`text-xs font-bold uppercase tracking-wider ${highlight ? 'text-primary/70' : 'text-muted-foreground'}`}>{label}</p>
@@ -356,7 +358,7 @@ export function AdminShiftMigrationClient() {
             <p className="text-sm text-primary leading-relaxed bg-muted/30 p-4 rounded-md border border-border">
               Old Seat <strong>{selectedStudent.currentSeat}</strong> ({selectedStudent.currentShift}) will be freed.<br/>
               New Seat <strong>{newSeat}</strong> ({newShift}) assigned.<br/>
-              {showCustomSlot && customStart && customEnd && <span className="block mt-2">Custom slot: <strong>{customStart} – {customEnd}</strong>.<br/></span>}
+              {showCustomSlot && customStart && customEnd && <span className="block mt-2">Custom slot: <strong>{customStart} â€“ {customEnd}</strong>.<br/></span>}
               <span className="block mt-4 pt-4 border-t border-border text-base">
                 Fee adjustment: <strong className={isPaying ? 'text-danger' : 'text-success'}>{isPaying ? '+' : ''}₹{Math.abs(adjustment)}</strong>
               </span>
@@ -371,3 +373,4 @@ export function AdminShiftMigrationClient() {
     </div>
   );
 }
+

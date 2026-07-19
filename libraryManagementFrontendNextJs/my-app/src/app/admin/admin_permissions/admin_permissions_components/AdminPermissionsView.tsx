@@ -11,8 +11,11 @@ import { Badge } from '@/components/ui/badge';
 import { Card } from '@/components/ui/card';
 import { TablePagination } from '@/components/ui/table-pagination';
 import { AdminPermissionsViewProps } from "./AdminPermissionsView_types";
+import { TableToolbar } from '@/components/ui/table-toolbar';
+import { useClientTable } from '@/components/ui/use-client-table';
 
 export function AdminPermissionsView({ initialPermissions }: AdminPermissionsViewProps) {
+
     const [searchTerm, setSearchTerm] = useState('');
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(10);
@@ -38,7 +41,7 @@ export function AdminPermissionsView({ initialPermissions }: AdminPermissionsVie
         <div className="flex flex-wrap items-end justify-between gap-4 border-b border-border pb-4 mb-6">
           <div>
             <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-1">Smart Library 360 › Admin › Permissions</p>
-            <h1 className="text-2xl font-bold tracking-tight text-foreground">Role Permissions</h1>
+            <h1 className="text-text-primary text-xl font-bold tracking-tight text-foreground">Role Permissions</h1>
             <p className="text-sm text-muted-foreground mt-1">Configure what Managers are allowed to do across branches.</p>
           </div>
           <div className="flex items-center gap-2 flex-wrap">
@@ -59,7 +62,8 @@ export function AdminPermissionsView({ initialPermissions }: AdminPermissionsVie
         </div>
       </div>
 
-<table className="w-full text-sm text-left">
+
+      <table className="w-full text-sm text-left">
               <thead className="bg-muted/50 text-muted-foreground sticky top-0 z-10 border-b border-border">
                 <tr>
                   <th className="px-6 py-3 font-semibold uppercase text-xs tracking-wider w-72">Permission Module &amp; Action</th>
@@ -99,7 +103,7 @@ export function AdminPermissionsView({ initialPermissions }: AdminPermissionsVie
                               aria-label={action.roles[role] ? 'Disable' : 'Enable'}
                             >
                               <span
-                                className={`pointer-events-none inline-block h-4 w-4 rounded-full bg-bg-card shadow-lg ring-0 transition-transform ${
+                                className={`pointer-events-none inline-block h-4 w-4 rounded-full bg-card shadow-lg ring-0 transition-transform ${
                                   action.roles[role] ? 'translate-x-4' : 'translate-x-0'
                                 }`}
                               />
@@ -112,7 +116,8 @@ export function AdminPermissionsView({ initialPermissions }: AdminPermissionsVie
                 ))}
               </tbody>
             </table>
-          </div>
+          </div> 
+
           <TablePagination
             page={page}
             limit={limit}

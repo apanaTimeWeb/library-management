@@ -1,40 +1,65 @@
+export type NoticeStatus = 'Active' | 'Expired';
+export type ComplaintStatus = 'Open' | 'In-Progress' | 'Resolved';
+export type NotificationStatus = 'Sent' | 'Delivered' | 'Read' | 'Failed';
+export type TemplateStatus = 'Approved' | 'Pending Approval' | 'Rejected';
+export type WhatsAppLogStatus = 'Sent' | 'Delivered' | 'Read' | 'Failed';
 
-
-export interface Notice {
+export interface ManagerCommunicationNotice {
   id: string;
   title: string;
   message: string;
   validTill: string;
   postedBy: string;
   postedDate: string;
-  status: 'Active' | 'Expired';
+  status: NoticeStatus;
 }
-export interface Complaint {
+
+export interface ManagerCommunicationComplaint {
+  id: string;
+  ticketId: string;
+  studentName: string;
+  studentId: string;
+  category: string;
+  description: string;
+  date: string;
+  status: ComplaintStatus;
+  priority: 'High' | 'Medium' | 'Low';
+  resolvedBy?: string;
+}
+
+export interface ManagerCommunicationNotification {
   id: string;
   title: string;
+  message: string;
+  targetAudience: string;
+  sentDate: string;
+  sentBy: string;
+  status: NotificationStatus;
+  deliveredCount: number;
+}
+
+export interface ManagerCommunicationWhatsAppTemplate {
+  id: string;
+  templateName: string;
+  category: 'Marketing' | 'Utility' | 'Authentication';
+  language: string;
+  content: string;
+  status: TemplateStatus;
+  lastUpdated: string;
+}
+
+export interface ManagerCommunicationWhatsAppLog {
+  id: string;
   studentName: string;
-  phone: string;
-  submittedOn: string;
-  status: 'New' | 'In-Progress' | 'Resolved';
-  category: string;
-  priority: 'High' | 'Medium' | 'Low';
-  desc: string;
-  resolution?: string;
-  resolvedOn?: string;
+  phoneNumber: string;
+  templateUsed: string;
+  sentDate: string;
+  status: WhatsAppLogStatus;
 }
-export interface ManagerCommunicationState {
-  notices: Notice[];
-  noticesStatus: FetchState;
-  noticesError: string | null;
-  complaints: Complaint[];
-  complaintsStatus: FetchState;
-  complaintsError: string | null;
-  fetchNotices: () => Promise<void>;
-  addNotice: (notice: Partial<Notice>) => Promise<void>;
-  updateNotice: (id: string, updates: Partial<Notice>) => Promise<void>;
-  deleteNotice: (id: string) => Promise<void>;
-  fetchComplaints: () => Promise<void>;
-  addComplaint: (complaint: Partial<Complaint>) => Promise<void>;
-  updateComplaintStatus: (id: string, status: Complaint['status'], resolution?: string) => Promise<void>;
+
+export interface ManagerCommunicationStats {
+  activeNotices: number;
+  openComplaints: number;
+  notificationsSent: number;
+  whatsappMessagesSent: number;
 }
-export type FetchState = 'idle' | 'loading' | 'success' | 'error';

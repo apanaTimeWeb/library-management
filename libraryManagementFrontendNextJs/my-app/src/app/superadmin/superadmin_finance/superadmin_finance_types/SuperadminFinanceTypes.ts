@@ -1,4 +1,16 @@
+// RESPONSIBILITY: Defines all TypeScript types and interfaces for the superadmin_finance module.
+// DATA FLOW: Imported by all finance module components, hooks, and stores - no API calls here.
 
+/** Minimal student reference embedded in receipt/payment records */
+export interface SuperadminFinanceStudentRef {
+  id: string | number;
+  name: string;
+  smartId?: string;
+  phone?: string;
+  shift?: string;
+  seat?: string;
+  plan?: string;
+}
 
 export interface SuperadminFinanceDashboardStats {
   totalCollections: number; collectionsGrowth: number; activeStudents: number;
@@ -13,7 +25,7 @@ export interface SuperadminFinanceRecentPayment {
 export interface SuperadminFinanceReceiptData {
   receiptNo: string; studentName: string; studentId: string;
   phone: string; total: number; mode: SuperadminFinanceCollectFeeMode; date: string; waMessage: string;
-  student: any; amount: number; lateFee: number;
+  student: SuperadminFinanceStudentRef; amount: number; lateFee: number;
   couponDiscount: number; txnId: string; remark: string;
 }
 export type SuperadminFinanceCollectFeeMode = 'cash' | 'upi' | 'card' | 'bank';
@@ -131,6 +143,23 @@ export type SuperadminFinanceReferral = {
   status: 'pending' | 'paid';
   paidDate?: string;
   paymentMethod?: string;
+};
+
+export type SuperadminFinanceSubscription = {
+  id: number;
+  studentName: string;
+  smartId: string;
+  plan: string;
+  shift: string;
+  startDate: string;
+  endDate: string;
+  daysLeft: number;
+  base: number;
+  discount: number;
+  total: number;
+  paid: number;
+  due: number;
+  status: 'active' | 'expired' | 'suspended' | 'cancelled';
 };
 
 // RESPONSIBILITY: Defines all types and interfaces for the superadmin_finance module.

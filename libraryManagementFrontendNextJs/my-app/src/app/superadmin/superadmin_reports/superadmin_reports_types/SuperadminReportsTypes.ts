@@ -1,3 +1,4 @@
+﻿// RESPONSIBILITY: Renders or handles logic for SuperadminReportsTypes.ts.
 import React from 'react';
 
 
@@ -47,3 +48,4 @@ export interface SuperadminReportsKpiGridProps {
 export interface SuperadminReportsChartsProps {
   data: SuperadminReportsDataResponse;
 }
+

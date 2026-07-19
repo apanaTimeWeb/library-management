@@ -1,3 +1,4 @@
+﻿// RESPONSIBILITY: Renders or handles logic for SuperadminSystemHealthTypes.ts.
 
 
 export interface SuperadminSystemHealthMetric {
@@ -35,3 +36,4 @@ export interface SuperadminSystemHealthClientProps {
   initialData: SuperadminSystemHealthDataResponse;
 }
 export type SuperadminSystemHealthColourKey = 'success' | 'info' | 'warning' | 'danger';
+

@@ -1,3 +1,4 @@
+﻿// RESPONSIBILITY: Renders or handles logic for SuperadminReportsConstants.ts.
 import type { SuperadminReportsDataResponse } from '@/app/superadmin/superadmin_reports/superadmin_reports_types/SuperadminReportsTypes';
 
 export const SUPERADMIN_REPORTS_DATE_RANGES = ['This Month', 'Last 3 Months', 'Last 6 Months', 'This Year'];
@@ -40,3 +41,4 @@ export const SUPERADMIN_REPORTS_MOCK_DATA: SuperadminReportsDataResponse = {
     { label: 'Active Libraries',         value: '38',         iconType: 'warning', icon: 'users', trend: '+4 this month',      trendType: 'up' },
   ]
 };
+

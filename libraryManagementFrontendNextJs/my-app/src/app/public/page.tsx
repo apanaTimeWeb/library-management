@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Component or Page.
 import React from 'react';
 import { PublicHeroSection } from './public_components/PublicHeroSection';
 import { PublicFeaturesGrid } from './public_components/PublicFeaturesGrid';
@@ -11,7 +12,7 @@ export const metadata = {
 
 export default function PublicLandingPage() {
   return (
-    <div className="min-h-screen bg-bg-page flex flex-col font-sans">
+    <div className="min-h-screen bg-page flex flex-col font-sans">
       <main className="flex-grow">
         <PublicHeroSection />
         <PublicFeaturesGrid />

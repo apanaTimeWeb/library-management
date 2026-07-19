@@ -1,3 +1,5 @@
+// RESPONSIBILITY: Centralized constants and mock data for the superadmin_libraries module. Replace mock data with API call when backend is ready.
+
 export const SUPERADMIN_LIBRARIES_TOASTS = {
   UPDATE_SUCCESS: (name: string) => `✅ ${name} updated successfully`,
   UPDATE_ERROR: '❌ Failed to update library',
@@ -8,8 +10,24 @@ export const SUPERADMIN_LIBRARIES_TOASTS = {
 export const SUPERADMIN_LIBRARIES_PLANS = ['Basic', 'Pro', 'Enterprise'] as const;
 export const SUPERADMIN_LIBRARIES_STATUSES = ['Active', 'Maintenance'] as const;
 
+export type SuperadminLibraryPlan = typeof SUPERADMIN_LIBRARIES_PLANS[number];
+export type SuperadminLibraryStatus = typeof SUPERADMIN_LIBRARIES_STATUSES[number];
 
-export const SUPERADMIN_LIBRARIES_MOCK_DATA: any[] = [
+/** Shape of a single library record — derived from mock data. Replace with backend API type when available. */
+export interface SuperadminLibrary {
+  id: string;
+  name: string;
+  location: string;
+  seats: number;
+  occupied: number;
+  status: SuperadminLibraryStatus;
+  plan: SuperadminLibraryPlan;
+  owner: string;
+  phone: string;
+  joined: string;
+}
+
+export const SUPERADMIN_LIBRARIES_MOCK_DATA: SuperadminLibrary[] = [
   {
     id: 'lib-001',
     name: 'StudyNest Patna',

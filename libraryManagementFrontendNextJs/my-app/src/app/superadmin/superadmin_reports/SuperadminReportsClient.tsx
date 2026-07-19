@@ -9,7 +9,7 @@ import { SuperadminReportsKpiGrid } from '@/app/superadmin/superadmin_reports/su
 import { SuperadminReportsCharts } from '@/app/superadmin/superadmin_reports/superadmin_reports_components/SuperadminReportsCharts';
 import { fetchSuperadminReportsData } from '@/app/superadmin/superadmin_reports/superadmin_reports_api/SuperadminReportsApi';
 import { logger } from '@/lib/logger';
-import type { FetchState } from '@/app/superadmin/superadmin_shared_components/superadmin_types';
+import type { FetchState } from '@/app/superadmin/superadmin_shared_components/SuperadminTypes';
 
 export function SuperadminReportsClient({ initialData }: Props) {
   const [range, setRange] = useState('Last 6 Months');
@@ -50,7 +50,7 @@ export function SuperadminReportsClient({ initialData }: Props) {
           {/* KPI Skeleton Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {[...Array(4)].map((_, i) => (
-              <div key={i} className="h-28 bg-bg-card border border-border rounded-lg p-4 flex flex-col justify-between">
+              <div key={i} className="h-28 bg-card border border-border rounded-lg p-4 flex flex-col justify-between">
                 <div className="h-4 w-24 bg-border/50 rounded" />
                 <div className="h-8 w-32 bg-border/60 rounded" />
               </div>
@@ -58,11 +58,11 @@ export function SuperadminReportsClient({ initialData }: Props) {
           </div>
           {/* Charts Skeleton Grid */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            <div className="h-80 bg-bg-card border border-border rounded-lg p-6 flex flex-col justify-between">
+            <div className="h-80 bg-card border border-border rounded-lg p-6 flex flex-col justify-between">
               <div className="h-5 w-40 bg-border/50 rounded" />
               <div className="h-60 w-full bg-border/30 rounded" />
             </div>
-            <div className="h-80 bg-bg-card border border-border rounded-lg p-6 flex flex-col justify-between">
+            <div className="h-80 bg-card border border-border rounded-lg p-6 flex flex-col justify-between">
               <div className="h-5 w-40 bg-border/50 rounded" />
               <div className="h-60 w-full bg-border/30 rounded" />
             </div>
@@ -77,3 +77,4 @@ export function SuperadminReportsClient({ initialData }: Props) {
     </div>
   );
 }
+

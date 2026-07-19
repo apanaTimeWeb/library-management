@@ -1,3 +1,4 @@
+﻿// RESPONSIBILITY: Renders or handles logic for useSuperadminSystemBranding.ts.
 import { useState, useEffect, useRef, useCallback } from 'react';
 
 function readToken(token: string) {
@@ -44,3 +45,4 @@ export function useSuperadminSystemBranding() {
     handleReset
   };
 }
+

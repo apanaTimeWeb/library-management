@@ -1,3 +1,5 @@
+// RESPONSIBILITY: Renders or handles logic for useManagerCrmEnquiries.ts.
+import { useUrlState } from '@/app/manager/manager_shared_hooks/useUrlState';
 import { useState, useEffect, useMemo } from 'react';
 import { useCrmStore } from '@/app/manager/manager_crm/manager_crm_store/manager_crm_store';
 import type { EnquiryStatus } from '@/app/manager/manager_crm/manager_crm_types';
@@ -22,7 +24,7 @@ export function useManagerCrmEnquiries() {
   const { enquiries, status, error, fetchData, updateEnquiryStatus } = useCrmStore();
   
   const [view, setView] = useState<'kanban' | 'table'>('kanban');
-  const [search, setSearch] = useState('');
+  const [search, setSearch] = useUrlState('search', '' as string);
   const [statusFilter, setStatusFilter] = useState<string>('All');
 
   // Fetch data on mount if idle, dependencies included to satisfy linter
@@ -60,3 +62,5 @@ export function useManagerCrmEnquiries() {
     updateEnquiryStatus
   };
 }
+
+

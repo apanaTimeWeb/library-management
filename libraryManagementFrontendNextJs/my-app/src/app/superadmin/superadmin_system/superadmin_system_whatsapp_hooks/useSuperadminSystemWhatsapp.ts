@@ -1,3 +1,4 @@
+﻿// RESPONSIBILITY: Renders or handles logic for useSuperadminSystemWhatsapp.ts.
 import { useState, useCallback, useMemo } from 'react';
 import { SUPERADMIN_SYSTEM_MOCK_WHATSAPP_LOGS } from '@/app/superadmin/superadmin_system/superadmin_system_utils/SuperadminSystemMockData';
 import { SuperadminSystemWhatsappTestStatus, SuperadminSystemWhatsappLog } from '@/app/superadmin/superadmin_system/superadmin_system_types/SuperadminSystemWhatsappTypes';
@@ -71,3 +72,4 @@ export function useSuperadminSystemWhatsapp() {
     handleCopyWebhook
   };
 }
+

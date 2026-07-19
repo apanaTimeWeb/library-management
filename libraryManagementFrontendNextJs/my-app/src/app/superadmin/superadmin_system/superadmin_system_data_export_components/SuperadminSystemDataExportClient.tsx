@@ -46,7 +46,7 @@ export function SuperadminSystemDataExportClient() {
 
       {/* Quick Exports */}
       <div className="mb-8">
-        <h2 className="text-base font-semibold text-text-primary mb-3">⚡ Quick Exports</h2>
+        <h2 className="text-base font-semibold text-text-primary mb-3">âš¡ Quick Exports</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {SUPERADMIN_SYSTEM_QUICK_EXPORTS.map((qe) => (
             <SuperadminCard key={qe.id} className="hover:border-primary/40 transition-colors cursor-pointer group" onClick={() => handleExport(qe.id)}>
@@ -68,7 +68,7 @@ export function SuperadminSystemDataExportClient() {
                         ? <><Loader2 size={11} className="animate-spin" /> Exporting...</>
                         : exported.has(qe.id)
                         ? <><CheckCircle size={11} /> Downloaded!</>
-                        : '↓ Export'}
+                        : 'â†“ Export'}
                     </button>
                   </div>
                 </div>
@@ -111,7 +111,7 @@ export function SuperadminSystemDataExportClient() {
                   className={`flex items-start gap-3 p-3.5 rounded-xl border cursor-pointer transition-all ${
                     isSelected
                       ? 'border-primary/40 bg-primary/8'
-                      : 'border-border hover:border-primary/25 hover:bg-bg-card'
+                      : 'border-border hover:border-primary/25 hover:bg-card'
                   }`}
                 >
                   <div className={`h-5 w-5 rounded border-2 flex items-center justify-center shrink-0 mt-0.5 transition-all ${
@@ -136,7 +136,7 @@ export function SuperadminSystemDataExportClient() {
           </div>
 
           {/* Filters row */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 p-4 rounded-xl bg-bg-card border border-border">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 p-4 rounded-xl bg-card border border-border">
             <div className="space-y-1.5">
               <label className="text-xs font-medium text-text-secondary uppercase tracking-wide">Output Format</label>
               <div className="flex gap-2">
@@ -148,7 +148,7 @@ export function SuperadminSystemDataExportClient() {
                     className={`flex-1 py-2 rounded-lg text-sm font-semibold border transition-all ${
                       format === f
                         ? 'bg-primary text-on-primary border-primary'
-                        : 'bg-bg-card text-text-secondary border-border hover:border-primary/40'
+                        : 'bg-card text-text-secondary border-border hover:border-primary/40'
                     }`}
                   >
                     {f}
@@ -163,7 +163,7 @@ export function SuperadminSystemDataExportClient() {
                 type="date"
                 value={dateFrom}
                 onChange={e => setDateFrom(e.target.value)}
-                className="w-full px-3 py-2 rounded-lg bg-bg-card border border-border text-sm text-text-primary focus:outline-none focus:border-primary"
+                className="w-full px-3 py-2 rounded-lg bg-card border border-border text-sm text-text-primary focus:outline-none focus:border-primary"
               />
             </div>
             <div className="space-y-1.5">
@@ -173,7 +173,7 @@ export function SuperadminSystemDataExportClient() {
                 type="date"
                 value={dateTo}
                 onChange={e => setDateTo(e.target.value)}
-                className="w-full px-3 py-2 rounded-lg bg-bg-card border border-border text-sm text-text-primary focus:outline-none focus:border-primary"
+                className="w-full px-3 py-2 rounded-lg bg-card border border-border text-sm text-text-primary focus:outline-none focus:border-primary"
               />
             </div>
           </div>

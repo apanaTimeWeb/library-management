@@ -1,3 +1,4 @@
+import { useUrlState } from '@/app/admin/admin_shared_hooks/useUrlState';
 // RESPONSIBILITY: Renders the useAdminShiftMigration.ts component/hook.
 import { useState, useMemo } from 'react';
 import toast from 'react-hot-toast';
@@ -23,7 +24,7 @@ export function daysRemaining(validTill: string): number {
 
 export function useAdminShiftMigration() {
   const [step, setStep] = useState(1);
-  const [search, setSearch] = useState('');
+  const [search, setSearch] = useUrlState('search', '' as string);
   const [selectedStudent, setSelectedStudent] = useState<Student | null>(null);
   const [newShift, setNewShift] = useState('');
   const [newSeat, setNewSeat] = useState('');

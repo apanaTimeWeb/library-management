@@ -1,3 +1,4 @@
+﻿// RESPONSIBILITY: Renders or handles logic for useAuthLogin.ts.
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -6,7 +7,7 @@ import { AUTH_ROLES, AUTH_ROLE_DEST_LABEL } from '@/app/auth/auth_constants';
 import type { AuthLoginPayload } from '@/app/auth/auth_types/auth_types';
 import { useAuthStore } from '@/app/auth/auth_store/auth_store';
 
-// DATA FLOW: UI Component → useAuthLogin.ts → useAuthStore → authApi
+// DATA FLOW: UI Component â†’ useAuthLogin.ts â†’ useAuthStore â†’ authApi
 export function useAuthLogin() {
   const [showPw, setShowPw] = useState(false);
   const [selectedRole, setSelectedRole] = useState(AUTH_ROLES[0]);
@@ -65,3 +66,4 @@ export function useAuthLogin() {
     roleDestLabel: AUTH_ROLE_DEST_LABEL
   };
 }
+

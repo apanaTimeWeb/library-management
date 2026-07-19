@@ -1,3 +1,4 @@
+﻿// RESPONSIBILITY: Renders or handles logic for useSuperadminSystemProfile.ts.
 import { useState, useMemo } from 'react';
 
 export function useSuperadminSystemProfile() {
@@ -30,3 +31,4 @@ export function useSuperadminSystemProfile() {
     strength
   };
 }
+

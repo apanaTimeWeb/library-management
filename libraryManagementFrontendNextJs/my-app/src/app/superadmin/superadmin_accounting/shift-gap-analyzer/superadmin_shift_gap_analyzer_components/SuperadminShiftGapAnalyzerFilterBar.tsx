@@ -6,7 +6,7 @@ import type { SuperadminShiftGapAnalyzerFilterBarProps as Props } from '@/app/su
 
 export function SuperadminShiftGapAnalyzerFilterBar({ shiftFilter, setShiftFilter }: Props) {
   return (
-    <div className="bg-bg-card border border-border rounded-[var(--radius-lg)] p-4 shadow-sm mb-6 flex items-center justify-between gap-3">
+    <div className="bg-card border border-border rounded-lg p-4 shadow-sm mb-6 flex items-center justify-between gap-3">
       <h3 className="text-sm font-bold text-text-primary tracking-wide">Day-wise Gap Log</h3>
       <div className="flex items-center gap-2">
         <label className="text-xs font-bold text-text-secondary uppercase tracking-wider hidden sm:block">Filter:</label>

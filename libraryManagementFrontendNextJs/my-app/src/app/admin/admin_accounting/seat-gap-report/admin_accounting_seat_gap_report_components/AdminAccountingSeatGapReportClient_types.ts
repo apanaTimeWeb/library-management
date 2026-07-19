@@ -1,3 +1,4 @@
+﻿// RESPONSIBILITY: Renders or handles logic for AdminAccountingSeatGapReportClient_types.ts.
 import { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Download, Search } from "lucide-react";
@@ -14,3 +15,4 @@ export type GapRow = {
   revenueLoss: number;
   status: 'vacant' | 'maintenance';
 };
+

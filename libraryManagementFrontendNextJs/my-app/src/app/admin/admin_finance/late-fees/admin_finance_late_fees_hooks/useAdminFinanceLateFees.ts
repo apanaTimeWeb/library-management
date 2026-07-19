@@ -1,7 +1,7 @@
 // RESPONSIBILITY: Renders the useAdminFinanceLateFees.ts component/hook.
 import { useState, useEffect } from 'react';
 import toast from 'react-hot-toast';
-import { formatCurrency } from '@/app/admin/admin_finance/admin_finance_utils/format';
+import { formatCurrency } from '@/app/admin/admin_finance/admin_finance_utils/AdminFinanceFormat';
 import { openWhatsApp } from '@/lib/whatsappUtils';
 import { ADMIN_FINANCE_MOCK_LATE_FEES_CONFIG, ADMIN_FINANCE_MOCK_LATE_FEES_OVERDUE } from '@/app/admin/admin_finance/admin_finance_constants/AdminFinanceConstants';
 

@@ -1,17 +1,22 @@
 'use client';
+import { AdminSearchableDropdown } from '@/app/admin/admin_shared_components/AdminSearchableDropdown';
+
 // RESPONSIBILITY: Renders the AdminFinanceReceiptClient component.
 import { useState } from 'react';
 import Link from 'next/link';
 import { Search, Receipt, Eye, Printer, Send } from 'lucide-react';
-import { formatCurrency, formatDate } from '@/app/admin/admin_finance/admin_finance_utils/format';
+import { formatCurrency, formatDate } from '@/app/admin/admin_finance/admin_finance_utils/AdminFinanceFormat';
 import { useAdminFinanceReceipt, type FilterMode } from '@/app/admin/admin_finance/receipt/admin_finance_receipt_hooks/useAdminFinanceReceipt';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Input } from '@/components/ui/input';
 import { TablePagination } from '@/components/ui/table-pagination';
+import { TableToolbar } from '@/components/ui/table-toolbar';
+import { useClientTable } from '@/components/ui/use-client-table';
 
 export function AdminFinanceReceiptClient() {
+
   const {
     search,
     setSearch,
@@ -35,14 +40,14 @@ export function AdminFinanceReceiptClient() {
       default: return 'bg-muted text-muted-foreground';
     }
   };
-
+    const table = useClientTable(filteredReceipts, 10);
   return (
     <div className="h-full flex flex-col pb-10 space-y-6 relative">
       {/* page Header */}
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b pb-4">
         <div>
           <nav className="text-xs text-muted-foreground font-medium mb-1 tracking-wide uppercase">Smart Library 360 › Admin › Finance</nav>
-          <h1 className="text-2xl font-bold tracking-tight">Receipts</h1>
+          <h1 className="text-text-primary text-xl font-bold tracking-tight">Receipts</h1>
           <p className="text-sm text-muted-foreground mt-1">View and share payment receipts for all transactions.</p>
         </div>
       </div>
@@ -54,7 +59,7 @@ export function AdminFinanceReceiptClient() {
             <span className="text-xs font-bold tracking-wider uppercase text-muted-foreground">TOTAL RECEIPTS</span>
             <Receipt size={16} className="text-muted-foreground" />
           </div>
-          <p className="text-2xl font-bold leading-none tracking-tight text-primary">{kpiData.totalReceipts}</p>
+          <p className="text-text-primary text-xl font-bold leading-none tracking-tight text-primary">{kpiData.totalReceipts}</p>
         </Card>
         
         <Card className="p-5 shadow-none border-success/30 bg-success/5 flex flex-col gap-3">
@@ -62,7 +67,7 @@ export function AdminFinanceReceiptClient() {
             <span className="text-xs font-bold tracking-wider uppercase text-success">TOTAL COLLECTED</span>
             <Receipt size={16} className="text-success" />
           </div>
-          <p className="text-2xl font-bold leading-none tracking-tight text-success">{formatCurrency(kpiData.totalCollected)}</p>
+          <p className="text-text-primary text-xl font-bold leading-none tracking-tight text-success">{formatCurrency(kpiData.totalCollected)}</p>
         </Card>
         
         <Card className="p-5 shadow-none border-border bg-card flex flex-col gap-3">
@@ -70,7 +75,7 @@ export function AdminFinanceReceiptClient() {
             <span className="text-xs font-bold tracking-wider uppercase text-muted-foreground">THIS MONTH</span>
             <Receipt size={16} className="text-muted-foreground" />
           </div>
-          <p className="text-2xl font-bold leading-none tracking-tight text-primary">{kpiData.thisMonth}</p>
+          <p className="text-text-primary text-xl font-bold leading-none tracking-tight text-primary">{kpiData.thisMonth}</p>
         </Card>
       </div>
 
@@ -85,8 +90,8 @@ export function AdminFinanceReceiptClient() {
             onChange={e => setSearch(e.target.value)} 
           />
         </div>
-        <select 
-          className="flex h-10 w-full max-w-52 items-center justify-between rounded-md border border-border bg-bg-input px-3 py-2 text-sm ring-offset-bg-page placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:ring-offset-2"
+        <AdminSearchableDropdown 
+          className="flex h-10 w-full max-w-52 items-center justify-between rounded-md border border-border bg-input px-3 py-2 text-sm ring-offset-bg-page placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:ring-offset-2"
           value={modeFilter} 
           onChange={e => setModeFilter(e.target.value as FilterMode)}
         >
@@ -95,12 +100,18 @@ export function AdminFinanceReceiptClient() {
           <option value="cash">Cash</option>
           <option value="card">Card</option>
           <option value="bank transfer">Bank Transfer</option>
-        </select>
+        </AdminSearchableDropdown>
       </div>
 
       {/* Receipts Table */}
       <Card className="flex-1 shadow-none border-border bg-card overflow-hidden flex flex-col">
-        <div className="w-full overflow-x-auto flex-1">
+        <div className="mb-4">
+        <TableToolbar 
+          search={table.searchTerm} 
+          onSearch={table.setSearchTerm} 
+        />
+      </div>
+      <div className="w-full overflow-x-auto flex-1">
           <table className="w-full text-sm text-left">
             <thead className="bg-muted/30 border-b text-muted-foreground text-xs font-bold uppercase tracking-wider sticky top-0 z-10">
               <tr>
@@ -114,7 +125,7 @@ export function AdminFinanceReceiptClient() {
               </tr>
             </thead>
             <tbody className="divide-y divide-border">
-              {filteredReceipts.length === 0 ? (
+              {table.paginatedData.length === 0 ? (
                 <tr>
                   <td colSpan={7} className="px-5 py-20 text-center">
                     <div className="flex flex-col items-center justify-center gap-3">
@@ -125,7 +136,7 @@ export function AdminFinanceReceiptClient() {
                   </td>
                 </tr>
               ) : (
-                filteredReceipts.slice((page - 1) * limit, page * limit).map((r) => (
+                table.paginatedData.map((r) => (
                   <tr key={r.id} className="hover:bg-muted/10 transition-colors">
                     <td className="px-5 py-4">
                       <span className="font-mono text-sm font-medium text-primary">{r.receiptNumber}</span>
@@ -180,7 +191,13 @@ export function AdminFinanceReceiptClient() {
               )}
             </tbody>
           </table>
-          </div>
+          </div> 
+      <TablePagination 
+        totalItems={table.totalItems} 
+        page={table.page} 
+        limit={table.limit} 
+        onPageChange={table.setPage} 
+      />
           <TablePagination
             page={page}
             limit={limit}

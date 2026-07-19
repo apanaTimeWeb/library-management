@@ -1,4 +1,6 @@
 'use client';
+import { AdminSearchableDropdown } from '@/app/admin/admin_shared_components/AdminSearchableDropdown';
+
 // RESPONSIBILITY: Entry page for the admin_engagement module.
 // DATA FLOW: Next.js Router -> page -> Components
 
@@ -12,6 +14,10 @@ import { Badge } from '@/components/ui/badge';
 import { Input } from '@/components/ui/input';
 import toast from 'react-hot-toast';
 import { Student, AttStatus } from "./AdminEngagementAttendanceClient_types";
+import { ADMIN_ROUTES } from '@/app/admin/admin_url_config';
+import { TableToolbar } from '@/components/ui/table-toolbar';
+import { TablePagination } from '@/components/ui/table-pagination';
+import { useClientTable } from '@/components/ui/use-client-table';
 
 const today = new Date().toISOString().split('T')[0];
 
@@ -53,7 +59,7 @@ export function AdminEngagementAttendanceClient() {
           <p className="text-xs font-semibold text-muted-foreground flex items-center gap-1 uppercase tracking-wider mb-1">
             Engagement <ChevronRight size={12} /> Attendance
           </p>
-          <h1 className="text-2xl font-bold tracking-tight">📅 Daily Attendance</h1>
+          <h1 className="text-text-primary text-xl font-bold tracking-tight">📅 Daily Attendance</h1>
           <p className="text-sm text-muted-foreground mt-1">Mark attendance for all enrolled students by shift.</p>
         </div>
         <Link href={ADMIN_ROUTES.ENGAGEMENT_ABSENTEE_REPORT}>
@@ -96,12 +102,12 @@ export function AdminEngagementAttendanceClient() {
           </div>
           <div className="flex flex-col">
             <label className="text-xs mb-1 font-semibold text-muted-foreground uppercase tracking-wider">Shift</label>
-            <select value={shift} onChange={e => setShift(e.target.value)} className="flex h-9 w-36 items-center justify-between rounded-md border border-border bg-bg-input px-3 py-1 text-sm ring-offset-bg-page placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50">
+            <AdminSearchableDropdown value={shift} onChange={e => setShift(e.target.value)} className="flex h-9 w-36 items-center justify-between rounded-md border border-border bg-input px-3 py-1 text-sm ring-offset-bg-page placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50">
               <option>All</option>
               <option>Morning</option>
               <option>Afternoon</option>
               <option>Evening</option>
-            </select>
+            </AdminSearchableDropdown>
           </div>
         </div>
         <div className="flex gap-2">
@@ -139,25 +145,27 @@ export function AdminEngagementAttendanceClient() {
 
                 {/* Status buttons */}
                 <div className="flex items-center gap-1 bg-muted p-1 rounded-lg self-start lg:self-auto">
-                  {(['present', 'absent', 'late'] as AttStatus[]).map(st => (
+                  {(["present", "absent", "late"]).map((stStr) => {
+                    const st = stStr as AttStatus;
+                    return (
                     <Button 
                       key={st} 
                       size="sm"
-                      variant={s.status === st ? 'default' : 'ghost'}
+                      variant={s.status === st ? "default" : "ghost"}
                       onClick={() => setStatus(s.id, st)}
                       className={`h-8 px-3 text-xs font-semibold gap-1.5 capitalize transition-all ${
                         s.status === st 
-                          ? st === 'present' ? 'bg-success hover:bg-success text-white' 
-                            : st === 'absent' ? 'bg-danger hover:bg-danger text-white'
-                            : 'bg-warning hover:bg-warning text-white'
-                          : 'text-muted-foreground hover:text-foreground'
+                          ? st === "present" ? "bg-success hover:bg-success text-white" 
+                            : st === "absent" ? "bg-danger hover:bg-danger text-white"
+                            : "bg-warning hover:bg-warning text-white"
+                          : "text-muted-foreground hover:text-foreground"
                       }`}
                     >
-                      {st === 'present' ? <><CheckCircle size={14}/> Present</>
-                       : st === 'absent' ? '✕ Absent'
+                      {st === "present" ? <><CheckCircle size={14}/> Present</>
+                       : st === "absent" ? "âœ• Absent"
                        : <><Clock size={14}/> Late</>}
                     </Button>
-                  ))}
+                  );})}
                 </div>
 
                 {/* Time inputs */}
@@ -165,12 +173,12 @@ export function AdminEngagementAttendanceClient() {
                   <div className="flex items-center gap-3 bg-muted/50 p-2 rounded-lg border border-border self-start lg:self-auto">
                     <div className="flex items-center gap-2">
                       <span className="text-xs font-bold text-muted-foreground uppercase tracking-wider">In</span>
-                      <Input type="time" value={s.inTime} onChange={e => setField(s.id, 'inTime', e.target.value)} className="h-8 w-28 text-xs bg-bg-card" />
+                      <Input type="time" value={s.inTime} onChange={e => setField(s.id, 'inTime', e.target.value)} className="h-8 w-28 text-xs bg-card" />
                     </div>
                     {s.status === 'present' && (
                       <div className="flex items-center gap-2">
                         <span className="text-xs font-bold text-muted-foreground uppercase tracking-wider">Out</span>
-                        <Input type="time" value={s.outTime} onChange={e => setField(s.id, 'outTime', e.target.value)} className="h-8 w-28 text-xs bg-bg-card" />
+                        <Input type="time" value={s.outTime} onChange={e => setField(s.id, 'outTime', e.target.value)} className="h-8 w-28 text-xs bg-card" />
                       </div>
                     )}
                   </div>
@@ -180,7 +188,7 @@ export function AdminEngagementAttendanceClient() {
                 {isAlert && (
                   <div className="flex items-center gap-3 self-start lg:self-auto mt-2 lg:mt-0 p-2 rounded-lg bg-danger/10 border border-danger/20">
                     <span className="text-xs font-bold text-danger flex items-center gap-1">
-                      ⚠️ {s.consecutiveAbsent} days absent
+                      ⚠️ {s.consecutiveAbsent} days absent
                     </span>
                     {!hasAlerted ? (
                       <Button variant="outline" size="sm" onClick={() => handleAlert(s.id)} className="h-7 text-xs border-danger text-danger hover:bg-danger hover:text-white px-2 py-0 gap-1">
@@ -211,3 +219,4 @@ export function AdminEngagementAttendanceClient() {
     </div>
   );
 }
+

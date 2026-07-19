@@ -1,3 +1,4 @@
+import { useUrlState } from '@/app/admin/admin_shared_hooks/useUrlState';
 // RESPONSIBILITY: Renders the useAdminAllocations.ts component/hook.
 import { useState, useMemo } from 'react';
 import { ADMIN_SEATS_MOCK_ALLOCATIONS } from '@/app/admin/admin_seats_shifts_lockers/admin_seats_shifts_lockers_utils/AdminSeatsMockData';
@@ -17,10 +18,10 @@ export interface Allocation {
 }
 
 export function useAdminAllocations() {
-  const [shiftFilter, setShiftFilter] = useState('All Shifts');
-  const [statusFilter, setStatusFilter] = useState('All Statuses');
-  const [dateFrom, setDateFrom] = useState('');
-  const [dateTo, setDateTo] = useState('');
+  const [shiftFilter, setShiftFilter] = useUrlState('shiftFilter', 'All Shifts' as string);
+  const [statusFilter, setStatusFilter] = useUrlState('statusFilter', 'All Statuses' as string);
+  const [dateFrom, setDateFrom] = useUrlState('dateFrom', '' as string);
+  const [dateTo, setDateTo] = useUrlState('dateTo', '' as string);
 
   const filtered = useMemo(() => {
     return (ADMIN_SEATS_MOCK_ALLOCATIONS as Allocation[]).filter(a => {
@@ -44,3 +45,4 @@ export function useAdminAllocations() {
     filtered
   };
 }
+

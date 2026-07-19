@@ -1,11 +1,13 @@
+﻿// RESPONSIBILITY: Renders or handles logic for utils.ts.
 import { type ClassValue, clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 
 /**
  * Utility to merge Tailwind CSS class names safely.
  * Uses clsx for conditional classes + tailwind-merge to prevent conflicts.
- * Referenced via the `@/lib/utils` path alias (tsconfig: @/* → ./src/*).
+ * Referenced via the `@/lib/utils` path alias (tsconfig: @/* â†’ ./src/*).
  */
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
+

@@ -1,8 +1,8 @@
 // RESPONSIBILITY: Manages superadmin billing and invoices.
 import { fetchApi } from '@/lib/api';
-import { SUPERADMIN_API_ROUTES } from '@/app/superadmin/superadmin_url_config';
+import { SUPERADMIN_API_ROUTES } from '@/app/superadmin/SuperadminUrlConfig';
 import type { SuperadminBillingInvoice } from '@/app/superadmin/superadmin_billing/superadmin_billing_types/SuperadminBillingTypes';
-import type { ApiResponse } from '@/app/superadmin/superadmin_shared_components/superadmin_types';
+import type { ApiResponse } from '@/app/superadmin/superadmin_shared_components/SuperadminTypes';
 
 const BILLING_ENDPOINT = SUPERADMIN_API_ROUTES.BILLING_INVOICES;
 

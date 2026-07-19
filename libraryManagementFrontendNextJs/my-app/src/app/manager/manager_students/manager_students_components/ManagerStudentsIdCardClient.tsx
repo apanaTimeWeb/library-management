@@ -3,6 +3,7 @@
 import { useState, useMemo, useEffect } from 'react';
 import Link from 'next/link';
 import { ArrowLeft, Search, Printer, MessageSquare, IdCard, CheckCircle2 } from 'lucide-react';
+import type { Student } from '@/app/manager/manager_students/manager_students_types';
 import ManagerStudentsIdCard from '@/app/manager/manager_students/manager_students_components/ManagerStudentsIdCard';
 import { useManagerStudentsIdCard } from '@/app/manager/manager_students/manager_students_hooks/useManagerStudentsIdCard';
 import { MANAGER_ROUTES } from '@/app/manager/manager_url_config';
@@ -26,31 +27,31 @@ export function ManagerStudentsIdCardClient() {
           <Link href={MANAGER_ROUTES.STUDENTS} className="inline-flex items-center gap-2 text-sm font-medium text-text-secondary hover:text-primary transition-colors mb-4">
             <ArrowLeft size={14} /> Back to Students
           </Link>
-          <h1 className="text-[22px] font-bold text-text-primary">ID Card Generator</h1>
-          <p className="text-[13px] text-text-secondary mt-1.5">Search → click student → preview → print or send via WhatsApp</p>
+          <h1 className="text-xl font-bold text-text-primary">ID Card Generator</h1>
+          <p className="text-sm text-text-secondary mt-1.5">Search → click student → preview → print or send via WhatsApp</p>
         </div>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         {/* LEFT — selector */}
         <div>
-          <div className="bg-bg-card rounded-xl border border-border p-6">
+          <div className="bg-card rounded-xl border border-border p-6">
             <div className="flex items-center justify-between mb-4">
               <h2 className="text-base font-semibold text-text-primary">
                 <IdCard size={16} className="inline mr-[6px] align-middle" />
                 Select Student
               </h2>
               {selected && (
-                <span className="rounded-full px-2.5 py-0.5 text-[11px] font-semibold bg-success-bg text-success">
+                <span className="rounded-full px-2.5 py-0.5 text-xs font-semibold bg-success-bg text-success">
                   <CheckCircle2 size={11} /> {selected.name}
                 </span>
               )}
             </div>
             <div className="">
-              <div className="w-full bg-bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent-icon-wrap mb-[14px]">
-                <Search size={14} className="w-full bg-bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent-icon" />
+              <div className="relative mb-[14px]">
+                <Search size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-text-secondary" />
                 <input
-                  className="w-full bg-bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent w-full bg-bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent-with-icon"
+                  className="w-full bg-input border border-border rounded-lg pl-10 pr-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
                   placeholder="Search name, Smart ID, phone…"
                   value={search}
                   onChange={e => setSearch(e.target.value)}
@@ -59,11 +60,11 @@ export function ManagerStudentsIdCardClient() {
               <div className="mt-4 max-h-96 overflow-y-auto space-y-2 pr-2 scrollbar-thin scrollbar-thumb-border scrollbar-track-transparent">
                 {filtered.length === 0 && (
                   <div className="flex flex-col items-center justify-center p-12 text-center h-full min-h-48">
-                    <div className="text-4xl mb-4 opacity-50">🔍</div>
+                    <Search size={48} className="mb-4 opacity-50 text-text-secondary" />
                     <p className="text-lg font-bold text-text-primary mb-1">No students found</p>
                   </div>
                 )}
-                {filtered.map(s => {
+                {filtered.map((s: Student) => {
                   const initials = s.name.split(' ').map((n: string) => n[0]).join('').slice(0, 2).toUpperCase();
                   return (
                     <button
@@ -77,9 +78,9 @@ export function ManagerStudentsIdCardClient() {
                         <p className="text-xs text-text-secondary mt-0.5 truncate">{s.smartId} · {s.shift} · Seat {s.seat}</p>
                       </div>
                       <span className={
-                        s.status === 'Active'    ? 'rounded-full px-2.5 py-0.5 text-[11px] font-semibold bg-success-bg text-success' :
-                        s.status === 'Suspended' ? 'rounded-full px-2.5 py-0.5 text-[11px] font-semibold bg-warning-bg text-warning' :
-                                                   'rounded-full px-2.5 py-0.5 text-[11px] font-semibold bg-danger-bg text-danger'
+                        s.status === 'Active'    ? 'rounded-full px-2.5 py-0.5 text-xs font-semibold bg-success-bg text-success' :
+                        s.status === 'Suspended' ? 'rounded-full px-2.5 py-0.5 text-xs font-semibold bg-warning-bg text-warning' :
+                                                   'rounded-full px-2.5 py-0.5 text-xs font-semibold bg-danger-bg text-danger'
                       }>{s.status}</span>
                     </button>
                   );
@@ -89,7 +90,7 @@ export function ManagerStudentsIdCardClient() {
           </div>
 
           {selected && cardData && (
-            <div className="bg-bg-card rounded-xl border border-border p-6 mt-6">
+            <div className="bg-card rounded-xl border border-border p-6 mt-6">
               <div className="flex items-center justify-between mb-4">
                 <h2 className="text-base font-semibold text-text-primary">Actions</h2>
               </div>
@@ -112,21 +113,21 @@ export function ManagerStudentsIdCardClient() {
         </div>
 
         {/* RIGHT — preview */}
-        <div className="flex flex-col items-center justify-center bg-bg-page border border-dashed border-border rounded-xl p-8 sticky top-24">
+        <div className="flex flex-col items-center justify-center bg-page border border-dashed border-border rounded-xl p-8 sticky top-24">
           {cardData ? (
             <>
-              <p className="text-[11px] font-bold uppercase tracking-wider text-text-secondary mb-6">
+              <p className="text-xs font-bold uppercase tracking-wider text-text-secondary mb-6">
                 Preview — {selected?.name}
               </p>
               <ManagerStudentsIdCard data={cardData} />
-              <p className="text-[11px] text-text-secondary mt-6 text-center max-w-72">
+              <p className="text-xs text-text-secondary mt-6 text-center max-w-72">
                 Use buttons on the left to print (80mm thermal) or send via WhatsApp
               </p>
             </>
           ) : (
-            <div className="bg-bg-card rounded-xl border border-border p-6 w-full max-w-sm">
+            <div className="bg-card rounded-xl border border-border p-6 w-full max-w-sm">
               <div className="flex flex-col items-center justify-center p-12 text-center h-full min-h-48">
-                <div className="text-4xl mb-4 opacity-50">🪪</div>
+                <IdCard size={48} className="mb-4 opacity-50 text-text-secondary" />
                 <p className="text-lg font-bold text-text-primary mb-1">No student selected</p>
                 <p className="text-sm text-text-secondary">Search and click a student to preview their ID card.</p>
               </div>
@@ -137,3 +138,5 @@ export function ManagerStudentsIdCardClient() {
     </div>
   );
 }
+
+

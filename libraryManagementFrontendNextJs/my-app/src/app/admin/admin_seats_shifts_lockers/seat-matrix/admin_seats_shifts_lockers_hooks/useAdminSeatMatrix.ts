@@ -1,3 +1,4 @@
+import { useUrlState } from '@/app/admin/admin_shared_hooks/useUrlState';
 // RESPONSIBILITY: Renders the useAdminSeatMatrix.ts component/hook.
 import { useState, useEffect, useMemo } from 'react';
 import { fetchApi } from '@/lib/api';
@@ -16,7 +17,7 @@ export interface SeatData {
 }
 
 export function useAdminSeatMatrix() {
-  const [activeTab, setActiveTab] = useState('All');
+  const [activeTab, setActiveTab] = useUrlState('activeTab', 'All' as string);
   const [selectedSeat, setSelectedSeat] = useState<SeatData | null>(null);
   const [date, setDate] = useState(() => new Date().toISOString().slice(0, 10));
   const [seatsData, setSeatsData] = useState<SeatData[]>([]);
@@ -26,7 +27,7 @@ export function useAdminSeatMatrix() {
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setIsLoading(true);
     fetchApi('/seats_shifts_lockers/seat-matrix')
-      .then(data => {
+      .then((data: any) => {
         type ApiSeatData = { id?: string; seatNumber?: string; isActive?: boolean; };
         const mapped = data.map(( s: ApiSeatData ) => ({
           uuid: s.id,
@@ -65,3 +66,8 @@ export function useAdminSeatMatrix() {
     ADMIN_SEATS_MOCK_LEGEND_ITEMS
   };
 }
+
+
+
+
+

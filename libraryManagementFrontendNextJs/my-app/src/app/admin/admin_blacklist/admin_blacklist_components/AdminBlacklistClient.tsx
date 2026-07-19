@@ -16,6 +16,8 @@ import { Card } from '@/components/ui/card';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from '@/components/ui/dialog';
 import toast from 'react-hot-toast';
 import { TablePagination } from '@/components/ui/table-pagination';
+import { TableToolbar } from '@/components/ui/table-toolbar';
+import { useClientTable } from '@/components/ui/use-client-table';
 
 function IdCell({ value }: { value: string }) {
   const [copied, setCopied] = useState(false);
@@ -27,7 +29,6 @@ function IdCell({ value }: { value: string }) {
     toast.success('Blacklist ID copied (`Rule 49`)');
     setTimeout(() => setCopied(false), 2000);
   }, [value]);
-
   return (
     <div className="flex items-center gap-2 font-mono text-xs text-muted-foreground">
       <span>#{value}</span>
@@ -64,6 +65,7 @@ function StatusCell() {
 }
 
 export function AdminBlacklistClient() {
+
   const {
     list,
     totalCount,
@@ -86,6 +88,8 @@ export function AdminBlacklistClient() {
     setSelectedStudent(student);
   }, [setSelectedStudent]);
 
+  const table = useClientTable(list, 10);
+
   if (fetchState === 'loading' && list.length === 0) {
     return <AdminBlacklistSkeleton />;
   }
@@ -98,7 +102,7 @@ export function AdminBlacklistClient() {
           <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-1">
             Smart Library 360 <span className="opacity-50">›</span> Admin <span className="opacity-50">›</span> Blacklist
           </p>
-          <h1 className="text-2xl font-bold tracking-tight text-foreground">Blacklist</h1>
+          <h1 className="text-text-primary text-xl font-bold tracking-tight text-foreground">Blacklist</h1>
           <p className="text-sm text-muted-foreground mt-1">Students permanently banned from re-joining the library.</p>
         </div>
         <Button variant="destructive" onClick={() => setIsAddOpen(true)} className="gap-2">
@@ -132,7 +136,13 @@ export function AdminBlacklistClient() {
         <AdminBlacklistEmptyState onResetSearch={handleResetSearch} isSearching={Boolean(searchInput.trim())} />
       ) : (
         <Card className="flex-1 min-h-96 shadow-sm border-border bg-card overflow-hidden flex flex-col">
-          <div className="overflow-x-auto flex-1">
+          <div className="mb-4">
+        <TableToolbar 
+          search={table.searchTerm} 
+          onSearch={table.setSearchTerm} 
+        />
+      </div>
+      <div className="overflow-x-auto flex-1">
             <table className="w-full text-sm text-left">
               <thead className="text-xs text-muted-foreground uppercase bg-muted/50 sticky top-0 z-10">
                 <tr>
@@ -194,7 +204,13 @@ export function AdminBlacklistClient() {
                 ))}
               </tbody>
             </table>
-          </div>
+          </div> 
+      <TablePagination 
+        totalItems={table.totalItems} 
+        page={table.page} 
+        limit={table.limit} 
+        onPageChange={table.setPage} 
+      />
           <TablePagination
             page={page}
             limit={limit}

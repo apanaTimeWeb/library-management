@@ -1,7 +1,7 @@
 'use client';
 import { useState } from 'react';
 import Link from 'next/link';
-import { ChevronRight, CheckCircle, X, RefreshCw } from 'lucide-react';
+import { RefreshCw, X, CheckCircle, ChevronRight, LogOut, Camera, QrCode } from 'lucide-react';
 import { ScanResult, ScanState } from '@/app/manager/manager_engagement/manager_engagement_types/ManagerEngagementTypes';
 import { MOCK_STUDENT } from '@/app/manager/manager_engagement/manager_engagement_constants/ManagerEngagementConstants';
 import { MANAGER_ROUTES } from '@/app/manager/manager_url_config';
@@ -58,18 +58,18 @@ export function ManagerEngagementQrScannerClient() {
       </div>
 
       <div className="mb-8">
-        <h1 className="text-[22px] font-bold text-text-primary">📷 QR Scanner</h1>
-        <p className="text-[13px] text-text-secondary mt-1.5">Scan student ID cards to instantly mark attendance.</p>
+        <h1 className="text-xl font-bold text-text-primary"><Camera size={24} className="inline mr-2" /> QR Scanner</h1>
+        <p className="text-sm text-text-secondary mt-1.5">Scan student ID cards to instantly mark attendance.</p>
       </div>
 
       <div className="max-w-md mx-auto">
 
         {/* ── Camera Viewport ── */}
-        <div className="bg-bg-card rounded-xl border border-border p-6 mb-4">
+        <div className="bg-card rounded-xl border border-border p-6 mb-4">
           <div className="flex items-start justify-between mb-4">
             <div>
               <div className="text-base font-semibold text-text-primary">Camera Feed</div>
-              <div className="text-[13px] text-text-secondary mt-1">
+              <div className="text-sm text-text-secondary mt-1">
                 {scanState === 'idle'     && 'Click Start Scan to activate camera'}
                 {scanState === 'scanning' && 'Point camera at student ID card QR code'}
                 {scanState === 'detected' && 'QR code detected — confirm attendance below'}
@@ -102,7 +102,7 @@ export function ManagerEngagementQrScannerClient() {
               ) : (
                 <>
                   <div className="text-5xl opacity-50 mb-2">
-                    {scanState === 'scanning' ? '📷' : '🔲'}
+                    {scanState === 'scanning' ? <Camera size={24} className="inline mx-auto text-text-secondary opacity-50" /> : <QrCode size={24} className="inline mx-auto text-text-secondary opacity-50" />}
                   </div>
                   <p className="text-sm font-medium opacity-80">
                     {scanState === 'idle' ? 'Camera inactive' : 'Tap to simulate scan'}
@@ -127,20 +127,20 @@ export function ManagerEngagementQrScannerClient() {
           {/* Start button */}
           {scanState === 'idle' && (
             <button onClick={startScan} className="w-full mt-4 bg-primary text-white rounded-lg px-5 py-3 text-sm font-semibold hover:bg-primary-hover transition-colors inline-flex items-center justify-center gap-2">
-              📷 Start Scanning
+              <Camera size={16} className="inline mr-2" /> Start Scanning
             </button>
           )}
         </div>
 
         {/* ── Detected Student Card ── */}
         {scanState === 'detected' && result && (
-          <div className="bg-bg-card rounded-xl border border-border p-5 mb-4 shadow-lg animate-in slide-in-from-bottom-4 duration-300">
+          <div className="bg-card rounded-xl border border-border p-5 mb-4 shadow-lg animate-in slide-in-from-bottom-4 duration-300">
             <div className="flex items-start gap-4 mb-5 relative">
               <div className="w-12 h-12 rounded-full bg-primary/10 text-primary flex items-center justify-center text-lg font-bold shrink-0">{result.initials}</div>
               <div className="flex-1 min-w-0 pr-8">
                 <div className="text-base font-bold text-text-primary truncate">{result.name}</div>
                 <div className="flex items-center gap-2 mt-1 mb-1.5 flex-wrap">
-                  <span className="font-mono text-xs font-bold text-text-secondary bg-bg-elevated px-1.5 py-0.5 rounded">{result.smartId}</span>
+                  <span className="font-mono text-xs font-bold text-text-secondary bg-card px-1.5 py-0.5 rounded">{result.smartId}</span>
                   <span className="rounded-full px-2 py-0.5 text-[10px] font-bold bg-primary/10 text-primary">{result.shift}</span>
                   <span className="rounded-full px-2 py-0.5 text-[10px] font-bold bg-success-bg text-success">{result.plan}</span>
                 </div>
@@ -155,7 +155,7 @@ export function ManagerEngagementQrScannerClient() {
                 ✅ Mark IN
               </button>
               <button onClick={() => markAttendance('OUT')} className="bg-danger text-white rounded-lg px-4 py-2.5 text-sm font-semibold hover:opacity-90 transition-colors flex items-center justify-center gap-2">
-                🔚 Mark OUT
+                <LogOut size={16} className="inline mr-2" /> Mark OUT
               </button>
             </div>
           </div>
@@ -163,7 +163,7 @@ export function ManagerEngagementQrScannerClient() {
 
         {/* ── Recent History ── */}
         {history.length > 0 && (
-          <div className="bg-bg-card rounded-xl border border-border p-6 mb-4">
+          <div className="bg-card rounded-xl border border-border p-6 mb-4">
             <div className="text-base font-semibold text-text-primary mb-4">Recent Scans</div>
             {history.map(h => (
               <div key={h.id} className="flex items-center gap-3 py-2 border-b border-border last:border-0">
@@ -184,11 +184,11 @@ export function ManagerEngagementQrScannerClient() {
               Can't scan? Enter Smart ID manually →
             </button>
           ) : (
-            <div className="bg-bg-card rounded-xl border border-border p-6 mt-4 text-left animate-in fade-in duration-200">
+            <div className="bg-card rounded-xl border border-border p-6 mt-4 text-left animate-in fade-in duration-200">
               <div className="text-base font-bold text-text-primary mb-4">Manual Entry</div>
               <div className="flex flex-col mb-4">
-                <label className="block text-[13px] font-medium text-text-secondary mb-1.5">Smart ID <span className="text-danger ml-1">*</span></label>
-                <input className="w-full bg-bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary font-mono uppercase" placeholder="e.g. SL-001"
+                <label className="block text-sm font-medium text-text-secondary mb-1.5">Smart ID <span className="text-danger ml-1">*</span></label>
+                <input className="w-full bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary font-mono uppercase" placeholder="e.g. SL-001"
                   value={manualId} onChange={e => setManualId(e.target.value)}
                   onKeyDown={e => e.key === 'Enter' && handleManual('IN')} />
               </div>
@@ -196,7 +196,7 @@ export function ManagerEngagementQrScannerClient() {
                 <button onClick={() => handleManual('IN')} disabled={!manualId.trim()}
                   className="bg-success text-white rounded-lg px-4 py-2.5 text-sm font-semibold hover:opacity-90 transition-colors flex items-center justify-center gap-2 flex-1 disabled:opacity-50">✅ Mark IN</button>
                 <button onClick={() => handleManual('OUT')} disabled={!manualId.trim()}
-                  className="bg-danger text-white rounded-lg px-4 py-2.5 text-sm font-semibold hover:opacity-90 transition-colors flex items-center justify-center gap-2 flex-1 disabled:opacity-50">🔚 Mark OUT</button>
+                  className="bg-danger text-white rounded-lg px-4 py-2.5 text-sm font-semibold hover:opacity-90 transition-colors flex items-center justify-center gap-2 flex-1 disabled:opacity-50"><LogOut size={16} className="inline mr-2" /> Mark OUT</button>
                 <button onClick={() => setShowManual(false)} className="bg-transparent border border-border text-text-primary rounded-lg px-4 py-2.5 text-sm font-medium hover:bg-primary-subtle hover:border-primary transition-colors flex items-center justify-center gap-2 flex-1">Cancel</button>
               </div>
             </div>
@@ -207,3 +207,5 @@ export function ManagerEngagementQrScannerClient() {
     </div>
   );
 }
+
+

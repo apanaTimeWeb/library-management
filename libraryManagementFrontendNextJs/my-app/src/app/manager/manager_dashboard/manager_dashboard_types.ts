@@ -1,3 +1,4 @@
+﻿// RESPONSIBILITY: Renders or handles logic for manager_dashboard_types.ts.
 
 
 export interface DashboardKpiData {
@@ -58,3 +59,4 @@ export interface CellRendererProps {
   value: string;
 }
 export type FetchState = 'idle' | 'loading' | 'success' | 'error';
+

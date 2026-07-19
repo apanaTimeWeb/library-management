@@ -43,6 +43,7 @@ export function GlobalCommandPalette() {
   );
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setSelectedIndex(0);
   }, [search]);
 
@@ -70,8 +71,8 @@ export function GlobalCommandPalette() {
   if (!open) return null;
 
   return (
-    <div className="fixed inset-0 z-[100] bg-black/60 backdrop-blur-sm flex items-start justify-center pt-[20vh] p-4" onClick={() => setOpen(false)}>
-      <div className="bg-bg-card w-full max-w-xl rounded-xl shadow-2xl border border-border flex flex-col overflow-hidden animate-in zoom-in-95 duration-200" onClick={(e) => e.stopPropagation()}>
+    <div className="fixed inset-0 z-50 bg-background/80 backdrop-blur-sm data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 flex items-start justify-center pt-32 sm:pt-40" onClick={() => setOpen(false)}>
+      <div className="relative z-50 flex max-h-96 w-full max-w-2xl flex-col overflow-hidden rounded-xl bg-popover text-popover-foreground shadow-2xl border border-border" onClick={(e) => e.stopPropagation()}>
         <div className="flex items-center gap-3 px-4 py-3 border-b border-border">
           <Search size={18} className="text-text-secondary" />
           <input
@@ -81,7 +82,7 @@ export function GlobalCommandPalette() {
             value={search}
             onChange={(e) => setSearch(e.target.value)}
           />
-          <button className="text-text-secondary hover:text-text-primary p-1 rounded-md hover:bg-bg-elevated transition-colors" onClick={() => setOpen(false)}>
+          <button className="text-text-secondary hover:text-text-primary p-1 rounded-md hover:bg-card transition-colors" onClick={() => setOpen(false)}>
             <X size={18} />
           </button>
         </div>
@@ -105,12 +106,14 @@ export function GlobalCommandPalette() {
             ))
           )}
         </div>
-        <div className="bg-bg-elevated px-4 py-2 border-t border-border flex items-center gap-4 text-[11px] text-text-secondary">
-          <span className="flex items-center gap-1"><kbd className="bg-bg-card border border-border rounded px-1.5 py-0.5 font-sans shadow-sm text-text-primary">↑↓</kbd> to navigate</span>
-          <span className="flex items-center gap-1"><kbd className="bg-bg-card border border-border rounded px-1.5 py-0.5 font-sans shadow-sm text-text-primary">↵</kbd> to select</span>
-          <span className="flex items-center gap-1"><kbd className="bg-bg-card border border-border rounded px-1.5 py-0.5 font-sans shadow-sm text-text-primary">esc</kbd> to close</span>
+        <div className="bg-card px-4 py-2 border-t border-border flex items-center gap-4 text-xs text-text-secondary">
+          <span className="flex items-center gap-1"><kbd className="bg-card border border-border rounded px-1.5 py-0.5 font-sans shadow-sm text-text-primary">↑↓</kbd> to navigate</span>
+          <span className="flex items-center gap-1"><kbd className="bg-card border border-border rounded px-1.5 py-0.5 font-sans shadow-sm text-text-primary">↵</kbd> to select</span>
+          <span className="flex items-center gap-1"><kbd className="bg-card border border-border rounded px-1.5 py-0.5 font-sans shadow-sm text-text-primary">esc</kbd> to close</span>
         </div>
       </div>
     </div>
   );
 }
+
+

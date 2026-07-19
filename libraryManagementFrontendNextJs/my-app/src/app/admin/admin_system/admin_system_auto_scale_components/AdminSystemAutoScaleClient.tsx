@@ -80,7 +80,7 @@ export function AdminSystemAutoScaleClient() {
               </div>
             </div>
           </div>
-          <div className="flex items-center justify-between p-4 rounded-xl bg-bg-card border border-border">
+          <div className="flex items-center justify-between p-4 rounded-xl bg-card border border-border">
             <div>
               <p className="text-sm font-medium text-text-primary">Alert me when occupancy exceeds threshold</p>
               <p className="text-xs text-text-secondary">Receive in-app notifications and dashboard badges</p>

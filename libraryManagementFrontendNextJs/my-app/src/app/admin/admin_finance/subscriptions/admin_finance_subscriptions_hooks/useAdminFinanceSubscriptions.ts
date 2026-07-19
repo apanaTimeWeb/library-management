@@ -1,14 +1,16 @@
+import { useUrlState } from '@/app/admin/admin_shared_hooks/useUrlState';
 // RESPONSIBILITY: Renders the useAdminFinanceSubscriptions.ts component/hook.
 import { useState, useEffect, useMemo } from 'react';
 import { useRouter } from 'next/navigation';
 import toast from 'react-hot-toast';
 import { ADMIN_FINANCE_MOCK_SUBSCRIPTIONS } from '@/app/admin/admin_finance/admin_finance_constants/AdminFinanceConstants';
+import { ADMIN_ROUTES } from '@/app/admin/admin_url_config';
 
 export function useAdminFinanceSubscriptions() {
   const router = useRouter();
-  const [statusFilter, setStatusFilter] = useState('all');
+  const [statusFilter, setStatusFilter] = useUrlState('statusFilter', 'all' as string);
   const [planFilter, setPlanFilter] = useState('all');
-  const [shiftFilter, setShiftFilter] = useState('all');
+  const [shiftFilter, setShiftFilter] = useUrlState('shiftFilter', 'all' as string);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -46,3 +48,4 @@ export function useAdminFinanceSubscriptions() {
     handleView
   };
 }
+

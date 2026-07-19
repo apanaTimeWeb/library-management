@@ -1,15 +1,21 @@
 'use client';
+import { useUrlState } from '@/app/admin/admin_shared_hooks/useUrlState';
+
+import { AdminSearchableDropdown } from '@/app/admin/admin_shared_components/AdminSearchableDropdown';
+
 // RESPONSIBILITY: Entry page for the admin_finance module.
 // DATA FLOW: Next.js Router -> page -> Components
 
 import { useState, useEffect } from 'react';
 
 import toast from 'react-hot-toast';
-import { formatCurrency } from '@/app/admin/admin_finance/admin_finance_utils/format';
+import { formatCurrency } from '@/app/admin/admin_finance/admin_finance_utils/AdminFinanceFormat';
 import { CheckCircle, CalendarPlus, Eye } from 'lucide-react';
 import { ADMIN_FINANCE_MOCK_PAYMENT_PROMISES } from '@/app/admin/admin_finance/admin_finance_constants/AdminFinanceConstants';
 import { TablePagination } from '@/components/ui/table-pagination';
 import { PromiseItem } from "./AdminFinancePaymentPromisesClient_types";
+import { TableToolbar } from '@/components/ui/table-toolbar';
+import { useClientTable } from '@/components/ui/use-client-table';
 
 const STATUS_BADGE: Record<string, string> = {
   pending:   'fin-badge fin-badge--warning',
@@ -23,9 +29,10 @@ function calcDays(dateStr: string) {
 }
 
 export function AdminFinancePaymentPromisesClient() {
+
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(10);
-  const [statusFilter, setStatusFilter] = useState('all');
+  const [statusFilter, setStatusFilter] = useUrlState('statusFilter', 'all' as string);
   const [promises, setPromises] = useState<PromiseItem[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [extendDialog, setExtendDialog] = useState<{ id: number; name: string } | null>(null);
@@ -58,7 +65,7 @@ export function AdminFinancePaymentPromisesClient() {
     toast.success(`📅 ${extendDialog.name}'s promise date extended.`);
     setExtendDialog(null); setNewDate(''); setExtendReason('');
   };
-
+    const table = useClientTable(filtered || [], 10);
   return (
     <div className="space-y-6">
       <div>
@@ -67,14 +74,20 @@ export function AdminFinancePaymentPromisesClient() {
       </div>
 
       <div className="fin-filter-bar">
-        <select className="fin-select w-40" value={statusFilter} onChange={(e) => setStatusFilter(e.target.value)}>
+        <AdminSearchableDropdown className="fin-select w-40" value={statusFilter} onChange={(e) => setStatusFilter(e.target.value)}>
           <option value="all">All Status</option>
           <option value="pending">Pending</option>
           <option value="fulfilled">Fulfilled</option>
           <option value="overdue">Overdue</option>
-        </select>
+        </AdminSearchableDropdown>
       </div>
 
+      <div className="mb-4">
+        <TableToolbar 
+          search={table.searchTerm} 
+          onSearch={table.setSearchTerm} 
+        />
+      </div>
       <div className="fin-card overflow-x-auto">
         <table className="w-full">
           <thead>
@@ -109,7 +122,7 @@ export function AdminFinancePaymentPromisesClient() {
                 </td>
               </tr>
             ) : (
-              filtered.slice((page - 1) * limit, page * limit).map((p) => (
+              table.paginatedData.map((p) => (
                 <tr key={p.id} className="fin-table-hover-row fin-table-row">
                   <td className="py-3 px-4">
                     <div className="fin-cell-name">{p.studentName}</div>
@@ -162,7 +175,13 @@ export function AdminFinancePaymentPromisesClient() {
             )}
           </tbody>
         </table>
-          </div>
+          </div> 
+      <TablePagination 
+        totalItems={table.totalItems} 
+        page={table.page} 
+        limit={table.limit} 
+        onPageChange={table.setPage} 
+      />
           <TablePagination
             page={page}
             limit={limit}
@@ -205,4 +224,5 @@ export function AdminFinancePaymentPromisesClient() {
     </div>
   );
 }
+
 

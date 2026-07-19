@@ -1,3 +1,4 @@
+﻿// RESPONSIBILITY: Renders or handles logic for AdminBlacklistAddDialog_types.ts.
 import { useEffect, useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm as useReactHookForm } from "react-hook-form";
@@ -12,3 +13,4 @@ export interface AdminBlacklistAddDialogProps {
   onClose: () => void;
   onSubmit: (data: AdminBlacklistFormData) => Promise<{ success: boolean; message: string }>;
 }
+

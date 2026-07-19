@@ -1,3 +1,4 @@
+﻿// RESPONSIBILITY: Renders or handles logic for AdminCommunicationComplaintsClient_types.ts.
 import { useState, useMemo, useEffect } from "react";
 import { fetchApi } from "@/lib/api";
 import { logger } from "@/lib/logger";
@@ -17,3 +18,4 @@ export interface Complaint {
   resolvedBy: string; resolvedDate: string; resolvedNote: string;
 }
 export type CStatus = 'Open' | 'In-Progress' | 'Resolved';
+

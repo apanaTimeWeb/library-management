@@ -31,22 +31,22 @@ export function ManagerCrmEnquiriesClient() {
         <nav className="text-xs font-medium text-text-tertiary uppercase tracking-wider mb-2 block">CRM &rsaquo; Enquiries</nav>
         <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
           <div>
-            <h1 className="text-2xl font-bold text-text-primary mb-1">Enquiry Pipeline</h1>
+            <h1 className="text-text-primary text-xl font-bold text-text-primary mb-1">Enquiry Pipeline</h1>
             <p className="text-sm text-text-secondary">
               {status === 'loading' ? 'Loading...' : `${filtered.length} leads`} {'•'} Track every prospect from enquiry to admission
             </p>
           </div>
           <div className="flex items-center gap-3 w-full md:w-auto">
             {/* View toggle */}
-            <div className="flex bg-bg-elevated p-1 rounded-md border border-border">
+            <div className="flex bg-card p-1 rounded-md border border-border">
               <button
-                className={`p-1.5 rounded text-text-secondary hover:text-text-primary transition-colors ${view === 'kanban' ? 'bg-bg-card shadow-sm text-text-primary' : ''}`}
+                className={`p-1.5 rounded text-text-secondary hover:text-text-primary transition-colors ${view === 'kanban' ? 'bg-card shadow-sm text-text-primary' : ''}`}
                 onClick={() => setView('kanban')} title="Kanban view"
               >
                 <LayoutGrid size={16} />
               </button>
               <button
-                className={`p-1.5 rounded text-text-secondary hover:text-text-primary transition-colors ${view === 'table' ? 'bg-bg-card shadow-sm text-text-primary' : ''}`}
+                className={`p-1.5 rounded text-text-secondary hover:text-text-primary transition-colors ${view === 'table' ? 'bg-card shadow-sm text-text-primary' : ''}`}
                 onClick={() => setView('table')} title="Table view"
               >
                 <List size={16} />
@@ -65,7 +65,7 @@ export function ManagerCrmEnquiriesClient() {
           <Search size={15} className="absolute left-3 top-1/2 -translate-y-1/2 text-text-secondary" />
           <input
             type="text"
-            className="w-full pl-9 pr-3 py-2 bg-bg-card border border-border rounded-md text-sm text-text-primary outline-none focus:border-primary transition-colors"
+            className="w-full pl-9 pr-3 py-2 bg-card border border-border rounded-md text-sm text-text-primary outline-none focus:border-primary transition-colors"
             placeholder="Search by name or phone…"
             value={search}
             onChange={(e) => setSearch(e.target.value)}

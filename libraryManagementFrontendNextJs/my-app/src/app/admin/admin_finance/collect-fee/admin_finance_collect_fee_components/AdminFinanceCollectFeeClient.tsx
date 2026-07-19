@@ -2,7 +2,7 @@
 // RESPONSIBILITY: Renders the AdminFinanceCollectFeeClient component.
 import { Toaster } from 'react-hot-toast';
 import { Search, CheckCircle, IndianRupee, BookOpen, MessageSquare, Printer, X } from 'lucide-react';
-import { formatCurrency } from '@/app/admin/admin_finance/admin_finance_utils/format';
+import { formatCurrency } from '@/app/admin/admin_finance/admin_finance_utils/AdminFinanceFormat';
 import { ADMIN_FINANCE_MODES } from '@/app/admin/admin_finance/admin_finance_constants/AdminFinanceConstants';
 import { useAdminFinanceCollectFee, MODE_LABELS, maskPhone } from '@/app/admin/admin_finance/collect-fee/admin_finance_collect_fee_hooks/useAdminFinanceCollectFee';
 import { Card } from '@/components/ui/card';
@@ -75,7 +75,7 @@ export function AdminFinanceCollectFeeClient() {
             
             {/* Modal Body - Thermal Ticket */}
             <div className="p-6 bg-muted/5">
-              <div className="bg-white text-black font-mono text-sm max-w-80 mx-auto shadow-sm border border-gray-200 relative overflow-hidden">
+              <div className="bg-white text-black font-mono text-sm max-w-80 mx-auto shadow-sm border border-border relative overflow-hidden">
                 {/* Top Zigzag */}
                 <div className="absolute top-0 left-0 right-0 h-2 flex overflow-hidden">
                   {Array.from({ length: 20 }).map((_, i) => (
@@ -90,8 +90,8 @@ export function AdminFinanceCollectFeeClient() {
                   <p className="font-bold text-base tracking-widest uppercase mb-1">Smart Library 360</p>
                   <p className="text-xs uppercase tracking-widest border-b border-black/30 pb-2 mb-4 w-full text-center">Payment Receipt</p>
                   
-                  <div className="w-full border border-black/20 p-2 mb-4 text-center bg-gray-50">
-                    <p className="text-xs text-gray-500 uppercase tracking-widest mb-0.5">Receipt Number</p>
+                  <div className="w-full border border-black/20 p-2 mb-4 text-center bg-card">
+                    <p className="text-xs text-text-secondary uppercase tracking-widest mb-0.5">Receipt Number</p>
                     <p className="font-bold text-sm">{receiptData.receiptNo}</p>
                   </div>
 
@@ -104,15 +104,15 @@ export function AdminFinanceCollectFeeClient() {
                       ['Mode',    MODE_LABELS[receiptData.mode]],
                     ].map(([l, v]) => (
                       <div key={l} className="flex justify-between w-full">
-                        <span className="text-gray-500">{l}</span>
+                        <span className="text-text-secondary">{l}</span>
                         <span className="font-bold text-right">{v}</span>
                       </div>
                     ))}
                   </div>
 
                   <div className="w-full border-t-2 border-dashed border-black/30 pt-3 pb-3 mb-4 text-center">
-                    <p className="text-xs text-gray-500 uppercase tracking-widest mb-1">Total Paid</p>
-                    <p className="text-2xl font-bold">₹{receiptData.total.toFixed(0)}</p>
+                    <p className="text-xs text-text-secondary uppercase tracking-widest mb-1">Total Paid</p>
+                    <p className="text-text-primary text-xl font-bold">₹{receiptData.total.toFixed(0)}</p>
                   </div>
 
                   <div className="flex items-center gap-1 bg-black text-white px-3 py-1 rounded-full text-xs font-bold mb-4">
@@ -120,7 +120,7 @@ export function AdminFinanceCollectFeeClient() {
                     <span>Payment Received</span>
                   </div>
 
-                  <p className="text-xs italic text-gray-500 text-center">"Knowledge is the best investment."</p>
+                  <p className="text-xs italic text-text-secondary text-center">"Knowledge is the best investment."</p>
                   <p className="text-xs font-bold mt-1">Thank you! Keep studying 😊</p>
                 </div>
 
@@ -144,7 +144,7 @@ export function AdminFinanceCollectFeeClient() {
               <Button 
                 variant="outline"
                 onClick={handlePrintReceipt}
-                className="w-full font-bold gap-2 bg-bg-card"
+                className="w-full font-bold gap-2 bg-card"
               >
                 <Printer size={16} /> Print Receipt (Thermal 80mm)
               </Button>
@@ -165,7 +165,7 @@ export function AdminFinanceCollectFeeClient() {
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b pb-4">
           <div>
             <nav className="text-xs text-muted-foreground font-medium mb-1 tracking-wide uppercase">Smart Library 360 › Admin › Finance</nav>
-            <h1 className="text-2xl font-bold tracking-tight">Collect Fee</h1>
+            <h1 className="text-text-primary text-xl font-bold tracking-tight">Collect Fee</h1>
             <p className="text-sm text-muted-foreground mt-1">Record a new payment from a student.</p>
           </div>
         </div>
@@ -324,25 +324,25 @@ export function AdminFinanceCollectFeeClient() {
                   
                   <div className="w-full space-y-2 mb-4 text-xs">
                     <div className="flex justify-between w-full">
-                      <span className="text-gray-500">Date</span>
+                      <span className="text-text-secondary">Date</span>
                       <span className="font-bold text-right">{new Date().toLocaleDateString('en-IN')}</span>
                     </div>
                     <div className="flex justify-between w-full">
-                      <span className="text-gray-500">Student</span>
+                      <span className="text-text-secondary">Student</span>
                       <span className="font-bold text-right">{selectedStudent?.name || '—'}</span>
                     </div>
                     <div className="flex justify-between w-full">
-                      <span className="text-gray-500">Smart ID</span>
+                      <span className="text-text-secondary">Smart ID</span>
                       <span className="font-bold text-right">{selectedStudent?.smartId || '—'}</span>
                     </div>
                     <div className="flex justify-between w-full">
-                      <span className="text-gray-500">Mode</span>
+                      <span className="text-text-secondary">Mode</span>
                       <span className="font-bold text-right">{MODE_LABELS[mode]}</span>
                     </div>
                   </div>
 
                   <div className="w-full border-t border-dashed border-black/30 pt-3 mb-4 text-center">
-                    <p className="text-xs text-gray-500 uppercase tracking-widest mb-1">Total Amount</p>
+                    <p className="text-xs text-text-secondary uppercase tracking-widest mb-1">Total Amount</p>
                     <p className="text-xl font-bold">₹{total > 0 ? total.toFixed(0) : '0'}</p>
                   </div>
                   
@@ -366,3 +366,4 @@ export function AdminFinanceCollectFeeClient() {
     </>
   );
 }
+

@@ -1,3 +1,4 @@
+﻿// RESPONSIBILITY: Renders or handles logic for thermalPrint.ts.
 
 
 export interface ThermalBillData {
@@ -236,3 +237,4 @@ export function printThermal(data: ThermalBillData): void {
     }, 800);
   }
 }
+

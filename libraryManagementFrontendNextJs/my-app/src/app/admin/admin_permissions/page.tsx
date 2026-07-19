@@ -28,3 +28,4 @@ export default async function AdminPermissionsPage() {
   return <AdminPermissionsView initialPermissions={perms} />;
 }
 
+

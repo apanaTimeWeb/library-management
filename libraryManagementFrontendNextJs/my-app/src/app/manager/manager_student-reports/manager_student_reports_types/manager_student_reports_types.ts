@@ -1,3 +1,4 @@
+﻿// RESPONSIBILITY: Renders or handles logic for manager_student_reports_types.ts.
 
 
 export interface ReportsData {
@@ -20,3 +21,4 @@ export interface ManagerStudentReportsState {
   fetchReports: (dateRange: string) => Promise<void>;
 }
 export type FetchState = 'idle' | 'loading' | 'success' | 'error';
+

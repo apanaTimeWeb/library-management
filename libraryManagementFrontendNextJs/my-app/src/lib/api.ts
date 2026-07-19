@@ -1,10 +1,11 @@
+// RESPONSIBILITY: Renders or handles logic for api.ts.
 /**
  * API Utility — Secure fetch wrapper
  *
  * Every API call:
  * 1. Attaches Authorization: Bearer <token> header
- * 2. On 401 → tries to refresh token once, then redirects to login
- * 3. On 403 → redirects to /403 page
+ * 2. On 401 â†’ tries to refresh token once, then redirects to login
+ * 3. On 403 â†’ redirects to /403 page
  *
  * NOTE: Cache-Control is a RESPONSE header — do NOT send it as a REQUEST header.
  * Sending it as a request header causes CORS preflight to fail.
@@ -12,59 +13,60 @@
 
 import { getAccessToken, refreshAccessToken, clearAuthState } from '@/lib/auth';
 import { mockRegistry } from '@/lib/mockRegistry';
+import { logger } from '@/lib/logger';
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001/api/v1';
 
 const generateGenericRecord = (idOffset: number = 0) => ({
-    id: `MOCK-${idOffset + 100}`,
-    name: `Mock Record ${idOffset + 1}`,
-    fullName: `Test User ${idOffset + 1}`,
-    title: `Mock Title ${idOffset + 1}`,
-    status: idOffset % 2 === 0 ? 'Active' : 'Inactive',
-    isActive: idOffset % 2 === 0,
-    price: (idOffset + 1) * 500,
-    amount: (idOffset + 1) * 500,
-    date: new Date().toLocaleDateString(),
-    expenseDate: new Date().toLocaleDateString(),
-    category: 'General',
-    role: idOffset % 2 === 0 ? 'Manager' : 'Staff',
-    paidBy: idOffset % 2 === 0 ? 'Manager' : 'Staff',
-    mode: idOffset % 2 === 0 ? 'bank' : 'cash',
-    email: `mock${idOffset + 1}@smartlibrary.com`,
-    phone: `987654321${idOffset}`,
-    branch: 'Main Branch',
-    branchId: 'B1',
-    branchName: 'Main Branch',
-    city: 'Metropolis',
-    capacity: 100 + idOffset * 10,
-    currentOccupancy: 80 + idOffset * 5,
-    revenue: (idOffset + 1) * 50000,
-    seat: `S-${idOffset + 1}`,
-    shift: idOffset % 2 === 0 ? 'Morning' : 'Evening',
-    plan: 'Monthly',
-    manager: 'System Admin',
-    contact: '9876543210',
-    address: '123 Smart St, City',
-    description: 'Auto-generated mock description',
-    recordedBy: 'Admin',
-    performedBy: 'System',
-    action: 'System Event',
-    module: 'Core',
-    severity: 'info',
-    details: 'Auto-generated mock row for UI testing.',
-    joinedDate: '2026-01-01',
-    type: 'Standard',
-    users: 15,
-    subscribers: 10 * (idOffset + 1),
-    duration: '1 Month',
-    kpiCards: [], // For object fallbacks
-    data: [], // For object fallbacks
+  id: `MOCK-${idOffset + 100}`,
+  name: `Mock Record ${idOffset + 1}`,
+  fullName: `Test User ${idOffset + 1}`,
+  title: `Mock Title ${idOffset + 1}`,
+  status: idOffset % 2 === 0 ? 'Active' : 'Inactive',
+  isActive: idOffset % 2 === 0,
+  price: (idOffset + 1) * 500,
+  amount: (idOffset + 1) * 500,
+  date: new Date().toLocaleDateString(),
+  expenseDate: new Date().toLocaleDateString(),
+  category: 'General',
+  role: idOffset % 2 === 0 ? 'Manager' : 'Staff',
+  paidBy: idOffset % 2 === 0 ? 'Manager' : 'Staff',
+  mode: idOffset % 2 === 0 ? 'bank' : 'cash',
+  email: `mock${idOffset + 1}@smartlibrary.com`,
+  phone: `987654321${idOffset}`,
+  branch: 'Main Branch',
+  branchId: 'B1',
+  branchName: 'Main Branch',
+  city: 'Metropolis',
+  capacity: 100 + idOffset * 10,
+  currentOccupancy: 80 + idOffset * 5,
+  revenue: (idOffset + 1) * 50000,
+  seat: `S-${idOffset + 1}`,
+  shift: idOffset % 2 === 0 ? 'Morning' : 'Evening',
+  plan: 'Monthly',
+  manager: 'System Admin',
+  contact: '9876543210',
+  address: '123 Smart St, City',
+  description: 'Auto-generated mock description',
+  recordedBy: 'Admin',
+  performedBy: 'System',
+  action: 'System Event',
+  module: 'Core',
+  severity: 'info',
+  details: 'Auto-generated mock row for UI testing.',
+  joinedDate: '2026-01-01',
+  type: 'Standard',
+  users: 15,
+  subscribers: 10 * (idOffset + 1),
+  duration: '1 Month',
+  kpiCards: [], // For object fallbacks
+  data: [], // For object fallbacks
 });
 
 // ── MOCK FALLBACK HELPER ──────────────────────────────────────────────────
-const getMockFallback = (ep: string, opts: RequestInit) => {
+const getMockFallback = <T = unknown>(ep: string, opts: RequestInit): T => {
   const normalizedEndpoint = ep.startsWith('/') ? ep : `/${ep}`;
-  
+
   // Dynamic Mock Login based on phone number
   if (normalizedEndpoint === '/auth/login') {
     let role = 'superadmin';
@@ -76,7 +78,7 @@ const getMockFallback = (ep: string, opts: RequestInit) => {
         else if (payload.phone === '3333333333') role = 'superadmin';
       }
     } catch (e) {
-      console.error("Error parsing mock login body", e);
+      logger.error('Error parsing mock login body', e);
     }
     return {
       success: true,
@@ -86,41 +88,41 @@ const getMockFallback = (ep: string, opts: RequestInit) => {
         user: { id: 'mock-user-1', name: `Test ${role}`, email: `${role}@example.com`, role, permissions: ['ALL'] }
       },
       statusCode: 200
-    } as any;
+    } as T;
   }
 
   if (mockRegistry[normalizedEndpoint]) {
-    console.warn(`[Mock Mode] Returning mock data for ${normalizedEndpoint}`);
-    return { 
-      success: true, 
-      message: 'Mock data returned', 
+    logger.warn(`[Mock Mode] Returning mock data for ${normalizedEndpoint}`);
+    return {
+      success: true,
+      message: 'Mock data returned',
       data: mockRegistry[normalizedEndpoint],
       statusCode: 200
-    } as any;
+    } as T;
   }
 
   // Intelligent Cross-Role Fallback
   const rolePrefixes = ['/admin', '/superadmin', '/manager'];
   const currentPrefix = rolePrefixes.find(p => normalizedEndpoint.startsWith(p));
-  
+
   if (currentPrefix) {
     const suffix = normalizedEndpoint.slice(currentPrefix.length); // e.g. "/accounting/assets"
     for (const prefix of rolePrefixes) {
       if (prefix === currentPrefix) continue;
       const alternativeEndpoint = `${prefix}${suffix}`;
       if (mockRegistry[alternativeEndpoint]) {
-        console.warn(`[Mock Mode] Cross-role fallback: Using ${alternativeEndpoint} for ${normalizedEndpoint}`);
-        return { 
-          success: true, 
-          message: 'Cross-role mock data returned', 
-          data: mockRegistry[alternativeEndpoint], 
-          statusCode: 200 
-        } as any;
+        logger.warn(`[Mock Mode] Cross-role fallback: Using ${alternativeEndpoint} for ${normalizedEndpoint}`);
+        return {
+          success: true,
+          message: 'Cross-role mock data returned',
+          data: mockRegistry[alternativeEndpoint],
+          statusCode: 200
+        } as T;
       }
     }
   }
 
-  console.warn(`[Mock Mode] No specific mock found for '${normalizedEndpoint}'. Returning safe generic fallback.`);
+  logger.warn(`[Mock Mode] No specific mock found for '${normalizedEndpoint}'. Returning safe generic fallback.`);
   let safeData: unknown;
 
   if (opts.method && ['POST', 'PUT', 'PATCH'].includes(opts.method.toUpperCase())) {
@@ -128,13 +130,15 @@ const getMockFallback = (ep: string, opts: RequestInit) => {
     let payloadData = {};
     try {
       if (opts.body && typeof opts.body === 'string') payloadData = JSON.parse(opts.body);
-    } catch (e) {}
-    safeData = { ...generateGenericRecord(999), ...payloadData, id: `NEW-${Math.floor(Math.random()*1000)}` };
+    } catch (e) {
+      logger.warn('[Mock Mode] Could not parse request body', e);
+    }
+    safeData = { ...generateGenericRecord(999), ...payloadData, id: `NEW-${Math.floor(Math.random() * 1000)}` };
   } else if (opts.method && opts.method.toUpperCase() === 'DELETE') {
     safeData = { id: 'mock-deleted-123', message: 'Record deleted successfully' };
   } else if (
-    normalizedEndpoint.includes('/dashboard') || 
-    normalizedEndpoint.includes('/metrics') || 
+    normalizedEndpoint.includes('/dashboard') ||
+    normalizedEndpoint.includes('/metrics') ||
     normalizedEndpoint.includes('/stats') ||
     normalizedEndpoint.includes('/settings') ||
     normalizedEndpoint.includes('/config') ||
@@ -156,10 +160,10 @@ const getMockFallback = (ep: string, opts: RequestInit) => {
     message: 'Simulated generic response',
     data: safeData,
     statusCode: 200
-  } as any;
+  } as T;
 };
 
-export async function fetchApi<T = any>(endpoint: string, options: RequestInit = {}): Promise<T> {
+export async function fetchApi<T = unknown>(endpoint: string, options: RequestInit = {}): Promise<T> {
   const url = `${API_BASE_URL}${endpoint.startsWith('/') ? endpoint : `/${endpoint}`}`;
 
   const token = getAccessToken();
@@ -184,17 +188,17 @@ export async function fetchApi<T = any>(endpoint: string, options: RequestInit =
     });
   } catch (networkError) {
     // Network-level failure (server down, CORS blocked, wrong URL)
-    console.error(`[fetchApi] Network error for ${url}:`, networkError);
-    return getMockFallback(endpoint, options);
+    logger.error(`[fetchApi] Network error for ${url}:`, networkError);
+    return getMockFallback<T>(endpoint, options);
   }
 
   // If the backend returns a 500, 502, 503, or 504 (usually gateway timeouts or server crashes)
   if (response.status >= 500) {
-    console.error(`[fetchApi] Backend returned ${response.status} for ${url}. Falling back to mock data.`);
-    return getMockFallback(endpoint, options);
+    logger.error(`[fetchApi] Backend returned ${response.status} for ${url}. Falling back to mock data.`);
+    return getMockFallback<T>(endpoint, options);
   }
 
-  // ── Handle 401 — Token expired → try refresh ─────────────────────────────
+  // ── Handle 401 — Token expired â†’ try refresh ─────────────────────────────
   if (response.status === 401) {
     const newToken = await refreshAccessToken();
     if (newToken) {
@@ -219,7 +223,7 @@ export async function fetchApi<T = any>(endpoint: string, options: RequestInit =
         clearAuthState();
         throw new Error('Session expired. Please log in again.');
       }
-      return handleResponse(retryResponse);
+      return handleResponse<T>(retryResponse);
     } else {
       // No refresh token — force logout
       clearAuthState();
@@ -235,15 +239,15 @@ export async function fetchApi<T = any>(endpoint: string, options: RequestInit =
     throw new Error('Access denied: You do not have permission to perform this action.');
   }
 
-  return handleResponse(response);
+  return handleResponse<T>(response);
 }
 
-async function handleResponse(response: Response) {
+async function handleResponse<T = unknown>(response: Response): Promise<T> {
   if (!response.ok) {
     const errorBody = await response.json().catch(() => ({ message: response.statusText }));
     let errorMsg = errorBody?.message;
     if (typeof errorMsg === 'object' && errorMsg !== null) {
-      errorMsg = errorMsg.message || JSON.stringify(errorMsg);
+      errorMsg = (errorMsg as Record<string, unknown>).message || JSON.stringify(errorMsg);
     }
     if (Array.isArray(errorMsg)) {
       errorMsg = errorMsg.join(', ');
@@ -253,20 +257,22 @@ async function handleResponse(response: Response) {
 
   const contentType = response.headers.get('content-type');
   if (contentType && contentType.includes('application/json')) {
-    const json = await response.json();
-    
+    const json = await response.json() as T;
+
     // FORCE MOCK DATA ON EMPTY ARRAYS for development
     const endpoint = response.url.replace(/.*\/api\/v1/, '');
+
     if (Array.isArray(json) && json.length === 0) {
-       console.warn(`[Mock Mode] Backend returned empty array for ${response.url}. Overriding with mock data for UI testing.`);
-       return getMockFallback(endpoint, { method: 'GET' });
+      logger.warn(`[Mock Mode] Backend returned empty array for ${response.url}. Overriding with mock data for UI testing.`);
+      return getMockFallback<T>(endpoint, { method: 'GET' });
     }
-    if (json && typeof json === 'object' && Array.isArray(json.data) && json.data.length === 0) {
-       console.warn(`[Mock Mode] Backend returned empty data array for ${response.url}. Overriding with mock data for UI testing.`);
-       return getMockFallback(endpoint, { method: 'GET' });
+    if (json && typeof json === 'object' && Array.isArray((json as Record<string, unknown>).data) && ((json as Record<string, unknown>).data as unknown[]).length === 0) {
+      logger.warn(`[Mock Mode] Backend returned empty data array for ${response.url}. Overriding with mock data for UI testing.`);
+      return getMockFallback<T>(endpoint, { method: 'GET' });
     }
 
     return json;
   }
-  return null;
+  return null as T;
 }
+

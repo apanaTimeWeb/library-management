@@ -1,3 +1,4 @@
+﻿// RESPONSIBILITY: Renders or handles logic for SuperadminExpenseCategoriesConstants.ts.
 import type { SuperadminExpenseCategory } from '@/app/superadmin/superadmin_accounting/expense-categories/superadmin_expense_categories_types/SuperadminExpenseCategoriesTypes';
 
 export const SUPERADMIN_EXPENSE_CATEGORIES_COLORS = [
@@ -16,3 +17,4 @@ export const SUPERADMIN_EXPENSE_CATEGORIES_MOCK_DATA: SuperadminExpenseCategory[
   { id: 5, name: 'Stationery',    budget: 1000,  spent: 650,   color: 'var(--success)' },
   { id: 6, name: 'Cleaning',      budget: 1200,  spent: 900,   color: 'var(--info)' },
 ];
+

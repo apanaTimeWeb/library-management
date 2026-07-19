@@ -9,8 +9,11 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Input } from '@/components/ui/input';
 import { TablePagination } from '@/components/ui/table-pagination';
+import { TableToolbar } from '@/components/ui/table-toolbar';
+import { useClientTable } from '@/components/ui/use-client-table';
 
 export function AdminFinanceAutoSuspendClient() {
+
   const {
     config,
     suspended,
@@ -39,14 +42,14 @@ export function AdminFinanceAutoSuspendClient() {
     { label: 'Auto-Restored (Month)', value: configLoading ? '—' : config?.autoRestoredThisMonth ?? 0, icon: RotateCcw, variant: 'default' },
     { label: 'Manual Restores', value: configLoading ? '—' : config?.manualRestores ?? 0, icon: UserCheck, variant: 'default' },
   ] as const;
-
+    const table = useClientTable(suspended || [], 10);
   return (
     <div className="h-full flex flex-col pb-10 space-y-6 relative">
       {/* page Header */}
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b pb-4">
         <div>
           <nav className="text-xs text-muted-foreground font-medium mb-1 tracking-wide uppercase">Smart Library 360 › Admin › Finance</nav>
-          <h1 className="text-2xl font-bold tracking-tight">Auto-Suspend Policy</h1>
+          <h1 className="text-text-primary text-xl font-bold tracking-tight">Auto-Suspend Policy</h1>
           <p className="text-sm text-muted-foreground mt-1">Manage automatic suspension and student restoration.</p>
         </div>
       </div>
@@ -59,7 +62,7 @@ export function AdminFinanceAutoSuspendClient() {
               <span className={`text-xs font-bold tracking-wider uppercase ${variant === 'danger' ? 'text-danger' : 'text-muted-foreground'}`}>{label}</span>
               <Icon size={16} className={variant === 'danger' ? 'text-danger' : 'text-muted-foreground'} />
             </div>
-            <p className={`text-2xl font-bold ${variant === 'danger' ? 'text-danger' : 'text-primary'}`}>{value}</p>
+            <p className={`text-text-primary text-xl font-bold ${variant === 'danger' ? 'text-danger' : 'text-primary'}`}>{value}</p>
           </Card>
         ))}
       </div>
@@ -115,7 +118,13 @@ export function AdminFinanceAutoSuspendClient() {
           <h3 className="font-bold text-base text-primary">Suspended Students</h3>
         </div>
         
-        <div className="w-full overflow-x-auto flex-1">
+        <div className="mb-4">
+        <TableToolbar 
+          search={table.searchTerm} 
+          onSearch={table.setSearchTerm} 
+        />
+      </div>
+      <div className="w-full overflow-x-auto flex-1">
           <table className="w-full text-sm text-left">
             <thead className="bg-muted/30 border-b text-muted-foreground text-xs font-bold uppercase tracking-wider sticky top-0 z-10">
               <tr>
@@ -149,7 +158,7 @@ export function AdminFinanceAutoSuspendClient() {
                   </td>
                 </tr>
               ) : (
-                suspended.slice((page - 1) * limit, page * limit).map((s) => (
+                table.paginatedData.map((s) => (
                   <tr key={s.id} className="hover:bg-muted/10 transition-colors">
                     <td className="px-5 py-4">
                       <div className="font-bold text-sm text-primary">{s.studentName}</div>
@@ -191,7 +200,13 @@ export function AdminFinanceAutoSuspendClient() {
               )}
             </tbody>
           </table>
-          </div>
+          </div> 
+      <TablePagination 
+        totalItems={table.totalItems} 
+        page={table.page} 
+        limit={table.limit} 
+        onPageChange={table.setPage} 
+      />
           <TablePagination
             page={page}
             limit={limit}
@@ -245,3 +260,4 @@ export function AdminFinanceAutoSuspendClient() {
     </div>
   );
 }
+

@@ -1,101 +1,86 @@
 'use client';
-// RESPONSIBILITY: Renders the notification center for manager alerts.
-import { useState } from 'react';
-import { ChevronRight, ArrowRight, CheckCheck } from 'lucide-react';
-import { Notification, Category } from '@/app/manager/manager_communication/manager_communication_types/ManagerCommunicationTypes';
-import { NOTIFS_DATA, NOTIF_CATEGORIES } from '@/app/manager/manager_communication/manager_communication_constants/ManagerCommunicationConstants';
 
-// Types and constants centralized.
-
-const CATS: { id: Category; label: string; icon: string }[] = [
-  { id: 'All',        label: 'All Notifications',  icon: '🔔' },
-  { id: 'Finance',    label: 'Finance',             icon: '💰' },
-  { id: 'CRM',        label: 'CRM',                 icon: '📞' },
-  { id: 'Operations', label: 'Operations',          icon: '🪑' },
-  { id: 'Attendance', label: 'Attendance',          icon: '📅' },
-  { id: 'High Only',  label: 'Priority: High Only', icon: '🔴' },
-];
-
-const ICON_CLS: Record<string, string> = {
-  Finance: 'eng-notif-icon--finance', CRM: 'eng-notif-icon--crm',
-  Operations: 'eng-notif-icon--ops',  Attendance: 'eng-notif-icon--attend',
-};
+import { useEffect } from 'react';
+import { BellRing, Send } from 'lucide-react';
+import { useManagerCommunicationStore } from '@/app/manager/manager_communication/manager_communication_store/manager_communication_store';
+import { COMMUNICATION_STATUS_COLORS } from '@/app/manager/manager_communication/manager_communication_constants/manager_communication_constants';
 
 export function ManagerCommunicationNotificationCenterClient() {
-  const [cat, setCat]       = useState<Category>('All');
-  const [notifs, setNotifs] = useState<Notification[]>(NOTIFS_DATA);
+  const { notifications, stats, status, error, fetchNotifications } = useManagerCommunicationStore();
 
-  const filtered = notifs.filter(n => {
-    if (cat === 'All')       return true;
-    if (cat === 'High Only') return n.priority === 'High';
-    return n.category === cat;
-  });
+  useEffect(() => {
+    fetchNotifications();
+  }, [fetchNotifications]);
 
-  const unread = notifs.filter(n => !n.read).length;
-  const markAllRead = () => setNotifs(prev => prev.map(n => ({ ...n, read: true })));
+  if (status === 'error') {
+    return <div className="p-8 text-danger bg-danger/10 rounded-lg m-6">Failed to load notifications: {error}</div>;
+  }
 
   return (
-    <div className="eng-page">
-      <div className="mb-8">
-        <div className="eng-breadcrumb">
-          <span>Communication</span><ChevronRight size={12} /><span>Notification Center</span>
+    <div className="p-6 min-h-screen">
+      <div className="mb-8 flex flex-col md:flex-row md:items-end justify-between gap-4">
+        <div>
+          <p className="text-xs font-semibold text-text-secondary uppercase tracking-wider mb-2">Smart Library 360 › Communication</p>
+          <h1 className="text-xl font-bold text-text-primary flex items-center gap-2"><BellRing size={24} className="text-primary" /> Notification Center</h1>
+          <p className="text-sm text-text-secondary mt-1.5">Broadcast push notifications to the student app.</p>
         </div>
-        <div className="flex items-center justify-between">
-          <div>
-            <h1 className="eng-page-title">🔔 Notification Center</h1>
-            <p className="eng-page-subtitle">{unread} unread notifications requiring your attention.</p>
+        <button className="flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-lg text-sm font-medium hover:bg-primary-hover transition-colors">
+          <Send size={16} /> Send Broadcast
+        </button>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+        <div className="bg-card border border-border rounded-xl p-5 shadow-sm">
+          <h3 className="text-sm font-semibold text-text-secondary mb-1">Total Broadcasts Sent</h3>
+          <div className="text-2xl font-bold text-text-primary">
+            {stats?.notificationsSent.toLocaleString() || 0}
           </div>
-          <button onClick={markAllRead} className="eng-btn-ghost" disabled={unread === 0}>
-            <CheckCheck size={16} /> Mark All Read
-          </button>
         </div>
       </div>
 
-      <div className="flex flex-col gap-6">
-        {/* Top Filter Bar */}
-        <div className="eng-notif-topbar flex flex-wrap gap-3">
-          {NOTIF_CATEGORIES.map(c => (
-            <button key={c.id} onClick={() => setCat(c.id)}
-              className={`eng-notif-cat${cat === c.id ? ' eng-notif-cat--active' : ''}`}
-              className="w-auto px-[16px] py-[8px] rounded-[30px]">
-              <span>{c.icon}</span><span>{c.label}</span>
-            </button>
-          ))}
+      <div className="bg-card border border-border rounded-xl overflow-hidden shadow-sm">
+        <div className="px-6 py-4 border-b border-border bg-bg-elevated/50">
+          <h2 className="font-bold text-text-primary">Broadcast History</h2>
         </div>
-
-        {/* Notifications List */}
-        <div className="eng-card eng-card--flush">
-          {filtered.length === 0 ? (
-            <div className="eng-empty">
-              <div className="eng-empty__icon">🔔</div>
-              <p className="eng-empty__title">All caught up! No pending notifications.</p>
-            </div>
-          ) : (
-            filtered.map(n => (
-              <div key={n.id} className={`eng-notif-item${n.read ? ' eng-notif-read' : ''}`}>
-                <div className={`eng-notif-icon ${ICON_CLS[n.category]}`}>{n.icon}</div>
-                <div className="eng-flex-1">
-                  <div className="flex items-center gap-2 mb-1">
-                    <p className="eng-notif-title">{n.title}</p>
-                    <span className={`eng-badge ${n.priority === 'High' ? 'eng-badge--danger' : 'eng-badge--warning'}`}>
-                      {n.priority === 'High' ? '🔴 High' : '🟡 Medium'}
-                    </span>
-                    {!n.read && <span className="eng-badge eng-badge--primary">New</span>}
-                  </div>
-                  <p className="eng-notif-desc">{n.description}</p>
-                </div>
-                <div className="eng-notif-meta">
-                  <span className="eng-notif-time">{n.time}</span>
-                  <a href={n.link} className="eng-notif-link">
-                    Go to page <ArrowRight size={12} />
-                  </a>
-                </div>
-              </div>
-            ))
-          )}
+        <div className="overflow-x-auto">
+          <table className="w-full text-left border-collapse">
+            <thead>
+              <tr className="bg-bg-elevated border-b border-border">
+                <th className="px-6 py-3 text-xs font-semibold text-text-secondary uppercase">Notification</th>
+                <th className="px-6 py-3 text-xs font-semibold text-text-secondary uppercase">Target Audience</th>
+                <th className="px-6 py-3 text-xs font-semibold text-text-secondary uppercase">Sent By</th>
+                <th className="px-6 py-3 text-xs font-semibold text-text-secondary uppercase">Date</th>
+                <th className="px-6 py-3 text-xs font-semibold text-text-secondary uppercase">Status & Reach</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-border">
+              {status === 'loading' ? (
+                <tr><td colSpan={5} className="p-8 text-center text-text-secondary">Loading history...</td></tr>
+              ) : notifications.map((notif) => (
+                <tr key={notif.id} className="hover:bg-page transition-colors">
+                  <td className="px-6 py-4">
+                    <div className="flex flex-col">
+                      <span className="font-medium text-text-primary">{notif.title}</span>
+                      <span className="text-sm text-text-secondary truncate max-w-[250px]">{notif.message}</span>
+                    </div>
+                  </td>
+                  <td className="px-6 py-4 text-sm font-medium text-text-primary">{notif.targetAudience}</td>
+                  <td className="px-6 py-4 text-sm text-text-secondary">{notif.sentBy}</td>
+                  <td className="px-6 py-4 text-sm text-text-secondary">{notif.sentDate}</td>
+                  <td className="px-6 py-4">
+                    <div className="flex flex-col gap-1 items-start">
+                      <span className={`px-2.5 py-1 rounded-full text-xs font-semibold ${COMMUNICATION_STATUS_COLORS[notif.status]}`}>
+                        {notif.status}
+                      </span>
+                      <span className="text-xs text-text-secondary">Delivered to {notif.deliveredCount} users</span>
+                    </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
   );
 }
-

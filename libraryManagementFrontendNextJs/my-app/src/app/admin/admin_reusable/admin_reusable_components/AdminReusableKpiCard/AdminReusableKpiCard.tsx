@@ -9,8 +9,8 @@ export default function AdminReusableKpiCard({ label, value, icon: Icon, iconCol
   return (
     <Card className="border-border bg-card shadow-none flex flex-col justify-between p-5 h-full">
       <div className="flex items-start justify-between mb-4">
-        <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[color:var(--bg)]" style={{ '--bg': iconBg } as React.CSSProperties}>
-          <Icon size={18} className="text-[color:var(--c)]" style={{ '--c': iconColor } as React.CSSProperties} />
+        <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-background" style={{ '--bg': iconBg } as React.CSSProperties}>
+          <Icon size={18} className="text-foreground" style={{ '--c': iconColor } as React.CSSProperties} />
         </div>
         {trend && (
           <span className={`flex items-center gap-1 text-xs font-bold px-2 py-0.5 rounded-full ${trend.up ? 'bg-success/10 text-success' : 'bg-danger/10 text-danger'}`}>
@@ -22,10 +22,11 @@ export default function AdminReusableKpiCard({ label, value, icon: Icon, iconCol
 
       <div>
         <p className="text-sm font-semibold text-muted-foreground uppercase tracking-wider">{label}</p>
-        <p className="text-2xl font-bold text-primary mt-1">{value}</p>
+        <p className="text-text-primary text-xl font-bold text-primary mt-1">{value}</p>
         {sub && <p className="text-xs text-muted-foreground mt-1">{sub}</p>}
       </div>
     </Card>
   );
 }
+
 

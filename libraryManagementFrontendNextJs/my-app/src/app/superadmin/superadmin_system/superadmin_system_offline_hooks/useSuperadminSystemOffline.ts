@@ -1,6 +1,7 @@
+﻿// RESPONSIBILITY: Renders or handles logic for useSuperadminSystemOffline.ts.
 import { useEffect, useState } from 'react';
 import { logger } from '@/lib/logger';
-import { SUPERADMIN_ROUTES } from '@/app/superadmin/superadmin_url_config';
+import { SUPERADMIN_ROUTES } from '@/app/superadmin/SuperadminUrlConfig';
 
 export function useSuperadminSystemOffline() {
   const [dots, setDots] = useState('');
@@ -56,3 +57,4 @@ export function useSuperadminSystemOffline() {
     handleRetry
   };
 }
+

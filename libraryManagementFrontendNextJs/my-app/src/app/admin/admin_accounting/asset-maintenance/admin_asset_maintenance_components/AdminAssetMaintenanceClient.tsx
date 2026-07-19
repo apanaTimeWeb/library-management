@@ -1,4 +1,6 @@
 'use client';
+import { AdminSearchableDropdown } from '@/app/admin/admin_shared_components/AdminSearchableDropdown';
+
 // RESPONSIBILITY: Renders the AdminAssetMaintenanceClient component.
 import { useState } from 'react';
 import { Search, Plus, Filter, IndianRupee } from 'lucide-react';
@@ -9,6 +11,8 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { TablePagination } from '@/components/ui/table-pagination';
+import { TableToolbar } from '@/components/ui/table-toolbar';
+import { useClientTable } from '@/components/ui/use-client-table';
 
 function StatusBadge({ value }: { value: string }) {
   if (!value) return null;
@@ -39,6 +43,7 @@ function TypeBadge({ value }: { value: string }) {
 }
 
 export function AdminAssetMaintenanceClient() {
+
   const {
     maintenance,
     totalCost,
@@ -55,13 +60,14 @@ export function AdminAssetMaintenanceClient() {
   const [limit, setLimit] = useState(10);
 
   const [isAddOpen, setIsAddOpen] = useState(false);
+    const table = useClientTable(maintenance, 10);
 
   return (
     <div className="h-full flex flex-col pb-10 space-y-6">
       {/* page Header */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b pb-4">
         <div>
-          <h1 className="text-2xl font-bold tracking-tight">Asset Maintenance</h1>
+          <h1 className="text-text-primary text-xl font-bold tracking-tight">Asset Maintenance</h1>
           <p className="text-sm text-muted-foreground mt-1">Schedule and track maintenance for library assets.</p>
         </div>
         <Button onClick={() => setIsAddOpen(true)} className="gap-2">
@@ -94,8 +100,8 @@ export function AdminAssetMaintenanceClient() {
         
         <div className="flex items-center gap-2">
           <Filter size={16} className="text-muted-foreground" />
-          <select
-            className="flex h-10 w-44 items-center justify-between rounded-md border border-border bg-bg-input px-3 py-2 text-sm ring-offset-bg-page placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+          <AdminSearchableDropdown
+            className="flex h-10 w-44 items-center justify-between rounded-md border border-border bg-input px-3 py-2 text-sm ring-offset-bg-page placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
             value={typeFilter}
             onChange={(e) => setTypeFilter(e.target.value)}
           >
@@ -103,7 +109,7 @@ export function AdminAssetMaintenanceClient() {
             <option value="routine">Routine</option>
             <option value="repair">Repair</option>
             <option value="upgrade">Upgrade</option>
-          </select>
+          </AdminSearchableDropdown>
         </div>
 
         {(searchInput || typeFilter !== 'all') && (
@@ -118,7 +124,13 @@ export function AdminAssetMaintenanceClient() {
         {fetchState === 'loading' && maintenance.length === 0 ? (
           <div className="flex items-center justify-center h-full text-muted-foreground">Loading maintenance tasks…</div>
         ) : (<>
-            <div className="w-full overflow-x-auto">
+            <div className="mb-4">
+        <TableToolbar 
+          search={table.searchTerm} 
+          onSearch={table.setSearchTerm} 
+        />
+      </div>
+      <div className="w-full overflow-x-auto">
             <table className="w-full text-sm text-left">
               <thead className="bg-muted/30 border-y text-muted-foreground text-xs font-medium uppercase tracking-wider sticky top-0 z-10">
                 <tr>
@@ -131,7 +143,7 @@ export function AdminAssetMaintenanceClient() {
                 </tr>
               </thead>
               <tbody className="divide-y divide-border">
-                {maintenance.slice((page - 1) * limit, page * limit).map((task, index) => (
+                {table.paginatedData.map((task, index) => (
                   <tr key={index} className="hover:bg-muted/10 transition-colors">
                     <td className="px-4 py-4 text-muted-foreground text-xs">{task.date}</td>
                     <td className="px-4 py-4 font-semibold text-foreground">{task.assetName}</td>
@@ -156,7 +168,13 @@ export function AdminAssetMaintenanceClient() {
                 )}
               </tbody>
             </table>
-          </div>
+          </div> 
+      <TablePagination 
+        totalItems={table.totalItems} 
+        page={table.page} 
+        limit={table.limit} 
+        onPageChange={table.setPage} 
+      />
           <TablePagination
             page={page}
             limit={limit}

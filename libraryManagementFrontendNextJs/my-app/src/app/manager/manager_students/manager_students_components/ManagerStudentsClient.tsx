@@ -1,5 +1,6 @@
-// @ts-nocheck
 'use client';
+import { useUrlState } from '@/app/manager/manager_shared_hooks/useUrlState';
+
 import { useState } from 'react';
 import { useMemo, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
@@ -12,11 +13,13 @@ import { NameCell, ShiftCell, StatusCell, DueCell, ActionsCell } from '@/app/man
 import { ManagerSearchableDropdown } from '@/app/manager/manager_shared_components/ManagerSearchableDropdown';
 import { ManagerStudentsEmptyState } from '@/app/manager/manager_students/manager_students_components/ManagerStudentsEmptyState';
 import { TablePagination } from '@/components/ui/table-pagination';
+import { TableToolbar } from "@/components/ui/table-toolbar";
+import { useClientTable } from "@/components/ui/use-client-table";
 
 // RESPONSIBILITY: Main Client view for the Manager Students directory.
 
 export function ManagerStudentsClient() {
-  const [searchTerm, setSearchTerm] = useState('');
+const [searchTerm, setSearchTerm] = useUrlState('searchTerm', '' as string);
 
   const {
     students,
@@ -28,10 +31,8 @@ export function ManagerStudentsClient() {
     shiftFilter, setShiftFilter
   } = useManagerStudentsList();
 
-  const [page, setPage] = useState(1);
-  const [limit, setLimit] = useState(10);
   const router = useRouter();
-
+  const table = useClientTable(filtered, 10);
   if (status === 'error') return <div className="p-8 text-danger">Failed to load: {error}</div>;
 
   return (
@@ -39,10 +40,10 @@ export function ManagerStudentsClient() {
       <div className="mb-8 flex flex-col md:flex-row md:items-end justify-between gap-4">
         <div>
           <p className="text-xs font-semibold text-text-secondary uppercase tracking-wider mb-2">Smart Library 360 › Students</p>
-          <h1 className="text-[22px] font-bold text-text-primary">Student Directory</h1>
-          <p className="text-[13px] text-text-secondary mt-1.5">Manage admissions, seating, and billing for all active learners.</p>
+          <h1 className="text-xl font-bold text-text-primary">Student Directory</h1>
+          <p className="text-sm text-text-secondary mt-1.5">Manage admissions, seating, and billing for all active learners.</p>
         </div>
-        <div className="flex gap-[8px] flex-wrap">
+        <div className="flex gap-2 flex-wrap">
           <button className="bg-transparent border border-border text-text-primary rounded-lg h-10 px-4 text-sm font-medium hover:bg-primary-subtle hover:border-primary transition-colors inline-flex items-center gap-2"><Download size={14} /> Export</button>
           <Link href={MANAGER_ROUTES.STUDENTS_GROUP} className="bg-transparent border border-border text-text-primary rounded-lg h-10 px-4 text-sm font-medium hover:bg-primary-subtle hover:border-primary transition-colors inline-flex items-center gap-2">
             <Users2 size={14} /> Group Admission
@@ -61,9 +62,9 @@ export function ManagerStudentsClient() {
           { label: 'Suspended', value: students.filter(s => s.status === 'Suspended').length },
           { label: 'Fee Due',   value: students.filter(s => s.due > 0).length },
         ].map(k => (
-          <div key={k.label} className="bg-bg-card border border-border rounded-xl p-5 flex flex-col justify-center">
-            <p className="text-[13px] font-medium text-text-secondary mb-1.5">{k.label}</p>
-            <p className="text-2xl font-bold text-text-primary">{status === 'loading' ? '...' : k.value}</p>
+          <div key={k.label} className="bg-card border border-border rounded-xl p-5 flex flex-col justify-center">
+            <p className="text-sm font-medium text-text-secondary mb-1.5">{k.label}</p>
+            <p className="text-text-primary text-xl font-bold text-text-primary">{status === 'loading' ? '...' : k.value}</p>
           </div>
         ))}
       </div>
@@ -71,7 +72,7 @@ export function ManagerStudentsClient() {
       {/* Filters */}
       <div className="flex flex-wrap gap-[10px] mb-[16px]">
         <input
-          className="w-full max-w-sm bg-bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+          className="w-full max-w-sm bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
           placeholder="Search name, phone, Smart ID…"
           value={search}
           onChange={e => setSearch(e.target.value)}
@@ -93,7 +94,7 @@ export function ManagerStudentsClient() {
       </div>
 
       {/* Grid */}
-      <div className="border border-border rounded-xl overflow-hidden bg-bg-card">
+      <div className="border border-border rounded-xl overflow-hidden bg-card">
         {status === 'loading' ? (
           <div className="flex items-center justify-center h-64 text-text-secondary">Loading table...</div>
         ) : filtered.length === 0 ? (
@@ -103,8 +104,9 @@ export function ManagerStudentsClient() {
         ) : (
           <>
             <div className="w-full overflow-x-auto">
-              <table className="w-full text-left text-sm whitespace-nowrap">
-                <thead className="bg-bg-elevated border-b border-border">
+              <TableToolbar search={table.searchTerm} onSearch={table.setSearchTerm} />
+      <table className="w-full text-left text-sm whitespace-nowrap">
+                <thead className="bg-card border-b border-border">
                   <tr className="text-text-secondary text-xs uppercase tracking-wider">
                     <th className="px-4 py-3 font-semibold">Smart ID</th>
                     <th className="px-4 py-3 font-semibold">Student</th>
@@ -117,40 +119,35 @@ export function ManagerStudentsClient() {
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-border">
-                  {filtered.slice((page - 1) * limit, page * limit).map((row) => (
+                  {table.paginatedData.map((row) => (
                     <tr 
                       key={row.id} 
-                      className="hover:bg-bg-page transition-colors cursor-pointer group"
+                      className="hover:bg-page transition-colors cursor-pointer group"
                       onClick={() => router.push(`${MANAGER_ROUTES.STUDENTS}/${row.id}`)}
                     >
                       <td className="px-4 py-4"><span className="text-primary font-mono text-xs font-semibold">{row.smartId}</span></td>
-    // @ts-ignore
-                      <td className="px-4 py-4"><NameCell value={row.name} data={row} /></td>
-    // @ts-ignore
-                      <td className="px-4 py-4"><ShiftCell value={row.shift} data={row} /></td>
-    // @ts-ignore
-                      <td className="px-4 py-4"><StatusCell value={row.status} data={row} /></td>
-                      <td className="px-4 py-4 text-[13px] text-text-secondary">{row.plan}</td>
-    // @ts-ignore
-                      <td className="px-4 py-4"><DueCell value={row.due} data={row} /></td>
-                      <td className="px-4 py-4 text-[12px] text-text-secondary">{row.joined}</td>
-    // @ts-ignore
-                      <td className="px-4 py-4 text-right"><ActionsCell value={''} data={row} /></td>
+                      <td className="px-4 py-4"><NameCell data={row} /></td>
+                      <td className="px-4 py-4"><ShiftCell data={row} /></td>
+                      <td className="px-4 py-4"><StatusCell value={row.status} /></td>
+                      <td className="px-4 py-4 text-sm text-text-secondary">{row.plan}</td>
+                      <td className="px-4 py-4"><DueCell value={row.due} /></td>
+                      <td className="px-4 py-4 text-xs text-text-secondary">{row.joined}</td>
+                      <td className="px-4 py-4 text-right"><ActionsCell data={row} /></td>
                     </tr>
                   ))}
                 </tbody>
               </table>
+      <TablePagination 
+        page={table.page} limit={table.limit} totalItems={table.totalItems} 
+        onPageChange={table.setPage} onLimitChange={table.setLimit} 
+      />
             </div>
-            <TablePagination
-              page={page}
-              limit={limit}
-              totalItems={filtered.length}
-              onPageChange={setPage}
-              onLimitChange={setLimit}
-            />
+            
           </>
         )}
       </div>
     </div>
   );
 }
+
+

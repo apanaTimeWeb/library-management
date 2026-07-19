@@ -1,3 +1,4 @@
+﻿// RESPONSIBILITY: Renders or handles logic for SuperadminCrmTypes.ts.
 
 
 export interface SuperadminCrmSidebarProps {
@@ -12,3 +13,4 @@ export interface SuperadminCrmMarkLostModalProps {
   onCancel: () => void;
   isSubmitting: boolean;
 }
+

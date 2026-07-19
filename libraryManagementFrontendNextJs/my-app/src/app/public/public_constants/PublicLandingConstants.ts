@@ -1,4 +1,5 @@
-import { PublicFeatureItem, PublicFAQItem } from "../public_types/PublicLanding_types";
+﻿// RESPONSIBILITY: Renders or handles logic for PublicLandingConstants.ts.
+import { PublicFeatureItem, PublicFAQItem } from "@/app/public/public_types/PublicLanding_types";
 
 export const PUBLIC_FEATURES: PublicFeatureItem[] = [
   {
@@ -55,3 +56,4 @@ export const PUBLIC_FAQS: PublicFAQItem[] = [
     answer: 'Yes! You can manage your library from anywhere using your mobile phone or laptop. All data is securely stored in the cloud.',
   },
 ];
+

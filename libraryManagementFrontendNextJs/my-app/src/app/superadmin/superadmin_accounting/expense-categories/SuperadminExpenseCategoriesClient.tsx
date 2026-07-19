@@ -3,7 +3,7 @@
 // DATA FLOW: useSuperadminExpenseCategories -> SuperadminExpenseCategoriesClient -> Card / Dialog
 
 import React, { useState } from 'react';
-import { superadmin_useSuperadminExpenseCategories as useSuperadminExpenseCategories } from '@/app/superadmin/superadmin_accounting/expense-categories/superadmin_expense_categories_hooks/superadmin_useSuperadminExpenseCategories';
+import { useSuperadminExpenseCategories as useSuperadminExpenseCategories } from '@/app/superadmin/superadmin_accounting/expense-categories/superadmin_expense_categories_hooks/useSuperadminExpenseCategories';
 import { SuperadminExpenseCategoriesHeader } from '@/app/superadmin/superadmin_accounting/expense-categories/superadmin_expense_categories_components/SuperadminExpenseCategoriesHeader';
 import { SuperadminExpenseCategoriesCard } from '@/app/superadmin/superadmin_accounting/expense-categories/superadmin_expense_categories_components/SuperadminExpenseCategoriesCard';
 import { SuperadminExpenseCategoriesAddDialog } from '@/app/superadmin/superadmin_accounting/expense-categories/superadmin_expense_categories_components/SuperadminExpenseCategoriesAddDialog';
@@ -29,7 +29,7 @@ export function SuperadminExpenseCategoriesClient() {
   return (
     <div className="relative p-2 sm:p-4">
       {toast && (
-        <div className="fixed top-24 right-8 z-50 bg-bg-card border border-border shadow-xl rounded-[var(--radius-md)] px-4 py-3 flex items-center gap-3 animate-in slide-in-from-top-4 duration-300">
+        <div className="fixed top-24 right-8 z-50 bg-card border border-border shadow-xl rounded-md px-4 py-3 flex items-center gap-3 animate-in slide-in-from-top-4 duration-300">
           <span className="text-sm font-semibold text-text-primary">{toast}</span>
         </div>
       )}

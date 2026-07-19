@@ -8,8 +8,12 @@ import { SuperadminInput } from '@/app/superadmin/superadmin_system/superadmin_s
 import { SuperadminSelect, SuperadminSelectTrigger, SuperadminSelectValue, SuperadminSelectContent, SuperadminSelectItem } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminSelect';
 import { Plus, ChevronRight, Inbox, Search, UserPlus, Unlock, Wrench } from 'lucide-react';
 import { useSuperadminSeatsLockers } from '@/app/superadmin/superadmin_seats_shifts_lockers/superadmin_seats_lockers_hooks/useSuperadminSeatsLockers';
+import { TableToolbar } from "@/components/ui/table-toolbar";
+import { useClientTable } from "@/components/ui/use-client-table";
+import { TablePagination } from "@/components/ui/table-pagination";
 
 export function SuperadminSeatsLockersClient() {
+
   const {
     filteredLockers,
     statusFilter,
@@ -32,6 +36,8 @@ export function SuperadminSeatsLockersClient() {
     handleAddLocker,
     openAddModal
   } = useSuperadminSeatsLockers();
+
+  const table = useClientTable(filteredLockers);
 
   const getStatusVariant = (status: string) => {
     switch (status) {
@@ -57,7 +63,7 @@ export function SuperadminSeatsLockersClient() {
         </SuperadminButton>
       </div>
 
-      <SuperadminCard className="mb-6 bg-bg-card border-none">
+      <SuperadminCard className="mb-6 bg-card border-none">
         <CardContent className="p-4 flex items-center gap-4">
           <div className="w-48">
             <SuperadminSelect value={statusFilter} onValueChange={setStatusFilter}>
@@ -77,7 +83,7 @@ export function SuperadminSeatsLockersClient() {
         <CardContent className="p-0">
           {filteredLockers.length === 0 ? (
             <div className="py-20 flex flex-col items-center justify-center text-center">
-              <div className="h-16 w-16 bg-bg-input rounded-full flex items-center justify-center text-text-secondary mb-3">
+              <div className="h-16 w-16 bg-input rounded-full flex items-center justify-center text-text-secondary mb-3">
                 <Inbox size={32} />
               </div>
               <p className="text-text-primary font-semibold text-lg">No lockers found</p>
@@ -88,7 +94,8 @@ export function SuperadminSeatsLockersClient() {
             </div>
           ) : (
             <div className="overflow-x-auto">
-              <table className="w-full text-sm text-left">
+              <TableToolbar search={table.searchTerm} onSearch={table.setSearchTerm} />
+      <table className="w-full text-sm text-left">
                 <thead>
                   <tr className="border-b border-border bg-surface text-text-secondary text-xs uppercase tracking-wider font-semibold">
                     <th className="py-4 pl-4 pr-3">Locker #</th>
@@ -99,10 +106,10 @@ export function SuperadminSeatsLockersClient() {
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-outline-variant/30 bg-surface">
-                  {filteredLockers.map((locker) => (
+                  {table.paginatedData.map((locker) => (
                     <tr
                       key={locker.id}
-                      className="hover:bg-bg-input transition-colors group"
+                      className="hover:bg-input transition-colors group"
                     >
                       <td className="py-3 pl-4 pr-3 font-mono font-medium text-text-primary">{locker.lockerId}</td>
                       <td className="py-3 px-3">
@@ -144,6 +151,10 @@ export function SuperadminSeatsLockersClient() {
                   ))}
                 </tbody>
               </table>
+      <TablePagination 
+        page={table.page} limit={table.limit} totalItems={table.totalItems} 
+        onPageChange={table.setPage} onLimitChange={table.setLimit} 
+      />
             </div>
           )}
         </CardContent>
@@ -221,3 +232,4 @@ export function SuperadminSeatsLockersClient() {
     </div>
   );
 }
+

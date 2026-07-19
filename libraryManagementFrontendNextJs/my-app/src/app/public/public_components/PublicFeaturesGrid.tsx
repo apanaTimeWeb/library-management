@@ -1,12 +1,13 @@
 "use client";
+// RESPONSIBILITY: Component or Page.
 import React from 'react';
 import { motion } from 'framer-motion';
 import * as Icons from 'lucide-react';
-import { PUBLIC_FEATURES } from '../public_constants/PublicLandingConstants';
+import { PUBLIC_FEATURES } from '@/app/public/public_constants/PublicLandingConstants';
 
 export function PublicFeaturesGrid() {
   return (
-    <section className="py-24 px-6 bg-bg-card border-y border-border">
+    <section className="py-24 px-6 bg-card border-y border-border">
       <div className="max-w-7xl mx-auto">
         
         <div className="text-center max-w-3xl mx-auto mb-16">
@@ -25,9 +26,9 @@ export function PublicFeaturesGrid() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ duration: 0.5, delay: idx * 0.1 }}
-                className="bg-bg-page border border-border rounded-[var(--radius-lg)] p-6 hover:border-primary/50 transition-colors group cursor-default"
+                className="bg-page border border-border rounded-lg p-6 hover:border-primary/50 transition-colors group cursor-default"
               >
-                <div className="w-12 h-12 rounded-[var(--radius-md)] bg-primary-subtle text-primary flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                <div className="w-12 h-12 rounded-md bg-primary-subtle text-primary flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
                   <IconComponent size={24} />
                 </div>
                 <h3 className="text-lg font-semibold text-text-primary mb-2">{feature.title}</h3>
@@ -41,3 +42,4 @@ export function PublicFeaturesGrid() {
     </section>
   );
 }
+

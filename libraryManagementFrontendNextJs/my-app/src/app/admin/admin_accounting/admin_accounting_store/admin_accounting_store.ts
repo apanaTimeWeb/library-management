@@ -1,4 +1,4 @@
-// @ts-nocheck
+
 // RESPONSIBILITY: Shared Zustand store for accounting sub-pages (`Rule 5`).
 // DATA FLOW: API / Dialogs -> Store -> Client Component (`Rule 39`).
 
@@ -69,8 +69,8 @@ export const useAdminAccountingStore = create<AdminAccountingStoreState>((set, g
   fetchExpenses: async () => {
     set({ fetchState: 'loading' });
     try {
-      const data = await fetchApi('/admin/accounting/expenses');
-      set({ expenses: (((Array.isArray(data) ? data : (Array.isArray((data as Record<string, unknown>)?.data) ? (data as Record<string, unknown>).data : [])).length > 0) ? (Array.isArray(data) ? data : (Array.isArray((data as Record<string, unknown>)?.data) ? (data as Record<string, unknown>).data : [])) : (() => { throw new Error('Force Mock'); })()), fetchState: 'success' });
+      const data: any = await fetchApi('/admin/accounting/expenses');
+      set({ expenses: (((Array.isArray(data) ? data : (Array.isArray((data as any)?.data) ? (data as any).data : [])).length > 0) ? (Array.isArray(data) ? data : (Array.isArray((data as any)?.data) ? (data as any).data : [])) : (() => { throw new Error('Force Mock'); })()) as any, fetchState: 'success' });
     } catch (e) {
       logger.error('Expenses fetch failed:', e);
       set({
@@ -119,8 +119,8 @@ export const useAdminAccountingStore = create<AdminAccountingStoreState>((set, g
   fetchMaintenance: async () => {
     set({ fetchState: 'loading' });
     try {
-      const data = await fetchApi('/admin/accounting/maintenance');
-      set({ maintenance: (((Array.isArray(data) ? data : (Array.isArray((data as Record<string, unknown>)?.data) ? (data as Record<string, unknown>).data : [])).length > 0) ? (Array.isArray(data) ? data : (Array.isArray((data as Record<string, unknown>)?.data) ? (data as Record<string, unknown>).data : [])) : (() => { throw new Error('Force Mock'); })()), fetchState: 'success' });
+      const data: any = await fetchApi('/admin/accounting/maintenance');
+      set({ maintenance: (((Array.isArray(data) ? data : (Array.isArray((data as any)?.data) ? (data as any).data : [])).length > 0) ? (Array.isArray(data) ? data : (Array.isArray((data as any)?.data) ? (data as any).data : [])) : (() => { throw new Error('Force Mock'); })()) as any, fetchState: 'success' });
     } catch (e) {
       logger.error('Maintenance fetch failed:', e);
       set({

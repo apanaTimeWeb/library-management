@@ -47,14 +47,14 @@ export function SuperadminSystemRoute({ children }: { children: React.ReactNode 
   const sidebarWidth = collapsed ? 60 : 240;
 
   return (
-    <div className="flex min-h-screen relative w-full bg-bg-page text-text-primary overflow-x-hidden">
+    <div className="flex min-h-screen relative w-full bg-page text-text-primary overflow-x-hidden">
       <Sidebar
         collapsed={collapsed}
         onToggle={() => setCollapsed(c => !c)}
         mobileOpen={mobileOpen}
         onMobileClose={() => setMobileOpen(false)}
       />
-      <div className="flex flex-col flex-1 min-w-0 transition-all duration-300" style={{ marginLeft: sidebarWidth }}>
+      <div className={`flex flex-col flex-1 min-w-0 transition-all duration-300 ml-0 ${collapsed ? 'md:ml-[60px]' : 'md:ml-[240px]'}`}>
         <Header sidebarWidth={sidebarWidth} onMobileOpen={() => setMobileOpen(true)} />
         <main className="flex-1 p-4 md:p-6 lg:p-8 pt-20 md:pt-24 overflow-y-auto">
           {children}

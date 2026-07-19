@@ -1,6 +1,7 @@
+import { useUrlState } from '@/app/admin/admin_shared_hooks/useUrlState';
 // RESPONSIBILITY: Renders the useAdminFinanceInvoice.ts component/hook.
 import { useState, useMemo } from 'react';
-import { formatCurrency, formatDate } from '@/app/admin/admin_finance/admin_finance_utils/format';
+import { formatCurrency, formatDate } from '@/app/admin/admin_finance/admin_finance_utils/AdminFinanceFormat';
 import { openWhatsApp } from '@/lib/whatsappUtils';
 import { printThermal } from '@/lib/thermalPrint';
 import { ADMIN_FINANCE_MOCK_INVOICES } from '@/app/admin/admin_finance/admin_finance_constants/AdminFinanceConstants';
@@ -9,7 +10,7 @@ import { ADMIN_FINANCE_MOCK_INVOICES } from '@/app/admin/admin_finance/admin_fin
 export type FilterStatus = 'all' | 'paid' | 'pending' | 'overdue';
 
 export function useAdminFinanceInvoice() {
-  const [search, setSearch] = useState('');
+  const [search, setSearch] = useUrlState('search', '' as string);
   const [statusFilter, setStatusFilter] = useState<FilterStatus>('all');
 
   const filteredInvoices = useMemo(() => {
@@ -86,3 +87,4 @@ export function useAdminFinanceInvoice() {
     handlePrint
   };
 }
+

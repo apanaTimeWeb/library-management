@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders or handles logic for SuperadminSystemHealthConstants.ts.
 import type { SuperadminSystemHealthDataResponse } from '@/app/superadmin/superadmin_system-health/superadmin_system_health_types/SuperadminSystemHealthTypes';
 
 export const SUPERADMIN_SYSTEM_HEALTH_MOCK_DATA: SuperadminSystemHealthDataResponse = {
@@ -14,4 +15,18 @@ export const SUPERADMIN_SYSTEM_HEALTH_MOCK_DATA: SuperadminSystemHealthDataRespo
     { n: 'Razorpay Gateway',   st: 'Connected',  dotColorKey: 'success' },
     { n: 'AWS S3 Backups',     st: 'Syncing...', dotColorKey: 'info' },
   ],
+};
+
+export const SUPERADMIN_SYSTEM_HEALTH_COLOR_TEXT_CLS: Record<string, string> = {
+  success: 'text-success',
+  info:    'text-info',
+  warning: 'text-warning',
+  danger:  'text-danger',
+};
+
+export const SUPERADMIN_SYSTEM_HEALTH_COLOR_FILL_CLS: Record<string, string> = {
+  success: 'bg-success',
+  info:    'bg-info',
+  warning: 'bg-warning',
+  danger:  'bg-danger',
 };

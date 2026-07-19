@@ -1,3 +1,4 @@
+﻿// RESPONSIBILITY: Renders or handles logic for SuperadminAssetMaintenanceTypes.ts.
 
 
 export interface SuperadminMaintenanceLog {
@@ -10,3 +11,4 @@ export interface SuperadminMaintenanceLog {
   cost: number;
   status: 'pending' | 'in-progress' | 'completed';
 }
+

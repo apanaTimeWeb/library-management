@@ -1,4 +1,6 @@
 'use client';
+import { AdminSearchableDropdown } from '@/app/admin/admin_shared_components/AdminSearchableDropdown';
+
 import { useState } from 'react';
 // RESPONSIBILITY: Renders the AdminStaffUsersClient component.
 
@@ -10,8 +12,11 @@ import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
 import { TablePagination } from '@/components/ui/table-pagination';
 import { AdminStaffUsersClientProps } from "./AdminStaffUsersClient_types";
+import { TableToolbar } from '@/components/ui/table-toolbar';
+import { useClientTable } from '@/components/ui/use-client-table';
 
 export function AdminStaffUsersClient({ initialStaff }: AdminStaffUsersClientProps) {
+
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(10);
 
@@ -40,14 +45,14 @@ export function AdminStaffUsersClient({ initialStaff }: AdminStaffUsersClientPro
     if (role === 'Manager') return 'bg-info/10 text-info hover:bg-info/20';
     return 'bg-success/10 text-success hover:bg-success/20';
   };
-
+    const table = useClientTable(filtered, 10);
   return (
     <div className="h-full flex flex-col pb-10 space-y-6 relative">
       {/* page Header */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b pb-4">
         <div>
           <p className="text-sm text-muted-foreground mb-1">Smart Library 360 › Admin › Staff & Users</p>
-          <h1 className="text-2xl font-bold tracking-tight">Staff & Users</h1>
+          <h1 className="text-text-primary text-xl font-bold tracking-tight">Staff & Users</h1>
           <p className="text-sm text-muted-foreground mt-1">Manage staff accounts and their branch assignments.</p>
         </div>
         <div className="flex items-center gap-3">
@@ -62,13 +67,13 @@ export function AdminStaffUsersClient({ initialStaff }: AdminStaffUsersClientPro
         {stats.map(s => (
           <Card key={s.label} className="p-4 flex items-center gap-4 shadow-none border-border bg-card">
             <div 
-              className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 bg-[color:var(--bg)]" style={{ '--bg': `color-mix(in srgb, ${s.color} 12%, transparent)` } as React.CSSProperties}
+              className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 bg-background" style={{ '--bg': `color-mix(in srgb, ${s.color} 12%, transparent)` } as React.CSSProperties}
             >
-              <Users size={18} className="text-[color:var(--c)]" style={{ '--c': s.color } as React.CSSProperties} />
+              <Users size={18} className="text-foreground" style={{ '--c': s.color } as React.CSSProperties} />
             </div>
             <div>
               <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-0.5">{s.label}</p>
-              <p className="text-2xl font-bold text-primary leading-none">{s.count}</p>
+              <p className="text-text-primary text-xl font-bold text-primary leading-none">{s.count}</p>
             </div>
           </Card>
         ))}
@@ -87,7 +92,13 @@ export function AdminStaffUsersClient({ initialStaff }: AdminStaffUsersClientPro
 
       {/* Tailwind Native Table */}
       <Card className="flex-1 shadow-none border-border bg-card overflow-hidden flex flex-col">
-        <div className="w-full overflow-x-auto flex-1">
+        <div className="mb-4">
+        <TableToolbar 
+          search={table.searchTerm} 
+          onSearch={table.setSearchTerm} 
+        />
+      </div>
+      <div className="w-full overflow-x-auto flex-1">
           <table className="w-full text-sm text-left">
             <thead className="bg-muted/30 border-y text-muted-foreground text-xs font-medium uppercase tracking-wider sticky top-0 z-10">
               <tr>
@@ -153,7 +164,13 @@ export function AdminStaffUsersClient({ initialStaff }: AdminStaffUsersClientPro
               )}
             </tbody>
           </table>
-          </div>
+          </div> 
+      <TablePagination 
+        totalItems={table.totalItems} 
+        page={table.page} 
+        limit={table.limit} 
+        onPageChange={table.setPage} 
+      />
           <TablePagination
             page={page}
             limit={limit}
@@ -200,20 +217,20 @@ export function AdminStaffUsersClient({ initialStaff }: AdminStaffUsersClientPro
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-2">
                   <label className="text-sm font-medium">Role</label>
-                  <select 
-                    className="flex h-10 w-full items-center justify-between rounded-md border border-border bg-bg-input px-3 py-2 text-sm ring-offset-bg-page placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                  <AdminSearchableDropdown 
+                    className="flex h-10 w-full items-center justify-between rounded-md border border-border bg-input px-3 py-2 text-sm ring-offset-bg-page placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
                     value={form.roleId} 
                     onChange={handleFieldChange('roleId')}
                   >
                     <option value="role-admin-id">Admin</option>
                     <option value="role-manager-id">Manager</option>
                     <option value="role-staff-id">Staff</option>
-                  </select>
+                  </AdminSearchableDropdown>
                 </div>
                 <div className="space-y-2">
                   <label className="text-sm font-medium">Branch</label>
-                  <select 
-                    className="flex h-10 w-full items-center justify-between rounded-md border border-border bg-bg-input px-3 py-2 text-sm ring-offset-bg-page placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                  <AdminSearchableDropdown 
+                    className="flex h-10 w-full items-center justify-between rounded-md border border-border bg-input px-3 py-2 text-sm ring-offset-bg-page placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
                     value={form.branchId} 
                     onChange={handleFieldChange('branchId')}
                   >
@@ -221,7 +238,7 @@ export function AdminStaffUsersClient({ initialStaff }: AdminStaffUsersClientPro
                     <option value="branch-2-id">Branch 2</option>
                     <option value="kothrud-center-id">Kothrud Center</option>
                     <option value="nashik-branch-id">Nashik Branch</option>
-                  </select>
+                  </AdminSearchableDropdown>
                 </div>
               </div>
             </div>
@@ -256,3 +273,5 @@ export function AdminStaffUsersClient({ initialStaff }: AdminStaffUsersClientPro
     </div>
   );
 }
+
+

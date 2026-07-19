@@ -46,11 +46,11 @@ export function SuperadminExpensesAddDialog({ categories, onClose, onSave }: Pro
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
       <div className="absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity" onClick={onClose} />
-      <div className="relative w-full max-w-md bg-bg-card rounded-[var(--radius-lg)] shadow-2xl border border-border overflow-hidden animate-in fade-in zoom-in-95 duration-200">
-        <div className="p-5 border-b border-border bg-bg-page/50 flex items-center justify-between">
-          <h2 className="text-lg font-bold text-text-primary">➕ Add Expense</h2>
+      <div className="relative w-full max-w-md bg-card rounded-lg shadow-2xl border border-border overflow-hidden animate-in fade-in zoom-in-95 duration-200">
+        <div className="p-5 border-b border-border bg-page/50 flex items-center justify-between">
+          <h2 className="text-lg font-bold text-text-primary">âž• Add Expense</h2>
           <button 
-            className="w-8 h-8 flex items-center justify-center rounded-[var(--radius-md)] text-text-secondary hover:text-danger hover:bg-danger/10 transition-colors cursor-pointer"
+            className="w-8 h-8 flex items-center justify-center rounded-md text-text-secondary hover:text-danger hover:bg-danger/10 transition-colors cursor-pointer"
             onClick={onClose}
           >
             <X size={18} />
@@ -59,11 +59,11 @@ export function SuperadminExpensesAddDialog({ categories, onClose, onSave }: Pro
         
         <div className="p-6 space-y-4 max-h-[70vh] overflow-y-auto">
           <div>
-            <label className="text-[11px] font-bold text-text-secondary uppercase tracking-wider block mb-1.5">Date <span className="text-danger">*</span></label>
-            <input type="date" className="w-full bg-bg-input border border-border rounded-[var(--radius-md)] py-2 px-3 text-sm font-medium text-text-primary focus:outline-none focus:border-primary transition-colors" value={form.date} onChange={e => setForm(p => ({...p, date: e.target.value}))} />
+            <label className="text-xs font-bold text-text-secondary uppercase tracking-wider block mb-1.5">Date <span className="text-danger">*</span></label>
+            <input type="date" className="w-full bg-input border border-border rounded-md py-2 px-3 text-sm font-medium text-text-primary focus:outline-none focus:border-primary transition-colors" value={form.date} onChange={e => setForm(p => ({...p, date: e.target.value}))} />
           </div>
           <div>
-            <label className="text-[11px] font-bold text-text-secondary uppercase tracking-wider block mb-1.5">Category</label>
+            <label className="text-xs font-bold text-text-secondary uppercase tracking-wider block mb-1.5">Category</label>
             <SuperadminSearchableDropdown
               options={categories.map(c => ({ label: c, value: c }))}
               value={form.category}
@@ -71,19 +71,19 @@ export function SuperadminExpensesAddDialog({ categories, onClose, onSave }: Pro
             />
           </div>
           <div>
-            <label className="text-[11px] font-bold text-text-secondary uppercase tracking-wider block mb-1.5">Description <span className="text-danger">*</span></label>
-            <input className="w-full bg-bg-input border border-border rounded-[var(--radius-md)] py-2 px-3 text-sm font-medium text-text-primary focus:outline-none focus:border-primary transition-colors" placeholder="Enter description" value={form.description} onChange={e => setForm(p => ({...p, description: e.target.value}))} />
+            <label className="text-xs font-bold text-text-secondary uppercase tracking-wider block mb-1.5">Description <span className="text-danger">*</span></label>
+            <input className="w-full bg-input border border-border rounded-md py-2 px-3 text-sm font-medium text-text-primary focus:outline-none focus:border-primary transition-colors" placeholder="Enter description" value={form.description} onChange={e => setForm(p => ({...p, description: e.target.value}))} />
           </div>
           <div>
-            <label className="text-[11px] font-bold text-text-secondary uppercase tracking-wider block mb-1.5">Amount ₹ <span className="text-danger">*</span></label>
-            <input type="number" className="w-full bg-bg-input border border-border rounded-[var(--radius-md)] py-2 px-3 text-sm font-medium text-text-primary focus:outline-none focus:border-primary transition-colors" placeholder="0" value={form.amount} onChange={e => setForm(p => ({...p, amount: e.target.value}))} />
+            <label className="text-xs font-bold text-text-secondary uppercase tracking-wider block mb-1.5">Amount ₹ <span className="text-danger">*</span></label>
+            <input type="number" className="w-full bg-input border border-border rounded-md py-2 px-3 text-sm font-medium text-text-primary focus:outline-none focus:border-primary transition-colors" placeholder="0" value={form.amount} onChange={e => setForm(p => ({...p, amount: e.target.value}))} />
           </div>
           <div>
-            <label className="text-[11px] font-bold text-text-secondary uppercase tracking-wider block mb-1.5">Paid By <span className="text-danger">*</span></label>
-            <input className="w-full bg-bg-input border border-border rounded-[var(--radius-md)] py-2 px-3 text-sm font-medium text-text-primary focus:outline-none focus:border-primary transition-colors" placeholder="Name" value={form.paidBy} onChange={e => setForm(p => ({...p, paidBy: e.target.value}))} />
+            <label className="text-xs font-bold text-text-secondary uppercase tracking-wider block mb-1.5">Paid By <span className="text-danger">*</span></label>
+            <input className="w-full bg-input border border-border rounded-md py-2 px-3 text-sm font-medium text-text-primary focus:outline-none focus:border-primary transition-colors" placeholder="Name" value={form.paidBy} onChange={e => setForm(p => ({...p, paidBy: e.target.value}))} />
           </div>
           <div>
-            <label className="text-[11px] font-bold text-text-secondary uppercase tracking-wider block mb-1.5">Mode</label>
+            <label className="text-xs font-bold text-text-secondary uppercase tracking-wider block mb-1.5">Mode</label>
             <SuperadminSearchableDropdown
               options={[
                 { label: 'Cash', value: 'cash' },
@@ -97,16 +97,16 @@ export function SuperadminExpensesAddDialog({ categories, onClose, onSave }: Pro
           </div>
         </div>
 
-        <div className="p-5 border-t border-border bg-bg-page/50 flex justify-end gap-3">
+        <div className="p-5 border-t border-border bg-page/50 flex justify-end gap-3">
           <button 
-            className="px-4 py-2 bg-transparent border border-border text-text-primary text-sm font-bold rounded-[var(--radius-md)] hover:bg-bg-input transition-colors cursor-pointer" 
+            className="px-4 py-2 bg-transparent border border-border text-text-primary text-sm font-bold rounded-md hover:bg-input transition-colors cursor-pointer" 
             onClick={onClose}
             disabled={saving}
           >
             Cancel
           </button>
           <button 
-            className="flex items-center gap-2 px-4 py-2 bg-success text-white text-sm font-bold rounded-[var(--radius-md)] hover:bg-success/90 transition-colors disabled:opacity-50 shadow-sm cursor-pointer" 
+            className="flex items-center gap-2 px-4 py-2 bg-success text-white text-sm font-bold rounded-md hover:bg-success/90 transition-colors disabled:opacity-50 shadow-sm cursor-pointer" 
             onClick={handleSave}
             disabled={!isFormValid || saving}
           >
@@ -117,3 +117,4 @@ export function SuperadminExpensesAddDialog({ categories, onClose, onSave }: Pro
     </div>
   );
 }
+

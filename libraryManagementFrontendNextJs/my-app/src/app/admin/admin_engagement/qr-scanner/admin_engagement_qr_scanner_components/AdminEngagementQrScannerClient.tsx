@@ -14,7 +14,7 @@ import { ScanResult, ScanState } from "./AdminEngagementQrScannerClient_types";
 const MOCK_STUDENT: ScanResult = {
   name: 'Rahul Sharma', initials: 'RS',
   smartId: 'SL-001', shift: 'Morning',
-  validTill: '30 Jun 2026', plan: 'Premium – 6 Month',
+  validTill: '30 Jun 2026', plan: 'Premium â€“ 6 Month',
 };
 
 export function AdminEngagementQrScannerClient() {
@@ -66,7 +66,7 @@ export function AdminEngagementQrScannerClient() {
           <p className="text-xs font-semibold text-muted-foreground flex items-center gap-1 uppercase tracking-wider mb-1">
             Engagement <ChevronRight size={12} /> QR Scanner
           </p>
-          <h1 className="text-2xl font-bold tracking-tight">📷 QR Scanner</h1>
+          <h1 className="text-text-primary text-xl font-bold tracking-tight">📷 QR Scanner</h1>
           <p className="text-sm text-muted-foreground mt-1">Scan student ID cards to instantly mark attendance.</p>
         </div>
       </div>

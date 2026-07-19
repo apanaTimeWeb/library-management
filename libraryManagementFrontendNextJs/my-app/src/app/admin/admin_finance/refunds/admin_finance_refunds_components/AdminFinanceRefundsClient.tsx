@@ -1,16 +1,21 @@
 'use client';
+import { AdminSearchableDropdown } from '@/app/admin/admin_shared_components/AdminSearchableDropdown';
+
 // RESPONSIBILITY: Renders the AdminFinanceRefundsClient component.
 import { useState } from 'react';
 import { Undo2, X } from 'lucide-react';
-import { formatCurrency } from '@/app/admin/admin_finance/admin_finance_utils/format';
+import { formatCurrency } from '@/app/admin/admin_finance/admin_finance_utils/AdminFinanceFormat';
 import { useAdminFinanceRefunds } from '@/app/admin/admin_finance/refunds/admin_finance_refunds_hooks/useAdminFinanceRefunds';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Input } from '@/components/ui/input';
 import { TablePagination } from '@/components/ui/table-pagination';
+import { TableToolbar } from '@/components/ui/table-toolbar';
+import { useClientTable } from '@/components/ui/use-client-table';
 
 export function AdminFinanceRefundsClient() {
+
   const {
     statusFilter,
     setStatusFilter,
@@ -44,14 +49,14 @@ export function AdminFinanceRefundsClient() {
       default: return 'bg-muted text-muted-foreground';
     }
   };
-
+    const table = useClientTable(filteredRefunds, 10);
   return (
     <div className="h-full flex flex-col pb-10 space-y-6 relative">
       {/* page Header */}
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b pb-4">
         <div>
           <nav className="text-xs text-muted-foreground font-medium mb-1 tracking-wide uppercase">Smart Library 360 › Admin › Finance</nav>
-          <h1 className="text-2xl font-bold tracking-tight">Refunds</h1>
+          <h1 className="text-text-primary text-xl font-bold tracking-tight">Refunds</h1>
           <p className="text-sm text-muted-foreground mt-1">Manage and process student deposit refund requests.</p>
         </div>
       </div>
@@ -81,8 +86,8 @@ export function AdminFinanceRefundsClient() {
 
       {/* Filter Bar */}
       <div className="flex items-center gap-4 bg-muted/30 p-3 rounded-lg border border-border">
-        <select 
-          className="flex h-9 w-48 items-center justify-between rounded-md border border-border bg-bg-input px-3 py-1 text-sm ring-offset-bg-page placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:ring-offset-2"
+        <AdminSearchableDropdown 
+          className="flex h-9 w-48 items-center justify-between rounded-md border border-border bg-input px-3 py-1 text-sm ring-offset-bg-page placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:ring-offset-2"
           value={statusFilter} 
           onChange={(e) => setStatusFilter(e.target.value)}
         >
@@ -91,12 +96,18 @@ export function AdminFinanceRefundsClient() {
           <option value="approved">Approved</option>
           <option value="processed">Processed</option>
           <option value="rejected">Rejected</option>
-        </select>
+        </AdminSearchableDropdown>
       </div>
 
       {/* Refunds Table */}
       <Card className="flex-1 shadow-none border-border bg-card overflow-hidden flex flex-col">
-        <div className="w-full overflow-x-auto flex-1">
+        <div className="mb-4">
+        <TableToolbar 
+          search={table.searchTerm} 
+          onSearch={table.setSearchTerm} 
+        />
+      </div>
+      <div className="w-full overflow-x-auto flex-1">
           <table className="w-full text-sm text-left">
             <thead className="bg-muted/30 border-b text-muted-foreground text-xs font-bold uppercase tracking-wider sticky top-0 z-10">
               <tr>
@@ -119,7 +130,7 @@ export function AdminFinanceRefundsClient() {
                     </div>
                   </td>
                 </tr>
-              ) : filteredRefunds.length === 0 ? (
+              ) : table.paginatedData.length === 0 ? (
                 <tr>
                   <td colSpan={7} className="px-5 py-20 text-center">
                     <div className="flex flex-col items-center justify-center gap-3">
@@ -130,7 +141,7 @@ export function AdminFinanceRefundsClient() {
                   </td>
                 </tr>
               ) : (
-                filteredRefunds.slice((page - 1) * limit, page * limit).map((r) => (
+                table.paginatedData.map((r) => (
                   <tr key={r.id} className="hover:bg-muted/10 transition-colors">
                     <td className="px-5 py-4">
                       <div className="font-bold text-sm text-primary">{r.studentName}</div>
@@ -177,7 +188,7 @@ export function AdminFinanceRefundsClient() {
                               className="bg-warning/10 text-warning hover:bg-warning/20 border-none font-bold text-xs"
                               onClick={() => setDeductDialog({ id: r.id, name: r.studentName })}
                             >
-                              ➕ Add Deduction
+                              âž• Add Deduction
                             </Button>
                             <Button 
                               variant="secondary" 
@@ -206,7 +217,13 @@ export function AdminFinanceRefundsClient() {
               )}
             </tbody>
           </table>
-          </div>
+          </div> 
+      <TablePagination 
+        totalItems={table.totalItems} 
+        page={table.page} 
+        limit={table.limit} 
+        onPageChange={table.setPage} 
+      />
           <TablePagination
             page={page}
             limit={limit}
@@ -238,8 +255,8 @@ export function AdminFinanceRefundsClient() {
 
             <div className="space-y-2">
               <label className="text-sm font-medium">Payment Method</label>
-              <select 
-                className="flex h-10 w-full items-center justify-between rounded-md border border-border bg-bg-input px-3 py-2 text-sm ring-offset-bg-page placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:ring-offset-2"
+              <AdminSearchableDropdown 
+                className="flex h-10 w-full items-center justify-between rounded-md border border-border bg-input px-3 py-2 text-sm ring-offset-bg-page placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:ring-offset-2"
                 value={paymentMethod} 
                 onChange={(e) => setPaymentMethod(e.target.value)}
               >
@@ -247,7 +264,7 @@ export function AdminFinanceRefundsClient() {
                 <option value="bank">Bank Transfer</option>
                 <option value="cash">Cash</option>
                 <option value="cheque">Cheque</option>
-              </select>
+              </AdminSearchableDropdown>
             </div>
             
             <div className="flex items-center justify-end gap-3 pt-4 border-t">
@@ -271,7 +288,7 @@ export function AdminFinanceRefundsClient() {
           <Card className="w-full max-w-sm shadow-lg border-warning/20 bg-card p-6 flex flex-col gap-5" onClick={e => e.stopPropagation()}>
             <div className="flex items-center justify-between">
               <h2 className="text-lg font-bold flex items-center gap-2 text-warning tracking-tight">
-                ➕ Add Deduction
+                âž• Add Deduction
               </h2>
               <Button variant="ghost" size="icon" className="h-8 w-8 rounded-full" onClick={() => setDeductDialog(null)}>
                 <X size={16} />
@@ -317,3 +334,4 @@ export function AdminFinanceRefundsClient() {
     </div>
   );
 }
+

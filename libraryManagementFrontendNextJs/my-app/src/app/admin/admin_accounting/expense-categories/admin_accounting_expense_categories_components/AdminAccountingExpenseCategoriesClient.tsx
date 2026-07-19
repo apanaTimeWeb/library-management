@@ -24,7 +24,7 @@ export function AdminAccountingExpenseCategoriesClient() {
     <div className="space-y-6 pb-10">
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b pb-4">
         <div>
-          <h1 className="text-2xl font-bold tracking-tight">Accounting Categories</h1>
+          <h1 className="text-text-primary text-xl font-bold tracking-tight">Accounting Categories</h1>
           <p className="text-sm text-muted-foreground mt-1">Manage budget caps for various expense types.</p>
         </div>
         <Button className="gap-2">

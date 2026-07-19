@@ -13,6 +13,8 @@ import {
 } from 'lucide-react';
 import { useAdminSystemWhatsappIntegration } from '@/app/admin/admin_system/admin_system_whatsapp_integration_hooks/useAdminSystemWhatsappIntegration';
 import { TablePagination } from '@/components/ui/table-pagination';
+import { TableToolbar } from '@/components/ui/table-toolbar';
+import { useClientTable } from '@/components/ui/use-client-table';
 
 const STATUS_CFG = {
   delivered: { variant: 'success' as const, icon: CheckCircle },
@@ -21,6 +23,7 @@ const STATUS_CFG = {
 };
 
 export function AdminSystemWhatsappIntegrationClient() {
+
   const {
     provider, setProvider,
     apiKey, setApiKey,
@@ -37,7 +40,7 @@ export function AdminSystemWhatsappIntegrationClient() {
 
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(10);
-
+    const table = useClientTable(logs, 10);
   return (
     <div>
       <div className="mb-8">
@@ -59,14 +62,14 @@ export function AdminSystemWhatsappIntegrationClient() {
           ? 'bg-success/10 border-success/25'
           : testStatus === 'error'
           ? 'bg-danger-bg/10 border-danger/20'
-          : 'bg-bg-card border-border'
+          : 'bg-card border-border'
       }`}>
-        <div className={`h-12 w-12 rounded-xl flex items-center justify-center text-2xl ${
+        <div className={`h-12 w-12 rounded-xl flex items-center justify-center text-text-primary text-xl ${
           testStatus === 'success' ? 'bg-success/20' :
           testStatus === 'error' ? 'bg-danger-bg/30' :
-          'bg-bg-card'
+          'bg-card'
         }`}>
-          {testStatus === 'success' ? '✅' : testStatus === 'error' ? '❌' : '📡'}
+          {testStatus === 'success' ? '✅' : testStatus === 'error' ? 'âŒ' : '📡'}
         </div>
         <div className="flex-1">
           <div className="flex items-center gap-3">
@@ -99,7 +102,7 @@ export function AdminSystemWhatsappIntegrationClient() {
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-5 mb-8">
         <KpiCard title="Sent This Month" value={logs.length} icon="📤" subtitle="All messages" />
         <KpiCard title="Delivered" value={deliveredCount} icon="✅" trend="up" trendLabel={`${deliveryRate}% rate`} />
-        <KpiCard title="Failed" value={failedCount} icon="❌" trend={failedCount > 0 ? 'down' : 'neutral'} trendLabel="Failed deliveries" />
+        <KpiCard title="Failed" value={failedCount} icon="âŒ" trend={failedCount > 0 ? 'down' : 'neutral'} trendLabel="Failed deliveries" />
         <KpiCard title="Est. Cost" value="₹18.50" icon="💸" subtitle="~₹0.18 per msg" />
       </div>
 
@@ -203,7 +206,7 @@ export function AdminSystemWhatsappIntegrationClient() {
             <div className="space-y-2">
               <Label>Inbound Webhook URL</Label>
               <div className="flex items-center gap-2">
-                <div className="flex-1 px-3 py-2 rounded-lg bg-bg-input border border-border text-xs font-mono text-text-secondary truncate">
+                <div className="flex-1 px-3 py-2 rounded-lg bg-input border border-border text-xs font-mono text-text-secondary truncate">
                   {webhookUrl}
                 </div>
                 <Button
@@ -253,7 +256,7 @@ export function AdminSystemWhatsappIntegrationClient() {
                 { id: 'trigger-waitlist', label: 'Waitlist Notification', desc: 'When seat becomes available for waitlisted', enabled: true },
                 { id: 'trigger-absentee', label: 'Absentee Alert', desc: 'When student absent for 3+ days', enabled: false },
               ].map(event => (
-                <div key={event.id} className="flex items-center justify-between p-3 rounded-xl bg-bg-card border border-border/50">
+                <div key={event.id} className="flex items-center justify-between p-3 rounded-xl bg-card border border-border/50">
                   <div>
                     <p className="text-sm font-medium text-text-primary">{event.label}</p>
                     <p className="text-xs text-text-secondary">{event.desc}</p>
@@ -279,7 +282,13 @@ export function AdminSystemWhatsappIntegrationClient() {
           <CardDescription>Last 30 days of outbound WhatsApp messages.</CardDescription>
         </CardHeader>
         <CardContent>
-          <div className="overflow-x-auto">
+          <div className="mb-4">
+        <TableToolbar 
+          search={table.searchTerm} 
+          onSearch={table.setSearchTerm} 
+        />
+      </div>
+      <div className="overflow-x-auto">
             <table className="w-full text-sm">
               <thead>
                 <tr className="border-b border-border text-text-secondary text-xs uppercase tracking-wide">
@@ -291,15 +300,15 @@ export function AdminSystemWhatsappIntegrationClient() {
                 </tr>
               </thead>
               <tbody className="divide-y divide-outline-variant/30">
-                {logs.map(log => {
+                {table.paginatedData.map(log => {
                   const cfg = STATUS_CFG[log.status as keyof typeof STATUS_CFG];
                   const Icon = cfg.icon;
                   return (
-                    <tr key={log.id} className="hover:bg-bg-card transition-colors">
+                    <tr key={log.id} className="hover:bg-card transition-colors">
                       <td className="py-3 pr-4 font-mono text-sm text-text-primary">{log.to}</td>
                       <td className="py-3 pr-4 text-text-primary">{log.type}</td>
                       <td className="py-3 pr-4">
-                        <code className="text-xs text-text-secondary bg-bg-input px-1.5 py-0.5 rounded">
+                        <code className="text-xs text-text-secondary bg-input px-1.5 py-0.5 rounded">
                           {log.template}
                         </code>
                       </td>
@@ -314,7 +323,13 @@ export function AdminSystemWhatsappIntegrationClient() {
                 })}
               </tbody>
             </table>
-          </div>
+          </div> 
+      <TablePagination 
+        totalItems={table.totalItems} 
+        page={table.page} 
+        limit={table.limit} 
+        onPageChange={table.setPage} 
+      />
           <TablePagination
             page={page}
             limit={limit}

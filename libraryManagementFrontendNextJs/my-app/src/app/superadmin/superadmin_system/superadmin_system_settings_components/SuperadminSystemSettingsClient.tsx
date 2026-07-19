@@ -40,7 +40,7 @@ export function SuperadminSystemSettingsClient() {
                 className={`flex items-center gap-3 rounded-xl px-4 py-2.5 text-sm font-medium transition-all duration-150 text-left ${
                   active === id
                     ? 'bg-primary/15 text-primary border border-primary/20'
-                    : 'text-text-secondary hover:bg-bg-card hover:text-text-primary'
+                    : 'text-text-secondary hover:bg-card hover:text-text-primary'
                 }`}
               >
                 <Icon size={16} />
@@ -63,7 +63,7 @@ export function SuperadminSystemSettingsClient() {
                   <SuperadminLabel htmlFor="logo-upload">Logo</SuperadminLabel>
                   <div
                     id="logo-upload"
-                    className="flex flex-col items-center justify-center border-2 border-dashed border-border rounded-xl p-8 cursor-pointer hover:bg-bg-card transition-colors group"
+                    className="flex flex-col items-center justify-center border-2 border-dashed border-border rounded-xl p-8 cursor-pointer hover:bg-card transition-colors group"
                   >
                     <Upload size={24} className="text-text-secondary group-hover:text-primary transition-colors mb-2" />
                     <span className="text-sm text-text-secondary">Drop logo here or <span className="text-primary">browse</span></span>
@@ -106,7 +106,7 @@ export function SuperadminSystemSettingsClient() {
                 <CardDescription>Define penalty rules for overdue payments.</CardDescription>
               </CardHeader>
               <CardContent className="space-y-5">
-                <div className="flex items-center justify-between p-4 rounded-xl bg-bg-card border border-border">
+                <div className="flex items-center justify-between p-4 rounded-xl bg-card border border-border">
                   <div>
                     <p className="text-sm font-medium text-text-primary">Enable Late Fees</p>
                     <p className="text-xs text-text-secondary">Automatically apply penalties after due date</p>
@@ -145,14 +145,14 @@ export function SuperadminSystemSettingsClient() {
                 <CardDescription>Configure automatic seat suspension for defaulters.</CardDescription>
               </CardHeader>
               <CardContent className="space-y-5">
-                <div className="flex items-center justify-between p-4 rounded-xl bg-bg-card border border-border">
+                <div className="flex items-center justify-between p-4 rounded-xl bg-card border border-border">
                   <div>
                     <p className="text-sm font-medium text-text-primary">Enable Auto-Suspend</p>
                     <p className="text-xs text-text-secondary">Suspend seats after payment overdue</p>
                   </div>
                   <SuperadminSwitch id="enable-auto-suspend" checked={form.enableAutoSuspend} onCheckedChange={v => setForm(f => ({ ...f, enableAutoSuspend: v }))} />
                 </div>
-                <div className="flex items-center justify-between p-4 rounded-xl bg-bg-card border border-border">
+                <div className="flex items-center justify-between p-4 rounded-xl bg-card border border-border">
                   <div>
                     <p className="text-sm font-medium text-text-primary">Auto-Restore on Payment</p>
                     <p className="text-xs text-text-secondary">Automatically restore when payment is received</p>
@@ -184,7 +184,7 @@ export function SuperadminSystemSettingsClient() {
               <CardContent className="space-y-5">
                 <div className="space-y-2">
                   <SuperadminLabel htmlFor="upi-qr">UPI QR Code</SuperadminLabel>
-                  <div id="upi-qr" className="flex flex-col items-center justify-center border-2 border-dashed border-border rounded-xl p-8 cursor-pointer hover:bg-bg-card transition-colors">
+                  <div id="upi-qr" className="flex flex-col items-center justify-center border-2 border-dashed border-border rounded-xl p-8 cursor-pointer hover:bg-card transition-colors">
                     <Upload size={24} className="text-text-secondary mb-2" />
                     <span className="text-sm text-text-secondary">Upload QR Code image</span>
                   </div>
@@ -207,7 +207,7 @@ export function SuperadminSystemSettingsClient() {
                         id={`payment-${key}`}
                         checked={form[key as keyof typeof form] as boolean}
                         onChange={e => setForm(f => ({ ...f, [key]: e.target.checked }))}
-                        className="h-4 w-4 rounded border-border bg-bg-card accent-primary"
+                        className="h-4 w-4 rounded border-border bg-card accent-primary"
                       />
                       <span className="text-sm text-text-primary">{label}</span>
                     </label>

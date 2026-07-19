@@ -12,6 +12,7 @@ import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter }
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { AdminCrmAddClientProps } from "./AdminCrmAddClient_types";
+import { ADMIN_ROUTES } from '@/app/admin/admin_url_config';
 
 export function AdminCrmAddClient({ onClose }: AdminCrmAddClientProps = {}) {
   const router = useRouter();
@@ -50,7 +51,7 @@ export function AdminCrmAddClient({ onClose }: AdminCrmAddClientProps = {}) {
         />
 
         {/* ── Modal ── */}
-        <div className="relative z-50 w-full max-w-md bg-bg-card border border-border shadow-2xl rounded-xl flex flex-col animate-in zoom-in-95 duration-200 max-h-[90vh] overflow-hidden" role="dialog" aria-label="New Enquiry" aria-modal="true">
+        <div className="relative z-50 w-full max-w-md bg-card border border-border shadow-2xl rounded-xl flex flex-col animate-in zoom-in-95 duration-200 max-h-[90vh] overflow-hidden" role="dialog" aria-label="New Enquiry" aria-modal="true">
 
           {/* Header */}
           <div className="flex items-center justify-between p-6 border-b border-border bg-muted/20 shrink-0">
@@ -148,3 +149,4 @@ export function AdminCrmAddClient({ onClose }: AdminCrmAddClientProps = {}) {
     </>
   );
 }
+

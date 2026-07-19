@@ -3,14 +3,17 @@
 import { useState } from 'react';
 import { Input } from '@/components/ui/input';
 import { Users, Trophy, IndianRupee , Search} from 'lucide-react';
-import { formatCurrency } from '@/app/admin/admin_finance/admin_finance_utils/format';
+import { formatCurrency } from '@/app/admin/admin_finance/admin_finance_utils/AdminFinanceFormat';
 import { useAdminFinanceReferrals } from '@/app/admin/admin_finance/referrals/admin_finance_referrals_hooks/useAdminFinanceReferrals';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { TablePagination } from '@/components/ui/table-pagination';
+import { TableToolbar } from '@/components/ui/table-toolbar';
+import { useClientTable } from '@/components/ui/use-client-table';
 
 export function AdminFinanceReferralsClient() {
+
   const {
     isLoading,
     expanded,
@@ -24,14 +27,14 @@ export function AdminFinanceReferralsClient() {
     const [searchTerm, setSearchTerm] = useState('');
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(10);
-
+    const table = useClientTable(referrers, 10);
   return (
     <div className="h-full flex flex-col pb-10 space-y-6 relative">
       {/* page Header */}
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b pb-4">
         <div>
           <nav className="text-xs text-muted-foreground font-medium mb-1 tracking-wide uppercase">Smart Library 360 › Admin › Finance</nav>
-          <h1 className="text-2xl font-bold tracking-tight">Referrals & Bonuses</h1>
+          <h1 className="text-text-primary text-xl font-bold tracking-tight">Referrals & Bonuses</h1>
           <p className="text-sm text-muted-foreground mt-1">Student referral leaderboard and bonus tracking.</p>
         </div>
       </div>
@@ -43,7 +46,7 @@ export function AdminFinanceReferralsClient() {
             <span className="text-xs font-bold tracking-wider uppercase text-muted-foreground">Total Referrals Made</span>
             <Users size={16} className="text-muted-foreground" />
           </div>
-          <p className="text-2xl font-bold text-primary">{totalReferrals}</p>
+          <p className="text-text-primary text-xl font-bold text-primary">{totalReferrals}</p>
         </Card>
         
         <Card className="p-4 shadow-none flex flex-col justify-center border-success/30 bg-success/5">
@@ -51,7 +54,7 @@ export function AdminFinanceReferralsClient() {
             <span className="text-xs font-bold tracking-wider uppercase text-success">Total Bonus Issued ₹</span>
             <IndianRupee size={16} className="text-success" />
           </div>
-          <p className="text-2xl font-bold text-success">{formatCurrency(totalBonus)}</p>
+          <p className="text-text-primary text-xl font-bold text-success">{formatCurrency(totalBonus)}</p>
         </Card>
         
         <Card className="p-4 shadow-none flex flex-col justify-center border-warning/30 bg-warning/5">
@@ -75,7 +78,13 @@ export function AdminFinanceReferralsClient() {
         </div>
       </div>
 
-<table className="w-full text-sm text-left whitespace-nowrap min-w-max">
+<div className="mb-4">
+        <TableToolbar 
+          search={table.searchTerm} 
+          onSearch={table.setSearchTerm} 
+        />
+      </div>
+      <table className="w-full text-sm text-left whitespace-nowrap min-w-max">
             <thead className="bg-muted/30 border-b text-muted-foreground text-xs font-bold uppercase tracking-wider sticky top-0 z-10">
               <tr>
                 <th className="px-5 py-3">Rank</th>
@@ -97,7 +106,7 @@ export function AdminFinanceReferralsClient() {
                     </div>
                   </td>
                 </tr>
-              ) : referrers.length === 0 ? (
+              ) : table.paginatedData.length === 0 ? (
                 <tr>
                   <td colSpan={7} className="px-5 py-20 text-center">
                     <div className="flex flex-col items-center justify-center gap-3">
@@ -107,7 +116,7 @@ export function AdminFinanceReferralsClient() {
                   </td>
                 </tr>
               ) : (
-                referrers.filter(row => JSON.stringify(row).toLowerCase().includes(searchTerm.toLowerCase())).slice((page - 1) * limit, page * limit).map((r: Record<string, unknown>, idx: number) => (
+                table.paginatedData.map((r: Record<string, unknown>, idx: number) => (
                   <tr key={r.id as string} className="hover:bg-muted/10 transition-colors">
                     <td className="px-5 py-4">
                       <span className={`text-sm ${idx === 0 ? 'text-warning font-black text-lg' : 'text-muted-foreground font-bold'}`}>#{idx + 1}</span>
@@ -123,7 +132,7 @@ export function AdminFinanceReferralsClient() {
                         className="bg-muted text-primary hover:bg-muted/80 border-none font-bold text-xs h-7 px-3 gap-1"
                         onClick={() => setExpanded(expanded === r.id ? null : (r.id as never))}
                       >
-                        {expanded === r.id ? '▲' : '▼'} {r.referredCount as number} students
+                        {expanded === r.id ? 'â–²' : 'â–¼'} {r.referredCount as number} students
                       </Button>
                       {expanded === r.id && (
                         <div className="flex flex-wrap gap-1 mt-3 animate-in fade-in slide-in-from-top-1">
@@ -144,7 +153,13 @@ export function AdminFinanceReferralsClient() {
               )}
             </tbody>
           </table>
-          </div>
+          </div> 
+      <TablePagination 
+        totalItems={table.totalItems} 
+        page={table.page} 
+        limit={table.limit} 
+        onPageChange={table.setPage} 
+      />
           <TablePagination
             page={page}
             limit={limit}

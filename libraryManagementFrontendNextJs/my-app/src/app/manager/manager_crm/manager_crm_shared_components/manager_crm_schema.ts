@@ -1,3 +1,4 @@
+﻿// RESPONSIBILITY: Renders or handles logic for manager_crm_schema.ts.
 import { z } from 'zod';
 
 
@@ -30,3 +31,4 @@ export const updateStatusSchema = z.object({
 export const markLostSchema = z.object({
   reason: z.string().optional(),
 });
+

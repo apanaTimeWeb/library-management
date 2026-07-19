@@ -1,16 +1,21 @@
 'use client';
+import { AdminSearchableDropdown } from '@/app/admin/admin_shared_components/AdminSearchableDropdown';
+
 // RESPONSIBILITY: Renders the AdminFinanceSubscriptionsClient component.
 import { useState } from 'react';
 import { Input } from '@/components/ui/input';
 import { RefreshCw, Eye , Search} from 'lucide-react';
-import { formatCurrency } from '@/app/admin/admin_finance/admin_finance_utils/format';
+import { formatCurrency } from '@/app/admin/admin_finance/admin_finance_utils/AdminFinanceFormat';
 import { useAdminFinanceSubscriptions } from '@/app/admin/admin_finance/subscriptions/admin_finance_subscriptions_hooks/useAdminFinanceSubscriptions';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { TablePagination } from '@/components/ui/table-pagination';
+import { TableToolbar } from '@/components/ui/table-toolbar';
+import { useClientTable } from '@/components/ui/use-client-table';
 
 export function AdminFinanceSubscriptionsClient() {
+
   const {
     statusFilter,
     setStatusFilter,
@@ -44,22 +49,22 @@ export function AdminFinanceSubscriptionsClient() {
     if (days <= 15) return 'text-warning font-bold';
     return 'text-success font-bold';
   };
-
+    const table = useClientTable(rows, 10);
   return (
     <div className="h-full flex flex-col pb-10 space-y-6 relative">
       {/* page Header */}
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b pb-4">
         <div>
           <nav className="text-xs text-muted-foreground font-medium mb-1 tracking-wide uppercase">Smart Library 360 › Admin › Finance</nav>
-          <h1 className="text-2xl font-bold tracking-tight">Subscriptions</h1>
+          <h1 className="text-text-primary text-xl font-bold tracking-tight">Subscriptions</h1>
           <p className="text-sm text-muted-foreground mt-1">Manage all student subscriptions.</p>
         </div>
       </div>
 
       {/* Filter Bar */}
       <div className="flex flex-wrap gap-3">
-        <select 
-          className="h-10 px-3 rounded-md border border-border bg-bg-input text-sm font-medium focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary"
+        <AdminSearchableDropdown 
+          className="h-10 px-3 rounded-md border border-border bg-input text-sm font-medium focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary"
           value={statusFilter} 
           onChange={(e) => setStatusFilter(e.target.value)}
         >
@@ -68,18 +73,18 @@ export function AdminFinanceSubscriptionsClient() {
           <option value="expired">Expired</option>
           <option value="suspended">Suspended</option>
           <option value="cancelled">Cancelled</option>
-        </select>
-        <select 
-          className="h-10 px-3 rounded-md border border-border bg-bg-input text-sm font-medium focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary"
+        </AdminSearchableDropdown>
+        <AdminSearchableDropdown 
+          className="h-10 px-3 rounded-md border border-border bg-input text-sm font-medium focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary"
           value={planFilter} 
           onChange={(e) => setPlanFilter(e.target.value)}
         >
           <option value="all">All Plans</option>
           <option value="Basic Plan">Basic Plan</option>
           <option value="Premium Plan">Premium Plan</option>
-        </select>
-        <select 
-          className="h-10 px-3 rounded-md border border-border bg-bg-input text-sm font-medium focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary"
+        </AdminSearchableDropdown>
+        <AdminSearchableDropdown 
+          className="h-10 px-3 rounded-md border border-border bg-input text-sm font-medium focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary"
           value={shiftFilter} 
           onChange={(e) => setShiftFilter(e.target.value)}
         >
@@ -87,7 +92,7 @@ export function AdminFinanceSubscriptionsClient() {
           <option value="Morning">Morning</option>
           <option value="Evening">Evening</option>
           <option value="Full Day">Full Day</option>
-        </select>
+        </AdminSearchableDropdown>
       </div>
 
       {/* Table */}
@@ -101,7 +106,13 @@ export function AdminFinanceSubscriptionsClient() {
         </div>
       </div>
 
-<table className="w-full text-sm text-left whitespace-nowrap min-w-max">
+<div className="mb-4">
+        <TableToolbar 
+          search={table.searchTerm} 
+          onSearch={table.setSearchTerm} 
+        />
+      </div>
+      <table className="w-full text-sm text-left whitespace-nowrap min-w-max">
             <thead className="bg-muted/30 border-b text-muted-foreground text-xs font-bold uppercase tracking-wider sticky top-0 z-10">
               <tr>
                 <th className="px-5 py-3">Student</th>
@@ -129,7 +140,7 @@ export function AdminFinanceSubscriptionsClient() {
                     </div>
                   </td>
                 </tr>
-              ) : rows.length === 0 ? (
+              ) : table.paginatedData.length === 0 ? (
                 <tr>
                   <td colSpan={13} className="px-5 py-20 text-center">
                     <div className="flex flex-col items-center justify-center gap-3">
@@ -140,7 +151,7 @@ export function AdminFinanceSubscriptionsClient() {
                   </td>
                 </tr>
               ) : (
-                rows.filter(row => JSON.stringify(row).toLowerCase().includes(searchTerm.toLowerCase())).slice((page - 1) * limit, page * limit).map((s) => (
+                table.paginatedData.map((s) => (
                   <tr key={s.id} className="hover:bg-muted/10 transition-colors">
                     <td className="px-5 py-3 font-bold text-sm text-primary">{s.studentName}</td>
                     <td className="px-5 py-3 text-xs font-mono text-muted-foreground">{s.smartId}</td>
@@ -189,7 +200,13 @@ export function AdminFinanceSubscriptionsClient() {
               )}
             </tbody>
           </table>
-          </div>
+          </div> 
+      <TablePagination 
+        totalItems={table.totalItems} 
+        page={table.page} 
+        limit={table.limit} 
+        onPageChange={table.setPage} 
+      />
           <TablePagination
             page={page}
             limit={limit}

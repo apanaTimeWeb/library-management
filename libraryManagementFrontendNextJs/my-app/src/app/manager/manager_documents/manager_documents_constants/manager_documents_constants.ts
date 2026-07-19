@@ -1,3 +1,4 @@
+﻿// RESPONSIBILITY: Renders or handles logic for manager_documents_constants.ts.
 import type { DocumentRecord } from '@/app/manager/manager_documents/manager_documents_types/manager_documents_types';
 
 export const DOCUMENTS_DATA: DocumentRecord[] = [
@@ -6,3 +7,4 @@ export const DOCUMENTS_DATA: DocumentRecord[] = [
   { id: 'DOC-103', name: 'Fee_Receipt_Amit.pdf', type: 'PDF', size: '0.8 MB', uploadedBy: 'System', date: '2026-06-02', category: 'Finance' },
   { id: 'DOC-104', name: 'UPSC_Syllabus.docx', type: 'Document', size: '3.5 MB', uploadedBy: 'Manager', date: '2026-06-03', category: 'Study Material' },
 ];
+

@@ -1,3 +1,4 @@
+﻿// RESPONSIBILITY: Renders or handles logic for SuperadminExpensesTypes.ts.
 
 
 export interface SuperadminExpense {
@@ -10,3 +11,4 @@ export interface SuperadminExpense {
   mode: SuperadminExpenseMode;
 }
 export type SuperadminExpenseMode = 'cash' | 'upi' | 'card' | 'bank';
+

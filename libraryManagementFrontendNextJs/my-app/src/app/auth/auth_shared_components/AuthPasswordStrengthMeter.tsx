@@ -24,7 +24,7 @@ function calcScore(pwd: string): 0 | 1 | 2 | 3 | 4 {
   if (/[A-Z]/.test(pwd))        s++;
   if (/[0-9]/.test(pwd))        s++;
   if (/[^A-Za-z0-9]/.test(pwd)) s++;
-  return s as Score;
+  return s as 0 | 1 | 2 | 3 | 4;
 }
 
 export default function PasswordStrengthMeter({ password }: { password: string }) {
@@ -44,10 +44,11 @@ export default function PasswordStrengthMeter({ password }: { password: string }
         ))}
       </div>
       {label && (
-        <p className={`text-[11px] font-semibold uppercase tracking-wider ${label.colorClass}`}>
+        <p className={`text-xs font-semibold uppercase tracking-wider ${label.colorClass}`}>
           {label.text}
         </p>
       )}
     </div>
   );
 }
+

@@ -1,3 +1,4 @@
+﻿// RESPONSIBILITY: Renders or handles logic for manager_types.ts.
 import { ReactNode } from 'react';
 import { LucideIcon } from 'lucide-react';
 
@@ -32,3 +33,4 @@ export interface ApiResponse<T> {
   statusCode?: number;
 }
 export type ManagerNavItem = { group: string } | { href: string; icon: LucideIcon; label: string };
+

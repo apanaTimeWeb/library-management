@@ -7,9 +7,15 @@ import { SuperadminBadge } from '@/app/superadmin/superadmin_system/superadmin_s
 import { SuperadminButton } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminButton';
 import { Wrench, Package, Lock, ChevronRight } from 'lucide-react';
 import { useSuperadminSystemMaintenance } from '@/app/superadmin/superadmin_system/superadmin_system_maintenance_hooks/useSuperadminSystemMaintenance';
+import { TableToolbar } from "@/components/ui/table-toolbar";
+import { useClientTable } from "@/components/ui/use-client-table";
+import { TablePagination } from "@/components/ui/table-pagination";
 
 export function SuperadminSystemMaintenanceClient() {
+
   const { seatsNeedingAttention, assetsOverdue, lockerIssues, seats, assets, lockers } = useSuperadminSystemMaintenance();
+
+  const table = useClientTable(seats);
 
   return (
     <div>
@@ -29,7 +35,7 @@ export function SuperadminSystemMaintenanceClient() {
       {/* Summary KPI Cards */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
         <SuperadminKpiCard title="Seats Needing Attention" value={seatsNeedingAttention} icon={() => <span>🪑</span>} trend="down" trendLabel="Action required" />
-        <SuperadminKpiCard title="Assets Overdue" value={assetsOverdue} icon={() => <span>⚙️</span>} trend="down" trendLabel="Service overdue" />
+        <SuperadminKpiCard title="Assets Overdue" value={assetsOverdue} icon={() => <span>âš™ï¸</span>} trend="down" trendLabel="Service overdue" />
         <SuperadminKpiCard title="Locker Issues" value={lockerIssues} icon={() => <span>🔒</span>} trend="down" trendLabel="Reported issues" />
       </div>
 
@@ -41,7 +47,8 @@ export function SuperadminSystemMaintenanceClient() {
         </CardHeader>
         <CardContent>
           <div className="overflow-x-auto">
-            <table className="w-full text-sm">
+            <TableToolbar search={table.searchTerm} onSearch={table.setSearchTerm} />
+      <table className="w-full text-sm">
               <thead>
                 <tr className="border-b border-border text-text-secondary text-xs uppercase tracking-wide">
                   <th className="text-left py-3 pr-4">Seat #</th>
@@ -52,8 +59,8 @@ export function SuperadminSystemMaintenanceClient() {
                 </tr>
               </thead>
               <tbody className="divide-y divide-outline-variant/30">
-                {seats.map((seat) => (
-                  <tr key={seat.id} className="hover:bg-bg-card transition-colors cursor-pointer group">
+                {table.paginatedData.map((seat) => (
+                  <tr key={seat.id} className="hover:bg-card transition-colors cursor-pointer group">
                     <td className="py-3 pr-4 font-mono font-medium text-text-primary">{seat.id}</td>
                     <td className="py-3 pr-4">
                       <SuperadminBadge variant={seat.status === 'OK' ? 'success' : 'danger'}>{seat.status}</SuperadminBadge>
@@ -73,6 +80,10 @@ export function SuperadminSystemMaintenanceClient() {
                 ))}
               </tbody>
             </table>
+      <TablePagination 
+        page={table.page} limit={table.limit} totalItems={table.totalItems} 
+        onPageChange={table.setPage} onLimitChange={table.setLimit} 
+      />
           </div>
         </CardContent>
       </SuperadminCard>
@@ -99,7 +110,7 @@ export function SuperadminSystemMaintenanceClient() {
               </thead>
               <tbody className="divide-y divide-outline-variant/30">
                 {assets.map((asset) => (
-                  <tr key={asset.name} className="hover:bg-bg-card transition-colors cursor-pointer group">
+                  <tr key={asset.name} className="hover:bg-card transition-colors cursor-pointer group">
                     <td className="py-3 pr-4 font-medium text-text-primary">{asset.name}</td>
                     <td className="py-3 pr-4 text-center text-text-secondary">{asset.qty}</td>
                     <td className="py-3 pr-4">
@@ -148,7 +159,7 @@ export function SuperadminSystemMaintenanceClient() {
               </thead>
               <tbody className="divide-y divide-outline-variant/30">
                 {lockers.map((locker) => (
-                  <tr key={locker.id} className="hover:bg-bg-card transition-colors cursor-pointer group">
+                  <tr key={locker.id} className="hover:bg-card transition-colors cursor-pointer group">
                     <td className="py-3 pr-4 font-mono font-medium text-text-primary">{locker.id}</td>
                     <td className="py-3 pr-4">
                       <SuperadminBadge variant={locker.status === 'OK' ? 'success' : 'danger'}>{locker.status}</SuperadminBadge>

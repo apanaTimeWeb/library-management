@@ -9,8 +9,14 @@ import { SuperadminSelect, SuperadminSelectTrigger, SuperadminSelectValue, Super
 import { Download, ChevronRight, Inbox } from 'lucide-react';
 import { useSuperadminSeatsAllocations } from '@/app/superadmin/superadmin_seats_shifts_lockers/superadmin_seats_allocations_hooks/useSuperadminSeatsAllocations';
 import { SuperadminSeatsAllocation } from '@/app/superadmin/superadmin_seats_shifts_lockers/superadmin_seats_types/SuperadminSeatsAllocationsTypes';
+import { TableToolbar } from "@/components/ui/table-toolbar";
+import { useClientTable } from "@/components/ui/use-client-table";
+import { TablePagination } from "@/components/ui/table-pagination";
+import { SUPERADMIN_SEATS_ALLOCATIONS_SHIFT_OPTIONS, SUPERADMIN_SEATS_ALLOCATIONS_STATUS_OPTIONS } from '../superadmin_seats_allocations_constants/SuperadminSeatsAllocationsConstants';
+import { getSuperadminSeatsAllocationsStatusVariant, renderSuperadminSeatsAllocationsDaysLeftBadge } from '../superadmin_seats_shifts_lockers_utils/SuperadminSeatsAllocationsUtils';
 
 export function SuperadminSeatsAllocationsClient() {
+
   const {
     shiftFilter,
     setShiftFilter,
@@ -25,21 +31,7 @@ export function SuperadminSeatsAllocationsClient() {
     handleRowClick
   } = useSuperadminSeatsAllocations();
 
-  const getStatusVariant = (status: string) => {
-    switch (status) {
-      case 'Active': return 'success';
-      case 'Expired': return 'danger';
-      case 'Suspended': return 'warning';
-      default: return 'default';
-    }
-  };
-
-  const getDaysLeftBadge = (days: number) => {
-    if (days < 0) return <SuperadminBadge variant="danger">{Math.abs(days)}d ago</SuperadminBadge>;
-    if (days <= 7) return <SuperadminBadge variant="danger">{days}d left</SuperadminBadge>;
-    if (days <= 15) return <SuperadminBadge variant="warning">{days}d left</SuperadminBadge>;
-    return <SuperadminBadge variant="success">{days}d left</SuperadminBadge>;
-  };
+  const table = useClientTable(filteredAllocations);
 
   return (
     <div>
@@ -56,16 +48,15 @@ export function SuperadminSeatsAllocationsClient() {
         </SuperadminButton>
       </div>
 
-      <SuperadminCard className="mb-6 bg-bg-card border-none">
+      <SuperadminCard className="mb-6 bg-card border-none">
         <CardContent className="p-4 flex flex-wrap items-center gap-4">
           <div className="w-40">
             <SuperadminSelect value={shiftFilter} onValueChange={setShiftFilter}>
               <SuperadminSelectTrigger id="filter-shift"><SuperadminSelectValue placeholder="All Shifts" /></SuperadminSelectTrigger>
               <SuperadminSelectContent>
-                <SuperadminSelectItem value="All Shifts">All Shifts</SuperadminSelectItem>
-                <SuperadminSelectItem value="Morning">Morning</SuperadminSelectItem>
-                <SuperadminSelectItem value="Evening">Evening</SuperadminSelectItem>
-                <SuperadminSelectItem value="Full Day">Full Day</SuperadminSelectItem>
+                {SUPERADMIN_SEATS_ALLOCATIONS_SHIFT_OPTIONS.map(opt => (
+                  <SuperadminSelectItem key={opt.value} value={opt.value}>{opt.label}</SuperadminSelectItem>
+                ))}
               </SuperadminSelectContent>
             </SuperadminSelect>
           </div>
@@ -73,10 +64,9 @@ export function SuperadminSeatsAllocationsClient() {
             <SuperadminSelect value={statusFilter} onValueChange={setStatusFilter}>
               <SuperadminSelectTrigger id="filter-status"><SuperadminSelectValue placeholder="All Statuses" /></SuperadminSelectTrigger>
               <SuperadminSelectContent>
-                <SuperadminSelectItem value="All Statuses">All Statuses</SuperadminSelectItem>
-                <SuperadminSelectItem value="Active">Active</SuperadminSelectItem>
-                <SuperadminSelectItem value="Expired">Expired</SuperadminSelectItem>
-                <SuperadminSelectItem value="Suspended">Suspended</SuperadminSelectItem>
+                {SUPERADMIN_SEATS_ALLOCATIONS_STATUS_OPTIONS.map(opt => (
+                  <SuperadminSelectItem key={opt.value} value={opt.value}>{opt.label}</SuperadminSelectItem>
+                ))}
               </SuperadminSelectContent>
             </SuperadminSelect>
           </div>
@@ -93,7 +83,7 @@ export function SuperadminSeatsAllocationsClient() {
         <CardContent className="p-0">
           {filteredAllocations.length === 0 ? (
             <div className="py-20 flex flex-col items-center justify-center text-center">
-              <div className="h-16 w-16 bg-bg-input rounded-full flex items-center justify-center text-text-secondary mb-3">
+              <div className="h-16 w-16 bg-input rounded-full flex items-center justify-center text-text-secondary mb-3">
                 <Inbox size={32} />
               </div>
               <p className="text-text-primary font-semibold text-lg">No allocations found</p>
@@ -101,6 +91,7 @@ export function SuperadminSeatsAllocationsClient() {
             </div>
           ) : (
             <div className="overflow-x-auto">
+              <TableToolbar search={table.searchTerm} onSearch={table.setSearchTerm} />
               <table className="w-full text-sm text-left">
                 <thead>
                   <tr className="border-b border-border bg-surface text-text-secondary text-xs uppercase tracking-wider font-semibold">
@@ -116,11 +107,11 @@ export function SuperadminSeatsAllocationsClient() {
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-outline-variant/30 bg-surface">
-                  {filteredAllocations.map((alloc, idx) => (
+                  {table.paginatedData.map((alloc, idx) => (
                     <tr
                       key={`${alloc.smartId}-${idx}`}
                       onClick={() => handleRowClick(alloc.studentName)}
-                      className="hover:bg-bg-input transition-colors cursor-pointer group"
+                      className="hover:bg-input transition-colors cursor-pointer group"
                     >
                       <td className="py-3 pl-4 pr-3">
                         <p className="font-semibold text-text-primary">{alloc.studentName}</p>
@@ -132,9 +123,9 @@ export function SuperadminSeatsAllocationsClient() {
                       <td className="py-3 px-3 text-text-secondary">{alloc.lockerNo}</td>
                       <td className="py-3 px-3 text-text-secondary">{alloc.validFrom}</td>
                       <td className="py-3 px-3 text-text-secondary">{alloc.validTill}</td>
-                      <td className="py-3 px-3">{getDaysLeftBadge(alloc.daysLeft)}</td>
+                      <td className="py-3 px-3">{renderSuperadminSeatsAllocationsDaysLeftBadge(alloc.daysLeft)}</td>
                       <td className="py-3 px-3">
-                        <SuperadminBadge variant={getStatusVariant(alloc.status)}>
+                        <SuperadminBadge variant={getSuperadminSeatsAllocationsStatusVariant(alloc.status)}>
                           {alloc.status}
                         </SuperadminBadge>
                       </td>
@@ -142,6 +133,10 @@ export function SuperadminSeatsAllocationsClient() {
                   ))}
                 </tbody>
               </table>
+              <TablePagination 
+                page={table.page} limit={table.limit} totalItems={table.totalItems} 
+                onPageChange={table.setPage} onLimitChange={table.setLimit} 
+              />
             </div>
           )}
         </CardContent>

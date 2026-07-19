@@ -37,7 +37,7 @@ export function AdminCommunicationNotificationCenterClient() {
           <p className="text-xs font-semibold text-muted-foreground flex items-center gap-1 uppercase tracking-wider mb-1">
             Communication <ChevronRight size={12} /> Notification Center
           </p>
-          <h1 className="text-2xl font-bold tracking-tight">🔔 Notification Center</h1>
+          <h1 className="text-text-primary text-xl font-bold tracking-tight">🔔 Notification Center</h1>
           <p className="text-sm text-muted-foreground mt-1">{unread} unread notifications requiring your attention.</p>
         </div>
         <Button variant="outline" onClick={markAllRead} disabled={unread === 0} className="gap-2">
@@ -70,7 +70,7 @@ export function AdminCommunicationNotificationCenterClient() {
           ) : (
             <div className="divide-y divide-border">
               {filtered.map(n => (
-                <div key={n.id} className={`p-4 flex flex-col md:flex-row gap-4 transition-colors ${n.read ? 'bg-bg-card hover:bg-muted/30' : 'bg-muted/10 hover:bg-muted/20'}`}>
+                <div key={n.id} className={`p-4 flex flex-col md:flex-row gap-4 transition-colors ${n.read ? 'bg-card hover:bg-muted/30' : 'bg-muted/10 hover:bg-muted/20'}`}>
                   <div className={`w-12 h-12 rounded-full flex items-center justify-center text-xl shrink-0 ${ICON_CLS[n.category] || 'bg-muted text-muted-foreground'}`}>
                     {n.icon}
                   </div>

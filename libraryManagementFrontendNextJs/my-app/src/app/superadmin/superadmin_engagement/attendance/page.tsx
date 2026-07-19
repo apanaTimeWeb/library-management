@@ -1,5 +1,6 @@
-import { AttendanceClient } from '@/app/superadmin/superadmin_engagement/attendance/_components/AttendanceClient';
+// RESPONSIBILITY: Component or Page.
+import { SuperadminAttendanceClient } from '@/app/superadmin/superadmin_engagement/attendance/_components/SuperadminAttendanceClient';
 
 export default function Page() {
-  return <AttendanceClient />;
+  return <SuperadminAttendanceClient />;
 }

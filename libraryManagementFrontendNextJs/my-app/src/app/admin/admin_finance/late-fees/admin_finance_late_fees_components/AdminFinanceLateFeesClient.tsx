@@ -3,14 +3,18 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Settings, AlertTriangle, Save, MessageSquare } from 'lucide-react';
-import { formatCurrency } from '@/app/admin/admin_finance/admin_finance_utils/format';
+import { formatCurrency } from '@/app/admin/admin_finance/admin_finance_utils/AdminFinanceFormat';
 import { useAdminFinanceLateFees } from '@/app/admin/admin_finance/late-fees/admin_finance_late_fees_hooks/useAdminFinanceLateFees';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { TablePagination } from '@/components/ui/table-pagination';
+import { TableToolbar } from '@/components/ui/table-toolbar';
+import { useClientTable } from '@/components/ui/use-client-table';
+import { ADMIN_ROUTES } from '@/app/admin/admin_url_config';
 
 export function AdminFinanceLateFeesClient() {
+
   const router = useRouter();
   const {
     config,
@@ -30,14 +34,14 @@ export function AdminFinanceLateFeesClient() {
 
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(10);
-
+    const table = useClientTable(overdue, 10);
   return (
     <div className="h-full flex flex-col pb-10 space-y-6 relative">
       {/* page Header */}
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b pb-4">
         <div>
           <nav className="text-xs text-muted-foreground font-medium mb-1 tracking-wide uppercase">Smart Library 360 › Admin › Finance</nav>
-          <h1 className="text-2xl font-bold tracking-tight">Late Fees</h1>
+          <h1 className="text-text-primary text-xl font-bold tracking-tight">Late Fees</h1>
           <p className="text-sm text-muted-foreground mt-1">Configure late fee policies and view overdue students.</p>
         </div>
       </div>
@@ -92,11 +96,11 @@ export function AdminFinanceLateFeesClient() {
           <div className="grid grid-cols-2 gap-6 max-w-md">
             <div className="space-y-1">
               <p className="text-sm font-medium text-muted-foreground">Grace Period</p>
-              <p className="text-2xl font-bold text-primary">{config?.gracePeriodDays} days</p>
+              <p className="text-text-primary text-xl font-bold text-primary">{config?.gracePeriodDays} days</p>
             </div>
             <div className="space-y-1">
               <p className="text-sm font-medium text-muted-foreground">Penalty Per Day</p>
-              <p className="text-2xl font-bold text-primary">{formatCurrency(config?.penaltyPerDay || 0)}</p>
+              <p className="text-text-primary text-xl font-bold text-primary">{formatCurrency(config?.penaltyPerDay || 0)}</p>
             </div>
           </div>
         )}
@@ -109,7 +113,13 @@ export function AdminFinanceLateFeesClient() {
           <h3 className="font-bold text-base text-primary">Overdue Students</h3>
         </div>
         
-        <div className="w-full overflow-x-auto flex-1">
+        <div className="mb-4">
+        <TableToolbar 
+          search={table.searchTerm} 
+          onSearch={table.setSearchTerm} 
+        />
+      </div>
+      <div className="w-full overflow-x-auto flex-1">
           <table className="w-full text-sm text-left">
             <thead className="bg-muted/30 border-b text-muted-foreground text-xs font-bold uppercase tracking-wider sticky top-0 z-10">
               <tr>
@@ -131,7 +141,7 @@ export function AdminFinanceLateFeesClient() {
                     </div>
                   </td>
                 </tr>
-              ) : overdue.length === 0 ? (
+              ) : table.paginatedData.length === 0 ? (
                 <tr>
                   <td colSpan={6} className="px-5 py-20 text-center">
                     <div className="flex flex-col items-center justify-center gap-3">
@@ -142,7 +152,7 @@ export function AdminFinanceLateFeesClient() {
                   </td>
                 </tr>
               ) : (
-                overdue.slice((page - 1) * limit, page * limit).map((s) => (
+                table.paginatedData.map((s) => (
                   <tr key={s.studentId} className="hover:bg-muted/10 transition-colors">
                     <td className="px-5 py-4">
                       <div className="font-bold text-sm text-primary">{s.studentName}</div>
@@ -186,7 +196,13 @@ export function AdminFinanceLateFeesClient() {
               )}
             </tbody>
           </table>
-          </div>
+          </div> 
+      <TablePagination 
+        totalItems={table.totalItems} 
+        page={table.page} 
+        limit={table.limit} 
+        onPageChange={table.setPage} 
+      />
           <TablePagination
             page={page}
             limit={limit}

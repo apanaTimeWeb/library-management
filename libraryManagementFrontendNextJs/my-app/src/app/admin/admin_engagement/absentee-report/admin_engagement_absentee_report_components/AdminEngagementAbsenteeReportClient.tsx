@@ -1,4 +1,6 @@
 'use client';
+import { AdminSearchableDropdown } from '@/app/admin/admin_shared_components/AdminSearchableDropdown';
+
 // RESPONSIBILITY: Entry page for the admin_engagement module.
 // DATA FLOW: Next.js Router -> page -> Components
 
@@ -13,8 +15,11 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import toast from 'react-hot-toast';
 import { AbsenteeRow } from "./AdminEngagementAbsenteeReportClient_types";
+import { TableToolbar } from '@/components/ui/table-toolbar';
+import { useClientTable } from '@/components/ui/use-client-table';
 
 export function AdminEngagementAbsenteeReportClient() {
+
   const [searchTerm, setSearchTerm] = useState('');
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(10);
@@ -47,7 +52,7 @@ export function AdminEngagementAbsenteeReportClient() {
 
   const badgeClass = (d: number) => d >= 7 ? 'bg-danger/10 text-danger hover:bg-danger/20' : 'bg-warning/10 text-warning hover:bg-warning/20';
   const rowClass = (d: number) => d >= 7 ? 'bg-danger/5 hover:bg-danger/10' : d >= 3 ? 'bg-warning/5 hover:bg-warning/10' : 'hover:bg-muted/30';
-  
+    const table = useClientTable(filtered, 10);
   return (
     <div className="space-y-6 pb-10">
       {/* ── Header ── */}
@@ -56,7 +61,7 @@ export function AdminEngagementAbsenteeReportClient() {
           <p className="text-xs font-semibold text-muted-foreground flex items-center gap-1 uppercase tracking-wider mb-1">
             Engagement <ChevronRight size={12} /> Absentee Report
           </p>
-          <h1 className="text-2xl font-bold tracking-tight">📋 Absentee Report</h1>
+          <h1 className="text-text-primary text-xl font-bold tracking-tight">📋 Absentee Report</h1>
           <p className="text-sm text-muted-foreground mt-1">Students with consecutive absences requiring attention.</p>
         </div>
         <Button onClick={notifyAll} className="gap-2">
@@ -77,7 +82,7 @@ export function AdminEngagementAbsenteeReportClient() {
           <p className="text-xs font-medium text-danger/70">Immediate action needed</p>
         </Card>
         <Card className="p-4 shadow-sm border-warning/20 bg-warning/5">
-          <p className="text-xs font-semibold text-warning uppercase tracking-wider mb-1">Moderate (3–6 days)</p>
+          <p className="text-xs font-semibold text-warning uppercase tracking-wider mb-1">Moderate (3â€“6 days)</p>
           <p className="text-3xl font-bold text-warning mb-1">{moderate.length}</p>
           <p className="text-xs font-medium text-warning/70">Monitoring required</p>
         </Card>
@@ -93,21 +98,21 @@ export function AdminEngagementAbsenteeReportClient() {
         <div className="flex flex-wrap gap-4 items-center">
           <div className="flex flex-col">
             <label className="text-xs mb-1 font-semibold text-muted-foreground uppercase tracking-wider">Days Threshold</label>
-            <select value={threshold} onChange={e => setThreshold(e.target.value)} className="flex h-9 w-44 items-center justify-between rounded-md border border-border bg-bg-input px-3 py-1 text-sm ring-offset-bg-page placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50">
+            <AdminSearchableDropdown value={threshold} onChange={e => setThreshold(e.target.value)} className="flex h-9 w-44 items-center justify-between rounded-md border border-border bg-input px-3 py-1 text-sm ring-offset-bg-page placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50">
               <option value="3">3+ Days</option>
               <option value="5">5+ Days</option>
               <option value="7">7+ Days (Critical)</option>
               <option value="all">Show All</option>
-            </select>
+            </AdminSearchableDropdown>
           </div>
           <div className="flex flex-col">
             <label className="text-xs mb-1 font-semibold text-muted-foreground uppercase tracking-wider">Shift</label>
-            <select value={shift} onChange={e => setShift(e.target.value)} className="flex h-9 w-36 items-center justify-between rounded-md border border-border bg-bg-input px-3 py-1 text-sm ring-offset-bg-page placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50">
+            <AdminSearchableDropdown value={shift} onChange={e => setShift(e.target.value)} className="flex h-9 w-36 items-center justify-between rounded-md border border-border bg-input px-3 py-1 text-sm ring-offset-bg-page placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50">
               <option>All</option>
               <option>Morning</option>
               <option>Afternoon</option>
               <option>Evening</option>
-            </select>
+            </AdminSearchableDropdown>
           </div>
         </div>
         <div className="flex gap-2">
@@ -133,7 +138,13 @@ export function AdminEngagementAbsenteeReportClient() {
               <Input placeholder="Search..." className="pl-8" value={searchTerm} onChange={e => setSearchTerm(e.target.value)} />
             </div>
           </div>
-          <table className="w-full text-sm text-left">
+          <div className="mb-4">
+        <TableToolbar 
+          search={table.searchTerm} 
+          onSearch={table.setSearchTerm} 
+        />
+      </div>
+      <table className="w-full text-sm text-left">
             <thead className="bg-muted text-muted-foreground text-xs font-semibold uppercase tracking-wider sticky top-0 z-10">
               <tr>
                 <th className="py-3 px-4">Student</th>
@@ -158,7 +169,7 @@ export function AdminEngagementAbsenteeReportClient() {
                   </td>
                   <td className="py-4 px-4 font-mono font-medium text-muted-foreground">{r.smartId}</td>
                   <td className="py-4 px-4">
-                    <Badge variant="outline" className="font-medium bg-bg-card">{r.shift}</Badge>
+                    <Badge variant="outline" className="font-medium bg-card">{r.shift}</Badge>
                   </td>
                   <td className="py-4 px-4">
                     <Badge variant="secondary" className={`${badgeClass(r.daysAbsent)} border-none font-bold tracking-wide px-3 py-1 text-sm`}>
@@ -192,7 +203,13 @@ export function AdminEngagementAbsenteeReportClient() {
                 </tr>
               ))}
             </tbody>
-          </table>
+          </table> 
+      <TablePagination 
+        totalItems={table.totalItems} 
+        page={table.page} 
+        limit={table.limit} 
+        onPageChange={table.setPage} 
+      />
           <TablePagination 
             totalItems={100} 
             page={page} 

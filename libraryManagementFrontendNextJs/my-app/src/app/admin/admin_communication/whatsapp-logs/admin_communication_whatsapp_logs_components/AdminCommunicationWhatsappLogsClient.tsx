@@ -1,4 +1,8 @@
 'use client';
+import { useUrlState } from '@/app/admin/admin_shared_hooks/useUrlState';
+
+import { AdminSearchableDropdown } from '@/app/admin/admin_shared_components/AdminSearchableDropdown';
+
 // RESPONSIBILITY: Entry page for the admin_communication module.
 // DATA FLOW: Next.js Router -> page -> Components
 
@@ -12,6 +16,8 @@ import { Input } from '@/components/ui/input';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from '@/components/ui/dialog';
 import { TablePagination } from '@/components/ui/table-pagination';
 import { WaLog } from "./AdminCommunicationWhatsappLogsClient_types";
+import { TableToolbar } from '@/components/ui/table-toolbar';
+import { useClientTable } from '@/components/ui/use-client-table';
 
 const TYPE_BADGE: Record<string, string> = {
   welcome: 'bg-info/10 text-info hover:bg-info/20', 
@@ -31,13 +37,14 @@ const STATUS_BADGE: Record<string, string> = {
 };
 
 export function AdminCommunicationWhatsappLogsClient() {
+
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(10);
   const [typeFilter,   setTypeFilter]   = useState('All');
-  const [statusFilter, setStatusFilter] = useState('All');
-  const [search,       setSearch]       = useState('');
-  const [dateFrom,     setDateFrom]     = useState('');
-  const [dateTo,       setDateTo]       = useState('');
+  const [statusFilter, setStatusFilter] = useUrlState('statusFilter', 'All' as string);
+  const [search, setSearch] = useUrlState('search', '' as string);
+  const [dateFrom, setDateFrom] = useUrlState('dateFrom', '' as string);
+  const [dateTo, setDateTo] = useUrlState('dateTo', '' as string);
   const [viewLog,      setViewLog]      = useState<WaLog | null>(null);
 
   const filtered = (ADMIN_COMMUNICATION_MOCK_WHATSAPP_LOGS as WaLog[]).filter(l => {
@@ -48,7 +55,7 @@ export function AdminCommunicationWhatsappLogsClient() {
     if (dateTo && l.dateTime.split(' ')[0] > dateTo) return false;
     return true;
   });
-
+    const table = useClientTable(filtered, 10);
   return (
     <div className="space-y-6 pb-10">
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b pb-4">
@@ -56,7 +63,7 @@ export function AdminCommunicationWhatsappLogsClient() {
           <p className="text-xs font-semibold text-muted-foreground flex items-center gap-1 uppercase tracking-wider mb-1">
             Communication <ChevronRight size={12} /> WhatsApp Logs
           </p>
-          <h1 className="text-2xl font-bold tracking-tight">📱 WhatsApp Logs</h1>
+          <h1 className="text-text-primary text-xl font-bold tracking-tight">📱 WhatsApp Logs</h1>
           <p className="text-sm text-muted-foreground mt-1">All outbound WhatsApp messages sent from the system.</p>
         </div>
       </div>
@@ -66,22 +73,22 @@ export function AdminCommunicationWhatsappLogsClient() {
         <div className="flex flex-wrap gap-4 items-end">
           <div className="flex flex-col">
             <label className="text-xs mb-1 font-semibold text-muted-foreground uppercase tracking-wider">Message Type</label>
-            <select value={typeFilter} onChange={e => setTypeFilter(e.target.value)} className="flex h-10 w-36 items-center justify-between rounded-md border border-border bg-bg-input px-3 py-2 text-sm ring-offset-bg-page placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50">
+            <AdminSearchableDropdown value={typeFilter} onChange={e => setTypeFilter(e.target.value)} className="flex h-10 w-36 items-center justify-between rounded-md border border-border bg-input px-3 py-2 text-sm ring-offset-bg-page placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50">
               <option value="All">All Types</option>
               <option value="welcome">Welcome</option>
               <option value="fee_reminder">Fee Reminder</option>
               <option value="receipt">Receipt</option>
               <option value="notice">Notice</option>
               <option value="renewal">Renewal</option>
-            </select>
+            </AdminSearchableDropdown>
           </div>
           <div className="flex flex-col">
             <label className="text-xs mb-1 font-semibold text-muted-foreground uppercase tracking-wider">Status</label>
-            <select value={statusFilter} onChange={e => setStatusFilter(e.target.value)} className="flex h-10 w-28 items-center justify-between rounded-md border border-border bg-bg-input px-3 py-2 text-sm ring-offset-bg-page placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50">
+            <AdminSearchableDropdown value={statusFilter} onChange={e => setStatusFilter(e.target.value)} className="flex h-10 w-28 items-center justify-between rounded-md border border-border bg-input px-3 py-2 text-sm ring-offset-bg-page placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50">
               <option value="All">All</option>
               <option>Pending</option><option>Sent</option>
               <option>Delivered</option><option>Failed</option>
-            </select>
+            </AdminSearchableDropdown>
           </div>
           <div className="flex flex-col">
             <label className="text-xs mb-1 font-semibold text-muted-foreground uppercase tracking-wider">From</label>
@@ -107,7 +114,13 @@ export function AdminCommunicationWhatsappLogsClient() {
           </div>
         ) : (
           <>
-          <table className="w-full text-sm text-left">
+          <div className="mb-4">
+        <TableToolbar 
+          search={table.searchTerm} 
+          onSearch={table.setSearchTerm} 
+        />
+      </div>
+      <table className="w-full text-sm text-left">
             <thead className="bg-muted text-muted-foreground text-xs font-semibold uppercase tracking-wider sticky top-0 z-10">
               <tr>
                 <th className="py-3 px-4">Date / Time</th>
@@ -120,7 +133,7 @@ export function AdminCommunicationWhatsappLogsClient() {
               </tr>
             </thead>
             <tbody className="divide-y divide-border">
-              {filtered.slice((page - 1) * limit, page * limit).map((l) => (
+              {table.paginatedData.map((l) => (
                 <tr key={l.id} className="hover:bg-muted/30 transition-colors">
                   <td className="py-4 px-4 text-muted-foreground text-xs">{l.dateTime}</td>
                   <td className="py-4 px-4 font-mono font-medium text-foreground">{l.phone}</td>
@@ -148,7 +161,13 @@ export function AdminCommunicationWhatsappLogsClient() {
                 </tr>
               ))}
             </tbody>
-          </table>
+          </table> 
+      <TablePagination 
+        totalItems={table.totalItems} 
+        page={table.page} 
+        limit={table.limit} 
+        onPageChange={table.setPage} 
+      />
 
       <TablePagination 
         totalItems={100} 
@@ -189,7 +208,7 @@ export function AdminCommunicationWhatsappLogsClient() {
               </div>
               {viewLog.error && (
                 <div className="mt-4 p-3 bg-danger/10 text-danger rounded-lg border border-danger/20 text-sm font-medium">
-                  ⚠️ Error: {viewLog.error}
+                  ⚠️ Error: {viewLog.error}
                 </div>
               )}
             </div>
@@ -202,3 +221,4 @@ export function AdminCommunicationWhatsappLogsClient() {
     </div>
   );
 }
+

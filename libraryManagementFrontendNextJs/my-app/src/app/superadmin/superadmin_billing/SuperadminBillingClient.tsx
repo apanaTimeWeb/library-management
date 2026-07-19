@@ -1,14 +1,14 @@
 'use client';
 // RESPONSIBILITY: Renders the SuperadminBillingClient component.
 import React, { useState } from 'react';
-import { superadmin_useSuperadminBilling } from '@/app/superadmin/superadmin_billing/superadmin_billing_hooks/superadmin_useSuperadminBilling';
+import { useSuperadminBilling } from '@/app/superadmin/superadmin_billing/superadmin_billing_hooks/useSuperadminBilling';
 import { SuperadminBillingHeader } from '@/app/superadmin/superadmin_billing/superadmin_billing_components/SuperadminBillingHeader';
 import { SuperadminBillingGrid } from '@/app/superadmin/superadmin_billing/superadmin_billing_components/SuperadminBillingGrid';
 import { SuperadminBillingPanel } from '@/app/superadmin/superadmin_billing/superadmin_billing_components/SuperadminBillingPanel';
 import type { SuperadminBillingInvoice } from '@/app/superadmin/superadmin_billing/superadmin_billing_types/SuperadminBillingTypes';
 
 export function SuperadminBillingClient() {
-  const { invoices, markInvoicePaid } = superadmin_useSuperadminBilling();
+  const { invoices, markInvoicePaid } = useSuperadminBilling();
   const [selected, setSelected] = useState<SuperadminBillingInvoice | null>(null);
   const [toast, setToast] = useState('');
 
@@ -33,7 +33,7 @@ export function SuperadminBillingClient() {
   return (
     <div className="relative p-2 sm:p-4">
       {toast && (
-        <div className="fixed top-24 right-8 z-50 bg-bg-card border border-border shadow-xl rounded-[var(--radius-md)] px-4 py-3 flex items-center gap-3 animate-in slide-in-from-top-4 duration-300">
+        <div className="fixed top-24 right-8 z-50 bg-card border border-border shadow-xl rounded-md px-4 py-3 flex items-center gap-3 animate-in slide-in-from-top-4 duration-300">
           <span className="text-sm font-semibold text-text-primary">{toast}</span>
         </div>
       )}

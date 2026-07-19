@@ -1,3 +1,4 @@
+﻿// RESPONSIBILITY: Renders or handles logic for SuperadminLibrariesTypes.ts.
 import { z } from 'zod';
 import { SUPERADMIN_LIBRARIES_PLANS, SUPERADMIN_LIBRARIES_STATUSES } from '@/app/superadmin/superadmin_libraries/superadmin_libraries_constants/SuperadminLibrariesConstants';
 
@@ -34,3 +35,4 @@ export const superadminLibrarySchema = z.object({
   phone: z.string().min(10, 'Valid phone required'),
   joined: z.string()
 });
+

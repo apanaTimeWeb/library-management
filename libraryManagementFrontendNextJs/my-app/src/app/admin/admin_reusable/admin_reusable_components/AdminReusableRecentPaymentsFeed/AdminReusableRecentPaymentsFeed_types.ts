@@ -1,3 +1,4 @@
+﻿// RESPONSIBILITY: Renders or handles logic for AdminReusableRecentPaymentsFeed_types.ts.
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
@@ -14,3 +15,4 @@ export interface AdminReusablePayment {
   timeAgo: string;
   studentId?: string;
 }
+

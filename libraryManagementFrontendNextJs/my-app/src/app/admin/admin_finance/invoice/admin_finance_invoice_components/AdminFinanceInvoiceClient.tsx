@@ -1,17 +1,22 @@
 'use client';
+import { AdminSearchableDropdown } from '@/app/admin/admin_shared_components/AdminSearchableDropdown';
+
 // RESPONSIBILITY: Renders the AdminFinanceInvoiceClient component.
 import { useState } from 'react';
 import Link from 'next/link';
 import { Search, FileText, Printer, Eye, Send } from 'lucide-react';
-import { formatCurrency, formatDate } from '@/app/admin/admin_finance/admin_finance_utils/format';
+import { formatCurrency, formatDate } from '@/app/admin/admin_finance/admin_finance_utils/AdminFinanceFormat';
 import { useAdminFinanceInvoice, type FilterStatus } from '@/app/admin/admin_finance/invoice/admin_finance_invoice_hooks/useAdminFinanceInvoice';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Input } from '@/components/ui/input';
 import { TablePagination } from '@/components/ui/table-pagination';
+import { TableToolbar } from '@/components/ui/table-toolbar';
+import { useClientTable } from '@/components/ui/use-client-table';
 
 export function AdminFinanceInvoiceClient() {
+
   const {
     search,
     setSearch,
@@ -34,14 +39,14 @@ export function AdminFinanceInvoiceClient() {
       default: return 'bg-muted text-muted-foreground';
     }
   };
-
+    const table = useClientTable(filteredInvoices, 10);
   return (
     <div className="h-full flex flex-col pb-10 space-y-6 relative">
       {/* page Header */}
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b pb-4">
         <div>
           <nav className="text-xs text-muted-foreground font-medium mb-1 tracking-wide uppercase">Smart Library 360 › Admin › Finance</nav>
-          <h1 className="text-2xl font-bold tracking-tight">Invoices</h1>
+          <h1 className="text-text-primary text-xl font-bold tracking-tight">Invoices</h1>
           <p className="text-sm text-muted-foreground mt-1">View and download GST-compliant tax invoices.</p>
         </div>
       </div>
@@ -53,7 +58,7 @@ export function AdminFinanceInvoiceClient() {
             <span className="text-xs font-bold tracking-wider uppercase text-muted-foreground">TOTAL INVOICES</span>
             <FileText size={16} className="text-muted-foreground" />
           </div>
-          <p className="text-2xl font-bold leading-none tracking-tight text-primary">{kpiData.totalInvoices}</p>
+          <p className="text-text-primary text-xl font-bold leading-none tracking-tight text-primary">{kpiData.totalInvoices}</p>
         </Card>
         
         <Card className="p-5 shadow-none border-success/30 bg-success/5 flex flex-col gap-3">
@@ -61,7 +66,7 @@ export function AdminFinanceInvoiceClient() {
             <span className="text-xs font-bold tracking-wider uppercase text-success">TOTAL BILLED</span>
             <FileText size={16} className="text-success" />
           </div>
-          <p className="text-2xl font-bold leading-none tracking-tight text-success">{formatCurrency(kpiData.totalBilled)}</p>
+          <p className="text-text-primary text-xl font-bold leading-none tracking-tight text-success">{formatCurrency(kpiData.totalBilled)}</p>
         </Card>
         
         <Card className="p-5 shadow-none border-warning/30 bg-warning/5 flex flex-col gap-3">
@@ -69,7 +74,7 @@ export function AdminFinanceInvoiceClient() {
             <span className="text-xs font-bold tracking-wider uppercase text-warning">PENDING / OVERDUE</span>
             <FileText size={16} className="text-warning" />
           </div>
-          <p className="text-2xl font-bold leading-none tracking-tight text-warning">{kpiData.pendingOrOverdue}</p>
+          <p className="text-text-primary text-xl font-bold leading-none tracking-tight text-warning">{kpiData.pendingOrOverdue}</p>
         </Card>
       </div>
 
@@ -84,8 +89,8 @@ export function AdminFinanceInvoiceClient() {
             onChange={e => setSearch(e.target.value)} 
           />
         </div>
-        <select 
-          className="flex h-10 w-full max-w-52 items-center justify-between rounded-md border border-border bg-bg-input px-3 py-2 text-sm ring-offset-bg-page placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:ring-offset-2"
+        <AdminSearchableDropdown 
+          className="flex h-10 w-full max-w-52 items-center justify-between rounded-md border border-border bg-input px-3 py-2 text-sm ring-offset-bg-page placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:ring-offset-2"
           value={statusFilter} 
           onChange={e => setStatusFilter(e.target.value as FilterStatus)}
         >
@@ -93,12 +98,18 @@ export function AdminFinanceInvoiceClient() {
           <option value="paid">Paid</option>
           <option value="pending">Pending</option>
           <option value="overdue">Overdue</option>
-        </select>
+        </AdminSearchableDropdown>
       </div>
 
       {/* Invoices Table */}
       <Card className="flex-1 shadow-none border-border bg-card overflow-hidden flex flex-col">
-        <div className="w-full overflow-x-auto flex-1">
+        <div className="mb-4">
+        <TableToolbar 
+          search={table.searchTerm} 
+          onSearch={table.setSearchTerm} 
+        />
+      </div>
+      <div className="w-full overflow-x-auto flex-1">
           <table className="w-full text-sm text-left">
             <thead className="bg-muted/30 border-b text-muted-foreground text-xs font-bold uppercase tracking-wider sticky top-0 z-10">
               <tr>
@@ -112,7 +123,7 @@ export function AdminFinanceInvoiceClient() {
               </tr>
             </thead>
             <tbody className="divide-y divide-border">
-              {filteredInvoices.length === 0 ? (
+              {table.paginatedData.length === 0 ? (
                 <tr>
                   <td colSpan={7} className="px-5 py-20 text-center">
                     <div className="flex flex-col items-center justify-center gap-3">
@@ -123,7 +134,7 @@ export function AdminFinanceInvoiceClient() {
                   </td>
                 </tr>
               ) : (
-                filteredInvoices.slice((page - 1) * limit, page * limit).map((inv) => (
+                table.paginatedData.map((inv) => (
                   <tr key={inv.id} className="hover:bg-muted/10 transition-colors">
                     <td className="px-5 py-4">
                       <span className="font-mono text-sm font-medium text-primary">{inv.invoiceNumber}</span>
@@ -184,7 +195,13 @@ export function AdminFinanceInvoiceClient() {
               )}
             </tbody>
           </table>
-          </div>
+          </div> 
+      <TablePagination 
+        totalItems={table.totalItems} 
+        page={table.page} 
+        limit={table.limit} 
+        onPageChange={table.setPage} 
+      />
           <TablePagination
             page={page}
             limit={limit}

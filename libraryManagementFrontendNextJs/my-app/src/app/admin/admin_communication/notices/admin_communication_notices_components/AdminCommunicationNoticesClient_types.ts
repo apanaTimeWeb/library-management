@@ -1,3 +1,4 @@
+﻿// RESPONSIBILITY: Renders or handles logic for AdminCommunicationNoticesClient_types.ts.
 import { useState, useEffect } from "react";
 import { ChevronRight, Plus, X, Edit2, Trash2, Send } from "lucide-react";
 import { fetchApi } from "@/lib/api";
@@ -15,3 +16,4 @@ export interface Notice {
   validTill: string; postedBy: string; postedDate: string;
   status: 'Active' | 'Expired';
 }
+

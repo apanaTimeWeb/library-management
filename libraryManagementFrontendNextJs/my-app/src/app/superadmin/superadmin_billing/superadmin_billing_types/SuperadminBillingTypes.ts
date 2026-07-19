@@ -1,3 +1,4 @@
+﻿// RESPONSIBILITY: Renders or handles logic for SuperadminBillingTypes.ts.
 
 
 export interface SuperadminBillingInvoice {
@@ -19,3 +20,4 @@ export interface SuperadminBillingPanelProps {
   onClose: () => void;
   onMarkPaid: (id: string) => Promise<void>;
 }
+

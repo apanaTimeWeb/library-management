@@ -1,3 +1,4 @@
+﻿// RESPONSIBILITY: Renders or handles logic for AdminCommunicationWhatsappLogsClient_types.ts.
 import { useState } from "react";
 import { ChevronRight, Eye, X } from "lucide-react";
 import { ADMIN_COMMUNICATION_MOCK_WHATSAPP_LOGS } from "@/app/admin/admin_communication/admin_communication_constants/AdminCommunicationConstants";
@@ -13,3 +14,4 @@ export interface WaLog {
   status: 'Pending' | 'Sent' | 'Delivered' | 'Failed';
   error: string; message: string;
 }
+

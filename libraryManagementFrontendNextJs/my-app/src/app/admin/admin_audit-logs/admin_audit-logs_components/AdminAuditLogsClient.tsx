@@ -16,6 +16,8 @@ import { Card } from '@/components/ui/card';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from '@/components/ui/dialog';
 import toast from 'react-hot-toast';
 import { TablePagination } from '@/components/ui/table-pagination';
+import { TableToolbar } from '@/components/ui/table-toolbar';
+import { useClientTable } from '@/components/ui/use-client-table';
 
 const SEVERITY_ICONS: Record<string, React.ReactNode> = {
   danger:  <ShieldAlert size={12} />,
@@ -78,6 +80,7 @@ function IdCell({ value }: { value: string }) {
 }
 
 export function AdminAuditLogsClient() {
+
   const {
     logs,
     fetchState,
@@ -97,6 +100,8 @@ export function AdminAuditLogsClient() {
     setSelectedLog(log);
   }, [setSelectedLog]);
 
+  const table = useClientTable(logs, 10);
+
   if (fetchState === 'loading' && logs.length === 0) {
     return <AdminAuditLogsSkeleton />;
   }
@@ -109,7 +114,7 @@ export function AdminAuditLogsClient() {
           <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-1">
             Smart Library 360 <span className="opacity-50">›</span> Admin <span className="opacity-50">›</span> Audit Logs
           </p>
-          <h1 className="text-2xl font-bold tracking-tight text-foreground">Audit Logs</h1>
+          <h1 className="text-text-primary text-xl font-bold tracking-tight text-foreground">Audit Logs</h1>
           <p className="text-sm text-muted-foreground mt-1">Track all sensitive actions performed in the system.</p>
         </div>
       </div>
@@ -132,7 +137,7 @@ export function AdminAuditLogsClient() {
               type="button"
               className={`px-3 py-1.5 text-sm font-medium rounded-md transition-colors ${
                 activeTab === tab 
-                  ? 'bg-bg-card text-foreground shadow-sm' 
+                  ? 'bg-card text-foreground shadow-sm' 
                   : 'text-muted-foreground hover:text-foreground hover:bg-muted/50'
               }`}
               onClick={() => setActiveTab(tab)}
@@ -148,7 +153,13 @@ export function AdminAuditLogsClient() {
         <AdminAuditLogsEmptyState onResetFilters={handleResetFilters} />
       ) : (
         <Card className="flex-1 min-h-96 shadow-sm border-border bg-card overflow-hidden flex flex-col">
-          <div className="overflow-x-auto flex-1">
+          <div className="mb-4">
+        <TableToolbar 
+          search={table.searchTerm} 
+          onSearch={table.setSearchTerm} 
+        />
+      </div>
+      <div className="overflow-x-auto flex-1">
             <table className="w-full text-sm text-left">
               <thead className="text-xs text-muted-foreground uppercase bg-muted/50 sticky top-0 z-10">
                 <tr>
@@ -162,8 +173,7 @@ export function AdminAuditLogsClient() {
                 </tr>
               </thead>
               <tbody className="divide-y divide-border">
-                {logs.map((log) => (
-                  <tr 
+                {table.paginatedData.map((log) => ( <tr 
                     key={log.id} 
                     className="hover:bg-muted/30 transition-colors cursor-pointer group"
                     onClick={() => handleRowClick(log)}
@@ -193,7 +203,13 @@ export function AdminAuditLogsClient() {
                 ))}
               </tbody>
             </table>
-          </div>
+          </div> 
+      <TablePagination 
+        totalItems={table.totalItems} 
+        page={table.page} 
+        limit={table.limit} 
+        onPageChange={table.setPage} 
+      />
           <TablePagination
             page={page}
             limit={limit}

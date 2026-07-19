@@ -1,8 +1,15 @@
+import { ManagerAccountingErrorBoundary } from '@/app/manager/manager_accounting/manager_accounting_components/ManagerAccountingErrorBoundary';
+import { ManagerAccountingAssetMaintenanceClient } from '@/app/manager/manager_accounting/manager_accounting_components/ManagerAccountingAssetMaintenanceClient';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Asset Maintenance | Smart Library 360',
+};
+
 export default function Page() {
   return (
-    <div className="p-6 min-h-screen bg-bg-page">
-      <h1 className="text-2xl font-bold text-text-primary mb-4">Asset Maintenance</h1>
-      <p className="text-text-secondary">Coming soon...</p>
-    </div>
+    <ManagerAccountingErrorBoundary>
+      <ManagerAccountingAssetMaintenanceClient />
+    </ManagerAccountingErrorBoundary>
   );
 }

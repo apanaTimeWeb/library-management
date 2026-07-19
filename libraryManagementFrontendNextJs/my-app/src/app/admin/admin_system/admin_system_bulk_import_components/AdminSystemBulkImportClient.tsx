@@ -8,6 +8,8 @@ import { Upload, FileSpreadsheet, ChevronRight, CheckCircle, XCircle, AlertTrian
 import { ADMIN_SYSTEM_MOCK_PREVIEW } from '@/app/admin/admin_system/admin_system_utils/AdminSystemMockData2';
 import { useAdminSystemBulkImport } from '@/app/admin/admin_system/admin_system_bulk_import_hooks/useAdminSystemBulkImport';
 import { TablePagination } from '@/components/ui/table-pagination';
+import { TableToolbar } from '@/components/ui/table-toolbar';
+import { useClientTable } from '@/components/ui/use-client-table';
 
 const STATUS_CONFIG = {
   ok: { label: 'OK', variant: 'success' as const, icon: CheckCircle },
@@ -16,6 +18,7 @@ const STATUS_CONFIG = {
 };
 
 export function AdminSystemBulkImportClient() {
+
   const {
     step, isDragging, setIsDragging, fileName, filter, setFilter, importProgress, fileInputRef,
     errorCount, warningCount, okCount, filteredRows,
@@ -24,7 +27,7 @@ export function AdminSystemBulkImportClient() {
 
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(10);
-
+    const table = useClientTable(filteredRows, 10);
   return (
     <div>
       {/* page Header */}
@@ -100,13 +103,13 @@ export function AdminSystemBulkImportClient() {
                 className={`flex flex-col items-center justify-center gap-4 p-16 rounded-2xl border-2 border-dashed cursor-pointer transition-all ${
                   isDragging
                     ? 'border-primary bg-primary/8 scale-105'
-                    : 'border-border hover:border-primary/50 hover:bg-bg-card'
+                    : 'border-border hover:border-primary/50 hover:bg-card'
                 }`}
               >
                 <div className={`h-20 w-20 rounded-2xl flex items-center justify-center text-4xl transition-all ${
-                  isDragging ? 'bg-primary/20' : 'bg-bg-input'
+                  isDragging ? 'bg-primary/20' : 'bg-input'
                 }`}>
-                  {isDragging ? '📂' : '📁'}
+                  {isDragging ? '📂' : '📄'}
                 </div>
                 <div className="text-center">
                   <p className="text-base font-semibold text-text-primary">
@@ -115,9 +118,9 @@ export function AdminSystemBulkImportClient() {
                   <p className="text-sm text-text-secondary mt-1">or <span className="text-primary font-medium">browse to upload</span></p>
                 </div>
                 <div className="flex items-center gap-3 text-xs text-text-secondary">
-                  <span className="px-2 py-1 rounded-lg bg-bg-input">.xlsx</span>
-                  <span className="px-2 py-1 rounded-lg bg-bg-input">.xls</span>
-                  <span className="px-2 py-1 rounded-lg bg-bg-input">.csv</span>
+                  <span className="px-2 py-1 rounded-lg bg-input">.xlsx</span>
+                  <span className="px-2 py-1 rounded-lg bg-input">.xls</span>
+                  <span className="px-2 py-1 rounded-lg bg-input">.csv</span>
                 </div>
               </div>
               <input
@@ -137,7 +140,13 @@ export function AdminSystemBulkImportClient() {
               <CardDescription>Make sure your file follows this column structure.</CardDescription>
             </CardHeader>
             <CardContent>
-              <div className="overflow-x-auto">
+              <div className="mb-4">
+        <TableToolbar 
+          search={table.searchTerm} 
+          onSearch={table.setSearchTerm} 
+        />
+      </div>
+      <div className="overflow-x-auto">
                 <table className="w-full text-sm">
                   <thead>
                     <tr className="border-b border-border text-text-secondary text-xs uppercase tracking-wide">
@@ -157,7 +166,7 @@ export function AdminSystemBulkImportClient() {
                       ['Fee Paid', false, '1000'],
                       ['Join Date', false, '2026-04-12'],
                     ].map(([col, req, ex]) => (
-                      <tr key={col as string} className="hover:bg-bg-card">
+                      <tr key={col as string} className="hover:bg-card">
                         <td className="py-2.5 pr-4 font-medium text-text-primary">{col as string}</td>
                         <td className="py-2.5 pr-4">
                           {req
@@ -169,7 +178,13 @@ export function AdminSystemBulkImportClient() {
                     ))}
                   </tbody>
                 </table>
-          </div>
+          </div> 
+      <TablePagination 
+        totalItems={table.totalItems} 
+        page={table.page} 
+        limit={table.limit} 
+        onPageChange={table.setPage} 
+      />
           <TablePagination
             page={page}
             limit={limit}
@@ -187,21 +202,21 @@ export function AdminSystemBulkImportClient() {
         <div className="space-y-5">
           {/* Summary */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <div className="p-4 rounded-2xl bg-bg-card border border-border text-center">
-              <p className="text-2xl font-bold text-text-primary">{ADMIN_SYSTEM_MOCK_PREVIEW.length}</p>
+            <div className="p-4 rounded-2xl bg-card border border-border text-center">
+              <p className="text-text-primary text-xl font-bold text-text-primary">{ADMIN_SYSTEM_MOCK_PREVIEW.length}</p>
               <p className="text-xs text-text-secondary mt-1">Total Rows</p>
             </div>
             <div className="p-4 rounded-2xl bg-success/10 border border-success/20 text-center">
-              <p className="text-2xl font-bold text-success">{okCount}</p>
+              <p className="text-text-primary text-xl font-bold text-success">{okCount}</p>
               <p className="text-xs text-text-secondary mt-1">✅ Ready to Import</p>
             </div>
             <div className="p-4 rounded-2xl bg-tertiary/10 border border-tertiary/20 text-center">
-              <p className="text-2xl font-bold text-tertiary">{warningCount}</p>
-              <p className="text-xs text-text-secondary mt-1">⚠️ Warnings</p>
+              <p className="text-text-primary text-xl font-bold text-tertiary">{warningCount}</p>
+              <p className="text-xs text-text-secondary mt-1">⚠️ Warnings</p>
             </div>
             <div className="p-4 rounded-2xl bg-danger-bg/10 border border-danger/20 text-center">
-              <p className="text-2xl font-bold text-danger">{errorCount}</p>
-              <p className="text-xs text-text-secondary mt-1">❌ Errors (must fix)</p>
+              <p className="text-text-primary text-xl font-bold text-danger">{errorCount}</p>
+              <p className="text-xs text-text-secondary mt-1">âŒ Errors (must fix)</p>
             </div>
           </div>
 
@@ -232,20 +247,26 @@ export function AdminSystemBulkImportClient() {
                       className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
                         filter === f
                           ? 'bg-primary text-on-primary'
-                          : 'bg-bg-card text-text-secondary hover:text-text-primary'
+                          : 'bg-card text-text-secondary hover:text-text-primary'
                       }`}
                     >
                       {f === 'all' ? `All (${ADMIN_SYSTEM_MOCK_PREVIEW.length})` :
                        f === 'ok'  ? `✅ OK (${okCount})` :
-                       f === 'warning' ? `⚠️ Warn (${warningCount})` :
-                       `❌ Error (${errorCount})`}
+                       f === 'warning' ? `⚠️ Warn (${warningCount})` :
+                       `âŒ Error (${errorCount})`}
                     </button>
                   ))}
                 </div>
               </div>
             </CardHeader>
             <CardContent>
-              <div className="overflow-x-auto">
+              <div className="mb-4">
+        <TableToolbar 
+          search={table.searchTerm} 
+          onSearch={table.setSearchTerm} 
+        />
+      </div>
+      <div className="overflow-x-auto">
                 <table className="w-full text-sm">
                   <thead>
                     <tr className="border-b border-border text-text-secondary text-xs uppercase tracking-wide">
@@ -260,11 +281,11 @@ export function AdminSystemBulkImportClient() {
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-outline-variant/30">
-                    {filteredRows.map(row => {
+                    {table.paginatedData.map(row => {
                       const cfg = STATUS_CONFIG[row.status];
                       const Icon = cfg.icon;
                       return (
-                        <tr key={row.row} className={`hover:bg-bg-card transition-colors ${
+                        <tr key={row.row} className={`hover:bg-card transition-colors ${
                           row.status === 'error' ? 'bg-danger-bg/5' :
                           row.status === 'warning' ? 'bg-tertiary/5' : ''
                         }`}>
@@ -285,7 +306,13 @@ export function AdminSystemBulkImportClient() {
                     })}
                   </tbody>
                 </table>
-              </div>
+              </div> 
+      <TablePagination 
+        totalItems={table.totalItems} 
+        page={table.page} 
+        limit={table.limit} 
+        onPageChange={table.setPage} 
+      />
             </CardContent>
             <CardFooter>
               <Button id="start-import-btn" variant="primary" onClick={handleImport}>
@@ -303,7 +330,7 @@ export function AdminSystemBulkImportClient() {
       {step === 'importing' && (
         <Card>
           <CardContent className="py-16 flex flex-col items-center gap-6 text-center">
-            <div className="text-5xl animate-bounce">⏳</div>
+            <div className="text-5xl animate-bounce">â³</div>
             <div>
               <h2 className="text-xl font-bold text-text-primary mb-1">Importing Students...</h2>
               {/* eslint-disable-next-line react/no-unescaped-entities */}
@@ -314,7 +341,7 @@ export function AdminSystemBulkImportClient() {
                 <span>Progress</span>
                 <span className="text-primary font-semibold">{importProgress}%</span>
               </div>
-              <div className="h-3 rounded-full bg-bg-input overflow-hidden">
+              <div className="h-3 rounded-full bg-input overflow-hidden">
                 <div
                   className="h-full rounded-full bg-primary transition-all duration-300 w-[length:var(--w)]" style={{ '--w': `${importProgress}%` } as React.CSSProperties}
                 />
@@ -335,7 +362,7 @@ export function AdminSystemBulkImportClient() {
               🎉
             </div>
             <div>
-              <h2 className="text-2xl font-bold text-text-primary mb-2">Import Complete!</h2>
+              <h2 className="text-text-primary text-xl font-bold text-text-primary mb-2">Import Complete!</h2>
               <p className="text-text-secondary">
                 <span className="text-success font-semibold">{okCount} students</span> were successfully imported into the system.
               </p>

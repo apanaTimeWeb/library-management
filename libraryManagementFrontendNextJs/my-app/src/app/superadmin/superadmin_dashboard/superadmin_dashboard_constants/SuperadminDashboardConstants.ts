@@ -1,4 +1,5 @@
-import { SUPERADMIN_ROUTES } from '@/app/superadmin/superadmin_url_config';
+﻿// RESPONSIBILITY: Renders or handles logic for SuperadminDashboardConstants.ts.
+import { SUPERADMIN_ROUTES } from '@/app/superadmin/SuperadminUrlConfig';
 
 export const SUPERADMIN_DASHBOARD_RECENT_ACTIVITY = [
   {
@@ -60,3 +61,4 @@ export const SUPERADMIN_DASHBOARD_MOCK_DATA = {
     { id: '2', initials: 'SS', name: 'Scholar Space', owner: 'Amit S', students: 45, plan: 'Basic', status: 'setup', joinedAt: 'Yesterday' },
   ],
 };
+

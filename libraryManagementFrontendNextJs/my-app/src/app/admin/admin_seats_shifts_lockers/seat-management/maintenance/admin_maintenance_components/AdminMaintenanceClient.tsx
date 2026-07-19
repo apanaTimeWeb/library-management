@@ -1,4 +1,6 @@
 'use client';
+import { AdminSearchableDropdown } from '@/app/admin/admin_shared_components/AdminSearchableDropdown';
+
 // RESPONSIBILITY: Renders the AdminMaintenanceClient component.
 import { useState } from 'react';
 import { ChevronDown, AlertTriangle, Plus } from 'lucide-react';
@@ -8,6 +10,8 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
 import { TablePagination } from '@/components/ui/table-pagination';
+import { TableToolbar } from '@/components/ui/table-toolbar';
+import { useClientTable } from '@/components/ui/use-client-table';
 
 const STATUS_CLASS: Record<SeatStatus, string> = {
   Working: 'bg-success/10 text-success hover:bg-success/20',
@@ -16,6 +20,7 @@ const STATUS_CLASS: Record<SeatStatus, string> = {
 };
 
 export function AdminMaintenanceClient() {
+
   const {
     selectedSeat,
     setSelectedSeat,
@@ -32,25 +37,25 @@ export function AdminMaintenanceClient() {
 
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(10);
-
+    const table = useClientTable(currentLogs, 10);
   return (
     <div className="h-full flex flex-col pb-10 space-y-6">
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b pb-4">
         <div>
-          <h1 className="text-2xl font-bold tracking-tight">Seat Maintenance Log</h1>
+          <h1 className="text-text-primary text-xl font-bold tracking-tight">Seat Maintenance Log</h1>
           <p className="text-sm text-muted-foreground mt-1">Track all seat repair and maintenance activity</p>
         </div>
       </div>
 
       <div className="flex flex-wrap items-center gap-4 bg-muted/30 p-3 rounded-xl border border-border">
         <div className="relative">
-          <select 
-            className="flex h-10 w-40 items-center justify-between rounded-md border border-border bg-bg-input px-3 py-2 text-sm ring-offset-bg-page placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 appearance-none"
+          <AdminSearchableDropdown 
+            className="flex h-10 w-40 items-center justify-between rounded-md border border-border bg-input px-3 py-2 text-sm ring-offset-bg-page placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 appearance-none"
             value={selectedSeat} 
             onChange={e => setSelectedSeat(e.target.value)}
           >
             {SEATS.map(s => <option key={s} value={s}>{s}</option>)}
-          </select>
+          </AdminSearchableDropdown>
           <ChevronDown size={14} className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground pointer-events-none" />
         </div>
         <Badge variant="secondary" className={`${STATUS_CLASS[currentStatus]} border-none font-bold px-3 py-1`}>
@@ -75,7 +80,13 @@ export function AdminMaintenanceClient() {
         </Card>
       ) : (
         <Card className="flex-1 shadow-none border-border overflow-hidden flex flex-col">
-          <div className="w-full overflow-x-auto">
+          <div className="mb-4">
+        <TableToolbar 
+          search={table.searchTerm} 
+          onSearch={table.setSearchTerm} 
+        />
+      </div>
+      <div className="w-full overflow-x-auto">
             <table className="w-full text-sm text-left">
               <thead className="bg-muted/30 border-y text-muted-foreground text-xs font-medium uppercase tracking-wider sticky top-0 z-10">
                 <tr>
@@ -89,7 +100,7 @@ export function AdminMaintenanceClient() {
                 </tr>
               </thead>
               <tbody className="divide-y divide-border">
-                {currentLogs.slice((page - 1) * limit, page * limit).map((log) => (
+                {table.paginatedData.map((log) => (
                   <tr key={log.id} className="hover:bg-muted/10 transition-colors">
                     <td className="px-4 py-4 text-muted-foreground font-medium">{log.num}</td>
                     <td className="px-4 py-4 text-muted-foreground">{log.date}</td>
@@ -110,7 +121,13 @@ export function AdminMaintenanceClient() {
                 ))}
               </tbody>
             </table>
-          </div>
+          </div> 
+      <TablePagination 
+        totalItems={table.totalItems} 
+        page={table.page} 
+        limit={table.limit} 
+        onPageChange={table.setPage} 
+      />
           <TablePagination
             page={page}
             limit={limit}
@@ -136,11 +153,11 @@ export function AdminMaintenanceClient() {
           <div className="space-y-2">
             <label className="text-sm font-medium">New Seat Status <span className="text-danger">*</span></label>
             <div className="relative">
-              <select className="flex h-10 w-full items-center justify-between rounded-md border border-border bg-bg-input px-3 py-2 text-sm ring-offset-bg-page placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 appearance-none" value={form.newStatus} onChange={e => setForm(p => ({ ...p, newStatus: e.target.value as SeatStatus }))}>
+              <AdminSearchableDropdown className="flex h-10 w-full items-center justify-between rounded-md border border-border bg-input px-3 py-2 text-sm ring-offset-bg-page placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 appearance-none" value={form.newStatus} onChange={e => setForm(p => ({ ...p, newStatus: e.target.value as SeatStatus }))}>
                 <option value="Working">Working</option>
                 <option value="Maintenance">Maintenance</option>
                 <option value="Broken">Broken</option>
-              </select>
+              </AdminSearchableDropdown>
               <ChevronDown size={14} className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground pointer-events-none" />
             </div>
           </div>
@@ -151,7 +168,7 @@ export function AdminMaintenanceClient() {
         </div>
         <div className="space-y-2 mb-6">
           <label className="text-sm font-medium">Remark <span className="text-danger">*</span></label>
-          <textarea className={`flex min-h-20 w-full rounded-md border border-border bg-bg-input px-3 py-2 text-sm ring-offset-bg-page placeholder:text-text-secondary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 ${errors.remark ? 'border-danger focus-visible:ring-danger' : ''}`} rows={2} placeholder="e.g. Chair leg repaired" value={form.remark} onChange={e => setForm(p => ({ ...p, remark: e.target.value }))} />
+          <textarea className={`flex min-h-20 w-full rounded-md border border-border bg-input px-3 py-2 text-sm ring-offset-bg-page placeholder:text-text-secondary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 ${errors.remark ? 'border-danger focus-visible:ring-danger' : ''}`} rows={2} placeholder="e.g. Chair leg repaired" value={form.remark} onChange={e => setForm(p => ({ ...p, remark: e.target.value }))} />
           {errors.remark && <p className="text-xs text-danger">{errors.remark}</p>}
         </div>
         <div className="flex justify-end pt-4 border-t border-border">

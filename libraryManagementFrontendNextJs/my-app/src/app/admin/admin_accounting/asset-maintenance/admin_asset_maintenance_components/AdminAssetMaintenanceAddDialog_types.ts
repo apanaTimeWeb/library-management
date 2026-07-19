@@ -1,3 +1,4 @@
+﻿// RESPONSIBILITY: Renders or handles logic for AdminAssetMaintenanceAddDialog_types.ts.
 import { useEffect, useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm as useReactHookForm } from "react-hook-form";
@@ -10,3 +11,4 @@ export interface AdminAssetMaintenanceAddDialogProps {
   onClose: () => void;
   onSubmit: (data: AdminAssetMaintenanceFormData) => Promise<{ success: boolean; message: string }>;
 }
+

@@ -1,3 +1,4 @@
+﻿// RESPONSIBILITY: Renders or handles logic for auth.ts.
 
 
 export interface AuthUser {
@@ -158,3 +159,4 @@ export function clearAuthState(): void {
     window.location.href = '/auth/login';
   }
 }
+

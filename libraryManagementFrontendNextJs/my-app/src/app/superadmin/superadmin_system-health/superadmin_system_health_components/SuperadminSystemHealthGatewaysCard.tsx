@@ -12,17 +12,17 @@ const COLOR_DOT_CLS: Record<string, string> = {
 
 export function SuperadminSystemHealthGatewaysCard({ gateways }: SuperadminSystemHealthGatewaysCardProps) {
   return (
-    <div className="col-span-1 md:col-span-2 bg-bg-card border border-border rounded-[var(--radius-lg)] p-6 shadow-sm hover:shadow-md transition-shadow">
+    <div className="col-span-1 md:col-span-2 bg-card border border-border rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow">
       <h2 className="text-sm font-bold text-text-primary mb-5 flex items-center gap-2 uppercase tracking-wider">
         <Globe size={18} className="text-primary" /> External Gateways
       </h2>
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
         {gateways.map((g) => (
-          <div key={g.n} className="flex items-center gap-4 bg-bg-input border border-border p-4 rounded-[var(--radius-md)] shadow-inner transition-colors hover:border-primary">
+          <div key={g.n} className="flex items-center gap-4 bg-input border border-border p-4 rounded-md shadow-inner transition-colors hover:border-primary">
             <div className={`w-3 h-3 rounded-full shrink-0 ${COLOR_DOT_CLS[g.dotColorKey]}`} />
             <div>
               <p className="text-sm font-bold text-text-primary leading-tight">{g.n}</p>
-              <p className="text-[11px] font-bold text-text-secondary uppercase tracking-wider mt-0.5">{g.st}</p>
+              <p className="text-xs font-bold text-text-secondary uppercase tracking-wider mt-0.5">{g.st}</p>
             </div>
           </div>
         ))}

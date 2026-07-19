@@ -1,3 +1,4 @@
+﻿// RESPONSIBILITY: Renders or handles logic for SuperadminDashboardTypes.ts.
 
 
 export interface SuperadminDashboardKpiCard {
@@ -51,3 +52,4 @@ export interface SuperadminDashboardSystemHealthPanelProps {
 export interface SuperadminDashboardRecentLibrariesTableProps {
   data: SuperadminDashboardRecentLibrary[];
 }
+

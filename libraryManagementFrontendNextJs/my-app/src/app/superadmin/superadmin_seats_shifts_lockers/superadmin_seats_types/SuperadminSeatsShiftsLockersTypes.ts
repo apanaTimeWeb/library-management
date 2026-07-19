@@ -1,3 +1,4 @@
+﻿// RESPONSIBILITY: Renders or handles logic for SuperadminSeatsShiftsLockersTypes.ts.
 import type { ReactNode } from 'react';
 
 
@@ -88,3 +89,4 @@ export interface SuperadminSeatsActivityItem {
   id: string;
 }
 export type SuperadminSeatsSeatStatus = 'Working' | 'Maintenance' | 'Broken';
+

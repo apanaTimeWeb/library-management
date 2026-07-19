@@ -11,7 +11,7 @@ import { SuperadminSystemHealthMetricCard } from '@/app/superadmin/superadmin_sy
 import { SuperadminSystemHealthGatewaysCard } from '@/app/superadmin/superadmin_system-health/superadmin_system_health_components/SuperadminSystemHealthGatewaysCard';
 import { fetchSuperadminSystemHealthData } from '@/app/superadmin/superadmin_system-health/superadmin_system_health_api/SuperadminSystemHealthApi';
 import { logger } from '@/lib/logger';
-import type { FetchState } from '@/app/superadmin/superadmin_shared_components/superadmin_types';
+import type { FetchState } from '@/app/superadmin/superadmin_shared_components/SuperadminTypes';
 
 export function SuperadminSystemHealthClient({ initialData }: SuperadminSystemHealthClientProps) {
   const [data, setData] = useState<SuperadminSystemHealthDataResponse>(initialData);

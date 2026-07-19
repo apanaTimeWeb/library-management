@@ -16,8 +16,11 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, Di
 import toast from 'react-hot-toast';
 import { TablePagination } from '@/components/ui/table-pagination';
 import { Complaint, CStatus } from "./AdminCommunicationComplaintsClient_types";
+import { TableToolbar } from '@/components/ui/table-toolbar';
+import { useClientTable } from '@/components/ui/use-client-table';
 
 export function AdminCommunicationComplaintsClient() {
+
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(10);
   const [tab, setTab]                   = useState<CStatus | 'All'>('All');
@@ -29,7 +32,7 @@ export function AdminCommunicationComplaintsClient() {
 
   useEffect(() => {
     fetchApi('/communication/complaints').then(data => {
-      const mapped = data.map(( c: Record<string, unknown> ) => ({
+      const mapped = (data as any[]).map(( c: Record<string, unknown> ) => ({
         id: String(c.id || Math.random()),
         title: String(c.subject || c.title || 'Complaint'),
         desc: String(c.description || ''),
@@ -37,7 +40,7 @@ export function AdminCommunicationComplaintsClient() {
         status: c.status === 'open' ? 'Open' : (c.status === 'resolved' ? 'Resolved' : 'In-Progress'),
         student: String(c.student || c.studentName || 'Mock Student (S-001)'),
       }));
-      setComplaints(mapped);
+      setComplaints(mapped as unknown as Complaint[]);
     }).catch(e => logger.error('Complaints fetch failed:', e));
   }, []);
   
@@ -86,7 +89,7 @@ export function AdminCommunicationComplaintsClient() {
 
   const toggleDesc = (id: string) =>
     setExpandedDesc(prev => prev.includes(id) ? prev.filter(x => x !== id) : [...prev, id]);
-
+    const table = useClientTable(complaints, 10);
   return (
     <div className="space-y-6 pb-10">
       {/* Header */}
@@ -95,7 +98,7 @@ export function AdminCommunicationComplaintsClient() {
           <p className="text-xs font-semibold text-muted-foreground flex items-center gap-1 uppercase tracking-wider mb-1">
             Communication <ChevronRight size={12} /> Complaints
           </p>
-          <h1 className="text-2xl font-bold tracking-tight">💬 Complaints</h1>
+          <h1 className="text-text-primary text-xl font-bold tracking-tight">💬 Complaints</h1>
           <p className="text-sm text-muted-foreground mt-1">Track and resolve student complaints.</p>
         </div>
         <Button onClick={() => setShowAdd(true)} className="gap-2">
@@ -111,7 +114,7 @@ export function AdminCommunicationComplaintsClient() {
             variant={tab === t ? 'secondary' : 'ghost'}
             size="sm"
             onClick={() => setTab(t as CStatus | 'All')}
-            className={`text-sm font-semibold capitalize ${tab === t ? 'bg-bg-card shadow-sm' : ''}`}
+            className={`text-sm font-semibold capitalize ${tab === t ? 'bg-card shadow-sm' : ''}`}
           >
             {t}
           </Button>
@@ -128,7 +131,13 @@ export function AdminCommunicationComplaintsClient() {
           </div>
         ) : (
           <>
-          <table className="w-full text-sm text-left">
+          <div className="mb-4">
+        <TableToolbar 
+          search={table.searchTerm} 
+          onSearch={table.setSearchTerm} 
+        />
+      </div>
+      <table className="w-full text-sm text-left">
             <thead className="bg-muted text-muted-foreground text-xs font-semibold uppercase tracking-wider">
               <tr>
                 <th className="py-3 px-4">#</th>
@@ -184,7 +193,13 @@ export function AdminCommunicationComplaintsClient() {
                 );
               })}
             </tbody>
-          </table>
+          </table> 
+      <TablePagination 
+        totalItems={table.totalItems} 
+        page={table.page} 
+        limit={table.limit} 
+        onPageChange={table.setPage} 
+      />
 
       <TablePagination 
         totalItems={100} 

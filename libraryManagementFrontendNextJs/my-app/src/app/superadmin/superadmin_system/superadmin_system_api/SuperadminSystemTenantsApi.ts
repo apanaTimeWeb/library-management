@@ -1,13 +1,13 @@
 // RESPONSIBILITY: Manages superadmin system tenants data.
 import { fetchApi } from '@/lib/api';
-import { SUPERADMIN_API_ROUTES } from '@/app/superadmin/superadmin_url_config';
+import { SUPERADMIN_API_ROUTES } from '@/app/superadmin/SuperadminUrlConfig';
 import type {
   CreateTenantPayload,
   UpdateTenantPayload,
   TenantsPaginatedResponse,
   SuperadminSystemTenant,
 } from '@/app/superadmin/superadmin_system/superadmin_system_types/SuperadminSystemTenantsTypes';
-import type { ApiResponse } from '@/app/superadmin/superadmin_shared_components/superadmin_types';
+import type { ApiResponse } from '@/app/superadmin/superadmin_shared_components/SuperadminTypes';
 
 const TENANTS_ENDPOINT = SUPERADMIN_API_ROUTES.TENANTS;
 

@@ -1,3 +1,4 @@
+﻿// RESPONSIBILITY: Renders or handles logic for SuperadminSeatsLockersTypes.ts.
 
 
 export interface SuperadminSeatsLocker {
@@ -9,3 +10,4 @@ export interface SuperadminSeatsLocker {
   assignedSince: string;
 }
 export type SuperadminSeatsLockerStatus = 'Free' | 'Occupied' | 'Maintenance';
+

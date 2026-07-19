@@ -1,3 +1,4 @@
+﻿// RESPONSIBILITY: Renders or handles logic for AdminReusableChartCard_types.ts.
 import { Card } from "@/components/ui/card";
 import React from "react";
 export interface AdminReusableChartCardProps {
@@ -8,3 +9,4 @@ export interface AdminReusableChartCardProps {
   legend?: { label: string; color: string }[];
   children: React.ReactNode;
 }
+

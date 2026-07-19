@@ -12,8 +12,11 @@ import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
 import { Card } from '@/components/ui/card';
 import { TablePagination } from '@/components/ui/table-pagination';
+import { TableToolbar } from '@/components/ui/table-toolbar';
+import { useClientTable } from '@/components/ui/use-client-table';
 
 export function AdminExpensesClient() {
+
   const {
     expenses,
     totalCount,
@@ -27,12 +30,13 @@ export function AdminExpensesClient() {
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(10);
 
+  const table = useClientTable(expenses, 10);
+
   if (fetchState === 'loading' && expenses.length === 0) {
     return <AdminExpensesSkeleton />;
   }
 
   const showBranchColumn = selectedBranch === 'All Branches';
-
   return (
     <div className="h-full flex flex-col pb-10 space-y-6">
       {/* page Header */}
@@ -41,13 +45,13 @@ export function AdminExpensesClient() {
           <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-1">
             Smart Library 360 <span className="opacity-50">›</span> Admin <span className="opacity-50">›</span> Expenses
           </p>
-          <h1 className="text-2xl font-bold tracking-tight text-foreground">{selectedBranch} - Expenses</h1>
+          <h1 className="text-text-primary text-xl font-bold tracking-tight text-foreground">{selectedBranch} - Expenses</h1>
           <p className="text-sm text-muted-foreground mt-1">Monitor expenses logged by managers during daily settlement for the selected branch.</p>
         </div>
         <Button
           type="button"
           variant="outline"
-          className="gap-2 bg-bg-card hover:bg-muted"
+          className="gap-2 bg-card hover:bg-muted"
           title="Export table data to CSV"
         >
           <Download size={16} /> Export CSV
@@ -75,7 +79,13 @@ export function AdminExpensesClient() {
         <AdminExpensesEmptyState onResetSearch={handleResetSearch} isSearching={Boolean(searchInput.trim())} />
       ) : (
         <Card className="flex-1 min-h-96 shadow-sm border-border bg-card overflow-hidden flex flex-col">
-          <div className="overflow-x-auto flex-1">
+          <div className="mb-4">
+        <TableToolbar 
+          search={table.searchTerm} 
+          onSearch={table.setSearchTerm} 
+        />
+      </div>
+      <div className="overflow-x-auto flex-1">
             <table className="w-full text-sm text-left">
               <thead className="text-xs text-muted-foreground uppercase bg-muted/50 sticky top-0 z-10">
                 <tr>
@@ -117,7 +127,13 @@ export function AdminExpensesClient() {
                 ))}
               </tbody>
             </table>
-          </div>
+          </div> 
+      <TablePagination 
+        totalItems={table.totalItems} 
+        page={table.page} 
+        limit={table.limit} 
+        onPageChange={table.setPage} 
+      />
           <TablePagination
             page={page}
             limit={limit}

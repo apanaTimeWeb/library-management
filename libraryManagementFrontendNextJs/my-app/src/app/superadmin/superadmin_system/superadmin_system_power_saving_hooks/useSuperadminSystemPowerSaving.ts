@@ -1,3 +1,4 @@
+﻿// RESPONSIBILITY: Renders or handles logic for useSuperadminSystemPowerSaving.ts.
 import { useState, useCallback } from 'react';
 import { SUPERADMIN_SYSTEM_MOCK_POWER_ZONES, SUPERADMIN_SYSTEM_MOCK_POWER_ALERTS } from '@/app/superadmin/superadmin_system/superadmin_system_utils/SuperadminSystemMockData';
 import { SuperadminSystemPowerZone, SuperadminSystemPowerAlert } from '@/app/superadmin/superadmin_system/superadmin_system_types/SuperadminSystemPowerSavingTypes';
@@ -24,3 +25,4 @@ export function useSuperadminSystemPowerSaving() {
     getZoneStatus
   };
 }
+

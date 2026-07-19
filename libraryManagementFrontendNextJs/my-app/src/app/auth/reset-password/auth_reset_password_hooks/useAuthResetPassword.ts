@@ -1,3 +1,4 @@
+﻿// RESPONSIBILITY: Renders or handles logic for useAuthResetPassword.ts.
 import { useState, useRef, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -8,7 +9,7 @@ import { useAuthStore } from '@/app/auth/auth_store/auth_store';
 
 const RESEND_SECS = 45;
 
-// DATA FLOW: UI Component → useAuthResetPassword.ts → useAuthStore → authApi
+// DATA FLOW: UI Component â†’ useAuthResetPassword.ts â†’ useAuthStore â†’ authApi
 export function useAuthResetPassword() {
   const [otpDigits, setOtpDigits] = useState<string[]>(AUTH_RESET_PASSWORD_PRESETS.otp);
   const [showPw, setShowPw] = useState(false);
@@ -113,3 +114,4 @@ export function useAuthResetPassword() {
     confirmPassword,
   };
 }
+

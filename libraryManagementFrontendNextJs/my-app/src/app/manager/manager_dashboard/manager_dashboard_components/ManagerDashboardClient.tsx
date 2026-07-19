@@ -6,10 +6,12 @@ import Link from 'next/link';
 import { ChevronRight, TrendingUp } from 'lucide-react';
 import { STATUS_CLASS, QUICK_LINKS } from '@/app/manager/manager_dashboard/manager_dashboard_constants';
 import { MANAGER_ROUTES } from '@/app/manager/manager_url_config';
-import type { CellRendererProps } from '@/app/manager/manager_dashboard/manager_dashboard_types';
+import type { CellRendererProps, RecentAdmission, RecentEnquiry } from '@/app/manager/manager_dashboard/manager_dashboard_types';
 import { ManagerDashboardKpiGrid } from '@/app/manager/manager_dashboard/manager_dashboard_components/ManagerDashboardKpiGrid';
 import { ManagerDashboardSeatMatrix } from '@/app/manager/manager_dashboard/manager_dashboard_components/ManagerDashboardSeatMatrix';
 import { TablePagination } from '@/components/ui/table-pagination';
+import { TableToolbar } from "@/components/ui/table-toolbar";
+import { useClientTable } from "@/components/ui/use-client-table";
 
 // RESPONSIBILITY: Main Client view for the Manager Dashboard. Glues data and components together.
 
@@ -28,26 +30,11 @@ function PhoneCell({ value }: CellRendererProps) {
 }
 
 export function ManagerDashboardClient() {
-  const [searchTerm, setSearchTerm] = useState('');
-
   const { data, status, error } = useManagerDashboardData();
 
-  const filteredAdmissions = useMemo(() => {
-    return (data?.recentAdmissions || []).filter((item) => 
-      !searchTerm || 
-      item.name?.toLowerCase().includes(searchTerm.toLowerCase()) || 
-      item.smartId?.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-  }, [data?.recentAdmissions, searchTerm]);
-
-  const filteredEnquiries = useMemo(() => {
-    return (data?.recentEnquiries || []).filter((item) => 
-      !searchTerm || 
-      item.name?.toLowerCase().includes(searchTerm.toLowerCase()) || 
-      item.phone?.includes(searchTerm) || 
-      item.status?.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-  }, [data?.recentEnquiries, searchTerm]);
+  // Create table hooks for admissions and enquiries
+  const admissionsTable = useClientTable(data?.recentAdmissions || [], 5);
+  const enquiriesTable = useClientTable(data?.recentEnquiries || [], 5);
 
   if (status === 'loading') return <div className="p-8 animate-pulse text-text-secondary">Loading dashboard...</div>;
   if (status === 'error') return <div className="p-8 text-danger">Failed to load: {error}</div>;
@@ -59,7 +46,7 @@ export function ManagerDashboardClient() {
       <div className="flex flex-col md:flex-row md:items-center justify-between p-6 gap-4">
         <div>
           <p className="text-xs font-medium text-text-secondary uppercase tracking-wider mb-2">Manager › Dashboard</p>
-          <h1 className="text-2xl font-bold text-text-primary">Manager Dashboard</h1>
+          <h1 className="text-text-primary text-xl font-bold text-text-primary">Manager Dashboard</h1>
           <p className="text-sm text-text-secondary mt-1.5">Good morning, Manager — aaj ka quick overview</p>
         </div>
         <div className="flex items-center">
@@ -75,7 +62,7 @@ export function ManagerDashboardClient() {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-6">
         <ManagerDashboardSeatMatrix seatData={data.seatData} />
 
-        <div className="bg-bg-card rounded-xl border border-border p-6 flex flex-col h-full">
+        <div className="bg-card rounded-xl border border-border p-6 flex flex-col h-full">
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-base font-semibold text-text-primary">My Action Items</h2>
           </div>
@@ -99,25 +86,16 @@ export function ManagerDashboardClient() {
 
       {/* Row 3 — Recent Activity */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-6">
-        <div className="bg-bg-card rounded-xl border border-border p-6 flex flex-col">
+        <div className="bg-card rounded-xl border border-border p-6 flex flex-col">
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-base font-semibold text-text-primary">Recent New Admissions</h2>
             <Link href={MANAGER_ROUTES.STUDENTS} className="text-sm font-semibold text-primary hover:text-primary-hover transition-colors inline-flex items-center gap-1">View all</Link>
           </div>
 
-          <div className="flex justify-end mb-[16px]">
-            <input
-              type="text"
-              placeholder="Search in table..."
-              className="px-3 py-2 border border-border rounded-md text-sm bg-bg-input text-text-primary focus:outline-none focus:ring-2 focus:ring-primary w-64"
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-            />
-          </div>
-
-                    <div className="h-72 w-full overflow-y-auto overflow-x-auto bg-bg-card rounded-lg border border-border">
+          <div className="w-full overflow-y-auto overflow-x-auto bg-card rounded-lg border border-border">
+            <TableToolbar search={admissionsTable.searchTerm} onSearch={admissionsTable.setSearchTerm} />
             <table className="w-full text-left text-sm whitespace-nowrap">
-              <thead className="bg-bg-elevated sticky top-0 z-10">
+              <thead className="bg-card sticky top-0 z-10">
                 <tr className="border-b border-border text-text-secondary text-xs uppercase tracking-wider">
                   <th className="px-4 py-3 font-semibold">NAME</th>
                   <th className="px-4 py-3 font-semibold">SMART ID</th>
@@ -125,13 +103,13 @@ export function ManagerDashboardClient() {
                 </tr>
               </thead>
               <tbody className="divide-y divide-border">
-                {filteredAdmissions.length === 0 ? (
+                {admissionsTable.paginatedData.length === 0 ? (
                   <tr>
                     <td colSpan={3} className="px-4 py-8 text-center text-text-secondary">No admissions found</td>
                   </tr>
                 ) : (
-                  filteredAdmissions.map((row, i: number) => (
-                    <tr key={row.id} className="hover:bg-bg-page transition-colors cursor-pointer">
+                  admissionsTable.paginatedData.map((row: RecentAdmission & { id?: string; date?: string }) => (
+                    <tr key={row.id} className="hover:bg-page transition-colors cursor-pointer">
                     <td className="px-4 py-3 text-text-primary font-medium">{row.name}</td>
                     <td className="px-4 py-3"><SmartIdCell value={row.smartId} /></td>
                     <td className="px-4 py-3"><ShiftCell value={row.shift} /></td>
@@ -140,17 +118,22 @@ export function ManagerDashboardClient() {
                 )}
               </tbody>
             </table>
+            <TablePagination 
+              page={admissionsTable.page} limit={admissionsTable.limit} totalItems={admissionsTable.totalItems} 
+              onPageChange={admissionsTable.setPage} onLimitChange={admissionsTable.setLimit} 
+            />
           </div>
         </div>
 
-        <div className="bg-bg-card rounded-xl border border-border p-6 flex flex-col">
+        <div className="bg-card rounded-xl border border-border p-6 flex flex-col">
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-base font-semibold text-text-primary">Recent Enquiries</h2>
             <Link href={MANAGER_ROUTES.CRM_ENQUIRIES} className="text-sm font-semibold text-primary hover:text-primary-hover transition-colors inline-flex items-center gap-1">View all</Link>
           </div>
-          <div className="h-72 w-full overflow-y-auto overflow-x-auto bg-bg-card rounded-lg border border-border">
+          <div className="w-full overflow-y-auto overflow-x-auto bg-card rounded-lg border border-border">
+            <TableToolbar search={enquiriesTable.searchTerm} onSearch={enquiriesTable.setSearchTerm} />
             <table className="w-full text-left text-sm whitespace-nowrap">
-              <thead className="bg-bg-elevated sticky top-0 z-10">
+              <thead className="bg-card sticky top-0 z-10">
                 <tr className="border-b border-border text-text-secondary text-xs uppercase tracking-wider">
                   <th className="px-4 py-3 font-semibold">NAME</th>
                   <th className="px-4 py-3 font-semibold">PHONE</th>
@@ -159,13 +142,13 @@ export function ManagerDashboardClient() {
                 </tr>
               </thead>
               <tbody className="divide-y divide-border">
-                {filteredEnquiries.length === 0 ? (
+                {enquiriesTable.paginatedData.length === 0 ? (
                   <tr>
-                    <td colSpan={3} className="px-4 py-8 text-center text-text-secondary">No enquiries found</td>
+                    <td colSpan={4} className="px-4 py-8 text-center text-text-secondary">No enquiries found</td>
                   </tr>
                 ) : (
-                  filteredEnquiries.map((row, i: number) => (
-                    <tr key={row.id} className="hover:bg-bg-page transition-colors cursor-pointer">
+                  enquiriesTable.paginatedData.map((row: RecentEnquiry & { id?: string; date?: string }) => (
+                    <tr key={row.id} className="hover:bg-page transition-colors cursor-pointer">
                     <td className="px-4 py-3 text-text-primary font-medium">{row.name}</td>
                     <td className="px-4 py-3"><PhoneCell value={row.phone} /></td>
                     <td className="px-4 py-3"><StatusCell value={row.status} /></td>
@@ -174,12 +157,16 @@ export function ManagerDashboardClient() {
                 )}
               </tbody>
             </table>
+            <TablePagination 
+              page={enquiriesTable.page} limit={enquiriesTable.limit} totalItems={enquiriesTable.totalItems} 
+              onPageChange={enquiriesTable.setPage} onLimitChange={enquiriesTable.setLimit} 
+            />
           </div>
         </div>
       </div>
 
       {/* Quick Links */}
-      <div className="bg-bg-card rounded-xl border border-border p-6 mt-6">
+      <div className="bg-card rounded-xl border border-border p-6 mt-6">
         <div className="flex items-center justify-between mb-4">
           <h2 className="text-base font-semibold text-text-primary">Quick Links</h2>
         </div>

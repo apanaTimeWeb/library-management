@@ -1,3 +1,4 @@
+﻿// RESPONSIBILITY: Renders or handles logic for manager_documents_types.ts.
 
 
 export interface DocumentRecord {
@@ -10,3 +11,4 @@ export interface DocumentRecord {
   category: string;
 }
 export type FetchState = 'idle' | 'loading' | 'success' | 'error';
+

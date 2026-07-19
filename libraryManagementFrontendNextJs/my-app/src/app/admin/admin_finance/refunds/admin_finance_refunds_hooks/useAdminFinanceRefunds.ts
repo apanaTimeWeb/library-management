@@ -1,9 +1,10 @@
+import { useUrlState } from '@/app/admin/admin_shared_hooks/useUrlState';
 // RESPONSIBILITY: Renders the useAdminFinanceRefunds.ts component/hook.
 import { useState, useEffect, useMemo } from 'react';
 import toast from 'react-hot-toast';
 import { fetchApi } from '@/lib/api';
 import { logger } from '@/lib/logger';
-import { formatCurrency } from '@/app/admin/admin_finance/admin_finance_utils/format';
+import { formatCurrency } from '@/app/admin/admin_finance/admin_finance_utils/AdminFinanceFormat';
 import { ADMIN_FINANCE_MOCK_REFUNDS } from '@/app/admin/admin_finance/admin_finance_constants/AdminFinanceConstants';
 
 
@@ -24,7 +25,7 @@ export type Refund = {
 };
 
 export function useAdminFinanceRefunds() {
-  const [statusFilter, setStatusFilter] = useState('all');
+  const [statusFilter, setStatusFilter] = useUrlState('statusFilter', 'all' as string);
   const [allRefunds, setAllRefunds] = useState<Refund[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   
@@ -38,7 +39,7 @@ export function useAdminFinanceRefunds() {
 
   useEffect(() => {
     fetchApi('/finance/refunds')
-      .then(data => {
+      .then((data: any) => {
         const mapped = data.map((r: Record<string, unknown>) => ({
           id: typeof r.id === 'number' ? r.id : (parseInt(String(r.id).replace(/\D/g, '')) || Math.floor(Math.random() * 10000)),
           studentName: r.name || r.studentName || 'Unknown Student',
@@ -129,3 +130,8 @@ export function useAdminFinanceRefunds() {
     handleDeduction
   };
 }
+
+
+
+
+

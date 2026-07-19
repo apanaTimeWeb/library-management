@@ -1,3 +1,4 @@
+﻿// RESPONSIBILITY: Renders or handles logic for auth_types.ts.
 import { z } from 'zod';
 import { authLoginSchema, authSignupSchema, authForgotPasswordSchema, authResetPasswordSchema } from '@/app/auth/auth_utils/auth_validation';
 
@@ -34,3 +35,4 @@ export type AuthLoginPayload = z.infer<typeof authLoginSchema>;
 export type AuthSignupPayload = z.infer<typeof authSignupSchema>;
 export type AuthForgotPasswordPayload = z.infer<typeof authForgotPasswordSchema>;
 export type AuthResetPasswordPayload = z.infer<typeof authResetPasswordSchema>;
+

@@ -1,9 +1,13 @@
 'use client';
+import { useUrlState } from '@/app/manager/manager_shared_hooks/useUrlState';
+
 // RESPONSIBILITY: Renders the ManagerStudentsAlumniClient.tsx component.
 import React, { useState } from 'react';
 import { Search, Filter, Mail, Award } from 'lucide-react';
 import { AlumniData } from '@/app/manager/manager_students/manager_students_types';
 import { TablePagination } from '@/components/ui/table-pagination';
+import { TableToolbar } from "@/components/ui/table-toolbar";
+import { useClientTable } from "@/components/ui/use-client-table";
 
 const ALUMNI_DATA: AlumniData[] = [
   { id: 'AL-1001', name: 'Neha Reddy',  phone: '+91 9988776655', leftDate: '2025-12-01', duration: '12 Months', exam: 'UPSC CSE',  currentStatus: 'Selected (IAS)'      },
@@ -12,37 +16,37 @@ const ALUMNI_DATA: AlumniData[] = [
 ];
 
 export function ManagerStudentsAlumniClient() {
-  const [searchTerm, setSearchTerm] = useState('');
+const [searchTerm, setSearchTerm] = useUrlState('searchTerm', '' as string);
 
   const [rowData] = useState<AlumniData[]>(ALUMNI_DATA);
 
-  const [page, setPage] = useState(1);
-  const [limit, setLimit] = useState(10);
 
   const filteredData = rowData.filter(item => 
     !searchTerm || 
     item.name.toLowerCase().includes(searchTerm.toLowerCase()) || 
     item.exam.toLowerCase().includes(searchTerm.toLowerCase())
   );
+  const table = useClientTable(filteredData, 10);
+
 
   return (
     <div className="p-6 min-h-screen">
       <div className="p-6 min-h-screen-header">
         <div>
           <div className="text-xs font-medium text-text-secondary uppercase tracking-wider mb-2">Students › Alumni</div>
-          <h1 className="text-[22px] font-bold text-text-primary">Alumni Directory</h1>
-          <p className="text-[13px] text-text-secondary mt-1.5">Students who have successfully completed their journey here.</p>
+          <h1 className="text-xl font-bold text-text-primary">Alumni Directory</h1>
+          <p className="text-sm text-text-secondary mt-1.5">Students who have successfully completed their journey here.</p>
         </div>
         <div className="p-6 min-h-screen-actions">
           <button className="bg-transparent border border-border text-text-primary rounded-lg px-5 py-2.5 text-sm font-medium hover:bg-primary-subtle hover:border-primary transition-colors inline-flex items-center gap-2"><Award size={16} /> Success Stories</button>
         </div>
       </div>
 
-      <div className="bg-bg-card rounded-xl border border-border p-6">
+      <div className="bg-card rounded-xl border border-border p-6">
         <div className="flex items-center justify-between mb-4">
-          <div className="w-full bg-bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent-icon-wrap max-w-[320px]">
-            <Search size={14} className="w-full bg-bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent-icon" />
-            <input type="text" placeholder="Search alumni by name or exam…" className="w-full bg-bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent w-full bg-bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent-with-icon" />
+          <div className="w-full bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent-icon-wrap max-w-[320px]">
+            <Search size={14} className="w-full bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent-icon" />
+            <input type="text" placeholder="Search alumni by name or exam…" className="w-full bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent w-full bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent-with-icon" />
           </div>
           <button className="bg-transparent border border-border text-text-primary rounded-lg px-5 py-2.5 text-sm font-medium hover:bg-primary-subtle hover:border-primary transition-colors inline-flex items-center gap-2"><Filter size={14} /> Filters</button>
         </div>
@@ -51,15 +55,16 @@ export function ManagerStudentsAlumniClient() {
           <input 
             type="text" 
             placeholder="Search in table..." 
-            className="px-3 py-2 border border-border rounded-md text-sm bg-bg-input text-text-primary focus:outline-none focus:ring-2 focus:ring-primary w-64"
+            className="px-3 py-2 border border-border rounded-md text-sm bg-input text-text-primary focus:outline-none focus:ring-2 focus:ring-primary w-64"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
         </div>
         
         <div className="w-full overflow-x-auto border-t border-border mt-4">
-            <table className="w-full text-left text-sm whitespace-nowrap">
-              <thead className="bg-bg-elevated border-b border-border">
+            <TableToolbar search={table.searchTerm} onSearch={table.setSearchTerm} />
+      <table className="w-full text-left text-sm whitespace-nowrap">
+              <thead className="bg-card border-b border-border">
                 <tr className="text-text-secondary text-xs uppercase tracking-wider">
                   <th className="px-4 py-3 font-semibold">ID</th>
                   <th className="px-4 py-3 font-semibold">Alumni Name</th>
@@ -76,10 +81,10 @@ export function ManagerStudentsAlumniClient() {
                     <td colSpan={7} className="px-4 py-8 text-center text-text-secondary">No alumni found</td>
                   </tr>
                 ) : (
-                  filteredData.slice((page - 1) * limit, page * limit).map((row) => {
+                  table.paginatedData.map((row) => {
                     const isSelected = row.currentStatus?.includes('Selected');
                     return (
-                      <tr key={row.id} className="hover:bg-bg-page transition-colors cursor-pointer group">
+                      <tr key={row.id} className="hover:bg-page transition-colors cursor-pointer group">
                         <td className="px-4 py-4 font-medium text-text-primary">{row.id}</td>
                         <td className="px-4 py-4">
                           <div className="flex items-center gap-3">
@@ -110,17 +115,15 @@ export function ManagerStudentsAlumniClient() {
                 )}
               </tbody>
             </table>
+      <TablePagination 
+        page={table.page} limit={table.limit} totalItems={table.totalItems} 
+        onPageChange={table.setPage} onLimitChange={table.setLimit} 
+      />
           </div>
-          {filteredData.length > 0 && (
-            <TablePagination
-              page={page}
-              limit={limit}
-              totalItems={filteredData.length}
-              onPageChange={setPage}
-              onLimitChange={setLimit}
-            />
-          )}
+
       </div>
     </div>
   );
 }
+
+

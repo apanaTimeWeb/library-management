@@ -1,3 +1,4 @@
+﻿// RESPONSIBILITY: Renders or handles logic for whatsappUtils.ts.
 
 
 export interface StudentWhatsAppData {
@@ -41,47 +42,47 @@ export function formatCurrencyIN(amount: number): string {
 
 /**
  * ID Card WhatsApp message — mirrors the printed card layout exactly:
- * Header → Profile → Shift/Seat/Plan/Locker → Validity → Payment
+ * Header â†’ Profile â†’ Shift/Seat/Plan/Locker â†’ Validity â†’ Payment
  */
 export function formatIdCardMessage(data: StudentWhatsAppData): string {
   const balance = data.totalPayable - data.amountPaid;
   const branch = data.branch ?? 'Main Branch';
 
   const lines: string[] = [
-    `╔═══════════════════════╗`,
-    `║  📚 SMART LIBRARY 360 ║`,
-    `║  🏛 ${branch.padEnd(19)}║`,
-    `║  🪪  S T U D E N T   I D ║`,
-    `╚═══════════════════════╝`,
+    `â•”â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•—`,
+    `â•‘  ðŸ“š SMART LIBRARY 360 â•‘`,
+    `â•‘  ðŸ› ${branch.padEnd(19)}â•‘`,
+    `â•‘  ðŸªª  S T U D E N T   I D â•‘`,
+    `â•šâ•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•`,
     ``,
-    `👤 *${data.name}*`,
-    `🆔 Smart ID: *#${data.smartId}*`,
-    `📱 ${data.phone}`,
+    `ðŸ‘¤ *${data.name}*`,
+    `ðŸ†” Smart ID: *#${data.smartId}*`,
+    `ðŸ“± ${data.phone}`,
     ``,
-    `┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄`,
-    `⏰ *Shift :* ${data.shift}`,
-    `💺 *Seat  :* ${data.seat}`,
-    `📋 *Plan  :* ${data.plan}`,
-    `🔐 *Locker:* ${data.locker === 'None' ? 'Not Assigned' : data.locker}`,
-    `┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄`,
+    `â”„â”„â”„â”„â”„â”„â”„â”„â”„â”„â”„â”„â”„â”„â”„â”„â”„â”„â”„â”„â”„â”„â”„`,
+    `â° *Shift :* ${data.shift}`,
+    `ðŸ’º *Seat  :* ${data.seat}`,
+    `ðŸ“‹ *Plan  :* ${data.plan}`,
+    `ðŸ” *Locker:* ${data.locker === 'None' ? 'Not Assigned' : data.locker}`,
+    `â”„â”„â”„â”„â”„â”„â”„â”„â”„â”„â”„â”„â”„â”„â”„â”„â”„â”„â”„â”„â”„â”„â”„`,
     ``,
-    `📅 *Valid From :* ${data.joinDate}`,
-    `📅 *Expires On :* *${data.expiryDate}*`,
+    `ðŸ“… *Valid From :* ${data.joinDate}`,
+    `ðŸ“… *Expires On :* *${data.expiryDate}*`,
     ``,
-    `┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄`,
-    `💰 Fees     : ${formatCurrencyIN(data.totalPayable)}`,
-    data.discount > 0 ? `🎁 Discount : -${formatCurrencyIN(data.discount)}` : '',
+    `â”„â”„â”„â”„â”„â”„â”„â”„â”„â”„â”„â”„â”„â”„â”„â”„â”„â”„â”„â”„â”„â”„â”„`,
+    `ðŸ’° Fees     : ${formatCurrencyIN(data.totalPayable)}`,
+    data.discount > 0 ? `ðŸŽ Discount : -${formatCurrencyIN(data.discount)}` : '',
     `✅ Paid     : ${formatCurrencyIN(data.amountPaid)}`,
-    `💳 Mode     : ${data.paymentMode}`,
-    data.transactionId ? `🧾 Txn ID   : ${data.transactionId}` : '',
+    `ðŸ’³ Mode     : ${data.paymentMode}`,
+    data.transactionId ? `ðŸ§¾ Txn ID   : ${data.transactionId}` : '',
     balance > 0
-      ? `⚠️ *Balance Due: ${formatCurrencyIN(balance)}*`
+      ? `⚠️ *Balance Due: ${formatCurrencyIN(balance)}*`
       : `✅ *Balance: CLEAR*`,
     ``,
-    `╔═══════════════════════╗`,
-    `║  ✅ VERIFIED MEMBER   ║`,
-    `║  🎓 Happy Studying!   ║`,
-    `╚═══════════════════════╝`,
+    `â•”â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•—`,
+    `â•‘  ✅ VERIFIED MEMBER   â•‘`,
+    `â•‘  ðŸŽ“ Happy Studying!   â•‘`,
+    `â•šâ•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•`,
   ].filter(l => l !== null && l !== undefined);
 
   return lines.filter(l => l.trim() !== '' || lines.indexOf(l) % 3 === 0).join('\n');
@@ -95,32 +96,32 @@ export function formatDuesMessage(data: StudentWhatsAppData): string {
   const branch = data.branch ?? 'Main Branch';
 
   return [
-    `━━━━━━━━━━━━━━━━━━━━━━`,
-    `📚 *SMART LIBRARY 360*`,
-    `📍 ${branch}`,
-    `━━━━ FEE STATEMENT ━━━━`,
+    `â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”`,
+    `ðŸ“š *SMART LIBRARY 360*`,
+    `ðŸ“ ${branch}`,
+    `â”â”â”â” FEE STATEMENT â”â”â”â”`,
     ``,
-    `👤 *Name:* ${data.name}`,
-    `🆔 *Smart ID:* ${data.smartId}`,
-    `📱 *Phone:* ${data.phone}`,
+    `ðŸ‘¤ *Name:* ${data.name}`,
+    `ðŸ†” *Smart ID:* ${data.smartId}`,
+    `ðŸ“± *Phone:* ${data.phone}`,
     ``,
-    `📋 Plan   : ${data.plan}`,
-    `⏰ Shift  : ${data.shift}`,
-    `💺 Seat   : ${data.seat}`,
+    `ðŸ“‹ Plan   : ${data.plan}`,
+    `â° Shift  : ${data.shift}`,
+    `ðŸ’º Seat   : ${data.seat}`,
     ``,
-    `💰 Fees   : ${formatCurrencyIN(data.totalPayable)}`,
-    data.discount > 0 ? `🎁 Discount: -${formatCurrencyIN(data.discount)}` : '',
+    `ðŸ’° Fees   : ${formatCurrencyIN(data.totalPayable)}`,
+    data.discount > 0 ? `ðŸŽ Discount: -${formatCurrencyIN(data.discount)}` : '',
     `✅ Paid   : ${formatCurrencyIN(data.amountPaid)}`,
     ``,
     balance > 0
-      ? `⚠️ *DUE AMOUNT: ${formatCurrencyIN(balance)}*\nPlease pay before *${data.expiryDate}*`
+      ? `⚠️ *DUE AMOUNT: ${formatCurrencyIN(balance)}*\nPlease pay before *${data.expiryDate}*`
       : `✅ *All dues cleared. Thank you!*`,
     ``,
-    `📅 Valid: ${data.joinDate} → ${data.expiryDate}`,
+    `ðŸ“… Valid: ${data.joinDate} â†’ ${data.expiryDate}`,
     ``,
-    `━━━━━━━━━━━━━━━━━━━━━━`,
-    `📚 Smart Library 360`,
-    `━━━━━━━━━━━━━━━━━━━━━━`,
+    `â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”`,
+    `ðŸ“š Smart Library 360`,
+    `â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”`,
   ].filter(Boolean).join('\n');
 }
 
@@ -131,3 +132,4 @@ export function openWhatsApp(phone: string, message: string): void {
     : `91${digits.slice(-10)}`;
   window.open(`https://wa.me/${normalized}?text=${encodeURIComponent(message)}`, '_blank', 'noopener,noreferrer');
 }
+

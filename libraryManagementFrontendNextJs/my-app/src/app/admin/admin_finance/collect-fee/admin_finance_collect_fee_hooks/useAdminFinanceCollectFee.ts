@@ -1,3 +1,4 @@
+import { useUrlState } from '@/app/admin/admin_shared_hooks/useUrlState';
 // RESPONSIBILITY: Renders the useAdminFinanceCollectFee.ts component/hook.
 import { useState, useMemo } from 'react';
 import toast from 'react-hot-toast';
@@ -92,7 +93,7 @@ function buildWhatsAppReceipt(params: {
 }
 
 export function useAdminFinanceCollectFee() {
-  const [search, setSearch] = useState('');
+  const [search, setSearch] = useUrlState('search', '' as string);
   const [showDropdown, setShowDropdown] = useState(false);
   const [selectedStudent, setSelectedStudent] = useState<typeof ADMIN_FINANCE_MOCK_STUDENTS[0] | null>(null);
   
@@ -242,3 +243,4 @@ export function useAdminFinanceCollectFee() {
     handlePrintReceipt
   };
 }
+

@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders or handles logic for mockRegistry.ts.
 import managerStudentsMock from '@/app/manager/manager_students/hardcoded.json';
 import { MOCK_AUDIT_LOGS } from '@/app/admin/admin_audit-logs/admin_audit-logs_constants/admin_audit-logs_constants';
 import { MOCK_BLACKLIST } from '@/app/admin/admin_blacklist/admin_blacklist_constants/admin_blacklist_constants';
@@ -6,6 +7,7 @@ import { MOCK_EXPENSE_CATEGORIES } from '@/app/admin/admin_expense-categories/ad
 import { MOCK_EXPENSES } from '@/app/admin/admin_expenses/admin_expenses_constants/admin_expenses_constants';
 import { MOCK_PLANS } from '@/app/admin/admin_plans/admin_plans_constants/admin_plans_constants';
 import { MOCK_MANAGER_REPORTS_DATA } from '@/app/manager/manager_reports/manager_reports_constants/ManagerReportsMockData';
+import { MOCK_DASHBOARD_DATA as MANAGER_DASHBOARD_MOCK_DATA } from '@/app/manager/manager_mock_data';
 import { SUPERADMIN_ASSET_MAINTENANCE_MOCK_DATA } from '@/app/superadmin/superadmin_accounting/asset-maintenance/superadmin_asset_maintenance_constants/SuperadminAssetMaintenanceConstants';
 import { SUPERADMIN_ASSETS_MOCK_DATA } from '@/app/superadmin/superadmin_accounting/assets/superadmin_assets_constants/SuperadminAssetsConstants';
 import { SUPERADMIN_DAILY_SETTLEMENT_MOCK_DATA } from '@/app/superadmin/superadmin_accounting/daily-settlement/superadmin_daily_settlement_constants/SuperadminDailySettlementConstants';
@@ -93,11 +95,11 @@ const ADMIN_DASHBOARD_MOCK = {
  * Maps backend API endpoints to their respective mock data objects.
  * Auto-generated to include all available hardcoded mock constants.
  */
-export const mockRegistry: Record<string, any> = {
+export const mockRegistry: Record<string, unknown> = {
   '/manager/manager_students': managerStudentsMock.students,
   '/students': managerStudentsMock.students,
   '/admin/students': managerStudentsMock.students,
-  '/manager/manager_dashboard': GENERIC_DASHBOARD_MOCK,
+  '/manager/manager_dashboard': MANAGER_DASHBOARD_MOCK_DATA,
   '/admin/dashboard': ADMIN_DASHBOARD_MOCK,
   '/admin/audit-logs': MOCK_AUDIT_LOGS,
   '/admin/blacklist': MOCK_BLACKLIST,

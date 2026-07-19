@@ -1,4 +1,6 @@
 'use client';
+import { AdminSearchableDropdown } from '@/app/admin/admin_shared_components/AdminSearchableDropdown';
+
 // RESPONSIBILITY: Renders the AdminCrmEnquiriesClient component.
 import { useState } from 'react';
 import { AdminCrmAddClient } from '@/app/admin/admin_crm/enquiries/add/admin_crm_add_components/AdminCrmAddClient';
@@ -20,6 +22,8 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
 import { TablePagination } from '@/components/ui/table-pagination';
+import { TableToolbar } from '@/components/ui/table-toolbar';
+import { useClientTable } from '@/components/ui/use-client-table';
 
 function StatusBadge({ status }: { status: EnquiryStatus }) {
   const getBadgeClass = (s: EnquiryStatus) => {
@@ -80,6 +84,7 @@ function KanbanCard({ enq, onClick }: { enq: Enquiry; onClick: () => void }) {
 }
 
 export default function AdminCrmEnquiriesClient() {
+
   const {
     viewParam,
     searchParam,
@@ -96,6 +101,8 @@ export default function AdminCrmEnquiriesClient() {
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(10);
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
+
+  const table = useClientTable(KANBAN_COLUMNS, 10);
 
   if (fetchState === 'loading') {
     return (
@@ -123,7 +130,7 @@ export default function AdminCrmEnquiriesClient() {
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b pb-4">
         <div>
           <nav className="text-xs text-muted-foreground font-medium mb-1 tracking-wide">CRM › Enquiries</nav>
-          <h1 className="text-2xl font-bold tracking-tight">Enquiry Pipeline</h1>
+          <h1 className="text-text-primary text-xl font-bold tracking-tight">Enquiry Pipeline</h1>
           <p className="text-sm text-muted-foreground mt-1">
             {filtered.length} lead{filtered.length !== 1 ? 's' : ''} • Track every prospect from enquiry to admission
           </p>
@@ -131,14 +138,14 @@ export default function AdminCrmEnquiriesClient() {
         <div className="flex items-center gap-3">
           <div className="flex bg-muted/50 p-1 rounded-md">
             <button
-              className={`p-1.5 rounded-sm transition-colors ${viewParam === 'kanban' ? 'bg-bg-card text-primary shadow-sm' : 'text-muted-foreground hover:text-foreground'}`}
+              className={`p-1.5 rounded-sm transition-colors ${viewParam === 'kanban' ? 'bg-card text-primary shadow-sm' : 'text-muted-foreground hover:text-foreground'}`}
               onClick={() => pushParams({ view: 'kanban' })}
               title="Kanban view"
             >
               <LayoutGrid size={16} />
             </button>
             <button
-              className={`p-1.5 rounded-sm transition-colors ${viewParam === 'table' ? 'bg-bg-card text-primary shadow-sm' : 'text-muted-foreground hover:text-foreground'}`}
+              className={`p-1.5 rounded-sm transition-colors ${viewParam === 'table' ? 'bg-card text-primary shadow-sm' : 'text-muted-foreground hover:text-foreground'}`}
               onClick={() => pushParams({ view: 'table' })}
               title="Table view"
             >
@@ -162,8 +169,8 @@ export default function AdminCrmEnquiriesClient() {
             onChange={(e) => pushParams({ q: e.target.value })}
           />
         </div>
-        <select
-          className="flex h-10 w-full max-w-52 items-center justify-between rounded-md border border-border bg-bg-input px-3 py-2 text-sm ring-offset-bg-page placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:ring-offset-2"
+        <AdminSearchableDropdown
+          className="flex h-10 w-full max-w-52 items-center justify-between rounded-md border border-border bg-input px-3 py-2 text-sm ring-offset-bg-page placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:ring-offset-2"
           value={statusParam}
           onChange={(e) => pushParams({ status: e.target.value })}
         >
@@ -173,7 +180,7 @@ export default function AdminCrmEnquiriesClient() {
           <option value="Interested">Interested</option>
           <option value="Converted">Converted</option>
           <option value="Lost">Lost</option>
-        </select>
+        </AdminSearchableDropdown>
       </div>
 
       {/* Kanban View */}
@@ -190,7 +197,7 @@ export default function AdminCrmEnquiriesClient() {
             </div>
           ) : (
             <div className="flex overflow-x-auto gap-4 pb-4 h-full min-h-96 min-h-96">
-              {KANBAN_COLUMNS.map((col) => {
+              {table.paginatedData.map((col) => {
                 const cards = colEnquiries(col.id);
                 return (
                   <div key={col.id} className="flex flex-col w-72 shrink-0 bg-muted/20 rounded-xl border border-border/50">
@@ -241,7 +248,13 @@ export default function AdminCrmEnquiriesClient() {
                </Button>
              </div>
           ) : (<>
-            <div className="w-full overflow-x-auto flex-1">
+            <div className="mb-4">
+        <TableToolbar 
+          search={table.searchTerm} 
+          onSearch={table.setSearchTerm} 
+        />
+      </div>
+      <div className="w-full overflow-x-auto flex-1">
               <table className="w-full text-sm text-left">
                 <thead className="bg-muted/30 border-b text-muted-foreground text-xs font-medium uppercase tracking-wider sticky top-0 z-10">
                   <tr>
@@ -308,7 +321,13 @@ export default function AdminCrmEnquiriesClient() {
                   ))}
                 </tbody>
               </table>
-          </div>
+          </div> 
+      <TablePagination 
+        totalItems={table.totalItems} 
+        page={table.page} 
+        limit={table.limit} 
+        onPageChange={table.setPage} 
+      />
           <TablePagination
             page={page}
             limit={limit}

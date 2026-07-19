@@ -68,7 +68,7 @@ export function AdminCommunicationWhatsappTemplatesClient() {
           <p className="text-xs font-semibold text-muted-foreground flex items-center gap-1 uppercase tracking-wider mb-1">
             Communication <ChevronRight size={12} /> WhatsApp Templates
           </p>
-          <h1 className="text-2xl font-bold tracking-tight">📱 WhatsApp Templates</h1>
+          <h1 className="text-text-primary text-xl font-bold tracking-tight">📱 WhatsApp Templates</h1>
           <p className="text-sm text-muted-foreground mt-1">Customize automated message templates sent to students.</p>
         </div>
       </div>
@@ -82,7 +82,7 @@ export function AdminCommunicationWhatsappTemplatesClient() {
               variant={activeId === t.id ? 'secondary' : 'ghost'}
               size="sm"
               onClick={() => setActiveId(t.id)}
-              className={`text-sm font-semibold capitalize gap-2 ${activeId === t.id ? 'bg-bg-card shadow-sm' : ''}`}
+              className={`text-sm font-semibold capitalize gap-2 ${activeId === t.id ? 'bg-card shadow-sm' : ''}`}
             >
               {t.icon} {t.label}
             </Button>

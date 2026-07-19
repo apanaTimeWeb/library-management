@@ -1,7 +1,7 @@
 'use client';
 // RESPONSIBILITY: Renders the SuperadminAuditLogsClient component.
 import React, { useState } from 'react';
-import { superadmin_useSuperadminAuditLogs as useSuperadminAuditLogs } from '@/app/superadmin/superadmin_audit-logs/superadmin_audit_logs_hooks/superadmin_useSuperadminAuditLogs';
+import { useSuperadminAuditLogs as useSuperadminAuditLogs } from '@/app/superadmin/superadmin_audit-logs/superadmin_audit_logs_hooks/useSuperadminAuditLogs';
 import { SuperadminAuditLogsHeader } from '@/app/superadmin/superadmin_audit-logs/superadmin_audit_logs_components/SuperadminAuditLogsHeader';
 import { SuperadminAuditLogsGrid } from '@/app/superadmin/superadmin_audit-logs/superadmin_audit_logs_components/SuperadminAuditLogsGrid';
 import { SuperadminAuditLogsPanel } from '@/app/superadmin/superadmin_audit-logs/superadmin_audit_logs_components/SuperadminAuditLogsPanel';

@@ -27,14 +27,14 @@ export function SuperadminReportsKpiGrid({ kpiCards }: Props) {
         const trendColor = k.trendType === 'up' ? 'text-success bg-success-bg' : 'text-danger bg-danger-bg';
 
         return (
-          <div key={i} className="flex items-center gap-4 bg-bg-card border border-border rounded-[var(--radius-lg)] p-5 shadow-sm hover:shadow-md transition-shadow">
+          <div key={i} className="flex items-center gap-4 bg-card border border-border rounded-lg p-5 shadow-sm hover:shadow-md transition-shadow">
             <div className={`w-12 h-12 rounded-full flex items-center justify-center shrink-0 ${style.bg} ${style.text}`}>
               <Icon size={20} />
             </div>
             <div className="flex-1 min-w-0">
-              <p className="text-[11px] font-bold text-text-secondary uppercase tracking-wider mb-1 truncate">{k.label}</p>
-              <p className="text-2xl font-extrabold text-text-primary tracking-tight mb-2 truncate">{k.value}</p>
-              <span className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-bold ${trendColor} whitespace-nowrap`}>
+              <p className="text-xs font-bold text-text-secondary uppercase tracking-wider mb-1 truncate">{k.label}</p>
+              <p className="text-text-primary text-xl font-extrabold text-text-primary tracking-tight mb-2 truncate">{k.value}</p>
+              <span className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-bold ${trendColor} whitespace-nowrap`}>
                 <TrendIcon size={12} /> {k.trend}
               </span>
             </div>

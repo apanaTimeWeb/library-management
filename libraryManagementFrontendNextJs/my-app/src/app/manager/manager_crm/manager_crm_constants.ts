@@ -1,3 +1,4 @@
+﻿// RESPONSIBILITY: Renders or handles logic for manager_crm_constants.ts.
 import type { EnquiryStatus, KanbanColumn } from '@/app/manager/manager_crm/manager_crm_types';
 
 export const KANBAN_COLUMNS: KanbanColumn[] = [
@@ -58,3 +59,4 @@ export const DOT_CLASS: Record<EnquiryStatus, string> = {
   Converted: 'crm-col-dot--converted',
   Lost: 'crm-col-dot--lost',
 };
+

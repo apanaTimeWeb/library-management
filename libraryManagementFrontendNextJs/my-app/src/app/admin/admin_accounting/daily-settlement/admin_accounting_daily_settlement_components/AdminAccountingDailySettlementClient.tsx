@@ -11,16 +11,19 @@ import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
 import { TablePagination } from '@/components/ui/table-pagination';
 import { Entry } from "./AdminAccountingDailySettlementClient_types";
+import { TableToolbar } from '@/components/ui/table-toolbar';
+import { useClientTable } from '@/components/ui/use-client-table';
 
 const TODAY = new Date().toISOString().split('T')[0];
 
 const MOCK: Entry[] = [
-  { id: 1, shift: 'Morning (6AM–2PM)',   openingBalance: 2000, cashCollected: 4500, upiCollected: 3200, expenses: 800,  closingBalance: 5700, settledBy: 'Ravi Kumar',  status: 'settled' },
-  { id: 2, shift: 'Afternoon (2PM–9PM)', openingBalance: 5700, cashCollected: 3100, upiCollected: 2800, expenses: 400,  closingBalance: 8400, settledBy: 'Priya Singh', status: 'pending' },
-  { id: 3, shift: 'Night (9PM–6AM)',     openingBalance: 8400, cashCollected: 1200, upiCollected: 900,  expenses: 200,  closingBalance: 9400, settledBy: '—',           status: 'pending' },
+  { id: 1, shift: 'Morning (6AMâ€“2PM)',   openingBalance: 2000, cashCollected: 4500, upiCollected: 3200, expenses: 800,  closingBalance: 5700, settledBy: 'Ravi Kumar',  status: 'settled' },
+  { id: 2, shift: 'Afternoon (2PMâ€“9PM)', openingBalance: 5700, cashCollected: 3100, upiCollected: 2800, expenses: 400,  closingBalance: 8400, settledBy: 'Priya Singh', status: 'pending' },
+  { id: 3, shift: 'Night (9PMâ€“6AM)',     openingBalance: 8400, cashCollected: 1200, upiCollected: 900,  expenses: 200,  closingBalance: 9400, settledBy: '—',           status: 'pending' },
 ];
 
 export function AdminAccountingDailySettlementClient() {
+
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(10);
   const [date, setDate] = useState(TODAY);
@@ -34,12 +37,12 @@ export function AdminAccountingDailySettlementClient() {
   const totalCash = entries.reduce((s, e) => s + e.cashCollected, 0);
   const totalUpi  = entries.reduce((s, e) => s + e.upiCollected, 0);
   const totalExp  = entries.reduce((s, e) => s + e.expenses, 0);
-
+    const table = useClientTable(entries, 10);
   return (
     <div className="h-full flex flex-col pb-10 space-y-6">
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b pb-4">
         <div>
-          <h1 className="text-2xl font-bold tracking-tight">Daily Settlement</h1>
+          <h1 className="text-text-primary text-xl font-bold tracking-tight">Daily Settlement</h1>
           <p className="text-sm text-muted-foreground mt-1">Review shift collections and expenses.</p>
         </div>
         <div className="flex items-center gap-2">
@@ -56,20 +59,26 @@ export function AdminAccountingDailySettlementClient() {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
         <Card className="p-5 shadow-none border-border">
           <p className="text-xs font-bold uppercase tracking-wider text-muted-foreground mb-1">Total Cash</p>
-          <p className="text-2xl font-extrabold text-foreground">₹{totalCash.toLocaleString()}</p>
+          <p className="text-text-primary text-xl font-extrabold text-foreground">₹{totalCash.toLocaleString()}</p>
         </Card>
         <Card className="p-5 shadow-none border-border">
           <p className="text-xs font-bold uppercase tracking-wider text-muted-foreground mb-1">Total UPI</p>
-          <p className="text-2xl font-extrabold text-info">₹{totalUpi.toLocaleString()}</p>
+          <p className="text-text-primary text-xl font-extrabold text-info">₹{totalUpi.toLocaleString()}</p>
         </Card>
         <Card className="p-5 shadow-none border-border">
           <p className="text-xs font-bold uppercase tracking-wider text-muted-foreground mb-1">Total Expenses</p>
-          <p className="text-2xl font-extrabold text-danger">₹{totalExp.toLocaleString()}</p>
+          <p className="text-text-primary text-xl font-extrabold text-danger">₹{totalExp.toLocaleString()}</p>
         </Card>
       </div>
 
       <Card className="flex-1 shadow-none border-border overflow-hidden flex flex-col min-h-96">
-        <div className="w-full overflow-x-auto">
+        <div className="mb-4">
+        <TableToolbar 
+          search={table.searchTerm} 
+          onSearch={table.setSearchTerm} 
+        />
+      </div>
+      <div className="w-full overflow-x-auto">
           <table className="w-full text-sm text-left">
             <thead className="bg-muted/30 border-y text-muted-foreground text-xs font-medium uppercase tracking-wider sticky top-0 z-10">
               <tr>
@@ -115,7 +124,13 @@ export function AdminAccountingDailySettlementClient() {
               )}
             </tbody>
           </table>
-          </div>
+          </div> 
+      <TablePagination 
+        totalItems={table.totalItems} 
+        page={table.page} 
+        limit={table.limit} 
+        onPageChange={table.setPage} 
+      />
           <TablePagination
             page={page}
             limit={limit}

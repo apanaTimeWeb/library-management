@@ -2,7 +2,7 @@
 // RESPONSIBILITY: Renders the SuperadminDialog component.
 import * as DialogPrimitive from '@radix-ui/react-dialog';
 import { X } from 'lucide-react';
-import { cn } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/superadmin_utils';
+import { cn } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminUtils';
 
 export const SuperadminDialog        = DialogPrimitive.Root;
 export const SuperadminDialogTrigger = DialogPrimitive.Trigger;
@@ -22,11 +22,11 @@ export function SuperadminDialogContent({ className, children, ...props }: React
     <DialogPrimitive.Portal>
       <SuperadminDialogOverlay />
       <DialogPrimitive.Content 
-        className={cn('fixed left-[50%] top-[50%] z-50 grid w-full max-w-lg translate-x-[-50%] translate-y-[-50%] gap-4 border border-border bg-card p-6 shadow-2xl duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%] sm:rounded-[var(--radius-xl)]', className)} 
+        className={cn('fixed left-[50%] top-[50%] z-50 grid w-full max-w-lg translate-x-[-50%] translate-y-[-50%] gap-4 border border-border bg-card p-6 shadow-2xl duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%] sm:rounded-xl', className)} 
         {...props}
       >
         {children}
-        <DialogPrimitive.Close className="absolute right-4 top-4 rounded-[var(--radius-sm)] opacity-70 ring-offset-bg-card transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-input data-[state=open]:text-text-secondary cursor-pointer">
+        <DialogPrimitive.Close className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-bg-card transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-input data-[state=open]:text-text-secondary cursor-pointer">
           <X size={16} />
           <span className="sr-only">Close</span>
         </DialogPrimitive.Close>
@@ -40,9 +40,10 @@ export function SuperadminDialogHeader({ className, ...props }: React.HTMLAttrib
 }
 
 export function SuperadminDialogTitle({ className, ...props }: React.ComponentPropsWithoutRef<typeof DialogPrimitive.Title>) {
-  return <DialogPrimitive.Title className={cn('text-[18px] font-bold text-text-primary leading-none tracking-tight', className)} {...props} />;
+  return <DialogPrimitive.Title className={cn('text-lg font-bold text-text-primary leading-none tracking-tight', className)} {...props} />;
 }
 
 export function SuperadminDialogDescription({ className, ...props }: React.ComponentPropsWithoutRef<typeof DialogPrimitive.Description>) {
-  return <DialogPrimitive.Description className={cn('text-[14px] text-text-secondary', className)} {...props} />;
+  return <DialogPrimitive.Description className={cn('text-sm text-text-secondary', className)} {...props} />;
 }
+

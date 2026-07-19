@@ -1,3 +1,4 @@
+﻿// RESPONSIBILITY: Renders or handles logic for useManagerDashboardData.ts.
 import { useEffect } from 'react';
 import { useDashboardStore } from '@/app/manager/manager_dashboard/manager_dashboard_store/manager_dashboard_store';
 
@@ -19,3 +20,4 @@ export function useManagerDashboardData() {
 
   return { data, status, error };
 }
+

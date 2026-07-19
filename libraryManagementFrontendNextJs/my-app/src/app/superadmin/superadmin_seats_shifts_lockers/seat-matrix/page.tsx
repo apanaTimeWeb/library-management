@@ -1,5 +1,6 @@
-import { SeatMatrixClient } from '@/app/superadmin/superadmin_seats_shifts_lockers/seat-matrix/_components/SeatMatrixClient';
+// RESPONSIBILITY: Component or Page.
+import { SuperadminSeatMatrixClient } from '@/app/superadmin/superadmin_seats_shifts_lockers/seat-matrix/_components/SuperadminSeatMatrixClient';
 
 export default function Page() {
-  return <SeatMatrixClient />;
+  return <SuperadminSeatMatrixClient />;
 }

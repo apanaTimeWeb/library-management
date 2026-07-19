@@ -1,6 +1,7 @@
 'use client';
-// RESPONSIBILITY: Renders the SuperadminSidebar component.
-import { SUPERADMIN_ROUTES } from '@/app/superadmin/superadmin_url_config';
+// RESPONSIBILITY: Renders the collapsible sidebar navigation for the Superadmin module. Handles active state detection, mobile overlay, and logout dialog.
+import { SUPERADMIN_ROUTES } from '@/app/superadmin/SuperadminUrlConfig';
+import type { SuperadminNavEntry } from './SuperadminSharedTypes';
 
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
@@ -21,7 +22,7 @@ import {
 
 
 
-const NAV: any[] = [
+const NAV: SuperadminNavEntry[] = [
   { href: SUPERADMIN_ROUTES.DASHBOARD, icon: LayoutDashboard, label: 'Dashboard' },
   { href: SUPERADMIN_ROUTES.LIBRARIES, icon: Building2, label: 'Libraries' },
   { href: SUPERADMIN_ROUTES.SUBSCRIPTIONS, icon: FileText, label: 'Subscriptions' },
@@ -35,7 +36,7 @@ const NAV: any[] = [
   { href: SUPERADMIN_ROUTES.SETTINGS, icon: Settings, label: 'Settings' },
 ];
 
-import { SuperadminSidebarProps } from '@/app/superadmin/superadmin_shared_components/superadmin_shared_types';
+import { SuperadminSidebarProps } from '@/app/superadmin/superadmin_shared_components/SuperadminSharedTypes';
 
 export default function SuperadminSidebar({ collapsed, onToggle, mobileOpen, onMobileClose }: SuperadminSidebarProps) {
   const pathname = usePathname();
@@ -54,7 +55,7 @@ export default function SuperadminSidebar({ collapsed, onToggle, mobileOpen, onM
       )}
 
       <aside
-        className={`fixed top-0 left-0 h-screen bg-bg-sidebar border-r border-border z-50 flex flex-col transition-all duration-300 ${mobileOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}`}
+        className={`fixed top-0 left-0 h-screen bg-sidebar border-r border-border z-50 flex flex-col transition-all duration-300 ${mobileOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}`}
         style={{ width: collapsed ? 60 : 240 }}
       >
         <div className="h-16 flex items-center px-4 border-b border-border shrink-0 gap-3">
@@ -76,7 +77,7 @@ export default function SuperadminSidebar({ collapsed, onToggle, mobileOpen, onM
           {NAV.map((item, i) => {
             if ('group' in item) {
               if (collapsed && !mobileOpen) return null;
-              return <div key={'group-' + item.group} className="px-3 text-[11px] font-bold uppercase tracking-wider text-text-secondary mt-6 mb-2">{item.group}</div>;
+              return <div key={'group-' + item.group} className="px-3 text-xs font-bold uppercase tracking-wider text-text-secondary mt-6 mb-2">{item.group}</div>;
             }
             const Icon = item.icon;
             const isExactMatch = pathname === item.href;
@@ -90,7 +91,7 @@ export default function SuperadminSidebar({ collapsed, onToggle, mobileOpen, onM
               <Link
                 key={item.href}
                 href={item.href}
-                className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-[13.5px] font-medium transition-colors ${isActive ? 'bg-primary-subtle text-primary' : 'text-text-secondary hover:bg-black/5 dark:hover:bg-white/5 hover:text-text-primary'}`}
+                className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors ${isActive ? 'bg-primary-subtle text-primary' : 'text-text-secondary hover:bg-black/5 dark:hover:bg-white/5 hover:text-text-primary'}`}
                 title={(collapsed && !mobileOpen) ? item.label : undefined}
                 onClick={mobileOpen ? onMobileClose : undefined}
               >
@@ -104,11 +105,11 @@ export default function SuperadminSidebar({ collapsed, onToggle, mobileOpen, onM
         </nav>
 
         {(!collapsed || mobileOpen) && (
-          <div className="p-4 border-t border-border flex items-center gap-3 bg-bg-page/50">
-            <div className="w-9 h-9 rounded-full bg-primary/10 text-primary flex items-center justify-center text-[13px] font-bold shrink-0">SA</div>
+          <div className="p-4 border-t border-border flex items-center gap-3 bg-page/50">
+            <div className="w-9 h-9 rounded-full bg-primary/10 text-primary flex items-center justify-center text-sm font-bold shrink-0">SA</div>
             <div className="flex-1 min-w-0">
               <p className="text-sm font-semibold text-text-primary truncate">Super Admin</p>
-              <p className="text-[11px] text-text-secondary truncate">superadmin@nexus360.com</p>
+              <p className="text-xs text-text-secondary truncate">superadmin@nexus360.com</p>
             </div>
             <SuperadminButton
               variant="ghost"
@@ -124,7 +125,7 @@ export default function SuperadminSidebar({ collapsed, onToggle, mobileOpen, onM
       </aside>
 
       <SuperadminDialog open={showLogout} onOpenChange={setShowLogout}>
-        <SuperadminDialogContent className="max-w-sm border-border bg-bg-card">
+        <SuperadminDialogContent className="max-w-sm border-border bg-card">
           <SuperadminDialogHeader>
             <SuperadminDialogTitle className="text-text-primary">Log out?</SuperadminDialogTitle>
             <SuperadminDialogDescription className="text-text-secondary">
@@ -132,7 +133,7 @@ export default function SuperadminSidebar({ collapsed, onToggle, mobileOpen, onM
             </SuperadminDialogDescription>
           </SuperadminDialogHeader>
           <div className="flex justify-end gap-3 mt-4">
-            <SuperadminButton className="bg-transparent border border-border text-text-primary hover:bg-bg-page" onClick={() => setShowLogout(false)}>Cancel</SuperadminButton>
+            <SuperadminButton className="bg-transparent border border-border text-text-primary hover:bg-page" onClick={() => setShowLogout(false)}>Cancel</SuperadminButton>
             <SuperadminButton className="bg-danger text-white hover:opacity-90" onClick={() => router.push(SUPERADMIN_ROUTES.AUTH_LOGIN)}>Log out</SuperadminButton>
           </div>
         </SuperadminDialogContent>
@@ -140,3 +141,5 @@ export default function SuperadminSidebar({ collapsed, onToggle, mobileOpen, onM
     </>
   );
 }
+
+

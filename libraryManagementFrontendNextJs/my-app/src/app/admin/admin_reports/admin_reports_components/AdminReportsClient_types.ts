@@ -1,3 +1,4 @@
+﻿// RESPONSIBILITY: Renders or handles logic for AdminReportsClient_types.ts.
 import { Download, FileText, IndianRupee, Users, Wallet, TrendingUp, BarChart2, PieChart as PieIcon, Activity, Search } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import toast, { Toaster } from "react-hot-toast";
@@ -20,3 +21,4 @@ export interface KpiCardProps {
   trend?: { up: boolean; value: string };
   sub?: string;
 }
+

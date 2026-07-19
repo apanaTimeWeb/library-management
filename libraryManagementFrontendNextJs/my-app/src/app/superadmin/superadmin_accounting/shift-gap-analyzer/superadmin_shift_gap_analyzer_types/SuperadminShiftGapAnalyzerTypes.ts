@@ -1,3 +1,4 @@
+﻿// RESPONSIBILITY: Renders or handles logic for SuperadminShiftGapAnalyzerTypes.ts.
 
 
 export interface SuperadminShiftGap {
@@ -16,3 +17,4 @@ export interface SuperadminDayGap {
   gapDays: number;
   loss: number;
 }
+

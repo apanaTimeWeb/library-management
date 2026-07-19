@@ -1,3 +1,4 @@
+﻿// RESPONSIBILITY: Renders or handles logic for AdminEngagementQrScannerClient_types.ts.
 import { useState } from "react";
 import Link from "next/link";
 import { ChevronRight, CheckCircle, X, RefreshCw, Camera, QrCode } from "lucide-react";
@@ -10,3 +11,4 @@ export interface ScanResult {
   shift: string; validTill: string; plan: string;
 }
 export type ScanState = 'idle' | 'scanning' | 'detected' | 'success';
+

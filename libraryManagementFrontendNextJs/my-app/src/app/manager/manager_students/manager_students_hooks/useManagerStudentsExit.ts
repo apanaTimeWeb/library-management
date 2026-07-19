@@ -1,4 +1,7 @@
+// RESPONSIBILITY: Renders or handles logic for useManagerStudentsExit.ts.
+import { useUrlState } from '@/app/manager/manager_shared_hooks/useUrlState';
 import { useState, useEffect } from 'react';
+import { logger } from '@/lib/logger';
 import { fetchStudents } from '@/app/manager/manager_students/manager_students_api/manager_students_api';
 import type { Student } from '@/app/manager/manager_students/manager_students_types';
 import { useManagerDebounce } from '@/app/manager/manager_shared_hooks/useManagerDebounce';
@@ -6,7 +9,7 @@ import { useManagerDebounce } from '@/app/manager/manager_shared_hooks/useManage
 // DATA FLOW: Hook -> useManagerStudentsExit -> Consuming UI Component
 export function useManagerStudentsExit() {
   const [students, setStudents] = useState<Student[]>([]);
-  const [search, setSearch] = useState('');
+  const [search, setSearch] = useUrlState('search', '' as string);
   const debouncedSearch = useManagerDebounce(search, 300);
   const [selected, setSelected] = useState('');
   const [reason, setReason] = useState('');
@@ -14,7 +17,7 @@ export function useManagerStudentsExit() {
 
   // DEPENDENCY AUDIT: Executed on mount or when key dependencies (like search terms, filters, IDs) change.
   useEffect(() => {
-    fetchStudents().then(setStudents).catch(console.error);
+    fetchStudents().then(setStudents).catch((err) => logger.error('Failed to fetch students', err));
   }, []);
 
   const filtered = students.filter(s =>
@@ -50,3 +53,5 @@ export function useManagerStudentsExit() {
     reset,
   };
 }
+
+

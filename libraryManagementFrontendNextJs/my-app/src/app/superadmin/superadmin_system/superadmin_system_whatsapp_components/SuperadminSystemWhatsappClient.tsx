@@ -9,6 +9,9 @@ import { SuperadminKpiCard } from '@/app/superadmin/superadmin_system/superadmin
 import { MessageSquare, ChevronRight, Eye, EyeOff, Copy, CheckCircle, XCircle, Phone, Zap, BarChart3, Loader2, Radio, Send, Banknote, Globe, Settings } from 'lucide-react';
 import { useSuperadminSystemWhatsapp } from '@/app/superadmin/superadmin_system/superadmin_system_whatsapp_hooks/useSuperadminSystemWhatsapp';
 import { SUPERADMIN_SYSTEM_WHATSAPP_PROVIDERS, SUPERADMIN_SYSTEM_WHATSAPP_STATUS_CFG } from '@/app/superadmin/superadmin_system/superadmin_system_constants/SuperadminSystemWhatsappConstants';
+import { TableToolbar } from "@/components/ui/table-toolbar";
+import { useClientTable } from "@/components/ui/use-client-table";
+import { TablePagination } from "@/components/ui/table-pagination";
 
 const PROVIDER_LOGOS: Record<string, React.ReactNode> = {
   twilio: <Globe size={16} className="text-primary" />,
@@ -18,12 +21,15 @@ const PROVIDER_LOGOS: Record<string, React.ReactNode> = {
 };
 
 export function SuperadminSystemWhatsappClient() {
+
   const {
     provider, setProvider, apiKey, setApiKey, apiSecret, setApiSecret,
     senderPhone, setSenderPhone, showApiKey, setShowApiKey, showSecret, setShowSecret,
     testStatus, copiedUrl, webhookUrl, selectedProvider, logs, stats,
     handleTestConnection, handleCopyWebhook
   } = useSuperadminSystemWhatsapp();
+
+  const table = useClientTable(logs);
 
   return (
     <div>
@@ -44,12 +50,12 @@ export function SuperadminSystemWhatsappClient() {
       <div className={`flex items-center gap-4 p-4 rounded-2xl border mb-8 ${
         testStatus === 'success' ? 'bg-success-bg border-success/30' : 
         testStatus === 'error' ? 'bg-danger-bg border-danger/30' : 
-        'bg-bg-card border-border'
+        'bg-card border-border'
       }`}>
-        <div className={`h-12 w-12 rounded-xl flex items-center justify-center text-2xl ${
+        <div className={`h-12 w-12 rounded-xl flex items-center justify-center text-text-primary text-xl ${
           testStatus === 'success' ? 'bg-success-bg text-success' :
           testStatus === 'error'  ? 'bg-danger-bg text-danger' :
-          'bg-bg-card text-text-secondary'
+          'bg-card text-text-secondary'
         }`}>
           {testStatus === 'success' ? <CheckCircle size={24} /> : testStatus === 'error' ? <XCircle size={24} /> : <Radio size={24} />}
         </div>
@@ -181,7 +187,7 @@ export function SuperadminSystemWhatsappClient() {
             <div className="space-y-2">
               <SuperadminLabel>Inbound Webhook URL</SuperadminLabel>
               <div className="flex items-center gap-2">
-                <div className="flex-1 px-3 py-2 rounded-lg bg-bg-input border border-border text-xs font-mono text-text-secondary truncate">
+                <div className="flex-1 px-3 py-2 rounded-lg bg-input border border-border text-xs font-mono text-text-secondary truncate">
                   {webhookUrl}
                 </div>
                 <SuperadminButton id="copy-webhook-btn" variant="ghost" size="sm" onClick={handleCopyWebhook}>
@@ -223,7 +229,7 @@ export function SuperadminSystemWhatsappClient() {
                 { id: 'trigger-waitlist', label: 'Waitlist Notification', desc: 'When seat becomes available for waitlisted', enabled: true  },
                 { id: 'trigger-absentee', label: 'Absentee Alert',        desc: 'When student absent for 3+ days',            enabled: false },
               ].map(( event ) => (
-                <div key={event.id} className="flex items-center justify-between p-3 rounded-xl bg-bg-card border border-border/50">
+                <div key={event.id} className="flex items-center justify-between p-3 rounded-xl bg-card border border-border/50">
                   <div>
                     <p className="text-sm font-medium text-text-primary">{event.label}</p>
                     <p className="text-xs text-text-secondary">{event.desc}</p>
@@ -250,7 +256,8 @@ export function SuperadminSystemWhatsappClient() {
         </CardHeader>
         <CardContent>
           <div className="overflow-x-auto">
-            <table className="w-full text-sm">
+            <TableToolbar search={table.searchTerm} onSearch={table.setSearchTerm} />
+      <table className="w-full text-sm">
               <thead>
                 <tr className="border-b border-border text-text-secondary text-xs uppercase tracking-wide">
                   <th className="text-left py-3 pr-4">Recipient</th>
@@ -261,15 +268,15 @@ export function SuperadminSystemWhatsappClient() {
                 </tr>
               </thead>
               <tbody className="divide-y divide-outline-variant/30">
-                  {logs.map((log) => {
+                  {table.paginatedData.map((log) => {
                   const cfg  = SUPERADMIN_SYSTEM_WHATSAPP_STATUS_CFG[log.status];
                   const Icon = cfg.icon;
                   return (
-                    <tr key={log.id} className="hover:bg-bg-card transition-colors">
+                    <tr key={log.id} className="hover:bg-card transition-colors">
                       <td className="py-3 pr-4 font-mono text-sm text-text-primary">{log.to}</td>
                       <td className="py-3 pr-4 text-text-primary">{log.type}</td>
                       <td className="py-3 pr-4">
-                        <code className="text-xs text-text-secondary bg-bg-input px-1.5 py-0.5 rounded">
+                        <code className="text-xs text-text-secondary bg-input px-1.5 py-0.5 rounded">
                           {log.template}
                         </code>
                       </td>
@@ -284,6 +291,10 @@ export function SuperadminSystemWhatsappClient() {
                 })}
               </tbody>
             </table>
+      <TablePagination 
+        page={table.page} limit={table.limit} totalItems={table.totalItems} 
+        onPageChange={table.setPage} onLimitChange={table.setLimit} 
+      />
           </div>
         </CardContent>
       </SuperadminCard>

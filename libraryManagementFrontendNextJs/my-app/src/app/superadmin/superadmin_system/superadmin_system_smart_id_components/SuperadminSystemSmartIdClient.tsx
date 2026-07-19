@@ -45,7 +45,7 @@ export function SuperadminSystemSmartIdClient() {
             {FLOW_STEPS.map((step, i) => (
               <div key={step.step} className="flex items-center gap-4 flex-1">
                 <div className="flex flex-col items-center gap-2 flex-1">
-                  <div className="h-14 w-14 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center text-2xl">
+                  <div className="h-14 w-14 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center text-text-primary text-xl">
                     {step.icon}
                   </div>
                   <div className="text-center">
@@ -130,7 +130,7 @@ export function SuperadminSystemSmartIdClient() {
                 </SuperadminDialogDescription>
               </SuperadminDialogHeader>
               <div className="p-4 rounded-xl bg-danger-bg/20 border border-danger/20 text-sm text-danger mt-2">
-                ⚠️ Warning: All student ID references will be updated. Ensure backups are taken first.
+                ⚠️ Warning: All student ID references will be updated. Ensure backups are taken first.
               </div>
               <div className="flex justify-end gap-3 mt-4">
                 <SuperadminDialogClose asChild>

@@ -1,5 +1,6 @@
-import { ShiftManagementClient } from '@/app/superadmin/superadmin_seats_shifts_lockers/shift-management/_components/ShiftManagementClient';
+// RESPONSIBILITY: Component or Page.
+import { SuperadminShiftManagementClient } from '@/app/superadmin/superadmin_seats_shifts_lockers/shift-management/_components/SuperadminShiftManagementClient';
 
 export default function Page() {
-  return <ShiftManagementClient />;
+  return <SuperadminShiftManagementClient />;
 }

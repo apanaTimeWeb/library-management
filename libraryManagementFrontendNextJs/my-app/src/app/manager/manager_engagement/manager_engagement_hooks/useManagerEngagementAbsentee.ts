@@ -1,3 +1,4 @@
+﻿// RESPONSIBILITY: Renders or handles logic for useManagerEngagementAbsentee.ts.
 import { useState } from 'react';
 import toast from 'react-hot-toast';
 import { AbsenteeRow } from '@/app/manager/manager_engagement/manager_engagement_types/ManagerEngagementTypes';
@@ -44,3 +45,4 @@ export function useManagerEngagementAbsentee() {
     notify, notifyAll
   };
 }
+

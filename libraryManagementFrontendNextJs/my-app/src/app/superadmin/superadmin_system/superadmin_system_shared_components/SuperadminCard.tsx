@@ -1,11 +1,11 @@
 'use client';
 // RESPONSIBILITY: Renders the SuperadminCard component.
 import React from 'react';
-import { cn } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/superadmin_utils';
+import { cn } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminUtils';
 import { SuperadminCardProps } from '@/app/superadmin/superadmin_system/superadmin_system_types/SuperadminSystemSharedComponentsTypes';
 
 export function SuperadminCard({ children, className, ...props }: SuperadminCardProps) {
-  return <div className={cn('rounded-[var(--radius-xl)] border border-border bg-card text-card-foreground shadow-sm', className)} {...props}>{children}</div>;
+  return <div className={cn('rounded-xl border border-border bg-card text-card-foreground shadow-sm', className)} {...props}>{children}</div>;
 }
 
 export function CardHeader({ children, className }: SuperadminCardProps) {
@@ -13,7 +13,7 @@ export function CardHeader({ children, className }: SuperadminCardProps) {
 }
 
 export function CardTitle({ children, className }: SuperadminCardProps) {
-  return <h3 className={cn('text-[18px] font-extrabold leading-none tracking-tight text-text-primary', className)}>{children}</h3>;
+  return <h3 className={cn('text-lg font-extrabold leading-none tracking-tight text-text-primary', className)}>{children}</h3>;
 }
 
 export function CardDescription({ children, className }: SuperadminCardProps) {

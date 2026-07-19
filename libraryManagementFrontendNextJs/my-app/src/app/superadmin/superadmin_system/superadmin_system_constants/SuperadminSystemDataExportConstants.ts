@@ -1,3 +1,4 @@
+﻿// RESPONSIBILITY: Renders or handles logic for SuperadminSystemDataExportConstants.ts.
 import { CreditCard, CalendarDays, Users, Database } from 'lucide-react';
 import React from 'react';
 
@@ -16,3 +17,4 @@ export const SUPERADMIN_SYSTEM_QUICK_EXPORTS: SuperadminSystemQuickExport[] = [
   { id: 'active',       label: 'Active Students',       description: 'All currently active students',        icon: Users,       format: 'XLSX' },
   { id: 'full-backup',  label: 'Full Data Backup',      description: 'Everything — all modules in one ZIP',  icon: Database,    format: 'ZIP' },
 ];
+

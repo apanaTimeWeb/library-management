@@ -34,7 +34,7 @@ export function SuperadminSystemWaitlistAutomationClient() {
         <CardContent>
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4">
-              <div className={`h-12 w-12 rounded-2xl flex items-center justify-center text-2xl ${enabled ? 'bg-green-500/15' : 'bg-bg-input'}`}>
+              <div className={`h-12 w-12 rounded-2xl flex items-center justify-center text-text-primary text-xl ${enabled ? 'bg-success/10' : 'bg-input'}`}>
                 📋
               </div>
               <div>
@@ -102,7 +102,7 @@ export function SuperadminSystemWaitlistAutomationClient() {
             {SUPERADMIN_SYSTEM_MOCK_WAITLIST.map((student) => (
               <div
                 key={student.position}
-                className="flex items-center gap-4 p-3 rounded-xl bg-bg-card border border-border/50 hover:border-border transition-colors"
+                className="flex items-center gap-4 p-3 rounded-xl bg-card border border-border/50 hover:border-border transition-colors"
               >
                 {/* Position */}
                 <div className="h-8 w-8 rounded-full bg-primary/15 flex items-center justify-center text-primary text-sm font-bold shrink-0">

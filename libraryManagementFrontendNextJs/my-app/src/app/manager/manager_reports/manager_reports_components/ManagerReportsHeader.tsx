@@ -8,7 +8,7 @@ export function ManagerReportsHeader() {
       <p className="text-xs font-medium text-text-secondary uppercase tracking-wider">
         Manager › Reports
       </p>
-      <h1 className="text-2xl font-bold text-text-primary">
+      <h1 className="text-text-primary text-xl font-bold text-text-primary">
         Reports
       </h1>
       <p className="text-sm text-text-secondary">

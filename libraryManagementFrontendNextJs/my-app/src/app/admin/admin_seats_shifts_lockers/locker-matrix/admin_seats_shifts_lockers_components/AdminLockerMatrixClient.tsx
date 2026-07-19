@@ -40,7 +40,7 @@ export function AdminLockerMatrixClient() {
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b pb-4">
         <div>
           <nav className="text-xs text-muted-foreground font-medium mb-1 tracking-wide uppercase">Smart Library 360 › Admin › Seats & Shifts</nav>
-          <h1 className="text-2xl font-bold tracking-tight">Locker Matrix</h1>
+          <h1 className="text-text-primary text-xl font-bold tracking-tight">Locker Matrix</h1>
           <p className="text-sm text-muted-foreground mt-1">Real-time status of lockers. Click any cell to manage access or view rental history.</p>
         </div>
         
@@ -60,7 +60,7 @@ export function AdminLockerMatrixClient() {
         {ADMIN_SEATS_MOCK_LOCKER_STATS.map(({ label, value, border, valueClass }) => (
           <Card key={label} className={`p-4 shadow-sm border-border bg-card flex flex-col gap-1 border-l-4 ${border.replace('border-l-', 'border-l-')}`}>
             <span className="text-xs font-bold text-muted-foreground uppercase tracking-wider">{label}</span>
-            <span className={`text-2xl font-black ${valueClass.includes('success') ? 'text-success' : valueClass.includes('danger') ? 'text-danger' : valueClass.includes('warning') ? 'text-warning' : 'text-primary'}`}>
+            <span className={`text-text-primary text-xl font-black ${valueClass.includes('success') ? 'text-success' : valueClass.includes('danger') ? 'text-danger' : valueClass.includes('warning') ? 'text-warning' : 'text-primary'}`}>
               {value}
             </span>
           </Card>
@@ -142,7 +142,7 @@ export function AdminLockerMatrixClient() {
             <Button variant="default" className="w-full gap-2 justify-start font-bold">
               <LockKeyhole size={16} /> Bulk Reset
             </Button>
-            <Button variant="outline" className="w-full gap-2 justify-start bg-bg-card/50 border-primary/20 text-primary hover:bg-primary/10 font-bold">
+            <Button variant="outline" className="w-full gap-2 justify-start bg-card/50 border-primary/20 text-primary hover:bg-primary/10 font-bold">
               <Settings size={16} /> Grid Config
             </Button>
           </div>
@@ -185,3 +185,4 @@ export function AdminLockerMatrixClient() {
     </div>
   );
 }
+

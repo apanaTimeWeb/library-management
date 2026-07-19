@@ -1,4 +1,6 @@
 'use client';
+import { useUrlState } from '@/app/admin/admin_shared_hooks/useUrlState';
+
 // RESPONSIBILITY: Renders the seat occupancy grid matrix with shift/fee filters and assignment navigation.
 // DATA FLOW: AdminDashboardPage / Seat Management -> AdminReusableSeatMatrixGrid -> AdminReusableSeatCell
 
@@ -17,14 +19,14 @@ import { AdminReusableSeatData, Props } from "./AdminReusableSeatMatrixGrid_type
 const LEGEND = [
   { label: 'Free',          cls: 'bg-success/10 text-success hover:bg-success/20' },
   { label: 'Occupied',      cls: 'bg-info/10 text-info hover:bg-info/20' },
-  { label: 'Expiring ≤7d',  cls: 'bg-warning/10 text-warning hover:bg-warning/20' },
+  { label: 'Expiring â‰¤7d',  cls: 'bg-warning/10 text-warning hover:bg-warning/20' },
   { label: 'Maintenance',   cls: 'bg-muted text-muted-foreground hover:bg-muted/80' },
 ];
 
 export default function AdminReusableSeatMatrixGrid({ seats, shifts }: Props) {
   const router = useRouter();
   const [activeShift, setActiveShift]   = useState('All');
-  const [feeFilter, setFeeFilter]       = useState('All');
+  const [feeFilter, setFeeFilter] = useUrlState('feeFilter', 'All' as string);
   const [appliedFee, setAppliedFee]     = useState('All');
   const [appliedShift, setAppliedShift] = useState('All');
 
@@ -85,7 +87,7 @@ export default function AdminReusableSeatMatrixGrid({ seats, shifts }: Props) {
                 onClick={() => setActiveShift(tab)}
                 className={`px-3 py-1.5 text-xs font-medium rounded-sm whitespace-nowrap transition-colors ${
                   activeShift === tab 
-                    ? 'bg-bg-card text-foreground shadow-sm' 
+                    ? 'bg-card text-foreground shadow-sm' 
                     : 'text-muted-foreground hover:text-foreground'
                 }`}
               >
@@ -169,4 +171,5 @@ export default function AdminReusableSeatMatrixGrid({ seats, shifts }: Props) {
     </Card>
   );
 }
+
 

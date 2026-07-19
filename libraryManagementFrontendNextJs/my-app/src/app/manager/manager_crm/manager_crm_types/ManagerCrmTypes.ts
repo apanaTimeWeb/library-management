@@ -1,3 +1,4 @@
+﻿// RESPONSIBILITY: Renders or handles logic for ManagerCrmTypes.ts.
 import { ReactNode } from 'react';
 
 
@@ -58,3 +59,4 @@ export interface RawEnquiry {
   createdAt: string;
 }
 export type EnquiryStatus = 'New' | 'Visited' | 'Interested' | 'Converted' | 'Lost';
+

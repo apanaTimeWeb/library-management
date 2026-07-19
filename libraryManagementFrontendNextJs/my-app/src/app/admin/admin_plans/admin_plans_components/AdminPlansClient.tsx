@@ -66,7 +66,7 @@ export function AdminPlansClient() {
           <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-1">
             Smart Library 360 <span className="opacity-50">›</span> Admin <span className="opacity-50">›</span> Plans
           </p>
-          <h1 className="text-2xl font-bold tracking-tight text-foreground">Membership Plans</h1>
+          <h1 className="text-text-primary text-xl font-bold tracking-tight text-foreground">Membership Plans</h1>
           <p className="text-sm text-muted-foreground mt-1">Create and manage subscription pricing plans across library branches.</p>
         </div>
         <Button
@@ -251,7 +251,7 @@ export function AdminPlansClient() {
               <div className="grid grid-cols-2 gap-y-6 gap-x-4 text-sm">
                 <div>
                   <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wider block mb-1">Plan Price</span>
-                  <p className="font-extrabold text-2xl text-primary flex items-center">
+                  <p className="font-extrabold text-text-primary text-xl text-primary flex items-center">
                     <IndianRupee size={20} /> {selectedPlanDetails.price}
                   </p>
                 </div>
@@ -311,3 +311,4 @@ export function AdminPlansClient() {
     </div>
   );
 }
+

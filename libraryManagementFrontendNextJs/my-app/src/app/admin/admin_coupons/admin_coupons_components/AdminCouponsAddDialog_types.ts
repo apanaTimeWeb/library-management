@@ -1,3 +1,4 @@
+﻿// RESPONSIBILITY: Renders or handles logic for AdminCouponsAddDialog_types.ts.
 import { useEffect, useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm as useReactHookForm } from "react-hook-form";
@@ -11,3 +12,4 @@ export interface AdminCouponsAddDialogProps {
   onClose: () => void;
   onSubmit: (data: AdminCouponFormData) => Promise<{ success: boolean; message: string }>;
 }
+

@@ -1,7 +1,7 @@
 // RESPONSIBILITY: Renders the useAdminFinanceRenewals.ts component/hook.
 import { useState, useMemo } from 'react';
 import toast from 'react-hot-toast';
-import { formatCurrency } from '@/app/admin/admin_finance/admin_finance_utils/format';
+import { formatCurrency } from '@/app/admin/admin_finance/admin_finance_utils/AdminFinanceFormat';
 import { ADMIN_FINANCE_MOCK_RENEWALS, ADMIN_FINANCE_MOCK_PLANS, ADMIN_FINANCE_FILTERS } from '@/app/admin/admin_finance/admin_finance_constants/AdminFinanceConstants';
 
 

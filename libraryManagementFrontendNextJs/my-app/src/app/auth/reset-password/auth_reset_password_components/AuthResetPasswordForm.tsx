@@ -40,7 +40,7 @@ export function AuthResetPasswordForm() {
   return (
     <div className="min-h-screen flex flex-col items-center justify-start sm:justify-center p-4 sm:p-6 pt-10 sm:pt-6 bg-page text-text-primary relative overflow-hidden">
       {/* Ambient glow */}
-      <div className="absolute bottom-[-10%] left-[-5%] w-[40%] h-[40%] bg-purple/20 blur-[100px] rounded-full pointer-events-none" />
+      <div className="absolute bottom-[-10%] left-[-5%] w-2/5 h-2/5 bg-purple/20 blur-[100px] rounded-full pointer-events-none" />
 
       <div className="w-full max-w-full max-w-md space-y-5 pb-8 relative z-10">
         {/* Logo */}
@@ -57,7 +57,7 @@ export function AuthResetPasswordForm() {
           {!done ? (
             <>
               <div className="mb-7">
-                <h1 className="text-2xl font-bold text-text-primary">Reset Password 🔑</h1>
+                <h1 className="text-text-primary text-xl font-bold text-text-primary">Reset Password ðŸ”‘</h1>
                 <p className="text-sm text-text-secondary mt-1">
                   Enter the OTP sent to your phone and choose a new password.
                 </p>
@@ -66,7 +66,7 @@ export function AuthResetPasswordForm() {
               <form onSubmit={handleSubmit} noValidate className="space-y-5">
                 {/* OTP Boxes */}
                 <div>
-                  <label className="block text-[13px] font-medium text-text-secondary mb-2 text-center">Enter OTP sent to your phone</label>
+                  <label className="block text-xs font-medium text-text-secondary mb-2 text-center">Enter OTP sent to your phone</label>
                   <Controller
                     name="token"
                     control={control}
@@ -89,7 +89,7 @@ export function AuthResetPasswordForm() {
                       </div>
                     )}
                   />
-                  {errors.token && <p className="text-[12px] text-danger text-center mt-2">{errors.token.message}</p>}
+                  {errors.token && <p className="text-xs text-danger text-center mt-2">{errors.token.message}</p>}
 
                   {/* Resend */}
                   <div className="text-center mt-3">
@@ -107,7 +107,7 @@ export function AuthResetPasswordForm() {
 
                 {/* New Password */}
                 <div>
-                  <label htmlFor="rp-new" className="block text-[13px] font-medium text-text-secondary mb-1.5">
+                  <label htmlFor="rp-new" className="block text-xs font-medium text-text-secondary mb-1.5">
                     New Password <span className="text-danger">*</span>
                   </label>
                   <div className="relative">
@@ -122,13 +122,13 @@ export function AuthResetPasswordForm() {
                       {showPw ? <EyeOff size={17} /> : <Eye size={17} />}
                     </button>
                   </div>
-                  {errors.newPassword && <p className="text-[12px] text-danger mt-1">{errors.newPassword.message}</p>}
+                  {errors.newPassword && <p className="text-xs text-danger mt-1">{errors.newPassword.message}</p>}
                   <PasswordStrengthMeter password={newPassword} />
                 </div>
 
                 {/* Confirm Password */}
                 <div>
-                  <label htmlFor="rp-confirm" className="block text-[13px] font-medium text-text-secondary mb-1.5">
+                  <label htmlFor="rp-confirm" className="block text-xs font-medium text-text-secondary mb-1.5">
                     Confirm Password <span className="text-danger">*</span>
                   </label>
                   <div className="relative">
@@ -143,17 +143,17 @@ export function AuthResetPasswordForm() {
                       {showConfirm ? <EyeOff size={17} /> : <Eye size={17} />}
                     </button>
                   </div>
-                  {errors.confirmPassword && <p className="text-[12px] text-danger mt-1">{errors.confirmPassword.message}</p>}
+                  {errors.confirmPassword && <p className="text-xs text-danger mt-1">{errors.confirmPassword.message}</p>}
                 </div>
 
                 {errorMessage && (
                   <div className="p-3 bg-danger-bg border border-danger/20 rounded-lg text-danger text-sm font-medium flex items-start gap-2">
-                    <span>❌</span> <span>{errorMessage}</span>
+                    <span>âŒ</span> <span>{errorMessage}</span>
                   </div>
                 )}
                 {errors.root && (
                   <div className="p-3 bg-danger-bg border border-danger/20 rounded-lg text-danger text-sm font-medium flex items-start gap-2">
-                    <span>❌</span> <span>{errors.root.message}</span>
+                    <span>âŒ</span> <span>{errors.root.message}</span>
                   </div>
                 )}
 
@@ -172,7 +172,7 @@ export function AuthResetPasswordForm() {
           ) : (
             <div className="text-center py-4">
               <div className="w-16 h-16 bg-success/10 rounded-full flex items-center justify-center mx-auto mb-4 border border-success/20 shadow-sm shadow-success/10">
-                <span className="text-2xl">✅</span>
+                <span className="text-text-primary text-xl">✅</span>
               </div>
               <h2 className="text-xl font-bold text-text-primary">Password Reset!</h2>
               <p className="text-sm text-text-secondary leading-relaxed mt-2">
@@ -183,7 +183,7 @@ export function AuthResetPasswordForm() {
                 id="back-to-login-btn"
                 className="w-full py-2.5 bg-primary hover:bg-primary-hover text-white font-semibold rounded-lg shadow-sm transition-all flex justify-center items-center gap-2 mt-6 inline-flex"
               >
-                Go to Login →
+                Go to Login â†’
               </Link>
             </div>
           )}
@@ -192,3 +192,4 @@ export function AuthResetPasswordForm() {
     </div>
   );
 }
+

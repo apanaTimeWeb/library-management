@@ -1,7 +1,9 @@
+// RESPONSIBILITY: Renders or handles logic for auth_api.ts.
 import { StatusCodes } from 'http-status-codes';
 import { AUTH_API_ROUTES } from '@/app/auth/auth_url_config';
 import type { ApiResponse, AuthLoginResponse, AuthSignupPayload, AuthUser } from '@/app/auth/auth_types/auth_types';
 import { fetchApi } from '@/lib/api';
+import { logger } from '@/lib/logger';
 
 /**
  * Handles backend API calls for the auth module.
@@ -10,7 +12,7 @@ import { fetchApi } from '@/lib/api';
 export const authApi = {
   login: async (identifier: string, password: string): Promise<ApiResponse<AuthLoginResponse>> => {
     try {
-      let response: Record<string, unknown>;
+      let response: any;
       try {
         // fetchApi automatically attaches tokens, intercepts errors, and handles the base URL
         response = await fetchApi(AUTH_API_ROUTES.LOGIN, {
@@ -18,7 +20,7 @@ export const authApi = {
           body: JSON.stringify({ phone: identifier, password }),
         });
       } catch (fetchError) {
-        console.warn('Backend not reachable, mocking login success');
+        logger.warn('Backend not reachable, mocking login success');
         response = {
           message: 'Mock login successful',
           data: {
@@ -35,7 +37,7 @@ export const authApi = {
       }
 
       // Based on Rule 28, response should already be shaped correctly, but we adapt gracefully
-      const payload = response.data !== undefined ? (response.data as AuthLoginResponse) : (response as AuthLoginResponse);
+      const payload = response.data ? (response.data as AuthLoginResponse) : (response as unknown as AuthLoginResponse);
 
       // Store tokens for client-side use if successful
       if (typeof window !== 'undefined' && payload) {
@@ -51,7 +53,7 @@ export const authApi = {
       
       return {
         success: true,
-        message: response.message || 'Login successful',
+        message: (response as any).message || 'Login successful',
         data: payload,
         statusCode: StatusCodes.OK
       };
@@ -173,7 +175,7 @@ export const authApi = {
     try {
       const response = await fetchApi(AUTH_API_ROUTES.ME, {
         method: 'GET',
-      });
+      }) as any;
       return {
         success: true,
         message: 'User fetched successfully',
@@ -191,3 +193,4 @@ export const authApi = {
     }
   },
 };
+

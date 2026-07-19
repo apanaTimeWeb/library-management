@@ -9,19 +9,19 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
 import { TablePagination } from '@/components/ui/table-pagination';
+import { TableToolbar } from '@/components/ui/table-toolbar';
+import { useClientTable } from '@/components/ui/use-client-table';
 
 export function AdminStudentsClient({ initialStudents }: AdminStudentsClientProps) {
-  const [page, setPage] = useState(1);
-  const [limit, setLimit] = useState(10);
 
   const { search, setSearch, selectedBranch, filteredStudents } = useAdminStudents(initialStudents);
-
+  const table = useClientTable(filteredStudents, 10);
   return (
     <div className="h-full flex flex-col pb-10 space-y-6">
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-border pb-4">
         <div>
           <p className="text-sm text-text-secondary mb-1">Smart Library 360 › Admin › Students</p>
-          <h1 className="text-2xl font-bold tracking-tight text-text-primary">{selectedBranch} - Students</h1>
+          <h1 className="text-text-primary text-xl font-bold tracking-tight text-text-primary">{selectedBranch} - Students</h1>
           <p className="text-sm text-text-secondary mt-1">Overview of students enrolled in the currently selected branch.</p>
         </div>
         <div className="flex items-center gap-3">
@@ -35,7 +35,7 @@ export function AdminStudentsClient({ initialStudents }: AdminStudentsClientProp
         <div className="relative flex-1">
           <Search size={15} className="absolute left-3 top-1/2 -translate-y-1/2 text-text-secondary" />
           <Input
-            className="pl-9 h-10 border-border bg-bg-input text-text-primary placeholder:text-text-secondary"
+            className="pl-9 h-10 border-border bg-input text-text-primary placeholder:text-text-secondary"
             placeholder="Search by student name..."
             value={search}
             onChange={e => setSearch(e.target.value)}
@@ -43,10 +43,16 @@ export function AdminStudentsClient({ initialStudents }: AdminStudentsClientProp
         </div>
       </div>
 
-      <div className="flex-1 border border-border bg-bg-card rounded-[var(--radius-lg)] overflow-hidden flex flex-col shadow-sm">
-        <div className="w-full overflow-x-auto flex-1">
+      <div className="flex-1 border border-border bg-card rounded-lg overflow-hidden flex flex-col shadow-sm">
+        <div className="mb-4">
+        <TableToolbar 
+          search={table.searchTerm} 
+          onSearch={table.setSearchTerm} 
+        />
+      </div>
+      <div className="w-full overflow-x-auto flex-1">
           <table className="w-full text-sm text-left">
-            <thead className="bg-bg-page border-b border-border text-text-secondary text-xs font-medium uppercase tracking-wider sticky top-0 z-10">
+            <thead className="bg-page border-b border-border text-text-secondary text-xs font-medium uppercase tracking-wider sticky top-0 z-10">
               <tr>
                 <th className="px-4 py-3">ID</th>
                 <th className="px-4 py-3">Student Name</th>
@@ -57,10 +63,10 @@ export function AdminStudentsClient({ initialStudents }: AdminStudentsClientProp
               </tr>
             </thead>
             <tbody className="divide-y divide-border">
-              {filteredStudents.slice((page - 1) * limit, page * limit).map((student) => (
+              {table.paginatedData.map((student) => (
                 <tr 
                   key={student.id} 
-                  className="hover:bg-bg-page transition-colors group cursor-pointer"
+                  className="hover:bg-page transition-colors group cursor-pointer"
                 >
                   <td className="px-4 py-4 font-bold text-xs text-primary">
                     {student.id}
@@ -84,7 +90,7 @@ export function AdminStudentsClient({ initialStudents }: AdminStudentsClientProp
                   </td>
                 </tr>
               ))}
-              {filteredStudents.length === 0 && (
+              {table.paginatedData.length === 0 && (
                 <tr>
                   <td colSpan={6} className="px-4 py-12 text-center text-text-secondary">
                     No students found matching your search.
@@ -93,14 +99,14 @@ export function AdminStudentsClient({ initialStudents }: AdminStudentsClientProp
               )}
             </tbody>
           </table>
-          </div>
-          <TablePagination
-            page={page}
-            limit={limit}
-            totalItems={filteredStudents.length}
-            onPageChange={setPage}
-            onLimitChange={setLimit}
-          />
+          </div> 
+      <TablePagination 
+        totalItems={table.totalItems} 
+        page={table.page} 
+        limit={table.limit} 
+        onPageChange={table.setPage} 
+        onLimitChange={table.setLimit}
+      />
       </div>
     </div>
   );

@@ -1,3 +1,4 @@
+import { useUrlState } from '@/app/admin/admin_shared_hooks/useUrlState';
 // RESPONSIBILITY: Renders the useAdminSeatHistory.ts component/hook.
 import { useState, useMemo } from 'react';
 import { ADMIN_SEATS_MOCK_HISTORY } from '@/app/admin/admin_seats_shifts_lockers/admin_seats_shifts_lockers_utils/AdminSeatsMockData';
@@ -15,10 +16,10 @@ export interface SeatHistoryEntry {
 }
 
 export function useAdminSeatHistory() {
-  const [seatFilter, setSeatFilter] = useState('All Seats');
-  const [search, setSearch] = useState('');
-  const [dateFrom, setDateFrom] = useState('');
-  const [dateTo, setDateTo] = useState('');
+  const [seatFilter, setSeatFilter] = useUrlState('seatFilter', 'All Seats' as string);
+  const [search, setSearch] = useUrlState('search', '' as string);
+  const [dateFrom, setDateFrom] = useUrlState('dateFrom', '' as string);
+  const [dateTo, setDateTo] = useUrlState('dateTo', '' as string);
 
   const filtered = useMemo(() => {
     return (ADMIN_SEATS_MOCK_HISTORY as SeatHistoryEntry[]).filter(h => {
@@ -44,3 +45,4 @@ export function useAdminSeatHistory() {
     filtered
   };
 }
+

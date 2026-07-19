@@ -1,3 +1,4 @@
+﻿// RESPONSIBILITY: Renders or handles logic for useAuthSignup.ts.
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -7,7 +8,7 @@ import type { AuthSignupPayload } from '@/app/auth/auth_types/auth_types';
 import { useAuthStore } from '@/app/auth/auth_store/auth_store';
 import toast from 'react-hot-toast';
 
-// DATA FLOW: UI Component → useAuthSignup.ts → useAuthStore → authApi
+// DATA FLOW: UI Component â†’ useAuthSignup.ts â†’ useAuthStore â†’ authApi
 export function useAuthSignup() {
   const [shows, setShows] = useState({ pw: false, confirm: false });
   
@@ -57,3 +58,4 @@ export function useAuthSignup() {
     errorMessage
   };
 }
+

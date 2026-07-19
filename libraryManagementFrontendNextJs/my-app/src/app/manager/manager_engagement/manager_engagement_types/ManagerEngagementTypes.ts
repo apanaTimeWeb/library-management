@@ -1,3 +1,4 @@
+﻿// RESPONSIBILITY: Renders or handles logic for ManagerEngagementTypes.ts.
 
 
 export interface AbsenteeRow {
@@ -11,3 +12,4 @@ export interface ScanResult {
 }
 export interface Holiday { id: string; date: string; name: string; type: string; }
 export type ScanState = 'idle' | 'scanning' | 'detected' | 'success';
+

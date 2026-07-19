@@ -15,7 +15,7 @@ export function SuperadminSeatGapReportFilterBar({ shiftFilter, setShiftFilter, 
   };
 
   return (
-    <div className="bg-bg-card border border-border rounded-[var(--radius-lg)] p-4 shadow-sm mb-6 flex flex-wrap items-center gap-3">
+    <div className="bg-card border border-border rounded-lg p-4 shadow-sm mb-6 flex flex-wrap items-center gap-3">
       <label className="text-xs font-bold text-text-secondary uppercase tracking-wider mr-1">Filters:</label>
       <div className="min-w-36">
         <SuperadminSearchableDropdown
@@ -43,7 +43,7 @@ export function SuperadminSeatGapReportFilterBar({ shiftFilter, setShiftFilter, 
       </div>
 
       <button 
-        className="ml-auto flex items-center gap-2 bg-bg-input hover:bg-border border border-border text-text-primary text-xs font-bold py-1.5 px-3 rounded-[var(--radius-sm)] transition-colors shadow-sm disabled:opacity-50 cursor-pointer"
+        className="ml-auto flex items-center gap-2 bg-input hover:bg-border border border-border text-text-primary text-xs font-bold py-1.5 px-3 rounded-sm transition-colors shadow-sm disabled:opacity-50 cursor-pointer"
         onClick={handleExportClick}
         disabled={exporting}
       >
@@ -53,3 +53,4 @@ export function SuperadminSeatGapReportFilterBar({ shiftFilter, setShiftFilter, 
     </div>
   );
 }
+

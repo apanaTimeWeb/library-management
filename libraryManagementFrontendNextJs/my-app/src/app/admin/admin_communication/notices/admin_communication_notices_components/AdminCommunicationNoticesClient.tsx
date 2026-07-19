@@ -15,10 +15,13 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, Di
 import toast from 'react-hot-toast';
 import { TablePagination } from '@/components/ui/table-pagination';
 import { Notice } from "./AdminCommunicationNoticesClient_types";
+import { TableToolbar } from '@/components/ui/table-toolbar';
+import { useClientTable } from '@/components/ui/use-client-table';
 
 const today = new Date().toISOString().split('T')[0];
 
 export function AdminCommunicationNoticesClient() {
+
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(10);
   const [notices, setNotices]             = useState<Notice[]>([]);
@@ -30,7 +33,7 @@ export function AdminCommunicationNoticesClient() {
 
   useEffect(() => {
     fetchApi('/communication/notices').then(data => {
-      const mapped = data.map(( n: Record<string, unknown> ) => ({
+      const mapped = (data as any[]).map(( n: Record<string, unknown> ) => ({
         id: String(n.id || Math.random()),
         title: String(n.title || n.name || 'Notice'),
         message: String(n.message || n.details || ''),
@@ -39,7 +42,7 @@ export function AdminCommunicationNoticesClient() {
         validTill: n.validTill ? new Date(n.validTill as string).toISOString().split('T')[0] : new Date(Date.now() + 7 * 86400000).toISOString().split('T')[0],
         status: (n.validTill && new Date(n.validTill as string) < new Date()) ? 'Expired' : 'Active',
       }));
-      setNotices(mapped);
+      setNotices(mapped as unknown as any[]);
     }).catch(e => logger.error('Notices fetch failed:', e));
   }, []);
 
@@ -70,7 +73,7 @@ export function AdminCommunicationNoticesClient() {
     setBroadcastItem(null);
     toast.success('Notice broadcast to all active students via WhatsApp');
   };
-
+    const table = useClientTable(notices, 10);
   return (
     <div className="space-y-6 pb-10">
       {/* Header */}
@@ -79,7 +82,7 @@ export function AdminCommunicationNoticesClient() {
           <p className="text-xs font-semibold text-muted-foreground flex items-center gap-1 uppercase tracking-wider mb-1">
             Communication <ChevronRight size={12} /> Notices
           </p>
-          <h1 className="text-2xl font-bold tracking-tight">📢 Notice Board</h1>
+          <h1 className="text-text-primary text-xl font-bold tracking-tight">📢 Notice Board</h1>
           <p className="text-sm text-muted-foreground mt-1">Post and manage library notices for students.</p>
         </div>
         <Button onClick={openAdd} className="gap-2">
@@ -98,7 +101,13 @@ export function AdminCommunicationNoticesClient() {
           </div>
         ) : (
           <>
-          <table className="w-full text-sm text-left">
+          <div className="mb-4">
+        <TableToolbar 
+          search={table.searchTerm} 
+          onSearch={table.setSearchTerm} 
+        />
+      </div>
+      <table className="w-full text-sm text-left">
             <thead className="bg-muted text-muted-foreground text-xs font-semibold uppercase tracking-wider sticky top-0 z-10">
               <tr>
                 <th className="py-3 px-4">Title</th>
@@ -139,7 +148,13 @@ export function AdminCommunicationNoticesClient() {
                 </tr>
               ))}
             </tbody>
-          </table>
+          </table> 
+      <TablePagination 
+        totalItems={table.totalItems} 
+        page={table.page} 
+        limit={table.limit} 
+        onPageChange={table.setPage} 
+      />
 
       <TablePagination 
         totalItems={100} 
@@ -156,7 +171,7 @@ export function AdminCommunicationNoticesClient() {
       <Dialog open={showAdd} onOpenChange={setShowAdd}>
         <DialogContent className="sm:max-w-lg">
           <DialogHeader>
-            <DialogTitle>{editItem ? '✏️ Edit Notice' : '📢 Post Notice'}</DialogTitle>
+            <DialogTitle>{editItem ? 'âœï¸ Edit Notice' : '📢 Post Notice'}</DialogTitle>
           </DialogHeader>
           <div className="space-y-4 py-4">
             <div className="space-y-2">

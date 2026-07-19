@@ -1,3 +1,4 @@
+﻿// RESPONSIBILITY: Renders or handles logic for useManagerCrmEnquiriesDetail.ts.
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
@@ -107,9 +108,8 @@ export function useManagerCrmEnquiriesDetail(id: string) {
           month: 'long',
           year: 'numeric',
         }),
-        time: new Date().toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' }),
         by: 'Admin',
-        remark: formData.remark,
+        note: formData.remark,
       };
       setEnquiry((prev) =>
         prev ? { ...prev, followUps: [newEntry as FollowUp, ...prev.followUps] } : prev
@@ -146,9 +146,8 @@ export function useManagerCrmEnquiriesDetail(id: string) {
           month: 'long',
           year: 'numeric',
         }),
-        time: new Date().toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' }),
         by: 'Admin',
-        remark: reason ? `Marked as Lost - ${reason}` : 'Marked as Lost.',
+        note: reason ? `Marked as Lost - ${reason}` : 'Marked as Lost.',
       };
       setEnquiry((prev) =>
         prev
@@ -158,7 +157,7 @@ export function useManagerCrmEnquiriesDetail(id: string) {
       setCurrentStatus('Lost');
       setShowLostModal(false);
       toast('Enquiry marked as lost.', {
-        icon: '❌',
+        icon: 'âŒ',
         className: 'crm-toast crm-toast--danger',
       });
     } catch (err) {
@@ -189,3 +188,4 @@ export function useManagerCrmEnquiriesDetail(id: string) {
     handleMarkLostConfirm,
   };
 }
+

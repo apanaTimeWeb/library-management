@@ -1,8 +1,9 @@
 "use client";
+// RESPONSIBILITY: Component or Page.
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronDown } from 'lucide-react';
-import { PUBLIC_FAQS } from '../public_constants/PublicLandingConstants';
+import { PUBLIC_FAQS } from '@/app/public/public_constants/PublicLandingConstants';
 
 export function PublicFAQAccordion() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
@@ -25,7 +26,7 @@ export function PublicFAQAccordion() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: idx * 0.1 }}
-                className={`border rounded-[var(--radius-md)] overflow-hidden transition-colors ${isOpen ? 'border-primary bg-bg-card' : 'border-border bg-bg-card/50'}`}
+                className={`border rounded-md overflow-hidden transition-colors ${isOpen ? 'border-primary bg-card' : 'border-border bg-card/50'}`}
               >
                 <button
                   onClick={() => setOpenIndex(isOpen ? null : idx)}
@@ -61,3 +62,4 @@ export function PublicFAQAccordion() {
     </section>
   );
 }
+

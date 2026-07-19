@@ -1,7 +1,7 @@
 'use client';
 // RESPONSIBILITY: Renders the SuperadminSwitch component.
 import * as SwitchPrimitive from '@radix-ui/react-switch';
-import { cn } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/superadmin_utils';
+import { cn } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminUtils';
 import { SuperadminSwitchProps } from '@/app/superadmin/superadmin_system/superadmin_system_types/SuperadminSystemSharedComponentsTypes';
 
 export function SuperadminSwitch({ checked, onCheckedChange, disabled = false, id, className }: SuperadminSwitchProps & { id?: string, className?: string }) {
@@ -12,7 +12,7 @@ export function SuperadminSwitch({ checked, onCheckedChange, disabled = false, i
       onCheckedChange={onCheckedChange}
       disabled={disabled}
       className={cn(
-        'peer inline-flex h-5 w-9 shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-bg-bg-card disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-primary data-[state=unchecked]:bg-input',
+        'peer inline-flex h-5 w-9 shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-bg-card disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-primary data-[state=unchecked]:bg-input',
         className
       )}
     >

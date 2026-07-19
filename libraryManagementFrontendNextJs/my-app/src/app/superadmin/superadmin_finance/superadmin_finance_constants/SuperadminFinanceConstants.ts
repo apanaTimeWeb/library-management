@@ -1,3 +1,6 @@
+// RESPONSIBILITY: Renders or handles logic for SuperadminFinanceConstants.ts.
+import type { SuperadminFinanceSubscription } from '@/app/superadmin/superadmin_finance/superadmin_finance_types/SuperadminFinanceTypes';
+
 export const SUPERADMIN_FINANCE_DASHBOARD_MOCK_STATS = {
   totalCollections: 44880, collectionsGrowth: 12.5, activeStudents: 12,
   expiringSoon: 3, suspended: 2, totalReferrals: 6, depositsHeld: 16000,
@@ -106,7 +109,7 @@ export const SUPERADMIN_FINANCE_MOCK_STUDENTS_TRUST = [
   { rank: 6, studentName: 'Neha Gupta',   smartId: 'STU106', shift: 'Full Day', trustScore: 33, totalPromises: 7,  timesChanged: 5, fulfilledCount: 2,  badge: 'low'      },
 ];
 
-export const SUPERADMIN_FINANCE_MOCK_SUBSCRIPTIONS = [
+export const SUPERADMIN_FINANCE_MOCK_SUBSCRIPTIONS: SuperadminFinanceSubscription[] = [
   { id: 1, studentName: 'Aarav Sharma',  smartId: 'STU001', plan: 'Premium Plan', shift: 'Morning', startDate: '2026-01-01', endDate: '2026-06-30', daysLeft: 12,  base: 15000, discount: 0,    total: 15000, paid: 15000, due: 0,    status: 'active'    },
   { id: 2, studentName: 'Priya Patel',   smartId: 'STU002', plan: 'Basic Plan',   shift: 'Evening', startDate: '2025-11-01', endDate: '2026-04-30', daysLeft: 3,   base: 8000,  discount: 200,  total: 7800,  paid: 6000, due: 1800, status: 'active'    },
   { id: 3, studentName: 'Rohan Kumar',   smartId: 'STU003', plan: 'Premium Plan', shift: 'Full Day',startDate: '2025-08-01', endDate: '2025-12-31', daysLeft: -15, base: 18000, discount: 0,    total: 18000, paid: 18000,due: 0,    status: 'expired'   },
@@ -165,7 +168,24 @@ export const SUPERADMIN_FINANCE_MOCK_DEPOSITS = [
 ];
 
 export const SUPERADMIN_FINANCE_PROMISE_STATUS_BADGE: Record<string, string> = {
-  pending:   'bg-warning text-warning-foreground px-2.5 py-0.5 rounded-full text-[11px] font-semibold',
-  fulfilled: 'bg-success text-success-foreground px-2.5 py-0.5 rounded-full text-[11px] font-semibold',
-  overdue:   'bg-danger text-danger-foreground px-2.5 py-0.5 rounded-full text-[11px] font-semibold',
+  pending:   'bg-warning text-warning-foreground px-2.5 py-0.5 rounded-full text-xs font-semibold',
+  fulfilled: 'bg-success text-success-foreground px-2.5 py-0.5 rounded-full text-xs font-semibold',
+  overdue:   'bg-danger text-danger-foreground px-2.5 py-0.5 rounded-full text-xs font-semibold',
 };
+
+export const SUPERADMIN_FINANCE_SUBSCRIPTION_STATUS_BADGE: Record<string, string> = {
+  active:    'bg-success/10 text-success border border-success/20',
+  expired:   'bg-danger/10 text-danger border border-danger/20',
+  suspended: 'bg-warning/10 text-warning border border-warning/20',
+  cancelled: 'bg-input text-text-primary border border-border',
+};
+
+export function superadminFinanceDaysLeftBadgeClass(days: number) {
+  if (days < 0) return 'text-danger font-semibold text-sm';
+  if (days <= 7) return 'text-danger font-semibold text-sm';
+  if (days <= 15) return 'text-warning font-semibold text-sm';
+  return 'text-success font-semibold text-sm';
+}
+
+
+

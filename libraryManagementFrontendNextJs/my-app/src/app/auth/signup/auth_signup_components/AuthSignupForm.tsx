@@ -26,8 +26,8 @@ export function AuthSignupForm() {
   return (
     <main className="flex min-h-screen bg-page text-text-primary">
       {/* Ambient glows */}
-      <div className="absolute top-[-10%] right-[-5%] w-[40%] h-[40%] bg-primary/20 blur-[100px] rounded-full pointer-events-none" />
-      <div className="absolute bottom-[-10%] left-[-5%] w-[40%] h-[40%] bg-purple/20 blur-[100px] rounded-full pointer-events-none" />
+      <div className="absolute top-[-10%] right-[-5%] w-2/5 h-2/5 bg-primary/20 blur-[100px] rounded-full pointer-events-none" />
+      <div className="absolute bottom-[-10%] left-[-5%] w-2/5 h-2/5 bg-purple/20 blur-[100px] rounded-full pointer-events-none" />
 
       {/* ── LEFT BRAND PANEL ── */}
       <section className="hidden lg:flex lg:w-1/2 flex-col justify-between p-8 xl:p-12 relative z-10 border-r border-border bg-page">
@@ -79,42 +79,42 @@ export function AuthSignupForm() {
 
           <div className="bg-card border border-border rounded-2xl p-6 sm:p-8 shadow-2xl relative overflow-hidden backdrop-blur-xl">
             <div className="mb-7">
-              <h2 className="text-2xl font-bold text-text-primary">Create Library Account</h2>
+              <h2 className="text-text-primary text-xl font-bold text-text-primary">Create Library Account</h2>
               <p className="text-sm text-text-secondary mt-1">Enter your details to start your 30-day free trial.</p>
             </div>
 
             <form onSubmit={handleSubmit} noValidate className="space-y-4">
               {/* Name */}
               <div>
-                <label htmlFor="su-name" className="block text-[13px] font-medium text-text-secondary mb-1.5">
+                <label htmlFor="su-name" className="block text-xs font-medium text-text-secondary mb-1.5">
                   Full Name <span className="text-danger">*</span>
                 </label>
                 <input id="su-name" type="text" placeholder="Your full name" {...register('name')}
                   className={`w-full px-3.5 py-2.5 rounded-lg text-sm bg-input text-text-primary border outline-none transition-all focus:ring-2 focus:ring-primary/20 ${errors.name ? 'border-danger focus:border-danger' : 'border-border focus:border-primary'}`} />
-                {errors.name && <p className="text-[12px] text-danger mt-1">{errors.name.message}</p>}
+                {errors.name && <p className="text-xs text-danger mt-1">{errors.name.message}</p>}
               </div>
 
               {/* Email + Phone */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label htmlFor="su-email" className="block text-[13px] font-medium text-text-secondary mb-1.5">Email (Optional)</label>
+                  <label htmlFor="su-email" className="block text-xs font-medium text-text-secondary mb-1.5">Email (Optional)</label>
                   <input id="su-email" type="email" placeholder="you@example.com" {...register('email')}
                     className={`w-full px-3.5 py-2.5 rounded-lg text-sm bg-input text-text-primary border outline-none transition-all focus:ring-2 focus:ring-primary/20 ${errors.email ? 'border-danger focus:border-danger' : 'border-border focus:border-primary'}`} />
-                  {errors.email && <p className="text-[12px] text-danger mt-1">{errors.email.message}</p>}
+                  {errors.email && <p className="text-xs text-danger mt-1">{errors.email.message}</p>}
                 </div>
                 <div>
-                  <label htmlFor="su-phone" className="block text-[13px] font-medium text-text-secondary mb-1.5">
+                  <label htmlFor="su-phone" className="block text-xs font-medium text-text-secondary mb-1.5">
                     Phone <span className="text-danger">*</span>
                   </label>
                   <input id="su-phone" type="tel" placeholder="+91 9800000000" {...register('phone')}
                     className={`w-full px-3.5 py-2.5 rounded-lg text-sm bg-input text-text-primary border outline-none transition-all focus:ring-2 focus:ring-primary/20 ${errors.phone ? 'border-danger focus:border-danger' : 'border-border focus:border-primary'}`} />
-                  {errors.phone && <p className="text-[12px] text-danger mt-1">{errors.phone.message}</p>}
+                  {errors.phone && <p className="text-xs text-danger mt-1">{errors.phone.message}</p>}
                 </div>
               </div>
 
               {/* Password */}
               <div>
-                <label htmlFor="su-pw" className="block text-[13px] font-medium text-text-secondary mb-1.5">
+                <label htmlFor="su-pw" className="block text-xs font-medium text-text-secondary mb-1.5">
                   Password <span className="text-danger">*</span>
                 </label>
                 <div className="relative">
@@ -125,13 +125,13 @@ export function AuthSignupForm() {
                     {shows.pw ? <EyeOff size={17} /> : <Eye size={17} />}
                   </button>
                 </div>
-                {errors.password && <p className="text-[12px] text-danger mt-1">{errors.password.message}</p>}
+                {errors.password && <p className="text-xs text-danger mt-1">{errors.password.message}</p>}
                 <PasswordStrengthMeter password={password} />
               </div>
 
               {/* Confirm Password */}
               <div>
-                <label htmlFor="su-confirm" className="block text-[13px] font-medium text-text-secondary mb-1.5">
+                <label htmlFor="su-confirm" className="block text-xs font-medium text-text-secondary mb-1.5">
                   Confirm Password <span className="text-danger">*</span>
                 </label>
                 <div className="relative">
@@ -146,17 +146,17 @@ export function AuthSignupForm() {
                     {shows.confirm ? <EyeOff size={17} /> : <Eye size={17} />}
                   </button>
                 </div>
-                {errors.confirmPassword && <p className="text-[12px] text-danger mt-1">{errors.confirmPassword.message}</p>}
+                {errors.confirmPassword && <p className="text-xs text-danger mt-1">{errors.confirmPassword.message}</p>}
               </div>
 
               {errorMessage && (
                 <div className="p-3 bg-danger-bg border border-danger/20 rounded-lg text-danger text-sm font-medium flex items-start gap-2">
-                  <span>❌</span> <span>{errorMessage}</span>
+                  <span>âŒ</span> <span>{errorMessage}</span>
                 </div>
               )}
 
               <button id="signup-submit-btn" type="submit" disabled={isLoading} className="w-full py-2.5 bg-primary hover:bg-primary-hover text-white font-semibold rounded-lg shadow-sm transition-all flex justify-center items-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed mt-2">
-                {isLoading ? <><Loader2 size={16} className="animate-spin" /> Creating account...</> : 'Create Account →'}
+                {isLoading ? <><Loader2 size={16} className="animate-spin" /> Creating account...</> : 'Create Account â†’'}
               </button>
             </form>
 
@@ -176,3 +176,4 @@ export function AuthSignupForm() {
     </main>
   );
 }
+

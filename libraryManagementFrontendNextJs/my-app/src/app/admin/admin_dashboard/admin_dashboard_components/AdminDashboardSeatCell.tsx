@@ -8,7 +8,7 @@ function getShiftClass(shift: string): string {
     Evening: 'bg-info-bg text-info',
     Night:   'bg-purple-bg text-purple',
   };
-  return map[shift] ?? 'bg-bg-input text-text-primary';
+  return map[shift] ?? 'bg-input text-text-primary';
 }
 
 export function AdminDashboardSeatCell({ id, status, occupant, shift, expiry, onClick }: AdminDashboardSeatCellProps) {
@@ -16,7 +16,7 @@ export function AdminDashboardSeatCell({ id, status, occupant, shift, expiry, on
     free: 'bg-success-bg text-success border-success/30 hover:bg-success/20 hover:border-success/50',
     occupied: 'bg-info-bg text-info border-info/30 hover:bg-info/20 hover:border-info/50',
     expiring: 'bg-warning-bg text-warning border-warning/30 hover:bg-warning/20 hover:border-warning/50',
-    maintenance: 'bg-bg-page text-text-secondary border-border hover:bg-bg-input',
+    maintenance: 'bg-page text-text-secondary border-border hover:bg-input',
   };
 
   return (
@@ -27,7 +27,7 @@ export function AdminDashboardSeatCell({ id, status, occupant, shift, expiry, on
       <span className="font-bold text-xs">{id}</span>
 
       {/* Tooltip */}
-      <div className="absolute z-10 bottom-full mb-2 left-1/2 -translate-x-1/2 w-max max-w-52 bg-bg-card border border-border text-text-primary text-xs rounded-lg px-3 py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all shadow-xl flex flex-col items-center gap-1">
+      <div className="absolute z-10 bottom-full mb-2 left-1/2 -translate-x-1/2 w-max max-w-52 bg-card border border-border text-text-primary text-xs rounded-lg px-3 py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all shadow-xl flex flex-col items-center gap-1">
         {occupant ? (
           <>
             <span className="font-bold">{occupant}</span>

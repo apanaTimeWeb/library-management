@@ -1,4 +1,6 @@
 'use client';
+import { AdminSearchableDropdown } from '@/app/admin/admin_shared_components/AdminSearchableDropdown';
+
 import { useState } from 'react';
 // RESPONSIBILITY: Renders the AdminSeatManagementClient component.
 
@@ -11,8 +13,11 @@ import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
 import { TablePagination } from '@/components/ui/table-pagination';
 import { SeatManagementClientProps } from "./AdminSeatManagementClient_types";
+import { TableToolbar } from '@/components/ui/table-toolbar';
+import { useClientTable } from '@/components/ui/use-client-table';
 
 export function AdminSeatManagementClient({ initialSeats }: SeatManagementClientProps) {
+
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(10);
 
@@ -26,8 +31,6 @@ export function AdminSeatManagementClient({ initialSeats }: SeatManagementClient
     setShowModal,
     editSeat,
     form,
-    setForm,
-    errors,
     confirmBroken,
     setConfirmBroken,
     openAdd,
@@ -37,6 +40,8 @@ export function AdminSeatManagementClient({ initialSeats }: SeatManagementClient
     confirmMarkBroken
   } = useAdminSeatManagement(initialSeats);
 
+  const { register, formState: { errors } } = form;
+
   const getStatusBadge = (status: SeatStatus) => {
     switch (status) {
       case 'Working': return 'bg-success/10 text-success';
@@ -45,7 +50,7 @@ export function AdminSeatManagementClient({ initialSeats }: SeatManagementClient
       default: return 'bg-muted text-muted-foreground';
     }
   };
-
+    const table = useClientTable(filtered, 10);
   return (
     <div className="h-full flex flex-col pb-10 space-y-6 relative">
       <Toaster position="bottom-right" />
@@ -53,7 +58,7 @@ export function AdminSeatManagementClient({ initialSeats }: SeatManagementClient
       {/* page Header */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b pb-4">
         <div>
-          <h1 className="text-2xl font-bold tracking-tight">Seats</h1>
+          <h1 className="text-text-primary text-xl font-bold tracking-tight">Seats</h1>
           <p className="text-sm text-muted-foreground mt-1">Manage all library seats</p>
         </div>
         <div className="flex items-center gap-3">
@@ -74,8 +79,8 @@ export function AdminSeatManagementClient({ initialSeats }: SeatManagementClient
             onChange={e => setSearch(e.target.value)} 
           />
         </div>
-        <select 
-          className="flex h-10 w-full max-w-52 items-center justify-between rounded-md border border-border bg-bg-input px-3 py-2 text-sm ring-offset-bg-page placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:ring-offset-2"
+        <AdminSearchableDropdown 
+          className="flex h-10 w-full max-w-52 items-center justify-between rounded-md border border-border bg-input px-3 py-2 text-sm ring-offset-bg-page placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:ring-offset-2"
           value={statusFilter} 
           onChange={e => setStatusFilter(e.target.value)}
         >
@@ -83,7 +88,7 @@ export function AdminSeatManagementClient({ initialSeats }: SeatManagementClient
           <option>Working</option>
           <option>Maintenance</option>
           <option>Broken</option>
-        </select>
+        </AdminSearchableDropdown>
       </div>
 
       {/* Main Content */}
@@ -98,7 +103,13 @@ export function AdminSeatManagementClient({ initialSeats }: SeatManagementClient
         </Card>
       ) : (
         <Card className="flex-1 shadow-none border-border bg-card overflow-hidden flex flex-col">
-          <div className="w-full overflow-x-auto flex-1">
+          <div className="mb-4">
+        <TableToolbar 
+          search={table.searchTerm} 
+          onSearch={table.setSearchTerm} 
+        />
+      </div>
+      <div className="w-full overflow-x-auto flex-1">
             <table className="w-full text-sm text-left">
               <thead className="bg-muted/30 border-y text-muted-foreground text-xs font-medium uppercase tracking-wider sticky top-0 z-10">
                 <tr>
@@ -178,7 +189,13 @@ export function AdminSeatManagementClient({ initialSeats }: SeatManagementClient
                 ))}
               </tbody>
             </table>
-          </div>
+          </div> 
+      <TablePagination 
+        totalItems={table.totalItems} 
+        page={table.page} 
+        limit={table.limit} 
+        onPageChange={table.setPage} 
+      />
           <TablePagination
             page={page}
             limit={limit}
@@ -208,32 +225,30 @@ export function AdminSeatManagementClient({ initialSeats }: SeatManagementClient
                 <Input 
                   className={errors.seatNo ? 'border-danger' : ''} 
                   placeholder="e.g. A-01" 
-                  value={form.seatNo} 
-                  onChange={e => setForm(p => ({ ...p, seatNo: e.target.value }))} 
+                  {...register('seatNo')}
                 />
-                {errors.seatNo && <p className="text-xs text-danger font-medium">{errors.seatNo}</p>}
+                {errors.seatNo && <p className="text-xs text-danger font-medium">{errors.seatNo.message}</p>}
               </div>
               <div className="space-y-2">
                 <label className="text-sm font-medium">Branch <span className="text-danger">*</span></label>
                 <Input 
                   className={errors.branch ? 'border-danger' : ''} 
                   placeholder="e.g. North Wing" 
-                  value={form.branch} 
-                  onChange={e => setForm(p => ({ ...p, branch: e.target.value }))} 
+                  {...register('branch')}
                 />
-                {errors.branch && <p className="text-xs text-danger font-medium">{errors.branch}</p>}
+                {errors.branch && <p className="text-xs text-danger font-medium">{errors.branch.message}</p>}
               </div>
               <div className="space-y-2">
                 <label className="text-sm font-medium">Status</label>
-                <select 
-                  className="flex h-10 w-full items-center justify-between rounded-md border border-border bg-bg-input px-3 py-2 text-sm ring-offset-bg-page placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:ring-offset-2"
-                  value={form.status} 
-                  onChange={e => setForm(p => ({ ...p, status: e.target.value as SeatStatus }))}
+                <AdminSearchableDropdown 
+                  className="flex h-10 w-full items-center justify-between rounded-md border border-border bg-input px-3 py-2 text-sm ring-offset-bg-page placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:ring-offset-2"
+                  {...register('status')}
                 >
-                  <option>Working</option>
-                  <option>Maintenance</option>
-                  <option>Broken</option>
-                </select>
+                  <option value="Working">Working</option>
+                  <option value="Maintenance">Maintenance</option>
+                  <option value="Broken">Broken</option>
+                </AdminSearchableDropdown>
+                {errors.status && <p className="text-xs text-danger font-medium">{errors.status.message}</p>}
               </div>
             </div>
             
@@ -265,3 +280,4 @@ export function AdminSeatManagementClient({ initialSeats }: SeatManagementClient
     </div>
   );
 }
+

@@ -1,3 +1,4 @@
+import { useUrlState } from '@/app/admin/admin_shared_hooks/useUrlState';
 // RESPONSIBILITY: Renders the useAdminFinanceSecurityDeposits.ts component/hook.
 import { useState, useEffect, useMemo } from 'react';
 import toast from 'react-hot-toast';
@@ -18,7 +19,7 @@ export type Deposit = {
 };
 
 export function useAdminFinanceSecurityDeposits() {
-  const [statusFilter, setStatusFilter] = useState('all');
+  const [statusFilter, setStatusFilter] = useUrlState('statusFilter', 'all' as string);
   const [deposits, setDeposits] = useState<Deposit[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   
@@ -103,3 +104,4 @@ export function useAdminFinanceSecurityDeposits() {
     handleDeduction
   };
 }
+

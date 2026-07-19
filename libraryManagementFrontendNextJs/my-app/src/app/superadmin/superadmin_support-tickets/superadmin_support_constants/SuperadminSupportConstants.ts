@@ -1,6 +1,10 @@
+// RESPONSIBILITY: Renders or handles logic for SuperadminSupportConstants.ts.
 export const SUPERADMIN_SUPPORT_MOCK_TICKETS = [
   { id: 'TKT-991', subject: 'Payment Gateway Failing for UPI',    tenant: 'City Reading Hub',      priority: 'High',   status: 'Open',        age: '2 hours', replies: 2, desc: 'UPI payments are failing with error code 502. Students unable to pay fees online. Razorpay dashboard shows gateway timeout.' },
   { id: 'TKT-988', subject: 'Cannot generate student ID card',    tenant: 'Scholar Spaces',        priority: 'Medium', status: 'In-Progress', age: '1 day',   replies: 5, desc: 'The ID card generator throws a blank PDF when clicking Print. Issue started after the last update on 8th Apr.' },
   { id: 'TKT-987', subject: 'Change email address of owner',      tenant: 'The Alexandria Modern', priority: 'Low',    status: 'Resolved',    age: '3 days',  replies: 3, desc: 'Owner wants to update their registered email from old@alex.com to new@alex.com. Identity verified via phone OTP.' },
   { id: 'TKT-980', subject: 'Seats occupancy showing wrong count',tenant: 'Quiet Corner Lib',      priority: 'High',   status: 'Resolved',    age: '5 days',  replies: 7, desc: 'Dashboard shows 42/40 seats occupied which is impossible. Likely a sync issue after manual seat deletion.' },
 ];
+
+export const SUPERADMIN_SUPPORT_TICKET_STATUSES = ['Open', 'In-Progress', 'Resolved'] as const;
+export const SUPERADMIN_SUPPORT_FILTER_OPTIONS = ['All', 'Open', 'In-Progress', 'Resolved'] as const;

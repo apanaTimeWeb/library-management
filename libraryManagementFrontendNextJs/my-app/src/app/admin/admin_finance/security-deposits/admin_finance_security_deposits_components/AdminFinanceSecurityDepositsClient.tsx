@@ -1,16 +1,21 @@
 'use client';
+import { AdminSearchableDropdown } from '@/app/admin/admin_shared_components/AdminSearchableDropdown';
+
 // RESPONSIBILITY: Renders the AdminFinanceSecurityDepositsClient component.
 import { useState } from 'react';
 import { Undo2, Minus, X } from 'lucide-react';
-import { formatCurrency } from '@/app/admin/admin_finance/admin_finance_utils/format';
+import { formatCurrency } from '@/app/admin/admin_finance/admin_finance_utils/AdminFinanceFormat';
 import { useAdminFinanceSecurityDeposits } from '@/app/admin/admin_finance/security-deposits/admin_finance_security_deposits_hooks/useAdminFinanceSecurityDeposits';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { TablePagination } from '@/components/ui/table-pagination';
+import { TableToolbar } from '@/components/ui/table-toolbar';
+import { useClientTable } from '@/components/ui/use-client-table';
 
 export function AdminFinanceSecurityDepositsClient() {
+
   const {
     statusFilter,
     setStatusFilter,
@@ -45,22 +50,22 @@ export function AdminFinanceSecurityDepositsClient() {
       default: return 'bg-muted text-muted-foreground border-none';
     }
   };
-
+    const table = useClientTable(filtered, 10);
   return (
     <div className="h-full flex flex-col pb-10 space-y-6 relative">
       {/* page Header */}
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b pb-4">
         <div>
           <nav className="text-xs text-muted-foreground font-medium mb-1 tracking-wide uppercase">Smart Library 360 › Admin › Finance</nav>
-          <h1 className="text-2xl font-bold tracking-tight">Security Deposits</h1>
+          <h1 className="text-text-primary text-xl font-bold tracking-tight">Security Deposits</h1>
           <p className="text-sm text-muted-foreground mt-1">Manage student security deposit records.</p>
         </div>
       </div>
 
       {/* Filter Bar */}
       <div className="flex flex-wrap gap-3">
-        <select 
-          className="h-10 px-3 rounded-md border border-border bg-bg-input text-sm font-medium focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary"
+        <AdminSearchableDropdown 
+          className="h-10 px-3 rounded-md border border-border bg-input text-sm font-medium focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary"
           value={statusFilter} 
           onChange={(e) => setStatusFilter(e.target.value)}
         >
@@ -68,12 +73,18 @@ export function AdminFinanceSecurityDepositsClient() {
           <option value="held">Held</option>
           <option value="refunded">Refunded</option>
           <option value="forfeited">Forfeited</option>
-        </select>
+        </AdminSearchableDropdown>
       </div>
 
       {/* Table */}
       <Card className="flex-1 shadow-none border-border bg-card overflow-hidden flex flex-col min-h-96">
-        <div className="w-full overflow-x-auto flex-1">
+        <div className="mb-4">
+        <TableToolbar 
+          search={table.searchTerm} 
+          onSearch={table.setSearchTerm} 
+        />
+      </div>
+      <div className="w-full overflow-x-auto flex-1">
           <table className="w-full text-sm text-left whitespace-nowrap min-w-max">
             <thead className="bg-muted/30 border-b text-muted-foreground text-xs font-bold uppercase tracking-wider sticky top-0 z-10">
               <tr>
@@ -98,7 +109,7 @@ export function AdminFinanceSecurityDepositsClient() {
                     </div>
                   </td>
                 </tr>
-              ) : filtered.length === 0 ? (
+              ) : table.paginatedData.length === 0 ? (
                 <tr>
                   <td colSpan={9} className="px-5 py-20 text-center">
                     <div className="flex flex-col items-center justify-center gap-3">
@@ -109,7 +120,7 @@ export function AdminFinanceSecurityDepositsClient() {
                   </td>
                 </tr>
               ) : (
-                filtered.slice((page - 1) * limit, page * limit).map((d) => (
+                table.paginatedData.map((d) => (
                   <tr key={d.id} className="hover:bg-muted/10 transition-colors">
                     <td className="px-5 py-4">
                       <div className="font-bold text-sm text-primary">{d.studentName}</div>
@@ -148,7 +159,7 @@ export function AdminFinanceSecurityDepositsClient() {
                             className="bg-warning/10 text-warning hover:bg-warning/20 border-none font-bold text-xs h-7 px-2 gap-1"
                             onClick={() => setDeductDialog({ id: d.id, name: d.studentName })}
                           >
-                            <Minus size={12} /> ➕ Add Deduction
+                            <Minus size={12} /> âž• Add Deduction
                           </Button>
                         </div>
                       )}
@@ -161,7 +172,13 @@ export function AdminFinanceSecurityDepositsClient() {
               )}
             </tbody>
           </table>
-          </div>
+          </div> 
+      <TablePagination 
+        totalItems={table.totalItems} 
+        page={table.page} 
+        limit={table.limit} 
+        onPageChange={table.setPage} 
+      />
           <TablePagination
             page={page}
             limit={limit}
@@ -223,7 +240,7 @@ export function AdminFinanceSecurityDepositsClient() {
           <Card className="w-full max-w-sm shadow-lg border-border bg-card p-6 flex flex-col gap-5" onClick={e => e.stopPropagation()}>
             <div className="flex items-center justify-between">
               <h2 className="text-lg font-bold flex items-center gap-2 text-primary tracking-tight">
-                ➕ Add Deduction
+                âž• Add Deduction
               </h2>
               <Button variant="ghost" size="icon" className="h-8 w-8 rounded-full" onClick={() => setDeductDialog(null)}>
                 <X size={16} />
@@ -262,3 +279,4 @@ export function AdminFinanceSecurityDepositsClient() {
     </div>
   );
 }
+

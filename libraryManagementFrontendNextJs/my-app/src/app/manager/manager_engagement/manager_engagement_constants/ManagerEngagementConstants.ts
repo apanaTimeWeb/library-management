@@ -1,3 +1,4 @@
+﻿// RESPONSIBILITY: Renders or handles logic for ManagerEngagementConstants.ts.
 import { AbsenteeRow, ScanResult, Holiday } from '@/app/manager/manager_engagement/manager_engagement_types/ManagerEngagementTypes';
 
 export const ABSENTEE_MOCK_DATA: AbsenteeRow[] = [
@@ -21,4 +22,5 @@ export const INIT_HOLIDAYS: Holiday[] = [
   { id:'4', date:'2026-08-15', name:'Independence Day',          type:'National'  },
   { id:'5', date:'2026-10-02', name:'Gandhi Jayanti',            type:'National'  },
 ];
+
 

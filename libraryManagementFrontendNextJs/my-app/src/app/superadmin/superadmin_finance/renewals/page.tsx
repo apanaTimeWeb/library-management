@@ -1,5 +1,6 @@
-import { RenewalsClient } from '@/app/superadmin/superadmin_finance/renewals/_components/RenewalsClient';
+// RESPONSIBILITY: Component or Page.
+import { SuperadminRenewalsClient } from '@/app/superadmin/superadmin_finance/renewals/_components/SuperadminRenewalsClient';
 
 export default function Page() {
-  return <RenewalsClient />;
+  return <SuperadminRenewalsClient />;
 }

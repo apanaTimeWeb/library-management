@@ -3,10 +3,10 @@
 import { useForm, useFieldArray } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Trash2, Plus } from 'lucide-react';
-import { shiftsSchema, type ShiftsData } from '@/app/superadmin/superadmin_shared_components/superadmin_schema';
-import { SETUP_WIZARD_DATA as d } from '@/app/superadmin/superadmin_setup-wizard/superadmin_setupWizard_constants';
+import { shiftsSchema, type ShiftsData } from '@/app/superadmin/superadmin_shared_components/SuperadminSchema';
+import { SETUP_WIZARD_DATA as d } from '@/app/superadmin/superadmin_setup-wizard/SuperadminSetupWizardConstants';
 
-const inputCls = (hasErr?: boolean) => `w-full bg-bg-input border rounded-lg px-3 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 transition-all placeholder:text-text-tertiary ${hasErr ? 'border-danger focus:ring-danger' : 'border-border focus:ring-primary'}`;
+const inputCls = (hasErr?: boolean) => `w-full bg-input border rounded-lg px-3 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 transition-all placeholder:text-text-tertiary ${hasErr ? 'border-danger focus:ring-danger' : 'border-border focus:ring-primary'}`;
 
 import type { SuperadminSetupWizardStep2Props as Props } from '@/app/superadmin/superadmin_setup-wizard/superadmin_setup_wizard_types/SuperadminSetupWizardTypes';
 
@@ -20,7 +20,7 @@ export function SuperadminSetupWizardStep2({ onNext }: Props) {
   return (
     <form id="step2-form" onSubmit={handleSubmit(onNext)} noValidate className="space-y-3">
       {fields.map((field, i) => (
-        <div key={field.id} className="grid gap-4 items-end bg-bg-card p-4 rounded-xl border border-border shadow-sm grid-cols-[1fr_120px_120px_40px] md:grid-cols-[1fr_140px_140px_40px]">
+        <div key={field.id} className="grid gap-4 items-end bg-card p-4 rounded-xl border border-border shadow-sm grid-cols-[1fr_120px_120px_40px] md:grid-cols-[1fr_140px_140px_40px]">
           <div className="space-y-1.5">
             <label className="text-xs font-semibold text-text-secondary uppercase tracking-wider mb-1.5 block">Shift Name</label>
             <input {...register(`shifts.${i}.name`)} placeholder="e.g. Morning"

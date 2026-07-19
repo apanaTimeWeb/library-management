@@ -27,8 +27,8 @@ export function AuthLoginForm() {
   return (
     <main className="flex min-h-screen bg-page text-text-primary">
       {/* Ambient glows (using tailwind arbitrary radial gradients if needed, or just plain colors) */}
-      <div className="absolute top-[-10%] right-[-5%] w-[40%] h-[40%] bg-primary/20 blur-[100px] rounded-full pointer-events-none" />
-      <div className="absolute bottom-[-10%] left-[-5%] w-[40%] h-[40%] bg-purple/20 blur-[100px] rounded-full pointer-events-none" />
+      <div className="absolute top-[-10%] right-[-5%] w-2/5 h-2/5 bg-primary/20 blur-[100px] rounded-full pointer-events-none" />
+      <div className="absolute bottom-[-10%] left-[-5%] w-2/5 h-2/5 bg-purple/20 blur-[100px] rounded-full pointer-events-none" />
 
       {/* ── LEFT BRAND PANEL ── */}
       <section className="hidden lg:flex lg:w-1/2 flex-col justify-between p-8 xl:p-12 relative z-10 border-r border-border bg-page">
@@ -62,7 +62,7 @@ export function AuthLoginForm() {
 
           {/* Portal access info */}
           <div className="p-5 rounded-xl bg-card border border-border shadow-sm space-y-2 backdrop-blur-sm">
-            <p className="text-[11px] font-semibold text-text-secondary uppercase tracking-widest mb-3">Portal Access</p>
+            <p className="text-xs font-semibold text-text-secondary uppercase tracking-widest mb-3">Portal Access</p>
             {roles.map(r => (
               <div key={r.id} className="flex items-center gap-2.5">
                 <span className="text-base w-5 text-center shrink-0">{r.icon}</span>
@@ -74,7 +74,7 @@ export function AuthLoginForm() {
           </div>
 
           <div className="flex gap-8">
-            {[['12k+', 'Libraries Joined'], ['4.9★', 'Rating'], ['99.9%', 'Uptime']].map(([v, l]) => (
+            {[['12k+', 'Libraries Joined'], ['4.9â˜…', 'Rating'], ['99.9%', 'Uptime']].map(([v, l]) => (
               <div key={l}>
                 <p className="text-3xl font-extrabold text-text-primary tracking-tighter">{v}</p>
                 <p className="text-xs font-medium text-text-secondary uppercase tracking-wider mt-1">{l}</p>
@@ -104,7 +104,7 @@ export function AuthLoginForm() {
                   <BookOpen size={24} className="text-text-primary" />
                 </div>
               </div>
-              <h2 className="text-2xl font-bold text-text-primary tracking-tight">Smart Library 360</h2>
+              <h2 className="text-text-primary text-xl font-bold text-text-primary tracking-tight">Smart Library 360</h2>
               <p className="text-sm text-text-secondary mt-1">Sign in to your account</p>
             </div>
 
@@ -134,13 +134,13 @@ export function AuthLoginForm() {
               </div>
             </div>
 
-            <div className="h-[1px] bg-border my-6" />
+            <div className="h-px bg-border my-6" />
 
             {/* Form */}
             <form onSubmit={handleSubmit} noValidate className="space-y-4">
               {/* Phone */}
               <div>
-                <label htmlFor="login-phone" className="block text-[13px] font-medium text-text-secondary mb-1.5">
+                <label htmlFor="login-phone" className="block text-xs font-medium text-text-secondary mb-1.5">
                   Phone Number <span className="text-danger">*</span>
                 </label>
                 <input
@@ -150,12 +150,12 @@ export function AuthLoginForm() {
                   {...register('phone')}
                   className={`w-full px-3.5 py-2.5 rounded-lg text-sm bg-input text-text-primary border outline-none transition-all focus:ring-2 focus:ring-primary/20 ${errors.phone ? 'border-danger focus:border-danger' : 'border-border focus:border-primary'}`}
                 />
-                {errors.phone && <p className="text-[12px] text-danger mt-1">{errors.phone.message}</p>}
+                {errors.phone && <p className="text-xs text-danger mt-1">{errors.phone.message}</p>}
               </div>
 
               {/* Password */}
               <div>
-                <label htmlFor="login-password" className="block text-[13px] font-medium text-text-secondary mb-1.5">
+                <label htmlFor="login-password" className="block text-xs font-medium text-text-secondary mb-1.5">
                   Password <span className="text-danger">*</span>
                 </label>
                 <div className="relative">
@@ -174,13 +174,13 @@ export function AuthLoginForm() {
                     {showPw ? <EyeOff size={17} /> : <Eye size={17} />}
                   </button>
                 </div>
-                {errors.password && <p className="text-[12px] text-danger mt-1">{errors.password.message}</p>}
+                {errors.password && <p className="text-xs text-danger mt-1">{errors.password.message}</p>}
               </div>
 
               {/* Credential error */}
               {errorMessage && (
                 <div className="p-3 bg-danger-bg border border-danger/20 rounded-lg text-danger text-sm font-medium flex items-start gap-2">
-                  <span>❌</span> <span>{errorMessage}</span>
+                  <span>âŒ</span> <span>{errorMessage}</span>
                 </div>
               )}
 
@@ -202,7 +202,7 @@ export function AuthLoginForm() {
               <Link href={AUTH_ROUTES.FORGOT_PASSWORD} className="text-sm font-medium text-text-secondary hover:text-primary transition-colors">
                 Forgot Password?
               </Link>
-              <div className="h-[1px] bg-border" />
+              <div className="h-px bg-border" />
               <p className="text-sm text-text-secondary">
                 Don&apos;t have an account?{' '}
                 <Link href={AUTH_ROUTES.SIGNUP} className="text-primary font-semibold hover:underline">Sign Up</Link>
@@ -214,3 +214,5 @@ export function AuthLoginForm() {
     </main>
   );
 }
+
+

@@ -1,7 +1,7 @@
 'use client';
 // RESPONSIBILITY: Renders the SuperadminSeatGapReportClient component.
 import React, { useState } from 'react';
-import { superadmin_useSuperadminSeatGapReport as useSuperadminSeatGapReport } from '@/app/superadmin/superadmin_accounting/seat-gap-report/superadmin_seat_gap_report_hooks/superadmin_useSuperadminSeatGapReport';
+import { useSuperadminSeatGapReport as useSuperadminSeatGapReport } from '@/app/superadmin/superadmin_accounting/seat-gap-report/superadmin_seat_gap_report_hooks/useSuperadminSeatGapReport';
 import { SuperadminSeatGapReportHeader } from '@/app/superadmin/superadmin_accounting/seat-gap-report/superadmin_seat_gap_report_components/SuperadminSeatGapReportHeader';
 import { SuperadminSeatGapReportKpiGrid } from '@/app/superadmin/superadmin_accounting/seat-gap-report/superadmin_seat_gap_report_components/SuperadminSeatGapReportKpiGrid';
 import { SuperadminSeatGapReportFilterBar } from '@/app/superadmin/superadmin_accounting/seat-gap-report/superadmin_seat_gap_report_components/SuperadminSeatGapReportFilterBar';
@@ -33,7 +33,7 @@ export function SuperadminSeatGapReportClient() {
   return (
     <div className="relative p-2 sm:p-4">
       {toast && (
-        <div className="fixed top-24 right-8 z-50 bg-bg-card border border-border shadow-xl rounded-[var(--radius-md)] px-4 py-3 flex items-center gap-3 animate-in slide-in-from-top-4 duration-300">
+        <div className="fixed top-24 right-8 z-50 bg-card border border-border shadow-xl rounded-md px-4 py-3 flex items-center gap-3 animate-in slide-in-from-top-4 duration-300">
           <span className="text-sm font-semibold text-text-primary">{toast}</span>
         </div>
       )}

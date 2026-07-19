@@ -1,7 +1,9 @@
+﻿// RESPONSIBILITY: Renders or handles logic for public_api.ts.
 import { StatusCodes } from 'http-status-codes';
 
 import type { PublicEnquiryFormData } from '@/app/public/enquiry/public_enquiry_types/PublicEnquiryValidation';
 
+import { PUBLIC_API_ENDPOINTS } from '@/app/public/public_url_config';
 
 export interface ApiResponse<T> {
   success: boolean;
@@ -15,7 +17,7 @@ export const publicApi = {
   submitEnquiry: async (_payload: PublicEnquiryFormData): Promise<ApiResponse<null>> => {
     try {
       // In a real app, this would hit the backend:
-      // await fetchApi('/public/enquiry', { method: 'POST', body: JSON.stringify(payload) });
+      // await fetchApi(PUBLIC_API_ENDPOINTS.SUBMIT_ENQUIRY, { method: 'POST', body: JSON.stringify(_payload) });
       
       // Simulating API call for now:
       await new Promise(resolve => setTimeout(resolve, 1200));
@@ -37,3 +39,4 @@ export const publicApi = {
     }
   },
 };
+

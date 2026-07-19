@@ -1,3 +1,4 @@
+﻿// RESPONSIBILITY: Renders or handles logic for ManagerReportsTypes.ts.
 
 
 export interface ManagerReportsKpiCard {
@@ -86,3 +87,4 @@ export interface ManagerReportsTablesGridProps {
   data: ManagerReportsData;
 }
 export type FetchState = 'idle' | 'loading' | 'success' | 'error';
+

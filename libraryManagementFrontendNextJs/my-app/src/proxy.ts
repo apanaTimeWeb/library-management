@@ -1,3 +1,4 @@
+﻿// RESPONSIBILITY: Renders or handles logic for proxy.ts.
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 import { jwtVerify } from 'jose';
@@ -9,7 +10,7 @@ import { jwtVerify } from 'jose';
  * It is the primary security layer for the frontend (Zero Trust principle).
  *
  * Route-Role Access Matrix:
- * ┌─────────────────┬────────────────────────────────────────────┐
+ * ┌─────────────────┬────────────────────────────────────────────â”
  * │ Route Prefix    │ Allowed Roles                              │
  * ├─────────────────┼────────────────────────────────────────────┤
  * │ /superadmin/**  │ superadmin only                            │
@@ -23,8 +24,8 @@ import { jwtVerify } from 'jose';
  * │ /engagement/**  │ manager, admin, superadmin                 │
  * └─────────────────┴────────────────────────────────────────────┘
  *
- * If token is missing → redirect to /auth/login
- * If role is wrong → redirect to /403
+ * If token is missing â†’ redirect to /auth/login
+ * If role is wrong â†’ redirect to /403
  * Protected pages also get Cache-Control: no-store headers
  */
 
@@ -118,3 +119,4 @@ export const config = {
 
 // Next.js 16+ alias (prevents deprecation warning)
 export { middleware as proxy };
+

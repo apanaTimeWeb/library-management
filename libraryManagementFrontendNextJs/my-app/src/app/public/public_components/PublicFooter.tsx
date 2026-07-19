@@ -1,11 +1,12 @@
 "use client";
+// RESPONSIBILITY: Component or Page.
 import React from 'react';
 import Link from 'next/link';
 import { Instagram, Twitter, Facebook, Youtube, Linkedin, BookOpen } from 'lucide-react';
 
 export function PublicFooter() {
   return (
-    <footer className="bg-bg-card border-t border-border pt-16 pb-8 px-6">
+    <footer className="bg-card border-t border-border pt-16 pb-8 px-6">
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
         <div className="col-span-1 md:col-span-2">
           <Link href="/" className="flex items-center gap-2 mb-6 text-text-primary font-bold text-xl">

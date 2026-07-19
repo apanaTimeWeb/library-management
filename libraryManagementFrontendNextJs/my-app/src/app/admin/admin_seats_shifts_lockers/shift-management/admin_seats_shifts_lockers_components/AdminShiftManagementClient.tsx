@@ -1,4 +1,6 @@
 'use client';
+import { AdminSearchableDropdown } from '@/app/admin/admin_shared_components/AdminSearchableDropdown';
+
 // RESPONSIBILITY: Renders the AdminShiftManagementClient component.
 import { Plus, Edit, PowerOff, Zap, AlertTriangle, X } from 'lucide-react';
 import { useAdminShiftManagement } from '@/app/admin/admin_seats_shifts_lockers/shift-management/admin_seats_shifts_lockers_hooks/useAdminShiftManagement';
@@ -31,7 +33,7 @@ export function AdminShiftManagementClient() {
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b pb-4">
         <div>
           <nav className="text-xs text-muted-foreground font-medium mb-1 tracking-wide uppercase">Smart Library 360 › Admin › Seats & Shifts</nav>
-          <h1 className="text-2xl font-bold tracking-tight">Shifts</h1>
+          <h1 className="text-text-primary text-xl font-bold tracking-tight">Shifts</h1>
           <p className="text-sm text-muted-foreground mt-1">Define active hours and availability windows.</p>
         </div>
         <Button onClick={openAdd} variant="default" className="gap-2">
@@ -41,7 +43,7 @@ export function AdminShiftManagementClient() {
 
       {shifts.length === 0 ? (
         <Card className="flex flex-col items-center justify-center py-20 gap-3 border-dashed bg-muted/5 shadow-none">
-          <div className="text-4xl mb-2 opacity-50">🕐</div>
+          <div className="text-4xl mb-2 opacity-50">🕒</div>
           <p className="text-lg font-bold">No shifts defined.</p>
           <p className="text-sm text-muted-foreground">Use Setup Wizard or add manually.</p>
           <Button onClick={openAdd} variant="default" className="mt-4 gap-2">
@@ -74,8 +76,7 @@ export function AdminShiftManagementClient() {
                 </div>
                 <div className="h-2 w-full bg-muted rounded-full overflow-hidden">
                   <div 
-                    className={`h-full rounded-full transition-all ${!shift.active ? 'bg-muted-foreground/30' : 'bg-primary'}`} 
-                    className="w-[length:var(--w)]" style={{ '--w': `${Math.round((shift.occupancy / shift.capacity) * 100)}%` } as React.CSSProperties} 
+                    className={`h-full rounded-full transition-all ${!shift.active ? 'bg-muted-foreground/30' : 'bg-primary'} w-[length:var(--w)]`} style={{ '--w': `${Math.round((shift.occupancy / shift.capacity) * 100)}%` } as React.CSSProperties} 
                   />
                 </div>
               </div>
@@ -162,14 +163,14 @@ export function AdminShiftManagementClient() {
               </div>
               <div className="space-y-1.5">
                 <label className="text-sm font-medium">Active</label>
-                <select 
-                  className="flex h-10 w-full items-center justify-between rounded-md border border-border bg-bg-input px-3 py-2 text-sm ring-offset-bg-page placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:ring-offset-2"
+                <AdminSearchableDropdown 
+                  className="flex h-10 w-full items-center justify-between rounded-md border border-border bg-input px-3 py-2 text-sm ring-offset-bg-page placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:ring-offset-2"
                   value={form.active ? 'yes' : 'no'} 
                   onChange={e => setForm(p => ({ ...p, active: e.target.value === 'yes' }))}
                 >
                   <option value="yes">Yes</option>
                   <option value="no">No</option>
-                </select>
+                </AdminSearchableDropdown>
               </div>
             </div>
             
@@ -201,3 +202,4 @@ export function AdminShiftManagementClient() {
     </div>
   );
 }
+

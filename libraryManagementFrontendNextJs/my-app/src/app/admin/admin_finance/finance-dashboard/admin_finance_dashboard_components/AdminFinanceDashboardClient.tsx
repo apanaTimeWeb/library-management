@@ -5,13 +5,16 @@ import {
   PiggyBank, Users, Clock, Ban, UsersRound, ShieldAlert,
   TrendingUp, TrendingDown, IndianRupee, Receipt, AlertTriangle, RefreshCw,
 } from 'lucide-react';
-import { formatCurrency } from '@/app/admin/admin_finance/admin_finance_utils/format';
+import { formatCurrency } from '@/app/admin/admin_finance/admin_finance_utils/AdminFinanceFormat';
 import { useAdminFinanceDashboard } from '@/app/admin/admin_finance/finance-dashboard/admin_finance_dashboard_hooks/useAdminFinanceDashboard';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { TablePagination } from '@/components/ui/table-pagination';
+import { TableToolbar } from '@/components/ui/table-toolbar';
+import { useClientTable } from '@/components/ui/use-client-table';
 
 export function AdminFinanceDashboardClient() {
+
   const { stats, recentPayments, isLoading } = useAdminFinanceDashboard();
 
   const [page, setPage] = useState(1);
@@ -30,14 +33,14 @@ export function AdminFinanceDashboardClient() {
     { label: 'Pending Refunds',      value: stats.pendingRefunds,                   icon: IndianRupee,   sub: <span className="text-muted-foreground text-xs">deposit refund requests</span>,                            variant: 'default' },
     { label: 'Late Fee Accrued',     value: formatCurrency(stats.lateFeeAccrued),   icon: TrendingDown,  sub: <span className="text-danger text-xs font-medium">this month</span>,                                        variant: 'danger'  },
   ] : [];
-
+    const table = useClientTable(statCards, 10);
   return (
     <div className="h-full flex flex-col pb-10 space-y-6 relative">
       {/* page Header */}
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b pb-4">
         <div>
           <nav className="text-xs text-muted-foreground font-medium mb-1 tracking-wide uppercase">Smart Library 360 › Admin › Finance</nav>
-          <h1 className="text-2xl font-bold tracking-tight">Dashboard</h1>
+          <h1 className="text-text-primary text-xl font-bold tracking-tight">Dashboard</h1>
           <p className="text-sm text-muted-foreground mt-1">Overview of financial intelligence.</p>
         </div>
       </div>
@@ -52,7 +55,7 @@ export function AdminFinanceDashboardClient() {
                 <div className="animate-pulse bg-muted h-3 w-24 rounded" />
               </Card>
             ))
-          : statCards.map(({ label, value, icon: Icon, sub, variant }) => (
+          : table.paginatedData.map(({ label, value, icon: Icon, sub, variant }) => (
               <Card
                 key={label}
                 className={`p-5 shadow-none border-border bg-card flex flex-col gap-3 hover:shadow-md transition-shadow ${
@@ -74,7 +77,7 @@ export function AdminFinanceDashboardClient() {
                     <Icon size={16} />
                   </div>
                 </div>
-                <p className={`text-2xl font-bold leading-none tracking-tight ${
+                <p className={`text-text-primary text-xl font-bold leading-none tracking-tight ${
                   variant === 'warning' ? 'text-warning' : 
                   variant === 'danger' ? 'text-danger' : 'text-primary'
                 }`}>
@@ -91,7 +94,13 @@ export function AdminFinanceDashboardClient() {
           <Receipt size={18} className="text-muted-foreground" />
           <h3 className="font-bold text-base text-primary">Recent Payments</h3>
         </div>
-        <div className="w-full overflow-x-auto flex-1">
+        <div className="mb-4">
+        <TableToolbar 
+          search={table.searchTerm} 
+          onSearch={table.setSearchTerm} 
+        />
+      </div>
+      <div className="w-full overflow-x-auto flex-1">
           <table className="w-full text-sm text-left">
             <thead className="bg-muted/30 border-b text-muted-foreground text-xs font-medium uppercase tracking-wider sticky top-0 z-10">
               <tr>
@@ -139,7 +148,13 @@ export function AdminFinanceDashboardClient() {
                   ))}
             </tbody>
           </table>
-          </div>
+          </div> 
+      <TablePagination 
+        totalItems={table.totalItems} 
+        page={table.page} 
+        limit={table.limit} 
+        onPageChange={table.setPage} 
+      />
           <TablePagination
             page={page}
             limit={limit}

@@ -1,4 +1,6 @@
 'use client';
+import { useUrlState } from '@/app/admin/admin_shared_hooks/useUrlState';
+
 // RESPONSIBILITY: Client view rendering financial reports with fixed keys and tailwind classes (`Rule 1`, `Rule 36`, `Rule 57`).
 // DATA FLOW: Store -> AdminAccountingFinancialReportsClient (`Rule 39`).
 
@@ -28,7 +30,7 @@ const CATEGORY_BREAKDOWN = [
 const maxIncome = Math.max(...MONTHLY.map(m => m.income));
 
 export function AdminAccountingFinancialReportsClient() {
-  const [period, setPeriod] = useState('monthly');
+  const [period, setPeriod] = useUrlState('period', 'monthly' as string);
 
   const totalIncome  = MONTHLY.reduce((s, m) => s + m.income, 0);
   const totalExpense = MONTHLY.reduce((s, m) => s + m.expense, 0);
@@ -38,7 +40,7 @@ export function AdminAccountingFinancialReportsClient() {
     <div className="space-y-6 pb-10">
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b pb-4">
         <div>
-          <h1 className="text-2xl font-bold tracking-tight">Financial Reports</h1>
+          <h1 className="text-text-primary text-xl font-bold tracking-tight">Financial Reports</h1>
           <p className="text-sm text-muted-foreground mt-1">Income vs expense overview and category breakdown.</p>
         </div>
         <div className="flex gap-2 bg-muted/50 p-1 rounded-lg border border-border">
@@ -48,7 +50,7 @@ export function AdminAccountingFinancialReportsClient() {
               variant={period === p ? 'secondary' : 'ghost'}
               size="sm"
               onClick={() => setPeriod(p)}
-              className={`text-xs font-semibold capitalize ${period === p ? 'bg-bg-card shadow-sm' : ''}`}
+              className={`text-xs font-semibold capitalize ${period === p ? 'bg-card shadow-sm' : ''}`}
             >
               {p}
             </Button>
@@ -134,3 +136,4 @@ export function AdminAccountingFinancialReportsClient() {
     </div>
   );
 }
+

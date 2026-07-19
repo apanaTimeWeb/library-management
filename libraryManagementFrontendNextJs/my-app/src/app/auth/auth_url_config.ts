@@ -1,3 +1,4 @@
+﻿// RESPONSIBILITY: Renders or handles logic for auth_url_config.ts.
 export const AUTH_ROUTES = {
   LOGIN: '/auth/login',
   SIGNUP: '/auth/signup',
@@ -14,3 +15,4 @@ export const AUTH_API_ROUTES = {
   FORGOT_PASSWORD: '/auth/forgot-password',
   RESET_PASSWORD: '/auth/reset-password',
 };
+

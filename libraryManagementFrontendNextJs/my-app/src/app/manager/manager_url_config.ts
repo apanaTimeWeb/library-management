@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Renders or handles logic for manager_url_config.ts.
 export const MANAGER_ROUTES = {
   // Dashboard
   DASHBOARD: '/manager/manager_dashboard',
@@ -63,7 +64,7 @@ export const MANAGER_ROUTES = {
 
   SETTINGS: '/manager/manager_settings',
   LIBRARIES: '/manager/manager_libraries',
-  SUBSCRIPTIONS: '/manager/manager_subscriptions',
+  SUBSCRIPTIONS: '/manager/manager_finance/subscriptions',
   BILLING: '/manager/manager_billing',
   SYSTEM_HEALTH: '/manager/manager_system-health',
   AUDIT_LOGS: '/manager/manager_audit-logs',
@@ -75,3 +76,4 @@ export const MANAGER_API_ROUTES = {
   DASHBOARD: '/manager/manager_dashboard',
   STUDENTS: '/students',
 };
+

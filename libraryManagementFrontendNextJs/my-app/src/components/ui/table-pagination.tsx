@@ -1,3 +1,4 @@
+// RESPONSIBILITY: Component or Page.
 import React from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -16,7 +17,7 @@ export function TablePagination({
   const endIndex = Math.min((page || 1) * (limit || 10), (totalItems || 0));
 
   return (
-    <div className="flex items-center justify-between px-4 py-3 border-t border-border bg-bg-card">
+    <div className="flex items-center justify-between px-4 py-3 border-t border-border bg-card">
       <div className="flex flex-1 justify-between sm:hidden">
         <Button
           variant="outline"
@@ -48,7 +49,7 @@ export function TablePagination({
             <div className="flex items-center gap-2">
               <span className="text-sm text-text-secondary">Rows per page:</span>
               <select
-                className="h-8 rounded-md border border-border bg-bg-input px-2 text-sm text-text-primary focus:outline-none focus:ring-1 focus:ring-primary"
+                className="h-8 rounded-md border border-border bg-input px-2 text-sm text-text-primary focus:outline-none focus:ring-1 focus:ring-primary"
                 value={limit}
                 onChange={(e) => onLimitChange && onLimitChange(Number(e.target.value))}
               >
@@ -70,7 +71,7 @@ export function TablePagination({
               <span className="sr-only">Previous</span>
               <ChevronLeft size={16} />
             </Button>
-            <div className="flex items-center justify-center px-3 border-y border-border bg-bg-input text-sm font-semibold text-text-primary h-8 focus:z-10">
+            <div className="flex items-center justify-center px-3 border-y border-border bg-input text-sm font-semibold text-text-primary h-8 focus:z-10">
               {page} / {totalPages}
             </div>
             <Button
@@ -89,3 +90,4 @@ export function TablePagination({
     </div>
   );
 }
+

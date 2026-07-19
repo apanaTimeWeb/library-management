@@ -11,8 +11,11 @@ import { Badge } from '@/components/ui/badge';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from '@/components/ui/dialog';
 import { TablePagination } from '@/components/ui/table-pagination';
 import { AdminBranchesViewProps } from "./AdminBranchesView_types";
+import { TableToolbar } from '@/components/ui/table-toolbar';
+import { useClientTable } from '@/components/ui/use-client-table';
 
 export function AdminBranchesView({ initialBranches }: AdminBranchesViewProps) {
+
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(10);
 
@@ -34,7 +37,7 @@ export function AdminBranchesView({ initialBranches }: AdminBranchesViewProps) {
     handleDelete,
     handleFieldChange
   } = useAdminBranches(initialBranches);
-
+    const table = useClientTable(filtered, 10);
   return (
     <div className="h-full flex flex-col pb-10 space-y-6">
       {/* page Header */}
@@ -43,7 +46,7 @@ export function AdminBranchesView({ initialBranches }: AdminBranchesViewProps) {
           <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-1">
             Smart Library 360 <span className="opacity-50">›</span> Admin <span className="opacity-50">›</span> Branches
           </p>
-          <h1 className="text-2xl font-bold tracking-tight text-foreground">Branch Management</h1>
+          <h1 className="text-text-primary text-xl font-bold tracking-tight text-foreground">Branch Management</h1>
           <p className="text-sm text-muted-foreground mt-1">Manage multiple branches and their managers.</p>
         </div>
         <Button onClick={openAdd} className="gap-2">
@@ -64,7 +67,13 @@ export function AdminBranchesView({ initialBranches }: AdminBranchesViewProps) {
 
       {/* Table */}
       <div className="flex-1 min-h-96 border border-border rounded-lg bg-card overflow-hidden flex flex-col shadow-sm">
-        <div className="overflow-x-auto flex-1">
+        <div className="mb-4">
+        <TableToolbar 
+          search={table.searchTerm} 
+          onSearch={table.setSearchTerm} 
+        />
+      </div>
+      <div className="overflow-x-auto flex-1">
           <table className="w-full text-sm text-left">
             <thead className="text-xs text-muted-foreground uppercase bg-muted/50 sticky top-0 z-10">
               <tr>
@@ -127,7 +136,13 @@ export function AdminBranchesView({ initialBranches }: AdminBranchesViewProps) {
               )}
             </tbody>
           </table>
-          </div>
+          </div> 
+      <TablePagination 
+        totalItems={table.totalItems} 
+        page={table.page} 
+        limit={table.limit} 
+        onPageChange={table.setPage} 
+      />
           <TablePagination
             page={page}
             limit={limit}

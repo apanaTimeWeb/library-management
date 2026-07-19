@@ -1,3 +1,4 @@
+﻿// RESPONSIBILITY: Renders or handles logic for useSuperadminSeatsLockers.ts.
 // DATA FLOW: SuperadminSeatsMockData -> useSuperadminSeatsLockers -> SuperadminSeatsLockersClient
 import { useState, useMemo, useCallback } from 'react';
 import { SUPERADMIN_SEATS_MOCK_LOCKERS } from '@/app/superadmin/superadmin_seats_shifts_lockers/superadmin_seats_shifts_lockers_utils/SuperadminSeatsMockData';
@@ -88,3 +89,4 @@ export function useSuperadminSeatsLockers() {
     openAddModal
   };
 }
+

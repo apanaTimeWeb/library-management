@@ -1,3 +1,4 @@
+﻿// RESPONSIBILITY: Renders or handles logic for SuperadminExpensesConstants.ts.
 import type { SuperadminExpense } from '@/app/superadmin/superadmin_accounting/expenses/superadmin_expenses_types/SuperadminExpensesTypes';
 
 export const SUPERADMIN_EXPENSES_CATEGORIES = [
@@ -19,3 +20,4 @@ export const SUPERADMIN_EXPENSES_MOCK_DATA: SuperadminExpense[] = [
   { id: 5, date: '2026-04-10', category: 'Cleaning',      description: 'Housekeeping supplies',       amount: 900,   paidBy: 'Staff',   mode: 'cash' },
   { id: 6, date: '2026-04-12', category: 'Miscellaneous', description: 'Courier charges',             amount: 320,   paidBy: 'Manager', mode: 'upi'  },
 ];
+

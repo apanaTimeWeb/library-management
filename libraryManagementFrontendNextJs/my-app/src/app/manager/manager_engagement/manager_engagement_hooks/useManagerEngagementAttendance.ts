@@ -1,3 +1,4 @@
+﻿// RESPONSIBILITY: Renders or handles logic for useManagerEngagementAttendance.ts.
 import { useEffect } from 'react';
 import { useManagerEngagementStore } from '@/app/manager/manager_engagement/manager_engagement_store/manager_engagement_store';
 
@@ -30,3 +31,4 @@ export function useManagerEngagementAttendance() {
     saveAttendance
   };
 }
+

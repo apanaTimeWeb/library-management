@@ -4,8 +4,8 @@ import { Building, Plus } from 'lucide-react';
 
 export function SuperadminLibrariesEmptyState() {
   return (
-    <div className="flex flex-col items-center justify-center h-full min-h-64 w-full bg-bg-card rounded-[var(--radius-lg)] p-8 text-center animate-in fade-in duration-300">
-      <div className="w-16 h-16 rounded-full bg-bg-input flex items-center justify-center mb-4">
+    <div className="flex flex-col items-center justify-center h-full min-h-64 w-full bg-card rounded-lg p-8 text-center animate-in fade-in duration-300">
+      <div className="w-16 h-16 rounded-full bg-input flex items-center justify-center mb-4">
         <Building size={32} className="text-text-disabled" />
       </div>
       <h3 className="text-lg font-bold text-text-primary mb-1">No libraries found</h3>

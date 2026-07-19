@@ -53,6 +53,7 @@ export function AdminSystemGapFillingClient() {
                 <SelectTrigger id="gap-shift-select"><SelectValue placeholder="All shifts" /></SelectTrigger>
                 <SelectContent>
                   <SelectItem value="all">All Shifts</SelectItem>
+                  <SelectItem value="morning">Morning (6AMâ€“12PM)</SelectItem>
                   <SelectItem value="morning">Morning (6AM–12PM)</SelectItem>
                   <SelectItem value="afternoon">Afternoon (12PM–6PM)</SelectItem>
                   <SelectItem value="evening">Evening (6PM–10PM)</SelectItem>
@@ -80,7 +81,7 @@ export function AdminSystemGapFillingClient() {
                     <span className="text-sm font-mono font-bold text-text-primary">{seat.seat}</span>
                   </div>
                   {/* Time bar — left/width are computed values, style is correct here */}
-                  <div className="flex-1 relative h-8 rounded-lg overflow-hidden bg-bg-input">
+                  <div className="flex-1 relative h-8 rounded-lg overflow-hidden bg-input">
                     {seat.booked.map((b, i) => (
                       <div key={i} className="absolute top-0 h-full bg-primary/70 flex items-center justify-center left-[length:var(--left)] w-[length:var(--w)]" style={{ '--left': `${b.start}%`, '--w': `${b.end - b.start}%` } as React.CSSProperties}>
                         <span className="text-xs text-on-primary font-medium truncate px-1">Booked</span>

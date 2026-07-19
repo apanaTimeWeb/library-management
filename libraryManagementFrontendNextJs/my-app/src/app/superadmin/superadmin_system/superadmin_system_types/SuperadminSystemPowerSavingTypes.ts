@@ -1,3 +1,4 @@
+﻿// RESPONSIBILITY: Renders or handles logic for SuperadminSystemPowerSavingTypes.ts.
 
 
 export interface SuperadminSystemPowerZone {
@@ -13,3 +14,4 @@ export interface SuperadminSystemPowerAlert {
   threshold: string;
   action: string;
 }
+

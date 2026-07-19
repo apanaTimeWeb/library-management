@@ -1,3 +1,4 @@
+﻿// RESPONSIBILITY: Renders or handles logic for useSuperadminSystemWaitlistAutomation.ts.
 import { useState } from 'react';
 
 export function useSuperadminSystemWaitlistAutomation() {
@@ -13,3 +14,4 @@ export function useSuperadminSystemWaitlistAutomation() {
     template, setTemplate
   };
 }
+
