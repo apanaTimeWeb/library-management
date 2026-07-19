@@ -40,7 +40,7 @@ export function ManagerCommunicationComplaintsClient() {
   const [resolveItem, setResolveItem]   = useState<Complaint | null>(null);
   const [resolveNote, setResolveNote]   = useState('');
   const [toast, setToast]               = useState('');
-  const { register, handleSubmit, formState: { errors, isSubmitting }, reset } = useForm<ComplaintFormData>({ resolver: zodResolver(complaintSchema), defaultValues: { isAnonymous: false } });
+  const { register, handleSubmit, formState: { errors, isSubmitting }, reset } = useForm<any>({ resolver: zodResolver(complaintSchema), defaultValues: { isAnonymous: false } });
   const [expandedDesc, setExpandedDesc] = useState<string[]>([]);
 
   const showToast = (msg: string) => { setToast(msg); setTimeout(() => setToast(''), 3000); };
@@ -55,43 +55,14 @@ export function ManagerCommunicationComplaintsClient() {
     router.replace(`${pathname}?${params.toString()}`, { scroll: false });
   };
 
-  const handleAdd = async () => {
-    if (!addForm.title || !addForm.desc) return;
+  const handleAdd = async (data: any) => {
     await addComplaint({
-      title: addForm.title,
-      studentName: addForm.isAnonymous ? 'Anonymous' : addForm.studentName,
-      desc: addForm.desc,
-      phone: addForm.phone,
+      title: data.title,
+      studentName: data.isAnonymous ? 'Anonymous' : (data.studentName || ''),
+      desc: data.desc,
+      phone: '',
     });
-    setAddForm({ studentName: '', isAnonymous: false, title: '', desc: '', phone: '' });
-    setShowAdd(false);
-    showToast('Complaint submitted successfully');
-  };
-
-  const markInProgress = async (id: string) => {
-    await updateComplaintStatus(id, 'In-Progress');
-    showToast('Marked In-Progress');
-  };
-
-
-  const table = useClientTable(filtered, 10);
-
-  const setTab = (t: string) => {
-    const params = new URLSearchParams(searchParams.toString());
-    if (t === 'All') params.delete('tab');
-    else params.set('tab', t);
-    router.replace(`${pathname}?${params.toString()}`, { scroll: false });
-  };
-
-  const handleAdd = async () => {
-    if (!addForm.title || !addForm.desc) return;
-    await addComplaint({
-      title: addForm.title,
-      studentName: addForm.isAnonymous ? 'Anonymous' : addForm.studentName,
-      desc: addForm.desc,
-      phone: addForm.phone,
-    });
-    setAddForm({ studentName: '', isAnonymous: false, title: '', desc: '', phone: '' });
+    reset();
     setShowAdd(false);
     showToast('Complaint submitted successfully');
   };
@@ -134,6 +105,29 @@ export function ManagerCommunicationComplaintsClient() {
             <p className="eng-modal-title flex items-center gap-2"><Plus size={18}/> Add Complaint</p>
             <p className="eng-modal-desc">Staff raises complaint on student&apos;s behalf.</p>
             <form id="add-complaint-form" onSubmit={handleSubmit(handleAdd)} className="eng-form-stack">
+              <div>
+                <label className="eng-label">Student Name (optional)</label>
+                <input className="eng-input" placeholder="Search student name..." {...register('studentName')} />
+              </div>
+              <label className="eng-checkbox-row">
+                <input type="checkbox" {...register('isAnonymous')} />
+                Hide student identity from staff view
+              </label>
+              <div>
+                <label className="eng-label">Title <span className="eng-required">*</span></label>
+                <input className="eng-input" placeholder="Brief complaint title" {...register('title')} />
+              </div>
+              <div>
+                <label className="eng-label">Description <span className="eng-required">*</span></label>
+                <textarea className="eng-textarea" rows={4} placeholder="Describe the issue in detail..." {...register('desc')} />
+              </div>
+            </form>
+            <div className="eng-modal-footer">
+              <button type="button" onClick={() => setShowAdd(false)} className="eng-btn-ghost">Cancel</button>
+              <button type="submit" form="add-complaint-form" className="eng-btn-primary"
+                disabled={isSubmitting}>Submit Complaint</button>
+            </div>
+          </div>
         </div>
       )}
 
