@@ -95,13 +95,13 @@ export function SuperadminSystemGapFillingClient() {
                     ))}
                     <div className="absolute top-0 h-full bg-tertiary/30 border border-dashed border-tertiary/60 flex items-center justify-center animate-pulse transition-all duration-300"
                       style={{ left: `${seat.gap.start}%`, width: `${seat.gap.end - seat.gap.start}%` }}>
-                      <span className="text-xs text-tertiary font-medium truncate px-1">ðŸ•³ï¸ Gap</span>
+                      <span className="text-xs text-tertiary font-medium truncate px-1">🕳ï¸ Gap</span>
                     </div>
                   </div>
                   <div className="w-64 shrink-0 flex items-center gap-3">
                     <div className="flex-1">
                       <p className="text-xs font-medium text-text-primary">{seat.gap.label}</p>
-                      <p className="text-xs text-text-secondary">ðŸ’¡ {seat.gap.hours}hrs available</p>
+                      <p className="text-xs text-text-secondary">💡 {seat.gap.hours}hrs available</p>
                     </div>
                     {assigned.includes(seat.seat) ? (
                       <SuperadminBadge variant="success"><CheckCircle size={14} className="inline mr-1" /> Assigned</SuperadminBadge>

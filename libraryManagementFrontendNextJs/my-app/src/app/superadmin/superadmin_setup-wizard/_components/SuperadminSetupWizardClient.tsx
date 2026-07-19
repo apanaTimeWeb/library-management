@@ -80,7 +80,7 @@ export function SuperadminSetupWizardClient() {
             </p>
             <p className="text-sm text-text-secondary leading-relaxed mb-4">
               You can complete setup anytime from{' '}
-              <span className="font-medium text-text-primary underline decoration-border underline-offset-4">Dashboard â†’ Settings â†’ Setup Wizard</span>.
+              <span className="font-medium text-text-primary underline decoration-border underline-offset-4">Dashboard → Settings → Setup Wizard</span>.
             </p>
 
             <div className="w-full bg-card rounded-xl p-4 text-left space-y-3 mb-6">
@@ -165,7 +165,7 @@ export function SuperadminSetupWizardClient() {
 
         <div className="mt-auto space-y-3">
           <div className="p-3 rounded-lg bg-info-bg/50 border border-info/20 text-sm text-info font-medium leading-relaxed">
-            ðŸ’¡ You can update these settings anytime from your dashboard.
+            💡 You can update these settings anytime from your dashboard.
           </div>
           <button
             id="skip-setup-sidebar-btn"
@@ -220,14 +220,14 @@ export function SuperadminSetupWizardClient() {
                       â° {shifts.shifts.length} Shifts Added
                     </span>
                     <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs font-semibold border bg-warning-bg border-warning/20 text-warning">
-                      ðŸª‘ {seats.count} Seats Created
+                      🪑 {seats.count} Seats Created
                     </span>
                     <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs font-semibold border bg-success-bg border-success/20 text-success">
-                      ðŸ’³ {plans.plans.length} Plans Ready
+                      💳 {plans.plans.length} Plans Ready
                     </span>
                     {branch.gst && (
                       <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs font-semibold border bg-purple/10 border-purple/20 text-purple">
-                        ðŸ§¾ GST Enabled
+                        🧾 GST Enabled
                       </span>
                     )}
                   </div>
@@ -249,7 +249,7 @@ export function SuperadminSetupWizardClient() {
                   <div className="flex flex-wrap gap-2">
                     {plans.plans.map(( pl ) => (
                       <span key={pl.name} className="text-xs font-medium text-text-secondary bg-card px-2 py-1 rounded border border-border">
-                        {pl.name} Â· {pl.days}d Â· ₹{pl.price}
+                        {pl.name} · {pl.days}d · ₹{pl.price}
                       </span>
                     ))}
                   </div>
@@ -267,7 +267,7 @@ export function SuperadminSetupWizardClient() {
                   ) : launching ? (
                     <><span className="animate-spin w-5 h-5 border-2 border-white/30 border-t-white rounded-full" />Setting up your library...</>
                   ) : (
-                    <><Rocket size={20} /> ðŸš€ Launch Dashboard</>
+                    <><Rocket size={20} /> 🚀 Launch Dashboard</>
                   )}
                 </button>
               </div>

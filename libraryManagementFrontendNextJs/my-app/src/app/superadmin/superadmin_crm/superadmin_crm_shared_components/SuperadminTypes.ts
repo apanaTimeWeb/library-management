@@ -92,10 +92,10 @@ export const KANBAN_COLUMNS: KanbanColumn[] = [
   },
 ];
 
-// ─── Status â†’ Badge class mapping ────────────────────────────────────────────
+// ─── Status → Badge class mapping ────────────────────────────────────────────
 // Colors per module_03_crm_enquiries.md:
-//   New â†’ --info (blue) | Visited â†’ --warning (amber) | Interested â†’ --purple
-//   Converted â†’ --success (green) | Lost â†’ neutral grey
+//   New → --info (blue) | Visited → --warning (amber) | Interested → --purple
+//   Converted → --success (green) | Lost → neutral grey
 export const STATUS_BADGE: Record<EnquiryStatus, string> = {
   New:        'crm-badge--new',
   Visited:    'crm-badge--visited',

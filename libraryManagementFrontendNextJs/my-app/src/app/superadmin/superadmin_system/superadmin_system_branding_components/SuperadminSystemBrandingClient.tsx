@@ -41,7 +41,7 @@ export function SuperadminSystemBrandingClient() {
                   className="flex flex-col items-center justify-center border-2 border-dashed border-border rounded-lg p-6 cursor-pointer hover:bg-input transition-colors"
                 >
                   <div className="h-16 w-16 rounded-md flex items-center justify-center text-text-primary text-xl font-bold mb-2 bg-card border border-border shadow-sm">
-                    ðŸ“š
+                    📚
                   </div>
                   <button type="button" className="text-xs text-primary font-bold flex items-center gap-1 cursor-pointer">
                     <Upload size={12} /> Upload Logo (200Ã—200px)
@@ -112,7 +112,7 @@ export function SuperadminSystemBrandingClient() {
                 <div className="border border-border rounded-lg bg-card overflow-hidden shadow-sm" style={{ borderLeft: `4px solid ${form.primaryColor}` }}>
                   <div className="p-4 flex items-center gap-3 border-b border-border bg-muted/30">
                     <div className="h-10 w-10 rounded-md flex items-center justify-center text-lg font-bold bg-card border border-border shadow-sm">
-                      ðŸ“š
+                      📚
                     </div>
                     <div>
                       <p className="text-sm font-extrabold text-text-primary leading-tight truncate w-48">{form.libraryName || 'Library'}</p>
@@ -137,7 +137,7 @@ export function SuperadminSystemBrandingClient() {
                   <div className="absolute top-0 left-0 right-0 h-1" style={{ backgroundColor: form.primaryColor }} />
                   <div className="flex flex-col items-center mb-6 gap-2 text-center mt-2">
                     <div className="h-12 w-12 rounded-md flex items-center justify-center text-xl font-bold bg-muted border border-border shadow-sm">
-                      ðŸ“š
+                      📚
                     </div>
                     <p className="text-lg font-extrabold text-text-primary tracking-tight">{form.libraryName || 'Library'}</p>
                     {form.tagline && <p className="text-xs text-text-secondary">{form.tagline}</p>}
@@ -156,14 +156,14 @@ export function SuperadminSystemBrandingClient() {
                 <div className="rounded-lg border border-border overflow-hidden max-w-xs shadow-sm">
                   <div className="p-4 flex items-center gap-3 text-primary-foreground relative overflow-hidden" style={{ backgroundColor: form.primaryColor }}>
                     <div className="absolute right-0 top-0 bottom-0 w-24 opacity-20" style={{ background: `linear-gradient(to right, transparent, ${form.accentColor})` }} />
-                    <div className="h-10 w-10 rounded-md bg-white/20 flex items-center justify-center text-xl backdrop-blur-sm shadow-sm relative z-10 border border-white/20">ðŸ“š</div>
+                    <div className="h-10 w-10 rounded-md bg-white/20 flex items-center justify-center text-xl backdrop-blur-sm shadow-sm relative z-10 border border-white/20">📚</div>
                     <div className="relative z-10">
                       <p className="text-base font-extrabold tracking-tight truncate w-40">{form.libraryName || 'Library'}</p>
                       <p className="text-xs font-medium opacity-90 uppercase tracking-widest mt-0.5">Student ID</p>
                     </div>
                   </div>
                   <div className="p-4 flex items-center gap-4 bg-card relative">
-                    <div className="h-16 w-16 rounded-md bg-input flex items-center justify-center text-3xl border border-border shadow-inner">ðŸ‘¤</div>
+                    <div className="h-16 w-16 rounded-md bg-input flex items-center justify-center text-3xl border border-border shadow-inner">👤</div>
                     <div className="flex-1">
                       <p className="text-sm font-extrabold text-text-primary">Rahul Sharma</p>
                       <p className="text-xs font-mono text-text-secondary mt-1">ID: #0042</p>

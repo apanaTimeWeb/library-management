@@ -18,7 +18,7 @@ export function SuperadminSystemHealthHeader({ lastRefresh, refreshing, onRefres
           disabled={refreshing}
         >
           <RefreshCw size={14} className={refreshing ? 'animate-spin text-primary' : ''} />
-          {refreshing ? 'Refreshing...' : `Refresh Â· ${lastRefresh}`}
+          {refreshing ? 'Refreshing...' : `Refresh · ${lastRefresh}`}
         </button>
       </div>
     </div>

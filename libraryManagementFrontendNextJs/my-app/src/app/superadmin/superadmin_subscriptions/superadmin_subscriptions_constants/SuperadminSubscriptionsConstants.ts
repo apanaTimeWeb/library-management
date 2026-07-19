@@ -14,6 +14,6 @@ export const SUPERADMIN_SUBSCRIPTIONS_MOCK_DATA: SuperadminSubscription[] = [
 export const SUPERADMIN_SUBSCRIPTIONS_KPI: SuperadminSubscriptionKpi[] = [
   { label: 'Active Subscriptions',      val: '24',        icon: 'users',         colorType: 'primary', trend: '+3 this month',       trendType: 'success' },
   { label: 'Monthly Recurring Revenue', val: '₹1,42,500', icon: 'receipt_text',  colorType: 'success', trend: 'â†‘ 12% vs last month', trendType: 'success' },
-  { label: 'Churn Rate',                val: '1.2%',       icon: 'trending_down', colorType: 'warning', trend: 'Healthy âœ“',          trendType: 'success' },
+  { label: 'Churn Rate',                val: '1.2%',       icon: 'trending_down', colorType: 'warning', trend: 'Healthy ✓',          trendType: 'success' },
 ];
 

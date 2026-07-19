@@ -123,7 +123,7 @@ export function SuperadminAutoSuspendClient() {
               <tr>
                 <td colSpan={7}>
                   <div className="flex flex-col items-center justify-center p-8 text-center space-y-3">
-                    <div className="text-4xl">ðŸ”“</div>
+                    <div className="text-4xl">🔓</div>
                     <p className="text-base text-text-secondary">No students currently suspended.</p>
                   </div>
                 </td>
@@ -150,7 +150,7 @@ export function SuperadminAutoSuspendClient() {
                         className="bg-input border border-border text-text-primary px-2.5 py-1 rounded-md text-xs font-bold flex items-center gap-1 hover:bg-border transition-colors cursor-pointer"
                         onClick={() => sendReminder(s.studentName)}
                       >
-                        <Bell size={12} /> ðŸ“± Reminder
+                        <Bell size={12} /> 📱 Reminder
                       </button>
                       <button
                         className="bg-success text-success-foreground px-2.5 py-1 rounded-md text-xs font-bold flex items-center gap-1 hover:brightness-95 transition-colors cursor-pointer"

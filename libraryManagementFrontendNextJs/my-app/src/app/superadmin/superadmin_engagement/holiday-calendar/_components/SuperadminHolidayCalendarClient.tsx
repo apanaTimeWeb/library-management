@@ -63,7 +63,7 @@ export function SuperadminHolidayCalendarClient() {
           <div className="bg-card border border-border w-full max-w-sm rounded-xl shadow-2xl overflow-hidden relative">
             <button onClick={()=>setShowAdd(false)} className="absolute top-4 right-4 text-text-secondary hover:text-text-primary transition-colors cursor-pointer"><X size={16}/></button>
             <div className="p-5 border-b border-border bg-muted/30">
-              <p className="text-lg font-extrabold text-text-primary">ðŸ“… Add Holiday</p>
+              <p className="text-lg font-extrabold text-text-primary">📅 Add Holiday</p>
               <p className="text-xs text-text-secondary mt-1">Mark a library closure or holiday.</p>
             </div>
 
@@ -113,7 +113,7 @@ export function SuperadminHolidayCalendarClient() {
       {/* ── Page Header ── */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
         <div>
-          <h1 className="text-3xl font-extrabold text-text-primary tracking-tight">ðŸ“… Holiday Calendar</h1>
+          <h1 className="text-3xl font-extrabold text-text-primary tracking-tight">📅 Holiday Calendar</h1>
           <p className="text-sm text-text-secondary mt-1">Manage library holidays, closures, and special events.</p>
         </div>
         <button onClick={()=>setShowAdd(true)} className="flex items-center justify-center gap-2 px-4 py-2 bg-primary text-primary-foreground text-sm font-bold rounded-md hover:bg-primary/90 shadow-sm transition-all cursor-pointer">
@@ -225,7 +225,7 @@ export function SuperadminHolidayCalendarClient() {
             <div className="flex-1 overflow-y-auto p-4 scrollbar-thin scrollbar-thumb-border">
               {thisMonthHolidays.length === 0 ? (
                 <div className="flex flex-col items-center justify-center h-full text-center p-6 text-text-secondary">
-                  <div className="text-4xl mb-3 opacity-50">ðŸŽ‰</div>
+                  <div className="text-4xl mb-3 opacity-50">🎉</div>
                   <p className="text-sm font-bold">No holidays in {monthLabel}</p>
                 </div>
               ) : (

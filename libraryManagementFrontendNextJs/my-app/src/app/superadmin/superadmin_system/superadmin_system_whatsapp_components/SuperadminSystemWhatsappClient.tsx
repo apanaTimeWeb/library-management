@@ -73,7 +73,7 @@ export function SuperadminSystemWhatsappClient() {
           </div>
           <p className="text-xs text-text-secondary mt-0.5">
             {testStatus === 'success'
-              ? `Provider: ${selectedProvider.label} Â· Test message sent to ${senderPhone}`
+              ? `Provider: ${selectedProvider.label} · Test message sent to ${senderPhone}`
               : testStatus === 'error'
               ? 'Check your API key and try again. Ensure the number is registered on WhatsApp Business.'
               : 'Click "Test Connection" to verify your WhatsApp setup.'}
@@ -204,10 +204,10 @@ export function SuperadminSystemWhatsappClient() {
               onClick={handleTestConnection}
               disabled={testStatus === 'testing'}
             >
-              {testStatus === 'testing' ? <><Loader2 size={16} className="animate-spin mr-2" /> Testing...</> : 'ðŸ”Œ Test Connection'}
+              {testStatus === 'testing' ? <><Loader2 size={16} className="animate-spin mr-2" /> Testing...</> : '🔌 Test Connection'}
             </SuperadminButton>
             <SuperadminButton id="save-whatsapp-config-btn" variant="primary">
-              ðŸ’¾ Save Configuration
+              💾 Save Configuration
             </SuperadminButton>
           </CardFooter>
         </SuperadminCard>

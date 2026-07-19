@@ -31,7 +31,7 @@ export function SuperadminAttendanceClient() {
       {/* ── Page Header ── */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
         <div>
-          <h1 className="text-3xl font-extrabold text-text-primary tracking-tight">ðŸ“… Daily Attendance</h1>
+          <h1 className="text-3xl font-extrabold text-text-primary tracking-tight">📅 Daily Attendance</h1>
           <p className="text-sm text-text-secondary mt-1">Mark attendance for all enrolled students by shift.</p>
         </div>
         <Link href={SUPERADMIN_ROUTES.ENGAGEMENT_ABSENTEE_REPORT} className="flex items-center justify-center gap-2 px-4 py-2 bg-input text-text-primary text-sm font-bold rounded-md hover:bg-input/80 border border-border shadow-sm transition-all cursor-pointer">
@@ -97,7 +97,7 @@ export function SuperadminAttendanceClient() {
         <div className="divide-y divide-border">
           {filtered.length === 0 ? (
             <div className="p-12 flex flex-col items-center justify-center text-center">
-              <div className="text-4xl mb-4 opacity-50">ðŸ“…</div>
+              <div className="text-4xl mb-4 opacity-50">📅</div>
               <p className="text-base font-extrabold text-text-primary">No students in this shift</p>
               <p className="text-sm text-text-secondary mt-1">Try selecting a different shift or date.</p>
             </div>

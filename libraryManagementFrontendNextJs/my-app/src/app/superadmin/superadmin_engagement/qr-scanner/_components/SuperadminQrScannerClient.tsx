@@ -21,7 +21,7 @@ export function SuperadminQrScannerClient() {
       </div>
 
       <div className="mb-8">
-        <h1 className="text-3xl font-extrabold text-text-primary tracking-tight">ðŸ“· QR Scanner</h1>
+        <h1 className="text-3xl font-extrabold text-text-primary tracking-tight">📷 QR Scanner</h1>
         <p className="text-sm text-text-secondary mt-1">Scan student ID cards to instantly mark attendance.</p>
       </div>
 
@@ -66,7 +66,7 @@ export function SuperadminQrScannerClient() {
               ) : (
                 <>
                   <div className={`text-5xl drop-shadow-lg transition-transform duration-500 ${scanState === 'scanning' ? 'scale-110' : 'opacity-50'}`}>
-                    {scanState === 'scanning' ? 'ðŸ“·' : 'ðŸ”²'}
+                    {scanState === 'scanning' ? '📷' : '🔲'}
                   </div>
                   <p className="text-sm font-bold text-white/80 mt-4 tracking-wide uppercase">
                     {scanState === 'idle' ? 'Camera inactive' : 'Tap to simulate scan'}
@@ -92,7 +92,7 @@ export function SuperadminQrScannerClient() {
           {scanState === 'idle' && (
             <div className="p-4 border-t border-border flex justify-center bg-muted/20">
               <button onClick={startScan} className="flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground text-sm font-bold rounded-full hover:bg-primary/90 hover:scale-105 hover:shadow-lg transition-all active:scale-95 cursor-pointer">
-                ðŸ“· Start Scanning
+                📷 Start Scanning
               </button>
             </div>
           )}
@@ -154,7 +154,7 @@ export function SuperadminQrScannerClient() {
         <div className="flex justify-center pt-2">
           {!showManual ? (
             <button onClick={() => setShowManual(true)} className="text-xs font-bold text-primary hover:text-primary/80 transition-colors cursor-pointer hover:underline underline-offset-4">
-              Can't scan? Enter Smart ID manually â†’
+              Can't scan? Enter Smart ID manually →
             </button>
           ) : (
             <div className="w-full bg-card border border-border rounded-lg p-5 shadow-sm animate-in zoom-in-95 duration-200">

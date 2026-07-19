@@ -111,7 +111,7 @@ export function SuperadminSettingsClient() {
           </div>
 
           <div className="bg-info-bg border border-info/20 text-info rounded-xl p-4 text-sm leading-relaxed">
-            ðŸ’¡ Changes apply to all <strong>newly provisioned</strong> branches. Existing branches retain their current settings until manually updated.
+            💡 Changes apply to all <strong>newly provisioned</strong> branches. Existing branches retain their current settings until manually updated.
           </div>
         </div>
       </div>

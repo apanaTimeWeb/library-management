@@ -92,7 +92,7 @@ export function SuperadminFinanceDashboardClient() {
                 <div key={p.id} className="flex justify-between items-center p-4 border-b border-border last:border-0 hover:bg-primary/5 transition-colors">
                   <div>
                     <div className="font-medium text-sm text-text-primary">{p.studentName}</div>
-                    <div className="text-xs text-text-secondary">{p.studentSmartId} Â· {p.date}</div>
+                    <div className="text-xs text-text-secondary">{p.studentSmartId} · {p.date}</div>
                   </div>
                   <div className="flex items-center gap-3">
                     <span className={`${MODE_BADGE[p.mode] || 'bg-input text-text-primary border border-border'} px-2 py-0.5 rounded-full text-xs font-bold capitalize`}>{p.mode}</span>

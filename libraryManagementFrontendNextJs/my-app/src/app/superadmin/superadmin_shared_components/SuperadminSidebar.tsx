@@ -69,7 +69,7 @@ export default function SuperadminSidebar({ collapsed, onToggle, mobileOpen, onM
             {mobileOpen ? <X size={18} /> : <Menu size={18} />}
           </SuperadminButton>
           {(!collapsed || mobileOpen) && (
-            <span className="font-bold text-text-primary truncate ml-2">ðŸ“š Smart Library</span>
+            <span className="font-bold text-text-primary truncate ml-2">📚 Smart Library</span>
           )}
         </div>
 

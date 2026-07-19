@@ -67,7 +67,7 @@ export function SuperadminSystemSmartIdClient() {
       <SuperadminCard className="mb-6">
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
-            ðŸ”¢ Current ID Sequence
+            🔢 Current ID Sequence
             {regenerated && <SuperadminBadge variant="success"><CheckCircle size={14} className="inline mr-1" /> Regenerated</SuperadminBadge>}
           </CardTitle>
           <CardDescription>
@@ -119,7 +119,7 @@ export function SuperadminSystemSmartIdClient() {
         <CardContent>
           <SuperadminDialog>
             <SuperadminDialogTrigger asChild>
-              <SuperadminButton id="force-regenerate-btn" variant="destructive">ðŸ”¢ Force Regenerate Sequence</SuperadminButton>
+              <SuperadminButton id="force-regenerate-btn" variant="destructive">🔢 Force Regenerate Sequence</SuperadminButton>
             </SuperadminDialogTrigger>
             <SuperadminDialogContent>
               <SuperadminDialogHeader>

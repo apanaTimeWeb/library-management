@@ -75,7 +75,7 @@ export function SuperadminSystemPowerSavingClient() {
           </div>
         </CardContent>
         <CardFooter>
-          <SuperadminButton id="save-power-config-btn" variant="primary">ðŸ’¾ Save Configuration</SuperadminButton>
+          <SuperadminButton id="save-power-config-btn" variant="primary">💾 Save Configuration</SuperadminButton>
         </CardFooter>
       </SuperadminCard>
 

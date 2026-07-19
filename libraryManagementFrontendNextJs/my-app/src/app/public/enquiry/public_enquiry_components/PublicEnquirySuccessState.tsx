@@ -19,7 +19,7 @@ export function PublicEnquirySuccessState({ submittedName, onReset }: {
         Thank you, {submittedName}!
       </h2>
       <p className="text-sm text-text-secondary leading-relaxed max-w-xs mx-auto mb-8">
-        We&apos;ll contact you shortly to confirm your seat. ðŸŽ‰
+        We&apos;ll contact you shortly to confirm your seat. 🎉
       </p>
 
       <div className="text-left bg-input border border-border rounded-lg p-5 space-y-3 shadow-inner">
@@ -27,9 +27,9 @@ export function PublicEnquirySuccessState({ submittedName, onReset }: {
           What Happens Next
         </p>
         {[
-          { icon: 'ðŸ“ž', text: 'We call you within 24 hours' },
-          { icon: 'ðŸª‘', text: 'Seat confirmed & reserved for you' },
-          { icon: 'ðŸŽ“', text: 'Collect your ID card on arrival' },
+          { icon: '📞', text: 'We call you within 24 hours' },
+          { icon: '🪑', text: 'Seat confirmed & reserved for you' },
+          { icon: '🎓', text: 'Collect your ID card on arrival' },
         ].map(({ icon, text }, index) => (
           <div key={index} className="flex items-center gap-3 text-sm text-text-secondary">
             <span className="text-base" aria-hidden="true">{icon}</span>

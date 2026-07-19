@@ -196,10 +196,10 @@ export function SuperadminSystemSettingsClient() {
                 <div className="space-y-3">
                   <SuperadminLabel>Accepted Payment Modes</SuperadminLabel>
                   {[
-                    { key: 'acceptCash', label: 'ðŸ’µ Cash' },
-                    { key: 'acceptUpi', label: 'ðŸ“± UPI' },
-                    { key: 'acceptCard', label: 'ðŸ’³ Card' },
-                    { key: 'acceptBank', label: 'ðŸ¦ Bank Transfer' },
+                    { key: 'acceptCash', label: '💵 Cash' },
+                    { key: 'acceptUpi', label: '📱 UPI' },
+                    { key: 'acceptCard', label: '💳 Card' },
+                    { key: 'acceptBank', label: '🏦 Bank Transfer' },
                   ].map(({ key, label }) => (
                     <label key={key} className="flex items-center gap-3 cursor-pointer">
                       <input
@@ -248,7 +248,7 @@ export function SuperadminSystemSettingsClient() {
                     </button>
                   </div>
                 </div>
-                <SuperadminButton id="test-connection-btn" variant="ghost">ðŸ”Œ Test Connection</SuperadminButton>
+                <SuperadminButton id="test-connection-btn" variant="ghost">🔌 Test Connection</SuperadminButton>
               </CardContent>
               <CardFooter>
                 <SuperadminButton id="save-notifications-btn" onClick={handleSave} variant="primary">

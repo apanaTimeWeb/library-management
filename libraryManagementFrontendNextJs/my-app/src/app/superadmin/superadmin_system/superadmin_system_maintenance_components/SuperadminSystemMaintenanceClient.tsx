@@ -34,9 +34,9 @@ export function SuperadminSystemMaintenanceClient() {
 
       {/* Summary KPI Cards */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-        <SuperadminKpiCard title="Seats Needing Attention" value={seatsNeedingAttention} icon={() => <span>ðŸª‘</span>} trend="down" trendLabel="Action required" />
+        <SuperadminKpiCard title="Seats Needing Attention" value={seatsNeedingAttention} icon={() => <span>🪑</span>} trend="down" trendLabel="Action required" />
         <SuperadminKpiCard title="Assets Overdue" value={assetsOverdue} icon={() => <span>âš™ï¸</span>} trend="down" trendLabel="Service overdue" />
-        <SuperadminKpiCard title="Locker Issues" value={lockerIssues} icon={() => <span>ðŸ”’</span>} trend="down" trendLabel="Reported issues" />
+        <SuperadminKpiCard title="Locker Issues" value={lockerIssues} icon={() => <span>🔒</span>} trend="down" trendLabel="Reported issues" />
       </div>
 
       {/* Section 1 — Seats */}

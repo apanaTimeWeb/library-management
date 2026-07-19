@@ -3,7 +3,7 @@ import { useState, useMemo } from 'react';
 import type { SuperadminAsset } from '@/app/superadmin/superadmin_accounting/assets/superadmin_assets_types/SuperadminAssetsTypes';
 import { SUPERADMIN_ASSETS_MOCK_DATA, SUPERADMIN_ASSETS_STATUS_STYLES } from '@/app/superadmin/superadmin_accounting/assets/superadmin_assets_constants/SuperadminAssetsConstants';
 
-// DATA FLOW: API â†’ useSuperadminAssets.ts â†’ SuperadminAssetsComponent
+// DATA FLOW: API → useSuperadminAssets.ts → SuperadminAssetsComponent
 export function useSuperadminAssets() {
   const [assets, setAssets] = useState<SuperadminAsset[]>(SUPERADMIN_ASSETS_MOCK_DATA);
   const [catFilter, setCatFilter] = useState('all');

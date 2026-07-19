@@ -35,7 +35,7 @@ export function SuperadminSystemWaitlistAutomationClient() {
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4">
               <div className={`h-12 w-12 rounded-2xl flex items-center justify-center text-text-primary text-xl ${enabled ? 'bg-success/10' : 'bg-input'}`}>
-                ðŸ“‹
+                📋
               </div>
               <div>
                 <p className="text-base font-semibold text-text-primary">Waitlist Auto-Notification</p>
@@ -87,7 +87,7 @@ export function SuperadminSystemWaitlistAutomationClient() {
           </div>
         </CardContent>
         <CardFooter>
-          <SuperadminButton id="save-waitlist-config-btn" variant="primary">ðŸ’¾ Save Config</SuperadminButton>
+          <SuperadminButton id="save-waitlist-config-btn" variant="primary">💾 Save Config</SuperadminButton>
         </CardFooter>
       </SuperadminCard>
 

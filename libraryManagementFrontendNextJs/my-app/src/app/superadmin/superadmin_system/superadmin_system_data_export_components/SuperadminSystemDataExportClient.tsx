@@ -90,7 +90,7 @@ export function SuperadminSystemDataExportClient() {
             </div>
             <div className="flex gap-2">
               <button onClick={selectAll} className="text-xs text-primary font-medium hover:underline">Select All</button>
-              <span className="text-text-secondary text-xs">Â·</span>
+              <span className="text-text-secondary text-xs">·</span>
               <button onClick={clearAll} className="text-xs text-text-secondary hover:text-text-primary">Clear</button>
             </div>
           </div>
@@ -183,8 +183,8 @@ export function SuperadminSystemDataExportClient() {
             <div className="flex-1">
               {selected.size > 0 && (
                 <p className="text-sm text-text-secondary">
-                  <span className="text-primary font-semibold">{selected.size} module{selected.size > 1 ? 's' : ''}</span> selected Â·
-                  ~<span className="text-text-primary font-medium">{estimatedTotal.toLocaleString()} rows</span> Â· Format: <span className="text-primary font-medium">{format}</span>
+                  <span className="text-primary font-semibold">{selected.size} module{selected.size > 1 ? 's' : ''}</span> selected ·
+                  ~<span className="text-text-primary font-medium">{estimatedTotal.toLocaleString()} rows</span> · Format: <span className="text-primary font-medium">{format}</span>
                 </p>
               )}
             </div>

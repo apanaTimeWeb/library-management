@@ -52,7 +52,7 @@ export function SuperadminSetupWizardStep3({ onNext }: Props) {
       </div>
 
       <div className="bg-info-bg/30 border border-info/20 rounded-xl p-5">
-        <p className="text-sm font-semibold text-info mb-1.5">ðŸ’¡ Seats will be generated as:</p>
+        <p className="text-sm font-semibold text-info mb-1.5">💡 Seats will be generated as:</p>
         <p className="text-base font-mono text-text-primary tracking-wide mb-1">
           {prefix ? preview : '(enter prefix to preview)'}
         </p>
