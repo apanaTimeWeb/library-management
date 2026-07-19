@@ -1,5 +1,5 @@
 import { ManagerCommunicationErrorBoundary } from '@/app/manager/manager_communication/manager_communication_components/ManagerCommunicationErrorBoundary';
-import { ManagerCommunicationWhatsAppTemplatesClient } from '@/app/manager/manager_communication/manager_communication_components/ManagerCommunicationWhatsAppTemplatesClient';
+import { ManagerCommunicationWhatsappTemplatesClient } from '@/app/manager/manager_communication/manager_communication_components/ManagerCommunicationWhatsappTemplatesClient';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <ManagerCommunicationErrorBoundary>
-      <ManagerCommunicationWhatsAppTemplatesClient />
+      <ManagerCommunicationWhatsappTemplatesClient />
     </ManagerCommunicationErrorBoundary>
   );
 }
