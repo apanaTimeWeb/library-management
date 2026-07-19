@@ -14,11 +14,8 @@ import { useClientTable } from '@/components/ui/use-client-table';
 
 export function AdminStudentsClient({ initialStudents }: AdminStudentsClientProps) {
 
-  const [page, setPage] = useState(1);
-  const [limit, setLimit] = useState(10);
-
   const { search, setSearch, selectedBranch, filteredStudents } = useAdminStudents(initialStudents);
-    const table = useClientTable(filteredStudents, 10);
+  const table = useClientTable(filteredStudents, 10);
   return (
     <div className="h-full flex flex-col pb-10 space-y-6">
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-border pb-4">
@@ -66,7 +63,7 @@ export function AdminStudentsClient({ initialStudents }: AdminStudentsClientProp
               </tr>
             </thead>
             <tbody className="divide-y divide-border">
-              {filteredStudents.slice((page - 1) * limit, page * limit).map((student) => (
+              {table.paginatedData.map((student) => (
                 <tr 
                   key={student.id} 
                   className="hover:bg-page transition-colors group cursor-pointer"
@@ -93,7 +90,7 @@ export function AdminStudentsClient({ initialStudents }: AdminStudentsClientProp
                   </td>
                 </tr>
               ))}
-              {filteredStudents.length === 0 && (
+              {table.paginatedData.length === 0 && (
                 <tr>
                   <td colSpan={6} className="px-4 py-12 text-center text-text-secondary">
                     No students found matching your search.
@@ -108,14 +105,8 @@ export function AdminStudentsClient({ initialStudents }: AdminStudentsClientProp
         page={table.page} 
         limit={table.limit} 
         onPageChange={table.setPage} 
+        onLimitChange={table.setLimit}
       />
-          <TablePagination
-            page={page}
-            limit={limit}
-            totalItems={filteredStudents.length}
-            onPageChange={setPage}
-            onLimitChange={setLimit}
-          />
       </div>
     </div>
   );

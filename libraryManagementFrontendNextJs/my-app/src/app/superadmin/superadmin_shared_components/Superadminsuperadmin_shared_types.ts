@@ -19,3 +19,17 @@ export interface SuperadminSearchableDropdownProps {
 }
 
 // RESPONSIBILITY: Types for shared components in the superadmin portal
+import type { LucideIcon } from 'lucide-react';
+
+export interface SuperadminNavItem {
+  href: string;
+  icon: LucideIcon;
+  label: string;
+}
+
+export interface SuperadminNavGroup {
+  group: string;
+  items?: SuperadminNavItem[];
+}
+
+export type SuperadminNavEntry = SuperadminNavItem | SuperadminNavGroup;

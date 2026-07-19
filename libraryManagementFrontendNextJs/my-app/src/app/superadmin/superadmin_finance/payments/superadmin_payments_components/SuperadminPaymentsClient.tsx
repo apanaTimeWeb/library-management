@@ -3,11 +3,13 @@
 // DATA FLOW: API /finance/payments -> Payments State -> Table / Receipt Action
 import React, { useState, useMemo } from 'react';
 import { SuperadminSearchableDropdown } from '@/app/superadmin/superadmin_shared_components/SuperadminSearchableDropdown';
-import { useSuperadminPaymentsClient } from '@/app/superadmin/superadmin_finance/payments/_components/useSuperadminPaymentsClient';
+import { useSuperadminPaymentsClient } from '@/app/superadmin/superadmin_finance/payments/superadmin_payments_components/useSuperadminPaymentsClient';
 import { TableToolbar } from "@/components/ui/table-toolbar";
 import { SUPERADMIN_ROUTES } from '@/app/superadmin/Superadminsuperadmin_url_config';
-import { Receipt, FileText, Trash2, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Receipt, FileText, Trash2 } from 'lucide-react';
 import { formatCurrency, formatDate } from '@/app/superadmin/superadmin_finance/superadmin_finance_utils/Superadminsuperadmin_format';
+import { useClientTable } from "@/components/ui/use-client-table";
+import { TablePagination } from "@/components/ui/table-pagination";
 import {
   Table,
   TableHeader,
@@ -16,18 +18,19 @@ import {
   TableHead,
   TableCell,
 } from "@/components/ui/table";
-
-const MODE_BADGE: Record<string, string> = {
-  cash: 'bg-pay-cash-bg text-pay-cash border border-pay-cash-bg/20',
-  upi:  'bg-pay-upi-bg text-pay-upi border border-pay-upi-bg/20',
-  card: 'bg-pay-card-bg text-pay-card border border-pay-card-bg/20',
-  bank: 'bg-pay-bank-bg text-pay-bank border border-pay-bank-bg/20',
-};
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
+import { 
+  SUPERADMIN_PAYMENTS_MODE_BADGES, 
+  SUPERADMIN_PAYMENTS_MODE_OPTIONS 
+} from '../superadmin_payments_constants/SuperadminPaymentsConstants';
 
 export function SuperadminPaymentsClient() {
   const [searchTerm, setSearchTerm] = useState('');
-  const [currentPage, setCurrentPage] = useState(1);
-  const pageSize = 10;
   
   const {
     modeFilter, setModeFilter,
@@ -51,12 +54,7 @@ export function SuperadminPaymentsClient() {
     );
   }, [visible, searchTerm]);
 
-  useMemo(() => {
-    setCurrentPage(1);
-  }, [searchTerm, modeFilter, showDeleted]);
-
-  const totalPages = Math.ceil(searchedPayments.length / pageSize);
-  const paginatedPayments = searchedPayments.slice((currentPage - 1) * pageSize, currentPage * pageSize);
+  const table = useClientTable(searchedPayments, 10);
 
   return (
     <div className="space-y-6">
@@ -68,13 +66,7 @@ export function SuperadminPaymentsClient() {
       <div className="flex items-center gap-3 bg-bg-card p-3 rounded-lg border border-border">
         <div className="w-48">
           <SuperadminSearchableDropdown
-            options={[
-              { label: 'All Modes', value: 'all' },
-              { label: 'Cash', value: 'cash' },
-              { label: 'UPI', value: 'upi' },
-              { label: 'Card', value: 'card' },
-              { label: 'Bank Transfer', value: 'bank' }
-            ]}
+            options={SUPERADMIN_PAYMENTS_MODE_OPTIONS}
             value={modeFilter}
             onChange={setModeFilter}
           />
@@ -114,11 +106,16 @@ export function SuperadminPaymentsClient() {
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {paginatedPayments.length > 0 ? (
-                  paginatedPayments.map((p, index) => (
+                {table.paginatedData.length > 0 ? (
+                  table.paginatedData.map((p, index) => (
                     <TableRow 
                       key={index}
-                      className="hover:bg-page/50 transition-colors"
+                      className="hover:bg-page/50 transition-colors cursor-pointer"
+                      onClick={() => {
+                        if (p.status === 'valid') {
+                          router.push(SUPERADMIN_ROUTES.FINANCE_RECEIPT_ID(p.id.toString()));
+                        }
+                      }}
                     >
                       <TableCell>
                         <span className={`font-mono text-sm font-medium ${p.status === 'deleted' ? 'line-through opacity-50 text-text-secondary' : 'text-text-primary'}`}>
@@ -139,7 +136,7 @@ export function SuperadminPaymentsClient() {
                       </TableCell>
                       <TableCell>
                         <div className={`flex items-center ${p.status === 'deleted' ? 'opacity-50' : ''}`}>
-                          <span className={`${MODE_BADGE[p.mode] || 'bg-input text-text-primary border border-border'} px-2 py-0.5 rounded-full text-xs font-bold capitalize`}>
+                          <span className={`${SUPERADMIN_PAYMENTS_MODE_BADGES[p.mode] || 'bg-input text-text-primary border border-border'} px-2 py-0.5 rounded-full text-xs font-bold capitalize`}>
                             {p.mode}
                           </span>
                         </div>
@@ -158,9 +155,18 @@ export function SuperadminPaymentsClient() {
                             <span className="bg-danger-bg text-danger border border-danger/20 px-2 py-0.5 rounded-full text-xs font-bold self-start uppercase tracking-wider">DELETED</span>
                           )}
                           {p.status === 'deleted' && p.deletionReason && (
-                            <div className="text-xs text-text-secondary mt-1 leading-tight" title={p.deletionReason}>
-                              {p.deletionReason.length > 15 ? p.deletionReason.substring(0, 15) + '...' : p.deletionReason}
-                            </div>
+                            <TooltipProvider>
+                              <Tooltip>
+                                <TooltipTrigger asChild>
+                                  <div className="text-xs text-text-secondary mt-1 leading-tight max-w-[150px] truncate cursor-help">
+                                    {p.deletionReason}
+                                  </div>
+                                </TooltipTrigger>
+                                <TooltipContent>
+                                  <p className="text-sm max-w-xs">{p.deletionReason}</p>
+                                </TooltipContent>
+                              </Tooltip>
+                            </TooltipProvider>
                           )}
                         </div>
                       </TableCell>
@@ -170,21 +176,20 @@ export function SuperadminPaymentsClient() {
                             <>
                               <button
                                 className="w-7 h-7 flex items-center justify-center rounded-md bg-input text-text-primary border border-border hover:bg-primary/10 hover:text-primary transition-colors cursor-pointer"
-                                onClick={() => router.push(SUPERADMIN_ROUTES.FINANCE_RECEIPT_ID(p.id.toString()))}
-                                title="View Receipt"
-                              >
-                                <Receipt size={14} />
-                              </button>
-                              <button
-                                className="w-7 h-7 flex items-center justify-center rounded-md bg-input text-text-primary border border-border hover:bg-primary/10 hover:text-primary transition-colors cursor-pointer"
-                                onClick={() => router.push(SUPERADMIN_ROUTES.FINANCE_INVOICE_ID(p.id.toString()))}
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  router.push(SUPERADMIN_ROUTES.FINANCE_INVOICE_ID(p.id.toString()));
+                                }}
                                 title="View Invoice"
                               >
                                 <FileText size={14} />
                               </button>
                               <button
                                 className="w-7 h-7 flex items-center justify-center rounded-md bg-danger-bg text-danger border border-danger/20 hover:bg-danger hover:text-white transition-colors cursor-pointer"
-                                onClick={() => setDeleteDialog({ id: p.id, receipt: p.receiptNumber })}
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  setDeleteDialog({ id: p.id, receipt: p.receiptNumber });
+                                }}
                                 title="Delete"
                               >
                                 <Trash2 size={14} />
@@ -207,31 +212,13 @@ export function SuperadminPaymentsClient() {
           </div>
         </div>
 
-        {/* Pagination Footer */}
-        <div className="p-4 border-t border-border flex items-center justify-between bg-page/30">
-          <span className="text-sm font-semibold text-text-secondary">
-            Showing {paginatedPayments.length > 0 ? (currentPage - 1) * pageSize + 1 : 0} to {Math.min(currentPage * pageSize, searchedPayments.length)} of {searchedPayments.length} payments
-          </span>
-          <div className="flex items-center gap-2">
-            <button
-              onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
-              disabled={currentPage === 1}
-              className="p-1.5 rounded-md border border-border text-text-secondary hover:text-text-primary hover:bg-bg-card disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
-            >
-              <ChevronLeft size={16} />
-            </button>
-            <span className="text-sm font-semibold text-text-primary">
-              Page {currentPage} of {totalPages || 1}
-            </span>
-            <button
-              onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
-              disabled={currentPage === totalPages || totalPages === 0}
-              className="p-1.5 rounded-md border border-border text-text-secondary hover:text-text-primary hover:bg-bg-card disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
-            >
-              <ChevronRight size={16} />
-            </button>
-          </div>
-        </div>
+        <TablePagination 
+          page={table.page}
+          totalItems={table.totalItems}
+          onPageChange={table.setPage}
+          limit={table.limit}
+          onLimitChange={table.setLimit}
+        />
       </div>
 
       {deleteDialog && (
