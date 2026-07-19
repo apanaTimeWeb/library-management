@@ -96,11 +96,11 @@ body {
   --color-primary-hover: var(--primary-hover);
   --color-primary-subtle: var(--primary-subtle);
   
-  --color-bg-page: var(--bg-page);
-  --color-bg-card: var(--bg-card);
-  --color-bg-sidebar: var(--bg-sidebar);
-  --color-bg-header: var(--bg-header);
-  --color-bg-input: var(--bg-input);
+  --color-page: var(--bg-page);
+  --color-card: var(--bg-card);
+  --color-sidebar: var(--bg-sidebar);
+  --color-header: var(--bg-header);
+  --color-input: var(--bg-input);
   
   --color-border: var(--border);
   --color-border-focus: var(--border-focus);

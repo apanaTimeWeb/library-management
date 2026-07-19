@@ -26,7 +26,7 @@ function MetricRow({ label, sub, val, pct, colorKey }: SuperadminSystemHealthMet
         </div>
         <span className={`text-sm font-extrabold ${COLOR_TEXT_CLS[colorKey]}`}>{val}</span>
       </div>
-      <div className="h-2 w-full bg-bg-pageg-input rounded-full overflow-hidden border border-border">
+      <div className="h-2 w-full bg-input rounded-full overflow-hidden border border-border">
         <div 
           className={`h-full rounded-full transition-all duration-1000 ease-out ${COLOR_FILL_CLS[colorKey]}`} 
           style={{ width: `${pct}%` }} 
@@ -38,7 +38,7 @@ function MetricRow({ label, sub, val, pct, colorKey }: SuperadminSystemHealthMet
 
 export function SuperadminSystemHealthMetricCard({ title, icon: Icon, iconColor, metrics }: SuperadminSystemHealthMetricCardProps) {
   return (
-    <div className="bg-bg-pageg-card border border-border rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow">
+    <div className="bg-card border border-border rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow">
       <h2 className="text-sm font-bold text-text-primary mb-6 flex items-center gap-2 uppercase tracking-wider">
         <Icon size={18} className={iconColor} /> {title}
       </h2>

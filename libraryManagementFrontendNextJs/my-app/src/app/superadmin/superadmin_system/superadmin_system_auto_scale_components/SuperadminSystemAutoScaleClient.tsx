@@ -33,10 +33,10 @@ export function SuperadminSystemAutoScaleClient() {
 
       {/* Overview KPI Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 mb-8">
-        <SuperadminKpiCard title="Total Seats" value={120} icon={() => <span>🪑</span>} subtitle="Across all zones" />
-        <SuperadminKpiCard title="Total Lockers" value={60} icon={() => <span>🔒</span>} subtitle="All branches" />
-        <SuperadminKpiCard title="Avg Occupancy (30d)" value="68%" icon={() => <span>📈</span>} trend="up" trendLabel="+4% vs last month" />
-        <SuperadminKpiCard title="Peak Day" value="Apr 8" icon={() => <span>🏆</span>} subtitle="94% occupancy" />
+        <SuperadminKpiCard title="Total Seats" value={120} icon={() => <span>ðŸª‘</span>} subtitle="Across all zones" />
+        <SuperadminKpiCard title="Total Lockers" value={60} icon={() => <span>ðŸ”’</span>} subtitle="All branches" />
+        <SuperadminKpiCard title="Avg Occupancy (30d)" value="68%" icon={() => <span>ðŸ“ˆ</span>} trend="up" trendLabel="+4% vs last month" />
+        <SuperadminKpiCard title="Peak Day" value="Apr 8" icon={() => <span>ðŸ†</span>} subtitle="94% occupancy" />
       </div>
 
       {/* Threshold Config */}
@@ -59,7 +59,7 @@ export function SuperadminSystemAutoScaleClient() {
                   max={99}
                   className="w-28"
                 />
-                <span className="text-sm text-text-secondary">e.g., "90" → alert at 90% full</span>
+                <span className="text-sm text-text-secondary">e.g., "90" â†’ alert at 90% full</span>
               </div>
             </div>
             <div className="space-y-2">
@@ -74,11 +74,11 @@ export function SuperadminSystemAutoScaleClient() {
                   max={99}
                   className="w-28"
                 />
-                <span className="text-sm text-text-secondary">e.g., "85" → alert at 85% full</span>
+                <span className="text-sm text-text-secondary">e.g., "85" â†’ alert at 85% full</span>
               </div>
             </div>
           </div>
-          <div className="flex items-center justify-between p-4 rounded-xl bg-bg-pageg-card border border-border">
+          <div className="flex items-center justify-between p-4 rounded-xl bg-card border border-border">
             <div>
               <p className="text-sm font-medium text-text-primary">Alert me when occupancy exceeds threshold</p>
               <p className="text-xs text-text-secondary">Receive in-app notifications and dashboard badges</p>
@@ -87,7 +87,7 @@ export function SuperadminSystemAutoScaleClient() {
           </div>
         </CardContent>
         <CardFooter>
-          <SuperadminButton id="save-autoscale-thresholds-btn" variant="primary">💾 Save Thresholds</SuperadminButton>
+          <SuperadminButton id="save-autoscale-thresholds-btn" variant="primary">ðŸ’¾ Save Thresholds</SuperadminButton>
         </CardFooter>
       </SuperadminCard>
 

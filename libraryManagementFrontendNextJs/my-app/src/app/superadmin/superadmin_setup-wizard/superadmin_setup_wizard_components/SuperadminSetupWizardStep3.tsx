@@ -5,7 +5,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { seatsSchema, type SeatsData } from '@/app/superadmin/superadmin_shared_components/Superadminsuperadmin_schema';
 import { SETUP_WIZARD_DATA as d } from '@/app/superadmin/superadmin_setup-wizard/Superadminsuperadmin_setupWizard_constants';
 
-const inputCls = (hasErr?: boolean) => `w-full bg-bg-pageg-input border rounded-lg px-3.5 py-2.5 text-base text-text-primary focus:outline-none focus:ring-2 transition-all placeholder:text-text-tertiary ${hasErr ? 'border-danger focus:ring-danger/20 focus:border-danger' : 'border-border focus:ring-primary/20 focus:border-primary'}`;
+const inputCls = (hasErr?: boolean) => `w-full bg-input border rounded-lg px-3.5 py-2.5 text-base text-text-primary focus:outline-none focus:ring-2 transition-all placeholder:text-text-tertiary ${hasErr ? 'border-danger focus:ring-danger/20 focus:border-danger' : 'border-border focus:ring-primary/20 focus:border-primary'}`;
 
 import type { SuperadminSetupWizardStep3Props as Props } from '@/app/superadmin/superadmin_setup-wizard/superadmin_setup_wizard_types/SuperadminSetupWizardTypes';
 
@@ -26,7 +26,7 @@ export function SuperadminSetupWizardStep3({ onNext }: Props) {
     const base = 'w-12 h-12 flex items-center justify-center rounded-lg text-xs font-bold font-mono transition-colors border';
     if (i === 0) return `${base} bg-danger-bg border-danger text-danger`;
     if (i === 1) return `${base} bg-warning-bg border-warning text-warning`;
-    return `${base} bg-bg-pageg-elevated border-border text-text-secondary`;
+    return `${base} bg-card border-border text-text-secondary`;
   };
 
   return (
@@ -52,7 +52,7 @@ export function SuperadminSetupWizardStep3({ onNext }: Props) {
       </div>
 
       <div className="bg-info-bg/30 border border-info/20 rounded-xl p-5">
-        <p className="text-sm font-semibold text-info mb-1.5">💡 Seats will be generated as:</p>
+        <p className="text-sm font-semibold text-info mb-1.5">ðŸ’¡ Seats will be generated as:</p>
         <p className="text-base font-mono text-text-primary tracking-wide mb-1">
           {prefix ? preview : '(enter prefix to preview)'}
         </p>
@@ -70,7 +70,7 @@ export function SuperadminSetupWizardStep3({ onNext }: Props) {
             </div>
           ))}
           {count > 20 && (
-            <div className="w-12 h-12 flex items-center justify-center rounded-lg text-xs font-bold font-mono transition-colors border bg-bg-pageg-input border-dashed border-border text-text-tertiary">
+            <div className="w-12 h-12 flex items-center justify-center rounded-lg text-xs font-bold font-mono transition-colors border bg-input border-dashed border-border text-text-tertiary">
               +{count - 20}
             </div>
           )}

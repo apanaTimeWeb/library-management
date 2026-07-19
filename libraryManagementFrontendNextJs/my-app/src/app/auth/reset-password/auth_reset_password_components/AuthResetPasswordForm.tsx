@@ -57,7 +57,7 @@ export function AuthResetPasswordForm() {
           {!done ? (
             <>
               <div className="mb-7">
-                <h1 className="text-text-primaryxl font-bold text-text-primary">Reset Password 🔑</h1>
+                <h1 className="text-text-primary text-xl font-bold text-text-primary">Reset Password ðŸ”‘</h1>
                 <p className="text-sm text-text-secondary mt-1">
                   Enter the OTP sent to your phone and choose a new password.
                 </p>
@@ -148,12 +148,12 @@ export function AuthResetPasswordForm() {
 
                 {errorMessage && (
                   <div className="p-3 bg-danger-bg border border-danger/20 rounded-lg text-danger text-sm font-medium flex items-start gap-2">
-                    <span>❌</span> <span>{errorMessage}</span>
+                    <span>âŒ</span> <span>{errorMessage}</span>
                   </div>
                 )}
                 {errors.root && (
                   <div className="p-3 bg-danger-bg border border-danger/20 rounded-lg text-danger text-sm font-medium flex items-start gap-2">
-                    <span>❌</span> <span>{errors.root.message}</span>
+                    <span>âŒ</span> <span>{errors.root.message}</span>
                   </div>
                 )}
 
@@ -172,7 +172,7 @@ export function AuthResetPasswordForm() {
           ) : (
             <div className="text-center py-4">
               <div className="w-16 h-16 bg-success/10 rounded-full flex items-center justify-center mx-auto mb-4 border border-success/20 shadow-sm shadow-success/10">
-                <span className="text-text-primaryxl">✅</span>
+                <span className="text-text-primary text-xl">âœ…</span>
               </div>
               <h2 className="text-xl font-bold text-text-primary">Password Reset!</h2>
               <p className="text-sm text-text-secondary leading-relaxed mt-2">
@@ -183,7 +183,7 @@ export function AuthResetPasswordForm() {
                 id="back-to-login-btn"
                 className="w-full py-2.5 bg-primary hover:bg-primary-hover text-white font-semibold rounded-lg shadow-sm transition-all flex justify-center items-center gap-2 mt-6 inline-flex"
               >
-                Go to Login →
+                Go to Login â†’
               </Link>
             </div>
           )}

@@ -42,13 +42,13 @@ export function AuthForgotPasswordForm() {
           {!sent ? (
             <>
               <div className="mb-7">
-                <h1 className="text-text-primaryxl font-bold text-text-primary">Forgot Password? 🔐</h1>
+                <h1 className="text-text-primary text-xl font-bold text-text-primary">Forgot Password? ðŸ”</h1>
                 <p className="text-sm text-text-secondary mt-2 leading-relaxed">
                   Enter your registered phone number. We&apos;ll send an OTP to reset your password.
                 </p>
                 {errorMessage && (
                   <div className="p-3 bg-danger-bg border border-danger/20 rounded-lg text-danger text-sm font-medium flex items-start gap-2 mt-3">
-                    <span>❌</span> <span>{errorMessage}</span>
+                    <span>âŒ</span> <span>{errorMessage}</span>
                   </div>
                 )}
               </div>
@@ -86,7 +86,7 @@ export function AuthForgotPasswordForm() {
           ) : (
             <div className="text-center py-4">
               <div className="w-16 h-16 bg-success/10 rounded-full flex items-center justify-center mx-auto mb-4 border border-success/20 shadow-sm shadow-success/10">
-                <span className="text-text-primaryxl">✅</span>
+                <span className="text-text-primary text-xl">âœ…</span>
               </div>
               <h2 className="text-xl font-bold text-text-primary">OTP Sent!</h2>
               <p className="text-sm text-text-secondary leading-relaxed mt-2">
@@ -97,7 +97,7 @@ export function AuthForgotPasswordForm() {
                 id="enter-otp-btn"
                 className="w-full py-2.5 bg-primary hover:bg-primary-hover text-white font-semibold rounded-lg shadow-sm transition-all flex justify-center items-center gap-2 mt-6 inline-flex"
               >
-                Enter OTP →
+                Enter OTP â†’
               </Link>
             </div>
           )}

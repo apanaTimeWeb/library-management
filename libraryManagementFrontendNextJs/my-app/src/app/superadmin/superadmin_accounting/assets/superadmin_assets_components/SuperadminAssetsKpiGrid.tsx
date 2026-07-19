@@ -6,19 +6,19 @@ import type { SuperadminAssetsKpiGridProps as Props } from '@/app/superadmin/sup
 export function SuperadminAssetsKpiGrid({ totalAssets, totalValue, maintenanceCount, disposedCount }: Props) {
   return (
     <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
-      <div className="bg-bg-pageg-card border border-border rounded-lg p-4 shadow-sm flex flex-col justify-center">
+      <div className="bg-card border border-border rounded-lg p-4 shadow-sm flex flex-col justify-center">
         <p className="text-xs font-bold text-text-disabled uppercase tracking-wider mb-1">Total Assets</p>
         <p className="text-xl font-extrabold text-text-primary">{totalAssets}</p>
       </div>
       <div className="bg-success-bg border border-success/20 rounded-lg p-4 shadow-sm flex flex-col justify-center">
         <p className="text-xs font-bold text-success uppercase tracking-wider mb-1">Current Value</p>
-        <p className="text-xl font-extrabold text-success">₹{totalValue.toLocaleString()}</p>
+        <p className="text-xl font-extrabold text-success">â‚¹{totalValue.toLocaleString()}</p>
       </div>
       <div className="bg-warning-bg border border-warning/20 rounded-lg p-4 shadow-sm flex flex-col justify-center">
         <p className="text-xs font-bold text-warning uppercase tracking-wider mb-1">Under Maintenance</p>
         <p className="text-xl font-extrabold text-warning">{maintenanceCount}</p>
       </div>
-      <div className="bg-bg-pageg-input border border-border rounded-lg p-4 shadow-sm flex flex-col justify-center">
+      <div className="bg-input border border-border rounded-lg p-4 shadow-sm flex flex-col justify-center">
         <p className="text-xs font-bold text-text-secondary uppercase tracking-wider mb-1">Disposed</p>
         <p className="text-xl font-extrabold text-text-secondary">{disposedCount}</p>
       </div>

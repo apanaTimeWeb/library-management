@@ -28,16 +28,16 @@ export function AdminDashboardRecentPaymentsFeed({ payments }: { payments: Admin
     if (mode === 'Cash') return 'bg-success-bg text-success';
     if (mode === 'Card') return 'bg-primary-subtle text-primary';
     if (mode === 'Bank Transfer') return 'bg-warning-bg text-warning';
-    return 'bg-bg-pageg-input text-text-secondary';
+    return 'bg-input text-text-secondary';
   };
 
   return (
-    <Card className="overflow-hidden border-border bg-bg-pageg-card shadow-none flex flex-col h-full">
+    <Card className="overflow-hidden border-border bg-card shadow-none flex flex-col h-full">
       <CardHeader className="pb-4 flex flex-row items-center justify-between space-y-0">
         <div>
           <CardTitle className="text-base text-text-primary">Recent Payments</CardTitle>
           <CardDescription className="text-xs mt-1 text-text-secondary">
-            Last {payments.length} transactions today — click row to view student
+            Last {payments.length} transactions today â€” click row to view student
           </CardDescription>
         </div>
         <Link
@@ -51,7 +51,7 @@ export function AdminDashboardRecentPaymentsFeed({ payments }: { payments: Admin
       <CardContent className="p-0 flex-1">
         <div className="w-full overflow-x-auto">
           <table className="w-full text-sm text-left">
-            <thead className="bg-bg-pageg-page border-y border-border text-text-secondary text-xs font-medium uppercase tracking-wider">
+            <thead className="bg-page border-y border-border text-text-secondary text-xs font-medium uppercase tracking-wider">
               <tr>
                 <th className="px-4 py-3">Student Name</th>
                 <th className="px-4 py-3">Amount</th>
@@ -64,7 +64,7 @@ export function AdminDashboardRecentPaymentsFeed({ payments }: { payments: Admin
                 <tr 
                   key={i} 
                   onClick={() => handleRowClick(payment.id)}
-                  className="hover:bg-bg-pageg-page transition-colors cursor-pointer group"
+                  className="hover:bg-page transition-colors cursor-pointer group"
                 >
                   <td className="px-4 py-3">
                     <div className="flex items-center gap-3">
@@ -75,7 +75,7 @@ export function AdminDashboardRecentPaymentsFeed({ payments }: { payments: Admin
                     </div>
                   </td>
                   <td className="px-4 py-3 font-bold text-sm text-text-primary">
-                    ₹{payment.amount}
+                    â‚¹{payment.amount}
                   </td>
                   <td className="px-4 py-3">
                     <Badge variant="secondary" className={`${getModeBadgeClass('Cash')} text-xs uppercase font-bold tracking-wider rounded-md border-none`}>

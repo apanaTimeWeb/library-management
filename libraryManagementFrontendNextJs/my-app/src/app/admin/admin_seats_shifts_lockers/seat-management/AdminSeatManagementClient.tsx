@@ -58,7 +58,7 @@ export function AdminSeatManagementClient({ initialSeats }: SeatManagementClient
       {/* page Header */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b pb-4">
         <div>
-          <h1 className="text-text-primaryxl font-bold tracking-tight">Seats</h1>
+          <h1 className="text-text-primary text-xl font-bold tracking-tight">Seats</h1>
           <p className="text-sm text-muted-foreground mt-1">Manage all library seats</p>
         </div>
         <div className="flex items-center gap-3">
@@ -80,7 +80,7 @@ export function AdminSeatManagementClient({ initialSeats }: SeatManagementClient
           />
         </div>
         <AdminSearchableDropdown 
-          className="flex h-10 w-full max-w-52 items-center justify-between rounded-md border border-border bg-bg-pageg-input px-3 py-2 text-sm ring-offset-bg-page placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:ring-offset-2"
+          className="flex h-10 w-full max-w-52 items-center justify-between rounded-md border border-border bg-input px-3 py-2 text-sm ring-offset-bg-page placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:ring-offset-2"
           value={statusFilter} 
           onChange={e => setStatusFilter(e.target.value)}
         >
@@ -94,7 +94,7 @@ export function AdminSeatManagementClient({ initialSeats }: SeatManagementClient
       {/* Main Content */}
       {filtered.length === 0 ? (
         <Card className="flex flex-col items-center justify-center py-20 gap-3 border-dashed bg-muted/5 shadow-none">
-          <div className="text-4xl mb-2 opacity-50">🪑</div>
+          <div className="text-4xl mb-2 opacity-50">ðŸª‘</div>
           <p className="text-lg font-bold">No seats found.</p>
           <p className="text-sm text-muted-foreground">Add your first seat to get started.</p>
           <Button onClick={openAdd} variant="default" className="mt-4 gap-2">
@@ -241,7 +241,7 @@ export function AdminSeatManagementClient({ initialSeats }: SeatManagementClient
               <div className="space-y-2">
                 <label className="text-sm font-medium">Status</label>
                 <AdminSearchableDropdown 
-                  className="flex h-10 w-full items-center justify-between rounded-md border border-border bg-bg-pageg-input px-3 py-2 text-sm ring-offset-bg-page placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:ring-offset-2"
+                  className="flex h-10 w-full items-center justify-between rounded-md border border-border bg-input px-3 py-2 text-sm ring-offset-bg-page placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:ring-offset-2"
                   {...register('status')}
                 >
                   <option value="Working">Working</option>

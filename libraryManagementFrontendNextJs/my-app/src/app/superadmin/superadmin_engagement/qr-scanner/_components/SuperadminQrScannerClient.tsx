@@ -12,8 +12,8 @@ export function SuperadminQrScannerClient() {
   } = useSuperadminQrScannerClient();
 
   return (
-    <div className="p-4 sm:p-6 min-h-screen bg-bg-pageg-page animate-in fade-in zoom-in-95 duration-200">
-      {/* ── Breadcrumb ── */}
+    <div className="p-4 sm:p-6 min-h-screen bg-page animate-in fade-in zoom-in-95 duration-200">
+      {/* â”€â”€ Breadcrumb â”€â”€ */}
       <div className="flex items-center gap-2 text-text-secondary text-xs font-bold tracking-wide mb-6">
         <Link href={SUPERADMIN_ROUTES.ENGAGEMENT_ATTENDANCE} className="hover:text-primary transition-colors">Engagement</Link>
         <ChevronRight size={12} className="opacity-50" />
@@ -21,13 +21,13 @@ export function SuperadminQrScannerClient() {
       </div>
 
       <div className="mb-8">
-        <h1 className="text-3xl font-extrabold text-text-primary tracking-tight">📷 QR Scanner</h1>
+        <h1 className="text-3xl font-extrabold text-text-primary tracking-tight">ðŸ“· QR Scanner</h1>
         <p className="text-sm text-text-secondary mt-1">Scan student ID cards to instantly mark attendance.</p>
       </div>
 
       <div className="max-w-3xl mx-auto space-y-6">
 
-        {/* ── Camera Viewport ── */}
+        {/* â”€â”€ Camera Viewport â”€â”€ */}
         <div className="bg-card border border-border rounded-xl shadow-sm overflow-hidden flex flex-col">
           <div className="px-6 py-4 border-b border-border flex items-center justify-between bg-muted/30">
             <div>
@@ -35,7 +35,7 @@ export function SuperadminQrScannerClient() {
               <div className="text-xs text-text-secondary mt-0.5">
                 {scanState === 'idle'     && 'Click Start Scan to activate camera'}
                 {scanState === 'scanning' && 'Point camera at student ID card QR code'}
-                {scanState === 'detected' && 'QR code detected — confirm attendance below'}
+                {scanState === 'detected' && 'QR code detected â€” confirm attendance below'}
                 {scanState === 'success'  && 'Attendance recorded successfully!'}
               </div>
             </div>
@@ -66,7 +66,7 @@ export function SuperadminQrScannerClient() {
               ) : (
                 <>
                   <div className={`text-5xl drop-shadow-lg transition-transform duration-500 ${scanState === 'scanning' ? 'scale-110' : 'opacity-50'}`}>
-                    {scanState === 'scanning' ? '📷' : '🔲'}
+                    {scanState === 'scanning' ? 'ðŸ“·' : 'ðŸ”²'}
                   </div>
                   <p className="text-sm font-bold text-white/80 mt-4 tracking-wide uppercase">
                     {scanState === 'idle' ? 'Camera inactive' : 'Tap to simulate scan'}
@@ -92,13 +92,13 @@ export function SuperadminQrScannerClient() {
           {scanState === 'idle' && (
             <div className="p-4 border-t border-border flex justify-center bg-muted/20">
               <button onClick={startScan} className="flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground text-sm font-bold rounded-full hover:bg-primary/90 hover:scale-105 hover:shadow-lg transition-all active:scale-95 cursor-pointer">
-                📷 Start Scanning
+                ðŸ“· Start Scanning
               </button>
             </div>
           )}
         </div>
 
-        {/* ── Detected Student Card ── */}
+        {/* â”€â”€ Detected Student Card â”€â”€ */}
         {scanState === 'detected' && result && (
           <div className="bg-card border-2 border-primary rounded-xl shadow-lg overflow-hidden animate-in slide-in-from-bottom-4 duration-300">
             <div className="p-5 flex items-center justify-between border-b border-border bg-primary/5">
@@ -129,7 +129,7 @@ export function SuperadminQrScannerClient() {
           </div>
         )}
 
-        {/* ── Recent History ── */}
+        {/* â”€â”€ Recent History â”€â”€ */}
         {history.length > 0 && (
           <div className="bg-card border border-border rounded-lg p-5 shadow-sm">
             <div className="text-sm font-extrabold text-text-primary mb-4 flex items-center gap-2">
@@ -150,11 +150,11 @@ export function SuperadminQrScannerClient() {
           </div>
         )}
 
-        {/* ── Manual Fallback ── */}
+        {/* â”€â”€ Manual Fallback â”€â”€ */}
         <div className="flex justify-center pt-2">
           {!showManual ? (
             <button onClick={() => setShowManual(true)} className="text-xs font-bold text-primary hover:text-primary/80 transition-colors cursor-pointer hover:underline underline-offset-4">
-              Can't scan? Enter Smart ID manually →
+              Can't scan? Enter Smart ID manually â†’
             </button>
           ) : (
             <div className="w-full bg-card border border-border rounded-lg p-5 shadow-sm animate-in zoom-in-95 duration-200">

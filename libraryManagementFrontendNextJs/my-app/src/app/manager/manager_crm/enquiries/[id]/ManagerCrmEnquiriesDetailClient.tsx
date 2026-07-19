@@ -76,7 +76,7 @@ export function ManagerCrmEnquiriesDetailClient({ id }: { id: string }) {
 
   if (!enquiry) {
     return (
-      <div className="p-6 md:p-8 max-w-7xl mx-auto min-h-full space-y-6 flex flex-col items-center justify-center text-center h-full bg-bg-pageg-card border border-border rounded-xl">
+      <div className="p-6 md:p-8 max-w-7xl mx-auto min-h-full space-y-6 flex flex-col items-center justify-center text-center h-full bg-card border border-border rounded-xl">
         <XCircle size={48} className="text-text-secondary mb-4 mx-auto" />
         <p className="text-lg font-semibold text-text-primary mb-1">Enquiry Not Found</p>
         <p className="text-sm text-text-secondary mb-6">
@@ -129,7 +129,7 @@ export function ManagerCrmEnquiriesDetailClient({ id }: { id: string }) {
         {/* ── Breadcrumb + Back ── */}
         <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 mb-6">
           <button
-            className="p-1.5 rounded-md text-text-secondary hover:text-primary hover:bg-primary/10 transition-colors border border-border bg-bg-pageg-card shadow-sm hover:bg-bg-pageorder/40"
+            className="p-1.5 rounded-md text-text-secondary hover:text-primary hover:bg-primary/10 transition-colors border border-border bg-card shadow-sm hover:bg-bg-pageorder/40"
             onClick={() => router.push(MANAGER_CRM_URLS.ENQUIRIES)}
             title="Back to Pipeline"
             aria-label="Back to pipeline"
@@ -160,7 +160,7 @@ export function ManagerCrmEnquiriesDetailClient({ id }: { id: string }) {
           <div className="flex flex-col gap-6 lg:sticky lg:top-24">
 
             {/* ── Status Update Card ── */}
-            <div className="bg-bg-pageg-card border border-border rounded-xl p-6 shadow-sm">
+            <div className="bg-card border border-border rounded-xl p-6 shadow-sm">
               <h3 className="text-xs font-bold text-text-secondary uppercase tracking-widest mb-4 m-0">Current Status</h3>
               <div className="flex items-center gap-3">
                 <div className="relative flex-1">
@@ -183,7 +183,7 @@ export function ManagerCrmEnquiriesDetailClient({ id }: { id: string }) {
             </div>
 
             {/* ── Add Follow-Up Card ── */}
-            <div className="bg-bg-pageg-card border border-border rounded-xl p-6 shadow-sm">
+            <div className="bg-card border border-border rounded-xl p-6 shadow-sm">
               <h3 className="text-xs font-bold text-text-secondary uppercase tracking-widest mb-4 m-0">Add Follow-Up</h3>
               <form
                 id="followup-form"
@@ -240,7 +240,7 @@ export function ManagerCrmEnquiriesDetailClient({ id }: { id: string }) {
               {(enquiry.isToday || enquiry.isUpcoming || enquiry.isOverdue) && (
                 <>
                   <div className="h-px bg-bg-pageorder my-5" />
-                  <div className="flex items-center justify-between bg-bg-pageg-elevated border border-border rounded-lg p-3">
+                  <div className="flex items-center justify-between bg-card border border-border rounded-lg p-3">
                     <div className="flex items-center gap-2 text-xs text-text-secondary">
                       <CalendarDays size={13} />
                       <span>
@@ -261,7 +261,7 @@ export function ManagerCrmEnquiriesDetailClient({ id }: { id: string }) {
             </div>
 
             {/* ── Actions Card ── */}
-            <div className="bg-bg-pageg-card border border-border rounded-xl p-6 shadow-sm flex flex-col gap-4">
+            <div className="bg-card border border-border rounded-xl p-6 shadow-sm flex flex-col gap-4">
               <h3 className="text-xs font-bold text-text-secondary uppercase tracking-widest mb-4 m-0">Actions</h3>
 
               {/* Convert to Admission */}

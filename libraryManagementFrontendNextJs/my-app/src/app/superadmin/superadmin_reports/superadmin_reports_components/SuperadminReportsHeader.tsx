@@ -18,15 +18,15 @@ export function SuperadminReportsHeader({ range, setRange }: Props) {
         <span>Nexus 360</span><span>/</span><span>Super Admin</span><span>/</span><span className="text-primary">Reports</span>
       </div>
       <div className="flex items-center justify-between flex-wrap gap-4">
-        <h1 className="text-text-primaryxl font-extrabold text-text-primary tracking-tight">Platform Reports & Analytics</h1>
+        <h1 className="text-text-primary text-xl font-extrabold text-text-primary tracking-tight">Platform Reports & Analytics</h1>
         <div className="flex items-center gap-3 flex-wrap">
-          <div className="flex items-center bg-bg-pageg-card border border-border rounded-md p-1 shadow-sm">
+          <div className="flex items-center bg-card border border-border rounded-md p-1 shadow-sm">
             {SUPERADMIN_REPORTS_DATE_RANGES.map((r: string) => (
               <button key={r} onClick={() => setRange(r)}
                 className={`px-3 py-1.5 text-xs font-bold rounded-sm transition-all ${
                   range === r 
-                    ? 'bg-bg-pageg-input text-text-primary shadow-sm' 
-                    : 'text-text-secondary hover:text-text-primary hover:bg-bg-pageg-input/50'
+                    ? 'bg-input text-text-primary shadow-sm' 
+                    : 'text-text-secondary hover:text-text-primary hover:bg-input/50'
                 }`}>
                 {r}
               </button>
@@ -36,7 +36,7 @@ export function SuperadminReportsHeader({ range, setRange }: Props) {
             className={`inline-flex items-center gap-2 px-4 py-2.5 rounded-md text-sm font-bold border transition-colors ${
               exported
                 ? 'bg-success-bg border-success/20 text-success'
-                : 'bg-bg-pageg-card border-border text-text-primary hover:bg-bg-pageg-input hover:border-primary'
+                : 'bg-card border-border text-text-primary hover:bg-input hover:border-primary'
             }`} 
             onClick={handleExport}
           >
@@ -45,7 +45,7 @@ export function SuperadminReportsHeader({ range, setRange }: Props) {
               : <><Download size={16} className="text-primary" /> Export PDF</>}
           </button>
           <button 
-            className="inline-flex items-center gap-2 bg-bg-pageg-card border border-border text-text-primary hover:bg-bg-pageg-input hover:border-primary px-4 py-2.5 rounded-md text-sm font-bold transition-colors" 
+            className="inline-flex items-center gap-2 bg-card border border-border text-text-primary hover:bg-input hover:border-primary px-4 py-2.5 rounded-md text-sm font-bold transition-colors" 
             onClick={handleExport}
           >
             <FileSpreadsheet size={16} className="text-primary" /> Export Excel

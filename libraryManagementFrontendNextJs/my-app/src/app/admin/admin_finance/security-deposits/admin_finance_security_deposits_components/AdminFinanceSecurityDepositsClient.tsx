@@ -56,8 +56,8 @@ export function AdminFinanceSecurityDepositsClient() {
       {/* page Header */}
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b pb-4">
         <div>
-          <nav className="text-xs text-muted-foreground font-medium mb-1 tracking-wide uppercase">Smart Library 360 › Admin › Finance</nav>
-          <h1 className="text-text-primaryxl font-bold tracking-tight">Security Deposits</h1>
+          <nav className="text-xs text-muted-foreground font-medium mb-1 tracking-wide uppercase">Smart Library 360 â€º Admin â€º Finance</nav>
+          <h1 className="text-text-primary text-xl font-bold tracking-tight">Security Deposits</h1>
           <p className="text-sm text-muted-foreground mt-1">Manage student security deposit records.</p>
         </div>
       </div>
@@ -65,7 +65,7 @@ export function AdminFinanceSecurityDepositsClient() {
       {/* Filter Bar */}
       <div className="flex flex-wrap gap-3">
         <AdminSearchableDropdown 
-          className="h-10 px-3 rounded-md border border-border bg-bg-pageg-input text-sm font-medium focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary"
+          className="h-10 px-3 rounded-md border border-border bg-input text-sm font-medium focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary"
           value={statusFilter} 
           onChange={(e) => setStatusFilter(e.target.value)}
         >
@@ -89,11 +89,11 @@ export function AdminFinanceSecurityDepositsClient() {
             <thead className="bg-muted/30 border-b text-muted-foreground text-xs font-bold uppercase tracking-wider sticky top-0 z-10">
               <tr>
                 <th className="px-5 py-3">Student</th>
-                <th className="px-5 py-3 text-right">Deposit ₹</th>
+                <th className="px-5 py-3 text-right">Deposit â‚¹</th>
                 <th className="px-5 py-3">Status</th>
                 <th className="px-5 py-3">Collected By</th>
                 <th className="px-5 py-3">Collected Date</th>
-                <th className="px-5 py-3 text-right">Deduction ₹</th>
+                <th className="px-5 py-3 text-right">Deduction â‚¹</th>
                 <th className="px-5 py-3">Deduction Reason</th>
                 <th className="px-5 py-3">Refunded Date</th>
                 <th className="px-5 py-3 text-right">Actions</th>
@@ -113,7 +113,7 @@ export function AdminFinanceSecurityDepositsClient() {
                 <tr>
                   <td colSpan={9} className="px-5 py-20 text-center">
                     <div className="flex flex-col items-center justify-center gap-3">
-                      <div className="text-4xl opacity-50">💼</div>
+                      <div className="text-4xl opacity-50">ðŸ’¼</div>
                       <p className="text-lg font-bold">No security deposits recorded.</p>
                       <p className="text-sm text-muted-foreground">Try adjusting your filters.</p>
                     </div>
@@ -135,10 +135,10 @@ export function AdminFinanceSecurityDepositsClient() {
                     <td className="px-5 py-4 text-sm font-medium text-primary">{d.collectedBy}</td>
                     <td className="px-5 py-4 text-sm text-muted-foreground">{d.collectedDate}</td>
                     <td className={`px-5 py-4 text-right text-sm font-bold ${d.deductionAmount > 0 ? 'text-danger' : 'text-muted-foreground font-medium'}`}>
-                      {d.deductionAmount > 0 ? formatCurrency(d.deductionAmount) : '—'}
+                      {d.deductionAmount > 0 ? formatCurrency(d.deductionAmount) : 'â€”'}
                     </td>
-                    <td className="px-5 py-4 text-sm text-muted-foreground">{d.deductionReason || '—'}</td>
-                    <td className="px-5 py-4 text-sm text-muted-foreground">{d.refundedDate || '—'}</td>
+                    <td className="px-5 py-4 text-sm text-muted-foreground">{d.deductionReason || 'â€”'}</td>
+                    <td className="px-5 py-4 text-sm text-muted-foreground">{d.refundedDate || 'â€”'}</td>
                     <td className="px-5 py-4 text-right">
                       {d.status === 'held' && (
                         <div className="flex items-center justify-end gap-2">
@@ -151,7 +151,7 @@ export function AdminFinanceSecurityDepositsClient() {
                               setRefundAmount(String(d.depositAmount - d.deductionAmount)); 
                             }}
                           >
-                            <Undo2 size={12} /> 💸 Process Refund
+                            <Undo2 size={12} /> ðŸ’¸ Process Refund
                           </Button>
                           <Button 
                             variant="secondary" 
@@ -159,7 +159,7 @@ export function AdminFinanceSecurityDepositsClient() {
                             className="bg-warning/10 text-warning hover:bg-warning/20 border-none font-bold text-xs h-7 px-2 gap-1"
                             onClick={() => setDeductDialog({ id: d.id, name: d.studentName })}
                           >
-                            <Minus size={12} /> ➕ Add Deduction
+                            <Minus size={12} /> âž• Add Deduction
                           </Button>
                         </div>
                       )}
@@ -194,7 +194,7 @@ export function AdminFinanceSecurityDepositsClient() {
           <Card className="w-full max-w-sm shadow-lg border-border bg-card p-6 flex flex-col gap-5" onClick={e => e.stopPropagation()}>
             <div className="flex items-center justify-between">
               <h2 className="text-lg font-bold flex items-center gap-2 text-primary tracking-tight">
-                💸 Process Refund
+                ðŸ’¸ Process Refund
               </h2>
               <Button variant="ghost" size="icon" className="h-8 w-8 rounded-full" onClick={() => setRefundDialog(null)}>
                 <X size={16} />
@@ -240,7 +240,7 @@ export function AdminFinanceSecurityDepositsClient() {
           <Card className="w-full max-w-sm shadow-lg border-border bg-card p-6 flex flex-col gap-5" onClick={e => e.stopPropagation()}>
             <div className="flex items-center justify-between">
               <h2 className="text-lg font-bold flex items-center gap-2 text-primary tracking-tight">
-                ➕ Add Deduction
+                âž• Add Deduction
               </h2>
               <Button variant="ghost" size="icon" className="h-8 w-8 rounded-full" onClick={() => setDeductDialog(null)}>
                 <X size={16} />

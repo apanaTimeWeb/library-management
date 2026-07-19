@@ -37,16 +37,16 @@ export function ManagerCrmEnquiriesAddClient({ onClose }: ManagerCrmEnquiriesAdd
     <>
       <Toaster position="bottom-right" />
 
-      {/* ── Overlay ── */}
+      {/* â”€â”€ Overlay â”€â”€ */}
       <div
         className="fixed inset-0 bg-bg-pagelack/60 backdrop-blur-sm z-[100] animate-in fade-in duration-200"
         onClick={handleClose}
         aria-label="Close drawer"
       />
 
-      {/* ── Drawer ── */}
+      {/* â”€â”€ Drawer â”€â”€ */}
       <div className="fixed inset-0 z-[101] flex items-center justify-center p-4 sm:p-6 pointer-events-none">
-        <aside className="w-full max-w-md bg-bg-pageg-drawer border border-border flex flex-col overflow-hidden animate-in zoom-in-95 duration-200 shadow-2xl rounded-2xl pointer-events-auto" role="dialog" aria-label="New Enquiry" aria-modal="true">
+        <aside className="w-full max-w-md bg-card border border-border flex flex-col overflow-hidden animate-in zoom-in-95 duration-200 shadow-2xl rounded-2xl pointer-events-auto" role="dialog" aria-label="New Enquiry" aria-modal="true">
 
         {/* Header */}
         <div className="flex items-center justify-between p-5 sm:p-6 border-b border-border shrink-0">
@@ -69,12 +69,12 @@ export function ManagerCrmEnquiriesAddClient({ onClose }: ManagerCrmEnquiriesAdd
           </button>
         </div>
 
-        {/* Body — Form */}
+        {/* Body â€” Form */}
         <form id="add-enquiry-form" onSubmit={handleSubmit(onSubmit)} noValidate className="flex flex-col flex-1 overflow-hidden">
           <div className="flex-1 overflow-y-auto p-6 scrollbar-thin">
             <div className="flex flex-col gap-5">
 
-              {/* ── Name ── */}
+              {/* â”€â”€ Name â”€â”€ */}
               <div className="flex flex-col gap-1.5">
                 <label htmlFor="enq-name" className="text-xs font-semibold text-text-secondary uppercase tracking-wider mb-1 after:content-['*'] after:text-danger after:ml-1">
                   Full Name
@@ -84,12 +84,12 @@ export function ManagerCrmEnquiriesAddClient({ onClose }: ManagerCrmEnquiriesAdd
                   type="text"
                   autoComplete="off"
                   placeholder="e.g. Aarav Sharma"
-                  className={`w-full px-3.5 py-2.5 rounded-lg text-sm bg-bg-pageg-input text-text-primary border outline-none transition-all placeholder:text-text-secondary focus:ring-4 ${errors.name ? 'border-danger focus:ring-danger/15' : 'border-border focus:border-primary focus:ring-primary/15'}`}
+                  className={`w-full px-3.5 py-2.5 rounded-lg text-sm bg-input text-text-primary border outline-none transition-all placeholder:text-text-secondary focus:ring-4 ${errors.name ? 'border-danger focus:ring-danger/15' : 'border-border focus:border-primary focus:ring-primary/15'}`}
                   {...register('name')}
                 />
                 {errors.name && <p className="text-xs text-danger mt-1 mb-0">{errors.name.message}</p>}
               
-              {/* ── Phone ── */}
+              {/* â”€â”€ Phone â”€â”€ */}
               <div className="flex flex-col gap-1.5 mt-4">
                 <label htmlFor="enq-phone" className="text-xs font-semibold text-text-secondary uppercase tracking-wider mb-1 after:content-['*'] after:text-danger after:ml-1">
                   Phone / WhatsApp
@@ -99,7 +99,7 @@ export function ManagerCrmEnquiriesAddClient({ onClose }: ManagerCrmEnquiriesAdd
                   type="text"
                   autoComplete="off"
                   placeholder="e.g. 9876543210"
-                  className={`w-full px-3.5 py-2.5 rounded-lg text-sm bg-bg-pageg-input text-text-primary border outline-none transition-all placeholder:text-text-secondary focus:ring-4 ${errors.phone ? 'border-danger focus:ring-danger/15' : 'border-border focus:border-primary focus:ring-primary/15'}`}
+                  className={`w-full px-3.5 py-2.5 rounded-lg text-sm bg-input text-text-primary border outline-none transition-all placeholder:text-text-secondary focus:ring-4 ${errors.phone ? 'border-danger focus:ring-danger/15' : 'border-border focus:border-primary focus:ring-primary/15'}`}
                   {...register('phone')}
                 />
                 {errors.phone && <p className="text-xs text-danger mt-1 mb-0">{errors.phone.message}</p>}
@@ -127,7 +127,7 @@ export function ManagerCrmEnquiriesAddClient({ onClose }: ManagerCrmEnquiriesAdd
               {isSubmitting ? (
                 <>
                   <span className="animate-spin w-4 h-4 border-2 border-current border-t-transparent rounded-full" />
-                  Saving…
+                  Savingâ€¦
                 </>
               ) : (
                 <>

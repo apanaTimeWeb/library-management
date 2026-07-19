@@ -12,9 +12,9 @@ export function ManagerDashboardSeatMatrix({ seatData }: DashboardSeatMatrixProp
   if (!seatData || seatData.length === 0) return null;
 
   return (
-    <div className="bg-bg-pageg-card rounded-xl border border-border p-6 h-full flex flex-col">
+    <div className="bg-card rounded-xl border border-border p-6 h-full flex flex-col">
       <div className="flex items-center justify-between mb-4">
-        <h2 className="text-base font-semibold text-text-primary">Mini Seat Matrix — Today&apos;s Shifts</h2>
+        <h2 className="text-base font-semibold text-text-primary">Mini Seat Matrix â€” Today&apos;s Shifts</h2>
       </div>
       <div className="flex flex-col flex-1 justify-between">
         <div className="grid grid-cols-5 sm:grid-cols-8 gap-2 mb-6">

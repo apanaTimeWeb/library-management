@@ -11,8 +11,8 @@ export function SuperadminDashboardHeader() {
         <span>Nexus 360</span><span>/</span><span>Super Admin</span><span>/</span><span className="text-primary">Dashboard</span>
       </div>
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-        <h1 className="text-text-primaryxl font-extrabold text-text-primary tracking-tight">Platform Overview</h1>
-        <Link href={SUPERADMIN_ROUTES.AUDIT_LOGS} className="inline-flex items-center gap-2 bg-bg-pageg-card border border-border hover:bg-bg-pageg-input hover:border-primary text-text-primary text-sm font-semibold px-4 py-2.5 rounded-md transition-all duration-200">
+        <h1 className="text-text-primary text-xl font-extrabold text-text-primary tracking-tight">Platform Overview</h1>
+        <Link href={SUPERADMIN_ROUTES.AUDIT_LOGS} className="inline-flex items-center gap-2 bg-card border border-border hover:bg-input hover:border-primary text-text-primary text-sm font-semibold px-4 py-2.5 rounded-md transition-all duration-200">
           <Activity size={16} className="text-primary" /> View Audit Logs
         </Link>
       </div>

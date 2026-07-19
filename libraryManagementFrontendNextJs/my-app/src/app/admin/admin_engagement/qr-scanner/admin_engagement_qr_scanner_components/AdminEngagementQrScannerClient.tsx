@@ -14,7 +14,7 @@ import { ScanResult, ScanState } from "./AdminEngagementQrScannerClient_types";
 const MOCK_STUDENT: ScanResult = {
   name: 'Rahul Sharma', initials: 'RS',
   smartId: 'SL-001', shift: 'Morning',
-  validTill: '30 Jun 2026', plan: 'Premium – 6 Month',
+  validTill: '30 Jun 2026', plan: 'Premium â€“ 6 Month',
 };
 
 export function AdminEngagementQrScannerClient() {
@@ -60,20 +60,20 @@ export function AdminEngagementQrScannerClient() {
 
   return (
     <div className="space-y-6 pb-10 max-w-4xl mx-auto">
-      {/* ── Breadcrumb ── */}
+      {/* â”€â”€ Breadcrumb â”€â”€ */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b pb-4">
         <div>
           <p className="text-xs font-semibold text-muted-foreground flex items-center gap-1 uppercase tracking-wider mb-1">
             Engagement <ChevronRight size={12} /> QR Scanner
           </p>
-          <h1 className="text-text-primaryxl font-bold tracking-tight">📷 QR Scanner</h1>
+          <h1 className="text-text-primary text-xl font-bold tracking-tight">ðŸ“· QR Scanner</h1>
           <p className="text-sm text-muted-foreground mt-1">Scan student ID cards to instantly mark attendance.</p>
         </div>
       </div>
 
       <div className="flex flex-col lg:flex-row gap-6">
 
-        {/* ── Left: Camera Viewport ── */}
+        {/* â”€â”€ Left: Camera Viewport â”€â”€ */}
         <div className="flex-1 space-y-6">
           <Card className="shadow-sm border-border overflow-hidden">
             <CardHeader className="flex flex-row items-start justify-between bg-muted/20 border-b border-border pb-4">
@@ -82,7 +82,7 @@ export function AdminEngagementQrScannerClient() {
                 <CardDescription className="mt-1 font-medium">
                   {scanState === 'idle'     && 'Click Start Scan to activate camera'}
                   {scanState === 'scanning' && 'Point camera at student ID card QR code'}
-                  {scanState === 'detected' && 'QR code detected — confirm attendance below'}
+                  {scanState === 'detected' && 'QR code detected â€” confirm attendance below'}
                   {scanState === 'success'  && 'Attendance recorded successfully!'}
                 </CardDescription>
               </div>
@@ -111,7 +111,7 @@ export function AdminEngagementQrScannerClient() {
                     </div>
                   ) : scanState === 'detected' ? (
                     <div className="flex flex-col items-center animate-in fade-in zoom-in duration-300">
-                      <div className="text-6xl mb-4">✅</div>
+                      <div className="text-6xl mb-4">âœ…</div>
                       <p className="font-bold text-foreground text-center">QR Code Detected!</p>
                     </div>
                   ) : (
@@ -151,7 +151,7 @@ export function AdminEngagementQrScannerClient() {
             </CardContent>
           </Card>
 
-          {/* ── Detected Student Card ── */}
+          {/* â”€â”€ Detected Student Card â”€â”€ */}
           {scanState === 'detected' && result && (
             <Card className="shadow-sm border-success bg-success/5 animate-in slide-in-from-top-4 fade-in duration-300">
               <CardContent className="p-4 sm:p-6">
@@ -176,21 +176,21 @@ export function AdminEngagementQrScannerClient() {
                 </div>
                 <div className="flex flex-col sm:flex-row gap-3">
                   <Button onClick={() => markAttendance('IN')} className="flex-1 bg-success hover:bg-success/90 text-white gap-2 font-bold py-6 text-base shadow-sm">
-                    ✅ Mark IN
+                    âœ… Mark IN
                   </Button>
                   <Button onClick={() => markAttendance('OUT')} variant="destructive" className="flex-1 gap-2 font-bold py-6 text-base shadow-sm">
-                    🔚 Mark OUT
+                    ðŸ”š Mark OUT
                   </Button>
                 </div>
               </CardContent>
             </Card>
           )}
 
-          {/* ── Manual Fallback ── */}
+          {/* â”€â”€ Manual Fallback â”€â”€ */}
           <div className="mt-6 text-center">
             {!showManual ? (
               <Button variant="link" onClick={() => setShowManual(true)} className="text-muted-foreground hover:text-foreground">
-                Can't scan? Enter Smart ID manually →
+                Can't scan? Enter Smart ID manually â†’
               </Button>
             ) : (
               <Card className="shadow-sm border-border text-left max-w-sm mx-auto animate-in fade-in zoom-in-95 duration-200">
@@ -210,10 +210,10 @@ export function AdminEngagementQrScannerClient() {
                   </div>
                   <div className="flex flex-wrap gap-2 pt-2">
                     <Button onClick={() => handleManual('IN')} disabled={!manualId.trim()} className="flex-1 bg-success hover:bg-success/90 text-white gap-2">
-                      ✅ Mark IN
+                      âœ… Mark IN
                     </Button>
                     <Button onClick={() => handleManual('OUT')} disabled={!manualId.trim()} variant="destructive" className="flex-1 gap-2">
-                      🔚 Mark OUT
+                      ðŸ”š Mark OUT
                     </Button>
                     <Button onClick={() => setShowManual(false)} variant="ghost" className="w-full mt-2">
                       Cancel
@@ -225,7 +225,7 @@ export function AdminEngagementQrScannerClient() {
           </div>
         </div>
 
-        {/* ── Right: Recent History ── */}
+        {/* â”€â”€ Right: Recent History â”€â”€ */}
         <div className="w-full lg:w-80 shrink-0">
           <Card className="shadow-sm border-border h-full">
             <CardHeader className="border-b border-border bg-muted/20 pb-4">

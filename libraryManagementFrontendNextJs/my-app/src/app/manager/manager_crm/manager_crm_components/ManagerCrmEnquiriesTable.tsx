@@ -20,8 +20,8 @@ const table = useClientTable(filtered, 10);
 
   if (filtered.length === 0) {
     return (
-      <div className="bg-bg-pageg-card border border-border rounded-xl overflow-hidden">
-        <div className="flex flex-col items-center justify-center p-12 text-center bg-bg-pageg-card border border-border rounded-lg">
+      <div className="bg-card border border-border rounded-xl overflow-hidden">
+        <div className="flex flex-col items-center justify-center p-12 text-center bg-card border border-border rounded-lg">
           <PhoneCall size={40} className="text-text-secondary mx-auto mb-4" />
           <p className="text-text-primary font-semibold text-lg mb-2">No enquiries found</p>
           <p className="text-text-secondary text-sm mb-6">Try a different search or status filter</p>
@@ -44,7 +44,7 @@ const table = useClientTable(filtered, 10);
   };
 
   return (
-    <div className="bg-bg-pageg-card border border-border rounded-xl overflow-hidden">
+    <div className="bg-card border border-border rounded-xl overflow-hidden">
       <div className="w-full overflow-x-auto">
         <TableToolbar search={table.searchTerm} onSearch={table.setSearchTerm} />
       <table className="w-full text-left border-collapse text-sm whitespace-nowrap">
@@ -65,12 +65,12 @@ const table = useClientTable(filtered, 10);
               <tr
                 key={enq.id}
                 onClick={() => router.push(MANAGER_CRM_URLS.ENQUIRY_DETAIL(enq.id))}
-                className="border-b border-border hover:bg-bg-pageg-hover cursor-pointer transition-colors"
+                className="border-b border-border hover:bg-input cursor-pointer transition-colors"
               >
                 <td className="p-3 text-text-secondary">{idx + 1}</td>
                 <td className="p-3">
                   <div className="flex items-center gap-2">
-                    <div className="w-8 h-8 rounded-full bg-bg-pageg-elevated flex items-center justify-center text-xs font-bold text-text-secondary">
+                    <div className="w-8 h-8 rounded-full bg-card flex items-center justify-center text-xs font-bold text-text-secondary">
                       {enq.avatar}
                     </div>
                     <span className="font-medium text-text-primary">{enq.name}</span>

@@ -45,9 +45,9 @@ export function SuperadminLibrariesPanel({ lib, mode, onClose, onSave, onSuspend
 
   return (
     <div className="fixed inset-0 z-50 flex items-stretch justify-end" onClick={onClose}>
-      <div className="absolute inset-0 bg-bg-pageg-page/80 backdrop-blur-sm transition-opacity" />
+      <div className="absolute inset-0 bg-page/80 backdrop-blur-sm transition-opacity" />
       <div 
-        className="relative w-full max-w-md bg-bg-pageg-card shadow-2xl border-l border-border overflow-y-auto animate-in slide-in-from-right duration-300 flex flex-col"
+        className="relative w-full max-w-md bg-card shadow-2xl border-l border-border overflow-y-auto animate-in slide-in-from-right duration-300 flex flex-col"
         onClick={e => e.stopPropagation()}
       >
         <div className="p-6 space-y-6 flex-1">
@@ -62,7 +62,7 @@ export function SuperadminLibrariesPanel({ lib, mode, onClose, onSave, onSuspend
                   <Edit2 size={16} />
                 </button>
               )}
-              <button className="w-8 h-8 flex items-center justify-center rounded-md text-text-secondary hover:text-text-primary hover:bg-bg-pageg-input transition-colors cursor-pointer" onClick={onClose}>
+              <button className="w-8 h-8 flex items-center justify-center rounded-md text-text-secondary hover:text-text-primary hover:bg-input transition-colors cursor-pointer" onClick={onClose}>
                 <X size={18} />
               </button>
             </div>
@@ -73,7 +73,7 @@ export function SuperadminLibrariesPanel({ lib, mode, onClose, onSave, onSuspend
               <div>
                 <label className="block text-xs font-semibold text-text-secondary uppercase tracking-wider mb-1.5">Library Name</label>
                 <input 
-                  className={`w-full bg-bg-pageg-input border ${errors.name ? 'border-danger focus:border-danger' : 'border-border focus:border-primary'} rounded-md py-2 px-3 text-sm text-text-primary focus:outline-none transition-colors`}
+                  className={`w-full bg-input border ${errors.name ? 'border-danger focus:border-danger' : 'border-border focus:border-primary'} rounded-md py-2 px-3 text-sm text-text-primary focus:outline-none transition-colors`}
                   {...register('name')}
                 />
                 {errors.name && <p className="text-danger text-xs mt-1">{errors.name.message}</p>}
@@ -82,7 +82,7 @@ export function SuperadminLibrariesPanel({ lib, mode, onClose, onSave, onSuspend
               <div>
                 <label className="block text-xs font-semibold text-text-secondary uppercase tracking-wider mb-1.5">Owner</label>
                 <input 
-                  className={`w-full bg-bg-pageg-input border ${errors.owner ? 'border-danger focus:border-danger' : 'border-border focus:border-primary'} rounded-md py-2 px-3 text-sm text-text-primary focus:outline-none transition-colors`}
+                  className={`w-full bg-input border ${errors.owner ? 'border-danger focus:border-danger' : 'border-border focus:border-primary'} rounded-md py-2 px-3 text-sm text-text-primary focus:outline-none transition-colors`}
                   {...register('owner')}
                 />
                 {errors.owner && <p className="text-danger text-xs mt-1">{errors.owner.message}</p>}
@@ -91,7 +91,7 @@ export function SuperadminLibrariesPanel({ lib, mode, onClose, onSave, onSuspend
               <div>
                 <label className="block text-xs font-semibold text-text-secondary uppercase tracking-wider mb-1.5">Phone</label>
                 <input 
-                  className={`w-full bg-bg-pageg-input border ${errors.phone ? 'border-danger focus:border-danger' : 'border-border focus:border-primary'} rounded-md py-2 px-3 text-sm text-text-primary focus:outline-none transition-colors`}
+                  className={`w-full bg-input border ${errors.phone ? 'border-danger focus:border-danger' : 'border-border focus:border-primary'} rounded-md py-2 px-3 text-sm text-text-primary focus:outline-none transition-colors`}
                   {...register('phone')}
                 />
                 {errors.phone && <p className="text-danger text-xs mt-1">{errors.phone.message}</p>}
@@ -100,7 +100,7 @@ export function SuperadminLibrariesPanel({ lib, mode, onClose, onSave, onSuspend
               <div>
                 <label className="block text-xs font-semibold text-text-secondary uppercase tracking-wider mb-1.5">Location</label>
                 <input 
-                  className={`w-full bg-bg-pageg-input border ${errors.location ? 'border-danger focus:border-danger' : 'border-border focus:border-primary'} rounded-md py-2 px-3 text-sm text-text-primary focus:outline-none transition-colors`}
+                  className={`w-full bg-input border ${errors.location ? 'border-danger focus:border-danger' : 'border-border focus:border-primary'} rounded-md py-2 px-3 text-sm text-text-primary focus:outline-none transition-colors`}
                   {...register('location')}
                 />
                 {errors.location && <p className="text-danger text-xs mt-1">{errors.location.message}</p>}
@@ -123,7 +123,7 @@ export function SuperadminLibrariesPanel({ lib, mode, onClose, onSave, onSuspend
               </div>
             </form>
           ) : (
-            <div className="grid grid-cols-2 gap-4 bg-bg-pageg-page rounded-md p-4 border border-border">
+            <div className="grid grid-cols-2 gap-4 bg-page rounded-md p-4 border border-border">
               <div className="flex flex-col gap-1">
                 <p className="text-xs font-semibold text-text-disabled uppercase tracking-wider">Owner</p>
                 <p className="text-sm font-medium text-text-primary">{lib.owner}</p>
@@ -143,12 +143,12 @@ export function SuperadminLibrariesPanel({ lib, mode, onClose, onSave, onSuspend
             </div>
           )}
 
-          <div className="bg-bg-pageg-page rounded-md p-5 border border-border">
+          <div className="bg-page rounded-md p-5 border border-border">
             <div className="flex items-center justify-between mb-3">
               <p className="text-sm font-bold text-text-primary flex items-center gap-2"><Users size={16} className="text-primary" /> Seat Occupancy</p>
               <span className={`text-sm font-bold ${pct > 90 ? 'text-danger' : 'text-success'}`}>{pct}%</span>
             </div>
-            <div className="h-2 w-full bg-bg-pageg-input rounded-full overflow-hidden">
+            <div className="h-2 w-full bg-input rounded-full overflow-hidden">
               <div className={`h-full rounded-full ${pct > 90 ? 'bg-danger' : 'bg-success'}`} style={{ width: `${pct}%` }} />
             </div>
             <p className="text-xs font-medium text-text-secondary mt-2">{lib.occupied} occupied / {lib.seats} total seats</p>
@@ -162,7 +162,7 @@ export function SuperadminLibrariesPanel({ lib, mode, onClose, onSave, onSuspend
 
         </div>
         
-        <div className="p-6 border-t border-border bg-bg-pageg-card mt-auto flex gap-3">
+        <div className="p-6 border-t border-border bg-card mt-auto flex gap-3">
           {editing ? (
             <>
               <button 
@@ -177,7 +177,7 @@ export function SuperadminLibrariesPanel({ lib, mode, onClose, onSave, onSuspend
               </button>
               <button 
                 type="button"
-                className="flex-1 flex items-center justify-center gap-2 bg-transparent border border-border hover:bg-bg-pageg-input text-text-primary text-sm font-bold py-2.5 px-4 rounded-md transition-all cursor-pointer" 
+                className="flex-1 flex items-center justify-center gap-2 bg-transparent border border-border hover:bg-input text-text-primary text-sm font-bold py-2.5 px-4 rounded-md transition-all cursor-pointer" 
                 onClick={() => setEditing(false)}
               >
                 Cancel

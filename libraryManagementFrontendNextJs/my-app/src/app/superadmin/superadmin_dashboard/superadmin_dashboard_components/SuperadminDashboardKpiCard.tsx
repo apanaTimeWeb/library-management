@@ -12,7 +12,7 @@ const ICON_MAP: Record<string, React.ReactNode> = {
 
 export function SuperadminDashboardKpiCard({ title, value, icon, subtitle, trend, progress, alert }: KpiCardProps) {
   return (
-    <div className="bg-bg-pageg-card border border-border rounded-lg p-5 flex flex-col justify-between shadow-sm">
+    <div className="bg-card border border-border rounded-lg p-5 flex flex-col justify-between shadow-sm">
       <div className="flex items-start justify-between">
         <p className="text-sm font-semibold text-text-secondary uppercase tracking-tight">{title}</p>
         <span className="text-primary">{ICON_MAP[icon] ?? <BarChart2 size={24} />}</span>
@@ -33,7 +33,7 @@ export function SuperadminDashboardKpiCard({ title, value, icon, subtitle, trend
             </span>
           )}
           {progress !== undefined && (
-            <div className="h-1.5 w-16 bg-bg-pageg-input rounded-full overflow-hidden">
+            <div className="h-1.5 w-16 bg-input rounded-full overflow-hidden">
               <div className="h-full bg-primary rounded-full" style={{ width: `${progress}%` }} />
             </div>
           )}

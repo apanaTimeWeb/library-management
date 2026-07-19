@@ -73,13 +73,13 @@ export function AdminEngagementHolidayCalendarClient() {
 
   return (
     <div className="space-y-6 pb-10">
-      {/* ── Breadcrumb ── */}
+      {/* â”€â”€ Breadcrumb â”€â”€ */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b pb-4">
         <div>
           <p className="text-xs font-semibold text-muted-foreground flex items-center gap-1 uppercase tracking-wider mb-1">
             Engagement <ChevronRight size={12} /> Holiday Calendar
           </p>
-          <h1 className="text-text-primaryxl font-bold tracking-tight">📅 Holiday Calendar</h1>
+          <h1 className="text-text-primary text-xl font-bold tracking-tight">ðŸ“… Holiday Calendar</h1>
           <p className="text-sm text-muted-foreground mt-1">Manage library holidays, closures, and special events.</p>
         </div>
         <Button onClick={()=>setShowAdd(true)} className="gap-2">
@@ -87,7 +87,7 @@ export function AdminEngagementHolidayCalendarClient() {
         </Button>
       </div>
 
-      {/* ── Stats ── */}
+      {/* â”€â”€ Stats â”€â”€ */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         <Card className="p-4 shadow-sm">
           <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-1">Total Holidays</p>
@@ -111,7 +111,7 @@ export function AdminEngagementHolidayCalendarClient() {
         </Card>
       </div>
 
-      {/* ── Two-column Layout ── */}
+      {/* â”€â”€ Two-column Layout â”€â”€ */}
       <div className="flex flex-col lg:flex-row gap-6 items-start">
 
         {/* Left: Calendar Grid */}
@@ -149,7 +149,7 @@ export function AdminEngagementHolidayCalendarClient() {
                   <div key={i} className={`aspect-square rounded-md flex flex-col items-center justify-center relative transition-colors cursor-default select-none border ${
                     hol ? 'bg-danger/10 border-danger/20 text-danger' : 
                     isToday ? 'bg-primary border-primary text-primary-foreground font-bold shadow-md' : 
-                    'bg-bg-pageg-card border-transparent text-foreground hover:bg-muted/50'
+                    'bg-card border-transparent text-foreground hover:bg-muted/50'
                   }`} title={hol?.name}>
                     <span className={`text-sm sm:text-base font-semibold ${isToday ? 'text-primary-foreground' : ''}`}>{day}</span>
                     {hol && <div className="absolute bottom-1 sm:bottom-2 w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-danger"></div>}
@@ -188,7 +188,7 @@ export function AdminEngagementHolidayCalendarClient() {
             <CardContent className="p-0">
               {thisMonthHolidays.length === 0 ? (
                 <div className="p-8 text-center text-muted-foreground text-sm font-medium">
-                  No holidays in {monthLabel} 🎉
+                  No holidays in {monthLabel} ðŸŽ‰
                 </div>
               ) : (
                 <div className="divide-y divide-border">
@@ -239,11 +239,11 @@ export function AdminEngagementHolidayCalendarClient() {
         </div>
       </div>
 
-      {/* ── Add Holiday Modal ── */}
+      {/* â”€â”€ Add Holiday Modal â”€â”€ */}
       <Dialog open={showAdd} onOpenChange={setShowAdd}>
         <DialogContent className="sm:max-w-md">
           <DialogHeader>
-            <DialogTitle>📅 Add Holiday</DialogTitle>
+            <DialogTitle>ðŸ“… Add Holiday</DialogTitle>
             <DialogDescription>Mark a library closure or holiday in the calendar.</DialogDescription>
           </DialogHeader>
           <div className="space-y-4 py-4">
@@ -257,7 +257,7 @@ export function AdminEngagementHolidayCalendarClient() {
             </div>
             <div className="space-y-2">
               <label className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Type</label>
-              <AdminSearchableDropdown value={form.type} onChange={e => setForm(f=>({...f, type:e.target.value}))} className="flex h-10 w-full items-center justify-between rounded-md border border-border bg-bg-pageg-input px-3 py-2 text-sm ring-offset-bg-page placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50">
+              <AdminSearchableDropdown value={form.type} onChange={e => setForm(f=>({...f, type:e.target.value}))} className="flex h-10 w-full items-center justify-between rounded-md border border-border bg-input px-3 py-2 text-sm ring-offset-bg-page placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50">
                 <option>National</option>
                 <option>Religious</option>
                 <option>Library</option>

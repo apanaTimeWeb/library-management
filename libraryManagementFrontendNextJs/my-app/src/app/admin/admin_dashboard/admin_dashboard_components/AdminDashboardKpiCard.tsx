@@ -5,7 +5,7 @@ import type { AdminDashboardKpiCardProps } from '@/app/admin/admin_dashboard/adm
 
 export function AdminDashboardKpiCard({ label, value, icon: Icon, iconColor, iconBg, trend, sub }: AdminDashboardKpiCardProps) {
   return (
-    <Card className="border-border bg-bg-pageg-card shadow-none flex flex-col justify-between p-5 h-full">
+    <Card className="border-border bg-card shadow-none flex flex-col justify-between p-5 h-full">
       <div className="flex items-start justify-between mb-4">
         <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[color:var(--bg)]" style={{ '--bg': iconBg } as React.CSSProperties}>
           <Icon size={18} className="text-[color:var(--c)]" style={{ '--c': iconColor } as React.CSSProperties} />
@@ -20,7 +20,7 @@ export function AdminDashboardKpiCard({ label, value, icon: Icon, iconColor, ico
 
       <div>
         <p className="text-sm font-semibold text-text-secondary uppercase tracking-wider">{label}</p>
-        <p className="text-text-primaryxl font-bold text-primary mt-1">{value}</p>
+        <p className="text-text-primary text-xl font-bold text-primary mt-1">{value}</p>
         {sub && <p className="text-xs text-text-secondary mt-1">{sub}</p>}
       </div>
     </Card>

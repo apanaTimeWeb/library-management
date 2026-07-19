@@ -61,7 +61,7 @@ export function SuperadminSeatsLockersClient() {
         </SuperadminButton>
       </div>
 
-      <SuperadminCard className="mb-6 bg-bg-pageg-card border-none">
+      <SuperadminCard className="mb-6 bg-card border-none">
         <CardContent className="p-4 flex items-center gap-4">
           <div className="w-48">
             <SuperadminSelect value={statusFilter} onValueChange={setStatusFilter}>
@@ -81,7 +81,7 @@ export function SuperadminSeatsLockersClient() {
         <CardContent className="p-0">
           {filteredLockers.length === 0 ? (
             <div className="py-20 flex flex-col items-center justify-center text-center">
-              <div className="h-16 w-16 bg-bg-pageg-input rounded-full flex items-center justify-center text-text-secondary mb-3">
+              <div className="h-16 w-16 bg-input rounded-full flex items-center justify-center text-text-secondary mb-3">
                 <Inbox size={32} />
               </div>
               <p className="text-text-primary font-semibold text-lg">No lockers found</p>
@@ -107,7 +107,7 @@ export function SuperadminSeatsLockersClient() {
                   {table.paginatedData.map((locker) => (
                     <tr
                       key={locker.id}
-                      className="hover:bg-bg-pageg-input transition-colors group"
+                      className="hover:bg-input transition-colors group"
                     >
                       <td className="py-3 pl-4 pr-3 font-mono font-medium text-text-primary">{locker.lockerId}</td>
                       <td className="py-3 px-3">
@@ -116,7 +116,7 @@ export function SuperadminSeatsLockersClient() {
                         </SuperadminBadge>
                       </td>
                       <td className="py-3 px-3">
-                        {locker.assignedTo === '—' ? (
+                        {locker.assignedTo === 'â€”' ? (
                           <span className="text-text-secondary">Unassigned</span>
                         ) : (
                           <div>

@@ -91,7 +91,7 @@ export function AdminAccountingExpensesAddDialog({ isOpen, onClose, onSubmit }: 
             </div>
             <div>
               <label className="block text-xs font-semibold text-foreground uppercase tracking-wider mb-1">Category *</label>
-              <AdminSearchableDropdown {...register('category')} className="flex h-10 w-full items-center justify-between rounded-md border border-border bg-bg-pageg-input px-3 py-2 text-sm ring-offset-bg-page placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" disabled={isSubmitting}>
+              <AdminSearchableDropdown {...register('category')} className="flex h-10 w-full items-center justify-between rounded-md border border-border bg-input px-3 py-2 text-sm ring-offset-bg-page placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" disabled={isSubmitting}>
                 <option value="Electricity">Electricity</option>
                 <option value="Maintenance">Maintenance</option>
                 <option value="Stationery">Stationery</option>
@@ -112,7 +112,7 @@ export function AdminAccountingExpensesAddDialog({ isOpen, onClose, onSubmit }: 
 
           <div className="grid grid-cols-3 gap-3">
             <div className="col-span-1">
-              <label className="block text-xs font-semibold text-foreground uppercase tracking-wider mb-1">Amount (₹) *</label>
+              <label className="block text-xs font-semibold text-foreground uppercase tracking-wider mb-1">Amount (â‚¹) *</label>
               <Input type="number" {...register('amount', { valueAsNumber: true })} placeholder="1000" className="w-full font-bold" disabled={isSubmitting} />
               {errors.amount && <p className="text-xs text-danger mt-1 font-medium">{errors.amount.message}</p>}
             </div>
@@ -123,7 +123,7 @@ export function AdminAccountingExpensesAddDialog({ isOpen, onClose, onSubmit }: 
             </div>
             <div className="col-span-1">
               <label className="block text-xs font-semibold text-foreground uppercase tracking-wider mb-1">Mode *</label>
-              <AdminSearchableDropdown {...register('mode')} className="flex h-10 w-full items-center justify-between rounded-md border border-border bg-bg-pageg-input px-3 py-2 text-sm ring-offset-bg-page placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" disabled={isSubmitting}>
+              <AdminSearchableDropdown {...register('mode')} className="flex h-10 w-full items-center justify-between rounded-md border border-border bg-input px-3 py-2 text-sm ring-offset-bg-page placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" disabled={isSubmitting}>
                 <option value="cash">Cash</option>
                 <option value="upi">UPI</option>
                 <option value="card">Card</option>
@@ -138,7 +138,7 @@ export function AdminAccountingExpensesAddDialog({ isOpen, onClose, onSubmit }: 
             </Button>
             <Button type="submit" disabled={isSubmitting} className="gap-2">
               {isSubmitting && <Loader2 size={15} className="animate-spin" />}
-              {isSubmitting ? 'Saving…' : 'Log Expense'}
+              {isSubmitting ? 'Savingâ€¦' : 'Log Expense'}
             </Button>
           </div>
         </form>

@@ -55,8 +55,8 @@ export function AdminLockersClient() {
       {/* page Header */}
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b pb-4">
         <div>
-          <nav className="text-xs text-muted-foreground font-medium mb-1 tracking-wide uppercase">Smart Library 360 › Admin › Seats & Shifts</nav>
-          <h1 className="text-text-primaryxl font-bold tracking-tight">Lockers</h1>
+          <nav className="text-xs text-muted-foreground font-medium mb-1 tracking-wide uppercase">Smart Library 360 â€º Admin â€º Seats & Shifts</nav>
+          <h1 className="text-text-primary text-xl font-bold tracking-tight">Lockers</h1>
           <p className="text-sm text-muted-foreground mt-1">Manage locker assignments and availability.</p>
         </div>
         <Button 
@@ -71,7 +71,7 @@ export function AdminLockersClient() {
       {/* Filter Bar */}
       <div className="flex flex-wrap items-center gap-3">
         <AdminSearchableDropdown 
-          className="h-10 px-3 rounded-md border border-border bg-bg-pageg-input text-sm font-medium focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary min-w-36"
+          className="h-10 px-3 rounded-md border border-border bg-input text-sm font-medium focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary min-w-36"
           value={statusFilter} 
           onChange={(e) => setStatusFilter(e.target.value)}
         >
@@ -106,7 +106,7 @@ export function AdminLockersClient() {
                 <tr>
                   <td colSpan={5} className="px-5 py-20 text-center">
                     <div className="flex flex-col items-center justify-center gap-3">
-                      <div className="text-4xl opacity-50">🔒</div>
+                      <div className="text-4xl opacity-50">ðŸ”’</div>
                       <p className="text-lg font-bold">No lockers added yet.</p>
                       <Button 
                         onClick={() => { setNewLockerId(''); setAddError(''); setShowAddModal(true); }} 
@@ -129,7 +129,7 @@ export function AdminLockersClient() {
                       </Badge>
                     </td>
                     <td className="px-5 py-4">
-                      {l.assignedTo === '—' ? (
+                      {l.assignedTo === 'â€”' ? (
                         <span className="text-muted-foreground text-sm font-medium italic">Unassigned</span>
                       ) : (
                         <div className="flex flex-col">

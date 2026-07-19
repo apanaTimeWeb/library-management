@@ -118,17 +118,17 @@ export function AdminCouponsAddDialog({ isOpen, onClose, onSubmit }: AdminCoupon
               <AdminSearchableDropdown
                 id="coupon-type"
                 {...register('type')}
-                className="flex h-10 w-full items-center justify-between rounded-md border border-border bg-bg-pageg-input px-3 py-2 text-sm font-medium ring-offset-bg-page placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                className="flex h-10 w-full items-center justify-between rounded-md border border-border bg-input px-3 py-2 text-sm font-medium ring-offset-bg-page placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
                 disabled={isSubmitting}
               >
-                <option value="Flat">Flat (₹ INR)</option>
+                <option value="Flat">Flat (â‚¹ INR)</option>
                 <option value="Percent">Percentage (%)</option>
               </AdminSearchableDropdown>
             </div>
 
             <div className="space-y-1.5">
               <label htmlFor="coupon-discount" className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">
-                {selectedType === 'Flat' ? 'Discount Amount (₹)' : 'Discount (%)'} <span className="text-danger">*</span>
+                {selectedType === 'Flat' ? 'Discount Amount (â‚¹)' : 'Discount (%)'} <span className="text-danger">*</span>
               </label>
               <Input
                 id="coupon-discount"
@@ -190,7 +190,7 @@ export function AdminCouponsAddDialog({ isOpen, onClose, onSubmit }: AdminCoupon
             className="gap-2"
           >
             {isSubmitting && <Loader2 size={15} className="animate-spin" />}
-            {isSubmitting ? 'Creating…' : 'Create Coupon'}
+            {isSubmitting ? 'Creatingâ€¦' : 'Create Coupon'}
           </Button>
         </DialogFooter>
       </DialogContent>

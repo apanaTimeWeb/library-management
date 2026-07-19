@@ -33,8 +33,8 @@ export function AdminFinanceReferralsClient() {
       {/* page Header */}
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b pb-4">
         <div>
-          <nav className="text-xs text-muted-foreground font-medium mb-1 tracking-wide uppercase">Smart Library 360 › Admin › Finance</nav>
-          <h1 className="text-text-primaryxl font-bold tracking-tight">Referrals & Bonuses</h1>
+          <nav className="text-xs text-muted-foreground font-medium mb-1 tracking-wide uppercase">Smart Library 360 â€º Admin â€º Finance</nav>
+          <h1 className="text-text-primary text-xl font-bold tracking-tight">Referrals & Bonuses</h1>
           <p className="text-sm text-muted-foreground mt-1">Student referral leaderboard and bonus tracking.</p>
         </div>
       </div>
@@ -46,15 +46,15 @@ export function AdminFinanceReferralsClient() {
             <span className="text-xs font-bold tracking-wider uppercase text-muted-foreground">Total Referrals Made</span>
             <Users size={16} className="text-muted-foreground" />
           </div>
-          <p className="text-text-primaryxl font-bold text-primary">{totalReferrals}</p>
+          <p className="text-text-primary text-xl font-bold text-primary">{totalReferrals}</p>
         </Card>
         
         <Card className="p-4 shadow-none flex flex-col justify-center border-success/30 bg-success/5">
           <div className="flex items-center justify-between mb-1">
-            <span className="text-xs font-bold tracking-wider uppercase text-success">Total Bonus Issued ₹</span>
+            <span className="text-xs font-bold tracking-wider uppercase text-success">Total Bonus Issued â‚¹</span>
             <IndianRupee size={16} className="text-success" />
           </div>
-          <p className="text-text-primaryxl font-bold text-success">{formatCurrency(totalBonus)}</p>
+          <p className="text-text-primary text-xl font-bold text-success">{formatCurrency(totalBonus)}</p>
         </Card>
         
         <Card className="p-4 shadow-none flex flex-col justify-center border-warning/30 bg-warning/5">
@@ -62,7 +62,7 @@ export function AdminFinanceReferralsClient() {
             <span className="text-xs font-bold tracking-wider uppercase text-warning">Top Referrer</span>
             <Trophy size={16} className="text-warning" />
           </div>
-          <p className="text-xl font-bold text-primary truncate">{topReferrer?.name || '—'}</p>
+          <p className="text-xl font-bold text-primary truncate">{topReferrer?.name || 'â€”'}</p>
           <p className="text-xs text-muted-foreground font-medium">{topReferrer?.referredCount || 0} referrals</p>
         </Card>
       </div>
@@ -91,9 +91,9 @@ export function AdminFinanceReferralsClient() {
                 <th className="px-5 py-3">Referrer</th>
                 <th className="px-5 py-3">Referred Students</th>
                 <th className="px-5 py-3 text-center">Referred Count</th>
-                <th className="px-5 py-3 text-right">Bonus Earned ₹</th>
-                <th className="px-5 py-3 text-right">Redeemed ₹</th>
-                <th className="px-5 py-3 text-right">Balance ₹</th>
+                <th className="px-5 py-3 text-right">Bonus Earned â‚¹</th>
+                <th className="px-5 py-3 text-right">Redeemed â‚¹</th>
+                <th className="px-5 py-3 text-right">Balance â‚¹</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-border">
@@ -110,7 +110,7 @@ export function AdminFinanceReferralsClient() {
                 <tr>
                   <td colSpan={7} className="px-5 py-20 text-center">
                     <div className="flex flex-col items-center justify-center gap-3">
-                      <div className="text-4xl opacity-50">👥</div>
+                      <div className="text-4xl opacity-50">ðŸ‘¥</div>
                       <p className="text-lg font-bold">No referrals recorded yet.</p>
                     </div>
                   </td>
@@ -132,7 +132,7 @@ export function AdminFinanceReferralsClient() {
                         className="bg-muted text-primary hover:bg-muted/80 border-none font-bold text-xs h-7 px-3 gap-1"
                         onClick={() => setExpanded(expanded === r.id ? null : (r.id as never))}
                       >
-                        {expanded === r.id ? '▲' : '▼'} {r.referredCount as number} students
+                        {expanded === r.id ? 'â–²' : 'â–¼'} {r.referredCount as number} students
                       </Button>
                       {expanded === r.id && (
                         <div className="flex flex-wrap gap-1 mt-3 animate-in fade-in slide-in-from-top-1">

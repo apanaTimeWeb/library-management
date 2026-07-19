@@ -22,7 +22,7 @@ export default function AdminReusableKpiCard({ label, value, icon: Icon, iconCol
 
       <div>
         <p className="text-sm font-semibold text-muted-foreground uppercase tracking-wider">{label}</p>
-        <p className="text-text-primaryxl font-bold text-primary mt-1">{value}</p>
+        <p className="text-text-primary text-xl font-bold text-primary mt-1">{value}</p>
         {sub && <p className="text-xs text-muted-foreground mt-1">{sub}</p>}
       </div>
     </Card>

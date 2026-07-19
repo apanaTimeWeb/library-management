@@ -44,9 +44,9 @@ export function AdminBranchesView({ initialBranches }: AdminBranchesViewProps) {
       <div className="border-b border-border pb-4 flex flex-col md:flex-row md:items-end justify-between gap-4">
         <div>
           <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-1">
-            Smart Library 360 <span className="opacity-50">›</span> Admin <span className="opacity-50">›</span> Branches
+            Smart Library 360 <span className="opacity-50">â€º</span> Admin <span className="opacity-50">â€º</span> Branches
           </p>
-          <h1 className="text-text-primaryxl font-bold tracking-tight text-foreground">Branch Management</h1>
+          <h1 className="text-text-primary text-xl font-bold tracking-tight text-foreground">Branch Management</h1>
           <p className="text-sm text-muted-foreground mt-1">Manage multiple branches and their managers.</p>
         </div>
         <Button onClick={openAdd} className="gap-2">
@@ -59,7 +59,7 @@ export function AdminBranchesView({ initialBranches }: AdminBranchesViewProps) {
         <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
         <Input
           className="pl-9"
-          placeholder="Search by branch name, city or manager…"
+          placeholder="Search by branch name, city or managerâ€¦"
           value={search}
           onChange={e => setSearch(e.target.value)}
         />
@@ -100,7 +100,7 @@ export function AdminBranchesView({ initialBranches }: AdminBranchesViewProps) {
                     </td>
                     <td className="px-6 py-4">
                       <Badge variant="secondary" className={`border-none ${branch.status === 'Active' ? 'bg-success/10 text-success' : 'bg-danger/10 text-danger'}`}>
-                        {branch.status === 'Active' ? '✅ Active' : '🔴 Inactive'}
+                        {branch.status === 'Active' ? 'âœ… Active' : 'ðŸ”´ Inactive'}
                       </Badge>
                     </td>
                     <td className="px-6 py-4 text-right">

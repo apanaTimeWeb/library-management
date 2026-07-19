@@ -30,7 +30,7 @@ export class SuperadminErrorBoundary extends React.Component<
           <div className="flex justify-center mb-4">
             <AlertCircle size={64} className="text-danger" />
           </div>
-          <h2 className="text-text-primaryxl font-bold mb-2">Superadmin Module Error</h2>
+          <h2 className="text-text-primary text-xl font-bold mb-2">Superadmin Module Error</h2>
           <p className="text-md text-text-secondary mb-6 max-w-md text-center">
             A critical error occurred while loading this administrative interface. 
             Check the console logs for details.

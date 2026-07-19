@@ -53,14 +53,14 @@ export function AdminSystemGapFillingClient() {
                 <SelectTrigger id="gap-shift-select"><SelectValue placeholder="All shifts" /></SelectTrigger>
                 <SelectContent>
                   <SelectItem value="all">All Shifts</SelectItem>
-                  <SelectItem value="morning">Morning (6AM–12PM)</SelectItem>
-                  <SelectItem value="afternoon">Afternoon (12PM–6PM)</SelectItem>
-                  <SelectItem value="evening">Evening (6PM–10PM)</SelectItem>
+                  <SelectItem value="morning">Morning (6AMâ€“12PM)</SelectItem>
+                  <SelectItem value="afternoon">Afternoon (12PMâ€“6PM)</SelectItem>
+                  <SelectItem value="evening">Evening (6PMâ€“10PM)</SelectItem>
                 </SelectContent>
               </Select>
             </div>
             <Button id="run-gap-analysis-btn" onClick={() => setAnalyzed(true)} variant="primary" size="md">
-              🔍 Run Gap Analysis
+              ðŸ” Run Gap Analysis
             </Button>
           </div>
         </CardContent>
@@ -79,24 +79,24 @@ export function AdminSystemGapFillingClient() {
                   <div className="w-14 shrink-0">
                     <span className="text-sm font-mono font-bold text-text-primary">{seat.seat}</span>
                   </div>
-                  {/* Time bar — left/width are computed values, style is correct here */}
-                  <div className="flex-1 relative h-8 rounded-lg overflow-hidden bg-bg-pageg-input">
+                  {/* Time bar â€” left/width are computed values, style is correct here */}
+                  <div className="flex-1 relative h-8 rounded-lg overflow-hidden bg-input">
                     {seat.booked.map((b, i) => (
                       <div key={i} className="absolute top-0 h-full bg-primary/70 flex items-center justify-center left-[length:var(--left)] w-[length:var(--w)]" style={{ '--left': `${b.start}%`, '--w': `${b.end - b.start}%` } as React.CSSProperties}>
                         <span className="text-xs text-on-primary font-medium truncate px-1">Booked</span>
                       </div>
                     ))}
                     <div className="absolute top-0 h-full bg-tertiary/30 border border-dashed border-tertiary/60 flex items-center justify-center animate-pulse left-[length:var(--left)] w-[length:var(--w)]" style={{ '--left': `${seat.gap.start}%`, '--w': `${seat.gap.end - seat.gap.start}%` } as React.CSSProperties}>
-                      <span className="text-xs text-tertiary font-medium truncate px-1">🕳️ Gap</span>
+                      <span className="text-xs text-tertiary font-medium truncate px-1">ðŸ•³ï¸ Gap</span>
                     </div>
                   </div>
                   <div className="w-64 shrink-0 flex items-center gap-3">
                     <div className="flex-1">
                       <p className="text-xs font-medium text-text-primary">{seat.gap.label}</p>
-                      <p className="text-xs text-text-secondary">💡 {seat.gap.hours}hrs available</p>
+                      <p className="text-xs text-text-secondary">ðŸ’¡ {seat.gap.hours}hrs available</p>
                     </div>
                     {assigned.includes(seat.seat) ? (
-                      <Badge variant="success">✅ Assigned</Badge>
+                      <Badge variant="success">âœ… Assigned</Badge>
                     ) : (
                       <Button id={`quick-assign-${seat.seat}`} variant="secondary" size="sm"
                         onClick={() => setAssigned(p => [...p, seat.seat])}>
@@ -112,7 +112,7 @@ export function AdminSystemGapFillingClient() {
       ) : (
         <Card>
           <CardContent className="py-16 flex flex-col items-center justify-center gap-3 text-center">
-            <div className="text-5xl">🔍</div>
+            <div className="text-5xl">ðŸ”</div>
             <p className="text-text-primary font-medium">Run an analysis to see seat gaps</p>
             {/* eslint-disable-next-line react/no-unescaped-entities */}
             <p className="text-sm text-text-secondary">Select a date range and click "Run Gap Analysis" to visualize available slots.</p>

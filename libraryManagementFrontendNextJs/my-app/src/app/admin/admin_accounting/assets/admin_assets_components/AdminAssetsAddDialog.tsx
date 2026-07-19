@@ -91,7 +91,7 @@ export function AdminAssetsAddDialog({ isOpen, onClose, onSubmit }: AdminAssetsA
           <div className="grid grid-cols-2 gap-3">
             <div>
               <label className="block text-xs font-semibold text-foreground uppercase tracking-wider mb-1">Category *</label>
-              <AdminSearchableDropdown {...register('category')} className="flex h-10 w-full items-center justify-between rounded-md border border-border bg-bg-pageg-input px-3 py-2 text-sm ring-offset-bg-page placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" disabled={isSubmitting}>
+              <AdminSearchableDropdown {...register('category')} className="flex h-10 w-full items-center justify-between rounded-md border border-border bg-input px-3 py-2 text-sm ring-offset-bg-page placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" disabled={isSubmitting}>
                 <option value="Furniture">Furniture</option>
                 <option value="Appliance">Appliance</option>
                 <option value="Security">Security</option>
@@ -107,7 +107,7 @@ export function AdminAssetsAddDialog({ isOpen, onClose, onSubmit }: AdminAssetsA
 
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <label className="block text-xs font-semibold text-foreground uppercase tracking-wider mb-1">Purchase Value (₹) *</label>
+              <label className="block text-xs font-semibold text-foreground uppercase tracking-wider mb-1">Purchase Value (â‚¹) *</label>
               <Input type="number" {...register('purchaseValue', { valueAsNumber: true })} placeholder="60000" className="w-full" disabled={isSubmitting} />
               {errors.purchaseValue && <p className="text-xs text-danger mt-1 font-medium">{errors.purchaseValue.message}</p>}
             </div>
@@ -124,7 +124,7 @@ export function AdminAssetsAddDialog({ isOpen, onClose, onSubmit }: AdminAssetsA
             </Button>
             <Button type="submit" disabled={isSubmitting} className="gap-2">
               {isSubmitting && <Loader2 size={15} className="animate-spin" />}
-              {isSubmitting ? 'Registering…' : 'Register Asset'}
+              {isSubmitting ? 'Registeringâ€¦' : 'Register Asset'}
             </Button>
           </div>
         </form>

@@ -48,12 +48,12 @@ export function SuperadminSystemWhatsappClient() {
       <div className={`flex items-center gap-4 p-4 rounded-2xl border mb-8 ${
         testStatus === 'success' ? 'bg-success-bg border-success/30' : 
         testStatus === 'error' ? 'bg-danger-bg border-danger/30' : 
-        'bg-bg-pageg-card border-border'
+        'bg-card border-border'
       }`}>
-        <div className={`h-12 w-12 rounded-xl flex items-center justify-center text-text-primaryxl ${
+        <div className={`h-12 w-12 rounded-xl flex items-center justify-center text-text-primary text-xl ${
           testStatus === 'success' ? 'bg-success-bg text-success' :
           testStatus === 'error'  ? 'bg-danger-bg text-danger' :
-          'bg-bg-pageg-card text-text-secondary'
+          'bg-card text-text-secondary'
         }`}>
           {testStatus === 'success' ? <CheckCircle size={24} /> : testStatus === 'error' ? <XCircle size={24} /> : <Radio size={24} />}
         </div>
@@ -71,7 +71,7 @@ export function SuperadminSystemWhatsappClient() {
           </div>
           <p className="text-xs text-text-secondary mt-0.5">
             {testStatus === 'success'
-              ? `Provider: ${selectedProvider.label} · Test message sent to ${senderPhone}`
+              ? `Provider: ${selectedProvider.label} Â· Test message sent to ${senderPhone}`
               : testStatus === 'error'
               ? 'Check your API key and try again. Ensure the number is registered on WhatsApp Business.'
               : 'Click "Test Connection" to verify your WhatsApp setup.'}
@@ -87,7 +87,7 @@ export function SuperadminSystemWhatsappClient() {
         <SuperadminKpiCard title="Sent This Month" value={stats.total} icon={Send} subtitle="All messages" />
         <SuperadminKpiCard title="Delivered" value={stats.deliveredCount} icon={CheckCircle} trend="up" trendLabel={`${stats.deliveryRate}% rate`} />
         <SuperadminKpiCard title="Failed" value={stats.failedCount} icon={XCircle} trend={stats.failedCount > 0 ? 'down' : 'neutral'} trendLabel="Failed deliveries" />
-        <SuperadminKpiCard title="Est. Cost" value="₹18.50" icon={Banknote} subtitle="~₹0.18 per msg" />
+        <SuperadminKpiCard title="Est. Cost" value="â‚¹18.50" icon={Banknote} subtitle="~â‚¹0.18 per msg" />
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
@@ -185,7 +185,7 @@ export function SuperadminSystemWhatsappClient() {
             <div className="space-y-2">
               <SuperadminLabel>Inbound Webhook URL</SuperadminLabel>
               <div className="flex items-center gap-2">
-                <div className="flex-1 px-3 py-2 rounded-lg bg-bg-pageg-input border border-border text-xs font-mono text-text-secondary truncate">
+                <div className="flex-1 px-3 py-2 rounded-lg bg-input border border-border text-xs font-mono text-text-secondary truncate">
                   {webhookUrl}
                 </div>
                 <SuperadminButton id="copy-webhook-btn" variant="ghost" size="sm" onClick={handleCopyWebhook}>
@@ -202,10 +202,10 @@ export function SuperadminSystemWhatsappClient() {
               onClick={handleTestConnection}
               disabled={testStatus === 'testing'}
             >
-              {testStatus === 'testing' ? <><Loader2 size={16} className="animate-spin mr-2" /> Testing...</> : '🔌 Test Connection'}
+              {testStatus === 'testing' ? <><Loader2 size={16} className="animate-spin mr-2" /> Testing...</> : 'ðŸ”Œ Test Connection'}
             </SuperadminButton>
             <SuperadminButton id="save-whatsapp-config-btn" variant="primary">
-              💾 Save Configuration
+              ðŸ’¾ Save Configuration
             </SuperadminButton>
           </CardFooter>
         </SuperadminCard>
@@ -227,7 +227,7 @@ export function SuperadminSystemWhatsappClient() {
                 { id: 'trigger-waitlist', label: 'Waitlist Notification', desc: 'When seat becomes available for waitlisted', enabled: true  },
                 { id: 'trigger-absentee', label: 'Absentee Alert',        desc: 'When student absent for 3+ days',            enabled: false },
               ].map(( event ) => (
-                <div key={event.id} className="flex items-center justify-between p-3 rounded-xl bg-bg-pageg-card border border-border/50">
+                <div key={event.id} className="flex items-center justify-between p-3 rounded-xl bg-card border border-border/50">
                   <div>
                     <p className="text-sm font-medium text-text-primary">{event.label}</p>
                     <p className="text-xs text-text-secondary">{event.desc}</p>
@@ -270,11 +270,11 @@ export function SuperadminSystemWhatsappClient() {
                   const cfg  = SUPERADMIN_SYSTEM_WHATSAPP_STATUS_CFG[log.status];
                   const Icon = cfg.icon;
                   return (
-                    <tr key={log.id} className="hover:bg-bg-pageg-card transition-colors">
+                    <tr key={log.id} className="hover:bg-card transition-colors">
                       <td className="py-3 pr-4 font-mono text-sm text-text-primary">{log.to}</td>
                       <td className="py-3 pr-4 text-text-primary">{log.type}</td>
                       <td className="py-3 pr-4">
-                        <code className="text-xs text-text-secondary bg-bg-pageg-input px-1.5 py-0.5 rounded">
+                        <code className="text-xs text-text-secondary bg-input px-1.5 py-0.5 rounded">
                           {log.template}
                         </code>
                       </td>

@@ -21,8 +21,8 @@ const ACTION_LINKS: Record<string, string> = {
 
 export function SuperadminDashboardActionItemsPanel({ data }: Props) {
   return (
-    <div className="col-span-12 lg:col-span-5 bg-bg-pageg-card border border-border rounded-lg flex flex-col overflow-hidden shadow-sm">
-      <div className="p-6 border-b border-border bg-bg-pageg-page/30">
+    <div className="col-span-12 lg:col-span-5 bg-card border border-border rounded-lg flex flex-col overflow-hidden shadow-sm">
+      <div className="p-6 border-b border-border bg-page/30">
         <h2 className="text-base font-bold text-text-primary">Action Items</h2>
       </div>
 
@@ -48,7 +48,7 @@ export function SuperadminDashboardActionItemsPanel({ data }: Props) {
         })}
       </div>
 
-      <div className="mt-auto p-6 border-t border-border bg-bg-pageg-page/30">
+      <div className="mt-auto p-6 border-t border-border bg-page/30">
         <div className="flex items-start gap-3 mb-4 p-3 rounded-md bg-primary-subtle border border-primary/20">
           <div className="bg-primary text-white p-1 rounded-full shrink-0 mt-0.5">
             <Lightbulb size={12} />

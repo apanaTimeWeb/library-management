@@ -48,14 +48,14 @@ export function ManagerEngagementAttendanceClient() {
 
   return (
     <div className="p-6 min-h-screen relative pb-24">
-      {/* ── Breadcrumb ── */}
+      {/* â”€â”€ Breadcrumb â”€â”€ */}
       <div className="text-xs font-medium text-text-secondary uppercase tracking-wider mb-2 flex items-center gap-1.5">
         <Link href={MANAGER_ROUTES.ENGAGEMENT_ATTENDANCE}>Engagement</Link>
         <ChevronRight size={12} className="mx-1" />
         <span>Attendance</span>
       </div>
 
-      {/* ── Page Header ── */}
+      {/* â”€â”€ Page Header â”€â”€ */}
       <div className="mb-8">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
           <div>
@@ -70,36 +70,36 @@ export function ManagerEngagementAttendanceClient() {
         </div>
       </div>
 
-      {/* ── KPI Stats ── */}
+      {/* â”€â”€ KPI Stats â”€â”€ */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-        <div className="bg-bg-pageg-card border border-border rounded-xl p-5 flex flex-col justify-center">
+        <div className="bg-card border border-border rounded-xl p-5 flex flex-col justify-center">
           <div className="text-[13px] font-medium text-text-secondary mb-1.5">Total Students</div>
-          <div className="text-text-primaryxl font-bold text-text-primary">{filtered.length}</div>
+          <div className="text-text-primary text-xl font-bold text-text-primary">{filtered.length}</div>
           <div className="text-[11px] font-medium text-text-secondary mt-1">{shift} shift</div>
         </div>
-        <div className="bg-bg-pageg-card border border-border rounded-xl p-5 flex flex-col justify-center">
+        <div className="bg-card border border-border rounded-xl p-5 flex flex-col justify-center">
           <div className="text-[13px] font-medium text-text-secondary mb-1.5">Present</div>
-          <div className="text-text-primaryxl font-bold text-success">{present}</div>
+          <div className="text-text-primary text-xl font-bold text-success">{present}</div>
           <div className="text-[11px] font-medium text-text-secondary mt-1">{filtered.length ? Math.round(present/filtered.length*100) : 0}% rate</div>
         </div>
-        <div className="bg-bg-pageg-card border border-border rounded-xl p-5 flex flex-col justify-center">
+        <div className="bg-card border border-border rounded-xl p-5 flex flex-col justify-center">
           <div className="text-[13px] font-medium text-text-secondary mb-1.5">Absent</div>
-          <div className="text-text-primaryxl font-bold text-danger">{absent}</div>
+          <div className="text-text-primary text-xl font-bold text-danger">{absent}</div>
           <div className="text-[11px] font-medium text-text-secondary mt-1">{filtered.filter(s=>s.consecutiveAbsent>=3).length} need alerts</div>
         </div>
-        <div className="bg-bg-pageg-card border border-border rounded-xl p-5 flex flex-col justify-center">
+        <div className="bg-card border border-border rounded-xl p-5 flex flex-col justify-center">
           <div className="text-[13px] font-medium text-text-secondary mb-1.5">Late</div>
-          <div className="text-text-primaryxl font-bold text-warning">{late}</div>
+          <div className="text-text-primary text-xl font-bold text-warning">{late}</div>
           <div className="text-[11px] font-medium text-text-secondary mt-1">{marked}/{filtered.length} marked</div>
         </div>
       </div>
 
-      {/* ── Filters ── */}
-      <div className="bg-bg-pageg-card rounded-xl border border-border mb-6 p-4">
+      {/* â”€â”€ Filters â”€â”€ */}
+      <div className="bg-card rounded-xl border border-border mb-6 p-4">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div className="flex items-center gap-3">
             <label className="text-[13px] font-medium text-text-secondary">Date</label>
-            <input type="date" className="bg-bg-pageg-input border border-border rounded-lg px-3 py-1.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary" value={date}
+            <input type="date" className="bg-input border border-border rounded-lg px-3 py-1.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary" value={date}
               onChange={e => setFilter('date', e.target.value)} />
           </div>
           <div className="flex items-center gap-3">
@@ -125,8 +125,8 @@ export function ManagerEngagementAttendanceClient() {
         </div>
       </div>
 
-      {/* ── Student List ── */}
-      <div className="bg-bg-pageg-card rounded-xl border border-border overflow-hidden">
+      {/* â”€â”€ Student List â”€â”€ */}
+      <div className="bg-card rounded-xl border border-border overflow-hidden">
         <div className="flex flex-col divide-y divide-border">
           {filtered.length === 0 ? (
             <div className="py-12 flex flex-col items-center justify-center text-center">
@@ -138,7 +138,7 @@ export function ManagerEngagementAttendanceClient() {
             const isAlert = s.consecutiveAbsent >= 3;
             const hasAlerted = alerted.has(s.id);
             return (
-              <div key={s.id} className={`p-4 flex flex-col md:flex-row items-start md:items-center gap-4 hover:bg-bg-pageg-elevated transition-colors ${isAlert ? 'bg-danger-bg/30' : ''}`}>
+              <div key={s.id} className={`p-4 flex flex-col md:flex-row items-start md:items-center gap-4 hover:bg-card transition-colors ${isAlert ? 'bg-danger-bg/30' : ''}`}>
 
                 {/* Avatar */}
                 <div className="w-10 h-10 rounded-full bg-primary/10 text-primary flex items-center justify-center text-sm font-bold shrink-0">{s.initials}</div>
@@ -146,11 +146,11 @@ export function ManagerEngagementAttendanceClient() {
                 {/* Info */}
                 <div className="flex-1 min-w-0">
                   <div className="text-sm font-semibold text-text-primary truncate">{s.name}</div>
-                  <div className="text-xs text-text-secondary mt-0.5 truncate">{s.smartId} · {s.shift} shift</div>
+                  <div className="text-xs text-text-secondary mt-0.5 truncate">{s.smartId} Â· {s.shift} shift</div>
                 </div>
 
                 {/* Status buttons */}
-                <div className="flex bg-bg-pageg-input rounded-lg border border-border p-1">
+                <div className="flex bg-input rounded-lg border border-border p-1">
                   {(['present', 'absent', 'late'] as AttStatus[]).map(st => {
                     if (st === null) return null;
                     return (
@@ -169,13 +169,13 @@ export function ManagerEngagementAttendanceClient() {
                   <div className="flex items-center gap-3">
                     <div className="flex items-center gap-2">
                       <span className="text-[11px] font-medium text-text-secondary">In</span>
-                      <input type="time" className="bg-bg-pageg-input border border-border rounded-md px-2 py-1 text-[11px] text-text-primary focus:outline-none focus:ring-1 focus:ring-primary" value={s.inTime}
+                      <input type="time" className="bg-input border border-border rounded-md px-2 py-1 text-[11px] text-text-primary focus:outline-none focus:ring-1 focus:ring-primary" value={s.inTime}
                         onChange={e => updateAttendanceTime(s.id, 'inTime', e.target.value)} />
                     </div>
                     {s.status === 'present' && (
                       <div className="flex items-center gap-2">
                         <span className="text-[11px] font-medium text-text-secondary">Out</span>
-                        <input type="time" className="bg-bg-pageg-input border border-border rounded-md px-2 py-1 text-[11px] text-text-primary focus:outline-none focus:ring-1 focus:ring-primary" value={s.outTime}
+                        <input type="time" className="bg-input border border-border rounded-md px-2 py-1 text-[11px] text-text-primary focus:outline-none focus:ring-1 focus:ring-primary" value={s.outTime}
                           onChange={e => updateAttendanceTime(s.id, 'outTime', e.target.value)} />
                       </div>
                     )}
@@ -204,8 +204,8 @@ export function ManagerEngagementAttendanceClient() {
         </div>
       </div>
 
-      {/* ── Sticky Save Bar ── */}
-      <div className="fixed bottom-6 left-1/2 -translate-x-1/2 bg-bg-pageg-card border border-border shadow-xl rounded-2xl px-6 py-4 flex flex-col md:flex-row items-center gap-4 md:gap-8 z-40 w-11/12 max-w-2xl mx-auto justify-between">
+      {/* â”€â”€ Sticky Save Bar â”€â”€ */}
+      <div className="fixed bottom-6 left-1/2 -translate-x-1/2 bg-card border border-border shadow-xl rounded-2xl px-6 py-4 flex flex-col md:flex-row items-center gap-4 md:gap-8 z-40 w-11/12 max-w-2xl mx-auto justify-between">
         <p className="text-sm text-text-secondary">
           <strong>{marked}</strong> of <strong>{filtered.length}</strong> marked for <strong>{date}</strong>
         </p>

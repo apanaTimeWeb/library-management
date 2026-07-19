@@ -64,7 +64,7 @@ export function SuperadminSystemPowerSavingClient() {
               </span>
             </div>
           </div>
-          <div className="flex items-center justify-between p-4 rounded-xl bg-bg-pageg-card border border-border">
+          <div className="flex items-center justify-between p-4 rounded-xl bg-card border border-border">
             <div>
               <p className="text-sm font-medium text-text-primary">Enable Power Saving Alerts</p>
               <p className="text-xs text-text-secondary">Send alerts when zones fall below threshold</p>
@@ -73,7 +73,7 @@ export function SuperadminSystemPowerSavingClient() {
           </div>
         </CardContent>
         <CardFooter>
-          <SuperadminButton id="save-power-config-btn" variant="primary">💾 Save Configuration</SuperadminButton>
+          <SuperadminButton id="save-power-config-btn" variant="primary">ðŸ’¾ Save Configuration</SuperadminButton>
         </CardFooter>
       </SuperadminCard>
 
@@ -117,7 +117,7 @@ export function SuperadminSystemPowerSavingClient() {
               </thead>
               <tbody className="divide-y divide-outline-variant/30">
                 {table.paginatedData.map((log) => (
-                  <tr key={log.date + log.zone} className="hover:bg-bg-pageg-card transition-colors">
+                  <tr key={log.date + log.zone} className="hover:bg-card transition-colors">
                     <td className="py-3 pr-4 text-text-secondary">{log.date}</td>
                     <td className="py-3 pr-4 text-text-primary">{log.shift}</td>
                     <td className="py-3 pr-4 text-text-primary">{log.zone}</td>

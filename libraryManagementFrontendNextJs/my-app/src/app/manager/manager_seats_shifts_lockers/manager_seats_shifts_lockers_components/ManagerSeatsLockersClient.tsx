@@ -31,7 +31,7 @@ function anyCell(props: { value: string }) {
 }
 
 function AssignedToCell(props: { data: Locker }) {
-  if (props.data?.assignedTo === '—') return <span className="ss-table__cell-muted">Unassigned</span>;
+  if (props.data?.assignedTo === 'â€”') return <span className="ss-table__cell-muted">Unassigned</span>;
   return (
     <div className="ss-cell-stack">
       <p className="ss-cell-name">{props.data?.assignedTo}</p>
@@ -76,7 +76,7 @@ const [searchTerm, setSearchTerm] = useUrlState('searchTerm', '');
   function handleFreeLocker() {
     if (!freeTarget) return;
     setLockers(prev => prev.map(l => l.id === freeTarget.id
-      ? { ...l, status: 'Free', assignedTo: '—', studentId: '—', assignedSince: '—' }
+      ? { ...l, status: 'Free', assignedTo: 'â€”', studentId: 'â€”', assignedSince: 'â€”' }
       : l
     ));
     toast.success(`Locker ${freeTarget.number} is now free.`);
@@ -93,7 +93,7 @@ const [searchTerm, setSearchTerm] = useUrlState('searchTerm', '');
     if (lockers.some(l => l.number === newnumber.trim())) { setAddError('Locker ID already exists'); return; }
     setLockers(prev => [...prev, {
       id: Date.now().toString(), number: newnumber.trim(),
-      status: 'Free', assignedTo: '—', studentId: '—', assignedSince: '—',
+      status: 'Free', assignedTo: 'â€”', studentId: 'â€”', assignedSince: 'â€”',
     }]);
     toast.success(`Locker ${newnumber.trim()} added.`);
     setShowAddModal(false);
@@ -132,7 +132,7 @@ const [searchTerm, setSearchTerm] = useUrlState('searchTerm', '');
 
         {filtered.length === 0 ? (
           <div className="ss-empty-state">
-            <p className="ss-empty-state__icon">🔒</p>
+            <p className="ss-empty-state__icon">ðŸ”’</p>
             <p className="ss-empty-state__title">No lockers added yet.</p>
             <button className="ss-btn-primary" onClick={() => { setNewnumber(''); setAddError(''); setShowAddModal(true); }}>
               <Plus size={15} />Add Locker
@@ -144,7 +144,7 @@ const [searchTerm, setSearchTerm] = useUrlState('searchTerm', '');
           <input 
             type="text" 
             placeholder="Search in table..." 
-            className="px-3 py-2 border border-border rounded-md text-sm bg-bg-pageg-input text-text-primary focus:outline-none focus:ring-2 focus:ring-primary w-64"
+            className="px-3 py-2 border border-border rounded-md text-sm bg-input text-text-primary focus:outline-none focus:ring-2 focus:ring-primary w-64"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
@@ -153,7 +153,7 @@ const [searchTerm, setSearchTerm] = useUrlState('searchTerm', '');
           <div className="w-full overflow-x-auto border border-border rounded-xl">
             <TableToolbar search={table.searchTerm} onSearch={table.setSearchTerm} />
       <table className="w-full text-left text-sm whitespace-nowrap">
-              <thead className="bg-bg-pageg-elevated border-b border-border">
+              <thead className="bg-card border-b border-border">
                 <tr className="text-text-secondary text-xs uppercase tracking-wider">
                   <th className="px-4 py-3 font-semibold">LOCKER #</th>
                   <th className="px-4 py-3 font-semibold">STATUS</th>
@@ -162,9 +162,9 @@ const [searchTerm, setSearchTerm] = useUrlState('searchTerm', '');
                   <th className="px-4 py-3 font-semibold text-right">ACTIONS</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-border bg-bg-pageg-card">
+              <tbody className="divide-y divide-border bg-card">
                 {table.paginatedData.map((row) => (
-                  <tr key={row.id} className="hover:bg-bg-pageg-page transition-colors">
+                  <tr key={row.id} className="hover:bg-page transition-colors">
                     <td className="px-4 py-4"><span className="ss-table__seat-no">{row.number}</span></td>
                     <td className="px-4 py-4"><span className="text-text-primary font-semibold">{row.status}</span></td>
                     <td className="px-4 py-4"><AssignedToCell data={row} /></td>
@@ -205,7 +205,7 @@ const [searchTerm, setSearchTerm] = useUrlState('searchTerm', '');
       {showAddModal && (
         <div className="ss-modal-overlay" onClick={() => setShowAddModal(false)}>
           <div className="ss-modal" onClick={e => e.stopPropagation()}>
-            <h2 className="ss-modal-title">➕ Add Locker</h2>
+            <h2 className="ss-modal-title">âž• Add Locker</h2>
             <div className="ss-form-field">
               <label className="ss-label">Locker ID <span className="ss-text-danger">*</span></label>
               <input
@@ -227,7 +227,7 @@ const [searchTerm, setSearchTerm] = useUrlState('searchTerm', '');
       {showAssign && (
         <div className="ss-modal-overlay" onClick={() => setShowAssign(null)}>
           <div className="ss-modal" onClick={e => e.stopPropagation()}>
-            <h2 className="ss-modal-title">👤 Assign Locker {showAssign.number}</h2>
+            <h2 className="ss-modal-title">ðŸ‘¤ Assign Locker {showAssign.number}</h2>
             <div className="ss-form-field">
               <label className="ss-label">Student <span className="ss-text-danger">*</span></label>
               <div className="ss-filter-bar__input-wrap">
@@ -248,7 +248,7 @@ const [searchTerm, setSearchTerm] = useUrlState('searchTerm', '');
       {freeTarget && (
         <div className="ss-modal-overlay" onClick={() => setFreeTarget(null)}>
           <div className="ss-modal" onClick={e => e.stopPropagation()}>
-            <h2 className="ss-modal-title">🔓 Free Locker {freeTarget.number}</h2>
+            <h2 className="ss-modal-title">ðŸ”“ Free Locker {freeTarget.number}</h2>
             <p className="ss-modal-desc">
               Free Locker <strong>{freeTarget.number}</strong> from <strong>{freeTarget.assignedTo}</strong>? Locker becomes available immediately.
             </p>

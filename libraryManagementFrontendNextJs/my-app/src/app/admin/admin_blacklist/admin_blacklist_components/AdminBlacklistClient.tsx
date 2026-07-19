@@ -99,9 +99,9 @@ export function AdminBlacklistClient() {
       <div className="border-b border-border pb-4 flex flex-wrap items-end justify-between gap-4">
         <div>
           <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-1">
-            Smart Library 360 <span className="opacity-50">›</span> Admin <span className="opacity-50">›</span> Blacklist
+            Smart Library 360 <span className="opacity-50">â€º</span> Admin <span className="opacity-50">â€º</span> Blacklist
           </p>
-          <h1 className="text-text-primaryxl font-bold tracking-tight text-foreground">Blacklist</h1>
+          <h1 className="text-text-primary text-xl font-bold tracking-tight text-foreground">Blacklist</h1>
           <p className="text-sm text-muted-foreground mt-1">Students permanently banned from re-joining the library.</p>
         </div>
         <Button variant="destructive" onClick={() => setIsAddOpen(true)} className="gap-2">
@@ -123,7 +123,7 @@ export function AdminBlacklistClient() {
           <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
           <Input
             className="pl-9"
-            placeholder="Search name, phone, or seat…"
+            placeholder="Search name, phone, or seatâ€¦"
             value={searchInput}
             onChange={(e) => setSearchInput(e.target.value)}
           />

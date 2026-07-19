@@ -23,7 +23,7 @@ export function SuperadminShiftGapAnalyzerSummaryCards({ shifts }: Props) {
         }
 
         return (
-          <div key={m.shift} className="bg-bg-pageg-card border border-border rounded-lg p-5 shadow-sm space-y-4">
+          <div key={m.shift} className="bg-card border border-border rounded-lg p-5 shadow-sm space-y-4">
             <div className="flex items-center justify-between">
               <p className="text-sm font-extrabold text-text-primary">{m.shift}</p>
               <span 
@@ -34,7 +34,7 @@ export function SuperadminShiftGapAnalyzerSummaryCards({ shifts }: Props) {
               </span>
             </div>
             
-            <div className="h-2 w-full bg-bg-pageg-input rounded-full overflow-hidden border border-border/50">
+            <div className="h-2 w-full bg-input rounded-full overflow-hidden border border-border/50">
               <div 
                 className="h-full rounded-full transition-all duration-500 ease-out" 
                 style={{ width: `${m.occupancyPct}%`, backgroundColor: statusColor }} 
@@ -52,7 +52,7 @@ export function SuperadminShiftGapAnalyzerSummaryCards({ shifts }: Props) {
               </div>
               <div>
                 <p className="text-xs font-bold text-text-secondary uppercase tracking-wider mb-0.5">Loss</p>
-                <p className="text-lg font-extrabold text-warning">₹{m.revenueLoss.toLocaleString()}</p>
+                <p className="text-lg font-extrabold text-warning">â‚¹{m.revenueLoss.toLocaleString()}</p>
               </div>
             </div>
           </div>

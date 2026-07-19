@@ -42,15 +42,15 @@ export function AdminExpensesClient() {
       <div className="border-b border-border pb-4 flex flex-col md:flex-row md:items-end justify-between gap-4">
         <div>
           <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-1">
-            Smart Library 360 <span className="opacity-50">›</span> Admin <span className="opacity-50">›</span> Expenses
+            Smart Library 360 <span className="opacity-50">â€º</span> Admin <span className="opacity-50">â€º</span> Expenses
           </p>
-          <h1 className="text-text-primaryxl font-bold tracking-tight text-foreground">{selectedBranch} - Expenses</h1>
+          <h1 className="text-text-primary text-xl font-bold tracking-tight text-foreground">{selectedBranch} - Expenses</h1>
           <p className="text-sm text-muted-foreground mt-1">Monitor expenses logged by managers during daily settlement for the selected branch.</p>
         </div>
         <Button
           type="button"
           variant="outline"
-          className="gap-2 bg-bg-pageg-card hover:bg-muted"
+          className="gap-2 bg-card hover:bg-muted"
           title="Export table data to CSV"
         >
           <Download size={16} /> Export CSV
@@ -63,7 +63,7 @@ export function AdminExpensesClient() {
           <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
           <Input
             className="pl-9"
-            placeholder="Search category, branch, or manager…"
+            placeholder="Search category, branch, or managerâ€¦"
             value={searchInput}
             onChange={(e) => setSearchInput(e.target.value)}
           />

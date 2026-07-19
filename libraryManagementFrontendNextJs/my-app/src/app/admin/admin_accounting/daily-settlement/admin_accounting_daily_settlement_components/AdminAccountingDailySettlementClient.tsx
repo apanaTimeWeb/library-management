@@ -17,9 +17,9 @@ import { useClientTable } from '@/components/ui/use-client-table';
 const TODAY = new Date().toISOString().split('T')[0];
 
 const MOCK: Entry[] = [
-  { id: 1, shift: 'Morning (6AM–2PM)',   openingBalance: 2000, cashCollected: 4500, upiCollected: 3200, expenses: 800,  closingBalance: 5700, settledBy: 'Ravi Kumar',  status: 'settled' },
-  { id: 2, shift: 'Afternoon (2PM–9PM)', openingBalance: 5700, cashCollected: 3100, upiCollected: 2800, expenses: 400,  closingBalance: 8400, settledBy: 'Priya Singh', status: 'pending' },
-  { id: 3, shift: 'Night (9PM–6AM)',     openingBalance: 8400, cashCollected: 1200, upiCollected: 900,  expenses: 200,  closingBalance: 9400, settledBy: '—',           status: 'pending' },
+  { id: 1, shift: 'Morning (6AMâ€“2PM)',   openingBalance: 2000, cashCollected: 4500, upiCollected: 3200, expenses: 800,  closingBalance: 5700, settledBy: 'Ravi Kumar',  status: 'settled' },
+  { id: 2, shift: 'Afternoon (2PMâ€“9PM)', openingBalance: 5700, cashCollected: 3100, upiCollected: 2800, expenses: 400,  closingBalance: 8400, settledBy: 'Priya Singh', status: 'pending' },
+  { id: 3, shift: 'Night (9PMâ€“6AM)',     openingBalance: 8400, cashCollected: 1200, upiCollected: 900,  expenses: 200,  closingBalance: 9400, settledBy: 'â€”',           status: 'pending' },
 ];
 
 export function AdminAccountingDailySettlementClient() {
@@ -42,7 +42,7 @@ export function AdminAccountingDailySettlementClient() {
     <div className="h-full flex flex-col pb-10 space-y-6">
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b pb-4">
         <div>
-          <h1 className="text-text-primaryxl font-bold tracking-tight">Daily Settlement</h1>
+          <h1 className="text-text-primary text-xl font-bold tracking-tight">Daily Settlement</h1>
           <p className="text-sm text-muted-foreground mt-1">Review shift collections and expenses.</p>
         </div>
         <div className="flex items-center gap-2">
@@ -59,15 +59,15 @@ export function AdminAccountingDailySettlementClient() {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
         <Card className="p-5 shadow-none border-border">
           <p className="text-xs font-bold uppercase tracking-wider text-muted-foreground mb-1">Total Cash</p>
-          <p className="text-text-primaryxl font-extrabold text-foreground">₹{totalCash.toLocaleString()}</p>
+          <p className="text-text-primary text-xl font-extrabold text-foreground">â‚¹{totalCash.toLocaleString()}</p>
         </Card>
         <Card className="p-5 shadow-none border-border">
           <p className="text-xs font-bold uppercase tracking-wider text-muted-foreground mb-1">Total UPI</p>
-          <p className="text-text-primaryxl font-extrabold text-info">₹{totalUpi.toLocaleString()}</p>
+          <p className="text-text-primary text-xl font-extrabold text-info">â‚¹{totalUpi.toLocaleString()}</p>
         </Card>
         <Card className="p-5 shadow-none border-border">
           <p className="text-xs font-bold uppercase tracking-wider text-muted-foreground mb-1">Total Expenses</p>
-          <p className="text-text-primaryxl font-extrabold text-danger">₹{totalExp.toLocaleString()}</p>
+          <p className="text-text-primary text-xl font-extrabold text-danger">â‚¹{totalExp.toLocaleString()}</p>
         </Card>
       </div>
 
@@ -96,11 +96,11 @@ export function AdminAccountingDailySettlementClient() {
               {entries.slice((page - 1) * limit, page * limit).map((entry) => (
                 <tr key={entry.id} className="hover:bg-muted/10 transition-colors">
                   <td className="px-4 py-4 font-semibold text-foreground">{entry.shift}</td>
-                  <td className="px-4 py-4 text-right">₹{entry.openingBalance.toLocaleString()}</td>
-                  <td className="px-4 py-4 text-right">₹{entry.cashCollected.toLocaleString()}</td>
-                  <td className="px-4 py-4 text-right text-info font-medium">₹{entry.upiCollected.toLocaleString()}</td>
-                  <td className="px-4 py-4 text-right text-danger font-medium">₹{entry.expenses.toLocaleString()}</td>
-                  <td className="px-4 py-4 text-right font-bold text-foreground">₹{entry.closingBalance.toLocaleString()}</td>
+                  <td className="px-4 py-4 text-right">â‚¹{entry.openingBalance.toLocaleString()}</td>
+                  <td className="px-4 py-4 text-right">â‚¹{entry.cashCollected.toLocaleString()}</td>
+                  <td className="px-4 py-4 text-right text-info font-medium">â‚¹{entry.upiCollected.toLocaleString()}</td>
+                  <td className="px-4 py-4 text-right text-danger font-medium">â‚¹{entry.expenses.toLocaleString()}</td>
+                  <td className="px-4 py-4 text-right font-bold text-foreground">â‚¹{entry.closingBalance.toLocaleString()}</td>
                   <td className="px-4 py-4 text-muted-foreground text-sm">{entry.settledBy}</td>
                   <td className="px-4 py-4">
                     {entry.status === 'settled' ? (

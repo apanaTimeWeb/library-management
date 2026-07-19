@@ -16,9 +16,9 @@ import { TableToolbar } from '@/components/ui/table-toolbar';
 import { useClientTable } from '@/components/ui/use-client-table';
 
 const MOCK: ShiftGap[] = [
-  { shift: 'Morning (6AM–2PM)',   totalSeats: 40, occupied: 34, vacant: 6,  occupancyPct: 85, avgGapDays: 12, revenueLoss: 3600  },
-  { shift: 'Afternoon (2PM–9PM)', totalSeats: 40, occupied: 28, vacant: 12, occupancyPct: 70, avgGapDays: 18, revenueLoss: 7200  },
-  { shift: 'Night (9PM–6AM)',     totalSeats: 30, occupied: 18, vacant: 12, occupancyPct: 60, avgGapDays: 24, revenueLoss: 8640  },
+  { shift: 'Morning (6AMâ€“2PM)',   totalSeats: 40, occupied: 34, vacant: 6,  occupancyPct: 85, avgGapDays: 12, revenueLoss: 3600  },
+  { shift: 'Afternoon (2PMâ€“9PM)', totalSeats: 40, occupied: 28, vacant: 12, occupancyPct: 70, avgGapDays: 18, revenueLoss: 7200  },
+  { shift: 'Night (9PMâ€“6AM)',     totalSeats: 30, occupied: 18, vacant: 12, occupancyPct: 60, avgGapDays: 24, revenueLoss: 8640  },
   { shift: '24-Hour',             totalSeats: 20, occupied: 19, vacant: 1,  occupancyPct: 95, avgGapDays: 5,  revenueLoss: 600   },
 ];
 const DAY_GAPS: DayGap[] = [
@@ -43,7 +43,7 @@ export function AdminAccountingShiftGapAnalyzerClient() {
     <div className="space-y-6 pb-10">
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b pb-4">
         <div>
-          <h1 className="text-text-primaryxl font-bold tracking-tight">Shift Gap Analyzer</h1>
+          <h1 className="text-text-primary text-xl font-bold tracking-tight">Shift Gap Analyzer</h1>
           <p className="text-sm text-muted-foreground mt-1">Analyze occupancy gaps and revenue loss per shift.</p>
         </div>
       </div>
@@ -51,19 +51,19 @@ export function AdminAccountingShiftGapAnalyzerClient() {
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         <Card className="p-5 shadow-sm border-danger/20">
           <p className="text-xs font-bold uppercase tracking-wider text-danger mb-1">Total Revenue Loss</p>
-          <p className="text-text-primaryxl font-extrabold text-danger">₹{totalLoss.toLocaleString()}</p>
+          <p className="text-text-primary text-xl font-extrabold text-danger">â‚¹{totalLoss.toLocaleString()}</p>
         </Card>
         <Card className="p-5 shadow-sm border-warning/20">
           <p className="text-xs font-bold uppercase tracking-wider text-warning mb-1">Total Vacant Seats</p>
-          <p className="text-text-primaryxl font-extrabold text-warning">{MOCK.reduce((s,m)=>s+m.vacant,0)}</p>
+          <p className="text-text-primary text-xl font-extrabold text-warning">{MOCK.reduce((s,m)=>s+m.vacant,0)}</p>
         </Card>
         <Card className="p-5 shadow-sm border-border">
           <p className="text-xs font-bold uppercase tracking-wider text-muted-foreground mb-1">Avg Occupancy</p>
-          <p className="text-text-primaryxl font-extrabold text-foreground">{Math.round(MOCK.reduce((s,m)=>s+m.occupancyPct,0)/MOCK.length)}%</p>
+          <p className="text-text-primary text-xl font-extrabold text-foreground">{Math.round(MOCK.reduce((s,m)=>s+m.occupancyPct,0)/MOCK.length)}%</p>
         </Card>
         <Card className="p-5 shadow-sm border-border">
           <p className="text-xs font-bold uppercase tracking-wider text-muted-foreground mb-1">Shifts Analyzed</p>
-          <p className="text-text-primaryxl font-extrabold text-foreground">{MOCK.length}</p>
+          <p className="text-text-primary text-xl font-extrabold text-foreground">{MOCK.length}</p>
         </Card>
       </div>
 
@@ -93,7 +93,7 @@ export function AdminAccountingShiftGapAnalyzerClient() {
               </div>
               <div>
                 <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Loss</p>
-                <p className="text-warning font-bold text-lg mt-1">₹{m.revenueLoss.toLocaleString()}</p>
+                <p className="text-warning font-bold text-lg mt-1">â‚¹{m.revenueLoss.toLocaleString()}</p>
               </div>
             </div>
           </Card>
@@ -103,7 +103,7 @@ export function AdminAccountingShiftGapAnalyzerClient() {
       {/* Day-wise Gap Table */}
       <div className="flex items-center justify-between pt-4 border-t border-border">
         <p className="text-sm font-bold uppercase tracking-wider text-foreground">Day-wise Gap Log</p>
-        <AdminSearchableDropdown className="flex h-10 w-40 items-center justify-between rounded-md border border-border bg-bg-pageg-input px-3 py-2 text-sm ring-offset-bg-page placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" value={shiftFilter} onChange={e => setShiftFilter(e.target.value)}>
+        <AdminSearchableDropdown className="flex h-10 w-40 items-center justify-between rounded-md border border-border bg-input px-3 py-2 text-sm ring-offset-bg-page placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" value={shiftFilter} onChange={e => setShiftFilter(e.target.value)}>
           <option value="all">All Shifts</option>
           <option value="Morning">Morning</option>
           <option value="Afternoon">Afternoon</option>
@@ -133,7 +133,7 @@ export function AdminAccountingShiftGapAnalyzerClient() {
               <th className="py-3 px-4">Shift</th>
               <th className="py-3 px-4">Seat No</th>
               <th className="text-right py-3 px-4">Gap Days</th>
-              <th className="text-right py-3 px-4">Revenue Loss (₹)</th>
+              <th className="text-right py-3 px-4">Revenue Loss (â‚¹)</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-border">
@@ -143,7 +143,7 @@ export function AdminAccountingShiftGapAnalyzerClient() {
                 <td className="py-4 px-4 text-foreground">{d.shift}</td>
                 <td className="py-4 px-4 font-bold text-foreground">{d.seatNo}</td>
                 <td className={`py-4 px-4 text-right font-semibold ${d.gapDays > 20 ? 'text-danger' : 'text-warning'}`}>{d.gapDays}d</td>
-                <td className="py-4 px-4 text-right text-danger font-semibold">₹{d.loss.toLocaleString()}</td>
+                <td className="py-4 px-4 text-right text-danger font-semibold">â‚¹{d.loss.toLocaleString()}</td>
               </tr>
             ))}
           </tbody>

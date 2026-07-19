@@ -45,8 +45,8 @@ export function AdminSeatMatrixClient() {
       {/* page Header */}
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b pb-4">
         <div>
-          <nav className="text-xs text-muted-foreground font-medium mb-1 tracking-wide uppercase">Smart Library 360 › Admin › Seats & Shifts</nav>
-          <h1 className="text-text-primaryxl font-bold tracking-tight">Seat Matrix</h1>
+          <nav className="text-xs text-muted-foreground font-medium mb-1 tracking-wide uppercase">Smart Library 360 â€º Admin â€º Seats & Shifts</nav>
+          <h1 className="text-text-primary text-xl font-bold tracking-tight">Seat Matrix</h1>
           <p className="text-sm text-muted-foreground mt-1">Interactive floor plan and real-time availability.</p>
         </div>
       </div>
@@ -60,7 +60,7 @@ export function AdminSeatMatrixClient() {
               onClick={() => setActiveTab(tab)}
               className={`px-4 py-1.5 text-sm font-bold rounded-md whitespace-nowrap transition-all ${
                 activeTab === tab 
-                  ? 'bg-bg-pageg-card text-primary shadow-sm' 
+                  ? 'bg-card text-primary shadow-sm' 
                   : 'text-muted-foreground hover:text-primary'
               }`}
             >
@@ -117,7 +117,7 @@ export function AdminSeatMatrixClient() {
                   onClick={() => setSelectedSeat(seat)}
                   title={
                     seat.student
-                      ? `${seat.student} · ${seat.shift} · Expires ${seat.expiry}`
+                      ? `${seat.student} Â· ${seat.shift} Â· Expires ${seat.expiry}`
                       : seat.status === 'maintenance' ? 'Under Maintenance' : 'Available'
                   }
                 >
@@ -179,7 +179,7 @@ export function AdminSeatMatrixClient() {
             ) : (
               <div className="flex flex-col">
                 <div className={`p-6 pb-8 ${selectedSeat.status === 'expiring' ? 'bg-warning/10' : 'bg-primary/5'} border-b border-border relative`}>
-                  <Button variant="ghost" size="icon" className="absolute top-4 right-4 h-8 w-8 rounded-full bg-bg-pageg-card/50 hover:bg-bg-pagelack/60" onClick={() => setSelectedSeat(null)}>
+                  <Button variant="ghost" size="icon" className="absolute top-4 right-4 h-8 w-8 rounded-full bg-card/50 hover:bg-bg-pagelack/60" onClick={() => setSelectedSeat(null)}>
                     <X size={16} />
                   </Button>
                   
@@ -205,12 +205,12 @@ export function AdminSeatMatrixClient() {
                   <div className="grid grid-cols-2 gap-4">
                     <div className="bg-muted/30 p-3 rounded-md border border-border flex flex-col gap-1">
                       <span className="text-xs font-bold text-muted-foreground uppercase tracking-wider">Shift</span>
-                      <span className="text-sm font-bold text-primary">{selectedSeat.shift || '—'}</span>
+                      <span className="text-sm font-bold text-primary">{selectedSeat.shift || 'â€”'}</span>
                     </div>
                     <div className={`p-3 rounded-md border flex flex-col gap-1 ${selectedSeat.status === 'expiring' ? 'bg-warning/10 border-warning/30' : 'bg-muted/30 border-border'}`}>
                       <span className="text-xs font-bold text-muted-foreground uppercase tracking-wider">Expires</span>
                       <span className={`text-sm font-bold ${selectedSeat.status === 'expiring' ? 'text-warning' : 'text-primary'}`}>
-                        {selectedSeat.expiry || '—'}
+                        {selectedSeat.expiry || 'â€”'}
                       </span>
                     </div>
                   </div>

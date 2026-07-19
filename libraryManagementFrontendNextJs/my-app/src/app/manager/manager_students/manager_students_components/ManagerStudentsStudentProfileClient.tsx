@@ -11,15 +11,15 @@ export function ManagerStudentsStudentProfileClient({ id }: { id: string }) {
   const { student, loading, expiryDate } = useManagerStudentsStudentProfile(id);
 
   if (loading) {
-    return <div className="p-6 min-h-screen"><div className="bg-bg-pageg-card rounded-xl border border-border p-6 p-[20px]">Loading...</div></div>;
+    return <div className="p-6 min-h-screen"><div className="bg-card rounded-xl border border-border p-6 p-[20px]">Loading...</div></div>;
   }
 
   if (!student) {
     return (
       <div className="p-6 min-h-screen">
-        <div className="bg-bg-pageg-card rounded-xl border border-border p-6">
+        <div className="bg-card rounded-xl border border-border p-6">
           <div className="flex flex-col items-center justify-center p-12 text-center h-full min-h-72">
-            <div className="text-4xl mb-4 opacity-50">🔍</div>
+            <div className="text-4xl mb-4 opacity-50">ðŸ”</div>
             <p className="text-lg font-bold text-text-primary mb-1">Student not found</p>
             <p className="text-sm text-text-secondary">ID: {id}</p>
           </div>
@@ -38,7 +38,7 @@ export function ManagerStudentsStudentProfileClient({ id }: { id: string }) {
             <ArrowLeft size={14} /> Back to Students
           </Link>
           <h1 className="text-[22px] font-bold text-text-primary">Student Profile</h1>
-          <p className="text-[11px] font-bold uppercase tracking-wider text-text-secondary mt-1">Manager › Students › {student.name}</p>
+          <p className="text-[11px] font-bold uppercase tracking-wider text-text-secondary mt-1">Manager â€º Students â€º {student.name}</p>
         </div>
         <div className="p-6 min-h-screen-actions">
           <Link href={`${MANAGER_ROUTES.STUDENTS}/${id}/edit`} className="bg-transparent border border-border text-text-primary rounded-lg px-5 py-2.5 text-sm font-medium hover:bg-primary-subtle hover:border-primary transition-colors inline-flex items-center gap-2">
@@ -48,7 +48,7 @@ export function ManagerStudentsStudentProfileClient({ id }: { id: string }) {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <div className="bg-bg-pageg-card rounded-xl border border-border p-6">
+        <div className="bg-card rounded-xl border border-border p-6">
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-base font-semibold text-text-primary">Personal Details</h2>
             <span className={
@@ -101,7 +101,7 @@ export function ManagerStudentsStudentProfileClient({ id }: { id: string }) {
               <div className="flex flex-col gap-1.5">
                 <label className="block text-sm font-medium text-text-secondary mb-1.5">Dues</label>
                 <span className={student.due > 0 ? 'text-danger font-bold' : 'text-success font-bold'}>
-                  {student.due > 0 ? `₹${student.due.toLocaleString('en-IN')}` : '✅ Clear'}
+                  {student.due > 0 ? `â‚¹${student.due.toLocaleString('en-IN')}` : 'âœ… Clear'}
                 </span>
               </div>
             </div>
@@ -109,7 +109,7 @@ export function ManagerStudentsStudentProfileClient({ id }: { id: string }) {
         </div>
 
         <div className="flex flex-col gap-6">
-          <div className="bg-bg-pageg-card rounded-xl border border-border p-6">
+          <div className="bg-card rounded-xl border border-border p-6">
             <div className="flex items-center justify-between mb-4">
               <h2 className="text-base font-semibold text-text-primary">Validity</h2>
             </div>
@@ -131,7 +131,7 @@ export function ManagerStudentsStudentProfileClient({ id }: { id: string }) {
             </div>
           </div>
 
-          <div className="bg-bg-pageg-card rounded-xl border border-border p-6">
+          <div className="bg-card rounded-xl border border-border p-6">
             <div className="flex items-center justify-between mb-4">
               <h2 className="text-base font-semibold text-text-primary">Quick Actions</h2>
             </div>

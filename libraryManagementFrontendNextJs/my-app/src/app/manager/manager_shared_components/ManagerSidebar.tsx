@@ -102,7 +102,7 @@ export default function ManagerSidebar({ collapsed, onToggle, mobileOpen, onMobi
       )}
 
       <aside
-        className={`fixed top-0 left-0 h-screen bg-bg-pageg-sidebar border-r border-border z-50 flex flex-col transition-all duration-300 ${mobileOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'} ${collapsed ? 'w-[60px]' : 'w-[240px]'}`}
+        className={`fixed top-0 left-0 h-screen bg-sidebar border-r border-border z-50 flex flex-col transition-all duration-300 ${mobileOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'} ${collapsed ? 'w-[60px]' : 'w-[240px]'}`}
       >
         <div className="h-16 flex items-center px-4 border-b border-border shrink-0 gap-3">
           <button
@@ -144,7 +144,7 @@ export default function ManagerSidebar({ collapsed, onToggle, mobileOpen, onMobi
         </nav>
 
         {(!collapsed || mobileOpen) && (
-          <div className="p-4 border-t border-border flex items-center gap-3 bg-bg-pageg-page/50">
+          <div className="p-4 border-t border-border flex items-center gap-3 bg-page/50">
             <div className="w-9 h-9 rounded-full bg-primary/10 text-primary flex items-center justify-center text-[13px] font-bold shrink-0">MG</div>
             <div className="flex-1 min-w-0">
               <p className="text-sm font-semibold text-text-primary truncate">Manager</p>
@@ -159,11 +159,11 @@ export default function ManagerSidebar({ collapsed, onToggle, mobileOpen, onMobi
 
       {showLogout && (
         <div className="fixed inset-0 z-[100] flex items-center justify-center bg-bg-pagelack/50 backdrop-blur-sm" onClick={() => setShowLogout(false)}>
-          <div className="bg-bg-pageg-card border border-border rounded-xl shadow-xl p-6 max-w-sm w-full mx-4" onClick={e => e.stopPropagation()}>
+          <div className="bg-card border border-border rounded-xl shadow-xl p-6 max-w-sm w-full mx-4" onClick={e => e.stopPropagation()}>
             <p className="text-lg font-bold text-text-primary mb-2">Log out?</p>
             <p className="text-sm text-text-secondary mb-6">Are you sure you want to log out?</p>
             <div className="flex justify-end gap-3 mt-6">
-              <button className="bg-transparent border border-border text-text-primary rounded-lg px-4 py-2 text-sm font-medium hover:bg-bg-pageg-page transition-colors" onClick={() => setShowLogout(false)}>Cancel</button>
+              <button className="bg-transparent border border-border text-text-primary rounded-lg px-4 py-2 text-sm font-medium hover:bg-page transition-colors" onClick={() => setShowLogout(false)}>Cancel</button>
               <button className="bg-danger text-white rounded-lg px-4 py-2 text-sm font-medium hover:opacity-90 transition-opacity" onClick={() => router.push('/auth/login')}>Log out</button>
             </div>
           </div>

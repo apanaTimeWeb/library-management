@@ -64,9 +64,9 @@ export function AdminPlansClient() {
       <div className="border-b border-border pb-4 flex flex-col md:flex-row md:items-end justify-between gap-4">
         <div>
           <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-1">
-            Smart Library 360 <span className="opacity-50">›</span> Admin <span className="opacity-50">›</span> Plans
+            Smart Library 360 <span className="opacity-50">â€º</span> Admin <span className="opacity-50">â€º</span> Plans
           </p>
-          <h1 className="text-text-primaryxl font-bold tracking-tight text-foreground">Membership Plans</h1>
+          <h1 className="text-text-primary text-xl font-bold tracking-tight text-foreground">Membership Plans</h1>
           <p className="text-sm text-muted-foreground mt-1">Create and manage subscription pricing plans across library branches.</p>
         </div>
         <Button
@@ -84,14 +84,14 @@ export function AdminPlansClient() {
           <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
           <Input
             className="pl-9"
-            placeholder="Search plan name or feature…"
+            placeholder="Search plan name or featureâ€¦"
             value={searchInput}
             onChange={(e) => setSearchInput(e.target.value)}
           />
         </div>
         <div className="flex items-center gap-2 text-xs font-medium text-muted-foreground">
           <span>Total Plans: <strong className="text-foreground">{totalCount}</strong></span>
-          <span>•</span>
+          <span>â€¢</span>
           <span>Active: <strong className="text-success">{plans.filter((p) => p.status === 'Active').length}</strong></span>
         </div>
       </div>
@@ -251,7 +251,7 @@ export function AdminPlansClient() {
               <div className="grid grid-cols-2 gap-y-6 gap-x-4 text-sm">
                 <div>
                   <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wider block mb-1">Plan Price</span>
-                  <p className="font-extrabold text-text-primaryxl text-primary flex items-center">
+                  <p className="font-extrabold text-text-primary text-xl text-primary flex items-center">
                     <IndianRupee size={20} /> {selectedPlanDetails.price}
                   </p>
                 </div>

@@ -18,7 +18,7 @@ import type { ManagerCrmKanbanCardProps } from '@/app/manager/manager_crm/manage
 
 export function ManagerCrmKanbanCard({ enq, colClass, onClick }: ManagerCrmKanbanCardProps) {
   return (
-    <div className={`bg-bg-pageg-card border border-border p-4 rounded-xl shadow-sm cursor-pointer hover:-translate-y-1 hover:border-text-secondary transition-all focus:outline-none focus:ring-2 focus:ring-primary ${colClass}`} onClick={onClick} role="button" tabIndex={0} onKeyDown={(e) => e.key === 'Enter' && onClick()}>
+    <div className={`bg-card border border-border p-4 rounded-xl shadow-sm cursor-pointer hover:-translate-y-1 hover:border-text-secondary transition-all focus:outline-none focus:ring-2 focus:ring-primary ${colClass}`} onClick={onClick} role="button" tabIndex={0} onKeyDown={(e) => e.key === 'Enter' && onClick()}>
       <div className="flex flex-col gap-1 mb-3">
         <p className="font-semibold text-text-primary text-[15px] leading-tight">{enq.name}</p>
         <p className="flex items-center gap-1.5 text-xs text-text-secondary font-mono">

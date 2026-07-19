@@ -117,10 +117,10 @@ export function SuperadminEnquiriesIdClient({ params }: { params: Promise<{ id: 
             {/* Info Card */}
             <div className="bg-card border border-border rounded-lg p-6 shadow-sm">
               <div className="flex items-start gap-4 mb-6 pb-6 border-b border-border">
-                <div className="w-16 h-16 rounded-full bg-primary/10 text-primary flex flex-shrink-0 items-center justify-center text-text-primaryxl font-extrabold">{getInitials(enquiry.name)}</div>
+                <div className="w-16 h-16 rounded-full bg-primary/10 text-primary flex flex-shrink-0 items-center justify-center text-text-primary text-xl font-extrabold">{getInitials(enquiry.name)}</div>
                 <div className="flex-1">
                   <div className="flex items-center justify-between gap-4 mb-1">
-                    <h1 className="text-text-primaryxl font-extrabold text-text-primary tracking-tight">{enquiry.name}</h1>
+                    <h1 className="text-text-primary text-xl font-extrabold text-text-primary tracking-tight">{enquiry.name}</h1>
                     <span className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-bold ${statusBadgeCls}`}>{enquiry.status}</span>
                   </div>
                   <p className="flex items-center gap-1.5 text-sm text-text-secondary font-mono"><Phone size={14} /> +91 {enquiry.phone}</p>

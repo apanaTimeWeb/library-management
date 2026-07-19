@@ -37,10 +37,10 @@ export function AdminFinanceAutoSuspendClient() {
   const [limit, setLimit] = useState(10);
 
   const KPI_CARDS = [
-    { label: 'Days Before Suspend', value: configLoading ? '—' : config?.daysBeforeSuspend, icon: Settings, variant: 'default' },
-    { label: 'Currently Suspended', value: configLoading ? '—' : config?.currentlySuspended ?? 0, icon: Ban, variant: 'danger' },
-    { label: 'Auto-Restored (Month)', value: configLoading ? '—' : config?.autoRestoredThisMonth ?? 0, icon: RotateCcw, variant: 'default' },
-    { label: 'Manual Restores', value: configLoading ? '—' : config?.manualRestores ?? 0, icon: UserCheck, variant: 'default' },
+    { label: 'Days Before Suspend', value: configLoading ? 'â€”' : config?.daysBeforeSuspend, icon: Settings, variant: 'default' },
+    { label: 'Currently Suspended', value: configLoading ? 'â€”' : config?.currentlySuspended ?? 0, icon: Ban, variant: 'danger' },
+    { label: 'Auto-Restored (Month)', value: configLoading ? 'â€”' : config?.autoRestoredThisMonth ?? 0, icon: RotateCcw, variant: 'default' },
+    { label: 'Manual Restores', value: configLoading ? 'â€”' : config?.manualRestores ?? 0, icon: UserCheck, variant: 'default' },
   ] as const;
     const table = useClientTable(suspended || [], 10);
   return (
@@ -48,8 +48,8 @@ export function AdminFinanceAutoSuspendClient() {
       {/* page Header */}
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b pb-4">
         <div>
-          <nav className="text-xs text-muted-foreground font-medium mb-1 tracking-wide uppercase">Smart Library 360 › Admin › Finance</nav>
-          <h1 className="text-text-primaryxl font-bold tracking-tight">Auto-Suspend Policy</h1>
+          <nav className="text-xs text-muted-foreground font-medium mb-1 tracking-wide uppercase">Smart Library 360 â€º Admin â€º Finance</nav>
+          <h1 className="text-text-primary text-xl font-bold tracking-tight">Auto-Suspend Policy</h1>
           <p className="text-sm text-muted-foreground mt-1">Manage automatic suspension and student restoration.</p>
         </div>
       </div>
@@ -62,7 +62,7 @@ export function AdminFinanceAutoSuspendClient() {
               <span className={`text-xs font-bold tracking-wider uppercase ${variant === 'danger' ? 'text-danger' : 'text-muted-foreground'}`}>{label}</span>
               <Icon size={16} className={variant === 'danger' ? 'text-danger' : 'text-muted-foreground'} />
             </div>
-            <p className={`text-text-primaryxl font-bold ${variant === 'danger' ? 'text-danger' : 'text-primary'}`}>{value}</p>
+            <p className={`text-text-primary text-xl font-bold ${variant === 'danger' ? 'text-danger' : 'text-primary'}`}>{value}</p>
           </Card>
         ))}
       </div>
@@ -151,7 +151,7 @@ export function AdminFinanceAutoSuspendClient() {
                 <tr>
                   <td colSpan={7} className="px-5 py-20 text-center">
                     <div className="flex flex-col items-center justify-center gap-3">
-                      <div className="text-4xl opacity-50">🔓</div>
+                      <div className="text-4xl opacity-50">ðŸ”“</div>
                       <p className="text-lg font-bold">No students currently suspended.</p>
                       <p className="text-sm text-muted-foreground">All students are in good standing.</p>
                     </div>
@@ -170,7 +170,7 @@ export function AdminFinanceAutoSuspendClient() {
                         {s.shift}
                       </Badge>
                     </td>
-                    <td className="px-5 py-4 text-sm text-muted-foreground font-medium">—</td>
+                    <td className="px-5 py-4 text-sm text-muted-foreground font-medium">â€”</td>
                     <td className="px-5 py-4">
                       <span className="font-bold text-sm text-danger">{s.daysOverdue}d</span>
                     </td>
@@ -181,9 +181,9 @@ export function AdminFinanceAutoSuspendClient() {
                           variant="secondary" 
                           size="sm" 
                           className="bg-muted text-primary hover:bg-muted/80 border-none font-bold text-xs gap-1"
-                          onClick={() => toast.success(`📱 WhatsApp reminder sent to ${s.studentName}.`)}
+                          onClick={() => toast.success(`ðŸ“± WhatsApp reminder sent to ${s.studentName}.`)}
                         >
-                          <Bell size={13} /> 📱 Send Reminder
+                          <Bell size={13} /> ðŸ“± Send Reminder
                         </Button>
                         <Button 
                           variant="secondary" 
@@ -191,7 +191,7 @@ export function AdminFinanceAutoSuspendClient() {
                           className="bg-success/10 text-success hover:bg-success/20 border-none font-bold text-xs gap-1"
                           onClick={() => setRestoreDialog({ id: s.studentId, name: s.studentName })}
                         >
-                          <RotateCcw size={13} /> ✅ Manual Restore
+                          <RotateCcw size={13} /> âœ… Manual Restore
                         </Button>
                       </div>
                     </td>
@@ -222,7 +222,7 @@ export function AdminFinanceAutoSuspendClient() {
           <Card className="w-full max-w-sm shadow-lg border-success/20 bg-card p-6 flex flex-col gap-5" onClick={e => e.stopPropagation()}>
             <div className="flex items-center justify-between">
               <h2 className="text-lg font-bold flex items-center gap-2 text-success tracking-tight">
-                ✅ Restore Student
+                âœ… Restore Student
               </h2>
               <Button variant="ghost" size="icon" className="h-8 w-8 rounded-full" onClick={() => setRestoreDialog(null)}>
                 <X size={16} />

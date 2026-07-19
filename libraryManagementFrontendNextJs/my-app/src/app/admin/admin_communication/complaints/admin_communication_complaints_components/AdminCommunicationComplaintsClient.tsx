@@ -59,7 +59,7 @@ export function AdminCommunicationComplaintsClient() {
       description: addForm.description,
       status: 'Open',
       date: new Date().toISOString().split('T')[0],
-      resolvedBy: '—', resolvedDate: '—', resolvedNote: '',
+      resolvedBy: 'â€”', resolvedDate: 'â€”', resolvedNote: '',
     };
     setComplaints(prev => [c, ...prev]);
     setAddForm({ student: '', anonymous: false, title: '', description: '' });
@@ -98,7 +98,7 @@ export function AdminCommunicationComplaintsClient() {
           <p className="text-xs font-semibold text-muted-foreground flex items-center gap-1 uppercase tracking-wider mb-1">
             Communication <ChevronRight size={12} /> Complaints
           </p>
-          <h1 className="text-text-primaryxl font-bold tracking-tight">💬 Complaints</h1>
+          <h1 className="text-text-primary text-xl font-bold tracking-tight">ðŸ’¬ Complaints</h1>
           <p className="text-sm text-muted-foreground mt-1">Track and resolve student complaints.</p>
         </div>
         <Button onClick={() => setShowAdd(true)} className="gap-2">
@@ -114,7 +114,7 @@ export function AdminCommunicationComplaintsClient() {
             variant={tab === t ? 'secondary' : 'ghost'}
             size="sm"
             onClick={() => setTab(t as CStatus | 'All')}
-            className={`text-sm font-semibold capitalize ${tab === t ? 'bg-bg-pageg-card shadow-sm' : ''}`}
+            className={`text-sm font-semibold capitalize ${tab === t ? 'bg-card shadow-sm' : ''}`}
           >
             {t}
           </Button>
@@ -125,7 +125,7 @@ export function AdminCommunicationComplaintsClient() {
       <Card className="overflow-x-auto shadow-sm border-border">
         {filtered.length === 0 ? (
           <div className="flex flex-col items-center justify-center p-12 text-center text-muted-foreground">
-            <span className="text-4xl mb-3">😊</span>
+            <span className="text-4xl mb-3">ðŸ˜Š</span>
             <p className="font-medium text-foreground">No open complaints!</p>
             <p className="text-sm">All issues are resolved.</p>
           </div>
@@ -161,7 +161,7 @@ export function AdminCommunicationComplaintsClient() {
                     <td className="py-4 px-4 font-bold text-foreground">{c.title}</td>
                     <td className={`py-4 px-4 ${c.isAnonymous ? 'italic text-muted-foreground' : 'text-foreground font-medium'}`}>{c.student}</td>
                     <td className="py-4 px-4">
-                      <span className="text-muted-foreground font-medium">{isLong && !isExpanded ? c.description.slice(0, 60) + '…' : c.description}</span>
+                      <span className="text-muted-foreground font-medium">{isLong && !isExpanded ? c.description.slice(0, 60) + 'â€¦' : c.description}</span>
                       {isLong && (
                         <button onClick={() => toggleDesc(c.id)} className="text-xs text-info hover:underline ml-1 font-semibold">
                           {isExpanded ? 'less' : 'more'}
@@ -268,7 +268,7 @@ export function AdminCommunicationComplaintsClient() {
                 <div className="bg-success/5 border border-success/20 p-4 rounded-lg space-y-1">
                   <p className="text-xs font-bold uppercase tracking-wider text-success">Resolution</p>
                   <p className="text-sm font-medium text-foreground">{viewItem.resolvedNote}</p>
-                  <p className="text-xs text-muted-foreground">— {viewItem.resolvedBy} on {viewItem.resolvedDate}</p>
+                  <p className="text-xs text-muted-foreground">â€” {viewItem.resolvedBy} on {viewItem.resolvedDate}</p>
                 </div>
               )}
             </div>

@@ -87,14 +87,14 @@ export function ManagerCommunicationNoticesClient() {
     <div className="p-6 min-h-screen relative">
       {toast && (
         <div className="fixed top-4 right-4 z-50">
-          <div className="bg-bg-pageg-card border border-border shadow-lg rounded-lg px-4 py-3 text-sm font-medium text-text-primary flex items-center gap-2"><CheckCircle size={16} className="text-success" /> {toast}</div>
+          <div className="bg-card border border-border shadow-lg rounded-lg px-4 py-3 text-sm font-medium text-text-primary flex items-center gap-2"><CheckCircle size={16} className="text-success" /> {toast}</div>
         </div>
       )}
 
       {/* Add/Edit Modal */}
       {showAdd && (
         <div className="fixed inset-0 bg-bg-pagelack/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 overflow-y-auto">
-          <div className="bg-bg-pageg-card w-full rounded-2xl shadow-2xl flex flex-col p-6 max-w-lg relative border border-border">
+          <div className="bg-card w-full rounded-2xl shadow-2xl flex flex-col p-6 max-w-lg relative border border-border">
             <button onClick={() => setShowAdd(false)} className="absolute top-4 right-4 w-8 h-8 flex items-center justify-center rounded-full hover:bg-danger-bg text-text-secondary hover:text-danger transition-colors" aria-label="Close"><X size={16} /></button>
             <p className="text-lg font-bold text-text-primary mb-4 flex items-center gap-2">
               {editItem ? <Edit2 size={18} /> : <Megaphone size={18} />} {editItem ? 'Edit Notice' : 'Post Notice'}
@@ -103,21 +103,21 @@ export function ManagerCommunicationNoticesClient() {
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
               <div>
                 <label className="text-[13px] font-medium text-text-secondary mb-1 block">Title <span className="text-danger">*</span></label>
-                <input className="w-full bg-bg-pageg-input border border-border rounded-lg px-3.5 py-2 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary" placeholder="Notice title" {...register('title')} />
+                <input className="w-full bg-input border border-border rounded-lg px-3.5 py-2 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary" placeholder="Notice title" {...register('title')} />
                 {errors.title && <p className="text-danger text-xs mt-1">{errors.title.message}</p>}
               </div>
               <div>
                 <label className="text-[13px] font-medium text-text-secondary mb-1 block">Message <span className="text-danger">*</span></label>
-                <textarea className="w-full bg-bg-pageg-input border border-border rounded-lg px-3.5 py-2 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary" rows={6} placeholder="Notice message..." {...register('message')} />
+                <textarea className="w-full bg-input border border-border rounded-lg px-3.5 py-2 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary" rows={6} placeholder="Notice message..." {...register('message')} />
                 {errors.message && <p className="text-danger text-xs mt-1">{errors.message.message}</p>}
               </div>
               <div>
                 <label className="text-[13px] font-medium text-text-secondary mb-1 block">Valid Till <span className="text-danger">*</span></label>
-                <input type="date" className="w-full bg-bg-pageg-input border border-border rounded-lg px-3.5 py-2 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary" {...register('validTill')} />
+                <input type="date" className="w-full bg-input border border-border rounded-lg px-3.5 py-2 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary" {...register('validTill')} />
                 {errors.validTill && <p className="text-danger text-xs mt-1">{errors.validTill.message}</p>}
               </div>
               <div className="mt-6 flex justify-end gap-3">
-                <button type="button" onClick={() => setShowAdd(false)} className="px-4 py-2 border border-border text-text-primary rounded hover:bg-bg-pageg-elevated transition-colors text-sm font-medium">Cancel</button>
+                <button type="button" onClick={() => setShowAdd(false)} className="px-4 py-2 border border-border text-text-primary rounded hover:bg-card transition-colors text-sm font-medium">Cancel</button>
                 <button type="submit" className="px-4 py-2 bg-primary text-white rounded hover:bg-primary-hover transition-colors flex items-center gap-2 text-sm font-medium">
                   <Megaphone size={16} /> {editItem ? 'Update Notice' : 'Post Notice'}
                 </button>
@@ -131,11 +131,11 @@ export function ManagerCommunicationNoticesClient() {
       {/* Delete Confirmation */}
       {deleteItem && (
         <div className="fixed inset-0 bg-bg-pagelack/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 overflow-y-auto">
-          <div className="bg-bg-pageg-card w-full rounded-2xl shadow-2xl flex flex-col p-6 max-w-sm relative border border-border">
+          <div className="bg-card w-full rounded-2xl shadow-2xl flex flex-col p-6 max-w-sm relative border border-border">
             <p className="text-lg font-bold text-text-primary mb-2 flex items-center gap-2"><Trash2 size={18} className="text-danger" /> Delete Notice?</p>
             <p className="text-sm text-text-secondary">"{deleteItem.title}" will be permanently deleted.</p>
             <div className="mt-6 flex justify-end gap-3">
-              <button onClick={() => setDeleteItem(null)} className="px-4 py-2 border border-border text-text-primary rounded hover:bg-bg-pageg-elevated transition-colors text-sm font-medium">Cancel</button>
+              <button onClick={() => setDeleteItem(null)} className="px-4 py-2 border border-border text-text-primary rounded hover:bg-card transition-colors text-sm font-medium">Cancel</button>
               <button onClick={handleDelete} className="px-4 py-2 bg-danger text-white rounded hover:bg-danger-hover transition-colors text-sm font-medium">Delete</button>
             </div>
           </div>
@@ -145,11 +145,11 @@ export function ManagerCommunicationNoticesClient() {
       {/* Broadcast Confirmation */}
       {broadcastItem && (
         <div className="fixed inset-0 bg-bg-pagelack/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 overflow-y-auto">
-          <div className="bg-bg-pageg-card w-full rounded-2xl shadow-2xl flex flex-col p-6 max-w-sm relative border border-border">
+          <div className="bg-card w-full rounded-2xl shadow-2xl flex flex-col p-6 max-w-sm relative border border-border">
             <p className="text-lg font-bold text-text-primary mb-2 flex items-center gap-2"><Smartphone size={18} className="text-success" /> Broadcast via WhatsApp</p>
             <p className="text-sm text-text-secondary">Send "{broadcastItem.title}" to all active students via WhatsApp?</p>
             <div className="mt-6 flex justify-end gap-3">
-              <button onClick={() => setBroadcastItem(null)} className="px-4 py-2 border border-border text-text-primary rounded hover:bg-bg-pageg-elevated transition-colors text-sm font-medium">Cancel</button>
+              <button onClick={() => setBroadcastItem(null)} className="px-4 py-2 border border-border text-text-primary rounded hover:bg-card transition-colors text-sm font-medium">Cancel</button>
               <button onClick={handleBroadcast} className="px-4 py-2 bg-primary text-white rounded hover:bg-primary-hover transition-colors text-sm font-medium">Broadcast</button>
             </div>
           </div>
@@ -169,7 +169,7 @@ export function ManagerCommunicationNoticesClient() {
         </button>}
       </div>
 
-      <div className="bg-bg-pageg-card rounded-xl border border-border p-4 shadow-sm">
+      <div className="bg-card rounded-xl border border-border p-4 shadow-sm">
         {notices.length === 0 ? (
           <div className="py-12 flex flex-col items-center justify-center text-center">
             <div className="mb-4 text-text-secondary opacity-50"><Megaphone size={48} /></div>
@@ -184,7 +184,7 @@ export function ManagerCommunicationNoticesClient() {
           <input 
             type="text" 
             placeholder="Search in table..." 
-            className="px-3 py-2 border border-border rounded-md text-sm bg-bg-pageg-input text-text-primary focus:outline-none focus:ring-2 focus:ring-primary w-64"
+            className="px-3 py-2 border border-border rounded-md text-sm bg-input text-text-primary focus:outline-none focus:ring-2 focus:ring-primary w-64"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
@@ -193,7 +193,7 @@ export function ManagerCommunicationNoticesClient() {
           <div className="w-full overflow-x-auto border border-border rounded-xl">
             <TableToolbar search={table.searchTerm} onSearch={table.setSearchTerm} />
       <table className="w-full text-left text-sm whitespace-nowrap">
-              <thead className="bg-bg-pageg-elevated border-b border-border">
+              <thead className="bg-card border-b border-border">
                 <tr className="text-text-secondary text-xs uppercase tracking-wider">
                   <th className="px-4 py-3 font-semibold">Title</th>
                   <th className="px-4 py-3 font-semibold">Message</th>
@@ -204,9 +204,9 @@ export function ManagerCommunicationNoticesClient() {
                   <th className="px-4 py-3 font-semibold text-right">Actions</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-border bg-bg-pageg-card">
+              <tbody className="divide-y divide-border bg-card">
                 {table.paginatedData.map((row) => (
-                  <tr key={row.id} className="hover:bg-bg-pageg-page transition-colors">
+                  <tr key={row.id} className="hover:bg-page transition-colors">
                     <td className="px-4 py-4"><span className="text-sm font-semibold text-text-primary">{row.title}</span></td>
                     <td className="px-4 py-4"><span className="text-sm text-text-secondary truncate block w-full max-w-xs" title={row.message}>{row.message}</span></td>
                     <td className="px-4 py-4">

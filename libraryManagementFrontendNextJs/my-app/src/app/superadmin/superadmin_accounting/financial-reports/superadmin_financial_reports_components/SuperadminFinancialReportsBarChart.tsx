@@ -5,7 +5,7 @@ import type { SuperadminFinancialReportsBarChartProps as Props } from '@/app/sup
 
 export function SuperadminFinancialReportsBarChart({ monthlyData, maxIncome }: Props) {
   return (
-    <div className="bg-bg-pageg-card border border-border rounded-lg p-6 shadow-sm">
+    <div className="bg-card border border-border rounded-lg p-6 shadow-sm">
       <h3 className="text-sm font-extrabold text-text-primary uppercase tracking-wider mb-6">Monthly Income vs Expense</h3>
       
       <div className="flex items-end gap-4 h-56 overflow-x-auto pb-4 hide-scrollbar">
@@ -15,12 +15,12 @@ export function SuperadminFinancialReportsBarChart({ monthlyData, maxIncome }: P
               <div
                 className="w-5 rounded-t-[var(--radius-sm)] transition-all duration-500 ease-out hover:opacity-80"
                 style={{ height: `${(m.income / maxIncome) * 100}%`, backgroundColor: 'var(--success)' }}
-                title={`Income: ₹${m.income.toLocaleString()}`}
+                title={`Income: â‚¹${m.income.toLocaleString()}`}
               />
               <div
                 className="w-5 rounded-t-[var(--radius-sm)] transition-all duration-500 ease-out hover:opacity-80"
                 style={{ height: `${(m.expense / maxIncome) * 100}%`, backgroundColor: 'var(--danger)' }}
-                title={`Expense: ₹${m.expense.toLocaleString()}`}
+                title={`Expense: â‚¹${m.expense.toLocaleString()}`}
               />
             </div>
             <span className="text-xs font-bold text-text-disabled uppercase tracking-wider group-hover:text-text-primary transition-colors">{m.month}</span>

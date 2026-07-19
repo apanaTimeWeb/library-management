@@ -82,7 +82,7 @@ export function AdminCommunicationNoticesClient() {
           <p className="text-xs font-semibold text-muted-foreground flex items-center gap-1 uppercase tracking-wider mb-1">
             Communication <ChevronRight size={12} /> Notices
           </p>
-          <h1 className="text-text-primaryxl font-bold tracking-tight">📢 Notice Board</h1>
+          <h1 className="text-text-primary text-xl font-bold tracking-tight">ðŸ“¢ Notice Board</h1>
           <p className="text-sm text-muted-foreground mt-1">Post and manage library notices for students.</p>
         </div>
         <Button onClick={openAdd} className="gap-2">
@@ -93,7 +93,7 @@ export function AdminCommunicationNoticesClient() {
       <Card className="overflow-x-auto shadow-sm border-border">
         {notices.length === 0 ? (
           <div className="flex flex-col items-center justify-center p-12 text-center text-muted-foreground">
-            <div className="text-4xl mb-4">📢</div>
+            <div className="text-4xl mb-4">ðŸ“¢</div>
             <p className="font-medium text-foreground mb-4">No notices posted yet.</p>
             <Button onClick={openAdd} className="gap-2">
               <Plus size={16} /> Post Notice
@@ -126,7 +126,7 @@ export function AdminCommunicationNoticesClient() {
                   <td className="py-4 px-4 text-muted-foreground max-w-xs truncate" title={n.message}>{n.message}</td>
                   <td className="py-4 px-4">
                     <Badge variant="secondary" className={`${n.status === 'Active' ? 'bg-success/10 text-success hover:bg-success/20' : 'bg-muted text-muted-foreground'} border-none font-bold tracking-wide`}>
-                      {n.status === 'Active' ? '✅ Active' : 'Expired'}
+                      {n.status === 'Active' ? 'âœ… Active' : 'Expired'}
                     </Badge>
                   </td>
                   <td className="py-4 px-4 text-muted-foreground font-mono text-xs">{n.validTill}</td>
@@ -171,7 +171,7 @@ export function AdminCommunicationNoticesClient() {
       <Dialog open={showAdd} onOpenChange={setShowAdd}>
         <DialogContent className="sm:max-w-lg">
           <DialogHeader>
-            <DialogTitle>{editItem ? '✏️ Edit Notice' : '📢 Post Notice'}</DialogTitle>
+            <DialogTitle>{editItem ? 'âœï¸ Edit Notice' : 'ðŸ“¢ Post Notice'}</DialogTitle>
           </DialogHeader>
           <div className="space-y-4 py-4">
             <div className="space-y-2">

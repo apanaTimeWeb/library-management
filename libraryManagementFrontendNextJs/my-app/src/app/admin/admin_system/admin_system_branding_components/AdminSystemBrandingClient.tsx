@@ -27,7 +27,7 @@ export function AdminSystemBrandingClient() {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
-        {/* Left — Settings Form */}
+        {/* Left â€” Settings Form */}
         <div className="lg:col-span-2 space-y-4">
           <Card>
             <CardHeader>
@@ -39,13 +39,13 @@ export function AdminSystemBrandingClient() {
                 <Label>Library Logo</Label>
                 <div
                   id="branding-logo-upload"
-                  className="flex flex-col items-center justify-center border-2 border-dashed border-border rounded-xl p-6 cursor-pointer hover:bg-bg-pageg-card transition-colors"
+                  className="flex flex-col items-center justify-center border-2 border-dashed border-border rounded-xl p-6 cursor-pointer hover:bg-card transition-colors"
                 >
-                  <div className="h-16 w-16 rounded-xl flex items-center justify-center text-text-primaryxl font-bold mb-2 bg-bg-pageg-card">
-                    📚
+                  <div className="h-16 w-16 rounded-xl flex items-center justify-center text-text-primary text-xl font-bold mb-2 bg-card">
+                    ðŸ“š
                   </div>
                   <button type="button" className="text-xs text-primary flex items-center gap-1">
-                    <Upload size={12} /> Upload Logo (200×200px)
+                    <Upload size={12} /> Upload Logo (200Ã—200px)
                   </button>
                 </div>
               </div>
@@ -99,7 +99,7 @@ export function AdminSystemBrandingClient() {
           </Card>
         </div>
 
-        {/* Right — Live Preview */}
+        {/* Right â€” Live Preview */}
         <div ref={containerRef} className="lg:col-span-3 space-y-4">
           <Card>
             <CardHeader>
@@ -114,7 +114,7 @@ export function AdminSystemBrandingClient() {
                 <div className="rounded-xl border border-border overflow-hidden w-64 bg-surface flex flex-col shadow-sm">
                   <div className="p-3 flex items-center gap-2 bg-surface">
                     <div className="h-8 w-8 rounded-lg flex items-center justify-center text-base font-bold shadow-sm bg-[color:var(--bg)]" style={{ '--bg': 'var(--preview-primary, #6366f1)' } as React.CSSProperties}>
-                      📚
+                      ðŸ“š
                     </div>
                     <div>
                       <p className="text-xs font-bold text-text-primary leading-tight">{form.libraryName || 'Library'}</p>
@@ -136,14 +136,14 @@ export function AdminSystemBrandingClient() {
                 <div className="rounded-xl border border-border p-5 max-w-xs bg-surface shadow-sm">
                   <div className="flex flex-col items-center mb-3 gap-1">
                     <div className="h-10 w-10 rounded-xl flex items-center justify-center text-xl font-bold shadow-sm bg-[color:var(--bg)]" style={{ '--bg': 'var(--preview-primary, #6366f1)' } as React.CSSProperties}>
-                      📚
+                      ðŸ“š
                     </div>
                     <p className="text-sm font-bold text-text-primary">{form.libraryName || 'Library'}</p>
                     {form.tagline && <p className="text-xs text-text-secondary">{form.tagline}</p>}
                   </div>
                   <div className="space-y-2">
-                    <div className="h-7 rounded-lg bg-bg-pageg-input" />
-                    <div className="h-7 rounded-lg bg-bg-pageg-input" />
+                    <div className="h-7 rounded-lg bg-input" />
+                    <div className="h-7 rounded-lg bg-input" />
                     <div className="h-8 rounded-lg flex items-center justify-center text-xs font-bold shadow-sm transition-all hover:-translate-y-0.5 bg-[color:var(--bg)]" style={{ '--bg': 'var(--preview-primary, #6366f1)' } as React.CSSProperties}>Login</div>
                   </div>
                 </div>
@@ -154,14 +154,14 @@ export function AdminSystemBrandingClient() {
                 <p className="text-xs text-text-secondary uppercase tracking-wider mb-2">Student ID Card</p>
                 <div className="rounded-xl border border-border overflow-hidden max-w-xs shadow-sm bg-surface">
                   <div className="p-3 flex items-center gap-3 bg-[color:var(--bg)]" style={{ '--bg': 'var(--preview-primary, #6366f1)' } as React.CSSProperties}>
-                    <div className="h-8 w-8 rounded-lg bg-white/20 flex items-center justify-center text-lg">📚</div>
+                    <div className="h-8 w-8 rounded-lg bg-white/20 flex items-center justify-center text-lg">ðŸ“š</div>
                     <div>
                       <p className="font-bold text-sm tracking-tight text-white">{form.libraryName || 'Library'}</p>
                       <p className="text-xs text-white/80 font-medium tracking-wide">Student Identity Card</p>
                     </div>
                   </div>
                   <div className="p-3 flex items-center gap-3 bg-surface">
-                    <div className="h-12 w-12 rounded-lg bg-bg-pageg-input flex items-center justify-center text-xl">👤</div>
+                    <div className="h-12 w-12 rounded-lg bg-input flex items-center justify-center text-xl">ðŸ‘¤</div>
                     <div>
                       <p className="text-xs font-bold text-text-primary">Rahul Sharma</p>
                       <p className="text-xs text-text-secondary">ID: #0042 | Morning Shift</p>

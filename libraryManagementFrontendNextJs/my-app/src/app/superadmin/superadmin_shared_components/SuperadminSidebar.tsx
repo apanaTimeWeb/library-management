@@ -54,7 +54,7 @@ export default function SuperadminSidebar({ collapsed, onToggle, mobileOpen, onM
       )}
 
       <aside
-        className={`fixed top-0 left-0 h-screen bg-bg-pageg-sidebar border-r border-border z-50 flex flex-col transition-all duration-300 ${mobileOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}`}
+        className={`fixed top-0 left-0 h-screen bg-sidebar border-r border-border z-50 flex flex-col transition-all duration-300 ${mobileOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}`}
         style={{ width: collapsed ? 60 : 240 }}
       >
         <div className="h-16 flex items-center px-4 border-b border-border shrink-0 gap-3">
@@ -68,7 +68,7 @@ export default function SuperadminSidebar({ collapsed, onToggle, mobileOpen, onM
             {mobileOpen ? <X size={18} /> : <Menu size={18} />}
           </SuperadminButton>
           {(!collapsed || mobileOpen) && (
-            <span className="font-bold text-text-primary truncate ml-2">📚 Smart Library</span>
+            <span className="font-bold text-text-primary truncate ml-2">ðŸ“š Smart Library</span>
           )}
         </div>
 
@@ -104,7 +104,7 @@ export default function SuperadminSidebar({ collapsed, onToggle, mobileOpen, onM
         </nav>
 
         {(!collapsed || mobileOpen) && (
-          <div className="p-4 border-t border-border flex items-center gap-3 bg-bg-pageg-page/50">
+          <div className="p-4 border-t border-border flex items-center gap-3 bg-page/50">
             <div className="w-9 h-9 rounded-full bg-primary/10 text-primary flex items-center justify-center text-sm font-bold shrink-0">SA</div>
             <div className="flex-1 min-w-0">
               <p className="text-sm font-semibold text-text-primary truncate">Super Admin</p>
@@ -124,7 +124,7 @@ export default function SuperadminSidebar({ collapsed, onToggle, mobileOpen, onM
       </aside>
 
       <SuperadminDialog open={showLogout} onOpenChange={setShowLogout}>
-        <SuperadminDialogContent className="max-w-sm border-border bg-bg-pageg-card">
+        <SuperadminDialogContent className="max-w-sm border-border bg-card">
           <SuperadminDialogHeader>
             <SuperadminDialogTitle className="text-text-primary">Log out?</SuperadminDialogTitle>
             <SuperadminDialogDescription className="text-text-secondary">
@@ -132,7 +132,7 @@ export default function SuperadminSidebar({ collapsed, onToggle, mobileOpen, onM
             </SuperadminDialogDescription>
           </SuperadminDialogHeader>
           <div className="flex justify-end gap-3 mt-4">
-            <SuperadminButton className="bg-transparent border border-border text-text-primary hover:bg-bg-pageg-page" onClick={() => setShowLogout(false)}>Cancel</SuperadminButton>
+            <SuperadminButton className="bg-transparent border border-border text-text-primary hover:bg-page" onClick={() => setShowLogout(false)}>Cancel</SuperadminButton>
             <SuperadminButton className="bg-danger text-white hover:opacity-90" onClick={() => router.push(SUPERADMIN_ROUTES.AUTH_LOGIN)}>Log out</SuperadminButton>
           </div>
         </SuperadminDialogContent>

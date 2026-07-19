@@ -42,7 +42,7 @@ export function AdminMaintenanceClient() {
     <div className="h-full flex flex-col pb-10 space-y-6">
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b pb-4">
         <div>
-          <h1 className="text-text-primaryxl font-bold tracking-tight">Seat Maintenance Log</h1>
+          <h1 className="text-text-primary text-xl font-bold tracking-tight">Seat Maintenance Log</h1>
           <p className="text-sm text-muted-foreground mt-1">Track all seat repair and maintenance activity</p>
         </div>
       </div>
@@ -50,7 +50,7 @@ export function AdminMaintenanceClient() {
       <div className="flex flex-wrap items-center gap-4 bg-muted/30 p-3 rounded-xl border border-border">
         <div className="relative">
           <AdminSearchableDropdown 
-            className="flex h-10 w-40 items-center justify-between rounded-md border border-border bg-bg-pageg-input px-3 py-2 text-sm ring-offset-bg-page placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 appearance-none"
+            className="flex h-10 w-40 items-center justify-between rounded-md border border-border bg-input px-3 py-2 text-sm ring-offset-bg-page placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 appearance-none"
             value={selectedSeat} 
             onChange={e => setSelectedSeat(e.target.value)}
           >
@@ -66,14 +66,14 @@ export function AdminMaintenanceClient() {
       {showOverdue && (
         <div className="flex items-center gap-3 p-4 bg-warning/10 border border-warning/20 rounded-xl text-warning">
           <AlertTriangle size={18} />
-          <span className="text-sm">Last maintenance was <strong>{daysSince} days ago</strong> — attention recommended.</span>
+          <span className="text-sm">Last maintenance was <strong>{daysSince} days ago</strong> â€” attention recommended.</span>
         </div>
       )}
 
       {currentLogs.length === 0 ? (
         <Card className="flex flex-col items-center justify-center py-16 px-4 text-center shadow-none border-border">
           <div className="w-12 h-12 bg-muted rounded-full flex items-center justify-center mb-4">
-            <span className="text-xl">🔧</span>
+            <span className="text-xl">ðŸ”§</span>
           </div>
           <h3 className="text-lg font-semibold text-foreground">No maintenance history for this seat.</h3>
           <p className="text-sm text-muted-foreground mt-2">All maintenance entries will appear here.</p>
@@ -153,7 +153,7 @@ export function AdminMaintenanceClient() {
           <div className="space-y-2">
             <label className="text-sm font-medium">New Seat Status <span className="text-danger">*</span></label>
             <div className="relative">
-              <AdminSearchableDropdown className="flex h-10 w-full items-center justify-between rounded-md border border-border bg-bg-pageg-input px-3 py-2 text-sm ring-offset-bg-page placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 appearance-none" value={form.newStatus} onChange={e => setForm(p => ({ ...p, newStatus: e.target.value as SeatStatus }))}>
+              <AdminSearchableDropdown className="flex h-10 w-full items-center justify-between rounded-md border border-border bg-input px-3 py-2 text-sm ring-offset-bg-page placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 appearance-none" value={form.newStatus} onChange={e => setForm(p => ({ ...p, newStatus: e.target.value as SeatStatus }))}>
                 <option value="Working">Working</option>
                 <option value="Maintenance">Maintenance</option>
                 <option value="Broken">Broken</option>
@@ -162,13 +162,13 @@ export function AdminMaintenanceClient() {
             </div>
           </div>
           <div className="space-y-2">
-            <label className="text-sm font-medium">Cost (₹)</label>
+            <label className="text-sm font-medium">Cost (â‚¹)</label>
             <Input type="number" placeholder="e.g. 350" value={form.cost} onChange={e => setForm(p => ({ ...p, cost: e.target.value }))} />
           </div>
         </div>
         <div className="space-y-2 mb-6">
           <label className="text-sm font-medium">Remark <span className="text-danger">*</span></label>
-          <textarea className={`flex min-h-20 w-full rounded-md border border-border bg-bg-pageg-input px-3 py-2 text-sm ring-offset-bg-page placeholder:text-text-secondary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 ${errors.remark ? 'border-danger focus-visible:ring-danger' : ''}`} rows={2} placeholder="e.g. Chair leg repaired" value={form.remark} onChange={e => setForm(p => ({ ...p, remark: e.target.value }))} />
+          <textarea className={`flex min-h-20 w-full rounded-md border border-border bg-input px-3 py-2 text-sm ring-offset-bg-page placeholder:text-text-secondary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 ${errors.remark ? 'border-danger focus-visible:ring-danger' : ''}`} rows={2} placeholder="e.g. Chair leg repaired" value={form.remark} onChange={e => setForm(p => ({ ...p, remark: e.target.value }))} />
           {errors.remark && <p className="text-xs text-danger">{errors.remark}</p>}
         </div>
         <div className="flex justify-end pt-4 border-t border-border">

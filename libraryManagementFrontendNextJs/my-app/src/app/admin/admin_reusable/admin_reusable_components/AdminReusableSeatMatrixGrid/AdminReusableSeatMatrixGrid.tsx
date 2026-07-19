@@ -19,7 +19,7 @@ import { AdminReusableSeatData, Props } from "./AdminReusableSeatMatrixGrid_type
 const LEGEND = [
   { label: 'Free',          cls: 'bg-success/10 text-success hover:bg-success/20' },
   { label: 'Occupied',      cls: 'bg-info/10 text-info hover:bg-info/20' },
-  { label: 'Expiring ≤7d',  cls: 'bg-warning/10 text-warning hover:bg-warning/20' },
+  { label: 'Expiring â‰¤7d',  cls: 'bg-warning/10 text-warning hover:bg-warning/20' },
   { label: 'Maintenance',   cls: 'bg-muted text-muted-foreground hover:bg-muted/80' },
 ];
 
@@ -74,8 +74,8 @@ export default function AdminReusableSeatMatrixGrid({ seats, shifts }: Props) {
           <div>
             <CardTitle className="text-base">Seat Matrix</CardTitle>
             <CardDescription className="text-xs mt-1">
-              {counts.occupied + counts.expiring} occupied · {counts.free} free
-              · {counts.expiring} expiring · {counts.maintenance} maintenance
+              {counts.occupied + counts.expiring} occupied Â· {counts.free} free
+              Â· {counts.expiring} expiring Â· {counts.maintenance} maintenance
             </CardDescription>
           </div>
 
@@ -87,7 +87,7 @@ export default function AdminReusableSeatMatrixGrid({ seats, shifts }: Props) {
                 onClick={() => setActiveShift(tab)}
                 className={`px-3 py-1.5 text-xs font-medium rounded-sm whitespace-nowrap transition-colors ${
                   activeShift === tab 
-                    ? 'bg-bg-pageg-card text-foreground shadow-sm' 
+                    ? 'bg-card text-foreground shadow-sm' 
                     : 'text-muted-foreground hover:text-foreground'
                 }`}
               >

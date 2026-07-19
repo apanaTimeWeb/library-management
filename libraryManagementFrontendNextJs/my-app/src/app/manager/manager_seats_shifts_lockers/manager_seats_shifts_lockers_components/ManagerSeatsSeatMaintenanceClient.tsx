@@ -14,16 +14,16 @@ import { useClientTable } from "@/components/ui/use-client-table";
 
 const SEAT_LOGS: Record<string, LogEntry[]> = {
   'S-006': [
-    { id: '1', num: 1, date: '10 Oct 2024', remark: 'Chair leg repaired', doneBy: 'Ramesh K.', statusBefore: 'Broken', statusAfter: 'Working', cost: '₹350' },
-    { id: '2', num: 2, date: '15 Aug 2024', remark: 'Routine inspection', doneBy: 'Suresh M.', statusBefore: 'Working', statusAfter: 'Working', cost: '—' },
+    { id: '1', num: 1, date: '10 Oct 2024', remark: 'Chair leg repaired', doneBy: 'Ramesh K.', statusBefore: 'Broken', statusAfter: 'Working', cost: 'â‚¹350' },
+    { id: '2', num: 2, date: '15 Aug 2024', remark: 'Routine inspection', doneBy: 'Suresh M.', statusBefore: 'Working', statusAfter: 'Working', cost: 'â€”' },
   ],
   'S-017': [
-    { id: '3', num: 1, date: '15 Oct 2024', remark: 'Loose table joint — WIP', doneBy: 'Suresh M.', statusBefore: 'Working', statusAfter: 'Maintenance', cost: '—' },
+    { id: '3', num: 1, date: '15 Oct 2024', remark: 'Loose table joint â€” WIP', doneBy: 'Suresh M.', statusBefore: 'Working', statusAfter: 'Maintenance', cost: 'â€”' },
   ],
   'S-029': [],
   'S-043': [
-    { id: '4', num: 1, date: '05 Oct 2024', remark: 'Power socket replaced', doneBy: 'Ramesh K.', statusBefore: 'Broken', statusAfter: 'Working', cost: '₹200' },
-    { id: '5', num: 2, date: '20 Jul 2024', remark: 'Socket loose — tightened', doneBy: 'Ramesh K.', statusBefore: 'Maintenance', statusAfter: 'Working', cost: '₹50' },
+    { id: '4', num: 1, date: '05 Oct 2024', remark: 'Power socket replaced', doneBy: 'Ramesh K.', statusBefore: 'Broken', statusAfter: 'Working', cost: 'â‚¹200' },
+    { id: '5', num: 2, date: '20 Jul 2024', remark: 'Socket loose â€” tightened', doneBy: 'Ramesh K.', statusBefore: 'Maintenance', statusAfter: 'Working', cost: 'â‚¹50' },
   ],
 };
 
@@ -86,10 +86,10 @@ const [searchTerm, setSearchTerm] = useUrlState('searchTerm', '');
       num: currentLogs.length + 1,
       date: form.date,
       remark: form.remark,
-      doneBy: form.doneBy || '—',
+      doneBy: form.doneBy || 'â€”',
       statusBefore: prevStatus,
       statusAfter: form.newStatus,
-      cost: form.cost ? `₹${form.cost}` : '—',
+      cost: form.cost ? `â‚¹${form.cost}` : 'â€”',
     };
     setLogs(prev => ({ ...prev, [selectedSeat]: [...(prev[selectedSeat] ?? []), newEntry] }));
     setForm(EMPTY_FORM);
@@ -123,14 +123,14 @@ const [searchTerm, setSearchTerm] = useUrlState('searchTerm', '');
         {showOverdue && (
           <div className="ss-alert-banner">
             <AlertTriangle size={16} className="ss-text-warning" />
-            <span>Last maintenance was <strong>{daysSince} days ago</strong> — attention recommended.</span>
+            <span>Last maintenance was <strong>{daysSince} days ago</strong> â€” attention recommended.</span>
           </div>
         )}
 
         {/* History table */}
         {filteredLogs.length === 0 ? (
           <div className="ss-empty-state">
-            <p className="ss-empty-state__icon">🔧</p>
+            <p className="ss-empty-state__icon">ðŸ”§</p>
             <p className="ss-empty-state__title">No maintenance history for this seat.</p>
           </div>
         ) : (
@@ -139,7 +139,7 @@ const [searchTerm, setSearchTerm] = useUrlState('searchTerm', '');
               <input 
                 type="text" 
                 placeholder="Search in table..." 
-                className="px-3 py-2 border border-border rounded-md text-sm bg-bg-pageg-input text-text-primary focus:outline-none focus:ring-2 focus:ring-primary w-64"
+                className="px-3 py-2 border border-border rounded-md text-sm bg-input text-text-primary focus:outline-none focus:ring-2 focus:ring-primary w-64"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
               />
@@ -148,7 +148,7 @@ const [searchTerm, setSearchTerm] = useUrlState('searchTerm', '');
             <div className="w-full overflow-x-auto border border-border rounded-xl">
               <TableToolbar search={table.searchTerm} onSearch={table.setSearchTerm} />
       <table className="w-full text-left text-sm whitespace-nowrap">
-                <thead className="bg-bg-pageg-elevated border-b border-border">
+                <thead className="bg-card border-b border-border">
                   <tr className="text-text-secondary text-xs uppercase tracking-wider">
                     <th className="px-4 py-3 font-semibold">#</th>
                     <th className="px-4 py-3 font-semibold">DATE</th>
@@ -159,9 +159,9 @@ const [searchTerm, setSearchTerm] = useUrlState('searchTerm', '');
                     <th className="px-4 py-3 font-semibold">COST</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-border bg-bg-pageg-card">
+                <tbody className="divide-y divide-border bg-card">
                   {table.paginatedData.map((row) => (
-                    <tr key={row.id} className="hover:bg-bg-pageg-page transition-colors">
+                    <tr key={row.id} className="hover:bg-page transition-colors">
                       <td className="px-4 py-4 text-text-secondary">{row.num}</td>
                       <td className="px-4 py-4 text-text-secondary">{row.date}</td>
                       <td className="px-4 py-4 font-semibold text-text-primary">{row.remark}</td>
@@ -212,7 +212,7 @@ const [searchTerm, setSearchTerm] = useUrlState('searchTerm', '');
               </div>
             </div>
             <div className="ss-form-field">
-              <label className="ss-label">Cost (₹)</label>
+              <label className="ss-label">Cost (â‚¹)</label>
               <input type="number" className="ss-input ss-input--no-icon" placeholder="e.g. 350" value={form.cost} onChange={e => setForm(p => ({ ...p, cost: e.target.value }))} />
             </div>
             <div className="ss-form-field ss-form-field--full">

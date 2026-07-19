@@ -111,9 +111,9 @@ export function AdminAuditLogsClient() {
       <div className="border-b border-border pb-4">
         <div>
           <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-1">
-            Smart Library 360 <span className="opacity-50">›</span> Admin <span className="opacity-50">›</span> Audit Logs
+            Smart Library 360 <span className="opacity-50">â€º</span> Admin <span className="opacity-50">â€º</span> Audit Logs
           </p>
-          <h1 className="text-text-primaryxl font-bold tracking-tight text-foreground">Audit Logs</h1>
+          <h1 className="text-text-primary text-xl font-bold tracking-tight text-foreground">Audit Logs</h1>
           <p className="text-sm text-muted-foreground mt-1">Track all sensitive actions performed in the system.</p>
         </div>
       </div>
@@ -124,7 +124,7 @@ export function AdminAuditLogsClient() {
           <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
           <Input
             className="pl-9"
-            placeholder="Search action, module, or user…"
+            placeholder="Search action, module, or userâ€¦"
             value={searchInput}
             onChange={(e) => setSearchInput(e.target.value)}
           />
@@ -136,7 +136,7 @@ export function AdminAuditLogsClient() {
               type="button"
               className={`px-3 py-1.5 text-sm font-medium rounded-md transition-colors ${
                 activeTab === tab 
-                  ? 'bg-bg-pageg-card text-foreground shadow-sm' 
+                  ? 'bg-card text-foreground shadow-sm' 
                   : 'text-muted-foreground hover:text-foreground hover:bg-muted/50'
               }`}
               onClick={() => setActiveTab(tab)}

@@ -62,14 +62,14 @@ export function AdminSystemWhatsappIntegrationClient() {
           ? 'bg-success/10 border-success/25'
           : testStatus === 'error'
           ? 'bg-danger-bg/10 border-danger/20'
-          : 'bg-bg-pageg-card border-border'
+          : 'bg-card border-border'
       }`}>
-        <div className={`h-12 w-12 rounded-xl flex items-center justify-center text-text-primaryxl ${
+        <div className={`h-12 w-12 rounded-xl flex items-center justify-center text-text-primary text-xl ${
           testStatus === 'success' ? 'bg-success/20' :
           testStatus === 'error' ? 'bg-danger-bg/30' :
-          'bg-bg-pageg-card'
+          'bg-card'
         }`}>
-          {testStatus === 'success' ? '✅' : testStatus === 'error' ? '❌' : '📡'}
+          {testStatus === 'success' ? 'âœ…' : testStatus === 'error' ? 'âŒ' : 'ðŸ“¡'}
         </div>
         <div className="flex-1">
           <div className="flex items-center gap-3">
@@ -85,7 +85,7 @@ export function AdminSystemWhatsappIntegrationClient() {
           </div>
           <p className="text-xs text-text-secondary mt-0.5">
             {testStatus === 'success'
-              ? `Provider: ${activeProvider.label} · Test message sent to ${senderPhone}`
+              ? `Provider: ${activeProvider.label} Â· Test message sent to ${senderPhone}`
               : testStatus === 'error'
               ? 'Check your API key and try again. Ensure the number is registered on WhatsApp Business.'
               : 'Click "Test Connection" to verify your WhatsApp setup.'}
@@ -100,10 +100,10 @@ export function AdminSystemWhatsappIntegrationClient() {
 
       {/* Usage Stats */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-5 mb-8">
-        <KpiCard title="Sent This Month" value={logs.length} icon="📤" subtitle="All messages" />
-        <KpiCard title="Delivered" value={deliveredCount} icon="✅" trend="up" trendLabel={`${deliveryRate}% rate`} />
-        <KpiCard title="Failed" value={failedCount} icon="❌" trend={failedCount > 0 ? 'down' : 'neutral'} trendLabel="Failed deliveries" />
-        <KpiCard title="Est. Cost" value="₹18.50" icon="💸" subtitle="~₹0.18 per msg" />
+        <KpiCard title="Sent This Month" value={logs.length} icon="ðŸ“¤" subtitle="All messages" />
+        <KpiCard title="Delivered" value={deliveredCount} icon="âœ…" trend="up" trendLabel={`${deliveryRate}% rate`} />
+        <KpiCard title="Failed" value={failedCount} icon="âŒ" trend={failedCount > 0 ? 'down' : 'neutral'} trendLabel="Failed deliveries" />
+        <KpiCard title="Est. Cost" value="â‚¹18.50" icon="ðŸ’¸" subtitle="~â‚¹0.18 per msg" />
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
@@ -206,7 +206,7 @@ export function AdminSystemWhatsappIntegrationClient() {
             <div className="space-y-2">
               <Label>Inbound Webhook URL</Label>
               <div className="flex items-center gap-2">
-                <div className="flex-1 px-3 py-2 rounded-lg bg-bg-pageg-input border border-border text-xs font-mono text-text-secondary truncate">
+                <div className="flex-1 px-3 py-2 rounded-lg bg-input border border-border text-xs font-mono text-text-secondary truncate">
                   {webhookUrl}
                 </div>
                 <Button
@@ -231,10 +231,10 @@ export function AdminSystemWhatsappIntegrationClient() {
             >
               {testStatus === 'testing'
                 ? <><Loader2 size={16} className="animate-spin mr-1" /> Testing...</>
-                : '🔌 Test Connection'}
+                : 'ðŸ”Œ Test Connection'}
             </Button>
             <Button id="save-whatsapp-config-btn" variant="primary">
-              💾 Save Configuration
+              ðŸ’¾ Save Configuration
             </Button>
           </CardFooter>
         </Card>
@@ -256,7 +256,7 @@ export function AdminSystemWhatsappIntegrationClient() {
                 { id: 'trigger-waitlist', label: 'Waitlist Notification', desc: 'When seat becomes available for waitlisted', enabled: true },
                 { id: 'trigger-absentee', label: 'Absentee Alert', desc: 'When student absent for 3+ days', enabled: false },
               ].map(event => (
-                <div key={event.id} className="flex items-center justify-between p-3 rounded-xl bg-bg-pageg-card border border-border/50">
+                <div key={event.id} className="flex items-center justify-between p-3 rounded-xl bg-card border border-border/50">
                   <div>
                     <p className="text-sm font-medium text-text-primary">{event.label}</p>
                     <p className="text-xs text-text-secondary">{event.desc}</p>
@@ -304,11 +304,11 @@ export function AdminSystemWhatsappIntegrationClient() {
                   const cfg = STATUS_CFG[log.status as keyof typeof STATUS_CFG];
                   const Icon = cfg.icon;
                   return (
-                    <tr key={log.id} className="hover:bg-bg-pageg-card transition-colors">
+                    <tr key={log.id} className="hover:bg-card transition-colors">
                       <td className="py-3 pr-4 font-mono text-sm text-text-primary">{log.to}</td>
                       <td className="py-3 pr-4 text-text-primary">{log.type}</td>
                       <td className="py-3 pr-4">
-                        <code className="text-xs text-text-secondary bg-bg-pageg-input px-1.5 py-0.5 rounded">
+                        <code className="text-xs text-text-secondary bg-input px-1.5 py-0.5 rounded">
                           {log.template}
                         </code>
                       </td>

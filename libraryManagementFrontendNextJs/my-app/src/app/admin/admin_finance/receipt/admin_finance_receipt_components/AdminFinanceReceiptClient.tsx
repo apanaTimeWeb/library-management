@@ -46,8 +46,8 @@ export function AdminFinanceReceiptClient() {
       {/* page Header */}
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b pb-4">
         <div>
-          <nav className="text-xs text-muted-foreground font-medium mb-1 tracking-wide uppercase">Smart Library 360 › Admin › Finance</nav>
-          <h1 className="text-text-primaryxl font-bold tracking-tight">Receipts</h1>
+          <nav className="text-xs text-muted-foreground font-medium mb-1 tracking-wide uppercase">Smart Library 360 â€º Admin â€º Finance</nav>
+          <h1 className="text-text-primary text-xl font-bold tracking-tight">Receipts</h1>
           <p className="text-sm text-muted-foreground mt-1">View and share payment receipts for all transactions.</p>
         </div>
       </div>
@@ -59,7 +59,7 @@ export function AdminFinanceReceiptClient() {
             <span className="text-xs font-bold tracking-wider uppercase text-muted-foreground">TOTAL RECEIPTS</span>
             <Receipt size={16} className="text-muted-foreground" />
           </div>
-          <p className="text-text-primaryxl font-bold leading-none tracking-tight text-primary">{kpiData.totalReceipts}</p>
+          <p className="text-text-primary text-xl font-bold leading-none tracking-tight text-primary">{kpiData.totalReceipts}</p>
         </Card>
         
         <Card className="p-5 shadow-none border-success/30 bg-success/5 flex flex-col gap-3">
@@ -67,7 +67,7 @@ export function AdminFinanceReceiptClient() {
             <span className="text-xs font-bold tracking-wider uppercase text-success">TOTAL COLLECTED</span>
             <Receipt size={16} className="text-success" />
           </div>
-          <p className="text-text-primaryxl font-bold leading-none tracking-tight text-success">{formatCurrency(kpiData.totalCollected)}</p>
+          <p className="text-text-primary text-xl font-bold leading-none tracking-tight text-success">{formatCurrency(kpiData.totalCollected)}</p>
         </Card>
         
         <Card className="p-5 shadow-none border-border bg-card flex flex-col gap-3">
@@ -75,7 +75,7 @@ export function AdminFinanceReceiptClient() {
             <span className="text-xs font-bold tracking-wider uppercase text-muted-foreground">THIS MONTH</span>
             <Receipt size={16} className="text-muted-foreground" />
           </div>
-          <p className="text-text-primaryxl font-bold leading-none tracking-tight text-primary">{kpiData.thisMonth}</p>
+          <p className="text-text-primary text-xl font-bold leading-none tracking-tight text-primary">{kpiData.thisMonth}</p>
         </Card>
       </div>
 
@@ -91,7 +91,7 @@ export function AdminFinanceReceiptClient() {
           />
         </div>
         <AdminSearchableDropdown 
-          className="flex h-10 w-full max-w-52 items-center justify-between rounded-md border border-border bg-bg-pageg-input px-3 py-2 text-sm ring-offset-bg-page placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:ring-offset-2"
+          className="flex h-10 w-full max-w-52 items-center justify-between rounded-md border border-border bg-input px-3 py-2 text-sm ring-offset-bg-page placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:ring-offset-2"
           value={modeFilter} 
           onChange={e => setModeFilter(e.target.value as FilterMode)}
         >
@@ -129,7 +129,7 @@ export function AdminFinanceReceiptClient() {
                 <tr>
                   <td colSpan={7} className="px-5 py-20 text-center">
                     <div className="flex flex-col items-center justify-center gap-3">
-                      <div className="text-4xl opacity-50">🧾</div>
+                      <div className="text-4xl opacity-50">ðŸ§¾</div>
                       <p className="text-lg font-bold">No receipts found.</p>
                       <p className="text-sm text-muted-foreground">Try adjusting your filters.</p>
                     </div>

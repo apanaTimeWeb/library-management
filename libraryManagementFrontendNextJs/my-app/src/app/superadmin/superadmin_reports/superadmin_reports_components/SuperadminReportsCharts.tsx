@@ -21,13 +21,13 @@ const TOOLTIP_CONTENT_STYLE = {
   color: 'var(--text-primary)',
 };
 
-const rupeeFormatter = (value: unknown) => [`₹${Number(value ?? 0).toLocaleString()}`, ''] as [string, string];
+const rupeeFormatter = (value: unknown) => [`â‚¹${Number(value ?? 0).toLocaleString()}`, ''] as [string, string];
 const pctFormatter   = (value: unknown) => [`${value ?? 0}%`, ''] as [string, string];
 
 function ChartCard({ title, subtitle, children }: { title: string, subtitle: string, children: React.ReactNode }) {
   return (
-    <div className="bg-bg-pageg-card border border-border rounded-lg flex flex-col overflow-hidden shadow-sm">
-      <div className="p-5 border-b border-border bg-bg-pageg-page/30">
+    <div className="bg-card border border-border rounded-lg flex flex-col overflow-hidden shadow-sm">
+      <div className="p-5 border-b border-border bg-page/30">
         <p className="text-sm font-bold text-text-primary">{title}</p>
         <p className="text-xs font-medium text-text-disabled mt-0.5">{subtitle}</p>
       </div>
@@ -43,12 +43,12 @@ export function SuperadminReportsCharts({ data }: Props) {
     <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
       
       {/* Revenue vs Expenses */}
-      <ChartCard title="Revenue vs Expenses" subtitle="Grouped comparison — last 6 months">
+      <ChartCard title="Revenue vs Expenses" subtitle="Grouped comparison â€” last 6 months">
         <ResponsiveContainer width="100%" height="100%">
           <BarChart data={data.revenueExpense} barCategoryGap="30%">
             <CartesianGrid vertical={false} stroke={GRID_COLOR} strokeOpacity={0.4} />
             <XAxis dataKey="month" tick={AXIS_TICK} axisLine={false} tickLine={false} />
-            <YAxis tick={AXIS_TICK} axisLine={false} tickLine={false} tickFormatter={v => `₹${(Number(v) / 1000).toFixed(0)}k`} />
+            <YAxis tick={AXIS_TICK} axisLine={false} tickLine={false} tickFormatter={v => `â‚¹${(Number(v) / 1000).toFixed(0)}k`} />
             <Tooltip contentStyle={TOOLTIP_CONTENT_STYLE} formatter={rupeeFormatter} />
             <Legend wrapperStyle={{ fontSize: 12, color: 'var(--text-secondary)' }} />
             <Bar dataKey="Revenue"  fill="var(--primary)" radius={[4,4,0,0]} />
@@ -78,7 +78,7 @@ export function SuperadminReportsCharts({ data }: Props) {
           <LineChart data={data.revenueTrend}>
             <CartesianGrid vertical={false} stroke={GRID_COLOR} strokeOpacity={0.4} />
             <XAxis dataKey="month" tick={AXIS_TICK} axisLine={false} tickLine={false} />
-            <YAxis tick={AXIS_TICK} axisLine={false} tickLine={false} tickFormatter={v => `₹${(Number(v) / 1000).toFixed(0)}k`} />
+            <YAxis tick={AXIS_TICK} axisLine={false} tickLine={false} tickFormatter={v => `â‚¹${(Number(v) / 1000).toFixed(0)}k`} />
             <Tooltip contentStyle={TOOLTIP_CONTENT_STYLE} formatter={rupeeFormatter} />
             <Line type="monotone" dataKey="Revenue" stroke="var(--success)" strokeWidth={2} dot={{ fill: 'var(--success)', r: 4 }} activeDot={{ r: 7 }} />
           </LineChart>

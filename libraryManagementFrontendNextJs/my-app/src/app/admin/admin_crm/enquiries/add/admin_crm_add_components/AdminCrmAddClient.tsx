@@ -42,7 +42,7 @@ export function AdminCrmAddClient({ onClose }: AdminCrmAddClientProps = {}) {
     <>
       <Toaster position="bottom-right" />
 
-      {/* ── Overlay and Modal Container ── */}
+      {/* â”€â”€ Overlay and Modal Container â”€â”€ */}
       <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6">
         <div
           className="absolute inset-0 bg-bg-pagelack/60 backdrop-blur-sm transition-opacity"
@@ -50,8 +50,8 @@ export function AdminCrmAddClient({ onClose }: AdminCrmAddClientProps = {}) {
           aria-label="Close modal"
         />
 
-        {/* ── Modal ── */}
-        <div className="relative z-50 w-full max-w-md bg-bg-pageg-card border border-border shadow-2xl rounded-xl flex flex-col animate-in zoom-in-95 duration-200 max-h-[90vh] overflow-hidden" role="dialog" aria-label="New Enquiry" aria-modal="true">
+        {/* â”€â”€ Modal â”€â”€ */}
+        <div className="relative z-50 w-full max-w-md bg-card border border-border shadow-2xl rounded-xl flex flex-col animate-in zoom-in-95 duration-200 max-h-[90vh] overflow-hidden" role="dialog" aria-label="New Enquiry" aria-modal="true">
 
           {/* Header */}
           <div className="flex items-center justify-between p-6 border-b border-border bg-muted/20 shrink-0">
@@ -76,11 +76,11 @@ export function AdminCrmAddClient({ onClose }: AdminCrmAddClientProps = {}) {
             </Button>
           </div>
 
-          {/* Body — Form */}
+          {/* Body â€” Form */}
           <form id="add-enquiry-form" onSubmit={handleSubmit(onSubmit)} noValidate className="flex flex-col flex-1 overflow-hidden">
             <div className="flex-1 overflow-y-auto p-6 space-y-6">
               
-              {/* ── Name ── */}
+              {/* â”€â”€ Name â”€â”€ */}
               <div className="space-y-2">
                 <label htmlFor="enq-name" className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">
                   Full Name <span className="text-danger">*</span>
@@ -96,7 +96,7 @@ export function AdminCrmAddClient({ onClose }: AdminCrmAddClientProps = {}) {
                 {errors.name && <p className="text-xs text-danger font-medium mt-1">{errors.name.message}</p>}
               </div>
 
-              {/* ── Phone ── */}
+              {/* â”€â”€ Phone â”€â”€ */}
               <div className="space-y-2">
                 <label htmlFor="enq-phone" className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">
                   WhatsApp / Phone <span className="text-danger">*</span>
@@ -133,7 +133,7 @@ export function AdminCrmAddClient({ onClose }: AdminCrmAddClientProps = {}) {
                 {isSubmitting ? (
                   <>
                     <div className="h-4 w-4 rounded-full border-2 border-primary-foreground border-t-transparent animate-spin" />
-                    Saving…
+                    Savingâ€¦
                   </>
                 ) : (
                   <>

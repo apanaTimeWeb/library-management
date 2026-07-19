@@ -30,7 +30,7 @@ export function AuthLoginForm() {
       <div className="absolute top-[-10%] right-[-5%] w-[40%] h-[40%] bg-primary/20 blur-[100px] rounded-full pointer-events-none" />
       <div className="absolute bottom-[-10%] left-[-5%] w-[40%] h-[40%] bg-purple/20 blur-[100px] rounded-full pointer-events-none" />
 
-      {/* ── LEFT BRAND PANEL ── */}
+      {/* â”€â”€ LEFT BRAND PANEL â”€â”€ */}
       <section className="hidden lg:flex lg:w-1/2 flex-col justify-between p-8 xl:p-12 relative z-10 border-r border-border bg-page">
         {/* Logo */}
         <div className="relative z-10 flex items-center gap-3">
@@ -74,7 +74,7 @@ export function AuthLoginForm() {
           </div>
 
           <div className="flex gap-8">
-            {[['12k+', 'Libraries Joined'], ['4.9★', 'Rating'], ['99.9%', 'Uptime']].map(([v, l]) => (
+            {[['12k+', 'Libraries Joined'], ['4.9â˜…', 'Rating'], ['99.9%', 'Uptime']].map(([v, l]) => (
               <div key={l}>
                 <p className="text-3xl font-extrabold text-text-primary tracking-tighter">{v}</p>
                 <p className="text-xs font-medium text-text-secondary uppercase tracking-wider mt-1">{l}</p>
@@ -83,10 +83,10 @@ export function AuthLoginForm() {
           </div>
         </div>
 
-        <p className="relative z-10 text-xs text-text-secondary">© 2026 Smart Library 360. All rights reserved.</p>
+        <p className="relative z-10 text-xs text-text-secondary">Â© 2026 Smart Library 360. All rights reserved.</p>
       </section>
 
-      {/* ── RIGHT AUTH PANEL ── */}
+      {/* â”€â”€ RIGHT AUTH PANEL â”€â”€ */}
       <section className="w-full lg:w-1/2 flex items-start lg:items-center justify-center p-4 sm:p-8 lg:p-12 relative z-10 overflow-y-auto min-h-screen lg:min-h-0">
         <div className="w-full max-w-md space-y-6 py-8 lg:py-0">
           {/* Mobile logo */}
@@ -104,7 +104,7 @@ export function AuthLoginForm() {
                   <BookOpen size={24} className="text-text-primary" />
                 </div>
               </div>
-              <h2 className="text-text-primaryxl font-bold text-text-primary tracking-tight">Smart Library 360</h2>
+              <h2 className="text-text-primary text-xl font-bold text-text-primary tracking-tight">Smart Library 360</h2>
               <p className="text-sm text-text-secondary mt-1">Sign in to your account</p>
             </div>
 
@@ -180,7 +180,7 @@ export function AuthLoginForm() {
               {/* Credential error */}
               {errorMessage && (
                 <div className="p-3 bg-danger-bg border border-danger/20 rounded-lg text-danger text-sm font-medium flex items-start gap-2">
-                  <span>❌</span> <span>{errorMessage}</span>
+                  <span>âŒ</span> <span>{errorMessage}</span>
                 </div>
               )}
 

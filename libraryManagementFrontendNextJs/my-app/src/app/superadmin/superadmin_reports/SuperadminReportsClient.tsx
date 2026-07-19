@@ -50,7 +50,7 @@ export function SuperadminReportsClient({ initialData }: Props) {
           {/* KPI Skeleton Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {[...Array(4)].map((_, i) => (
-              <div key={i} className="h-28 bg-bg-pageg-card border border-border rounded-lg p-4 flex flex-col justify-between">
+              <div key={i} className="h-28 bg-card border border-border rounded-lg p-4 flex flex-col justify-between">
                 <div className="h-4 w-24 bg-bg-pageorder/50 rounded" />
                 <div className="h-8 w-32 bg-bg-pageorder/60 rounded" />
               </div>
@@ -58,11 +58,11 @@ export function SuperadminReportsClient({ initialData }: Props) {
           </div>
           {/* Charts Skeleton Grid */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            <div className="h-80 bg-bg-pageg-card border border-border rounded-lg p-6 flex flex-col justify-between">
+            <div className="h-80 bg-card border border-border rounded-lg p-6 flex flex-col justify-between">
               <div className="h-5 w-40 bg-bg-pageorder/50 rounded" />
               <div className="h-60 w-full bg-bg-pageorder/30 rounded" />
             </div>
-            <div className="h-80 bg-bg-pageg-card border border-border rounded-lg p-6 flex flex-col justify-between">
+            <div className="h-80 bg-card border border-border rounded-lg p-6 flex flex-col justify-between">
               <div className="h-5 w-40 bg-bg-pageorder/50 rounded" />
               <div className="h-60 w-full bg-bg-pageorder/30 rounded" />
             </div>

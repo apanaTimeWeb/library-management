@@ -12,7 +12,7 @@ export const metadata = {
 
 export default function PublicLandingPage() {
   return (
-    <div className="min-h-screen bg-bg-pageg-page flex flex-col font-sans">
+    <div className="min-h-screen bg-page flex flex-col font-sans">
       <main className="flex-grow">
         <PublicHeroSection />
         <PublicFeaturesGrid />

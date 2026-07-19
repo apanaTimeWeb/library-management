@@ -49,11 +49,11 @@ export function AdminShiftMigrationClient() {
         </div>
         <div className="relative flex justify-between z-10">
           {ADMIN_SEATS_STEPS.map(s => (
-            <div key={s.n} className="flex flex-col items-center gap-2 bg-bg-pageg-card px-4">
+            <div key={s.n} className="flex flex-col items-center gap-2 bg-card px-4">
               <div className={`w-10 h-10 rounded-full flex items-center justify-center font-bold text-sm transition-colors border-2 ${
                 step >= s.n 
                   ? 'bg-primary border-primary text-primary-foreground' 
-                  : 'bg-bg-pageg-card border-muted-foreground/30 text-muted-foreground'
+                  : 'bg-card border-muted-foreground/30 text-muted-foreground'
               }`}>
                 {step > s.n ? <CheckCircle size={18} /> : s.n}
               </div>
@@ -70,7 +70,7 @@ export function AdminShiftMigrationClient() {
       <div className="flex flex-col lg:flex-row gap-6 max-w-6xl mx-auto w-full">
         <div className="flex-1 flex flex-col gap-6">
 
-          {/* ── STEP 1 ── */}
+          {/* â”€â”€ STEP 1 â”€â”€ */}
           {step === 1 && (
             <Card className="p-6 shadow-sm border-border bg-card flex flex-col gap-6">
               <h3 className="text-lg font-bold flex items-center gap-2 border-b pb-3">
@@ -97,7 +97,7 @@ export function AdminShiftMigrationClient() {
                       className={`flex flex-col text-left p-4 rounded-md border transition-all ${
                         selectedStudent?.id === s.id 
                           ? 'bg-primary/5 border-primary ring-1 ring-primary' 
-                          : 'bg-bg-pageg-card border-border hover:border-primary/50 hover:bg-muted/30'
+                          : 'bg-card border-border hover:border-primary/50 hover:bg-muted/30'
                       }`}
                       onClick={() => {
                         setSelectedStudent(s);
@@ -106,7 +106,7 @@ export function AdminShiftMigrationClient() {
                       }}
                     >
                       <p className="font-bold text-primary text-base">{s.name}</p>
-                      <p className="text-xs font-medium text-muted-foreground mt-1">{s.smartId} <span className="mx-2">•</span> {s.currentShift}</p>
+                      <p className="text-xs font-medium text-muted-foreground mt-1">{s.smartId} <span className="mx-2">â€¢</span> {s.currentShift}</p>
                     </button>
                   ))}
                 </div>
@@ -114,12 +114,12 @@ export function AdminShiftMigrationClient() {
               
               {selectedStudent && (
                 <div className="bg-primary/5 border border-primary/20 rounded-md p-5 flex flex-col gap-2">
-                  <p className="text-xs font-bold text-primary uppercase tracking-wider">Current Details — {selectedStudent.name}</p>
+                  <p className="text-xs font-bold text-primary uppercase tracking-wider">Current Details â€” {selectedStudent.name}</p>
                   <p className="text-sm font-medium text-primary leading-relaxed">
-                    Shift: <strong>{selectedStudent.currentShift}</strong> <span className="mx-2 text-muted-foreground">•</span> 
-                    Seat: <strong>{selectedStudent.currentSeat}</strong> <span className="mx-2 text-muted-foreground">•</span> 
-                    Valid Till: <strong>{selectedStudent.validTill}</strong> <span className="mx-2 text-muted-foreground">•</span> 
-                    Plan: <strong>{selectedStudent.plan}</strong> <span className="mx-2 text-muted-foreground">•</span> 
+                    Shift: <strong>{selectedStudent.currentShift}</strong> <span className="mx-2 text-muted-foreground">â€¢</span> 
+                    Seat: <strong>{selectedStudent.currentSeat}</strong> <span className="mx-2 text-muted-foreground">â€¢</span> 
+                    Valid Till: <strong>{selectedStudent.validTill}</strong> <span className="mx-2 text-muted-foreground">â€¢</span> 
+                    Plan: <strong>{selectedStudent.plan}</strong> <span className="mx-2 text-muted-foreground">â€¢</span> 
                     Days Left: <strong className="text-primary">{daysLeft}</strong>
                   </p>
                 </div>
@@ -127,7 +127,7 @@ export function AdminShiftMigrationClient() {
             </Card>
           )}
 
-          {/* ── STEP 2 ── */}
+          {/* â”€â”€ STEP 2 â”€â”€ */}
           {step === 2 && (
             <Card className="p-6 shadow-sm border-border bg-card flex flex-col gap-6">
               <h3 className="text-lg font-bold flex items-center gap-2 border-b pb-3">
@@ -138,7 +138,7 @@ export function AdminShiftMigrationClient() {
                 <div className="space-y-1.5">
                   <label className="text-sm font-medium text-primary">New Shift <span className="text-danger">*</span></label>
                   <AdminSearchableDropdown 
-                    className="flex h-11 w-full items-center justify-between rounded-md border border-border bg-bg-pageg-input px-3 py-2 text-sm ring-offset-bg-page placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:ring-offset-2"
+                    className="flex h-11 w-full items-center justify-between rounded-md border border-border bg-input px-3 py-2 text-sm ring-offset-bg-page placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:ring-offset-2"
                     value={newShift} 
                     onChange={e => { setNewShift(e.target.value); setNewSeat(''); }}
                   >
@@ -151,7 +151,7 @@ export function AdminShiftMigrationClient() {
                 <div className="space-y-1.5">
                   <label className="text-sm font-medium text-primary">New Seat <span className="text-danger">*</span></label>
                   <AdminSearchableDropdown 
-                    className="flex h-11 w-full items-center justify-between rounded-md border border-border bg-bg-pageg-input px-3 py-2 text-sm ring-offset-bg-page placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="flex h-11 w-full items-center justify-between rounded-md border border-border bg-input px-3 py-2 text-sm ring-offset-bg-page placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed"
                     value={newSeat} 
                     onChange={e => setNewSeat(e.target.value)} 
                     disabled={!newShift}
@@ -195,9 +195,9 @@ export function AdminShiftMigrationClient() {
                   <p className="text-xs font-bold text-success uppercase tracking-wider">Availability</p>
                   <p className="text-sm font-medium text-primary leading-relaxed">
                     <strong>{selectedShiftData?.seats}</strong> seats available in <strong>{newShift}</strong> shift. 
-                    Rate: <strong>₹{newRate}/day</strong>.
+                    Rate: <strong>â‚¹{newRate}/day</strong>.
                     {showCustomSlot && customStart && customEnd && (
-                      <span className="block mt-1">Custom slot: <strong>{customStart} – {customEnd}</strong>.</span>
+                      <span className="block mt-1">Custom slot: <strong>{customStart} â€“ {customEnd}</strong>.</span>
                     )}
                   </p>
                 </div>
@@ -205,7 +205,7 @@ export function AdminShiftMigrationClient() {
             </Card>
           )}
 
-          {/* ── STEP 3 ── */}
+          {/* â”€â”€ STEP 3 â”€â”€ */}
           {step === 3 && (
             <>
               <Card className="p-6 shadow-sm border-border bg-card flex flex-col gap-6">
@@ -216,11 +216,11 @@ export function AdminShiftMigrationClient() {
                 <div className="flex flex-col gap-3 bg-muted/10 p-5 rounded-md border border-border">
                   <div className="flex justify-between items-center">
                     <span className="text-sm font-medium text-muted-foreground">Old Rate</span>
-                    <span className="font-mono font-bold">₹{oldRate}/day</span>
+                    <span className="font-mono font-bold">â‚¹{oldRate}/day</span>
                   </div>
                   <div className="flex justify-between items-center">
                     <span className="text-sm font-medium text-muted-foreground">New Rate</span>
-                    <span className="font-mono font-bold">₹{newRate}/day</span>
+                    <span className="font-mono font-bold">â‚¹{newRate}/day</span>
                   </div>
                   <div className="flex justify-between items-center">
                     <span className="text-sm font-medium text-muted-foreground">Days Remaining</span>
@@ -230,7 +230,7 @@ export function AdminShiftMigrationClient() {
                   <div className="flex justify-between items-center">
                     <span className="text-base font-bold text-primary">Fee Adjustment</span>
                     <span className={`text-xl font-black font-mono tracking-tighter ${isPaying ? 'text-danger' : 'text-success'}`}>
-                      {isPaying ? '+' : ''}₹{Math.abs(adjustment)}
+                      {isPaying ? '+' : ''}â‚¹{Math.abs(adjustment)}
                     </span>
                   </div>
                 </div>
@@ -238,10 +238,10 @@ export function AdminShiftMigrationClient() {
                 <div className={`p-4 rounded-md border ${isPaying ? 'bg-danger/5 border-danger/20 text-danger' : adjustment < 0 ? 'bg-info/5 border-info/20 text-info' : 'bg-success/5 border-success/20 text-success'}`}>
                   <p className="text-sm font-bold flex items-center gap-2">
                     {isPaying
-                      ? '🔴 Student pays more — collect ₹' + adjustment + ' before confirming.'
+                      ? 'ðŸ”´ Student pays more â€” collect â‚¹' + adjustment + ' before confirming.'
                       : adjustment < 0
-                        ? '🔵 Refund ₹' + Math.abs(adjustment) + ' to student.'
-                        : '✅ No fee adjustment needed.'}
+                        ? 'ðŸ”µ Refund â‚¹' + Math.abs(adjustment) + ' to student.'
+                        : 'âœ… No fee adjustment needed.'}
                   </p>
                 </div>
               </Card>
@@ -274,7 +274,7 @@ export function AdminShiftMigrationClient() {
               <Card className="p-6 shadow-sm border-border bg-card flex flex-col gap-3">
                 <label className="text-sm font-medium text-primary">Remark (optional)</label>
                 <textarea 
-                  className="flex min-h-20 w-full rounded-md border border-border bg-bg-pageg-input px-3 py-2 text-sm ring-offset-bg-page placeholder:text-text-secondary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2" 
+                  className="flex min-h-20 w-full rounded-md border border-border bg-input px-3 py-2 text-sm ring-offset-bg-page placeholder:text-text-secondary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2" 
                   placeholder="Any notes about this migration..." 
                   value={remark} 
                   onChange={e => setRemark(e.target.value)} 
@@ -300,7 +300,7 @@ export function AdminShiftMigrationClient() {
                   { label: 'Days Left',      value: `${daysLeft} days`           },
                   ...(newShift ? [{ label: 'New Shift', value: newShift, highlight: true }] : []),
                   ...(newSeat  ? [{ label: 'New Seat',  value: newSeat, highlight: true  }] : []),
-                  ...(showCustomSlot && customStart && customEnd ? [{ label: 'Custom Slot', value: `${customStart} – ${customEnd}`, highlight: true }] : []),
+                  ...(showCustomSlot && customStart && customEnd ? [{ label: 'Custom Slot', value: `${customStart} â€“ ${customEnd}`, highlight: true }] : []),
                 ].map(({ label, value, highlight }) => (
                   <div key={label} className={`flex flex-col gap-1 pb-3 border-b border-border last:border-0 last:pb-0 ${highlight ? 'text-primary' : ''}`}>
                     <p className={`text-xs font-bold uppercase tracking-wider ${highlight ? 'text-primary/70' : 'text-muted-foreground'}`}>{label}</p>
@@ -358,9 +358,9 @@ export function AdminShiftMigrationClient() {
             <p className="text-sm text-primary leading-relaxed bg-muted/30 p-4 rounded-md border border-border">
               Old Seat <strong>{selectedStudent.currentSeat}</strong> ({selectedStudent.currentShift}) will be freed.<br/>
               New Seat <strong>{newSeat}</strong> ({newShift}) assigned.<br/>
-              {showCustomSlot && customStart && customEnd && <span className="block mt-2">Custom slot: <strong>{customStart} – {customEnd}</strong>.<br/></span>}
+              {showCustomSlot && customStart && customEnd && <span className="block mt-2">Custom slot: <strong>{customStart} â€“ {customEnd}</strong>.<br/></span>}
               <span className="block mt-4 pt-4 border-t border-border text-base">
-                Fee adjustment: <strong className={isPaying ? 'text-danger' : 'text-success'}>{isPaying ? '+' : ''}₹{Math.abs(adjustment)}</strong>
+                Fee adjustment: <strong className={isPaying ? 'text-danger' : 'text-success'}>{isPaying ? '+' : ''}â‚¹{Math.abs(adjustment)}</strong>
               </span>
             </p>
             <div className="flex items-center justify-end gap-3 pt-2">

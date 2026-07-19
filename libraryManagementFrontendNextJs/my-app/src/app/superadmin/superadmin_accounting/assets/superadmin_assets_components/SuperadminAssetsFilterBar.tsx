@@ -6,7 +6,7 @@ import type { SuperadminAssetsFilterBarProps as Props } from '@/app/superadmin/s
 
 export function SuperadminAssetsFilterBar({ categories, catFilter, setCatFilter }: Props) {
   return (
-    <div className="bg-bg-pageg-card border border-border rounded-lg p-4 shadow-sm mb-6 flex items-center gap-3">
+    <div className="bg-card border border-border rounded-lg p-4 shadow-sm mb-6 flex items-center gap-3">
       <label className="text-xs font-bold text-text-secondary uppercase tracking-wider">Filter Category:</label>
       <div className="min-w-40">
         <SuperadminSearchableDropdown

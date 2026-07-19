@@ -106,7 +106,7 @@ export default function AdminCrmEnquiriesClient() {
     return (
       <div className="flex flex-col items-center justify-center h-96 gap-4">
         <div className="h-8 w-8 rounded-full border-4 border-primary border-t-transparent animate-spin" />
-        <p className="text-muted-foreground font-medium">Loading enquiries…</p>
+        <p className="text-muted-foreground font-medium">Loading enquiriesâ€¦</p>
       </div>
     );
   }
@@ -128,23 +128,23 @@ export default function AdminCrmEnquiriesClient() {
       {/* page Header */}
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b pb-4">
         <div>
-          <nav className="text-xs text-muted-foreground font-medium mb-1 tracking-wide">CRM › Enquiries</nav>
-          <h1 className="text-text-primaryxl font-bold tracking-tight">Enquiry Pipeline</h1>
+          <nav className="text-xs text-muted-foreground font-medium mb-1 tracking-wide">CRM â€º Enquiries</nav>
+          <h1 className="text-text-primary text-xl font-bold tracking-tight">Enquiry Pipeline</h1>
           <p className="text-sm text-muted-foreground mt-1">
-            {filtered.length} lead{filtered.length !== 1 ? 's' : ''} • Track every prospect from enquiry to admission
+            {filtered.length} lead{filtered.length !== 1 ? 's' : ''} â€¢ Track every prospect from enquiry to admission
           </p>
         </div>
         <div className="flex items-center gap-3">
           <div className="flex bg-muted/50 p-1 rounded-md">
             <button
-              className={`p-1.5 rounded-sm transition-colors ${viewParam === 'kanban' ? 'bg-bg-pageg-card text-primary shadow-sm' : 'text-muted-foreground hover:text-foreground'}`}
+              className={`p-1.5 rounded-sm transition-colors ${viewParam === 'kanban' ? 'bg-card text-primary shadow-sm' : 'text-muted-foreground hover:text-foreground'}`}
               onClick={() => pushParams({ view: 'kanban' })}
               title="Kanban view"
             >
               <LayoutGrid size={16} />
             </button>
             <button
-              className={`p-1.5 rounded-sm transition-colors ${viewParam === 'table' ? 'bg-bg-pageg-card text-primary shadow-sm' : 'text-muted-foreground hover:text-foreground'}`}
+              className={`p-1.5 rounded-sm transition-colors ${viewParam === 'table' ? 'bg-card text-primary shadow-sm' : 'text-muted-foreground hover:text-foreground'}`}
               onClick={() => pushParams({ view: 'table' })}
               title="Table view"
             >
@@ -163,13 +163,13 @@ export default function AdminCrmEnquiriesClient() {
           <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
           <Input
             className="pl-9"
-            placeholder="Search by name or phone…"
+            placeholder="Search by name or phoneâ€¦"
             value={searchParam}
             onChange={(e) => pushParams({ q: e.target.value })}
           />
         </div>
         <AdminSearchableDropdown
-          className="flex h-10 w-full max-w-52 items-center justify-between rounded-md border border-border bg-bg-pageg-input px-3 py-2 text-sm ring-offset-bg-page placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:ring-offset-2"
+          className="flex h-10 w-full max-w-52 items-center justify-between rounded-md border border-border bg-input px-3 py-2 text-sm ring-offset-bg-page placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:ring-offset-2"
           value={statusParam}
           onChange={(e) => pushParams({ status: e.target.value })}
         >

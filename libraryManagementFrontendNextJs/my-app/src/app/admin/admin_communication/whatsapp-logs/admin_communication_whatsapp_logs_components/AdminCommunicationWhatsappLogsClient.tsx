@@ -63,7 +63,7 @@ export function AdminCommunicationWhatsappLogsClient() {
           <p className="text-xs font-semibold text-muted-foreground flex items-center gap-1 uppercase tracking-wider mb-1">
             Communication <ChevronRight size={12} /> WhatsApp Logs
           </p>
-          <h1 className="text-text-primaryxl font-bold tracking-tight">📱 WhatsApp Logs</h1>
+          <h1 className="text-text-primary text-xl font-bold tracking-tight">ðŸ“± WhatsApp Logs</h1>
           <p className="text-sm text-muted-foreground mt-1">All outbound WhatsApp messages sent from the system.</p>
         </div>
       </div>
@@ -73,7 +73,7 @@ export function AdminCommunicationWhatsappLogsClient() {
         <div className="flex flex-wrap gap-4 items-end">
           <div className="flex flex-col">
             <label className="text-xs mb-1 font-semibold text-muted-foreground uppercase tracking-wider">Message Type</label>
-            <AdminSearchableDropdown value={typeFilter} onChange={e => setTypeFilter(e.target.value)} className="flex h-10 w-36 items-center justify-between rounded-md border border-border bg-bg-pageg-input px-3 py-2 text-sm ring-offset-bg-page placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50">
+            <AdminSearchableDropdown value={typeFilter} onChange={e => setTypeFilter(e.target.value)} className="flex h-10 w-36 items-center justify-between rounded-md border border-border bg-input px-3 py-2 text-sm ring-offset-bg-page placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50">
               <option value="All">All Types</option>
               <option value="welcome">Welcome</option>
               <option value="fee_reminder">Fee Reminder</option>
@@ -84,7 +84,7 @@ export function AdminCommunicationWhatsappLogsClient() {
           </div>
           <div className="flex flex-col">
             <label className="text-xs mb-1 font-semibold text-muted-foreground uppercase tracking-wider">Status</label>
-            <AdminSearchableDropdown value={statusFilter} onChange={e => setStatusFilter(e.target.value)} className="flex h-10 w-28 items-center justify-between rounded-md border border-border bg-bg-pageg-input px-3 py-2 text-sm ring-offset-bg-page placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50">
+            <AdminSearchableDropdown value={statusFilter} onChange={e => setStatusFilter(e.target.value)} className="flex h-10 w-28 items-center justify-between rounded-md border border-border bg-input px-3 py-2 text-sm ring-offset-bg-page placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50">
               <option value="All">All</option>
               <option>Pending</option><option>Sent</option>
               <option>Delivered</option><option>Failed</option>
@@ -109,7 +109,7 @@ export function AdminCommunicationWhatsappLogsClient() {
       <Card className="overflow-x-auto shadow-sm border-border">
         {filtered.length === 0 ? (
           <div className="flex flex-col items-center justify-center p-12 text-center text-muted-foreground">
-            <div className="text-4xl mb-4">📱</div>
+            <div className="text-4xl mb-4">ðŸ“±</div>
             <p className="font-medium text-foreground">No WhatsApp messages found.</p>
           </div>
         ) : (
@@ -149,7 +149,7 @@ export function AdminCommunicationWhatsappLogsClient() {
                     </Badge>
                   </td>
                   <td className="py-4 px-4">
-                    <span className="text-danger font-medium text-xs max-w-40 truncate block" title={l.error}>{l.error || '—'}</span>
+                    <span className="text-danger font-medium text-xs max-w-40 truncate block" title={l.error}>{l.error || 'â€”'}</span>
                   </td>
                   <td className="py-4 px-4">
                     <div className="flex items-center justify-center">
@@ -184,7 +184,7 @@ export function AdminCommunicationWhatsappLogsClient() {
       <Dialog open={!!viewLog} onOpenChange={() => setViewLog(null)}>
         <DialogContent className="sm:max-w-lg">
           <DialogHeader>
-            <DialogTitle>📱 Message Details</DialogTitle>
+            <DialogTitle>ðŸ“± Message Details</DialogTitle>
           </DialogHeader>
           {viewLog && (
             <div className="space-y-4 py-2">
@@ -208,7 +208,7 @@ export function AdminCommunicationWhatsappLogsClient() {
               </div>
               {viewLog.error && (
                 <div className="mt-4 p-3 bg-danger/10 text-danger rounded-lg border border-danger/20 text-sm font-medium">
-                  ⚠️ Error: {viewLog.error}
+                  âš ï¸ Error: {viewLog.error}
                 </div>
               )}
             </div>

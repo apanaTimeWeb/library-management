@@ -26,7 +26,7 @@ export function AdminRoute({ children }: { children: React.ReactNode }) {
 
   return (
     <AdminProvider>
-      <div className="admin-theme flex min-h-screen relative w-full bg-bg-pageg-card text-foreground overflow-x-hidden">
+      <div className="admin-theme flex min-h-screen relative w-full bg-card text-foreground overflow-x-hidden">
         <AdminSidebar
           collapsed={collapsed}
           onToggle={() => setCollapsed(c => !c)}

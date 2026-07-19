@@ -24,7 +24,7 @@ export function AdminAccountingExpenseCategoriesClient() {
     <div className="space-y-6 pb-10">
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b pb-4">
         <div>
-          <h1 className="text-text-primaryxl font-bold tracking-tight">Accounting Categories</h1>
+          <h1 className="text-text-primary text-xl font-bold tracking-tight">Accounting Categories</h1>
           <p className="text-sm text-muted-foreground mt-1">Manage budget caps for various expense types.</p>
         </div>
         <Button className="gap-2">
@@ -49,8 +49,8 @@ export function AdminAccountingExpenseCategoriesClient() {
 
               <div className="space-y-2">
                 <div className="flex justify-between text-xs font-semibold">
-                  <span className="text-muted-foreground">Spent: ₹{cat.spent}</span>
-                  <span className="text-foreground">Budget: ₹{cat.budget}</span>
+                  <span className="text-muted-foreground">Spent: â‚¹{cat.spent}</span>
+                  <span className="text-foreground">Budget: â‚¹{cat.budget}</span>
                 </div>
                 <div className="h-2.5 w-full bg-muted rounded-full overflow-hidden">
                   <div className={`h-full ${cat.color} transition-all w-[length:var(--w)]`} style={{ '--w': `${pct}%` } as React.CSSProperties} />

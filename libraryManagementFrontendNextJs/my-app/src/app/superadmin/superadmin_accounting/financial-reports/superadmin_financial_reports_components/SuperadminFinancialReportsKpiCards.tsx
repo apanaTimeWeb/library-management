@@ -12,7 +12,7 @@ export function SuperadminFinancialReportsKpiCards({ totalIncome, totalExpense, 
           <p className="text-xs font-bold text-success uppercase tracking-wider">Total Income</p>
           <TrendingUp size={16} className="text-success" />
         </div>
-        <p className="text-text-primaryxl font-extrabold text-success tracking-tight">₹{totalIncome.toLocaleString()}</p>
+        <p className="text-text-primary text-xl font-extrabold text-success tracking-tight">â‚¹{totalIncome.toLocaleString()}</p>
       </div>
       
       <div className="bg-danger-bg border border-danger/20 rounded-lg p-5 shadow-sm">
@@ -20,16 +20,16 @@ export function SuperadminFinancialReportsKpiCards({ totalIncome, totalExpense, 
           <p className="text-xs font-bold text-danger uppercase tracking-wider">Total Expenses</p>
           <TrendingDown size={16} className="text-danger" />
         </div>
-        <p className="text-text-primaryxl font-extrabold text-danger tracking-tight">₹{totalExpense.toLocaleString()}</p>
+        <p className="text-text-primary text-xl font-extrabold text-danger tracking-tight">â‚¹{totalExpense.toLocaleString()}</p>
       </div>
 
-      <div className="bg-bg-pageg-card border border-border rounded-lg p-5 shadow-sm">
+      <div className="bg-card border border-border rounded-lg p-5 shadow-sm">
         <div className="flex items-center justify-between mb-2">
           <p className="text-xs font-bold text-text-disabled uppercase tracking-wider">Net Profit</p>
           <BarChart2 size={16} className="text-text-disabled" />
         </div>
-        <p className={`text-text-primaryxl font-extrabold tracking-tight ${netProfit >= 0 ? 'text-success' : 'text-danger'}`}>
-          ₹{netProfit.toLocaleString()}
+        <p className={`text-text-primary text-xl font-extrabold tracking-tight ${netProfit >= 0 ? 'text-success' : 'text-danger'}`}>
+          â‚¹{netProfit.toLocaleString()}
         </p>
       </div>
     </div>

@@ -12,7 +12,7 @@ export function SuperadminShiftGapAnalyzerTable({ days }: Props) {
     const table = useClientTable(days);
   if (days.length === 0) {
     return (
-      <div className="bg-bg-pageg-card border border-border rounded-lg shadow-sm flex flex-col items-center justify-center py-20 text-center">
+      <div className="bg-card border border-border rounded-lg shadow-sm flex flex-col items-center justify-center py-20 text-center">
         <CalendarX2 size={48} className="text-text-disabled mb-4 opacity-50" />
         <p className="text-lg font-bold text-text-primary mb-1">No day-wise gaps found.</p>
         <p className="text-sm font-medium text-text-secondary">The selected shift does not have any recorded day-wise gaps.</p>
@@ -21,24 +21,24 @@ export function SuperadminShiftGapAnalyzerTable({ days }: Props) {
   }
 
   return (
-    <div className="bg-bg-pageg-card border border-border rounded-lg shadow-sm overflow-hidden overflow-x-auto">
+    <div className="bg-card border border-border rounded-lg shadow-sm overflow-hidden overflow-x-auto">
       <TableToolbar search={table.searchTerm} onSearch={table.setSearchTerm} />
       <table className="w-full text-left border-collapse">
         <thead>
-          <tr className="bg-bg-pageg-page/50 border-b border-border">
+          <tr className="bg-page/50 border-b border-border">
             <th className="py-3.5 px-4 text-xs font-bold text-text-disabled uppercase tracking-wider">Date</th>
             <th className="py-3.5 px-4 text-xs font-bold text-text-disabled uppercase tracking-wider">Shift</th>
             <th className="py-3.5 px-4 text-xs font-bold text-text-disabled uppercase tracking-wider">Seat No</th>
             <th className="py-3.5 px-4 text-xs font-bold text-text-disabled uppercase tracking-wider text-right">Gap Days</th>
-            <th className="py-3.5 px-4 text-xs font-bold text-text-disabled uppercase tracking-wider text-right">Revenue Loss ₹</th>
+            <th className="py-3.5 px-4 text-xs font-bold text-text-disabled uppercase tracking-wider text-right">Revenue Loss â‚¹</th>
           </tr>
         </thead>
         <tbody className="divide-y divide-[var(--border)]">
           {table.paginatedData.map((d, i) => (
-            <tr key={i} className="hover:bg-bg-pageg-page/30 transition-colors">
+            <tr key={i} className="hover:bg-page/30 transition-colors">
               <td className="py-3.5 px-4 text-sm font-medium text-text-secondary">{d.date}</td>
               <td className="py-3.5 px-4">
-                <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-bold uppercase tracking-wider bg-bg-pageg-input border border-border text-text-secondary shadow-sm">
+                <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-bold uppercase tracking-wider bg-input border border-border text-text-secondary shadow-sm">
                   {d.shift}
                 </span>
               </td>
@@ -46,7 +46,7 @@ export function SuperadminShiftGapAnalyzerTable({ days }: Props) {
               <td className={`py-3.5 px-4 text-base font-extrabold tracking-tight text-right ${d.gapDays > 20 ? 'text-danger' : 'text-warning'}`}>
                 {d.gapDays}d
               </td>
-              <td className="py-3.5 px-4 text-base font-extrabold text-danger tracking-tight text-right">₹{d.loss.toLocaleString()}</td>
+              <td className="py-3.5 px-4 text-base font-extrabold text-danger tracking-tight text-right">â‚¹{d.loss.toLocaleString()}</td>
             </tr>
           ))}
         </tbody>

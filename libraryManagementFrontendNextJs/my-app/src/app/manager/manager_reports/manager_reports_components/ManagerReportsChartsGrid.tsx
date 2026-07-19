@@ -27,7 +27,7 @@ export function ManagerReportsChartsGrid({ data }: ManagerReportsChartsGridProps
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
       {/* Chart 1: Occupancy */}
-      <div className="bg-bg-pageg-card border border-border rounded-[var(--radius-lg)] p-5 hover:shadow-lg transition-all duration-200 ease-in-out">
+      <div className="bg-card border border-border rounded-[var(--radius-lg)] p-5 hover:shadow-lg transition-all duration-200 ease-in-out">
         <h3 className="text-sm font-semibold text-text-primary mb-4">Shift-wise Occupancy</h3>
         <ResponsiveContainer width="100%" height={260}>
           <PieChart>
@@ -50,7 +50,7 @@ export function ManagerReportsChartsGrid({ data }: ManagerReportsChartsGridProps
       </div>
 
       {/* Chart 2: Growth */}
-      <div className="bg-bg-pageg-card border border-border rounded-[var(--radius-lg)] p-5 hover:shadow-lg transition-all duration-200 ease-in-out">
+      <div className="bg-card border border-border rounded-[var(--radius-lg)] p-5 hover:shadow-lg transition-all duration-200 ease-in-out">
         <h3 className="text-sm font-semibold text-text-primary mb-4">Student Growth Trend</h3>
         <ResponsiveContainer width="100%" height={260}>
           <LineChart data={data.growthData} margin={{ top: 5, right: 20, left: 0, bottom: 5 }}>
@@ -66,7 +66,7 @@ export function ManagerReportsChartsGrid({ data }: ManagerReportsChartsGridProps
       </div>
 
       {/* Chart 3: Attendance */}
-      <div className="bg-bg-pageg-card border border-border rounded-[var(--radius-lg)] p-5 hover:shadow-lg transition-all duration-200 ease-in-out">
+      <div className="bg-card border border-border rounded-[var(--radius-lg)] p-5 hover:shadow-lg transition-all duration-200 ease-in-out">
         <h3 className="text-sm font-semibold text-text-primary mb-4">Daily Attendance Trend</h3>
         <ResponsiveContainer width="100%" height={260}>
           <BarChart data={data.attendanceData} margin={{ top: 5, right: 20, left: 0, bottom: 5 }}>
@@ -80,7 +80,7 @@ export function ManagerReportsChartsGrid({ data }: ManagerReportsChartsGridProps
       </div>
 
       {/* Chart 4: Absentees */}
-      <div className="bg-bg-pageg-card border border-border rounded-[var(--radius-lg)] p-5 hover:shadow-lg transition-all duration-200 ease-in-out">
+      <div className="bg-card border border-border rounded-[var(--radius-lg)] p-5 hover:shadow-lg transition-all duration-200 ease-in-out">
         <h3 className="text-sm font-semibold text-text-primary mb-4">Top Absentees (Last 7 Days)</h3>
         <ResponsiveContainer width="100%" height={260}>
           <BarChart data={data.absenteesChartData} layout="vertical" margin={{ top: 5, right: 20, left: 20, bottom: 5 }}>
@@ -94,7 +94,7 @@ export function ManagerReportsChartsGrid({ data }: ManagerReportsChartsGridProps
       </div>
 
       {/* Chart 5: Complaints (Full Width) */}
-      <div className="lg:col-span-2 bg-bg-pageg-card border border-border rounded-[var(--radius-lg)] p-5 hover:shadow-lg transition-all duration-200 ease-in-out">
+      <div className="lg:col-span-2 bg-card border border-border rounded-[var(--radius-lg)] p-5 hover:shadow-lg transition-all duration-200 ease-in-out">
         <h3 className="text-sm font-semibold text-text-primary mb-4">Complaints Status</h3>
         <ResponsiveContainer width="100%" height={240}>
           <PieChart>

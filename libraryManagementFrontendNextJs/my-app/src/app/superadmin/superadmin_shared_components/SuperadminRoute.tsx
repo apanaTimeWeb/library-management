@@ -6,7 +6,7 @@ import Sidebar from '@/app/superadmin/superadmin_shared_components/SuperadminSid
 import Header from '@/app/superadmin/superadmin_shared_components/SuperadminHeader';
 import { getCurrentUser } from '@/lib/auth';
 
-// ALL system routes — including ones previously missing from the guard
+// ALL system routes â€” including ones previously missing from the guard
 const SYSTEM_ROUTES = [
   '/superadmin',
 ];
@@ -47,7 +47,7 @@ export function SuperadminSystemRoute({ children }: { children: React.ReactNode 
   const sidebarWidth = collapsed ? 60 : 240;
 
   return (
-    <div className="flex min-h-screen relative w-full bg-bg-pageg-page text-text-primary overflow-x-hidden">
+    <div className="flex min-h-screen relative w-full bg-page text-text-primary overflow-x-hidden">
       <Sidebar
         collapsed={collapsed}
         onToggle={() => setCollapsed(c => !c)}

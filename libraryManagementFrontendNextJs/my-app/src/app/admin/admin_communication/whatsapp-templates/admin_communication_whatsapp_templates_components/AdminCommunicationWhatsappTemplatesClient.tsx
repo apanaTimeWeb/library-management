@@ -68,7 +68,7 @@ export function AdminCommunicationWhatsappTemplatesClient() {
           <p className="text-xs font-semibold text-muted-foreground flex items-center gap-1 uppercase tracking-wider mb-1">
             Communication <ChevronRight size={12} /> WhatsApp Templates
           </p>
-          <h1 className="text-text-primaryxl font-bold tracking-tight">📱 WhatsApp Templates</h1>
+          <h1 className="text-text-primary text-xl font-bold tracking-tight">ðŸ“± WhatsApp Templates</h1>
           <p className="text-sm text-muted-foreground mt-1">Customize automated message templates sent to students.</p>
         </div>
       </div>
@@ -82,7 +82,7 @@ export function AdminCommunicationWhatsappTemplatesClient() {
               variant={activeId === t.id ? 'secondary' : 'ghost'}
               size="sm"
               onClick={() => setActiveId(t.id)}
-              className={`text-sm font-semibold capitalize gap-2 ${activeId === t.id ? 'bg-bg-pageg-card shadow-sm' : ''}`}
+              className={`text-sm font-semibold capitalize gap-2 ${activeId === t.id ? 'bg-card shadow-sm' : ''}`}
             >
               {t.icon} {t.label}
             </Button>
@@ -124,7 +124,7 @@ export function AdminCommunicationWhatsappTemplatesClient() {
             </div>
 
             <div className="p-4 bg-info/10 text-info border border-info/20 rounded-lg text-sm font-medium">
-              💡 Use variables to personalize messages. E.g.: <em>&quot;Hi {'{name}'}, your fee of ₹{'{amount}'} is due on {'{duedate}'}.&quot;</em>
+              ðŸ’¡ Use variables to personalize messages. E.g.: <em>&quot;Hi {'{name}'}, your fee of â‚¹{'{amount}'} is due on {'{duedate}'}.&quot;</em>
             </div>
 
             <div className="space-y-2 pt-4 border-t border-border">
@@ -140,7 +140,7 @@ export function AdminCommunicationWhatsappTemplatesClient() {
               <Send size={14} /> Send Test Message
             </Button>
             <Button onClick={handleSave} className="gap-2 bg-success hover:bg-success/90 text-white min-w-36">
-              {saved ? '✅ Saved!' : <><Save size={14} /> Save Template</>}
+              {saved ? 'âœ… Saved!' : <><Save size={14} /> Save Template</>}
             </Button>
           </CardFooter>
         </Card>
@@ -150,7 +150,7 @@ export function AdminCommunicationWhatsappTemplatesClient() {
       <Dialog open={showTest} onOpenChange={setShowTest}>
         <DialogContent className="sm:max-w-md">
           <DialogHeader>
-            <DialogTitle>📱 Send Test Message</DialogTitle>
+            <DialogTitle>ðŸ“± Send Test Message</DialogTitle>
             <DialogDescription>Enter a phone number to send a test version of this template.</DialogDescription>
           </DialogHeader>
           <div className="space-y-4 py-4">

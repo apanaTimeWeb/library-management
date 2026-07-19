@@ -51,8 +51,8 @@ export function AdminStaffUsersClient({ initialStaff }: AdminStaffUsersClientPro
       {/* page Header */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b pb-4">
         <div>
-          <p className="text-sm text-muted-foreground mb-1">Smart Library 360 › Admin › Staff & Users</p>
-          <h1 className="text-text-primaryxl font-bold tracking-tight">Staff & Users</h1>
+          <p className="text-sm text-muted-foreground mb-1">Smart Library 360 â€º Admin â€º Staff & Users</p>
+          <h1 className="text-text-primary text-xl font-bold tracking-tight">Staff & Users</h1>
           <p className="text-sm text-muted-foreground mt-1">Manage staff accounts and their branch assignments.</p>
         </div>
         <div className="flex items-center gap-3">
@@ -73,7 +73,7 @@ export function AdminStaffUsersClient({ initialStaff }: AdminStaffUsersClientPro
             </div>
             <div>
               <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-0.5">{s.label}</p>
-              <p className="text-text-primaryxl font-bold text-primary leading-none">{s.count}</p>
+              <p className="text-text-primary text-xl font-bold text-primary leading-none">{s.count}</p>
             </div>
           </Card>
         ))}
@@ -84,7 +84,7 @@ export function AdminStaffUsersClient({ initialStaff }: AdminStaffUsersClientPro
         <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
         <Input
           className="pl-9 h-10"
-          placeholder="Search by name, email or role…"
+          placeholder="Search by name, email or roleâ€¦"
           value={search}
           onChange={e => setSearch(e.target.value)}
         />
@@ -218,7 +218,7 @@ export function AdminStaffUsersClient({ initialStaff }: AdminStaffUsersClientPro
                 <div className="space-y-2">
                   <label className="text-sm font-medium">Role</label>
                   <AdminSearchableDropdown 
-                    className="flex h-10 w-full items-center justify-between rounded-md border border-border bg-bg-pageg-input px-3 py-2 text-sm ring-offset-bg-page placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                    className="flex h-10 w-full items-center justify-between rounded-md border border-border bg-input px-3 py-2 text-sm ring-offset-bg-page placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
                     value={form.roleId} 
                     onChange={handleFieldChange('roleId')}
                   >
@@ -230,7 +230,7 @@ export function AdminStaffUsersClient({ initialStaff }: AdminStaffUsersClientPro
                 <div className="space-y-2">
                   <label className="text-sm font-medium">Branch</label>
                   <AdminSearchableDropdown 
-                    className="flex h-10 w-full items-center justify-between rounded-md border border-border bg-bg-pageg-input px-3 py-2 text-sm ring-offset-bg-page placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                    className="flex h-10 w-full items-center justify-between rounded-md border border-border bg-input px-3 py-2 text-sm ring-offset-bg-page placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
                     value={form.branchId} 
                     onChange={handleFieldChange('branchId')}
                   >

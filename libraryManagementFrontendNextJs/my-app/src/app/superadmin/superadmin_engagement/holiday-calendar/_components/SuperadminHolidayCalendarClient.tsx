@@ -47,8 +47,8 @@ export function SuperadminHolidayCalendarClient() {
     .sort((a,b) => a.date.localeCompare(b.date));
 
   return (
-    <div className="p-4 sm:p-6 min-h-screen bg-bg-pageg-page animate-in fade-in duration-200">
-      {/* ── Toast ── */}
+    <div className="p-4 sm:p-6 min-h-screen bg-page animate-in fade-in duration-200">
+      {/* â”€â”€ Toast â”€â”€ */}
       {toast && (
         <div className="fixed bottom-4 left-1/2 -translate-x-1/2 z-50 animate-in slide-in-from-bottom-5">
           <div className="bg-text-primary text-bg-card px-4 py-2 rounded-full text-sm font-bold shadow-lg flex items-center gap-2">
@@ -57,13 +57,13 @@ export function SuperadminHolidayCalendarClient() {
         </div>
       )}
 
-      {/* ── Add Holiday Modal ── */}
+      {/* â”€â”€ Add Holiday Modal â”€â”€ */}
       {showAdd && (
         <div className="fixed inset-0 bg-bg-pagelack/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 animate-in fade-in duration-200">
           <div className="bg-card border border-border w-full max-w-sm rounded-xl shadow-2xl overflow-hidden relative">
             <button onClick={()=>setShowAdd(false)} className="absolute top-4 right-4 text-text-secondary hover:text-text-primary transition-colors cursor-pointer"><X size={16}/></button>
             <div className="p-5 border-b border-border bg-muted/30">
-              <p className="text-lg font-extrabold text-text-primary">📅 Add Holiday</p>
+              <p className="text-lg font-extrabold text-text-primary">ðŸ“… Add Holiday</p>
               <p className="text-xs text-text-secondary mt-1">Mark a library closure or holiday.</p>
             </div>
 
@@ -103,17 +103,17 @@ export function SuperadminHolidayCalendarClient() {
         </div>
       )}
 
-      {/* ── Breadcrumb ── */}
+      {/* â”€â”€ Breadcrumb â”€â”€ */}
       <div className="flex items-center gap-2 text-text-secondary text-xs font-bold tracking-wide mb-6">
         <Link href={SUPERADMIN_ROUTES.ENGAGEMENT_ATTENDANCE} className="hover:text-primary transition-colors">Engagement</Link>
         <ChevronRight size={12} className="opacity-50" />
         <span className="text-text-primary">Holiday Calendar</span>
       </div>
 
-      {/* ── Page Header ── */}
+      {/* â”€â”€ Page Header â”€â”€ */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
         <div>
-          <h1 className="text-3xl font-extrabold text-text-primary tracking-tight">📅 Holiday Calendar</h1>
+          <h1 className="text-3xl font-extrabold text-text-primary tracking-tight">ðŸ“… Holiday Calendar</h1>
           <p className="text-sm text-text-secondary mt-1">Manage library holidays, closures, and special events.</p>
         </div>
         <button onClick={()=>setShowAdd(true)} className="flex items-center justify-center gap-2 px-4 py-2 bg-primary text-primary-foreground text-sm font-bold rounded-md hover:bg-primary/90 shadow-sm transition-all cursor-pointer">
@@ -121,7 +121,7 @@ export function SuperadminHolidayCalendarClient() {
         </button>
       </div>
 
-      {/* ── Stats ── */}
+      {/* â”€â”€ Stats â”€â”€ */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
         <div className="bg-card border border-border rounded-lg p-4 shadow-sm">
           <div className="text-xs font-bold text-text-secondary uppercase tracking-wider">Total Holidays</div>
@@ -145,7 +145,7 @@ export function SuperadminHolidayCalendarClient() {
         </div>
       </div>
 
-      {/* ── Two-column Layout ── */}
+      {/* â”€â”€ Two-column Layout â”€â”€ */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
 
         {/* Left: Calendar Grid */}
@@ -225,13 +225,13 @@ export function SuperadminHolidayCalendarClient() {
             <div className="flex-1 overflow-y-auto p-4 scrollbar-thin scrollbar-thumb-border">
               {thisMonthHolidays.length === 0 ? (
                 <div className="flex flex-col items-center justify-center h-full text-center p-6 text-text-secondary">
-                  <div className="text-4xl mb-3 opacity-50">🎉</div>
+                  <div className="text-4xl mb-3 opacity-50">ðŸŽ‰</div>
                   <p className="text-sm font-bold">No holidays in {monthLabel}</p>
                 </div>
               ) : (
                 <div className="space-y-3">
                   {thisMonthHolidays.map(( h ) => (
-                    <div key={h.id} className="flex items-center justify-between p-3 rounded-md border border-border bg-bg-pageg-page hover:border-danger/30 transition-colors group">
+                    <div key={h.id} className="flex items-center justify-between p-3 rounded-md border border-border bg-page hover:border-danger/30 transition-colors group">
                       <div>
                         <div className="text-sm font-bold text-text-primary">{h.name}</div>
                         <div className="flex items-center gap-2 mt-1">

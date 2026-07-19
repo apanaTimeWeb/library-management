@@ -24,8 +24,8 @@ export function SuperadminWhatsappTemplatesClient() {
   if (!active) return null;
 
   return (
-    <div className="p-4 sm:p-6 min-h-screen bg-bg-pageg-page animate-in fade-in duration-200">
-      {/* ── Toast ── */}
+    <div className="p-4 sm:p-6 min-h-screen bg-page animate-in fade-in duration-200">
+      {/* â”€â”€ Toast â”€â”€ */}
       {toast && (
         <div className="fixed bottom-4 left-1/2 -translate-x-1/2 z-50 animate-in slide-in-from-bottom-5">
           <div className="bg-text-primary text-bg-card px-4 py-2 rounded-full text-sm font-bold shadow-lg flex items-center gap-2">
@@ -63,7 +63,7 @@ export function SuperadminWhatsappTemplatesClient() {
         </div>
       )}
 
-      {/* ── Page Header ── */}
+      {/* â”€â”€ Page Header â”€â”€ */}
       <div className="mb-8">
         <div className="flex items-center gap-2 text-text-secondary text-xs font-bold tracking-wide mb-6">
           <span className="hover:text-primary transition-colors cursor-pointer">Communication</span>
@@ -142,7 +142,7 @@ export function SuperadminWhatsappTemplatesClient() {
 
               {/* Help Tip */}
               <div className="bg-info/10 border-l-4 border-l-info text-info p-4 rounded-md text-sm leading-relaxed">
-                <span className="font-bold">💡 Pro Tip:</span> Use variables to personalize messages. E.g.: <em className="opacity-80">"Hi {'{name}'}, your fee of ₹{'{amount}'} is due on {'{duedate}'}."</em>
+                <span className="font-bold">ðŸ’¡ Pro Tip:</span> Use variables to personalize messages. E.g.: <em className="opacity-80">"Hi {'{name}'}, your fee of â‚¹{'{amount}'} is due on {'{duedate}'}."</em>
               </div>
 
               {/* Preview */}

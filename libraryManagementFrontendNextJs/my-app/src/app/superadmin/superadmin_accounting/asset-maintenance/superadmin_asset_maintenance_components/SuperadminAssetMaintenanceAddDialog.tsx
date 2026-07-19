@@ -29,7 +29,7 @@ export function SuperadminAssetMaintenanceAddDialog({ onClose, onSave }: Props) 
         issue: form.issue,
         reportedDate: form.reportedDate,
         scheduledDate: form.scheduledDate,
-        vendor: form.vendor || '—',
+        vendor: form.vendor || 'â€”',
         cost: parseFloat(form.cost) || 0
       });
       onClose();
@@ -45,9 +45,9 @@ export function SuperadminAssetMaintenanceAddDialog({ onClose, onSave }: Props) 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
       <div className="absolute inset-0 bg-bg-pagelack/60 backdrop-blur-sm transition-opacity" onClick={onClose} />
-      <div className="relative w-full max-w-md bg-bg-pageg-card rounded-lg shadow-2xl border border-border overflow-hidden animate-in fade-in zoom-in-95 duration-200">
-        <div className="p-5 border-b border-border bg-bg-pageg-page/50 flex items-center justify-between">
-          <h2 className="text-lg font-bold text-text-primary">🔧 Log Maintenance Request</h2>
+      <div className="relative w-full max-w-md bg-card rounded-lg shadow-2xl border border-border overflow-hidden animate-in fade-in zoom-in-95 duration-200">
+        <div className="p-5 border-b border-border bg-page/50 flex items-center justify-between">
+          <h2 className="text-lg font-bold text-text-primary">ðŸ”§ Log Maintenance Request</h2>
           <button 
             className="w-8 h-8 flex items-center justify-center rounded-md text-text-secondary hover:text-danger hover:bg-danger-bg transition-colors"
             onClick={onClose}
@@ -60,7 +60,7 @@ export function SuperadminAssetMaintenanceAddDialog({ onClose, onSave }: Props) 
           <div>
             <label className="text-xs font-bold text-text-secondary uppercase tracking-wider block mb-1.5">Asset Name <span className="text-danger">*</span></label>
             <input 
-              className="w-full bg-bg-pageg-input border border-border rounded-md py-2 px-3 text-sm font-medium text-text-primary focus:outline-none focus:border-primary transition-colors shadow-inner" 
+              className="w-full bg-input border border-border rounded-md py-2 px-3 text-sm font-medium text-text-primary focus:outline-none focus:border-primary transition-colors shadow-inner" 
               placeholder="e.g. AC Unit" 
               value={form.assetName} 
               onChange={e => setForm(p => ({...p, assetName: e.target.value}))} 
@@ -69,7 +69,7 @@ export function SuperadminAssetMaintenanceAddDialog({ onClose, onSave }: Props) 
           <div>
             <label className="text-xs font-bold text-text-secondary uppercase tracking-wider block mb-1.5">Issue <span className="text-danger">*</span></label>
             <input 
-              className="w-full bg-bg-pageg-input border border-border rounded-md py-2 px-3 text-sm font-medium text-text-primary focus:outline-none focus:border-primary transition-colors shadow-inner" 
+              className="w-full bg-input border border-border rounded-md py-2 px-3 text-sm font-medium text-text-primary focus:outline-none focus:border-primary transition-colors shadow-inner" 
               placeholder="Describe the issue" 
               value={form.issue} 
               onChange={e => setForm(p => ({...p, issue: e.target.value}))} 
@@ -80,7 +80,7 @@ export function SuperadminAssetMaintenanceAddDialog({ onClose, onSave }: Props) 
               <label className="text-xs font-bold text-text-secondary uppercase tracking-wider block mb-1.5">Reported Date <span className="text-danger">*</span></label>
               <input 
                 type="date"
-                className="w-full bg-bg-pageg-input border border-border rounded-md py-2 px-3 text-sm font-medium text-text-primary focus:outline-none focus:border-primary transition-colors shadow-inner" 
+                className="w-full bg-input border border-border rounded-md py-2 px-3 text-sm font-medium text-text-primary focus:outline-none focus:border-primary transition-colors shadow-inner" 
                 value={form.reportedDate} 
                 onChange={e => setForm(p => ({...p, reportedDate: e.target.value}))} 
               />
@@ -89,7 +89,7 @@ export function SuperadminAssetMaintenanceAddDialog({ onClose, onSave }: Props) 
               <label className="text-xs font-bold text-text-secondary uppercase tracking-wider block mb-1.5">Scheduled Date <span className="text-danger">*</span></label>
               <input 
                 type="date"
-                className="w-full bg-bg-pageg-input border border-border rounded-md py-2 px-3 text-sm font-medium text-text-primary focus:outline-none focus:border-primary transition-colors shadow-inner" 
+                className="w-full bg-input border border-border rounded-md py-2 px-3 text-sm font-medium text-text-primary focus:outline-none focus:border-primary transition-colors shadow-inner" 
                 value={form.scheduledDate} 
                 onChange={e => setForm(p => ({...p, scheduledDate: e.target.value}))} 
               />
@@ -98,17 +98,17 @@ export function SuperadminAssetMaintenanceAddDialog({ onClose, onSave }: Props) 
           <div>
             <label className="text-xs font-bold text-text-secondary uppercase tracking-wider block mb-1.5">Vendor</label>
             <input 
-              className="w-full bg-bg-pageg-input border border-border rounded-md py-2 px-3 text-sm font-medium text-text-primary focus:outline-none focus:border-primary transition-colors shadow-inner" 
+              className="w-full bg-input border border-border rounded-md py-2 px-3 text-sm font-medium text-text-primary focus:outline-none focus:border-primary transition-colors shadow-inner" 
               placeholder="Vendor name" 
               value={form.vendor} 
               onChange={e => setForm(p => ({...p, vendor: e.target.value}))} 
             />
           </div>
           <div>
-            <label className="text-xs font-bold text-text-secondary uppercase tracking-wider block mb-1.5">Estimated Cost ₹</label>
+            <label className="text-xs font-bold text-text-secondary uppercase tracking-wider block mb-1.5">Estimated Cost â‚¹</label>
             <input 
               type="number"
-              className="w-full bg-bg-pageg-input border border-border rounded-md py-2 px-3 text-sm font-medium text-text-primary focus:outline-none focus:border-primary transition-colors shadow-inner" 
+              className="w-full bg-input border border-border rounded-md py-2 px-3 text-sm font-medium text-text-primary focus:outline-none focus:border-primary transition-colors shadow-inner" 
               placeholder="0" 
               value={form.cost} 
               onChange={e => setForm(p => ({...p, cost: e.target.value}))} 
@@ -116,9 +116,9 @@ export function SuperadminAssetMaintenanceAddDialog({ onClose, onSave }: Props) 
           </div>
         </div>
 
-        <div className="p-5 border-t border-border bg-bg-pageg-page/50 flex justify-end gap-3">
+        <div className="p-5 border-t border-border bg-page/50 flex justify-end gap-3">
           <button 
-            className="px-4 py-2 bg-transparent border border-border text-text-primary text-sm font-bold rounded-md hover:bg-bg-pageg-input transition-colors" 
+            className="px-4 py-2 bg-transparent border border-border text-text-primary text-sm font-bold rounded-md hover:bg-input transition-colors" 
             onClick={onClose}
             disabled={saving}
           >

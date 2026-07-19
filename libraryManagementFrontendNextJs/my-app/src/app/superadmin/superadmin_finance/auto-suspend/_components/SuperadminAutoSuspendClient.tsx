@@ -18,10 +18,10 @@ export function SuperadminAutoSuspendClient() {
   } = useSuperadminAutoSuspendClient();
 
   const KPI_CARDS = [
-    { label: 'Days Before Suspend', value: configLoading ? '—' : config?.daysBeforeSuspend, icon: Settings, variant: 'default' },
-    { label: 'Currently Suspended', value: configLoading ? '—' : config?.currentlySuspended ?? 0, icon: Ban, variant: 'danger' },
-    { label: 'Auto-Restored (Month)', value: configLoading ? '—' : config?.autoRestoredThisMonth ?? 0, icon: RotateCcw, variant: 'default' },
-    { label: 'Manual Restores', value: configLoading ? '—' : config?.manualRestores ?? 0, icon: UserCheck, variant: 'default' },
+    { label: 'Days Before Suspend', value: configLoading ? 'â€”' : config?.daysBeforeSuspend, icon: Settings, variant: 'default' },
+    { label: 'Currently Suspended', value: configLoading ? 'â€”' : config?.currentlySuspended ?? 0, icon: Ban, variant: 'danger' },
+    { label: 'Auto-Restored (Month)', value: configLoading ? 'â€”' : config?.autoRestoredThisMonth ?? 0, icon: RotateCcw, variant: 'default' },
+    { label: 'Manual Restores', value: configLoading ? 'â€”' : config?.manualRestores ?? 0, icon: UserCheck, variant: 'default' },
   ] as const;
 
   return (
@@ -43,7 +43,7 @@ export function SuperadminAutoSuspendClient() {
               <span className={`text-xs font-bold uppercase tracking-wider ${variant === 'danger' ? 'text-danger' : 'text-text-secondary'}`}>{label}</span>
               <Icon size={16} className={variant === 'danger' ? 'text-danger' : 'text-text-secondary'} />
             </div>
-            <p className={`text-text-primaryxl font-black tracking-tight ${variant === 'danger' ? 'text-danger' : 'text-text-primary'}`}>{value}</p>
+            <p className={`text-text-primary text-xl font-black tracking-tight ${variant === 'danger' ? 'text-danger' : 'text-text-primary'}`}>{value}</p>
           </div>
         ))}
       </div>
@@ -123,7 +123,7 @@ export function SuperadminAutoSuspendClient() {
               <tr>
                 <td colSpan={7}>
                   <div className="flex flex-col items-center justify-center p-8 text-center space-y-3">
-                    <div className="text-4xl">🔓</div>
+                    <div className="text-4xl">ðŸ”“</div>
                     <p className="text-base text-text-secondary">No students currently suspended.</p>
                   </div>
                 </td>
@@ -139,7 +139,7 @@ export function SuperadminAutoSuspendClient() {
                   <td className="py-3 px-4">
                     <span className="bg-bg-pageorder text-text-primary px-2.5 py-0.5 rounded-full text-xs font-semibold">{s.shift}</span>
                   </td>
-                  <td className="py-3 px-4 text-xs text-text-secondary">—</td>
+                  <td className="py-3 px-4 text-xs text-text-secondary">â€”</td>
                   <td className="py-3 px-4">
                     <span className="text-danger font-bold text-sm">{s.daysOverdue}d</span>
                   </td>
@@ -150,7 +150,7 @@ export function SuperadminAutoSuspendClient() {
                         className="bg-input border border-border text-text-primary px-2.5 py-1 rounded-md text-xs font-bold flex items-center gap-1 hover:bg-bg-pageorder transition-colors cursor-pointer"
                         onClick={() => sendReminder(s.studentName)}
                       >
-                        <Bell size={12} /> 📱 Reminder
+                        <Bell size={12} /> ðŸ“± Reminder
                       </button>
                       <button
                         className="bg-success text-success-foreground px-2.5 py-1 rounded-md text-xs font-bold flex items-center gap-1 hover:brightness-95 transition-colors cursor-pointer"

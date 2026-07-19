@@ -83,7 +83,7 @@ const {
 
       {filtered.length === 0 ? (
         <div className="ss-empty-state">
-          <p className="ss-empty-state__icon">📜</p>
+          <p className="ss-empty-state__icon">ðŸ“œ</p>
           <p className="ss-empty-state__title">No seat history records found.</p>
         </div>
       ) : (
@@ -91,7 +91,7 @@ const {
           <div className="w-full overflow-x-auto border border-border rounded-xl">
             <TableToolbar search={table.searchTerm} onSearch={table.setSearchTerm} />
       <table className="w-full text-left text-sm whitespace-nowrap">
-              <thead className="bg-bg-pageg-elevated border-b border-border">
+              <thead className="bg-card border-b border-border">
                 <tr className="text-text-secondary text-xs uppercase tracking-wider">
                   <th className="px-4 py-3 font-semibold">SEAT #</th>
                   <th className="px-4 py-3 font-semibold">STUDENT</th>
@@ -103,9 +103,9 @@ const {
                   <th className="px-4 py-3 font-semibold">REASON</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-border bg-bg-pageg-card">
+              <tbody className="divide-y divide-border bg-card">
                 {table.paginatedData.map((row, i) => (
-                  <tr key={i} className="hover:bg-bg-pageg-page transition-colors">
+                  <tr key={i} className="hover:bg-page transition-colors">
                     <td className="px-4 py-4 font-semibold text-text-primary">{row.seatNo}</td>
                     <td className="px-4 py-4"><StudentCell data={row} /></td>
                     <td className="px-4 py-4 text-text-secondary">{row.smartId}</td>

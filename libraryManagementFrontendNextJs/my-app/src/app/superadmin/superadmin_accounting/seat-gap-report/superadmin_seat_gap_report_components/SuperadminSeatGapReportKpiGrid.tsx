@@ -12,13 +12,13 @@ export function SuperadminSeatGapReportKpiGrid({ totalGapSeats, totalLoss, avgGa
       </div>
       <div className="bg-warning-bg border border-warning/20 rounded-lg p-4 shadow-sm flex flex-col justify-center">
         <p className="text-xs font-bold text-warning uppercase tracking-wider mb-1">Revenue Loss</p>
-        <p className="text-xl font-extrabold text-warning">₹{totalLoss.toLocaleString()}</p>
+        <p className="text-xl font-extrabold text-warning">â‚¹{totalLoss.toLocaleString()}</p>
       </div>
-      <div className="bg-bg-pageg-card border border-border rounded-lg p-4 shadow-sm flex flex-col justify-center">
+      <div className="bg-card border border-border rounded-lg p-4 shadow-sm flex flex-col justify-center">
         <p className="text-xs font-bold text-text-disabled uppercase tracking-wider mb-1">Avg Gap Days</p>
         <p className="text-xl font-extrabold text-text-primary">{avgGapDays}</p>
       </div>
-      <div className="bg-bg-pageg-input border border-border rounded-lg p-4 shadow-sm flex flex-col justify-center">
+      <div className="bg-input border border-border rounded-lg p-4 shadow-sm flex flex-col justify-center">
         <p className="text-xs font-bold text-text-secondary uppercase tracking-wider mb-1">Under Maintenance</p>
         <p className="text-xl font-extrabold text-text-secondary">{maintenanceCount}</p>
       </div>

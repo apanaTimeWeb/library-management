@@ -37,12 +37,12 @@ export function AdminSystemMaintenanceClient() {
 
       {/* Summary KPI Cards */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-        <KpiCard title="Seats Needing Attention" value={seatsNeedingAttention} icon="🪑" trend="down" trendLabel="Action required" />
-        <KpiCard title="Assets Overdue" value={assetsOverdue} icon="⚙️" trend="down" trendLabel="Service overdue" />
-        <KpiCard title="Locker Issues" value={lockerIssues} icon="🔒" trend="down" trendLabel="Reported issues" />
+        <KpiCard title="Seats Needing Attention" value={seatsNeedingAttention} icon="ðŸª‘" trend="down" trendLabel="Action required" />
+        <KpiCard title="Assets Overdue" value={assetsOverdue} icon="âš™ï¸" trend="down" trendLabel="Service overdue" />
+        <KpiCard title="Locker Issues" value={lockerIssues} icon="ðŸ”’" trend="down" trendLabel="Reported issues" />
       </div>
 
-      {/* Section 1 — Seats */}
+      {/* Section 1 â€” Seats */}
       <Card className="mb-6">
         <CardHeader>
           <CardTitle className="flex items-center gap-2"><Wrench size={18} className="text-primary" /> Seats</CardTitle>
@@ -70,7 +70,7 @@ export function AdminSystemMaintenanceClient() {
               </thead>
               <tbody className="divide-y divide-outline-variant/30">
                 {seats.filter(row => JSON.stringify(row).toLowerCase().includes(searchTerm.toLowerCase())).slice((page - 1) * limit, page * limit).map((seat) => (
-                  <tr key={seat.id} className="hover:bg-bg-pageg-card transition-colors">
+                  <tr key={seat.id} className="hover:bg-card transition-colors">
                     <td className="py-3 pr-4 font-mono font-medium text-text-primary">{seat.id}</td>
                     <td className="py-3 pr-4">
                       <Badge variant={seat.status === 'OK' ? 'success' : 'danger'}>{seat.status}</Badge>
@@ -82,7 +82,7 @@ export function AdminSystemMaintenanceClient() {
                       </span>
                     </td>
                     <td className="py-3">
-                      <Button id={`log-seat-maint-${seat.id}`} variant="ghost" size="sm">🔧 Log Maintenance</Button>
+                      <Button id={`log-seat-maint-${seat.id}`} variant="ghost" size="sm">ðŸ”§ Log Maintenance</Button>
                     </td>
                   </tr>
                 ))}
@@ -105,7 +105,7 @@ export function AdminSystemMaintenanceClient() {
         </CardContent>
       </Card>
 
-      {/* Section 2 — Assets */}
+      {/* Section 2 â€” Assets */}
       <Card className="mb-6">
         <CardHeader>
           <CardTitle className="flex items-center gap-2"><Package size={18} className="text-primary" /> Assets</CardTitle>
@@ -134,7 +134,7 @@ export function AdminSystemMaintenanceClient() {
               <tbody className="divide-y divide-outline-variant/30">
                 {/* eslint-disable-next-line @typescript-eslint/no-unused-vars */}
                 {table.paginatedData.map((asset, i) => (
-                  <tr key={asset.name} className="hover:bg-bg-pageg-card transition-colors">
+                  <tr key={asset.name} className="hover:bg-card transition-colors">
                     <td className="py-3 pr-4 font-medium text-text-primary">{asset.name}</td>
                     <td className="py-3 pr-4 text-center text-text-secondary">{asset.qty}</td>
                     <td className="py-3 pr-4">
@@ -152,7 +152,7 @@ export function AdminSystemMaintenanceClient() {
                       )}
                     </td>
                     <td className="py-3">
-                      <Button id={`log-asset-service-${asset.name}`} variant="ghost" size="sm">📝 Log Service</Button>
+                      <Button id={`log-asset-service-${asset.name}`} variant="ghost" size="sm">ðŸ“ Log Service</Button>
                     </td>
                   </tr>
                 ))}
@@ -168,7 +168,7 @@ export function AdminSystemMaintenanceClient() {
         </CardContent>
       </Card>
 
-      {/* Section 3 — Lockers */}
+      {/* Section 3 â€” Lockers */}
       <Card>
         <CardHeader>
           <CardTitle className="flex items-center gap-2"><Lock size={18} className="text-primary" /> Lockers</CardTitle>
@@ -193,14 +193,14 @@ export function AdminSystemMaintenanceClient() {
               </thead>
               <tbody className="divide-y divide-outline-variant/30">
                 {lockers.filter(row => JSON.stringify(row).toLowerCase().includes(searchTerm.toLowerCase())).map((locker) => (
-                  <tr key={locker.id} className="hover:bg-bg-pageg-card transition-colors">
+                  <tr key={locker.id} className="hover:bg-card transition-colors">
                     <td className="py-3 pr-4 font-mono font-medium text-text-primary">{locker.id}</td>
                     <td className="py-3 pr-4">
                       <Badge variant={locker.status === 'OK' ? 'success' : 'danger'}>{locker.status}</Badge>
                     </td>
                     <td className="py-3 pr-4 text-text-secondary">{locker.lastIssue}</td>
                     <td className="py-3">
-                      <Button id={`update-locker-${locker.id}`} variant="ghost" size="sm">✏️ Update Status</Button>
+                      <Button id={`update-locker-${locker.id}`} variant="ghost" size="sm">âœï¸ Update Status</Button>
                     </td>
                   </tr>
                 ))}

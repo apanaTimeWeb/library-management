@@ -15,7 +15,7 @@ export function AdminSystemOfflineClient() {
 
         {/* Icon */}
         <div className={`mb-6 h-24 w-24 rounded-full flex items-center justify-center shadow-lg transition-colors duration-500 ${
-          online ? 'bg-success/20 shadow-success/10' : 'bg-bg-pageg-card shadow-black/10'
+          online ? 'bg-success/20 shadow-success/10' : 'bg-card shadow-black/10'
         }`}>
           {online
             ? <CheckCircle size={52} className="text-success" />
@@ -26,19 +26,19 @@ export function AdminSystemOfflineClient() {
         <h1 className={`text-3xl font-bold text-center tracking-tight mb-2 transition-colors duration-500 ${
           online ? 'text-success' : 'text-text-primary'
         }`}>
-          {online ? 'Back Online! 🎉' : "You're Offline"}
+          {online ? 'Back Online! ðŸŽ‰' : "You're Offline"}
         </h1>
 
         {/* Subtitle */}
         <p className="text-center text-text-secondary text-base mb-8 max-w-sm">
           {online
             ? "Great news! You're reconnected. Redirecting to Dashboard..."
-            : "No internet connection detected. Don't worry — your basic features still work:"}
+            : "No internet connection detected. Don't worry â€” your basic features still work:"}
         </p>
 
         {/* Feature list */}
         {!online && (
-          <div className="w-full bg-bg-pageg-card rounded-2xl p-4 shadow-sm border border-border space-y-3">
+          <div className="w-full bg-card rounded-2xl p-4 shadow-sm border border-border space-y-3">
             {features.map((f, i) => (
               <div
                 key={i}
@@ -59,7 +59,7 @@ export function AdminSystemOfflineClient() {
         {!online && (
           <div className="flex flex-col items-center gap-4 mt-6 w-full">
             {/* Pulsing status badge */}
-            <div className="flex items-center gap-2 px-4 py-1.5 rounded-full bg-bg-pageg-card border border-border text-xs font-semibold text-text-secondary uppercase tracking-widest shadow-inner">
+            <div className="flex items-center gap-2 px-4 py-1.5 rounded-full bg-card border border-border text-xs font-semibold text-text-secondary uppercase tracking-widest shadow-inner">
               <span className={`w-2 h-2 rounded-full bg-danger ${checking ? 'animate-ping bg-primary' : 'animate-pulse'}`} />
               {checking ? 'Checking connection...' : `Waiting for connection${dots}`}
             </div>
@@ -82,7 +82,7 @@ export function AdminSystemOfflineClient() {
 
         {/* Footer */}
         <p className="mt-10 text-xs text-text-secondary/70 text-center font-medium tracking-wide">
-          Smart Library 360 · Works offline with limited functionality
+          Smart Library 360 Â· Works offline with limited functionality
         </p>
       </div>
     </div>

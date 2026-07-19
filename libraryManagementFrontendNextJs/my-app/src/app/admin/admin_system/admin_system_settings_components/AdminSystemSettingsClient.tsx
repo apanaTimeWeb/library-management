@@ -56,7 +56,7 @@ export function AdminSystemSettingsClient() {
                   className={`flex items-center gap-3 rounded-xl px-4 py-2.5 text-sm font-medium transition-all duration-150 text-left ${
                     active === id
                       ? 'bg-primary/15 text-primary border border-primary/20'
-                      : 'text-text-secondary hover:bg-bg-pageg-card hover:text-text-primary'
+                      : 'text-text-secondary hover:bg-card hover:text-text-primary'
                   }`}
                 >
                   <Icon size={16} />
@@ -80,7 +80,7 @@ export function AdminSystemSettingsClient() {
                   <Label htmlFor="logo-upload">Logo</Label>
                   <div
                     id="logo-upload"
-                    className="flex flex-col items-center justify-center border-2 border-dashed border-border rounded-xl p-8 cursor-pointer hover:bg-bg-pageg-card transition-colors group"
+                    className="flex flex-col items-center justify-center border-2 border-dashed border-border rounded-xl p-8 cursor-pointer hover:bg-card transition-colors group"
                   >
                     <Upload size={24} className="text-text-secondary group-hover:text-primary transition-colors mb-2" />
                     <span className="text-sm text-text-secondary">Drop logo here or <span className="text-primary">browse</span></span>
@@ -110,7 +110,7 @@ export function AdminSystemSettingsClient() {
               </CardContent>
               <CardFooter>
                 <Button id="save-branding-btn" onClick={handleSave} variant="primary">
-                  <Save size={16} className="mr-1" /> {saved ? '✓ Saved!' : '💾 Save Settings'}
+                  <Save size={16} className="mr-1" /> {saved ? 'âœ“ Saved!' : 'ðŸ’¾ Save Settings'}
                 </Button>
               </CardFooter>
             </Card>
@@ -123,7 +123,7 @@ export function AdminSystemSettingsClient() {
                 <CardDescription>Define penalty rules for overdue payments.</CardDescription>
               </CardHeader>
               <CardContent className="space-y-5">
-                <div className="flex items-center justify-between p-4 rounded-xl bg-bg-pageg-card border border-border">
+                <div className="flex items-center justify-between p-4 rounded-xl bg-card border border-border">
                   <div>
                     <p className="text-sm font-medium text-text-primary">Enable Late Fees</p>
                     <p className="text-xs text-text-secondary">Automatically apply penalties after due date</p>
@@ -141,7 +141,7 @@ export function AdminSystemSettingsClient() {
                   <div className="space-y-2">
                     <Label htmlFor="penalty-per-day">Penalty Per Day</Label>
                     <div className="flex items-center gap-2">
-                      <span className="text-sm text-text-secondary">₹</span>
+                      <span className="text-sm text-text-secondary">â‚¹</span>
                       <Input id="penalty-per-day" type="number" value={form.penaltyPerDay} onChange={e => setForm(f => ({ ...f, penaltyPerDay: +e.target.value }))} />
                     </div>
                   </div>
@@ -149,7 +149,7 @@ export function AdminSystemSettingsClient() {
               </CardContent>
               <CardFooter>
                 <Button id="save-latefee-btn" onClick={handleSave} variant="primary">
-                  <Save size={16} className="mr-1" /> {saved ? '✓ Saved!' : '💾 Save Settings'}
+                  <Save size={16} className="mr-1" /> {saved ? 'âœ“ Saved!' : 'ðŸ’¾ Save Settings'}
                 </Button>
               </CardFooter>
             </Card>
@@ -162,14 +162,14 @@ export function AdminSystemSettingsClient() {
                 <CardDescription>Configure automatic seat suspension for defaulters.</CardDescription>
               </CardHeader>
               <CardContent className="space-y-5">
-                <div className="flex items-center justify-between p-4 rounded-xl bg-bg-pageg-card border border-border">
+                <div className="flex items-center justify-between p-4 rounded-xl bg-card border border-border">
                   <div>
                     <p className="text-sm font-medium text-text-primary">Enable Auto-Suspend</p>
                     <p className="text-xs text-text-secondary">Suspend seats after payment overdue</p>
                   </div>
                   <Switch id="enable-auto-suspend" checked={form.enableAutoSuspend} onCheckedChange={v => setForm(f => ({ ...f, enableAutoSuspend: v }))} />
                 </div>
-                <div className="flex items-center justify-between p-4 rounded-xl bg-bg-pageg-card border border-border">
+                <div className="flex items-center justify-between p-4 rounded-xl bg-card border border-border">
                   <div>
                     <p className="text-sm font-medium text-text-primary">Auto-Restore on Payment</p>
                     <p className="text-xs text-text-secondary">Automatically restore when payment is received</p>
@@ -186,7 +186,7 @@ export function AdminSystemSettingsClient() {
               </CardContent>
               <CardFooter>
                 <Button id="save-autosuspend-btn" onClick={handleSave} variant="primary">
-                  <Save size={16} className="mr-1" /> {saved ? '✓ Saved!' : '💾 Save Settings'}
+                  <Save size={16} className="mr-1" /> {saved ? 'âœ“ Saved!' : 'ðŸ’¾ Save Settings'}
                 </Button>
               </CardFooter>
             </Card>
@@ -201,7 +201,7 @@ export function AdminSystemSettingsClient() {
               <CardContent className="space-y-5">
                 <div className="space-y-2">
                   <Label htmlFor="upi-qr">UPI QR Code</Label>
-                  <div id="upi-qr" className="flex flex-col items-center justify-center border-2 border-dashed border-border rounded-xl p-8 cursor-pointer hover:bg-bg-pageg-card transition-colors">
+                  <div id="upi-qr" className="flex flex-col items-center justify-center border-2 border-dashed border-border rounded-xl p-8 cursor-pointer hover:bg-card transition-colors">
                     <Upload size={24} className="text-text-secondary mb-2" />
                     <span className="text-sm text-text-secondary">Upload QR Code image</span>
                   </div>
@@ -213,10 +213,10 @@ export function AdminSystemSettingsClient() {
                 <div className="space-y-3">
                   <Label>Accepted Payment Modes</Label>
                   {[
-                    { key: 'acceptCash', label: '💵 Cash' },
-                    { key: 'acceptUpi', label: '📱 UPI' },
-                    { key: 'acceptCard', label: '💳 Card' },
-                    { key: 'acceptBank', label: '🏦 Bank Transfer' },
+                    { key: 'acceptCash', label: 'ðŸ’µ Cash' },
+                    { key: 'acceptUpi', label: 'ðŸ“± UPI' },
+                    { key: 'acceptCard', label: 'ðŸ’³ Card' },
+                    { key: 'acceptBank', label: 'ðŸ¦ Bank Transfer' },
                   ].map(({ key, label }) => (
                     <label key={key} className="flex items-center gap-3 cursor-pointer">
                       <input
@@ -224,7 +224,7 @@ export function AdminSystemSettingsClient() {
                         id={`payment-${key}`}
                         checked={form[key as keyof typeof form] as boolean}
                         onChange={e => setForm(f => ({ ...f, [key]: e.target.checked }))}
-                        className="h-4 w-4 rounded border-border bg-bg-pageg-card accent-primary"
+                        className="h-4 w-4 rounded border-border bg-card accent-primary"
                       />
                       <span className="text-sm text-text-primary">{label}</span>
                     </label>
@@ -233,7 +233,7 @@ export function AdminSystemSettingsClient() {
               </CardContent>
               <CardFooter>
                 <Button id="save-upi-btn" onClick={handleSave} variant="primary">
-                  <Save size={16} className="mr-1" /> {saved ? '✓ Saved!' : '💾 Save Settings'}
+                  <Save size={16} className="mr-1" /> {saved ? 'âœ“ Saved!' : 'ðŸ’¾ Save Settings'}
                 </Button>
               </CardFooter>
             </Card>
@@ -265,11 +265,11 @@ export function AdminSystemSettingsClient() {
                     </button>
                   </div>
                 </div>
-                <Button id="test-connection-btn" variant="ghost">🔌 Test Connection</Button>
+                <Button id="test-connection-btn" variant="ghost">ðŸ”Œ Test Connection</Button>
               </CardContent>
               <CardFooter>
                 <Button id="save-notifications-btn" onClick={handleSave} variant="primary">
-                  <Save size={16} className="mr-1" /> {saved ? '✓ Saved!' : '💾 Save Settings'}
+                  <Save size={16} className="mr-1" /> {saved ? 'âœ“ Saved!' : 'ðŸ’¾ Save Settings'}
                 </Button>
               </CardFooter>
             </Card>
@@ -292,12 +292,12 @@ export function AdminSystemSettingsClient() {
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="library-currency">Currency</Label>
-                  <Input id="library-currency" defaultValue="INR (₹)" />
+                  <Input id="library-currency" defaultValue="INR (â‚¹)" />
                 </div>
               </CardContent>
               <CardFooter>
                 <Button id="save-general-btn" onClick={handleSave} variant="primary">
-                  <Save size={16} className="mr-1" /> {saved ? '✓ Saved!' : '💾 Save Settings'}
+                  <Save size={16} className="mr-1" /> {saved ? 'âœ“ Saved!' : 'ðŸ’¾ Save Settings'}
                 </Button>
               </CardFooter>
             </Card>

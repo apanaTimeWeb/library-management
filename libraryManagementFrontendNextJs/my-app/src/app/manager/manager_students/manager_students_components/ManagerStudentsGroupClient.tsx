@@ -10,7 +10,7 @@ export function ManagerStudentsGroupClient() {
       <div className="p-6 min-h-screen-header">
         <div>
           <Link href={MANAGER_ROUTES.STUDENTS} className="inline-flex items-center gap-2 text-sm font-medium text-text-secondary hover:text-primary transition-colors mb-4">
-            ← Back to Students
+            â† Back to Students
           </Link>
           <h1 className="text-[22px] font-bold text-text-primary">Group Admission</h1>
         </div>
@@ -27,7 +27,7 @@ export function ManagerStudentsGroupClient() {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div className="bg-bg-pageg-card rounded-xl border border-border p-6 flex flex-col items-center justify-center text-center gap-4 border-dashed border-2 border-border bg-transparent hover:border-primary transition-colors cursor-pointer">
+        <div className="bg-card rounded-xl border border-border p-6 flex flex-col items-center justify-center text-center gap-4 border-dashed border-2 border-border bg-transparent hover:border-primary transition-colors cursor-pointer">
           <div className="w-16 h-16 rounded-full bg-primary-subtle flex items-center justify-center text-primary mb-2">
             <Upload size={28} />
           </div>
@@ -38,7 +38,7 @@ export function ManagerStudentsGroupClient() {
           <button className="bg-primary text-white rounded-lg px-5 py-2.5 text-sm font-medium hover:bg-primary-hover transition-colors inline-flex items-center gap-2 mt-2">Choose File</button>
         </div>
 
-        <div className="bg-bg-pageg-card rounded-xl border border-border p-6 flex flex-col items-center justify-center text-center gap-4 border-dashed border-2 border-border bg-transparent hover:border-success transition-colors cursor-pointer">
+        <div className="bg-card rounded-xl border border-border p-6 flex flex-col items-center justify-center text-center gap-4 border-dashed border-2 border-border bg-transparent hover:border-success transition-colors cursor-pointer">
           <div className="w-16 h-16 rounded-full bg-success-bg flex items-center justify-center text-success mb-2">
             <Users2 size={28} />
           </div>
@@ -50,7 +50,7 @@ export function ManagerStudentsGroupClient() {
         </div>
       </div>
 
-      <div className="bg-bg-pageg-card rounded-xl border border-border p-6 mt-6">
+      <div className="bg-card rounded-xl border border-border p-6 mt-6">
         <h3 className="font-semibold text-text-primary mb-4">Recent Group Admissions</h3>
         <div className="text-center text-text-secondary py-12">
           No recent group admissions found.

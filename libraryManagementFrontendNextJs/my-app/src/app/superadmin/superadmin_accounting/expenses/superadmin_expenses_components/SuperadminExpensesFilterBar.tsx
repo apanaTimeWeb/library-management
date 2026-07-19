@@ -11,7 +11,7 @@ export function SuperadminExpensesFilterBar({ categories, catFilter, setCatFilte
   const router = useRouter();
 
   return (
-    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-4 bg-bg-pageg-card border border-border rounded-lg shadow-sm mb-6">
+    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-4 bg-card border border-border rounded-lg shadow-sm mb-6">
       <div className="flex flex-col gap-1.5 w-full sm:w-48">
         <label className="text-xs font-bold text-text-disabled uppercase tracking-wider">Filter by Category</label>
         <SuperadminSearchableDropdown
@@ -24,7 +24,7 @@ export function SuperadminExpensesFilterBar({ categories, catFilter, setCatFilte
         />
       </div>
       <button 
-        className="flex items-center justify-center gap-2 bg-bg-pageg-page border border-border hover:bg-bg-pageg-input hover:border-primary text-text-primary text-sm font-bold py-2 px-4 rounded-md transition-colors shadow-sm mt-auto cursor-pointer" 
+        className="flex items-center justify-center gap-2 bg-page border border-border hover:bg-input hover:border-primary text-text-primary text-sm font-bold py-2 px-4 rounded-md transition-colors shadow-sm mt-auto cursor-pointer" 
         onClick={() => router.push(SUPERADMIN_ROUTES.ACCOUNTING_EXPENSE_CATEGORIES)}
       >
         <TrendingUp size={14} className="text-primary" /> View Categories

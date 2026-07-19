@@ -54,7 +54,7 @@ export function AdminAssetsClient() {
       {/* page Header */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b pb-4">
         <div>
-          <h1 className="text-text-primaryxl font-bold tracking-tight">Asset Manager</h1>
+          <h1 className="text-text-primary text-xl font-bold tracking-tight">Asset Manager</h1>
           <p className="text-sm text-muted-foreground mt-1">Track all library assets and their current valuation.</p>
         </div>
         <Button onClick={() => setIsAddOpen(true)} className="gap-2">
@@ -79,7 +79,7 @@ export function AdminAssetsClient() {
           <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
           <Input
             className="pl-9 w-full"
-            placeholder="Search by asset name or location…"
+            placeholder="Search by asset name or locationâ€¦"
             value={searchInput}
             onChange={(e) => setSearchInput(e.target.value)}
           />
@@ -88,7 +88,7 @@ export function AdminAssetsClient() {
         <div className="flex items-center gap-2">
           <Filter size={16} className="text-muted-foreground" />
           <AdminSearchableDropdown
-            className="flex h-10 w-44 items-center justify-between rounded-md border border-border bg-bg-pageg-input px-3 py-2 text-sm ring-offset-bg-page placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+            className="flex h-10 w-44 items-center justify-between rounded-md border border-border bg-input px-3 py-2 text-sm ring-offset-bg-page placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
             value={categoryFilter}
             onChange={(e) => setCategoryFilter(e.target.value)}
           >
@@ -109,7 +109,7 @@ export function AdminAssetsClient() {
       {/* Grid */}
       <Card className="flex-1 shadow-none border-border overflow-hidden flex flex-col min-h-96">
         {fetchState === 'loading' && assets.length === 0 ? (
-          <div className="flex items-center justify-center h-full text-muted-foreground">Loading assets…</div>
+          <div className="flex items-center justify-center h-full text-muted-foreground">Loading assetsâ€¦</div>
         ) : (<>
             <div className="mb-4">
         <TableToolbar 

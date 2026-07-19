@@ -6,13 +6,13 @@ export function ManagerReportsHeader() {
   return (
     <div className="flex flex-col gap-1 mb-6">
       <p className="text-xs font-medium text-text-secondary uppercase tracking-wider">
-        Manager › Reports
+        Manager â€º Reports
       </p>
-      <h1 className="text-text-primaryxl font-bold text-text-primary">
+      <h1 className="text-text-primary text-xl font-bold text-text-primary">
         Reports
       </h1>
       <p className="text-sm text-text-secondary">
-        Operational overview — finance reports blocked
+        Operational overview â€” finance reports blocked
       </p>
     </div>
   );

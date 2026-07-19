@@ -40,7 +40,7 @@ export function SuperadminSystemSettingsClient() {
                 className={`flex items-center gap-3 rounded-xl px-4 py-2.5 text-sm font-medium transition-all duration-150 text-left ${
                   active === id
                     ? 'bg-primary/15 text-primary border border-primary/20'
-                    : 'text-text-secondary hover:bg-bg-pageg-card hover:text-text-primary'
+                    : 'text-text-secondary hover:bg-card hover:text-text-primary'
                 }`}
               >
                 <Icon size={16} />
@@ -63,7 +63,7 @@ export function SuperadminSystemSettingsClient() {
                   <SuperadminLabel htmlFor="logo-upload">Logo</SuperadminLabel>
                   <div
                     id="logo-upload"
-                    className="flex flex-col items-center justify-center border-2 border-dashed border-border rounded-xl p-8 cursor-pointer hover:bg-bg-pageg-card transition-colors group"
+                    className="flex flex-col items-center justify-center border-2 border-dashed border-border rounded-xl p-8 cursor-pointer hover:bg-card transition-colors group"
                   >
                     <Upload size={24} className="text-text-secondary group-hover:text-primary transition-colors mb-2" />
                     <span className="text-sm text-text-secondary">Drop logo here or <span className="text-primary">browse</span></span>
@@ -106,7 +106,7 @@ export function SuperadminSystemSettingsClient() {
                 <CardDescription>Define penalty rules for overdue payments.</CardDescription>
               </CardHeader>
               <CardContent className="space-y-5">
-                <div className="flex items-center justify-between p-4 rounded-xl bg-bg-pageg-card border border-border">
+                <div className="flex items-center justify-between p-4 rounded-xl bg-card border border-border">
                   <div>
                     <p className="text-sm font-medium text-text-primary">Enable Late Fees</p>
                     <p className="text-xs text-text-secondary">Automatically apply penalties after due date</p>
@@ -124,7 +124,7 @@ export function SuperadminSystemSettingsClient() {
                   <div className="space-y-2">
                     <SuperadminLabel htmlFor="penalty-per-day">Penalty Per Day</SuperadminLabel>
                     <div className="flex items-center gap-2">
-                      <span className="text-sm text-text-secondary">₹</span>
+                      <span className="text-sm text-text-secondary">â‚¹</span>
                       <SuperadminInput id="penalty-per-day" type="number" value={form.penaltyPerDay} onChange={e => setForm(f => ({ ...f, penaltyPerDay: +e.target.value }))} />
                     </div>
                   </div>
@@ -145,14 +145,14 @@ export function SuperadminSystemSettingsClient() {
                 <CardDescription>Configure automatic seat suspension for defaulters.</CardDescription>
               </CardHeader>
               <CardContent className="space-y-5">
-                <div className="flex items-center justify-between p-4 rounded-xl bg-bg-pageg-card border border-border">
+                <div className="flex items-center justify-between p-4 rounded-xl bg-card border border-border">
                   <div>
                     <p className="text-sm font-medium text-text-primary">Enable Auto-Suspend</p>
                     <p className="text-xs text-text-secondary">Suspend seats after payment overdue</p>
                   </div>
                   <SuperadminSwitch id="enable-auto-suspend" checked={form.enableAutoSuspend} onCheckedChange={v => setForm(f => ({ ...f, enableAutoSuspend: v }))} />
                 </div>
-                <div className="flex items-center justify-between p-4 rounded-xl bg-bg-pageg-card border border-border">
+                <div className="flex items-center justify-between p-4 rounded-xl bg-card border border-border">
                   <div>
                     <p className="text-sm font-medium text-text-primary">Auto-Restore on Payment</p>
                     <p className="text-xs text-text-secondary">Automatically restore when payment is received</p>
@@ -184,7 +184,7 @@ export function SuperadminSystemSettingsClient() {
               <CardContent className="space-y-5">
                 <div className="space-y-2">
                   <SuperadminLabel htmlFor="upi-qr">UPI QR Code</SuperadminLabel>
-                  <div id="upi-qr" className="flex flex-col items-center justify-center border-2 border-dashed border-border rounded-xl p-8 cursor-pointer hover:bg-bg-pageg-card transition-colors">
+                  <div id="upi-qr" className="flex flex-col items-center justify-center border-2 border-dashed border-border rounded-xl p-8 cursor-pointer hover:bg-card transition-colors">
                     <Upload size={24} className="text-text-secondary mb-2" />
                     <span className="text-sm text-text-secondary">Upload QR Code image</span>
                   </div>
@@ -196,10 +196,10 @@ export function SuperadminSystemSettingsClient() {
                 <div className="space-y-3">
                   <SuperadminLabel>Accepted Payment Modes</SuperadminLabel>
                   {[
-                    { key: 'acceptCash', label: '💵 Cash' },
-                    { key: 'acceptUpi', label: '📱 UPI' },
-                    { key: 'acceptCard', label: '💳 Card' },
-                    { key: 'acceptBank', label: '🏦 Bank Transfer' },
+                    { key: 'acceptCash', label: 'ðŸ’µ Cash' },
+                    { key: 'acceptUpi', label: 'ðŸ“± UPI' },
+                    { key: 'acceptCard', label: 'ðŸ’³ Card' },
+                    { key: 'acceptBank', label: 'ðŸ¦ Bank Transfer' },
                   ].map(({ key, label }) => (
                     <label key={key} className="flex items-center gap-3 cursor-pointer">
                       <input
@@ -207,7 +207,7 @@ export function SuperadminSystemSettingsClient() {
                         id={`payment-${key}`}
                         checked={form[key as keyof typeof form] as boolean}
                         onChange={e => setForm(f => ({ ...f, [key]: e.target.checked }))}
-                        className="h-4 w-4 rounded border-border bg-bg-pageg-card accent-primary"
+                        className="h-4 w-4 rounded border-border bg-card accent-primary"
                       />
                       <span className="text-sm text-text-primary">{label}</span>
                     </label>
@@ -248,7 +248,7 @@ export function SuperadminSystemSettingsClient() {
                     </button>
                   </div>
                 </div>
-                <SuperadminButton id="test-connection-btn" variant="ghost">🔌 Test Connection</SuperadminButton>
+                <SuperadminButton id="test-connection-btn" variant="ghost">ðŸ”Œ Test Connection</SuperadminButton>
               </CardContent>
               <CardFooter>
                 <SuperadminButton id="save-notifications-btn" onClick={handleSave} variant="primary">
@@ -275,7 +275,7 @@ export function SuperadminSystemSettingsClient() {
                 </div>
                 <div className="space-y-2">
                   <SuperadminLabel htmlFor="library-currency">Currency</SuperadminLabel>
-                  <SuperadminInput id="library-currency" defaultValue="INR (₹)" />
+                  <SuperadminInput id="library-currency" defaultValue="INR (â‚¹)" />
                 </div>
               </CardContent>
               <CardFooter>

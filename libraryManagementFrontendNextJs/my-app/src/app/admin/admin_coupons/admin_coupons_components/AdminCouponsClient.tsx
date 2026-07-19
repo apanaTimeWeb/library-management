@@ -52,7 +52,7 @@ function DiscountCell({ data }: { data: CouponRecord }) {
   if (!data) return null;
   return (
     <span className="font-semibold text-primary">
-      {data.type === 'Flat' ? `₹${data.discount}` : `${data.discount}%`} off
+      {data.type === 'Flat' ? `â‚¹${data.discount}` : `${data.discount}%`} off
     </span>
   );
 }
@@ -87,7 +87,7 @@ function StatusCell({ value }: { value: string }) {
         'bg-warning/10 text-warning'
       }`}
     >
-      {value === 'Active' ? '✅ Active' : value === 'Expired' ? '🔴 Expired' : '⚠️ Exhausted'}
+      {value === 'Active' ? 'âœ… Active' : value === 'Expired' ? 'ðŸ”´ Expired' : 'âš ï¸ Exhausted'}
     </Badge>
   );
 }
@@ -136,9 +136,9 @@ export function AdminCouponsClient() {
       <div className="border-b border-border pb-4 flex flex-wrap items-end justify-between gap-4">
         <div>
           <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-1">
-            Smart Library 360 <span className="opacity-50">›</span> Admin <span className="opacity-50">›</span> Coupons
+            Smart Library 360 <span className="opacity-50">â€º</span> Admin <span className="opacity-50">â€º</span> Coupons
           </p>
-          <h1 className="text-text-primaryxl font-bold tracking-tight text-foreground">Coupons</h1>
+          <h1 className="text-text-primary text-xl font-bold tracking-tight text-foreground">Coupons</h1>
           <p className="text-sm text-muted-foreground mt-1">Create and track promotional discount coupon codes.</p>
         </div>
         <Button onClick={() => setIsAddOpen(true)} className="gap-2">
@@ -167,7 +167,7 @@ export function AdminCouponsClient() {
           <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
           <Input
             className="pl-9"
-            placeholder="Search code or status…"
+            placeholder="Search code or statusâ€¦"
             value={searchInput}
             onChange={(e) => setSearchInput(e.target.value)}
           />
@@ -279,7 +279,7 @@ export function AdminCouponsClient() {
                 <div>
                   <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Discount Value</span>
                   <p className="font-bold text-base text-primary mt-0.5">
-                    {selectedCoupon.type === 'Flat' ? `₹${selectedCoupon.discount}` : `${selectedCoupon.discount}%`} off
+                    {selectedCoupon.type === 'Flat' ? `â‚¹${selectedCoupon.discount}` : `${selectedCoupon.discount}%`} off
                   </p>
                 </div>
                 <div>

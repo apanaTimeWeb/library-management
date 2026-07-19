@@ -5,7 +5,7 @@ import { Phone, Shield, Wifi } from 'lucide-react';
 
 import { IdCardData } from '@/app/manager/manager_students/manager_students_types';
 
-/* ── Barcode SVG stripes — deterministic from ID ── */
+/* â”€â”€ Barcode SVG stripes â€” deterministic from ID â”€â”€ */
 function BarcodeStripes({ id }: { id: string }) {
   const bars: { width: number; gap: number }[] = [];
   for (let i = 0; i < 28; i++) {
@@ -28,7 +28,7 @@ function BarcodeStripes({ id }: { id: string }) {
   );
 }
 
-/* ── QR-pattern visual — deterministic ── */
+/* â”€â”€ QR-pattern visual â€” deterministic â”€â”€ */
 function QrPattern({ id }: { id: string }) {
   const pattern: boolean[] = [];
   for (let i = 0; i < 25; i++) {
@@ -39,7 +39,7 @@ function QrPattern({ id }: { id: string }) {
   return (
     <div className="grid grid-cols-5 gap-0.5 p-1 bg-white w-14 h-14" aria-label={`QR code for ${id}`}>
       {pattern.map((on, i) => (
-        <div key={i} className={`w-2 h-2 ${on ? 'bg-bg-pagelack' : 'bg-bg-pageg-page'}`} />
+        <div key={i} className={`w-2 h-2 ${on ? 'bg-bg-pagelack' : 'bg-page'}`} />
       ))}
     </div>
   );
@@ -63,16 +63,16 @@ export default function ManagerStudentsIdCard({ data }: ManagerStudentsIdCardPro
 
   return (
     <div className="flex items-center justify-center p-4">
-      {/* ── FRONT of ID card ── */}
+      {/* â”€â”€ FRONT of ID card â”€â”€ */}
       <div className="relative w-84 bg-white rounded-2xl overflow-hidden shadow-xl border border-border text-text-primary font-sans" id="student-id-card-print">
 
         {/* Holographic diagonal lines overlay */}
         <div className="absolute inset-0 pointer-events-none opacity-20 bg-[linear-gradient(45deg,transparent_25%,var(--border)_50%,transparent_75%,transparent_100%)] bg-[length:20px_20px]" aria-hidden="true" />
 
-        {/* ── Header band ── */}
-        <div className="bg-bg-pageg-elevated text-white p-4 flex justify-between items-start relative z-10">
+        {/* â”€â”€ Header band â”€â”€ */}
+        <div className="bg-card text-white p-4 flex justify-between items-start relative z-10">
           <div className="flex items-center gap-3">
-            <div className="text-text-primaryxl">📚</div>
+            <div className="text-text-primary text-xl">ðŸ“š</div>
             <div>
               <div className="text-sm font-bold tracking-wider leading-tight">SMART LIBRARY 360</div>
               <div className="font-semibold text-text-secondary tracking-widest uppercase" style={{ fontSize: '9px' }}>{data.branch ?? 'MAIN BRANCH'}</div>
@@ -84,7 +84,7 @@ export default function ManagerStudentsIdCard({ data }: ManagerStudentsIdCardPro
           </div>
         </div>
 
-        {/* ── Body ── */}
+        {/* â”€â”€ Body â”€â”€ */}
         <div className="p-5 relative z-10 bg-white">
 
           {/* Profile row */}
@@ -102,7 +102,7 @@ export default function ManagerStudentsIdCard({ data }: ManagerStudentsIdCardPro
 
             <div className="flex-1 min-w-0">
               <p className="text-lg font-bold text-text-primary truncate leading-tight">{data.name}</p>
-              {data.college && <p className="text-text-secondary truncate mt-1" style={{ fontSize: '10px' }}>🎓 {data.college}</p>}
+              {data.college && <p className="text-text-secondary truncate mt-1" style={{ fontSize: '10px' }}>ðŸŽ“ {data.college}</p>}
               <p className="flex items-center gap-1 font-medium text-text-secondary mt-1.5" style={{ fontSize: '11px' }}>
                 <Phone size={10} /> {data.phone}
               </p>
@@ -117,33 +117,33 @@ export default function ManagerStudentsIdCard({ data }: ManagerStudentsIdCardPro
             <div className="flex-1 bg-emerald-500" />
           </div>
 
-          {/* Details grid — 4 boxes */}
+          {/* Details grid â€” 4 boxes */}
           <div className="grid grid-cols-4 gap-2 mb-5">
             <div className="border-t-2 pt-1.5 border-t-[#6366F1]">
-              <div className="font-bold text-text-secondary tracking-widest" style={{ fontSize: '8px' }}>⏰ SHIFT</div>
+              <div className="font-bold text-text-secondary tracking-widest" style={{ fontSize: '8px' }}>â° SHIFT</div>
               <div className="font-bold text-text-primary mt-0.5 truncate" style={{ fontSize: '11px' }}>{shiftLabel}</div>
             </div>
             <div className="border-t-2 pt-1.5 border-t-[#8B5CF6]">
-              <div className="font-bold text-text-secondary tracking-widest" style={{ fontSize: '8px' }}>💺 SEAT</div>
+              <div className="font-bold text-text-secondary tracking-widest" style={{ fontSize: '8px' }}>ðŸ’º SEAT</div>
               <div className="font-bold text-text-primary mt-0.5 truncate" style={{ fontSize: '11px' }}>{data.seat}</div>
             </div>
             <div className="border-t-2 pt-1.5 border-t-[#3B82F6]">
-              <div className="font-bold text-text-secondary tracking-widest" style={{ fontSize: '8px' }}>📋 PLAN</div>
+              <div className="font-bold text-text-secondary tracking-widest" style={{ fontSize: '8px' }}>ðŸ“‹ PLAN</div>
               <div className="font-bold text-text-primary mt-0.5 truncate" style={{ fontSize: '11px' }}>{data.plan.split(' ')[0]}</div>
             </div>
             <div>
-              <div className="font-bold text-text-secondary tracking-widest" style={{ fontSize: '8px' }}>🔐 LOCKER</div>
+              <div className="font-bold text-text-secondary tracking-widest" style={{ fontSize: '8px' }}>ðŸ” LOCKER</div>
               <div className="font-bold text-text-primary mt-0.5 truncate" style={{ fontSize: '11px' }}>{data.locker === 'None' ? 'N/A' : data.locker.split(' ')[0]}</div>
             </div>
           </div>
 
           {/* Validity row */}
-          <div className="flex items-center justify-between bg-bg-pageg-elevated rounded-lg p-2.5 mb-5 border border-border">
+          <div className="flex items-center justify-between bg-card rounded-lg p-2.5 mb-5 border border-border">
             <div>
               <div className="font-bold text-text-secondary tracking-widest mb-0.5" style={{ fontSize: '8px' }}>VALID FROM</div>
               <div className="font-bold text-text-primary" style={{ fontSize: '10px' }}>{data.joinDate}</div>
             </div>
-            <div className="text-border" style={{ fontSize: '10px' }}>▶</div>
+            <div className="text-border" style={{ fontSize: '10px' }}>â–¶</div>
             <div className="text-right">
               <div className="font-bold text-text-secondary tracking-widest mb-0.5" style={{ fontSize: '8px' }}>EXPIRES</div>
               <div className="font-bold text-danger" style={{ fontSize: '10px' }}>{data.expiryDate}</div>

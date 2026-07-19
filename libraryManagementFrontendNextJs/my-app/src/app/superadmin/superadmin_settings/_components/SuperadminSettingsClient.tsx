@@ -30,7 +30,7 @@ export function SuperadminSettingsClient() {
           <span>Nexus 360</span><span>/</span><span>Super Admin</span><span>/</span><span>Settings</span>
         </div>
         <div className="flex items-center justify-between">
-          <h1 className="text-text-primaryxl font-bold text-text-primary tracking-tight">Global Security & Base Config</h1>
+          <h1 className="text-text-primary text-xl font-bold text-text-primary tracking-tight">Global Security & Base Config</h1>
           <button className="h-9 px-4 bg-primary text-white text-sm font-medium rounded-md hover:bg-primary-hover transition-colors inline-flex items-center justify-center gap-2 disabled:opacity-50" onClick={handleSave}>
             {saved ? <><CheckCircle size={15} /> Saved!</> : <><Save size={15} /> Save Changes</>}
           </button>
@@ -41,25 +41,25 @@ export function SuperadminSettingsClient() {
         <div className="lg:col-span-2 space-y-6">
 
           {/* Platform Identity */}
-          <div className="bg-bg-pageg-card border border-border rounded-xl shadow-sm overflow-hidden p-6">
+          <div className="bg-card border border-border rounded-xl shadow-sm overflow-hidden p-6">
             <h2 className="text-base font-bold text-primary mb-5 flex items-center gap-2">
               <Building size={15} className="text-primary" /> Platform Identity
             </h2>
             <div className="space-y-4">
                <div>
                 <label className="block text-sm font-semibold text-text-secondary mb-1.5">Platform Name</label>
-                <input type="text" className="w-full h-9 px-3 bg-bg-pageg-input border border-border rounded-md text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all" value={platform.name}
+                <input type="text" className="w-full h-9 px-3 bg-input border border-border rounded-md text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all" value={platform.name}
                   onChange={e => setPlatform(p => ({ ...p, name: e.target.value }))} />
               </div>
               <div className="grid grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm font-semibold text-text-secondary mb-1.5">Support Email</label>
-                  <input type="text" className="w-full h-9 px-3 bg-bg-pageg-input border border-border rounded-md text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all" value={platform.email}
+                  <input type="text" className="w-full h-9 px-3 bg-input border border-border rounded-md text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all" value={platform.email}
                     onChange={e => setPlatform(p => ({ ...p, email: e.target.value }))} />
                 </div>
                 <div>
                   <label className="block text-sm font-semibold text-text-secondary mb-1.5">Contact Phone</label>
-                  <input type="text" className="w-full h-9 px-3 bg-bg-pageg-input border border-border rounded-md text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all" value={platform.phone}
+                  <input type="text" className="w-full h-9 px-3 bg-input border border-border rounded-md text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all" value={platform.phone}
                     onChange={e => setPlatform(p => ({ ...p, phone: e.target.value }))} />
                 </div>
               </div>
@@ -67,7 +67,7 @@ export function SuperadminSettingsClient() {
           </div>
 
           {/* Notifications */}
-          <div className="bg-bg-pageg-card border border-border rounded-xl shadow-sm overflow-hidden p-6">
+          <div className="bg-card border border-border rounded-xl shadow-sm overflow-hidden p-6">
             <h2 className="text-base font-bold text-primary mb-5 flex items-center gap-2">
               <Mail size={15} className="text-success" /> SaaS Auto-Notifications
             </h2>
@@ -87,7 +87,7 @@ export function SuperadminSettingsClient() {
 
         <div className="space-y-6">
           {/* Security */}
-          <div className="bg-bg-pageg-card border border-border rounded-xl shadow-sm overflow-hidden p-6">
+          <div className="bg-card border border-border rounded-xl shadow-sm overflow-hidden p-6">
             <h2 className="text-base font-bold text-primary mb-4 flex items-center gap-2">
               <ShieldCheck size={15} className="text-warning" /> Security Defaults
             </h2>
@@ -97,13 +97,13 @@ export function SuperadminSettingsClient() {
             <div className="space-y-4 pt-4 border-t border-border">
               <div>
                 <label className="block text-sm font-semibold text-text-secondary mb-1.5">Max Login Attempts</label>
-                <input type="number" className="w-full h-9 px-3 bg-bg-pageg-input border border-border rounded-md text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all" min={1} max={10}
+                <input type="number" className="w-full h-9 px-3 bg-input border border-border rounded-md text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all" min={1} max={10}
                   value={security.maxAttempts}
                   onChange={e => setSecurity(s => ({ ...s, maxAttempts: +e.target.value }))} />
               </div>
               <div>
                 <label className="block text-sm font-semibold text-text-secondary mb-1.5">Staff Auto-Logout (Mins)</label>
-                <input type="number" className="w-full h-9 px-3 bg-bg-pageg-input border border-border rounded-md text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all" min={5} max={120}
+                <input type="number" className="w-full h-9 px-3 bg-input border border-border rounded-md text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all" min={5} max={120}
                   value={security.autoLogout}
                   onChange={e => setSecurity(s => ({ ...s, autoLogout: +e.target.value }))} />
               </div>
@@ -111,7 +111,7 @@ export function SuperadminSettingsClient() {
           </div>
 
           <div className="bg-info-bg border border-info/20 text-info rounded-xl p-4 text-sm leading-relaxed">
-            💡 Changes apply to all <strong>newly provisioned</strong> branches. Existing branches retain their current settings until manually updated.
+            ðŸ’¡ Changes apply to all <strong>newly provisioned</strong> branches. Existing branches retain their current settings until manually updated.
           </div>
         </div>
       </div>

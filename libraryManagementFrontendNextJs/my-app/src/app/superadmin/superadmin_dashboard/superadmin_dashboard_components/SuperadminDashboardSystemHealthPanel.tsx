@@ -14,8 +14,8 @@ const METRICS = [
 
 export function SuperadminDashboardSystemHealthPanel({ data }: Props) {
   return (
-    <div className="col-span-12 lg:col-span-7 bg-bg-pageg-card border border-border rounded-lg flex flex-col overflow-hidden shadow-sm">
-      <div className="p-6 border-b border-border bg-bg-pageg-page/30">
+    <div className="col-span-12 lg:col-span-7 bg-card border border-border rounded-lg flex flex-col overflow-hidden shadow-sm">
+      <div className="p-6 border-b border-border bg-page/30">
         <h2 className="text-base font-bold text-text-primary">System Health</h2>
       </div>
 
@@ -33,7 +33,7 @@ export function SuperadminDashboardSystemHealthPanel({ data }: Props) {
         ))}
       </div>
 
-      <div className="mt-auto p-4 border-t border-border bg-bg-pageg-page/30">
+      <div className="mt-auto p-4 border-t border-border bg-page/30">
         <Link href={SUPERADMIN_ROUTES.SYSTEM_HEALTH} className="flex items-center justify-center gap-1.5 text-xs font-semibold text-primary hover:text-primary-hover transition-colors">
           <ExternalLink size={13} /> View Full System Report
         </Link>

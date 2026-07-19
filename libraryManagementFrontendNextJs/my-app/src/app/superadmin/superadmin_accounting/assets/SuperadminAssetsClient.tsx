@@ -31,13 +31,13 @@ export function SuperadminAssetsClient() {
 
   const onSaveAsset = async (assetData: Omit<SuperadminAsset, 'id' | 'currentValue' | 'status'>) => {
     await handleAddAsset(assetData);
-    showToast('✅ Asset added successfully');
+    showToast('âœ… Asset added successfully');
   };
 
   return (
     <div className="relative p-2 sm:p-4">
       {toast && (
-        <div className="fixed top-24 right-8 z-50 bg-bg-pageg-card border border-border shadow-xl rounded-md px-4 py-3 flex items-center gap-3 animate-in slide-in-from-top-4 duration-300">
+        <div className="fixed top-24 right-8 z-50 bg-card border border-border shadow-xl rounded-md px-4 py-3 flex items-center gap-3 animate-in slide-in-from-top-4 duration-300">
           <span className="text-sm font-semibold text-text-primary">{toast}</span>
         </div>
       )}

@@ -25,7 +25,7 @@ export function SuperadminSystemOfflineClient() {
           <>
             <div className="relative mb-8">
               <div className="absolute inset-0 bg-danger/20 rounded-full animate-ping" style={{ animationDuration: '3s' }} />
-              <div className="h-32 w-32 rounded-full bg-bg-pageg-card border-4 border-danger flex items-center justify-center text-danger relative z-10 shadow-2xl">
+              <div className="h-32 w-32 rounded-full bg-card border-4 border-danger flex items-center justify-center text-danger relative z-10 shadow-2xl">
                 <WifiOff size={48} />
               </div>
             </div>
@@ -40,7 +40,7 @@ export function SuperadminSystemOfflineClient() {
               disabled={checking}
               className={`flex items-center gap-2 px-8 py-4 rounded-xl text-lg font-semibold transition-all ${
                 checking 
-                  ? 'bg-bg-pageg-input text-text-secondary cursor-not-allowed' 
+                  ? 'bg-input text-text-secondary cursor-not-allowed' 
                   : 'bg-primary text-on-primary hover:bg-primary/90 shadow-lg hover:shadow-primary/20 hover:-translate-y-0.5'
               }`}
             >
@@ -49,13 +49,13 @@ export function SuperadminSystemOfflineClient() {
             </button>
 
             {/* Offline Capabilities Card */}
-            <div className="mt-16 w-full text-left bg-bg-pageg-card border border-border rounded-2xl p-6 shadow-sm">
+            <div className="mt-16 w-full text-left bg-card border border-border rounded-2xl p-6 shadow-sm">
               <h3 className="text-sm font-bold uppercase tracking-wider text-text-secondary mb-4">
                 Available Offline
               </h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {SUPERADMIN_SYSTEM_MOCK_OFFLINE_FEATURES.map((feat: { available: boolean; text: string }) => (
-                  <div key={feat.text} className="flex items-start gap-3 p-3 rounded-xl bg-surface hover:bg-bg-pageg-card transition-colors">
+                  <div key={feat.text} className="flex items-start gap-3 p-3 rounded-xl bg-surface hover:bg-card transition-colors">
                     <CheckCircle size={18} className="text-success mt-0.5 shrink-0" />
                     <div>
                       <p className="font-semibold text-sm text-text-primary">{feat.text}</p>

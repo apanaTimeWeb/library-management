@@ -67,7 +67,7 @@ export function SuperadminInvoiceIdClient() {
           </div>
         </div>
 
-        <div className="grid grid-cols-2 gap-4 mb-8 bg-bg-pageg-elevated p-4 rounded-md">
+        <div className="grid grid-cols-2 gap-4 mb-8 bg-card p-4 rounded-md">
           <div>
             <span className="text-xs font-medium text-text-secondary block mb-1">Invoice Date</span>
             <span className="text-sm font-bold text-text-primary">{formatDate(INV.invoiceDate)}</span>
@@ -81,7 +81,7 @@ export function SuperadminInvoiceIdClient() {
         <TableToolbar search={table.searchTerm} onSearch={table.setSearchTerm} />
       <table className="w-full text-sm mb-6 border-collapse">
           <thead>
-            <tr className="bg-bg-pageg-card text-text-secondary uppercase text-xs font-bold tracking-wider">
+            <tr className="bg-card text-text-secondary uppercase text-xs font-bold tracking-wider">
               <th className="text-left py-3 px-4 rounded-tl-[var(--radius-md)]">Description</th>
               <th className="text-left py-3 px-4">HSN</th>
               <th className="text-left py-3 px-4">Duration</th>
@@ -149,7 +149,7 @@ export function SuperadminInvoiceIdClient() {
         {/* Print/WhatsApp buttons inside card too */}
         <div className="flex gap-3 justify-center mt-10">
           <button 
-            className="flex items-center gap-2 bg-bg-pageg-card text-text-primary border border-border px-4 py-2.5 rounded-md text-sm font-bold hover:bg-bg-pageorder transition-colors cursor-pointer" 
+            className="flex items-center gap-2 bg-card text-text-primary border border-border px-4 py-2.5 rounded-md text-sm font-bold hover:bg-bg-pageorder transition-colors cursor-pointer" 
             onClick={handlePrint}
           >
             <Printer size={16} /> Print Thermal Receipt

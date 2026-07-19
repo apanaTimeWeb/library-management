@@ -97,7 +97,7 @@ export function AdminAssetMaintenanceAddDialog({ isOpen, onClose, onSubmit }: Ad
             </div>
             <div>
               <label className="block text-xs font-semibold text-foreground uppercase tracking-wider mb-1">Type *</label>
-              <AdminSearchableDropdown {...register('type')} className="flex h-10 w-full items-center justify-between rounded-md border border-border bg-bg-pageg-input px-3 py-2 text-sm ring-offset-bg-page placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" disabled={isSubmitting}>
+              <AdminSearchableDropdown {...register('type')} className="flex h-10 w-full items-center justify-between rounded-md border border-border bg-input px-3 py-2 text-sm ring-offset-bg-page placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" disabled={isSubmitting}>
                 <option value="routine">Routine</option>
                 <option value="repair">Repair</option>
                 <option value="upgrade">Upgrade</option>
@@ -107,13 +107,13 @@ export function AdminAssetMaintenanceAddDialog({ isOpen, onClose, onSubmit }: Ad
 
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <label className="block text-xs font-semibold text-foreground uppercase tracking-wider mb-1">Cost (₹) *</label>
+              <label className="block text-xs font-semibold text-foreground uppercase tracking-wider mb-1">Cost (â‚¹) *</label>
               <Input type="number" {...register('cost', { valueAsNumber: true })} placeholder="1200" className="w-full font-bold" disabled={isSubmitting} />
               {errors.cost && <p className="text-xs text-danger mt-1 font-medium">{errors.cost.message}</p>}
             </div>
             <div>
               <label className="block text-xs font-semibold text-foreground uppercase tracking-wider mb-1">Status *</label>
-              <AdminSearchableDropdown {...register('status')} className="flex h-10 w-full items-center justify-between rounded-md border border-border bg-bg-pageg-input px-3 py-2 text-sm ring-offset-bg-page placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" disabled={isSubmitting}>
+              <AdminSearchableDropdown {...register('status')} className="flex h-10 w-full items-center justify-between rounded-md border border-border bg-input px-3 py-2 text-sm ring-offset-bg-page placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" disabled={isSubmitting}>
                 <option value="scheduled">Scheduled</option>
                 <option value="completed">Completed</option>
                 <option value="pending">Pending</option>
@@ -133,7 +133,7 @@ export function AdminAssetMaintenanceAddDialog({ isOpen, onClose, onSubmit }: Ad
             </Button>
             <Button type="submit" disabled={isSubmitting} className="gap-2">
               {isSubmitting && <Loader2 size={15} className="animate-spin" />}
-              {isSubmitting ? 'Saving…' : 'Schedule'}
+              {isSubmitting ? 'Savingâ€¦' : 'Schedule'}
             </Button>
           </div>
         </form>

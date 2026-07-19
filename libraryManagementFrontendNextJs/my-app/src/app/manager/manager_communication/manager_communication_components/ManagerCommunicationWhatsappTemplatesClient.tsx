@@ -49,7 +49,7 @@ export function ManagerCommunicationWhatsappTemplatesClient() {
     <div className="eng-page relative">
       {/* Toast */}
       {toast && (
-        <div className="fixed bottom-4 right-4 bg-bg-pageg-card border border-border shadow-lg rounded-xl px-4 py-3 flex items-center gap-3 z-50 animate-in fade-in slide-in-from-bottom-4">
+        <div className="fixed bottom-4 right-4 bg-card border border-border shadow-lg rounded-xl px-4 py-3 flex items-center gap-3 z-50 animate-in fade-in slide-in-from-bottom-4">
           <div className="w-2 h-2 rounded-full bg-success"></div>
           <p className="text-sm font-medium text-text-primary">{toast}</p>
         </div>
@@ -58,9 +58,9 @@ export function ManagerCommunicationWhatsappTemplatesClient() {
       {/* Test Modal */}
       {showTest && (
         <div className="fixed inset-0 bg-bg-pagelack/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 overflow-y-auto">
-          <div className="bg-bg-pageg-card w-full rounded-2xl shadow-2xl flex flex-col p-6 max-w-sm relative border border-border">
+          <div className="bg-card w-full rounded-2xl shadow-2xl flex flex-col p-6 max-w-sm relative border border-border">
             <button onClick={() => setShowTest(false)} className="eng-modal-close"><X size={16} /></button>
-            <p className="eng-modal-title">📱 Send Test Message</p>
+            <p className="eng-modal-title">ðŸ“± Send Test Message</p>
             <p className="eng-modal-desc">Enter a phone number to send a test version of this template.</p>
             <div>
               <label className="eng-label">Phone Number</label>
@@ -81,7 +81,7 @@ export function ManagerCommunicationWhatsappTemplatesClient() {
         <div className="eng-breadcrumb">
           <span>Communication</span><ChevronRight size={12} /><span>WhatsApp Templates</span>
         </div>
-        <h1 className="eng-page-title">📱 WhatsApp Templates</h1>
+        <h1 className="eng-page-title">ðŸ“± WhatsApp Templates</h1>
         <p className="eng-page-subtitle">Customize automated message templates sent to students.</p>
       </div>
 

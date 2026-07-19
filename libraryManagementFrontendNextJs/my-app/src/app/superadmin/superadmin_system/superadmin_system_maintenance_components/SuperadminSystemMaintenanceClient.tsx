@@ -32,12 +32,12 @@ export function SuperadminSystemMaintenanceClient() {
 
       {/* Summary KPI Cards */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-        <SuperadminKpiCard title="Seats Needing Attention" value={seatsNeedingAttention} icon={() => <span>🪑</span>} trend="down" trendLabel="Action required" />
-        <SuperadminKpiCard title="Assets Overdue" value={assetsOverdue} icon={() => <span>⚙️</span>} trend="down" trendLabel="Service overdue" />
-        <SuperadminKpiCard title="Locker Issues" value={lockerIssues} icon={() => <span>🔒</span>} trend="down" trendLabel="Reported issues" />
+        <SuperadminKpiCard title="Seats Needing Attention" value={seatsNeedingAttention} icon={() => <span>ðŸª‘</span>} trend="down" trendLabel="Action required" />
+        <SuperadminKpiCard title="Assets Overdue" value={assetsOverdue} icon={() => <span>âš™ï¸</span>} trend="down" trendLabel="Service overdue" />
+        <SuperadminKpiCard title="Locker Issues" value={lockerIssues} icon={() => <span>ðŸ”’</span>} trend="down" trendLabel="Reported issues" />
       </div>
 
-      {/* Section 1 — Seats */}
+      {/* Section 1 â€” Seats */}
       <SuperadminCard className="mb-6">
         <CardHeader>
           <CardTitle className="flex items-center gap-2"><Wrench size={18} className="text-primary" /> Seats</CardTitle>
@@ -58,7 +58,7 @@ export function SuperadminSystemMaintenanceClient() {
               </thead>
               <tbody className="divide-y divide-outline-variant/30">
                 {table.paginatedData.map((seat) => (
-                  <tr key={seat.id} className="hover:bg-bg-pageg-card transition-colors cursor-pointer group">
+                  <tr key={seat.id} className="hover:bg-card transition-colors cursor-pointer group">
                     <td className="py-3 pr-4 font-mono font-medium text-text-primary">{seat.id}</td>
                     <td className="py-3 pr-4">
                       <SuperadminBadge variant={seat.status === 'OK' ? 'success' : 'danger'}>{seat.status}</SuperadminBadge>
@@ -86,7 +86,7 @@ export function SuperadminSystemMaintenanceClient() {
         </CardContent>
       </SuperadminCard>
 
-      {/* Section 2 — Assets */}
+      {/* Section 2 â€” Assets */}
       <SuperadminCard className="mb-6">
         <CardHeader>
           <CardTitle className="flex items-center gap-2"><Package size={18} className="text-primary" /> Assets</CardTitle>
@@ -108,7 +108,7 @@ export function SuperadminSystemMaintenanceClient() {
               </thead>
               <tbody className="divide-y divide-outline-variant/30">
                 {assets.map((asset) => (
-                  <tr key={asset.name} className="hover:bg-bg-pageg-card transition-colors cursor-pointer group">
+                  <tr key={asset.name} className="hover:bg-card transition-colors cursor-pointer group">
                     <td className="py-3 pr-4 font-medium text-text-primary">{asset.name}</td>
                     <td className="py-3 pr-4 text-center text-text-secondary">{asset.qty}</td>
                     <td className="py-3 pr-4">
@@ -138,7 +138,7 @@ export function SuperadminSystemMaintenanceClient() {
         </CardContent>
       </SuperadminCard>
 
-      {/* Section 3 — Lockers */}
+      {/* Section 3 â€” Lockers */}
       <SuperadminCard>
         <CardHeader>
           <CardTitle className="flex items-center gap-2"><Lock size={18} className="text-primary" /> Lockers</CardTitle>
@@ -157,7 +157,7 @@ export function SuperadminSystemMaintenanceClient() {
               </thead>
               <tbody className="divide-y divide-outline-variant/30">
                 {lockers.map((locker) => (
-                  <tr key={locker.id} className="hover:bg-bg-pageg-card transition-colors cursor-pointer group">
+                  <tr key={locker.id} className="hover:bg-card transition-colors cursor-pointer group">
                     <td className="py-3 pr-4 font-mono font-medium text-text-primary">{locker.id}</td>
                     <td className="py-3 pr-4">
                       <SuperadminBadge variant={locker.status === 'OK' ? 'success' : 'danger'}>{locker.status}</SuperadminBadge>

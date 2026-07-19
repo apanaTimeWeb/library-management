@@ -55,8 +55,8 @@ export function AdminFinanceRefundsClient() {
       {/* page Header */}
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b pb-4">
         <div>
-          <nav className="text-xs text-muted-foreground font-medium mb-1 tracking-wide uppercase">Smart Library 360 › Admin › Finance</nav>
-          <h1 className="text-text-primaryxl font-bold tracking-tight">Refunds</h1>
+          <nav className="text-xs text-muted-foreground font-medium mb-1 tracking-wide uppercase">Smart Library 360 â€º Admin â€º Finance</nav>
+          <h1 className="text-text-primary text-xl font-bold tracking-tight">Refunds</h1>
           <p className="text-sm text-muted-foreground mt-1">Manage and process student deposit refund requests.</p>
         </div>
       </div>
@@ -65,29 +65,29 @@ export function AdminFinanceRefundsClient() {
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
         <Card className="p-4 shadow-none border-success/30 bg-success/5 flex flex-col justify-center">
           <p className="text-xs font-bold tracking-wider uppercase text-success mb-1">Total Refunded</p>
-          <p className="text-xl font-bold text-success">{isLoading ? '—' : formatCurrency(kpiData.totalRefunded)}</p>
+          <p className="text-xl font-bold text-success">{isLoading ? 'â€”' : formatCurrency(kpiData.totalRefunded)}</p>
         </Card>
         
         <Card className="p-4 shadow-none border-warning/30 bg-warning/5 flex flex-col justify-center">
           <p className="text-xs font-bold tracking-wider uppercase text-warning mb-1">Pending</p>
-          <p className="text-xl font-bold text-warning">{isLoading ? '—' : kpiData.pendingCount}</p>
+          <p className="text-xl font-bold text-warning">{isLoading ? 'â€”' : kpiData.pendingCount}</p>
         </Card>
         
         <Card className="p-4 shadow-none border-border bg-card flex flex-col justify-center">
           <p className="text-xs font-bold tracking-wider uppercase text-muted-foreground mb-1">Approved</p>
-          <p className="text-xl font-bold text-primary">{isLoading ? '—' : kpiData.approvedCount}</p>
+          <p className="text-xl font-bold text-primary">{isLoading ? 'â€”' : kpiData.approvedCount}</p>
         </Card>
         
         <Card className="p-4 shadow-none border-danger/30 bg-danger/5 flex flex-col justify-center">
           <p className="text-xs font-bold tracking-wider uppercase text-danger mb-1">Rejected</p>
-          <p className="text-xl font-bold text-danger">{isLoading ? '—' : kpiData.rejectedCount}</p>
+          <p className="text-xl font-bold text-danger">{isLoading ? 'â€”' : kpiData.rejectedCount}</p>
         </Card>
       </div>
 
       {/* Filter Bar */}
       <div className="flex items-center gap-4 bg-muted/30 p-3 rounded-lg border border-border">
         <AdminSearchableDropdown 
-          className="flex h-9 w-48 items-center justify-between rounded-md border border-border bg-bg-pageg-input px-3 py-1 text-sm ring-offset-bg-page placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:ring-offset-2"
+          className="flex h-9 w-48 items-center justify-between rounded-md border border-border bg-input px-3 py-1 text-sm ring-offset-bg-page placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:ring-offset-2"
           value={statusFilter} 
           onChange={(e) => setStatusFilter(e.target.value)}
         >
@@ -134,7 +134,7 @@ export function AdminFinanceRefundsClient() {
                 <tr>
                   <td colSpan={7} className="px-5 py-20 text-center">
                     <div className="flex flex-col items-center justify-center gap-3">
-                      <div className="text-4xl opacity-50">💸</div>
+                      <div className="text-4xl opacity-50">ðŸ’¸</div>
                       <p className="text-lg font-bold">No refunds found.</p>
                       <p className="text-sm text-muted-foreground">Adjust filters if needed.</p>
                     </div>
@@ -148,7 +148,7 @@ export function AdminFinanceRefundsClient() {
                       <div className="text-xs text-muted-foreground font-medium mt-0.5">{r.smartId}</div>
                     </td>
                     <td className="px-5 py-4 text-sm text-muted-foreground font-medium">
-                      {r.exitDate || '—'}
+                      {r.exitDate || 'â€”'}
                     </td>
                     <td className="px-5 py-4 text-right">
                       <span className="font-bold text-sm text-primary">{formatCurrency(r.depositHeld)}</span>
@@ -173,7 +173,7 @@ export function AdminFinanceRefundsClient() {
                         )}
                         {r.status === 'processed' && r.processedDate && (
                           <span className="text-xs text-muted-foreground leading-tight">
-                            {r.processedDate} · {r.paymentMethod}
+                            {r.processedDate} Â· {r.paymentMethod}
                           </span>
                         )}
                       </div>
@@ -188,7 +188,7 @@ export function AdminFinanceRefundsClient() {
                               className="bg-warning/10 text-warning hover:bg-warning/20 border-none font-bold text-xs"
                               onClick={() => setDeductDialog({ id: r.id, name: r.studentName })}
                             >
-                              ➕ Add Deduction
+                              âž• Add Deduction
                             </Button>
                             <Button 
                               variant="secondary" 
@@ -239,7 +239,7 @@ export function AdminFinanceRefundsClient() {
           <Card className="w-full max-w-sm shadow-lg border-success/20 bg-card p-6 flex flex-col gap-5" onClick={e => e.stopPropagation()}>
             <div className="flex items-center justify-between">
               <h2 className="text-lg font-bold flex items-center gap-2 text-success tracking-tight">
-                💸 Process Refund
+                ðŸ’¸ Process Refund
               </h2>
               <Button variant="ghost" size="icon" className="h-8 w-8 rounded-full" onClick={() => setProcessDialog(null)}>
                 <X size={16} />
@@ -256,7 +256,7 @@ export function AdminFinanceRefundsClient() {
             <div className="space-y-2">
               <label className="text-sm font-medium">Payment Method</label>
               <AdminSearchableDropdown 
-                className="flex h-10 w-full items-center justify-between rounded-md border border-border bg-bg-pageg-input px-3 py-2 text-sm ring-offset-bg-page placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:ring-offset-2"
+                className="flex h-10 w-full items-center justify-between rounded-md border border-border bg-input px-3 py-2 text-sm ring-offset-bg-page placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:ring-offset-2"
                 value={paymentMethod} 
                 onChange={(e) => setPaymentMethod(e.target.value)}
               >
@@ -288,7 +288,7 @@ export function AdminFinanceRefundsClient() {
           <Card className="w-full max-w-sm shadow-lg border-warning/20 bg-card p-6 flex flex-col gap-5" onClick={e => e.stopPropagation()}>
             <div className="flex items-center justify-between">
               <h2 className="text-lg font-bold flex items-center gap-2 text-warning tracking-tight">
-                ➕ Add Deduction
+                âž• Add Deduction
               </h2>
               <Button variant="ghost" size="icon" className="h-8 w-8 rounded-full" onClick={() => setDeductDialog(null)}>
                 <X size={16} />

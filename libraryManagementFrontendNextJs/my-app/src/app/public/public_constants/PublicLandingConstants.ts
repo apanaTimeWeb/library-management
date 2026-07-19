@@ -1,4 +1,4 @@
-import { PublicFeatureItem, PublicFAQItem } from "../public_types/PublicLanding_types";
+import { PublicFeatureItem, PublicFAQItem } from "@/app/public/public_types/PublicLanding_types";
 
 export const PUBLIC_FEATURES: PublicFeatureItem[] = [
   {

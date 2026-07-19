@@ -6,7 +6,7 @@ import type { SuperadminFinancialReportsBreakdownProps as Props } from '@/app/su
 
 export function SuperadminFinancialReportsBreakdown({ categoryBreakdown }: Props) {
   return (
-    <div className="bg-bg-pageg-card border border-border rounded-lg p-6 shadow-sm flex flex-col h-full">
+    <div className="bg-card border border-border rounded-lg p-6 shadow-sm flex flex-col h-full">
       <h3 className="text-sm font-extrabold text-text-primary uppercase tracking-wider mb-6">Expense Category Breakdown</h3>
       
       <div className="flex flex-col gap-5 flex-1">
@@ -15,11 +15,11 @@ export function SuperadminFinancialReportsBreakdown({ categoryBreakdown }: Props
             <div className="flex justify-between items-end mb-2">
               <span className="text-sm font-bold text-text-secondary group-hover:text-text-primary transition-colors">{c.category}</span>
               <div className="flex items-center gap-2">
-                <span className="text-sm font-extrabold text-text-primary">₹{c.amount.toLocaleString()}</span>
+                <span className="text-sm font-extrabold text-text-primary">â‚¹{c.amount.toLocaleString()}</span>
                 <span className="text-xs font-bold text-text-disabled uppercase tracking-wider">({c.pct}%)</span>
               </div>
             </div>
-            <div className="h-2 w-full bg-bg-pageg-input rounded-full overflow-hidden shadow-inner">
+            <div className="h-2 w-full bg-input rounded-full overflow-hidden shadow-inner">
               <div 
                 className="h-full rounded-full transition-all duration-500 ease-out" 
                 style={{ width: `${c.pct}%`, backgroundColor: 'var(--primary)' }} 

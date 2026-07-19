@@ -20,18 +20,18 @@ export function SuperadminAttendanceClient() {
   const late     = filtered.filter(s => s.status === 'late').length;
 
   return (
-    <div className="p-4 sm:p-6 min-h-screen bg-bg-pageg-page animate-in fade-in duration-200 pb-24">
-      {/* ── Breadcrumb ── */}
+    <div className="p-4 sm:p-6 min-h-screen bg-page animate-in fade-in duration-200 pb-24">
+      {/* â”€â”€ Breadcrumb â”€â”€ */}
       <div className="flex items-center gap-2 text-text-secondary text-xs font-bold tracking-wide mb-6">
         <Link href={SUPERADMIN_ROUTES.ENGAGEMENT_ATTENDANCE} className="hover:text-primary transition-colors">Engagement</Link>
         <ChevronRight size={12} className="opacity-50" />
         <span className="text-text-primary">Attendance</span>
       </div>
 
-      {/* ── Page Header ── */}
+      {/* â”€â”€ Page Header â”€â”€ */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
         <div>
-          <h1 className="text-3xl font-extrabold text-text-primary tracking-tight">📅 Daily Attendance</h1>
+          <h1 className="text-3xl font-extrabold text-text-primary tracking-tight">ðŸ“… Daily Attendance</h1>
           <p className="text-sm text-text-secondary mt-1">Mark attendance for all enrolled students by shift.</p>
         </div>
         <Link href={SUPERADMIN_ROUTES.ENGAGEMENT_ABSENTEE_REPORT} className="flex items-center justify-center gap-2 px-4 py-2 bg-input text-text-primary text-sm font-bold rounded-md hover:bg-input/80 border border-border shadow-sm transition-all cursor-pointer">
@@ -39,7 +39,7 @@ export function SuperadminAttendanceClient() {
         </Link>
       </div>
 
-      {/* ── KPI Stats ── */}
+      {/* â”€â”€ KPI Stats â”€â”€ */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
         <div className="bg-card border border-border rounded-lg p-4 shadow-sm">
           <div className="text-xs font-bold text-text-secondary uppercase tracking-wider">Total Students</div>
@@ -63,7 +63,7 @@ export function SuperadminAttendanceClient() {
         </div>
       </div>
 
-      {/* ── Filters ── */}
+      {/* â”€â”€ Filters â”€â”€ */}
       <div className="bg-card border border-border rounded-xl shadow-sm p-4 mb-6">
         <div className="flex flex-col md:flex-row md:items-end gap-4 lg:gap-6">
           <div className="space-y-1.5 flex-1 max-w-xs">
@@ -92,12 +92,12 @@ export function SuperadminAttendanceClient() {
         </div>
       </div>
 
-      {/* ── Student List ── */}
+      {/* â”€â”€ Student List â”€â”€ */}
       <div className="bg-card border border-border rounded-xl shadow-sm overflow-hidden">
         <div className="divide-y divide-border">
           {filtered.length === 0 ? (
             <div className="p-12 flex flex-col items-center justify-center text-center">
-              <div className="text-4xl mb-4 opacity-50">📅</div>
+              <div className="text-4xl mb-4 opacity-50">ðŸ“…</div>
               <p className="text-base font-extrabold text-text-primary">No students in this shift</p>
               <p className="text-sm text-text-secondary mt-1">Try selecting a different shift or date.</p>
             </div>
@@ -135,7 +135,7 @@ export function SuperadminAttendanceClient() {
                             : 'text-text-secondary hover:text-text-primary hover:bg-white/50'
                         }`}>
                         {st === 'present' ? <><CheckCircle size={14}/> Present</>
-                         : st === 'absent' ? '✕ Absent'
+                         : st === 'absent' ? 'âœ• Absent'
                          : <><Clock size={14}/> Late</>}
                       </button>
                     ))}
@@ -143,7 +143,7 @@ export function SuperadminAttendanceClient() {
 
                   {/* Time inputs */}
                   {(s.status === 'present' || s.status === 'late') && (
-                    <div className="flex items-center gap-3 animate-in fade-in zoom-in-95 shrink-0 bg-bg-pageg-card border border-border rounded-md p-1.5 px-3 shadow-sm">
+                    <div className="flex items-center gap-3 animate-in fade-in zoom-in-95 shrink-0 bg-card border border-border rounded-md p-1.5 px-3 shadow-sm">
                       <div className="flex items-center gap-2">
                         <span className="text-xs font-bold text-text-secondary uppercase">In</span>
                         <input type="time" className="bg-transparent text-sm font-bold text-text-primary outline-none cursor-pointer w-20" value={s.inTime}
@@ -166,10 +166,10 @@ export function SuperadminAttendanceClient() {
                   {isAlert && (
                     <div className="flex flex-col sm:items-end gap-1.5 shrink-0 animate-in fade-in">
                       <span className="px-2 py-0.5 rounded text-xs font-bold bg-warning/20 text-warning-foreground border border-warning/30 flex items-center gap-1 w-fit">
-                        ⚠️ {s.consecutiveAbsent} days consecutive
+                        âš ï¸ {s.consecutiveAbsent} days consecutive
                       </span>
                       {!hasAlerted ? (
-                        <button onClick={() => handleAlert(s.id)} className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold text-text-primary bg-bg-pageg-card border border-border rounded-sm hover:bg-input transition-colors cursor-pointer shadow-sm w-fit">
+                        <button onClick={() => handleAlert(s.id)} className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold text-text-primary bg-card border border-border rounded-sm hover:bg-input transition-colors cursor-pointer shadow-sm w-fit">
                           <Bell size={12} /> Alert Parents
                         </button>
                       ) : (
@@ -187,7 +187,7 @@ export function SuperadminAttendanceClient() {
         </div>
       </div>
 
-      {/* ── Sticky Save Bar ── */}
+      {/* â”€â”€ Sticky Save Bar â”€â”€ */}
       <div className="fixed bottom-0 left-0 right-0 lg:left-64 z-40 bg-card border-t border-border p-4 shadow-[0_-4px_10px_rgba(0,0,0,0.05)] flex items-center justify-between animate-in slide-in-from-bottom-full">
         <p className="text-sm text-text-secondary">
           <strong className="text-text-primary">{marked}</strong> of <strong className="text-text-primary">{filtered.length}</strong> marked for <strong className="text-text-primary font-mono">{date}</strong>

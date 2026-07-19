@@ -22,8 +22,8 @@ export function SuperadminComplaintsClient() {
   };
 
   return (
-    <div className="p-4 sm:p-6 min-h-screen bg-bg-pageg-page animate-in fade-in duration-200">
-      {/* ── Toast ── */}
+    <div className="p-4 sm:p-6 min-h-screen bg-page animate-in fade-in duration-200">
+      {/* â”€â”€ Toast â”€â”€ */}
       {toast && (
         <div className="fixed bottom-4 left-1/2 -translate-x-1/2 z-50 animate-in slide-in-from-bottom-5">
           <div className="bg-text-primary text-bg-card px-4 py-2 rounded-full text-sm font-bold shadow-lg flex items-center gap-2">
@@ -96,7 +96,7 @@ export function SuperadminComplaintsClient() {
               {viewItem.resolvedNote && (
                 <div className="mt-4 bg-success/10 border-l-4 border-l-success text-success-foreground p-4 rounded-r-[var(--radius-md)] text-sm leading-relaxed">
                   <strong className="text-success mr-1 font-extrabold">Resolution:</strong> {viewItem.resolvedNote} 
-                  <div className="mt-1 text-xs opacity-80 font-bold uppercase tracking-wider">— {viewItem.resolvedBy} on {viewItem.resolvedDate}</div>
+                  <div className="mt-1 text-xs opacity-80 font-bold uppercase tracking-wider">â€” {viewItem.resolvedBy} on {viewItem.resolvedDate}</div>
                 </div>
               )}
             </div>
@@ -197,7 +197,7 @@ export function SuperadminComplaintsClient() {
                         {c.student}
                       </td>
                       <td className="p-4 text-sm text-text-secondary max-w-xs leading-relaxed">
-                        <span>{isLong && !isExpanded ? c.description.slice(0, 60) + '…' : c.description}</span>
+                        <span>{isLong && !isExpanded ? c.description.slice(0, 60) + 'â€¦' : c.description}</span>
                         {isLong && (
                           <button onClick={() => toggleDesc(c.id)} className="ml-1 text-xs font-bold text-primary hover:underline cursor-pointer">
                             {isExpanded ? 'less' : 'more'}

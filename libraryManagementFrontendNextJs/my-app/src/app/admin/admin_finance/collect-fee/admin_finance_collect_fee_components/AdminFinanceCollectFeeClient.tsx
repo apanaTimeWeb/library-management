@@ -62,7 +62,7 @@ export function AdminFinanceCollectFeeClient() {
             <div className="flex items-center justify-between p-4 border-b border-border bg-muted/20 rounded-t-xl">
               <div>
                 <h2 className="text-lg font-bold flex items-center gap-2 text-primary">
-                  🎉 Payment Collected!
+                  ðŸŽ‰ Payment Collected!
                 </h2>
                 <Badge variant="secondary" className="mt-1 bg-success/10 text-success border-none font-bold text-xs gap-1">
                   <CheckCircle size={12} /> {receiptData.receiptNo}
@@ -90,7 +90,7 @@ export function AdminFinanceCollectFeeClient() {
                   <p className="font-bold text-base tracking-widest uppercase mb-1">Smart Library 360</p>
                   <p className="text-xs uppercase tracking-widest border-b border-black/30 pb-2 mb-4 w-full text-center">Payment Receipt</p>
                   
-                  <div className="w-full border border-black/20 p-2 mb-4 text-center bg-bg-pageg-elevated">
+                  <div className="w-full border border-black/20 p-2 mb-4 text-center bg-card">
                     <p className="text-xs text-text-secondary uppercase tracking-widest mb-0.5">Receipt Number</p>
                     <p className="font-bold text-sm">{receiptData.receiptNo}</p>
                   </div>
@@ -112,7 +112,7 @@ export function AdminFinanceCollectFeeClient() {
 
                   <div className="w-full border-t-2 border-dashed border-black/30 pt-3 pb-3 mb-4 text-center">
                     <p className="text-xs text-text-secondary uppercase tracking-widest mb-1">Total Paid</p>
-                    <p className="text-text-primaryxl font-bold">₹{receiptData.total.toFixed(0)}</p>
+                    <p className="text-text-primary text-xl font-bold">â‚¹{receiptData.total.toFixed(0)}</p>
                   </div>
 
                   <div className="flex items-center gap-1 bg-bg-pagelack text-white px-3 py-1 rounded-full text-xs font-bold mb-4">
@@ -121,7 +121,7 @@ export function AdminFinanceCollectFeeClient() {
                   </div>
 
                   <p className="text-xs italic text-text-secondary text-center">"Knowledge is the best investment."</p>
-                  <p className="text-xs font-bold mt-1">Thank you! Keep studying 😊</p>
+                  <p className="text-xs font-bold mt-1">Thank you! Keep studying ðŸ˜Š</p>
                 </div>
 
                 {/* Bottom Zigzag */}
@@ -144,7 +144,7 @@ export function AdminFinanceCollectFeeClient() {
               <Button 
                 variant="outline"
                 onClick={handlePrintReceipt}
-                className="w-full font-bold gap-2 bg-bg-pageg-card"
+                className="w-full font-bold gap-2 bg-card"
               >
                 <Printer size={16} /> Print Receipt (Thermal 80mm)
               </Button>
@@ -164,14 +164,14 @@ export function AdminFinanceCollectFeeClient() {
         {/* page Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b pb-4">
           <div>
-            <nav className="text-xs text-muted-foreground font-medium mb-1 tracking-wide uppercase">Smart Library 360 › Admin › Finance</nav>
-            <h1 className="text-text-primaryxl font-bold tracking-tight">Collect Fee</h1>
+            <nav className="text-xs text-muted-foreground font-medium mb-1 tracking-wide uppercase">Smart Library 360 â€º Admin â€º Finance</nav>
+            <h1 className="text-text-primary text-xl font-bold tracking-tight">Collect Fee</h1>
             <p className="text-sm text-muted-foreground mt-1">Record a new payment from a student.</p>
           </div>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
-          {/* Left — Form */}
+          {/* Left â€” Form */}
           <div className="lg:col-span-3 space-y-4">
             <Card className="p-6 shadow-none border-border bg-card space-y-4">
               <h3 className="font-bold text-sm tracking-widest uppercase text-muted-foreground mb-4">Student <span className="text-danger">*</span></h3>
@@ -197,7 +197,7 @@ export function AdminFinanceCollectFeeClient() {
                     >
                       <div>
                         <div className="font-bold text-sm text-primary">{s.name}</div>
-                        <div className="text-xs text-muted-foreground mt-0.5">{s.smartId} · {s.plan} · +91-{maskPhone(s.phone)}</div>
+                        <div className="text-xs text-muted-foreground mt-0.5">{s.smartId} Â· {s.plan} Â· +91-{maskPhone(s.phone)}</div>
                       </div>
                       <Badge variant="secondary" className={`${s.status === 'active' ? 'bg-success/10 text-success' : s.status === 'suspended' ? 'bg-danger/10 text-danger' : 'bg-warning/10 text-warning'} border-none uppercase tracking-wider font-bold text-xs`}>
                         {s.status}
@@ -211,12 +211,12 @@ export function AdminFinanceCollectFeeClient() {
                   <CheckCircle size={18} className="text-success" />
                   <span className="font-bold text-sm text-success">{selectedStudent.name}</span>
                   <span className="text-xs text-success/80 font-medium">({selectedStudent.smartId})</span>
-                  <span className="text-xs text-success/80">· +91-{maskPhone(selectedStudent.phone)}</span>
+                  <span className="text-xs text-success/80">Â· +91-{maskPhone(selectedStudent.phone)}</span>
                 </div>
               )}
               {selectedStudent != null && selectedStudent.dueAmount > 0 && (
                 <div className="p-3 bg-danger/10 border border-danger/30 rounded-md text-danger font-bold text-sm text-center">
-                  🔴 Due Amount: {formatCurrency(selectedStudent.dueAmount)} pending
+                  ðŸ”´ Due Amount: {formatCurrency(selectedStudent.dueAmount)} pending
                 </div>
               )}
             </Card>
@@ -310,7 +310,7 @@ export function AdminFinanceCollectFeeClient() {
             </Card>
           </div>
 
-          {/* Right — Receipt Preview */}
+          {/* Right â€” Receipt Preview */}
           <div className="lg:col-span-2">
             <div className="sticky top-6 space-y-4">
               <h3 className="font-bold text-sm tracking-widest uppercase text-muted-foreground mb-4">Receipt Preview</h3>
@@ -329,11 +329,11 @@ export function AdminFinanceCollectFeeClient() {
                     </div>
                     <div className="flex justify-between w-full">
                       <span className="text-text-secondary">Student</span>
-                      <span className="font-bold text-right">{selectedStudent?.name || '—'}</span>
+                      <span className="font-bold text-right">{selectedStudent?.name || 'â€”'}</span>
                     </div>
                     <div className="flex justify-between w-full">
                       <span className="text-text-secondary">Smart ID</span>
-                      <span className="font-bold text-right">{selectedStudent?.smartId || '—'}</span>
+                      <span className="font-bold text-right">{selectedStudent?.smartId || 'â€”'}</span>
                     </div>
                     <div className="flex justify-between w-full">
                       <span className="text-text-secondary">Mode</span>
@@ -343,7 +343,7 @@ export function AdminFinanceCollectFeeClient() {
 
                   <div className="w-full border-t border-dashed border-black/30 pt-3 mb-4 text-center">
                     <p className="text-xs text-text-secondary uppercase tracking-widest mb-1">Total Amount</p>
-                    <p className="text-xl font-bold">₹{total > 0 ? total.toFixed(0) : '0'}</p>
+                    <p className="text-xl font-bold">â‚¹{total > 0 ? total.toFixed(0) : '0'}</p>
                   </div>
                   
                   <Button
@@ -358,7 +358,7 @@ export function AdminFinanceCollectFeeClient() {
                   <p className="text-xs italic text-muted-foreground text-center mt-4">"Knowledge is the best investment."</p>
                 </div>
               </div>
-              <Button variant="outline" className="w-full text-muted-foreground font-bold" onClick={resetForm}>🚫 Cancel & Reset</Button>
+              <Button variant="outline" className="w-full text-muted-foreground font-bold" onClick={resetForm}>ðŸš« Cancel & Reset</Button>
             </div>
           </div>
         </div>

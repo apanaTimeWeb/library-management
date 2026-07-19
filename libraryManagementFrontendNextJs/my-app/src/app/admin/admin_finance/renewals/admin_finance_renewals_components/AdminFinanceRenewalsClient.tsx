@@ -53,12 +53,12 @@ export function AdminFinanceRenewalsClient() {
       {/* page Header */}
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b pb-4">
         <div>
-          <nav className="text-xs text-muted-foreground font-medium mb-1 tracking-wide uppercase">Smart Library 360 › Admin › Finance</nav>
-          <h1 className="text-text-primaryxl font-bold tracking-tight">Renewals</h1>
+          <nav className="text-xs text-muted-foreground font-medium mb-1 tracking-wide uppercase">Smart Library 360 â€º Admin â€º Finance</nav>
+          <h1 className="text-text-primary text-xl font-bold tracking-tight">Renewals</h1>
           <p className="text-sm text-muted-foreground mt-1">Subscriptions needing renewal attention.</p>
         </div>
         <Button onClick={handleRemindAll} variant="secondary" className="bg-primary/10 text-primary hover:bg-primary/20 border-none font-bold gap-2">
-          <Send size={16} /> 📱 Remind All
+          <Send size={16} /> ðŸ“± Remind All
         </Button>
       </div>
 
@@ -95,7 +95,7 @@ export function AdminFinanceRenewalsClient() {
                 <th className="px-5 py-3">Expiry Date</th>
                 <th className="px-5 py-3">Days Left</th>
                 <th className="px-5 py-3">Last Payment</th>
-                <th className="px-5 py-3 text-right">Due ₹</th>
+                <th className="px-5 py-3 text-right">Due â‚¹</th>
                 <th className="px-5 py-3 text-right">Actions</th>
               </tr>
             </thead>
@@ -104,7 +104,7 @@ export function AdminFinanceRenewalsClient() {
                 <tr>
                   <td colSpan={9} className="px-5 py-20 text-center">
                     <div className="flex flex-col items-center justify-center gap-3">
-                      <div className="text-4xl opacity-50">✨</div>
+                      <div className="text-4xl opacity-50">âœ¨</div>
                       <p className="text-lg font-bold">No renewals needed.</p>
                       <p className="text-sm text-muted-foreground">Try adjusting your filters.</p>
                     </div>
@@ -192,7 +192,7 @@ export function AdminFinanceRenewalsClient() {
               <div className="space-y-1.5">
                 <label className="text-sm font-medium text-primary">Plan</label>
                 <AdminSearchableDropdown
-                  className="w-full h-10 px-3 rounded-md border border-border bg-bg-pageg-input text-sm font-medium focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary"
+                  className="w-full h-10 px-3 rounded-md border border-border bg-input text-sm font-medium focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary"
                   value={renewPlanId}
                   onChange={(e) => {
                     const id = e.target.value;
@@ -204,7 +204,7 @@ export function AdminFinanceRenewalsClient() {
                   }}
                 >
                   {ADMIN_FINANCE_MOCK_PLANS.map((p) => (
-                    <option key={p.id} value={String(p.id)}>{p.name} — {formatCurrency(p.price)}</option>
+                    <option key={p.id} value={String(p.id)}>{p.name} â€” {formatCurrency(p.price)}</option>
                   ))}
                 </AdminSearchableDropdown>
               </div>
@@ -215,7 +215,7 @@ export function AdminFinanceRenewalsClient() {
               <div className="space-y-1.5">
                 <label className="text-sm font-medium text-primary">Payment Mode</label>
                 <AdminSearchableDropdown 
-                  className="w-full h-10 px-3 rounded-md border border-border bg-bg-pageg-input text-sm font-medium focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary"
+                  className="w-full h-10 px-3 rounded-md border border-border bg-input text-sm font-medium focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary"
                   value={renewMode} 
                   onChange={(e) => setRenewMode(e.target.value)}
                 >
@@ -241,7 +241,7 @@ export function AdminFinanceRenewalsClient() {
                 disabled={isRenewing || !renewAmount}
                 className="bg-success hover:bg-success/90 text-white font-bold"
               >
-                {isRenewing ? 'Renewing...' : '✅ Confirm Renewal'}
+                {isRenewing ? 'Renewing...' : 'âœ… Confirm Renewal'}
               </Button>
             </div>
           </Card>

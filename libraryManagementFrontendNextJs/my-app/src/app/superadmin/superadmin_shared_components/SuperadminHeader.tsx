@@ -11,7 +11,7 @@ export default function SuperadminHeader({ sidebarWidth, onMobileOpen }: Superad
   const [selectedBranch, setSelectedBranch] = useState('Main Branch');
 
   return (
-    <header className="fixed top-0 right-0 h-16 bg-bg-pageg-header border-b border-border z-40 flex items-center justify-between px-6 transition-all duration-300" style={{ left: sidebarWidth }}>
+    <header className="fixed top-0 right-0 h-16 bg-header border-b border-border z-40 flex items-center justify-between px-6 transition-all duration-300" style={{ left: sidebarWidth }}>
 
       <div className="flex items-center gap-3">
         <SuperadminButton

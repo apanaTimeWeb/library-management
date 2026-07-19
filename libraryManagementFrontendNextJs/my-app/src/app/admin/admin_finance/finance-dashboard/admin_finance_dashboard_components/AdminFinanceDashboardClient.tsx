@@ -39,8 +39,8 @@ export function AdminFinanceDashboardClient() {
       {/* page Header */}
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b pb-4">
         <div>
-          <nav className="text-xs text-muted-foreground font-medium mb-1 tracking-wide uppercase">Smart Library 360 › Admin › Finance</nav>
-          <h1 className="text-text-primaryxl font-bold tracking-tight">Dashboard</h1>
+          <nav className="text-xs text-muted-foreground font-medium mb-1 tracking-wide uppercase">Smart Library 360 â€º Admin â€º Finance</nav>
+          <h1 className="text-text-primary text-xl font-bold tracking-tight">Dashboard</h1>
           <p className="text-sm text-muted-foreground mt-1">Overview of financial intelligence.</p>
         </div>
       </div>
@@ -77,7 +77,7 @@ export function AdminFinanceDashboardClient() {
                     <Icon size={16} />
                   </div>
                 </div>
-                <p className={`text-text-primaryxl font-bold leading-none tracking-tight ${
+                <p className={`text-text-primary text-xl font-bold leading-none tracking-tight ${
                   variant === 'warning' ? 'text-warning' : 
                   variant === 'danger' ? 'text-danger' : 'text-primary'
                 }`}>
@@ -131,7 +131,7 @@ export function AdminFinanceDashboardClient() {
                     <tr key={p.id} className="hover:bg-muted/10 transition-colors">
                       <td className="px-5 py-4">
                         <div className="font-bold text-sm text-primary">{p.studentName}</div>
-                        <div className="text-xs text-muted-foreground font-medium mt-0.5">{p.studentSmartId} · {p.date}</div>
+                        <div className="text-xs text-muted-foreground font-medium mt-0.5">{p.studentSmartId} Â· {p.date}</div>
                       </td>
                       <td className="px-5 py-4">
                         <Badge variant="secondary" className={`border-none uppercase tracking-wide font-bold ${

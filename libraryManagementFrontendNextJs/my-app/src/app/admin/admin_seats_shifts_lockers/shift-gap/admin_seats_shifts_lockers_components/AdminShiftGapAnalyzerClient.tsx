@@ -25,8 +25,8 @@ export function AdminShiftGapAnalyzerClient() {
       {/* page Header */}
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b pb-4">
         <div>
-          <nav className="text-xs text-muted-foreground font-medium mb-1 tracking-wide uppercase">Smart Library 360 › Admin › Seats & Shifts</nav>
-          <h1 className="text-text-primaryxl font-bold tracking-tight">Shift Gap Analyzer</h1>
+          <nav className="text-xs text-muted-foreground font-medium mb-1 tracking-wide uppercase">Smart Library 360 â€º Admin â€º Seats & Shifts</nav>
+          <h1 className="text-text-primary text-xl font-bold tracking-tight">Shift Gap Analyzer</h1>
           <p className="text-sm text-muted-foreground mt-1">Identify revenue-loss gaps and fill empty time slots.</p>
         </div>
       </div>
@@ -34,7 +34,7 @@ export function AdminShiftGapAnalyzerClient() {
       {/* Filter Bar */}
       <div className="flex flex-wrap gap-3">
         <AdminSearchableDropdown 
-          className="h-10 px-3 rounded-md border border-border bg-bg-pageg-input text-sm font-medium focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary min-w-36"
+          className="h-10 px-3 rounded-md border border-border bg-input text-sm font-medium focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary min-w-36"
           value={shiftFilter} 
           onChange={(e) => setShiftFilter(e.target.value)}
         >
@@ -43,7 +43,7 @@ export function AdminShiftGapAnalyzerClient() {
         </AdminSearchableDropdown>
         
         <AdminSearchableDropdown 
-          className="h-10 px-3 rounded-md border border-border bg-bg-pageg-input text-sm font-medium focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary min-w-36"
+          className="h-10 px-3 rounded-md border border-border bg-input text-sm font-medium focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary min-w-36"
           value={period} 
           onChange={(e) => setPeriod(e.target.value)}
         >
@@ -97,7 +97,7 @@ export function AdminShiftGapAnalyzerClient() {
                     <div
                       key={i}
                       className="absolute top-0 bottom-0 bg-warning/20 border-x border-warning border-dashed flex items-center justify-center overflow-hidden left-[length:var(--left)] w-[length:var(--w)]" style={{ '--left': `${pct(g.startH)}%`, '--w': `${pct(g.endH) - pct(g.startH)}%` } as React.CSSProperties}
-                      title={`Gap: ${fmtH(g.startH)} – ${fmtH(g.endH)}`}
+                      title={`Gap: ${fmtH(g.startH)} â€“ ${fmtH(g.endH)}`}
                     >
                       <span className="text-xs font-black text-warning uppercase tracking-wider truncate px-1">
                         {pct(g.endH) - pct(g.startH) > 5 ? 'GAP' : ''}
@@ -115,7 +115,7 @@ export function AdminShiftGapAnalyzerClient() {
 
               {shift.gaps.length === 0 ? (
                 <p className="text-sm font-medium text-muted-foreground flex items-center gap-2 bg-muted/20 p-3 rounded-md border border-border">
-                  <span className="text-success text-lg">✅</span> No gaps detected — fully utilized.
+                  <span className="text-success text-lg">âœ…</span> No gaps detected â€” fully utilized.
                 </p>
               ) : (
                 <div className="grid gap-3">
@@ -123,14 +123,14 @@ export function AdminShiftGapAnalyzerClient() {
                     <div key={i} className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-3 rounded-md bg-warning/5 border border-warning/20">
                       <div className="flex items-start gap-3">
                         <Badge variant="secondary" className="bg-warning/20 text-warning border-none uppercase tracking-wider font-bold text-xs shrink-0 mt-0.5">
-                          🕳️ Gap
+                          ðŸ•³ï¸ Gap
                         </Badge>
                         <div>
                           <p className="text-sm font-bold text-primary mb-1">
-                            {fmtH(g.startH)} – {fmtH(g.endH)} <span className="text-muted-foreground font-medium mx-1">·</span> {g.seats} seats free
+                            {fmtH(g.startH)} â€“ {fmtH(g.endH)} <span className="text-muted-foreground font-medium mx-1">Â·</span> {g.seats} seats free
                           </p>
                           <p className="text-xs font-medium text-danger">
-                            Est. revenue loss: ₹{g.revLoss}/day
+                            Est. revenue loss: â‚¹{g.revLoss}/day
                           </p>
                         </div>
                       </div>

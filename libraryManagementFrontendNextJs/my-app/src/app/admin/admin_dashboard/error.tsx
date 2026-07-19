@@ -11,7 +11,7 @@ export default function ErrorBoundary({ error, reset }: AdminDashboardErrorBound
   }, [error]);
 
   return (
-    <div className="flex flex-col items-center justify-center h-full min-h-96 p-8 text-center space-y-4 bg-bg-pageg-page">
+    <div className="flex flex-col items-center justify-center h-full min-h-96 p-8 text-center space-y-4 bg-page">
       <h2 className="text-xl font-bold text-danger">Something went wrong in the Dashboard!</h2>
       <p className="text-sm text-text-secondary max-w-md">
         An unexpected error occurred while loading the dashboard components. 

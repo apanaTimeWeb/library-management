@@ -49,7 +49,7 @@ export function PublicHeroSection() {
           <Link href="/auth/login" className="flex items-center gap-2 bg-primary hover:bg-primary-hover text-white px-8 py-3.5 rounded-[var(--radius-md)] font-medium transition-all shadow-[0_0_20px_rgba(99,102,241,0.4)] hover:shadow-[0_0_30px_rgba(99,102,241,0.6)]">
             Start Free Trial <ArrowRight size={18} />
           </Link>
-          <button className="flex items-center gap-2 bg-bg-pageg-card hover:bg-bg-pageg-input text-text-primary border border-border px-8 py-3.5 rounded-[var(--radius-md)] font-medium transition-all">
+          <button className="flex items-center gap-2 bg-card hover:bg-input text-text-primary border border-border px-8 py-3.5 rounded-[var(--radius-md)] font-medium transition-all">
             <Play size={18} className="text-primary" /> Book Demo
           </button>
         </motion.div>
@@ -58,7 +58,7 @@ export function PublicHeroSection() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 0.8 }}
-          className="mt-16 relative w-full max-w-5xl aspect-video rounded-[var(--radius-xl)] overflow-hidden border border-border shadow-2xl bg-bg-pageg-card flex items-center justify-center"
+          className="mt-16 relative w-full max-w-5xl aspect-video rounded-[var(--radius-xl)] overflow-hidden border border-border shadow-2xl bg-card flex items-center justify-center"
         >
           {/* Placeholder for dashboard screenshot */}
           <div className="absolute inset-0 bg-gradient-to-tr from-bg-card to-bg-input opacity-50" />

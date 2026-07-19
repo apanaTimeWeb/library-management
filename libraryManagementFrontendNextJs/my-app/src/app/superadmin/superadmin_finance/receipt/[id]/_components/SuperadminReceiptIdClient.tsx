@@ -56,7 +56,7 @@ export function SuperadminReceiptIdClient() {
             <p className="text-base font-black tracking-widest uppercase mb-1">Smart Library</p>
             <h2 className="text-xs font-bold text-text-secondary uppercase tracking-widest border-b border-border pb-2 mb-4 w-full text-center">Payment Receipt</h2>
             
-            <div className="w-full flex justify-between items-center mb-6 bg-bg-pageg-card p-2 rounded">
+            <div className="w-full flex justify-between items-center mb-6 bg-card p-2 rounded">
               <p className="text-xs font-bold text-text-secondary uppercase">Receipt No.</p>
               <p className="text-sm font-black">{receiptData.receiptNo}</p>
             </div>

@@ -52,8 +52,8 @@ export function AdminAllocationsClient() {
       {/* page Header */}
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b pb-4">
         <div>
-          <nav className="text-xs text-muted-foreground font-medium mb-1 tracking-wide uppercase">Smart Library 360 › Admin › Seats & Shifts</nav>
-          <h1 className="text-text-primaryxl font-bold tracking-tight">Allocations</h1>
+          <nav className="text-xs text-muted-foreground font-medium mb-1 tracking-wide uppercase">Smart Library 360 â€º Admin â€º Seats & Shifts</nav>
+          <h1 className="text-text-primary text-xl font-bold tracking-tight">Allocations</h1>
           <p className="text-sm text-muted-foreground mt-1">All active and past seat allocations.</p>
         </div>
         <Button 
@@ -68,7 +68,7 @@ export function AdminAllocationsClient() {
       {/* Filter Bar */}
       <div className="flex flex-wrap items-center gap-3">
         <AdminSearchableDropdown 
-          className="h-10 px-3 rounded-md border border-border bg-bg-pageg-input text-sm font-medium focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary"
+          className="h-10 px-3 rounded-md border border-border bg-input text-sm font-medium focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary"
           value={shiftFilter} 
           onChange={(e) => setShiftFilter(e.target.value)}
         >
@@ -79,7 +79,7 @@ export function AdminAllocationsClient() {
         </AdminSearchableDropdown>
         
         <AdminSearchableDropdown 
-          className="h-10 px-3 rounded-md border border-border bg-bg-pageg-input text-sm font-medium focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary"
+          className="h-10 px-3 rounded-md border border-border bg-input text-sm font-medium focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary"
           value={statusFilter} 
           onChange={(e) => setStatusFilter(e.target.value)}
         >
@@ -132,7 +132,7 @@ export function AdminAllocationsClient() {
                 <tr>
                   <td colSpan={10} className="px-5 py-20 text-center">
                     <div className="flex flex-col items-center justify-center gap-3">
-                      <div className="text-4xl opacity-50">📂</div>
+                      <div className="text-4xl opacity-50">ðŸ“‚</div>
                       <p className="text-lg font-bold">No allocations found.</p>
                       <p className="text-sm text-muted-foreground">Try adjusting your filters.</p>
                     </div>
@@ -149,8 +149,8 @@ export function AdminAllocationsClient() {
                     </td>
                     <td className="px-5 py-3 text-sm font-black text-primary">{a.seatNo}</td>
                     <td className="px-5 py-3 font-medium text-sm text-primary">{a.shift}</td>
-                    <td className="px-5 py-3 text-sm text-muted-foreground">{a.customSlots || '—'}</td>
-                    <td className="px-5 py-3 text-sm text-muted-foreground font-mono">{a.lockerNo || '—'}</td>
+                    <td className="px-5 py-3 text-sm text-muted-foreground">{a.customSlots || 'â€”'}</td>
+                    <td className="px-5 py-3 text-sm text-muted-foreground font-mono">{a.lockerNo || 'â€”'}</td>
                     <td className="px-5 py-3 text-sm text-muted-foreground">{a.validFrom}</td>
                     <td className="px-5 py-3 text-sm text-muted-foreground">{a.validTill}</td>
                     <td className="px-5 py-3">

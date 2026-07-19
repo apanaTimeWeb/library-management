@@ -40,8 +40,8 @@ export function AdminFinanceLateFeesClient() {
       {/* page Header */}
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b pb-4">
         <div>
-          <nav className="text-xs text-muted-foreground font-medium mb-1 tracking-wide uppercase">Smart Library 360 › Admin › Finance</nav>
-          <h1 className="text-text-primaryxl font-bold tracking-tight">Late Fees</h1>
+          <nav className="text-xs text-muted-foreground font-medium mb-1 tracking-wide uppercase">Smart Library 360 â€º Admin â€º Finance</nav>
+          <h1 className="text-text-primary text-xl font-bold tracking-tight">Late Fees</h1>
           <p className="text-sm text-muted-foreground mt-1">Configure late fee policies and view overdue students.</p>
         </div>
       </div>
@@ -76,7 +76,7 @@ export function AdminFinanceLateFeesClient() {
               <p className="text-xs text-muted-foreground">Days after due date before penalties apply</p>
             </div>
             <div className="space-y-1.5">
-              <label className="text-sm font-medium text-primary">Penalty Per Day (₹)</label>
+              <label className="text-sm font-medium text-primary">Penalty Per Day (â‚¹)</label>
               <Input 
                 type="number" 
                 value={penaltyRate} 
@@ -96,11 +96,11 @@ export function AdminFinanceLateFeesClient() {
           <div className="grid grid-cols-2 gap-6 max-w-md">
             <div className="space-y-1">
               <p className="text-sm font-medium text-muted-foreground">Grace Period</p>
-              <p className="text-text-primaryxl font-bold text-primary">{config?.gracePeriodDays} days</p>
+              <p className="text-text-primary text-xl font-bold text-primary">{config?.gracePeriodDays} days</p>
             </div>
             <div className="space-y-1">
               <p className="text-sm font-medium text-muted-foreground">Penalty Per Day</p>
-              <p className="text-text-primaryxl font-bold text-primary">{formatCurrency(config?.penaltyPerDay || 0)}</p>
+              <p className="text-text-primary text-xl font-bold text-primary">{formatCurrency(config?.penaltyPerDay || 0)}</p>
             </div>
           </div>
         )}
@@ -145,7 +145,7 @@ export function AdminFinanceLateFeesClient() {
                 <tr>
                   <td colSpan={6} className="px-5 py-20 text-center">
                     <div className="flex flex-col items-center justify-center gap-3">
-                      <div className="text-4xl opacity-50">✅</div>
+                      <div className="text-4xl opacity-50">âœ…</div>
                       <p className="text-lg font-bold">No active late fee charges.</p>
                       <p className="text-sm text-muted-foreground">All students are up to date on their payments.</p>
                     </div>
@@ -178,7 +178,7 @@ export function AdminFinanceLateFeesClient() {
                           className="bg-info/10 text-info hover:bg-info/20 border-none font-bold text-xs"
                           onClick={() => router.push(`${ADMIN_ROUTES.FINANCE_COLLECT_FEE}?studentId=${s.studentId}`)}
                         >
-                          💰 Collect Now
+                          ðŸ’° Collect Now
                         </Button>
                         <Button 
                           variant="secondary" 

@@ -62,17 +62,17 @@ export function AdminSystemBackupsClient() {
           >
             {creating
               ? <><Loader2 size={16} className="animate-spin mr-1" /> Creating Backup...</>
-              : <><Database size={16} className="mr-1" /> 📥 Create Manual Backup</>}
+              : <><Database size={16} className="mr-1" /> ðŸ“¥ Create Manual Backup</>}
           </Button>
         </div>
       </div>
 
       {/* KPI Cards */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-5 mb-8">
-        <KpiCard title="Total Backups" value={backups.length} icon="🗄️" subtitle="All time" />
-        <KpiCard title="Successful" value={successCount} icon="✅" trend="up" trendLabel="Reliable" />
-        <KpiCard title="Failed" value={failedCount} icon="❌" trend={failedCount > 0 ? 'down' : 'neutral'} trendLabel={failedCount > 0 ? 'Needs attention' : 'All good'} />
-        <KpiCard title="Last Backup" value={lastSuccess ? 'Today' : 'Never'} icon="🕐" subtitle={lastSuccess?.createdAt ?? '—'} />
+        <KpiCard title="Total Backups" value={backups.length} icon="ðŸ—„ï¸" subtitle="All time" />
+        <KpiCard title="Successful" value={successCount} icon="âœ…" trend="up" trendLabel="Reliable" />
+        <KpiCard title="Failed" value={failedCount} icon="âŒ" trend={failedCount > 0 ? 'down' : 'neutral'} trendLabel={failedCount > 0 ? 'Needs attention' : 'All good'} />
+        <KpiCard title="Last Backup" value={lastSuccess ? 'Today' : 'Never'} icon="ðŸ•" subtitle={lastSuccess?.createdAt ?? 'â€”'} />
       </div>
 
       {/* Backup Configuration */}
@@ -86,7 +86,7 @@ export function AdminSystemBackupsClient() {
             <CardDescription>Configure nightly backup schedule and retention period.</CardDescription>
           </CardHeader>
           <CardContent className="space-y-5">
-            <div className="flex items-center justify-between p-4 rounded-xl bg-bg-pageg-card border border-border">
+            <div className="flex items-center justify-between p-4 rounded-xl bg-card border border-border">
               <div>
                 <p className="text-sm font-semibold text-text-primary">Enable Nightly Backups</p>
                 <p className="text-xs text-text-secondary">Automatically backs up all data every night</p>
@@ -103,7 +103,7 @@ export function AdminSystemBackupsClient() {
                   value={backupTime}
                   onChange={e => setBackupTime(e.target.value)}
                   disabled={!autoBackup}
-                  className="px-3 py-2 rounded-lg bg-bg-pageg-input border border-border text-sm text-text-primary focus:outline-none focus:border-primary disabled:opacity-40"
+                  className="px-3 py-2 rounded-lg bg-input border border-border text-sm text-text-primary focus:outline-none focus:border-primary disabled:opacity-40"
                 />
                 <span className="text-sm text-text-secondary">Daily at {backupTime}</span>
               </div>
@@ -119,14 +119,14 @@ export function AdminSystemBackupsClient() {
                   onChange={e => setRetention(+e.target.value)}
                   min={7}
                   max={365}
-                  className="w-24 px-3 py-2 rounded-lg bg-bg-pageg-input border border-border text-sm text-text-primary focus:outline-none focus:border-primary"
+                  className="w-24 px-3 py-2 rounded-lg bg-input border border-border text-sm text-text-primary focus:outline-none focus:border-primary"
                 />
                 <span className="text-sm text-text-secondary">Old backups deleted after {retention} days</span>
               </div>
             </div>
           </CardContent>
           <CardFooter>
-            <Button id="save-backup-schedule-btn" variant="primary">💾 Save Schedule</Button>
+            <Button id="save-backup-schedule-btn" variant="primary">ðŸ’¾ Save Schedule</Button>
           </CardFooter>
         </Card>
 
@@ -139,7 +139,7 @@ export function AdminSystemBackupsClient() {
             <CardDescription>Sync backups to a secure cloud storage destination.</CardDescription>
           </CardHeader>
           <CardContent className="space-y-5">
-            <div className="flex items-center justify-between p-4 rounded-xl bg-bg-pageg-card border border-border">
+            <div className="flex items-center justify-between p-4 rounded-xl bg-card border border-border">
               <div>
                 <p className="text-sm font-semibold text-text-primary">Enable Cloud Sync</p>
                 <p className="text-xs text-text-secondary">Automatically upload backups to cloud after creation</p>
@@ -151,7 +151,7 @@ export function AdminSystemBackupsClient() {
               <>
                 <div className="space-y-2">
                   <label className="text-sm font-medium text-text-secondary">Cloud Provider</label>
-                  <AdminSearchableDropdown className="w-full px-3 py-2 rounded-lg bg-bg-pageg-input border border-border text-sm text-text-primary focus:outline-none focus:border-primary">
+                  <AdminSearchableDropdown className="w-full px-3 py-2 rounded-lg bg-input border border-border text-sm text-text-primary focus:outline-none focus:border-primary">
                     <option>Google Drive</option>
                     <option>AWS S3</option>
                     <option>Dropbox</option>
@@ -163,7 +163,7 @@ export function AdminSystemBackupsClient() {
                     <Shield size={16} className="text-success" />
                   </div>
                   <div>
-                    <p className="text-xs font-semibold text-success">Connected — Google Drive</p>
+                    <p className="text-xs font-semibold text-success">Connected â€” Google Drive</p>
                     <p className="text-xs text-text-secondary">Last synced: 2026-04-12 at 02:03 AM</p>
                   </div>
                 </div>
@@ -176,15 +176,15 @@ export function AdminSystemBackupsClient() {
                 <span className="flex items-center gap-1"><HardDrive size={12} /> Local Storage Used</span>
                 <span className="text-text-primary font-semibold">28.4 MB / 500 MB</span>
               </div>
-              <div className="h-2.5 rounded-full bg-bg-pageg-input overflow-hidden">
+              <div className="h-2.5 rounded-full bg-input overflow-hidden">
                 <div className="h-full bg-primary w-[length:var(--w)]" style={{ '--w': '5.68%' } as React.CSSProperties} />
               </div>
               <p className="text-xs text-text-secondary">471.6 MB remaining</p>
             </div>
           </CardContent>
           <CardFooter>
-            <Button id="save-cloud-config-btn" variant="primary">💾 Save Cloud Config</Button>
-            <Button id="test-cloud-connection-btn" variant="ghost">🔌 Test Connection</Button>
+            <Button id="save-cloud-config-btn" variant="primary">ðŸ’¾ Save Cloud Config</Button>
+            <Button id="test-cloud-connection-btn" variant="ghost">ðŸ”Œ Test Connection</Button>
           </CardFooter>
         </Card>
       </div>
@@ -195,7 +195,7 @@ export function AdminSystemBackupsClient() {
           <div className="flex items-center justify-between">
             <div>
               <CardTitle>Backup History</CardTitle>
-              <CardDescription>All backup records — download or restore from any checkpoint.</CardDescription>
+              <CardDescription>All backup records â€” download or restore from any checkpoint.</CardDescription>
             </div>
             <Button id="refresh-backups-btn" variant="ghost" size="sm">
               <RefreshCw size={14} className="mr-1" /> Refresh
@@ -227,7 +227,7 @@ export function AdminSystemBackupsClient() {
                   const cfg = STATUS_CFG[backup.status as keyof typeof STATUS_CFG];
                   const Icon = cfg.icon;
                   return (
-                    <tr key={backup.id} className="hover:bg-bg-pageg-card transition-colors group">
+                    <tr key={backup.id} className="hover:bg-card transition-colors group">
                       <td className="py-3 pr-4">
                         <div className="flex items-center gap-2">
                           <Database size={14} className="text-text-secondary" />
@@ -236,7 +236,7 @@ export function AdminSystemBackupsClient() {
                       </td>
                       <td className="py-3 pr-4">
                         <Badge variant={backup.type === 'auto' ? 'primary' : 'outline'}>
-                          {backup.type === 'auto' ? '🔄 Auto' : '👤 Manual'}
+                          {backup.type === 'auto' ? 'ðŸ”„ Auto' : 'ðŸ‘¤ Manual'}
                         </Badge>
                       </td>
                       <td className="py-3 pr-4 font-mono text-xs text-text-secondary">{backup.size}</td>
@@ -250,10 +250,10 @@ export function AdminSystemBackupsClient() {
                       <td className="py-3 pr-4">
                         <div className="flex flex-wrap gap-1">
                           {backup.modules.slice(0, 3).map(m => (
-                            <span key={m} className="text-xs px-1.5 py-0.5 rounded bg-bg-pageg-input text-text-secondary">{m}</span>
+                            <span key={m} className="text-xs px-1.5 py-0.5 rounded bg-input text-text-secondary">{m}</span>
                           ))}
                           {backup.modules.length > 3 && (
-                            <span className="text-xs px-1.5 py-0.5 rounded bg-bg-pageg-input text-text-secondary">+{backup.modules.length - 3}</span>
+                            <span className="text-xs px-1.5 py-0.5 rounded bg-input text-text-secondary">+{backup.modules.length - 3}</span>
                           )}
                         </div>
                       </td>
@@ -279,7 +279,7 @@ export function AdminSystemBackupsClient() {
                             onClick={() => handleDeleteBackup(backup.id)}
                             className="text-danger hover:bg-danger-bg/20"
                           >
-                            🗑️
+                            ðŸ—‘ï¸
                           </Button>
                         </div>
                       </td>

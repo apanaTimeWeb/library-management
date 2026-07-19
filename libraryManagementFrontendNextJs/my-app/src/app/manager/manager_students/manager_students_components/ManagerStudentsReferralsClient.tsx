@@ -10,9 +10,9 @@ import { TableToolbar } from "@/components/ui/table-toolbar";
 import { useClientTable } from "@/components/ui/use-client-table";
 
 const REFERRALS_DATA: ReferralData[] = [
-  { id: 'REF-001', referrer: 'Arjun Das',    referred: 'Riya Sen',    date: '2026-05-15', status: 'Claimed',  bonus: '₹500', method: 'Fee Discount' },
-  { id: 'REF-002', referrer: 'Priya Verma',  referred: 'Kunal Singh', date: '2026-06-02', status: 'Pending',  bonus: '₹500', method: 'Cash'         },
-  { id: 'REF-003', referrer: 'Rohan Sharma', referred: 'Aditi Jain',  date: '2026-06-03', status: 'Approved', bonus: '₹500', method: 'Fee Discount' },
+  { id: 'REF-001', referrer: 'Arjun Das',    referred: 'Riya Sen',    date: '2026-05-15', status: 'Claimed',  bonus: 'â‚¹500', method: 'Fee Discount' },
+  { id: 'REF-002', referrer: 'Priya Verma',  referred: 'Kunal Singh', date: '2026-06-02', status: 'Pending',  bonus: 'â‚¹500', method: 'Cash'         },
+  { id: 'REF-003', referrer: 'Rohan Sharma', referred: 'Aditi Jain',  date: '2026-06-03', status: 'Approved', bonus: 'â‚¹500', method: 'Fee Discount' },
 ];
 
 export function ManagerStudentsReferralsClient() {
@@ -33,7 +33,7 @@ const [searchTerm, setSearchTerm] = useUrlState('searchTerm', '');
     <div className="p-6 min-h-screen">
       <div className="p-6 min-h-screen-header">
         <div>
-          <div className="text-[11px] font-bold uppercase tracking-wider text-text-secondary mb-2">Students › Referrals</div>
+          <div className="text-[11px] font-bold uppercase tracking-wider text-text-secondary mb-2">Students â€º Referrals</div>
           <h1 className="text-[22px] font-bold text-text-primary">Referral Program</h1>
           <p className="p-6 min-h-screen-subtitle">Track and manage student referral bonuses.</p>
         </div>
@@ -48,28 +48,28 @@ const [searchTerm, setSearchTerm] = useUrlState('searchTerm', '');
         {[
           { label: 'Total Referrals',        value: '45',       icon: Award,        iconClass: 'bg-primary/10 text-primary' },
           { label: 'Pending Approvals',       value: '8',        icon: Search,       iconClass: 'bg-warning/10 text-warning' },
-          { label: 'Total Bonus Distributed', value: '₹18,500', icon: IndianRupee,  iconClass: 'bg-success/10 text-success' },
+          { label: 'Total Bonus Distributed', value: 'â‚¹18,500', icon: IndianRupee,  iconClass: 'bg-success/10 text-success' },
         ].map(k => {
           const Icon = k.icon;
           return (
-            <div key={k.label} className="bg-bg-pageg-card border border-border rounded-xl p-5 shadow-sm flex flex-col justify-between">
+            <div key={k.label} className="bg-card border border-border rounded-xl p-5 shadow-sm flex flex-col justify-between">
               <div className="flex items-center justify-between mb-4">
                 <div className={`w-10 h-10 rounded-lg flex items-center justify-center shrink-0 ${k.iconClass}`}><Icon size={18} /></div>
               </div>
               <div>
                 <p className="text-[13px] font-semibold text-text-secondary mb-1">{k.label}</p>
-                <p className="text-text-primaryxl font-bold text-text-primary tracking-tight">{k.value}</p>
+                <p className="text-text-primary text-xl font-bold text-text-primary tracking-tight">{k.value}</p>
               </div>
             </div>
           );
         })}
       </div>
 
-      <div className="bg-bg-pageg-card rounded-xl border border-border p-6">
+      <div className="bg-card rounded-xl border border-border p-6">
         <div className="flex items-center justify-between mb-4">
-          <div className="w-full bg-bg-pageg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent-icon-wrap max-w-[320px]">
-            <Search size={14} className="w-full bg-bg-pageg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent-icon" />
-            <input type="text" placeholder="Search by student name…" className="w-full bg-bg-pageg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent w-full bg-bg-pageg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent-with-icon" />
+          <div className="w-full bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent-icon-wrap max-w-[320px]">
+            <Search size={14} className="w-full bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent-icon" />
+            <input type="text" placeholder="Search by student nameâ€¦" className="w-full bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent w-full bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent-with-icon" />
           </div>
           <button className="bg-transparent border border-border text-text-primary rounded-lg h-8 px-3 text-xs font-medium hover:bg-primary-subtle hover:border-primary transition-colors inline-flex items-center gap-2"><Filter size={14} /> Filters</button>
         </div>
@@ -78,7 +78,7 @@ const [searchTerm, setSearchTerm] = useUrlState('searchTerm', '');
           <input 
             type="text" 
             placeholder="Search in table..." 
-            className="px-3 py-2 border border-border rounded-md text-sm bg-bg-pageg-input text-text-primary focus:outline-none focus:ring-2 focus:ring-primary w-64"
+            className="px-3 py-2 border border-border rounded-md text-sm bg-input text-text-primary focus:outline-none focus:ring-2 focus:ring-primary w-64"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
@@ -87,7 +87,7 @@ const [searchTerm, setSearchTerm] = useUrlState('searchTerm', '');
           <div className="w-full overflow-x-auto">
             <TableToolbar search={table.searchTerm} onSearch={table.setSearchTerm} />
       <table className="w-full text-left text-sm whitespace-nowrap">
-              <thead className="bg-bg-pageg-elevated border-b border-border">
+              <thead className="bg-card border-b border-border">
                 <tr className="text-text-secondary text-xs uppercase tracking-wider">
                   <th className="px-4 py-3 font-semibold">Ref ID</th>
                   <th className="px-4 py-3 font-semibold">Referrer (Existing)</th>
@@ -108,7 +108,7 @@ const [searchTerm, setSearchTerm] = useUrlState('searchTerm', '');
                   table.paginatedData.map((row) => {
                     const statusCls = row.status === 'Claimed' ? 'bg-success-bg text-success' : row.status === 'Approved' ? 'bg-info-bg text-info' : 'bg-warning-bg text-warning';
                     return (
-                      <tr key={row.id} className="hover:bg-bg-pageg-page transition-colors cursor-pointer group">
+                      <tr key={row.id} className="hover:bg-page transition-colors cursor-pointer group">
                         <td className="px-4 py-4 font-medium text-text-primary">{row.id}</td>
                         <td className="px-4 py-4 text-[13px] font-semibold text-text-secondary">{row.referrer}</td>
                         <td className="px-4 py-4 text-[13.5px] font-semibold text-text-primary group-hover:text-primary transition-colors">{row.referred}</td>

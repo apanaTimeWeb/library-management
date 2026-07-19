@@ -57,7 +57,7 @@ function AdminReportsKpiCard({ label, value, icon: Icon, iconColor, iconBg, tren
       </div>
       <div>
         <h3 className="text-sm font-semibold text-muted-foreground">{label}</h3>
-        <p className="text-text-primaryxl font-bold text-primary mt-1">{value}</p>
+        <p className="text-text-primary text-xl font-bold text-primary mt-1">{value}</p>
         {sub && <p className="text-xs text-muted-foreground mt-1.5">{sub}</p>}
       </div>
     </Card>
@@ -100,8 +100,8 @@ export function AdminReportsClient({ initialData }: AdminReportsClientProps) {
         {/* Header */}
         <div className="flex flex-col xl:flex-row xl:items-end justify-between gap-4 border-b border-border pb-5">
           <div>
-            <p className="text-xs text-muted-foreground mb-1 tracking-widest uppercase font-medium">Smart Library 360 › Admin › Reports</p>
-            <h1 className="text-text-primaryxl font-bold tracking-tight text-primary">Analytics & Reports</h1>
+            <p className="text-xs text-muted-foreground mb-1 tracking-widest uppercase font-medium">Smart Library 360 â€º Admin â€º Reports</p>
+            <h1 className="text-text-primary text-xl font-bold tracking-tight text-primary">Analytics & Reports</h1>
             <p className="text-sm text-muted-foreground mt-1">Financial health and operational overview across branches</p>
           </div>
 
@@ -112,7 +112,7 @@ export function AdminReportsClient({ initialData }: AdminReportsClientProps) {
                 <button
                   key={o.key}
                   onClick={() => setRange(o.key)}
-                  className={`px-4 py-1.5 text-sm font-medium rounded-md transition-all ${range === o.key ? 'bg-bg-pageg-card text-primary shadow-sm' : 'text-muted-foreground hover:text-foreground hover:bg-bg-pageg-card/50'}`}
+                  className={`px-4 py-1.5 text-sm font-medium rounded-md transition-all ${range === o.key ? 'bg-card text-primary shadow-sm' : 'text-muted-foreground hover:text-foreground hover:bg-card/50'}`}
                 >
                   {o.label}
                 </button>
@@ -123,7 +123,7 @@ export function AdminReportsClient({ initialData }: AdminReportsClientProps) {
             <AdminSearchableDropdown
               value={branch}
               onChange={e => setBranch(e.target.value)}
-              className="flex h-9 w-44 items-center justify-between rounded-md border border-border bg-bg-pageg-input px-3 py-1 text-sm ring-offset-bg-page placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:ring-offset-2"
+              className="flex h-9 w-44 items-center justify-between rounded-md border border-border bg-input px-3 py-1 text-sm ring-offset-bg-page placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:ring-offset-2"
             >
               <option>All Branches</option>
               <option>Main Branch</option>
@@ -188,11 +188,11 @@ export function AdminReportsClient({ initialData }: AdminReportsClientProps) {
                   tick={AXIS_TICK}
                   axisLine={false}
                   tickLine={false}
-                  tickFormatter={v => `₹${(Number(v) / 1000).toFixed(0)}k`}
+                  tickFormatter={v => `â‚¹${(Number(v) / 1000).toFixed(0)}k`}
                 />
                 <Tooltip
                   {...TOOLTIP_STYLE}
-                  formatter={((v: unknown, name: string) => [`₹${Number(v).toLocaleString('en-IN')}`, name]) as never}
+                  formatter={((v: unknown, name: string) => [`â‚¹${Number(v).toLocaleString('en-IN')}`, name]) as never}
                 />
                 <Bar dataKey="income"  fill="var(--chart-indigo)" radius={[5,5,0,0]} name="Income"  maxBarSize={32} />
                 <Bar dataKey="expense" fill="var(--chart-red)"    radius={[5,5,0,0]} name="Expense" maxBarSize={32} />
@@ -236,7 +236,7 @@ export function AdminReportsClient({ initialData }: AdminReportsClientProps) {
             </ResponsiveContainer>
           </Card>
 
-          {/* Chart 3: Monthly Revenue Trend — Area */}
+          {/* Chart 3: Monthly Revenue Trend â€” Area */}
           <Card className="p-5 shadow-none border-border bg-card">
             <div className="flex items-center justify-between mb-5">
               <div className="flex items-center gap-2">
@@ -263,11 +263,11 @@ export function AdminReportsClient({ initialData }: AdminReportsClientProps) {
                   tick={AXIS_TICK}
                   axisLine={false}
                   tickLine={false}
-                  tickFormatter={v => `₹${(Number(v) / 1000).toFixed(0)}k`}
+                  tickFormatter={v => `â‚¹${(Number(v) / 1000).toFixed(0)}k`}
                 />
                 <Tooltip
                   {...TOOLTIP_STYLE}
-                  formatter={((v: unknown) => [`₹${Number(v as number).toLocaleString('en-IN')}`, 'Revenue']) as never}
+                  formatter={((v: unknown) => [`â‚¹${Number(v as number).toLocaleString('en-IN')}`, 'Revenue']) as never}
                 />
                 <Area
                   type="monotone"

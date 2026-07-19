@@ -48,9 +48,9 @@ export function SuperadminBillingPanel({ inv, onClose, onMarkPaid }: Props) {
 
   return (
     <div className="fixed inset-0 z-50 flex items-stretch justify-end" onClick={onClose}>
-      <div className="absolute inset-0 bg-bg-pageg-page/80 backdrop-blur-sm transition-opacity" />
+      <div className="absolute inset-0 bg-page/80 backdrop-blur-sm transition-opacity" />
       <div 
-        className="relative w-full max-w-md bg-bg-pageg-card shadow-[-10px_0_30px_rgba(0,0,0,0.1)] border-l border-border overflow-y-auto animate-in slide-in-from-right duration-300" 
+        className="relative w-full max-w-md bg-card shadow-[-10px_0_30px_rgba(0,0,0,0.1)] border-l border-border overflow-y-auto animate-in slide-in-from-right duration-300" 
         onClick={e => e.stopPropagation()}
       >
         <div className="p-6 space-y-6">
@@ -62,14 +62,14 @@ export function SuperadminBillingPanel({ inv, onClose, onMarkPaid }: Props) {
               </div>
               <h2 className="text-xl font-bold text-text-primary">{inv.tenant}</h2>
             </div>
-            <button className="w-8 h-8 flex items-center justify-center rounded-md text-text-secondary hover:text-text-primary hover:bg-bg-pageg-input transition-colors" onClick={onClose}>
+            <button className="w-8 h-8 flex items-center justify-center rounded-md text-text-secondary hover:text-text-primary hover:bg-input transition-colors" onClick={onClose}>
               <X size={18} />
             </button>
           </div>
 
-          <div className="bg-bg-pageg-page rounded-lg p-6 border border-border text-center shadow-inner">
+          <div className="bg-page rounded-lg p-6 border border-border text-center shadow-inner">
             <p className="text-xs font-bold text-text-disabled uppercase tracking-wider mb-2">Invoice Amount</p>
-            <p className="text-4xl font-extrabold text-primary tracking-tight mb-3">₹{inv.amount.toLocaleString()}</p>
+            <p className="text-4xl font-extrabold text-primary tracking-tight mb-3">â‚¹{inv.amount.toLocaleString()}</p>
             <div className="flex justify-center">
               {inv.status === 'Paid'
                 ? <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider bg-success-bg text-success"><CheckCircle size={14} /> Paid</span>
@@ -79,7 +79,7 @@ export function SuperadminBillingPanel({ inv, onClose, onMarkPaid }: Props) {
 
           <div className="grid grid-cols-2 gap-4">
             {[['Date',inv.date],['Method',inv.method],['GST Number',inv.gst],['Status',inv.status]].map(([label,val]) => (
-              <div key={label} className="bg-bg-pageg-input p-3 rounded-md border border-border flex flex-col gap-1">
+              <div key={label} className="bg-input p-3 rounded-md border border-border flex flex-col gap-1">
                 <p className="text-xs font-bold text-text-disabled uppercase tracking-wider">{label}</p>
                 <p className="text-sm font-bold text-text-primary truncate">{val}</p>
               </div>
