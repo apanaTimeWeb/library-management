@@ -63,8 +63,8 @@ export function ManagerCommunicationWhatsappLogsClient() {
             <button onClick={() => setViewLog(null)} className="absolute top-4 right-4 w-8 h-8 flex items-center justify-center rounded-full hover:bg-danger-bg text-text-secondary hover:text-danger transition-colors"><X size={16} /></button>
             <p className="text-lg font-bold text-text-primary mb-4">ðŸ“± Message Details</p>
             <div className="flex gap-2 mb-6">
-              <span className={`rounded-full px-2.5 py-0.5 text-[11px] font-semibold ${TYPE_BADGE[viewLog.type]}`}>{TYPE_LABEL[viewLog.type]}</span>
-              <span className={`rounded-full px-2.5 py-0.5 text-[11px] font-semibold ${STATUS_BADGE[viewLog.status]}`}>{viewLog.status}</span>
+              <span className={`rounded-full px-2.5 py-0.5 text-xs font-semibold ${TYPE_BADGE[viewLog.type]}`}>{TYPE_LABEL[viewLog.type]}</span>
+              <span className={`rounded-full px-2.5 py-0.5 text-xs font-semibold ${STATUS_BADGE[viewLog.status]}`}>{viewLog.status}</span>
             </div>
             <div className="grid grid-cols-2 gap-4 mb-6 bg-card p-4 rounded-lg border border-border/50">
               {([['To', viewLog.phone], ['Student', viewLog.student], ['Sent At', viewLog.dateTime]] as [string, string][]).map(([k, v]) => (
@@ -75,7 +75,7 @@ export function ManagerCommunicationWhatsappLogsClient() {
               ))}
             </div>
             <div>
-              <label className="text-[13px] font-medium text-text-secondary mb-1.5 block">Message Content</label>
+              <label className="text-sm font-medium text-text-secondary mb-1.5 block">Message Content</label>
               <div className="bg-input p-4 rounded-lg border border-border text-sm leading-relaxed text-text-primary whitespace-pre-wrap">{viewLog.message}</div>
             </div>
             {viewLog.error && (
@@ -92,15 +92,15 @@ export function ManagerCommunicationWhatsappLogsClient() {
         <div className="text-xs font-medium text-text-secondary uppercase tracking-wider mb-2 flex items-center gap-1.5">
           <span>Communication</span><ChevronRight size={12} className="mx-1" /><span>WhatsApp Logs</span>
         </div>
-        <h1 className="text-[22px] font-bold text-text-primary">ðŸ“± WhatsApp Logs</h1>
-        <p className="text-[13px] text-text-secondary mt-1.5">All outbound WhatsApp messages sent from the system.</p>
+        <h1 className="text-xl font-bold text-text-primary">ðŸ“± WhatsApp Logs</h1>
+        <p className="text-sm text-text-secondary mt-1.5">All outbound WhatsApp messages sent from the system.</p>
       </div>
 
       {/* Filter Bar */}
       <div className="bg-card mb-6 p-4 border border-border rounded-xl shadow-sm">
         <div className="flex flex-wrap gap-4 items-end">
           <div className="flex flex-col">
-            <label className="text-[13px] font-medium text-text-secondary mb-1.5">Message Type</label>
+            <label className="text-sm font-medium text-text-secondary mb-1.5">Message Type</label>
             <ManagerSearchableDropdown
               className="w-48"
               value={typeFilter}
@@ -116,7 +116,7 @@ export function ManagerCommunicationWhatsappLogsClient() {
             />
           </div>
           <div className="flex flex-col">
-            <label className="text-[13px] font-medium text-text-secondary mb-1.5">Status</label>
+            <label className="text-sm font-medium text-text-secondary mb-1.5">Status</label>
             <ManagerSearchableDropdown
               className="w-32"
               value={statusFilter}
@@ -131,15 +131,15 @@ export function ManagerCommunicationWhatsappLogsClient() {
             />
           </div>
           <div className="flex flex-col">
-            <label className="text-[13px] font-medium text-text-secondary mb-1.5">From</label>
+            <label className="text-sm font-medium text-text-secondary mb-1.5">From</label>
             <input type="date" className="bg-input border border-border rounded-lg px-3.5 py-2 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary" value={dateFrom} onChange={e => setDateFrom(e.target.value)} />
           </div>
           <div className="flex flex-col">
-            <label className="text-[13px] font-medium text-text-secondary mb-1.5">To</label>
+            <label className="text-sm font-medium text-text-secondary mb-1.5">To</label>
             <input type="date" className="bg-input border border-border rounded-lg px-3.5 py-2 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary" value={dateTo} onChange={e => setDateTo(e.target.value)} />
           </div>
           <div className="flex flex-col flex-grow min-w-48">
-            <label className="text-[13px] font-medium text-text-secondary mb-1.5">Search</label>
+            <label className="text-sm font-medium text-text-secondary mb-1.5">Search</label>
             <input className="w-full bg-input border border-border rounded-lg px-3.5 py-2 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary" placeholder="Student name or phone..." value={search} onChange={e => setSearch(e.target.value)} />
           </div>
         </div>
@@ -172,15 +172,15 @@ export function ManagerCommunicationWhatsappLogsClient() {
                   {table.paginatedData.map((row) => (
                     <tr key={row.id} className="hover:bg-page transition-colors">
                       <td className="px-4 py-4 text-text-secondary">{row.dateTime}</td>
-                      <td className="px-4 py-4"><span className="font-mono text-[12px] text-text-primary tracking-tight">{row.phone}</span></td>
+                      <td className="px-4 py-4"><span className="font-mono text-xs text-text-primary tracking-tight">{row.phone}</span></td>
                       <td className="px-4 py-4"><span className="text-sm font-semibold text-text-primary">{row.student}</span></td>
                       <td className="px-4 py-4">
-                        <span className={`rounded-full px-2.5 py-0.5 text-[11px] font-semibold ${TYPE_BADGE[row.type] || 'bg-info-bg text-info'}`}>
+                        <span className={`rounded-full px-2.5 py-0.5 text-xs font-semibold ${TYPE_BADGE[row.type] || 'bg-info-bg text-info'}`}>
                           {TYPE_LABEL[row.type] || row.type}
                         </span>
                       </td>
                       <td className="px-4 py-4">
-                        <span className={`rounded-full px-2.5 py-0.5 text-[11px] font-semibold ${STATUS_BADGE[row.status] || 'bg-info-bg text-info'}`}>
+                        <span className={`rounded-full px-2.5 py-0.5 text-xs font-semibold ${STATUS_BADGE[row.status] || 'bg-info-bg text-info'}`}>
                           {row.status}
                         </span>
                       </td>
@@ -220,4 +220,5 @@ export function ManagerCommunicationWhatsappLogsClient() {
     </div>
   );
 }
+
 

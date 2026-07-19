@@ -10,10 +10,10 @@ function SmartIdCell(props: { value: string }) {
   return <span className="font-mono text-xs text-primary">{props.value}</span>;
 }
 function ShiftBadgeCell(props: { value: string }) {
-  return <span className="px-2 py-0.5 rounded-full text-[11px] font-semibold bg-info-bg text-info border border-info-bg">{props.value}</span>;
+  return <span className="px-2 py-0.5 rounded-full text-xs font-semibold bg-info-bg text-info border border-info-bg">{props.value}</span>;
 }
 function ShiftPrimaryCell(props: { value: string }) {
-  return <span className="px-2 py-0.5 rounded-full text-[11px] font-semibold bg-primary-subtle text-primary border border-primary/20">{props.value}</span>;
+  return <span className="px-2 py-0.5 rounded-full text-xs font-semibold bg-primary-subtle text-primary border border-primary/20">{props.value}</span>;
 }
 function DaysAbsentCell(props: { value: number }) {
   return <span className="text-danger font-bold">{props.value}</span>;
@@ -34,7 +34,7 @@ function PriorityCell(props: { value: string }) {
   const cls = props.value === 'High' ? 'bg-danger-bg text-danger border-danger-bg' 
             : props.value === 'Medium' ? 'bg-warning-bg text-warning border-warning-bg' 
             : 'bg-info-bg text-info border-info-bg';
-  return <span className={`px-2 py-0.5 rounded-full text-[11px] font-semibold border ${cls}`}>{props.value}</span>;
+  return <span className={`px-2 py-0.5 rounded-full text-xs font-semibold border ${cls}`}>{props.value}</span>;
 }
 
 function ReportTable<T extends Record<string, unknown>>({ 
@@ -59,7 +59,7 @@ function ReportTable<T extends Record<string, unknown>>({
   });
 
   return (
-    <div className="bg-card border border-border rounded-[var(--radius-lg)] p-5 hover:shadow-lg transition-all duration-200 flex flex-col h-full">
+    <div className="bg-card border border-border rounded-lg p-5 hover:shadow-lg transition-all duration-200 flex flex-col h-full">
       <h3 className="text-sm font-semibold text-text-primary mb-4">{title}</h3>
       <div className="flex-1 w-full overflow-x-auto border border-border rounded-xl mb-4">
         <table className="w-full text-left text-sm whitespace-nowrap">
@@ -190,4 +190,5 @@ export function ManagerReportsTablesGrid({ data }: ManagerReportsTablesGridProps
     </div>
   );
 }
+
 

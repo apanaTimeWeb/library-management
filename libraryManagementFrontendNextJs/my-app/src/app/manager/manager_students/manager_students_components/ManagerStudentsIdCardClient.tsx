@@ -27,8 +27,8 @@ export function ManagerStudentsIdCardClient() {
           <Link href={MANAGER_ROUTES.STUDENTS} className="inline-flex items-center gap-2 text-sm font-medium text-text-secondary hover:text-primary transition-colors mb-4">
             <ArrowLeft size={14} /> Back to Students
           </Link>
-          <h1 className="text-[22px] font-bold text-text-primary">ID Card Generator</h1>
-          <p className="text-[13px] text-text-secondary mt-1.5">Search â†’ click student â†’ preview â†’ print or send via WhatsApp</p>
+          <h1 className="text-xl font-bold text-text-primary">ID Card Generator</h1>
+          <p className="text-sm text-text-secondary mt-1.5">Search â†’ click student â†’ preview â†’ print or send via WhatsApp</p>
         </div>
       </div>
 
@@ -42,7 +42,7 @@ export function ManagerStudentsIdCardClient() {
                 Select Student
               </h2>
               {selected && (
-                <span className="rounded-full px-2.5 py-0.5 text-[11px] font-semibold bg-success-bg text-success">
+                <span className="rounded-full px-2.5 py-0.5 text-xs font-semibold bg-success-bg text-success">
                   <CheckCircle2 size={11} /> {selected.name}
                 </span>
               )}
@@ -78,9 +78,9 @@ export function ManagerStudentsIdCardClient() {
                         <p className="text-xs text-text-secondary mt-0.5 truncate">{s.smartId} Â· {s.shift} Â· Seat {s.seat}</p>
                       </div>
                       <span className={
-                        s.status === 'Active'    ? 'rounded-full px-2.5 py-0.5 text-[11px] font-semibold bg-success-bg text-success' :
-                        s.status === 'Suspended' ? 'rounded-full px-2.5 py-0.5 text-[11px] font-semibold bg-warning-bg text-warning' :
-                                                   'rounded-full px-2.5 py-0.5 text-[11px] font-semibold bg-danger-bg text-danger'
+                        s.status === 'Active'    ? 'rounded-full px-2.5 py-0.5 text-xs font-semibold bg-success-bg text-success' :
+                        s.status === 'Suspended' ? 'rounded-full px-2.5 py-0.5 text-xs font-semibold bg-warning-bg text-warning' :
+                                                   'rounded-full px-2.5 py-0.5 text-xs font-semibold bg-danger-bg text-danger'
                       }>{s.status}</span>
                     </button>
                   );
@@ -116,11 +116,11 @@ export function ManagerStudentsIdCardClient() {
         <div className="flex flex-col items-center justify-center bg-page border border-dashed border-border rounded-xl p-8 sticky top-24">
           {cardData ? (
             <>
-              <p className="text-[11px] font-bold uppercase tracking-wider text-text-secondary mb-6">
+              <p className="text-xs font-bold uppercase tracking-wider text-text-secondary mb-6">
                 Preview â€” {selected?.name}
               </p>
               <ManagerStudentsIdCard data={cardData} />
-              <p className="text-[11px] text-text-secondary mt-6 text-center max-w-72">
+              <p className="text-xs text-text-secondary mt-6 text-center max-w-72">
                 Use buttons on the left to print (80mm thermal) or send via WhatsApp
               </p>
             </>
@@ -138,3 +138,4 @@ export function ManagerStudentsIdCardClient() {
     </div>
   );
 }
+

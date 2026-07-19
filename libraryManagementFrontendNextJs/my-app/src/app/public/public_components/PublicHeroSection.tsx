@@ -47,10 +47,10 @@ export function PublicHeroSection() {
           transition={{ duration: 0.5, delay: 0.3 }}
           className="flex flex-col sm:flex-row items-center gap-4"
         >
-          <Link href="/auth/login" className="flex items-center gap-2 bg-primary hover:bg-primary-hover text-white px-8 py-3.5 rounded-[var(--radius-md)] font-medium transition-all shadow-[0_0_20px_rgba(99,102,241,0.4)] hover:shadow-[0_0_30px_rgba(99,102,241,0.6)]">
+          <Link href="/auth/login" className="flex items-center gap-2 bg-primary hover:bg-primary-hover text-white px-8 py-3.5 rounded-md font-medium transition-all shadow-[0_0_20px_rgba(99,102,241,0.4)] hover:shadow-[0_0_30px_rgba(99,102,241,0.6)]">
             Start Free Trial <ArrowRight size={18} />
           </Link>
-          <button className="flex items-center gap-2 bg-card hover:bg-input text-text-primary border border-border px-8 py-3.5 rounded-[var(--radius-md)] font-medium transition-all">
+          <button className="flex items-center gap-2 bg-card hover:bg-input text-text-primary border border-border px-8 py-3.5 rounded-md font-medium transition-all">
             <Play size={18} className="text-primary" /> Book Demo
           </button>
         </motion.div>
@@ -73,3 +73,4 @@ export function PublicHeroSection() {
     </section>
   );
 }
+

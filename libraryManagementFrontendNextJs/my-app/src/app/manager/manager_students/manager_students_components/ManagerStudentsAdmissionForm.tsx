@@ -64,17 +64,17 @@ export default function ManagerStudentsAdmissionForm() {
         {/* Page Header */}
         <div className="mb-8 flex flex-col md:flex-row md:items-end justify-between gap-4">
           <div>
-            <Link href={MANAGER_ROUTES.STUDENTS} className="flex items-center gap-1.5 text-[13px] font-medium text-text-secondary hover:text-primary transition-colors mb-4 inline-flex">
+            <Link href={MANAGER_ROUTES.STUDENTS} className="flex items-center gap-1.5 text-sm font-medium text-text-secondary hover:text-primary transition-colors mb-4 inline-flex">
               <ArrowLeft size={14} /> Back to Students
             </Link>
-            <h1 className="text-[22px] font-bold text-text-primary">New Student Admission</h1>
-            <p className="text-[13px] text-text-secondary mt-1.5">Fill all mandatory (*) fields accurately. Smart ID is auto-generated.</p>
+            <h1 className="text-xl font-bold text-text-primary">New Student Admission</h1>
+            <p className="text-sm text-text-secondary mt-1.5">Fill all mandatory (*) fields accurately. Smart ID is auto-generated.</p>
           </div>
           {/* Smart ID Badge */}
           <div className="flex items-center gap-3 bg-primary-subtle/50 px-4 py-2.5 rounded-xl border border-primary/10">
             <span className="text-xs font-semibold text-text-secondary uppercase tracking-wider">Smart ID</span>
             <span className="font-mono text-base font-bold text-primary tracking-tight">{SMART_ID}</span>
-            <span className="rounded-full px-2.5 py-0.5 text-[11px] font-semibold bg-info/10 text-info">Gap slot reused</span>
+            <span className="rounded-full px-2.5 py-0.5 text-xs font-semibold bg-info/10 text-info">Gap slot reused</span>
           </div>
         </div>
 
@@ -94,7 +94,7 @@ export default function ManagerStudentsAdmissionForm() {
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-5">
 
                     <div className="flex flex-col col-span-1 md:col-span-2">
-                      <label className="block text-[13px] font-medium text-text-secondary mb-1.5 after:content-['*'] after:ml-1 after:text-danger">Full Name</label>
+                      <label className="block text-sm font-medium text-text-secondary mb-1.5 after:content-['*'] after:ml-1 after:text-danger">Full Name</label>
                       <div className="relative">
                         <User size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-text-secondary" />
                         <input
@@ -103,11 +103,11 @@ export default function ManagerStudentsAdmissionForm() {
                           placeholder="Enter student full name"
                         />
                       </div>
-                      {errors.fullName && <p className="text-[11px] text-danger mt-1.5 font-medium">{errors.fullName.message}</p>}
+                      {errors.fullName && <p className="text-xs text-danger mt-1.5 font-medium">{errors.fullName.message}</p>}
                     </div>
 
                     <div className="flex flex-col">
-                      <label className="block text-[13px] font-medium text-text-secondary mb-1.5 after:content-['*'] after:ml-1 after:text-danger">Phone Number</label>
+                      <label className="block text-sm font-medium text-text-secondary mb-1.5 after:content-['*'] after:ml-1 after:text-danger">Phone Number</label>
                       <div className="relative">
                         <Phone size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-text-secondary" />
                         <input
@@ -117,11 +117,11 @@ export default function ManagerStudentsAdmissionForm() {
                           placeholder="9876543210"
                         />
                       </div>
-                      {errors.phone && <p className="text-[11px] text-danger mt-1.5 font-medium">{errors.phone.message}</p>}
+                      {errors.phone && <p className="text-xs text-danger mt-1.5 font-medium">{errors.phone.message}</p>}
                     </div>
 
                     <div className="flex flex-col">
-                      <label className="block text-[13px] font-medium text-text-secondary mb-1.5">Parent / Guardian Phone</label>
+                      <label className="block text-sm font-medium text-text-secondary mb-1.5">Parent / Guardian Phone</label>
                       <div className="relative">
                         <Phone size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-text-secondary" />
                         <input
@@ -134,7 +134,7 @@ export default function ManagerStudentsAdmissionForm() {
                     </div>
 
                     <div className="flex flex-col">
-                      <label className="block text-[13px] font-medium text-text-secondary mb-1.5">Email Address</label>
+                      <label className="block text-sm font-medium text-text-secondary mb-1.5">Email Address</label>
                       <div className="relative">
                         <Mail size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-text-secondary" />
                         <input
@@ -144,11 +144,11 @@ export default function ManagerStudentsAdmissionForm() {
                           placeholder="student@email.com"
                         />
                       </div>
-                      {errors.email && <p className="text-[11px] text-danger mt-1.5 font-medium">{errors.email.message}</p>}
+                      {errors.email && <p className="text-xs text-danger mt-1.5 font-medium">{errors.email.message}</p>}
                     </div>
 
                     <div className="flex flex-col">
-                      <label className="block text-[13px] font-medium text-text-secondary mb-1.5">College / Preparing For</label>
+                      <label className="block text-sm font-medium text-text-secondary mb-1.5">College / Preparing For</label>
                       <div className="relative">
                         <GraduationCap size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-text-secondary" />
                         <input
@@ -173,7 +173,7 @@ export default function ManagerStudentsAdmissionForm() {
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-5">
 
                     <div className="flex flex-col">
-                      <label className="block text-[13px] font-medium text-text-secondary mb-1.5 after:content-['*'] after:ml-1 after:text-danger">Select Shift</label>
+                      <label className="block text-sm font-medium text-text-secondary mb-1.5 after:content-['*'] after:ml-1 after:text-danger">Select Shift</label>
                       <div className="relative">
                         <Armchair size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-text-secondary" />
                         <ManagerSearchableDropdown
@@ -185,11 +185,11 @@ export default function ManagerStudentsAdmissionForm() {
                           ]}
                         />
                       </div>
-                      {errors.shift && <p className="text-[11px] text-danger mt-1.5 font-medium">{errors.shift.message}</p>}
+                      {errors.shift && <p className="text-xs text-danger mt-1.5 font-medium">{errors.shift.message}</p>}
                     </div>
 
                     <div className="flex flex-col">
-                      <label className="block text-[13px] font-medium text-text-secondary mb-1.5 after:content-['*'] after:ml-1 after:text-danger">Seat Number</label>
+                      <label className="block text-sm font-medium text-text-secondary mb-1.5 after:content-['*'] after:ml-1 after:text-danger">Seat Number</label>
                       <ManagerSearchableDropdown
                         value={watchedSeat}
                         onChange={(v) => setValue('seat', v, { shouldValidate: true })}
@@ -198,7 +198,7 @@ export default function ManagerStudentsAdmissionForm() {
                           ...SEATS.map((s: string) => ({ label: s, value: s }))
                         ]}
                       />
-                      {errors.seat && <p className="text-[11px] text-danger mt-1.5 font-medium">{errors.seat.message}</p>}
+                      {errors.seat && <p className="text-xs text-danger mt-1.5 font-medium">{errors.seat.message}</p>}
                     </div>
 
                   </div>
@@ -215,7 +215,7 @@ export default function ManagerStudentsAdmissionForm() {
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-5">
 
                     <div className="flex flex-col">
-                      <label className="block text-[13px] font-medium text-text-secondary mb-1.5 after:content-['*'] after:ml-1 after:text-danger">Subscription Plan</label>
+                      <label className="block text-sm font-medium text-text-secondary mb-1.5 after:content-['*'] after:ml-1 after:text-danger">Subscription Plan</label>
                       <div className="relative">
                         <FileText size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-text-secondary" />
                         <ManagerSearchableDropdown
@@ -234,7 +234,7 @@ export default function ManagerStudentsAdmissionForm() {
                     </div>
 
                     <div className="flex flex-col">
-                      <label className="block text-[13px] font-medium text-text-secondary mb-1.5">Manual Discount (â‚¹)</label>
+                      <label className="block text-sm font-medium text-text-secondary mb-1.5">Manual Discount (â‚¹)</label>
                       <div className="relative">
                         <IndianRupee size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-text-secondary" />
                         <input
@@ -248,15 +248,15 @@ export default function ManagerStudentsAdmissionForm() {
                     </div>
 
                     <div className="flex flex-col">
-                      <label className="block text-[13px] font-medium text-text-secondary mb-1.5">Coupon Code</label>
+                      <label className="block text-sm font-medium text-text-secondary mb-1.5">Coupon Code</label>
                       <div className="flex gap-2">
                         <input className="w-full bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary uppercase" placeholder="e.g. SUMMER50" />
-                        <button type="button" className="bg-transparent border border-border text-text-primary rounded-lg px-4 py-2 text-[13px] font-medium hover:bg-primary-subtle hover:border-primary transition-colors inline-flex items-center gap-2">Apply</button>
+                        <button type="button" className="bg-transparent border border-border text-text-primary rounded-lg px-4 py-2 text-sm font-medium hover:bg-primary-subtle hover:border-primary transition-colors inline-flex items-center gap-2">Apply</button>
                       </div>
                     </div>
 
                     <div className="flex flex-col">
-                      <label className="block text-[13px] font-medium text-text-secondary mb-1.5 after:content-['*'] after:ml-1 after:text-danger">Amount Paid Now (â‚¹)</label>
+                      <label className="block text-sm font-medium text-text-secondary mb-1.5 after:content-['*'] after:ml-1 after:text-danger">Amount Paid Now (â‚¹)</label>
                       <div className="relative">
                         <IndianRupee size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-text-secondary" />
                         <input
@@ -265,18 +265,18 @@ export default function ManagerStudentsAdmissionForm() {
                           className={`w-full bg-input border ${errors.amountPaid ? 'border-danger focus:ring-danger' : 'border-border focus:ring-primary'} rounded-lg pl-9 pr-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2`}
                         />
                       </div>
-                      {errors.amountPaid && <p className="text-[11px] text-danger mt-1.5 font-medium">{errors.amountPaid.message}</p>}
+                      {errors.amountPaid && <p className="text-xs text-danger mt-1.5 font-medium">{errors.amountPaid.message}</p>}
                     </div>
 
                     <div className="flex flex-col col-span-1 md:col-span-2">
-                      <label className="block text-[13px] font-medium text-text-secondary mb-1.5 after:content-['*'] after:ml-1 after:text-danger">Payment Mode</label>
+                      <label className="block text-sm font-medium text-text-secondary mb-1.5 after:content-['*'] after:ml-1 after:text-danger">Payment Mode</label>
                       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
                         {(['Cash', 'UPI', 'Card', 'Bank Transfer'] as const).map(mode => (
                           <button
                             key={mode}
                             type="button"
                             onClick={() => setValue('paymentMode', mode, { shouldValidate: true })}
-                            className={`flex items-center justify-center gap-2 px-3 py-2.5 rounded-lg border text-[13px] font-medium transition-all duration-200 ${watchedMode === mode ? 'border-primary bg-primary-subtle text-primary ring-1 ring-primary/20' : 'border-border bg-page text-text-secondary hover:border-primary/50 hover:bg-primary-subtle/30'}`}
+                            className={`flex items-center justify-center gap-2 px-3 py-2.5 rounded-lg border text-sm font-medium transition-all duration-200 ${watchedMode === mode ? 'border-primary bg-primary-subtle text-primary ring-1 ring-primary/20' : 'border-border bg-page text-text-secondary hover:border-primary/50 hover:bg-primary-subtle/30'}`}
                           >
                             <CreditCard size={13} />
                             {mode}
@@ -286,7 +286,7 @@ export default function ManagerStudentsAdmissionForm() {
                     </div>
 
                     <div className="flex flex-col col-span-1 md:col-span-2">
-                      <label className="block text-[13px] font-medium text-text-secondary mb-1.5">Transaction ID / Reference</label>
+                      <label className="block text-sm font-medium text-text-secondary mb-1.5">Transaction ID / Reference</label>
                       <input
                         {...register('transactionId')}
                         className="w-full bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary"
@@ -318,3 +318,4 @@ export default function ManagerStudentsAdmissionForm() {
     </>
   );
 }
+

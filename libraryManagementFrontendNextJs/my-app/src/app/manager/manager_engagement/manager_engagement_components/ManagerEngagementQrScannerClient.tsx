@@ -58,8 +58,8 @@ export function ManagerEngagementQrScannerClient() {
       </div>
 
       <div className="mb-8">
-        <h1 className="text-[22px] font-bold text-text-primary">ðŸ“· QR Scanner</h1>
-        <p className="text-[13px] text-text-secondary mt-1.5">Scan student ID cards to instantly mark attendance.</p>
+        <h1 className="text-xl font-bold text-text-primary">ðŸ“· QR Scanner</h1>
+        <p className="text-sm text-text-secondary mt-1.5">Scan student ID cards to instantly mark attendance.</p>
       </div>
 
       <div className="max-w-md mx-auto">
@@ -69,7 +69,7 @@ export function ManagerEngagementQrScannerClient() {
           <div className="flex items-start justify-between mb-4">
             <div>
               <div className="text-base font-semibold text-text-primary">Camera Feed</div>
-              <div className="text-[13px] text-text-secondary mt-1">
+              <div className="text-sm text-text-secondary mt-1">
                 {scanState === 'idle'     && 'Click Start Scan to activate camera'}
                 {scanState === 'scanning' && 'Point camera at student ID card QR code'}
                 {scanState === 'detected' && 'QR code detected â€” confirm attendance below'}
@@ -187,7 +187,7 @@ export function ManagerEngagementQrScannerClient() {
             <div className="bg-card rounded-xl border border-border p-6 mt-4 text-left animate-in fade-in duration-200">
               <div className="text-base font-bold text-text-primary mb-4">Manual Entry</div>
               <div className="flex flex-col mb-4">
-                <label className="block text-[13px] font-medium text-text-secondary mb-1.5">Smart ID <span className="text-danger ml-1">*</span></label>
+                <label className="block text-sm font-medium text-text-secondary mb-1.5">Smart ID <span className="text-danger ml-1">*</span></label>
                 <input className="w-full bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary font-mono uppercase" placeholder="e.g. SL-001"
                   value={manualId} onChange={e => setManualId(e.target.value)}
                   onKeyDown={e => e.key === 'Enter' && handleManual('IN')} />
@@ -207,3 +207,4 @@ export function ManagerEngagementQrScannerClient() {
     </div>
   );
 }
+

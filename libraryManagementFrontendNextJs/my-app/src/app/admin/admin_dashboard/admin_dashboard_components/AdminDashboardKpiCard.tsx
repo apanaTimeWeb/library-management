@@ -7,8 +7,8 @@ export function AdminDashboardKpiCard({ label, value, icon: Icon, iconColor, ico
   return (
     <Card className="border-border bg-card shadow-none flex flex-col justify-between p-5 h-full">
       <div className="flex items-start justify-between mb-4">
-        <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[color:var(--bg)]" style={{ '--bg': iconBg } as React.CSSProperties}>
-          <Icon size={18} className="text-[color:var(--c)]" style={{ '--c': iconColor } as React.CSSProperties} />
+        <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-background" style={{ '--bg': iconBg } as React.CSSProperties}>
+          <Icon size={18} className="text-foreground" style={{ '--c': iconColor } as React.CSSProperties} />
         </div>
         {trend && (
           <span className={`flex items-center gap-1 text-xs font-bold px-2 py-0.5 rounded-full ${trend.up ? 'bg-success-bg text-success' : 'bg-danger-bg text-danger'}`}>
@@ -26,3 +26,4 @@ export function AdminDashboardKpiCard({ label, value, icon: Icon, iconColor, ico
     </Card>
   );
 }
+

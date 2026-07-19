@@ -62,9 +62,9 @@ export default function ManagerStudentsAdmissionSuccessModal({ data, onClose }: 
       <div className="bg-page w-full max-w-4xl rounded-2xl shadow-2xl flex flex-col overflow-hidden animate-in fade-in zoom-in-95 duration-200 my-auto" onClick={e => e.stopPropagation()}>
 
         <div className="flex items-center justify-between p-6 border-b border-border bg-card">
-          <div className="flex items-center gap-[12px] flex-wrap mt-[20px]">
+          <div className="flex items-center gap-3 flex-wrap mt-[20px]">
             <h2 className="text-xl font-bold text-text-primary" id="success-modal-title">ðŸŽ‰ Admission Confirmed!</h2>
-            <span className="rounded-full px-2.5 py-0.5 text-[11px] font-semibold bg-success-bg text-success inline-flex items-center gap-1"><CheckCircle size={12} /> Active</span>
+            <span className="rounded-full px-2.5 py-0.5 text-xs font-semibold bg-success-bg text-success inline-flex items-center gap-1"><CheckCircle size={12} /> Active</span>
           </div>
           <button className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-bg-pagelack/5 dark:hover:bg-white/10 text-text-secondary transition-colors" onClick={onClose} aria-label="Close">
             <X size={15} />
@@ -124,5 +124,6 @@ export default function ManagerStudentsAdmissionSuccessModal({ data, onClose }: 
     </div>
   );
 }
+
 
 

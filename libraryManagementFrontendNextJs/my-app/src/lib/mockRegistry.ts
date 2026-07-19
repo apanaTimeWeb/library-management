@@ -1,4 +1,4 @@
-﻿// RESPONSIBILITY: Renders or handles logic for mockRegistry.ts.
+// RESPONSIBILITY: Renders or handles logic for mockRegistry.ts.
 import managerStudentsMock from '@/app/manager/manager_students/hardcoded.json';
 import { MOCK_AUDIT_LOGS } from '@/app/admin/admin_audit-logs/admin_audit-logs_constants/admin_audit-logs_constants';
 import { MOCK_BLACKLIST } from '@/app/admin/admin_blacklist/admin_blacklist_constants/admin_blacklist_constants';
@@ -94,7 +94,7 @@ const ADMIN_DASHBOARD_MOCK = {
  * Maps backend API endpoints to their respective mock data objects.
  * Auto-generated to include all available hardcoded mock constants.
  */
-export const mockRegistry: Record<string, any> = {
+export const mockRegistry: Record<string, unknown> = {
   '/manager/manager_students': managerStudentsMock.students,
   '/students': managerStudentsMock.students,
   '/admin/students': managerStudentsMock.students,

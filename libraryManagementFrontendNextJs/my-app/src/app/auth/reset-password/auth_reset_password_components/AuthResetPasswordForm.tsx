@@ -40,7 +40,7 @@ export function AuthResetPasswordForm() {
   return (
     <div className="min-h-screen flex flex-col items-center justify-start sm:justify-center p-4 sm:p-6 pt-10 sm:pt-6 bg-page text-text-primary relative overflow-hidden">
       {/* Ambient glow */}
-      <div className="absolute bottom-[-10%] left-[-5%] w-[40%] h-[40%] bg-purple/20 blur-[100px] rounded-full pointer-events-none" />
+      <div className="absolute bottom-[-10%] left-[-5%] w-2/5 h-2/5 bg-purple/20 blur-[100px] rounded-full pointer-events-none" />
 
       <div className="w-full max-w-full max-w-md space-y-5 pb-8 relative z-10">
         {/* Logo */}
@@ -192,3 +192,4 @@ export function AuthResetPasswordForm() {
     </div>
   );
 }
+

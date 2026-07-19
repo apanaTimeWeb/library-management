@@ -59,8 +59,8 @@ export function ManagerEngagementAttendanceClient() {
       <div className="mb-8">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
           <div>
-            <h1 className="text-[22px] font-bold text-text-primary flex items-center gap-2"><Calendar size={24}/> Daily Attendance</h1>
-            <p className="text-[13px] text-text-secondary mt-1.5">Mark attendance for all enrolled students by shift.</p>
+            <h1 className="text-xl font-bold text-text-primary flex items-center gap-2"><Calendar size={24}/> Daily Attendance</h1>
+            <p className="text-sm text-text-secondary mt-1.5">Mark attendance for all enrolled students by shift.</p>
           </div>
           <div className="flex gap-2">
             <Link href={MANAGER_ROUTES.ENGAGEMENT_ABSENTEE_REPORT} className="bg-transparent border border-border text-text-primary rounded-lg h-8 px-3 text-xs font-medium hover:bg-primary-subtle hover:border-primary transition-colors flex items-center gap-2">
@@ -73,24 +73,24 @@ export function ManagerEngagementAttendanceClient() {
       {/* â”€â”€ KPI Stats â”€â”€ */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
         <div className="bg-card border border-border rounded-xl p-5 flex flex-col justify-center">
-          <div className="text-[13px] font-medium text-text-secondary mb-1.5">Total Students</div>
+          <div className="text-sm font-medium text-text-secondary mb-1.5">Total Students</div>
           <div className="text-text-primary text-xl font-bold text-text-primary">{filtered.length}</div>
-          <div className="text-[11px] font-medium text-text-secondary mt-1">{shift} shift</div>
+          <div className="text-xs font-medium text-text-secondary mt-1">{shift} shift</div>
         </div>
         <div className="bg-card border border-border rounded-xl p-5 flex flex-col justify-center">
-          <div className="text-[13px] font-medium text-text-secondary mb-1.5">Present</div>
+          <div className="text-sm font-medium text-text-secondary mb-1.5">Present</div>
           <div className="text-text-primary text-xl font-bold text-success">{present}</div>
-          <div className="text-[11px] font-medium text-text-secondary mt-1">{filtered.length ? Math.round(present/filtered.length*100) : 0}% rate</div>
+          <div className="text-xs font-medium text-text-secondary mt-1">{filtered.length ? Math.round(present/filtered.length*100) : 0}% rate</div>
         </div>
         <div className="bg-card border border-border rounded-xl p-5 flex flex-col justify-center">
-          <div className="text-[13px] font-medium text-text-secondary mb-1.5">Absent</div>
+          <div className="text-sm font-medium text-text-secondary mb-1.5">Absent</div>
           <div className="text-text-primary text-xl font-bold text-danger">{absent}</div>
-          <div className="text-[11px] font-medium text-text-secondary mt-1">{filtered.filter(s=>s.consecutiveAbsent>=3).length} need alerts</div>
+          <div className="text-xs font-medium text-text-secondary mt-1">{filtered.filter(s=>s.consecutiveAbsent>=3).length} need alerts</div>
         </div>
         <div className="bg-card border border-border rounded-xl p-5 flex flex-col justify-center">
-          <div className="text-[13px] font-medium text-text-secondary mb-1.5">Late</div>
+          <div className="text-sm font-medium text-text-secondary mb-1.5">Late</div>
           <div className="text-text-primary text-xl font-bold text-warning">{late}</div>
-          <div className="text-[11px] font-medium text-text-secondary mt-1">{marked}/{filtered.length} marked</div>
+          <div className="text-xs font-medium text-text-secondary mt-1">{marked}/{filtered.length} marked</div>
         </div>
       </div>
 
@@ -98,12 +98,12 @@ export function ManagerEngagementAttendanceClient() {
       <div className="bg-card rounded-xl border border-border mb-6 p-4">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div className="flex items-center gap-3">
-            <label className="text-[13px] font-medium text-text-secondary">Date</label>
+            <label className="text-sm font-medium text-text-secondary">Date</label>
             <input type="date" className="bg-input border border-border rounded-lg px-3 py-1.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary" value={date}
               onChange={e => setFilter('date', e.target.value)} />
           </div>
           <div className="flex items-center gap-3">
-            <label className="text-[13px] font-medium text-text-secondary">Shift</label>
+            <label className="text-sm font-medium text-text-secondary">Shift</label>
             <div className="w-40">
               <ManagerSearchableDropdown
                 value={shift}
@@ -118,9 +118,9 @@ export function ManagerEngagementAttendanceClient() {
             </div>
           </div>
           <div className="flex gap-2 items-center flex-wrap">
-            <span className="rounded-full px-2.5 py-0.5 text-[11px] font-semibold bg-success-bg text-success inline-flex items-center gap-1"><CheckCircle size={12}/> {present} Present</span>
-            <span className="rounded-full px-2.5 py-0.5 text-[11px] font-semibold bg-danger-bg text-danger inline-flex items-center gap-1"><XCircle size={12}/> {absent} Absent</span>
-            <span className="rounded-full px-2.5 py-0.5 text-[11px] font-semibold bg-warning-bg text-warning inline-flex items-center gap-1"><Clock size={12}/> {late} Late</span>
+            <span className="rounded-full px-2.5 py-0.5 text-xs font-semibold bg-success-bg text-success inline-flex items-center gap-1"><CheckCircle size={12}/> {present} Present</span>
+            <span className="rounded-full px-2.5 py-0.5 text-xs font-semibold bg-danger-bg text-danger inline-flex items-center gap-1"><XCircle size={12}/> {absent} Absent</span>
+            <span className="rounded-full px-2.5 py-0.5 text-xs font-semibold bg-warning-bg text-warning inline-flex items-center gap-1"><Clock size={12}/> {late} Late</span>
           </div>
         </div>
       </div>
@@ -155,7 +155,7 @@ export function ManagerEngagementAttendanceClient() {
                     if (st === null) return null;
                     return (
                       <button key={st} onClick={() => updateAttendanceStatus(s.id, st)}
-                        className={`px-3 py-1.5 text-[11px] font-medium rounded-md text-text-secondary hover:text-text-primary transition-colors ${s.status === st ? (st === 'present' ? 'bg-success-bg text-success hover:text-success shadow-sm' : st === 'absent' ? 'bg-danger-bg text-danger hover:text-danger shadow-sm' : 'bg-warning-bg text-warning-hover hover:text-warning-hover shadow-sm') : ''}`}>
+                        className={`px-3 py-1.5 text-xs font-medium rounded-md text-text-secondary hover:text-text-primary transition-colors ${s.status === st ? (st === 'present' ? 'bg-success-bg text-success hover:text-success shadow-sm' : st === 'absent' ? 'bg-danger-bg text-danger hover:text-danger shadow-sm' : 'bg-warning-bg text-warning-hover hover:text-warning-hover shadow-sm') : ''}`}>
                         {st === 'present' ? <span className="flex items-center gap-1"><CheckCircle size={12}/> Present</span>
                          : st === 'absent' ? <span className="flex items-center gap-1"><XCircle size={12}/> Absent</span>
                          : <span className="flex items-center gap-1"><Clock size={12}/> Late</span>}
@@ -168,14 +168,14 @@ export function ManagerEngagementAttendanceClient() {
                 {(s.status === 'present' || s.status === 'late') && (
                   <div className="flex items-center gap-3">
                     <div className="flex items-center gap-2">
-                      <span className="text-[11px] font-medium text-text-secondary">In</span>
-                      <input type="time" className="bg-input border border-border rounded-md px-2 py-1 text-[11px] text-text-primary focus:outline-none focus:ring-1 focus:ring-primary" value={s.inTime}
+                      <span className="text-xs font-medium text-text-secondary">In</span>
+                      <input type="time" className="bg-input border border-border rounded-md px-2 py-1 text-xs text-text-primary focus:outline-none focus:ring-1 focus:ring-primary" value={s.inTime}
                         onChange={e => updateAttendanceTime(s.id, 'inTime', e.target.value)} />
                     </div>
                     {s.status === 'present' && (
                       <div className="flex items-center gap-2">
-                        <span className="text-[11px] font-medium text-text-secondary">Out</span>
-                        <input type="time" className="bg-input border border-border rounded-md px-2 py-1 text-[11px] text-text-primary focus:outline-none focus:ring-1 focus:ring-primary" value={s.outTime}
+                        <span className="text-xs font-medium text-text-secondary">Out</span>
+                        <input type="time" className="bg-input border border-border rounded-md px-2 py-1 text-xs text-text-primary focus:outline-none focus:ring-1 focus:ring-primary" value={s.outTime}
                           onChange={e => updateAttendanceTime(s.id, 'outTime', e.target.value)} />
                       </div>
                     )}
@@ -185,7 +185,7 @@ export function ManagerEngagementAttendanceClient() {
                 {/* Absent alert */}
                 {isAlert && (
                   <div className="flex items-center gap-2 ml-auto md:ml-0">
-                    <span className="rounded-full px-2.5 py-0.5 text-[11px] font-semibold bg-warning-bg text-warning inline-flex items-center gap-1">
+                    <span className="rounded-full px-2.5 py-0.5 text-xs font-semibold bg-warning-bg text-warning inline-flex items-center gap-1">
                       <AlertTriangle size={12}/> {s.consecutiveAbsent} days consecutive
                     </span>
                     {!hasAlerted ? (
@@ -193,7 +193,7 @@ export function ManagerEngagementAttendanceClient() {
                         <Bell size={12} /> Alert Parents
                       </button>
                     ) : (
-                      <span className="rounded-full px-2.5 py-0.5 text-[11px] font-semibold bg-success-bg text-success inline-flex items-center gap-1"><CheckCircle size={12}/> Parents Alerted</span>
+                      <span className="rounded-full px-2.5 py-0.5 text-xs font-semibold bg-success-bg text-success inline-flex items-center gap-1"><CheckCircle size={12}/> Parents Alerted</span>
                     )}
                   </div>
                 )}
@@ -216,3 +216,4 @@ export function ManagerEngagementAttendanceClient() {
     </div>
   );
 }
+

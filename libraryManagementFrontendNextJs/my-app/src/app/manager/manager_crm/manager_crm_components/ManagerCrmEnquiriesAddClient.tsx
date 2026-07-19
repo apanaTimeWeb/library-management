@@ -39,7 +39,7 @@ export function ManagerCrmEnquiriesAddClient({ onClose }: ManagerCrmEnquiriesAdd
 
       {/* â”€â”€ Overlay â”€â”€ */}
       <div
-        className="fixed inset-0 bg-bg-pagelack/60 backdrop-blur-sm z-[100] animate-in fade-in duration-200"
+        className="fixed inset-0 bg-bg-pagelack/60 backdrop-blur-sm z-50 animate-in fade-in duration-200"
         onClick={handleClose}
         aria-label="Close drawer"
       />
@@ -143,3 +143,4 @@ export function ManagerCrmEnquiriesAddClient({ onClose }: ManagerCrmEnquiriesAdd
     </>
   );
 }
+

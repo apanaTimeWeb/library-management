@@ -33,8 +33,8 @@ const [searchTerm, setSearchTerm] = useUrlState('searchTerm', '' as string);
     <div className="p-6 min-h-screen">
       <div className="p-6 min-h-screen-header">
         <div>
-          <div className="text-[11px] font-bold uppercase tracking-wider text-text-secondary mb-2">Students â€º Referrals</div>
-          <h1 className="text-[22px] font-bold text-text-primary">Referral Program</h1>
+          <div className="text-xs font-bold uppercase tracking-wider text-text-secondary mb-2">Students â€º Referrals</div>
+          <h1 className="text-xl font-bold text-text-primary">Referral Program</h1>
           <p className="p-6 min-h-screen-subtitle">Track and manage student referral bonuses.</p>
         </div>
         <div className="p-6 min-h-screen-actions">
@@ -57,7 +57,7 @@ const [searchTerm, setSearchTerm] = useUrlState('searchTerm', '' as string);
                 <div className={`w-10 h-10 rounded-lg flex items-center justify-center shrink-0 ${k.iconClass}`}><Icon size={18} /></div>
               </div>
               <div>
-                <p className="text-[13px] font-semibold text-text-secondary mb-1">{k.label}</p>
+                <p className="text-sm font-semibold text-text-secondary mb-1">{k.label}</p>
                 <p className="text-text-primary text-xl font-bold text-text-primary tracking-tight">{k.value}</p>
               </div>
             </div>
@@ -110,13 +110,13 @@ const [searchTerm, setSearchTerm] = useUrlState('searchTerm', '' as string);
                     return (
                       <tr key={row.id} className="hover:bg-page transition-colors cursor-pointer group">
                         <td className="px-4 py-4 font-medium text-text-primary">{row.id}</td>
-                        <td className="px-4 py-4 text-[13px] font-semibold text-text-secondary">{row.referrer}</td>
-                        <td className="px-4 py-4 text-[13.5px] font-semibold text-text-primary group-hover:text-primary transition-colors">{row.referred}</td>
+                        <td className="px-4 py-4 text-sm font-semibold text-text-secondary">{row.referrer}</td>
+                        <td className="px-4 py-4 text-sm font-semibold text-text-primary group-hover:text-primary transition-colors">{row.referred}</td>
                         <td className="px-4 py-4 text-text-secondary">{row.date}</td>
                         <td className="px-4 py-4 font-semibold text-text-primary">{row.bonus}</td>
                         <td className="px-4 py-4 text-text-secondary">{row.method}</td>
                         <td className="px-4 py-4">
-                          <span className={`rounded-full px-2.5 py-0.5 text-[11px] font-bold ${statusCls}`}>{row.status}</span>
+                          <span className={`rounded-full px-2.5 py-0.5 text-xs font-bold ${statusCls}`}>{row.status}</span>
                         </td>
                         <td className="px-4 py-4 text-right">
                           {row.status !== 'Claimed' && (
@@ -139,4 +139,5 @@ const [searchTerm, setSearchTerm] = useUrlState('searchTerm', '' as string);
     </div>
   );
 }
+
 

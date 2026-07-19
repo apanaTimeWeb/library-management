@@ -47,8 +47,8 @@ function AdminReportsKpiCard({ label, value, icon: Icon, iconColor, iconBg, tren
   return (
     <Card className="p-5 flex flex-col gap-4 shadow-none border-border bg-card hover:shadow-md transition-shadow">
       <div className="flex items-center justify-between">
-        <div className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 bg-[color:var(--bg)]" style={{ '--bg': iconBg } as React.CSSProperties}>
-          <Icon size={20} className="text-[color:var(--c)]" style={{ '--c': iconColor } as React.CSSProperties} />
+        <div className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 bg-background" style={{ '--bg': iconBg } as React.CSSProperties}>
+          <Icon size={20} className="text-foreground" style={{ '--c': iconColor } as React.CSSProperties} />
         </div>
         {trend && (
           <Badge variant="secondary" className={`${trend.up ? 'bg-success/10 text-success' : 'bg-danger/10 text-danger'} border-none font-bold text-xs`}>
@@ -172,11 +172,11 @@ export function AdminReportsClient({ initialData }: AdminReportsClientProps) {
               </div>
               <div className="flex items-center gap-4">
                 <div className="flex items-center gap-1.5">
-                  <span className="w-2.5 h-2.5 rounded-full bg-[color:var(--bg)]" style={{ '--bg': 'var(--chart-indigo)' } as React.CSSProperties} />
+                  <span className="w-2.5 h-2.5 rounded-full bg-background" style={{ '--bg': 'var(--chart-indigo)' } as React.CSSProperties} />
                   <span className="text-xs text-muted-foreground font-medium">Income</span>
                 </div>
                 <div className="flex items-center gap-1.5">
-                  <span className="w-2.5 h-2.5 rounded-full bg-[color:var(--bg)]" style={{ '--bg': 'var(--chart-red)' } as React.CSSProperties} />
+                  <span className="w-2.5 h-2.5 rounded-full bg-background" style={{ '--bg': 'var(--chart-red)' } as React.CSSProperties} />
                   <span className="text-xs text-muted-foreground font-medium">Expense</span>
                 </div>
               </div>
@@ -294,11 +294,11 @@ export function AdminReportsClient({ initialData }: AdminReportsClientProps) {
               </div>
               <div className="flex items-center gap-4">
                 <div className="flex items-center gap-1.5">
-                  <span className="w-2.5 h-2.5 rounded-full bg-[color:var(--bg)]" style={{ '--bg': 'var(--chart-indigo)' } as React.CSSProperties} />
+                  <span className="w-2.5 h-2.5 rounded-full bg-background" style={{ '--bg': 'var(--chart-indigo)' } as React.CSSProperties} />
                   <span className="text-xs text-muted-foreground font-medium">Joined</span>
                 </div>
                 <div className="flex items-center gap-1.5">
-                  <span className="w-2.5 h-2.5 rounded-full bg-[color:var(--bg)]" style={{ '--bg': 'var(--chart-red)' } as React.CSSProperties} />
+                  <span className="w-2.5 h-2.5 rounded-full bg-background" style={{ '--bg': 'var(--chart-red)' } as React.CSSProperties} />
                   <span className="text-xs text-muted-foreground font-medium">Exited</span>
                 </div>
               </div>
@@ -326,3 +326,4 @@ export function AdminReportsClient({ initialData }: AdminReportsClientProps) {
     </>
   );
 }
+

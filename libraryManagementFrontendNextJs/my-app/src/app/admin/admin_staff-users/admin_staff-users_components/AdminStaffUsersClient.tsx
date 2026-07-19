@@ -67,9 +67,9 @@ export function AdminStaffUsersClient({ initialStaff }: AdminStaffUsersClientPro
         {stats.map(s => (
           <Card key={s.label} className="p-4 flex items-center gap-4 shadow-none border-border bg-card">
             <div 
-              className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 bg-[color:var(--bg)]" style={{ '--bg': `color-mix(in srgb, ${s.color} 12%, transparent)` } as React.CSSProperties}
+              className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 bg-background" style={{ '--bg': `color-mix(in srgb, ${s.color} 12%, transparent)` } as React.CSSProperties}
             >
-              <Users size={18} className="text-[color:var(--c)]" style={{ '--c': s.color } as React.CSSProperties} />
+              <Users size={18} className="text-foreground" style={{ '--c': s.color } as React.CSSProperties} />
             </div>
             <div>
               <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-0.5">{s.label}</p>
@@ -273,3 +273,4 @@ export function AdminStaffUsersClient({ initialStaff }: AdminStaffUsersClientPro
     </div>
   );
 }
+

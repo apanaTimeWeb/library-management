@@ -27,8 +27,8 @@ export function AuthLoginForm() {
   return (
     <main className="flex min-h-screen bg-page text-text-primary">
       {/* Ambient glows (using tailwind arbitrary radial gradients if needed, or just plain colors) */}
-      <div className="absolute top-[-10%] right-[-5%] w-[40%] h-[40%] bg-primary/20 blur-[100px] rounded-full pointer-events-none" />
-      <div className="absolute bottom-[-10%] left-[-5%] w-[40%] h-[40%] bg-purple/20 blur-[100px] rounded-full pointer-events-none" />
+      <div className="absolute top-[-10%] right-[-5%] w-2/5 h-2/5 bg-primary/20 blur-[100px] rounded-full pointer-events-none" />
+      <div className="absolute bottom-[-10%] left-[-5%] w-2/5 h-2/5 bg-purple/20 blur-[100px] rounded-full pointer-events-none" />
 
       {/* â”€â”€ LEFT BRAND PANEL â”€â”€ */}
       <section className="hidden lg:flex lg:w-1/2 flex-col justify-between p-8 xl:p-12 relative z-10 border-r border-border bg-page">
@@ -214,3 +214,4 @@ export function AuthLoginForm() {
     </main>
   );
 }
+

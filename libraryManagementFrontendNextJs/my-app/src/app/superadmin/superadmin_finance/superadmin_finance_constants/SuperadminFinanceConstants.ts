@@ -1,4 +1,4 @@
-﻿// RESPONSIBILITY: Renders or handles logic for SuperadminFinanceConstants.ts.
+// RESPONSIBILITY: Renders or handles logic for SuperadminFinanceConstants.ts.
 export const SUPERADMIN_FINANCE_DASHBOARD_MOCK_STATS = {
   totalCollections: 44880, collectionsGrowth: 12.5, activeStudents: 12,
   expiringSoon: 3, suspended: 2, totalReferrals: 6, depositsHeld: 16000,
@@ -45,7 +45,7 @@ export const SUPERADMIN_FINANCE_MOCK_INVOICE_DETAIL = {
   seat:                 'B-05',
   items: [
     { description: 'Annual Library Membership', hsnCode: '9992', duration: '12 months', amount: 1200, gstPercent: 18, gstAmount: 216 },
-    { description: 'Book Issue Fee',            hsnCode: '9992', duration: 'â€”',         amount: 300,  gstPercent: 0,  gstAmount: 0   },
+    { description: 'Book Issue Fee',            hsnCode: '9992', duration: '—',         amount: 300,  gstPercent: 0,  gstAmount: 0   },
   ],
   subtotal:             1500,
   totalGst:             216,
@@ -166,8 +166,9 @@ export const SUPERADMIN_FINANCE_MOCK_DEPOSITS = [
 ];
 
 export const SUPERADMIN_FINANCE_PROMISE_STATUS_BADGE: Record<string, string> = {
-  pending:   'bg-warning text-warning-foreground px-2.5 py-0.5 rounded-full text-[11px] font-semibold',
-  fulfilled: 'bg-success text-success-foreground px-2.5 py-0.5 rounded-full text-[11px] font-semibold',
-  overdue:   'bg-danger text-danger-foreground px-2.5 py-0.5 rounded-full text-[11px] font-semibold',
+  pending:   'bg-warning text-warning-foreground px-2.5 py-0.5 rounded-full text-xs font-semibold',
+  fulfilled: 'bg-success text-success-foreground px-2.5 py-0.5 rounded-full text-xs font-semibold',
+  overdue:   'bg-danger text-danger-foreground px-2.5 py-0.5 rounded-full text-xs font-semibold',
 };
+
 

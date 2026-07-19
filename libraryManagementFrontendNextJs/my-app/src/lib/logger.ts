@@ -60,6 +60,7 @@ class Logger {
         }
       } else {
         if (typeof console !== 'undefined' && console.log) {
+          // eslint-disable-next-line no-console
           console.log(JSON.stringify(logPayload));
         }
       }
@@ -76,9 +77,11 @@ class Logger {
           console.warn(prefix, sanitizedMessage, ...sanitizedParams);
           break;
         case 'info':
+          // eslint-disable-next-line no-console
           console.info(prefix, sanitizedMessage, ...sanitizedParams);
           break;
         case 'debug':
+          // eslint-disable-next-line no-console
           console.debug(prefix, sanitizedMessage, ...sanitizedParams);
           break;
       }

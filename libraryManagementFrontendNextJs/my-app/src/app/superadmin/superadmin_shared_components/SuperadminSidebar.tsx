@@ -91,7 +91,7 @@ export default function SuperadminSidebar({ collapsed, onToggle, mobileOpen, onM
               <Link
                 key={item.href}
                 href={item.href}
-                className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-[13.5px] font-medium transition-colors ${isActive ? 'bg-primary-subtle text-primary' : 'text-text-secondary hover:bg-bg-pagelack/5 dark:hover:bg-white/5 hover:text-text-primary'}`}
+                className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors ${isActive ? 'bg-primary-subtle text-primary' : 'text-text-secondary hover:bg-bg-pagelack/5 dark:hover:bg-white/5 hover:text-text-primary'}`}
                 title={(collapsed && !mobileOpen) ? item.label : undefined}
                 onClick={mobileOpen ? onMobileClose : undefined}
               >
@@ -141,3 +141,4 @@ export default function SuperadminSidebar({ collapsed, onToggle, mobileOpen, onM
     </>
   );
 }
+

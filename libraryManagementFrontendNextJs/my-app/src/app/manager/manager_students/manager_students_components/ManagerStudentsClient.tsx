@@ -40,10 +40,10 @@ const [searchTerm, setSearchTerm] = useUrlState('searchTerm', '' as string);
       <div className="mb-8 flex flex-col md:flex-row md:items-end justify-between gap-4">
         <div>
           <p className="text-xs font-semibold text-text-secondary uppercase tracking-wider mb-2">Smart Library 360 â€º Students</p>
-          <h1 className="text-[22px] font-bold text-text-primary">Student Directory</h1>
-          <p className="text-[13px] text-text-secondary mt-1.5">Manage admissions, seating, and billing for all active learners.</p>
+          <h1 className="text-xl font-bold text-text-primary">Student Directory</h1>
+          <p className="text-sm text-text-secondary mt-1.5">Manage admissions, seating, and billing for all active learners.</p>
         </div>
-        <div className="flex gap-[8px] flex-wrap">
+        <div className="flex gap-2 flex-wrap">
           <button className="bg-transparent border border-border text-text-primary rounded-lg h-10 px-4 text-sm font-medium hover:bg-primary-subtle hover:border-primary transition-colors inline-flex items-center gap-2"><Download size={14} /> Export</button>
           <Link href={MANAGER_ROUTES.STUDENTS_GROUP} className="bg-transparent border border-border text-text-primary rounded-lg h-10 px-4 text-sm font-medium hover:bg-primary-subtle hover:border-primary transition-colors inline-flex items-center gap-2">
             <Users2 size={14} /> Group Admission
@@ -63,7 +63,7 @@ const [searchTerm, setSearchTerm] = useUrlState('searchTerm', '' as string);
           { label: 'Fee Due',   value: students.filter(s => s.due > 0).length },
         ].map(k => (
           <div key={k.label} className="bg-card border border-border rounded-xl p-5 flex flex-col justify-center">
-            <p className="text-[13px] font-medium text-text-secondary mb-1.5">{k.label}</p>
+            <p className="text-sm font-medium text-text-secondary mb-1.5">{k.label}</p>
             <p className="text-text-primary text-xl font-bold text-text-primary">{status === 'loading' ? '...' : k.value}</p>
           </div>
         ))}
@@ -132,10 +132,10 @@ const [searchTerm, setSearchTerm] = useUrlState('searchTerm', '' as string);
                       <td className="px-4 py-4"><ShiftCell value={row.shift} data={row} /></td>
     {/* @ts-ignore */}
                       <td className="px-4 py-4"><StatusCell value={row.status} data={row} /></td>
-                      <td className="px-4 py-4 text-[13px] text-text-secondary">{row.plan}</td>
+                      <td className="px-4 py-4 text-sm text-text-secondary">{row.plan}</td>
     {/* @ts-ignore */}
                       <td className="px-4 py-4"><DueCell value={row.due} data={row} /></td>
-                      <td className="px-4 py-4 text-[12px] text-text-secondary">{row.joined}</td>
+                      <td className="px-4 py-4 text-xs text-text-secondary">{row.joined}</td>
     {/* @ts-ignore */}
                       <td className="px-4 py-4 text-right"><ActionsCell value={''} data={row} /></td>
                     </tr>
@@ -154,4 +154,5 @@ const [searchTerm, setSearchTerm] = useUrlState('searchTerm', '' as string);
     </div>
   );
 }
+
 

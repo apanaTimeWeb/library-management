@@ -34,8 +34,8 @@ const [searchTerm, setSearchTerm] = useUrlState('searchTerm', '' as string);
       <div className="p-6 min-h-screen-header">
         <div>
           <div className="text-xs font-medium text-text-secondary uppercase tracking-wider mb-2">Students â€º Alumni</div>
-          <h1 className="text-[22px] font-bold text-text-primary">Alumni Directory</h1>
-          <p className="text-[13px] text-text-secondary mt-1.5">Students who have successfully completed their journey here.</p>
+          <h1 className="text-xl font-bold text-text-primary">Alumni Directory</h1>
+          <p className="text-sm text-text-secondary mt-1.5">Students who have successfully completed their journey here.</p>
         </div>
         <div className="p-6 min-h-screen-actions">
           <button className="bg-transparent border border-border text-text-primary rounded-lg px-5 py-2.5 text-sm font-medium hover:bg-primary-subtle hover:border-primary transition-colors inline-flex items-center gap-2"><Award size={16} /> Success Stories</button>
@@ -125,4 +125,5 @@ const [searchTerm, setSearchTerm] = useUrlState('searchTerm', '' as string);
     </div>
   );
 }
+
 

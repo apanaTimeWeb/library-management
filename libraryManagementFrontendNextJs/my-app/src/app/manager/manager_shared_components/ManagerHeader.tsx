@@ -16,7 +16,7 @@ export default function ManagerHeader({ collapsed, onMobileOpen }: ManagerHeader
           <Menu size={20} />
         </button>
         <BookOpen size={16} className="text-primary hidden md:block" />
-        <span className="hidden md:block text-[13px] font-semibold text-text-primary">
+        <span className="hidden md:block text-sm font-semibold text-text-primary">
           Smart Library 360
         </span>
       </div>
@@ -35,3 +35,4 @@ export default function ManagerHeader({ collapsed, onMobileOpen }: ManagerHeader
     </header>
   );
 }
+

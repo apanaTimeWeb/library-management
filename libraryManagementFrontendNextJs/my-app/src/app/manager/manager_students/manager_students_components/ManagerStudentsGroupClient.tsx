@@ -12,7 +12,7 @@ export function ManagerStudentsGroupClient() {
           <Link href={MANAGER_ROUTES.STUDENTS} className="inline-flex items-center gap-2 text-sm font-medium text-text-secondary hover:text-primary transition-colors mb-4">
             â† Back to Students
           </Link>
-          <h1 className="text-[22px] font-bold text-text-primary">Group Admission</h1>
+          <h1 className="text-xl font-bold text-text-primary">Group Admission</h1>
         </div>
         <div className="p-6 min-h-screen-actions">
           <button className="bg-transparent border border-border text-text-primary rounded-lg px-5 py-2.5 text-sm font-medium hover:bg-primary-subtle hover:border-primary transition-colors inline-flex items-center gap-2">
@@ -59,3 +59,4 @@ export function ManagerStudentsGroupClient() {
     </div>
   );
 }
+

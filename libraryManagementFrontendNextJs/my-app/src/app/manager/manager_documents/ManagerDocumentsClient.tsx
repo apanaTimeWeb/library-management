@@ -28,7 +28,7 @@ export function ManagerDocumentsClient() {
       <div className="mb-8 flex flex-col sm:flex-row justify-between items-start sm:items-end gap-4">
         <div>
           <div className="text-xs font-medium text-text-secondary uppercase tracking-wider mb-2">Home / Documents</div>
-          <h1 className="text-[22px] font-bold text-text-primary flex items-center gap-2"><FolderOpen size={24}/> Document Vault</h1>
+          <h1 className="text-xl font-bold text-text-primary flex items-center gap-2"><FolderOpen size={24}/> Document Vault</h1>
         </div>
         <div className="flex gap-2">
           <button className="bg-primary text-white rounded-lg px-5 py-2.5 text-sm font-medium hover:bg-primary-hover transition-colors inline-flex items-center gap-2">

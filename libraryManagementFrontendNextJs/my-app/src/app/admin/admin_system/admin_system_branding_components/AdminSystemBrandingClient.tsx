@@ -75,7 +75,7 @@ export function AdminSystemBrandingClient() {
                   <Input value={form.primaryColor}
                     onChange={e => setForm(f => ({ ...f, primaryColor: e.target.value }))}
                     className="font-mono text-xs" />
-                  <div className="h-10 w-10 rounded-lg shrink-0 border border-border/20 shadow-inner bg-[color:var(--bg)]" style={{ '--bg': 'var(--preview-primary, #6366f1)' } as React.CSSProperties} />
+                  <div className="h-10 w-10 rounded-lg shrink-0 border border-border/20 shadow-inner bg-background" style={{ '--bg': 'var(--preview-primary, #6366f1)' } as React.CSSProperties} />
                 </div>
               </div>
 
@@ -88,7 +88,7 @@ export function AdminSystemBrandingClient() {
                   <Input value={form.accentColor}
                     onChange={e => setForm(f => ({ ...f, accentColor: e.target.value }))}
                     className="font-mono text-xs" />
-                  <div className="h-10 w-10 rounded-lg shrink-0 border border-border/20 shadow-inner bg-[color:var(--bg)]" style={{ '--bg': 'var(--preview-accent, #f59e0b)' } as React.CSSProperties} />
+                  <div className="h-10 w-10 rounded-lg shrink-0 border border-border/20 shadow-inner bg-background" style={{ '--bg': 'var(--preview-accent, #f59e0b)' } as React.CSSProperties} />
                 </div>
               </div>
             </CardContent>
@@ -113,7 +113,7 @@ export function AdminSystemBrandingClient() {
                 <p className="text-xs text-text-secondary uppercase tracking-wider mb-2">Sidebar</p>
                 <div className="rounded-xl border border-border overflow-hidden w-64 bg-surface flex flex-col shadow-sm">
                   <div className="p-3 flex items-center gap-2 bg-surface">
-                    <div className="h-8 w-8 rounded-lg flex items-center justify-center text-base font-bold shadow-sm bg-[color:var(--bg)]" style={{ '--bg': 'var(--preview-primary, #6366f1)' } as React.CSSProperties}>
+                    <div className="h-8 w-8 rounded-lg flex items-center justify-center text-base font-bold shadow-sm bg-background" style={{ '--bg': 'var(--preview-primary, #6366f1)' } as React.CSSProperties}>
                       ðŸ“š
                     </div>
                     <div>
@@ -123,7 +123,7 @@ export function AdminSystemBrandingClient() {
                   </div>
                   {['Dashboard', 'Students', 'Finance', 'Reports'].map((item, i) => (
                     <div key={item} className={`px-3 py-2 text-xs flex items-center gap-2 ${i === 0 ? 'font-semibold' : 'text-text-secondary'}`} style={i === 0 ? { color: 'var(--preview-primary, #6366f1)', backgroundColor: 'color-mix(in srgb, var(--preview-primary, #6366f1) 10%, transparent)' } : {}}>
-                      <div className={`${`h-1.5 w-1.5 rounded-full`} bg-[color:var(--bg)]`} style={{ '--bg': i === 0 ? 'var(--preview-primary, #6366f1)' : 'currentColor', opacity: i === 0 ? 1 : 0.4 } as React.CSSProperties} />
+                      <div className={`${`h-1.5 w-1.5 rounded-full`} bg-background`} style={{ '--bg': i === 0 ? 'var(--preview-primary, #6366f1)' : 'currentColor', opacity: i === 0 ? 1 : 0.4 } as React.CSSProperties} />
                       {item}
                     </div>
                   ))}
@@ -135,7 +135,7 @@ export function AdminSystemBrandingClient() {
                 <p className="text-xs text-text-secondary uppercase tracking-wider mb-2">Login page</p>
                 <div className="rounded-xl border border-border p-5 max-w-xs bg-surface shadow-sm">
                   <div className="flex flex-col items-center mb-3 gap-1">
-                    <div className="h-10 w-10 rounded-xl flex items-center justify-center text-xl font-bold shadow-sm bg-[color:var(--bg)]" style={{ '--bg': 'var(--preview-primary, #6366f1)' } as React.CSSProperties}>
+                    <div className="h-10 w-10 rounded-xl flex items-center justify-center text-xl font-bold shadow-sm bg-background" style={{ '--bg': 'var(--preview-primary, #6366f1)' } as React.CSSProperties}>
                       ðŸ“š
                     </div>
                     <p className="text-sm font-bold text-text-primary">{form.libraryName || 'Library'}</p>
@@ -144,7 +144,7 @@ export function AdminSystemBrandingClient() {
                   <div className="space-y-2">
                     <div className="h-7 rounded-lg bg-input" />
                     <div className="h-7 rounded-lg bg-input" />
-                    <div className="h-8 rounded-lg flex items-center justify-center text-xs font-bold shadow-sm transition-all hover:-translate-y-0.5 bg-[color:var(--bg)]" style={{ '--bg': 'var(--preview-primary, #6366f1)' } as React.CSSProperties}>Login</div>
+                    <div className="h-8 rounded-lg flex items-center justify-center text-xs font-bold shadow-sm transition-all hover:-translate-y-0.5 bg-background" style={{ '--bg': 'var(--preview-primary, #6366f1)' } as React.CSSProperties}>Login</div>
                   </div>
                 </div>
               </div>
@@ -153,7 +153,7 @@ export function AdminSystemBrandingClient() {
               <div>
                 <p className="text-xs text-text-secondary uppercase tracking-wider mb-2">Student ID Card</p>
                 <div className="rounded-xl border border-border overflow-hidden max-w-xs shadow-sm bg-surface">
-                  <div className="p-3 flex items-center gap-3 bg-[color:var(--bg)]" style={{ '--bg': 'var(--preview-primary, #6366f1)' } as React.CSSProperties}>
+                  <div className="p-3 flex items-center gap-3 bg-background" style={{ '--bg': 'var(--preview-primary, #6366f1)' } as React.CSSProperties}>
                     <div className="h-8 w-8 rounded-lg bg-white/20 flex items-center justify-center text-lg">ðŸ“š</div>
                     <div>
                       <p className="font-bold text-sm tracking-tight text-white">{form.libraryName || 'Library'}</p>
@@ -178,3 +178,4 @@ export function AdminSystemBrandingClient() {
     </div>
   );
 }
+

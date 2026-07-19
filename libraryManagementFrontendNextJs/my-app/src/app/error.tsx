@@ -53,7 +53,7 @@ export default function Error({ error, reset }: { error: Error; reset: () => voi
             <summary className="cursor-pointer text-xs text-error font-semibold">
               Dev: Error Details
             </summary>
-            <pre className="text-[11px] text-on-surface-variant mt-2 overflow-auto whitespace-pre-wrap">
+            <pre className="text-xs text-on-surface-variant mt-2 overflow-auto whitespace-pre-wrap">
               {error?.message}
             </pre>
           </details>
@@ -65,3 +65,4 @@ export default function Error({ error, reset }: { error: Error; reset: () => voi
     </div>
   );
 }
+

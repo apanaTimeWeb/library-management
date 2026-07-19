@@ -102,17 +102,17 @@ export function ManagerCommunicationNoticesClient() {
             
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
               <div>
-                <label className="text-[13px] font-medium text-text-secondary mb-1 block">Title <span className="text-danger">*</span></label>
+                <label className="text-sm font-medium text-text-secondary mb-1 block">Title <span className="text-danger">*</span></label>
                 <input className="w-full bg-input border border-border rounded-lg px-3.5 py-2 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary" placeholder="Notice title" {...register('title')} />
                 {errors.title && <p className="text-danger text-xs mt-1">{errors.title.message}</p>}
               </div>
               <div>
-                <label className="text-[13px] font-medium text-text-secondary mb-1 block">Message <span className="text-danger">*</span></label>
+                <label className="text-sm font-medium text-text-secondary mb-1 block">Message <span className="text-danger">*</span></label>
                 <textarea className="w-full bg-input border border-border rounded-lg px-3.5 py-2 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary" rows={6} placeholder="Notice message..." {...register('message')} />
                 {errors.message && <p className="text-danger text-xs mt-1">{errors.message.message}</p>}
               </div>
               <div>
-                <label className="text-[13px] font-medium text-text-secondary mb-1 block">Valid Till <span className="text-danger">*</span></label>
+                <label className="text-sm font-medium text-text-secondary mb-1 block">Valid Till <span className="text-danger">*</span></label>
                 <input type="date" className="w-full bg-input border border-border rounded-lg px-3.5 py-2 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary" {...register('validTill')} />
                 {errors.validTill && <p className="text-danger text-xs mt-1">{errors.validTill.message}</p>}
               </div>
@@ -161,8 +161,8 @@ export function ManagerCommunicationNoticesClient() {
           <div className="text-xs font-medium text-text-secondary uppercase tracking-wider mb-2 flex items-center gap-1.5">
             <span>Communication</span><ChevronRight size={12} /><span>Notices</span>
           </div>
-          <h1 className="text-[22px] font-bold text-text-primary flex items-center gap-2"><Megaphone size={24} /> Notice Board</h1>
-          <p className="text-[13px] text-text-secondary mt-1.5">Post and manage library notices for students.</p>
+          <h1 className="text-xl font-bold text-text-primary flex items-center gap-2"><Megaphone size={24} /> Notice Board</h1>
+          <p className="text-sm text-text-secondary mt-1.5">Post and manage library notices for students.</p>
         </div>
         {canEdit && <button onClick={openAdd} className="flex items-center gap-2 px-4 py-2 bg-primary text-white rounded hover:bg-primary-hover transition-colors text-sm font-medium">
           <Plus size={16} /> Post Notice
@@ -210,13 +210,13 @@ export function ManagerCommunicationNoticesClient() {
                     <td className="px-4 py-4"><span className="text-sm font-semibold text-text-primary">{row.title}</span></td>
                     <td className="px-4 py-4"><span className="text-sm text-text-secondary truncate block w-full max-w-xs" title={row.message}>{row.message}</span></td>
                     <td className="px-4 py-4">
-                      <span className={`rounded-full px-2.5 py-0.5 text-[11px] font-semibold inline-flex items-center gap-1 ${row.status === 'Active' ? 'bg-success-bg text-success' : 'border border-border text-text-secondary'}`}>
+                      <span className={`rounded-full px-2.5 py-0.5 text-xs font-semibold inline-flex items-center gap-1 ${row.status === 'Active' ? 'bg-success-bg text-success' : 'border border-border text-text-secondary'}`}>
                         {row.status === 'Active' ? <CheckCircle size={12} /> : null} {row.status}
                       </span>
                     </td>
-                    <td className="px-4 py-4"><span className="font-mono text-[12px] text-text-primary tracking-tight">{row.validTill}</span></td>
+                    <td className="px-4 py-4"><span className="font-mono text-xs text-text-primary tracking-tight">{row.validTill}</span></td>
                     <td className="px-4 py-4"><span className="text-sm text-text-secondary">{row.postedBy}</span></td>
-                    <td className="px-4 py-4"><span className="font-mono text-[12px] text-text-primary tracking-tight">{row.postedDate}</span></td>
+                    <td className="px-4 py-4"><span className="font-mono text-xs text-text-primary tracking-tight">{row.postedDate}</span></td>
                     <td className="px-4 py-4 text-right">
                       <div className="flex gap-2 items-center justify-end">
                         {canEdit && <button onClick={() => openEdit(row)} className="w-8 h-8 flex items-center justify-center rounded-md hover:bg-muted/50 text-muted-foreground hover:text-primary transition-colors" aria-label="Edit" title="Edit"><Edit2 size={14} /></button>}
@@ -250,4 +250,5 @@ export function ManagerCommunicationNoticesClient() {
     </div>
   );
 }
+
 

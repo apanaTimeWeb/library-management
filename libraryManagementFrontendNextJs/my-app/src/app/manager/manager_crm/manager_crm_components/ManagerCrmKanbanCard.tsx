@@ -6,9 +6,9 @@ import type { Enquiry } from '@/app/manager/manager_crm/manager_crm_types';
 // RESPONSIBILITY: Renders an individual Kanban card. No API calls.
 
 function FollowUpBadge({ isOverdue, isToday, isUpcoming }: Pick<Enquiry, 'isOverdue' | 'isToday' | 'isUpcoming'>) {
-  if (isOverdue) return <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-semibold text-danger bg-danger-bg"><Clock size={10} /> Overdue</span>;
-  if (isToday) return <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-semibold text-warning bg-warning-bg"><Clock size={10} /> Today</span>;
-  if (isUpcoming) return <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-semibold text-success bg-success-bg"><Clock size={10} /> Upcoming</span>;
+  if (isOverdue) return <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-semibold text-danger bg-danger-bg"><Clock size={10} /> Overdue</span>;
+  if (isToday) return <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-semibold text-warning bg-warning-bg"><Clock size={10} /> Today</span>;
+  if (isUpcoming) return <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-semibold text-success bg-success-bg"><Clock size={10} /> Upcoming</span>;
   return null;
 }
 
@@ -27,10 +27,10 @@ export function ManagerCrmKanbanCard({ enq, colClass, onClick }: ManagerCrmKanba
         </p>
       </div>
       <div className="flex flex-wrap gap-2 mb-4">
-        <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-semibold text-info bg-info-bg">{enq.shift}</span>
+        <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-semibold text-info bg-info-bg">{enq.shift}</span>
         <FollowUpBadge isOverdue={enq.isOverdue} isToday={enq.isToday} isUpcoming={enq.isUpcoming} />
       </div>
-      <div className="flex items-center justify-between text-[11px] text-text-tertiary pt-3 border-t border-border/50">
+      <div className="flex items-center justify-between text-xs text-text-tertiary pt-3 border-t border-border/50">
         <span className="flex items-center gap-1.5"><CalendarDays size={11} />{enq.addedDate}</span>
         {enq.convertedDate && (
           <span className="flex items-center gap-1.5 text-success font-medium"><CheckCircle size={11} />{enq.convertedDate}</span>
@@ -40,3 +40,4 @@ export function ManagerCrmKanbanCard({ enq, colClass, onClick }: ManagerCrmKanba
     </div>
   );
 }
+

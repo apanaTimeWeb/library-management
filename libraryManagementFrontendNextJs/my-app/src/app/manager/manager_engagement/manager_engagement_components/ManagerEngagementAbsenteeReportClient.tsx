@@ -34,7 +34,7 @@ const [searchTerm, setSearchTerm] = useUrlState('searchTerm', '' as string);
   const table = useClientTable(searchedFiltered, 10);
 
 
-  const badgeClass = (d: number) => d >= 7 ? 'rounded-full px-2.5 py-0.5 text-[11px] font-semibold bg-danger-bg text-danger' : 'rounded-full px-2.5 py-0.5 text-[11px] font-semibold bg-warning-bg text-warning';
+  const badgeClass = (d: number) => d >= 7 ? 'rounded-full px-2.5 py-0.5 text-xs font-semibold bg-danger-bg text-danger' : 'rounded-full px-2.5 py-0.5 text-xs font-semibold bg-warning-bg text-warning';
   
 
   return (
@@ -57,8 +57,8 @@ const [searchTerm, setSearchTerm] = useUrlState('searchTerm', '' as string);
       <div className="mb-8">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
           <div>
-            <h1 className="text-[22px] font-bold text-text-primary">ðŸ“‹ Absentee Report</h1>
-            <p className="text-[13px] text-text-secondary mt-1.5">Students with consecutive absences requiring attention.</p>
+            <h1 className="text-xl font-bold text-text-primary">ðŸ“‹ Absentee Report</h1>
+            <p className="text-sm text-text-secondary mt-1.5">Students with consecutive absences requiring attention.</p>
           </div>
           <div className="flex gap-2">
             <button onClick={notifyAll} className="bg-primary text-white rounded-lg px-5 py-2.5 text-sm font-medium hover:bg-primary-hover transition-colors inline-flex items-center gap-2">
@@ -71,24 +71,24 @@ const [searchTerm, setSearchTerm] = useUrlState('searchTerm', '' as string);
       {/* â”€â”€ KPI Stats â”€â”€ */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
         <div className="bg-card border border-border rounded-xl p-5 flex flex-col justify-center">
-          <div className="text-[13px] font-medium text-text-secondary mb-1.5">Total Absentees</div>
+          <div className="text-sm font-medium text-text-secondary mb-1.5">Total Absentees</div>
           <div className="text-text-primary text-xl font-bold text-text-primary">{filtered.length}</div>
-          <div className="text-[11px] font-medium text-text-secondary mt-1">above {threshold === 'all' ? '0' : threshold} day threshold</div>
+          <div className="text-xs font-medium text-text-secondary mt-1">above {threshold === 'all' ? '0' : threshold} day threshold</div>
         </div>
         <div className="bg-card border border-border rounded-xl p-5 flex flex-col justify-center">
-          <div className="text-[13px] font-medium text-text-secondary mb-1.5">Critical (7+ days)</div>
+          <div className="text-sm font-medium text-text-secondary mb-1.5">Critical (7+ days)</div>
           <div className="text-text-primary text-xl font-bold text-danger">{critical.length}</div>
-          <div className="text-[11px] font-medium text-text-secondary mt-1">Immediate action needed</div>
+          <div className="text-xs font-medium text-text-secondary mt-1">Immediate action needed</div>
         </div>
         <div className="bg-card border border-border rounded-xl p-5 flex flex-col justify-center">
-          <div className="text-[13px] font-medium text-text-secondary mb-1.5">Moderate (3â€“6 days)</div>
+          <div className="text-sm font-medium text-text-secondary mb-1.5">Moderate (3â€“6 days)</div>
           <div className="text-text-primary text-xl font-bold text-warning">{moderate.length}</div>
-          <div className="text-[11px] font-medium text-text-secondary mt-1">Monitoring required</div>
+          <div className="text-xs font-medium text-text-secondary mt-1">Monitoring required</div>
         </div>
         <div className="bg-card border border-border rounded-xl p-5 flex flex-col justify-center">
-          <div className="text-[13px] font-medium text-text-secondary mb-1.5">Parents Notified</div>
+          <div className="text-sm font-medium text-text-secondary mb-1.5">Parents Notified</div>
           <div className="text-text-primary text-xl font-bold text-success">{filtered.filter(r=>r.notified).length}</div>
-          <div className="text-[11px] font-medium text-text-secondary mt-1">of {filtered.length} total</div>
+          <div className="text-xs font-medium text-text-secondary mt-1">of {filtered.length} total</div>
         </div>
       </div>
 
@@ -97,7 +97,7 @@ const [searchTerm, setSearchTerm] = useUrlState('searchTerm', '' as string);
         <div className="flex items-center justify-between">
           <div className="flex gap-6 items-center">
             <div className="flex flex-col">
-              <span className="block text-[13px] font-medium text-text-secondary mb-1.5">Days Threshold</span>
+              <span className="block text-sm font-medium text-text-secondary mb-1.5">Days Threshold</span>
               <div className="w-[180px]">
                 <ManagerSearchableDropdown
                   value={threshold}
@@ -112,7 +112,7 @@ const [searchTerm, setSearchTerm] = useUrlState('searchTerm', '' as string);
               </div>
             </div>
             <div className="flex flex-col">
-              <span className="block text-[13px] font-medium text-text-secondary mb-1.5">Shift</span>
+              <span className="block text-sm font-medium text-text-secondary mb-1.5">Shift</span>
               <div className="w-[150px]">
                 <ManagerSearchableDropdown
                   value={shift}
@@ -128,9 +128,9 @@ const [searchTerm, setSearchTerm] = useUrlState('searchTerm', '' as string);
             </div>
           </div>
           <div className="flex gap-2">
-            <span className="rounded-full px-2.5 py-0.5 text-[11px] font-semibold bg-danger-bg text-danger">{critical.length} critical</span>
-            <span className="rounded-full px-2.5 py-0.5 text-[11px] font-semibold bg-warning-bg text-warning">{moderate.length} moderate</span>
-            <span className="rounded-full px-2.5 py-0.5 text-[11px] font-semibold bg-success-bg text-success">{filtered.filter(r=>r.notified).length} notified</span>
+            <span className="rounded-full px-2.5 py-0.5 text-xs font-semibold bg-danger-bg text-danger">{critical.length} critical</span>
+            <span className="rounded-full px-2.5 py-0.5 text-xs font-semibold bg-warning-bg text-warning">{moderate.length} moderate</span>
+            <span className="rounded-full px-2.5 py-0.5 text-xs font-semibold bg-success-bg text-success">{filtered.filter(r=>r.notified).length} notified</span>
           </div>
         </div>
       </div>
@@ -180,15 +180,15 @@ const [searchTerm, setSearchTerm] = useUrlState('searchTerm', '' as string);
                         <span className="text-sm font-semibold text-text-primary">{row.name}</span>
                       </div>
                     </td>
-                    <td className="px-4 py-4"><span className="font-mono text-[12px] text-text-primary tracking-tight">{row.smartId}</span></td>
-                    <td className="px-4 py-4"><span className="rounded-full px-2.5 py-0.5 text-[11px] font-semibold bg-card text-text-secondary">{row.shift}</span></td>
+                    <td className="px-4 py-4"><span className="font-mono text-xs text-text-primary tracking-tight">{row.smartId}</span></td>
+                    <td className="px-4 py-4"><span className="rounded-full px-2.5 py-0.5 text-xs font-semibold bg-card text-text-secondary">{row.shift}</span></td>
                     <td className="px-4 py-4">
                       <span className={badgeClass(row.daysAbsent)}>{row.daysAbsent} days</span>
                     </td>
                     <td className="px-4 py-4 text-xs text-text-secondary">{row.lastSeen}</td>
                     <td className="px-4 py-4">
                       <div className="flex flex-col space-y-1">
-                        <span className="font-mono text-[12px] text-text-primary tracking-tight flex items-center">
+                        <span className="font-mono text-xs text-text-primary tracking-tight flex items-center">
                           <Phone size={10} className="mr-1"/> {row.parentPhone}
                         </span>
                         <span className="text-xs text-text-secondary flex items-center">
@@ -198,7 +198,7 @@ const [searchTerm, setSearchTerm] = useUrlState('searchTerm', '' as string);
                     </td>
                     <td className="px-4 py-4">
                       {row.notified ? (
-                        <span className="rounded-full px-2.5 py-0.5 text-[11px] font-semibold bg-success-bg text-success">âœ… Notified</span>
+                        <span className="rounded-full px-2.5 py-0.5 text-xs font-semibold bg-success-bg text-success">âœ… Notified</span>
                       ) : (
                         <button onClick={() => notify(row.id)} className="bg-transparent border border-border text-text-primary rounded-lg h-8 px-3 text-xs font-medium hover:bg-primary-subtle hover:border-primary transition-colors inline-flex items-center gap-2">
                           <Send size={12} className="mr-1"/> Alert
@@ -225,4 +225,5 @@ const [searchTerm, setSearchTerm] = useUrlState('searchTerm', '' as string);
     </div>
   );
 }
+
 

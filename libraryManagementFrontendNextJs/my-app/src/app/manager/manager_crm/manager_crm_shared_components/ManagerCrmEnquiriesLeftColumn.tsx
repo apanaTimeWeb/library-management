@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 // RESPONSIBILITY: Renders the ManagerCrmEnquiriesLeftColumn.tsx component/page.
 import { Phone, Tag, Clock, User, MapPin, CalendarDays } from 'lucide-react';
 import { type EnquiryDetail } from '@/app/manager/manager_crm/manager_crm_types/ManagerCrmTypes';
@@ -53,9 +53,9 @@ export function ManagerCrmEnquiriesLeftColumn({ enquiry }: { enquiry: EnquiryDet
                       {fu.date}
                       <span className="text-text-tertiary font-normal">{fu.date}</span>
                     </p>
-                    <p className="text-[11px] font-medium text-text-secondary uppercase tracking-wider m-0">by {fu.by}</p>
+                    <p className="text-xs font-medium text-text-secondary uppercase tracking-wider m-0">by {fu.by}</p>
                   </div>
-                  <p className="text-[13px] text-text-secondary leading-relaxed m-0">{fu.note}</p>
+                  <p className="text-sm text-text-secondary leading-relaxed m-0">{fu.note}</p>
                 </div>
               </div>
             ))}
@@ -65,4 +65,5 @@ export function ManagerCrmEnquiriesLeftColumn({ enquiry }: { enquiry: EnquiryDet
     </>
   );
 }
+
 

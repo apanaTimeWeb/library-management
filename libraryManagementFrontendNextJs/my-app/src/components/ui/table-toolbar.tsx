@@ -22,7 +22,7 @@ export function TableToolbar({ search, onSearch, title, placeholder = "Search...
         <input 
           type="text" 
           placeholder={placeholder}
-          className="w-full pl-9 pr-4 py-2 bg-bg-pageg-input border border-border rounded-[var(--radius-md)] text-sm text-text-primary placeholder:text-text-secondary focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors"
+          className="w-full pl-9 pr-4 py-2 bg-bg-pageg-input border border-border rounded-md text-sm text-text-primary placeholder:text-text-secondary focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors"
           value={search}
           onChange={(e) => onSearch(e.target.value)}
         />
@@ -30,3 +30,4 @@ export function TableToolbar({ search, onSearch, title, placeholder = "Search...
     </div>
   );
 }
+

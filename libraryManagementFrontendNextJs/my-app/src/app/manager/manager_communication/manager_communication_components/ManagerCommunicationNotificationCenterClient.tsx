@@ -55,7 +55,7 @@ export function ManagerCommunicationNotificationCenterClient() {
         <div className="eng-notif-topbar flex flex-wrap gap-3">
           {CATS.map(c => (
             <button key={c.id} onClick={() => setCat(c.id)}
-              className={`w-auto px-[16px] py-[8px] rounded-[30px] eng-notif-cat${cat === c.id ? ' eng-notif-cat--active' : ''}`}>
+              className={`w-auto px-[16px] py-2 rounded-[30px] eng-notif-cat${cat === c.id ? ' eng-notif-cat--active' : ''}`}>
               <span>{c.icon}</span><span>{c.label}</span>
             </button>
           ))}
@@ -96,3 +96,4 @@ export function ManagerCommunicationNotificationCenterClient() {
     </div>
   );
 }
+

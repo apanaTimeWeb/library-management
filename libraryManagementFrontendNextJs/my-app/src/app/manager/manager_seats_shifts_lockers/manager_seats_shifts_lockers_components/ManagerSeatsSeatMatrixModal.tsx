@@ -27,7 +27,7 @@ export function ManagerSeatsSeatMatrixModal({ isOpen, onClose, selectedSeat }: M
         ) : selectedSeat.status === 'maintenance' ? (
           <>
             <div className="ss-occupied-header__row mb-4 flex justify-between items-center">
-              <span className="rounded-full px-2.5 py-0.5 text-[11px] font-semibold bg-card text-text-secondary">Maintenance</span>
+              <span className="rounded-full px-2.5 py-0.5 text-xs font-semibold bg-card text-text-secondary">Maintenance</span>
               <span className="ss-occupied-header__seat text-lg font-bold">Seat {selectedSeat.id}</span>
             </div>
             <p className="ss-text-secondary ss-text-caption mb-6">This seat is under maintenance and unavailable.</p>
@@ -39,7 +39,7 @@ export function ManagerSeatsSeatMatrixModal({ isOpen, onClose, selectedSeat }: M
           <>
             <div className="ss-occupied-header -m-6 mb-6 p-6 bg-card rounded-t-xl">
               <div className="ss-occupied-header__row flex justify-between items-center mb-4">
-                <span className={`rounded-full px-2.5 py-0.5 text-[11px] font-semibold ${selectedSeat.status === 'expiring' ? 'bg-warning-bg text-warning' : 'rounded-full px-2.5 py-0.5 text-[11px] font-semibold--danger'}`}>
+                <span className={`rounded-full px-2.5 py-0.5 text-xs font-semibold ${selectedSeat.status === 'expiring' ? 'bg-warning-bg text-warning' : 'rounded-full px-2.5 py-0.5 text-xs font-semibold--danger'}`}>
                   {selectedSeat.status === 'expiring' ? 'Expiring Soon' : 'Occupied'}
                 </span>
                 <span className="ss-occupied-header__seat font-bold">Seat {selectedSeat.id}</span>
@@ -55,7 +55,7 @@ export function ManagerSeatsSeatMatrixModal({ isOpen, onClose, selectedSeat }: M
             <div className="ss-detail-grid grid grid-cols-2 gap-4">
               <div className="ss-detail-cell bg-card p-3 rounded-lg">
                 <p className="text-text-secondary text-xs uppercase mb-1">Shift</p>
-                <span className={SHIFT_BADGE[selectedSeat.shift ?? ''] ?? 'rounded-full px-2.5 py-0.5 text-[11px] font-semibold bg-card'}>
+                <span className={SHIFT_BADGE[selectedSeat.shift ?? ''] ?? 'rounded-full px-2.5 py-0.5 text-xs font-semibold bg-card'}>
                   {selectedSeat.shift}
                 </span>
               </div>
@@ -76,3 +76,4 @@ export function ManagerSeatsSeatMatrixModal({ isOpen, onClose, selectedSeat }: M
     </div>
   );
 }
+

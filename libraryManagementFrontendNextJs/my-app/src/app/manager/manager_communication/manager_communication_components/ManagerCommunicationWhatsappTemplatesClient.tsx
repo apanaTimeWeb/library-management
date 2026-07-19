@@ -90,7 +90,7 @@ export function ManagerCommunicationWhatsappTemplatesClient() {
         <div className="eng-tpl-topbar flex flex-wrap gap-3">
           {templates.map(t => (
             <div key={t.id} onClick={() => setActiveId(t.id)}
-              className={`w-auto px-[16px] py-[8px] rounded-[30px] eng-tpl-item${activeId === t.id ? ' eng-tpl-item--active' : ''}`}>
+              className={`w-auto px-[16px] py-2 rounded-[30px] eng-tpl-item${activeId === t.id ? ' eng-tpl-item--active' : ''}`}>
               {t.icon} {t.label}
             </div>
           ))}
@@ -144,3 +144,4 @@ export function ManagerCommunicationWhatsappTemplatesClient() {
     </div>
   );
 }
+

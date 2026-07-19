@@ -37,8 +37,8 @@ export function ManagerStudentsStudentProfileClient({ id }: { id: string }) {
           <Link href={MANAGER_ROUTES.STUDENTS} className="inline-flex items-center gap-2 text-sm font-medium text-text-secondary hover:text-primary transition-colors mb-4">
             <ArrowLeft size={14} /> Back to Students
           </Link>
-          <h1 className="text-[22px] font-bold text-text-primary">Student Profile</h1>
-          <p className="text-[11px] font-bold uppercase tracking-wider text-text-secondary mt-1">Manager â€º Students â€º {student.name}</p>
+          <h1 className="text-xl font-bold text-text-primary">Student Profile</h1>
+          <p className="text-xs font-bold uppercase tracking-wider text-text-secondary mt-1">Manager â€º Students â€º {student.name}</p>
         </div>
         <div className="p-6 min-h-screen-actions">
           <Link href={`${MANAGER_ROUTES.STUDENTS}/${id}/edit`} className="bg-transparent border border-border text-text-primary rounded-lg px-5 py-2.5 text-sm font-medium hover:bg-primary-subtle hover:border-primary transition-colors inline-flex items-center gap-2">
@@ -52,13 +52,13 @@ export function ManagerStudentsStudentProfileClient({ id }: { id: string }) {
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-base font-semibold text-text-primary">Personal Details</h2>
             <span className={
-              student.status === 'Active'    ? 'rounded-full px-2.5 py-0.5 text-[11px] font-semibold bg-success-bg text-success' :
-              student.status === 'Suspended' ? 'rounded-full px-2.5 py-0.5 text-[11px] font-semibold bg-warning-bg text-warning' :
-                                               'rounded-full px-2.5 py-0.5 text-[11px] font-semibold bg-danger-bg text-danger'
+              student.status === 'Active'    ? 'rounded-full px-2.5 py-0.5 text-xs font-semibold bg-success-bg text-success' :
+              student.status === 'Suspended' ? 'rounded-full px-2.5 py-0.5 text-xs font-semibold bg-warning-bg text-warning' :
+                                               'rounded-full px-2.5 py-0.5 text-xs font-semibold bg-danger-bg text-danger'
             }>{student.status}</span>
           </div>
           <div className="">
-            <div className="flex items-center gap-[16px] mb-[24px]">
+            <div className="flex items-center gap-4 mb-[24px]">
               <div className="w-14 h-14 rounded-2xl bg-primary/10 text-primary flex items-center justify-center text-xl font-bold shrink-0">
                 {student.name.split(' ').map((n: string) => n[0]).join('').slice(0, 2).toUpperCase()}
               </div>
@@ -71,7 +71,7 @@ export function ManagerStudentsStudentProfileClient({ id }: { id: string }) {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pt-6 border-t border-border">
               <div className="flex flex-col gap-1.5">
                 <label className="block text-sm font-medium text-text-secondary mb-1.5">Phone</label>
-                <div className="flex items-center gap-[8px]">
+                <div className="flex items-center gap-2">
                   <Phone size={14} className="text-primary" />
                   <span className="text-text-primary">{student.phone}</span>
                 </div>
@@ -82,7 +82,7 @@ export function ManagerStudentsStudentProfileClient({ id }: { id: string }) {
               </div>
               <div className="flex flex-col gap-1.5">
                 <label className="block text-sm font-medium text-text-secondary mb-1.5">Shift</label>
-                <span className="rounded-full px-2.5 py-0.5 text-[11px] font-semibold bg-info-bg text-info">{student.shift}</span>
+                <span className="rounded-full px-2.5 py-0.5 text-xs font-semibold bg-info-bg text-info">{student.shift}</span>
               </div>
               <div className="flex flex-col gap-1.5">
                 <label className="block text-sm font-medium text-text-secondary mb-1.5">Seat</label>
@@ -152,5 +152,6 @@ export function ManagerStudentsStudentProfileClient({ id }: { id: string }) {
     </div>
   );
 }
+
 
 

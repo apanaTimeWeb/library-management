@@ -49,8 +49,8 @@ export function ManagerStudentsExitClient() {
           <Link href={MANAGER_ROUTES.STUDENTS} className="inline-flex items-center gap-2 text-sm font-medium text-text-secondary hover:text-primary transition-colors mb-4">
             <ArrowLeft size={14} /> Back to Students
           </Link>
-          <h1 className="text-[22px] font-bold text-text-primary">Student Exit</h1>
-          <p className="text-[13px] text-text-secondary mt-1.5">Process a student exit / de-registration from the library.</p>
+          <h1 className="text-xl font-bold text-text-primary">Student Exit</h1>
+          <p className="text-sm text-text-secondary mt-1.5">Process a student exit / de-registration from the library.</p>
         </div>
       </div>
 
@@ -81,7 +81,7 @@ export function ManagerStudentsExitClient() {
                     <p className="text-sm font-semibold text-text-primary truncate">{s.name}</p>
                     <p className="text-xs text-text-secondary mt-0.5 truncate">{s.smartId} Ã‚Â· {s.shift} Ã‚Â· {s.seat}</p>
                   </div>
-                  <span className={s.status === 'Active' ? 'rounded-full px-2.5 py-0.5 text-[11px] font-semibold bg-success-bg text-success' : 'rounded-full px-2.5 py-0.5 text-[11px] font-semibold bg-danger-bg text-danger'}>
+                  <span className={s.status === 'Active' ? 'rounded-full px-2.5 py-0.5 text-xs font-semibold bg-success-bg text-success' : 'rounded-full px-2.5 py-0.5 text-xs font-semibold bg-danger-bg text-danger'}>
                     {s.status}
                   </span>
                 </button>
@@ -129,9 +129,9 @@ export function ManagerStudentsExitClient() {
                 </div>
 
                 {student.due > 0 && (
-                  <div className="flex items-center gap-[8px] p-[10px_12px] bg-danger-bg rounded-[8px] border border-danger/30">
+                  <div className="flex items-center gap-2 p-[10px_12px] bg-danger-bg rounded-[8px] border border-danger/30">
                     <AlertTriangle size={14} className="text-danger shrink-0" />
-                    <span className="text-[13px] text-danger">Student has pending dues of Ã¢â€šÂ¹{student.due}. Please collect before exit.</span>
+                    <span className="text-sm text-danger">Student has pending dues of Ã¢â€šÂ¹{student.due}. Please collect before exit.</span>
                   </div>
                 )}
 
@@ -159,3 +159,4 @@ export function ManagerStudentsExitClient() {
     </div>
   );
 }
+

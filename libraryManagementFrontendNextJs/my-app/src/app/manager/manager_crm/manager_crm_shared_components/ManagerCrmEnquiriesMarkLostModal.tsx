@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 // RESPONSIBILITY: Renders the ManagerCrmEnquiriesMarkLostModal.tsx component/page.
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -14,7 +14,7 @@ export function MarkLostModal({ onConfirm, onCancel, isSubmitting }: MarkLostMod
   const onSubmit = (d: MarkLostFormData) => onConfirm(d.reason ?? '');
 
   return (
-    <div className="fixed inset-0 bg-bg-pagelack/60 backdrop-blur-sm z-[100] flex items-center justify-center p-4">
+    <div className="fixed inset-0 bg-bg-pagelack/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
       <div className="bg-card border border-border w-full max-w-md rounded-2xl shadow-xl overflow-hidden animate-in zoom-in-95">
         <div className="p-5 border-b border-border flex items-center gap-3">
           <div className="bg-danger/10 text-danger p-2 rounded-full shrink-0">
@@ -49,4 +49,5 @@ export function MarkLostModal({ onConfirm, onCancel, isSubmitting }: MarkLostMod
     </div>
   );
 }
+
 

@@ -64,7 +64,7 @@ export function AdminReportsBranchTable({ rangeOptions, range }: { rangeOptions:
                       />
                     </div>
                     <span 
-                      className="text-xs font-bold min-w-8 text-[color:var(--c)]" style={{ '--c': row.occ >= 85 ? 'var(--success)' : row.occ >= 70 ? 'var(--warning)' : 'var(--danger)' } as React.CSSProperties}
+                      className="text-xs font-bold min-w-8 text-foreground" style={{ '--c': row.occ >= 85 ? 'var(--success)' : row.occ >= 70 ? 'var(--warning)' : 'var(--danger)' } as React.CSSProperties}
                     >
                       {row.occ}%
                     </span>
@@ -85,4 +85,5 @@ export function AdminReportsBranchTable({ rangeOptions, range }: { rangeOptions:
     </Card>
   );
 }
+
 

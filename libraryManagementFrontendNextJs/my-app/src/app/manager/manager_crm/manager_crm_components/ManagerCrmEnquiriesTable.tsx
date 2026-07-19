@@ -77,8 +77,8 @@ const table = useClientTable(filtered, 10);
                   </div>
                 </td>
                 <td className="p-3 font-mono text-sm text-text-secondary">{maskPhone(enq.phone)}</td>
-                <td className="p-3"><span className="rounded-full px-2.5 py-0.5 text-[11px] font-semibold bg-info-bg text-info">{enq.shift}</span></td>
-                <td className="p-3"><span className={`rounded-full px-2.5 py-0.5 text-[11px] font-semibold ${STATUS_BADGE[enq.status]}`}>{enq.status}</span></td>
+                <td className="p-3"><span className="rounded-full px-2.5 py-0.5 text-xs font-semibold bg-info-bg text-info">{enq.shift}</span></td>
+                <td className="p-3"><span className={`rounded-full px-2.5 py-0.5 text-xs font-semibold ${STATUS_BADGE[enq.status]}`}>{enq.status}</span></td>
                 <td className="p-3 text-text-secondary">{enq.handledBy}</td>
                 <td className="p-3 text-text-secondary">{enq.addedDate}</td>
                 <td className="p-3">
@@ -106,3 +106,4 @@ const table = useClientTable(filtered, 10);
     </div>
   );
 }
+

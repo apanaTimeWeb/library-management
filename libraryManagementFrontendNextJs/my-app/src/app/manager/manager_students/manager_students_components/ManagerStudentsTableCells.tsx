@@ -30,9 +30,9 @@ export function ShiftCell({ data }: { data: Student }) {
 }
 
 export function StatusCell({ value }: { value: string }) {
-  const cls = value === 'Active' ? 'rounded-full px-2.5 py-0.5 text-[11px] font-semibold bg-success-bg text-success'
-    : value === 'Suspended' ? 'rounded-full px-2.5 py-0.5 text-[11px] font-semibold bg-warning-bg text-warning'
-    : 'rounded-full px-2.5 py-0.5 text-[11px] font-semibold bg-danger-bg text-danger';
+  const cls = value === 'Active' ? 'rounded-full px-2.5 py-0.5 text-xs font-semibold bg-success-bg text-success'
+    : value === 'Suspended' ? 'rounded-full px-2.5 py-0.5 text-xs font-semibold bg-warning-bg text-warning'
+    : 'rounded-full px-2.5 py-0.5 text-xs font-semibold bg-danger-bg text-danger';
   return <span className={cls}>{value}</span>;
 }
 
@@ -92,5 +92,6 @@ export function ActionsCell({ data }: { data: Student }) {
     </div>
   );
 }
+
 
 

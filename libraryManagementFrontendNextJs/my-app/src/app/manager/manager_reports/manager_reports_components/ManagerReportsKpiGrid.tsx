@@ -18,14 +18,14 @@ export function ManagerReportsKpiGrid({ cards }: ManagerReportsKpiGridProps) {
         return (
           <div
             key={index}
-            className="bg-card border border-border rounded-[var(--radius-lg)] p-5 flex flex-col justify-between hover:-translate-y-1 hover:shadow-lg transition-all duration-200 ease-in-out"
+            className="bg-card border border-border rounded-lg p-5 flex flex-col justify-between hover:-translate-y-1 hover:shadow-lg transition-all duration-200 ease-in-out"
           >
             <div className="flex items-start gap-4">
-              <div className={`w-10 h-10 rounded-[var(--radius-md)] flex items-center justify-center shrink-0 ${kpi.iconClass}`}>
+              <div className={`w-10 h-10 rounded-md flex items-center justify-center shrink-0 ${kpi.iconClass}`}>
                 {IconComponent && <IconComponent size={20} />}
               </div>
               <div className="flex-1 overflow-hidden">
-                <p className="text-[11px] font-medium text-text-secondary uppercase tracking-wider truncate" title={kpi.title}>
+                <p className="text-xs font-medium text-text-secondary uppercase tracking-wider truncate" title={kpi.title}>
                   {kpi.title}
                 </p>
                 <p className="text-text-primary text-xl font-bold text-text-primary mt-1">
@@ -44,3 +44,4 @@ export function ManagerReportsKpiGrid({ cards }: ManagerReportsKpiGridProps) {
     </div>
   );
 }
+
