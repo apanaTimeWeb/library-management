@@ -1,5 +1,5 @@
 import { ManagerFinanceErrorBoundary } from '@/app/manager/manager_finance/manager_finance_components/ManagerFinanceErrorBoundary';
-import { ManagerFinancePlaceholderClient } from '@/app/manager/manager_finance/manager_finance_components/ManagerFinancePlaceholderClient';
+import { ManagerFinancePaymentPromisesClient } from '@/app/manager/manager_finance/manager_finance_components/ManagerFinancePaymentPromisesClient';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <ManagerFinanceErrorBoundary>
-      <ManagerFinancePlaceholderClient title="Payment Promises" description="Manage Payment Promises records and settings." />
+      <ManagerFinancePaymentPromisesClient />
     </ManagerFinanceErrorBoundary>
   );
 }

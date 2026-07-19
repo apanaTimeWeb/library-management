@@ -1,5 +1,5 @@
 import { ManagerFinanceErrorBoundary } from '@/app/manager/manager_finance/manager_finance_components/ManagerFinanceErrorBoundary';
-import { ManagerFinancePlaceholderClient } from '@/app/manager/manager_finance/manager_finance_components/ManagerFinancePlaceholderClient';
+import { ManagerFinanceTrustScoreClient } from '@/app/manager/manager_finance/manager_finance_components/ManagerFinanceTrustScoreClient';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <ManagerFinanceErrorBoundary>
-      <ManagerFinancePlaceholderClient title="Trust Score" description="Manage Trust Score records and settings." />
+      <ManagerFinanceTrustScoreClient />
     </ManagerFinanceErrorBoundary>
   );
 }

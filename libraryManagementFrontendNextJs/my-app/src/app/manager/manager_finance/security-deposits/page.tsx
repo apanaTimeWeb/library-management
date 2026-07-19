@@ -1,5 +1,5 @@
 import { ManagerFinanceErrorBoundary } from '@/app/manager/manager_finance/manager_finance_components/ManagerFinanceErrorBoundary';
-import { ManagerFinancePlaceholderClient } from '@/app/manager/manager_finance/manager_finance_components/ManagerFinancePlaceholderClient';
+import { ManagerFinanceSecurityDepositsClient } from '@/app/manager/manager_finance/manager_finance_components/ManagerFinanceSecurityDepositsClient';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <ManagerFinanceErrorBoundary>
-      <ManagerFinancePlaceholderClient title="Security Deposits" description="Manage Security Deposits records and settings." />
+      <ManagerFinanceSecurityDepositsClient />
     </ManagerFinanceErrorBoundary>
   );
 }

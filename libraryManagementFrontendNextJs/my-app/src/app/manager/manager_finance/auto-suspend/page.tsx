@@ -1,5 +1,5 @@
 import { ManagerFinanceErrorBoundary } from '@/app/manager/manager_finance/manager_finance_components/ManagerFinanceErrorBoundary';
-import { ManagerFinancePlaceholderClient } from '@/app/manager/manager_finance/manager_finance_components/ManagerFinancePlaceholderClient';
+import { ManagerFinanceAutoSuspendClient } from '@/app/manager/manager_finance/manager_finance_components/ManagerFinanceAutoSuspendClient';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <ManagerFinanceErrorBoundary>
-      <ManagerFinancePlaceholderClient title="Auto Suspend" description="Manage Auto Suspend records and settings." />
+      <ManagerFinanceAutoSuspendClient />
     </ManagerFinanceErrorBoundary>
   );
 }
