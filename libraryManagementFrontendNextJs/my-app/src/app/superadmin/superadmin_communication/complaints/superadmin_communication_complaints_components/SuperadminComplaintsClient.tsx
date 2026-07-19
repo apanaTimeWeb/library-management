@@ -1,7 +1,7 @@
 'use client';
 // RESPONSIBILITY: Renders the SuperadminComplaintsClient component.
 import { ChevronRight, MessageSquare, Plus, X, Circle, CheckCircle, Smile, Eye, RefreshCw } from 'lucide-react';
-import { useSuperadminComplaintsClient, TABS } from '@/app/superadmin/superadmin_communication/complaints/_components/useSuperadminComplaintsClient';
+import { useSuperadminComplaintsClient, TABS } from '@/app/superadmin/superadmin_communication/complaints/superadmin_communication_complaints_components/useSuperadminComplaintsClient';
 import type { SuperadminCommunicationComplaintStatus as CStatus } from '@/app/superadmin/superadmin_communication/superadmin_communication_types/SuperadminCommunicationTypes';
 import { TableToolbar } from "@/components/ui/table-toolbar";
 import { useClientTable } from "@/components/ui/use-client-table";

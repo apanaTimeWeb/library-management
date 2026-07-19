@@ -11,24 +11,12 @@ import toast from 'react-hot-toast';
 import { formatCurrency } from '@/app/superadmin/superadmin_finance/superadmin_finance_utils/SuperadminFormat';
 import { RefreshCw } from 'lucide-react';
 import { SuperadminSearchableDropdown } from '@/app/superadmin/superadmin_shared_components/SuperadminSearchableDropdown';
-import { useSuperadminSubscriptionsClient } from '@/app/superadmin/superadmin_finance/subscriptions/_components/useSuperadminSubscriptionsClient';
+import { useSuperadminSubscriptionsClient } from '@/app/superadmin/superadmin_finance/subscriptions/superadmin_finance_subscriptions_components/useSuperadminSubscriptionsClient';
 import { TableToolbar } from "@/components/ui/table-toolbar";
 import { useClientTable } from "@/components/ui/use-client-table";
 import { TablePagination } from "@/components/ui/table-pagination";
-
-const STATUS_BADGE: Record<string, string> = {
-  active:    'bg-success/10 text-success border border-success/20',
-  expired:   'bg-danger/10 text-danger border border-danger/20',
-  suspended: 'bg-warning/10 text-warning border border-warning/20',
-  cancelled: 'bg-input text-text-primary border border-border',
-};
-
-function daysLeftBadgeClass(days: number) {
-  if (days < 0) return 'text-danger font-semibold text-sm';
-  if (days <= 7) return 'text-danger font-semibold text-sm';
-  if (days <= 15) return 'text-warning font-semibold text-sm';
-  return 'text-success font-semibold text-sm';
-}
+import type { SuperadminFinanceSubscription } from '@/app/superadmin/superadmin_finance/superadmin_finance_types/SuperadminFinanceTypes';
+import { SUPERADMIN_FINANCE_SUBSCRIPTION_STATUS_BADGE, superadminFinanceDaysLeftBadgeClass } from '@/app/superadmin/superadmin_finance/superadmin_finance_constants/SuperadminFinanceConstants';
 
 export function SuperadminSubscriptionsClient() {
   const router = useRouter();
@@ -90,7 +78,7 @@ export function SuperadminSubscriptionsClient() {
 
       <div className="bg-card rounded-lg border border-border overflow-x-auto">
         <TableToolbar search={table.searchTerm} onSearch={table.setSearchTerm} />
-      <table className="w-full text-left border-collapse min-w-[1200px]">
+      <table className="w-full text-left border-collapse min-w-max">
           <thead>
             <tr className="bg-primary/5 uppercase text-xs font-semibold text-text-secondary border-b border-border">
               <th className="py-3 px-4">Student</th>
@@ -129,7 +117,7 @@ export function SuperadminSubscriptionsClient() {
                 </td>
               </tr>
             ) : (
-              table.paginatedData.map(( s: any ) => (
+              table.paginatedData.map(( s: SuperadminFinanceSubscription ) => (
                 <tr key={s.id} className="border-b border-border last:border-0 hover:bg-primary/5 transition-colors cursor-pointer" onClick={() => toast.success(`Viewing subscription for ${s.studentName}`)}>
                   <td className="py-3 px-4 font-medium text-sm text-text-primary">{s.studentName}</td>
                   <td className="py-3 px-4 font-mono text-xs text-text-secondary">{s.smartId}</td>
@@ -137,7 +125,7 @@ export function SuperadminSubscriptionsClient() {
                   <td className="py-3 px-4 text-xs text-text-secondary">{s.startDate}</td>
                   <td className="py-3 px-4 text-xs text-text-secondary">{s.endDate}</td>
                   <td className="py-3 px-4">
-                    <span className={daysLeftBadgeClass(s.daysLeft)}>
+                    <span className={superadminFinanceDaysLeftBadgeClass(s.daysLeft)}>
                       {s.daysLeft < 0 ? `${Math.abs(s.daysLeft)}d ago` : `${s.daysLeft}d`}
                     </span>
                   </td>
@@ -149,7 +137,7 @@ export function SuperadminSubscriptionsClient() {
                     {formatCurrency(s.due)}
                   </td>
                   <td className="py-3 px-4">
-                    <span className={`${STATUS_BADGE[s.status] || 'bg-input text-text-primary border-border'} px-2 py-0.5 rounded-full text-xs font-bold capitalize`}>{s.status}</span>
+                    <span className={`${SUPERADMIN_FINANCE_SUBSCRIPTION_STATUS_BADGE[s.status] || 'bg-input text-text-primary border-border'} px-2 py-0.5 rounded-full text-xs font-bold capitalize`}>{s.status}</span>
                   </td>
                   <td className="py-3 px-4">
                     <div className="flex items-center justify-end gap-2">

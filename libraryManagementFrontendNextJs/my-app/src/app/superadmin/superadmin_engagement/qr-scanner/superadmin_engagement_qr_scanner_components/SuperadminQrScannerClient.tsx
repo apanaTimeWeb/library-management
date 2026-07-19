@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { SUPERADMIN_ROUTES } from '@/app/superadmin/SuperadminUrlConfig';
 import { ChevronRight, RefreshCw, CheckCircle, LogOut, X } from 'lucide-react';
-import { useSuperadminQrScannerClient } from '@/app/superadmin/superadmin_engagement/qr-scanner/_components/useSuperadminQrScannerClient';
+import { useSuperadminQrScannerClient, type SuperadminQrHistoryEntry } from '@/app/superadmin/superadmin_engagement/qr-scanner/superadmin_engagement_qr_scanner_components/useSuperadminQrScannerClient';
 
 export function SuperadminQrScannerClient() {
   const {
@@ -137,7 +137,7 @@ export function SuperadminQrScannerClient() {
               Recent Scans
             </div>
             <div className="space-y-2">
-              {history.map((h: any) => (
+              {history.map((h: SuperadminQrHistoryEntry) => (
                 <div key={h.id} className="flex items-center gap-4 p-3 rounded-md border border-border/50 bg-input/30 hover:bg-input transition-colors">
                   <span className={`px-2.5 py-1 rounded-sm text-xs font-bold uppercase tracking-wider w-14 text-center ${h.type==='IN' ? 'bg-success/10 text-success' : 'bg-danger/10 text-danger'}`}>
                     {h.type}

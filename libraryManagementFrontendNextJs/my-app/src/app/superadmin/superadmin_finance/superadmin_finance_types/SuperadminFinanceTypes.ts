@@ -145,4 +145,21 @@ export type SuperadminFinanceReferral = {
   paymentMethod?: string;
 };
 
+export type SuperadminFinanceSubscription = {
+  id: number;
+  studentName: string;
+  smartId: string;
+  plan: string;
+  shift: string;
+  startDate: string;
+  endDate: string;
+  daysLeft: number;
+  base: number;
+  discount: number;
+  total: number;
+  paid: number;
+  due: number;
+  status: 'active' | 'expired' | 'suspended' | 'cancelled';
+};
+
 // RESPONSIBILITY: Defines all types and interfaces for the superadmin_finance module.

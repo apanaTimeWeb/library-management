@@ -2,7 +2,7 @@
 // RESPONSIBILITY: Renders the ManagerStudentsStudentProfileClient.tsx component.
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { ArrowLeft, Phone, Armchair, Calendar, CreditCard, Shield } from 'lucide-react';
+import { ArrowLeft, Phone, Armchair, Calendar, CreditCard, Shield, Search } from 'lucide-react';
 import { useManagerStudentsStudentProfile } from '@/app/manager/manager_students/manager_students_hooks/useManagerStudentsStudentProfile';
 import { MANAGER_ROUTES } from '@/app/manager/manager_url_config';
 import { formatDateIN } from '@/lib/whatsappUtils';
