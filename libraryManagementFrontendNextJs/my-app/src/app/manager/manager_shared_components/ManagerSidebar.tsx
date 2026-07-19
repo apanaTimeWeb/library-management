@@ -1,4 +1,4 @@
-﻿
+
 'use client';
 // RESPONSIBILITY: Collapsible sidebar navigation for the Manager shell. Manages active route highlighting and mobile overlay.
 
@@ -13,7 +13,7 @@ import {
   Ban, Receipt, DollarSign, CalendarCheck, ClipboardCheck,
   QrCode, Calendar, TrendingUp, BarChart, Wallet, BookOpen,
   MessageSquare, Bell, BellRing, Smartphone,
-  LogOut, Menu, X,
+  LogOut, Menu, X, LucideIcon
 } from 'lucide-react';
 
 import { MANAGER_ROUTES } from '@/app/manager/manager_url_config';

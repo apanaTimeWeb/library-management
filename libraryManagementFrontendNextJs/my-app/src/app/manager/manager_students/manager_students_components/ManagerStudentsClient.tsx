@@ -1,4 +1,4 @@
-﻿import { useUrlState } from '@/app/manager/manager_shared_hooks/useUrlState';
+import { useUrlState } from '@/app/manager/manager_shared_hooks/useUrlState';
 
 'use client';
 import { useState } from 'react';
@@ -19,7 +19,7 @@ import { useClientTable } from "@/components/ui/use-client-table";
 // RESPONSIBILITY: Main Client view for the Manager Students directory.
 
 export function ManagerStudentsClient() {
-const [searchTerm, setSearchTerm] = useUrlState('searchTerm', '');
+const [searchTerm, setSearchTerm] = useUrlState('searchTerm', '' as string);
 
   const {
     students,
@@ -39,7 +39,7 @@ const [searchTerm, setSearchTerm] = useUrlState('searchTerm', '');
     <div className="p-6 min-h-screen">
       <div className="mb-8 flex flex-col md:flex-row md:items-end justify-between gap-4">
         <div>
-          <p className="text-xs font-semibold text-text-secondary uppercase tracking-wider mb-2">Smart Library 360 Ã¢â‚¬Âº Students</p>
+          <p className="text-xs font-semibold text-text-secondary uppercase tracking-wider mb-2">Smart Library 360 â€º Students</p>
           <h1 className="text-[22px] font-bold text-text-primary">Student Directory</h1>
           <p className="text-[13px] text-text-secondary mt-1.5">Manage admissions, seating, and billing for all active learners.</p>
         </div>
@@ -73,7 +73,7 @@ const [searchTerm, setSearchTerm] = useUrlState('searchTerm', '');
       <div className="flex flex-wrap gap-[10px] mb-[16px]">
         <input
           className="w-full max-w-sm bg-input border border-border rounded-lg px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
-          placeholder="Search name, phone, Smart IDÃ¢â‚¬Â¦"
+          placeholder="Search name, phone, Smart IDâ€¦"
           value={search}
           onChange={e => setSearch(e.target.value)}
         />
@@ -154,3 +154,4 @@ const [searchTerm, setSearchTerm] = useUrlState('searchTerm', '');
     </div>
   );
 }
+

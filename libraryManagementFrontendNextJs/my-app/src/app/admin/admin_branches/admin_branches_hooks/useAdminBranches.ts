@@ -33,7 +33,7 @@ export function useAdminBranches(initialBranches: Branch[]) {
   const [deleteId, setDeleteId] = useState<string | null>(null);
   const [form, setForm] = useState<FormState>(EMPTY_FORM);
   const [errors, setErrors] = useState<Partial<FormState>>({});
-  const [search, setSearch] = useUrlState('search', '');
+  const [search, setSearch] = useUrlState('search', '' as string);
 
   const filtered = useMemo(() => {
     return branches.filter(b =>
@@ -110,4 +110,5 @@ export function useAdminBranches(initialBranches: Branch[]) {
     handleFieldChange
   };
 }
+
 

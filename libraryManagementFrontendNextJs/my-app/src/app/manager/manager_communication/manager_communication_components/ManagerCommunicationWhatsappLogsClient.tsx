@@ -29,13 +29,13 @@ const STATUS_BADGE: Record<string, string> = {
 };
 
 export function ManagerCommunicationWhatsappLogsClient() {
-  const [searchTerm, setSearchTerm] = useUrlState('searchTerm', '');
+  const [searchTerm, setSearchTerm] = useUrlState('searchTerm', '' as string);
 
   const [typeFilter,   setTypeFilter]   = useState('All');
-  const [statusFilter, setStatusFilter] = useUrlState('statusFilter', 'All');
-  const [search, setSearch] = useUrlState('search', '');
-  const [dateFrom, setDateFrom] = useUrlState('dateFrom', '');
-  const [dateTo, setDateTo] = useUrlState('dateTo', '');
+  const [statusFilter, setStatusFilter] = useUrlState('statusFilter', 'All' as string);
+  const [search, setSearch] = useUrlState('search', '' as string);
+  const [dateFrom, setDateFrom] = useUrlState('dateFrom', '' as string);
+  const [dateTo, setDateTo] = useUrlState('dateTo', '' as string);
   const [viewLog,      setViewLog]      = useState<WaLog | null>(null);
 
   const [page, setPage] = useState(1);
@@ -220,3 +220,4 @@ export function ManagerCommunicationWhatsappLogsClient() {
     </div>
   );
 }
+

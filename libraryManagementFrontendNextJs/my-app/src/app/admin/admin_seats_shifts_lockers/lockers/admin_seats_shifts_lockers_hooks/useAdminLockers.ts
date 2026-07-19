@@ -17,9 +17,9 @@ export type LockerStatus = 'Free' | 'Occupied' | 'Maintenance';
 
 export function useAdminLockers() {
   const [lockers, setLockers] = useState<Locker[]>(ADMIN_SEATS_MOCK_LOCKERS as Locker[]);
-  const [statusFilter, setStatusFilter] = useUrlState('statusFilter', 'All Statuses');
+  const [statusFilter, setStatusFilter] = useUrlState('statusFilter', 'All Statuses' as string);
   const [showAssign, setShowAssign] = useState<Locker | null>(null);
-  const [assignSearch, setAssignSearch] = useUrlState('assignSearch', '');
+  const [assignSearch, setAssignSearch] = useUrlState('assignSearch', '' as string);
   const [freeTarget, setFreeTarget] = useState<Locker | null>(null);
   const [showAddModal, setShowAddModal] = useState(false);
   const [newLockerId, setNewLockerId] = useState('');
@@ -91,3 +91,4 @@ export function useAdminLockers() {
     handleAddLocker
   };
 }
+

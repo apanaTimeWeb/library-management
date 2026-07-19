@@ -1,11 +1,11 @@
-﻿// RESPONSIBILITY: Renders or handles logic for manager_students_api.ts.
+// RESPONSIBILITY: Renders or handles logic for manager_students_api.ts.
 import { fetchApi } from '@/lib/api';
 import { logger } from '@/lib/logger';
 import type { Student } from '@/app/manager/manager_students/manager_students_types';
 
 export async function fetchStudents(): Promise<Student[]> {
   try {
-    const res = await fetchApi('/students');
+    const res = await fetchApi('/students') as any;
     if (res?.data && Array.isArray(res.data)) return res.data;
     if (Array.isArray(res)) return res;
     throw new Error('Invalid response format');
@@ -21,7 +21,7 @@ export async function fetchStudents(): Promise<Student[]> {
 
 export async function fetchStudentById(id: string): Promise<Student> {
   try {
-    const res = await fetchApi(`/students/${id}`);
+    const res = await fetchApi(`/students/${id}`) as any;
     if (res?.data) return res.data;
     if (res?.id) return res;
     throw new Error('Invalid response format');

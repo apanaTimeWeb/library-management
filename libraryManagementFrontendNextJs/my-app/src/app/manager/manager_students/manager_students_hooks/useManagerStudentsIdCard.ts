@@ -1,11 +1,18 @@
 // RESPONSIBILITY: Renders or handles logic for useManagerStudentsIdCard.ts.
+import { useState, useEffect, useMemo } from 'react';
 import { useUrlState } from '@/app/manager/manager_shared_hooks/useUrlState';
+import { useManagerDebounce } from '@/app/manager/manager_shared_hooks/useManagerDebounce';
+import { fetchStudents } from '@/app/manager/manager_students/manager_students_api/manager_students_api';
+import { logger } from '@/lib/logger';
+import type { Student, IdCardData } from '@/app/manager/manager_students/manager_students_types';
+import { calcExpiryDate, formatDateIN, openWhatsApp, formatIdCardMessage, type StudentWhatsAppData } from '@/lib/whatsappUtils';
+import { printThermal } from '@/lib/thermalPrint';
 
 // DATA FLOW: Hook -> useManagerStudentsIdCard -> Consuming UI Component
 export function useManagerStudentsIdCard() {
   const [students, setStudents] = useState<Student[]>([]);
   const [selectedId, setSelectedId] = useState<string>('');
-  const [search, setSearch] = useUrlState('search', '');
+  const [search, setSearch] = useUrlState('search', '' as string);
   const debouncedSearch = useManagerDebounce(search, 300);
 
   // DEPENDENCY AUDIT: Executed on mount or when key dependencies (like search terms, filters, IDs) change.
@@ -14,7 +21,7 @@ export function useManagerStudentsIdCard() {
   }, []);
 
   const filtered = useMemo(() =>
-    students.filter(s =>
+    students.filter((s: Student) =>
       !search ||
       s.name.toLowerCase().includes(debouncedSearch.toLowerCase()) ||
       s.smartId.toLowerCase().includes(debouncedSearch.toLowerCase()) ||
@@ -24,7 +31,7 @@ export function useManagerStudentsIdCard() {
   );
 
   const selected = useMemo(
-    () => students.find(s => s.smartId === selectedId),
+    () => students.find((s: Student) => s.smartId === selectedId),
     [students, selectedId]
   );
 
@@ -104,4 +111,5 @@ export function useManagerStudentsIdCard() {
     handlePrint,
   };
 }
+
 

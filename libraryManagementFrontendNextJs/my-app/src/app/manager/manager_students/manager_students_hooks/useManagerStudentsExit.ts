@@ -9,7 +9,7 @@ import { useManagerDebounce } from '@/app/manager/manager_shared_hooks/useManage
 // DATA FLOW: Hook -> useManagerStudentsExit -> Consuming UI Component
 export function useManagerStudentsExit() {
   const [students, setStudents] = useState<Student[]>([]);
-  const [search, setSearch] = useUrlState('search', '');
+  const [search, setSearch] = useUrlState('search', '' as string);
   const debouncedSearch = useManagerDebounce(search, 300);
   const [selected, setSelected] = useState('');
   const [reason, setReason] = useState('');
@@ -53,4 +53,5 @@ export function useManagerStudentsExit() {
     reset,
   };
 }
+
 

@@ -1,4 +1,4 @@
-﻿// RESPONSIBILITY: Renders or handles logic for manager_communication_store.ts.
+// RESPONSIBILITY: Renders or handles logic for manager_communication_store.ts.
 import { create } from 'zustand';
 import { fetchApi } from '@/lib/api';
 import type { FetchState, Notice, Complaint, ManagerCommunicationState } from '@/app/manager/manager_communication/manager_communication_types/manager_communication_types';
@@ -101,7 +101,7 @@ while(MOCK_NOTICES.length < 50 && base_MOCK_NOTICES.length > 0) {
         id: c.id,
         title: c.subject || 'Complaint',
         desc: c.description || '',
-        submittedOn: new Date(c.createdAt).toLocaleDateString(),
+        submittedOn: new Date(c.createdAt as string).toLocaleDateString(),
         status: c.status === 'open' ? 'New' : (c.status === 'resolved' ? 'Resolved' : 'In-Progress'),
         studentName: c.isAnonymous ? 'Anonymous' : 'Mock Student',
         phone: c.phone || '9999999999',

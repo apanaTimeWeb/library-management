@@ -1,4 +1,4 @@
-﻿
+
 'use client';
 // RESPONSIBILITY: Renders the ManagerSeatsSeatHistoryClient.tsx component UI.
 import { Allocation, ActivityItem, Locker, SeatHistoryEntry, LogEntry, Seat, ManagerSeatsSeatMatrixModalProps, ShiftData, Shift, Student } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_types';
@@ -114,7 +114,7 @@ const {
                     <td className="px-4 py-4 text-text-secondary">{row.occupiedTill}</td>
                     <td className="px-4 py-4 text-text-secondary">{row.duration}</td>
     // @ts-ignore
-                    <td className="px-4 py-4"><ReasonCell value={row.reason} /></td>
+                    <td className="px-4 py-4"><ReasonCell value={row.reason || ''} /></td>
                   </tr>
                 ))}
               </tbody>

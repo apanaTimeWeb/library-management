@@ -24,7 +24,7 @@ export function daysRemaining(validTill: string): number {
 
 export function useAdminShiftMigration() {
   const [step, setStep] = useState(1);
-  const [search, setSearch] = useUrlState('search', '');
+  const [search, setSearch] = useUrlState('search', '' as string);
   const [selectedStudent, setSelectedStudent] = useState<Student | null>(null);
   const [newShift, setNewShift] = useState('');
   const [newSeat, setNewSeat] = useState('');

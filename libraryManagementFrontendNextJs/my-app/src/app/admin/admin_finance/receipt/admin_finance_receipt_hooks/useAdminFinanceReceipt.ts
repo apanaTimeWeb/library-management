@@ -10,7 +10,7 @@ import { ADMIN_FINANCE_MOCK_RECEIPTS } from '@/app/admin/admin_finance/admin_fin
 export type FilterMode = 'all' | 'upi' | 'cash' | 'card' | 'bank transfer';
 
 export function useAdminFinanceReceipt() {
-  const [search, setSearch] = useUrlState('search', '');
+  const [search, setSearch] = useUrlState('search', '' as string);
   const [modeFilter, setModeFilter] = useState<FilterMode>('all');
 
   const filteredReceipts = useMemo(() => {
@@ -84,3 +84,4 @@ export function useAdminFinanceReceipt() {
     handlePrint
   };
 }
+

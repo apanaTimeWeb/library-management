@@ -308,7 +308,7 @@ export default function ManagerStudentsAdmissionForm() {
               baseAmt={baseAmt}
               discount={discount}
               totalPayable={totalPayable}
-              watchedAmount={watchedAmount}
+              watchedAmount={watchedAmount as string | number}
               isSubmitting={isSubmitting}
             />
 

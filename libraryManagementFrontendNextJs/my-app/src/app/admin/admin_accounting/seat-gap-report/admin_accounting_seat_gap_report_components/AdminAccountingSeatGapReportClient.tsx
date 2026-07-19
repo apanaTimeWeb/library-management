@@ -31,8 +31,8 @@ export function AdminAccountingSeatGapReportClient() {
     const [searchTerm, setSearchTerm] = useState('');
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(10);
-  const [shiftFilter, setShiftFilter] = useUrlState('shiftFilter', 'all');
-  const [statusFilter, setStatusFilter] = useUrlState('statusFilter', 'all');
+  const [shiftFilter, setShiftFilter] = useUrlState('shiftFilter', 'all' as string);
+  const [statusFilter, setStatusFilter] = useUrlState('statusFilter', 'all' as string);
 
   const visible = MOCK.filter(r =>
     (shiftFilter === 'all' || r.shift === shiftFilter) &&
@@ -152,3 +152,4 @@ export function AdminAccountingSeatGapReportClient() {
     </div>
   );
 }
+

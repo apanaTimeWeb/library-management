@@ -5,7 +5,7 @@ import { useMemo } from 'react';
 type AdminRole = 'Superadmin' | 'Admin' | 'Manager';
 
 export function usePermissions() {
-  const currentRole: AdminRole = 'Admin'; // Mocked
+  const currentRole = 'Admin' as AdminRole; // Mocked
   
   return useMemo(() => ({
     role: currentRole,

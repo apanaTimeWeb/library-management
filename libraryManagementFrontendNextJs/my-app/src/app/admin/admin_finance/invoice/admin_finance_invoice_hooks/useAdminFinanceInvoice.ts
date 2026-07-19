@@ -10,7 +10,7 @@ import { ADMIN_FINANCE_MOCK_INVOICES } from '@/app/admin/admin_finance/admin_fin
 export type FilterStatus = 'all' | 'paid' | 'pending' | 'overdue';
 
 export function useAdminFinanceInvoice() {
-  const [search, setSearch] = useUrlState('search', '');
+  const [search, setSearch] = useUrlState('search', '' as string);
   const [statusFilter, setStatusFilter] = useState<FilterStatus>('all');
 
   const filteredInvoices = useMemo(() => {
@@ -87,3 +87,4 @@ export function useAdminFinanceInvoice() {
     handlePrint
   };
 }
+

@@ -1,5 +1,5 @@
 'use client';
-import { NavGroup, NavItem } from './SuperadminSidebar_types';
+import type { SuperadminNavGroup, SuperadminNavItem } from './SuperadminSidebar_types';
 // RESPONSIBILITY: Renders the SuperadminSidebar component.
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -19,7 +19,7 @@ import type { FC } from 'react';
 
 
 
-const NAV: NavGroup[] = [
+const NAV: SuperadminNavGroup[] = [
   {
     group: '',
     items: [
@@ -134,7 +134,7 @@ const NAV: NavGroup[] = [
 
 import type { SuperadminCrmSidebarProps as SidebarProps } from '@/app/superadmin/superadmin_crm/superadmin_crm_types/SuperadminCrmTypes';
 
-export default function SuperadminSidebar({ isOpen, onClose }: SidebarProps) {
+export function SuperadminSidebar({ navItems = NAV, isOpen, onClose }: SidebarProps & { navItems?: (SuperadminNavItem | SuperadminNavGroup)[] }) {
   const pathname = usePathname();
 
   return (
@@ -143,11 +143,11 @@ export default function SuperadminSidebar({ isOpen, onClose }: SidebarProps) {
       <div className="h-16 shrink-0 lg:hidden bg-primary shadow-sm" />
 
       <div className="flex-1 overflow-y-auto py-6 px-3 space-y-8 scrollbar-thin scrollbar-thumb-border scrollbar-track-transparent">
-        {NAV.map((group, gi) => (
-          <div key={gi} className="space-y-1.5">
+        {NAV.map((group, idx) => (
+          <div key={idx} className="space-y-1.5">
             {group.group && <p className="px-3 text-xs font-bold text-text-secondary uppercase tracking-wider mb-2">{group.group}</p>}
 
-            {group.items.map(( item: NavItem ) => {
+            {group.items?.map((item: SuperadminNavItem) => {
               const active =
                 item.href === SUPERADMIN_ROUTES.CRM_ENQUIRIES
                   ? pathname.startsWith(SUPERADMIN_ROUTES.CRM_ENQUIRIES)

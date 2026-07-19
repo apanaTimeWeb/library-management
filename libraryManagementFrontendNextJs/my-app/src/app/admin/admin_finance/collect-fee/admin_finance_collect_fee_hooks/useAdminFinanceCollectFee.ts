@@ -93,7 +93,7 @@ function buildWhatsAppReceipt(params: {
 }
 
 export function useAdminFinanceCollectFee() {
-  const [search, setSearch] = useUrlState('search', '');
+  const [search, setSearch] = useUrlState('search', '' as string);
   const [showDropdown, setShowDropdown] = useState(false);
   const [selectedStudent, setSelectedStudent] = useState<typeof ADMIN_FINANCE_MOCK_STUDENTS[0] | null>(null);
   
@@ -243,3 +243,4 @@ export function useAdminFinanceCollectFee() {
     handlePrintReceipt
   };
 }
+

@@ -27,8 +27,8 @@ const EMPTY_FORM: SeatFormValues = { seatNo: '', branch: '', status: 'Working' }
 
 export function useAdminSeatManagement(initialSeats: Seat[]) {
   const [seats, setSeats] = useState<Seat[]>(initialSeats);
-  const [search, setSearch] = useUrlState('search', '');
-  const [statusFilter, setStatusFilter] = useUrlState('statusFilter', 'All Statuses');
+  const [search, setSearch] = useUrlState('search', '' as string);
+  const [statusFilter, setStatusFilter] = useUrlState('statusFilter', 'All Statuses' as string);
   
   const [showModal, setShowModal] = useState(false);
   const [editSeat, setEditSeat] = useState<Seat | null>(null);
@@ -104,3 +104,4 @@ export function useAdminSeatManagement(initialSeats: Seat[]) {
     confirmMarkBroken
   };
 }
+

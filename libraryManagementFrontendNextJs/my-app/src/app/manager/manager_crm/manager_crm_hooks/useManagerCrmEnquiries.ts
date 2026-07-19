@@ -1,4 +1,4 @@
-﻿// RESPONSIBILITY: Renders or handles logic for useManagerCrmEnquiries.ts.
+// RESPONSIBILITY: Renders or handles logic for useManagerCrmEnquiries.ts.
 import { useUrlState } from '@/app/manager/manager_shared_hooks/useUrlState';
 import { useState, useEffect, useMemo } from 'react';
 import { useCrmStore } from '@/app/manager/manager_crm/manager_crm_store/manager_crm_store';
@@ -18,13 +18,13 @@ function useManagerDebounce<T>(value: T, delay: number): T {
 
 /**
  * Custom hook to manage Enquiries data, searching, and filtering.
- * DATA FLOW: API â†’ useManagerCrmEnquiries â†’ ManagerCrmEnquiriesClient
+ * DATA FLOW: API → useManagerCrmEnquiries → ManagerCrmEnquiriesClient
  */
 export function useManagerCrmEnquiries() {
   const { enquiries, status, error, fetchData, updateEnquiryStatus } = useCrmStore();
   
   const [view, setView] = useState<'kanban' | 'table'>('kanban');
-  const [search, setSearch] = useUrlState('search', '');
+  const [search, setSearch] = useUrlState('search', '' as string);
   const [statusFilter, setStatusFilter] = useState<string>('All');
 
   // Fetch data on mount if idle, dependencies included to satisfy linter
@@ -62,4 +62,5 @@ export function useManagerCrmEnquiries() {
     updateEnquiryStatus
   };
 }
+
 

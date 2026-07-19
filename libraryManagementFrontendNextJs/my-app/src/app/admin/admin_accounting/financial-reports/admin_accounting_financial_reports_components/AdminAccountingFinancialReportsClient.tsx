@@ -30,7 +30,7 @@ const CATEGORY_BREAKDOWN = [
 const maxIncome = Math.max(...MONTHLY.map(m => m.income));
 
 export function AdminAccountingFinancialReportsClient() {
-  const [period, setPeriod] = useUrlState('period', 'monthly');
+  const [period, setPeriod] = useUrlState('period', 'monthly' as string);
 
   const totalIncome  = MONTHLY.reduce((s, m) => s + m.income, 0);
   const totalExpense = MONTHLY.reduce((s, m) => s + m.expense, 0);
@@ -136,3 +136,4 @@ export function AdminAccountingFinancialReportsClient() {
     </div>
   );
 }
+

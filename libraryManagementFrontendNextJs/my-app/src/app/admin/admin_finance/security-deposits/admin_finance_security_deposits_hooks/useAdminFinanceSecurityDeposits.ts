@@ -19,7 +19,7 @@ export type Deposit = {
 };
 
 export function useAdminFinanceSecurityDeposits() {
-  const [statusFilter, setStatusFilter] = useUrlState('statusFilter', 'all');
+  const [statusFilter, setStatusFilter] = useUrlState('statusFilter', 'all' as string);
   const [deposits, setDeposits] = useState<Deposit[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   
@@ -104,3 +104,4 @@ export function useAdminFinanceSecurityDeposits() {
     handleDeduction
   };
 }
+

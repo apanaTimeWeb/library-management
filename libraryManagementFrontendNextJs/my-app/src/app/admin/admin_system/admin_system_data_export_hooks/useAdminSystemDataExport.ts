@@ -6,8 +6,8 @@ import { ADMIN_SYSTEM_EXPORT_MODULES } from '@/app/admin/admin_system/admin_syst
 export function useAdminSystemDataExport() {
   const [selected, setSelected] = useState<Set<string>>(new Set());
   const [format, setFormat] = useState<'CSV' | 'XLSX'>('XLSX');
-  const [dateFrom, setDateFrom] = useUrlState('dateFrom', '2026-01-01');
-  const [dateTo, setDateTo] = useUrlState('dateTo', '2026-04-12');
+  const [dateFrom, setDateFrom] = useUrlState('dateFrom', '2026-01-01' as string);
+  const [dateTo, setDateTo] = useUrlState('dateTo', '2026-04-12' as string);
   const [exporting, setExporting] = useState<string | null>(null);
   const [exported, setExported] = useState<Set<string>>(new Set());
 

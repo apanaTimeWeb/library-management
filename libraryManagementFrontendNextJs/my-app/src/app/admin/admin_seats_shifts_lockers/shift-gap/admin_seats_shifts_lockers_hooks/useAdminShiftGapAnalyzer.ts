@@ -26,8 +26,8 @@ export function fmtH(h: number) {
 export function useAdminShiftGapAnalyzer() {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [shifts, setShifts] = useState<ShiftData[]>(ADMIN_SEATS_MOCK_SHIFT_GAPS as ShiftData[]);
-  const [shiftFilter, setShiftFilter] = useUrlState('shiftFilter', 'All');
-  const [period, setPeriod] = useUrlState('period', 'Today');
+  const [shiftFilter, setShiftFilter] = useUrlState('shiftFilter', 'All' as string);
+  const [period, setPeriod] = useUrlState('period', 'Today' as string);
 
   const visible = useMemo(() => {
     return shiftFilter === 'All' ? shifts : shifts.filter(s => s.name === shiftFilter);

@@ -8,9 +8,9 @@ import { ADMIN_ROUTES } from '@/app/admin/admin_url_config';
 
 export function useAdminFinanceSubscriptions() {
   const router = useRouter();
-  const [statusFilter, setStatusFilter] = useUrlState('statusFilter', 'all');
+  const [statusFilter, setStatusFilter] = useUrlState('statusFilter', 'all' as string);
   const [planFilter, setPlanFilter] = useState('all');
-  const [shiftFilter, setShiftFilter] = useUrlState('shiftFilter', 'all');
+  const [shiftFilter, setShiftFilter] = useUrlState('shiftFilter', 'all' as string);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -48,3 +48,4 @@ export function useAdminFinanceSubscriptions() {
     handleView
   };
 }
+

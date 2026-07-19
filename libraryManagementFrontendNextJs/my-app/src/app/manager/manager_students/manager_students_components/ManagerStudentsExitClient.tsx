@@ -1,4 +1,4 @@
-﻿
+
 'use client';
 // RESPONSIBILITY: Renders the ManagerStudentsExitClient.tsx component.
 import { useState, useEffect } from 'react';
@@ -96,7 +96,7 @@ export function ManagerStudentsExitClient() {
               <div className="flex items-center justify-between mb-4">
                 <h2 className="text-base font-semibold text-text-primary">Exit Details</h2>
               </div>
-              <div className="" className="flex flex-col gap-[14px]">
+              <div className="flex flex-col gap-[14px]">
                 <div className="flex items-center justify-between py-3 border-b border-border last:border-0">
                   <span className="text-sm font-medium text-text-secondary flex items-center">Student</span>
                   <span className="text-text-primary font-semibold">{student.name}</span>

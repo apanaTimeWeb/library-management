@@ -16,7 +16,7 @@ const ALUMNI_DATA: AlumniData[] = [
 ];
 
 export function ManagerStudentsAlumniClient() {
-const [searchTerm, setSearchTerm] = useUrlState('searchTerm', '');
+const [searchTerm, setSearchTerm] = useUrlState('searchTerm', '' as string);
 
   const [rowData] = useState<AlumniData[]>(ALUMNI_DATA);
 
@@ -125,3 +125,4 @@ const [searchTerm, setSearchTerm] = useUrlState('searchTerm', '');
     </div>
   );
 }
+

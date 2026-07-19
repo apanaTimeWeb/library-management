@@ -6,7 +6,7 @@ import { AdminFinanceTrustScoreStudent } from '@/app/admin/admin_finance/trust-s
 
 export function useAdminFinanceTrustScore() {
   const [levelFilter, setLevelFilter] = useState('all');
-  const [shiftFilter, setShiftFilter] = useUrlState('shiftFilter', 'all');
+  const [shiftFilter, setShiftFilter] = useUrlState('shiftFilter', 'all' as string);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -30,3 +30,4 @@ export function useAdminFinanceTrustScore() {
     totalCount: ADMIN_FINANCE_MOCK_TRUST_SCORE.length
   };
 }
+

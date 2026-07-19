@@ -96,7 +96,7 @@ function ReportTable<T extends Record<string, unknown>>({
 }
 
 export function ManagerReportsTablesGrid({ data }: ManagerReportsTablesGridProps) {
-  const [searchTerm, setSearchTerm] = useUrlState('searchTerm', '');
+  const [searchTerm, setSearchTerm] = useUrlState('searchTerm', '' as string);
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -190,3 +190,4 @@ export function ManagerReportsTablesGrid({ data }: ManagerReportsTablesGridProps
     </div>
   );
 }
+

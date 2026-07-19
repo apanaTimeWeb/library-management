@@ -1,4 +1,4 @@
-﻿// RESPONSIBILITY: Renders or handles logic for useManagerStudentsList.ts.
+// RESPONSIBILITY: Renders or handles logic for useManagerStudentsList.ts.
 import { useUrlState } from '@/app/manager/manager_shared_hooks/useUrlState';
 import { useState, useEffect, useMemo } from 'react';
 import { useManagerDebounce } from '@/app/manager/manager_shared_hooks/useManagerDebounce';
@@ -6,15 +6,15 @@ import { useStudentsStore } from '@/app/manager/manager_students/manager_student
 
 /**
  * Custom hook to fetch and filter students.
- * DATA FLOW: API â†’ useManagerStudentsList â†’ ManagerStudentsClient
+ * DATA FLOW: API → useManagerStudentsList → ManagerStudentsClient
  */
-// DATA FLOW: API â†’ useManagerStudentsList.ts â†’ StudentsListComponent
+// DATA FLOW: API → useManagerStudentsList.ts → StudentsListComponent
 export function useManagerStudentsList() {
   const { students, status, error, fetchData } = useStudentsStore();
 
-  const [search, setSearch] = useUrlState('search', '');
-  const [statusFilter, setStatusFilter] = useUrlState('statusFilter', 'all');
-  const [shiftFilter, setShiftFilter] = useUrlState('shiftFilter', 'all');
+  const [search, setSearch] = useUrlState('search', '' as string);
+  const [statusFilter, setStatusFilter] = useUrlState('statusFilter', 'all' as string);
+  const [shiftFilter, setShiftFilter] = useUrlState('shiftFilter', 'all' as string);
 
   // Fetch data on mount if idle, dependencies included to satisfy linter
   // DEPENDENCY AUDIT: Executed on mount or when key dependencies (like search terms, filters, IDs) change.
@@ -50,5 +50,6 @@ export function useManagerStudentsList() {
     shiftFilter, setShiftFilter
   };
 }
+
 
 

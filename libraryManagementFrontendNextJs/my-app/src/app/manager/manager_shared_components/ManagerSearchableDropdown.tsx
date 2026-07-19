@@ -8,7 +8,7 @@ import { ManagerSearchableDropdownProps } from '@/app/manager/manager_types/mana
 // RESPONSIBILITY: Render a searchable dropdown for large datasets.
 export function ManagerSearchableDropdown({ options, value, onChange, placeholder = 'Select...', className = '' }: ManagerSearchableDropdownProps) {
   const [isOpen, setIsOpen] = useState(false);
-  const [searchTerm, setSearchTerm] = useUrlState('searchTerm', '');
+  const [searchTerm, setSearchTerm] = useUrlState('searchTerm', '' as string);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   const debouncedSearch = useManagerDebounce(searchTerm, 300);
@@ -80,3 +80,4 @@ export function ManagerSearchableDropdown({ options, value, onChange, placeholde
     </div>
   );
 }
+

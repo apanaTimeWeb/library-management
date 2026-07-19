@@ -25,7 +25,7 @@ export type Refund = {
 };
 
 export function useAdminFinanceRefunds() {
-  const [statusFilter, setStatusFilter] = useUrlState('statusFilter', 'all');
+  const [statusFilter, setStatusFilter] = useUrlState('statusFilter', 'all' as string);
   const [allRefunds, setAllRefunds] = useState<Refund[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   
@@ -39,7 +39,7 @@ export function useAdminFinanceRefunds() {
 
   useEffect(() => {
     fetchApi('/finance/refunds')
-      .then(data => {
+      .then((data: any) => {
         const mapped = data.map((r: Record<string, unknown>) => ({
           id: typeof r.id === 'number' ? r.id : (parseInt(String(r.id).replace(/\D/g, '')) || Math.floor(Math.random() * 10000)),
           studentName: r.name || r.studentName || 'Unknown Student',
@@ -130,3 +130,5 @@ export function useAdminFinanceRefunds() {
     handleDeduction
   };
 }
+
+

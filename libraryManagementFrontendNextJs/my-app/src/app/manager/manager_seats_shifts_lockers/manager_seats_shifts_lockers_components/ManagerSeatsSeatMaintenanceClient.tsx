@@ -1,4 +1,4 @@
-﻿import { useUrlState } from '@/app/manager/manager_shared_hooks/useUrlState';
+import { useUrlState } from '@/app/manager/manager_shared_hooks/useUrlState';
 
 'use client';
 // RESPONSIBILITY: Renders the ManagerSeatsSeatMaintenanceClient.tsx component UI.
@@ -14,16 +14,16 @@ import { useClientTable } from "@/components/ui/use-client-table";
 
 const SEAT_LOGS: Record<string, LogEntry[]> = {
   'S-006': [
-    { id: '1', num: 1, date: '10 Oct 2024', remark: 'Chair leg repaired', doneBy: 'Ramesh K.', statusBefore: 'Broken', statusAfter: 'Working', cost: 'Ã¢â€šÂ¹350' },
-    { id: '2', num: 2, date: '15 Aug 2024', remark: 'Routine inspection', doneBy: 'Suresh M.', statusBefore: 'Working', statusAfter: 'Working', cost: 'Ã¢â‚¬â€' },
+    { id: '1', num: 1, date: '10 Oct 2024', remark: 'Chair leg repaired', doneBy: 'Ramesh K.', statusBefore: 'Broken', statusAfter: 'Working', cost: 'â‚¹350' },
+    { id: '2', num: 2, date: '15 Aug 2024', remark: 'Routine inspection', doneBy: 'Suresh M.', statusBefore: 'Working', statusAfter: 'Working', cost: 'â€”' },
   ],
   'S-017': [
-    { id: '3', num: 1, date: '15 Oct 2024', remark: 'Loose table joint Ã¢â‚¬â€ WIP', doneBy: 'Suresh M.', statusBefore: 'Working', statusAfter: 'Maintenance', cost: 'Ã¢â‚¬â€' },
+    { id: '3', num: 1, date: '15 Oct 2024', remark: 'Loose table joint â€” WIP', doneBy: 'Suresh M.', statusBefore: 'Working', statusAfter: 'Maintenance', cost: 'â€”' },
   ],
   'S-029': [],
   'S-043': [
-    { id: '4', num: 1, date: '05 Oct 2024', remark: 'Power socket replaced', doneBy: 'Ramesh K.', statusBefore: 'Broken', statusAfter: 'Working', cost: 'Ã¢â€šÂ¹200' },
-    { id: '5', num: 2, date: '20 Jul 2024', remark: 'Socket loose Ã¢â‚¬â€ tightened', doneBy: 'Ramesh K.', statusBefore: 'Maintenance', statusAfter: 'Working', cost: 'Ã¢â€šÂ¹50' },
+    { id: '4', num: 1, date: '05 Oct 2024', remark: 'Power socket replaced', doneBy: 'Ramesh K.', statusBefore: 'Broken', statusAfter: 'Working', cost: 'â‚¹200' },
+    { id: '5', num: 2, date: '20 Jul 2024', remark: 'Socket loose â€” tightened', doneBy: 'Ramesh K.', statusBefore: 'Maintenance', statusAfter: 'Working', cost: 'â‚¹50' },
   ],
 };
 
@@ -49,7 +49,7 @@ function StatusBadge(props: { value: string }) {
 }
 
 export function ManagerSeatsSeatMaintenanceClient() {
-const [searchTerm, setSearchTerm] = useUrlState('searchTerm', '');
+const [searchTerm, setSearchTerm] = useUrlState('searchTerm', '' as string);
 
   const [selectedSeat, setSelectedSeat] = useState('S-006');
   const [logs, setLogs] = useState(SEAT_LOGS);
@@ -86,10 +86,10 @@ const [searchTerm, setSearchTerm] = useUrlState('searchTerm', '');
       num: currentLogs.length + 1,
       date: form.date,
       remark: form.remark,
-      doneBy: form.doneBy || 'Ã¢â‚¬â€',
+      doneBy: form.doneBy || 'â€”',
       statusBefore: prevStatus,
       statusAfter: form.newStatus,
-      cost: form.cost ? `Ã¢â€šÂ¹${form.cost}` : 'Ã¢â‚¬â€',
+      cost: form.cost ? `â‚¹${form.cost}` : 'â€”',
     };
     setLogs(prev => ({ ...prev, [selectedSeat]: [...(prev[selectedSeat] ?? []), newEntry] }));
     setForm(EMPTY_FORM);
@@ -123,14 +123,14 @@ const [searchTerm, setSearchTerm] = useUrlState('searchTerm', '');
         {showOverdue && (
           <div className="ss-alert-banner">
             <AlertTriangle size={16} className="ss-text-warning" />
-            <span>Last maintenance was <strong>{daysSince} days ago</strong> Ã¢â‚¬â€ attention recommended.</span>
+            <span>Last maintenance was <strong>{daysSince} days ago</strong> â€” attention recommended.</span>
           </div>
         )}
 
         {/* History table */}
         {filteredLogs.length === 0 ? (
           <div className="ss-empty-state">
-            <p className="ss-empty-state__icon">Ã°Å¸â€Â§</p>
+            <p className="ss-empty-state__icon">ðŸ”§</p>
             <p className="ss-empty-state__title">No maintenance history for this seat.</p>
           </div>
         ) : (
@@ -212,7 +212,7 @@ const [searchTerm, setSearchTerm] = useUrlState('searchTerm', '');
               </div>
             </div>
             <div className="ss-form-field">
-              <label className="ss-label">Cost (Ã¢â€šÂ¹)</label>
+              <label className="ss-label">Cost (â‚¹)</label>
               <input type="number" className="ss-input ss-input--no-icon" placeholder="e.g. 350" value={form.cost} onChange={e => setForm(p => ({ ...p, cost: e.target.value }))} />
             </div>
             <div className="ss-form-field ss-form-field--full">
@@ -232,3 +232,4 @@ const [searchTerm, setSearchTerm] = useUrlState('searchTerm', '');
     </>
   );
 }
+

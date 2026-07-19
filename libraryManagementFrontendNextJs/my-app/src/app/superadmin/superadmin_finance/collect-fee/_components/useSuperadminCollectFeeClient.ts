@@ -137,17 +137,20 @@ export function useSuperadminCollectFeeClient() {
     });
   }
 
-  function handleSelectStudent(s: typeof SUPERADMIN_FINANCE_MOCK_STUDENTS_COLLECT_FEE[0]) {
+  function handleSelectStudent(s: typeof SUPERADMIN_FINANCE_MOCK_STUDENTS_COLLECT_FEE[0] | null) {
     setSelectedStudent(s);
-    setSearch(s.name);
-    setShowDropdown(false);
-    if (s.dueAmount > 0) {
-      setValue('lateFee', 50, { shouldValidate: true });
-      setValue('amount', s.dueAmount, { shouldValidate: true });
-    } else {
-      setValue('lateFee', 0);
-      setValue('amount', undefined as any);
+    if (s) {
+      setSearch(s.name);
+      if (s.dueAmount > 0) {
+        setValue('lateFee', 50, { shouldValidate: true });
+        setValue('lateFeeOverride', false);
+        setValue('amount', s.dueAmount, { shouldValidate: true });
+      } else {
+        setValue('lateFee', 0);
+        setValue('amount', undefined as any);
+      }
     }
+    setShowDropdown(false);
   }
 
   function handleApplyCoupon() {

@@ -1,4 +1,4 @@
-﻿
+
 'use client';
 // RESPONSIBILITY: Renders the ManagerSeatsAllocationsClient.tsx component UI.
 import { useMemo, useState, useEffect } from 'react';
@@ -161,7 +161,7 @@ const {
                     <td className="px-4 py-4 text-text-secondary">{row.validFrom}</td>
                     <td className="px-4 py-4 text-text-secondary">{row.validTill}</td>
     // @ts-ignore
-                    <td className="px-4 py-4"><DaysLeftCell value={row.daysLeft} /></td>
+                    <td className="px-4 py-4"><DaysLeftCell value={row.daysLeft || 0} /></td>
                     <td className="px-4 py-4"><StatusCell value={row.status} /></td>
                     <td className="px-4 py-4 text-right">
                       <div className="flex gap-2 items-center justify-end">

@@ -25,7 +25,7 @@ export function useAdminLockerMatrix() {
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setIsLoading(true);
     fetchApi('/seats_shifts_lockers/lockers')
-      .then(data => {
+      .then((data: any) => {
         type ApiLockerData = { id?: string; lockerNumber?: string; isActive?: boolean; };
         const mapped = data.map(( l: ApiLockerData ) => ({
           uuid: l.id,
@@ -66,3 +66,4 @@ export function useAdminLockerMatrix() {
     ADMIN_SEATS_MOCK_LOCKER_ACTIVITY
   };
 }
+

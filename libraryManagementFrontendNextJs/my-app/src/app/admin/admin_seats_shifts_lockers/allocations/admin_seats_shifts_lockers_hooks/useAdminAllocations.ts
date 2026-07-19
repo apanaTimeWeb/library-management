@@ -18,10 +18,10 @@ export interface Allocation {
 }
 
 export function useAdminAllocations() {
-  const [shiftFilter, setShiftFilter] = useUrlState('shiftFilter', 'All Shifts');
-  const [statusFilter, setStatusFilter] = useUrlState('statusFilter', 'All Statuses');
-  const [dateFrom, setDateFrom] = useUrlState('dateFrom', '');
-  const [dateTo, setDateTo] = useUrlState('dateTo', '');
+  const [shiftFilter, setShiftFilter] = useUrlState('shiftFilter', 'All Shifts' as string);
+  const [statusFilter, setStatusFilter] = useUrlState('statusFilter', 'All Statuses' as string);
+  const [dateFrom, setDateFrom] = useUrlState('dateFrom', '' as string);
+  const [dateTo, setDateTo] = useUrlState('dateTo', '' as string);
 
   const filtered = useMemo(() => {
     return (ADMIN_SEATS_MOCK_ALLOCATIONS as Allocation[]).filter(a => {
@@ -45,3 +45,4 @@ export function useAdminAllocations() {
     filtered
   };
 }
+

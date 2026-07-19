@@ -24,8 +24,8 @@ function fmtH(h: number) {
 }
 
 export function ManagerSeatsShiftGapClient() {
-  const [shiftFilter, setShiftFilter] = useUrlState('shiftFilter', 'All');
-  const [period, setPeriod] = useUrlState('period', 'Today');
+  const [shiftFilter, setShiftFilter] = useUrlState('shiftFilter', 'All' as string);
+  const [period, setPeriod] = useUrlState('period', 'Today' as string);
 
   const visible = shiftFilter === 'All' ? SHIFTS_DATA : SHIFTS_DATA.filter((s: ShiftData) => s.name === shiftFilter);
 
@@ -136,3 +136,4 @@ export function ManagerSeatsShiftGapClient() {
     </>
   );
 }
+

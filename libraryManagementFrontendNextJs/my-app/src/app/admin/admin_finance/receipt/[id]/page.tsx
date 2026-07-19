@@ -15,7 +15,7 @@ import { TablePagination } from '@/components/ui/table-pagination';
 import { TableToolbar } from '@/components/ui/table-toolbar';
 import { useClientTable } from '@/components/ui/use-client-table';
 
-export function AdminFinanceReceiptClient() {
+export default function AdminFinanceReceiptClient() {
 
   const {
     search,

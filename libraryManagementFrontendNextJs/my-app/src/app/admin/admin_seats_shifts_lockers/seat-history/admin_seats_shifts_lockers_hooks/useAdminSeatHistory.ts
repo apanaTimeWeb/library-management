@@ -16,10 +16,10 @@ export interface SeatHistoryEntry {
 }
 
 export function useAdminSeatHistory() {
-  const [seatFilter, setSeatFilter] = useUrlState('seatFilter', 'All Seats');
-  const [search, setSearch] = useUrlState('search', '');
-  const [dateFrom, setDateFrom] = useUrlState('dateFrom', '');
-  const [dateTo, setDateTo] = useUrlState('dateTo', '');
+  const [seatFilter, setSeatFilter] = useUrlState('seatFilter', 'All Seats' as string);
+  const [search, setSearch] = useUrlState('search', '' as string);
+  const [dateFrom, setDateFrom] = useUrlState('dateFrom', '' as string);
+  const [dateTo, setDateTo] = useUrlState('dateTo', '' as string);
 
   const filtered = useMemo(() => {
     return (ADMIN_SEATS_MOCK_HISTORY as SeatHistoryEntry[]).filter(h => {
@@ -45,3 +45,4 @@ export function useAdminSeatHistory() {
     filtered
   };
 }
+

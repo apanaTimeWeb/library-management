@@ -170,14 +170,14 @@ export function SuperadminPaymentsClient() {
                             <>
                               <button
                                 className="w-7 h-7 flex items-center justify-center rounded-md bg-input text-text-primary border border-border hover:bg-primary/10 hover:text-primary transition-colors cursor-pointer"
-                                onClick={() => router.push(SUPERADMIN_ROUTES.FINANCE_RECEIPT_ID(p.id))}
+                                onClick={() => router.push(SUPERADMIN_ROUTES.FINANCE_RECEIPT_ID(p.id.toString()))}
                                 title="View Receipt"
                               >
                                 <Receipt size={14} />
                               </button>
                               <button
                                 className="w-7 h-7 flex items-center justify-center rounded-md bg-input text-text-primary border border-border hover:bg-primary/10 hover:text-primary transition-colors cursor-pointer"
-                                onClick={() => router.push(SUPERADMIN_ROUTES.FINANCE_INVOICE_ID(p.id))}
+                                onClick={() => router.push(SUPERADMIN_ROUTES.FINANCE_INVOICE_ID(p.id.toString()))}
                                 title="View Invoice"
                               >
                                 <FileText size={14} />

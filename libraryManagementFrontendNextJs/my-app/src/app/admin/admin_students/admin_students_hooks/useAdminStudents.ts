@@ -5,7 +5,7 @@ import { useAdmin } from '@/app/admin/admin_store/AdminContext';
 import type { AdminStudentData } from '@/app/admin/admin_students/admin_students_types/admin_students_types';
 
 export function useAdminStudents(initialStudents: AdminStudentData[]) {
-  const [search, setSearch] = useUrlState('search', '');
+  const [search, setSearch] = useUrlState('search', '' as string);
   const { selectedBranch } = useAdmin();
 
   const filteredStudents = useMemo(() => {

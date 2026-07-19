@@ -4,7 +4,7 @@ import { SUPERADMIN_COMMUNICATION_MOCK_NOTIFICATIONS } from '@/app/superadmin/su
 import type { SuperadminCommunicationNotification as Notification } from '@/app/superadmin/superadmin_communication/superadmin_communication_types/SuperadminCommunicationTypes';
 
 
-export type Category = 'All' | 'Finance' | 'CRM' | 'Operations' | 'Attendance' | 'High Only';
+import type { Category } from './SuperadminNotificationCenterClient_types';
 
 export function useSuperadminNotificationCenterClient() {
   const [cat, setCat]       = useState<Category>('All');

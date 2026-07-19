@@ -23,7 +23,7 @@ const noticeSchema = z.object({
 type NoticeFormData = z.infer<typeof noticeSchema>;
 
 export function ManagerCommunicationNoticesClient() {
-  const [searchTerm, setSearchTerm] = useUrlState('searchTerm', '');
+  const [searchTerm, setSearchTerm] = useUrlState('searchTerm', '' as string);
 
   const { notices, status, addNotice, updateNotice, deleteNotice } = useManagerNotices();
 
@@ -250,3 +250,4 @@ export function ManagerCommunicationNoticesClient() {
     </div>
   );
 }
+

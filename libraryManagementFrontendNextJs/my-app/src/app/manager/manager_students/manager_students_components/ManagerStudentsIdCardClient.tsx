@@ -3,6 +3,7 @@
 import { useState, useMemo, useEffect } from 'react';
 import Link from 'next/link';
 import { ArrowLeft, Search, Printer, MessageSquare, IdCard, CheckCircle2 } from 'lucide-react';
+import type { Student } from '@/app/manager/manager_students/manager_students_types';
 import ManagerStudentsIdCard from '@/app/manager/manager_students/manager_students_components/ManagerStudentsIdCard';
 import { useManagerStudentsIdCard } from '@/app/manager/manager_students/manager_students_hooks/useManagerStudentsIdCard';
 import { MANAGER_ROUTES } from '@/app/manager/manager_url_config';
@@ -63,7 +64,7 @@ export function ManagerStudentsIdCardClient() {
                     <p className="text-lg font-bold text-text-primary mb-1">No students found</p>
                   </div>
                 )}
-                {filtered.map(s => {
+                {filtered.map((s: Student) => {
                   const initials = s.name.split(' ').map((n: string) => n[0]).join('').slice(0, 2).toUpperCase();
                   return (
                     <button

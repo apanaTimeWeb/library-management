@@ -15,7 +15,7 @@ import { useClientTable } from "@/components/ui/use-client-table";
 // RESPONSIBILITY: Renders the absentee report grid with filtering and notification actions.
 
 export function ManagerEngagementAbsenteeReportClient() {
-const [searchTerm, setSearchTerm] = useUrlState('searchTerm', '');
+const [searchTerm, setSearchTerm] = useUrlState('searchTerm', '' as string);
 
   const {
     threshold, setThreshold,
@@ -225,3 +225,4 @@ const [searchTerm, setSearchTerm] = useUrlState('searchTerm', '');
     </div>
   );
 }
+

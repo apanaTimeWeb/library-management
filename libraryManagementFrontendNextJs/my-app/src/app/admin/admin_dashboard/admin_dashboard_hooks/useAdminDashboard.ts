@@ -10,7 +10,7 @@ export function useAdminDashboard(initialData: AdminDashboardData) {
   
   // States for Seat Matrix
   const [activeShift, setActiveShift] = useState('All');
-  const [feeFilter, setFeeFilter] = useUrlState('feeFilter', 'All');
+  const [feeFilter, setFeeFilter] = useUrlState('feeFilter', 'All' as string);
   const [appliedFee, setAppliedFee] = useState('All');
   const [appliedShift, setAppliedShift] = useState('All');
 
@@ -46,3 +46,4 @@ export function useAdminDashboard(initialData: AdminDashboardData) {
     }
   };
 }
+

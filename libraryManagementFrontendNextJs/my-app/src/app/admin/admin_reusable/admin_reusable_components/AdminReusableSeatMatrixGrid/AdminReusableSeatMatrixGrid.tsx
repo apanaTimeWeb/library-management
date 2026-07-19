@@ -26,7 +26,7 @@ const LEGEND = [
 export default function AdminReusableSeatMatrixGrid({ seats, shifts }: Props) {
   const router = useRouter();
   const [activeShift, setActiveShift]   = useState('All');
-  const [feeFilter, setFeeFilter] = useUrlState('feeFilter', 'All');
+  const [feeFilter, setFeeFilter] = useUrlState('feeFilter', 'All' as string);
   const [appliedFee, setAppliedFee]     = useState('All');
   const [appliedShift, setAppliedShift] = useState('All');
 
@@ -171,4 +171,5 @@ export default function AdminReusableSeatMatrixGrid({ seats, shifts }: Props) {
     </Card>
   );
 }
+
 

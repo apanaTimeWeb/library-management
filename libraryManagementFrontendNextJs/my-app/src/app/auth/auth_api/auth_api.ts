@@ -3,6 +3,7 @@ import { StatusCodes } from 'http-status-codes';
 import { AUTH_API_ROUTES } from '@/app/auth/auth_url_config';
 import type { ApiResponse, AuthLoginResponse, AuthSignupPayload, AuthUser } from '@/app/auth/auth_types/auth_types';
 import { fetchApi } from '@/lib/api';
+import { logger } from '@/lib/logger';
 
 /**
  * Handles backend API calls for the auth module.
@@ -11,7 +12,7 @@ import { fetchApi } from '@/lib/api';
 export const authApi = {
   login: async (identifier: string, password: string): Promise<ApiResponse<AuthLoginResponse>> => {
     try {
-      let response: Record<string, unknown>;
+      let response: any;
       try {
         // fetchApi automatically attaches tokens, intercepts errors, and handles the base URL
         response = await fetchApi(AUTH_API_ROUTES.LOGIN, {
@@ -174,7 +175,7 @@ export const authApi = {
     try {
       const response = await fetchApi(AUTH_API_ROUTES.ME, {
         method: 'GET',
-      });
+      }) as any;
       return {
         success: true,
         message: 'User fetched successfully',

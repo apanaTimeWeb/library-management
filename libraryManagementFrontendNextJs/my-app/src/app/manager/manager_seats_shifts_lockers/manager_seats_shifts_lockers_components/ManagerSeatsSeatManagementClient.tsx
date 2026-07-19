@@ -37,12 +37,12 @@ function SeatStatusCell(props: { value: string }) {
 }
 
 export function ManagerSeatsSeatManagementClient() {
-const [searchTerm, setSearchTerm] = useUrlState('searchTerm', '');
+const [searchTerm, setSearchTerm] = useUrlState('searchTerm', '' as string);
 
     // @ts-ignore
   const [seats, setSeats] = useState<Seat[]>(INITIAL_SEATS);
-  const [search, setSearch] = useUrlState('search', '');
-  const [statusFilter, setStatusFilter] = useUrlState('statusFilter', 'All Statuses');
+  const [search, setSearch] = useUrlState('search', '' as string);
+  const [statusFilter, setStatusFilter] = useUrlState('statusFilter', 'All Statuses' as string);
   const [showModal, setShowModal] = useState(false);
   const [editSeat, setEditSeat] = useState<Seat | null>(null);
   const [form, setForm] = useState(EMPTY_FORM);
@@ -255,3 +255,4 @@ const [searchTerm, setSearchTerm] = useUrlState('searchTerm', '');
     </>
   );
 }
+

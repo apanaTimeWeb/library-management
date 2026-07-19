@@ -1,4 +1,4 @@
-﻿// RESPONSIBILITY: Renders or handles logic for useManagerSeatsSeatMatrix.ts.
+// RESPONSIBILITY: Renders or handles logic for useManagerSeatsSeatMatrix.ts.
 import { useUrlState } from '@/app/manager/manager_shared_hooks/useUrlState';
 import { useState, useEffect, useMemo } from 'react';
 import { useSeatsStore } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_store/manager_seats_shifts_lockers_store';
@@ -6,13 +6,13 @@ import type { SeatData } from '@/app/manager/manager_seats_shifts_lockers/manage
 
 /**
  * Custom hook to fetch and filter seat matrix data.
- * DATA FLOW: API â†’ useManagerSeatsSeatMatrix â†’ ManagerSeatsSeatMatrixClient
+ * DATA FLOW: API → useManagerSeatsSeatMatrix → ManagerSeatsSeatMatrixClient
  */
-// DATA FLOW: API â†’ useManagerSeatsSeatMatrix.ts â†’ SeatMatrixComponent
+// DATA FLOW: API → useManagerSeatsSeatMatrix.ts → SeatMatrixComponent
 export function useManagerSeatsSeatMatrix() {
   const { seatsData, status, error, fetchData } = useSeatsStore();
   
-  const [activeTab, setActiveTab] = useUrlState('activeTab', 'All');
+  const [activeTab, setActiveTab] = useUrlState('activeTab', 'All' as string);
   const [selectedSeat, setSelectedSeat] = useState<SeatData | null>(null);
   const [date, setDate] = useState(() => new Date().toISOString().slice(0, 10));
 
@@ -41,6 +41,7 @@ export function useManagerSeatsSeatMatrix() {
     date, setDate
   };
 }
+
 
 
 

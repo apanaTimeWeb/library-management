@@ -13,6 +13,7 @@ export interface SuperadminNavItem {
 /** A section divider / group header in the sidebar */
 export interface SuperadminNavGroup {
   group: string;
+  items?: SuperadminNavItem[];
 }
 
 /** Union type for sidebar NAV array entries */

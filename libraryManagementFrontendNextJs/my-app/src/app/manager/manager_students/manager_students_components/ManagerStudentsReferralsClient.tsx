@@ -16,7 +16,7 @@ const REFERRALS_DATA: ReferralData[] = [
 ];
 
 export function ManagerStudentsReferralsClient() {
-const [searchTerm, setSearchTerm] = useUrlState('searchTerm', '');
+const [searchTerm, setSearchTerm] = useUrlState('searchTerm', '' as string);
 
   const [rowData] = useState<ReferralData[]>(REFERRALS_DATA);
 
@@ -139,3 +139,4 @@ const [searchTerm, setSearchTerm] = useUrlState('searchTerm', '');
     </div>
   );
 }
+

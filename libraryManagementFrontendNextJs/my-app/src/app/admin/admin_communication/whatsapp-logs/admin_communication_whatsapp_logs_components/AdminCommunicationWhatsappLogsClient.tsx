@@ -41,10 +41,10 @@ export function AdminCommunicationWhatsappLogsClient() {
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(10);
   const [typeFilter,   setTypeFilter]   = useState('All');
-  const [statusFilter, setStatusFilter] = useUrlState('statusFilter', 'All');
-  const [search, setSearch] = useUrlState('search', '');
-  const [dateFrom, setDateFrom] = useUrlState('dateFrom', '');
-  const [dateTo, setDateTo] = useUrlState('dateTo', '');
+  const [statusFilter, setStatusFilter] = useUrlState('statusFilter', 'All' as string);
+  const [search, setSearch] = useUrlState('search', '' as string);
+  const [dateFrom, setDateFrom] = useUrlState('dateFrom', '' as string);
+  const [dateTo, setDateTo] = useUrlState('dateTo', '' as string);
   const [viewLog,      setViewLog]      = useState<WaLog | null>(null);
 
   const filtered = (ADMIN_COMMUNICATION_MOCK_WHATSAPP_LOGS as WaLog[]).filter(l => {
@@ -221,3 +221,4 @@ export function AdminCommunicationWhatsappLogsClient() {
     </div>
   );
 }
+

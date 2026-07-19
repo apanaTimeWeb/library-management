@@ -32,7 +32,7 @@ export function AdminFinancePaymentPromisesClient() {
 
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(10);
-  const [statusFilter, setStatusFilter] = useUrlState('statusFilter', 'all');
+  const [statusFilter, setStatusFilter] = useUrlState('statusFilter', 'all' as string);
   const [promises, setPromises] = useState<PromiseItem[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [extendDialog, setExtendDialog] = useState<{ id: number; name: string } | null>(null);
@@ -224,4 +224,5 @@ export function AdminFinancePaymentPromisesClient() {
     </div>
   );
 }
+
 
