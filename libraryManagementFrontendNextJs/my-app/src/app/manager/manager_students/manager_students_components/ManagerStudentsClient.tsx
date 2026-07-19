@@ -1,6 +1,6 @@
+'use client';
 import { useUrlState } from '@/app/manager/manager_shared_hooks/useUrlState';
 
-'use client';
 import { useState } from 'react';
 import { useMemo, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
