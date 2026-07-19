@@ -48,14 +48,14 @@ export function ManagerEngagementAttendanceClient() {
 
   return (
     <div className="p-6 min-h-screen relative pb-24">
-      {/* â”€â”€ Breadcrumb â”€â”€ */}
+      {/* ── Breadcrumb ── */}
       <div className="text-xs font-medium text-text-secondary uppercase tracking-wider mb-2 flex items-center gap-1.5">
         <Link href={MANAGER_ROUTES.ENGAGEMENT_ATTENDANCE}>Engagement</Link>
         <ChevronRight size={12} className="mx-1" />
         <span>Attendance</span>
       </div>
 
-      {/* â”€â”€ Page Header â”€â”€ */}
+      {/* ── Page Header ── */}
       <div className="mb-8">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
           <div>
@@ -70,7 +70,7 @@ export function ManagerEngagementAttendanceClient() {
         </div>
       </div>
 
-      {/* â”€â”€ KPI Stats â”€â”€ */}
+      {/* ── KPI Stats ── */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
         <div className="bg-card border border-border rounded-xl p-5 flex flex-col justify-center">
           <div className="text-sm font-medium text-text-secondary mb-1.5">Total Students</div>
@@ -94,7 +94,7 @@ export function ManagerEngagementAttendanceClient() {
         </div>
       </div>
 
-      {/* â”€â”€ Filters â”€â”€ */}
+      {/* ── Filters ── */}
       <div className="bg-card rounded-xl border border-border mb-6 p-4">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div className="flex items-center gap-3">
@@ -125,7 +125,7 @@ export function ManagerEngagementAttendanceClient() {
         </div>
       </div>
 
-      {/* â”€â”€ Student List â”€â”€ */}
+      {/* ── Student List ── */}
       <div className="bg-card rounded-xl border border-border overflow-hidden">
         <div className="flex flex-col divide-y divide-border">
           {filtered.length === 0 ? (
@@ -204,7 +204,7 @@ export function ManagerEngagementAttendanceClient() {
         </div>
       </div>
 
-      {/* â”€â”€ Sticky Save Bar â”€â”€ */}
+      {/* ── Sticky Save Bar ── */}
       <div className="fixed bottom-6 left-1/2 -translate-x-1/2 bg-card border border-border shadow-xl rounded-2xl px-6 py-4 flex flex-col md:flex-row items-center gap-4 md:gap-8 z-40 w-11/12 max-w-2xl mx-auto justify-between">
         <p className="text-sm text-text-secondary">
           <strong>{marked}</strong> of <strong>{filtered.length}</strong> marked for <strong>{date}</strong>

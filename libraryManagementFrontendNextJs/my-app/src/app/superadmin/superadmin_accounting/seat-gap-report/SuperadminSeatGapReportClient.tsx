@@ -27,7 +27,7 @@ export function SuperadminSeatGapReportClient() {
 
   const onExportReport = async () => {
     await handleExport();
-    showToast('âœ… Report exported successfully');
+    showToast('✅ Report exported successfully');
   };
 
   return (

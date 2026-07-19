@@ -208,7 +208,7 @@ export function AdminCommunicationWhatsappLogsClient() {
               </div>
               {viewLog.error && (
                 <div className="mt-4 p-3 bg-danger/10 text-danger rounded-lg border border-danger/20 text-sm font-medium">
-                  âš ï¸ Error: {viewLog.error}
+                  ⚠️ Error: {viewLog.error}
                 </div>
               )}
             </div>

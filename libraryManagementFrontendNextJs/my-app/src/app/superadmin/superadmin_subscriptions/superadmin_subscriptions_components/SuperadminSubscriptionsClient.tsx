@@ -20,7 +20,7 @@ export function SuperadminSubscriptionsClient() {
     try {
       await updateSubscription(updated);
       setSelected(updated);
-      showToast(`âœ… ${updated.tenant} subscription updated`);
+      showToast(`✅ ${updated.tenant} subscription updated`);
     } catch (err) {
       showToast(`âŒ Failed to update subscription`);
     }
@@ -32,7 +32,7 @@ export function SuperadminSubscriptionsClient() {
       if (selected && selected.id === id) {
         setSelected({ ...selected, status: 'Paid' });
       }
-      showToast(`âœ… Subscription successfully renewed`);
+      showToast(`✅ Subscription successfully renewed`);
     } catch (err) {
       showToast(`âŒ Failed to renew subscription`);
     }

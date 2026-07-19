@@ -22,7 +22,7 @@ export function SuperadminDailySettlementClient() {
 
   const onSettleShift = async (id: number) => {
     await handleSettle(id);
-    showToast('âœ… Shift settled successfully');
+    showToast('✅ Shift settled successfully');
   };
 
   return (

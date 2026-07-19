@@ -39,7 +39,7 @@ const [searchTerm, setSearchTerm] = useUrlState('searchTerm', '' as string);
     <div className="p-6 min-h-screen">
       <div className="mb-8 flex flex-col md:flex-row md:items-end justify-between gap-4">
         <div>
-          <p className="text-xs font-semibold text-text-secondary uppercase tracking-wider mb-2">Smart Library 360 â€º Students</p>
+          <p className="text-xs font-semibold text-text-secondary uppercase tracking-wider mb-2">Smart Library 360 › Students</p>
           <h1 className="text-xl font-bold text-text-primary">Student Directory</h1>
           <p className="text-sm text-text-secondary mt-1.5">Manage admissions, seating, and billing for all active learners.</p>
         </div>

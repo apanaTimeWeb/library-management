@@ -64,7 +64,7 @@ export function buildThermalContent(d: ThermalBillData): string {
 
   const L: string[] = [];
 
-  // â”€â”€ HEADER â”€â”€
+  // ── HEADER ──
   L.push(dln());
   L.push(center(shop));
   L.push(center(branch));

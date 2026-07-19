@@ -45,7 +45,7 @@ export function ManagerDashboardClient() {
       {/* Page Header */}
       <div className="flex flex-col md:flex-row md:items-center justify-between p-6 gap-4">
         <div>
-          <p className="text-xs font-medium text-text-secondary uppercase tracking-wider mb-2">Manager â€º Dashboard</p>
+          <p className="text-xs font-medium text-text-secondary uppercase tracking-wider mb-2">Manager › Dashboard</p>
           <h1 className="text-text-primary text-xl font-bold text-text-primary">Manager Dashboard</h1>
           <p className="text-sm text-text-secondary mt-1.5">Good morning, Manager — aaj ka quick overview</p>
         </div>

@@ -129,7 +129,7 @@ export default function AdminCrmEnquiriesClient() {
       {/* page Header */}
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b pb-4">
         <div>
-          <nav className="text-xs text-muted-foreground font-medium mb-1 tracking-wide">CRM â€º Enquiries</nav>
+          <nav className="text-xs text-muted-foreground font-medium mb-1 tracking-wide">CRM › Enquiries</nav>
           <h1 className="text-text-primary text-xl font-bold tracking-tight">Enquiry Pipeline</h1>
           <p className="text-sm text-muted-foreground mt-1">
             {filtered.length} lead{filtered.length !== 1 ? 's' : ''} • Track every prospect from enquiry to admission

@@ -40,7 +40,7 @@ export function AdminFinanceLateFeesClient() {
       {/* page Header */}
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b pb-4">
         <div>
-          <nav className="text-xs text-muted-foreground font-medium mb-1 tracking-wide uppercase">Smart Library 360 â€º Admin â€º Finance</nav>
+          <nav className="text-xs text-muted-foreground font-medium mb-1 tracking-wide uppercase">Smart Library 360 › Admin › Finance</nav>
           <h1 className="text-text-primary text-xl font-bold tracking-tight">Late Fees</h1>
           <p className="text-sm text-muted-foreground mt-1">Configure late fee policies and view overdue students.</p>
         </div>
@@ -145,7 +145,7 @@ export function AdminFinanceLateFeesClient() {
                 <tr>
                   <td colSpan={6} className="px-5 py-20 text-center">
                     <div className="flex flex-col items-center justify-center gap-3">
-                      <div className="text-4xl opacity-50">âœ…</div>
+                      <div className="text-4xl opacity-50">✅</div>
                       <p className="text-lg font-bold">No active late fee charges.</p>
                       <p className="text-sm text-muted-foreground">All students are up to date on their payments.</p>
                     </div>

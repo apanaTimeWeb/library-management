@@ -31,7 +31,7 @@ export function SuperadminAssetsClient() {
 
   const onSaveAsset = async (assetData: Omit<SuperadminAsset, 'id' | 'currentValue' | 'status'>) => {
     await handleAddAsset(assetData);
-    showToast('âœ… Asset added successfully');
+    showToast('✅ Asset added successfully');
   };
 
   return (

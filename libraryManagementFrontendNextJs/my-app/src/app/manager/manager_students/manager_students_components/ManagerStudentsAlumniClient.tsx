@@ -33,7 +33,7 @@ const [searchTerm, setSearchTerm] = useUrlState('searchTerm', '' as string);
     <div className="p-6 min-h-screen">
       <div className="p-6 min-h-screen-header">
         <div>
-          <div className="text-xs font-medium text-text-secondary uppercase tracking-wider mb-2">Students â€º Alumni</div>
+          <div className="text-xs font-medium text-text-secondary uppercase tracking-wider mb-2">Students › Alumni</div>
           <h1 className="text-xl font-bold text-text-primary">Alumni Directory</h1>
           <p className="text-sm text-text-secondary mt-1.5">Students who have successfully completed their journey here.</p>
         </div>

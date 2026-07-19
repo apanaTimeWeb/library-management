@@ -28,7 +28,7 @@ export interface LoginResponse {
  */
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001/api/v1';
-// â”€â”€â”€ Login â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ─── Login ────────────────────────────────────────────────────────────────────
 // 'identifier' can be phone number or email — backend matches by phone field
 export async function login(identifier: string, password: string): Promise<LoginResponse> {
   const res = await fetch(`${API_BASE_URL}/auth/login`, {
@@ -68,7 +68,7 @@ export async function login(identifier: string, password: string): Promise<Login
 }
 
 
-// â”€â”€â”€ Logout â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ─── Logout ───────────────────────────────────────────────────────────────────
 export async function logout(): Promise<void> {
   try {
     const token = getAccessToken();
@@ -89,7 +89,7 @@ export async function logout(): Promise<void> {
   }
 }
 
-// â”€â”€â”€ Refresh Access Token â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ─── Refresh Access Token ─────────────────────────────────────────────────────
 export async function refreshAccessToken(): Promise<string | null> {
   try {
     const refreshToken = localStorage.getItem('refresh_token');
@@ -119,7 +119,7 @@ export async function refreshAccessToken(): Promise<string | null> {
   }
 }
 
-// â”€â”€â”€ Get Current User â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ─── Get Current User ─────────────────────────────────────────────────────────
 export function getCurrentUser(): AuthUser | null {
   if (typeof window === 'undefined') return null;
   try {
@@ -130,18 +130,18 @@ export function getCurrentUser(): AuthUser | null {
   }
 }
 
-// â”€â”€â”€ Get Access Token â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ─── Get Access Token ─────────────────────────────────────────────────────────
 export function getAccessToken(): string | null {
   if (typeof window === 'undefined') return null;
   return localStorage.getItem('access_token');
 }
 
-// â”€â”€â”€ Check if Logged In â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ─── Check if Logged In ───────────────────────────────────────────────────────
 export function isAuthenticated(): boolean {
   return !!getAccessToken();
 }
 
-// â”€â”€â”€ Clear All Auth State (on logout) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ─── Clear All Auth State (on logout) ────────────────────────────────────────
 export function clearAuthState(): void {
   if (typeof window === 'undefined') return;
 

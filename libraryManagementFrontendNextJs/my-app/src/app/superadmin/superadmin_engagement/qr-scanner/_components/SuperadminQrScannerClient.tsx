@@ -13,7 +13,7 @@ export function SuperadminQrScannerClient() {
 
   return (
     <div className="p-4 sm:p-6 min-h-screen bg-page animate-in fade-in zoom-in-95 duration-200">
-      {/* â”€â”€ Breadcrumb â”€â”€ */}
+      {/* ── Breadcrumb ── */}
       <div className="flex items-center gap-2 text-text-secondary text-xs font-bold tracking-wide mb-6">
         <Link href={SUPERADMIN_ROUTES.ENGAGEMENT_ATTENDANCE} className="hover:text-primary transition-colors">Engagement</Link>
         <ChevronRight size={12} className="opacity-50" />
@@ -27,7 +27,7 @@ export function SuperadminQrScannerClient() {
 
       <div className="max-w-3xl mx-auto space-y-6">
 
-        {/* â”€â”€ Camera Viewport â”€â”€ */}
+        {/* ── Camera Viewport ── */}
         <div className="bg-card border border-border rounded-xl shadow-sm overflow-hidden flex flex-col">
           <div className="px-6 py-4 border-b border-border flex items-center justify-between bg-muted/30">
             <div>
@@ -98,7 +98,7 @@ export function SuperadminQrScannerClient() {
           )}
         </div>
 
-        {/* â”€â”€ Detected Student Card â”€â”€ */}
+        {/* ── Detected Student Card ── */}
         {scanState === 'detected' && result && (
           <div className="bg-card border-2 border-primary rounded-xl shadow-lg overflow-hidden animate-in slide-in-from-bottom-4 duration-300">
             <div className="p-5 flex items-center justify-between border-b border-border bg-primary/5">
@@ -129,7 +129,7 @@ export function SuperadminQrScannerClient() {
           </div>
         )}
 
-        {/* â”€â”€ Recent History â”€â”€ */}
+        {/* ── Recent History ── */}
         {history.length > 0 && (
           <div className="bg-card border border-border rounded-lg p-5 shadow-sm">
             <div className="text-sm font-extrabold text-text-primary mb-4 flex items-center gap-2">
@@ -150,7 +150,7 @@ export function SuperadminQrScannerClient() {
           </div>
         )}
 
-        {/* â”€â”€ Manual Fallback â”€â”€ */}
+        {/* ── Manual Fallback ── */}
         <div className="flex justify-center pt-2">
           {!showManual ? (
             <button onClick={() => setShowManual(true)} className="text-xs font-bold text-primary hover:text-primary/80 transition-colors cursor-pointer hover:underline underline-offset-4">

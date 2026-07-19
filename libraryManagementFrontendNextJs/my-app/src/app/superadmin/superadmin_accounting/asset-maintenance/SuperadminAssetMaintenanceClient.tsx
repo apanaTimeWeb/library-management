@@ -32,12 +32,12 @@ export function SuperadminAssetMaintenanceClient() {
   const onSaveLog = async (logData: unknown) => {
     // @ts-ignore
     await handleAddLog(logData);
-    showToast('âœ… Maintenance request logged successfully');
+    showToast('✅ Maintenance request logged successfully');
   };
 
   const onComplete = async (id: number) => {
     await handleCompleteLog(id);
-    showToast('âœ… Maintenance marked as completed');
+    showToast('✅ Maintenance marked as completed');
   };
 
   return (

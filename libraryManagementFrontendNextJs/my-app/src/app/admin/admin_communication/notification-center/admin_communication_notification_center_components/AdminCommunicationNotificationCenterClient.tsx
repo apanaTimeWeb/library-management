@@ -78,7 +78,7 @@ export function AdminCommunicationNotificationCenterClient() {
                     <div className="flex flex-wrap items-center gap-2 mb-1">
                       <p className={`font-bold truncate ${n.read ? 'text-muted-foreground' : 'text-foreground'}`}>{n.title}</p>
                       <Badge variant="secondary" className={`${n.priority === 'High' ? 'bg-danger/10 text-danger hover:bg-danger/20' : 'bg-warning/10 text-warning hover:bg-warning/20'} border-none font-bold tracking-wide`}>
-                        {n.priority === 'High' ? 'ðŸ”´ High' : 'ðŸŸ¡ Medium'}
+                        {n.priority === 'High' ? '🔴 High' : 'ðŸŸ¡ Medium'}
                       </Badge>
                       {!n.read && <Badge className="bg-primary hover:bg-primary/90 text-primary-foreground border-none font-bold tracking-wide">New</Badge>}
                     </div>

@@ -26,7 +26,7 @@ export function ManagerCrmEnquiriesClient() {
 
   return (
     <div className="p-6 md:p-8 space-y-6 max-w-7xl mx-auto">
-      {/* â”€â”€ Page Header â”€â”€ */}
+      {/* ── Page Header ── */}
       <div className="mb-8 space-y-4">
         <nav className="text-xs font-medium text-text-tertiary uppercase tracking-wider mb-2 block">CRM &rsaquo; Enquiries</nav>
         <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
@@ -59,7 +59,7 @@ export function ManagerCrmEnquiriesClient() {
         </div>
       </div>
 
-      {/* â”€â”€ Toolbar â”€â”€ */}
+      {/* ── Toolbar ── */}
       <div className="flex flex-wrap gap-3 mb-6 items-center">
         <div className="relative flex-grow max-w-md">
           <Search size={15} className="absolute left-3 top-1/2 -translate-y-1/2 text-text-secondary" />
@@ -86,7 +86,7 @@ export function ManagerCrmEnquiriesClient() {
         />
       </div>
 
-      {/* â”€â”€ Views â”€â”€ */}
+      {/* ── Views ── */}
       {status === 'loading' ? (
         <div className="flex items-center justify-center p-24 text-text-secondary">Loading pipeline...</div>
       ) : view === 'kanban' ? (

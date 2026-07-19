@@ -5,7 +5,7 @@ import { Phone, Shield, Wifi } from 'lucide-react';
 
 import { IdCardData } from '@/app/manager/manager_students/manager_students_types';
 
-/* â”€â”€ Barcode SVG stripes — deterministic from ID â”€â”€ */
+/* ── Barcode SVG stripes — deterministic from ID ── */
 function BarcodeStripes({ id }: { id: string }) {
   const bars: { width: number; gap: number }[] = [];
   for (let i = 0; i < 28; i++) {
@@ -28,7 +28,7 @@ function BarcodeStripes({ id }: { id: string }) {
   );
 }
 
-/* â”€â”€ QR-pattern visual — deterministic â”€â”€ */
+/* ── QR-pattern visual — deterministic ── */
 function QrPattern({ id }: { id: string }) {
   const pattern: boolean[] = [];
   for (let i = 0; i < 25; i++) {
@@ -63,13 +63,13 @@ export default function ManagerStudentsIdCard({ data }: ManagerStudentsIdCardPro
 
   return (
     <div className="flex items-center justify-center p-4">
-      {/* â”€â”€ FRONT of ID card â”€â”€ */}
+      {/* ── FRONT of ID card ── */}
       <div className="relative w-84 bg-white rounded-2xl overflow-hidden shadow-xl border border-border text-text-primary font-sans" id="student-id-card-print">
 
         {/* Holographic diagonal lines overlay */}
         <div className="absolute inset-0 pointer-events-none opacity-20 bg-[linear-gradient(45deg,transparent_25%,var(--border)_50%,transparent_75%,transparent_100%)] bg-[length:20px_20px]" aria-hidden="true" />
 
-        {/* â”€â”€ Header band â”€â”€ */}
+        {/* ── Header band ── */}
         <div className="bg-card text-white p-4 flex justify-between items-start relative z-10">
           <div className="flex items-center gap-3">
             <div className="text-text-primary text-xl">ðŸ“š</div>
@@ -84,7 +84,7 @@ export default function ManagerStudentsIdCard({ data }: ManagerStudentsIdCardPro
           </div>
         </div>
 
-        {/* â”€â”€ Body â”€â”€ */}
+        {/* ── Body ── */}
         <div className="p-5 relative z-10 bg-white">
 
           {/* Profile row */}

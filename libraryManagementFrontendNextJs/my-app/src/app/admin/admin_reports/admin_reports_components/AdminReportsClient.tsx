@@ -58,7 +58,7 @@ export function AdminReportsClient({ initialData }: AdminReportsClientProps) {
         {/* Header */}
         <div className="flex flex-col xl:flex-row xl:items-end justify-between gap-4 border-b border-border pb-5">
           <div>
-            <p className="text-xs text-muted-foreground mb-1 tracking-widest uppercase font-medium">Smart Library 360 â€º Admin â€º Reports</p>
+            <p className="text-xs text-muted-foreground mb-1 tracking-widest uppercase font-medium">Smart Library 360 › Admin › Reports</p>
             <h1 className="text-text-primary text-xl font-bold tracking-tight text-primary">Analytics & Reports</h1>
             <p className="text-sm text-muted-foreground mt-1">Financial health and operational overview across branches</p>
           </div>

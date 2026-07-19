@@ -43,7 +43,7 @@ export function AdminExpensesClient() {
       <div className="border-b border-border pb-4 flex flex-col md:flex-row md:items-end justify-between gap-4">
         <div>
           <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-1">
-            Smart Library 360 <span className="opacity-50">â€º</span> Admin <span className="opacity-50">â€º</span> Expenses
+            Smart Library 360 <span className="opacity-50">›</span> Admin <span className="opacity-50">›</span> Expenses
           </p>
           <h1 className="text-text-primary text-xl font-bold tracking-tight text-foreground">{selectedBranch} - Expenses</h1>
           <p className="text-sm text-muted-foreground mt-1">Monitor expenses logged by managers during daily settlement for the selected branch.</p>

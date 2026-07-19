@@ -26,14 +26,14 @@ export function useSuperadminExpenses() {
     await new Promise(res => setTimeout(res, 800));
     const expWithId = { ...newExp, id: Date.now() };
     setExpenses(prev => [expWithId, ...prev]);
-    showToast('âœ… Expense recorded successfully');
+    showToast('✅ Expense recorded successfully');
   };
 
   const handleDelete = async (id: number) => {
     // Simulate network delay
     await new Promise(res => setTimeout(res, 800));
     setExpenses(prev => prev.filter(( e: SuperadminExpense ) => e.id !== id));
-    showToast('âœ… Expense deleted');
+    showToast('✅ Expense deleted');
   };
 
   return {

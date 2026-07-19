@@ -25,7 +25,7 @@ export function AdminShiftGapAnalyzerClient() {
       {/* page Header */}
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b pb-4">
         <div>
-          <nav className="text-xs text-muted-foreground font-medium mb-1 tracking-wide uppercase">Smart Library 360 â€º Admin â€º Seats & Shifts</nav>
+          <nav className="text-xs text-muted-foreground font-medium mb-1 tracking-wide uppercase">Smart Library 360 › Admin › Seats & Shifts</nav>
           <h1 className="text-text-primary text-xl font-bold tracking-tight">Shift Gap Analyzer</h1>
           <p className="text-sm text-muted-foreground mt-1">Identify revenue-loss gaps and fill empty time slots.</p>
         </div>
@@ -115,7 +115,7 @@ export function AdminShiftGapAnalyzerClient() {
 
               {shift.gaps.length === 0 ? (
                 <p className="text-sm font-medium text-muted-foreground flex items-center gap-2 bg-muted/20 p-3 rounded-md border border-border">
-                  <span className="text-success text-lg">âœ…</span> No gaps detected — fully utilized.
+                  <span className="text-success text-lg">✅</span> No gaps detected — fully utilized.
                 </p>
               ) : (
                 <div className="grid gap-3">

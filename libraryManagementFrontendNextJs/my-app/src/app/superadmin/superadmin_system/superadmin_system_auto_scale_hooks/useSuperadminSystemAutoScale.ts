@@ -11,7 +11,7 @@ export function useSuperadminSystemAutoScale() {
 
   const seatRec = useMemo(() => {
     if (seatOccupancy > seatThreshold)
-      return { color: 'danger' as const, msg: `ðŸ”´ System suggests adding more seats. Current utilization: ${seatOccupancy}%`, action: 'âž• Add Seats', link: '/seat-management' };
+      return { color: 'danger' as const, msg: `🔴 System suggests adding more seats. Current utilization: ${seatOccupancy}%`, action: 'âž• Add Seats', link: '/seat-management' };
     if (seatOccupancy < 40)
       return { color: 'warning' as const, msg: `ðŸŸ¡ Low occupancy detected. Consider Power Saving mode.`, action: 'âš¡ Power Saving â†’', link: '/system/power-saving' };
     return { color: 'success' as const, msg: `ðŸŸ¢ Seat occupancy is healthy at ${seatOccupancy}%.`, action: null, link: null };
@@ -21,7 +21,7 @@ export function useSuperadminSystemAutoScale() {
     if (lockerOccupancy < 40)
       return { color: 'warning' as const, msg: `ðŸŸ¡ Lockers have low usage (${lockerOccupancy}%). Consider offering locker promotions.`, action: null, link: null };
     if (lockerOccupancy > lockerThreshold)
-      return { color: 'danger' as const, msg: `ðŸ”´ Locker capacity near limit. Consider adding locker units.`, action: 'âž• Manage Lockers', link: '/locker-matrix' };
+      return { color: 'danger' as const, msg: `🔴 Locker capacity near limit. Consider adding locker units.`, action: 'âž• Manage Lockers', link: '/locker-matrix' };
     return { color: 'success' as const, msg: `ðŸŸ¢ Locker utilization looks good at ${lockerOccupancy}%.`, action: null, link: null };
   }, [lockerOccupancy, lockerThreshold]);
 

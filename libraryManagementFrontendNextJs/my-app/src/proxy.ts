@@ -10,19 +10,19 @@ import { jwtVerify } from 'jose';
  * It is the primary security layer for the frontend (Zero Trust principle).
  *
  * Route-Role Access Matrix:
- * â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
- * â”‚ Route Prefix    â”‚ Allowed Roles                              â”‚
- * â”œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¼â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¤
- * â”‚ /superadmin/**  â”‚ superadmin only                            â”‚
- * â”‚ /admin/**       â”‚ admin, superadmin                          â”‚
- * â”‚ /manager/**     â”‚ manager, admin, superadmin                 â”‚
- * â”‚ /system/**      â”‚ admin, superadmin                          â”‚
- * â”‚ /finance/**     â”‚ admin, superadmin                          â”‚
- * â”‚ /accounting/**  â”‚ admin, superadmin                          â”‚
- * â”‚ /crm/**         â”‚ manager, admin, superadmin                 â”‚
- * â”‚ /communication/**â”‚ manager, admin, superadmin               â”‚
- * â”‚ /engagement/**  â”‚ manager, admin, superadmin                 â”‚
- * â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”´â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
+ * ┌─────────────────┬────────────────────────────────────────────â”
+ * │ Route Prefix    │ Allowed Roles                              │
+ * ├─────────────────┼────────────────────────────────────────────┤
+ * │ /superadmin/**  │ superadmin only                            │
+ * │ /admin/**       │ admin, superadmin                          │
+ * │ /manager/**     │ manager, admin, superadmin                 │
+ * │ /system/**      │ admin, superadmin                          │
+ * │ /finance/**     │ admin, superadmin                          │
+ * │ /accounting/**  │ admin, superadmin                          │
+ * │ /crm/**         │ manager, admin, superadmin                 │
+ * │ /communication/**│ manager, admin, superadmin               │
+ * │ /engagement/**  │ manager, admin, superadmin                 │
+ * └─────────────────┴────────────────────────────────────────────┘
  *
  * If token is missing â†’ redirect to /auth/login
  * If role is wrong â†’ redirect to /403
@@ -48,17 +48,17 @@ const PUBLIC_ROUTES = [
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
-  // â”€â”€ Skip public routes â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+  // ── Skip public routes ─────────────────────────────────────────────────────
   const isPublic = PUBLIC_ROUTES.some((route) => pathname.startsWith(route));
   if (isPublic) return NextResponse.next();
 
-  // â”€â”€ Check which protected route this is â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+  // ── Check which protected route this is ────────────────────────────────────
   const matchedRoute = Object.keys(ROUTE_ROLE_MAP).find((route) =>
     pathname.startsWith(route),
   );
   if (!matchedRoute) return NextResponse.next(); // Not a protected route
 
-  // â”€â”€ Get access token from cookie â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+  // ── Get access token from cookie ───────────────────────────────────────────
   const token = request.cookies.get('access_token')?.value;
 
   if (!token) {
@@ -71,7 +71,7 @@ export async function middleware(request: NextRequest) {
     return response;
   }
 
-  // â”€â”€ Verify JWT â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+  // ── Verify JWT ─────────────────────────────────────────────────────────────
   try {
     const secret = new TextEncoder().encode(
       process.env.JWT_SECRET || process.env.NEXT_PUBLIC_JWT_SECRET,
@@ -79,7 +79,7 @@ export async function middleware(request: NextRequest) {
     const { payload } = await jwtVerify(token, secret);
     const userRole = (payload.role as string) || '';
 
-    // â”€â”€ Check role access â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+    // ── Check role access ──────────────────────────────────────────────────
     const allowedRoles = ROUTE_ROLE_MAP[matchedRoute];
     if (!allowedRoles.includes(userRole)) {
       // Wrong role — redirect to 403 page
@@ -88,7 +88,7 @@ export async function middleware(request: NextRequest) {
       return response;
     }
 
-    // â”€â”€ Authorized — set cache-control and continue â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+    // ── Authorized — set cache-control and continue ────────────────────────
     const response = NextResponse.next();
     response.headers.set('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
     response.headers.set('Pragma', 'no-cache');

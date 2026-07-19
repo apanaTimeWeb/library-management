@@ -46,9 +46,9 @@ export type EnquirySource =
   | 'Facebook'
   | 'Other';
 
-// â”€â”€â”€ CRM Shared TypeScript Types â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ─── CRM Shared TypeScript Types ─────────────────────────────────────────────
 // Self-contained — no imports from outside (crm) folder
-// â”€â”€â”€ Kanban Column Config â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ─── Kanban Column Config ─────────────────────────────────────────────────────
 export const KANBAN_COLUMNS: KanbanColumn[] = [
   {
     id: 'New',
@@ -92,7 +92,7 @@ export const KANBAN_COLUMNS: KanbanColumn[] = [
   },
 ];
 
-// â”€â”€â”€ Status â†’ Badge class mapping â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ─── Status â†’ Badge class mapping ────────────────────────────────────────────
 // Colors per module_03_crm_enquiries.md:
 //   New â†’ --info (blue) | Visited â†’ --warning (amber) | Interested â†’ --purple
 //   Converted â†’ --success (green) | Lost â†’ neutral grey
@@ -104,14 +104,14 @@ export const STATUS_BADGE: Record<EnquiryStatus, string> = {
   Lost:       'crm-badge--neutral',
 };
 
-// â”€â”€â”€ Utility: mask phone number â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ─── Utility: mask phone number ───────────────────────────────────────────────
 export function maskPhone(phone: string): string {
   const digits = phone.replace(/\D/g, '');
   if (digits.length < 6) return phone;
   return digits.slice(0, 2) + '****' + digits.slice(-4);
 }
 
-// â”€â”€â”€ Utility: get initials â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ─── Utility: get initials ────────────────────────────────────────────────────
 export function getInitials(name: string): string {
   return name
     .split(' ')

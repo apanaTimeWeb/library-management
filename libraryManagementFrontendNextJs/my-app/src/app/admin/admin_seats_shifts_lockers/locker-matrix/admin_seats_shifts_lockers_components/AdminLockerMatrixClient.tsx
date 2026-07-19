@@ -39,7 +39,7 @@ export function AdminLockerMatrixClient() {
       {/* page Header */}
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b pb-4">
         <div>
-          <nav className="text-xs text-muted-foreground font-medium mb-1 tracking-wide uppercase">Smart Library 360 â€º Admin â€º Seats & Shifts</nav>
+          <nav className="text-xs text-muted-foreground font-medium mb-1 tracking-wide uppercase">Smart Library 360 › Admin › Seats & Shifts</nav>
           <h1 className="text-text-primary text-xl font-bold tracking-tight">Locker Matrix</h1>
           <p className="text-sm text-muted-foreground mt-1">Real-time status of lockers. Click any cell to manage access or view rental history.</p>
         </div>

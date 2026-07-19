@@ -38,7 +38,7 @@ export function ManagerStudentsStudentProfileClient({ id }: { id: string }) {
             <ArrowLeft size={14} /> Back to Students
           </Link>
           <h1 className="text-xl font-bold text-text-primary">Student Profile</h1>
-          <p className="text-xs font-bold uppercase tracking-wider text-text-secondary mt-1">Manager â€º Students â€º {student.name}</p>
+          <p className="text-xs font-bold uppercase tracking-wider text-text-secondary mt-1">Manager › Students › {student.name}</p>
         </div>
         <div className="p-6 min-h-screen-actions">
           <Link href={`${MANAGER_ROUTES.STUDENTS}/${id}/edit`} className="bg-transparent border border-border text-text-primary rounded-lg px-5 py-2.5 text-sm font-medium hover:bg-primary-subtle hover:border-primary transition-colors inline-flex items-center gap-2">
@@ -101,7 +101,7 @@ export function ManagerStudentsStudentProfileClient({ id }: { id: string }) {
               <div className="flex flex-col gap-1.5">
                 <label className="block text-sm font-medium text-text-secondary mb-1.5">Dues</label>
                 <span className={student.due > 0 ? 'text-danger font-bold' : 'text-success font-bold'}>
-                  {student.due > 0 ? `₹${student.due.toLocaleString('en-IN')}` : 'âœ… Clear'}
+                  {student.due > 0 ? `₹${student.due.toLocaleString('en-IN')}` : '✅ Clear'}
                 </span>
               </div>
             </div>

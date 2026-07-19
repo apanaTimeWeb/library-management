@@ -126,7 +126,7 @@ export function AdminCommunicationNoticesClient() {
                   <td className="py-4 px-4 text-muted-foreground max-w-xs truncate" title={n.message}>{n.message}</td>
                   <td className="py-4 px-4">
                     <Badge variant="secondary" className={`${n.status === 'Active' ? 'bg-success/10 text-success hover:bg-success/20' : 'bg-muted text-muted-foreground'} border-none font-bold tracking-wide`}>
-                      {n.status === 'Active' ? 'âœ… Active' : 'Expired'}
+                      {n.status === 'Active' ? '✅ Active' : 'Expired'}
                     </Badge>
                   </td>
                   <td className="py-4 px-4 text-muted-foreground font-mono text-xs">{n.validTill}</td>

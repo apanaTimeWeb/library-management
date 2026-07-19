@@ -20,7 +20,7 @@ export function AdminStudentsClient({ initialStudents }: AdminStudentsClientProp
     <div className="h-full flex flex-col pb-10 space-y-6">
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-border pb-4">
         <div>
-          <p className="text-sm text-text-secondary mb-1">Smart Library 360 â€º Admin â€º Students</p>
+          <p className="text-sm text-text-secondary mb-1">Smart Library 360 › Admin › Students</p>
           <h1 className="text-text-primary text-xl font-bold tracking-tight text-text-primary">{selectedBranch} - Students</h1>
           <p className="text-sm text-text-secondary mt-1">Overview of students enrolled in the currently selected branch.</p>
         </div>

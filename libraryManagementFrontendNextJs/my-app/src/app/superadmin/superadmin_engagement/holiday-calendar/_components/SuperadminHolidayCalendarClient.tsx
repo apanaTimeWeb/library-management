@@ -48,7 +48,7 @@ export function SuperadminHolidayCalendarClient() {
 
   return (
     <div className="p-4 sm:p-6 min-h-screen bg-page animate-in fade-in duration-200">
-      {/* â”€â”€ Toast â”€â”€ */}
+      {/* ── Toast ── */}
       {toast && (
         <div className="fixed bottom-4 left-1/2 -translate-x-1/2 z-50 animate-in slide-in-from-bottom-5">
           <div className="bg-text-primary text-bg-card px-4 py-2 rounded-full text-sm font-bold shadow-lg flex items-center gap-2">
@@ -57,7 +57,7 @@ export function SuperadminHolidayCalendarClient() {
         </div>
       )}
 
-      {/* â”€â”€ Add Holiday Modal â”€â”€ */}
+      {/* ── Add Holiday Modal ── */}
       {showAdd && (
         <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 animate-in fade-in duration-200">
           <div className="bg-card border border-border w-full max-w-sm rounded-xl shadow-2xl overflow-hidden relative">
@@ -103,14 +103,14 @@ export function SuperadminHolidayCalendarClient() {
         </div>
       )}
 
-      {/* â”€â”€ Breadcrumb â”€â”€ */}
+      {/* ── Breadcrumb ── */}
       <div className="flex items-center gap-2 text-text-secondary text-xs font-bold tracking-wide mb-6">
         <Link href={SUPERADMIN_ROUTES.ENGAGEMENT_ATTENDANCE} className="hover:text-primary transition-colors">Engagement</Link>
         <ChevronRight size={12} className="opacity-50" />
         <span className="text-text-primary">Holiday Calendar</span>
       </div>
 
-      {/* â”€â”€ Page Header â”€â”€ */}
+      {/* ── Page Header ── */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
         <div>
           <h1 className="text-3xl font-extrabold text-text-primary tracking-tight">ðŸ“… Holiday Calendar</h1>
@@ -121,7 +121,7 @@ export function SuperadminHolidayCalendarClient() {
         </button>
       </div>
 
-      {/* â”€â”€ Stats â”€â”€ */}
+      {/* ── Stats ── */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
         <div className="bg-card border border-border rounded-lg p-4 shadow-sm">
           <div className="text-xs font-bold text-text-secondary uppercase tracking-wider">Total Holidays</div>
@@ -145,7 +145,7 @@ export function SuperadminHolidayCalendarClient() {
         </div>
       </div>
 
-      {/* â”€â”€ Two-column Layout â”€â”€ */}
+      {/* ── Two-column Layout ── */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
 
         {/* Left: Calendar Grid */}

@@ -46,7 +46,7 @@ export function PublicFooter() {
       </div>
       
       <div className="max-w-7xl mx-auto pt-8 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-text-disabled">
-        <p>Â© {new Date().getFullYear()} Smart Library 360. All rights reserved.</p>
+        <p>© {new Date().getFullYear()} Smart Library 360. All rights reserved.</p>
         <p>Designed for scale.</p>
       </div>
     </footer>

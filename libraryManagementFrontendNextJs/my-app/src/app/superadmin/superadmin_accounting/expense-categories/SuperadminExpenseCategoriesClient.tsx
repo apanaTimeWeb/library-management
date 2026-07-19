@@ -18,12 +18,12 @@ export function SuperadminExpenseCategoriesClient() {
   const onAddCategory = async (cat: unknown) => {
     // @ts-ignore
     await handleAdd(cat);
-    showToast('âœ… Category added successfully');
+    showToast('✅ Category added successfully');
   };
 
   const onDeleteCategory = async (id: number) => {
     await handleDelete(id);
-    showToast('âœ… Category deleted');
+    showToast('✅ Category deleted');
   };
 
   return (

@@ -172,7 +172,7 @@ export function AuthResetPasswordForm() {
           ) : (
             <div className="text-center py-4">
               <div className="w-16 h-16 bg-success/10 rounded-full flex items-center justify-center mx-auto mb-4 border border-success/20 shadow-sm shadow-success/10">
-                <span className="text-text-primary text-xl">âœ…</span>
+                <span className="text-text-primary text-xl">✅</span>
               </div>
               <h2 className="text-xl font-bold text-text-primary">Password Reset!</h2>
               <p className="text-sm text-text-secondary leading-relaxed mt-2">

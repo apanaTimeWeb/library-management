@@ -100,7 +100,7 @@ export function SuperadminSystemBulkImportClient() {
         })}
       </div>
 
-      {/* â”€â”€ STEP 1: UPLOAD â”€â”€ */}
+      {/* ── STEP 1: UPLOAD ── */}
       {step === 'upload' && (
         <div className="space-y-5">
           <SuperadminCard>
@@ -189,7 +189,7 @@ export function SuperadminSystemBulkImportClient() {
         </div>
       )}
 
-      {/* â”€â”€ STEP 2: PREVIEW â”€â”€ */}
+      {/* ── STEP 2: PREVIEW ── */}
       {step === 'preview' && (
         <div className="space-y-5">
           {/* Summary */}
@@ -204,7 +204,7 @@ export function SuperadminSystemBulkImportClient() {
             </div>
             <div className="p-4 rounded-2xl bg-tertiary/10 border border-tertiary/20 text-center">
               <p className="text-text-primary text-xl font-bold text-tertiary">{warningCount}</p>
-              <p className="text-xs text-text-secondary mt-1">âš ï¸ Warnings</p>
+              <p className="text-xs text-text-secondary mt-1">⚠️ Warnings</p>
             </div>
             <div className="p-4 rounded-2xl bg-danger-bg/10 border border-danger/20 text-center">
               <p className="text-text-primary text-xl font-bold text-danger">{errorCount}</p>
@@ -306,7 +306,7 @@ export function SuperadminSystemBulkImportClient() {
         </div>
       )}
 
-      {/* â”€â”€ STEP 3: IMPORTING â”€â”€ */}
+      {/* ── STEP 3: IMPORTING ── */}
       {step === 'importing' && (
         <SuperadminCard>
           <CardContent className="py-16 flex flex-col items-center gap-6 text-center">
@@ -334,7 +334,7 @@ export function SuperadminSystemBulkImportClient() {
         </SuperadminCard>
       )}
 
-      {/* â”€â”€ STEP 4: DONE â”€â”€ */}
+      {/* ── STEP 4: DONE ── */}
       {step === 'done' && (
         <SuperadminCard>
           <CardContent className="py-16 flex flex-col items-center gap-6 text-center">

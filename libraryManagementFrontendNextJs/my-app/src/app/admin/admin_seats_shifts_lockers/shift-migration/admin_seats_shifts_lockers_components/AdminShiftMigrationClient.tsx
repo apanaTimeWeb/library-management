@@ -70,7 +70,7 @@ export function AdminShiftMigrationClient() {
       <div className="flex flex-col lg:flex-row gap-6 max-w-6xl mx-auto w-full">
         <div className="flex-1 flex flex-col gap-6">
 
-          {/* â”€â”€ STEP 1 â”€â”€ */}
+          {/* ── STEP 1 ── */}
           {step === 1 && (
             <Card className="p-6 shadow-sm border-border bg-card flex flex-col gap-6">
               <h3 className="text-lg font-bold flex items-center gap-2 border-b pb-3">
@@ -127,7 +127,7 @@ export function AdminShiftMigrationClient() {
             </Card>
           )}
 
-          {/* â”€â”€ STEP 2 â”€â”€ */}
+          {/* ── STEP 2 ── */}
           {step === 2 && (
             <Card className="p-6 shadow-sm border-border bg-card flex flex-col gap-6">
               <h3 className="text-lg font-bold flex items-center gap-2 border-b pb-3">
@@ -205,7 +205,7 @@ export function AdminShiftMigrationClient() {
             </Card>
           )}
 
-          {/* â”€â”€ STEP 3 â”€â”€ */}
+          {/* ── STEP 3 ── */}
           {step === 3 && (
             <>
               <Card className="p-6 shadow-sm border-border bg-card flex flex-col gap-6">
@@ -238,10 +238,10 @@ export function AdminShiftMigrationClient() {
                 <div className={`p-4 rounded-md border ${isPaying ? 'bg-danger/5 border-danger/20 text-danger' : adjustment < 0 ? 'bg-info/5 border-info/20 text-info' : 'bg-success/5 border-success/20 text-success'}`}>
                   <p className="text-sm font-bold flex items-center gap-2">
                     {isPaying
-                      ? 'ðŸ”´ Student pays more — collect ₹' + adjustment + ' before confirming.'
+                      ? '🔴 Student pays more — collect ₹' + adjustment + ' before confirming.'
                       : adjustment < 0
                         ? 'ðŸ”µ Refund ₹' + Math.abs(adjustment) + ' to student.'
-                        : 'âœ… No fee adjustment needed.'}
+                        : '✅ No fee adjustment needed.'}
                   </p>
                 </div>
               </Card>

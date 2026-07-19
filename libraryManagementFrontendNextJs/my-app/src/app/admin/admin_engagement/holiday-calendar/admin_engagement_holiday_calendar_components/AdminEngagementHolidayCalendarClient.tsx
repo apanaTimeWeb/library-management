@@ -73,7 +73,7 @@ export function AdminEngagementHolidayCalendarClient() {
 
   return (
     <div className="space-y-6 pb-10">
-      {/* â”€â”€ Breadcrumb â”€â”€ */}
+      {/* ── Breadcrumb ── */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b pb-4">
         <div>
           <p className="text-xs font-semibold text-muted-foreground flex items-center gap-1 uppercase tracking-wider mb-1">
@@ -87,7 +87,7 @@ export function AdminEngagementHolidayCalendarClient() {
         </Button>
       </div>
 
-      {/* â”€â”€ Stats â”€â”€ */}
+      {/* ── Stats ── */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         <Card className="p-4 shadow-sm">
           <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-1">Total Holidays</p>
@@ -111,7 +111,7 @@ export function AdminEngagementHolidayCalendarClient() {
         </Card>
       </div>
 
-      {/* â”€â”€ Two-column Layout â”€â”€ */}
+      {/* ── Two-column Layout ── */}
       <div className="flex flex-col lg:flex-row gap-6 items-start">
 
         {/* Left: Calendar Grid */}
@@ -239,7 +239,7 @@ export function AdminEngagementHolidayCalendarClient() {
         </div>
       </div>
 
-      {/* â”€â”€ Add Holiday Modal â”€â”€ */}
+      {/* ── Add Holiday Modal ── */}
       <Dialog open={showAdd} onOpenChange={setShowAdd}>
         <DialogContent className="sm:max-w-md">
           <DialogHeader>

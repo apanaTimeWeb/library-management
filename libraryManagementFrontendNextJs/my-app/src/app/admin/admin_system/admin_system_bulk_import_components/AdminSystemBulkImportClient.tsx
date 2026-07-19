@@ -85,7 +85,7 @@ export function AdminSystemBulkImportClient() {
         })}
       </div>
 
-      {/* â”€â”€ STEP 1: UPLOAD â”€â”€ */}
+      {/* ── STEP 1: UPLOAD ── */}
       {step === 'upload' && (
         <div className="space-y-5">
           <Card>
@@ -197,7 +197,7 @@ export function AdminSystemBulkImportClient() {
         </div>
       )}
 
-      {/* â”€â”€ STEP 2: PREVIEW â”€â”€ */}
+      {/* ── STEP 2: PREVIEW ── */}
       {step === 'preview' && (
         <div className="space-y-5">
           {/* Summary */}
@@ -208,11 +208,11 @@ export function AdminSystemBulkImportClient() {
             </div>
             <div className="p-4 rounded-2xl bg-success/10 border border-success/20 text-center">
               <p className="text-text-primary text-xl font-bold text-success">{okCount}</p>
-              <p className="text-xs text-text-secondary mt-1">âœ… Ready to Import</p>
+              <p className="text-xs text-text-secondary mt-1">✅ Ready to Import</p>
             </div>
             <div className="p-4 rounded-2xl bg-tertiary/10 border border-tertiary/20 text-center">
               <p className="text-text-primary text-xl font-bold text-tertiary">{warningCount}</p>
-              <p className="text-xs text-text-secondary mt-1">âš ï¸ Warnings</p>
+              <p className="text-xs text-text-secondary mt-1">⚠️ Warnings</p>
             </div>
             <div className="p-4 rounded-2xl bg-danger-bg/10 border border-danger/20 text-center">
               <p className="text-text-primary text-xl font-bold text-danger">{errorCount}</p>
@@ -251,8 +251,8 @@ export function AdminSystemBulkImportClient() {
                       }`}
                     >
                       {f === 'all' ? `All (${ADMIN_SYSTEM_MOCK_PREVIEW.length})` :
-                       f === 'ok'  ? `âœ… OK (${okCount})` :
-                       f === 'warning' ? `âš ï¸ Warn (${warningCount})` :
+                       f === 'ok'  ? `✅ OK (${okCount})` :
+                       f === 'warning' ? `⚠️ Warn (${warningCount})` :
                        `âŒ Error (${errorCount})`}
                     </button>
                   ))}
@@ -326,7 +326,7 @@ export function AdminSystemBulkImportClient() {
         </div>
       )}
 
-      {/* â”€â”€ STEP 3: IMPORTING â”€â”€ */}
+      {/* ── STEP 3: IMPORTING ── */}
       {step === 'importing' && (
         <Card>
           <CardContent className="py-16 flex flex-col items-center gap-6 text-center">
@@ -354,7 +354,7 @@ export function AdminSystemBulkImportClient() {
         </Card>
       )}
 
-      {/* â”€â”€ STEP 4: DONE â”€â”€ */}
+      {/* ── STEP 4: DONE ── */}
       {step === 'done' && (
         <Card>
           <CardContent className="py-16 flex flex-col items-center gap-6 text-center">

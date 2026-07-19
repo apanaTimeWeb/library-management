@@ -140,7 +140,7 @@ export function AdminCommunicationWhatsappTemplatesClient() {
               <Send size={14} /> Send Test Message
             </Button>
             <Button onClick={handleSave} className="gap-2 bg-success hover:bg-success/90 text-white min-w-36">
-              {saved ? 'âœ… Saved!' : <><Save size={14} /> Save Template</>}
+              {saved ? '✅ Saved!' : <><Save size={14} /> Save Template</>}
             </Button>
           </CardFooter>
         </Card>

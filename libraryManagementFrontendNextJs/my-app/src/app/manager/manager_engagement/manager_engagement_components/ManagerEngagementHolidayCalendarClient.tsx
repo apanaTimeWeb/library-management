@@ -69,14 +69,14 @@ export function ManagerEngagementHolidayCalendarClient() {
 
   return (
     <div className="p-6 min-h-screen relative">
-      {/* â”€â”€ Toast â”€â”€ */}
+      {/* ── Toast ── */}
       {toast && (
         <div className="fixed bottom-4 right-4 z-50">
           <div className="bg-card border border-border shadow-lg rounded-xl px-4 py-3 text-sm text-text-primary">{toast}</div>
         </div>
       )}
 
-      {/* â”€â”€ Add Holiday Modal â”€â”€ */}
+      {/* ── Add Holiday Modal ── */}
       {showAdd && (
         <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 overflow-y-auto">
           <div className="bg-page w-full rounded-2xl shadow-2xl flex flex-col p-6 max-w-sm relative">
@@ -118,14 +118,14 @@ export function ManagerEngagementHolidayCalendarClient() {
         </div>
       )}
 
-      {/* â”€â”€ Breadcrumb â”€â”€ */}
+      {/* ── Breadcrumb ── */}
       <div className="text-xs font-medium text-text-secondary uppercase tracking-wider mb-2 flex items-center gap-1.5">
         <Link href={MANAGER_ROUTES.ENGAGEMENT_ATTENDANCE}>Engagement</Link>
         <ChevronRight size={12} className="mx-1"/>
         <span>Holiday Calendar</span>
       </div>
 
-      {/* â”€â”€ Page Header â”€â”€ */}
+      {/* ── Page Header ── */}
       <div className="mb-8">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
           <div>
@@ -140,7 +140,7 @@ export function ManagerEngagementHolidayCalendarClient() {
         </div>
       </div>
 
-      {/* â”€â”€ Stats â”€â”€ */}
+      {/* ── Stats ── */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
         <div className="bg-card border border-border rounded-xl p-5 flex flex-col justify-center">
           <div className="text-sm font-medium text-text-secondary mb-1.5">Total Holidays</div>
@@ -164,7 +164,7 @@ export function ManagerEngagementHolidayCalendarClient() {
         </div>
       </div>
 
-      {/* â”€â”€ Two-column Layout â”€â”€ */}
+      {/* ── Two-column Layout ── */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
 
         {/* Left: Calendar Grid */}

@@ -30,7 +30,7 @@ import { SuperadminSetupWizardStep2 } from '@/app/superadmin/superadmin_setup-wi
 import { SuperadminSetupWizardStep3 } from '@/app/superadmin/superadmin_setup-wizard/superadmin_setup_wizard_components/SuperadminSetupWizardStep3';
 import { SuperadminSetupWizardStep4 } from '@/app/superadmin/superadmin_setup-wizard/superadmin_setup_wizard_components/SuperadminSetupWizardStep4';
 
-// â”€â”€â”€â”€ Main Wizard â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ──── Main Wizard ─────────────────────────────────────────────────────────────
 export function SuperadminSetupWizardClient() {
   const [step,          setStep]          = useState(1);
   const [launching,     setLaunching]     = useState(false);
@@ -64,7 +64,7 @@ export function SuperadminSetupWizardClient() {
     <div className="h-screen w-full flex bg-base overflow-hidden relative">
       <div className="absolute top-0 left-0 w-full h-72 bg-gradient-to-b from-primary/10 to-transparent pointer-events-none opacity-50" />
 
-      {/* â”€â”€ SKIP CONFIRMATION MODAL â”€â”€ */}
+      {/* ── SKIP CONFIRMATION MODAL ── */}
       {showSkipModal && (
         <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
           <div className="bg-card max-w-md w-full rounded-2xl shadow-2xl p-6 relative border border-border flex flex-col items-center text-center animate-in zoom-in-95 duration-200">
@@ -126,7 +126,7 @@ export function SuperadminSetupWizardClient() {
         </div>
       )}
 
-      {/* â”€â”€ STEPPER SIDEBAR â”€â”€ */}
+      {/* ── STEPPER SIDEBAR ── */}
       <aside className="w-72 shrink-0 border-r border-border bg-card/50 backdrop-blur flex-col p-6 z-10 hidden md:flex">
         <div className="flex items-center gap-3 mb-10">
           <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-purple flex items-center justify-center shadow-lg shadow-primary/30">
@@ -178,11 +178,11 @@ export function SuperadminSetupWizardClient() {
         </div>
       </aside>
 
-      {/* â”€â”€ MAIN CONTENT â”€â”€ */}
+      {/* ── MAIN CONTENT ── */}
       <main className="flex-1 flex flex-col">
         <div className="h-14 border-b border-border bg-card/80 backdrop-blur flex items-center justify-between px-6 shrink-0 md:hidden">
           <div className="h-1.5 w-32 bg-border rounded-full overflow-hidden">
-            {/* âœ… RULE 3 — dynamic computed width */}
+            {/* ✅ RULE 3 — dynamic computed width */}
             <div className="h-full bg-primary rounded-full transition-all duration-500" style={{ width: `${progress}%` }} />
           </div>
           <button
@@ -207,7 +207,7 @@ export function SuperadminSetupWizardClient() {
             {step === 3 && <SuperadminSetupWizardStep3 onNext={d => { setSeats(d);  nextStep(); }} />}
             {step === 4 && <SuperadminSetupWizardStep4 onNext={d => { setPlans(d);  nextStep(); }} />}
 
-            {/* â”€â”€ Step 5: Launch â”€â”€ */}
+            {/* ── Step 5: Launch ── */}
             {step === 5 && (
               <div className="space-y-5">
                 <div className="p-6 rounded-xl border border-border bg-card shadow-sm">
@@ -273,7 +273,7 @@ export function SuperadminSetupWizardClient() {
               </div>
             )}
 
-            {/* â”€â”€ FOOTER NAV â”€â”€ */}
+            {/* ── FOOTER NAV ── */}
             {step !== 5 ? (
               <div className="mt-8 pt-6 border-t border-border flex items-center justify-between">
                 <button

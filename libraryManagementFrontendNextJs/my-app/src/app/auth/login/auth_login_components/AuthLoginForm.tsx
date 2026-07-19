@@ -30,7 +30,7 @@ export function AuthLoginForm() {
       <div className="absolute top-[-10%] right-[-5%] w-2/5 h-2/5 bg-primary/20 blur-[100px] rounded-full pointer-events-none" />
       <div className="absolute bottom-[-10%] left-[-5%] w-2/5 h-2/5 bg-purple/20 blur-[100px] rounded-full pointer-events-none" />
 
-      {/* â”€â”€ LEFT BRAND PANEL â”€â”€ */}
+      {/* ── LEFT BRAND PANEL ── */}
       <section className="hidden lg:flex lg:w-1/2 flex-col justify-between p-8 xl:p-12 relative z-10 border-r border-border bg-page">
         {/* Logo */}
         <div className="relative z-10 flex items-center gap-3">
@@ -83,10 +83,10 @@ export function AuthLoginForm() {
           </div>
         </div>
 
-        <p className="relative z-10 text-xs text-text-secondary">Â© 2026 Smart Library 360. All rights reserved.</p>
+        <p className="relative z-10 text-xs text-text-secondary">© 2026 Smart Library 360. All rights reserved.</p>
       </section>
 
-      {/* â”€â”€ RIGHT AUTH PANEL â”€â”€ */}
+      {/* ── RIGHT AUTH PANEL ── */}
       <section className="w-full lg:w-1/2 flex items-start lg:items-center justify-center p-4 sm:p-8 lg:p-12 relative z-10 overflow-y-auto min-h-screen lg:min-h-0">
         <div className="w-full max-w-md space-y-6 py-8 lg:py-0">
           {/* Mobile logo */}

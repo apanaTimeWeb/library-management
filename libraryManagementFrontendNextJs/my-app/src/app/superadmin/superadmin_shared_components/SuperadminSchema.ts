@@ -7,14 +7,14 @@ export type ShiftsData = z.infer<typeof shiftsSchema>;
 export type SeatsData = z.infer<typeof seatsSchema>;
 export type PlansData = z.infer<typeof plansSchema>;
 
-// â”€â”€â”€ Step 1: Branch Details â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ─── Step 1: Branch Details ────────────────────────────────────────────────────
 export const branchDetailsSchema = z.object({
   name:    z.string().min(2, 'Library name is required'),
   address: z.string().min(5, 'Full address is required'),
   city:    z.string().min(2, 'City is required'),
   gst:     z.string().optional(),
 });
-// â”€â”€â”€ Step 2: Define Shifts â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ─── Step 2: Define Shifts ─────────────────────────────────────────────────────
 export const shiftSchema = z.object({
   name:  z.string().min(1, 'Shift name is required'),
   start: z.string().min(1, 'Start time required'),
@@ -23,12 +23,12 @@ export const shiftSchema = z.object({
 export const shiftsSchema = z.object({
   shifts: z.array(shiftSchema).min(1, 'At least one shift is required'),
 });
-// â”€â”€â”€ Step 3: Add Seats â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ─── Step 3: Add Seats ────────────────────────────────────────────────────────
 export const seatsSchema = z.object({
   count:  z.number().min(1, 'At least 1 seat required').max(9999),
   prefix: z.string().max(3, 'Max 3 characters').min(1, 'Prefix required'),
 });
-// â”€â”€â”€ Step 4: Fee Plans â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ─── Step 4: Fee Plans ────────────────────────────────────────────────────────
 export const planSchema = z.object({
   name:  z.string().min(1, 'Plan name required'),
   days:  z.number().min(1, 'Minimum 1 day'),

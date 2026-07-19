@@ -37,14 +37,14 @@ export function ManagerCrmEnquiriesAddClient({ onClose }: ManagerCrmEnquiriesAdd
     <>
       <Toaster position="bottom-right" />
 
-      {/* â”€â”€ Overlay â”€â”€ */}
+      {/* ── Overlay ── */}
       <div
         className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 animate-in fade-in duration-200"
         onClick={handleClose}
         aria-label="Close drawer"
       />
 
-      {/* â”€â”€ Drawer â”€â”€ */}
+      {/* ── Drawer ── */}
       <div className="fixed inset-0 z-[101] flex items-center justify-center p-4 sm:p-6 pointer-events-none">
         <aside className="w-full max-w-md bg-card border border-border flex flex-col overflow-hidden animate-in zoom-in-95 duration-200 shadow-2xl rounded-2xl pointer-events-auto" role="dialog" aria-label="New Enquiry" aria-modal="true">
 
@@ -74,7 +74,7 @@ export function ManagerCrmEnquiriesAddClient({ onClose }: ManagerCrmEnquiriesAdd
           <div className="flex-1 overflow-y-auto p-6 scrollbar-thin">
             <div className="flex flex-col gap-5">
 
-              {/* â”€â”€ Name â”€â”€ */}
+              {/* ── Name ── */}
               <div className="flex flex-col gap-1.5">
                 <label htmlFor="enq-name" className="text-xs font-semibold text-text-secondary uppercase tracking-wider mb-1 after:content-['*'] after:text-danger after:ml-1">
                   Full Name
@@ -89,7 +89,7 @@ export function ManagerCrmEnquiriesAddClient({ onClose }: ManagerCrmEnquiriesAdd
                 />
                 {errors.name && <p className="text-xs text-danger mt-1 mb-0">{errors.name.message}</p>}
               
-              {/* â”€â”€ Phone â”€â”€ */}
+              {/* ── Phone ── */}
               <div className="flex flex-col gap-1.5 mt-4">
                 <label htmlFor="enq-phone" className="text-xs font-semibold text-text-secondary uppercase tracking-wider mb-1 after:content-['*'] after:text-danger after:ml-1">
                   Phone / WhatsApp

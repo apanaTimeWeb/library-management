@@ -64,7 +64,7 @@ export function AdminSystemSmartIdClient() {
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             ðŸ”¢ Current ID Sequence
-            {regenerated && <Badge variant="success">âœ… Regenerated</Badge>}
+            {regenerated && <Badge variant="success">✅ Regenerated</Badge>}
           </CardTitle>
           <CardDescription>
             Active IDs shown in <span className="text-primary font-medium">indigo</span>. 
@@ -127,7 +127,7 @@ export function AdminSystemSmartIdClient() {
                 </DialogDescription>
               </DialogHeader>
               <div className="p-4 rounded-xl bg-danger-bg/20 border border-danger/20 text-sm text-danger mt-2">
-                âš ï¸ Warning: All student ID references will be updated. Ensure backups are taken first.
+                ⚠️ Warning: All student ID references will be updated. Ensure backups are taken first.
               </div>
               <div className="flex justify-end gap-3 mt-4">
                 <DialogClose asChild>

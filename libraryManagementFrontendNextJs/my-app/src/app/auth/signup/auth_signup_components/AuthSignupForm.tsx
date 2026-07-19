@@ -29,7 +29,7 @@ export function AuthSignupForm() {
       <div className="absolute top-[-10%] right-[-5%] w-2/5 h-2/5 bg-primary/20 blur-[100px] rounded-full pointer-events-none" />
       <div className="absolute bottom-[-10%] left-[-5%] w-2/5 h-2/5 bg-purple/20 blur-[100px] rounded-full pointer-events-none" />
 
-      {/* â”€â”€ LEFT BRAND PANEL â”€â”€ */}
+      {/* ── LEFT BRAND PANEL ── */}
       <section className="hidden lg:flex lg:w-1/2 flex-col justify-between p-8 xl:p-12 relative z-10 border-r border-border bg-page">
         <div className="relative z-10 flex items-center gap-3">
           <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-primary-hover flex items-center justify-center shadow-lg shadow-primary/20">
@@ -63,10 +63,10 @@ export function AuthSignupForm() {
           </div>
         </div>
 
-        <p className="relative z-10 text-xs text-text-secondary">Â© 2026 Smart Library 360</p>
+        <p className="relative z-10 text-xs text-text-secondary">© 2026 Smart Library 360</p>
       </section>
 
-      {/* â”€â”€ RIGHT PANEL â”€â”€ */}
+      {/* ── RIGHT PANEL ── */}
       <section className="w-full lg:w-1/2 flex items-start lg:items-center justify-center p-4 sm:p-8 md:p-10 relative z-10 overflow-y-auto min-h-screen lg:min-h-0 bg-transparent">
         <div className="w-full max-w-lg py-8 lg:py-0">
           {/* Mobile logo */}

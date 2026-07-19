@@ -79,7 +79,7 @@ export function ManagerCommunicationWhatsappLogsClient() {
               <div className="bg-input p-4 rounded-lg border border-border text-sm leading-relaxed text-text-primary whitespace-pre-wrap">{viewLog.message}</div>
             </div>
             {viewLog.error && (
-              <div className="mt-4 p-3 bg-danger-bg text-danger rounded-lg border border-danger/20 text-sm font-medium">âš ï¸ Error: {viewLog.error}</div>
+              <div className="mt-4 p-3 bg-danger-bg text-danger rounded-lg border border-danger/20 text-sm font-medium">⚠️ Error: {viewLog.error}</div>
             )}
             <div className="flex justify-end mt-6">
               <button onClick={() => setViewLog(null)} className="px-5 py-2.5 bg-transparent border border-border text-text-primary font-medium text-sm rounded-lg hover:bg-card transition-colors">Close</button>

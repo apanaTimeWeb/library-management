@@ -70,7 +70,7 @@ export function AdminSystemBackupsClient() {
       {/* KPI Cards */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-5 mb-8">
         <KpiCard title="Total Backups" value={backups.length} icon="ðŸ—„ï¸" subtitle="All time" />
-        <KpiCard title="Successful" value={successCount} icon="âœ…" trend="up" trendLabel="Reliable" />
+        <KpiCard title="Successful" value={successCount} icon="✅" trend="up" trendLabel="Reliable" />
         <KpiCard title="Failed" value={failedCount} icon="âŒ" trend={failedCount > 0 ? 'down' : 'neutral'} trendLabel={failedCount > 0 ? 'Needs attention' : 'All good'} />
         <KpiCard title="Last Backup" value={lastSuccess ? 'Today' : 'Never'} icon="ðŸ•" subtitle={lastSuccess?.createdAt ?? '—'} />
       </div>

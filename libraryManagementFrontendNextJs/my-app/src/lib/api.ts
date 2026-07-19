@@ -63,7 +63,7 @@ const generateGenericRecord = (idOffset: number = 0) => ({
     data: [], // For object fallbacks
 });
 
-// â”€â”€ MOCK FALLBACK HELPER â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ── MOCK FALLBACK HELPER ──────────────────────────────────────────────────
 const getMockFallback = <T = unknown>(ep: string, opts: RequestInit): T => {
   const normalizedEndpoint = ep.startsWith('/') ? ep : `/${ep}`;
   
@@ -170,7 +170,7 @@ export async function fetchApi<T = unknown>(endpoint: string, options: RequestIn
 
   const headers: HeadersInit = {
     'Content-Type': 'application/json',
-    // âœ… Removed 'Cache-Control' — it's a response header, not request header.
+    // ✅ Removed 'Cache-Control' — it's a response header, not request header.
     // Sending it as a request header causes CORS preflight failures.
     ...options.headers,
     // Attach JWT token if available
@@ -198,7 +198,7 @@ export async function fetchApi<T = unknown>(endpoint: string, options: RequestIn
     return getMockFallback<T>(endpoint, options);
   }
 
-  // â”€â”€ Handle 401 — Token expired â†’ try refresh â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+  // ── Handle 401 — Token expired â†’ try refresh ─────────────────────────────
   if (response.status === 401) {
     const newToken = await refreshAccessToken();
     if (newToken) {
@@ -231,7 +231,7 @@ export async function fetchApi<T = unknown>(endpoint: string, options: RequestIn
     }
   }
 
-  // â”€â”€ Handle 403 — Access denied â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+  // ── Handle 403 — Access denied ────────────────────────────────────────────
   if (response.status === 403) {
     if (typeof window !== 'undefined') {
       window.location.href = '/403';

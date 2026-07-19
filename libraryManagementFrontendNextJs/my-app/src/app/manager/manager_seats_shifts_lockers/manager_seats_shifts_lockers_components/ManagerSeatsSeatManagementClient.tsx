@@ -243,7 +243,7 @@ const [searchTerm, setSearchTerm] = useUrlState('searchTerm', '' as string);
       {confirmBroken && (
         <div className="ss-modal-overlay" onClick={() => setConfirmBroken(null)}>
           <div className="ss-modal" onClick={e => e.stopPropagation()}>
-            <h2 className="ss-modal-title">âš ï¸ Mark Seat as Broken</h2>
+            <h2 className="ss-modal-title">⚠️ Mark Seat as Broken</h2>
             <p className="ss-modal-desc">Mark Seat <strong>{confirmBroken.seatNo}</strong> as broken? It will be unavailable for assignment.</p>
             <div className="ss-modal-footer">
               <button className="ss-btn-ghost" onClick={() => setConfirmBroken(null)}>Cancel</button>

@@ -69,7 +69,7 @@ export function AdminSystemWhatsappIntegrationClient() {
           testStatus === 'error' ? 'bg-danger-bg/30' :
           'bg-card'
         }`}>
-          {testStatus === 'success' ? 'âœ…' : testStatus === 'error' ? 'âŒ' : 'ðŸ“¡'}
+          {testStatus === 'success' ? '✅' : testStatus === 'error' ? 'âŒ' : 'ðŸ“¡'}
         </div>
         <div className="flex-1">
           <div className="flex items-center gap-3">
@@ -101,7 +101,7 @@ export function AdminSystemWhatsappIntegrationClient() {
       {/* Usage Stats */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-5 mb-8">
         <KpiCard title="Sent This Month" value={logs.length} icon="ðŸ“¤" subtitle="All messages" />
-        <KpiCard title="Delivered" value={deliveredCount} icon="âœ…" trend="up" trendLabel={`${deliveryRate}% rate`} />
+        <KpiCard title="Delivered" value={deliveredCount} icon="✅" trend="up" trendLabel={`${deliveryRate}% rate`} />
         <KpiCard title="Failed" value={failedCount} icon="âŒ" trend={failedCount > 0 ? 'down' : 'neutral'} trendLabel="Failed deliveries" />
         <KpiCard title="Est. Cost" value="₹18.50" icon="ðŸ’¸" subtitle="~₹0.18 per msg" />
       </div>

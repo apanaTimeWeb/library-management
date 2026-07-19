@@ -81,7 +81,7 @@ export default function ManagerStudentsAdmissionForm() {
         <form onSubmit={handleSubmit} noValidate>
           <div className="flex flex-col lg:flex-row gap-8">
 
-            {/* â”€â”€ LEFT: Form Sections â”€â”€ */}
+            {/* ── LEFT: Form Sections ── */}
             <div className="flex-1 space-y-8">
 
               {/* Section 1: Personal Info */}

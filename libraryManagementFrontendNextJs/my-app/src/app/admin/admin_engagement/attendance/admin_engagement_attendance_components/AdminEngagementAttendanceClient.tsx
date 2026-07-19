@@ -53,7 +53,7 @@ export function AdminEngagementAttendanceClient() {
 
   return (
     <div className="space-y-6 pb-24 relative">
-      {/* â”€â”€ Header â”€â”€ */}
+      {/* ── Header ── */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b pb-4">
         <div>
           <p className="text-xs font-semibold text-muted-foreground flex items-center gap-1 uppercase tracking-wider mb-1">
@@ -69,7 +69,7 @@ export function AdminEngagementAttendanceClient() {
         </Link>
       </div>
 
-      {/* â”€â”€ KPI Stats â”€â”€ */}
+      {/* ── KPI Stats ── */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         <Card className="p-4 shadow-sm">
           <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-1">Total Students</p>
@@ -93,7 +93,7 @@ export function AdminEngagementAttendanceClient() {
         </Card>
       </div>
 
-      {/* â”€â”€ Filters â”€â”€ */}
+      {/* ── Filters ── */}
       <Card className="p-4 border-border shadow-sm flex flex-wrap items-center justify-between gap-4">
         <div className="flex flex-wrap gap-4 items-center">
           <div className="flex flex-col">
@@ -117,7 +117,7 @@ export function AdminEngagementAttendanceClient() {
         </div>
       </Card>
 
-      {/* â”€â”€ Student List â”€â”€ */}
+      {/* ── Student List ── */}
       <Card className="shadow-sm border-border overflow-hidden">
         <div className="divide-y divide-border">
           {filtered.length === 0 ? (
@@ -188,7 +188,7 @@ export function AdminEngagementAttendanceClient() {
                 {isAlert && (
                   <div className="flex items-center gap-3 self-start lg:self-auto mt-2 lg:mt-0 p-2 rounded-lg bg-danger/10 border border-danger/20">
                     <span className="text-xs font-bold text-danger flex items-center gap-1">
-                      âš ï¸ {s.consecutiveAbsent} days absent
+                      ⚠️ {s.consecutiveAbsent} days absent
                     </span>
                     {!hasAlerted ? (
                       <Button variant="outline" size="sm" onClick={() => handleAlert(s.id)} className="h-7 text-xs border-danger text-danger hover:bg-danger hover:text-white px-2 py-0 gap-1">
@@ -196,7 +196,7 @@ export function AdminEngagementAttendanceClient() {
                       </Button>
                     ) : (
                       <Badge variant="secondary" className="bg-success/20 text-success border-none font-bold text-xs gap-1">
-                        âœ… Alerted
+                        ✅ Alerted
                       </Badge>
                     )}
                   </div>
@@ -207,7 +207,7 @@ export function AdminEngagementAttendanceClient() {
         </div>
       </Card>
 
-      {/* â”€â”€ Sticky Save Bar â”€â”€ */}
+      {/* ── Sticky Save Bar ── */}
       <div className="fixed bottom-0 left-0 right-0 lg:left-72 p-4 bg-black/60 backdrop-blur-md border-t border-border flex items-center justify-between z-50 shadow-md shadow-black/5">
         <p className="text-sm text-foreground">
           <strong className="text-primary">{marked}</strong> of <strong>{filtered.length}</strong> marked for <strong className="font-mono">{date}</strong>

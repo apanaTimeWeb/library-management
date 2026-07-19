@@ -55,7 +55,7 @@ export function AdminEngagementAbsenteeReportClient() {
     const table = useClientTable(filtered, 10);
   return (
     <div className="space-y-6 pb-10">
-      {/* â”€â”€ Header â”€â”€ */}
+      {/* ── Header ── */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b pb-4">
         <div>
           <p className="text-xs font-semibold text-muted-foreground flex items-center gap-1 uppercase tracking-wider mb-1">
@@ -69,7 +69,7 @@ export function AdminEngagementAbsenteeReportClient() {
         </Button>
       </div>
 
-      {/* â”€â”€ KPI Stats â”€â”€ */}
+      {/* ── KPI Stats ── */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         <Card className="p-4 shadow-sm">
           <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-1">Total Absentees</p>
@@ -93,7 +93,7 @@ export function AdminEngagementAbsenteeReportClient() {
         </Card>
       </div>
 
-      {/* â”€â”€ Filters â”€â”€ */}
+      {/* ── Filters ── */}
       <Card className="p-4 border-border shadow-sm flex flex-wrap items-center justify-between gap-4">
         <div className="flex flex-wrap gap-4 items-center">
           <div className="flex flex-col">
@@ -122,7 +122,7 @@ export function AdminEngagementAbsenteeReportClient() {
         </div>
       </Card>
 
-      {/* â”€â”€ Table â”€â”€ */}
+      {/* ── Table ── */}
       <Card className="overflow-x-auto shadow-sm border-border">
         {filtered.length === 0 ? (
           <div className="flex flex-col items-center justify-center p-12 text-center text-muted-foreground">
@@ -191,7 +191,7 @@ export function AdminEngagementAbsenteeReportClient() {
                     <div className="flex items-center justify-center">
                       {r.notified ? (
                         <Badge variant="secondary" className="bg-success/10 text-success hover:bg-success/20 border-none font-bold gap-1">
-                          âœ… Notified
+                          ✅ Notified
                         </Badge>
                       ) : (
                         <Button variant="ghost" size="sm" onClick={() => notify(r.id)} className="h-8 text-primary hover:text-primary hover:bg-primary/10 gap-1 font-semibold">

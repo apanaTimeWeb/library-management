@@ -130,7 +130,7 @@ export function SuperadminSystemSmartIdClient() {
                 </SuperadminDialogDescription>
               </SuperadminDialogHeader>
               <div className="p-4 rounded-xl bg-danger-bg/20 border border-danger/20 text-sm text-danger mt-2">
-                âš ï¸ Warning: All student ID references will be updated. Ensure backups are taken first.
+                ⚠️ Warning: All student ID references will be updated. Ensure backups are taken first.
               </div>
               <div className="flex justify-end gap-3 mt-4">
                 <SuperadminDialogClose asChild>

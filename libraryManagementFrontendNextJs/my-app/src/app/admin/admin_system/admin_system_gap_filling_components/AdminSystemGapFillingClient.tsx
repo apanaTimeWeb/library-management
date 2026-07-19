@@ -96,7 +96,7 @@ export function AdminSystemGapFillingClient() {
                       <p className="text-xs text-text-secondary">ðŸ’¡ {seat.gap.hours}hrs available</p>
                     </div>
                     {assigned.includes(seat.seat) ? (
-                      <Badge variant="success">âœ… Assigned</Badge>
+                      <Badge variant="success">✅ Assigned</Badge>
                     ) : (
                       <Button id={`quick-assign-${seat.seat}`} variant="secondary" size="sm"
                         onClick={() => setAssigned(p => [...p, seat.seat])}>

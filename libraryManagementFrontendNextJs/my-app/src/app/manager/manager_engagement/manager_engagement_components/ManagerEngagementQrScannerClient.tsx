@@ -50,7 +50,7 @@ export function ManagerEngagementQrScannerClient() {
 
   return (
     <div className="p-6 min-h-screen relative">
-      {/* â”€â”€ Breadcrumb â”€â”€ */}
+      {/* ── Breadcrumb ── */}
       <div className="text-xs font-medium text-text-secondary uppercase tracking-wider mb-2 flex items-center gap-1.5">
         <Link href={MANAGER_ROUTES.ENGAGEMENT_ATTENDANCE}>Engagement</Link>
         <ChevronRight size={12} className="mx-1"/>
@@ -64,7 +64,7 @@ export function ManagerEngagementQrScannerClient() {
 
       <div className="max-w-md mx-auto">
 
-        {/* â”€â”€ Camera Viewport â”€â”€ */}
+        {/* ── Camera Viewport ── */}
         <div className="bg-card rounded-xl border border-border p-6 mb-4">
           <div className="flex items-start justify-between mb-4">
             <div>
@@ -96,7 +96,7 @@ export function ManagerEngagementQrScannerClient() {
                 </div>
               ) : scanState === 'detected' ? (
                 <div className="animate-in zoom-in duration-300 flex flex-col items-center">
-                  <div className="text-5xl mb-2 drop-shadow-md">âœ…</div>
+                  <div className="text-5xl mb-2 drop-shadow-md">✅</div>
                   <p className="text-sm font-bold bg-black/60 px-3 py-1.5 rounded-full backdrop-blur-sm">QR Code Detected!</p>
                 </div>
               ) : (
@@ -132,7 +132,7 @@ export function ManagerEngagementQrScannerClient() {
           )}
         </div>
 
-        {/* â”€â”€ Detected Student Card â”€â”€ */}
+        {/* ── Detected Student Card ── */}
         {scanState === 'detected' && result && (
           <div className="bg-card rounded-xl border border-border p-5 mb-4 shadow-lg animate-in slide-in-from-bottom-4 duration-300">
             <div className="flex items-start gap-4 mb-5 relative">
@@ -152,7 +152,7 @@ export function ManagerEngagementQrScannerClient() {
             </div>
             <div className="grid grid-cols-2 gap-3">
               <button onClick={() => markAttendance('IN')} className="bg-success text-white rounded-lg px-4 py-2.5 text-sm font-semibold hover:opacity-90 transition-colors flex items-center justify-center gap-2">
-                âœ… Mark IN
+                ✅ Mark IN
               </button>
               <button onClick={() => markAttendance('OUT')} className="bg-danger text-white rounded-lg px-4 py-2.5 text-sm font-semibold hover:opacity-90 transition-colors flex items-center justify-center gap-2">
                 ðŸ”š Mark OUT
@@ -161,7 +161,7 @@ export function ManagerEngagementQrScannerClient() {
           </div>
         )}
 
-        {/* â”€â”€ Recent History â”€â”€ */}
+        {/* ── Recent History ── */}
         {history.length > 0 && (
           <div className="bg-card rounded-xl border border-border p-6 mb-4">
             <div className="text-base font-semibold text-text-primary mb-4">Recent Scans</div>
@@ -177,7 +177,7 @@ export function ManagerEngagementQrScannerClient() {
           </div>
         )}
 
-        {/* â”€â”€ Manual Fallback â”€â”€ */}
+        {/* ── Manual Fallback ── */}
         <div className="text-center mt-6">
           {!showManual ? (
             <button onClick={() => setShowManual(true)} className="text-sm font-medium text-primary hover:text-primary-hover transition-colors">
@@ -194,7 +194,7 @@ export function ManagerEngagementQrScannerClient() {
               </div>
               <div className="flex flex-col sm:flex-row gap-3">
                 <button onClick={() => handleManual('IN')} disabled={!manualId.trim()}
-                  className="bg-success text-white rounded-lg px-4 py-2.5 text-sm font-semibold hover:opacity-90 transition-colors flex items-center justify-center gap-2 flex-1 disabled:opacity-50">âœ… Mark IN</button>
+                  className="bg-success text-white rounded-lg px-4 py-2.5 text-sm font-semibold hover:opacity-90 transition-colors flex items-center justify-center gap-2 flex-1 disabled:opacity-50">✅ Mark IN</button>
                 <button onClick={() => handleManual('OUT')} disabled={!manualId.trim()}
                   className="bg-danger text-white rounded-lg px-4 py-2.5 text-sm font-semibold hover:opacity-90 transition-colors flex items-center justify-center gap-2 flex-1 disabled:opacity-50">ðŸ”š Mark OUT</button>
                 <button onClick={() => setShowManual(false)} className="bg-transparent border border-border text-text-primary rounded-lg px-4 py-2.5 text-sm font-medium hover:bg-primary-subtle hover:border-primary transition-colors flex items-center justify-center gap-2 flex-1">Cancel</button>

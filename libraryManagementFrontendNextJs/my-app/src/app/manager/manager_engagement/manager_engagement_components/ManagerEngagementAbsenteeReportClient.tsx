@@ -39,21 +39,21 @@ const [searchTerm, setSearchTerm] = useUrlState('searchTerm', '' as string);
 
   return (
     <div className="p-6 min-h-screen">
-      {/* â”€â”€ Toast â”€â”€ */}
+      {/* ── Toast ── */}
       {toast && (
         <div className="fixed bottom-4 right-4 z-50">
           <div className={`bg-card border border-border shadow-lg rounded-xl px-4 py-3 text-sm text-text-primary ${toastType === 'info' ? 'bg-info-bg border-info text-info' : ''}`}>{toast}</div>
         </div>
       )}
 
-      {/* â”€â”€ Breadcrumb â”€â”€ */}
+      {/* ── Breadcrumb ── */}
       <div className="text-xs font-medium text-text-secondary uppercase tracking-wider mb-2 flex items-center gap-1.5">
         <Link href={MANAGER_ROUTES.ENGAGEMENT_ATTENDANCE}>Engagement</Link>
         <ChevronRight size={12} className="mx-1"/>
         <span>Absentee Report</span>
       </div>
 
-      {/* â”€â”€ Page Header â”€â”€ */}
+      {/* ── Page Header ── */}
       <div className="mb-8">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
           <div>
@@ -68,7 +68,7 @@ const [searchTerm, setSearchTerm] = useUrlState('searchTerm', '' as string);
         </div>
       </div>
 
-      {/* â”€â”€ KPI Stats â”€â”€ */}
+      {/* ── KPI Stats ── */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
         <div className="bg-card border border-border rounded-xl p-5 flex flex-col justify-center">
           <div className="text-sm font-medium text-text-secondary mb-1.5">Total Absentees</div>
@@ -92,7 +92,7 @@ const [searchTerm, setSearchTerm] = useUrlState('searchTerm', '' as string);
         </div>
       </div>
 
-      {/* â”€â”€ Filters â”€â”€ */}
+      {/* ── Filters ── */}
       <div className="bg-card rounded-xl border border-border mb-6 p-4">
         <div className="flex items-center justify-between">
           <div className="flex gap-6 items-center">
@@ -135,7 +135,7 @@ const [searchTerm, setSearchTerm] = useUrlState('searchTerm', '' as string);
         </div>
       </div>
 
-      {/* â”€â”€ Table â”€â”€ */}
+      {/* ── Table ── */}
       <div className="bg-card rounded-xl border border-border p-4">
         {filtered.length === 0 ? (
           <div className="py-12 flex flex-col items-center justify-center text-center">
@@ -198,7 +198,7 @@ const [searchTerm, setSearchTerm] = useUrlState('searchTerm', '' as string);
                     </td>
                     <td className="px-4 py-4">
                       {row.notified ? (
-                        <span className="rounded-full px-2.5 py-0.5 text-xs font-semibold bg-success-bg text-success">âœ… Notified</span>
+                        <span className="rounded-full px-2.5 py-0.5 text-xs font-semibold bg-success-bg text-success">✅ Notified</span>
                       ) : (
                         <button onClick={() => notify(row.id)} className="bg-transparent border border-border text-text-primary rounded-lg h-8 px-3 text-xs font-medium hover:bg-primary-subtle hover:border-primary transition-colors inline-flex items-center gap-2">
                           <Send size={12} className="mr-1"/> Alert

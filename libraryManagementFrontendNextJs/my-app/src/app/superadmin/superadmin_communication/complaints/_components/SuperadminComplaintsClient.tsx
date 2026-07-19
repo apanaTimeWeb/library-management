@@ -23,7 +23,7 @@ export function SuperadminComplaintsClient() {
 
   return (
     <div className="p-4 sm:p-6 min-h-screen bg-page animate-in fade-in duration-200">
-      {/* â”€â”€ Toast â”€â”€ */}
+      {/* ── Toast ── */}
       {toast && (
         <div className="fixed bottom-4 left-1/2 -translate-x-1/2 z-50 animate-in slide-in-from-bottom-5">
           <div className="bg-text-primary text-bg-card px-4 py-2 rounded-full text-sm font-bold shadow-lg flex items-center gap-2">

@@ -72,15 +72,15 @@ export function formatIdCardMessage(data: StudentWhatsAppData): string {
     `â”„â”„â”„â”„â”„â”„â”„â”„â”„â”„â”„â”„â”„â”„â”„â”„â”„â”„â”„â”„â”„â”„â”„`,
     `ðŸ’° Fees     : ${formatCurrencyIN(data.totalPayable)}`,
     data.discount > 0 ? `ðŸŽ Discount : -${formatCurrencyIN(data.discount)}` : '',
-    `âœ… Paid     : ${formatCurrencyIN(data.amountPaid)}`,
+    `✅ Paid     : ${formatCurrencyIN(data.amountPaid)}`,
     `ðŸ’³ Mode     : ${data.paymentMode}`,
     data.transactionId ? `ðŸ§¾ Txn ID   : ${data.transactionId}` : '',
     balance > 0
-      ? `âš ï¸ *Balance Due: ${formatCurrencyIN(balance)}*`
-      : `âœ… *Balance: CLEAR*`,
+      ? `⚠️ *Balance Due: ${formatCurrencyIN(balance)}*`
+      : `✅ *Balance: CLEAR*`,
     ``,
     `â•”â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•—`,
-    `â•‘  âœ… VERIFIED MEMBER   â•‘`,
+    `â•‘  ✅ VERIFIED MEMBER   â•‘`,
     `â•‘  ðŸŽ“ Happy Studying!   â•‘`,
     `â•šâ•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•`,
   ].filter(l => l !== null && l !== undefined);
@@ -111,11 +111,11 @@ export function formatDuesMessage(data: StudentWhatsAppData): string {
     ``,
     `ðŸ’° Fees   : ${formatCurrencyIN(data.totalPayable)}`,
     data.discount > 0 ? `ðŸŽ Discount: -${formatCurrencyIN(data.discount)}` : '',
-    `âœ… Paid   : ${formatCurrencyIN(data.amountPaid)}`,
+    `✅ Paid   : ${formatCurrencyIN(data.amountPaid)}`,
     ``,
     balance > 0
-      ? `âš ï¸ *DUE AMOUNT: ${formatCurrencyIN(balance)}*\nPlease pay before *${data.expiryDate}*`
-      : `âœ… *All dues cleared. Thank you!*`,
+      ? `⚠️ *DUE AMOUNT: ${formatCurrencyIN(balance)}*\nPlease pay before *${data.expiryDate}*`
+      : `✅ *All dues cleared. Thank you!*`,
     ``,
     `ðŸ“… Valid: ${data.joinDate} â†’ ${data.expiryDate}`,
     ``,

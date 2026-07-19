@@ -38,7 +38,7 @@ export function AdminExpenseCategoriesClient() {
       <div className="border-b border-border pb-4 flex flex-wrap items-end justify-between gap-4">
         <div>
           <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-1">
-            Smart Library 360 <span className="opacity-50">â€º</span> Admin <span className="opacity-50">â€º</span> Expense Categories
+            Smart Library 360 <span className="opacity-50">›</span> Admin <span className="opacity-50">›</span> Expense Categories
           </p>
           <h1 className="text-text-primary text-xl font-bold tracking-tight text-foreground">Expense Categories</h1>
           <p className="text-sm text-muted-foreground mt-1">Define the types of expenses managers can record in Daily Settlements.</p>

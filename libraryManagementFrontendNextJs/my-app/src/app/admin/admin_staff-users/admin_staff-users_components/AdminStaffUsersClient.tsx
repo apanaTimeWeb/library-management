@@ -51,7 +51,7 @@ export function AdminStaffUsersClient({ initialStaff }: AdminStaffUsersClientPro
       {/* page Header */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b pb-4">
         <div>
-          <p className="text-sm text-muted-foreground mb-1">Smart Library 360 â€º Admin â€º Staff & Users</p>
+          <p className="text-sm text-muted-foreground mb-1">Smart Library 360 › Admin › Staff & Users</p>
           <h1 className="text-text-primary text-xl font-bold tracking-tight">Staff & Users</h1>
           <p className="text-sm text-muted-foreground mt-1">Manage staff accounts and their branch assignments.</p>
         </div>
