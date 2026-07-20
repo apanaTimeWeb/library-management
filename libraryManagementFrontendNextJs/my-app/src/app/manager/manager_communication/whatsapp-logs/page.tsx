@@ -1,3 +1,4 @@
+import { Suspense } from 'react';
 import { ManagerCommunicationErrorBoundary } from '@/app/manager/manager_communication/manager_communication_components/ManagerCommunicationErrorBoundary';
 import { ManagerCommunicationWhatsappLogsClient } from '@/app/manager/manager_communication/manager_communication_components/ManagerCommunicationWhatsappLogsClient';
 import { Metadata } from 'next';
@@ -9,7 +10,9 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <ManagerCommunicationErrorBoundary>
-      <ManagerCommunicationWhatsappLogsClient />
-    </ManagerCommunicationErrorBoundary>
+      <Suspense fallback={<div className="p-8 text-center text-text-secondary">Loading...</div>}>
+        <ManagerCommunicationWhatsappLogsClient />
+      </Suspense>
+</ManagerCommunicationErrorBoundary>
   );
 }

@@ -1,3 +1,4 @@
+import { Suspense } from 'react';
 // RESPONSIBILITY: Renders the page.tsx component/hook.
 import { cookies } from 'next/headers';
 import { AdminStudentsClient } from '@/app/admin/admin_students/admin_students_components/AdminStudentsClient';
@@ -38,6 +39,10 @@ type ApiStudent = { id?: string; smartId?: string; _id?: string; fullName?: stri
 export default async function AdminStudentsPage() {
   const students = await getStudentsData();
 
-  return <AdminStudentsClient initialStudents={students} />;
+  return (
+    <Suspense fallback={<div className="p-8 text-center text-text-secondary">Loading...</div>}>
+      <AdminStudentsClient initialStudents={students} />
+    </Suspense>
+  );
 }
 
