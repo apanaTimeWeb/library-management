@@ -17,6 +17,10 @@ import { logger } from '@/lib/logger';
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001/api/v1';
 
+// Toggle this to true to completely bypass backend network requests.
+// Prevents ERR_CONNECTION_REFUSED delays when the backend is not running.
+const USE_MOCK_DATA_ONLY = true;
+
 const generateGenericRecord = (idOffset: number = 0) => ({
   id: `MOCK-${idOffset + 100}`,
   name: `Mock Record ${idOffset + 1}`,
@@ -164,6 +168,12 @@ const getMockFallback = <T = unknown>(ep: string, opts: RequestInit): T => {
 };
 
 export async function fetchApi<T = unknown>(endpoint: string, options: RequestInit = {}): Promise<T> {
+  if (USE_MOCK_DATA_ONLY) {
+    // Artificial small delay to simulate network and trigger loading states
+    await new Promise(res => setTimeout(res, 400));
+    return getMockFallback<T>(endpoint, options);
+  }
+
   const url = `${API_BASE_URL}${endpoint.startsWith('/') ? endpoint : `/${endpoint}`}`;
 
   const token = getAccessToken();
@@ -176,8 +186,6 @@ export async function fetchApi<T = unknown>(endpoint: string, options: RequestIn
     // Attach JWT token if available
     ...(token ? { Authorization: `Bearer ${token}` } : {}),
   };
-
-
 
   let response: Response;
   try {
