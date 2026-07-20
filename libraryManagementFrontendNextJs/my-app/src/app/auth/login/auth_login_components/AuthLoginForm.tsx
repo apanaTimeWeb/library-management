@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { Eye, EyeOff, BookOpen, CheckCircle, ChevronRight, Loader2 } from 'lucide-react';
 import { useAuthLogin } from '@/app/auth/login/auth_login_hooks/useAuthLogin';
 import { AUTH_ROUTES } from '@/app/auth/auth_url_config';
+import { ThemeToggle } from '@/components/ThemeToggle';
 
 export function AuthLoginForm() {
   const {
@@ -25,7 +26,10 @@ export function AuthLoginForm() {
   const isLoading = fetchState === 'loading';
 
   return (
-    <main className="flex min-h-screen bg-page text-text-primary">
+    <main className="flex min-h-screen bg-page text-text-primary relative">
+      <div className="absolute top-4 right-4 z-50">
+        <ThemeToggle />
+      </div>
       {/* Ambient glows (using tailwind arbitrary radial gradients if needed, or just plain colors) */}
       <div className="absolute top-[-10%] right-[-5%] w-2/5 h-2/5 bg-primary/20 blur-[100px] rounded-full pointer-events-none" />
       <div className="absolute bottom-[-10%] left-[-5%] w-2/5 h-2/5 bg-purple/20 blur-[100px] rounded-full pointer-events-none" />
