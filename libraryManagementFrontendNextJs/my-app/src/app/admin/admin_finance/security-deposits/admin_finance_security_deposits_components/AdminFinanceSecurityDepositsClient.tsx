@@ -159,7 +159,7 @@ export function AdminFinanceSecurityDepositsClient() {
                             className="bg-warning/10 text-warning hover:bg-warning/20 border-none font-bold text-xs h-7 px-2 gap-1"
                             onClick={() => setDeductDialog({ id: d.id, name: d.studentName })}
                           >
-                            <Minus size={12} /> âž• Add Deduction
+                            <Minus size={12} /> ➕ Add Deduction
                           </Button>
                         </div>
                       )}
@@ -240,7 +240,7 @@ export function AdminFinanceSecurityDepositsClient() {
           <Card className="w-full max-w-sm shadow-lg border-border bg-card p-6 flex flex-col gap-5" onClick={e => e.stopPropagation()}>
             <div className="flex items-center justify-between">
               <h2 className="text-lg font-bold flex items-center gap-2 text-primary tracking-tight">
-                âž• Add Deduction
+                ➕ Add Deduction
               </h2>
               <Button variant="ghost" size="icon" className="h-8 w-8 rounded-full" onClick={() => setDeductDialog(null)}>
                 <X size={16} />

@@ -180,11 +180,11 @@ export const CRM_CONSTANTS = {
     { id: "staff_003", name: "Mike Ross" }
   ],
   shifts: [
-    { id: "shift_001", name: "Morning", time: "6 AM â€“ 12 PM" },
-    { id: "shift_002", name: "Afternoon", time: "12 PM â€“ 5 PM" },
-    { id: "shift_003", name: "Evening", time: "5 PM â€“ 10 PM" },
-    { id: "shift_004", name: "Night", time: "10 PM â€“ 6 AM" },
-    { id: "shift_005", name: "Full Day", time: "6 AM â€“ 10 PM" }
+    { id: "shift_001", name: "Morning", time: "6 AM – 12 PM" },
+    { id: "shift_002", name: "Afternoon", time: "12 PM – 5 PM" },
+    { id: "shift_003", name: "Evening", time: "5 PM – 10 PM" },
+    { id: "shift_004", name: "Night", time: "10 PM – 6 AM" },
+    { id: "shift_005", name: "Full Day", time: "6 AM – 10 PM" }
   ]
 };
 import { Enquiry } from '@/app/superadmin/superadmin_crm/superadmin_crm_shared_components/SuperadminTypes';

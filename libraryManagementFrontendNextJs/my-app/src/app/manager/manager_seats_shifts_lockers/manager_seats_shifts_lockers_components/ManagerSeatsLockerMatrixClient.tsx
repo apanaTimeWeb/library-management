@@ -107,11 +107,11 @@ export function ManagerSeatsLockerMatrixClient() {
     {assignTarget && (
       <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4" onClick={() => setAssignTarget(null)}>
         <div className="bg-card w-full max-w-md md:max-w-lg rounded-xl shadow-2xl overflow-hidden border border-border flex flex-col max-h-[90vh]" onClick={e => e.stopPropagation()}>
-          <h2 className="text-xl font-bold text-text-primary p-6 pb-0">âš¡ Assign Locker {assignTarget}</h2>
+          <h2 className="text-xl font-bold text-text-primary p-6 pb-0">⚡ Assign Locker {assignTarget}</h2>
           <p className="text-text-secondary p-6 pt-2 pb-0 text-sm leading-relaxed">Locker <strong>{assignTarget}</strong> is available.</p>
           <div className="flex justify-end gap-3 p-6 border-t border-border bg-bg-elevated/30">
             <button className="flex items-center justify-center gap-2 px-4 py-2 text-text-secondary hover:text-text-primary hover:bg-bg-elevated rounded-lg transition-colors font-medium text-sm" onClick={() => setAssignTarget(null)}>Cancel</button>
-            <button className="flex items-center justify-center gap-2 px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary-hover transition-colors font-medium text-sm" onClick={() => { toast.success(`Locker ${assignTarget} assigned.`); setAssignTarget(null); }}>âš¡ Assign Student</button>
+            <button className="flex items-center justify-center gap-2 px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary-hover transition-colors font-medium text-sm" onClick={() => { toast.success(`Locker ${assignTarget} assigned.`); setAssignTarget(null); }}>⚡ Assign Student</button>
           </div>
         </div>
       </div>

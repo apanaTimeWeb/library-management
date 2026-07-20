@@ -203,7 +203,7 @@ const [searchTerm, setSearchTerm] = useUrlState('searchTerm', '' as string);
       {showModal && (
         <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4" onClick={() => setShowModal(false)}>
           <div className="bg-card w-full max-w-md md:max-w-lg rounded-xl shadow-2xl overflow-hidden border border-border flex flex-col max-h-[90vh]" onClick={e => e.stopPropagation()}>
-            <h2 className="text-xl font-bold text-text-primary p-6 pb-0">{editSeat ? 'âœï¸ Edit Seat' : 'âž• Add Seat'}</h2>
+            <h2 className="text-xl font-bold text-text-primary p-6 pb-0">{editSeat ? 'âœï¸ Edit Seat' : '➕ Add Seat'}</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 p-6 overflow-y-auto">
               <div className="flex flex-col gap-1.5">
                 <label className="text-sm font-medium text-text-secondary flex justify-between">Seat Number <span className="text-danger">*</span></label>

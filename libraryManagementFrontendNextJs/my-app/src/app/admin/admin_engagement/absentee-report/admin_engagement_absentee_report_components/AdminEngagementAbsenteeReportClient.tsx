@@ -82,7 +82,7 @@ export function AdminEngagementAbsenteeReportClient() {
           <p className="text-xs font-medium text-danger/70">Immediate action needed</p>
         </Card>
         <Card className="p-4 shadow-sm border-warning/20 bg-warning/5">
-          <p className="text-xs font-semibold text-warning uppercase tracking-wider mb-1">Moderate (3â€“6 days)</p>
+          <p className="text-xs font-semibold text-warning uppercase tracking-wider mb-1">Moderate (3–6 days)</p>
           <p className="text-3xl font-bold text-warning mb-1">{moderate.length}</p>
           <p className="text-xs font-medium text-warning/70">Monitoring required</p>
         </Card>

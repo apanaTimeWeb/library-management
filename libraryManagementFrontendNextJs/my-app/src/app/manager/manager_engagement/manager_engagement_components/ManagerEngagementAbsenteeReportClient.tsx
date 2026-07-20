@@ -81,7 +81,7 @@ const [searchTerm, setSearchTerm] = useUrlState('searchTerm', '' as string);
           <div className="text-xs font-medium text-text-secondary mt-1">Immediate action needed</div>
         </div>
         <div className="bg-card border border-border rounded-xl p-5 flex flex-col justify-center">
-          <div className="text-sm font-medium text-text-secondary mb-1.5">Moderate (3â€“6 days)</div>
+          <div className="text-sm font-medium text-text-secondary mb-1.5">Moderate (3–6 days)</div>
           <div className="text-text-primary text-xl font-bold text-warning">{moderate.length}</div>
           <div className="text-xs font-medium text-text-secondary mt-1">Monitoring required</div>
         </div>

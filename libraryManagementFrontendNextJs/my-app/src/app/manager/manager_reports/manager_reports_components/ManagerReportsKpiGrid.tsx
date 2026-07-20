@@ -11,8 +11,8 @@ export function ManagerReportsKpiGrid({ cards }: ManagerReportsKpiGridProps) {
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
       {cards.map((kpi, index) => {
         const IconComponent = iconMap[kpi.icon];
-        const isPositive = kpi.trend?.includes('â†‘');
-        const isNegative = kpi.trend?.includes('â†“');
+        const isPositive = kpi.trend?.includes('↑');
+        const isNegative = kpi.trend?.includes('↓');
         const trendClass = isPositive ? 'text-success' : isNegative ? 'text-danger' : 'text-text-secondary';
 
         return (

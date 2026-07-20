@@ -197,7 +197,7 @@ export function AdminShiftMigrationClient() {
                     <strong>{selectedShiftData?.seats}</strong> seats available in <strong>{newShift}</strong> shift. 
                     Rate: <strong>₹{newRate}/day</strong>.
                     {showCustomSlot && customStart && customEnd && (
-                      <span className="block mt-1">Custom slot: <strong>{customStart} â€“ {customEnd}</strong>.</span>
+                      <span className="block mt-1">Custom slot: <strong>{customStart} – {customEnd}</strong>.</span>
                     )}
                   </p>
                 </div>
@@ -300,7 +300,7 @@ export function AdminShiftMigrationClient() {
                   { label: 'Days Left',      value: `${daysLeft} days`           },
                   ...(newShift ? [{ label: 'New Shift', value: newShift, highlight: true }] : []),
                   ...(newSeat  ? [{ label: 'New Seat',  value: newSeat, highlight: true  }] : []),
-                  ...(showCustomSlot && customStart && customEnd ? [{ label: 'Custom Slot', value: `${customStart} â€“ ${customEnd}`, highlight: true }] : []),
+                  ...(showCustomSlot && customStart && customEnd ? [{ label: 'Custom Slot', value: `${customStart} – ${customEnd}`, highlight: true }] : []),
                 ].map(({ label, value, highlight }) => (
                   <div key={label} className={`flex flex-col gap-1 pb-3 border-b border-border last:border-0 last:pb-0 ${highlight ? 'text-primary' : ''}`}>
                     <p className={`text-xs font-bold uppercase tracking-wider ${highlight ? 'text-primary/70' : 'text-muted-foreground'}`}>{label}</p>
@@ -358,7 +358,7 @@ export function AdminShiftMigrationClient() {
             <p className="text-sm text-primary leading-relaxed bg-muted/30 p-4 rounded-md border border-border">
               Old Seat <strong>{selectedStudent.currentSeat}</strong> ({selectedStudent.currentShift}) will be freed.<br/>
               New Seat <strong>{newSeat}</strong> ({newShift}) assigned.<br/>
-              {showCustomSlot && customStart && customEnd && <span className="block mt-2">Custom slot: <strong>{customStart} â€“ {customEnd}</strong>.<br/></span>}
+              {showCustomSlot && customStart && customEnd && <span className="block mt-2">Custom slot: <strong>{customStart} – {customEnd}</strong>.<br/></span>}
               <span className="block mt-4 pt-4 border-t border-border text-base">
                 Fee adjustment: <strong className={isPaying ? 'text-danger' : 'text-success'}>{isPaying ? '+' : ''}₹{Math.abs(adjustment)}</strong>
               </span>

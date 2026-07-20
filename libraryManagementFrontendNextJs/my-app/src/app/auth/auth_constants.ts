@@ -27,9 +27,9 @@ export const AUTH_ROLES = [
 ];
 
 export const AUTH_ROLE_DEST_LABEL: Record<string, string> = {
-  superadmin: 'â†’ Setup Wizard (configure your library first)',
-  admin:      'â†’ Admin Dashboard',
-  manager:    'â†’ Students & Seat Management',
+  superadmin: '→ Setup Wizard (configure your library first)',
+  admin:      '→ Admin Dashboard',
+  manager:    '→ Students & Seat Management',
 };
 
 export const AUTH_SIGNUP_PRESETS = {

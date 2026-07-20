@@ -8,7 +8,7 @@ import type { AuthSignupPayload } from '@/app/auth/auth_types/auth_types';
 import { useAuthStore } from '@/app/auth/auth_store/auth_store';
 import toast from 'react-hot-toast';
 
-// DATA FLOW: UI Component â†’ useAuthSignup.ts â†’ useAuthStore â†’ authApi
+// DATA FLOW: UI Component → useAuthSignup.ts → useAuthStore → authApi
 export function useAuthSignup() {
   const [shows, setShows] = useState({ pw: false, confirm: false });
   

@@ -78,7 +78,7 @@ export function AuthLoginForm() {
           </div>
 
           <div className="flex gap-8">
-            {[['12k+', 'Libraries Joined'], ['4.9â˜…', 'Rating'], ['99.9%', 'Uptime']].map(([v, l]) => (
+            {[['12k+', 'Libraries Joined'], ['4.9★', 'Rating'], ['99.9%', 'Uptime']].map(([v, l]) => (
               <div key={l}>
                 <p className="text-3xl font-extrabold text-text-primary tracking-tighter">{v}</p>
                 <p className="text-xs font-medium text-text-secondary uppercase tracking-wider mt-1">{l}</p>

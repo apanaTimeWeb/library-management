@@ -7,7 +7,7 @@ import { AUTH_ROLES, AUTH_ROLE_DEST_LABEL } from '@/app/auth/auth_constants';
 import type { AuthLoginPayload } from '@/app/auth/auth_types/auth_types';
 import { useAuthStore } from '@/app/auth/auth_store/auth_store';
 
-// DATA FLOW: UI Component â†’ useAuthLogin.ts â†’ useAuthStore â†’ authApi
+// DATA FLOW: UI Component → useAuthLogin.ts → useAuthStore → authApi
 export function useAuthLogin() {
   const [showPw, setShowPw] = useState(false);
   const [selectedRole, setSelectedRole] = useState(AUTH_ROLES[0]);

@@ -23,6 +23,6 @@ export const PLANS = [
   { label: 'Annual — ₹14,000',    value: 'Annual',     amount: 14000 },
 ];
 
-export const SHIFTS = ['Morning (8 AMâ€“2 PM)', 'Evening (2 PMâ€“8 PM)', 'Full Day (8 AMâ€“8 PM)', 'Night (10 PMâ€“6 AM)'];
+export const SHIFTS = ['Morning (8 AM–2 PM)', 'Evening (2 PM–8 PM)', 'Full Day (8 AM–8 PM)', 'Night (10 PM–6 AM)'];
 export const SEATS  = ['A-12', 'A-15', 'B-03', 'B-04', 'C-01', 'C-05'];
 

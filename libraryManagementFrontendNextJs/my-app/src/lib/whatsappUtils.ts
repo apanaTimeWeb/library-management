@@ -42,34 +42,34 @@ export function formatCurrencyIN(amount: number): string {
 
 /**
  * ID Card WhatsApp message — mirrors the printed card layout exactly:
- * Header â†’ Profile â†’ Shift/Seat/Plan/Locker â†’ Validity â†’ Payment
+ * Header → Profile → Shift/Seat/Plan/Locker → Validity → Payment
  */
 export function formatIdCardMessage(data: StudentWhatsAppData): string {
   const balance = data.totalPayable - data.amountPaid;
   const branch = data.branch ?? 'Main Branch';
 
   const lines: string[] = [
-    `â•”â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•—`,
-    `â•‘  ðŸ“š SMART LIBRARY 360 â•‘`,
-    `â•‘  ðŸ› ${branch.padEnd(19)}â•‘`,
-    `â•‘  ðŸªª  S T U D E N T   I D â•‘`,
-    `â•šâ•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•`,
+    `╔â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•╗`,
+    `║  📚 SMART LIBRARY 360 ║`,
+    `║  ðŸ› ${branch.padEnd(19)}║`,
+    `║  🪪  S T U D E N T   I D ║`,
+    `╚â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•`,
     ``,
     `ðŸ‘¤ *${data.name}*`,
     `ðŸ†” Smart ID: *#${data.smartId}*`,
     `ðŸ“± ${data.phone}`,
     ``,
-    `â”„â”„â”„â”„â”„â”„â”„â”„â”„â”„â”„â”„â”„â”„â”„â”„â”„â”„â”„â”„â”„â”„â”„`,
+    `━━━━━━━━━━━━━━━━━━━━━━━`,
     `â° *Shift :* ${data.shift}`,
     `ðŸ’º *Seat  :* ${data.seat}`,
     `ðŸ“‹ *Plan  :* ${data.plan}`,
     `ðŸ” *Locker:* ${data.locker === 'None' ? 'Not Assigned' : data.locker}`,
-    `â”„â”„â”„â”„â”„â”„â”„â”„â”„â”„â”„â”„â”„â”„â”„â”„â”„â”„â”„â”„â”„â”„â”„`,
+    `━━━━━━━━━━━━━━━━━━━━━━━`,
     ``,
-    `ðŸ“… *Valid From :* ${data.joinDate}`,
-    `ðŸ“… *Expires On :* *${data.expiryDate}*`,
+    `📅 *Valid From :* ${data.joinDate}`,
+    `📅 *Expires On :* *${data.expiryDate}*`,
     ``,
-    `â”„â”„â”„â”„â”„â”„â”„â”„â”„â”„â”„â”„â”„â”„â”„â”„â”„â”„â”„â”„â”„â”„â”„`,
+    `━━━━━━━━━━━━━━━━━━━━━━━`,
     `ðŸ’° Fees     : ${formatCurrencyIN(data.totalPayable)}`,
     data.discount > 0 ? `ðŸŽ Discount : -${formatCurrencyIN(data.discount)}` : '',
     `✅ Paid     : ${formatCurrencyIN(data.amountPaid)}`,
@@ -79,10 +79,10 @@ export function formatIdCardMessage(data: StudentWhatsAppData): string {
       ? `⚠️ *Balance Due: ${formatCurrencyIN(balance)}*`
       : `✅ *Balance: CLEAR*`,
     ``,
-    `â•”â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•—`,
-    `â•‘  ✅ VERIFIED MEMBER   â•‘`,
-    `â•‘  ðŸŽ“ Happy Studying!   â•‘`,
-    `â•šâ•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•`,
+    `╔â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•╗`,
+    `║  ✅ VERIFIED MEMBER   ║`,
+    `║  🎓 Happy Studying!   ║`,
+    `╚â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•`,
   ].filter(l => l !== null && l !== undefined);
 
   return lines.filter(l => l.trim() !== '' || lines.indexOf(l) % 3 === 0).join('\n');
@@ -97,7 +97,7 @@ export function formatDuesMessage(data: StudentWhatsAppData): string {
 
   return [
     `â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”`,
-    `ðŸ“š *SMART LIBRARY 360*`,
+    `📚 *SMART LIBRARY 360*`,
     `ðŸ“ ${branch}`,
     `â”â”â”â” FEE STATEMENT â”â”â”â”`,
     ``,
@@ -117,10 +117,10 @@ export function formatDuesMessage(data: StudentWhatsAppData): string {
       ? `⚠️ *DUE AMOUNT: ${formatCurrencyIN(balance)}*\nPlease pay before *${data.expiryDate}*`
       : `✅ *All dues cleared. Thank you!*`,
     ``,
-    `ðŸ“… Valid: ${data.joinDate} â†’ ${data.expiryDate}`,
+    `📅 Valid: ${data.joinDate} → ${data.expiryDate}`,
     ``,
     `â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”`,
-    `ðŸ“š Smart Library 360`,
+    `📚 Smart Library 360`,
     `â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”`,
   ].filter(Boolean).join('\n');
 }

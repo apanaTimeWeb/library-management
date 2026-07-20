@@ -59,9 +59,9 @@ export function SuperadminSystemGapFillingClient() {
                 <SuperadminSelectTrigger id="gap-shift-select"><SuperadminSelectValue placeholder="All shifts" /></SuperadminSelectTrigger>
                 <SuperadminSelectContent>
                   <SuperadminSelectItem value="all">All Shifts</SuperadminSelectItem>
-                  <SuperadminSelectItem value="morning">Morning (6AMâ€“12PM)</SuperadminSelectItem>
-                  <SuperadminSelectItem value="afternoon">Afternoon (12PMâ€“6PM)</SuperadminSelectItem>
-                  <SuperadminSelectItem value="evening">Evening (6PMâ€“10PM)</SuperadminSelectItem>
+                  <SuperadminSelectItem value="morning">Morning (6AM–12PM)</SuperadminSelectItem>
+                  <SuperadminSelectItem value="afternoon">Afternoon (12PM–6PM)</SuperadminSelectItem>
+                  <SuperadminSelectItem value="evening">Evening (6PM–10PM)</SuperadminSelectItem>
                 </SuperadminSelectContent>
               </SuperadminSelect>
             </div>

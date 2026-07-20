@@ -238,7 +238,7 @@ export function SuperadminSetupWizardClient() {
                   <div className="flex flex-wrap gap-2">
                     {shifts.shifts.map(( s ) => (
                       <span key={s.name} className="text-xs font-medium text-text-secondary bg-card px-2 py-1 rounded border border-border">
-                        {s.name}: {s.start} â€“ {s.end}
+                        {s.name}: {s.start} – {s.end}
                       </span>
                     ))}
                   </div>

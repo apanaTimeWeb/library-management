@@ -53,7 +53,7 @@ export function AdminSystemGapFillingClient() {
                 <SelectTrigger id="gap-shift-select"><SelectValue placeholder="All shifts" /></SelectTrigger>
                 <SelectContent>
                   <SelectItem value="all">All Shifts</SelectItem>
-                  <SelectItem value="morning">Morning (6AMâ€“12PM)</SelectItem>
+                  <SelectItem value="morning">Morning (6AM–12PM)</SelectItem>
                   <SelectItem value="morning">Morning (6AM–12PM)</SelectItem>
                   <SelectItem value="afternoon">Afternoon (12PM–6PM)</SelectItem>
                   <SelectItem value="evening">Evening (6PM–10PM)</SelectItem>

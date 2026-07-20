@@ -18,7 +18,7 @@ export function ManagerSeatsSeatMatrixClient() {
 
   return (
     <div className="p-6 min-h-screen">
-      {/* Ã¢”â‚¬Ã¢”â‚¬ Filter bar Ã¢”â‚¬Ã¢”â‚¬ */}
+      {/* ── Filter bar ── */}
       <div className="flex flex-wrap justify-between items-center gap-4 mb-6">
         <div className="flex bg-card p-1 rounded-lg border border-border">
           {SHIFT_TABS.map(tab => (
@@ -42,7 +42,7 @@ export function ManagerSeatsSeatMatrixClient() {
         </label>
       </div>
 
-      {/* Ã¢”â‚¬Ã¢”â‚¬ Legend Ã¢”â‚¬Ã¢”â‚¬ */}
+      {/* ── Legend ── */}
       <div className="flex flex-wrap gap-6 mb-6 p-4 bg-card border border-border rounded-lg shadow-sm">
         {LEGEND_ITEMS.map(({ cls, label }) => (
           <div key={label} className="flex items-center gap-2">
@@ -52,7 +52,7 @@ export function ManagerSeatsSeatMatrixClient() {
         ))}
       </div>
 
-      {/* Ã¢”â‚¬Ã¢”â‚¬ Grid Ã¢”â‚¬Ã¢”â‚¬ */}
+      {/* ── Grid ── */}
       <div className="bg-card border border-border rounded-xl p-6 shadow-sm">
         <div className="flex flex-col sm:flex-row justify-between sm:items-end mb-6 border-b border-border pb-4 gap-2">
           <h2 className="text-xl font-bold text-text-primary">A-Wing Floor Plan</h2>

@@ -4,8 +4,8 @@
  *
  * Every API call:
  * 1. Attaches Authorization: Bearer <token> header
- * 2. On 401 â†’ tries to refresh token once, then redirects to login
- * 3. On 403 â†’ redirects to /403 page
+ * 2. On 401 → tries to refresh token once, then redirects to login
+ * 3. On 403 → redirects to /403 page
  *
  * NOTE: Cache-Control is a RESPONSE header — do NOT send it as a REQUEST header.
  * Sending it as a request header causes CORS preflight to fail.
@@ -198,7 +198,7 @@ export async function fetchApi<T = unknown>(endpoint: string, options: RequestIn
     return getMockFallback<T>(endpoint, options);
   }
 
-  // ── Handle 401 — Token expired â†’ try refresh ─────────────────────────────
+  // ── Handle 401 — Token expired → try refresh ─────────────────────────────
   if (response.status === 401) {
     const newToken = await refreshAccessToken();
     if (newToken) {
