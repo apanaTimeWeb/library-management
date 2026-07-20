@@ -14,7 +14,7 @@ import { ScanResult, ScanState } from "./AdminEngagementQrScannerClient_types";
 const MOCK_STUDENT: ScanResult = {
   name: 'Rahul Sharma', initials: 'RS',
   smartId: 'SL-001', shift: 'Morning',
-  validTill: '30 Jun 2026', plan: 'Premium â€“ 6 Month',
+  validTill: '30 Jun 2026', plan: 'Premium – 6 Month',
 };
 
 export function AdminEngagementQrScannerClient() {

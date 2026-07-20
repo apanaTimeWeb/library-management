@@ -34,7 +34,7 @@ export function AdminSystemDataExportClient() {
 
       {/* Quick Exports */}
       <div className="mb-8">
-        <h2 className="text-base font-semibold text-text-primary mb-3">âš¡ Quick Exports</h2>
+        <h2 className="text-base font-semibold text-text-primary mb-3">⚡ Quick Exports</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {ADMIN_SYSTEM_QUICK_EXPORTS.map((qe) => (
             <Card key={qe.id} className="hover:border-primary/40 transition-colors cursor-pointer group">
@@ -57,7 +57,7 @@ export function AdminSystemDataExportClient() {
                         ? <><Loader2 size={11} className="animate-spin" /> Exporting...</>
                         : exported.has(qe.id)
                         ? <><CheckCircle size={11} /> Downloaded!</>
-                        : 'â†“ Export'}
+                        : '↓ Export'}
                     </button>
                   </div>
                 </div>

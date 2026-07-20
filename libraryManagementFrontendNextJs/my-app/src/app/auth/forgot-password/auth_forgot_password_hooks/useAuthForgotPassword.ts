@@ -6,7 +6,7 @@ import { authForgotPasswordSchema } from '@/app/auth/auth_utils/auth_validation'
 import type { AuthForgotPasswordPayload } from '@/app/auth/auth_types/auth_types';
 import { useAuthStore } from '@/app/auth/auth_store/auth_store';
 
-// DATA FLOW: UI Component â†’ useAuthForgotPassword.ts â†’ useAuthStore â†’ authApi
+// DATA FLOW: UI Component → useAuthForgotPassword.ts → useAuthStore → authApi
 export function useAuthForgotPassword() {
   const [sent, setSent] = useState(false);
   const [sentTo, setSentTo] = useState('');

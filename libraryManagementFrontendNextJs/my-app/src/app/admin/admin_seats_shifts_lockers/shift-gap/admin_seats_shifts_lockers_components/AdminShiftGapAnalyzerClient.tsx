@@ -97,7 +97,7 @@ export function AdminShiftGapAnalyzerClient() {
                     <div
                       key={i}
                       className="absolute top-0 bottom-0 bg-warning/20 border-x border-warning border-dashed flex items-center justify-center overflow-hidden left-[length:var(--left)] w-[length:var(--w)]" style={{ '--left': `${pct(g.startH)}%`, '--w': `${pct(g.endH) - pct(g.startH)}%` } as React.CSSProperties}
-                      title={`Gap: ${fmtH(g.startH)} â€“ ${fmtH(g.endH)}`}
+                      title={`Gap: ${fmtH(g.startH)} – ${fmtH(g.endH)}`}
                     >
                       <span className="text-xs font-black text-warning uppercase tracking-wider truncate px-1">
                         {pct(g.endH) - pct(g.startH) > 5 ? 'GAP' : ''}
@@ -127,7 +127,7 @@ export function AdminShiftGapAnalyzerClient() {
                         </Badge>
                         <div>
                           <p className="text-sm font-bold text-primary mb-1">
-                            {fmtH(g.startH)} â€“ {fmtH(g.endH)} <span className="text-muted-foreground font-medium mx-1">·</span> {g.seats} seats free
+                            {fmtH(g.startH)} – {fmtH(g.endH)} <span className="text-muted-foreground font-medium mx-1">·</span> {g.seats} seats free
                           </p>
                           <p className="text-xs font-medium text-danger">
                             Est. revenue loss: ₹{g.revLoss}/day

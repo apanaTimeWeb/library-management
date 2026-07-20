@@ -97,7 +97,7 @@ export function AuthForgotPasswordForm() {
                 id="enter-otp-btn"
                 className="w-full py-2.5 bg-primary hover:bg-primary-hover text-white font-semibold rounded-lg shadow-sm transition-all flex justify-center items-center gap-2 mt-6 inline-flex"
               >
-                Enter OTP â†’
+                Enter OTP →
               </Link>
             </div>
           )}

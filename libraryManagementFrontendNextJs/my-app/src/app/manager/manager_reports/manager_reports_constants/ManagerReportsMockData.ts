@@ -3,8 +3,8 @@ import { ManagerReportsData } from '@/app/manager/manager_reports/manager_report
 
 export const MOCK_MANAGER_REPORTS_DATA: ManagerReportsData = {
   kpiCards: [
-    { title: 'Total Students', value: '1,245', icon: 'Users', iconClass: 'text-primary bg-primary-subtle', trend: 'â†‘ 12% vs last month' },
-    { title: 'Today\'s Attendance', value: '89%', icon: 'CalendarCheck', iconClass: 'text-success bg-success-bg', trend: 'â†‘ 2% vs yesterday' },
+    { title: 'Total Students', value: '1,245', icon: 'Users', iconClass: 'text-primary bg-primary-subtle', trend: '↑ 12% vs last month' },
+    { title: 'Today\'s Attendance', value: '89%', icon: 'CalendarCheck', iconClass: 'text-success bg-success-bg', trend: '↑ 2% vs yesterday' },
     { title: 'New Admissions', value: '42', icon: 'UserPlus', iconClass: 'text-info bg-info-subtle' },
     { title: 'Active Complaints', value: '8', icon: 'Phone', iconClass: 'text-danger bg-danger-subtle' },
   ],

@@ -48,7 +48,7 @@ export function SuperadminExpensesAddDialog({ categories, onClose, onSave }: Pro
       <div className="absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity" onClick={onClose} />
       <div className="relative w-full max-w-md bg-card rounded-lg shadow-2xl border border-border overflow-hidden animate-in fade-in zoom-in-95 duration-200">
         <div className="p-5 border-b border-border bg-page/50 flex items-center justify-between">
-          <h2 className="text-lg font-bold text-text-primary">âž• Add Expense</h2>
+          <h2 className="text-lg font-bold text-text-primary">➕ Add Expense</h2>
           <button 
             className="w-8 h-8 flex items-center justify-center rounded-md text-text-secondary hover:text-danger hover:bg-danger/10 transition-colors cursor-pointer"
             onClick={onClose}

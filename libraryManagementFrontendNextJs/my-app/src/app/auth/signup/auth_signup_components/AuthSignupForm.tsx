@@ -156,7 +156,7 @@ export function AuthSignupForm() {
               )}
 
               <button id="signup-submit-btn" type="submit" disabled={isLoading} className="w-full py-2.5 bg-primary hover:bg-primary-hover text-white font-semibold rounded-lg shadow-sm transition-all flex justify-center items-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed mt-2">
-                {isLoading ? <><Loader2 size={16} className="animate-spin" /> Creating account...</> : 'Create Account â†’'}
+                {isLoading ? <><Loader2 size={16} className="animate-spin" /> Creating account...</> : 'Create Account →'}
               </button>
             </form>
 

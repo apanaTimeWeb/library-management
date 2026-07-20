@@ -24,8 +24,8 @@ import { jwtVerify } from 'jose';
  * │ /engagement/**  │ manager, admin, superadmin                 │
  * └─────────────────┴────────────────────────────────────────────┘
  *
- * If token is missing â†’ redirect to /auth/login
- * If role is wrong â†’ redirect to /403
+ * If token is missing → redirect to /auth/login
+ * If role is wrong → redirect to /403
  * Protected pages also get Cache-Control: no-store headers
  */
 

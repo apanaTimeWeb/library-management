@@ -162,7 +162,7 @@ export function AdminEngagementAttendanceClient() {
                       }`}
                     >
                       {st === "present" ? <><CheckCircle size={14}/> Present</>
-                       : st === "absent" ? "âœ• Absent"
+                       : st === "absent" ? "✕ Absent"
                        : <><Clock size={14}/> Late</>}
                     </Button>
                   );})}

@@ -135,7 +135,7 @@ export function SuperadminAttendanceClient() {
                             : 'text-text-secondary hover:text-text-primary hover:bg-white/50'
                         }`}>
                         {st === 'present' ? <><CheckCircle size={14}/> Present</>
-                         : st === 'absent' ? 'âœ• Absent'
+                         : st === 'absent' ? '✕ Absent'
                          : <><Clock size={14}/> Late</>}
                       </button>
                     ))}
