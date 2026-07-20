@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
+import { logout } from '@/lib/auth';
 import {
   LayoutDashboard, Wand2, Building2, CreditCard, Receipt,
   HeadphonesIcon, ScrollText, Activity, Settings, BarChart2, LogOut,
@@ -88,7 +89,7 @@ export default function Sidebar({ open }: SidebarProps) {
             <p className="text-sm text-text-secondary leading-relaxed mb-4">Are you sure you want to log out of the Super Admin panel?</p>
             <div className="flex gap-3 mt-4 w-full">
               <button className="px-3 py-1.5 text-sm rounded-lg font-medium transition-colors border border-border text-text-secondary bg-transparent hover:bg-card hover:text-text-primary flex-1" onClick={() => setShowLogout(false)}>Cancel</button>
-              <button className="px-3 py-1.5 text-sm rounded-lg font-medium transition-colors border border-border text-danger bg-transparent hover:bg-danger hover:text-white flex-1" onClick={() => router.push(SUPERADMIN_ROUTES.AUTH_LOGIN)}>Log out</button>
+              <button className="px-3 py-1.5 text-sm rounded-lg font-medium transition-colors border border-border text-danger bg-transparent hover:bg-danger hover:text-white flex-1" onClick={logout}>Log out</button>
             </div>
           </div>
         </div>

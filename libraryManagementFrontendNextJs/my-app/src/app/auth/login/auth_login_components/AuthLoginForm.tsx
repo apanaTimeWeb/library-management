@@ -3,7 +3,7 @@
 // DATA FLOW: UI Component -> useAuthLogin -> useAuthStore (`Rule 39`).
 
 import Link from 'next/link';
-import { Eye, EyeOff, BookOpen, CheckCircle, ChevronRight, Loader2 } from 'lucide-react';
+import { Eye, EyeOff, BookOpen, CheckCircle, ChevronRight, Loader2, AlertCircle } from 'lucide-react';
 import { useAuthLogin } from '@/app/auth/login/auth_login_hooks/useAuthLogin';
 import { AUTH_ROUTES } from '@/app/auth/auth_url_config';
 import { ThemeToggle } from '@/components/ThemeToggle';
@@ -69,7 +69,7 @@ export function AuthLoginForm() {
             <p className="text-xs font-semibold text-text-secondary uppercase tracking-widest mb-3">Portal Access</p>
             {roles.map(r => (
               <div key={r.id} className="flex items-center gap-2.5">
-                <span className="text-base w-5 text-center shrink-0">{r.icon}</span>
+                <span className="text-base w-5 flex justify-center shrink-0"><r.icon size={16} /></span>
                 <span className={`text-xs font-semibold w-20 shrink-0 ${r.id === 'superadmin' ? 'text-primary' : r.id === 'manager' ? 'text-warning' : 'text-success'}`}>{r.label}</span>
                 <ChevronRight size={12} className="text-text-secondary shrink-0" />
                 <span className="text-xs text-text-secondary">{roleDestLabel[r.id]}</span>
@@ -184,7 +184,7 @@ export function AuthLoginForm() {
               {/* Credential error */}
               {errorMessage && (
                 <div className="p-3 bg-danger-bg border border-danger/20 rounded-lg text-danger text-sm font-medium flex items-start gap-2">
-                  <span>âŒ</span> <span>{errorMessage}</span>
+                  <AlertCircle size={18} className="shrink-0 mt-0.5" /> <span>{errorMessage}</span>
                 </div>
               )}
 

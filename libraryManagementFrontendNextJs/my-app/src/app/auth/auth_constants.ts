@@ -1,10 +1,12 @@
-﻿// RESPONSIBILITY: Renders or handles logic for auth_constants.ts.
+import { Crown, Shield, ClipboardList } from 'lucide-react';
+
+// RESPONSIBILITY: Renders or handles logic for auth_constants.ts.
 export const AUTH_ROLES = [
   {
     id: "superadmin",
     label: "Super Admin",
     description: "First-time setup — configure library, shifts & plans",
-    icon: "ðŸ‘‘",
+    icon: Crown,
     redirectTo: "/superadmin/superadmin_dashboard",
     setupComplete: true
   },
@@ -12,7 +14,7 @@ export const AUTH_ROLES = [
     id: "admin",
     label: "Admin",
     description: "Branch management — students, fees, reports",
-    icon: "ðŸ›¡ï¸",
+    icon: Shield,
     redirectTo: "/admin/admin_dashboard",
     setupComplete: true
   },
@@ -20,7 +22,7 @@ export const AUTH_ROLES = [
     id: "manager",
     label: "Manager",
     description: "Daily ops — admissions, seat matrix, renewals",
-    icon: "ðŸ“‹",
+    icon: ClipboardList,
     redirectTo: "/manager/manager_seats_shifts_lockers/seat-matrix",
     setupComplete: true
   }

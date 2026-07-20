@@ -89,26 +89,28 @@ export default function AdminSidebar({ collapsed, onToggle, mobileOpen, onMobile
           })}
         </nav>
 
-        {(!collapsed || mobileOpen) && (
-          <div className="p-4 border-t border-border flex items-center gap-3 bg-muted/10 shrink-0">
-            <div className="w-8 h-8 rounded-full bg-primary/20 text-primary flex items-center justify-center text-xs font-bold shrink-0">
-              LA
-            </div>
-            <div className="flex-1 min-w-0">
-              <p className="text-sm font-semibold text-foreground truncate leading-tight">Library Admin</p>
-              <p className="text-xs text-muted-foreground truncate leading-tight mt-0.5">admin@library.com</p>
-            </div>
-            <Button
-              variant="ghost"
-              size="icon"
-              className="h-8 w-8 text-muted-foreground hover:text-danger hover:bg-danger/10 ml-auto shrink-0"
-              aria-label="Log out"
-              onClick={() => setShowLogout(true)}
-            >
-              <LogOut size={16} />
-            </Button>
-          </div>
-        )}
+        <div className={`p-4 border-t border-border flex items-center bg-muted/10 shrink-0 ${collapsed && !mobileOpen ? 'justify-center' : 'gap-3'}`}>
+          {(!collapsed || mobileOpen) && (
+            <>
+              <div className="w-8 h-8 rounded-full bg-primary/20 text-primary flex items-center justify-center text-xs font-bold shrink-0">
+                LA
+              </div>
+              <div className="flex-1 min-w-0">
+                <p className="text-sm font-semibold text-foreground truncate leading-tight">Library Admin</p>
+                <p className="text-xs text-muted-foreground truncate leading-tight mt-0.5">admin@library.com</p>
+              </div>
+            </>
+          )}
+          <Button
+            variant="ghost"
+            size="icon"
+            className={`h-8 w-8 text-muted-foreground hover:text-danger hover:bg-danger/10 shrink-0 ${!collapsed || mobileOpen ? 'ml-auto' : ''}`}
+            aria-label="Log out"
+            onClick={() => setShowLogout(true)}
+          >
+            <LogOut size={16} />
+          </Button>
+        </div>
       </aside>
 
       <Dialog open={showLogout} onOpenChange={setShowLogout}>

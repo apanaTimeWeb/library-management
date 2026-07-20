@@ -15,6 +15,7 @@ import {
   LogOut, Menu, X, LucideIcon
 } from 'lucide-react';
 
+import { logout } from '@/lib/auth';
 import { MANAGER_ROUTES } from '@/app/manager/manager_url_config';
 import { ManagerSidebarProps, ManagerNavItem } from '@/app/manager/manager_types/manager_types';
 
@@ -142,18 +143,20 @@ export default function ManagerSidebar({ collapsed, onToggle, mobileOpen, onMobi
           })}
         </nav>
 
-        {(!collapsed || mobileOpen) && (
-          <div className="p-4 border-t border-border flex items-center gap-3 bg-page/50">
-            <div className="w-9 h-9 rounded-full bg-primary/10 text-primary flex items-center justify-center text-sm font-bold shrink-0">MG</div>
-            <div className="flex-1 min-w-0">
-              <p className="text-sm font-semibold text-text-primary truncate">Manager</p>
-              <p className="text-xs text-text-secondary truncate">manager@library.com</p>
-            </div>
-            <button className="p-2 text-danger hover:bg-danger/10 rounded-lg transition-colors" aria-label="Log out" onClick={() => setShowLogout(true)}>
-              <LogOut size={14} />
-            </button>
-          </div>
-        )}
+        <div className={`p-4 border-t border-border flex items-center bg-page/50 shrink-0 ${collapsed && !mobileOpen ? 'justify-center' : 'gap-3'}`}>
+          {(!collapsed || mobileOpen) && (
+            <>
+              <div className="w-9 h-9 rounded-full bg-primary/10 text-primary flex items-center justify-center text-sm font-bold shrink-0">MG</div>
+              <div className="flex-1 min-w-0">
+                <p className="text-sm font-semibold text-text-primary truncate">Manager</p>
+                <p className="text-xs text-text-secondary truncate">manager@library.com</p>
+              </div>
+            </>
+          )}
+          <button className={`p-2 text-danger hover:bg-danger/10 rounded-lg transition-colors shrink-0 ${!collapsed || mobileOpen ? 'ml-auto' : ''}`} aria-label="Log out" onClick={() => setShowLogout(true)}>
+            <LogOut size={14} />
+          </button>
+        </div>
       </aside>
 
       {showLogout && (
@@ -163,7 +166,7 @@ export default function ManagerSidebar({ collapsed, onToggle, mobileOpen, onMobi
             <p className="text-sm text-text-secondary mb-6">Are you sure you want to log out?</p>
             <div className="flex justify-end gap-3 mt-6">
               <button className="bg-transparent border border-border text-text-primary rounded-lg px-4 py-2 text-sm font-medium hover:bg-page transition-colors" onClick={() => setShowLogout(false)}>Cancel</button>
-              <button className="bg-danger text-white rounded-lg px-4 py-2 text-sm font-medium hover:opacity-90 transition-opacity" onClick={() => router.push('/auth/login')}>Log out</button>
+              <button className="bg-danger text-white rounded-lg px-4 py-2 text-sm font-medium hover:opacity-90 transition-opacity" onClick={logout}>Log out</button>
             </div>
           </div>
         </div>

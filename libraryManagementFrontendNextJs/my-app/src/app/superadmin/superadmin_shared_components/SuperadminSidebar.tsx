@@ -12,6 +12,7 @@ import {
   Activity, LifeBuoy, Settings
 } from 'lucide-react';
 import { SuperadminButton } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminButton';
+import { logout } from '@/lib/auth';
 import {
   SuperadminDialog,
   SuperadminDialogContent,
@@ -104,24 +105,26 @@ export default function SuperadminSidebar({ collapsed, onToggle, mobileOpen, onM
           })}
         </nav>
 
-        {(!collapsed || mobileOpen) && (
-          <div className="p-4 border-t border-border flex items-center gap-3 bg-page/50">
-            <div className="w-9 h-9 rounded-full bg-primary/10 text-primary flex items-center justify-center text-sm font-bold shrink-0">SA</div>
-            <div className="flex-1 min-w-0">
-              <p className="text-sm font-semibold text-text-primary truncate">Super Admin</p>
-              <p className="text-xs text-text-secondary truncate">superadmin@nexus360.com</p>
-            </div>
-            <SuperadminButton
-              variant="ghost"
-              size="icon"
-              className="h-8 w-8 text-text-secondary hover:text-danger hover:bg-danger/10 ml-auto transition-colors"
-              aria-label="Log out"
-              onClick={() => setShowLogout(true)}
-            >
-              <LogOut size={14} />
-            </SuperadminButton>
-          </div>
-        )}
+        <div className={`p-4 border-t border-border flex items-center bg-page/50 shrink-0 ${collapsed && !mobileOpen ? 'justify-center' : 'gap-3'}`}>
+          {(!collapsed || mobileOpen) && (
+            <>
+              <div className="w-9 h-9 rounded-full bg-primary/10 text-primary flex items-center justify-center text-sm font-bold shrink-0">SA</div>
+              <div className="flex-1 min-w-0">
+                <p className="text-sm font-semibold text-text-primary truncate">Super Admin</p>
+                <p className="text-xs text-text-secondary truncate">superadmin@nexus360.com</p>
+              </div>
+            </>
+          )}
+          <SuperadminButton
+            variant="ghost"
+            size="icon"
+            className={`h-8 w-8 text-text-secondary hover:text-danger hover:bg-danger/10 shrink-0 transition-colors ${!collapsed || mobileOpen ? 'ml-auto' : ''}`}
+            aria-label="Log out"
+            onClick={() => setShowLogout(true)}
+          >
+            <LogOut size={14} />
+          </SuperadminButton>
+        </div>
       </aside>
 
       <SuperadminDialog open={showLogout} onOpenChange={setShowLogout}>
@@ -134,7 +137,7 @@ export default function SuperadminSidebar({ collapsed, onToggle, mobileOpen, onM
           </SuperadminDialogHeader>
           <div className="flex justify-end gap-3 mt-4">
             <SuperadminButton className="bg-transparent border border-border text-text-primary hover:bg-page" onClick={() => setShowLogout(false)}>Cancel</SuperadminButton>
-            <SuperadminButton className="bg-danger text-white hover:opacity-90" onClick={() => router.push(SUPERADMIN_ROUTES.AUTH_LOGIN)}>Log out</SuperadminButton>
+            <SuperadminButton className="bg-danger text-white hover:opacity-90" onClick={logout}>Log out</SuperadminButton>
           </div>
         </SuperadminDialogContent>
       </SuperadminDialog>
