@@ -57,7 +57,7 @@ export function AuthResetPasswordForm() {
           {!done ? (
             <>
               <div className="mb-7">
-                <h1 className="text-text-primary text-xl font-bold text-text-primary">Reset Password ðŸ”‘</h1>
+                <h1 className="text-text-primary text-xl font-bold text-text-primary">Reset Password</h1>
                 <p className="text-sm text-text-secondary mt-1">
                   Enter the OTP sent to your phone and choose a new password.
                 </p>

@@ -3,7 +3,7 @@
 // DATA FLOW: UI Component -> useAuthForgotPassword -> useAuthStore (`Rule 39`).
 
 import Link from 'next/link';
-import { ArrowLeft, BookOpen, Send, Loader2 } from 'lucide-react';
+import { ArrowLeft, BookOpen, Send, Loader2, AlertCircle } from 'lucide-react';
 import { useAuthForgotPassword } from '@/app/auth/forgot-password/auth_forgot_password_hooks/useAuthForgotPassword';
 import { AUTH_ROUTES } from '@/app/auth/auth_url_config';
 
@@ -42,13 +42,13 @@ export function AuthForgotPasswordForm() {
           {!sent ? (
             <>
               <div className="mb-7">
-                <h1 className="text-text-primary text-xl font-bold text-text-primary">Forgot Password? ðŸ”</h1>
+                <h1 className="text-text-primary text-xl font-bold text-text-primary">Forgot Password?</h1>
                 <p className="text-sm text-text-secondary mt-2 leading-relaxed">
                   Enter your registered phone number. We&apos;ll send an OTP to reset your password.
                 </p>
                 {errorMessage && (
                   <div className="p-3 bg-danger-bg border border-danger/20 rounded-lg text-danger text-sm font-medium flex items-start gap-2 mt-3">
-                    <span>âŒ</span> <span>{errorMessage}</span>
+                    <AlertCircle size={18} className="shrink-0 mt-0.5" /> <span>{errorMessage}</span>
                   </div>
                 )}
               </div>
