@@ -5,7 +5,7 @@ import { MessageCircle, Plus, Edit } from 'lucide-react';
 import { useManagerCommunicationStore } from '@/app/manager/manager_communication/manager_communication_store/manager_communication_store';
 import { COMMUNICATION_STATUS_COLORS } from '@/app/manager/manager_communication/manager_communication_constants/manager_communication_constants';
 
-export function ManagerCommunicationWhatsAppTemplatesClient() {
+export function ManagerCommunicationWhatsappTemplatesClient() {
   const { whatsappTemplates, status, error, fetchWhatsAppTemplates } = useManagerCommunicationStore();
 
   useEffect(() => {

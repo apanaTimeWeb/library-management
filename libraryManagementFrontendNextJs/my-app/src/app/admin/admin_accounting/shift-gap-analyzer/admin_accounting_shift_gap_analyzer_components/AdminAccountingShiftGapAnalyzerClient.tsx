@@ -1,7 +1,8 @@
+'use client';
 import { useUrlState } from '@/app/admin/admin_shared_hooks/useUrlState';
 import { AdminSearchableDropdown } from '@/app/admin/admin_shared_components/AdminSearchableDropdown';
 
-'use client';
+
 // RESPONSIBILITY: Client view rendering shift gap analysis (`Rule 1`, `Rule 36`, `Rule 57`).
 // DATA FLOW: Static Mock -> AdminAccountingShiftGapAnalyzerClient (`Rule 39`).
 

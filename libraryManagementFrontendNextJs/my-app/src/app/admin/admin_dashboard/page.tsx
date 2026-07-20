@@ -1,3 +1,4 @@
+import { Suspense } from 'react';
 // RESPONSIBILITY: Renders the Admin Dashboard, fetching data server-side and delegating UI to the Client Component.
 // DATA FLOW: Server Fetch -> AdminDashboardPage -> AdminDashboardClient
 
@@ -27,6 +28,10 @@ export default async function AdminDashboardPage() {
     );
   }
 
-  return <AdminDashboardClient initialData={rawData as never} />;
+  return (
+    <Suspense fallback={<div className="p-8 text-center text-text-secondary">Loading...</div>}>
+      <AdminDashboardClient initialData={rawData as never} />
+    </Suspense>
+  );
 }
 

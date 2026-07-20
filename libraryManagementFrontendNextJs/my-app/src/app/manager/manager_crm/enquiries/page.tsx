@@ -1,3 +1,4 @@
+import { Suspense } from 'react';
 import { ManagerCrmEnquiriesClient } from '@/app/manager/manager_crm/manager_crm_components/ManagerCrmEnquiriesClient';
 import { ManagerCrmErrorBoundary } from '@/app/manager/manager_crm/manager_crm_components/ManagerCrmErrorBoundary';
 
@@ -6,7 +7,9 @@ import { ManagerCrmErrorBoundary } from '@/app/manager/manager_crm/manager_crm_c
 export default function EnquiriesPage() {
   return (
     <ManagerCrmErrorBoundary>
-      <ManagerCrmEnquiriesClient />
-    </ManagerCrmErrorBoundary>
+      <Suspense fallback={<div className="p-8 text-center text-text-secondary">Loading...</div>}>
+        <ManagerCrmEnquiriesClient />
+      </Suspense>
+</ManagerCrmErrorBoundary>
   );
 }

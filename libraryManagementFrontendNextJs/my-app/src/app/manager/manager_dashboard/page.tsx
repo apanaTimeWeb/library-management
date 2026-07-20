@@ -1,3 +1,4 @@
+import { Suspense } from 'react';
 import { ManagerDashboardClient } from '@/app/manager/manager_dashboard/manager_dashboard_components/ManagerDashboardClient';
 import { ManagerDashboardErrorBoundary } from '@/app/manager/manager_dashboard/manager_dashboard_components/ManagerDashboardErrorBoundary';
 
@@ -6,7 +7,9 @@ import { ManagerDashboardErrorBoundary } from '@/app/manager/manager_dashboard/m
 export default function ManagerDashboardPage() {
   return (
     <ManagerDashboardErrorBoundary>
-      <ManagerDashboardClient />
-    </ManagerDashboardErrorBoundary>
+      <Suspense fallback={<div className="p-8 text-center text-text-secondary">Loading...</div>}>
+        <ManagerDashboardClient />
+      </Suspense>
+</ManagerDashboardErrorBoundary>
   );
 }

@@ -1,3 +1,4 @@
+import { Suspense } from 'react';
 import { ManagerStudentsClient } from '@/app/manager/manager_students/manager_students_components/ManagerStudentsClient';
 import { ManagerStudentsErrorBoundary } from '@/app/manager/manager_students/manager_students_components/ManagerStudentsErrorBoundary';
 
@@ -6,7 +7,9 @@ import { ManagerStudentsErrorBoundary } from '@/app/manager/manager_students/man
 export default function StudentsPage() {
   return (
     <ManagerStudentsErrorBoundary>
-      <ManagerStudentsClient />
-    </ManagerStudentsErrorBoundary>
+      <Suspense fallback={<div className="p-8 text-center text-text-secondary">Loading...</div>}>
+        <ManagerStudentsClient />
+      </Suspense>
+</ManagerStudentsErrorBoundary>
   );
 }

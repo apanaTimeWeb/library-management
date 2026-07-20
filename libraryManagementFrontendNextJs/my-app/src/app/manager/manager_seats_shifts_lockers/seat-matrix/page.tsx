@@ -3,10 +3,14 @@ import { ManagerSeatsErrorBoundary } from '@/app/manager/manager_seats_shifts_lo
 
 // RESPONSIBILITY: Strict Server Component for Seat Matrix.
 
+import { Suspense } from 'react';
+
 export default function SeatMatrixPage() {
   return (
     <ManagerSeatsErrorBoundary>
-      <ManagerSeatsSeatMatrixClient />
+      <Suspense fallback={<div className="p-8 text-center text-text-secondary">Loading...</div>}>
+        <ManagerSeatsSeatMatrixClient />
+      </Suspense>
     </ManagerSeatsErrorBoundary>
   );
 }

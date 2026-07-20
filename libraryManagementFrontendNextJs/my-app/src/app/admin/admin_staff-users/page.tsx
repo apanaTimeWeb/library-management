@@ -1,3 +1,4 @@
+import { Suspense } from 'react';
 // RESPONSIBILITY: Renders the page.tsx component/hook.
 import { cookies } from 'next/headers';
 import { AdminStaffUsersClient } from '@/app/admin/admin_staff-users/admin_staff-users_components/AdminStaffUsersClient';
@@ -33,6 +34,10 @@ async function getStaffData(): Promise<StaffMember[]> {
 export default async function AdminStaffUsersPage() {
   const staff = await getStaffData();
 
-  return <AdminStaffUsersClient initialStaff={staff} />;
+  return (
+    <Suspense fallback={<div className="p-8 text-center text-text-secondary">Loading...</div>}>
+      <AdminStaffUsersClient initialStaff={staff} />
+    </Suspense>
+  );
 }
 
