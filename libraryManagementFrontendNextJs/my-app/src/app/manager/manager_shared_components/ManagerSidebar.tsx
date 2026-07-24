@@ -29,7 +29,7 @@ const NAV: ManagerNavItem[] = [
   { href: MANAGER_ROUTES.STUDENTS_NEW,        icon: UserPlus,   label: 'New Admission'    },
   { href: MANAGER_ROUTES.STUDENTS_GROUP,      icon: Users2,     label: 'Group Admission'  },
   { href: MANAGER_ROUTES.STUDENTS_ALUMNI,     icon: UserCheck,  label: 'Alumni'           },
-  { href: MANAGER_ROUTES.DOCUMENTS,           icon: FolderOpen, label: 'Document Vault'   },
+
   { href: MANAGER_ROUTES.STUDENTS_REFERRALS,  icon: Award,      label: 'Referral Bonus'   },
   { href: MANAGER_ROUTES.STUDENTS_ID_CARD,    icon: CreditCard, label: 'ID Card Generator'},
   { group: 'Seats & Shifts' },
@@ -39,7 +39,7 @@ const NAV: ManagerNavItem[] = [
   { href: MANAGER_ROUTES.SEATS_SHIFTS_LOCKERS + '/shift-migration',  icon: ArrowLeftRight, label: 'Shift Migration' },
   { href: MANAGER_ROUTES.SEATS_SHIFTS_LOCKERS + '/allocations',      icon: ClipboardList,  label: 'Allocations'     },
   { href: MANAGER_ROUTES.SEATS_SHIFTS_LOCKERS + '/seat-history',     icon: History,        label: 'Seat History'    },
-  { href: MANAGER_ROUTES.SEATS_SHIFTS_LOCKERS + '/lockers',          icon: Lock,           label: 'Lockers'         },
+
   { href: MANAGER_ROUTES.SEATS_SHIFTS_LOCKERS + '/locker-matrix',    icon: LayoutGrid,     label: 'Locker Matrix'   },
   { group: 'Finance' },
   { href: MANAGER_ROUTES.FINANCE_COLLECT_FEE,       icon: IndianRupee, label: 'Collect Fee'       },

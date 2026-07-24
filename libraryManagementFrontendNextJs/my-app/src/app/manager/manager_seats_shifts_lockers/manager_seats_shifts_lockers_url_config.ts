@@ -2,7 +2,7 @@
 export const MANAGER_SEATS_ROUTES = {
   ALLOCATIONS: '/manager/manager_seats_shifts_lockers/allocations',
   LOCKER_MATRIX: '/manager/manager_seats_shifts_lockers/locker-matrix',
-  LOCKERS: '/manager/manager_seats_shifts_lockers/lockers',
+
   SEAT_HISTORY: '/manager/manager_seats_shifts_lockers/seat-history',
   SEAT_MAINTENANCE: '/manager/manager_seats_shifts_lockers/seat-maintenance',
   SEAT_MANAGEMENT: '/manager/manager_seats_shifts_lockers/seat-management',

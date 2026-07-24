@@ -14,8 +14,7 @@ export const MANAGER_ROUTES = {
   STUDENTS_REFERRALS: '/manager/manager_students/referrals',
   STUDENTS_ID_CARD: '/manager/manager_students/id-card',
   
-  // Documents
-  DOCUMENTS: '/manager/manager_documents',
+
 
   // Finance (Blocked)
   FINANCE_COLLECT_FEE: '/manager/manager_finance/collect-fee',
