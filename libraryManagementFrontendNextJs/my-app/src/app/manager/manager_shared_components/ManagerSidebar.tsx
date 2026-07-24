@@ -33,8 +33,6 @@ const NAV: ManagerNavItem[] = [
   { href: MANAGER_ROUTES.STUDENTS_ID_CARD,    icon: CreditCard, label: 'ID Card Generator'},
   { group: 'Seats & Shifts' },
   { href: MANAGER_ROUTES.SEATS_SHIFTS_LOCKERS + '/seat-matrix',      icon: LayoutGrid,     label: 'Seat Matrix'     },
-  { href: MANAGER_ROUTES.SEATS_SHIFTS_LOCKERS + '/seat-management',  icon: Armchair,       label: 'Seats'           },
-  { href: MANAGER_ROUTES.SEATS_SHIFTS_LOCKERS + '/shift-management', icon: RefreshCw,      label: 'Shifts'          },
   { href: MANAGER_ROUTES.SEATS_SHIFTS_LOCKERS + '/shift-migration',  icon: ArrowLeftRight, label: 'Shift Migration' },
   { href: MANAGER_ROUTES.SEATS_SHIFTS_LOCKERS + '/allocations',      icon: ClipboardList,  label: 'Allocations'     },
   { href: MANAGER_ROUTES.SEATS_SHIFTS_LOCKERS + '/seat-history',     icon: History,        label: 'Seat History'    },

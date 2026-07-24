@@ -100,19 +100,6 @@ export interface LogEntry {
   cost?: string;
 }
 
-export interface Seat {
-  id: string;
-  seatNo?: string;
-  branch?: string;
-  number?: string;
-  zone?: 'Quiet' | 'Discussion' | 'Standard';
-  type?: 'Premium' | 'Standard';
-  condition?: 'Excellent' | 'Good' | 'Needs Repair';
-  hasPower?: boolean;
-  assignedTo?: string;
-  lastMaintenance?: string;
-  status: SeatStatus;
-}
 
 export interface ManagerSeatsSeatMatrixModalProps {
   isOpen: boolean;
@@ -142,19 +129,6 @@ export interface ShiftData {
   gaps: GapBlock[];
 }
 
-export interface Shift {
-  id: string;
-  name: string;
-  startH?: number;
-  endH?: number;
-  startTime?: string;
-  endTime?: string;
-  active?: boolean;
-  occupancy?: number;
-  capacity?: number;
-  price?: number;
-  type?: 'Morning' | 'Evening' | 'Night' | 'Full Day';
-}
 
 export interface Student {
   id: string;

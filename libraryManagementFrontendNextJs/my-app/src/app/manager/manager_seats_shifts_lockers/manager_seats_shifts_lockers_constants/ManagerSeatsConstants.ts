@@ -1,6 +1,6 @@
 // RESPONSIBILITY: Centralizes constants for the manager_seats_shifts_lockers module.
 
-import { ActivityItem, Locker, Seat, ShiftData, Shift, Student } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_types/ManagerSeatsTypes';
+import { ActivityItem, Locker, ShiftData, Student } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_types/ManagerSeatsTypes';
 
 export const SHIFT_TABS = ['All', 'Morning', 'Evening', 'Full Day'];
 
@@ -38,22 +38,12 @@ export const INITIAL_LOCKERS: Locker[] = [
   { id: '4', number: 'L-04', zone: 'Zone B', status: 'Available' },
 ];
 
-export const INITIAL_SEATS: Seat[] = [
-  { id: '1', number: 'A-01', zone: 'Quiet',    type: 'Premium',  condition: 'Excellent',    hasPower: true, status: 'free' },
-  { id: '2', number: 'A-02', zone: 'Quiet',    type: 'Standard', condition: 'Good',         hasPower: false, status: 'free' },
-  { id: '3', number: 'B-01', zone: 'Standard', type: 'Standard', condition: 'Needs Repair', hasPower: true, status: 'maintenance' },
-];
 
 export const SHIFTS_DATA: ShiftData[] = [
   { id: '1', name: 'Morning', occupied: 45, capacity: 50, booked: [{startH: 6, endH: 14, label: 'Morning Slot'}], gaps: [] },
   { id: '2', name: 'Evening', occupied: 30, capacity: 50, booked: [{startH: 14, endH: 22, label: 'Evening Slot'}], gaps: [{startH: 14, endH: 22, seats: 20, revLoss: 16000}] },
 ];
 
-export const INITIAL_SHIFTS: Shift[] = [
-  { id: '1', name: 'Morning Shift', startH: 6,  endH: 14, price: 800, type: 'Morning' },
-  { id: '2', name: 'Evening Shift', startH: 14, endH: 22, price: 800, type: 'Evening' },
-  { id: '3', name: 'Night Shift',   startH: 22, endH: 6,  price: 600, type: 'Night' },
-];
 
 export const STUDENTS_DATA: Student[] = [
   { id: '1', name: 'Rahul Sharma', currentShift: 'Morning Shift', targetShift: 'Evening Shift', status: 'Pending' },
