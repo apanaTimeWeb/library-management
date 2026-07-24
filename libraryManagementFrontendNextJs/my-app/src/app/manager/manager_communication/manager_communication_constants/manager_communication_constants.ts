@@ -1,7 +1,6 @@
 import {
   ManagerCommunicationNotice,
   ManagerCommunicationComplaint,
-  ManagerCommunicationWhatsAppTemplate,
   ManagerCommunicationStats
 } from '@/app/manager/manager_communication/manager_communication_types/manager_communication_types';
 
@@ -23,11 +22,6 @@ export const COMPLAINTS_MOCK: ManagerCommunicationComplaint[] = [
 ];
 
 
-export const WHATSAPP_TEMPLATES_MOCK: ManagerCommunicationWhatsAppTemplate[] = [
-  { id: '1', templateName: 'fee_reminder_01', category: 'Utility', language: 'en', content: 'Dear {{name}}, your fee of {{amount}} is due on {{date}}.', status: 'Approved', lastUpdated: '2024-01-15' },
-  { id: '2', templateName: 'welcome_message', category: 'Marketing', language: 'en', content: 'Welcome to Smart Library 360, {{name}}!', status: 'Approved', lastUpdated: '2024-02-10' },
-  { id: '3', templateName: 'diwali_offer', category: 'Marketing', language: 'en', content: 'Happy Diwali! Use code {{code}} for 10% off.', status: 'Pending Approval', lastUpdated: '2024-10-20' },
-];
 
 
 export const COMMUNICATION_STATUS_COLORS: Record<string, string> = {

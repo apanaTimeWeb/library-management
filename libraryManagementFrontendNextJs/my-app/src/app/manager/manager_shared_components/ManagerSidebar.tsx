@@ -70,7 +70,6 @@ const NAV: ManagerNavItem[] = [
   { href: MANAGER_ROUTES.COMMUNICATION_NOTICES,             icon: Bell,          label: 'Notices'             },
   { href: MANAGER_ROUTES.COMMUNICATION_COMPLAINTS,          icon: MessageSquare, label: 'Complaints'          },
 
-  { href: MANAGER_ROUTES.COMMUNICATION_WHATSAPP_TEMPLATES,  icon: Smartphone,    label: 'WhatsApp Templates'  },
 ];
 
 // All nav hrefs for specificity check

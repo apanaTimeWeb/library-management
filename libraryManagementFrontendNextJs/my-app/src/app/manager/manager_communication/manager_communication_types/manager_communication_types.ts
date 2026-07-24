@@ -1,6 +1,5 @@
 export type NoticeStatus = 'Active' | 'Expired';
 export type ComplaintStatus = 'Open' | 'In-Progress' | 'Resolved';
-export type TemplateStatus = 'Approved' | 'Pending Approval' | 'Rejected';
 export interface ManagerCommunicationNotice {
   id: string;
   title: string;
@@ -26,15 +25,6 @@ export interface ManagerCommunicationComplaint {
 
 
 
-export interface ManagerCommunicationWhatsAppTemplate {
-  id: string;
-  templateName: string;
-  category: 'Marketing' | 'Utility' | 'Authentication';
-  language: string;
-  content: string;
-  status: TemplateStatus;
-  lastUpdated: string;
-}
 
 
 

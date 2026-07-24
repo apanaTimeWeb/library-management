@@ -33,7 +33,6 @@ export const MANAGER_ROUTES = {
   // Communication
   COMMUNICATION_NOTICES: '/manager/manager_communication/notices',
   COMMUNICATION_COMPLAINTS: '/manager/manager_communication/complaints',
-  COMMUNICATION_WHATSAPP_TEMPLATES: '/manager/manager_communication/whatsapp-templates',
 
 
   // Engagement
