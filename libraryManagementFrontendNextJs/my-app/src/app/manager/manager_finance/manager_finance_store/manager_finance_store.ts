@@ -10,7 +10,6 @@ import {
   ManagerFinanceRefund,
   ManagerFinancePaymentPromise,
   ManagerFinanceTrustScore,
-  ManagerFinanceAutoSuspendLog,
   ManagerFinanceReferral
 } from '@/app/manager/manager_finance/manager_finance_types/manager_finance_types';
 import { 
@@ -24,7 +23,6 @@ import {
   REFUNDS_MOCK,
   PAYMENT_PROMISES_MOCK,
   TRUST_SCORES_MOCK,
-  AUTO_SUSPEND_LOGS_MOCK,
   REFERRALS_MOCK
 } from '@/app/manager/manager_finance/manager_finance_constants/manager_finance_constants';
 
@@ -38,7 +36,6 @@ interface ManagerFinanceState {
   refunds: ManagerFinanceRefund[];
   paymentPromises: ManagerFinancePaymentPromise[];
   trustScores: ManagerFinanceTrustScore[];
-  autoSuspendLogs: ManagerFinanceAutoSuspendLog[];
   referrals: ManagerFinanceReferral[];
   stats: ManagerFinanceStats | null;
   status: 'idle' | 'loading' | 'success' | 'error';
@@ -54,7 +51,6 @@ interface ManagerFinanceState {
   fetchRefunds: () => Promise<void>;
   fetchPaymentPromises: () => Promise<void>;
   fetchTrustScores: () => Promise<void>;
-  fetchAutoSuspendLogs: () => Promise<void>;
   fetchReferrals: () => Promise<void>;
 }
 
@@ -68,7 +64,6 @@ export const useManagerFinanceStore = create<ManagerFinanceState>((set, get) => 
   refunds: [],
   paymentPromises: [],
   trustScores: [],
-  autoSuspendLogs: [],
   referrals: [],
   stats: null,
   status: 'idle',
@@ -173,16 +168,6 @@ export const useManagerFinanceStore = create<ManagerFinanceState>((set, get) => 
     }
   },
 
-  fetchAutoSuspendLogs: async () => {
-    if (get().status === 'loading') return;
-    set({ status: 'loading', error: null });
-    try {
-      await new Promise(resolve => setTimeout(resolve, 500));
-      set({ autoSuspendLogs: AUTO_SUSPEND_LOGS_MOCK, status: 'success' });
-    } catch (err: unknown) {
-      set({ error: err instanceof Error ? err.message : 'Unknown error', status: 'error' });
-    }
-  },
 
   fetchReferrals: async () => {
     if (get().status === 'loading') return;

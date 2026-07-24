@@ -47,7 +47,6 @@ const NAV: ManagerNavItem[] = [
   { href: MANAGER_ROUTES.FINANCE_TRUST_SCORE,       icon: Shield,      label: 'Trust Scores'      },
   { href: MANAGER_ROUTES.FINANCE_SECURITY_DEPOSITS, icon: Wallet,      label: 'Security Deposits' },
   { href: MANAGER_ROUTES.FINANCE_LATE_FEES,         icon: Clock,       label: 'Late Fees'         },
-  { href: MANAGER_ROUTES.FINANCE_AUTO_SUSPEND,      icon: Ban,         label: 'Auto-Suspend'      },
   { href: MANAGER_ROUTES.FINANCE_INVOICE,           icon: Receipt,     label: 'Invoice'           },
   { href: MANAGER_ROUTES.FINANCE_RECEIPT,           icon: BookOpen,    label: 'Receipt'           },
   { href: MANAGER_ROUTES.FINANCE_REFERRALS,         icon: Award,       label: 'Referrals'         },

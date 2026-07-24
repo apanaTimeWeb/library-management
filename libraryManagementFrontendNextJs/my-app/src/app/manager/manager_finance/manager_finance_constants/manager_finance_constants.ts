@@ -9,7 +9,6 @@ import {
   ManagerFinanceRefund,
   ManagerFinancePaymentPromise,
   ManagerFinanceTrustScore,
-  ManagerFinanceAutoSuspendLog,
   ManagerFinanceReferral
 } from '@/app/manager/manager_finance/manager_finance_types/manager_finance_types';
 
@@ -72,10 +71,6 @@ export const TRUST_SCORES_MOCK: ManagerFinanceTrustScore[] = [
   { id: '3', studentName: 'Vikram Rao', studentId: 'LIB-005', score: 45, rating: 'Poor', latePayments: 4 },
 ];
 
-export const AUTO_SUSPEND_LOGS_MOCK: ManagerFinanceAutoSuspendLog[] = [
-  { id: '1', studentName: 'Rahul Verma', studentId: 'LIB-022', suspendDate: '2024-10-16', reason: 'Unpaid Dues > 7 days', status: 'Suspended' },
-  { id: '2', studentName: 'Priya Sharma', studentId: 'LIB-002', suspendDate: '2024-10-21', reason: 'Unpaid Dues > 7 days', status: 'Reinstated' },
-];
 
 export const REFERRALS_MOCK: ManagerFinanceReferral[] = [
   { id: '1', referrerName: 'Alex Rivera', referrerId: 'LIB-001', referredStudent: 'Karan Johar', date: '2024-10-22', bonusAmount: 500, status: 'Pending' },
@@ -103,8 +98,6 @@ export const STATUS_COLORS: Record<string, string> = {
   Processed: 'bg-success-bg text-success',
   Fulfilled: 'bg-success-bg text-success',
   Broken: 'bg-danger-bg text-danger',
-  Suspended: 'bg-danger-bg text-danger',
-  Reinstated: 'bg-success-bg text-success',
   Applied: 'bg-success-bg text-success',
   Excellent: 'bg-success-bg text-success',
   Good: 'bg-info/10 text-info',

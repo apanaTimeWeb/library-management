@@ -106,14 +106,6 @@ export interface ManagerFinanceTrustScore {
   latePayments: number;
 }
 
-export interface ManagerFinanceAutoSuspendLog {
-  id: string;
-  studentName: string;
-  studentId: string;
-  suspendDate: string;
-  reason: string;
-  status: 'Suspended' | 'Reinstated';
-}
 
 export interface ManagerFinanceReferral {
   id: string;
