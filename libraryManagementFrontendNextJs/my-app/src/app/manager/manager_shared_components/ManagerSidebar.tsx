@@ -30,7 +30,6 @@ const NAV: ManagerNavItem[] = [
   { href: MANAGER_ROUTES.STUDENTS_GROUP,      icon: Users2,     label: 'Group Admission'  },
   { href: MANAGER_ROUTES.STUDENTS_ALUMNI,     icon: UserCheck,  label: 'Alumni'           },
 
-  { href: MANAGER_ROUTES.STUDENTS_REFERRALS,  icon: Award,      label: 'Referral Bonus'   },
   { href: MANAGER_ROUTES.STUDENTS_ID_CARD,    icon: CreditCard, label: 'ID Card Generator'},
   { group: 'Seats & Shifts' },
   { href: MANAGER_ROUTES.SEATS_SHIFTS_LOCKERS + '/seat-matrix',      icon: LayoutGrid,     label: 'Seat Matrix'     },

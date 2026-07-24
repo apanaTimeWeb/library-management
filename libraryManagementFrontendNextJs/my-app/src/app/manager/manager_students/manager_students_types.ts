@@ -1,4 +1,4 @@
-﻿// RESPONSIBILITY: Renders or handles logic for manager_students_types.ts.
+// RESPONSIBILITY: Renders or handles logic for manager_students_types.ts.
 
 
 export interface Student {
@@ -53,15 +53,6 @@ export interface StudentsState {
   status: FetchState;
   error: string | null;
   fetchData: () => Promise<void>;
-}
-export interface ReferralData {
-  id: string;
-  referrer: string;
-  referred: string;
-  date: string;
-  status: 'Claimed' | 'Pending' | 'Approved';
-  bonus: string;
-  method: string;
 }
 export interface AlumniData {
   id: string;
