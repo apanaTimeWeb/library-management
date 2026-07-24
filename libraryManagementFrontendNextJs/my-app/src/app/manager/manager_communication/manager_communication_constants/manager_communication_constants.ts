@@ -1,17 +1,13 @@
 import {
   ManagerCommunicationNotice,
   ManagerCommunicationComplaint,
-  ManagerCommunicationNotification,
   ManagerCommunicationWhatsAppTemplate,
-  ManagerCommunicationWhatsAppLog,
   ManagerCommunicationStats
 } from '@/app/manager/manager_communication/manager_communication_types/manager_communication_types';
 
 export const COMMUNICATION_STATS_MOCK: ManagerCommunicationStats = {
   activeNotices: 3,
-  openComplaints: 2,
-  notificationsSent: 1250,
-  whatsappMessagesSent: 840
+  openComplaints: 2
 };
 
 export const NOTICES_MOCK: ManagerCommunicationNotice[] = [
@@ -26,10 +22,6 @@ export const COMPLAINTS_MOCK: ManagerCommunicationComplaint[] = [
   { id: '3', ticketId: 'TKT-24-099', studentName: 'Sneha Patel', studentId: 'LIB-004', category: 'Internet', description: 'Wi-Fi keeps disconnecting.', date: '2024-10-25', status: 'Resolved', priority: 'High', resolvedBy: 'IT Support' },
 ];
 
-export const NOTIFICATIONS_MOCK: ManagerCommunicationNotification[] = [
-  { id: '1', title: 'Festive Offer!', message: 'Get 20% off on your next renewal.', targetAudience: 'All Students', sentDate: '2024-10-20', sentBy: 'Marketing', status: 'Delivered', deliveredCount: 450 },
-  { id: '2', title: 'System Outage', message: 'The app will be down for 2 hours tonight.', targetAudience: 'All Students', sentDate: '2024-10-25', sentBy: 'IT Support', status: 'Sent', deliveredCount: 480 },
-];
 
 export const WHATSAPP_TEMPLATES_MOCK: ManagerCommunicationWhatsAppTemplate[] = [
   { id: '1', templateName: 'fee_reminder_01', category: 'Utility', language: 'en', content: 'Dear {{name}}, your fee of {{amount}} is due on {{date}}.', status: 'Approved', lastUpdated: '2024-01-15' },
@@ -37,11 +29,6 @@ export const WHATSAPP_TEMPLATES_MOCK: ManagerCommunicationWhatsAppTemplate[] = [
   { id: '3', templateName: 'diwali_offer', category: 'Marketing', language: 'en', content: 'Happy Diwali! Use code {{code}} for 10% off.', status: 'Pending Approval', lastUpdated: '2024-10-20' },
 ];
 
-export const WHATSAPP_LOGS_MOCK: ManagerCommunicationWhatsAppLog[] = [
-  { id: '1', studentName: 'Vikram Rao', phoneNumber: '+91 9876543210', templateUsed: 'fee_reminder_01', sentDate: '2024-10-28 10:00 AM', status: 'Read' },
-  { id: '2', studentName: 'Ananya Gupta', phoneNumber: '+91 9876543211', templateUsed: 'welcome_message', sentDate: '2024-10-28 09:15 AM', status: 'Delivered' },
-  { id: '3', studentName: 'Rahul Verma', phoneNumber: '+91 9876543212', templateUsed: 'fee_reminder_01', sentDate: '2024-10-28 10:00 AM', status: 'Failed' },
-];
 
 export const COMMUNICATION_STATUS_COLORS: Record<string, string> = {
   Active: 'bg-success-bg text-success',
