@@ -69,8 +69,7 @@ const NAV: ManagerNavItem[] = [
   { group: 'Communication' },
   { href: MANAGER_ROUTES.COMMUNICATION_NOTICES,             icon: Bell,          label: 'Notices'             },
   { href: MANAGER_ROUTES.COMMUNICATION_COMPLAINTS,          icon: MessageSquare, label: 'Complaints'          },
-  { href: MANAGER_ROUTES.COMMUNICATION_NOTIFICATION_CENTER, icon: BellRing,      label: 'Notification Center' },
-  { href: MANAGER_ROUTES.COMMUNICATION_WHATSAPP_LOGS,       icon: Smartphone,    label: 'WhatsApp Logs'       },
+
   { href: MANAGER_ROUTES.COMMUNICATION_WHATSAPP_TEMPLATES,  icon: Smartphone,    label: 'WhatsApp Templates'  },
 ];
 

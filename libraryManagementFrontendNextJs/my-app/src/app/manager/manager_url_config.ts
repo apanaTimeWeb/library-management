@@ -34,8 +34,7 @@ export const MANAGER_ROUTES = {
   COMMUNICATION_NOTICES: '/manager/manager_communication/notices',
   COMMUNICATION_COMPLAINTS: '/manager/manager_communication/complaints',
   COMMUNICATION_WHATSAPP_TEMPLATES: '/manager/manager_communication/whatsapp-templates',
-  COMMUNICATION_WHATSAPP_LOGS: '/manager/manager_communication/whatsapp-logs',
-  COMMUNICATION_NOTIFICATION_CENTER: '/manager/manager_communication/notification-center',
+
 
   // Engagement
   ENGAGEMENT_ATTENDANCE: '/manager/manager_engagement/attendance',
