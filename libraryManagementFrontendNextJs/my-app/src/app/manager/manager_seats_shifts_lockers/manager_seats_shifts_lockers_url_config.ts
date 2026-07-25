@@ -3,5 +3,4 @@ export const MANAGER_SEATS_ROUTES = {
   LOCKER_MATRIX: '/manager/manager_seats_shifts_lockers/locker-matrix',
 
   SEAT_HISTORY: '/manager/manager_seats_shifts_lockers/seat-history',
-  SHIFT_GAP: '/manager/manager_seats_shifts_lockers/shift-gap',
 };

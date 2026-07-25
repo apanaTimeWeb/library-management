@@ -5,6 +5,5 @@ export const MANAGER_FINANCE_ROUTES = {
   RENEWALS: '/manager/manager_finance/renewals',
   SECURITY_DEPOSITS: '/manager/manager_finance/security-deposits',
   SUBSCRIPTIONS: '/manager/manager_finance/subscriptions',
-  AUTO_SUSPEND: '/manager/manager_finance/auto-suspend',
   REFERRALS: '/manager/manager_finance/referrals',
 } as const;

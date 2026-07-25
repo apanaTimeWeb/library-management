@@ -29,9 +29,6 @@ export const MANAGER_ROUTES = {
   // Engagement
   ENGAGEMENT_ATTENDANCE: '/manager/manager_engagement/attendance',
   ENGAGEMENT_ABSENTEE_REPORT: '/manager/manager_engagement/absentee-report',
-  ENGAGEMENT_ANALYTICS: '/manager/manager_engagement/analytics',
-  ENGAGEMENT_FEEDBACK: '/manager/manager_engagement/feedback',
-
   // Reports
   STUDENT_REPORTS: '/manager/manager_student-reports',
 
