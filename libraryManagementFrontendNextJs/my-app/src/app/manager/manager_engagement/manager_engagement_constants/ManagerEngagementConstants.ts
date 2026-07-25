@@ -1,5 +1,5 @@
 // RESPONSIBILITY: Renders or handles logic for ManagerEngagementConstants.ts.
-import { AbsenteeRow, ScanResult } from '@/app/manager/manager_engagement/manager_engagement_types/ManagerEngagementTypes';
+import { AbsenteeRow } from '@/app/manager/manager_engagement/manager_engagement_types/ManagerEngagementTypes';
 
 export const ABSENTEE_MOCK_DATA: AbsenteeRow[] = [
   { id:'1', name:'Priya Verma',   initials:'PV', smartId:'SL-002', shift:'Morning',   daysAbsent:4,  lastSeen:'2026-04-08', parentPhone:'+91 981234', parentEmail:'parent1@email.com', notified:false },
@@ -9,8 +9,4 @@ export const ABSENTEE_MOCK_DATA: AbsenteeRow[] = [
   { id:'5', name:'Vikram Nair',   initials:'VN', smartId:'SL-015', shift:'Morning',   daysAbsent:5,  lastSeen:'2026-04-07', parentPhone:'+91 947890', parentEmail:'parent5@email.com', notified:false },
 ];
 
-export const MOCK_STUDENT: ScanResult = {
-  name: 'Rahul Sharma', initials: 'RS',
-  smartId: 'SL-001', shift: 'Morning',
-  validTill: '30 Jun 2026', plan: 'Premium  6 Month',
-};
+

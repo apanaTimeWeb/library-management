@@ -6,9 +6,5 @@ export interface AbsenteeRow {
   shift: string; daysAbsent: number; lastSeen: string;
   parentPhone: string; parentEmail: string; notified: boolean;
 }
-export interface ScanResult {
-  name: string; initials: string; smartId: string;
-  shift: string; validTill: string; plan: string;
-}
-export type ScanState = 'idle' | 'scanning' | 'detected' | 'success';
+
 

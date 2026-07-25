@@ -52,7 +52,6 @@ const NAV: ManagerNavItem[] = [
   { group: 'Operations' },
   { href: MANAGER_ROUTES.ENGAGEMENT_ATTENDANCE,       icon: CalendarCheck,  label: 'Attendance'       },
   { href: MANAGER_ROUTES.ENGAGEMENT_ABSENTEE_REPORT,  icon: ClipboardCheck, label: 'Absentee Report'  },
-  { href: MANAGER_ROUTES.ENGAGEMENT_QR_SCANNER,       icon: QrCode,         label: 'QR Scanner'       },
   { group: 'Accounts & Assets' },
   { href: MANAGER_ROUTES.ACCOUNTING_EXPENSES,          icon: TrendingUp, label: 'Expenses'          },
   { href: MANAGER_ROUTES.ACCOUNTING_DAILY_SETTLEMENT,  icon: Receipt,    label: 'Daily Settlement'  },
