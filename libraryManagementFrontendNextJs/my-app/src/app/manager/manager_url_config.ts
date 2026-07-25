@@ -44,16 +44,7 @@ export const MANAGER_ROUTES = {
   // Seats & Assets
   SEATS_SHIFTS_LOCKERS: '/manager/manager_seats_shifts_lockers',
 
-  // Plans & Settings
-  PLANS: '/manager/manager_plans',
-
-  SETTINGS: '/manager/manager_settings',
-  LIBRARIES: '/manager/manager_libraries',
   SUBSCRIPTIONS: '/manager/manager_finance/subscriptions',
-  BILLING: '/manager/manager_billing',
-  SYSTEM_HEALTH: '/manager/manager_system-health',
-  AUDIT_LOGS: '/manager/manager_audit-logs',
-  SUPPORT_TICKETS: '/manager/manager_support-tickets',
   REPORTS: '/manager/manager_student-reports',
 };
 
