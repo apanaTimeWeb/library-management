@@ -6,7 +6,6 @@ import { MOCK_COUPONS } from '@/app/admin/admin_coupons/admin_coupons_constants/
 import { MOCK_EXPENSE_CATEGORIES } from '@/app/admin/admin_expense-categories/admin_expense-categories_constants/admin_expense-categories_constants';
 import { MOCK_EXPENSES } from '@/app/admin/admin_expenses/admin_expenses_constants/admin_expenses_constants';
 import { MOCK_PLANS } from '@/app/admin/admin_plans/admin_plans_constants/admin_plans_constants';
-import { MOCK_MANAGER_REPORTS_DATA } from '@/app/manager/manager_reports/manager_reports_constants/ManagerReportsMockData';
 import { MOCK_DASHBOARD_DATA as MANAGER_DASHBOARD_MOCK_DATA } from '@/app/manager/manager_mock_data';
 import { SUPERADMIN_ASSET_MAINTENANCE_MOCK_DATA } from '@/app/superadmin/superadmin_accounting/asset-maintenance/superadmin_asset_maintenance_constants/SuperadminAssetMaintenanceConstants';
 import { SUPERADMIN_ASSETS_MOCK_DATA } from '@/app/superadmin/superadmin_accounting/assets/superadmin_assets_constants/SuperadminAssetsConstants';
@@ -107,7 +106,6 @@ export const mockRegistry: Record<string, unknown> = {
   '/admin/expense-categories': MOCK_EXPENSE_CATEGORIES,
   '/admin/expenses': MOCK_EXPENSES,
   '/admin/plans': MOCK_PLANS,
-  '/admin/manager-reports-data': MOCK_MANAGER_REPORTS_DATA,
   '/admin/reports': {
     kpiCards: ADMIN_REPORTS_KPI_CARDS,
     incomeData: ADMIN_REPORTS_INCOME_VS_EXPENSE,
