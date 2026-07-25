@@ -66,6 +66,10 @@ During the architectural refactoring, the following modules were **permanently r
 - **Purpose**: Configuring business rules (GST, local timezone, SMS gateways).
 - **Key Files**: `AdminSettingsClient.tsx`.
 
-## Centralized Data & State
+## Centralized Architecture & Shared Modules
+- **Shared UI/Components**: `admin_components/`, `admin_reusable/`, `admin_shared_components/` (Contains core shells, sidebars, headers, and UI elements used across Admin).
+- **Shared Logic & Utils**: `admin_shared_hooks/`, `admin_shared_utils/`.
 - **URL Config**: `admin_url_config.ts` acts as the single source of truth for all Admin routing.
-- **Mock Data / Constants**: Found in `admin_constants/` or `lib/mockRegistry.ts`.
+- **Types**: `admin_types/` (Global types and interfaces for the Admin portal).
+- **Mock Data / Constants**: `admin_constants/` or `lib/mockRegistry.ts`.
+- **State Management**: `admin_store/` (Zustand stores and Context Providers).

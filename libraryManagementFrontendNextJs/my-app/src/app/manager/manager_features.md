@@ -43,6 +43,10 @@ This document serves as the AI-Context map for the Manager portal (`src/app/mana
 - **Purpose**: Generating local operational reports regarding student metrics.
 - **Key Files**: `ManagerStudentReportsClient.tsx`.
 
-## Centralized Data & State
+## Centralized Architecture & Shared Modules
+- **Shared UI/Components**: `manager_shared_components/` (Contains core shells like `ManagerRoute.tsx`, sidebars, headers, and UI elements used across Manager).
+- **Shared Logic & Utils**: `manager_shared_hooks/`, `manager_shared_utils/`.
 - **URL Config**: `manager_url_config.ts` acts as the single source of truth for all Manager routing.
+- **Types**: `manager_types/` (Global types and interfaces for the Manager portal).
+- **Mock Data / Constants**: `manager_mock_data.ts` or `lib/mockRegistry.ts`.
 - **State Management**: Heavily utilizes Zustand stores for async data and Context for UI states (like Sidebar toggling).
