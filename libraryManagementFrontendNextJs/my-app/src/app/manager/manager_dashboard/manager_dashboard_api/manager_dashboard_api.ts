@@ -1,5 +1,5 @@
 // RESPONSIBILITY: Renders or handles logic for manager_dashboard_api.ts.
-import { MOCK_DASHBOARD_DATA, MOCK_SEAT_MATRIX, MOCK_LOCKER_MATRIX, MOCK_ALLOCATIONS, MOCK_SEAT_HISTORY } from '@/app/manager/manager_mock_data';
+import { MOCK_DASHBOARD_DATA, MOCK_SEAT_MATRIX, MOCK_LOCKER_MATRIX, MOCK_SEAT_HISTORY } from '@/app/manager/manager_mock_data';
 import { fetchApi } from '@/lib/api';
 import { logger } from '@/lib/logger';
 

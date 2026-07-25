@@ -1,12 +1,11 @@
 import { create } from 'zustand';
-import type { SeatData, FetchState, SeatsState, LockerData, Allocation, SeatHistoryEntry } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_types/ManagerSeatsTypes';
+import type { SeatData, FetchState, SeatsState, LockerData, SeatHistoryEntry } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_types/ManagerSeatsTypes';
 
 // RESPONSIBILITY: Module-scoped Zustand store for managing Seat Matrix API data.
 
 export const useSeatsStore = create<SeatsState>((set, get) => ({
   seatsData: [],
   lockerData: [],
-  allocationsData: [],
   seatHistoryData: [],
   status: 'idle',
   error: null,
@@ -56,17 +55,6 @@ export const useSeatsStore = create<SeatsState>((set, get) => ({
         status: (l.isActive ?? (String(l.status).toLowerCase() === 'free') ? 'Free' : 'Maintenance'),
       }));
       set({ lockerData: mapped, status: 'success' });
-    } catch (err: unknown) {
-      set({ error: err instanceof Error ? err.message : 'Unknown error', status: 'error' });
-    }
-  },
-  fetchAllocationsData: async () => {
-    if (get().status === 'loading') return;
-    set({ status: 'loading' });
-    try {
-      const { fetchAllocations } = await import('../manager_seats_shifts_lockers_api/manager_seats_shifts_lockers_api');
-      const data = await fetchAllocations();
-      set({ allocationsData: data, status: 'success' });
     } catch (err: unknown) {
       set({ error: err instanceof Error ? err.message : 'Unknown error', status: 'error' });
     }

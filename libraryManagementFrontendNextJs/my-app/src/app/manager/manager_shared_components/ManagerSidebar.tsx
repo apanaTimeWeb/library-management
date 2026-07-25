@@ -33,7 +33,6 @@ const NAV: ManagerNavItem[] = [
   { group: 'Seats & Shifts' },
   { href: MANAGER_ROUTES.SEATS_SHIFTS_LOCKERS + '/seat-matrix',      icon: LayoutGrid,     label: 'Seat Matrix'     },
   { href: MANAGER_ROUTES.SEATS_SHIFTS_LOCKERS + '/shift-migration',  icon: ArrowLeftRight, label: 'Shift Migration' },
-  { href: MANAGER_ROUTES.SEATS_SHIFTS_LOCKERS + '/allocations',      icon: ClipboardList,  label: 'Allocations'     },
   { href: MANAGER_ROUTES.SEATS_SHIFTS_LOCKERS + '/seat-history',     icon: History,        label: 'Seat History'    },
 
   { href: MANAGER_ROUTES.SEATS_SHIFTS_LOCKERS + '/locker-matrix',    icon: LayoutGrid,     label: 'Locker Matrix'   },

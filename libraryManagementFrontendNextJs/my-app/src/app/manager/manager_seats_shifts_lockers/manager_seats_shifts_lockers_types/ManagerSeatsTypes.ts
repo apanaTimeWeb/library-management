@@ -21,33 +21,12 @@ export interface LockerData {
 export interface SeatsState {
   seatsData: SeatData[];
   lockerData: LockerData[];
-  allocationsData: Allocation[];
   seatHistoryData: SeatHistoryEntry[];
   status: FetchState;
   error: string | null;
   fetchData: () => Promise<void>;
   fetchLockers: () => Promise<void>;
-  fetchAllocationsData: () => Promise<void>;
   fetchSeatHistoryData: () => Promise<void>;
-}
-
-export interface Allocation {
-  id?: string;
-  studentName?: string;
-  student?: string;
-  seat?: string;
-  seatNo?: string;
-  shift: string;
-  start?: string;
-  end?: string;
-  customSlots?: string;
-  lockerNo?: string;
-  validFrom?: string;
-  validTill?: string;
-  daysLeft?: number;
-  status: 'Active' | 'Expiring' | 'Expired' | 'Suspended';
-  avatar?: string;
-  smartId?: string;
 }
 
 export interface ActivityItem {
