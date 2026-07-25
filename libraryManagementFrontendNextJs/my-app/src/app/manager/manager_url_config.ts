@@ -9,7 +9,6 @@ export const MANAGER_ROUTES = {
   // Students
   STUDENTS: '/manager/manager_students',
   STUDENTS_NEW: '/manager/manager_students/new',
-  STUDENTS_GROUP: '/manager/manager_students/group',
   STUDENTS_ALUMNI: '/manager/manager_students/alumni',
   STUDENTS_ID_CARD: '/manager/manager_students/id-card',
   

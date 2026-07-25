@@ -27,7 +27,6 @@ const NAV: ManagerNavItem[] = [
   { group: 'Students' },
   { href: MANAGER_ROUTES.STUDENTS,            icon: Users,      label: 'All Students'     },
   { href: MANAGER_ROUTES.STUDENTS_NEW,        icon: UserPlus,   label: 'New Admission'    },
-  { href: MANAGER_ROUTES.STUDENTS_GROUP,      icon: Users2,     label: 'Group Admission'  },
   { href: MANAGER_ROUTES.STUDENTS_ALUMNI,     icon: UserCheck,  label: 'Alumni'           },
 
   { href: MANAGER_ROUTES.STUDENTS_ID_CARD,    icon: CreditCard, label: 'ID Card Generator'},

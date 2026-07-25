@@ -45,9 +45,7 @@ const [searchTerm, setSearchTerm] = useUrlState('searchTerm', '' as string);
         </div>
         <div className="flex gap-2 flex-wrap">
           <button className="bg-transparent border border-border text-text-primary rounded-lg h-10 px-4 text-sm font-medium hover:bg-primary-subtle hover:border-primary transition-colors inline-flex items-center gap-2"><Download size={14} /> Export</button>
-          <Link href={MANAGER_ROUTES.STUDENTS_GROUP} className="bg-transparent border border-border text-text-primary rounded-lg h-10 px-4 text-sm font-medium hover:bg-primary-subtle hover:border-primary transition-colors inline-flex items-center gap-2">
-            <Users2 size={14} /> Group Admission
-          </Link>
+
           <Link href={MANAGER_ROUTES.STUDENTS_NEW} className="bg-primary text-white rounded-lg px-5 py-2.5 text-sm font-medium hover:bg-primary-hover transition-colors inline-flex items-center gap-2">
             <UserPlus size={14} /> New Admission
           </Link>
