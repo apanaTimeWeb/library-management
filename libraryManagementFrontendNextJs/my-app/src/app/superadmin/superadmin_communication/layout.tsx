@@ -1,6 +1,0 @@
-// RESPONSIBILITY: Component or Page.
-import { SuperadminCommunicationRoute } from '@/app/superadmin/superadmin_communication/superadmin_communication_shared_components/SuperadminCommunicationRoute';
-
-export default function CommunicationModuleLayout({ children }: { children: React.ReactNode }) {
-  return <SuperadminCommunicationRoute>{children}</SuperadminCommunicationRoute>;
-}

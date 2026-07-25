@@ -3,8 +3,8 @@
 import React, { useState } from 'react';
 import { Building2, Bell, Menu } from 'lucide-react';
 import { ThemeToggle } from '@/components/ThemeToggle';
-import { SuperadminSelect, SuperadminSelectContent, SuperadminSelectItem, SuperadminSelectTrigger, SuperadminSelectValue } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminSelect';
-import { SuperadminButton } from '@/app/superadmin/superadmin_system/superadmin_system_shared_components/SuperadminButton';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Button } from '@/components/ui/button';
 import { SuperadminHeaderProps } from '@/app/superadmin/superadmin_shared_components/SuperadminSharedTypes';
 
 export default function SuperadminHeader({ sidebarWidth, onMobileOpen }: SuperadminHeaderProps) {
@@ -14,7 +14,7 @@ export default function SuperadminHeader({ sidebarWidth, onMobileOpen }: Superad
     <header className={`fixed top-0 right-0 h-16 bg-header border-b border-border z-40 flex items-center justify-between px-6 transition-all duration-300 left-0 ${sidebarWidth === 60 ? 'md:left-[60px]' : 'md:left-[240px]'}`}>
 
       <div className="flex items-center gap-3">
-        <SuperadminButton
+        <Button
           variant="ghost"
           size="icon"
           className="md:hidden"
@@ -22,30 +22,30 @@ export default function SuperadminHeader({ sidebarWidth, onMobileOpen }: Superad
           aria-label="Open menu"
         >
           <Menu size={20} />
-        </SuperadminButton>
+        </Button>
 
         <div className="flex items-center gap-2">
           <Building2 size={15} className="text-muted-foreground hidden sm:block" />
-          <SuperadminSelect value={selectedBranch} onValueChange={setSelectedBranch}>
-            <SuperadminSelectTrigger className="w-40 h-8 text-sm font-medium border-none shadow-none bg-transparent hover:bg-muted/50 focus:ring-0">
-              <SuperadminSelectValue placeholder="Select Branch" />
-            </SuperadminSelectTrigger>
-            <SuperadminSelectContent>
-              <SuperadminSelectItem value="Main Branch">Main Branch</SuperadminSelectItem>
-              <SuperadminSelectItem value="Branch 2">Branch 2</SuperadminSelectItem>
-              <SuperadminSelectItem value="Kothrud Center">Kothrud Center</SuperadminSelectItem>
-              <SuperadminSelectItem value="Nashik Branch">Nashik Branch</SuperadminSelectItem>
-            </SuperadminSelectContent>
-          </SuperadminSelect>
+          <Select value={selectedBranch} onValueChange={setSelectedBranch}>
+            <SelectTrigger className="w-[180px] h-9 border-border bg-card">
+              <SelectValue placeholder="Select branch" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="All Branches">All Branches</SelectItem>
+              <SelectItem value="Main Branch">Main Branch</SelectItem>
+              <SelectItem value="North Branch">North Branch</SelectItem>
+              <SelectItem value="South Branch">South Branch</SelectItem>
+            </SelectContent>
+          </Select>
         </div>
       </div>
 
       <div className="flex items-center gap-3">
         <ThemeToggle />
-        <SuperadminButton variant="ghost" size="icon" className="relative rounded-full" aria-label="Notifications">
+        <Button variant="ghost" size="icon" className="relative rounded-full" aria-label="Notifications">
           <Bell size={17} />
           <span className="absolute top-2 right-2 h-2 w-2 rounded-full bg-danger border-2 border-bg-header" />
-        </SuperadminButton>
+        </Button>
         <div className="flex h-8 w-8 items-center justify-center rounded-full bg-primary/10 text-primary text-xs font-bold ring-2 ring-primary/20">
           SA
         </div>

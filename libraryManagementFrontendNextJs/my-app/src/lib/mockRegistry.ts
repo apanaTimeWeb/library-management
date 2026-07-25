@@ -6,16 +6,6 @@ import { MOCK_COUPONS } from '@/app/admin/admin_coupons/admin_coupons_constants/
 
 import { MOCK_PLANS } from '@/app/admin/admin_plans/admin_plans_constants/admin_plans_constants';
 import { MOCK_DASHBOARD_DATA as MANAGER_DASHBOARD_MOCK_DATA } from '@/app/manager/manager_mock_data';
-import { SUPERADMIN_ASSET_MAINTENANCE_MOCK_DATA } from '@/app/superadmin/superadmin_accounting/asset-maintenance/superadmin_asset_maintenance_constants/SuperadminAssetMaintenanceConstants';
-import { SUPERADMIN_ASSETS_MOCK_DATA } from '@/app/superadmin/superadmin_accounting/assets/superadmin_assets_constants/SuperadminAssetsConstants';
-import { SUPERADMIN_DAILY_SETTLEMENT_MOCK_DATA } from '@/app/superadmin/superadmin_accounting/daily-settlement/superadmin_daily_settlement_constants/SuperadminDailySettlementConstants';
-import { SUPERADMIN_EXPENSE_CATEGORIES_MOCK_DATA } from '@/app/superadmin/superadmin_accounting/expense-categories/superadmin_expense_categories_constants/SuperadminExpenseCategoriesConstants';
-import { SUPERADMIN_EXPENSES_MOCK_DATA } from '@/app/superadmin/superadmin_accounting/expenses/superadmin_expenses_constants/SuperadminExpensesConstants';
-import { SUPERADMIN_MONTHLY_REPORTS_MOCK } from '@/app/superadmin/superadmin_accounting/financial-reports/superadmin_financial_reports_constants/SuperadminFinancialReportsConstants';
-import { SUPERADMIN_CATEGORY_BREAKDOWN_MOCK } from '@/app/superadmin/superadmin_accounting/financial-reports/superadmin_financial_reports_constants/SuperadminFinancialReportsConstants';
-import { SUPERADMIN_SEAT_GAP_REPORT_MOCK_DATA } from '@/app/superadmin/superadmin_accounting/seat-gap-report/superadmin_seat_gap_report_constants/SuperadminSeatGapReportConstants';
-import { SUPERADMIN_SHIFT_GAPS_MOCK } from '@/app/superadmin/superadmin_accounting/shift-gap-analyzer/superadmin_shift_gap_analyzer_constants/SuperadminShiftGapAnalyzerConstants';
-import { SUPERADMIN_DAY_GAPS_MOCK } from '@/app/superadmin/superadmin_accounting/shift-gap-analyzer/superadmin_shift_gap_analyzer_constants/SuperadminShiftGapAnalyzerConstants';
 import { SUPERADMIN_AUDIT_LOGS_MOCK_DATA } from '@/app/superadmin/superadmin_audit-logs/superadmin_audit_logs_constants/SuperadminAuditLogsConstants';
 import { SUPERADMIN_BILLING_MOCK_INVOICES } from '@/app/superadmin/superadmin_billing/superadmin_billing_constants/SuperadminBillingConstants';
 import { SUPERADMIN_DASHBOARD_MOCK_DATA } from '@/app/superadmin/superadmin_dashboard/superadmin_dashboard_constants/SuperadminDashboardConstants';
@@ -23,7 +13,6 @@ import { SUPERADMIN_LIBRARIES_MOCK_DATA } from '@/app/superadmin/superadmin_libr
 import { SUPERADMIN_REPORTS_MOCK_DATA } from '@/app/superadmin/superadmin_reports/superadmin_reports_constants/SuperadminReportsConstants';
 import { SUPERADMIN_SUBSCRIPTIONS_MOCK_DATA } from '@/app/superadmin/superadmin_subscriptions/superadmin_subscriptions_constants/SuperadminSubscriptionsConstants';
 import { SUPERADMIN_SYSTEM_HEALTH_MOCK_DATA } from '@/app/superadmin/superadmin_system-health/superadmin_system_health_constants/SuperadminSystemHealthConstants';
-import { CRM_CONSTANTS } from '@/app/superadmin/superadmin_crm/superadmin_crm_constants/SuperadminCrmConstants';
 import { 
   ADMIN_REPORTS_KPI_CARDS,
   ADMIN_REPORTS_INCOME_VS_EXPENSE,
@@ -110,16 +99,7 @@ export const mockRegistry: Record<string, unknown> = {
     revenueData: ADMIN_REPORTS_REVENUE_TREND,
     growthData: ADMIN_REPORTS_STUDENT_GROWTH
   },
-  '/superadmin/accounting/asset-maintenance': SUPERADMIN_ASSET_MAINTENANCE_MOCK_DATA,
-  '/superadmin/accounting/assets': SUPERADMIN_ASSETS_MOCK_DATA,
-  '/superadmin/accounting/daily-settlement': SUPERADMIN_DAILY_SETTLEMENT_MOCK_DATA,
-  '/superadmin/accounting/expense-categories': SUPERADMIN_EXPENSE_CATEGORIES_MOCK_DATA,
-  '/superadmin/accounting/expenses': SUPERADMIN_EXPENSES_MOCK_DATA,
-  '/superadmin/accounting/monthly-reports': SUPERADMIN_MONTHLY_REPORTS_MOCK,
-  '/superadmin/accounting/category-breakdown': SUPERADMIN_CATEGORY_BREAKDOWN_MOCK,
-  '/superadmin/accounting/seat-gap-report': SUPERADMIN_SEAT_GAP_REPORT_MOCK_DATA,
-  '/superadmin/accounting/shift-gaps': SUPERADMIN_SHIFT_GAPS_MOCK,
-  '/superadmin/accounting/day-gaps': SUPERADMIN_DAY_GAPS_MOCK,
+
   '/superadmin/audit-logs': SUPERADMIN_AUDIT_LOGS_MOCK_DATA,
   '/superadmin/accounting/billing-invoices': SUPERADMIN_BILLING_MOCK_INVOICES,
   '/superadmin/billing/invoices': SUPERADMIN_BILLING_MOCK_INVOICES,
@@ -129,10 +109,9 @@ export const mockRegistry: Record<string, unknown> = {
   '/superadmin/subscriptions': SUPERADMIN_SUBSCRIPTIONS_MOCK_DATA,
   '/superadmin/system-health': SUPERADMIN_SYSTEM_HEALTH_MOCK_DATA,
   
-  // CRM Enquiries (Admin, Manager, Superadmin)
-  '/crm/enquiries': CRM_CONSTANTS.enquiries,
-  '/admin/crm/enquiries': CRM_CONSTANTS.enquiries,
-  '/superadmin/crm/enquiries': CRM_CONSTANTS.enquiries,
+  // CRM Enquiries (Admin, Manager)
+  '/crm/enquiries': [],
+  '/admin/crm/enquiries': [],
   
   // Auth
   '/auth/login': {
