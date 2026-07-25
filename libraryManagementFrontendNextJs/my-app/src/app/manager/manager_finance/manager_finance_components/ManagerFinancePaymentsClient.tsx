@@ -27,9 +27,7 @@ export function ManagerFinancePaymentsClient() {
           <p className="text-sm text-text-secondary mt-1.5">Track revenue, recent transactions, and outstanding dues.</p>
         </div>
         <div className="flex gap-3">
-          <Link href={MANAGER_FINANCE_ROUTES.INVOICE} className="px-4 py-2 bg-transparent border border-border text-text-primary rounded-lg text-sm font-medium hover:bg-bg-elevated transition-colors">
-            View Invoices
-          </Link>
+
           <Link href={MANAGER_FINANCE_ROUTES.COLLECT_FEE} className="flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-lg text-sm font-medium hover:bg-primary-hover transition-colors">
             <Plus size={16} /> Collect Fee
           </Link>
@@ -73,7 +71,7 @@ export function ManagerFinancePaymentsClient() {
           <div className="text-2xl font-bold text-text-primary mb-1">
             {status === 'loading' ? '...' : `₹${stats?.pendingDues.toLocaleString('en-IN')}`}
           </div>
-          <Link href={MANAGER_FINANCE_ROUTES.INVOICE} className="text-xs text-primary hover:underline font-medium">View pending invoices →</Link>
+          <Link href={MANAGER_FINANCE_ROUTES.LATE_FEES} className="text-xs text-primary hover:underline font-medium">View late fees →</Link>
         </div>
 
         <div className="bg-card border border-border rounded-xl p-5 shadow-sm hover:shadow-md transition-shadow">

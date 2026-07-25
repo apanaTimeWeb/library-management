@@ -3,7 +3,7 @@ import { useUrlState } from '@/app/manager/manager_shared_hooks/useUrlState';
 
 // RESPONSIBILITY: Renders the ManagerSeatsShiftGapClient.tsx component UI.
 import { useState } from 'react';
-import { Allocation, ActivityItem, Locker, SeatHistoryEntry, LogEntry, ManagerSeatsSeatMatrixModalProps, ShiftData, Student, BookedBlock, GapBlock } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_types/ManagerSeatsTypes';
+import { ActivityItem, Locker, SeatHistoryEntry, LogEntry, ManagerSeatsSeatMatrixModalProps, ShiftData, Student, BookedBlock, GapBlock } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_types/ManagerSeatsTypes';
 import { ACTIVITY_DATA, INITIAL_LOCKERS, SHIFTS_DATA, STUDENTS_DATA } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_constants/ManagerSeatsConstants';
 import { Zap } from 'lucide-react';
 import toast from 'react-hot-toast';

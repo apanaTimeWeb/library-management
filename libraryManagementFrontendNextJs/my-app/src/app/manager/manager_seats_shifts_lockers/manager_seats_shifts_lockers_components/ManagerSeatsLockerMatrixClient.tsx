@@ -7,7 +7,7 @@ import { User, KeyRound, LockKeyhole, Settings } from 'lucide-react';
 import toast from 'react-hot-toast';
 
 import { useManagerSeatsLockerMatrix } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_hooks/useManagerSeatsLockerMatrix';
-import { Allocation, ActivityItem, Locker, SeatHistoryEntry, LogEntry, ManagerSeatsSeatMatrixModalProps, ShiftData, Student } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_types/ManagerSeatsTypes';
+import { ActivityItem, Locker, SeatHistoryEntry, LogEntry, ManagerSeatsSeatMatrixModalProps, ShiftData, Student } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_types/ManagerSeatsTypes';
 import { ACTIVITY_DATA, INITIAL_LOCKERS, SHIFTS_DATA, STUDENTS_DATA } from '@/app/manager/manager_seats_shifts_lockers/manager_seats_shifts_lockers_constants/ManagerSeatsConstants';
 
 const STATS = [
