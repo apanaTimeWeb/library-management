@@ -58,7 +58,9 @@ During the architectural refactoring, the following modules were **permanently r
 - **Purpose**: Onboarding flow for newly registered libraries.
 - **Key Files**: `SuperadminSetupWizardClient.tsx`, Steps 1 through 4.
 
-## Centralized Data & State
-- **URL Config**: `superadmin_url_config.ts` acts as the single source of truth for all Superadmin routing.
-- **Mock Data / Constants**: Resides in `superadmin_constants.ts` or `lib/mockRegistry.ts`.
+## Centralized Architecture & Shared Modules
+- **Shared Components**: `superadmin_shared_components/` (Contains `SuperadminRoute.tsx`, `SuperadminSidebar.tsx`, `SuperadminHeader.tsx`).
+- **Shared Hooks**: `superadmin_shared_hooks/` (Contains centralized logic reused across features).
+- **URL Config**: `SuperadminUrlConfig.ts` acts as the single source of truth for all Superadmin routing.
+- **Mock Data / Constants**: Resides in `lib/mockRegistry.ts` or local constants files.
 - **State Management**: Zustand stores or localized React Context where needed, heavily favoring Server Components for data fetching and Client Components purely for interactivity.
