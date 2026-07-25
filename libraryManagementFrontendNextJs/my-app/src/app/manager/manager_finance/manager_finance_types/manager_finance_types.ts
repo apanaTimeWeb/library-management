@@ -5,7 +5,6 @@ export type FeeType = 'Admission' | 'Monthly' | 'Fine' | 'Security Deposit' | 'L
 export type SubscriptionStatus = 'Active' | 'Expired' | 'Cancelled' | 'Upcoming';
 export type SecurityDepositStatus = 'Held' | 'Refunded' | 'Forfeited';
 export type RefundStatus = 'Pending' | 'Approved' | 'Rejected' | 'Processed';
-export type TrustScoreRating = 'Excellent' | 'Good' | 'Average' | 'Poor';
 
 export interface ManagerFinanceTransaction {
   id: string;
@@ -95,15 +94,6 @@ export interface ManagerFinancePaymentPromise {
   promisedAmount: number;
   promisedDate: string;
   status: 'Pending' | 'Fulfilled' | 'Broken';
-}
-
-export interface ManagerFinanceTrustScore {
-  id: string;
-  studentName: string;
-  studentId: string;
-  score: number;
-  rating: TrustScoreRating;
-  latePayments: number;
 }
 
 

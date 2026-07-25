@@ -19,7 +19,6 @@ export const MANAGER_ROUTES = {
   FINANCE_RENEWALS: '/manager/manager_finance/renewals',
   FINANCE_PAYMENTS: '/manager/manager_finance/payments',
   FINANCE_PAYMENT_PROMISES: '/manager/manager_finance/payment-promises',
-  FINANCE_TRUST_SCORE: '/manager/manager_finance/trust-score',
   FINANCE_SECURITY_DEPOSITS: '/manager/manager_finance/security-deposits',
   FINANCE_LATE_FEES: '/manager/manager_finance/late-fees',
   FINANCE_INVOICE: '/manager/manager_finance/invoice',

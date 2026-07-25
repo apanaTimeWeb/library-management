@@ -8,7 +8,6 @@ import {
   ManagerFinanceSecurityDeposit,
   ManagerFinanceRefund,
   ManagerFinancePaymentPromise,
-  ManagerFinanceTrustScore,
   ManagerFinanceReferral
 } from '@/app/manager/manager_finance/manager_finance_types/manager_finance_types';
 
@@ -65,12 +64,6 @@ export const PAYMENT_PROMISES_MOCK: ManagerFinancePaymentPromise[] = [
   { id: '2', studentName: 'Rahul Verma', studentId: 'LIB-022', promisedAmount: 1500, promisedDate: '2024-10-15', status: 'Broken' },
 ];
 
-export const TRUST_SCORES_MOCK: ManagerFinanceTrustScore[] = [
-  { id: '1', studentName: 'Alex Rivera', studentId: 'LIB-001', score: 95, rating: 'Excellent', latePayments: 0 },
-  { id: '2', studentName: 'Sneha Patel', studentId: 'LIB-004', score: 80, rating: 'Good', latePayments: 1 },
-  { id: '3', studentName: 'Vikram Rao', studentId: 'LIB-005', score: 45, rating: 'Poor', latePayments: 4 },
-];
-
 
 export const REFERRALS_MOCK: ManagerFinanceReferral[] = [
   { id: '1', referrerName: 'Alex Rivera', referrerId: 'LIB-001', referredStudent: 'Karan Johar', date: '2024-10-22', bonusAmount: 500, status: 'Pending' },
@@ -99,8 +92,4 @@ export const STATUS_COLORS: Record<string, string> = {
   Fulfilled: 'bg-success-bg text-success',
   Broken: 'bg-danger-bg text-danger',
   Applied: 'bg-success-bg text-success',
-  Excellent: 'bg-success-bg text-success',
-  Good: 'bg-info/10 text-info',
-  Average: 'bg-warning-bg text-warning',
-  Poor: 'bg-danger-bg text-danger',
 };

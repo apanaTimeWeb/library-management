@@ -11,5 +11,4 @@ export const MANAGER_FINANCE_ROUTES = {
   PAYMENT_PROMISES: '/manager/manager_finance/payment-promises',
   AUTO_SUSPEND: '/manager/manager_finance/auto-suspend',
   REFERRALS: '/manager/manager_finance/referrals',
-  TRUST_SCORE: '/manager/manager_finance/trust-score',
 } as const;

@@ -9,7 +9,6 @@ import {
   ManagerFinanceSecurityDeposit,
   ManagerFinanceRefund,
   ManagerFinancePaymentPromise,
-  ManagerFinanceTrustScore,
   ManagerFinanceReferral
 } from '@/app/manager/manager_finance/manager_finance_types/manager_finance_types';
 import { 
@@ -22,7 +21,6 @@ import {
   SECURITY_DEPOSITS_MOCK,
   REFUNDS_MOCK,
   PAYMENT_PROMISES_MOCK,
-  TRUST_SCORES_MOCK,
   REFERRALS_MOCK
 } from '@/app/manager/manager_finance/manager_finance_constants/manager_finance_constants';
 
@@ -35,7 +33,6 @@ interface ManagerFinanceState {
   securityDeposits: ManagerFinanceSecurityDeposit[];
   refunds: ManagerFinanceRefund[];
   paymentPromises: ManagerFinancePaymentPromise[];
-  trustScores: ManagerFinanceTrustScore[];
   referrals: ManagerFinanceReferral[];
   stats: ManagerFinanceStats | null;
   status: 'idle' | 'loading' | 'success' | 'error';
@@ -50,7 +47,6 @@ interface ManagerFinanceState {
   fetchSecurityDeposits: () => Promise<void>;
   fetchRefunds: () => Promise<void>;
   fetchPaymentPromises: () => Promise<void>;
-  fetchTrustScores: () => Promise<void>;
   fetchReferrals: () => Promise<void>;
 }
 
@@ -63,7 +59,6 @@ export const useManagerFinanceStore = create<ManagerFinanceState>((set, get) => 
   securityDeposits: [],
   refunds: [],
   paymentPromises: [],
-  trustScores: [],
   referrals: [],
   stats: null,
   status: 'idle',
@@ -152,17 +147,6 @@ export const useManagerFinanceStore = create<ManagerFinanceState>((set, get) => 
     try {
       await new Promise(resolve => setTimeout(resolve, 500));
       set({ paymentPromises: PAYMENT_PROMISES_MOCK, status: 'success' });
-    } catch (err: unknown) {
-      set({ error: err instanceof Error ? err.message : 'Unknown error', status: 'error' });
-    }
-  },
-
-  fetchTrustScores: async () => {
-    if (get().status === 'loading') return;
-    set({ status: 'loading', error: null });
-    try {
-      await new Promise(resolve => setTimeout(resolve, 500));
-      set({ trustScores: TRUST_SCORES_MOCK, status: 'success' });
     } catch (err: unknown) {
       set({ error: err instanceof Error ? err.message : 'Unknown error', status: 'error' });
     }
