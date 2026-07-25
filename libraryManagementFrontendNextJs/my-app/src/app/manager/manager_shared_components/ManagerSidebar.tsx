@@ -3,7 +3,7 @@
 
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import {
   LayoutDashboard, BarChart2, Phone, Users, UserPlus, Users2,
   UserCheck, FolderOpen, Award, LayoutGrid, Armchair, RefreshCw,
@@ -12,7 +12,7 @@ import {
   Ban, Receipt, DollarSign, CalendarCheck, ClipboardCheck,
   QrCode, Calendar, TrendingUp, BarChart, Wallet, BookOpen,
   MessageSquare, Bell, BellRing, Smartphone,
-  LogOut, Menu, X, LucideIcon
+  LogOut, Menu, X, LucideIcon, Search
 } from 'lucide-react';
 
 import { logout } from '@/lib/auth';
@@ -72,6 +72,37 @@ export default function ManagerSidebar({ collapsed, onToggle, mobileOpen, onMobi
   const pathname = usePathname();
   const router   = useRouter();
   const [showLogout, setShowLogout] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
+
+  const filteredNav = useMemo(() => {
+    if (!searchQuery.trim()) return NAV;
+    
+    const query = searchQuery.toLowerCase().trim();
+    const result: ManagerNavItem[] = [];
+    
+    for (let i = 0; i < NAV.length; i++) {
+      const item = NAV[i];
+      if ('group' in item) {
+        let hasMatch = false;
+        for (let j = i + 1; j < NAV.length; j++) {
+          const nextItem = NAV[j];
+          if ('group' in nextItem) break;
+          if (nextItem.label.toLowerCase().includes(query)) {
+            hasMatch = true;
+            break;
+          }
+        }
+        if (hasMatch) {
+          result.push(item);
+        }
+      } else {
+        if (item.label.toLowerCase().includes(query)) {
+          result.push(item);
+        }
+      }
+    }
+    return result;
+  }, [searchQuery]);
 
   function isActive(href: string): boolean {
     if (pathname === href) return true;
@@ -106,8 +137,23 @@ export default function ManagerSidebar({ collapsed, onToggle, mobileOpen, onMobi
           )}
         </div>
 
-        <nav className="flex-1 overflow-y-auto py-4 px-3 space-y-1 scrollbar-thin scrollbar-thumb-border scrollbar-track-transparent">
-          {NAV.map((item, i) => {
+        {(!collapsed || mobileOpen) && (
+          <div className="px-4 py-3 shrink-0 border-b border-border/50">
+            <div className="relative">
+              <Search size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-text-secondary" />
+              <input
+                type="text"
+                placeholder="Search menus..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="w-full bg-page border border-border text-text-primary text-sm rounded-lg pl-9 pr-3 py-2 outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all placeholder:text-text-secondary/50"
+              />
+            </div>
+          </div>
+        )}
+
+        <nav className="flex-1 overflow-y-auto py-2 px-3 space-y-1 scrollbar-thin scrollbar-thumb-border scrollbar-track-transparent">
+          {filteredNav.map((item, i) => {
             if ('group' in item) {
               if (collapsed && !mobileOpen) return null;
               return <div key={i} className="px-3 text-xs font-bold uppercase tracking-wider text-text-secondary mt-6 mb-2">{item.group}</div>;
