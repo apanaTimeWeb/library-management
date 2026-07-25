@@ -3,9 +3,8 @@ import { AdminSearchableDropdown } from '@/app/admin/admin_shared_components/Adm
 
 // RESPONSIBILITY: Renders the AdminCrmEnquiriesClient component.
 import { useState } from 'react';
-import { AdminCrmAddClient } from '@/app/admin/admin_crm/enquiries/add/admin_crm_add_components/AdminCrmAddClient';
 import {
-  Search, LayoutGrid, List, Plus, Phone,
+  Search, LayoutGrid, List, Phone,
   CheckCircle, XCircle, MoreHorizontal, PhoneCall,
   Clock, CalendarDays, User,
 } from 'lucide-react';
@@ -93,14 +92,11 @@ export default function AdminCrmEnquiriesClient() {
     filtered,
     pushParams,
     colEnquiries,
-    handleQuickConvert,
-    handleQuickLost,
     router
   } = useAdminCrmEnquiries();
 
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(10);
-  const [isAddModalOpen, setIsAddModalOpen] = useState(false);
 
   const table = useClientTable(KANBAN_COLUMNS, 10);
 
@@ -152,9 +148,6 @@ export default function AdminCrmEnquiriesClient() {
               <List size={16} />
             </button>
           </div>
-          <Button onClick={() => setIsAddModalOpen(true)} className="gap-2">
-            <Plus size={16} /> Add Enquiry
-          </Button>
         </div>
       </div>
 
@@ -190,10 +183,7 @@ export default function AdminCrmEnquiriesClient() {
             <div className="flex flex-col items-center justify-center py-20 gap-3 border-2 border-dashed border-border rounded-xl">
               <PhoneCall size={48} className="text-muted-foreground opacity-20" />
               <p className="text-lg font-bold">No enquiries yet</p>
-              <p className="text-sm text-muted-foreground">Add your first lead to start the pipeline</p>
-              <Button onClick={() => setIsAddModalOpen(true)} className="mt-4 gap-2">
-                <Plus size={15} /> Add Enquiry
-              </Button>
+              <p className="text-sm text-muted-foreground">Lead tracking is active</p>
             </div>
           ) : (
             <div className="flex overflow-x-auto gap-4 pb-4 h-full min-h-96 min-h-96">
@@ -243,9 +233,6 @@ export default function AdminCrmEnquiriesClient() {
                <PhoneCall size={40} className="text-muted-foreground opacity-20" />
                <p className="text-lg font-bold">No enquiries found</p>
                <p className="text-sm text-muted-foreground">Try a different search or status filter</p>
-               <Button onClick={() => setIsAddModalOpen(true)} className="mt-4 gap-2">
-                 <Plus size={15} /> Add Enquiry
-               </Button>
              </div>
           ) : (<>
             <div className="mb-4">
@@ -266,7 +253,6 @@ export default function AdminCrmEnquiriesClient() {
                     <th className="px-4 py-3">Handled By</th>
                     <th className="px-4 py-3">Date Added</th>
                     <th className="px-4 py-3">Follow-up</th>
-                    <th className="px-4 py-3 text-right">Actions</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-border">
@@ -295,28 +281,6 @@ export default function AdminCrmEnquiriesClient() {
                       <td className="px-4 py-3">
                         <FollowUpBadge isOverdue={enq.isOverdue} isToday={enq.isToday} isUpcoming={enq.isUpcoming} />
                       </td>
-                      <td className="px-4 py-3 text-right">
-                        <div className="flex items-center justify-end gap-1">
-                          <Button
-                            variant="ghost"
-                            size="icon"
-                            className="h-8 w-8 text-muted-foreground hover:text-success hover:bg-success/10"
-                            title="Convert to Admission"
-                            onClick={(e) => handleQuickConvert(e, enq)}
-                          >
-                            <CheckCircle size={14} />
-                          </Button>
-                          <Button
-                            variant="ghost"
-                            size="icon"
-                            className="h-8 w-8 text-muted-foreground hover:text-danger hover:bg-danger/10"
-                            title="Mark as Lost"
-                            onClick={(e) => handleQuickLost(e, enq.id)}
-                          >
-                            <XCircle size={14} />
-                          </Button>
-                        </div>
-                      </td>
                     </tr>
                   ))}
                 </tbody>
@@ -339,7 +303,6 @@ export default function AdminCrmEnquiriesClient() {
         )}
         </Card>
       )}
-      {isAddModalOpen && <AdminCrmAddClient onClose={() => setIsAddModalOpen(false)} />}
     </div>
   );
 }
