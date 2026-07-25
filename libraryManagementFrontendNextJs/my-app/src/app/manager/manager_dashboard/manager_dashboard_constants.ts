@@ -13,19 +13,6 @@ export const STATUS_CLASS: Record<string, string> = {
   Lost:       'bg-danger-bg text-danger',
 };
 
-export const SEAT_CLASS: Record<string, string> = {
-  available: 'bg-success-bg border-success text-success',
-  occupied:  'bg-border border-border text-text-secondary',
-  expiring:  'bg-warning-bg border-warning text-warning-hover',
-};
-
-export const STATUS_CLASS: Record<string, string> = {
-  New:        'bg-info-bg text-info',
-  Visited:    'bg-warning-bg text-warning',
-  Interested: 'bg-primary-subtle text-primary',
-  Converted:  'bg-success-bg text-success',
-  Lost:       'bg-danger-bg text-danger',
-};
 
 export const QUICK_LINKS = [
   { title: 'All Students',    href: '/manager/manager_students'                 },
