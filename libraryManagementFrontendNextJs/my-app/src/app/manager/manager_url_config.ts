@@ -22,7 +22,6 @@ export const MANAGER_ROUTES = {
   FINANCE_SECURITY_DEPOSITS: '/manager/manager_finance/security-deposits',
   FINANCE_LATE_FEES: '/manager/manager_finance/late-fees',
   FINANCE_INVOICE: '/manager/manager_finance/invoice',
-  FINANCE_RECEIPT: '/manager/manager_finance/receipt',
   FINANCE_REFERRALS: '/manager/manager_finance/referrals',
   FINANCE_REFUNDS: '/manager/manager_finance/refunds',
 

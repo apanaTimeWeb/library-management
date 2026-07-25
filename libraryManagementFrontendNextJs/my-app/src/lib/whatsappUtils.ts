@@ -125,6 +125,39 @@ export function formatDuesMessage(data: StudentWhatsAppData): string {
   ].filter(Boolean).join('\n');
 }
 
+export function formatFeeReceiptMessage(data: StudentWhatsAppData): string {
+  const balance = data.totalPayable - data.amountPaid;
+  const branch = data.branch ?? 'Main Branch';
+
+  return [
+    `━━━━━━━━━━━━━━━━━━━━━━`,
+    `📚 *SMART LIBRARY 360*`,
+    `🏢 ${branch}`,
+    `━━━━ FEE RECEIPT ━━━━`,
+    ``,
+    `👤 *Name:* ${data.name}`,
+    `🆔 *Smart ID:* ${data.smartId}`,
+    `📱 *Phone:* ${data.phone}`,
+    ``,
+    `📋 Plan   : ${data.plan}`,
+    `💰 Fees   : ${formatCurrencyIN(data.totalPayable)}`,
+    data.discount > 0 ? `🎁 Discount: -${formatCurrencyIN(data.discount)}` : '',
+    `✅ Paid   : ${formatCurrencyIN(data.amountPaid)}`,
+    `💳 Mode   : ${data.paymentMode}`,
+    data.transactionId ? `🧾 Txn ID : ${data.transactionId}` : '',
+    ``,
+    balance > 0
+      ? `⚠️  *BALANCE DUE: ${formatCurrencyIN(balance)}*`
+      : `✅ *Balance: CLEAR*`,
+    ``,
+    `📅 Valid: ${data.joinDate} → ${data.expiryDate}`,
+    ``,
+    `━━━━━━━━━━━━━━━━━━━━━━`,
+    `🎓 Thank you for joining!`,
+    `━━━━━━━━━━━━━━━━━━━━━━`,
+  ].filter(Boolean).join('\n');
+}
+
 export function openWhatsApp(phone: string, message: string): void {
   const digits = phone.replace(/\D/g, '');
   const normalized = digits.startsWith('91') && digits.length === 12

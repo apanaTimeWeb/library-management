@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation';
 import { Printer, X, Users, CheckCircle, MessageSquare, PartyPopper } from 'lucide-react';
 import ManagerStudentsIdCard from '@/app/manager/manager_students/manager_students_components/ManagerStudentsIdCard';
 import { AdmittedData, ManagerStudentsAdmissionSuccessModalProps } from '@/app/manager/manager_students/manager_students_types';
-import { formatIdCardMessage, openWhatsApp, type StudentWhatsAppData } from '@/lib/whatsappUtils';
+import { formatIdCardMessage, formatFeeReceiptMessage, openWhatsApp, type StudentWhatsAppData } from '@/lib/whatsappUtils';
 import { printThermal } from '@/lib/thermalPrint';
 import { MANAGER_ROUTES } from '@/app/manager/manager_url_config';
 
@@ -27,6 +27,10 @@ export default function ManagerStudentsAdmissionSuccessModal({ data, onClose }: 
 
   function handleSendParent() {
     if (data.parentPhone) openWhatsApp(data.parentPhone, formatIdCardMessage(waData));
+  }
+
+  function handleSendReceipt() {
+    openWhatsApp(data.phone, formatFeeReceiptMessage(waData));
   }
 
   function handlePrintReceipt() {
@@ -87,6 +91,10 @@ export default function ManagerStudentsAdmissionSuccessModal({ data, onClose }: 
                 <MessageSquare size={16} /> Send to Parent WhatsApp
               </button>
             )}
+
+            <button className="bg-transparent border border-success text-success rounded-lg px-5 py-2.5 text-sm font-medium hover:bg-success-bg transition-colors inline-flex items-center gap-2 w-full justify-center" onClick={handleSendReceipt}>
+              <MessageSquare size={16} /> Send Receipt via WhatsApp
+            </button>
 
             <div className="h-px w-full bg-border my-2" />
 

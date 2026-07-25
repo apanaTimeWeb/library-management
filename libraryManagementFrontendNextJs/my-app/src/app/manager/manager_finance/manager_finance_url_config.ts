@@ -2,7 +2,6 @@ export const MANAGER_FINANCE_ROUTES = {
   PAYMENTS: '/manager/manager_finance/payments',
   COLLECT_FEE: '/manager/manager_finance/collect-fee',
   INVOICE: '/manager/manager_finance/invoice',
-  RECEIPT: '/manager/manager_finance/receipt',
   LATE_FEES: '/manager/manager_finance/late-fees',
   REFUNDS: '/manager/manager_finance/refunds',
   RENEWALS: '/manager/manager_finance/renewals',
