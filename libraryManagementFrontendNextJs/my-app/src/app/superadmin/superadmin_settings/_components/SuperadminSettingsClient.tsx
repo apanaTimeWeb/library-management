@@ -51,7 +51,7 @@ export function SuperadminSettingsClient() {
                 <input type="text" className="w-full h-9 px-3 bg-input border border-border rounded-md text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all" value={platform.name}
                   onChange={e => setPlatform(p => ({ ...p, name: e.target.value }))} />
               </div>
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm font-semibold text-text-secondary mb-1.5">Support Email</label>
                   <input type="text" className="w-full h-9 px-3 bg-input border border-border rounded-md text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all" value={platform.email}

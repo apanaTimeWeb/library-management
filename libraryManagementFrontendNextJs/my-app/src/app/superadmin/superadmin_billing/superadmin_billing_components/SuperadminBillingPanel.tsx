@@ -77,7 +77,7 @@ export function SuperadminBillingPanel({ inv, onClose, onMarkPaid }: Props) {
             </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {[['Date',inv.date],['Method',inv.method],['GST Number',inv.gst],['Status',inv.status]].map(([label,val]) => (
               <div key={label} className="bg-input p-3 rounded-md border border-border flex flex-col gap-1">
                 <p className="text-xs font-bold text-text-disabled uppercase tracking-wider">{label}</p>

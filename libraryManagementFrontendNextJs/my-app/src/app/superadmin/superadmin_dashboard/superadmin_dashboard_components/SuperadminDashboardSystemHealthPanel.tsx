@@ -19,7 +19,7 @@ export function SuperadminDashboardSystemHealthPanel({ data }: Props) {
         <h2 className="text-base font-bold text-text-primary">System Health</h2>
       </div>
 
-      <div className="p-6 grid grid-cols-2 gap-4 flex-1">
+      <div className="p-6 grid grid-cols-1 sm:grid-cols-2 gap-4 flex-1">
         {METRICS.map(({ key, label, icon: Icon, colorCls, bgCls }) => (
           <div key={key} className={`p-4 rounded-md border border-border flex flex-col justify-center items-start ${bgCls}`}>
             <div className="flex items-center gap-2 mb-2">

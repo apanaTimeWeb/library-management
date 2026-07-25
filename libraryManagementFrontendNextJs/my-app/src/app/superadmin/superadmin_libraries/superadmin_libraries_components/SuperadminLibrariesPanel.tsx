@@ -123,7 +123,7 @@ export function SuperadminLibrariesPanel({ lib, mode, onClose, onSave, onSuspend
               </div>
             </form>
           ) : (
-            <div className="grid grid-cols-2 gap-4 bg-page rounded-md p-4 border border-border">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 bg-page rounded-md p-4 border border-border">
               <div className="flex flex-col gap-1">
                 <p className="text-xs font-semibold text-text-disabled uppercase tracking-wider">Owner</p>
                 <p className="text-sm font-medium text-text-primary">{lib.owner}</p>

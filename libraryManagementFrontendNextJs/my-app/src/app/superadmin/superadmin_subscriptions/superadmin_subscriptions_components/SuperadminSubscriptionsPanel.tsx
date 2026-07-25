@@ -61,7 +61,7 @@ export function SuperadminSubscriptionsPanel({ sub, onClose, onUpdate, onRenew }
             </button>
           </div>
 
-          <div className="grid grid-cols-2 gap-4 bg-page rounded-md p-4 border border-border">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 bg-page rounded-md p-4 border border-border">
             {[['Billing Cycle',sub.cycle],['Start Date',sub.startDate],['Next Invoice',sub.nextInvoice],['Seats',`${sub.seats} seats`]].map(([label,val]) => (
               <div key={label} className="flex flex-col gap-1">
                 <p className="text-xs font-bold text-text-disabled uppercase tracking-wider">{label}</p>

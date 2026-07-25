@@ -31,7 +31,7 @@ export function SuperadminSetupWizardStep3({ onNext }: Props) {
 
   return (
     <form id="step3-form" onSubmit={handleSubmit(onNext)} noValidate className="space-y-5">
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div className="space-y-1.5">
           <label className="text-sm font-semibold text-text-secondary uppercase tracking-wider mb-2 block">
             Total Seats <span className="text-danger ml-1">*</span>

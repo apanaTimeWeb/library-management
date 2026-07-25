@@ -33,7 +33,7 @@ export function SuperadminSetupWizardStep1({ onNext }: Props) {
         {errors.address && <p className="text-xs text-danger mt-1.5">{errors.address.message}</p>}
       </div>
 
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div className="space-y-1.5">
           <label className="text-sm font-semibold text-text-secondary uppercase tracking-wider mb-2 block">
             City <span className="text-danger ml-1">*</span>

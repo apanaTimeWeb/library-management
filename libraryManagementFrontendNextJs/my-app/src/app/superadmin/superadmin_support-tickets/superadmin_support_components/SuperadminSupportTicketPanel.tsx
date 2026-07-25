@@ -36,7 +36,7 @@ export function SuperadminSupportTicketPanel({ tkt, onClose, onSave }: { tkt: Ti
           <p className="text-sm text-text-secondary leading-relaxed">{tkt.desc}</p>
         </div>
 
-        <div className="grid grid-cols-2 gap-3 mt-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-6">
           {[['Tenant',tkt.tenant],['Priority',tkt.priority],['Age',`${tkt.age} ago`],['Replies',`${tkt.replies} replies`]].map(([label,val]) => (
             <div key={label} className="bg-bg-input p-3 rounded-lg border border-border">
               <p className="text-xs font-semibold text-text-secondary uppercase tracking-wider mb-1">{label}</p>

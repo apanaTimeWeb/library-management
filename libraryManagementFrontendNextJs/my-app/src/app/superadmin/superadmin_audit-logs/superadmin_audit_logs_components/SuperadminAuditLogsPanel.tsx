@@ -30,7 +30,7 @@ export function SuperadminAuditLogsPanel({ log, onClose }: Props) {
             <p className="text-sm text-text-primary leading-relaxed font-medium">{log.detail}</p>
           </div>
 
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {[
               ['Timestamp',log.time],
               ['Performed By',log.user],
