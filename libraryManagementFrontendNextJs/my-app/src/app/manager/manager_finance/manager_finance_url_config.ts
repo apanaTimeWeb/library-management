@@ -1,13 +1,10 @@
 export const MANAGER_FINANCE_ROUTES = {
   PAYMENTS: '/manager/manager_finance/payments',
   COLLECT_FEE: '/manager/manager_finance/collect-fee',
-  INVOICE: '/manager/manager_finance/invoice',
   LATE_FEES: '/manager/manager_finance/late-fees',
-  REFUNDS: '/manager/manager_finance/refunds',
   RENEWALS: '/manager/manager_finance/renewals',
   SECURITY_DEPOSITS: '/manager/manager_finance/security-deposits',
   SUBSCRIPTIONS: '/manager/manager_finance/subscriptions',
-  PAYMENT_PROMISES: '/manager/manager_finance/payment-promises',
   AUTO_SUSPEND: '/manager/manager_finance/auto-suspend',
   REFERRALS: '/manager/manager_finance/referrals',
 } as const;

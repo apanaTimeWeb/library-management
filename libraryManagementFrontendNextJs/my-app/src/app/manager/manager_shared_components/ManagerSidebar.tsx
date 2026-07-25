@@ -29,10 +29,10 @@ const NAV: ManagerNavItem[] = [
   { href: MANAGER_ROUTES.STUDENTS_NEW,        icon: UserPlus,   label: 'New Admission'    },
   { href: MANAGER_ROUTES.STUDENTS_ALUMNI,     icon: UserCheck,  label: 'Alumni'           },
 
-  { href: MANAGER_ROUTES.STUDENTS_ID_CARD,    icon: CreditCard, label: 'ID Card Generator'},
+
   { group: 'Seats & Shifts' },
   { href: MANAGER_ROUTES.SEATS_SHIFTS_LOCKERS + '/seat-matrix',      icon: LayoutGrid,     label: 'Seat Matrix'     },
-  { href: MANAGER_ROUTES.SEATS_SHIFTS_LOCKERS + '/shift-migration',  icon: ArrowLeftRight, label: 'Shift Migration' },
+
   { href: MANAGER_ROUTES.SEATS_SHIFTS_LOCKERS + '/seat-history',     icon: History,        label: 'Seat History'    },
 
   { href: MANAGER_ROUTES.SEATS_SHIFTS_LOCKERS + '/locker-matrix',    icon: LayoutGrid,     label: 'Locker Matrix'   },
@@ -41,12 +41,9 @@ const NAV: ManagerNavItem[] = [
   { href: MANAGER_ROUTES.SUBSCRIPTIONS,             icon: FileText,    label: 'Subscriptions'     },
   { href: MANAGER_ROUTES.FINANCE_RENEWALS,          icon: RotateCcw,   label: 'Renewals'          },
   { href: MANAGER_ROUTES.FINANCE_PAYMENTS,          icon: CreditCard,  label: 'Payments'          },
-  { href: MANAGER_ROUTES.FINANCE_PAYMENT_PROMISES,  icon: Handshake,   label: 'Payment Promises'  },
   { href: MANAGER_ROUTES.FINANCE_SECURITY_DEPOSITS, icon: Wallet,      label: 'Security Deposits' },
   { href: MANAGER_ROUTES.FINANCE_LATE_FEES,         icon: Clock,       label: 'Late Fees'         },
-  { href: MANAGER_ROUTES.FINANCE_INVOICE,           icon: Receipt,     label: 'Invoice'           },
   { href: MANAGER_ROUTES.FINANCE_REFERRALS,         icon: Award,       label: 'Referrals'         },
-  { href: MANAGER_ROUTES.FINANCE_REFUNDS,           icon: DollarSign,  label: 'Refunds'           },
   { group: 'Operations' },
   { href: MANAGER_ROUTES.ENGAGEMENT_ATTENDANCE,       icon: CalendarCheck,  label: 'Attendance'       },
   { href: MANAGER_ROUTES.ENGAGEMENT_ABSENTEE_REPORT,  icon: ClipboardCheck, label: 'Absentee Report'  },
@@ -55,7 +52,6 @@ const NAV: ManagerNavItem[] = [
   { href: MANAGER_ROUTES.ACCOUNTING_DAILY_SETTLEMENT,  icon: Receipt,    label: 'Daily Settlement'  },
   { href: MANAGER_ROUTES.ACCOUNTING_SEAT_GAP_REPORT,   icon: LayoutGrid, label: 'Seat Gap Report'   },
   { href: MANAGER_ROUTES.ACCOUNTING_ASSETS,            icon: BarChart,   label: 'Assets'            },
-  { href: MANAGER_ROUTES.ACCOUNTING_ASSET_MAINTENANCE, icon: BarChart,   label: 'Asset Maintenance' },
   { group: 'Communication' },
   { href: MANAGER_ROUTES.COMMUNICATION_NOTICES,             icon: Bell,          label: 'Notices'             },
   { href: MANAGER_ROUTES.COMMUNICATION_COMPLAINTS,          icon: MessageSquare, label: 'Complaints'          },

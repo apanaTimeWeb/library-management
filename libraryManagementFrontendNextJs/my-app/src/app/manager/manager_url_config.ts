@@ -10,7 +10,6 @@ export const MANAGER_ROUTES = {
   STUDENTS: '/manager/manager_students',
   STUDENTS_NEW: '/manager/manager_students/new',
   STUDENTS_ALUMNI: '/manager/manager_students/alumni',
-  STUDENTS_ID_CARD: '/manager/manager_students/id-card',
   
 
 
@@ -18,12 +17,9 @@ export const MANAGER_ROUTES = {
   FINANCE_COLLECT_FEE: '/manager/manager_finance/collect-fee',
   FINANCE_RENEWALS: '/manager/manager_finance/renewals',
   FINANCE_PAYMENTS: '/manager/manager_finance/payments',
-  FINANCE_PAYMENT_PROMISES: '/manager/manager_finance/payment-promises',
   FINANCE_SECURITY_DEPOSITS: '/manager/manager_finance/security-deposits',
   FINANCE_LATE_FEES: '/manager/manager_finance/late-fees',
-  FINANCE_INVOICE: '/manager/manager_finance/invoice',
   FINANCE_REFERRALS: '/manager/manager_finance/referrals',
-  FINANCE_REFUNDS: '/manager/manager_finance/refunds',
 
   // Communication
   COMMUNICATION_NOTICES: '/manager/manager_communication/notices',
@@ -44,7 +40,6 @@ export const MANAGER_ROUTES = {
   ACCOUNTING_DAILY_SETTLEMENT: '/manager/manager_accounting/daily-settlement',
   ACCOUNTING_SEAT_GAP_REPORT: '/manager/manager_accounting/seat-gap-report',
   ACCOUNTING_ASSETS: '/manager/manager_accounting/assets',
-  ACCOUNTING_ASSET_MAINTENANCE: '/manager/manager_accounting/asset-maintenance',
 
   // Seats & Assets
   SEATS_SHIFTS_LOCKERS: '/manager/manager_seats_shifts_lockers',
