@@ -20,17 +20,19 @@ export function ManagerStudentReportsClient() {
           <div className="bg-card p-4 rounded-xl border">
             <h2 className="text-lg font-bold mb-4">Absentees</h2>
             <TableToolbar search={table.searchTerm} onSearch={table.setSearchTerm} />
-            <table className="w-full text-left">
-              <thead><tr><th>Student</th><th>Days Absent</th></tr></thead>
-              <tbody>
-                {table.paginatedData.map((a, i) => (
-                  <tr key={a.name}>
-                    <td>{a.name}</td>
-                    <td>{a.absentDays}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+            <div className="overflow-x-auto w-full">
+              <table className="w-full text-left">
+                <thead><tr><th>Student</th><th>Days Absent</th></tr></thead>
+                <tbody>
+                  {table.paginatedData.map((a, i) => (
+                    <tr key={a.name}>
+                      <td>{a.name}</td>
+                      <td>{a.absentDays}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
             <TablePagination page={table.page} limit={table.limit} totalItems={table.totalItems} onPageChange={table.setPage} onLimitChange={table.setLimit} />
           </div>
         </div>

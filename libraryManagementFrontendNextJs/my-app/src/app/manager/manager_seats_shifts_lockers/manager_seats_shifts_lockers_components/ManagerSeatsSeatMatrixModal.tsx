@@ -37,14 +37,14 @@ export function ManagerSeatsSeatMatrixModal({ isOpen, onClose, selectedSeat }: M
           </>
         ) : (
           <>
-            <div className="bg-bg-elevated p-6 -mx-6 -mt-6 mb-6 rounded-t-xl border-b border-border flex flex-col items-center justify-center text-center -m-6 mb-6 p-6 bg-card rounded-t-xl">
-              <div className="flex justify-between items-center w-full flex justify-between items-center mb-4">
-                <span className={`rounded-full px-2.5 py-0.5 text-xs font-semibold ${selectedSeat.status === 'expiring' ? 'bg-warning-bg text-warning' : 'rounded-full px-2.5 py-0.5 text-xs font-semibold--danger'}`}>
+            <div className="bg-bg-elevated p-6 -mx-6 -mt-6 mb-6 rounded-t-xl border-b border-border flex flex-col items-center justify-center text-center">
+              <div className="flex justify-between items-center w-full mb-4">
+                <span className={`rounded-full px-2.5 py-0.5 text-xs font-semibold ${selectedSeat.status === 'expiring' ? 'bg-warning-bg text-warning' : 'bg-danger/10 text-danger'}`}>
                   {selectedSeat.status === 'expiring' ? 'Expiring Soon' : 'Occupied'}
                 </span>
-                <span className="text-lg font-bold text-text-primary bg-card px-3 py-1 rounded-lg border border-border shadow-sm font-bold">Seat {selectedSeat.id}</span>
+                <span className="text-lg font-bold text-text-primary bg-card px-3 py-1 rounded-lg border border-border shadow-sm">Seat {selectedSeat.id}</span>
               </div>
-              <div className="flex justify-center my-6 flex flex-col items-center">
+              <div className="flex justify-center my-6 flex-col items-center">
                 <div className="w-16 h-16 rounded-full bg-card flex items-center justify-center mb-3">
                   <User size={32} className="text-text-secondary" />
                 </div>
@@ -52,23 +52,23 @@ export function ManagerSeatsSeatMatrixModal({ isOpen, onClose, selectedSeat }: M
                 <p className="text-text-secondary text-sm">{selectedSeat.smartId}</p>
               </div>
             </div>
-            <div className="grid grid-cols-2 gap-4 mt-6 grid grid-cols-2 gap-4">
-              <div className="p-3 bg-bg-elevated rounded-lg border border-border flex flex-col gap-1 bg-card p-3 rounded-lg">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-6">
+              <div className="p-3 bg-bg-elevated rounded-lg border border-border flex flex-col gap-1">
                 <p className="text-text-secondary text-xs uppercase mb-1">Shift</p>
                 <span className={SHIFT_BADGE[selectedSeat.shift ?? ''] ?? 'rounded-full px-2.5 py-0.5 text-xs font-semibold bg-card'}>
                   {selectedSeat.shift}
                 </span>
               </div>
-              <div className="p-3 bg-bg-elevated rounded-lg border border-border flex flex-col gap-1 bg-card p-3 rounded-lg">
+              <div className="p-3 bg-bg-elevated rounded-lg border border-border flex flex-col gap-1">
                 <p className="text-text-secondary text-xs uppercase mb-1">Expires</p>
                 <p className={`font-semibold ${selectedSeat.status === 'expiring' ? 'text-danger' : 'text-text-primary'}`}>
                   {selectedSeat.expiry}
                 </p>
               </div>
             </div>
-            <div className="flex justify-end gap-3 p-6 border-t border-border bg-bg-elevated/30 flex gap-3 mt-6">
-              <button className="bg-transparent border border-border text-text-primary rounded-lg px-5 py-2.5 text-sm font-medium hover:bg-primary-subtle hover:border-primary transition-colors inline-flex items-center gap-2 flex-1" onClick={onClose}>Close</button>
-              <button className="bg-primary text-white rounded-lg px-5 py-2.5 text-sm font-medium hover:bg-primary-hover transition-colors inline-flex items-center gap-2 flex-1">View Full Profile</button>
+            <div className="flex justify-end gap-3 p-6 border-t border-border bg-bg-elevated/30 mt-6">
+              <button className="bg-transparent border border-border text-text-primary rounded-lg px-5 py-2.5 text-sm font-medium hover:bg-primary-subtle hover:border-primary transition-colors inline-flex items-center justify-center gap-2 flex-1" onClick={onClose}>Close</button>
+              <button className="bg-primary text-white rounded-lg px-5 py-2.5 text-sm font-medium hover:bg-primary-hover transition-colors inline-flex items-center justify-center gap-2 flex-1">View Full Profile</button>
             </div>
           </>
         )}
