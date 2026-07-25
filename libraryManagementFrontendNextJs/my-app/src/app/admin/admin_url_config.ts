@@ -17,22 +17,12 @@ export const ADMIN_ROUTES = {
   AUDIT_LOGS: '/admin/admin_audit-logs',
   STUDENTS: '/admin/admin_students',
   SETTINGS: '/admin/admin_settings',
-  LIBRARIES: '/admin/admin_libraries',
-  SUBSCRIPTIONS: '/admin/admin_subscriptions',
-  BILLING: '/admin/admin_billing',
-  SYSTEM_HEALTH: '/admin/admin_system-health',
-  SUPPORT_TICKETS: '/admin/admin_support-tickets',
   
   // CRM
   CRM_ENQUIRIES: '/admin/admin_crm/enquiries',
   
   // ACCOUNTING
-  ACCOUNTING_ASSETS: '/admin/admin_accounting/assets',
-  ACCOUNTING_DAILY_SETTLEMENT: '/admin/admin_accounting/daily-settlement',
   ACCOUNTING_EXPENSES: '/admin/admin_accounting/expenses',
-  ACCOUNTING_FINANCIAL_REPORTS: '/admin/admin_accounting/financial-reports',
-  ACCOUNTING_EXPENSE_CATEGORIES: '/admin/admin_accounting/expense-categories',
-  ACCOUNTING_SEAT_GAP_REPORT: '/admin/admin_accounting/seat-gap-report',
 } as const;
 
 export const ADMIN_API_ROUTES = {
@@ -48,11 +38,7 @@ export const ADMIN_API_ROUTES = {
   COUPONS: '/admin/coupons',
   PLANS: '/admin/plans',
   EXPENSES: '/admin/expenses',
-  EXPENSE_CATEGORIES: '/admin/expense-categories',
-  ACCOUNTING_ASSETS: '/admin/accounting/assets',
-  ACCOUNTING_DAILY_SETTLEMENT: '/admin/accounting/daily-settlements',
   ACCOUNTING_EXPENSES: '/admin/accounting/expenses',
-  ACCOUNTING_FINANCIAL_REPORTS: '/admin/accounting/financial-reports',
   // CRM
   CRM_ENQUIRIES: '/admin/crm/enquiries',
   CRM_ENQUIRY_BY_ID: (id: string) => `/admin/crm/enquiries/${id}`,
