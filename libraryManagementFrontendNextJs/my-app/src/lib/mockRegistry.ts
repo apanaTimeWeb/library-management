@@ -3,8 +3,7 @@ import managerStudentsMock from '@/app/manager/manager_students/hardcoded.json';
 import { MOCK_AUDIT_LOGS } from '@/app/admin/admin_audit-logs/admin_audit-logs_constants/admin_audit-logs_constants';
 import { MOCK_BLACKLIST } from '@/app/admin/admin_blacklist/admin_blacklist_constants/admin_blacklist_constants';
 import { MOCK_COUPONS } from '@/app/admin/admin_coupons/admin_coupons_constants/admin_coupons_constants';
-import { MOCK_EXPENSE_CATEGORIES } from '@/app/admin/admin_expense-categories/admin_expense-categories_constants/admin_expense-categories_constants';
-import { MOCK_EXPENSES } from '@/app/admin/admin_expenses/admin_expenses_constants/admin_expenses_constants';
+
 import { MOCK_PLANS } from '@/app/admin/admin_plans/admin_plans_constants/admin_plans_constants';
 import { MOCK_DASHBOARD_DATA as MANAGER_DASHBOARD_MOCK_DATA } from '@/app/manager/manager_mock_data';
 import { SUPERADMIN_ASSET_MAINTENANCE_MOCK_DATA } from '@/app/superadmin/superadmin_accounting/asset-maintenance/superadmin_asset_maintenance_constants/SuperadminAssetMaintenanceConstants';
@@ -103,8 +102,6 @@ export const mockRegistry: Record<string, unknown> = {
   '/admin/audit-logs': MOCK_AUDIT_LOGS,
   '/admin/blacklist': MOCK_BLACKLIST,
   '/admin/coupons': MOCK_COUPONS,
-  '/admin/expense-categories': MOCK_EXPENSE_CATEGORIES,
-  '/admin/expenses': MOCK_EXPENSES,
   '/admin/plans': MOCK_PLANS,
   '/admin/reports': {
     kpiCards: ADMIN_REPORTS_KPI_CARDS,
