@@ -1,5 +1,5 @@
-﻿// RESPONSIBILITY: Renders or handles logic for ManagerEngagementConstants.ts.
-import { AbsenteeRow, ScanResult, Holiday } from '@/app/manager/manager_engagement/manager_engagement_types/ManagerEngagementTypes';
+// RESPONSIBILITY: Renders or handles logic for ManagerEngagementConstants.ts.
+import { AbsenteeRow, ScanResult } from '@/app/manager/manager_engagement/manager_engagement_types/ManagerEngagementTypes';
 
 export const ABSENTEE_MOCK_DATA: AbsenteeRow[] = [
   { id:'1', name:'Priya Verma',   initials:'PV', smartId:'SL-002', shift:'Morning',   daysAbsent:4,  lastSeen:'2026-04-08', parentPhone:'+91 981234', parentEmail:'parent1@email.com', notified:false },
@@ -14,13 +14,3 @@ export const MOCK_STUDENT: ScanResult = {
   smartId: 'SL-001', shift: 'Morning',
   validTill: '30 Jun 2026', plan: 'Premium  6 Month',
 };
-
-export const INIT_HOLIDAYS: Holiday[] = [
-  { id:'1', date:'2026-04-14', name:'Dr. Ambedkar Jayanti',      type:'National'  },
-  { id:'2', date:'2026-04-21', name:'Ram Navami',                type:'Religious' },
-  { id:'3', date:'2026-05-01', name:'International Labour Day',  type:'National'  },
-  { id:'4', date:'2026-08-15', name:'Independence Day',          type:'National'  },
-  { id:'5', date:'2026-10-02', name:'Gandhi Jayanti',            type:'National'  },
-];
-
-
